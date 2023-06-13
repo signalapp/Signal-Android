@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Қоңырау</string>
     <string name="CommunicationActions_insecure_call">Қауіпсіз емес қоңырау</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Оператор ақы алуы мүмкін. Сіз қоңырау шалып жатқан нөмір Signal-да тіркелмеген. Бұл қоңырау интернет арқылы емес, мобильдік операторыңыз арқылы жасалады.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Қоңырауға қосылу мүмкін емес</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Бұл қоңырау сілтемесі енді жарамды емес.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal-ды ашу</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Бұдан былай верификацияланбайды</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Сүзгіні тазалау</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Басқа да беттерді немесе аймақтарды бұлыңғырлау үшін сызыңыз.</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Дауыстық хаттарды жазу үшін басып тұрыңыз да, жіберу үшін саусағыңызды алыңыз</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Басып тұрып, дауыстық хат жазыңыз да, жіберіңіз</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Енді Signal-да SMS-пен алмасу мүмкін емес.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Осы нөмірді тіркеу үшін сіз тым көп әрекет жасадыңыз. %1$s өткен соң, қайталап көріңіз.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Қызметке жалғану мүмкін емес. Желіге жалғанғаныңызды тексеріңіз де, тағы бір рет байқап көріңіз.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Күтпеген қате шықты.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Верификация кодын SMS арқылы жібере алмадық. Кодты дауыстық қоңырау арқылы алып көріңіз.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Верификация кодын сұрау мүмкін емес. Желі байланысын тексеріп, қайталап көріңіз.</string>
     <string name="RegistrationActivity_non_standard_number_format">Стандартты емес нөмір форматы</string>
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">Алынды</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Төлемдер туралы ақпарат (бета нұсқасы)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Анонимді транзакцияларға негізделген цифрлық валюта болып есептелетін MobileCoin жіберу және алу үшін Signal қолданбасын пайдаланыңыз. Бастау үшін белсендіріңіз.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Жаңа цифрлық валюта болып есептелетін MobileCoin жіберу және алу үшін Signal қолданбасын пайдаланыңыз. Бастау үшін белсендіріңіз.</string>
     <string name="PaymentsHomeFragment__activate_payments">Төлемдерді іске қосу</string>
     <string name="PaymentsHomeFragment__activating_payments">Төлемдер іске қосылуда…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Төлемдер шотын қалпына келтіру</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Қоңыраулар тарихы өшірілді</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Қоңыраулар тарихын өшіру керек пе?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Бұл қоңыраулар тарихын түгелдей біржола жояды</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Қоңыраулар тарихын өшіру</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Қабылданбаған қоңырауларды ғана көрсету</string>
     <!-- Action bar menu item to clear missed call filter -->

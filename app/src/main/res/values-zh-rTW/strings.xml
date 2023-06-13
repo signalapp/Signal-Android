@@ -235,8 +235,8 @@
     <string name="CommunicationActions_call">撥打</string>
     <string name="CommunicationActions_insecure_call">不安全的電話</string>
     <string name="CommunicationActions_carrier_charges_may_apply">電信商可能會收取額外的費用。你撥出的號碼未在Signal中註冊。 該電話將通過你的電信商撥出，而不是通過網際網路撥出。</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">無法加入通話</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">此通話連結已失效。</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -500,7 +500,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">開啟 Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">已無驗證</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">清除篩選器</string>
@@ -1791,9 +1791,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">你已多次嘗試註冊此電話號碼。請在 %1$s後再試。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">發生未預期錯誤。</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">我們無法透過 SMS 短訊傳送驗證碼給你。請嘗試透過語音通話接收驗證碼。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">無法要求驗證碼。請檢查你的網路連線，然後再試一次。</string>
     <string name="RegistrationActivity_non_standard_number_format">非標準數字格式</string>
@@ -5849,13 +5849,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">清除通話紀錄</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">要清除通話紀錄嗎？</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">這將永久刪除所有通話記錄</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">清除通話紀錄</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">篩選未接通話</string>
     <!-- Action bar menu item to clear missed call filter -->

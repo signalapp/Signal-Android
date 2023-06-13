@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Zəng et</string>
     <string name="CommunicationActions_insecure_call">Güvənli olmayan zəng</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Operator, ödəniş haqqı ala bilər. Zəng etdiyiniz nömrə Signal-da qeydiyyatdan keçməyib. Bu zəng internet üzərindən deyil, mobil şəbəkəniz üzərindən həyata keçiriləcək.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Zəngə qoşulmaq mümkün deyil</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Bu zəng keçidi artıq mövcud deyil.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal-ı açın</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Artıq təsdiqlənmir</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filtri təmizlə</string>
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Bu nömrəni qeydiyyatdan keçirmək üçün həddindən çox cəhd etdiniz. %1$s dəqiqə sonra yenidən cəhd edin.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə bağlantı qurula bilmir. Zəhmət olmasa şəbəkə bağlantınızı yoxlayıb yenidən sınayın.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Gözlənilməz bir xəta baş verdi.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Təsdiq kodunu sizə SMS vasitəsilə göndərə bilmirik. Bunun əvəzinə kodunuzu audio zənglə almağa çalışın.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Təsdiq kodunu tələb etmək mümkün deyil. Şəbəkə bağlantınızı yoxlayıb yenidən cəhd edin.</string>
     <string name="RegistrationActivity_non_standard_number_format">Standart olmayan nömrə formatı</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Zəng tarixçəsi təmizləndi</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Zəng tarixçəsi təmizlənsin?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Bu əmr bütün zəng tarixçəsini daimi olaraq təmizləyəcək</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Zəng tarixçəsini təmizlə</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Cavabsız zəngləri filtrlə</string>
     <!-- Action bar menu item to clear missed call filter -->

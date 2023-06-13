@@ -237,8 +237,8 @@
     <string name="CommunicationActions_call">Zvanīt</string>
     <string name="CommunicationActions_insecure_call">Nedrošs zvans</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Var tikt piemēroti mobilā tīkla operatora maksas. Numuram, uz kuru zvanāt, nav instalēta Signal aplikācija. Tādēļ šis zvans tiks veikts izmantojot jūsu mobilo sakaru operatoru, nevis internetu.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Nevar pievienoties grupai</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Šī zvana saite vairs nav derīga.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -516,7 +516,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Atvērt Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Vairs nav verificēts</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Noņemt filtru</string>
@@ -1148,7 +1148,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Velciet, lai aizmiglotu vairākas vietas</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu audio ziņu, atlaist, lai sūtītu</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu balss ziņu, atlaist, lai sūtītu</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal vairs netiek atbalstīta SMS ziņu sūtīšana.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1921,9 +1921,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Pārāk daudz šī numura reģistrēšanas mēģinājumu. Mēģiniet vēlreiz pēc %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nevar izveidot savienojumu ar pakalpojumu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Radās neparedzēta kļūda.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Mēs nevarējām nosūtīt jums verifikācijas kodu īsziņā. Tā vietā mēģiniet saņemt kodu, izmantojot balss zvanu.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nevar pieprasīt verifikācijas kodu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandarta numura formāts</string>
@@ -2985,7 +2985,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Maksājumu bloķēšana</string>
     <string name="preferences__payments_beta">Maksājumi (beta)</string>
-    <string name="preferences__conversation_length_limit">Sarunu garuma ierobežojums</string>
+    <string name="preferences__conversation_length_limit">Maksimālais sarunas ziņu skaits</string>
     <string name="preferences__keep_messages">Paturēt ziņas</string>
     <string name="preferences__clear_message_history">Dzēst ziņu vēsturi</string>
     <string name="preferences__linked_devices">Piesaistās ierīces</string>
@@ -3143,7 +3143,7 @@
     <string name="PaymentsAllActivityFragment__received">Saņemtās</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Maksājumu ieviešana (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Izmantojiet lietotni Signal, lai nosūtītu un saņemtu MobileCoin - jaunu uz privātumu vērstu digitālo valūtu. Aktivizējiet, lai sāktu.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Izmantojiet lietotni Signal, lai nosūtītu un saņemtu MobileCoin — jaunu, uz privātumu vērstu digitālo valūtu. Aktivizējiet, lai sāktu.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivizēt maksājumus</string>
     <string name="PaymentsHomeFragment__activating_payments">Tiek aktivizēti maksājumi…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Atjaunot maksājumu kontu</string>
@@ -6095,13 +6095,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Zvanu vēsture dzēsta</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Dzēst zvanu vēsturi?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Tiks neatgriezeniski dzēsta visa zvanu vēsture</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Dzēst zvanu vēsturi</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrēt neatbildētos zvanus</string>
     <!-- Action bar menu item to clear missed call filter -->

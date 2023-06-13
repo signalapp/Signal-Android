@@ -238,8 +238,8 @@
     <string name="CommunicationActions_call">Позвонить</string>
     <string name="CommunicationActions_insecure_call">Незащищённый звонок</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Оператор может взимать плату. Номер, по которому вы звоните, не зарегистрирован в Signal. Этот звонок будет сделан через вашего оператора мобильной связи, а не через интернет.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Невозможно присоединиться к звонку</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Эта ссылка на звонок уже недействительна.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -524,7 +524,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Открыть Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Более не подтверждённые</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Очистить фильтр</string>
@@ -1185,7 +1185,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Рисуйте, чтобы размыть другие лица или области</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Удерживайте, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Удерживайте для записи аудио; отпустите для отправки</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Обмен SMS-сообщениями больше не поддерживается в Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1986,9 +1986,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Произошла непредвиденная ошибка.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Мы не смогли отправить вам код проверки по SMS. Попробуйте получить код с помощью голосового вызова.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Не удаётся запросить код подтверждения. Пожалуйста, проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартный номер телефона</string>
@@ -3066,7 +3066,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Блокировка платежей</string>
     <string name="preferences__payments_beta">Платежи (бета)</string>
-    <string name="preferences__conversation_length_limit">Предел длины чата</string>
+    <string name="preferences__conversation_length_limit">Макс. число сообщений в чате</string>
     <string name="preferences__keep_messages">Хранить сообщения</string>
     <string name="preferences__clear_message_history">Очистить историю сообщений</string>
     <string name="preferences__linked_devices">Привязанные устройства</string>
@@ -3225,7 +3225,7 @@
     <string name="PaymentsAllActivityFragment__received">Полученные</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Новая функция: платежи (бета)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Используйте Signal, чтобы отправлять и получать MobileCoin — новую цифровую валюту c акцентом на конфиденциальность. Активируйте, чтобы начать.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Используйте Signal, чтобы отправлять и получать MobileCoin — новую цифр. валюту c акцентом на конфиденциальность. Активируйте, чтобы начать.</string>
     <string name="PaymentsHomeFragment__activate_payments">Активировать платежи</string>
     <string name="PaymentsHomeFragment__activating_payments">Активируем платежи…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Восстановить платёжную учётную запись</string>
@@ -6218,13 +6218,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">История звонков очищена</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Очистить историю звонков?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Вся история звонков будет безвозвратно удалена</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Очистить историю звонков</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Отфильтровать пропущенные звонки</string>
     <!-- Action bar menu item to clear missed call filter -->

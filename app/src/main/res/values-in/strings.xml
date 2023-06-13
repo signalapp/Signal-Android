@@ -235,8 +235,8 @@
     <string name="CommunicationActions_call">Panggil</string>
     <string name="CommunicationActions_insecure_call">Panggilan tidak aman</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Panggilan akan menggunakan pulsa seluler. Karena nomor yang Anda hubungi belum menggunakan Signal, panggilan ini akan melalui jaringan seluler, bukan melalui Internet.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Tidak dapat bergabung ke panggilan</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Tautan panggilan ini sudah tidak berlaku.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -500,7 +500,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Buka Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Sudah tidak terverifikasi</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Hapus filter</string>
@@ -1791,9 +1791,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Anda terlalu sering mencoba mendaftar dengan nomor ini. Mohon coba lagi dalam %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Terjadi kesalahan tidak terduga.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Kami tidak dapat mengirimi Anda kode verifikasi via SMS. Coba terima kode via panggilan suara.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Tidak dapat meminta kode verifikasi. Harap periksa koneksi internet dan coba lagi.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format nomor tidak umum</string>
@@ -5849,13 +5849,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Riwayat panggilan dihapus</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Hapus riwayat panggilan?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Tindakan ini akan menghapus semua riwayat panggilan secara permanen</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Hapus riwayat panggilan</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filter panggilan tidak terjawab</string>
     <!-- Action bar menu item to clear missed call filter -->

@@ -235,8 +235,8 @@
     <string name="CommunicationActions_call">Gọi</string>
     <string name="CommunicationActions_insecure_call">Cuộc gọi không bảo mật</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Có thể tốn cước phí. Số điện thoại bạn đang gọi chưa được đăng kí với Signal. Cuộc gọi này sẽ được thực hiện qua nhà cung cấp dịch vụ viễn thông, không qua internet.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Không thể tham gia cuộc gọi</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Đường dẫn cuộc gọi không còn hiệu lực.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -500,7 +500,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Mở Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Không còn được xác minh</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Bỏ lọc</string>
@@ -1791,9 +1791,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Bạn đã thử đăng ký số này quá nhiều lần. Vui lòng thử lại trong %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Không thể kết nối với dịch vụ. Vui lòng kiểm tra đuờng truyền mạng và thử lại.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Đã xảy ra lỗi không mong muốn.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Chúng tôi không thể gửi cho bạn mã xác minh thông qua tin nhắn SMS. Thử nhận mã của bạn qua cuộc gọi thoại.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Không thể yêu cầu mã xác minh. Vui lòng kiểm tra kết nối mạng của bạn và thử lại.</string>
     <string name="RegistrationActivity_non_standard_number_format">Định dạng số không chuẩn</string>
@@ -2823,7 +2823,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Khóa thanh toán</string>
     <string name="preferences__payments_beta">Thanh toán (Beta)</string>
-    <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc trò chuyện</string>
+    <string name="preferences__conversation_length_limit">Số lượng tin nhắn tối đa trong một cuộc trò chuyện</string>
     <string name="preferences__keep_messages">Giữ tin nhắn</string>
     <string name="preferences__clear_message_history">Xóa lịch sử tin nhắn</string>
     <string name="preferences__linked_devices">Các thiết bị được liên kết</string>
@@ -5849,13 +5849,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Đã xóa lịch sử cuộc gọi</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Xóa lịch sử cuộc gọi?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Thao tác này sẽ xóa vĩnh viễn tất cả lịch sử cuộc gọi</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Xóa lịch sử cuộc gọi</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Lọc cuộc gọi nhỡ</string>
     <!-- Action bar menu item to clear missed call filter -->

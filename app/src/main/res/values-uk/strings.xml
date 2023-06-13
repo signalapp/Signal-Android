@@ -238,8 +238,8 @@
     <string name="CommunicationActions_call">Виклик</string>
     <string name="CommunicationActions_insecure_call">Незахищений дзвінок</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Оператор може стягувати оплату. Номер, за яким Ви телефонуєте, не зареєстровано у Signal. Цей дзвінок буде здійснено через мобільного оператора, а не через інтернет.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Не вдається приєднатися до виклику</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Посилання на виклик більше не дійсне.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -524,7 +524,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Відкрити Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Без підтвердження</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Очистити фільтр</string>
@@ -1185,7 +1185,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Малюй, щоб розмити обличчя або зони</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Торкніться і утримуйте для запису голосового повідомлення, відпустіть, щоб надіслати</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Записати: торкніться й утримуйте. Надіслати: відпустіть</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal більше не підтримує SMS-повідомлення.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1986,9 +1986,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, повторіть через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Сталася неочікувана помилка.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Нам не вдалося надіслати код підтвердження за допомогою SMS. Спробуйте отримати код за допомогою голосового виклику.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Не вдається надіслати запит на код підтвердження. Перевірте підключення до мережі та спробуйте знову.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартний формат номеру</string>
@@ -3066,7 +3066,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Захист платежів</string>
     <string name="preferences__payments_beta">Платежі (Бета)</string>
-    <string name="preferences__conversation_length_limit">Обмеження розміру чату</string>
+    <string name="preferences__conversation_length_limit">Обмеження кількості повідомлень у чаті</string>
     <string name="preferences__keep_messages">Зберігати повідомлення</string>
     <string name="preferences__clear_message_history">Очистити історію повідомлень</string>
     <string name="preferences__linked_devices">Прив\'язані пристрої</string>
@@ -6218,13 +6218,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Історію викликів очищено</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Очистити історію викликів?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Ця дія назавжди видалить усю історію викликів</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Очистити історію викликів</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Фільтрувати пропущені Дзвінки</string>
     <!-- Action bar menu item to clear missed call filter -->

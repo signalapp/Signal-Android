@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Ring</string>
     <string name="CommunicationActions_insecure_call">Osäkert samtal</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Operatörskostnader kan tillkomma. Numret du ringer är inte registrerat hos Signal. Detta samtal placeras via din mobiloperatör, inte över internet.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Det går inte att gå med i samtal</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Den här samtalslänken är inte längre giltig.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Öppna Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Inte längre verifierad</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Rensa filter</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Rita för att oskärpa ytterligare ansikten eller områden</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll för att spela in, släpp för att skicka</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Sms-meddelanden stöds inte längre i Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort för många försök att registrera detta nummer. Försök igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Kontrollera nätverksanslutning och försök igen.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Ett oväntat fel inträffade.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunde inte skicka en verifieringskod via sms. Försök att ta emot din kod via röstsamtal istället.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Det gick inte att begära en verifieringskod. Kontrollera din nätverksanslutning och försök igen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Icke-standardiserat sifferformat</string>
@@ -2904,7 +2904,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalningssäkerhet</string>
     <string name="preferences__payments_beta">Betalningar (Beta)</string>
-    <string name="preferences__conversation_length_limit">Gräns för chattlängd</string>
+    <string name="preferences__conversation_length_limit">Högsta antal meddelanden i ett chatt</string>
     <string name="preferences__keep_messages">Spara meddelanden</string>
     <string name="preferences__clear_message_history">Rensa meddelandehistorik</string>
     <string name="preferences__linked_devices">Länkade enheter</string>
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">Mottagen</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducerar betalningar (beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med fokus på integritet. Aktivera för att komma igång.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med integritetsfokus. Aktivera integreringen för att komma igång.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivera betalningar</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktiverar betalningar…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Återställ betalningskontot</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Samtalshistoriken har rensats</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Rensa samtalshistorik?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Detta kommer att radera all samtalshistorik permanent</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Rensa samtalshistorik</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrera missade samtal</string>
     <!-- Action bar menu item to clear missed call filter -->

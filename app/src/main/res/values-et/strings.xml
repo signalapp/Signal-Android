@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Helista</string>
     <string name="CommunicationActions_insecure_call">Ebaturvaline kõne</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Võivad rakenduda mobiilioperaatori tasud. Number, millele helistate, pole Signalis registreeritud. See kõne tehakse teie mobiilioperaatori, mitte Interneti kaudu.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Kõnega ei saa liituda</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">See kõnelink ei kehti enam.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Ava Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Ei ole enam kinnitatud</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Eemalda filter</string>
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Oled proovinud seda numbrit liiga palju kordi registreerida. Palun proovi uuesti %1$s pärast.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Teenusega ei saadud ühendust. Palun kontrolli võrguühendust ja proovi uuesti.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Ilmnes ootamatu tõrge.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Me ei saanud sulle SMS-i kaudu kinnituskoodi saata. Proovi koodi saamiseks parem häälkõnet kasutada.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Kinnituskoodi küsimine nurjus. Palun kontrolli oma võrguühendust ja proovi uuesti.</string>
     <string name="RegistrationActivity_non_standard_number_format">Ebastandardne numbriformaat</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Kõneajalugu on tühjendatud</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Kas tühjendada kõneajalugu?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">See kustutab jäädavalt kogu kõneajaloo</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Tühjenda kõneajalugu</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtreeri vastamata kõnesid</string>
     <!-- Action bar menu item to clear missed call filter -->

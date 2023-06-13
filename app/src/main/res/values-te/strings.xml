@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">కాల్</string>
     <string name="CommunicationActions_insecure_call">భద్రత లేని పిలుపు</string>
     <string name="CommunicationActions_carrier_charges_may_apply">ఖర్చు అవ్వచ్చు. మీరు పిలవతలుచుకున్న అంకె Signal తో అనుసంధానించి లేదు. ఈ పిలుపు అంతర్జాలం ద్వారా కాకుండా మామూలుగా చేయబడుతుంది.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">కాల్‌లో చేరలేరు</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">ఈ కాల్ లింక్ ఇకపై చెల్లుబాటు కాదు.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal ను తెరవండి</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">ఇకపై ధృవీకరించబడదు</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ఫిల్టర్‌ను ఖాళీ చేయండి</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">అదనపు ముఖాలు లేదా ప్రాంతాలను అస్పష్టం చేయడానికి గీయండి</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">మాటతో కూడిన సందేశాన్ని రికార్డు చేయుటకు తడుతూనే ఉంచి , పంపుటకు వదిలివేయండి.</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">స్వరరికార్డింగ్‌కు తట్టి పట్టుకో, పంపడానికి రిలీజ్‌చేయి</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ఈ నంబర్‌ను నమోదు చేయడానికి మీరు చాలా ఎక్కువ ప్రయత్నాలు చేశారు. దయచేసి %1$sలో మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">ఊహించని పొరపాటు ఏర్పడింది.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS ద్వారా ధృవీకరణ కోడ్‌ను మేము పంపలేకపోయాము. బదులుగా స్వర కాల్ ద్వారా మీ కోడ్‌ను అందుకోవడానికి ప్రయత్నించండి.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">ధృవీకరణ కోడ్‌ను అభ్యర్ధించలేకపోయింది. దయచేసి నెట్‌వర్క్ కనెక్షన్ తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_non_standard_number_format">నాన్-స్టాండర్డ్ నెంబర్ ఫార్మెట్</string>
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">అందుకున్న</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">పేమెంట్‌లను పరిచయం చేస్తోంది (బీటా)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">కొత్త గోప్యతా దృష్టి గల డిజిటల్ కరెన్సీ అయిన MobileCoin పంపడానికి మరియు అందుకోవడానికి Signal ను ఉపయోగించండి. ప్రారంభించడానికి యాక్టివేట్ చేయండి.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">గోప్యత‌పై దృష్టి గల డిజిటల్ కరెన్సీ MobileCoinను పంపడానికి మరియు అందుకోవడానికి Signalను ఉపయోగించండి. ప్రారంభించడానికి యాక్టివేట్ చేయండి.</string>
     <string name="PaymentsHomeFragment__activate_payments">చెల్లింపులను సక్రియం చేయండి</string>
     <string name="PaymentsHomeFragment__activating_payments">పేమెంట్‌లను యాక్టివేట్ చేస్తోంది…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">పేమెంట్‌ల ఖాతాను పునరుద్ధరించు</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">కాల్ చరిత్రను తొలగించాము</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">కాల్ చరిత్రను తొలగించేదా?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">ఇది కాల్ చరిత్రను శాశ్వతంగా తొలగిస్తుంది</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">కాల్ చరిత్రను తొలగించండి</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">మిస్ అయిన కాల్‌లు ఫిల్టర్ చేయండి</string>
     <!-- Action bar menu item to clear missed call filter -->

@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Ζωγράφισε για να θολώσεις επιπλέον πρόσωπα ή περιοχές</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα μήνυμα φωνής, άφησε το κουμπί για αποστολή</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Κράτα πατημένο για ηχογράφηση και άσε για αποστολή</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Η ανταλλαγή μηνυμάτων SMS δεν υποστηρίζεται πλέον στο Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση πληρωμών (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποίησε το Signal για να στείλεις και να λάβεις MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στην ιδιωτικότητα. Ενεργοποίησέ το για να ξεκινήσεις.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Ενεργοποίησε το MobileCoin, ένα νέο ψηφιακό νόμισμα με εστίαση στο απόρρητο, για να στέλνεις και να δέχεσαι στο Signal.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
     <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Επαναφορά λογαριασμού πληρωμών</string>

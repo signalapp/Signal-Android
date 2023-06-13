@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Piga</string>
     <string name="CommunicationActions_insecure_call">Mazungumzo ya simu si salama</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Huenda utatozwa gharama za mtoa huduma. Nambari unayopiga haijasajiliwa katika Signal. Simu hii itapigwa kupitia mtoa huduma wako wa simu wala si mtandaoni.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Huwezi kujiunga kwenye simu</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Kiungo cha simu hii hakitumiki tena.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Fungua Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Haijathibitishwa tena</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Futa chujio</string>
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Umefanya majaribio mengi ya kusajili nambari hii. Tafadhali jaribu tena baada ya %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Imeshindwa kuunganisha kwenye huduma. Tafadhali angalia muunganisho wako wa mtandao na ujaribu tena.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Hitilafu isiyotarajiwa imetokea.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Tumeshindwa kukutumia msimbo wa kuthibitisha kupitia SMS. Badala yake, jaribu kupokea msimbo wako wa kuthibitisha kupitia simu ya kawaida.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Inashindwa kuomba msimbo wa uthibitisho. Tafadhali angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
     <string name="RegistrationActivity_non_standard_number_format">Mfumo wa nambari usio wa kiwango</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Historia ya simu imefutwa</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Je, ungetaka kufuta historia ya simu?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Hii itafuta kabisa historia ya simu zote</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Futa historia ya simu</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Chuja simu fifi</string>
     <!-- Action bar menu item to clear missed call filter -->

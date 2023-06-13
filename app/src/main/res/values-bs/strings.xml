@@ -238,8 +238,8 @@
     <string name="CommunicationActions_call">Nazovi</string>
     <string name="CommunicationActions_insecure_call">Nezaštićen poziv</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Može doći do troškova. Broj koji pozivate nije registrovan na Signalu. Poziv će biti usmjeren preko Vašeg mobilnog operatera, ne preko interneta.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Nije se moguće pridružiti pozivu</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ovaj link za poziv više nije važeći.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -524,7 +524,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Otvori Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Više nije potvrđeno</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Obriši filter</string>
@@ -1986,9 +1986,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Previše puta ste pokušali registrirati ovaj broj. Pokušajte ponovo za %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje nije uspjelo. Molimo provjerite internet-konekciju i pokušajte ponovo.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Došlo je do neočekivane greške</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nismo mogli da vam pošaljemo verifikacioni kôd putem SMS-a. Umjesto toga pokušajte primiti kôd putem glasovnog poziva.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nije moguće zatražiti verifikacioni kȏd. Provjerite internet konekciju i pokušajte ponovo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandardni oblik broja</string>
@@ -6218,13 +6218,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Obriši historiju poziva</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Obriši historiju poziva</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Ovo će trajno izbrisati svu historiju poziva</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Obriši historiju poziva</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrirajte propuštene pozive</string>
     <!-- Action bar menu item to clear missed call filter -->

@@ -239,8 +239,8 @@
     <string name="CommunicationActions_call">Glaoigh</string>
     <string name="CommunicationActions_insecure_call">Glao neamhshlán</string>
     <string name="CommunicationActions_carrier_charges_may_apply">D\'fhéadfadh táillí iompróra a bheith i gceist. Níl an uimhir ar a bhfuil tú ag glaoch cláraithe le Signal. Cuirfear an glao seo trí d\'iompróir móibíleach, ní ar an idirlíon.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Ní féidir dul isteach sa ghlao</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Níl an nasc glao seo bailí a thuilleadh.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -532,7 +532,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Oscail Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Ní fíoraithe a thuilleadh</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Glan an scagaire</string>
@@ -2053,7 +2053,7 @@
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
     <string name="RegistrationActivity_generic_error">Tharla earráid gan choinne.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Níorbh fhéidir linn cód fíoraithe a sheoladh trí SMS. Triail do chód a fháil trí ghuthghlao ina ionad.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Ní féidir cód fíoraithe a iarraidh. Seiceáil an nasc líonra agus triail arís.</string>
     <string name="RegistrationActivity_non_standard_number_format">Formáid uimhreacha neamhchaighdeánach</string>
@@ -6341,13 +6341,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Stair na nglaonna glanta</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Glan stair na nglaonna?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Scriosfar stair na nglaonna uile leis sin</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Glan stair na nglaonna</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Scag glaonna caillte</string>
     <!-- Action bar menu item to clear missed call filter -->

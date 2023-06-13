@@ -235,8 +235,8 @@
     <string name="CommunicationActions_call">ហៅចេញ</string>
     <string name="CommunicationActions_insecure_call">ការហៅមិនមានសុវត្ថិភាព</string>
     <string name="CommunicationActions_carrier_charges_may_apply">ការគិតថ្លៃក្រុមហ៊ុនទូរស័ព្ទអាចត្រូវបានអនុវត្ត។ លេខដែលអ្នកកំពុងហៅមិនត្រូវបានចុះឈ្មោះជាមួយ Signal ទេ។ ការហៅនេះ​ នឹងត្រូវបានធ្វើឡើងតាមរយៈក្រុមហ៊ុនទូរស័ព្ទចល័តរបស់អ្នក មិនមែននៅលើអ៊ីនធឺណិតទេ។</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">មិនអាចចូលរួមការហៅទូរសព្ទទេ</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">តំណសម្រាប់ការហៅនេះលែងមានសុពលភាពហើយ។</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -500,7 +500,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">បើក Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">លែងបានផ្ទៀងផ្ទាត់ទៀតហើយ</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">សម្អាតតម្រង</string>
@@ -1791,9 +1791,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">អ្នកបានព្យាយាមជាច្រើនដងពេកក្នុងការចុះឈ្មោះលេខនេះ។ សូមព្យាយាមម្តងទៀតក្នុងរយៈពេល %1$s។</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវាបាន។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយព្យាយាមម្តងទៀត។</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">បញ្ហាមួយដែលមិនបានរំពឹងទុកបានកើតឡើង</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">យើងមិនអាចផ្ញើលេខកូដផ្ទៀងផ្ទាត់តាមរយៈសារជាអក្សរទេ។ សាកល្បងទទួលលេខកូដរបស់អ្នកតាមរយៈការហៅជាសំឡេងជំនួសវិញ។</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">មិនអាចស្នើសុំលេខកូដផ្ទៀងផ្ទាត់បានទេ។ សូមពិនិត្យមើលការតភ្ជាប់បណ្តាញរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
     <string name="RegistrationActivity_non_standard_number_format">ទម្រង់លេខមិនស្តង់ដារ</string>
@@ -5849,13 +5849,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">បានលុបប្រវត្តិហៅទូរសព្ទ</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">លុបប្រវត្តិហៅទូរសព្ទឬ?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">វានឹងលុបប្រវត្តិហៅទូរសព្ទទាំងអស់ជាអចិន្ត្រៃយ៍</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">លុបប្រវត្តិហៅទូរសព្ទ</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">ត្រងយកការហៅដែលខកមិនបានទទួល</string>
     <!-- Action bar menu item to clear missed call filter -->

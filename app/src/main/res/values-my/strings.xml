@@ -235,8 +235,8 @@
     <string name="CommunicationActions_call">ဖုန်းခေါ်ဆိုသည်</string>
     <string name="CommunicationActions_insecure_call">လုံခြုံမှုမရှိသော ဖုန်းခေါ်ဆိုမှု</string>
     <string name="CommunicationActions_carrier_charges_may_apply">ခေါ်ဆိုခ ယူနိုင်ပါသည်။ သင်ခေါ်ဆိုသောနံပါတ်သည် Signal တွင်မှတ်ပုံတင်ထားခြင်းမရှိပါ။ ဤခေါ်ဆိုမှုကို အင်တာနက်မှ မဟုတ်ဘဲ သင်၏မိုဘိုင်းအော်ပရေတာမှ တစ်ဆင့်ခေါ်ဆိုနိုင်သည်။</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">ကောလ်တွင် ပါဝင်၍ မရနိုင်ပါ</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">ဤအဖွဲ့လင့်ခ်သည် အကျုံးမဝင်တော့ပါ။</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -500,7 +500,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal ကို ဖွင့်ရန်</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">အတည်ပြု၍ မရတော့ပါ</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">စစ်ထုတ်မှုကို ရှင်းရန်</string>
@@ -1074,7 +1074,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">နောက်ထပ်မျက်နှာများသို့မဟုတ်ဒေသများမှုန်ဝါးရန်ဆွဲပါ</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">အသံဖမ်းရန် ခလုပ်ကိုဖိထားပါ၊ ပို့ရန် ခလုပ်ကိုလွှတ်လိုက်ပါ</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">အသံဖမ်းရန် ခလုတ်ကို ဖိထားပြီး ပို့ရန် လွှတ်လိုက်ပါ</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS မက်ဆေ့ချ်လုပ်ဆောင်ချက်ကို Signal တွင် မပံ့ပိုးပေးတော့ပါ။</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1791,9 +1791,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ဤနံပါတ်ကို မှတ်ပုံတင်ရန် ကြိုးပမ်းမှုများစွာ ဆောင်ရွက်ခဲ့ပါသည်။ %1$s အကြာတွင် ထပ်ကြိုးစားကြည့်ပါ။</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်၍ မရနိုင်ပါ။ အင်တာနက်ချိတ်ဆက်မှုအား နောက်တစ်ကြိမ် စစ်ဆေး၍ ပြန်လည်ကြိုးစားကြည့်ပါ။</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">မမျှော်လင့်ထားသော ချို့ယွင်းချက် ဖြစ်ပေါ်ခဲ့သည်။</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS မှတစ်ဆင့် သင့်ထံ အတည်ပြုကုဒ် ပို့၍ မရနိုင်ခဲ့ပါ။ ၎င်းအစား အော်ဒီယိုကောလ်မှတစ်ဆင့် သင့်ကုဒ်ကို လက်ခံကြည့်ပါ။</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">အတည်ပြုကုဒ်တစ်ခုကို တောင်းဆိုနိုင်ခြင်းမရှိပါ။ သင့်ကွန်ရက် ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
     <string name="RegistrationActivity_non_standard_number_format">စံပုံစံနှင့် မကိုက်ညီသည့် နံပါတ်</string>
@@ -5849,13 +5849,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">ကောလ်မှတ်တမ်းကို ရှင်းရန်</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">ကောလ်မှတ်တမ်းကို ရှင်းမည်လား။</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">ဤသို့လုပ်ဆောင်ခြင်းဖြင့် ကောလ်မှတ်တမ်း အားလုံးကို အပြီးတိုင် ဖျက်ပစ်လိုက်ပါမည်။</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">ကောလ်မှတ်တမ်းကို ရှင်းရန်</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">လွတ်သွားသော ကောလ်များကို စစ်ထုတ်ရန်</string>
     <!-- Action bar menu item to clear missed call filter -->

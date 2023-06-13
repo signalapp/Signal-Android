@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">കോൾ ചെയ്യുക</string>
     <string name="CommunicationActions_insecure_call">സുരക്ഷിതമല്ലാത്ത കോൾ</string>
     <string name="CommunicationActions_carrier_charges_may_apply">കാരിയർ നിരക്കുകൾ ബാധകം. നിങ്ങൾ വിളിക്കുന്ന നമ്പർ Signal-ൽ രജിസ്റ്റർ ചെയ്തിട്ടില്ല. ഈ കോൾ ഇൻറർനെറ്റിലൂടെയല്ല, നിങ്ങളുടെ മൊബൈൽ കാരിയർ വഴിയാണ് നടത്തുക.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">കോളിൽ ചേരാനാകില്ല</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">ഈ ലിങ്കിന് ഇനി സാധുതയില്ല.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal തുറക്കുക</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">ഇപ്പോൾ പരിശോധിച്ചുറപ്പിച്ചതല്ല</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ഫിൽട്ടർ മായ്‌ക്കുക</string>
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യാൻ നിങ്ങൾ നിരവധി ശ്രമങ്ങൾ നടത്തി. %1$s സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">ഞങ്ങൾക്ക് SMS-ലൂടെ പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അയയ്ക്കാനായില്ല. വോയ്‌സ് കോളിലൂടെ കോഡ് നേടാൻ ശ്രമിക്കൂ.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അഭ്യർത്ഥിക്കാനായില്ല. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ചശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">കോൾ ചരിത്രം മായ്ച്ചു</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">കോൾ ചരിത്രം മായ്ക്കണോ?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">ഇത്, കോൾ ചരിത്രം ശാശ്വതമായി മായ്ക്കും</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">കോൾ ചരിത്രം മായ്ക്കുക</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">മിസ്‌ഡ് കോളുകൾ ഫിൽറ്റർ ചെയ്യൂ</string>
     <!-- Action bar menu item to clear missed call filter -->

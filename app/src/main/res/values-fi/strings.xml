@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Soita</string>
     <string name="CommunicationActions_insecure_call">Salaamaton puhelu</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Operaattori saattaa veloittaa palvelusta. Valitsemaasi numeroa ei ole rekisteröity Signaliin. Tämä puhelu tehdään matkapuhelinoperaattorisi kautta, ei internetin kautta.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Puheluun liittyminen ei onnistu</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Tämä puhelulinkki ei ole enää kelvollinen.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Avaa Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Ei enää varmennettu</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Tyhjennä suodatin</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Sumenna kasvoja tai alueita piirtämällä</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nauhoita ääniviesti napauttamalla pitkään, lähetä päästämällä irti</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tallenna ääniviesti painamalla, lähetä vapauttamalla</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ei enää tue tekstiviestejä.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Olet yrittänyt rekisteröidä tämän numeron liian monta kertaa. Yritä uudelleen, kun on kulunut %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Tapahtui odottamaton virhe.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Emme voineet lähettää sinulle vahvistuskoodia tekstiviestillä. Yritä sen sijaan vastaanottaa koodi äänipuhelun välityksellä.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Vahvistuskoodia ei voida pyytää. Tarkista verkkoyhteys ja yritä uudelleen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Epästandardi numeron muoto</string>
@@ -2904,7 +2904,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Maksun lukitus</string>
     <string name="preferences__payments_beta">Maksut (Beta)</string>
-    <string name="preferences__conversation_length_limit">Keskustelun pituusrajoitus</string>
+    <string name="preferences__conversation_length_limit">Keskustelun viestien enimmäismäärä</string>
     <string name="preferences__keep_messages">Säilytä viestit</string>
     <string name="preferences__clear_message_history">Tyhjennä viestihistoria</string>
     <string name="preferences__linked_devices">Yhdistetyt laitteet</string>
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Esittelyssä maksut (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta, jota voit lähettää ja vastaanottaa Signalissa. Aloita ottamalla se käyttöön.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Voit lähettää ja vastaanottaa Signalissa uutta, yksityisyyteen panostavaa digitaalista MobileCoin-valuuttaa. Aloita ottamalla se käyttöön.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Palauta maksutili</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Puheluhistoria tyhjennetty</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Tyhjennetäänkö puheluhistoria?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Tämä poistaa pysyvästi koko puheluhistorian</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Tyhjennä puheluhistoria</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Suodata vastaamattomat puhelut</string>
     <!-- Action bar menu item to clear missed call filter -->

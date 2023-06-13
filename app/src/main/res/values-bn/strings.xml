@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">কল করুন</string>
     <string name="CommunicationActions_insecure_call">অনিরাপদ কল</string>
     <string name="CommunicationActions_carrier_charges_may_apply">আপনার টেলিফোন কেরিয়ার টাকা কাটতে পারে। যে নম্বরটিতে কল করছেন সেটি Signal-এর সাথে রেজিস্টার করা নেই। তাই কলটি টেলিফোন কেরিয়ারের মাধ্যমে করা হবে, ইন্টারনেটের মাধ্যমে না।</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">কলে যোগ দেওয়া যাচ্ছে না</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">এই কল লিংকটি আর কার্যকর নয়।</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal খুলুন</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">আর যাচাইকৃত নয়</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ফিল্টার খালি করুন</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">আরো মুখয়ব বা জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">একটি ভয়েস বার্তা রেকর্ড করতে আলতো চাপুন এবং ধরে রাখুন, প্রেরণের জন্য ছেড়ে দিন</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ট্যাপ চেপে ভয়েস ম্যাসেজ রেকর্ড করুন, পাঠাতে ছেড়ে দিন</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal-এ এসএমএস ম্যাসেজিং আর সমর্থন করে না।</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">আপনি এই নম্বরটি রেজিস্ট্রেশন করার জন্য ইতোমধ্যে অনেকবার চেষ্টা করে ফেলেছেন। অনুগ্রহ করে %1$s মিনিটের মধ্যে আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">একটি অপ্রত্যাশিত সমস্যা দেখা দিয়েছে।</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">আমরা আপনাকে SMS-এর মাধ্যমে যাচাইকরণ কোড পাঠাতে পারিনি। এর পরিবর্তে আপনি ভয়েস কলের মাধ্যমে আপনার কোড পাওয়ার চেষ্টা করুন।</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">যাচাইকরণ কোডের জন্য অনুরোধ করতে সক্ষম নয়। অনুগ্রহ করে আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_non_standard_number_format">নন-স্ট্যান্ডার্ড নম্বর বিন্যাস</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">কলের ইতিহাস মুছে ফেলা হয়েছে</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">কলের ইতিহাস মুছে ফেলবেন?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">এটি কলের সকল ইতিহাস স্থায়ীভাবে মুছে ফেলবে</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">কলের ইতিহাস মুছে ফেলুন</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">\'মিসড কল\' ফিল্টার করুন</string>
     <!-- Action bar menu item to clear missed call filter -->
