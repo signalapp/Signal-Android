@@ -27,13 +27,14 @@ object SpoilerPaint {
    */
   var shader: BitmapShader? = null
 
-  private val SIZE = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 100.dp else 200.dp
-  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.002f else 0.005f
+  private val WIDTH = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 50.dp else 100.dp
+  private val HEIGHT = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 10.dp else 20.dp
+  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.002f else 0.004f
 
-  private var shaderBitmap: Bitmap = Bitmap.createBitmap(SIZE, SIZE, Bitmap.Config.ARGB_8888)
-  private var bufferBitmap: Bitmap = Bitmap.createBitmap(SIZE, SIZE, Bitmap.Config.ARGB_8888)
+  private var shaderBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
+  private var bufferBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
 
-  private val bounds: Rect = Rect(0, 0, SIZE, SIZE)
+  private val bounds: Rect = Rect(0, 0, WIDTH, HEIGHT)
   private val paddedBounds: Rect
 
   private val alphaStrength = arrayOf(0.9f, 0.7f, 0.5f)
@@ -67,16 +68,16 @@ object SpoilerPaint {
   }
 
   /**
-   * Invoke every time before you need to use the [paint].
+   * Invoke every time before you need to use the [shader].
    */
   @MainThread
   fun update() {
     val now = System.currentTimeMillis()
     var dt = now - lastDrawTime
-    if (dt < 32) {
+    if (dt < 48) {
       return
-    } else if (dt > 48) {
-      dt = 32
+    } else if (dt > 64) {
+      dt = 48
     }
     lastDrawTime = now
 

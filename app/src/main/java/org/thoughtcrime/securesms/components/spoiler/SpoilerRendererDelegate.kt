@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.components.spoiler
 
-import android.animation.ValueAnimator
+import android.animation.TimeAnimator
 import android.graphics.Canvas
 import android.text.Annotation
 import android.text.Layout
 import android.text.Spanned
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
-import android.view.animation.LinearInterpolator
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -34,15 +33,11 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
   private val cachedAnnotations = HashMap<Int, Map<Annotation, SpoilerClickableSpan?>>()
   private val cachedMeasurements = HashMap<Int, SpanMeasurements>()
 
-  private val animator = ValueAnimator.ofInt(0, 100).apply {
-    duration = 1000
-    interpolator = LinearInterpolator()
-    addUpdateListener {
+  private val animator = TimeAnimator().apply {
+    setTimeListener { _, _, _ ->
       SpoilerPaint.update()
       view.invalidate()
     }
-    repeatCount = ValueAnimator.INFINITE
-    repeatMode = ValueAnimator.REVERSE
   }
 
   init {
