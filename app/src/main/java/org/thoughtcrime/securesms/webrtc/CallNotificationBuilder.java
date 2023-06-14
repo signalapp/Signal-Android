@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import org.signal.core.util.PendingIntentFlags;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -50,10 +50,11 @@ public class CallNotificationBuilder {
    */
   public static final int API_LEVEL_CALL_STYLE = 29;
 
-  public static Single<Notification> getCallInProgressNotification(Context context, int type, Recipient recipient) {
+  public static Single<Notification> getCallInProgressNotification(Context context, int type, Recipient recipient, boolean isVideoCall) {
     Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     contentIntent.putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_FULLSCREEN, true);
+    contentIntent.putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, isVideoCall);
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, PendingIntentFlags.mutable());
 
@@ -83,8 +84,8 @@ public class CallNotificationBuilder {
                        builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
                            person,
                            getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
-                           getActivityPendingIntent(context, WebRtcCallActivity.ANSWER_ACTION)
-                       ));
+                           getActivityPendingIntent(context, isVideoCall ? WebRtcCallActivity.ANSWER_VIDEO_ACTION : WebRtcCallActivity.ANSWER_ACTION)
+                       ).setIsVideo(isVideoCall));
                        return builder.build();
                      });
       } else {
@@ -97,19 +98,23 @@ public class CallNotificationBuilder {
     } else {
       builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
       builder.setOnlyAlertOnce(true);
-      builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+      builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
-      return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
-                   .subscribeOn(Schedulers.io())
-                   .observeOn(AndroidSchedulers.mainThread())
-                   .map(person -> {
-                     builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
-                         person,
-                         getServicePendingIntent(context, WebRtcCallService.hangupIntent(context))
-                     ));
-                     return builder.build();
-                   });
+      if (deviceVersionSupportsIncomingCallStyle()) {
+        return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
+                     .subscribeOn(Schedulers.io())
+                     .observeOn(AndroidSchedulers.mainThread())
+                     .map(person -> {
+                       builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
+                           person,
+                           getServicePendingIntent(context, WebRtcCallService.hangupIntent(context))
+                       ).setIsVideo(isVideoCall));
+                       return builder.build();
+                     });
+      } else {
+        return Single.just(builder.build());
+      }
     }
   }
 

@@ -65,7 +65,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
       case CONNECTED:
         if (device.getJoinState() == GroupCall.JoinState.JOINED) {
 
-          webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient());
+          webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient(), true);
           webRtcInteractor.startAudioCommunication();
 
           if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
