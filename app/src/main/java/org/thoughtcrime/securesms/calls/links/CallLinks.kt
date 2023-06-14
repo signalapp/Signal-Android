@@ -21,11 +21,12 @@ import java.net.URLDecoder
  */
 object CallLinks {
   private const val ROOT_KEY = "key"
-  private const val LINK_PREFIX = "https://signal.link/call/#key="
+  private const val HTTPS_LINK_PREFIX = "https://signal.link/call/#key="
+  private const val SNGL_LINK_PREFIX = "sgnl://signal.link/#key="
 
   private val TAG = Log.tag(CallLinks::class.java)
 
-  fun url(linkKeyBytes: ByteArray) = "$LINK_PREFIX${CallLinkRootKey(linkKeyBytes)}"
+  fun url(linkKeyBytes: ByteArray) = "$HTTPS_LINK_PREFIX${CallLinkRootKey(linkKeyBytes)}"
 
   fun watchCallLink(roomId: CallLinkRoomId): Observable<CallLinkTable.CallLink> {
     return Observable.create { emitter ->
@@ -52,7 +53,8 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
-    if (!url.startsWith(LINK_PREFIX)) {
+    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
+      Log.w(TAG, "Invalid url prefix.")
       return null
     }
 

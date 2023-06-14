@@ -37,7 +37,6 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -49,7 +48,6 @@ import java.time.Instant
 @Preview
 @Composable
 private fun SignalCallRowPreview() {
-  val avatarColor = remember { AvatarColor.random() }
   val callLink = remember {
     val credentials = CallLinkCredentials.generate()
     CallLinkTable.CallLink(
@@ -61,8 +59,7 @@ private fun SignalCallRowPreview() {
         restrictions = org.signal.ringrtc.CallLinkState.Restrictions.NONE,
         expiration = Instant.MAX,
         revoked = false
-      ),
-      avatarColor = avatarColor
+      )
     )
   }
   SignalTheme(false) {

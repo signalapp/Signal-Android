@@ -65,7 +65,6 @@ import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -209,8 +208,7 @@ private fun SheetPreview() {
             linkKeyBytes = byteArrayOf(1, 2, 3, 4, 5),
             adminPassBytes = byteArrayOf(1, 2, 3, 4, 5)
           ),
-          state = SignalCallLinkState(),
-          avatarColor = AvatarColor.random()
+          state = SignalCallLinkState()
         ),
         participants = listOf(Recipient.UNKNOWN).toImmutableList(),
         onShareLinkClicked = {},

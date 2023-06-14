@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import java.lang.UnsupportedOperationException
 import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.locks.ReentrantLock
@@ -168,6 +169,10 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun getSenderKeySharedWith(distributionId: DistributionId?): MutableSet<SignalProtocolAddress> = throw UnsupportedOperationException()
     override fun markSenderKeySharedWith(distributionId: DistributionId?, addresses: MutableCollection<SignalProtocolAddress>?) = throw UnsupportedOperationException()
     override fun clearSenderKeySharedWith(addresses: MutableCollection<SignalProtocolAddress>?) = throw UnsupportedOperationException()
+    override fun storeLastResortKyberPreKey(kyberPreKeyId: Int, kyberPreKeyRecord: KyberPreKeyRecord) = throw UnsupportedOperationException()
+    override fun removeKyberPreKey(kyberPreKeyId: Int) = throw UnsupportedOperationException()
+    override fun loadLastResortKyberPreKeys(): List<KyberPreKeyRecord> = throw UnsupportedOperationException()
+
     override fun isMultiDevice(): Boolean = throw UnsupportedOperationException()
   }
 }

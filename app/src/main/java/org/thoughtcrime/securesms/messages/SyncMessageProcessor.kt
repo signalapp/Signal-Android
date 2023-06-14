@@ -8,13 +8,11 @@ import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.util.Pair
 import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallLinkRootKey
-import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.crypto.SecurityEvent
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.CallTable
@@ -119,7 +117,6 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMe
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.ViewOnceOpen
 import java.io.IOException
-import java.time.Instant
 import java.util.Optional
 import java.util.UUID
 import kotlin.time.Duration.Companion.seconds
@@ -1200,13 +1197,7 @@ object SyncMessageProcessor {
           linkKeyBytes = callLinkRootKey.keyBytes,
           adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()
         ),
-        state = SignalCallLinkState(
-          name = "",
-          restrictions = CallLinkState.Restrictions.UNKNOWN,
-          revoked = false,
-          expiration = Instant.MIN
-        ),
-        avatarColor = AvatarColorHash.forCallLink(callLinkRootKey.keyBytes)
+        state = SignalCallLinkState()
       )
     )
 

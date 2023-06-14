@@ -158,7 +158,8 @@ object RecipientDatabaseTestUtils {
       ),
       participants,
       isReleaseChannel,
-      isActive
+      isActive,
+      null
     ),
     resolved
   )

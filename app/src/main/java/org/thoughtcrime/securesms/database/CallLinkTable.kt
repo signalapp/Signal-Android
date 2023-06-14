@@ -18,7 +18,6 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
@@ -53,7 +52,6 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     const val RESTRICTIONS = "restrictions"
     const val REVOKED = "revoked"
     const val EXPIRATION = "expiration"
-    const val AVATAR_COLOR = "avatar_color"
     const val RECIPIENT_ID = "recipient_id"
 
     //language=sql
@@ -67,7 +65,6 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         $RESTRICTIONS INTEGER NOT NULL,
         $REVOKED INTEGER NOT NULL,
         $EXPIRATION INTEGER NOT NULL,
-        $AVATAR_COLOR TEXT NOT NULL,
         $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE
       )
     """
@@ -76,7 +73,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       return contentValuesOf(
         NAME to name,
         RESTRICTIONS to restrictions.mapToInt(),
-        EXPIRATION to expiration.toEpochMilli(),
+        EXPIRATION to if (expiration == Instant.MAX) -1L else expiration.toEpochMilli(),
         REVOKED to revoked
       )
     }
@@ -94,7 +91,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     callLink: CallLink
   ) {
     writableDatabase.withinTransaction { db ->
-      val recipientId = SignalDatabase.recipients.getOrInsertFromCallLinkRoomId(callLink.roomId, callLink.avatarColor)
+      val recipientId = SignalDatabase.recipients.getOrInsertFromCallLinkRoomId(callLink.roomId)
 
       db
         .insertInto(TABLE_NAME)
@@ -174,8 +171,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
           linkKeyBytes = callLinkRootKey.keyBytes,
           adminPassBytes = null
         ),
-        state = SignalCallLinkState(),
-        avatarColor = AvatarColorHash.forCallLink(callLinkRootKey.keyBytes)
+        state = SignalCallLinkState()
       )
 
       insertCallLink(link)
@@ -194,8 +190,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         recipientId = RecipientId.UNKNOWN,
         roomId = callLinkRoomId,
         credentials = null,
-        state = SignalCallLinkState(),
-        avatarColor = AvatarColor.random()
+        state = SignalCallLinkState()
       )
       insertCallLink(link)
       return getCallLinkByRoomId(callLinkRoomId)!!
@@ -327,8 +322,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         RECIPIENT_ID to data.recipientId.takeIf { it != RecipientId.UNKNOWN }?.toLong(),
         ROOM_ID to data.roomId.serialize(),
         ROOT_KEY to data.credentials?.linkKeyBytes,
-        ADMIN_KEY to data.credentials?.adminPassBytes,
-        AVATAR_COLOR to data.avatarColor.serialize()
+        ADMIN_KEY to data.credentials?.adminPassBytes
       ).apply {
         putAll(data.state.serialize())
       }
@@ -356,9 +350,14 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
           name = data.requireNonNullString(NAME),
           restrictions = data.requireInt(RESTRICTIONS).mapToRestrictions(),
           revoked = data.requireBoolean(REVOKED),
-          expiration = Instant.ofEpochMilli(data.requireLong(EXPIRATION)).truncatedTo(ChronoUnit.DAYS)
-        ),
-        avatarColor = AvatarColor.deserialize(data.requireString(AVATAR_COLOR))
+          expiration = data.requireLong(EXPIRATION).let {
+            if (it == -1L) {
+              Instant.MAX
+            } else {
+              Instant.ofEpochMilli(it).truncatedTo(ChronoUnit.DAYS)
+            }
+          }
+        )
       )
     }
 
@@ -375,9 +374,10 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     val recipientId: RecipientId,
     val roomId: CallLinkRoomId,
     val credentials: CallLinkCredentials?,
-    val state: SignalCallLinkState,
-    val avatarColor: AvatarColor
-  )
+    val state: SignalCallLinkState
+  ) {
+    val avatarColor: AvatarColor = credentials?.let { AvatarColorHash.forCallLink(it.linkKeyBytes) } ?: AvatarColor.UNKNOWN
+  }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
     writableDatabase.update(TABLE_NAME)
