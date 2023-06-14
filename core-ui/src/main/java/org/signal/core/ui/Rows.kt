@@ -105,13 +105,15 @@ object Rows {
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    foregroundTint: Color = MaterialTheme.colorScheme.onSurface
+    foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
+    onClick: (() -> Unit)? = null
   ) {
     if (icon != null) {
       Row(
         modifier = modifier
           .fillMaxWidth()
           .padding(defaultPadding())
+          .clickable(enabled = onClick != null, onClick = onClick ?: {})
       ) {
         Icon(
           imageVector = icon,
@@ -134,6 +136,7 @@ object Rows {
         modifier = modifier
           .fillMaxWidth()
           .padding(defaultPadding())
+          .clickable(enabled = onClick != null, onClick = onClick ?: {})
       )
     }
   }

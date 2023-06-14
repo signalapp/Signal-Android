@@ -584,6 +584,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalSearchFragment"
             app:destination="@id/internalSearchFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalSvrPlaygroundFragment"
+            app:destination="@id/internalSvrPlaygroundFragment" />
     </fragment>
 
     <fragment
@@ -600,6 +603,11 @@
         android:id="@+id/internalSearchFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.search.InternalSearchFragment"
         android:label="internal_search_fragment" />
+
+    <fragment
+        android:id="@+id/internalSvrPlaygroundFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.svr.InternalSvrPlaygroundFragment"
+        android:label="internal_svr_playground_fragment" />
 
     <!-- endregion -->
 

@@ -58,4 +58,9 @@ public final class MasterKey {
   public int hashCode() {
     return Arrays.hashCode(masterKey);
   }
+
+  @Override
+  public String toString() {
+    return "MasterKey(HashCode: " + hashCode() + ")";
+  }
 }
