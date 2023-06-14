@@ -70,7 +70,7 @@ public class CallNotificationBuilder {
       builder.setContentIntent(null);
       return Single.just(builder.build());
     } else if (type == TYPE_INCOMING_RINGING) {
-      builder.setContentText(context.getString(recipient.isGroup() ? R.string.NotificationBarManager__incoming_signal_group_call : R.string.NotificationBarManager__incoming_signal_call));
+      builder.setContentText(getIncomingCallContentText(context, recipient, isVideoCall));
       builder.setPriority(NotificationCompat.PRIORITY_HIGH);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
       builder.setFullScreenIntent(pendingIntent, true);
@@ -96,7 +96,7 @@ public class CallNotificationBuilder {
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
       return Single.just(builder.build());
     } else {
-      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.setContentText(getOngoingCallContentText(context, recipient, isVideoCall));
       builder.setOnlyAlertOnce(true);
       builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
@@ -158,8 +158,28 @@ public class CallNotificationBuilder {
     return notificationId == WEBRTC_NOTIFICATION || notificationId == WEBRTC_NOTIFICATION_RINGING;
   }
 
+  private static @NonNull String getIncomingCallContentText(@NonNull Context context, @NonNull Recipient recipient, boolean isVideoCall) {
+    if (recipient.isGroup()) {
+      return context.getString(R.string.CallNotificationBuilder__incoming_signal_group_call);
+    } else if (isVideoCall) {
+      return context.getString(R.string.CallNotificationBuilder__incoming_signal_video_call);
+    } else {
+      return context.getString(R.string.CallNotificationBuilder__incoming_signal_voice_call);
+    }
+  }
+
+  private static @NonNull String getOngoingCallContentText(@NonNull Context context, @NonNull Recipient recipient, boolean isVideoCall) {
+    if (recipient.isGroup()) {
+      return context.getString(R.string.CallNotificationBuilder__ongoing_signal_group_call);
+    } else if (isVideoCall) {
+      return context.getString(R.string.CallNotificationBuilder__ongoing_signal_video_call);
+    } else {
+      return context.getString(R.string.CallNotificationBuilder__ongoing_signal_voice_call);
+    }
+  }
+
   private static @NonNull String getNotificationChannel(int type) {
-    if ((deviceVersionSupportsIncomingCallStyle() && type == TYPE_INCOMING_RINGING) || type == TYPE_ESTABLISHED) {
+    if (type == TYPE_INCOMING_RINGING) {
       return NotificationChannels.getInstance().CALLS;
     } else {
       return NotificationChannels.getInstance().CALL_STATUS;
