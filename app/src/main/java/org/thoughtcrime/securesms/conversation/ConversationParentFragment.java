@@ -4215,6 +4215,11 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
+    if (SignalStore.uiHints().hasNotSeenEditMessageBetaAlert()) {
+      Dialogs.showEditMessageBetaDialog(requireContext(), this::handleSendEditMessage);
+      return;
+    }
+
     MessageRecord editMessage = inputPanel.getEditMessage();
     if (editMessage == null) {
       Log.w(TAG, "No edit message found, forcing exit");

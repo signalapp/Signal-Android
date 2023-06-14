@@ -105,8 +105,8 @@ public final class FeatureFlags {
   private static final String TEXT_FORMATTING                   = "android.textFormatting.2";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
-  private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
-  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
+  private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive.2";
+  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.2";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_SIZE_MB            = "android.attachments.maxSize";
 
