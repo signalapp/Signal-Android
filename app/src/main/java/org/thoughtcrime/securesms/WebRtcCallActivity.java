@@ -106,7 +106,14 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private static final int STANDARD_DELAY_FINISH = 1000;
   private static final int VIBRATE_DURATION      = 50;
 
+  /**
+   * ANSWER the call via voice-only.
+   */
   public static final String ANSWER_ACTION       = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
+
+  /**
+   * ANSWER the call via video.
+   */
   public static final String ANSWER_VIDEO_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
   public static final String DENY_ACTION         = WebRtcCallActivity.class.getCanonicalName() + ".DENY_ACTION";
   public static final String END_CALL_ACTION     = WebRtcCallActivity.class.getCanonicalName() + ".END_CALL_ACTION";
@@ -164,8 +171,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     processIntent(getIntent());
 
-    enableVideoIfAvailable = getIntent().getBooleanExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
-    getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
+    if (ANSWER_ACTION.equals(getIntent().getAction())) {
+      enableVideoIfAvailable = false;
+    } else {
+      enableVideoIfAvailable = getIntent().getBooleanExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
+      getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
+    }
 
     windowLayoutInfoConsumer = new WindowLayoutInfoConsumer();
 
