@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">അധിക മുഖങ്ങളോ പ്രദേശങ്ങളോ മങ്ങിക്കാൻ വരയ്‌ക്കുക</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ഒരു ശബ്‌ദ സന്ദേശം റെക്കോർഡുചെയ്യാൻ ടാപ്പുചെയ്‌ത് പിടിക്കുക, അയയ്‌ക്കാൻ റിലീസ് ചെയ്യുക</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ഓഡിയോയ്ക്ക് ടാപ്പുചെയ്ത് പിടിക്കൂ റിലീസുചെയ്ത് അയയ്ക്കൂ</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS സന്ദേശമയയ്‌ക്കൽ ഇനിമുതൽ Signal-ൽ പിന്തുണയ്‌ക്കുന്നില്ല.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">ലഭിച്ചു</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">പേയ്‌മെന്റുകൾ അവതരിപ്പിക്കുന്നു (ബീറ്റ)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">സ്വകാര്യതയിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്ന ഒരു പുതിയ ഡിജിറ്റൽ കറൻസിയായ MobileCoin അയയ്ക്കാനും സ്വീകരിക്കാനും Signal ഉപയോഗിക്കുക. ആരംഭിക്കാൻ ആക്‌ടിവേറ്റ് ചെയ്യുക.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">സ്വകാര്യതയ്ക്ക് പ്രാധാന്യം നൽകുന്ന പുതിയ ഡിജിറ്റൽ കറൻസിയായ MobileCoin അയയ്ക്കാനും സ്വീകരിക്കാനും Signal ഉപയോഗിക്കൂ. ആരംഭിക്കാൻ സജീവമാക്കൂ.</string>
     <string name="PaymentsHomeFragment__activate_payments">പേയ്മെന്റുകൾ സജീവമാക്കുക</string>
     <string name="PaymentsHomeFragment__activating_payments">പേയ്‌മെന്റുകൾ സജീവമാക്കുന്നു…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">പേയ്മെന്റ് അക്കൗണ്ട് പുനഃസ്ഥാപിക്കുക</string>

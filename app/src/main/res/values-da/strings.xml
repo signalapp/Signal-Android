@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Ring op</string>
     <string name="CommunicationActions_insecure_call">Usikret opkald</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Ekstra omkostninger til dit teleselskab kan forekomme. Nummeret du ringer til, er ikke et registreret Signal-nummer. Opkaldet vil ske via dit teleselskab og ikke over internettet.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Kan ikke deltage i opkald</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Opkaldslinket er ikke længere gyldigt.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Åbn Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Ikke længere verificeret</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Ryd filter</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Tegn for at sløre flere ansigter eller områder</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryk og hold for at optage en talebesked. Slip for at sende</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Hold nede for at optage en besked. Slip for at sende</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Sms-beskeder understøttes ikke længere i Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1856,9 +1856,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har forsøgt at registrere dette nummer for mange gange. Prøv igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Der er opstået en ukendt fejl.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunne ikke sende dig en bekræftelseskode via sms. Prøv at modtage din kode via et taleopkald i stedet.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Kunne ikke anmode om verificeringskoden. Tjek din netværksforbindelse, og prøv igen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Ikke-standardiseret nummerformat</string>
@@ -5972,13 +5972,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Opkaldshistorik ryddet</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Vil du rydde opkaldshistorik?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Dette vil permanent slette al opkaldshistorik</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Ryd opkaldshistorik</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrér ubesvarede opkald</string>
     <!-- Action bar menu item to clear missed call filter -->

@@ -1222,7 +1222,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Tarraing chun aghaidheanna nó áiteanna eile a dhoiléiriú</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh síos é chun glórtheachtaireacht a thaifeadadh, scaoil chun í a sheoladh</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh le taifeadadh, scaoil le seoladh</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -3147,7 +3147,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Glas íocaíochtaí</string>
     <string name="preferences__payments_beta">Íocaíochtaí (Beta)</string>
-    <string name="preferences__conversation_length_limit">Teorainn le fad an chomhrá</string>
+    <string name="preferences__conversation_length_limit">Teorainn an chomhrá</string>
     <string name="preferences__keep_messages">Coinnigh teachtaireachtaí</string>
     <string name="preferences__clear_message_history">Glan stair teachtaireachtaí</string>
     <string name="preferences__linked_devices">Gléasanna nasctha</string>
@@ -3307,7 +3307,7 @@
     <string name="PaymentsAllActivityFragment__received">Faighte</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducing Payments (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Úsáid Signal chun MobileCoin a sheoladh agus a fháil, airgeadra digiteach úrnua atá dírithe ar phríobháideachas. Gníomhachtaigh chun tosú air.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Úsáid Signal le MobileCoin a sheoladh agus a fháil, airgeadra digiteach úrnua atá dírithe ar phríobháideachas. Gníomhachtaigh le tosú air.</string>
     <string name="PaymentsHomeFragment__activate_payments">Gníomhachtaigh Íocaíochtaí</string>
     <string name="PaymentsHomeFragment__activating_payments">Íocaíochtaí á ngníomhachtú…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Aischuir an cuntas íocaíochtaí</string>

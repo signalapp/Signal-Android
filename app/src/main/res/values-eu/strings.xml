@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Marraztu aurpegi edo area gehiago zirriborrotzeko</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Eduki sakatuta ahots mezu bat grabatzeko; jaregin bidaltzeko.</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sakatu ahots mezu bat grabatzeko; jaregin bidaltzeko</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal-en jada ez dira onartzen SMS mezuak.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -3061,7 +3061,7 @@
     <string name="PaymentsAllActivityFragment__received">Jasota</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Ordainketak (Beta) eginbidearen aurkezpena</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Erabili Signal MobileCoin-ak bidali eta jasotzeko, pribatutasunaren inguruan ardaztutako dibisa digital berria. Erabiltzen hasteko, aktiba ezazu.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Erabili Signal MobileCoin-ak (pribatutasunaren inguruan ardaztutako dibisa digital berria) bidali eta jasotzeko. Erabiltzeko, aktiba ezazu.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktibatu Ordainketak</string>
     <string name="PaymentsHomeFragment__activating_payments">Ordainketak aktibatzen…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Berrezarri ordainketen kontua</string>

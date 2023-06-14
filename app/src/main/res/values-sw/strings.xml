@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Chora ili uweke ukungu kwenye nyuso au maeneo ya ziada</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Gonga na shikilia kurekodi ujumbe wa sauti, wachilia kitufe kutuma</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Gusa, shikilia kurekodi, achia kutuma</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Huwezi tena kutuma jumbe za SMS kwenye Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->

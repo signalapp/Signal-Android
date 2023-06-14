@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Joonista muude nägude või alade hägustamiseks</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Koputa ja hoia all, et salvestada helisõnum, vabasta saatmiseks</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Koputa ja hoia heli salvestamiseks. Vabasta, et saata</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ei toeta enam SMS-sõnumeid.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->

@@ -1074,7 +1074,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">چىراي ياكى دائىرە سىزىلسا تۇتۇقلىشىدۇ</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">چېكىپ تۇرۇپ سۆزلەڭ ۋە قويۇپ بېرىپ ئاۋاز ئۇچۇرىنى يوللاڭ</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">چېكىپ تۇرۇپ سۆزلەڭ ۋە قويۇپ بېرىپ يوللاڭ</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ئەمدى SMS ئۇچۇرلىشىشنى قوللىمايدۇ.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -2823,7 +2823,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">پۇل تۆلەش قۇلۇپى</string>
     <string name="preferences__payments_beta">چىقىملار(سىناق)</string>
-    <string name="preferences__conversation_length_limit">پاراڭ ئۇزۇنلۇقى چېكى</string>
+    <string name="preferences__conversation_length_limit">ئۇچۇر سان چېكى</string>
     <string name="preferences__keep_messages">ئۇچۇرلارنى ساقلاپ قېلىش</string>
     <string name="preferences__clear_message_history">ئۇچۇر تارىخىنى تازىلا</string>
     <string name="preferences__linked_devices">باغلانغان ئۈسكۈنىلەر</string>
