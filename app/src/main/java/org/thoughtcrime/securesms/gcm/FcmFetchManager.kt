@@ -42,6 +42,9 @@ object FcmFetchManager {
   @Volatile
   private var stoppingForeground = false
 
+  @Volatile
+  private var startForegroundOnDestroy = false
+
   /**
    * @return True if a service was successfully started, otherwise false.
    */
@@ -52,8 +55,13 @@ object FcmFetchManager {
         if (foreground) {
           Log.i(TAG, "Starting in the foreground.")
           if (!startedForeground) {
-            ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
-            startedForeground = true
+            if (!stoppingForeground) {
+              ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
+              startedForeground = true
+            } else {
+              Log.w(TAG, "Foreground service currently stopping, enqueuing a start after destroy")
+              startForegroundOnDestroy = true
+            }
           } else {
             Log.i(TAG, "Already started foreground service")
           }
@@ -108,6 +116,7 @@ object FcmFetchManager {
     synchronized(this) {
       if (startedForeground || stoppingForeground) {
         if (stoppingForeground) {
+          startForegroundOnDestroy = true
           Log.i(TAG, "Legacy fallback: foreground service is stopping, but trying to run in background anyways.")
         }
         val performedReplace = EXECUTOR.enqueue { fetch(context) }
@@ -142,10 +151,17 @@ object FcmFetchManager {
     }
   }
 
-  fun onForegroundFetchServiceStop() {
+  fun onDestroyForegroundFetchService() {
     synchronized(this) {
       stoppingForeground = false
-      Log.i(TAG, "Foreground service stopped successfully")
+      if (startForegroundOnDestroy) {
+        startForegroundOnDestroy = false
+        try {
+          enqueue(ApplicationDependencies.getApplication(), true)
+        } catch (e: Exception) {
+          Log.e(TAG, "Failed to restart foreground service after onDestroy")
+        }
+      }
     }
   }
 }
