@@ -35,6 +35,7 @@ import org.signal.libsignal.protocol.util.Medium;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,43 +50,71 @@ public class PreKeyUtil {
   private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(30);
 
   public synchronized static @NonNull List<PreKeyRecord> generateAndStoreOneTimeEcPreKeys(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    int                preKeyIdOffset = metadataStore.getNextEcOneTimePreKeyId();
+    final List<PreKeyRecord> records = generateOneTimeEcPreKeys(preKeyIdOffset);
+
+    storeOneTimeEcPreKeys(protocolStore, metadataStore, preKeyIdOffset, records);
+
+    return records;
+  }
+
+  public synchronized static List<PreKeyRecord> generateOneTimeEcPreKeys(int preKeyIdOffset) {
     Log.i(TAG, "Generating one-time EC prekeys...");
 
-    List<PreKeyRecord> records        = new LinkedList<>();
-    int                preKeyIdOffset = metadataStore.getNextEcOneTimePreKeyId();
+    List<PreKeyRecord> records = new ArrayList<>(BATCH_SIZE);
 
     for (int i = 0; i < BATCH_SIZE; i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
       ECKeyPair    keyPair  = Curve.generateKeyPair();
       PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
 
-      protocolStore.storePreKey(preKeyId, record);
       records.add(record);
     }
-
-    metadataStore.setNextEcOneTimePreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
 
     return records;
   }
 
-  public synchronized static @NonNull List<KyberPreKeyRecord> generateAndStoreOneTimeKyberPreKeys(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
-    Log.i(TAG, "Generating one-time kyber prekeys...");
+  public synchronized static void storeOneTimeEcPreKeys(@NonNull SignalProtocolStore protocolStore, PreKeyMetadataStore metadataStore, int preKeyIdOffset, List<PreKeyRecord> prekeys) {
+    Log.i(TAG, "Storing one-time EC prekeys...");
 
-    List<KyberPreKeyRecord> records        = new LinkedList<>();
-    int                     preKeyIdOffset = metadataStore.getNextKyberPreKeyId();
-
-
-    for (int i = 0; i < BATCH_SIZE; i++) {
-      int               preKeyId  = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      KyberPreKeyRecord record    = generateKyberPreKey(preKeyId, protocolStore.getIdentityKeyPair().getPrivateKey());
-
-      protocolStore.storeKyberPreKey(preKeyId, record);
-      records.add(record);
+    for (PreKeyRecord record : prekeys) {
+      protocolStore.storePreKey(record.getId(), record);
     }
+    metadataStore.setNextEcOneTimePreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
 
-    metadataStore.setNextKyberPreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
+  }
+
+  public synchronized static @NonNull List<KyberPreKeyRecord> generateAndStoreOneTimeKyberPreKeys(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    int                     preKeyIdOffset = metadataStore.getNextKyberPreKeyId();
+    List<KyberPreKeyRecord> records        = generateOneTimeKyberPreKeyRecords(preKeyIdOffset, protocolStore.getIdentityKeyPair().getPrivateKey());
+
+    storeOneTimeKyberPreKeys(protocolStore, metadataStore, preKeyIdOffset, records);
 
     return records;
+  }
+
+  @NonNull
+  public static List<KyberPreKeyRecord> generateOneTimeKyberPreKeyRecords(int preKeyIdOffset, @NonNull ECPrivateKey privateKey) {
+    Log.i(TAG, "Generating one-time kyber prekeys...");
+
+    List<KyberPreKeyRecord> records = new LinkedList<>();
+
+    for (int i = 0; i < BATCH_SIZE; i++) {
+      int               preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
+      KyberPreKeyRecord record   = generateKyberPreKey(preKeyId, privateKey);
+
+      records.add(record);
+    }
+    return records;
+  }
+
+  public synchronized static void storeOneTimeKyberPreKeys(@NonNull SignalProtocolStore protocolStore, PreKeyMetadataStore metadataStore, int preKeyIdOffset, List<KyberPreKeyRecord> prekeys) {
+    Log.i(TAG, "Storing one-time kyber prekeys...");
+
+    for (KyberPreKeyRecord record : prekeys) {
+      protocolStore.storeKyberPreKey(record.getId(), record);
+    }
+    metadataStore.setNextKyberPreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
   }
 
   public synchronized static @NonNull SignedPreKeyRecord generateAndStoreSignedPreKey(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
@@ -96,18 +125,16 @@ public class PreKeyUtil {
                                                                                       @NonNull PreKeyMetadataStore metadataStore,
                                                                                       @NonNull ECPrivateKey privateKey)
   {
-    Log.i(TAG, "Generating signed prekeys...");
-
     int                signedPreKeyId = metadataStore.getNextSignedPreKeyId();
     SignedPreKeyRecord record         = generateSignedPreKey(signedPreKeyId, privateKey);
-
-    protocolStore.storeSignedPreKey(signedPreKeyId, record);
-    metadataStore.setNextSignedPreKeyId((signedPreKeyId + 1) % Medium.MAX_VALUE);
+    storeSignedPreKey(protocolStore, metadataStore, signedPreKeyId, record);
 
     return record;
   }
 
   public synchronized static @NonNull SignedPreKeyRecord generateSignedPreKey(int signedPreKeyId, @NonNull ECPrivateKey privateKey) {
+    Log.i(TAG, "Generating signed prekeys...");
+
     try {
       ECKeyPair keyPair   = Curve.generateKeyPair();
       byte[]    signature = Curve.calculateSignature(privateKey, keyPair.getPublicKey().serialize());
@@ -116,6 +143,13 @@ public class PreKeyUtil {
     } catch (InvalidKeyException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public synchronized static void storeSignedPreKey(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore, int signedPreKeyId, SignedPreKeyRecord record) {
+    Log.i(TAG, "Storing signed prekeys...");
+
+    protocolStore.storeSignedPreKey(signedPreKeyId, record);
+    metadataStore.setNextSignedPreKeyId((signedPreKeyId + 1) % Medium.MAX_VALUE);
   }
 
   public synchronized static @NonNull KyberPreKeyRecord generateAndStoreLastResortKyberPreKey(@NonNull SignalServiceAccountDataStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
@@ -128,18 +162,24 @@ public class PreKeyUtil {
   {
     int               id     = metadataStore.getNextKyberPreKeyId();
     KyberPreKeyRecord record = generateKyberPreKey(id, privateKey);
-
-    protocolStore.storeKyberPreKey(id, record);
-    metadataStore.setNextKyberPreKeyId((id + 1) % Medium.MAX_VALUE);
+    storeLastResortKyberPreKey(protocolStore, metadataStore, id, record);
 
     return record;
   }
 
   public synchronized static @NonNull KyberPreKeyRecord generateKyberPreKey(int id, @NonNull ECPrivateKey privateKey) {
+    Log.i(TAG, "Generating kyber prekeys...");
+
     KEMKeyPair keyPair   = KEMKeyPair.generate(KEMKeyType.KYBER_1024);
     byte[]     signature = privateKey.calculateSignature(keyPair.getPublicKey().serialize());
 
     return new KyberPreKeyRecord(id, System.currentTimeMillis(), keyPair, signature);
+  }
+
+  public synchronized static void storeLastResortKyberPreKey(@NonNull SignalServiceAccountDataStore protocolStore, @NonNull PreKeyMetadataStore metadataStore, int id, KyberPreKeyRecord record) {
+    Log.i(TAG, "Storing kyber prekeys...");
+    protocolStore.storeKyberPreKey(id, record);
+    metadataStore.setNextKyberPreKeyId((id + 1) % Medium.MAX_VALUE);
   }
 
 

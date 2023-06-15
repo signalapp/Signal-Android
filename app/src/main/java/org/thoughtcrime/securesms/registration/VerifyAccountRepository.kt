@@ -186,7 +186,7 @@ class VerifyAccountRepository(private val context: Application) {
     )
 
     return Single.fromCallable {
-      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, true)
+      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, registrationData.preKeyCollections, registrationData.fcmToken, true)
       VerifyResponse.from(response, kbsData, pin)
     }.subscribeOn(Schedulers.io())
   }
