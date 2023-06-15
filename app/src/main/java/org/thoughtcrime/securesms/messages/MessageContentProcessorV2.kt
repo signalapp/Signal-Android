@@ -415,19 +415,15 @@ open class MessageContentProcessorV2(private val context: Context) {
         handleRetryReceipt(envelope, metadata, content.decryptionErrorMessage!!.toDecryptionErrorMessage(metadata), senderRecipient)
       }
       content.hasEditMessage() -> {
-        if (FeatureFlags.editMessageReceiving()) {
-          EditMessageProcessor.process(
-            context,
-            senderRecipient,
-            threadRecipient,
-            envelope,
-            content,
-            metadata,
-            if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
-          )
-        } else {
-          warn(envelope.timestamp, "Got message edit, but processing is disabled")
-        }
+        EditMessageProcessor.process(
+          context,
+          senderRecipient,
+          threadRecipient,
+          envelope,
+          content,
+          metadata,
+          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
+        )
       }
       content.hasSenderKeyDistributionMessage() || content.hasPniSignatureMessage() -> {
         // Already handled, here in order to prevent unrecognized message log

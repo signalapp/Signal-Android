@@ -105,7 +105,6 @@ public final class FeatureFlags {
   private static final String TEXT_FORMATTING                   = "android.textFormatting.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
-  private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive.2";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.2";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_SIZE_MB            = "android.attachments.maxSize";
@@ -166,7 +165,6 @@ public final class FeatureFlags {
       PAYPAL_RECURRING_DONATIONS,
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
-      EDIT_MESSAGE_RECEIVE,
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_SIZE_MB,
@@ -234,7 +232,6 @@ public final class FeatureFlags {
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
       TEXT_FORMATTING,
-      EDIT_MESSAGE_RECEIVE,
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_SIZE_MB
@@ -589,10 +586,6 @@ public final class FeatureFlags {
    */
   public static boolean callingFieldTrialAnyAddressPortsKillSwitch() {
     return getBoolean(ANY_ADDRESS_PORTS_KILL_SWITCH, false);
-  }
-
-  public static boolean editMessageReceiving() {
-    return getBoolean(EDIT_MESSAGE_RECEIVE, false);
   }
 
   public static boolean editMessageSending() {
