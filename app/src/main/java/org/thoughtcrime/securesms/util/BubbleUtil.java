@@ -48,19 +48,19 @@ public final class BubbleUtil {
   @WorkerThread
   public static boolean canBubble(@NonNull Context context, @NonNull RecipientId recipientId, @Nullable Long threadId) {
     if (threadId == null) {
-      Log.i(TAG, "Cannot bubble recipient without thread");
+      Log.d(TAG, "Cannot bubble recipient without thread");
       return false;
     }
 
     NotificationPrivacyPreference privacyPreference = SignalStore.settings().getMessageNotificationsPrivacy();
     if (!privacyPreference.isDisplayContact()) {
-      Log.i(TAG, "Bubbles are not available when notification privacy settings are enabled.");
+      Log.d(TAG, "Bubbles are not available when notification privacy settings are enabled.");
       return false;
     }
 
     Recipient recipient = Recipient.resolved(recipientId);
     if (recipient.isBlocked()) {
-      Log.i(TAG, "Cannot bubble blocked recipient");
+      Log.d(TAG, "Cannot bubble blocked recipient");
       return false;
     }
 
@@ -68,8 +68,34 @@ public final class BubbleUtil {
     NotificationChannel conversationChannel = notificationManager.getNotificationChannel(ConversationUtil.getChannelId(context, recipient),
                                                                                          ConversationUtil.getShortcutId(recipientId));
 
-    return (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
-           (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
+    if (conversationChannel == null) {
+      Log.d(TAG, "Conversation channel was null, therefore no bubbles.");
+      return false;
+    }
+
+    if (!conversationChannel.canBubble()) {
+      Log.d(TAG, "Conversation channel does not allow bubbles.");
+      return false;
+    }
+
+    if (Build.VERSION.SDK_INT < 31) {
+      if (!notificationManager.areBubblesAllowed()) {
+        Log.d(TAG, "Notification Manager does not allow bubbles.");
+        return false;
+      }
+    } else {
+      if (!notificationManager.areBubblesEnabled()) {
+        Log.d(TAG, "Notification Manager disabled bubbles.");
+        return false;
+      }
+
+      if (notificationManager.getBubblePreference() == NotificationManager.BUBBLE_PREFERENCE_NONE) {
+        Log.d(TAG, "Bubble preference in Notification Manager was none, therefore no bubbles.");
+        return false;
+      }
+    }
+    
+    return true;
   }
 
   /**
