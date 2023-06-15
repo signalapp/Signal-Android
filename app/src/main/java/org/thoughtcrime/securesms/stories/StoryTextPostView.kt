@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
@@ -157,7 +157,7 @@ class StoryTextPostView @JvmOverloads constructor(
     linkPreviewView.setThumbnailDrawable(drawable, useLargeThumbnail)
   }
 
-  fun bindLinkPreviewState(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int, useLargeThumbnail: Boolean) {
+  fun bindLinkPreviewState(linkPreviewState: LinkPreviewState, hiddenVisibility: Int, useLargeThumbnail: Boolean) {
     linkPreviewView.bind(linkPreviewState, hiddenVisibility, useLargeThumbnail)
   }
 

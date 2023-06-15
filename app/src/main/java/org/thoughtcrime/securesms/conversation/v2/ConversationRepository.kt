@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -193,7 +194,8 @@ class ConversationRepository(
     quote: QuoteModel?,
     mentions: List<Mention>,
     bodyRanges: BodyRangeList?,
-    contacts: List<Contact>
+    contacts: List<Contact>,
+    linkPreviews: List<LinkPreview>
   ): Completable {
     val sendCompletable = Completable.create { emitter ->
       if (body.isEmpty() && slideDeck?.containsMediaSlide() != true) {
@@ -218,7 +220,8 @@ class ConversationRepository(
         outgoingQuote = quote,
         messageToEdit = messageToEdit?.id ?: 0,
         mentions = mentions,
-        sharedContacts = contacts
+        sharedContacts = contacts,
+        linkPreviews = linkPreviews
       )
 
       MessageSender.send(

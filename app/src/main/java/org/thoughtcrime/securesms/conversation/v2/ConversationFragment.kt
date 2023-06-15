@@ -190,6 +190,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
@@ -299,6 +300,12 @@ class ConversationFragment :
       repository = ConversationRepository(context = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
       recipientRepository = conversationRecipientRepository,
       messageRequestRepository = messageRequestRepository
+    )
+  }
+
+  private val linkPreviewViewModel: LinkPreviewViewModelV2 by viewModel {
+    LinkPreviewViewModelV2(
+      enablePlaceholder = false
     )
   }
 
@@ -668,6 +675,7 @@ class ConversationFragment :
       .addTo(disposables)
 
     initializeSearch()
+    initializeLinkPreviews()
 
     inputPanel.setListener(InputPanelListener())
   }
@@ -1031,6 +1039,32 @@ class ConversationFragment :
     }
   }
 
+  private fun initializeLinkPreviews() {
+    linkPreviewViewModel.linkPreviewState
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { state ->
+        if (state.isLoading) {
+          inputPanel.setLinkPreviewLoading()
+        } else if (state.hasLinks() && !state.linkPreview.isPresent) {
+          inputPanel.setLinkPreviewNoPreview(state.error)
+        } else {
+          inputPanel.setLinkPreview(GlideApp.with(this), state.linkPreview)
+        }
+
+        updateToggleButtonState()
+      }
+      .addTo(disposables)
+  }
+
+  private fun updateLinkPreviewState() {
+    if (/* TODO [cfv2] -- viewModel.isPushAvailable && */ !attachmentManager.isAttachmentPresent && context != null) {
+      linkPreviewViewModel.onEnabled()
+      linkPreviewViewModel.onTextChanged(composeText.textTrimmed.toString(), composeText.selectionStart, composeText.selectionEnd)
+    } else {
+      linkPreviewViewModel.onUserCancel()
+    }
+  }
+
   private fun updateToggleButtonState() {
     val buttonToggle: AnimatingToggle = binding.conversationInputPanel.buttonToggle
     val quickAttachment: HidingLinearLayout = binding.conversationInputPanel.quickAttachmentToggle
@@ -1065,7 +1099,7 @@ class ConversationFragment :
         buttonToggle.display(sendButton)
         quickAttachment.hide()
 
-        if (!attachmentManager.isAttachmentPresent) { // todo [cfv2] && !linkPreviewViewModel.hasLinkPreviewUi()) {
+        if (!attachmentManager.isAttachmentPresent && !linkPreviewViewModel.hasLinkPreviewUi) {
           inlineAttachment.show()
         } else {
           inlineAttachment.hide()
@@ -1103,7 +1137,8 @@ class ConversationFragment :
       mentions = emptyList(),
       bodyRanges = null,
       messageToEdit = null,
-      quote = null
+      quote = null,
+      linkPreviews = emptyList()
     )
   }
 
@@ -1116,7 +1151,8 @@ class ConversationFragment :
     scheduledDate: Long = -1,
     slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null,
     contacts: List<Contact> = emptyList(),
-    clearCompose: Boolean = true
+    clearCompose: Boolean = true,
+    linkPreviews: List<LinkPreview> = linkPreviewViewModel.onSend()
   ) {
     val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup == true) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
 
@@ -1129,7 +1165,8 @@ class ConversationFragment :
       quote = quote,
       mentions = mentions,
       bodyRanges = bodyRanges,
-      contacts = contacts
+      contacts = contacts,
+      linkPreviews = linkPreviews
     )
 
     disposables += send
@@ -1164,7 +1201,7 @@ class ConversationFragment :
     scrollToPositionDelegate.resetScrollPosition()
     attachmentManager.cleanup()
 
-    // todo [cfv2] updateLinkPreviewState();
+    updateLinkPreviewState()
 
     draftViewModel.onSendComplete()
 
@@ -2712,7 +2749,7 @@ class ConversationFragment :
     }
 
     override fun onCursorPositionChanged(start: Int, end: Int) {
-      // todo [cfv2] linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), start, end);
+      linkPreviewViewModel.onTextChanged(composeText.textTrimmed.toString(), start, end)
     }
 
     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -2809,7 +2846,7 @@ class ConversationFragment :
     }
 
     override fun onLinkPreviewCanceled() {
-      // TODO [cfv2] Not yet implemented
+      linkPreviewViewModel.onUserCancel()
     }
 
     override fun onStickerSuggestionSelected(sticker: StickerRecord) {
@@ -2845,7 +2882,9 @@ class ConversationFragment :
 
   private inner class AttachmentManagerListener : AttachmentManager.AttachmentListener {
     override fun onAttachmentChanged() {
-      // TODO [cfv2] implement
+      // TODO [cfv2] handleSecurityChange(viewModel.getConversationStateSnapshot().getSecurityInfo());
+      updateToggleButtonState()
+      updateLinkPreviewState()
     }
 
     override fun onLocationRemoved() {

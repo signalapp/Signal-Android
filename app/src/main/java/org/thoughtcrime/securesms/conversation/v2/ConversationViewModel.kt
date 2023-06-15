@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -297,7 +298,8 @@ class ConversationViewModel(
     quote: QuoteModel?,
     mentions: List<Mention>,
     bodyRanges: BodyRangeList?,
-    contacts: List<Contact>
+    contacts: List<Contact>,
+    linkPreviews: List<LinkPreview>
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
@@ -310,7 +312,8 @@ class ConversationViewModel(
       quote = quote,
       mentions = mentions,
       bodyRanges = bodyRanges,
-      contacts = contacts
+      contacts = contacts,
+      linkPreviews = linkPreviews
     ).observeOn(AndroidSchedulers.mainThread())
   }
 

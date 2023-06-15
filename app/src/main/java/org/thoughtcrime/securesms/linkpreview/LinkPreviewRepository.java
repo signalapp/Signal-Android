@@ -12,6 +12,7 @@ import androidx.core.util.Consumer;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.signal.core.util.Hex;
+import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
@@ -62,6 +63,8 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.CacheControl;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -84,6 +87,28 @@ public class LinkPreviewRepository {
                                   .cache(null)
                                   .addInterceptor(new UserAgentInterceptor("WhatsApp/2"))
                                   .build();
+  }
+
+  public @NonNull Single<Result<LinkPreview, Error>> getLinkPreview(@NonNull String url) {
+    return Single.<Result<LinkPreview, Error>>create(emitter -> {
+      RequestController controller = getLinkPreview(ApplicationDependencies.getApplication(),
+                                                    url,
+                                                    new Callback() {
+                                                      @Override
+                                                      public void onSuccess(@NonNull LinkPreview linkPreview) {
+                                                        emitter.onSuccess(Result.success(linkPreview));
+                                                      }
+
+                                                      @Override
+                                                      public void onError(@NonNull Error error) {
+                                                        emitter.onSuccess(Result.failure(error));
+                                                      }
+                                                    });
+
+      if (controller != null) {
+        emitter.setCancellable(controller::cancel);
+      }
+    }).subscribeOn(Schedulers.io());
   }
 
   @Nullable RequestController getLinkPreview(@NonNull Context context,
