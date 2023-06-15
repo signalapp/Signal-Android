@@ -40,6 +40,7 @@ import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
+import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
@@ -216,6 +217,7 @@ public class PushServiceSocket {
   private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
   private static final String REQUEST_ACCOUNT_DATA_PATH  = "/v2/accounts/data_report";
+  private static final String PNI_KEY_DISTRUBTION_PATH   = "/v2/accounts/phone_number_identity_key_distribution";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
@@ -446,6 +448,13 @@ public class PushServiceSocket {
     String responseBody = makeServiceRequest(CHANGE_NUMBER_PATH, "PUT", requestBody);
 
     return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
+  }
+
+  public VerifyAccountResponse distributePniKeys(@NonNull PniKeyDistributionRequest distributionRequest) throws IOException {
+    String request  = JsonUtil.toJson(distributionRequest);
+    String response = makeServiceRequest(PNI_KEY_DISTRUBTION_PATH, "PUT", request);
+
+    return JsonUtil.fromJson(response, VerifyAccountResponse.class);
   }
 
   public void setAccountAttributes(@Nonnull AccountAttributes accountAttributes)

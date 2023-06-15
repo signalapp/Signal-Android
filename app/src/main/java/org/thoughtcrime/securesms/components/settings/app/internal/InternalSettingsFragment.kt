@@ -568,8 +568,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(DSLSettingsText.from("PNP"))
 
       clickPref(
-        title = DSLSettingsText.from("Trigger No-Op Change Number"),
-        summary = DSLSettingsText.from("Mimics the 'Hello world' event"),
+        title = DSLSettingsText.from("Trigger 'Hello World' event"),
         isEnabled = true,
         onClick = {
           SimpleTask.run(viewLifecycleOwner.lifecycle, {
