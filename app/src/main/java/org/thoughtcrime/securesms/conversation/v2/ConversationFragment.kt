@@ -209,6 +209,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.SlideFactory
+import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -1073,6 +1074,22 @@ class ConversationFragment :
         }
       }
     }
+  }
+
+  private fun sendSticker(
+    stickerRecord: StickerRecord,
+    clearCompose: Boolean
+  ) {
+    val stickerLocator = StickerLocator(stickerRecord.packId, stickerRecord.packKey, stickerRecord.stickerId, stickerRecord.emoji)
+    val slide = StickerSlide(
+      requireContext(),
+      stickerRecord.uri,
+      stickerRecord.size,
+      stickerLocator,
+      stickerRecord.contentType
+    )
+
+    sendMessageWithoutComposeInput(slide, clearCompose = clearCompose)
   }
 
   private fun sendMessageWithoutComposeInput(
@@ -2766,7 +2783,10 @@ class ConversationFragment :
     }
 
     override fun onStickerSuggestionSelected(sticker: StickerRecord) {
-      // TODO [cfv2] Not yet implemented
+      sendSticker(
+        stickerRecord = sticker,
+        clearCompose = true
+      )
     }
 
     override fun onQuoteChanged(id: Long, author: RecipientId) {
@@ -2778,12 +2798,14 @@ class ConversationFragment :
     }
 
     override fun onEnterEditMode() {
-      // TODO [cfv2] Not yet implemented
+      updateToggleButtonState()
+      // TODO [cfv2] -- Save keyboard pager state and force emoji
     }
 
     override fun onExitEditMode() {
       updateToggleButtonState()
       draftViewModel.deleteMessageEditDraft()
+      // TODO [cfv2] -- Restore keyboard pager pages
     }
   }
 
