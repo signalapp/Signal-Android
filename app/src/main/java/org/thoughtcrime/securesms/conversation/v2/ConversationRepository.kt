@@ -416,6 +416,12 @@ class ConversationRepository(
       }
   }
 
+  fun resendMessage(messageRecord: MessageRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.resend(applicationContext, messageRecord)
+    }.subscribeOn(Schedulers.io())
+  }
+
   private fun extractBodies(context: Context, messageParts: Set<MultiselectPart>): CharSequence {
     return messageParts
       .asSequence()

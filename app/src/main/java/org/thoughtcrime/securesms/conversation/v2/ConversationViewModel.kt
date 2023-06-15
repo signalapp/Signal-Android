@@ -333,6 +333,10 @@ class ConversationViewModel(
     return repository.copyToClipboard(context, messageParts)
   }
 
+  fun resendMessage(conversationMessage: ConversationMessage): Completable {
+    return repository.resendMessage(conversationMessage.messageRecord)
+  }
+
   fun getRequestReviewState(): Observable<RequestReviewState> {
     return _inputReadyState
       .flatMapSingle { (recipient, messageRequestState, group) -> repository.getRequestReviewState(recipient, group, messageRequestState) }

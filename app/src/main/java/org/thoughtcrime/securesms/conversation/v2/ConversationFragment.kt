@@ -1474,6 +1474,10 @@ class ConversationFragment :
     viewModel.copyToClipboard(requireContext(), messageParts).subscribe().addTo(disposables)
   }
 
+  private fun handleResend(conversationMessage: ConversationMessage) {
+    viewModel.resendMessage(conversationMessage).subscribe()
+  }
+
   private fun handleEnterMultiselect(conversationMessage: ConversationMessage) {
     val parts = conversationMessage.multiselectCollection.toSet()
     parts.forEach { adapter.toggleSelection(it) }
@@ -2372,7 +2376,7 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.REPLY -> handleReplyToMessage(conversationMessage)
         ConversationReactionOverlay.Action.EDIT -> handleEditMessage(conversationMessage)
         ConversationReactionOverlay.Action.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.RESEND -> Unit // TODO [cfv2]
+        ConversationReactionOverlay.Action.RESEND -> handleResend(conversationMessage)
         ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MediaMmsMessageRecord)
         ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
