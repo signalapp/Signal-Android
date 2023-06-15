@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Teken om meer gezichten of gebieden te vervagen</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en houd vast om een audiobericht op te nemen, laat los om te versturen</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Houd vast om audio op te nemen, laat los en verstuur</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Sms-berichten worden niet langer ondersteund in Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->

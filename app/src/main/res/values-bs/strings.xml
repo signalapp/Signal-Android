@@ -1185,7 +1185,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Crtajte da zamaglite druga lica ili površine</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pritisnite i držite da biste snimili glasovnu poruku, pustite da je pošaljete</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Držite da snimite poruku, pustite da je pošaljete</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Razmjena SMS poruka više nije podržana u Signalu.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
