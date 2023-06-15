@@ -67,18 +67,18 @@ object LinkUtil {
       return LegalCharactersResult(false)
     }
 
-    if (ILLEGAL_PERIODS_PATTERN.matcher(url).find()) {
-      return LegalCharactersResult(false)
-    }
-
     val matcher = DOMAIN_PATTERN.matcher(url)
     if (!matcher.matches()) {
       return LegalCharactersResult(false)
     }
 
     val domain = Objects.requireNonNull(matcher.group(2))
-    val cleanedDomain = domain.replace("\\.".toRegex(), "")
 
+    if (ILLEGAL_PERIODS_PATTERN.matcher(domain).find()) {
+      return LegalCharactersResult(false)
+    }
+
+    val cleanedDomain = domain.replace("\\.".toRegex(), "")
     return LegalCharactersResult(
       isLegal = ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() || ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches(),
       domain = domain
