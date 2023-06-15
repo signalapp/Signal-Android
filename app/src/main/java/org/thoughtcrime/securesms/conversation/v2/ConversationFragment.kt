@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
 import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
@@ -112,6 +113,7 @@ import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearL
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
+import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -200,6 +202,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.AttachmentManager
+import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.QuoteModel
@@ -380,6 +383,7 @@ class ConversationFragment :
     get() = binding.conversationSearchBottomBar.root
 
   private lateinit var reactionDelegate: ConversationReactionDelegate
+  private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -603,6 +607,12 @@ class ConversationFragment :
     reactionDelegate = ConversationReactionDelegate(conversationReactionStub)
     reactionDelegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
 
+    voiceMessageRecordingDelegate = VoiceMessageRecordingDelegate(
+      this,
+      AudioRecorder(requireContext(), inputPanel),
+      VoiceMessageRecordingSessionCallbacks()
+    )
+
     binding.conversationBanner.listener = ConversationBannerListener()
     viewModel
       .reminder
@@ -658,6 +668,8 @@ class ConversationFragment :
       .addTo(disposables)
 
     initializeSearch()
+
+    inputPanel.setListener(InputPanelListener())
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
@@ -2717,23 +2729,32 @@ class ConversationFragment :
     }
 
     override fun onRecorderStarted() {
-      // TODO [cfv2] Not yet implemented
+      voiceMessageRecordingDelegate.onRecorderStarted()
     }
 
     override fun onRecorderLocked() {
-      // TODO [cfv2] Not yet implemented
+      updateToggleButtonState()
+      voiceMessageRecordingDelegate.onRecorderLocked()
     }
 
     override fun onRecorderFinished() {
-      // TODO [cfv2] Not yet implemented
+      updateToggleButtonState()
+      voiceMessageRecordingDelegate.onRecorderFinished()
     }
 
     override fun onRecorderCanceled(byUser: Boolean) {
-      // TODO [cfv2] Not yet implemented
+      updateToggleButtonState()
+      voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
     }
 
     override fun onRecorderPermissionRequired() {
-      // TODO [cfv2] Not yet implemented
+      Permissions
+        .with(this@ConversationFragment)
+        .request(Manifest.permission.RECORD_AUDIO)
+        .ifNecessary()
+        .withRationaleDialog(getString(R.string.ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone), R.drawable.ic_mic_solid_24)
+        .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages))
+        .execute()
     }
 
     override fun onEmojiToggle() {
@@ -2865,6 +2886,28 @@ class ConversationFragment :
       if (view is ConversationHeaderView) {
         outRect.top = toolbarMargin
       }
+    }
+  }
+
+  private inner class VoiceMessageRecordingSessionCallbacks : VoiceMessageRecordingDelegate.SessionCallback {
+    override fun onSessionWillBegin() {
+      getVoiceNoteMediaController().pausePlayback()
+    }
+
+    override fun sendVoiceNote(draft: VoiceNoteDraft) {
+      val audioSlide = AudioSlide(requireContext(), draft.uri, draft.size, MediaUtil.AUDIO_AAC, true)
+
+      sendMessageWithoutComposeInput(
+        slide = audioSlide
+      )
+    }
+
+    override fun cancelEphemeralVoiceNoteDraft(draft: VoiceNoteDraft) {
+      draftViewModel.cancelEphemeralVoiceNoteDraft(draft.asDraft())
+    }
+
+    override fun saveEphemeralVoiceNoteDraft(draft: VoiceNoteDraft) {
+      draftViewModel.cancelEphemeralVoiceNoteDraft(draft.asDraft())
     }
   }
 }
