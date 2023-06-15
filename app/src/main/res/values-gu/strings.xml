@@ -1217,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">જવાબો</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Signal કૉલ ચાલુ છે</string>
     <string name="NotificationBarManager__establishing_signal_call">Signal કૉલ સ્થાપિત કરી રહ્યા છીએ</string>
-    <string name="NotificationBarManager__incoming_signal_call">આવી રહેલ Signal કૉલ</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Signal ગ્રુપ કૉલ આવી રહ્યો છે</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Signal કૉલ સર્વિસ શરૂ કરીએ છીએ</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal કોલ સેવા બંધ કરી રહ્યા છીએ</string>
@@ -3546,6 +3543,20 @@
     <string name="KbsMegaphone__create_a_pin">એક PIN બનાવો</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN Signal એન્ક્રિપ્ટેડ સાથે સંગ્રહિત માહિતી રાખે છે.</string>
     <string name="KbsMegaphone__create_pin">PIN બનાવો</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">પરિવહન ચિહ્ન</string>
@@ -5971,6 +5982,15 @@
     <string name="CallContextMenu__delete">ડિલીટ કરો</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Deleting…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
+        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">કૉલ હિસ્ટ્રી દૂર કરી</string>
     <!-- Dialog title to clear all call events -->
@@ -6092,6 +6112,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ફેરફારોની હિસ્ટ્રી</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

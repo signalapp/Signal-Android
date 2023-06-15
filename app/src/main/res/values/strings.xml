@@ -5990,7 +5990,7 @@
     <string name="CallLogFragment__deleting">Deleting…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
     <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
-    <!-- Displayed as message in error dialog when can't delete links -->
+    <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
         <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
         <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
