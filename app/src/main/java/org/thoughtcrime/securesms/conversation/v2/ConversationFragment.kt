@@ -2205,7 +2205,7 @@ class ConversationFragment :
     }
 
     override fun handleSearch() {
-      // TODO [cfv2] - ("Not yet implemented")
+      searchViewModel.onSearchOpened()
     }
 
     override fun handleAddToContacts() {
