@@ -1474,6 +1474,13 @@ class ConversationFragment :
     viewModel.copyToClipboard(requireContext(), messageParts).subscribe().addTo(disposables)
   }
 
+  private fun handleEnterMultiselect(conversationMessage: ConversationMessage) {
+    val parts = conversationMessage.multiselectCollection.toSet()
+    parts.forEach { adapter.toggleSelection(it) }
+    binding.conversationItemRecycler.invalidateItemDecorations()
+    actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(actionModeCallback)
+  }
+
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {
     val recipientSnapshot = viewModel.recipientSnapshot ?: return
     MessageDetailsFragment.create(conversationMessage.messageRecord, recipientSnapshot.id).show(parentFragmentManager, null)
@@ -2360,7 +2367,7 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.RESEND -> Unit // TODO [cfv2]
         ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MediaMmsMessageRecord)
         ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.MULTISELECT -> Unit // TODO [cfv2]
+        ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
         ConversationReactionOverlay.Action.PAYMENT_DETAILS -> Unit // TODO [cfv2]
         ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
         ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
