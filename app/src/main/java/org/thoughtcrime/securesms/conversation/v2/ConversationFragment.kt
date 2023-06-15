@@ -1481,6 +1481,14 @@ class ConversationFragment :
     actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(actionModeCallback)
   }
 
+  private fun handleViewPaymentDetails(conversationMessage: ConversationMessage) {
+    val record: MediaMmsMessageRecord = conversationMessage.messageRecord as? MediaMmsMessageRecord ?: return
+    val payment = record.payment ?: return
+    if (record.isPaymentNotification) {
+      startActivity(PaymentsActivity.navigateToPaymentDetails(requireContext(), payment.uuid))
+    }
+  }
+
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {
     val recipientSnapshot = viewModel.recipientSnapshot ?: return
     MessageDetailsFragment.create(conversationMessage.messageRecord, recipientSnapshot.id).show(parentFragmentManager, null)
@@ -2368,7 +2376,7 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MediaMmsMessageRecord)
         ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
         ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
-        ConversationReactionOverlay.Action.PAYMENT_DETAILS -> Unit // TODO [cfv2]
+        ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
         ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
         ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
       }
