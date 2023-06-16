@@ -9,6 +9,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TooltipPopup
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Any and all tooltips that the conversation can display, and a light amount of related presentation logic.
@@ -49,6 +51,31 @@ class ConversationTooltips(fragment: Fragment) {
       .setText(R.string.ConversationActivity__tap_here_to_start_a_group_call)
       .setOnDismissListener { SignalStore.tooltips().markGroupCallingTooltipSeen() }
       .show(TooltipPopup.POSITION_BELOW)
+  }
+
+  /**
+   *  Displayed to teach the user about sticker packs
+   */
+  fun displayStickerIntroductionTooltip(anchor: View, onDismiss: () -> Unit) {
+    TooltipPopup.forTarget(anchor)
+      .setBackgroundTint(ContextCompat.getColor(anchor.context, R.color.core_ultramarine))
+      .setTextColor(ContextCompat.getColor(anchor.context, R.color.core_white))
+      .setText(R.string.ConversationActivity_new_say_it_with_stickers)
+      .setOnDismissListener {
+        TextSecurePreferences.setHasSeenStickerIntroTooltip(anchor.context, true)
+        onDismiss()
+      }
+      .show(TooltipPopup.POSITION_ABOVE)
+  }
+
+  /**
+   * Displayed after a sticker pack is installed
+   */
+  fun displayStickerPackInstalledTooltip(anchor: View, event: StickerPackInstallEvent) {
+    TooltipPopup.forTarget(anchor)
+      .setText(R.string.ConversationActivity_sticker_pack_installed)
+      .setIconGlideModel(event.iconGlideModel)
+      .show(TooltipPopup.POSITION_ABOVE)
   }
 
   /**

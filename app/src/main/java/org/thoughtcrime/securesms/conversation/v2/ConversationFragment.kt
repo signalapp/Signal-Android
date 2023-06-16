@@ -188,6 +188,7 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiatio
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
+import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
@@ -229,6 +230,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
@@ -333,6 +335,10 @@ class ConversationFragment :
     ConversationSearchViewModel(getString(R.string.note_to_self))
   }
 
+  private val stickerViewModel: StickerSuggestionsViewModel by viewModel {
+    StickerSuggestionsViewModel()
+  }
+
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
   private val textDraftSaveDebouncer = Debouncer(500)
@@ -430,6 +436,7 @@ class ConversationFragment :
     container.fragmentManager = childFragmentManager
 
     ToolbarDependentMarginListener(binding.toolbar)
+    initializeMediaKeyboardToggle()
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -676,6 +683,7 @@ class ConversationFragment :
 
     initializeSearch()
     initializeLinkPreviews()
+    initializeStickerSuggestions()
 
     inputPanel.setListener(InputPanelListener())
   }
@@ -1053,6 +1061,36 @@ class ConversationFragment :
 
         updateToggleButtonState()
       }
+      .addTo(disposables)
+  }
+
+  private fun initializeMediaKeyboardToggle() {
+    val isSystemEmojiPreferred = SignalStore.settings().isPreferSystemEmoji
+    val keyboardMode: TextSecurePreferences.MediaKeyboardMode = TextSecurePreferences.getMediaKeyboardMode(requireContext())
+    val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
+
+    inputPanel.showMediaKeyboardToggle(true)
+
+    val toggleMode = when (keyboardMode) {
+      TextSecurePreferences.MediaKeyboardMode.EMOJI -> if (isSystemEmojiPreferred) KeyboardPage.STICKER else KeyboardPage.EMOJI
+      TextSecurePreferences.MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
+      TextSecurePreferences.MediaKeyboardMode.GIF -> KeyboardPage.GIF
+    }
+
+    inputPanel.setMediaKeyboardToggleMode(toggleMode)
+
+    if (stickerIntro) {
+      TextSecurePreferences.setMediaKeyboardMode(requireContext(), TextSecurePreferences.MediaKeyboardMode.STICKER)
+      inputPanel.setMediaKeyboardToggleMode(KeyboardPage.STICKER)
+      conversationTooltips.displayStickerIntroductionTooltip(inputPanel.mediaKeyboardToggleAnchorView) {
+        EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent::class.java)
+      }
+    }
+  }
+
+  private fun initializeStickerSuggestions() {
+    stickerViewModel.stickers
+      .subscribeBy(onNext = inputPanel::setStickerSuggestions)
       .addTo(disposables)
   }
 
@@ -2739,7 +2777,8 @@ class ConversationFragment :
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
         composeText.postDelayed({ updateToggleButtonState() }, 50)
       }
-      // todo [cfv2] stickerViewModel.onInputTextUpdated(s.toString())
+
+      stickerViewModel.onInputTextUpdated(s.toString())
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
@@ -2940,6 +2979,23 @@ class ConversationFragment :
   @Subscribe(threadMode = ThreadMode.POSTING)
   fun onIdentityRecordUpdate(event: IdentityRecord?) {
     viewModel.updateIdentityRecords()
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+  fun onStickerPackInstalled(event: StickerPackInstallEvent?) {
+    if (event == null) {
+      return
+    }
+
+    if (!TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())) {
+      return
+    }
+
+    EventBus.getDefault().removeStickyEvent(event)
+
+    if (!inputPanel.isStickerMode) {
+      conversationTooltips.displayStickerPackInstalledTooltip(inputPanel.mediaKeyboardToggleAnchorView, event)
+    }
   }
 
   //endregion

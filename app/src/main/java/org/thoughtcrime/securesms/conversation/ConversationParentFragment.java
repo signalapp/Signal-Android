@@ -2175,7 +2175,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeStickerObserver() {
-    StickerSearchRepository repository = new StickerSearchRepository(requireContext());
+    StickerSearchRepository repository = new StickerSearchRepository();
 
     stickerViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ConversationStickerViewModel.Factory(requireActivity().getApplication(), repository))
                                          .get(ConversationStickerViewModel.class);
