@@ -113,6 +113,18 @@ public final class ScrubberTest {
 
     { "Not an ipv4 3.141",
       "Not an ipv4 3.141"
+    },
+
+    { "A Call Link Root Key BCDF-FGHK-MNPQ-RSTX-ZRQH-BCDF-FGHM-STXZ",
+      "A Call Link Root Key BCDF-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
+    },
+
+    { "Not a Call Link Root Key (Invalid Characters) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-FGHM-STXZ",
+      "Not a Call Link Root Key (Invalid Characters) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-FGHM-STXZ"
+    },
+
+    { "Not a Call Link Root Key (Missing Quartet) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-STXZ",
+      "Not a Call Link Root Key (Missing Quartet) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-STXZ"
     }
 
     });

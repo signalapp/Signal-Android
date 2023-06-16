@@ -89,6 +89,12 @@ public final class Scrubber {
                                                                                 "mobi", "by", "cat", "wiki", "la", "ga", "xxx", "cf", "hr", "ng", "jobs", "online", "kz", "ug", "gq", "ae", "is",
                                                                                 "lv", "pro", "fm", "tips", "ms", "sa", "app"));
 
+  /**
+   * Base16 Call Link Key Pattern
+   */
+  private static final Pattern      CALL_LINK_PATTERN       = Pattern.compile("([bBcCdDfFgGhHkKmMnNpPqQrRsStTxXzZ]{4})(-[bBcCdDfFgGhHkKmMnNpPqQrRsStTxXzZ]{4}){7}");
+  private static final String       CALL_LINK_CENSOR_SUFFIX = "-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX";
+
   public static CharSequence scrub(@NonNull CharSequence in) {
 
     in = scrubE164(in);
@@ -98,6 +104,7 @@ public final class Scrubber {
     in = scrubUuids(in);
     in = scrubDomains(in);
     in = scrubIpv4(in);
+    in = scrubCallLinkKeys(in);
 
     return in;
   }
@@ -169,6 +176,16 @@ public final class Scrubber {
     return scrub(in,
                  IPV4_PATTERN,
                  (matcher, output) -> output.append(IPV4_CENSOR));
+  }
+
+  private static CharSequence scrubCallLinkKeys(@NonNull CharSequence in) {
+    return scrub(in,
+                 CALL_LINK_PATTERN,
+                 ((matcher, output) -> {
+                   String match = matcher.group(1);
+                   output.append(match);
+                   output.append(CALL_LINK_CENSOR_SUFFIX);
+                 }));
   }
 
 
