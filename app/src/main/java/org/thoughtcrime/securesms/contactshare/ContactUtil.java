@@ -15,7 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.i18n.phonenumbers.CountryCodeSource;
 import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
@@ -107,8 +109,9 @@ public final class ContactUtil {
   private static @NonNull String getPrettyPhoneNumber(@NonNull String phoneNumber, @NonNull Locale fallbackLocale) {
     PhoneNumberUtil util = PhoneNumberUtil.getInstance();
     try {
-      PhoneNumber parsed = util.parse(phoneNumber, fallbackLocale.getCountry());
-      return util.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+      PhoneNumber parsed = util.parseAndKeepRawInput(phoneNumber, fallbackLocale.getCountry());
+      PhoneNumberFormat format = parsed.country_code_source == CountryCodeSource.FROM_DEFAULT_COUNTRY ? PhoneNumberFormat.NATIONAL : PhoneNumberFormat.INTERNATIONAL
+      return util.format(parsed, format);
     } catch (NumberParseException e) {
       return phoneNumber;
     }
