@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.kbs.PinHashUtil;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
@@ -235,7 +236,8 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                 getRegistrationSecret(),
                                 registrationRepository.getRegistrationId(),
                                 registrationRepository.getProfileKey(getNumber().getE164Number()),
-                                Objects.requireNonNull(RegistrationRepository.generatePreKeys()),
+                                RegistrationRepository.generatePreKeysForType(ServiceIdType.ACI),
+                                RegistrationRepository.generatePreKeysForType(ServiceIdType.PNI),
                                 getFcmToken(),
                                 registrationRepository.getPniRegistrationId(),
                                 getSessionId() != null ? null : getRecoveryPassword());

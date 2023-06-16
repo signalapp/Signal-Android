@@ -6,6 +6,7 @@
 package org.whispersystems.signalservice.api.account
 
 import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -17,6 +18,7 @@ import org.whispersystems.signalservice.api.push.ServiceIdType
  * the service approves the keys we have a local copy to persist.
  */
 data class PreKeyCollection(
+  val identityKeyPair: IdentityKeyPair,
   val nextSignedPreKeyId: Int,
   val ecOneTimePreKeyIdOffset: Int,
   val lastResortKyberPreKeyId: Int,
