@@ -40,8 +40,9 @@ public final class KbsValues extends SignalStoreValues {
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
-    return Collections.emptyList();
+  @NonNull
+  List<String> getKeysToIncludeInBackup() {
+    return List.of(KBS_AUTH_TOKENS);
   }
 
   /**
