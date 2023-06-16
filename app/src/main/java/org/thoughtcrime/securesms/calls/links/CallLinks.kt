@@ -52,6 +52,16 @@ object CallLinks {
   }
 
   @JvmStatic
+  fun isCallLink(url: String): Boolean {
+    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
+      Log.w(TAG, "Invalid url prefix.")
+      return false
+    }
+
+    return url.split("#").last().startsWith("key=")
+  }
+
+  @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
     if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
       Log.w(TAG, "Invalid url prefix.")

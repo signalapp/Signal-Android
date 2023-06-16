@@ -109,7 +109,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__add_call_name),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onAddACallNameClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onAddACallNameClicked
       )
 
       Rows.ToggleRow(
@@ -124,19 +124,19 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareViaSignalClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareViaSignalClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onCopyLinkClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onCopyLinkClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_share_android_24),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareLinkClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareLinkClicked
       )
 
       Buttons.MediumTonal(

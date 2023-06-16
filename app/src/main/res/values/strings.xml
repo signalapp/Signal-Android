@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">No link preview available</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">This group link is not active</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
