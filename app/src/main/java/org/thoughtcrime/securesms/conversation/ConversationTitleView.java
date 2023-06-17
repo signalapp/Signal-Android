@@ -71,7 +71,6 @@ public class ConversationTitleView extends ConstraintLayout {
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
   }
 
-
   @Override
   protected @NonNull Parcelable onSaveInstanceState() {
     Bundle bundle = new Bundle();
@@ -93,7 +92,6 @@ public class ConversationTitleView extends ConstraintLayout {
       super.onRestoreInstanceState(state);
     }
   }
-
 
   public void showExpiring(@NonNull Recipient recipient) {
     isSelf = recipient.isSelf();

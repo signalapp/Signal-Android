@@ -89,6 +89,10 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
     registerFactory(clazz, new LayoutFactory<>(creator, layout));
   }
 
+  public Map<Class<?>, Integer> getItemTypes() {
+    return new HashMap<>(itemTypes);
+  }
+
   @Override
   public int getItemViewType(int position) {
     Integer type = itemTypes.get(getItem(position).getClass());

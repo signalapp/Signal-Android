@@ -51,6 +51,8 @@ import org.thoughtcrime.securesms.database.helpers.migration.V192_CallLinkTableN
 import org.thoughtcrime.securesms.database.helpers.migration.V193_BackCallLinksWithRecipient
 import org.thoughtcrime.securesms.database.helpers.migration.V194_KyberPreKeyMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V195_GroupMemberForeignKeyMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V196_BackCallLinksWithRecipientV2
+import org.thoughtcrime.securesms.database.helpers.migration.V197_DropAvatarColorFromCallLinks
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -59,7 +61,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 195
+  const val DATABASE_VERSION = 197
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -249,6 +251,14 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 195) {
       V195_GroupMemberForeignKeyMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 196) {
+      V196_BackCallLinksWithRecipientV2.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 197) {
+      V197_DropAvatarColorFromCallLinks.migrate(context, db, oldVersion, newVersion)
     }
   }
 

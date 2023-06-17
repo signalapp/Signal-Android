@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.MediaItem
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.BindableConversationItem
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
-import org.thoughtcrime.securesms.conversation.ConversationBannerView
+import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizable
@@ -74,7 +75,7 @@ class ConversationAdapterV2(
   private val condensedMode: ConversationItemDisplayMode? = null
 
   init {
-    registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_banner)
+    registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_thread_header)
 
     registerFactory(ConversationUpdate::class.java) { parent ->
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_update, parent, false)
@@ -100,6 +101,32 @@ class ConversationAdapterV2(
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
       IncomingMediaViewHolder(view)
     }
+  }
+
+  override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+    super.onAttachedToRecyclerView(recyclerView)
+
+    for ((model, type) in itemTypes) {
+      val count: Int = when (model) {
+        ThreadHeader::class.java -> 1
+        ConversationUpdate::class.java -> 5
+        OutgoingTextOnly::class.java -> 25
+        OutgoingMedia::class.java -> 15
+        IncomingTextOnly::class.java -> 25
+        IncomingMedia::class.java -> 15
+        Placeholder::class.java -> 5
+        else -> 0
+      }
+
+      if (count > 0) {
+        recyclerView.recycledViewPool.setMaxRecycledViews(type, count)
+      }
+    }
+  }
+
+  fun updateSearchQuery(searchQuery: String?) {
+    this.searchQuery = searchQuery
+    notifyItemRangeChanged(0, itemCount)
   }
 
   /** [messagePosition] is one-based index and adapter is zero-based. */
@@ -129,7 +156,12 @@ class ConversationAdapterV2(
       return false
     }
 
-    return isRangeAvailable(position - 10, position + 5)
+    if (!isRangeAvailable(position - 10, position + 5)) {
+      getItem(absolutePosition)
+      return false
+    }
+
+    return true
   }
 
   fun playInlineContent(conversationMessage: ConversationMessage?) {
@@ -176,6 +208,18 @@ class ConversationAdapterV2(
 
   fun onHasWallpaperChanged(hasChanged: Boolean) {
     // todo [cody] implement
+  }
+
+  fun clearSelection() {
+    _selected.clear()
+  }
+
+  fun toggleSelection(multiselectPart: MultiselectPart) {
+    if (multiselectPart in _selected) {
+      _selected.remove(multiselectPart)
+    } else {
+      _selected.add(multiselectPart)
+    }
   }
 
   private inner class ConversationUpdateViewHolder(itemView: View) : ConversationViewHolder<ConversationUpdate>(itemView) {
@@ -306,6 +350,20 @@ class ConversationAdapterV2(
     protected val displayMode: ConversationItemDisplayMode
       get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
 
+    init {
+      itemView.setOnClickListener {
+        clickListener.onItemClick(bindable.getMultiselectPartForLatestTouch())
+      }
+
+      itemView.setOnLongClickListener {
+        clickListener.onItemLongClick(
+          it,
+          bindable.getMultiselectPartForLatestTouch()
+        )
+        true
+      }
+    }
+
     override fun showProjectionArea() {
       bindable.showProjectionArea()
     }
@@ -340,7 +398,7 @@ class ConversationAdapterV2(
   }
 
   inner class ThreadHeaderViewHolder(itemView: View) : MappingViewHolder<ThreadHeader>(itemView) {
-    private val conversationBanner: ConversationBannerView = itemView as ConversationBannerView
+    private val conversationBanner: ConversationHeaderView = itemView as ConversationHeaderView
 
     override fun bind(model: ThreadHeader) {
       val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo

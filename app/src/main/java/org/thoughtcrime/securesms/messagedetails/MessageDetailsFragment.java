@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder;
@@ -170,9 +171,9 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment imple
   @Override
   public void onViewEditHistoryClicked(MessageRecord record) {
     if (record.isOutgoing()) {
-      EditMessageHistoryDialog.show(requireParentFragment().getChildFragmentManager(), record.getToRecipient().getId(), record.getId());
+      EditMessageHistoryDialog.show(requireParentFragment().getChildFragmentManager(), record.getToRecipient().getId(), record);
     } else {
-      EditMessageHistoryDialog.show(requireParentFragment().getChildFragmentManager(), record.getFromRecipient().getId(), record.getId());
+      EditMessageHistoryDialog.show(requireParentFragment().getChildFragmentManager(), record.getFromRecipient().getId(), record);
     }
   }
 

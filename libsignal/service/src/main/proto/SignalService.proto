@@ -479,10 +479,6 @@ message SyncMessage {
     optional bool              complete = 2 [default = false];
   }
 
-  message Groups {
-    optional AttachmentPointer blob = 1;
-  }
-
   message Blocked {
     repeated string numbers  = 1;
     repeated string uuids    = 3;
@@ -493,7 +489,7 @@ message SyncMessage {
     enum Type {
       UNKNOWN       = 0;
       CONTACTS      = 1;
-      GROUPS        = 2;
+//      GROUPS        = 2;
       BLOCKED       = 3;
       CONFIGURATION = 4;
       KEYS          = 5;
@@ -594,9 +590,12 @@ message SyncMessage {
   }
 
   message PniChangeNumber {
-    optional bytes  identityKeyPair = 1; // Serialized libsignal-client IdentityKeyPair
-    optional bytes  signedPreKey    = 2; // Serialized libsignal-client SignedPreKeyRecord
-    optional uint32 registrationId  = 3;
+    optional bytes  identityKeyPair       = 1; // Serialized libsignal-client IdentityKeyPair
+    optional bytes  signedPreKey          = 2; // Serialized libsignal-client SignedPreKeyRecord
+    optional bytes  lastResortKyberPreKey = 5; // Serialized libsignal-client KyberPreKeyRecord
+    optional uint32 registrationId        = 3;
+    optional string newE164               = 4; // The e164 we have changed our number to
+    // Next ID: 6
   }
 
   message CallEvent {
@@ -629,9 +628,14 @@ message SyncMessage {
     optional Event     event          = 6;
   }
 
+  message CallLinkUpdate {
+    optional bytes rootKey      = 1;
+    optional bytes adminPassKey = 2;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
-  optional Groups                 groups                 = 3;
+  reserved                      /*groups*/                 3;
   optional Request                request                = 4;
   repeated Read                   read                   = 5;
   optional Blocked                blocked                = 6;
@@ -648,6 +652,7 @@ message SyncMessage {
   reserved                      /*pniIdentity*/            17;
   optional PniChangeNumber        pniChangeNumber        = 18;
   optional CallEvent              callEvent              = 19;
+  optional CallLinkUpdate         callLinkUpdate         = 20;
 }
 
 message AttachmentPointer {

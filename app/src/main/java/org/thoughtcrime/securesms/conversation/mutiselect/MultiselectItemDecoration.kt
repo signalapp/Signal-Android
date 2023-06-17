@@ -161,7 +161,6 @@ class MultiselectItemDecoration(
   /**
    * Draws the background shade.
    */
-  @Suppress("DEPRECATION")
   override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
     val adapter = parent.adapter as ConversationAdapterBridge
 

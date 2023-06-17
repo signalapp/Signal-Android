@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.components.reminder;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -15,13 +17,12 @@ import java.util.concurrent.TimeUnit;
 public class OutdatedBuildReminder extends Reminder {
 
   public OutdatedBuildReminder(final Context context) {
-    super(null, getPluralsText(context));
-
     setOkListener(v -> PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context));
-    addAction(new Action(context.getString(R.string.OutdatedBuildReminder_update_now), R.id.reminder_action_update_now));
+    addAction(new Action(R.string.OutdatedBuildReminder_update_now, R.id.reminder_action_update_now));
   }
 
-  private static CharSequence getPluralsText(final Context context) {
+  @Override
+  public @NonNull CharSequence getText(@NonNull Context context) {
     int days = getDaysUntilExpiry();
 
     if (days == 0) {

@@ -107,7 +107,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 videoState.requireCamera(),
                                                 callSetupState.getIceServers(),
                                                 hideIp,
-                                                NetworkUtil.getCallingBandwidthMode(context),
+                                                NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
                                                 false);
     } catch (CallException e) {
@@ -205,7 +205,9 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);
+    boolean isRemoteVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+
+    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer, isRemoteVideoOffer);
     webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()

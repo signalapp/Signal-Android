@@ -12,9 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.List;
 
 /**
  * Encapsulates the logic for determining the type of mention rendering needed (single vs multi-line) and then
@@ -57,6 +61,12 @@ public class MentionRendererDelegate {
       if (MentionAnnotation.isMentionAnnotation(annotation)) {
         int spanStart = text.getSpanStart(annotation);
         int spanEnd   = text.getSpanEnd(annotation);
+
+        List<Annotation> spoilerAnnotations = SpoilerAnnotation.getSpoilerAnnotations(text, spanStart, spanEnd, true);
+        if (Util.hasItems(spoilerAnnotations)) {
+          continue;
+        }
+
         int startLine = layout.getLineForOffset(spanStart);
         int endLine   = layout.getLineForOffset(spanEnd);
 

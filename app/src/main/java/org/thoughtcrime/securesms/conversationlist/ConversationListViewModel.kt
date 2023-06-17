@@ -119,6 +119,7 @@ class ConversationListViewModel(
           SignalDatabase.threads.getArchivedConversationListCount(filterRequest.filter) == 0
         }
       }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun onCleared() {

@@ -89,7 +89,7 @@ public class AudioRecorder {
         }
         recorder.start(fds[1]);
         this.recordingSubject = recordingSingle;
-      } catch (IOException e) {
+      } catch (IOException | RuntimeException e) {
         recordingSingle.onError(e);
         recorder = null;
         Log.w(TAG, e);

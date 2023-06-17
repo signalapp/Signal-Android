@@ -17,6 +17,7 @@ import com.google.common.collect.Sets;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconUtility;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -173,8 +174,10 @@ public final class ConversationUtil {
 
     List<ShortcutInfoCompat> shortcuts = new ArrayList<>(rankedRecipients.size());
 
+    ComponentName activityName = new AppIconUtility(context).currentAppIconComponentName();
+
     for (int i = 0; i < rankedRecipients.size(); i++) {
-      ShortcutInfoCompat info = buildShortcutInfo(context, rankedRecipients.get(i), i, Direction.NONE);
+      ShortcutInfoCompat info = buildShortcutInfo(context, activityName, rankedRecipients.get(i), i, Direction.NONE);
       shortcuts.add(info);
     }
 
@@ -188,7 +191,10 @@ public final class ConversationUtil {
    */
   @WorkerThread
   private static boolean pushShortcutForRecipientInternal(@NonNull Context context, @NonNull Recipient recipient, int rank, @NonNull Direction direction) {
-    ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, recipient, rank, direction);
+
+    ComponentName activityName = new AppIconUtility(context).currentAppIconComponentName();
+
+    ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, activityName, recipient, rank, direction);
 
     return ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
   }
@@ -203,6 +209,7 @@ public final class ConversationUtil {
    */
   @WorkerThread
   private static @NonNull ShortcutInfoCompat buildShortcutInfo(@NonNull Context context,
+                                                               @NonNull ComponentName activity,
                                                                @NonNull Recipient recipient,
                                                                int rank,
                                                                @NonNull Direction direction)
@@ -222,7 +229,7 @@ public final class ConversationUtil {
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
                                  .setPersons(persons)
                                  .setCategories(Sets.newHashSet(CATEGORY_SHARE_TARGET))
-                                 .setActivity(new ComponentName(context, "org.thoughtcrime.securesms.RoutingActivity"))
+                                 .setActivity(activity)
                                  .setRank(rank)
                                  .setLocusId(new LocusIdCompat(shortcutId));
 

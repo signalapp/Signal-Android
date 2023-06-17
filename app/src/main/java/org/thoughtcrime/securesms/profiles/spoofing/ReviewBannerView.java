@@ -30,6 +30,7 @@ public class ReviewBannerView extends LinearLayout {
   private AvatarImageView topLeftAvatar;
   private AvatarImageView bottomRightAvatar;
   private View            stroke;
+  private OnHideListener  onHideListener;
 
   public ReviewBannerView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
@@ -55,7 +56,17 @@ public class ReviewBannerView extends LinearLayout {
     topLeftAvatar.setFallbackPhotoProvider(provider);
     bottomRightAvatar.setFallbackPhotoProvider(provider);
 
-    bannerClose.setOnClickListener(v -> setVisibility(GONE));
+    bannerClose.setOnClickListener(v -> {
+      if (onHideListener != null && onHideListener.onHide()) {
+        return;
+      }
+
+      setVisibility(GONE);
+    });
+  }
+
+  public void setOnHideListener(@Nullable OnHideListener onHideListener) {
+    this.onHideListener = onHideListener;
   }
 
   public void setBannerMessage(@Nullable CharSequence charSequence) {
@@ -120,5 +131,9 @@ public class ReviewBannerView extends LinearLayout {
     protected Drawable newFallbackDrawable(@NonNull Context context, @NonNull AvatarColor color, boolean inverted) {
       return new FallbackPhoto20dp(getFallbackResId()).asDrawable(context, color, inverted);
     }
+  }
+
+  public interface OnHideListener {
+    boolean onHide();
   }
 }

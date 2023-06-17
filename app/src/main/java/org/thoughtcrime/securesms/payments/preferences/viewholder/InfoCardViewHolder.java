@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.payments.preferences.viewholder;
 
-import android.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -14,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeAdapter;
@@ -50,7 +51,7 @@ public class InfoCardViewHolder extends MappingViewHolder<InfoCard> {
     toolbar.inflateMenu(R.menu.payment_info_card_overflow);
     toolbar.setOnMenuItemClickListener(item -> {
       if (item.getItemId() == R.id.action_hide) {
-        new AlertDialog.Builder(getContext())
+        new MaterialAlertDialogBuilder(getContext())
             .setMessage(R.string.payment_info_card_hide_this_card)
             .setPositiveButton(R.string.payment_info_card_hide, (dialog, which) -> {
               model.dismiss();

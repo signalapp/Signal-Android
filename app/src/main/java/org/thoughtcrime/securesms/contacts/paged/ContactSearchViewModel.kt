@@ -2,9 +2,10 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -48,8 +49,8 @@ class ContactSearchViewModel(
   private val selectionStore = Store<Set<ContactSearchKey>>(emptySet())
   private val errorEvents = PublishSubject.create<ContactSearchError>()
 
-  val controller: LiveData<PagingController<ContactSearchKey>> = Transformations.map(pagedData) { it.controller }
-  val data: LiveData<List<ContactSearchData>> = Transformations.switchMap(pagedData) { it.data }
+  val controller: LiveData<PagingController<ContactSearchKey>> = pagedData.map { it.controller }
+  val data: LiveData<List<ContactSearchData>> = pagedData.switchMap { it.data }
   val configurationState: LiveData<ContactSearchState> = configurationStore.stateLiveData
   val selectionState: LiveData<Set<ContactSearchKey>> = selectionStore.stateLiveData
   val errorEventsStream: Observable<ContactSearchError> = errorEvents

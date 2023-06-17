@@ -23,6 +23,8 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.function.Function;
 
+import kotlin.jvm.functions.Function1;
+
 public final class LiveDataUtil {
 
   private LiveDataUtil() {
@@ -82,7 +84,7 @@ public final class LiveDataUtil {
   /**
    * Performs a map operation on the source observable and then only emits the mapped item if it has changed since the previous emission.
    */
-  public static <A, B> LiveData<B> mapDistinct(@NonNull LiveData<A> source, @NonNull androidx.arch.core.util.Function<A, B> mapFunction) {
+  public static <A, B> LiveData<B> mapDistinct(@NonNull LiveData<A> source, @NonNull Function1<A, B> mapFunction) {
     return Transformations.distinctUntilChanged(Transformations.map(source, mapFunction));
   }
 

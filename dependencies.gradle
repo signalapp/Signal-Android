@@ -5,28 +5,35 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version('androidx-appcompat', '1.6.1')
-            version('androidx-camera', '1.2.2')
-            version('androidx-fragment', '1.5.5')
-            version('androidx-lifecycle', '2.5.1')
-            version('androidx-navigation', '2.5.3')
+            version('androidx-activity', '1.7.2')
+            version('androidx-camera', '1.2.3')
+            version('androidx-fragment', '1.6.0')
+            version('androidx-lifecycle', '2.6.1')
+            version('androidx-navigation', '2.6.0')
             version('androidx-window', '1.0.0')
             version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
             version('kotlin', '1.8.10')
-            version('libsignal-client', '0.24.0')
+            version('libsignal-client', '0.26.0')
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '7.4.1')
+            version('accompanist', '0.28.0')
 
             // Android Plugins
             alias('android-library').to('com.android.library', 'com.android.library.gradle.plugin').versionRef('android-gradle-plugin')
             alias('android-application').to('com.android.application', 'com.android.application.gradle.plugin').versionRef('android-gradle-plugin')
 
             // Compose
-            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2023.01.00')
+            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2023.05.01')
             alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion()
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
+            alias('androidx-compose-runtime-livedata').to('androidx.compose.runtime', 'runtime-livedata').withoutVersion()
+            alias('androidx-compose-rxjava3').to('androidx.compose.runtime:runtime-rxjava3:1.4.2')
             alias('ktlint-twitter-compose').to('com.twitter.compose.rules:ktlint:0.0.26')
+
+            // Accompanist
+            alias('accompanist-permissions').to('com.google.accompanist', 'accompanist-permissions').versionRef('accompanist')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')
@@ -38,7 +45,7 @@ dependencyResolutionManagement {
             alias('ktlint').to('org.jlleitschuh.gradle:ktlint-gradle:11.1.0')
 
             // Android X
-            alias('androidx-activity-ktx').to('androidx.activity', 'activity-ktx').versionRef('androidx-appcompat')
+            alias('androidx-activity-ktx').to('androidx.activity', 'activity-ktx').versionRef('androidx-activity')
             alias('androidx-appcompat').to('androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
             alias('androidx-core-ktx').to('androidx.core:core-ktx:1.10.0')
             alias('androidx-fragment-ktx').to('androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
@@ -106,8 +113,8 @@ dependencyResolutionManagement {
             alias('libsignal-client').to('org.signal', 'libsignal-client').versionRef('libsignal-client')
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.26.3')
-            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S1')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.28.1')
+            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S2')
 
             // Third Party
             alias('greenrobot-eventbus').to('org.greenrobot:eventbus:3.0.0')
@@ -121,16 +128,14 @@ dependencyResolutionManagement {
             alias('rxjava3-rxkotlin').to('io.reactivex.rxjava3:rxkotlin:3.0.1')
             alias('rxdogtag').to('com.uber.rxdogtag2:rxdogtag:2.0.1')
             alias('conscrypt-android').to('org.conscrypt:conscrypt-android:2.0.0')
-            alias('mobilecoin').to('com.mobilecoin:android-sdk:4.1.0')
+            alias('mobilecoin').to('com.mobilecoin:android-sdk:5.0.0')
             alias('leolin-shortcutbadger').to('me.leolin:ShortcutBadger:1.1.22')
             alias('emilsjolander-stickylistheaders').to('se.emilsjolander:stickylistheaders:2.7.0')
-            alias('jpardogo-materialtabstrip').to('com.jpardogo.materialtabstrip:library:1.0.9')
             alias('apache-httpclient-android').to('org.apache.httpcomponents:httpclient-android:4.3.5')
             alias('glide-glide').to('com.github.bumptech.glide', 'glide').versionRef('glide')
             alias('glide-compiler').to('com.github.bumptech.glide', 'compiler').versionRef('glide')
             alias('roundedimageview').to('com.makeramen:roundedimageview:2.1.0')
             alias('materialish-progress').to('com.pnikosis:materialish-progress:1.5')
-            alias('waitingdots').to('pl.tajchert:waitingdots:0.1.0')
             alias('subsampling-scale-image-view').to('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0')
             alias('android-tooltips').to('com.tomergoldst.android:tooltips:1.0.6')
             alias('android-smsmms').to('com.klinkerapps:android-smsmms:4.0.1')

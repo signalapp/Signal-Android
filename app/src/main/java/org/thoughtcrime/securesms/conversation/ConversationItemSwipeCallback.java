@@ -29,8 +29,8 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
   private final ConversationItemTouchListener itemTouchListener;
   private final OnSwipeListener               onSwipeListener;
 
-  ConversationItemSwipeCallback(@NonNull SwipeAvailabilityProvider swipeAvailabilityProvider,
-                                @NonNull OnSwipeListener onSwipeListener)
+  public ConversationItemSwipeCallback(@NonNull SwipeAvailabilityProvider swipeAvailabilityProvider,
+                                       @NonNull OnSwipeListener onSwipeListener)
   {
     super(0, ItemTouchHelper.END);
     this.itemTouchListener          = new ConversationItemTouchListener(this::updateLatestDownCoordinate);
@@ -40,7 +40,7 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
     this.canTriggerSwipe            = true;
   }
 
-  void attachToRecyclerView(@NonNull RecyclerView recyclerView) {
+  public void attachToRecyclerView(@NonNull RecyclerView recyclerView) {
     recyclerView.addOnItemTouchListener(itemTouchListener);
     new ItemTouchHelper(this).attachToRecyclerView(recyclerView);
   }
@@ -193,11 +193,11 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
     if (vibrator != null) vibrator.vibrate(SWIPE_SUCCESS_VIBE_TIME_MS);
   }
 
-  interface SwipeAvailabilityProvider {
+  public interface SwipeAvailabilityProvider {
     boolean isSwipeAvailable(ConversationMessage conversationMessage);
   }
 
-  interface OnSwipeListener {
+  public interface OnSwipeListener {
     void onSwipe(ConversationMessage conversationMessage);
   }
 }

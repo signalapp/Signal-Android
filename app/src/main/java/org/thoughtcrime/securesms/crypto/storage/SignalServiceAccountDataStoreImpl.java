@@ -182,8 +182,18 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
+  public @NonNull List<KyberPreKeyRecord> loadLastResortKyberPreKeys() {
+    return kyberPreKeyStore.loadLastResortKyberPreKeys();
+  }
+
+  @Override
   public void storeKyberPreKey(int kyberPreKeyId, KyberPreKeyRecord record) {
     kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, record);
+  }
+
+  @Override
+  public void storeLastResortKyberPreKey(int kyberPreKeyId, @NonNull KyberPreKeyRecord kyberPreKeyRecord) {
+    kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, kyberPreKeyRecord);
   }
 
   @Override
@@ -194,6 +204,11 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   @Override
   public void markKyberPreKeyUsed(int kyberPreKeyId) {
     kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId);
+  }
+
+  @Override
+  public void removeKyberPreKey(int kyberPreKeyId) {
+    kyberPreKeyStore.removeKyberPreKey(kyberPreKeyId);
   }
 
   @Override

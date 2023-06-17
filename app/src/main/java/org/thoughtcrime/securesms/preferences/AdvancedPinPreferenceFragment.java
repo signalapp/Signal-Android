@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.R;
@@ -73,13 +74,13 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
                                   SignalStore.kbsValues().isV2RegistrationLockEnabled();
 
     if (!enabled && hasRegistrationLock) {
-      new AlertDialog.Builder(requireContext())
+      new MaterialAlertDialogBuilder(requireContext())
                      .setMessage(R.string.ApplicationPreferencesActivity_pins_are_required_for_registration_lock)
                      .setCancelable(true)
                      .setPositiveButton(android.R.string.ok, (d, which) -> d.dismiss())
                      .show();
     } else if (!enabled && SignalStore.paymentsValues().mobileCoinPaymentsEnabled() && !SignalStore.paymentsValues().getUserConfirmedMnemonic()) {
-      new AlertDialog.Builder(requireContext())
+      new MaterialAlertDialogBuilder(requireContext())
                      .setTitle(R.string.ApplicationPreferencesActivity_record_payments_recovery_phrase)
                      .setMessage(R.string.ApplicationPreferencesActivity_before_you_can_disable_your_pin)
                      .setPositiveButton(R.string.ApplicationPreferencesActivity_record_phrase, (dialog, which) -> {

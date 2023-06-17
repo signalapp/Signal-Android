@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.sharing;
 
-import android.app.AlertDialog;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 
@@ -23,7 +24,7 @@ public final class MultiShareDialogs {
   }
 
   public static void displayMaxSelectedDialog(@NonNull Context context, int hardLimit) {
-    new AlertDialog.Builder(context)
+    new MaterialAlertDialogBuilder(context)
                    .setMessage(context.getString(R.string.MultiShareDialogs__you_can_only_share_with_up_to, hardLimit))
                    .setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss()))
                    .setCancelable(true)
@@ -33,7 +34,7 @@ public final class MultiShareDialogs {
   private static void displayFailuresDialog(@NonNull Context context,
                                             @NonNull Runnable onDismiss)
   {
-    new AlertDialog.Builder(context)
+    new MaterialAlertDialogBuilder(context)
                    .setMessage(R.string.MultiShareDialogs__failed_to_send_to_some_users)
                    .setPositiveButton(android.R.string.ok, ((dialog, which) -> dialog.dismiss()))
                    .setOnDismissListener(dialog -> onDismiss.run())

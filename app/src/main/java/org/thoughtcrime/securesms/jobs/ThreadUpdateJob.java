@@ -38,7 +38,9 @@ public final class ThreadUpdateJob extends BaseJob {
   }
 
   public static void enqueue(long threadId) {
-    ApplicationDependencies.getJobManager().add(new ThreadUpdateJob(threadId));
+    SignalDatabase.runPostSuccessfulTransaction(KEY + threadId, () -> {
+      ApplicationDependencies.getJobManager().add(new ThreadUpdateJob(threadId));
+    });
   }
 
   @Override
@@ -54,9 +56,7 @@ public final class ThreadUpdateJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     SignalDatabase.threads().update(threadId, true);
-    if (ApplicationDependencies.getIncomingMessageObserver().getDecryptionDrained()) {
-      ThreadUtil.sleep(DEBOUNCE_INTERVAL);
-    } else {
+    if (!ApplicationDependencies.getIncomingMessageObserver().getDecryptionDrained()) {
       ThreadUtil.sleep(DEBOUNCE_INTERVAL_WITH_BACKLOG);
     }
   }

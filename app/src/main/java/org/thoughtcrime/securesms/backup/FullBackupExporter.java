@@ -228,7 +228,7 @@ public class FullBackupExporter extends FullBackupBase {
         outputStream.close();
       }
     }
-    return new BackupEvent(BackupEvent.Type.FINISHED, ++count, estimatedCountOutside);
+    return new BackupEvent(BackupEvent.Type.FINISHED, outputStream.frames, estimatedCountOutside);
   }
 
   private static long calculateCount(@NonNull Context context, @NonNull SQLiteDatabase input, List<String> tables) {
@@ -637,6 +637,8 @@ public class FullBackupExporter extends FullBackupBase {
     private final byte[] iv;
     private       int    counter;
 
+    private       int    frames;
+
     private BackupFrameOutputStream(@NonNull OutputStream output, @NonNull String passphrase) throws IOException {
       try {
         byte[]   salt    = Util.getSecretBytes(32);
@@ -796,6 +798,7 @@ public class FullBackupExporter extends FullBackupBase {
         out.write(length);
         out.write(frameCiphertext);
         out.write(frameMac, 0, 10);
+        frames++;
       } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }

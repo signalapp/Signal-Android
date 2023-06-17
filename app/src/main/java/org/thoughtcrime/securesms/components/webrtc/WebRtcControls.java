@@ -27,7 +27,8 @@ public final class WebRtcControls {
                                                                null,
                                                                FoldableState.flat(),
                                                                SignalAudioManager.AudioDevice.NONE,
-                                                               emptySet());
+                                                               emptySet(),
+                                                               false);
 
   private final boolean                             isRemoteVideoEnabled;
   private final boolean                             isLocalVideoEnabled;
@@ -40,6 +41,7 @@ public final class WebRtcControls {
   private final FoldableState                       foldableState;
   private final SignalAudioManager.AudioDevice      activeDevice;
   private final Set<SignalAudioManager.AudioDevice> availableDevices;
+  private final boolean                             isCallLink;
 
   private WebRtcControls() {
     this(false,
@@ -52,7 +54,8 @@ public final class WebRtcControls {
          null,
          FoldableState.flat(),
          SignalAudioManager.AudioDevice.NONE,
-         emptySet());
+         emptySet(),
+         false);
   }
 
   WebRtcControls(boolean isLocalVideoEnabled,
@@ -65,7 +68,8 @@ public final class WebRtcControls {
                  @Nullable Long participantLimit,
                  @NonNull FoldableState foldableState,
                  @NonNull SignalAudioManager.AudioDevice activeDevice,
-                 @NonNull Set<SignalAudioManager.AudioDevice> availableDevices)
+                 @NonNull Set<SignalAudioManager.AudioDevice> availableDevices,
+                 boolean isCallLink)
   {
     this.isLocalVideoEnabled          = isLocalVideoEnabled;
     this.isRemoteVideoEnabled         = isRemoteVideoEnabled;
@@ -78,6 +82,7 @@ public final class WebRtcControls {
     this.foldableState                = foldableState;
     this.activeDevice                 = activeDevice;
     this.availableDevices             = availableDevices;
+    this.isCallLink                   = isCallLink;
   }
 
   public @NonNull WebRtcControls withFoldableState(FoldableState foldableState) {
@@ -91,7 +96,8 @@ public final class WebRtcControls {
                               participantLimit,
                               foldableState,
                               activeDevice,
-                              availableDevices);
+                              availableDevices,
+                              isCallLink);
   }
 
   boolean displayErrorControls() {
@@ -222,7 +228,7 @@ public final class WebRtcControls {
   }
 
   boolean displayRingToggle() {
-    return isPreJoin() && isGroupCall() && !hasAtLeastOneRemote;
+    return isPreJoin() && isGroupCall() && !isCallLink && !hasAtLeastOneRemote;
   }
 
   private boolean isError() {

@@ -16,6 +16,7 @@ object MessageRangesTransformer : ColumnTransformer {
     return if (messageRangesData != null) {
       val ranges = BodyRangeList.parseFrom(messageRangesData)
       ranges.rangesList
+        .take(5)
         .map { range ->
           val mention = range.hasMentionUuid()
           val style = range.hasStyle()
@@ -34,6 +35,13 @@ object MessageRangesTransformer : ColumnTransformer {
 
           rangeString
         }.joinToString("<br>")
+        .let {
+          if (ranges.rangesCount > 5) {
+            it + "<br>" + "Not showing an additional ${ranges.rangesCount - 5} body ranges."
+          } else {
+            it
+          }
+        }
     } else {
       null
     }

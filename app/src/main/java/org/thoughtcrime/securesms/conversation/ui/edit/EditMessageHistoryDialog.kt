@@ -47,9 +47,9 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
   override val peekHeightPercentage: Float = 0.4f
 
   private val binding: MessageEditHistoryBottomSheetBinding by ViewBinderDelegate(MessageEditHistoryBottomSheetBinding::bind)
-  private val messageId: Long by lazy { requireArguments().getLong(ARGUMENT_MESSAGE_ID) }
+  private val originalMessageId: Long by lazy { requireArguments().getLong(ARGUMENT_ORIGINAL_MESSAGE_ID) }
   private val conversationRecipient: Recipient by lazy { Recipient.resolved(requireArguments().getParcelable(ARGUMENT_CONVERSATION_RECIPIENT_ID)!!) }
-  private val viewModel: EditMessageHistoryViewModel by viewModels(factoryProducer = ViewModelFactory.factoryProducer { EditMessageHistoryViewModel(messageId, conversationRecipient) })
+  private val viewModel: EditMessageHistoryViewModel by viewModels(factoryProducer = ViewModelFactory.factoryProducer { EditMessageHistoryViewModel(originalMessageId, conversationRecipient) })
 
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
@@ -147,15 +147,15 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
   }
 
   companion object {
-    private const val ARGUMENT_MESSAGE_ID = "message_id"
+    private const val ARGUMENT_ORIGINAL_MESSAGE_ID = "message_id"
     private const val ARGUMENT_CONVERSATION_RECIPIENT_ID = "recipient_id"
 
     @JvmStatic
-    fun show(fragmentManager: FragmentManager, threadRecipient: RecipientId, messageId: Long) {
+    fun show(fragmentManager: FragmentManager, threadRecipient: RecipientId, messageRecord: MessageRecord) {
       EditMessageHistoryDialog()
         .apply {
           arguments = bundleOf(
-            ARGUMENT_MESSAGE_ID to messageId,
+            ARGUMENT_ORIGINAL_MESSAGE_ID to (messageRecord.originalMessageId?.id ?: messageRecord.id),
             ARGUMENT_CONVERSATION_RECIPIENT_ID to threadRecipient
           )
         }

@@ -24,6 +24,15 @@
     <string name="save">حفظ</string>
     <string name="note_to_self">الملاحظات الشخصية</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">طقس</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">ملاحظات</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">أخبار</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">أمواج</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -80,7 +89,7 @@
     <string name="AttachmentManager_cant_open_media_selection">تعذر العثور على تطبيق لتحديد الوسائط.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن الوصول إلى التخزين من أجل إرفاق الصور والفيديوهات والملفّات الصوتيّة، ولكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثمّ تفعيل \"سعة التخزين\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن الوصول لِ جهات الاتصال من أجل إرفاق بيانات جهة اتصال، لكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثم تفعيل \"جهات الاتصال\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">لم يُفعّل %1$s عمليات الدفع </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -185,12 +194,12 @@
     <string name="CameraContacts_signal_groups">مجموعات Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="zero">You can share with a maximum of %1$d chats.</item>
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="two">You can share with a maximum of %1$d chats.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="zero">يمكنك المشاركة مع %1$d دردشات كحد أقصى.</item>
+        <item quantity="one">يمكنك المشاركة مع %1$d دردشة كحد أقصى.</item>
+        <item quantity="two">يمكنك المشاركة مع %1$d دردشتين كحد أقصى.</item>
+        <item quantity="few">يمكنك المشاركة مع %1$d دردشات كحد أقصى.</item>
+        <item quantity="many">يمكنك المشاركة مع %1$d دردشة كحد أقصى.</item>
+        <item quantity="other">يمكنك المشاركة مع %1$d دردشة كحد أقصى.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">اختاري المتلقّيين من Signal</string>
     <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في Signal</string>
@@ -231,6 +240,8 @@
     <string name="CommunicationActions_call">اتصال</string>
     <string name="CommunicationActions_insecure_call">مكالمة غير آمنة</string>
     <string name="CommunicationActions_carrier_charges_may_apply">قد تُطبَّق عليك رسوم شركة الاتصال. الرقم الذي تتصل به غير مسجل في Signal. سيتم إجراء هذه المكالمة من خلال مشغِّل شبكة الجوال، وليس عبر الانترنت.</string>
+    <string name="CommunicationActions_cant_join_call">تعذّر الانضمام إلى المكالمة</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">لم يعد رابط هذه المكالمة صالحًا.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -311,6 +322,8 @@
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">تعذّر تحميل الفيديو. سَتحتاج إلى إرساله مرة أخرى.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">مُعدّلة %1$s</string>
+    <!-- Displayed if the link preview in the conversation item is for a call link call -->
+    <string name="ConversationItem__join_call">الانضمام للمكالمة</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
@@ -522,6 +535,13 @@
     <string name="ConversationFragment__update_build">تحديث Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">إعادة-تسجيل Signal</string>
+    <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
+    <string name="ConversationFragment__content_description_back_button">رجوع إلى الوراء.</string>
+    <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
+    <string name="ConversationFragment__content_description_launch_signal_button">يُرجى فتح Signal</string>
+    <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
+    <string name="ConversationFragment__no_longer_verified">لم يعد هناك علامة تحقق</string>
+
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">مَحوُ تصفية الدردشة</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -1239,7 +1259,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">ارسم لتضبيب مزيدٍ من الوجوه والأماكن</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">انقر وأضغط لتسجيل رسالة صوتية، اسحب إصبعك للإرسال</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">لم تعُد رسائل SMS مُدعّمة من طرف Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1369,10 +1389,7 @@
     <string name="MessageQuotesBottomSheet_replies">الإجابات</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">مكالمة Signal جارية</string>
     <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>
-    <string name="NotificationBarManager__incoming_signal_call">مكالمة Signal واردة</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">مكالمة Signal واردة من مجموعة</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">جارٍ بدء خدمة مكالمات Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">يجري توقيف خدمة مكالمات Signal</string>
@@ -1668,12 +1685,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">إنك في مكالمة جماعية · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">العضوان %1$s و %2$s موجودان في مكالمة جماعية · %3$s</string>
     <string name="MessageRecord_group_call_s">مكالمة جماعية · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">قام العضو %1$s ببدء مكالمة جماعية</string>
+    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">العضو %1$s موجود في مكالمة جماعية</string>
     <string name="MessageRecord_you_are_in_the_group_call">إنك في مكالمة جماعية</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">العضوان %1$s و %2$s موجودان في مكالمة جماعية</string>
@@ -1893,6 +1912,8 @@
     <string name="Recipient_you">أنت</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">قصتي</string>
+    <!-- Name of recipient for a call link without a name -->
+    <string name="Recipient_signal_call">مكالمة Signal</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">حظر</string>
@@ -2091,6 +2112,10 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقاً %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
+    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
+    <string name="RegistrationActivity_generic_error">حدث خطأ غير متوقع.</string>
+    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذّر إرسال رمز التحقق عبر رسالة SMS. حاول الحصول على رمزك عبر مكالمة نصية بدلاً من ذلك.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">تعذّر طلب رمز تحقق. يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
     <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>
@@ -2113,6 +2138,10 @@
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقق من أنك إنسان.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">لم يتمكّن تطبيق Signal من إرسال رمز SMS بسبب فشل خارجي.</string>
+    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
+    <string name="RegistrationActivity_voice_call">مكالمة صوتية</string>
+    <!-- Dialog button to cancel the pending action and return to the previous state. -->
+    <string name="RegistrationActivity_cancel">إلغاء</string>
     <string name="RegistrationActivity_next">التالي</string>
     <string name="RegistrationActivity_continue">استمرار</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافظ على خصوصيتك اينما كنت. كن على طبيعتك في كل رسالة.</string>
@@ -2225,7 +2254,7 @@
     <string name="StickerPackPreviewActivity_unknown">مجهول</string>
     <string name="StickerPackPreviewActivity_install">تثبيت</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
-    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
+    <string name="StickerPackPreviewActivity_remove">إلغاء التثبيت</string>
     <string name="StickerPackPreviewActivity_stickers">ملصقات</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">فشل في تحميل مجموعة الملصقات</string>
 
@@ -2428,24 +2457,24 @@
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
-    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <string name="MessageNotifier_s_in_s">%1$s في %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="zero">%1$d messages</item>
-        <item quantity="one">%1$d message</item>
-        <item quantity="two">%1$d messages</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="zero">%1$d رسائل</item>
+        <item quantity="one">%1$d رسالة</item>
+        <item quantity="two">%1$d رسالتين</item>
+        <item quantity="few">%1$d رسائل</item>
+        <item quantity="many">%1$d رسالة</item>
+        <item quantity="other">%1$d رسالة</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="zero">%1$d chats</item>
-        <item quantity="one">%1$d chats</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="zero">%1$d دردشات</item>
+        <item quantity="one">%1$d دردشة</item>
+        <item quantity="two">%1$d دردشتين</item>
+        <item quantity="few">%1$d دردشات</item>
+        <item quantity="many">%1$d دردشة</item>
+        <item quantity="other">%1$d دردشة</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d الدردشات</string>
     <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
@@ -2509,9 +2538,8 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل Signal!</string>
     <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
 
-    <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_saved_to">تم الإحتفاظ به في %1$s</string>
-    <string name="SaveAttachmentTask_saved">تم الحفظ</string>
+    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
+    <string name="SaveAttachmentTask_saved">تم حفظ الوسائط</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">بحث</string>
@@ -2593,7 +2621,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">مكبر الصوت</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">سماعة رأس سلكية</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">سماعة رأس سلكية (USB)</string>
@@ -3195,7 +3225,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">قفل عملية الدفع</string>
     <string name="preferences__payments_beta">الدفوعات (الإصدار التجريبي)</string>
-    <string name="preferences__conversation_length_limit">حد طول الدردشة</string>
+    <string name="preferences__conversation_length_limit">أقصى عدد من الرسائل في الدردشة</string>
     <string name="preferences__keep_messages">احتفظ بالرسائل</string>
     <string name="preferences__clear_message_history">محو محفوظات الرسائل</string>
     <string name="preferences__linked_devices">الأجهزة المرتبطة</string>
@@ -3204,6 +3234,28 @@
     <string name="preferences__appearance">المظهر</string>
     <string name="preferences__theme">المظهر</string>
     <string name="preferences__chat_color_and_wallpaper">لون الدردشة والخلفية</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">أيقونة التطبيق</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">موافق</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">إلغاء</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">غيّر أيقونة واسم التطبيق إلى \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">سيتعيّن إغلاق Signal لتغيير أيقونة واسم التطبيق. ستُظهر الإشعارات أيقونة واسم Signal الافتراضيين دائمًا.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">اختر أيقونة واسم تطبيق اللذيْن سَيظهران على شاشة هاتفك الرئيسية ودرج التطبيقات. ستُظهر الإشعارات أيقونة واسم Signal الافتراضيين دائمًا. معرفة المزيد</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">تظهر أيقونات وأسماء التطبيقات على الشاشة الرئيسية ودرج التطبيقات.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">ستُظهر الإشعارات أيقونة واسم Signal الافتراضيين دائمًا.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">معرفة المزيد</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">أيقونة %1$s</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">رسم يُوضح المكان الذي سَتظهر فيه أيقونة التطبيق البديلة.</string>
     <string name="preferences__disable_pin">تعطيل الرقم التعريفي الشخصي</string>
     <string name="preferences__enable_pin">تفعيل الرقم التعريفي الشخصي</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرقم التعريفي الشخصي، ستضيع جميع البيانات عند قيامك بإعادة التسجيل إلى Signal إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرقم التعريفي الشخصي.</string>
@@ -3241,12 +3293,12 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ستُحذَف جميع محفوظات الرسائل والوسائط الأقدم من %1$s من جهازك بصفة نهائية.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="zero">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="two">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="zero">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="one">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="two">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالتين.</item>
+        <item quantity="few">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسائل.</item>
+        <item quantity="many">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="other">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ستُحذَف جميع محفوظات الرسائل والوسائط من جهازك بصفة نهائية.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل؟</string>
@@ -3855,6 +3907,20 @@
     <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المُخزَّنة مع Signal مُعمَّاة.</string>
     <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
@@ -4668,9 +4734,11 @@
     <string name="HelpSettingsFragment__contact_us">التواصل معنا</string>
     <string name="HelpSettingsFragment__version">اﻹصدار</string>
     <string name="HelpSettingsFragment__debug_log">سِجل التصحيح</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">التراخيص</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
     <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">بموجب رخصة GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">جودة الوسائط</string>
@@ -6384,6 +6452,8 @@
     <string name="CallLogAdapter__return">العودة</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+    <!-- Status text on call links -->
+    <string name="CallLogAdapter__call_link">اتصال بالرابط</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6404,6 +6474,27 @@
     <string name="CallContextMenu__delete">حذف</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Deleting…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="zero">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
+        <item quantity="two">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="few">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="many">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+    </plurals>
+    <!-- Snackbar text after clearing the call history -->
+    <string name="CallLogFragment__cleared_call_history">تم مسح سِّجِلّ الاتصالات</string>
+    <!-- Dialog title to clear all call events -->
+    <string name="CallLogFragment__clear_call_history_question">مسح سِّجِلّ الاتصالات؟</string>
+    <!-- Dialog body to clear all call events -->
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">سيؤدي هذا إلى حذف جميع سِّجِلّ الاتصالات</string>
+    <!-- Action bar menu item to delete all call events -->
+    <string name="CallLogFragment__clear_call_history">مسح سِّجِلّ الاتصالات</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">تصفية المكالمات الفائتة</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6525,6 +6616,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">سِجل التعديلات</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -6537,6 +6637,12 @@
     <string name="CallLinkDetailsFragment__share_link">مشاركة الرابط</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">حذف رابط المكالمة</string>
+    <!-- Displayed whenever a name change, revocation, etc, fails. -->
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">تعذّر حفظ التغييرات. تحقّق من اتصالك بالإنترنت وحاول مرة أخرى.</string>
+    <!-- Displayed as title in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__delete_link">حذف الرابط؟</string>
+    <!-- Displayed as body in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">لن يشتغل هذا الرابط لأي أحد يتحصّل عليه.</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">شارك</string>
@@ -6560,6 +6666,13 @@
     <string name="UsernameLinkSettings_qr_scan_description">امسح رمز الاستجابة السريعة المعروض على جهاز جهة اتصالك.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">اللون</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">رمز الاستجابة السريع غير صالح.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">تعذّر العثور على مستخدم باسم المستخدم %1$s.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">حدث خطأ في الشبكة. يُرجى إعادة المُحاولة.</string>
+
 
     <!-- EOF -->
 </resources>

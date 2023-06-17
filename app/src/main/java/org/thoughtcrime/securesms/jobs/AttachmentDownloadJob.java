@@ -30,6 +30,8 @@ import org.thoughtcrime.securesms.s3.S3;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.ByteUnit;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -54,8 +56,10 @@ public final class AttachmentDownloadJob extends BaseJob {
 
   public static final String KEY = "AttachmentDownloadJob";
 
-  private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
-  private static final String TAG                  = Log.tag(AttachmentDownloadJob.class);
+  private static final String TAG = Log.tag(AttachmentDownloadJob.class);
+
+  /** A little extra allowed size to account for any adjustments made by other clients */
+  private static final int MAX_ATTACHMENT_SIZE_BUFFER = 25 * 1024  * 1024;
 
   private static final String KEY_MESSAGE_ID    = "message_id";
   private static final String KEY_PART_ROW_ID   = "part_row_id";
@@ -191,7 +195,10 @@ public final class AttachmentDownloadJob extends BaseJob {
     try {
       SignalServiceMessageReceiver   messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
       SignalServiceAttachmentPointer pointer         = createAttachmentPointer(attachment);
-      InputStream                    stream          = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)));
+      InputStream                    stream          = messageReceiver.retrieveAttachment(pointer,
+                                                                                          attachmentFile,
+                                                                                          ByteUnit.MEGABYTES.toBytes(FeatureFlags.maxAttachmentSizeMb()) + MAX_ATTACHMENT_SIZE_BUFFER,
+                                                                                          (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)));
 
       database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
     } catch (RangeException e) {

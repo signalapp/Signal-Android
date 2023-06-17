@@ -43,6 +43,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   public static final int Z_FADE     = 1;
   public static final int Z_TEXT     = 2;
   public static final int Z_TRASH    = 3;
+  public static final int Z_CIRCLE   = 4;
 
   private static final Runnable NULL_RUNNABLE = () -> {
   };

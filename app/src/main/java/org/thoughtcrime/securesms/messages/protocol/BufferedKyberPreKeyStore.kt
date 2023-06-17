@@ -7,16 +7,16 @@ package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.libsignal.protocol.InvalidKeyIdException
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
-import org.signal.libsignal.protocol.state.KyberPreKeyStore
 import org.thoughtcrime.securesms.database.KyberPreKeyTable.KyberPreKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
+import org.whispersystems.signalservice.api.SignalServiceKyberPreKeyStore
 import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * An in-memory kyber prekey store that is intended to be used temporarily while decrypting messages.
  */
-class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : KyberPreKeyStore {
+class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalServiceKyberPreKeyStore {
 
   /** Our in-memory cache of kyber prekeys. */
   val store: MutableMap<Int, KyberPreKey> = mutableMapOf()
@@ -46,8 +46,16 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : KyberPreK
     }
   }
 
+  override fun loadLastResortKyberPreKeys(): List<KyberPreKeyRecord> {
+    error("Not expected in this flow")
+  }
+
   override fun storeKyberPreKey(kyberPreKeyId: Int, record: KyberPreKeyRecord) {
-    error("This method is only used in tests")
+    error("Not expected in this flow")
+  }
+
+  override fun storeLastResortKyberPreKey(kyberPreKeyId: Int, kyberPreKeyRecord: KyberPreKeyRecord) {
+    error("Not expected in this flow")
   }
 
   override fun containsKyberPreKey(kyberPreKeyId: Int): Boolean {
@@ -65,6 +73,10 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : KyberPreK
     }
 
     removedIfNotLastResort += kyberPreKeyId
+  }
+
+  override fun removeKyberPreKey(kyberPreKeyId: Int) {
+    error("Not expected in this flow")
   }
 
   fun flushToDisk(persistentStore: SignalServiceAccountDataStore) {

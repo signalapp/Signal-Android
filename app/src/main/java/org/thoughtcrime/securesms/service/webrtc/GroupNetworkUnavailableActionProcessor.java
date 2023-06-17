@@ -22,12 +22,17 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
  * This class will check the network status when handlePreJoinCall is invoked, and transition to
  * GroupPreJoinActionProcessor as network becomes available again.
  */
-class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
+public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
 
   private static final String TAG = Log.tag(GroupNetworkUnavailableActionProcessor.class);
 
-  public GroupNetworkUnavailableActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
+  private final MultiPeerActionProcessorFactory actionProcessorFactory;
+
+  public GroupNetworkUnavailableActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory,
+                                                @NonNull WebRtcInteractor webRtcInteractor)
+  {
     super(webRtcInteractor, TAG);
+    this.actionProcessorFactory = actionProcessorFactory;
   }
 
   @Override
@@ -38,7 +43,7 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
     NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
     if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-      GroupPreJoinActionProcessor processor = new GroupPreJoinActionProcessor(webRtcInteractor);
+      GroupPreJoinActionProcessor processor = actionProcessorFactory.createPreJoinActionProcessor(webRtcInteractor);
       return processor.handlePreJoinCall(currentState.builder().actionProcessor(processor).build(), remotePeer);
     }
 
@@ -72,7 +77,7 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     if (available) {
       return currentState.builder()
-                         .actionProcessor(new GroupPreJoinActionProcessor(webRtcInteractor))
+                         .actionProcessor(actionProcessorFactory.createPreJoinActionProcessor(webRtcInteractor))
                          .changeCallInfoState()
                          .callState(WebRtcViewModel.State.CALL_PRE_JOIN)
                          .build();

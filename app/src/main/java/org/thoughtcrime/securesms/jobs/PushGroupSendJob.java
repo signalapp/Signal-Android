@@ -421,12 +421,15 @@ public final class PushGroupSendJob extends PushSendJob {
     List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
     List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(accessList.requireIdByAddress(result.getAddress()), result.getSuccess().isUnidentified())).toList();
     Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
-    List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
-    List<IdentityKeyMismatch>        resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
+    Set<NetworkFailure>              resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).collect(Collectors.toSet());
+    Set<IdentityKeyMismatch>         resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).collect(Collectors.toSet());
     List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
-    List<RecipientId>                skippedRecipients         = new ArrayList<>(unregisteredRecipients);
+    List<RecipientId>                invalidPreKeyRecipients   = Stream.of(results).filter(SendMessageResult::isInvalidPreKeyFailure).map(result -> RecipientId.from(result.getAddress())).toList();
+    Set<RecipientId>                 skippedRecipients         = new HashSet<>();
 
     skippedRecipients.addAll(skipped);
+    skippedRecipients.addAll(unregisteredRecipients);
+    skippedRecipients.addAll(invalidPreKeyRecipients);
 
     if (networkFailures.size() > 0 || identityMismatches.size() > 0 || proofRequired != null || unregisteredRecipients.size() > 0) {
       Log.w(TAG, String.format(Locale.US, "Failed to send to some recipients. Network: %d, Identity: %d, ProofRequired: %s, Unregistered: %d",
@@ -439,10 +442,12 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     existingNetworkFailures.removeAll(resolvedNetworkFailures);
+    existingNetworkFailures.removeIf(it -> skippedRecipients.contains(it.getRecipientId(context)));
     existingNetworkFailures.addAll(networkFailures);
     database.setNetworkFailures(messageId, existingNetworkFailures);
 
     existingIdentityMismatches.removeAll(resolvedIdentityFailures);
+    existingIdentityMismatches.removeIf(it -> skippedRecipients.contains(it.getRecipientId(context)));
     existingIdentityMismatches.addAll(identityMismatches);
     database.setMismatchedIdentities(messageId, existingIdentityMismatches);
 

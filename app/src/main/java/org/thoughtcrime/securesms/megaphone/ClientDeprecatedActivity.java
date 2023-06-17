@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.megaphone;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -48,7 +48,7 @@ public class ClientDeprecatedActivity extends PassphraseRequiredActivity {
   }
 
   private void onDontUpdateClicked() {
-    new AlertDialog.Builder(this)
+    new MaterialAlertDialogBuilder(this)
                    .setTitle(R.string.ClientDeprecatedActivity_warning)
                    .setMessage(R.string.ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history)
                    .setPositiveButton(R.string.ClientDeprecatedActivity_dont_update, (dialog, which) -> {

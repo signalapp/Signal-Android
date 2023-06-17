@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
  * respecting listeners and other positional information that can be set BEFORE we want to actually
  * resolve the view.
  */
-final class ConversationReactionDelegate {
+public final class ConversationReactionDelegate {
 
   private final Stub<ConversationReactionOverlay> overlayStub;
   private final PointF                            lastSeenDownPoint = new PointF();
@@ -26,15 +26,15 @@ final class ConversationReactionDelegate {
   private ConversationReactionOverlay.OnActionSelectedListener   onActionSelectedListener;
   private ConversationReactionOverlay.OnHideListener             onHideListener;
 
-  ConversationReactionDelegate(@NonNull Stub<ConversationReactionOverlay> overlayStub) {
+  public ConversationReactionDelegate(@NonNull Stub<ConversationReactionOverlay> overlayStub) {
     this.overlayStub = overlayStub;
   }
 
-  boolean isShowing() {
+  public boolean isShowing() {
     return overlayStub.resolved() && overlayStub.get().isShowing();
   }
 
-  void show(@NonNull Activity activity,
+  public void show(@NonNull Activity activity,
             @NonNull Recipient conversationRecipient,
             @NonNull ConversationMessage conversationMessage,
             boolean isNonAdminInAnnouncementGroup,
@@ -43,15 +43,15 @@ final class ConversationReactionDelegate {
     resolveOverlay().show(activity, conversationRecipient, conversationMessage, lastSeenDownPoint, isNonAdminInAnnouncementGroup, selectedConversationModel);
   }
 
-  void hide() {
+  public void hide() {
     overlayStub.get().hide();
   }
 
-  void hideForReactWithAny() {
+  public void hideForReactWithAny() {
     overlayStub.get().hideForReactWithAny();
   }
 
-  void setOnReactionSelectedListener(@NonNull ConversationReactionOverlay.OnReactionSelectedListener onReactionSelectedListener) {
+  public void setOnReactionSelectedListener(@NonNull ConversationReactionOverlay.OnReactionSelectedListener onReactionSelectedListener) {
     this.onReactionSelectedListener = onReactionSelectedListener;
 
     if (overlayStub.resolved()) {
@@ -59,7 +59,7 @@ final class ConversationReactionDelegate {
     }
   }
 
-  void setOnActionSelectedListener(@NonNull ConversationReactionOverlay.OnActionSelectedListener onActionSelectedListener) {
+  public void setOnActionSelectedListener(@NonNull ConversationReactionOverlay.OnActionSelectedListener onActionSelectedListener) {
     this.onActionSelectedListener = onActionSelectedListener;
 
     if (overlayStub.resolved()) {
@@ -67,7 +67,7 @@ final class ConversationReactionDelegate {
     }
   }
 
-  void setOnHideListener(@NonNull ConversationReactionOverlay.OnHideListener onHideListener) {
+  public void setOnHideListener(@NonNull ConversationReactionOverlay.OnHideListener onHideListener) {
     this.onHideListener = onHideListener;
 
     if (overlayStub.resolved()) {
@@ -75,7 +75,7 @@ final class ConversationReactionDelegate {
     }
   }
 
-  @NonNull MessageRecord getMessageRecord() {
+  public @NonNull MessageRecord getMessageRecord() {
     if (!overlayStub.resolved()) {
       throw new IllegalStateException("Cannot call getMessageRecord right now.");
     }
@@ -83,7 +83,7 @@ final class ConversationReactionDelegate {
     return overlayStub.get().getMessageRecord();
   }
 
-  boolean applyTouchEvent(@NonNull MotionEvent motionEvent) {
+  public boolean applyTouchEvent(@NonNull MotionEvent motionEvent) {
     if (!overlayStub.resolved() || !overlayStub.get().isShowing()) {
       if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
         lastSeenDownPoint.set(motionEvent.getX(), motionEvent.getY());

@@ -52,7 +52,8 @@ object TestUsers {
       profileKey = registrationRepository.getProfileKey("+15555550101"),
       fcmToken = "fcm-token",
       pniRegistrationId = registrationRepository.pniRegistrationId,
-      recoveryPassword = "asdfasdfasdfasdf"
+      recoveryPassword = "asdfasdfasdfasdf",
+      preKeyCollections = RegistrationRepository.generatePreKeys()!!
     )
     val verifyResponse = VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null)
     AccountManagerFactory.setInstance(DummyAccountManagerFactory())

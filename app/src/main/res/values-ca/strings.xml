@@ -24,6 +24,15 @@
     <string name="save">Desa</string>
     <string name="note_to_self">Notes personals</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">El temps</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Notes</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Notícies</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Ones</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -185,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Grups de Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Pots compartir un màxim d\'%1$d xat.</item>
+        <item quantity="other">Pots compartir un màxim de %1$d xats.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Seleccioneu els destinataris de Signal</string>
     <string name="CameraContacts_no_signal_contacts">No hi ha contactes de Signal</string>
@@ -227,6 +236,8 @@
     <string name="CommunicationActions_call">Truca</string>
     <string name="CommunicationActions_insecure_call">Trucada no segura</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Es poden aplicar despeses del servei de telefonia. El número que marqueu no està registrat al Signal. Aquesta trucada es farà mitjançant el vostre operador de telefonia mòbil, no a través d’Internet.</string>
+    <string name="CommunicationActions_cant_join_call">No pots unir-te a la trucada</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Aquest enllaç de trucada ja no és vàlid.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -307,6 +318,8 @@
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">No es pot descarregar el vídeo. Hauràs de tornar-lo a enviar.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">editat %1$s</string>
+    <!-- Displayed if the link preview in the conversation item is for a call link call -->
+    <string name="ConversationItem__join_call">Unir-me a la trucada</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
@@ -490,6 +503,13 @@
     <string name="ConversationFragment__update_build">Actualitza el Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Torna a registrar Signal</string>
+    <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
+    <string name="ConversationFragment__content_description_back_button">Tornar enrere.</string>
+    <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
+    <string name="ConversationFragment__content_description_launch_signal_button">Obrir Signal</string>
+    <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
+    <string name="ConversationFragment__no_longer_verified">Ja no està verificat</string>
+
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Restablir filtres</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -1091,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Dibuixeu per esfumar cares o àrees addicionals</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Manteniu-ho premut per enregistrar un missatge de veu, deixeu anar per enviar-lo</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Prem i aguanta per gravar àudio, deixa anar per enviar</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Els missatges SMS ja no són compatibles amb Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1197,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">Respostes</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
     <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
-    <string name="NotificationBarManager__incoming_signal_call">Trucada del Signal rebuda</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Trucada de grup de Signal rebuda</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Començar el servei de trucada de Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">S\'atura el servei de trucades del Signal</string>
@@ -1464,12 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciat una trucada de grup · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s és a la trucada de grup · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Sou a la trucada de grup · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s i %2$s són a la trucada de grup · %3$s</string>
     <string name="MessageRecord_group_call_s">Trucada de grup · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ha iniciat una trucada de grup.</string>
+    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s és a la trucada de grup.</string>
     <string name="MessageRecord_you_are_in_the_group_call">Sou a la trucada de grup.</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s i %2$s són a la trucada de grup.</string>
@@ -1657,6 +1676,8 @@
     <string name="Recipient_you">Vós</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">La meva història</string>
+    <!-- Name of recipient for a call link without a name -->
+    <string name="Recipient_signal_call">Trucada de Signal</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Bloquejar</string>
@@ -1831,6 +1852,10 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Has fet massa intents per registrar aquest número. Si us plau, torna-ho a provar en %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
+    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
+    <string name="RegistrationActivity_generic_error">Alguna cosa ha anat malament.</string>
+    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No t\'hem pogut enviar un codi de verificació per SMS. Prova de rebre el teu codi mitjançant una trucada de veu.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">No s\'ha pogut sol·licitar un codi de verificació. Comprova la connexió de xarxa i torna-ho a provar.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format de número no estàndard</string>
@@ -1849,6 +1874,10 @@
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Hem de verificar que sou una persona.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Signal no ha pogut enviar un codi SMS a causa d\'un error extern.</string>
+    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
+    <string name="RegistrationActivity_voice_call">Trucada de veu</string>
+    <!-- Dialog button to cancel the pending action and return to the previous state. -->
+    <string name="RegistrationActivity_cancel">Cancel·lar</string>
     <string name="RegistrationActivity_next">Següent</string>
     <string name="RegistrationActivity_continue">Continua</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porteu a sobre la privadesa.\nSigueu vosaltres mateixos a cada missatge.</string>
@@ -1961,7 +1990,7 @@
     <string name="StickerPackPreviewActivity_unknown">Desconegut</string>
     <string name="StickerPackPreviewActivity_install">Instal·la</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
-    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
+    <string name="StickerPackPreviewActivity_remove">Desinstal·la</string>
     <string name="StickerPackPreviewActivity_stickers">Adhesius</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Ha fallat carregar el paquet d\'adhesius.</string>
 
@@ -2160,16 +2189,16 @@
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
-    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <string name="MessageNotifier_s_in_s">%1$s a %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d missatge</item>
+        <item quantity="other">%1$d missatges</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d xat</item>
+        <item quantity="other">%1$d xats</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d missatges nous en %2$d xats</string>
     <string name="MessageNotifier_most_recent_from_s">Més recent de %1$s</string>
@@ -2233,9 +2262,8 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La resposta ràpida no és disponible si el Signal està blocat!</string>
     <string name="QuickResponseService_problem_sending_message">S\'ha produït un problema en enviar el missatge!</string>
 
-    <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_saved_to">Desat a %1$s</string>
-    <string name="SaveAttachmentTask_saved">Desat</string>
+    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
+    <string name="SaveAttachmentTask_saved">Arxiu multimèdia guardat</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Cerca</string>
@@ -2313,7 +2341,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Altaveu</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Auriculars amb cable</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Auriculars amb cable (USB)</string>
@@ -2880,6 +2910,28 @@
     <string name="preferences__appearance">Aparença</string>
     <string name="preferences__theme">Tema</string>
     <string name="preferences__chat_color_and_wallpaper">Color i fons del xat</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Icona de l\'app</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">D\'acord</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Cancel·lar</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Canviar la icona i el nom de l\'app per \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal s\'haurà de tancar per canviar la icona i el nom de l\'app. Les notificacions sempre mostraran la icona i el nom predeterminats de Signal.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Selecciona la icona i el nom per a l\'app, que seran visibles a la pantalla d\'inici del telèfon i al menú d\'aplicacions. Les notificacions sempre mostraran la icona i el nom predeterminats de Signal. Més informació</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Les icones i els noms de les apps són visibles a la pantalla d\'inici i al menú d\'aplicacions.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Les notificacions sempre mostraran la icona i el nom predeterminats de Signal.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Més informació</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">Icona per a %1$s</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Gràfic que il·lustra on serà visible la icona alternativa de l\'app.</string>
     <string name="preferences__disable_pin">Desactiva el PIN</string>
     <string name="preferences__enable_pin">Activa el PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
@@ -2917,8 +2969,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Això esborrarà permanentment l\'historial dels missatges i el contingut del dispositiu més antic de %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Això reduirà permanentment tots els xats al missatge més recent.</item>
+        <item quantity="other">Això reduirà permanentment tots els xats als %1$s missatges més recents.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Això esborrarà permanentment tot l\'historial dels missatges i tot el contingut del dispositiu.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Segur que vols esborrar tot l\'historial dels missatges?</string>
@@ -3491,6 +3543,20 @@
     <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Els PIN mantenen encriptada la informació desada amb el Signal.</string>
     <string name="KbsMegaphone__create_pin">Crea un PIN</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
@@ -4288,9 +4354,11 @@
     <string name="HelpSettingsFragment__contact_us">Contacteu-nos</string>
     <string name="HelpSettingsFragment__version">Versió</string>
     <string name="HelpSettingsFragment__debug_log">Registre de depuració</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Llicències</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Amb llicència de GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Qualitat dels mitjans</string>
@@ -5892,6 +5960,8 @@
     <string name="CallLogAdapter__return">Torna</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+    <!-- Status text on call links -->
+    <string name="CallLogAdapter__call_link">Enllaç de trucada</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5912,6 +5982,23 @@
     <string name="CallContextMenu__delete">Eliminar</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Deleting…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
+        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+    </plurals>
+    <!-- Snackbar text after clearing the call history -->
+    <string name="CallLogFragment__cleared_call_history">Historial de trucades netejat</string>
+    <!-- Dialog title to clear all call events -->
+    <string name="CallLogFragment__clear_call_history_question">Netejar l\'historial de trucades?</string>
+    <!-- Dialog body to clear all call events -->
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">S\'eliminarà de manera permanent tot l\'historial de trucades</string>
+    <!-- Action bar menu item to delete all call events -->
+    <string name="CallLogFragment__clear_call_history">Neteja l\'historial de trucades</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrar les trucades perdudes</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6025,6 +6112,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historial d\'edicions</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -6037,6 +6133,12 @@
     <string name="CallLinkDetailsFragment__share_link">Compatir enllaç</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">Eliminar enllaç de trucada</string>
+    <!-- Displayed whenever a name change, revocation, etc, fails. -->
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">No s\'han pogut guardar els canvis. Comprova la teva connexió i torna-ho a intentar.</string>
+    <!-- Displayed as title in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__delete_link">Eliminar enllaç?</string>
+    <!-- Displayed as body in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Aquest enllaç ja no funcionarà per a ningú.</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Comparteix</string>
@@ -6060,6 +6162,13 @@
     <string name="UsernameLinkSettings_qr_scan_description">Escaneja el codi QR del dispositiu del teu contacte.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">El codi QR no era vàlid.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">No s\'ha pogut trobar l\'usuari amb l\'àlies %1$s.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Ha fallat la xarxa. Si us plau, torna-ho a provar.</string>
+
 
     <!-- EOF -->
 </resources>

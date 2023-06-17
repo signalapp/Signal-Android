@@ -153,11 +153,13 @@ object RecipientDatabaseTestUtils {
         hasGroupsInCommon,
         badges,
         needsPniSignature = false,
-        isHidden = false
+        isHidden = false,
+        null
       ),
       participants,
       isReleaseChannel,
-      isActive
+      isActive,
+      null
     ),
     resolved
   )

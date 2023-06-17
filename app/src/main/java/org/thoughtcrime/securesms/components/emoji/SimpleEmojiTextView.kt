@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.components.emoji
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Path
-import android.graphics.Region
 import android.text.Spanned
 import android.text.TextUtils
 import android.util.AttributeSet
@@ -29,21 +27,14 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   }
 
   override fun onDraw(canvas: Canvas) {
-    var textClipPath: Path? = null
     if (text is Spanned && layout != null) {
       val checkpoint = canvas.save()
       canvas.translate(totalPaddingLeft.toFloat(), totalPaddingTop.toFloat())
       try {
-        textClipPath = spoilerRendererDelegate.draw(canvas, (text as Spanned), layout)
+        spoilerRendererDelegate.draw(canvas, (text as Spanned), layout)
       } finally {
         canvas.restoreToCount(checkpoint)
       }
-    }
-
-    if (textClipPath != null) {
-      canvas.translate(totalPaddingLeft.toFloat(), totalPaddingTop.toFloat())
-      canvas.clipPath(textClipPath, Region.Op.DIFFERENCE)
-      canvas.translate(-totalPaddingLeft.toFloat(), -totalPaddingTop.toFloat())
     }
 
     super.onDraw(canvas)

@@ -235,6 +235,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                 getRegistrationSecret(),
                                 registrationRepository.getRegistrationId(),
                                 registrationRepository.getProfileKey(getNumber().getE164Number()),
+                                Objects.requireNonNull(RegistrationRepository.generatePreKeys()),
                                 getFcmToken(),
                                 registrationRepository.getPniRegistrationId(),
                                 getSessionId() != null ? null : getRecoveryPassword());

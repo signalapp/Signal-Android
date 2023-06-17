@@ -39,6 +39,12 @@ object FcmFetchManager {
   @Volatile
   private var startedForeground = false
 
+  @Volatile
+  private var stoppingForeground = false
+
+  @Volatile
+  private var startForegroundOnDestroy = false
+
   /**
    * @return True if a service was successfully started, otherwise false.
    */
@@ -48,8 +54,17 @@ object FcmFetchManager {
       try {
         if (foreground) {
           Log.i(TAG, "Starting in the foreground.")
-          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
-          startedForeground = true
+          if (!startedForeground) {
+            if (!stoppingForeground) {
+              ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
+              startedForeground = true
+            } else {
+              Log.w(TAG, "Foreground service currently stopping, enqueuing a start after destroy")
+              startForegroundOnDestroy = true
+            }
+          } else {
+            Log.i(TAG, "Already started foreground service")
+          }
         } else {
           Log.i(TAG, "Starting in the background.")
           context.startService(Intent(context, FcmFetchBackgroundService::class.java))
@@ -72,13 +87,6 @@ object FcmFetchManager {
     return true
   }
 
-  @JvmStatic
-  fun isForegroundStarted(): Boolean {
-    synchronized(this) {
-      return startedForeground
-    }
-  }
-
   private fun fetch(context: Context) {
     retrieveMessages(context)
 
@@ -92,6 +100,7 @@ object FcmFetchManager {
         if (startedForeground) {
           try {
             context.startService(FcmFetchForegroundService.buildStopIntent(context))
+            stoppingForeground = true
           } catch (e: IllegalStateException) {
             Log.w(TAG, "Failed to stop the foreground notification!", e)
           }
@@ -105,7 +114,11 @@ object FcmFetchManager {
   @JvmStatic
   fun tryLegacyFallback(context: Context) {
     synchronized(this) {
-      if (startedForeground) {
+      if (startedForeground || stoppingForeground) {
+        if (stoppingForeground) {
+          startForegroundOnDestroy = true
+          Log.i(TAG, "Legacy fallback: foreground service is stopping, but trying to run in background anyways.")
+        }
         val performedReplace = EXECUTOR.enqueue { fetch(context) }
 
         if (performedReplace) {
@@ -134,6 +147,20 @@ object FcmFetchManager {
       } else {
         Log.w(TAG, "[API ${Build.VERSION.SDK_INT}] Failed to retrieve messages. Scheduling on JobManager (API " + Build.VERSION.SDK_INT + ").")
         ApplicationDependencies.getJobManager().add(PushNotificationReceiveJob())
+      }
+    }
+  }
+
+  fun onDestroyForegroundFetchService() {
+    synchronized(this) {
+      stoppingForeground = false
+      if (startForegroundOnDestroy) {
+        startForegroundOnDestroy = false
+        try {
+          enqueue(ApplicationDependencies.getApplication(), true)
+        } catch (e: Exception) {
+          Log.e(TAG, "Failed to restart foreground service after onDestroy")
+        }
       }
     }
   }

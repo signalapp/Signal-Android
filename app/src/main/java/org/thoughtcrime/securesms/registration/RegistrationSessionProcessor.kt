@@ -4,10 +4,12 @@ import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedExcep
 import org.whispersystems.signalservice.api.push.exceptions.ExternalServiceFailureException
 import org.whispersystems.signalservice.api.push.exceptions.ImpossiblePhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException
+import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.MustRequestNewCodeException
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
+import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
 import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -167,6 +169,30 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
 
   abstract fun verificationCodeRequestSuccess(): Boolean
 
+  fun isMalformedRequest(): Boolean {
+    return error is MalformedRequestException
+  }
+
+  fun isRetryException(): Boolean {
+    return error is RegistrationRetryException
+  }
+
+  fun isAlreadyVerified(): Boolean {
+    return error is AlreadyVerifiedException
+  }
+
+  fun mustRequestNewCode(): Boolean {
+    return error is MustRequestNewCodeException
+  }
+
+  fun externalServiceFailure(): Boolean {
+    return error is ExternalServiceFailureException
+  }
+
+  fun invalidTransportModeFailure(): Boolean {
+    return error is InvalidTransportModeException
+  }
+
   class RegistrationSessionProcessorForSession(response: ServiceResponse<RegistrationSessionMetadataResponse>) : RegistrationSessionProcessor(response) {
 
     override fun verificationCodeRequestSuccess(): Boolean = false
@@ -174,21 +200,5 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
 
   class RegistrationSessionProcessorForVerification(response: ServiceResponse<RegistrationSessionMetadataResponse>) : RegistrationSessionProcessor(response) {
     override fun verificationCodeRequestSuccess(): Boolean = hasResult()
-
-    fun isAlreadyVerified(): Boolean {
-      return error is AlreadyVerifiedException
-    }
-
-    fun mustRequestNewCode(): Boolean {
-      return error is MustRequestNewCodeException
-    }
-
-    fun externalServiceFailure(): Boolean {
-      return error is ExternalServiceFailureException
-    }
-
-    fun invalidTransportModeFailure(): Boolean {
-      return error is InvalidTransportModeException
-    }
   }
 }

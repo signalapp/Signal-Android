@@ -37,6 +37,10 @@ class KeyboardPagerViewModel : ViewModel() {
   fun page(): LiveData<KeyboardPage> = page
   fun pages(): LiveData<Set<KeyboardPage>> = pages
 
+  fun setPages(pageOverride: Set<KeyboardPage>) {
+    pages.value = pageOverride
+  }
+
   @MainThread
   fun setOnlyPage(page: KeyboardPage) {
     pages.value = setOf(page)

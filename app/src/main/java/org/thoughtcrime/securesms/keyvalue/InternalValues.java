@@ -23,7 +23,7 @@ public final class InternalValues extends SignalStoreValues {
   public static final String DELAY_RESENDS                        = "internal.delay_resends";
   public static final String CALLING_SERVER                       = "internal.calling_server";
   public static final String CALLING_AUDIO_PROCESSING_METHOD      = "internal.calling_audio_processing_method";
-  public static final String CALLING_BANDWIDTH_MODE               = "internal.calling_bandwidth_mode";
+  public static final String CALLING_DATA_MODE                    = "internal.calling_bandwidth_mode";
   public static final String CALLING_DISABLE_TELECOM              = "internal.calling_disable_telecom";
   public static final String SHAKE_TO_REPORT                      = "internal.shake_to_report";
   public static final String DISABLE_STORAGE_SERVICE              = "internal.disable_storage_service";
@@ -150,14 +150,14 @@ public final class InternalValues extends SignalStoreValues {
   /**
    * Setting to override the default calling bandwidth mode.
    */
-  public synchronized CallManager.BandwidthMode callingBandwidthMode() {
+  public synchronized CallManager.DataMode callingDataMode() {
     if (FeatureFlags.internalUser()) {
-      int                         index = getInteger(CALLING_BANDWIDTH_MODE, CallManager.BandwidthMode.NORMAL.ordinal());
-      CallManager.BandwidthMode[] modes = CallManager.BandwidthMode.values();
+      int                    index = getInteger(CALLING_DATA_MODE, CallManager.DataMode.NORMAL.ordinal());
+      CallManager.DataMode[] modes = CallManager.DataMode.values();
 
-      return index < modes.length ? modes[index] : CallManager.BandwidthMode.NORMAL;
+      return index < modes.length ? modes[index] : CallManager.DataMode.NORMAL;
     } else {
-      return CallManager.BandwidthMode.NORMAL;
+      return CallManager.DataMode.NORMAL;
     }
   }
 

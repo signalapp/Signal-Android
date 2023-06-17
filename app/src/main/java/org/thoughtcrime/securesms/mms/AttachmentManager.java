@@ -238,6 +238,20 @@ public class AttachmentManager {
     return returnResult;
   }
 
+  public void setLocation(@NonNull final SignalPlace place,
+                          @NonNull final Uri thumbnailUri)
+  {
+    inflateStub();
+
+    mapView.display(place);
+
+    attachmentViewStub.get().setVisibility(View.VISIBLE);
+    removableMediaView.display(mapView, false);
+    LocationSlide locationSlide = new LocationSlide(context, thumbnailUri, BlobProvider.getFileSize(thumbnailUri), place);
+    setSlide(locationSlide);
+    attachmentListener.onAttachmentChanged();
+  }
+
   @SuppressLint("StaticFieldLeak")
   public ListenableFuture<Boolean> setMedia(@NonNull final GlideRequests glideRequests,
                                             @NonNull final Uri uri,

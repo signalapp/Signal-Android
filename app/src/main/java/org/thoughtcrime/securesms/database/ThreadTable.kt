@@ -1152,6 +1152,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return threadId ?: createThreadForRecipient(recipient.id, recipient.isGroup, distributionType)
   }
 
+  fun getOrCreateThreadIdFor(recipientId: RecipientId, isGroup: Boolean, distributionType: Int = DistributionTypes.DEFAULT): Long {
+    val threadId = getThreadIdFor(recipientId)
+    return threadId ?: createThreadForRecipient(recipientId, isGroup, distributionType)
+  }
+
   fun areThreadIdAndRecipientAssociated(threadId: Long, recipient: Recipient): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
@@ -1384,33 +1389,38 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return false
     }
 
-    val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
+    return writableDatabase.withinTransaction {
+      val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
 
-    val isPinned by lazy { getPinnedThreadIds().contains(threadId) }
-    val shouldDelete by lazy { allowDeletion && !isPinned && !messages.containsStories(threadId) }
+      val isPinned by lazy { getPinnedThreadIds().contains(threadId) }
+      val shouldDelete by lazy { allowDeletion && !isPinned && !messages.containsStories(threadId) }
 
-    if (!meaningfulMessages) {
-      if (shouldDelete) {
-        Log.d(TAG, "Deleting thread $threadId because it has no meaningful messages.")
-        deleteConversation(threadId)
-        return true
-      } else if (!isPinned) {
-        return false
+      if (!meaningfulMessages) {
+        if (shouldDelete) {
+          Log.d(TAG, "Deleting thread $threadId because it has no meaningful messages.")
+          deleteConversation(threadId)
+          return@withinTransaction true
+        } else if (!isPinned) {
+          return@withinTransaction false
+        }
       }
-    }
 
-    val record: MessageRecord = try {
-      messages.getConversationSnippet(threadId)
-    } catch (e: NoSuchMessageException) {
-      val scheduledMessage: MessageRecord? = messages.getScheduledMessagesInThread(threadId).lastOrNull()
+      val record: MessageRecord? = try {
+        messages.getConversationSnippet(threadId)
+      } catch (e: NoSuchMessageException) {
+        val scheduledMessage: MessageRecord? = messages.getScheduledMessagesInThread(threadId).lastOrNull()
 
-      if (scheduledMessage == null) {
+        if (scheduledMessage != null) {
+          Log.i(TAG, "Using scheduled message for conversation snippet")
+        }
+        scheduledMessage
+      }
+
+      if (record == null) {
         Log.w(TAG, "Failed to get a conversation snippet for thread $threadId")
         if (shouldDelete) {
           deleteConversation(threadId)
-        }
-
-        if (isPinned) {
+        } else if (isPinned) {
           updateThread(
             threadId = threadId,
             meaningfulMessages = meaningfulMessages,
@@ -1427,46 +1437,49 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             readReceiptCount = 0
           )
         }
-        return true
-      } else {
-        Log.i(TAG, "Using scheduled message for conversation snippet")
-        scheduledMessage
+        return@withinTransaction true
       }
-    }
 
+      if (hasMoreRecentDraft(threadId, record.timestamp)) {
+        return@withinTransaction false
+      }
+
+      val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
+
+      updateThread(
+        threadId = threadId,
+        meaningfulMessages = meaningfulMessages,
+        body = threadBody.body.toString(),
+        attachment = getAttachmentUriFor(record),
+        contentType = getContentTypeFor(record),
+        extra = getExtrasFor(record, threadBody),
+        date = record.timestamp,
+        status = record.deliveryStatus,
+        deliveryReceiptCount = record.deliveryReceiptCount,
+        type = record.type,
+        unarchive = unarchive,
+        expiresIn = record.expiresIn,
+        readReceiptCount = record.readReceiptCount
+      )
+
+      if (notifyListeners) {
+        notifyConversationListListeners()
+      }
+      return@withinTransaction false
+    }
+  }
+
+  private fun hasMoreRecentDraft(threadId: Long, timestamp: Long): Boolean {
     val drafts: DraftTable.Drafts = SignalDatabase.drafts.getDrafts(threadId)
     if (drafts.isNotEmpty()) {
       val threadRecord: ThreadRecord? = getThreadRecord(threadId)
       if (threadRecord != null &&
         threadRecord.type == MessageTypes.BASE_DRAFT_TYPE &&
-        threadRecord.date > record.timestamp
+        threadRecord.date > timestamp
       ) {
-        return false
+        return true
       }
     }
-
-    val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
-
-    updateThread(
-      threadId = threadId,
-      meaningfulMessages = meaningfulMessages,
-      body = threadBody.body.toString(),
-      attachment = getAttachmentUriFor(record),
-      contentType = getContentTypeFor(record),
-      extra = getExtrasFor(record, threadBody),
-      date = record.timestamp,
-      status = record.deliveryStatus,
-      deliveryReceiptCount = record.deliveryReceiptCount,
-      type = record.type,
-      unarchive = unarchive,
-      expiresIn = record.expiresIn,
-      readReceiptCount = record.readReceiptCount
-    )
-
-    if (notifyListeners) {
-      notifyConversationListListeners()
-    }
-
     return false
   }
 
@@ -1781,7 +1794,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             recipientSettings,
             null,
             false,
-            group.isActive
+            group.isActive,
+            null
           )
           Recipient(recipientId, details, false)
         } ?: Recipient.live(recipientId).get()

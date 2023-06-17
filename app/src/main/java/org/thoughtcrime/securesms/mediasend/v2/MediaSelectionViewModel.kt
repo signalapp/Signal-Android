@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Parcel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.common.io.ByteStreams
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
@@ -31,6 +34,7 @@ import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageCharacterCount
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.stories.Stories
@@ -402,14 +406,22 @@ class MediaSelectionViewModel(
     outState.putParcelable(STATE_CAMERA_FIRST_CAPTURE, snapshot.cameraFirstCapture)
 
     val editorStates: List<Bundle> = store.state.editorStateMap.entries.map { it.toBundleStateEntry() }
-    outState.putParcelableArrayList(STATE_EDITORS, ArrayList(editorStates))
+    outState.putInt(STATE_EDITOR_COUNT, editorStates.size)
+    if (editorStates.isNotEmpty()) {
+      val parcel = Parcel.obtain()
+      editorStates.forEach { it.writeToParcel(parcel, 0) }
+      val serializedEditorState: ByteArray = parcel.marshall()
+      parcel.recycle()
+      val blobUri = BlobProvider.getInstance().forData(serializedEditorState).createForSingleUseInMemory()
+      outState.putParcelable(STATE_EDITORS, blobUri)
+    }
   }
 
   fun hasSelectedMedia(): Boolean {
     return store.state.selectedMedia.isNotEmpty()
   }
 
-  fun onRestoreState(savedInstanceState: Bundle) {
+  fun onRestoreState(context: Context, savedInstanceState: Bundle) {
     val selection: List<Media> = savedInstanceState.getParcelableArrayListCompat(STATE_SELECTION, Media::class.java) ?: emptyList()
     val focused: Media? = savedInstanceState.getParcelableCompat(STATE_FOCUSED, Media::class.java)
     val quality: SentMediaQuality = SentMediaQuality.fromCode(savedInstanceState.getInt(STATE_QUALITY))
@@ -418,8 +430,27 @@ class MediaSelectionViewModel(
     val touchEnabled: Boolean = savedInstanceState.getBoolean(STATE_TOUCH_ENABLED)
     val sent: Boolean = savedInstanceState.getBoolean(STATE_SENT)
     val cameraFirstCapture: Media? = savedInstanceState.getParcelableCompat(STATE_CAMERA_FIRST_CAPTURE, Media::class.java)
+    val editorCount: Int = savedInstanceState.getInt(STATE_EDITOR_COUNT, 0)
+    val blobUri: Uri? = savedInstanceState.getParcelableCompat(STATE_EDITORS, Uri::class.java)
 
-    val editorStates: List<Bundle> = savedInstanceState.getParcelableArrayListCompat(STATE_EDITORS, Bundle::class.java) ?: emptyList()
+    val editorStates: List<Bundle> = if (editorCount > 0 && blobUri != null) {
+      val accumulator: MutableList<Bundle> = mutableListOf<Bundle>()
+      val blobProvider: BlobProvider = BlobProvider.getInstance()
+      val blob: ByteArray = ByteStreams.toByteArray(blobProvider.getStream(context, blobUri))
+      val parcel: Parcel = Parcel.obtain()
+      parcel.unmarshall(blob, 0, blob.size)
+      parcel.setDataPosition(0)
+      for (index in 0 until editorCount) {
+        val bundle = parcel.readBundle(this::class.java.classLoader)
+        if (bundle != null && bundle != Bundle.EMPTY) {
+          accumulator.add(bundle)
+        }
+      }
+      parcel.recycle()
+      accumulator
+    } else {
+      emptyList()
+    }
     val editorStateMap = editorStates.associate { it.toAssociation() }
 
     selectedMediaSubject.onNext(selection)
@@ -485,6 +516,7 @@ class MediaSelectionViewModel(
     private const val STATE_SENT = "$STATE_PREFIX.sent"
     private const val STATE_CAMERA_FIRST_CAPTURE = "$STATE_PREFIX.camera_first_capture"
     private const val STATE_EDITORS = "$STATE_PREFIX.editors"
+    private const val STATE_EDITOR_COUNT = "$STATE_PREFIX.editor_count"
   }
 
   class Factory(

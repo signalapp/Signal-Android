@@ -458,7 +458,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    void leaveGroup()
+    void leaveGroup(boolean sendToMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       GroupRecord    groupRecord    = groupDatabase.requireGroup(groupId);
@@ -483,14 +483,14 @@ final class GroupManagerV2 {
           throw new AssertionError(e);
         }
       } else if (selfMember.isPresent()) {
-        ejectMember(serviceId, true, false);
+        ejectMember(serviceId, true, false, sendToMembers);
       } else {
         Log.i(TAG, "Unable to leave group we are not pending or in");
       }
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId serviceId, boolean allowWhenBlocked, boolean ban)
+    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId serviceId, boolean allowWhenBlocked, boolean ban, boolean sendToMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       return commitChangeWithConflictResolution(selfAci,
@@ -498,7 +498,8 @@ final class GroupManagerV2 {
                                                                                           ban,
                                                                                           ban ? v2GroupProperties.getDecryptedGroup().getBannedMembersList()
                                                                                               : Collections.emptyList()),
-                                                allowWhenBlocked);
+                                                allowWhenBlocked,
+                                                sendToMembers);
     }
 
     @WorkerThread

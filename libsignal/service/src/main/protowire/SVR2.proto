@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.signal.svr2.proto";
+
+message Request {
+  reserved 1;  // backupId, only used by server
+
+  oneof inner {
+    BackupRequest backup = 2;
+    ExposeRequest expose = 5;
+    RestoreRequest restore = 3;
+    DeleteRequest delete = 4;
+  }
+}
+
+message Response {
+  oneof inner {
+    BackupResponse backup = 1;
+    ExposeResponse expose = 4;
+    RestoreResponse restore = 2;
+    DeleteResponse delete = 3;
+  }
+}
+
+//
+// backup
+//
+
+message BackupRequest {
+  bytes data = 1;  // between 16 and 48 bytes
+  bytes pin = 2;  // 32 bytes
+  uint32 maxTries = 3;  // in range [1,255]
+}
+
+message BackupResponse {
+  enum Status {
+    UNSET = 0;  // never returned
+    OK = 1;  // successfully set db[backup_id]=data
+    REQUEST_INVALID = 2;  // the request was not correctly specified
+  }
+
+  Status status = 1;
+}
+
+//
+// restore
+//
+
+message RestoreRequest {
+  bytes pin = 1;  // 32 bytes
+}
+
+message RestoreResponse {
+  enum Status {
+    UNSET = 0;  // never returned
+    OK = 1;  // successfully restored, [data] will be set
+    MISSING = 2;  // db[backup_id] does not exist
+    PIN_MISMATCH = 3;  // pin did not match, tries were decremented
+    REQUEST_INVALID = 4;  // the request was not correctly specified, tries were not decremented
+  }
+
+  Status status = 1;
+  bytes data = 2;  // between 16 and 48 bytes, if set
+  uint32 tries = 3;  // in range [0,255]
+}
+
+//
+// delete
+//
+
+message DeleteRequest {
+}
+
+message DeleteResponse {
+}
+
+message ExposeRequest {
+  bytes data = 1;
+}
+
+//
+// expose
+//
+
+message ExposeResponse {
+  enum Status {
+    UNSET = 0;  // never returned
+    OK = 1;  // successfully restored, [data] will be set
+
+    // If this status comes back after a successful Backup() call,
+    // this should be cause for concern.
+    // It means that someone has either reset, deleted, or tried to brute-force
+    // the backup since it was created.
+    ERROR = 2;
+  }
+
+  Status status = 1;
+}

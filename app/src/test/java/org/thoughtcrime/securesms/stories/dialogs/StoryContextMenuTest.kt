@@ -48,7 +48,6 @@ class StoryContextMenuTest {
       slideDeck = SlideDeck().apply {
         addSlide(
           ImageSlide(
-            context,
             FakeMessageRecords.buildDatabaseAttachment(
               attachmentId = attachmentId
             )

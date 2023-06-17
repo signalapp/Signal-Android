@@ -26,6 +26,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalKeyBackupSe
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
+import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import java.io.IOException
 import java.util.Optional
 
@@ -73,6 +74,7 @@ open class SignalServiceNetworkAccess(context: Context) {
     private const val F_CDN_HOST = "cdn.signal.org.global.prod.fastly.net"
     private const val F_CDN2_HOST = "cdn2.signal.org.global.prod.fastly.net"
     private const val F_CDSI_HOST = "cdsi-signal.global.ssl.fastly.net"
+    private const val F_SVR2_HOST = "svr2-signal.global.ssl.fastly.net"
     private const val F_KBS_HOST = "api.backup.signal.org.global.prod.fastly.net"
 
     private val GMAPS_CONNECTION_SPEC = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
@@ -148,6 +150,12 @@ open class SignalServiceNetworkAccess(context: Context) {
     throw AssertionError(e)
   }
 
+  private val genericServerPublicParams: ByteArray = try {
+    Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS)
+  } catch (e: IOException) {
+    throw AssertionError(e)
+  }
+
   private val baseGHostConfigs: List<HostConfig> = listOf(
     HostConfig("https://www.google.com", G_HOST, GMAIL_CONNECTION_SPEC),
     HostConfig("https://android.clients.google.com", G_HOST, PLAY_CONNECTION_SPEC),
@@ -159,18 +167,20 @@ open class SignalServiceNetworkAccess(context: Context) {
   private val fUrls = arrayOf("https://cdn.sstatic.net", "https://github.githubassets.com", "https://pinterest.com", "https://open.scdn.co", "https://www.redditstatic.com")
 
   private val fConfig: SignalServiceConfiguration = SignalServiceConfiguration(
-    fUrls.map { SignalServiceUrl(it, F_SERVICE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
-    mapOf(
+    signalServiceUrls = fUrls.map { SignalServiceUrl(it, F_SERVICE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
+    signalCdnUrlMap = mapOf(
       0 to fUrls.map { SignalCdnUrl(it, F_CDN_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
       2 to fUrls.map { SignalCdnUrl(it, F_CDN2_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray()
     ),
-    fUrls.map { SignalKeyBackupServiceUrl(it, F_KBS_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
-    fUrls.map { SignalStorageUrl(it, F_STORAGE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
-    fUrls.map { SignalCdsiUrl(it, F_CDSI_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
-    interceptors,
-    Optional.of(DNS),
-    Optional.empty(),
-    zkGroupServerPublicParams
+    signalKeyBackupServiceUrls = fUrls.map { SignalKeyBackupServiceUrl(it, F_KBS_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
+    signalStorageUrls = fUrls.map { SignalStorageUrl(it, F_STORAGE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
+    signalCdsiUrls = fUrls.map { SignalCdsiUrl(it, F_CDSI_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
+    signalSvr2Urls = fUrls.map { SignalSvr2Url(it, fTrustStore, F_SVR2_HOST, APP_CONNECTION_SPEC) }.toTypedArray(),
+    networkInterceptors = interceptors,
+    dns = Optional.of(DNS),
+    signalProxy = Optional.empty(),
+    zkGroupServerPublicParams = zkGroupServerPublicParams,
+    genericServerPublicParams = genericServerPublicParams
   )
 
   private val censorshipConfiguration: Map<Int, SignalServiceConfiguration> = mapOf(
@@ -209,18 +219,20 @@ open class SignalServiceNetworkAccess(context: Context) {
   )
 
   open val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
-    arrayOf(SignalServiceUrl(BuildConfig.SIGNAL_URL, serviceTrustStore)),
-    mapOf(
+    signalServiceUrls = arrayOf(SignalServiceUrl(BuildConfig.SIGNAL_URL, serviceTrustStore)),
+    signalCdnUrlMap = mapOf(
       0 to arrayOf(SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, serviceTrustStore)),
       2 to arrayOf(SignalCdnUrl(BuildConfig.SIGNAL_CDN2_URL, serviceTrustStore))
     ),
-    arrayOf(SignalKeyBackupServiceUrl(BuildConfig.SIGNAL_KEY_BACKUP_URL, serviceTrustStore)),
-    arrayOf(SignalStorageUrl(BuildConfig.STORAGE_URL, serviceTrustStore)),
-    arrayOf(SignalCdsiUrl(BuildConfig.SIGNAL_CDSI_URL, serviceTrustStore)),
-    interceptors,
-    Optional.of(DNS),
-    if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
-    zkGroupServerPublicParams
+    signalKeyBackupServiceUrls = arrayOf(SignalKeyBackupServiceUrl(BuildConfig.SIGNAL_KEY_BACKUP_URL, serviceTrustStore)),
+    signalStorageUrls = arrayOf(SignalStorageUrl(BuildConfig.STORAGE_URL, serviceTrustStore)),
+    signalCdsiUrls = arrayOf(SignalCdsiUrl(BuildConfig.SIGNAL_CDSI_URL, serviceTrustStore)),
+    signalSvr2Urls = arrayOf(SignalSvr2Url(BuildConfig.SIGNAL_SVR2_URL, serviceTrustStore)),
+    networkInterceptors = interceptors,
+    dns = Optional.of(DNS),
+    signalProxy = if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
+    zkGroupServerPublicParams = zkGroupServerPublicParams,
+    genericServerPublicParams = genericServerPublicParams
   )
 
   open fun getConfiguration(): SignalServiceConfiguration {
@@ -272,20 +284,23 @@ open class SignalServiceNetworkAccess(context: Context) {
     val kbsUrls: Array<SignalKeyBackupServiceUrl> = hostConfigs.map { SignalKeyBackupServiceUrl("${it.baseUrl}/backup", it.host, gTrustStore, it.connectionSpec) }.toTypedArray()
     val storageUrls: Array<SignalStorageUrl> = hostConfigs.map { SignalStorageUrl("${it.baseUrl}/storage", it.host, gTrustStore, it.connectionSpec) }.toTypedArray()
     val cdsiUrls: Array<SignalCdsiUrl> = hostConfigs.map { SignalCdsiUrl("${it.baseUrl}/cdsi", it.host, gTrustStore, it.connectionSpec) }.toTypedArray()
+    val svr2Urls: Array<SignalSvr2Url> = hostConfigs.map { SignalSvr2Url("${it.baseUrl}/svr2", gTrustStore, it.host, it.connectionSpec) }.toTypedArray()
 
     return SignalServiceConfiguration(
-      serviceUrls,
-      mapOf(
+      signalServiceUrls = serviceUrls,
+      signalCdnUrlMap = mapOf(
         0 to cdnUrls,
         2 to cdn2Urls
       ),
-      kbsUrls,
-      storageUrls,
-      cdsiUrls,
-      interceptors,
-      Optional.of(DNS),
-      Optional.empty(),
-      zkGroupServerPublicParams
+      signalKeyBackupServiceUrls = kbsUrls,
+      signalStorageUrls = storageUrls,
+      signalCdsiUrls = cdsiUrls,
+      signalSvr2Urls = arrayOf(),
+      networkInterceptors = interceptors,
+      dns = Optional.of(DNS),
+      signalProxy = Optional.empty(),
+      zkGroupServerPublicParams = zkGroupServerPublicParams,
+      genericServerPublicParams = genericServerPublicParams
     )
   }
 

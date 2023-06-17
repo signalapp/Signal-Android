@@ -6,6 +6,9 @@ import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.doOnNextLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+import androidx.lifecycle.Lifecycle
 
 var View.visible: Boolean
   get() {
@@ -55,4 +58,16 @@ fun TextView.setRelativeDrawables(
     end,
     bottom
   )
+}
+
+/**
+ * Get a lifecycle associated with this view. Care must be taken to ensure
+ * if activity fallback occurs that the context of the view is correct.
+ */
+fun View.getLifecycle(): Lifecycle {
+  return try {
+    findFragment<Fragment>().viewLifecycleOwner.lifecycle
+  } catch (e: IllegalStateException) {
+    ViewUtil.getActivityLifecycle(this)!!
+  }
 }

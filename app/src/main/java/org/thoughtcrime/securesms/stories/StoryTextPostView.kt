@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
+import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -47,6 +48,7 @@ class StoryTextPostView @JvmOverloads constructor(
 
   init {
     TextStoryTextWatcher.install(textView)
+    textView.movementMethod = LongClickMovementMethod.getInstance(context)
   }
 
   fun getLinkPreviewThumbnailWidth(useLargeThumbnail: Boolean): Int {
@@ -122,7 +124,7 @@ class StoryTextPostView @JvmOverloads constructor(
     postAdjustLinkPreviewTranslationY()
   }
 
-  fun bindFromStoryTextPost(storyTextPost: StoryTextPost, bodyRanges: BodyRangeList?) {
+  fun bindFromStoryTextPost(id: Long, storyTextPost: StoryTextPost, bodyRanges: BodyRangeList?) {
     visible = true
     linkPreviewView.visible = false
 
@@ -134,7 +136,7 @@ class StoryTextPostView @JvmOverloads constructor(
     } else {
       val body = SpannableString(storyTextPost.body)
       if (font == TextFont.REGULAR && bodyRanges != null) {
-        MessageStyler.style(System.currentTimeMillis(), bodyRanges, body)
+        MessageStyler.style(id, bodyRanges, body)
       }
       setText(body, false)
     }

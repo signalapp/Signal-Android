@@ -36,7 +36,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
-import java.lang.IllegalArgumentException
 import java.util.UUID
 
 /**
@@ -88,6 +87,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
         password = Util.getSecret(18),
         registrationId = registrationRepository.registrationId,
         profileKey = registrationRepository.getProfileKey("+15555550101"),
+        preKeyCollections = RegistrationRepository.generatePreKeys()!!,
         fcmToken = null,
         pniRegistrationId = registrationRepository.pniRegistrationId,
         recoveryPassword = "asdfasdfasdfasdf"

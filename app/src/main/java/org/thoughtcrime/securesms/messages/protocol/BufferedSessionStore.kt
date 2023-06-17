@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.libsignal.protocol.NoSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
@@ -35,28 +34,33 @@ class BufferedSessionStore(private val selfServiceId: ServiceId) : SignalService
 
   @Throws(NoSessionException::class)
   override fun loadExistingSessions(addresses: MutableList<SignalProtocolAddress>): List<SessionRecord> {
-    val found: MutableList<SessionRecord> = mutableListOf()
-    val needsDatabaseLookup: MutableList<SignalProtocolAddress> = mutableListOf()
+    val found: MutableList<SessionRecord?> = ArrayList(addresses.size)
+    val needsDatabaseLookup: MutableList<Pair<Int, SignalProtocolAddress>> = mutableListOf()
 
-    for (address in addresses) {
+    addresses.forEachIndexed { index, address ->
       val cached: SessionRecord? = store[address]
 
       if (cached != null) {
-        found += cached
+        found[index] = cached
       } else {
-        needsDatabaseLookup += address
+        needsDatabaseLookup += (index to address)
       }
     }
 
     if (needsDatabaseLookup.isNotEmpty()) {
-      found += SignalDatabase.sessions.load(selfServiceId, needsDatabaseLookup).filterNotNull()
+      val databaseRecords: List<SessionRecord?> = SignalDatabase.sessions.load(selfServiceId, needsDatabaseLookup.map { (_, address) -> address })
+      needsDatabaseLookup.forEachIndexed { databaseLookupIndex, (addressIndex, _) ->
+        found[addressIndex] = databaseRecords[databaseLookupIndex]
+      }
     }
 
-    if (found.size != addresses.size) {
+    val cachedAndLoaded = found.filterNotNull()
+
+    if (cachedAndLoaded.size != addresses.size) {
       throw NoSessionException("Failed to find one or more sessions.")
     }
 
-    return found
+    return cachedAndLoaded
   }
 
   override fun storeSession(address: SignalProtocolAddress, record: SessionRecord) {
@@ -72,7 +76,7 @@ class BufferedSessionStore(private val selfServiceId: ServiceId) : SignalService
 
       if (fromDatabase != null) {
         store[address] = fromDatabase
-        return fromDatabase.hasSenderChain() && fromDatabase.sessionVersion == CiphertextMessage.CURRENT_VERSION
+        return fromDatabase.hasSenderChain()
       } else {
         false
       }

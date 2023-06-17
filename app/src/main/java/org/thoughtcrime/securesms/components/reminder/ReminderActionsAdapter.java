@@ -47,7 +47,7 @@ final class ReminderActionsAdapter extends RecyclerView.Adapter<ReminderActionsA
   public void onBindViewHolder(@NonNull ActionViewHolder holder, int position) {
     final Reminder.Action action = actions.get(position);
 
-    ((Button) holder.itemView).setText(action.getTitle());
+    ((Button) holder.itemView).setText(action.getTitle(holder.itemView.getContext()));
     holder.itemView.setOnClickListener(v -> {
       if (holder.getAdapterPosition() == RecyclerView.NO_POSITION) return;
 

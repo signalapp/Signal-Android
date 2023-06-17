@@ -70,7 +70,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     boolean isVideoCall = offerType == OfferMessage.Type.VIDEO_CALL;
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer);
+    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer, isVideoCall);
     webRtcInteractor.setDefaultAudioDevice(remotePeer.getId(),
                                            isVideoCall ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE,
                                            false);
@@ -157,7 +157,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 videoState.requireCamera(),
                                                 callSetupState.getIceServers(),
                                                 callSetupState.isAlwaysTurnServers(),
-                                                NetworkUtil.getCallingBandwidthMode(context),
+                                                NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
                                                 currentState.getCallSetupState(activePeer).isEnableVideoOnCreate());
     } catch (CallException e) {

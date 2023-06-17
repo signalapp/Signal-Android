@@ -11,6 +11,11 @@
         <action
             android:id="@+id/action_callLinkDetailsFragment_to_editCallLinkNameDialogFragment"
             app:destination="@id/editCallLinkNameDialogFragment" />
+
+        <argument
+            android:name="room_id"
+            app:argType="org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId"
+            app:nullable="false" />
     </fragment>
 
     <dialog

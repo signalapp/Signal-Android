@@ -12,28 +12,62 @@ class CallLogPagedDataSource(
   private val hasFilter = filter == CallLogFilter.MISSED
   private val hasCallLinkRow = FeatureFlags.adHocCalling() && filter == CallLogFilter.ALL && query.isNullOrEmpty()
 
-  private var callsCount = 0
+  private var callEventsCount = 0
+  private var callLinksCount = 0
 
   override fun size(): Int {
-    callsCount = repository.getCallsCount(query, filter)
-    return callsCount + hasFilter.toInt() + hasCallLinkRow.toInt()
+    callEventsCount = repository.getCallsCount(query, filter)
+    callLinksCount = repository.getCallLinksCount(query, filter)
+    return callEventsCount + callLinksCount + hasFilter.toInt() + hasCallLinkRow.toInt()
   }
 
   override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<CallLogRow> {
-    val calls = mutableListOf<CallLogRow>()
-    val callLimit = length - hasCallLinkRow.toInt()
-
-    if (start == 0 && length >= 1 && hasCallLinkRow) {
-      calls.add(CallLogRow.CreateCallLink)
+    val callLogRows = mutableListOf<CallLogRow>()
+    if (length <= 0) {
+      return callLogRows
     }
 
-    calls.addAll(repository.getCalls(query, filter, start, callLimit).toMutableList())
+    val callLinkStart = if (hasCallLinkRow) 1 else 0
+    val callEventStart = callLinkStart + callLinksCount
+    val clearFilterStart = callEventStart + callEventsCount
 
-    if (calls.size < length && hasFilter) {
-      calls.add(CallLogRow.ClearFilter)
+    var remaining = length
+    if (start < callLinkStart) {
+      callLogRows.add(CallLogRow.CreateCallLink)
+      remaining -= 1
     }
 
-    return calls
+    if (start < callEventStart && remaining > 0) {
+      val callLinks = repository.getCallLinks(
+        query,
+        filter,
+        start,
+        remaining
+      )
+
+      callLogRows.addAll(callLinks)
+
+      remaining -= callLinks.size
+    }
+
+    if (start < clearFilterStart && remaining > 0) {
+      val callEvents = repository.getCalls(
+        query,
+        filter,
+        start - callLinksCount,
+        remaining
+      )
+
+      callLogRows.addAll(callEvents)
+
+      remaining -= callEvents.size
+    }
+
+    if (start <= clearFilterStart && remaining > 0) {
+      callLogRows.add(CallLogRow.ClearFilter)
+    }
+
+    return callLogRows
   }
 
   override fun getKey(data: CallLogRow): CallLogRow.Id = data.id
@@ -47,5 +81,7 @@ class CallLogPagedDataSource(
   interface CallRepository {
     fun getCallsCount(query: String?, filter: CallLogFilter): Int
     fun getCalls(query: String?, filter: CallLogFilter, start: Int, length: Int): List<CallLogRow>
+    fun getCallLinksCount(query: String?, filter: CallLogFilter): Int
+    fun getCallLinks(query: String?, filter: CallLogFilter, start: Int, length: Int): List<CallLogRow>
   }
 }

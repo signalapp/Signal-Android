@@ -69,6 +69,7 @@ class FcmFetchForegroundService : Service() {
 
   override fun onDestroy() {
     Log.i(TAG, "onDestroy()")
+    FcmFetchManager.onDestroyForegroundFetchService()
   }
 
   override fun onBind(intent: Intent?): IBinder? {

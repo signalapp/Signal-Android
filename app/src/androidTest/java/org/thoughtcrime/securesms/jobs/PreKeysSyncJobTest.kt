@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.testing.assertIsNot
 import org.thoughtcrime.securesms.testing.parsedRequestBody
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
+import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts
 import org.whispersystems.signalservice.internal.push.PreKeyState
-import org.whispersystems.signalservice.internal.push.PreKeyStatus
 
 @RunWith(AndroidJUnit4::class)
 class PreKeysSyncJobTest {
@@ -106,8 +106,8 @@ class PreKeysSyncJobTest {
     val currentPniKeyId = pniPreKeyMeta.activeSignedPreKeyId
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
-      Get("/v2/keys?identity=aci") { MockResponse().success(PreKeyStatus(100)) },
-      Get("/v2/keys?identity=pni") { MockResponse().success(PreKeyStatus(100)) }
+      Get("/v2/keys?identity=aci") { MockResponse().success(OneTimePreKeyCounts(100, 100)) },
+      Get("/v2/keys?identity=pni") { MockResponse().success(OneTimePreKeyCounts(100, 100)) }
     )
 
     // WHEN
@@ -133,7 +133,7 @@ class PreKeysSyncJobTest {
     val currentPniKeyId = pniPreKeyMeta.activeSignedPreKeyId
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
-      Get("/v2/keys?identity=aci") { MockResponse().success(PreKeyStatus(100)) },
+      Get("/v2/keys?identity=aci") { MockResponse().success(OneTimePreKeyCounts(100, 100)) },
       Put("/v2/keys/signed?identity=pni") { MockResponse().success() }
     )
 
@@ -157,15 +157,15 @@ class PreKeysSyncJobTest {
     val currentAciKeyId = aciPreKeyMeta.activeSignedPreKeyId
     val currentPniKeyId = pniPreKeyMeta.activeSignedPreKeyId
 
-    val currentNextAciPreKeyId = aciPreKeyMeta.nextOneTimePreKeyId
-    val currentNextPniPreKeyId = pniPreKeyMeta.nextOneTimePreKeyId
+    val currentNextAciPreKeyId = aciPreKeyMeta.nextEcOneTimePreKeyId
+    val currentNextPniPreKeyId = pniPreKeyMeta.nextEcOneTimePreKeyId
 
     lateinit var aciPreKeyStateRequest: PreKeyState
     lateinit var pniPreKeyStateRequest: PreKeyState
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
-      Get("/v2/keys?identity=aci") { MockResponse().success(PreKeyStatus(5)) },
-      Get("/v2/keys?identity=pni") { MockResponse().success(PreKeyStatus(5)) },
+      Get("/v2/keys?identity=aci") { MockResponse().success(OneTimePreKeyCounts(5, 5)) },
+      Get("/v2/keys?identity=pni") { MockResponse().success(OneTimePreKeyCounts(5, 5)) },
       Put("/v2/keys/?identity=aci") { r ->
         aciPreKeyStateRequest = r.parsedRequestBody()
         MockResponse().success()
@@ -184,8 +184,8 @@ class PreKeysSyncJobTest {
     aciPreKeyMeta.activeSignedPreKeyId assertIsNot currentAciKeyId
     pniPreKeyMeta.activeSignedPreKeyId assertIsNot currentPniKeyId
 
-    aciPreKeyMeta.nextOneTimePreKeyId assertIsNot currentNextAciPreKeyId
-    pniPreKeyMeta.nextOneTimePreKeyId assertIsNot currentNextPniPreKeyId
+    aciPreKeyMeta.nextEcOneTimePreKeyId assertIsNot currentNextAciPreKeyId
+    pniPreKeyMeta.nextEcOneTimePreKeyId assertIsNot currentNextPniPreKeyId
 
     ApplicationDependencies.getProtocolStore().aci().identityKeyPair.publicKey.let { aciIdentityKey ->
       aciPreKeyStateRequest.identityKey assertIs aciIdentityKey

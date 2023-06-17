@@ -2,13 +2,18 @@ package org.thoughtcrime.securesms.groups.v2
 
 import android.content.Context
 import androidx.core.util.Consumer
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupChangeException
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
@@ -75,6 +80,30 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
         Log.w(TAG, e)
         GroupBlockJoinRequestResult.Failure(GroupChangeFailureReason.fromException(e))
       }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun cancelJoinRequest(groupId: GroupId.V2): Single<Result<Unit, GroupChangeFailureReason>> {
+    return Single.create { emitter ->
+      try {
+        GroupManager.cancelJoinRequest(context, groupId)
+        emitter.onSuccess(Result.success(Unit))
+      } catch (gcfe: GroupChangeFailedException) {
+        Log.i(TAG, "Unable to cancel request", gcfe)
+        emitter.onSuccess(Result.failure(GroupChangeFailureReason.fromException(gcfe)))
+      } catch (ioe: IOException) {
+        Log.i(TAG, "Unable to cancel request", ioe)
+        emitter.onSuccess(Result.failure(GroupChangeFailureReason.fromException(ioe)))
+      } catch (gcbe: GroupChangeBusyException) {
+        Log.i(TAG, "Unable to cancel request", gcbe)
+        emitter.onSuccess(Result.failure(GroupChangeFailureReason.fromException(gcbe)))
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun removeUnmigratedV1Members(groupId: GroupId.V2): Completable {
+    return Completable.fromCallable {
+      SignalDatabase.groups.removeUnmigratedV1Members(groupId)
     }.subscribeOn(Schedulers.io())
   }
 }

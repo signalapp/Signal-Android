@@ -170,9 +170,13 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         } ?: Result.failure(IntentError.SEND_MULTIPLE_STREAM)
       }
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_STREAM) -> {
-        intent.getParcelableExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)?.let {
-          Result.success(UnresolvedShareData.ExternalSingleShare(it, intent.type))
-        } ?: extractSingleExtraTextFromIntent(IntentError.SEND_STREAM)
+        val uri: Uri? = intent.getParcelableExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)
+        if (uri == null) {
+          extractSingleExtraTextFromIntent(IntentError.SEND_STREAM)
+        } else {
+          val text: CharSequence? = if (intent.hasExtra(Intent.EXTRA_TEXT)) intent.getCharSequenceExtra(Intent.EXTRA_TEXT) else null
+          Result.success(UnresolvedShareData.ExternalSingleShare(uri, intent.type, text))
+        }
       }
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_TEXT) -> {
         extractSingleExtraTextFromIntent()

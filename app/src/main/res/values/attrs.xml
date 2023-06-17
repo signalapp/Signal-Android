@@ -374,4 +374,8 @@
         <attr name="rotationWhenVisible" format="float" />
         <attr name="rotationWhenHidden" format="float" />
     </declare-styleable>
+
+    <declare-styleable name="InsetAwareConstraintLayout">
+        <attr name="animateKeyboardChanges" format="boolean" />
+    </declare-styleable>
 </resources>

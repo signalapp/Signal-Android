@@ -34,8 +34,12 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   private static final String TAG = Log.tag(GroupConnectedActionProcessor.class);
 
-  public GroupConnectedActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
-    super(webRtcInteractor, TAG);
+  public GroupConnectedActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor) {
+    this(actionProcessorFactory, webRtcInteractor, TAG);
+  }
+
+  protected GroupConnectedActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
+    super(actionProcessorFactory, webRtcInteractor, tag);
   }
 
   @Override
@@ -76,7 +80,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
-    Log.i(TAG, "handleSetEnableVideo():");
+    Log.i(tag, "handleSetEnableVideo():");
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
     Camera    camera    = currentState.getVideoState().requireCamera();
@@ -167,7 +171,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
-    Log.i(TAG, "handleLocalHangup():");
+    Log.i(tag, "handleLocalHangup():");
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
 

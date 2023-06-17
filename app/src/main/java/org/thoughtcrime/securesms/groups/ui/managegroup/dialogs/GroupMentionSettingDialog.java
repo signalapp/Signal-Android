@@ -9,8 +9,9 @@ import android.widget.CheckedTextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.util.Consumer;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
@@ -20,7 +21,7 @@ public final class GroupMentionSettingDialog {
   public static void show(@NonNull Context context, @NonNull MentionSetting mentionSetting, @Nullable Consumer<MentionSetting> callback) {
     SelectionCallback selectionCallback = new SelectionCallback(mentionSetting, callback);
 
-    new AlertDialog.Builder(context)
+    new MaterialAlertDialogBuilder(context)
                    .setTitle(R.string.GroupMentionSettingDialog_notify_me_for_mentions)
                    .setView(getView(context, mentionSetting, selectionCallback))
                    .setPositiveButton(android.R.string.ok, selectionCallback)

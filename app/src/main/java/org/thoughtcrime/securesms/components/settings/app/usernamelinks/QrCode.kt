@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.usernamelinks
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -93,12 +94,12 @@ private fun DrawScope.drawQr(
   }
 
   // Logo border
-  val deadzonePaddingPercent = 0.02f
+  val deadzonePaddingPercent = 0.03f
   val logoBorderRadiusPx = ((deadzonePercent - deadzonePaddingPercent) * size.width) / 2
   drawCircle(
     color = foregroundColor,
     radius = logoBorderRadiusPx,
-    style = Stroke(width = cellWidthPx * 0.7f),
+    style = Stroke(width = 4.dp.toPx()),
     center = this.center
   )
 
@@ -156,9 +157,7 @@ private fun Preview() {
   Surface {
     QrCode(
       data = QrCodeData.forData("https://signal.org", 64),
-      modifier = Modifier
-        .width(100.dp)
-        .height(100.dp),
+      modifier = Modifier.size(200.dp),
       deadzonePercent = 0.3f
     )
   }

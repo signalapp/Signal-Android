@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Intent
+import android.view.MotionEvent
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
@@ -14,6 +16,8 @@ class ConversationActivity : FragmentWrapperActivity(), VoiceNoteMediaController
 
   private val theme = DynamicNoActionBarTheme()
   override val voiceNoteMediaController = VoiceNoteMediaController(this, true)
+
+  private val motionEventRelay: MotionEventRelay by viewModels()
 
   override fun onPreCreate() {
     theme.onCreate(this)
@@ -31,5 +35,9 @@ class ConversationActivity : FragmentWrapperActivity(), VoiceNoteMediaController
   override fun onNewIntent(intent: Intent?) {
     super.onNewIntent(intent)
     error("ON NEW INTENT")
+  }
+
+  override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+    return motionEventRelay.offer(ev) || super.dispatchTouchEvent(ev)
   }
 }

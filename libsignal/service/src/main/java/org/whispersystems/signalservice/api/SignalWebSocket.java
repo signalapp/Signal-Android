@@ -273,20 +273,14 @@ public final class SignalWebSocket {
     }
 
     if (responses.size() > 0) {
-      boolean successfullyProcessed = false;
-
-      try {
-        successfullyProcessed = callback.onMessageBatch(responses);
-      } finally {
-        if (successfullyProcessed) {
-          for (EnvelopeResponse response : responses) {
-            getWebSocket().sendResponse(createWebSocketResponse(response.getWebsocketRequest()));
-          }
-        }
-      }
+      callback.onMessageBatch(responses);
     }
 
     return !hitEndOfQueue;
+  }
+
+  public void sendAck(EnvelopeResponse response) throws IOException {
+    getWebSocket().sendResponse(createWebSocketResponse(response.getWebsocketRequest()));
   }
 
   @SuppressWarnings("DuplicateThrows")
@@ -370,7 +364,7 @@ public final class SignalWebSocket {
    */
   public interface MessageReceivedCallback {
 
-    /** True if you successfully processed the message, otherwise false. **/
-    boolean onMessageBatch(List<EnvelopeResponse> envelopeResponses);
+    /** Called with the batch of envelopes. You are responsible for sending acks. **/
+    void onMessageBatch(List<EnvelopeResponse> envelopeResponses);
   }
 }

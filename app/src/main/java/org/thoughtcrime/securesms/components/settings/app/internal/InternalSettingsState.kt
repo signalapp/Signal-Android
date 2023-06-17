@@ -13,7 +13,7 @@ data class InternalSettingsState(
   val forceWebsocketMode: Boolean,
   val callingServer: String,
   val callingAudioProcessingMethod: CallManager.AudioProcessingMethod,
-  val callingBandwidthMode: CallManager.BandwidthMode,
+  val callingDataMode: CallManager.DataMode,
   val callingDisableTelecom: Boolean,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,

@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -36,6 +36,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
+import org.thoughtcrime.securesms.compose.ScreenshotController
 import org.thoughtcrime.securesms.util.UsernameUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -49,21 +51,28 @@ fun UsernameLinkShareScreen(
   snackbarHostState: SnackbarHostState,
   scope: CoroutineScope,
   navController: NavController,
+  onShareBadge: (Bitmap) -> Unit,
   modifier: Modifier = Modifier,
-  contentPadding: PaddingValues = PaddingValues(0.dp)
+  screenshotController: ScreenshotController? = null
 ) {
   Column(
     modifier = modifier
-      .padding(contentPadding)
       .verticalScroll(rememberScrollState())
   ) {
     QrCodeBadge(
       data = state.qrCodeData,
       colorScheme = state.qrCodeColorScheme,
-      username = state.username
+      username = state.username,
+      screenshotController = screenshotController
     )
 
     ButtonBar(
+      onShareClicked = {
+        val badgeBitmap = screenshotController?.screenshot()
+        if (badgeBitmap != null) {
+          onShareBadge.invoke(badgeBitmap)
+        }
+      },
       onColorClicked = { navController.safeNavigate(R.id.action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment) }
     )
 
@@ -85,7 +94,8 @@ fun UsernameLinkShareScreen(
       text = stringResource(id = R.string.UsernameLinkSettings_qr_description),
       textAlign = TextAlign.Center,
       style = MaterialTheme.typography.bodyMedium,
-      modifier = Modifier.padding(top = 24.dp, bottom = 36.dp, start = 43.dp, end = 43.dp)
+      modifier = Modifier.padding(top = 24.dp, bottom = 36.dp, start = 43.dp, end = 43.dp),
+      color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 
     Row(
@@ -104,13 +114,13 @@ fun UsernameLinkShareScreen(
 }
 
 @Composable
-private fun ButtonBar(onColorClicked: () -> Unit) {
+private fun ButtonBar(onShareClicked: () -> Unit, onColorClicked: () -> Unit) {
   Row(
     horizontalArrangement = Arrangement.spacedBy(space = 32.dp, alignment = Alignment.CenterHorizontally),
     modifier = Modifier.fillMaxWidth()
   ) {
     Buttons.ActionButton(
-      onClick = {},
+      onClick = onShareClicked,
       iconResId = R.drawable.symbol_share_android_24,
       labelResId = R.string.UsernameLinkSettings_share_button_label
     )
@@ -162,7 +172,8 @@ private fun ScreenPreviewLightTheme() {
         state = previewState(),
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
-        navController = NavController(LocalContext.current)
+        navController = NavController(LocalContext.current),
+        onShareBadge = {}
       )
     }
   }
@@ -177,7 +188,8 @@ private fun ScreenPreviewDarkTheme() {
         state = previewState(),
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
-        navController = NavController(LocalContext.current)
+        navController = NavController(LocalContext.current),
+        onShareBadge = {}
       )
     }
   }
@@ -186,6 +198,7 @@ private fun ScreenPreviewDarkTheme() {
 private fun previewState(): UsernameLinkSettingsState {
   val link = UsernameUtil.generateLink("maya.45")
   return UsernameLinkSettingsState(
+    activeTab = ActiveTab.Code,
     username = "maya.45",
     usernameLink = link,
     qrCodeData = QrCodeData.forData(link, 64),

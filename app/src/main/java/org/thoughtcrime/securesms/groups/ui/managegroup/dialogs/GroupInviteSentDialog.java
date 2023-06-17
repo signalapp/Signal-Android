@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LifecycleOwner;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
@@ -27,7 +29,7 @@ public final class GroupInviteSentDialog {
       return null;
     }
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(context)
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context)
                                                  .setTitle(context.getResources().getQuantityString(R.plurals.GroupManagement_invitation_sent, size, size))
                                                  // TODO: GV2 Need a URL for learn more
                                                  //  .setNegativeButton(R.string.GroupManagement_learn_more, (dialog, which) -> {

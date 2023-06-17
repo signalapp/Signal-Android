@@ -8,5 +8,8 @@ interface PreKeyMetadataStore {
   var activeSignedPreKeyId: Int
   var isSignedPreKeyRegistered: Boolean
   var lastSignedPreKeyRotationTime: Long
-  var nextOneTimePreKeyId: Int
+  var nextEcOneTimePreKeyId: Int
+  var nextKyberPreKeyId: Int
+  var lastResortKyberPreKeyId: Int
+  var lastResortKyberPreKeyRotationTime: Long
 }

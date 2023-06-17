@@ -25,8 +25,12 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
 
   private static final String TAG = Log.tag(GroupJoiningActionProcessor.class);
 
-  public GroupJoiningActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
-    super(webRtcInteractor, TAG);
+  public GroupJoiningActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor) {
+    this(actionProcessorFactory, webRtcInteractor, TAG);
+  }
+
+  protected GroupJoiningActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
+    super(actionProcessorFactory, webRtcInteractor, tag);
   }
 
   @Override
@@ -61,7 +65,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
       case CONNECTED:
         if (device.getJoinState() == GroupCall.JoinState.JOINED) {
 
-          webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient());
+          webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient(), true);
           webRtcInteractor.startAudioCommunication();
 
           if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
@@ -73,7 +77,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
           try {
             groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
             groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
-            groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, device.getNetworkRoute().getLocalAdapterType()));
+            groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, device.getNetworkRoute().getLocalAdapterType()));
           } catch (CallException e) {
             Log.e(tag, e);
             throw new RuntimeException(e);
@@ -94,7 +98,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
                  .commit()
                  .changeLocalDeviceState()
                  .commit()
-                 .actionProcessor(new GroupConnectedActionProcessor(webRtcInteractor));
+                 .actionProcessor(actionProcessorFactory.createConnectedActionProcessor(webRtcInteractor));
 
         } else if (device.getJoinState() == GroupCall.JoinState.JOINING) {
           builder.changeCallInfoState()

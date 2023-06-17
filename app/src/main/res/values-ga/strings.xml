@@ -24,6 +24,15 @@
     <string name="save">Cuir i dtaisce é</string>
     <string name="note_to_self">Nóta Chugam Féin</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">An Aimsir</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Nótaí</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Nuacht</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Tonnta</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -185,11 +194,11 @@
     <string name="CameraContacts_signal_groups">Braislí Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="two">You can share with a maximum of %1$d chats.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
+        <item quantity="two">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
+        <item quantity="few">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
+        <item quantity="many">Is féidir leat comhroinnt le %1$d gcomhrá ar a mhéad.</item>
+        <item quantity="other">Is féidir leat comhroinnt le %1$d comhrá ar a mhéad.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Roghnaigh faighteoirí Signal</string>
     <string name="CameraContacts_no_signal_contacts">Níl aon teagmhálaithe Signal ann</string>
@@ -230,6 +239,8 @@
     <string name="CommunicationActions_call">Glaoigh</string>
     <string name="CommunicationActions_insecure_call">Glao neamhshlán</string>
     <string name="CommunicationActions_carrier_charges_may_apply">D\'fhéadfadh táillí iompróra a bheith i gceist. Níl an uimhir ar a bhfuil tú ag glaoch cláraithe le Signal. Cuirfear an glao seo trí d\'iompróir móibíleach, ní ar an idirlíon.</string>
+    <string name="CommunicationActions_cant_join_call">Ní féidir dul isteach sa ghlao</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Níl an nasc glao seo bailí a thuilleadh.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -310,6 +321,8 @@
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Ní féidir an físeán a íoslódáil. Beidh ort é a sheoladh arís.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">curtha in eagar %1$s</string>
+    <!-- Displayed if the link preview in the conversation item is for a call link call -->
+    <string name="ConversationItem__join_call">Téigh isteach sa ghlao</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
@@ -514,6 +527,13 @@
     <string name="ConversationFragment__update_build">Nuashonraigh Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Athchláraigh Signal</string>
+    <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
+    <string name="ConversationFragment__content_description_back_button">Déan nascleanúint siar.</string>
+    <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
+    <string name="ConversationFragment__content_description_launch_signal_button">Oscail Signal</string>
+    <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
+    <string name="ConversationFragment__no_longer_verified">Ní fíoraithe a thuilleadh</string>
+
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Glan an scagaire</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -1202,7 +1222,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Tarraing chun aghaidheanna nó áiteanna eile a dhoiléiriú</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh síos é chun glórtheachtaireacht a thaifeadadh, scaoil chun í a sheoladh</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh le taifeadadh, scaoil le seoladh</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1326,10 +1346,7 @@
     <string name="MessageQuotesBottomSheet_replies">Freagraí</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Glao Signal ar siúl</string>
     <string name="NotificationBarManager__establishing_signal_call">Ag cruthú glao Signal</string>
-    <string name="NotificationBarManager__incoming_signal_call">Glao Signal isteach</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Glao grúpa Signal isteach</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Tosú ar sheirbhís glaonna Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Stopadh sheirbhís glaonna Signal</string>
@@ -1617,12 +1634,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Thosaigh %1$s ar ghlao grúpa · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">Tá %1$s sa ghlao grúpa · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Tá tusa sa ghlao grúpa · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Tá %1$s agus %2$s sa ghlao grúpa · %3$s</string>
     <string name="MessageRecord_group_call_s">Glao grúpa · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">Tá %1$s sa ghlao grúpa</string>
     <string name="MessageRecord_you_are_in_the_group_call">You are in the group call</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">Tá %1$s agus %2$s sa ghlao grúpa</string>
@@ -1834,6 +1853,8 @@
     <string name="Recipient_you">Tusa</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">Mo Scéal</string>
+    <!-- Name of recipient for a call link without a name -->
+    <string name="Recipient_signal_call">Glao Signal</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Cuir bac</string>
@@ -2026,6 +2047,10 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Tá an iomarca iarrachtaí déanta agat leis an uimhir sin a chlárú. Triail arís i gceann %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ní féidir ceangal a bhunú leis an tseirbhís. Deimhnigh go bhfuil tú ceangailte leis an líonra agus bain triail eile as.</string>
+    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
+    <string name="RegistrationActivity_generic_error">Tharla earráid gan choinne.</string>
+    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Níorbh fhéidir linn cód fíoraithe a sheoladh trí SMS. Triail do chód a fháil trí ghuthghlao ina ionad.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Ní féidir cód fíoraithe a iarraidh. Seiceáil an nasc líonra agus triail arís.</string>
     <string name="RegistrationActivity_non_standard_number_format">Formáid uimhreacha neamhchaighdeánach</string>
@@ -2047,6 +2072,10 @@
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Ní mór dúinn a dheimhniú gur neach daonna thú.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Ní raibh Signal in ann cód SMS a sheoladh de dheasca teip sheachtrach.</string>
+    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
+    <string name="RegistrationActivity_voice_call">Guthghlao</string>
+    <!-- Dialog button to cancel the pending action and return to the previous state. -->
+    <string name="RegistrationActivity_cancel">Cuir ar ceal</string>
     <string name="RegistrationActivity_next">Ar aghaidh</string>
     <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Beir an príobháideachas leat.\nBíodh cead cainte agat i ngach teachtaireacht.</string>
@@ -2159,7 +2188,7 @@
     <string name="StickerPackPreviewActivity_unknown">Anaithnid</string>
     <string name="StickerPackPreviewActivity_install">Suiteáil</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
-    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
+    <string name="StickerPackPreviewActivity_remove">Díshuiteáil</string>
     <string name="StickerPackPreviewActivity_stickers">Greamáin</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Theip ar lódáil an bhirt ghreamán</string>
 
@@ -2364,19 +2393,19 @@
     <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="two">%1$d messages</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d teachtaireacht</item>
+        <item quantity="two">%1$d theachtaireacht</item>
+        <item quantity="few">%1$d theachtaireacht</item>
+        <item quantity="many">%1$d dteachtaireacht</item>
+        <item quantity="other">%1$d teachtaireacht</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d chomhrá</item>
+        <item quantity="two">%1$d chomhrá</item>
+        <item quantity="few">%1$d chomhrá</item>
+        <item quantity="many">%1$d gcomhrá</item>
+        <item quantity="other">%1$d comhrá</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">Teachtaireachtaí nua: %1$d i gcomhráite nua: %2$d</string>
     <string name="MessageNotifier_most_recent_from_s">Is deanaí ó: %1$s</string>
@@ -2440,9 +2469,8 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Níl freagairt tapa le fáil agus Signal faoi ghlas.</string>
     <string name="QuickResponseService_problem_sending_message">Tharla fadhb ag seoladh na teachtaireachta!</string>
 
-    <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_saved_to">Sábháilte chuig %1$s</string>
-    <string name="SaveAttachmentTask_saved">Curtha i dtaisce</string>
+    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
+    <string name="SaveAttachmentTask_saved">Meáin sábháilte</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Cuardaigh</string>
@@ -2523,7 +2551,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Callaire</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Gléas Cinn Sreangtha</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Gléas Cinn Sreangtha (USB)</string>
@@ -3114,7 +3144,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Glas íocaíochtaí</string>
     <string name="preferences__payments_beta">Íocaíochtaí (Beta)</string>
-    <string name="preferences__conversation_length_limit">Teorainn le fad an chomhrá</string>
+    <string name="preferences__conversation_length_limit">Teorainn an chomhrá</string>
     <string name="preferences__keep_messages">Coinnigh teachtaireachtaí</string>
     <string name="preferences__clear_message_history">Glan stair teachtaireachtaí</string>
     <string name="preferences__linked_devices">Gléasanna nasctha</string>
@@ -3123,6 +3153,28 @@
     <string name="preferences__appearance">Cuma</string>
     <string name="preferences__theme">Téama</string>
     <string name="preferences__chat_color_and_wallpaper">Chat Color &amp; Wallpaper</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Deilbhín na haipe</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">CGL</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Cuir ar ceal</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Athraigh deilbhín agus ainm na haipe go \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Beidh ar Signal dúnadh chun deilbhín agus ainm na haipe a athrú. Taispeánfar deilbhín agus ainm réamhshocraithe Signal i gcónaí i bhFógraí.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Roghnaigh deilbhín agus ainm aipe, rud a bheidh infheicthe ar scáileán baile agus tarraiceán aipeanna do ghléis. Taispeánfar deilbhín agus ainm réamhshocraithe Signal i gcónaí i bhFógraí. Tuilleadh faisnéise</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Tá deilbhíní agus ainmneacha aipe infheicthe ar an scáileán baile agus tarraiceán aipeanna.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Taispeánfar deilbhín agus ainm réamhshocraithe Signal i gcónaí i bhFógraí.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Tuilleadh faisnéise</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">Deilbhín do %1$s</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafach a léiríonn an áit a mbeidh deilbhín ionaid na haipe le feiceáil.</string>
     <string name="preferences__disable_pin">Díchumasaigh an UAP</string>
     <string name="preferences__enable_pin">Cumasaigh UAP</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Má dhíchumasaíonn tú an UAP, caillfidh tú na sonraí go léir nuair a athchláraíonn tú Signal mura ndéanann tú cúltacú agus aischur de láimh. Ní féidir leat Glasáil Clárúcháin a chasadh air leis an UAP díchumasaithe.</string>
@@ -3160,11 +3212,11 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Scriosfar go buan an stair teachtaireachtaí ar fad agus meáin níos sine ná %1$s ó do ghléas leis sin.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="two">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Bearrfar gach comhrá go buan chuig an teachtaireacht is déanaí leis sin.</item>
+        <item quantity="two">Bearrfar gach comhrá go buan chuig an %1$s theachtaireacht is déanaí leis sin.</item>
+        <item quantity="few">Bearrfar gach comhrá go buan chuig na %1$s theachtaireacht is déanaí leis sin.</item>
+        <item quantity="many">Bearrfar gach comhrá go buan chuig na %1$s dteachtaireacht is déanaí leis sin.</item>
+        <item quantity="other">Bearrfar gach comhrá go buan chuig na %1$s teachtaireacht is déanaí leis sin.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Scriosfar go buan an stair teachtaireachtaí ar fad agus na meáin go léir ó do ghléas leis sin.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">An bhfuil tú cinnte gur mhaith leat an stair teachtaireachtaí ar fad a scriosadh?</string>
@@ -3252,7 +3304,7 @@
     <string name="PaymentsAllActivityFragment__received">Faighte</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducing Payments (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Úsáid Signal chun MobileCoin a sheoladh agus a fháil, airgeadra digiteach úrnua atá dírithe ar phríobháideachas. Gníomhachtaigh chun tosú air.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Úsáid Signal le MobileCoin a sheoladh agus a fháil, airgeadra digiteach úrnua atá dírithe ar phríobháideachas. Gníomhachtaigh le tosú air.</string>
     <string name="PaymentsHomeFragment__activate_payments">Gníomhachtaigh Íocaíochtaí</string>
     <string name="PaymentsHomeFragment__activating_payments">Íocaíochtaí á ngníomhachtú…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Aischuir an cuntas íocaíochtaí</string>
@@ -3764,6 +3816,20 @@
     <string name="KbsMegaphone__create_a_pin">Cruthaigh UAP</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Coinnítear faisnéis a stóráiltear le Signal criptithe le UAP.</string>
     <string name="KbsMegaphone__create_pin">Cruthaigh UAP</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Deilbhín iompair</string>
@@ -4573,9 +4639,11 @@
     <string name="HelpSettingsFragment__contact_us">Déan teagmháil linn</string>
     <string name="HelpSettingsFragment__version">Leagan</string>
     <string name="HelpSettingsFragment__debug_log">Logchomhad dífhabhtaithe</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Ceadúnais</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Téarmaí Úsáide ⁊ Polasaí Príobháideachais</string>
     <string name="HelpFragment__copyright_signal_messenger">Cóipcheart Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Ceadúnaithe faoi GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media Quality</string>
@@ -6261,6 +6329,8 @@
     <string name="CallLogAdapter__return">Fill air</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+    <!-- Status text on call links -->
+    <string name="CallLogAdapter__call_link">Nasc glao</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6281,6 +6351,26 @@
     <string name="CallContextMenu__delete">Scrios</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Deleting…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
+        <item quantity="two">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="few">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="many">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+    </plurals>
+    <!-- Snackbar text after clearing the call history -->
+    <string name="CallLogFragment__cleared_call_history">Stair na nglaonna glanta</string>
+    <!-- Dialog title to clear all call events -->
+    <string name="CallLogFragment__clear_call_history_question">Glan stair na nglaonna?</string>
+    <!-- Dialog body to clear all call events -->
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Scriosfar stair na nglaonna uile leis sin</string>
+    <!-- Action bar menu item to delete all call events -->
+    <string name="CallLogFragment__clear_call_history">Glan stair na nglaonna</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Scag glaonna caillte</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6400,6 +6490,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Stair eagarthóireachta</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -6412,6 +6511,12 @@
     <string name="CallLinkDetailsFragment__share_link">Comhroinn an nasc</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">Scrios nasc an ghlao</string>
+    <!-- Displayed whenever a name change, revocation, etc, fails. -->
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">Níorbh fhéidir athruithe a shábháil. Seiceáil do nasc líonra agus triail arís.</string>
+    <!-- Displayed as title in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__delete_link">Scrios an nasc?</string>
+    <!-- Displayed as body in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ní oibreoidh an nasc seo a thuilleadh do dhuine ar bith ag a bhfuil sé.</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Comhroinn</string>
@@ -6435,6 +6540,13 @@
     <string name="UsernameLinkSettings_qr_scan_description">Scan an Cód QR ar ghléas do theagmhálaí.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Dath</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">Bhí an cód QR neamhbhailí.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Níorbh fhéidir úsáideoir leis an ainm úsáideora %1$s a aimsiú.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Tharla earráid líonra. Triail arís.</string>
+
 
     <!-- EOF -->
 </resources>

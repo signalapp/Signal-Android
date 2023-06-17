@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.ChooseNavigationBarStyleFragmentBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
 
 /**
  * Allows the user to choose between a compact and full-sized navigation bar.
@@ -75,11 +74,7 @@ class ChooseNavigationBarStyleFragment : DialogFragment(R.layout.choose_navigati
     companion object {
       @DrawableRes
       fun getImageResourceId(isCompact: Boolean): Int {
-        return if (FeatureFlags.callsTab()) {
-          ThreeButtons.getImageResource(isCompact)
-        } else {
-          TwoButtons.getImageResource(isCompact)
-        }
+        return ThreeButtons.getImageResource(isCompact)
       }
     }
   }

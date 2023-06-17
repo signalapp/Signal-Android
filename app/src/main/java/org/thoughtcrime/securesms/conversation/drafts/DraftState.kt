@@ -10,8 +10,10 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * management pattern going forward for drafts.
  */
 data class DraftState(
-  val recipientId: RecipientId = RecipientId.UNKNOWN,
+  @Deprecated("Not needed for CFv2")
+  val recipientId: RecipientId? = null,
   val threadId: Long = -1,
+  @Deprecated("Not needed for CFv2")
   val distributionType: Int = 0,
   val textDraft: DraftTable.Draft? = null,
   val bodyRangesDraft: DraftTable.Draft? = null,
@@ -36,7 +38,7 @@ data class DraftState(
     }
   }
 
-  fun copyAndSetDrafts(threadId: Long, drafts: Drafts): DraftState {
+  fun copyAndSetDrafts(threadId: Long = this.threadId, drafts: Drafts): DraftState {
     return copy(
       threadId = threadId,
       textDraft = drafts.getDraftOfType(DraftTable.Draft.TEXT),

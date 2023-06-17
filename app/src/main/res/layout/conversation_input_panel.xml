@@ -32,11 +32,11 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/input_panel_exit_edit_mode"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/circle_tintable"
             android:backgroundTint="@color/signal_colorOnSurfaceVariant"
             android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -62,20 +62,37 @@
                 android:clipToPadding="false"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/edit_message"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/edit_message_compose_header"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:drawablePadding="6dp"
-                    android:text="@string/InputPanel_edit_message"
-                    android:textAppearance="@style/Signal.Text.LabelLarge"
-                    android:textColor="@color/signal_colorOnSurface"
-                    android:visibility="gone"
-                    app:drawableStartCompat="@drawable/symbol_edit_compact_16"
-                    app:drawableTint="@color/signal_colorOnSurface" />
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="6dp"
+                        android:text="@string/InputPanel_edit_message"
+                        android:textAppearance="@style/Signal.Text.LabelLarge"
+                        android:textColor="@color/signal_colorOnSurface"
+                        app:drawableStartCompat="@drawable/symbol_edit_compact_16"
+                        app:drawableTint="@color/signal_colorOnSurface" />
+                    
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/edit_message_thumbnail"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.EditMessageMediaThumbnail"/>
+
+                </LinearLayout>
 
                 <org.thoughtcrime.securesms.components.QuoteView
                     android:id="@+id/quote_view"

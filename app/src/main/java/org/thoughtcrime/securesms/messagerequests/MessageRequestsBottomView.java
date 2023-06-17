@@ -43,6 +43,7 @@ public class MessageRequestsBottomView extends ConstraintLayout {
 
   public MessageRequestsBottomView(Context context) {
     super(context);
+    onFinishInflate();
   }
 
   public MessageRequestsBottomView(Context context, AttributeSet attrs) {

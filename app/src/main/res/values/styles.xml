@@ -403,6 +403,10 @@
         <item name="arcRoundedEnds">true</item>
     </style>
 
+    <declare-styleable name="ProgressCard">
+        <attr name="progressCardTitle" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="CameraButtonView">
         <attr name="imageCaptureSize" format="dimension" />
         <attr name="recordSize" format="dimension" />

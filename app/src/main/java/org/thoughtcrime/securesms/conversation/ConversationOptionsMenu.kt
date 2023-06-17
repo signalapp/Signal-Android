@@ -63,7 +63,7 @@ internal object ConversationOptionsMenu {
       }
 
       if (isPushAvailable) {
-        if (recipient!!.expiresInSeconds > 0) {
+        if (recipient.expiresInSeconds > 0) {
           if (!isInActiveGroup) {
             menuInflater.inflate(R.menu.conversation_expiring_on, menu)
           }
@@ -76,13 +76,13 @@ internal object ConversationOptionsMenu {
         }
       }
 
-      if (recipient?.isGroup == false) {
+      if (!recipient.isGroup) {
         if (isPushAvailable) {
           menuInflater.inflate(R.menu.conversation_callable_secure, menu)
         } else if (!recipient.isReleaseNotes && SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
           menuInflater.inflate(R.menu.conversation_callable_insecure, menu)
         }
-      } else if (recipient?.isGroup == true) {
+      } else if (recipient.isGroup) {
         if (isActiveV2Group) {
           menuInflater.inflate(R.menu.conversation_callable_groupv2, menu)
           if (hasActiveGroupCall) {
@@ -104,21 +104,21 @@ internal object ConversationOptionsMenu {
 
       menuInflater.inflate(R.menu.conversation, menu)
 
-      if (isInMessageRequest && !recipient!!.isBlocked) {
+      if (isInMessageRequest && !recipient.isBlocked) {
         hideMenuItem(menu, R.id.menu_conversation_settings)
       }
 
-      if (recipient?.isGroup == false && !isPushAvailable && !recipient.isReleaseNotes) {
+      if (!recipient.isGroup && !isPushAvailable && !recipient.isReleaseNotes) {
         menuInflater.inflate(R.menu.conversation_insecure, menu)
       }
 
-      if (recipient?.isMuted == true) menuInflater.inflate(R.menu.conversation_muted, menu) else menuInflater.inflate(R.menu.conversation_unmuted, menu)
+      if (recipient.isMuted) menuInflater.inflate(R.menu.conversation_muted, menu) else menuInflater.inflate(R.menu.conversation_unmuted, menu)
 
-      if (recipient?.isGroup == false && recipient.contactUri == null && !recipient.isReleaseNotes && !recipient.isSelf && recipient.hasE164()) {
+      if (!recipient.isGroup && (recipient.contactUri == null) && !recipient.isReleaseNotes && !recipient.isSelf && recipient.hasE164()) {
         menuInflater.inflate(R.menu.conversation_add_to_contacts, menu)
       }
 
-      if (recipient != null && recipient.isSelf) {
+      if (recipient.isSelf) {
         if (isPushAvailable) {
           hideMenuItem(menu, R.id.menu_call_secure)
           hideMenuItem(menu, R.id.menu_video_secure)
@@ -128,7 +128,7 @@ internal object ConversationOptionsMenu {
         hideMenuItem(menu, R.id.menu_mute_notifications)
       }
 
-      if (recipient?.isBlocked == true) {
+      if (recipient.isBlocked) {
         if (isPushAvailable) {
           hideMenuItem(menu, R.id.menu_call_secure)
           hideMenuItem(menu, R.id.menu_video_secure)
@@ -140,7 +140,7 @@ internal object ConversationOptionsMenu {
         hideMenuItem(menu, R.id.menu_mute_notifications)
       }
 
-      if (recipient?.isReleaseNotes == true) {
+      if (recipient.isReleaseNotes) {
         hideMenuItem(menu, R.id.menu_add_shortcut)
       }
 
@@ -149,7 +149,7 @@ internal object ConversationOptionsMenu {
       if (isActiveV2Group) {
         hideMenuItem(menu, R.id.menu_mute_notifications)
         hideMenuItem(menu, R.id.menu_conversation_settings)
-      } else if (recipient?.isGroup == true) {
+      } else if (recipient.isGroup) {
         hideMenuItem(menu, R.id.menu_conversation_settings)
       }
 

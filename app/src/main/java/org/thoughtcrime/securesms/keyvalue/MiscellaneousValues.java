@@ -38,6 +38,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String USERNAME_QR_CODE_COLOR         = "mis.username_qr_color_scheme";
   private static final String KEYBOARD_LANDSCAPE_HEIGHT      = "misc.keyboard.landscape_height";
   private static final String KEYBOARD_PORTRAIT_HEIGHT       = "misc.keyboard.protrait_height";
+  private static final String LAST_CONSISTENCY_CHECK_TIME    = "misc.last_consistency_check_time";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -316,5 +317,13 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setKeyboardPortraitHeight(int height) {
     putInteger(KEYBOARD_PORTRAIT_HEIGHT, height);
+  }
+
+  public long getLastConsistencyCheckTime() {
+    return getLong(LAST_CONSISTENCY_CHECK_TIME, 0);
+  }
+
+  public void setLastConsistencyCheckTime(long time) {
+    putLong(LAST_CONSISTENCY_CHECK_TIME, time);
   }
 }
