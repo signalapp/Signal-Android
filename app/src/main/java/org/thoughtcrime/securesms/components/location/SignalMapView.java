@@ -77,6 +77,7 @@ public class SignalMapView extends LinearLayout {
   public static ListenableFuture<Bitmap> snapshot(final LatLng place, @NonNull final MapView mapView) {
     final SettableFuture<Bitmap> future = new SettableFuture<>();
     mapView.onCreate(null);
+    mapView.onStart();
     mapView.onResume();
 
     mapView.setVisibility(View.VISIBLE);
@@ -91,6 +92,7 @@ public class SignalMapView extends LinearLayout {
         future.set(bitmap);
         mapView.setVisibility(View.GONE);
         mapView.onPause();
+        mapView.onStop();
         mapView.onDestroy();
       }));
     });
