@@ -1685,14 +1685,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">لقد بدأتَ مكالمة جماعية · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">إنك في مكالمة جماعية · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">العضوان %1$s و %2$s موجودان في مكالمة جماعية · %3$s</string>
     <string name="MessageRecord_group_call_s">مكالمة جماعية · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">قام العضو %1$s ببدء مكالمة جماعية</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">لقد قمت ببدء مكالمة جماعية</string>
     <string name="MessageRecord_s_is_in_the_group_call">العضو %1$s موجود في مكالمة جماعية</string>
     <string name="MessageRecord_you_are_in_the_group_call">إنك في مكالمة جماعية</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">العضوان %1$s و %2$s موجودان في مكالمة جماعية</string>
@@ -2622,7 +2622,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">سماعة رأس سلكية</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">سماعة رأس سلكية</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -3910,17 +3910,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">مكالمة صوتية واردة على سيجنال</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">مكالمة فيديو واردة على سيجنال</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">مكالمة Signal واردة من مجموعة</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">مكالمة صوتية جارية على سيجنال</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">مكالمة فيديو جارية على سيجنال</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">مكالمة جماعية جارية على سيجنال</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
@@ -6475,17 +6475,17 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">جارٍ الحذف…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">فشلت عملية الحذف.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="zero">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="two">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="few">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="many">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="zero">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرة أخرى.</item>
+        <item quantity="one">لا يمكن حذف الرابط. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرة أخرى.</item>
+        <item quantity="two">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرة أخرى.</item>
+        <item quantity="few">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرة أخرى.</item>
+        <item quantity="many">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرة أخرى.</item>
+        <item quantity="other">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرة أخرى.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">تم مسح سِّجِلّ الاتصالات</string>
@@ -6617,13 +6617,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">سِجل التعديلات</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">إصدار سيجنال التجريبي فقط</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">تعديل الرسائل مُتاح لمستخدمي إصدار سيجنال التجريبي فقط. إذا قمت بتعديل رسالة، فلن تكون متاحة إلا للأشخاص الذين يَستخدمون أحدث إصدار سيجنال تجريبي.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">إلغاء</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">أرسل</string>
 
 
     <!-- CallLinkDetailsFragment -->

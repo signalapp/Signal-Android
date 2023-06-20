@@ -1583,14 +1583,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Tu pradėjai grupės skambutį · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Jūs esate grupės skambutyje · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s ir %2$s yra grupės skambutyje · %3$s</string>
     <string name="MessageRecord_group_call_s">Grupės skambutis · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s pradėjo grupės skambutį</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Jūs pradėjote grupės skambutį</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s yra grupės skambutyje</string>
     <string name="MessageRecord_you_are_in_the_group_call">Jūs esate grupės skambutyje</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s ir %2$s yra grupės skambutyje</string>
@@ -2482,7 +2482,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Laidinės ausinės</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Laidinės ausinės</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -3728,17 +3728,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Gaunamasis „Signal“ balso skambutis</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Gaunamasis „Signal“ vaizdo skambutis</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Gaunamasis Signal grupės skambutis</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Vykstantis „Signal“ balso skambutis</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Vykstantis „Signal“ vaizdo skambutis</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Vykstantis „Signal“ grupės skambutis</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
@@ -6229,15 +6229,15 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Ištrinama…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Ištrinti nepavyko.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="few">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="many">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Nepavyko ištrinti nuorodos. Patikrink ryšį ir bandyk dar kartą.</item>
+        <item quantity="few">Ne visas skambučio nuorodas pavyko ištrinti. Patikrink ryšį ir bandyk dar kartą.</item>
+        <item quantity="many">Ne visas skambučio nuorodas pavyko ištrinti. Patikrink ryšį ir bandyk dar kartą.</item>
+        <item quantity="other">Ne visas skambučio nuorodas pavyko ištrinti. Patikrink ryšį ir bandyk dar kartą.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Skambučių istorija išvalyta</string>
@@ -6365,13 +6365,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redagavimo istorija</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Tik „Signal“ beta versijai</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Redaguoti žinutes gali tik „Signal“ beta versijos naudotojai. Jei redaguosi žinutę, tai bus matoma tik naujausią „Signal“ beta versiją naudojantiems žmonėms.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Atšaukti</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Siųsti</string>
 
 
     <!-- CallLinkDetailsFragment -->

@@ -1481,14 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Sinimulan ni %1$s ang group call · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Nagsimula ka ng group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">Si %1$s ay nasa group call · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Ikaw ay kasama sa group call · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Sila %1$s at %2$s ay nasa group call · %3$s</string>
     <string name="MessageRecord_group_call_s">Group call · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">Sinimulan ni %1$s ang group call</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Sinimulan mo ang group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">Si %1$s ay nasa group call</string>
     <string name="MessageRecord_you_are_in_the_group_call">Ikaw ay kasama sa group call</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">Sila %1$s at %2$s ay nasa group call</string>
@@ -5983,13 +5983,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Binubura…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Hindi nabura.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Hindi mabura ang link. I-check ang iyong connection at subukan ulit.</item>
+        <item quantity="other">Hindi mabura ang lahat ng call link. I-check ang iyong connection at subukan ulit.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Na-clear na ang call history</string>
@@ -6113,13 +6113,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">History ng edits</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Sa Signal beta lang</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Available lang sa Signal beta users ang pag-edit ng messages. Kung mag-edit ka ng message, ang mga taong may latest version lang ng Signal beta ang makakakita nito.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">I-cancel</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Ipadala</string>
 
 
     <!-- CallLinkDetailsFragment -->

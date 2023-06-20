@@ -1481,14 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">നിങ്ങളൊരു ഗ്രൂപ്പ് കോൾ തുടങ്ങി · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">നിങ്ങൾ ഗ്രൂപ്പ് കോളിലാണ് · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s, %2$s എന്നിവർ %3$s എന്ന ഗ്രൂപ്പ് കോളിലാണ്</string>
     <string name="MessageRecord_group_call_s">ഗ്രൂപ്പ് കോൾ · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">നിങ്ങൾ ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s ഗ്രൂപ്പ് കോളിലാണ്</string>
     <string name="MessageRecord_you_are_in_the_group_call">നിങ്ങൾ ഗ്രൂപ്പ് കോളിലാണ്</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s - ഉം %2$s- ഉം ഗ്രൂപ്പ് കോളിലാണ്</string>
@@ -2342,7 +2342,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ബ്ലൂടൂത്ത്</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">വയേർഡ് ഹെഡ്ഫോണുകൾ</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">വയേർഡ് ഹെഡ്‌സെറ്റ്</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -3546,17 +3546,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">ഇൻകമിംഗ് Signal വോയ്‌സ് കോൾ</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">ഇൻകമിംഗ് Signal വീഡിയോ കോൾ</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Signal ഗ്രൂപ്പ് കോള്‍ വരുന്നു</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">നടന്നുകൊണ്ടിരിക്കുന്ന Signal വോയ്‌സ് കോൾ</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">നടന്നുകൊണ്ടിരിക്കുന്ന Signal വീഡിയോ കോൾ</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">നടന്നുകൊണ്ടിരിക്കുന്ന Signal ഗ്രൂപ്പ് കോൾ</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">ട്രാൻസ്‌പോർട് ഐക്കൺ</string>
@@ -5983,13 +5983,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">ഇല്ലാതാക്കുന്നു…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">ഇല്ലാതാക്കാനായില്ല.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">ലിങ്ക് ഇല്ലാതാക്കാനാകില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</item>
+        <item quantity="other">എല്ലാ കോൾ ലിങ്കുകളും ഇല്ലാതാക്കാനാകില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">കോൾ ചരിത്രം മായ്ച്ചു</string>
@@ -6113,13 +6113,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">എഡിറ്റ് ചെയ്യൽ ചരിത്രം</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal ബീറ്റാ മാത്രം</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">സന്ദേശങ്ങൾ എഡിറ്റ് ചെയ്യൽ Signal ബീറ്റാ ഉപയോക്താക്കൾക്ക് മാത്രം. നിങ്ങളൊരു സന്ദേശം എഡിറ്റ് ചെയ്‌താൽ, Signal ബീറ്റയുടെ ഏറ്റവും പുതിയ പതിപ്പിലുള്ളവർക്ക് മാത്രമെ അത് കാണാനാകൂ.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">റദ്ദാക്കുക</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">അയയ്‌ക്കുക</string>
 
 
     <!-- CallLinkDetailsFragment -->

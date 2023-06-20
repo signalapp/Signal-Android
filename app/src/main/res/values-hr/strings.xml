@@ -1583,14 +1583,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Započeli ste grupni poziv · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je na ovom grupnom pozivu · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Vi ste na ovom grupnom pozivu · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s i %2$s su na ovom grupnom pozivu · %3$s</string>
     <string name="MessageRecord_group_call_s">Grupni poziv · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s je započeo/la grupni poziv</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Započeli ste grupni poziv</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s je na ovom grupnom pozivu</string>
     <string name="MessageRecord_you_are_in_the_group_call">Vi ste na ovom grupnom pozivu</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s i %2$s su na ovom grupnom pozivu</string>
@@ -2482,7 +2482,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Žičane slušalice</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Žičane slušalice</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -3728,17 +3728,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Dolazni Signal glasovni poziv</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Dolazni Signal videopoziv</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Dolazni Signal grupni poziv</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Signal glasovni poziv u tijeku</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Signal videopoziv u tijeku</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Signal grupni poziv u tijeku</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
@@ -6229,15 +6229,15 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Brisanje…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Brisanje nije uspjelo.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="few">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="many">Not all call links could be deleted. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Brisanje poveznice nije uspjelo. Provjerite internetsku vezu i pokušajte ponovno.</item>
+        <item quantity="few">Brisanje svih poveznica na poziv nije uspjelo. Provjerite internetsku vezu i pokušajte ponovno.</item>
+        <item quantity="many">Brisanje svih poveznica na poziv nije uspjelo. Provjerite internetsku vezu i pokušajte ponovno.</item>
+        <item quantity="other">Brisanje svih poveznica na poziv nije uspjelo. Provjerite internetsku vezu i pokušajte ponovno.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Povijest poziva je izbrisana</string>
@@ -6365,13 +6365,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Povijest uređivanja</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Samo u beta verziji Signala</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Uređivanje poruka dostupno je samo korisnicima beta verzije Signala. Ako uredite poruku, izmjene će biti vidljive samo osobama koje koriste najnoviju beta verziju Signala.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Poništi</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Pošalji</string>
 
 
     <!-- CallLinkDetailsFragment -->
