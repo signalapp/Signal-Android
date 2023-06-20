@@ -35,6 +35,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
@@ -259,6 +260,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   private void stop() {
+    notificationDisposable.dispose();
     stopForeground(true);
     stopSelf();
   }
