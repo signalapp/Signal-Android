@@ -6024,14 +6024,12 @@
     <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Select all</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Delete</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Delete for me</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d call deleted</item>
