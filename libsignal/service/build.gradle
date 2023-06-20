@@ -31,6 +31,17 @@ configurations {
     ideaTestFixturesImplementation { extendsFrom testFixturesImplementation; canBeConsumed false; canBeResolved true }
 }
 
+afterEvaluate {
+    [
+        'runKtlintCheckOverMainSourceSet',
+        'runKtlintFormatOverMainSourceSet'
+    ].forEach { taskName ->
+        tasks.named(taskName) {
+            mustRunAfter tasks.named('generateMainProtos')
+        }
+    }
+}
+
 ktlint {
     // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
     version.set("0.47.1")

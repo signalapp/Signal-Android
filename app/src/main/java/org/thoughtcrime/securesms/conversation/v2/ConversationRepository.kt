@@ -23,6 +23,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
@@ -376,7 +377,7 @@ class ConversationRepository(
   }
 
   fun getTemporaryViewOnceUri(mmsMessageRecord: MmsMessageRecord): Maybe<Uri> {
-    return Maybe.fromCallable<Uri> {
+    return MaybeCompat.fromCallable {
       Log.i(TAG, "Copying the view-once photo to temp storage and deleting underlying media.")
 
       try {

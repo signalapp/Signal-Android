@@ -24,7 +24,7 @@ class DonationReceiptDetailRepository {
 
   fun getDonationReceiptRecord(id: Long): Single<DonationReceiptRecord> {
     return Single.fromCallable<DonationReceiptRecord> {
-      SignalDatabase.donationReceipts.getReceipt(id)
+      SignalDatabase.donationReceipts.getReceipt(id)!!
     }.subscribeOn(Schedulers.io())
   }
 }

@@ -159,7 +159,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = '1.3.2'
+        kotlinCompilerExtensionVersion = '1.4.4'
     }
 
     defaultConfig {
@@ -579,9 +579,8 @@ dependencies {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
     testImplementation testLibs.robolectric.shadows.multidex
-    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) {
-        force = true
-    }
+    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 

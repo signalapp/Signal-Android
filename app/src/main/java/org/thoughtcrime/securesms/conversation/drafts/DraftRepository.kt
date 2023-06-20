@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.location.SignalPlace
@@ -70,7 +71,7 @@ class DraftRepository(
   }
 
   fun getShareOrDraftData(): Maybe<Pair<ShareOrDraftData, Drafts?>> {
-    return Maybe.fromCallable<Pair<ShareOrDraftData, Drafts?>> { getShareOrDraftDataInternal() }
+    return MaybeCompat.fromCallable { getShareOrDraftDataInternal() }
       .observeOn(Schedulers.io())
   }
 
@@ -214,7 +215,7 @@ class DraftRepository(
 
   @Deprecated("Not needed for CFv2")
   fun loadDraftQuote(serialized: String): Maybe<ConversationMessage> {
-    return Maybe.fromCallable { loadDraftQuoteInternal(serialized) }
+    return MaybeCompat.fromCallable { loadDraftQuoteInternal(serialized) }
   }
 
   private fun loadDraftQuoteInternal(serialized: String): ConversationMessage? {
@@ -233,7 +234,7 @@ class DraftRepository(
 
   @Deprecated("Not needed for CFv2")
   fun loadDraftMessageEdit(serialized: String): Maybe<ConversationMessage> {
-    return Maybe.fromCallable { loadDraftMessageEditInternal(serialized) }
+    return MaybeCompat.fromCallable { loadDraftMessageEditInternal(serialized) }
   }
 
   private fun loadDraftMessageEditInternal(serialized: String): ConversationMessage? {
