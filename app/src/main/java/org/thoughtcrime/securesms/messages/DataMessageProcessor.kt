@@ -522,7 +522,7 @@ object DataMessageProcessor {
     val targetMessage: MessageRecord? = SignalDatabase.messages.getMessageFor(targetSentTimestamp, senderRecipientId)
 
     return if (targetMessage != null && MessageConstraintsUtil.isValidRemoteDeleteReceive(targetMessage, senderRecipientId, envelope.serverTimestamp)) {
-      SignalDatabase.messages.markAsRemoteDelete(targetMessage.id)
+      SignalDatabase.messages.markAsRemoteDelete(targetMessage)
       if (targetMessage.isStory()) {
         SignalDatabase.messages.deleteRemotelyDeletedStory(targetMessage.id)
       }
