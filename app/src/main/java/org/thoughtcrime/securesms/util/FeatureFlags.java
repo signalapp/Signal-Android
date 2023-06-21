@@ -102,7 +102,6 @@ public final class FeatureFlags {
   private static final String CHAT_FILTERS                      = "android.chat.filters.3";
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
-  private static final String TEXT_FORMATTING                   = "android.textFormatting.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.2";
@@ -163,7 +162,6 @@ public final class FeatureFlags {
       CHAT_FILTERS,
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
-      TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
@@ -231,7 +229,6 @@ public final class FeatureFlags {
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
-      TEXT_FORMATTING,
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_SIZE_MB
@@ -572,13 +569,6 @@ public final class FeatureFlags {
    */
   public static boolean paypalRecurringDonations() {
     return getBoolean(PAYPAL_RECURRING_DONATIONS, Environment.IS_STAGING);
-  }
-
-  /**
-   * Whether or not we should show text formatting options.
-   */
-  public static boolean textFormatting() {
-    return getBoolean(TEXT_FORMATTING, false);
   }
 
   /**

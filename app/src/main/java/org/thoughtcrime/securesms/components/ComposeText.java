@@ -284,15 +284,11 @@ public class ComposeText extends EmojiEditText {
 
   public boolean hasStyling() {
     CharSequence trimmed = getTextTrimmed();
-    return FeatureFlags.textFormatting() && (trimmed instanceof Spanned) && MessageStyler.hasStyling((Spanned) trimmed);
+    return (trimmed instanceof Spanned) && MessageStyler.hasStyling((Spanned) trimmed);
   }
 
   public @Nullable BodyRangeList getStyling() {
-    if (FeatureFlags.textFormatting()) {
-      return MessageStyler.getStyling(getTextTrimmed());
-    } else {
-      return null;
-    }
+    return MessageStyler.getStyling(getTextTrimmed());
   }
 
   private void initialize() {
@@ -306,87 +302,94 @@ public class ComposeText extends EmojiEditText {
     mentionValidatorWatcher = new MentionValidatorWatcher();
     addTextChangedListener(mentionValidatorWatcher);
 
-    if (FeatureFlags.textFormatting()) {
-      spoilerRendererDelegate = new SpoilerRendererDelegate(this, true);
+    spoilerRendererDelegate = new SpoilerRendererDelegate(this, true);
 
-      addTextChangedListener(new ComposeTextStyleWatcher());
+    addTextChangedListener(new ComposeTextStyleWatcher());
 
-      setCustomSelectionActionModeCallback(new ActionMode.Callback() {
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-          MenuItem copy         = menu.findItem(android.R.id.copy);
-          MenuItem cut          = menu.findItem(android.R.id.cut);
-          MenuItem paste        = menu.findItem(android.R.id.paste);
-          int      copyOrder    = copy != null ? copy.getOrder() : 0;
-          int      cutOrder     = cut != null ? cut.getOrder() : 0;
-          int      pasteOrder   = paste != null ? paste.getOrder() : 0;
-          int      largestOrder = Math.max(copyOrder, Math.max(cutOrder, pasteOrder));
+    setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+      @Override
+      public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        MenuItem copy         = menu.findItem(android.R.id.copy);
+        MenuItem cut          = menu.findItem(android.R.id.cut);
+        MenuItem paste        = menu.findItem(android.R.id.paste);
+        int      copyOrder    = copy != null ? copy.getOrder() : 0;
+        int      cutOrder     = cut != null ? cut.getOrder() : 0;
+        int      pasteOrder   = paste != null ? paste.getOrder() : 0;
+        int      largestOrder = Math.max(copyOrder, Math.max(cutOrder, pasteOrder));
 
-          menu.add(0, R.id.edittext_bold, largestOrder, getContext().getString(R.string.TextFormatting_bold));
-          menu.add(0, R.id.edittext_italic, largestOrder, getContext().getString(R.string.TextFormatting_italic));
-          menu.add(0, R.id.edittext_strikethrough, largestOrder, getContext().getString(R.string.TextFormatting_strikethrough));
-          menu.add(0, R.id.edittext_monospace, largestOrder, getContext().getString(R.string.TextFormatting_monospace));
-          menu.add(0, R.id.edittext_spoiler, largestOrder, getContext().getString(R.string.TextFormatting_spoiler));
+        menu.add(0, R.id.edittext_bold, largestOrder, getContext().getString(R.string.TextFormatting_bold));
+        menu.add(0, R.id.edittext_italic, largestOrder, getContext().getString(R.string.TextFormatting_italic));
+        menu.add(0, R.id.edittext_strikethrough, largestOrder, getContext().getString(R.string.TextFormatting_strikethrough));
+        menu.add(0, R.id.edittext_monospace, largestOrder, getContext().getString(R.string.TextFormatting_monospace));
+        menu.add(0, R.id.edittext_spoiler, largestOrder, getContext().getString(R.string.TextFormatting_spoiler));
 
-          return true;
+        Editable text = getText();
+
+        if (text != null) {
+          int    start = getSelectionStart();
+          int    end   = getSelectionEnd();
+          if (MessageStyler.hasStyling(text, start, end)) {
+            menu.add(0, R.id.edittext_clear_formatting, largestOrder, getContext().getString(R.string.TextFormatting_clear_formatting));
+          }
         }
 
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-          Editable text = getText();
+        return true;
+      }
 
-          if (text == null) {
-            return false;
-          }
+      @Override
+      public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        Editable text = getText();
 
-          if (item.getItemId() != R.id.edittext_bold &&
-              item.getItemId() != R.id.edittext_italic &&
-              item.getItemId() != R.id.edittext_strikethrough &&
-              item.getItemId() != R.id.edittext_monospace &&
-              item.getItemId() != R.id.edittext_spoiler) {
-            return false;
-          }
-
-          int start = getSelectionStart();
-          int end   = getSelectionEnd();
-
-          CharSequence    charSequence = text.subSequence(start, end);
-          SpannableString replacement  = new SpannableString(charSequence);
-          Object          style        = null;
-
-          if (item.getItemId() == R.id.edittext_bold) {
-            style = MessageStyler.boldStyle();
-          } else if (item.getItemId() == R.id.edittext_italic) {
-            style = MessageStyler.italicStyle();
-          } else if (item.getItemId() == R.id.edittext_strikethrough) {
-            style = MessageStyler.strikethroughStyle();
-          } else if (item.getItemId() == R.id.edittext_monospace) {
-            style = MessageStyler.monoStyle();
-          } else if (item.getItemId() == R.id.edittext_spoiler) {
-            style = MessageStyler.spoilerStyle(MessageStyler.COMPOSE_ID, start, charSequence.length());
-          }
-
-          if (style != null) {
-            replacement.setSpan(style, 0, charSequence.length(), MessageStyler.SPAN_FLAGS);
-          }
-
-          clearComposingText();
-
-          text.replace(start, end, replacement);
-
-          mode.finish();
-          return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        if (text == null) {
           return false;
         }
 
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {}
-      });
-    }
+        if (item.getItemId() != R.id.edittext_bold &&
+            item.getItemId() != R.id.edittext_italic &&
+            item.getItemId() != R.id.edittext_strikethrough &&
+            item.getItemId() != R.id.edittext_monospace &&
+            item.getItemId() != R.id.edittext_spoiler &&
+            item.getItemId() != R.id.edittext_clear_formatting)
+        {
+          return false;
+        }
+
+        int                           start = getSelectionStart();
+        int                           end   = getSelectionEnd();
+        BodyRangeList.BodyRange.Style style = null;
+
+        if (item.getItemId() == R.id.edittext_bold) {
+          style = BodyRangeList.BodyRange.Style.BOLD;
+        } else if (item.getItemId() == R.id.edittext_italic) {
+          style = BodyRangeList.BodyRange.Style.ITALIC;
+        } else if (item.getItemId() == R.id.edittext_strikethrough) {
+          style = BodyRangeList.BodyRange.Style.STRIKETHROUGH;
+        } else if (item.getItemId() == R.id.edittext_monospace) {
+          style = BodyRangeList.BodyRange.Style.MONOSPACE;
+        } else if (item.getItemId() == R.id.edittext_spoiler) {
+          style = BodyRangeList.BodyRange.Style.SPOILER;
+        }
+
+        clearComposingText();
+
+        if (style != null) {
+          MessageStyler.toggleStyle(style, text, start, end);
+        } else if (item.getItemId() == R.id.edittext_clear_formatting) {
+          MessageStyler.clearStyling(text, start, end);
+        }
+
+        mode.finish();
+        return true;
+      }
+
+      @Override
+      public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false;
+      }
+
+      @Override
+      public void onDestroyActionMode(ActionMode mode) {}
+    });
   }
 
   private void setHintWithChecks(@Nullable CharSequence newHint) {
