@@ -25,14 +25,14 @@ sealed interface BluetoothVoiceNoteUtil {
   fun destroy()
 
   companion object {
-    fun create(context: Context, listener: () -> Unit, bluetoothPermissionDeniedHandler: () -> Unit): BluetoothVoiceNoteUtil {
+    fun create(context: Context, listener: (Boolean) -> Unit, bluetoothPermissionDeniedHandler: () -> Unit): BluetoothVoiceNoteUtil {
       return if (Build.VERSION.SDK_INT >= 31) BluetoothVoiceNoteUtil31(listener) else BluetoothVoiceNoteUtilLegacy(context, listener, bluetoothPermissionDeniedHandler)
     }
   }
 }
 
 @RequiresApi(31)
-private class BluetoothVoiceNoteUtil31(val listener: () -> Unit) : BluetoothVoiceNoteUtil {
+private class BluetoothVoiceNoteUtil31(val listener: (Boolean) -> Unit) : BluetoothVoiceNoteUtil {
   override fun connectBluetoothScoConnection() {
     val audioManager = ApplicationDependencies.getAndroidCallAudioManager()
     val device: AudioDeviceInfo? = audioManager.connectedBluetoothDevice
@@ -40,13 +40,15 @@ private class BluetoothVoiceNoteUtil31(val listener: () -> Unit) : BluetoothVoic
       val result: Boolean = audioManager.setCommunicationDevice(device)
       if (result) {
         Log.d(TAG, "Successfully set Bluetooth device as active communication device.")
+        listener(true)
       } else {
         Log.d(TAG, "Found Bluetooth device but failed to set it as active communication device.")
+        listener(false)
       }
     } else {
       Log.d(TAG, "Could not find Bluetooth device in list of communications devices, falling back to current input.")
+      listener(false)
     }
-    listener()
   }
 
   override fun disconnectBluetoothScoConnection() {
@@ -64,15 +66,23 @@ private class BluetoothVoiceNoteUtil31(val listener: () -> Unit) : BluetoothVoic
  * @param listener This will be executed on the main thread after the Bluetooth connection connects, or if it doesn't.
  * @param bluetoothPermissionDeniedHandler called when we detect the Bluetooth permission has been denied to our app.
  */
-private class BluetoothVoiceNoteUtilLegacy(val context: Context, val listener: () -> Unit, val bluetoothPermissionDeniedHandler: () -> Unit) : BluetoothVoiceNoteUtil {
+private class BluetoothVoiceNoteUtilLegacy(val context: Context, val listener: (Boolean) -> Unit, val bluetoothPermissionDeniedHandler: () -> Unit) : BluetoothVoiceNoteUtil {
   private val commandAndControlThread: HandlerThread = SignalExecutors.getAndStartHandlerThread("voice-note-audio", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD)
   private val uiThreadHandler = Handler(context.mainLooper)
   private val audioHandler: SignalAudioHandler = SignalAudioHandler(commandAndControlThread.looper)
   private val deviceUpdatedListener: AudioDeviceUpdatedListener = object : AudioDeviceUpdatedListener {
     override fun onAudioDeviceUpdated() {
-      if (signalBluetoothManager.state == SignalBluetoothManager.State.CONNECTED) {
-        Log.d(TAG, "Bluetooth SCO connected. Starting voice note recording on UI thread.")
-        uiThreadHandler.post { listener() }
+      when (signalBluetoothManager.state) {
+        SignalBluetoothManager.State.CONNECTED -> {
+          Log.d(TAG, "Bluetooth SCO connected. Starting voice note recording on UI thread.")
+          uiThreadHandler.post { listener(true) }
+        }
+        SignalBluetoothManager.State.ERROR,
+        SignalBluetoothManager.State.PERMISSION_DENIED -> {
+          Log.w(TAG, "Unable to complete Bluetooth connection due to ${signalBluetoothManager.state}. Starting voice note recording anyway on UI thread.")
+          uiThreadHandler.post { listener(false) }
+        }
+        else -> Log.d(TAG, "Current Bluetooth connection state: ${signalBluetoothManager.state}.")
       }
     }
   }
@@ -105,7 +115,7 @@ private class BluetoothVoiceNoteUtilLegacy(val context: Context, val listener: (
             bluetoothPermissionDeniedHandler()
             hasWarnedAboutBluetooth = true
           }
-          listener()
+          listener(false)
         }
       }
     }

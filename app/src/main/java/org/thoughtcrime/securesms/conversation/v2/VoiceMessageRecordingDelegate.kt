@@ -47,7 +47,7 @@ class VoiceMessageRecordingDelegate(
   private val voiceRecorderWakeLock = VoiceRecorderWakeLock(fragment.requireActivity())
   private val bluetoothVoiceNoteUtil = BluetoothVoiceNoteUtil.create(
     fragment.requireContext(),
-    this::beginRecording,
+    this::onBluetoothConnectionAttempt,
     this::onBluetoothPermissionDenied
   )
 
@@ -102,6 +102,10 @@ class VoiceMessageRecordingDelegate(
   private fun connectToBluetoothAndBeginRecording() {
     Log.d(TAG, "Initiating Bluetooth SCO connection...")
     bluetoothVoiceNoteUtil.connectBluetoothScoConnection()
+  }
+
+  private fun onBluetoothConnectionAttempt(success: Boolean) {
+    beginRecording()
   }
 
   @Suppress("DEPRECATION")
