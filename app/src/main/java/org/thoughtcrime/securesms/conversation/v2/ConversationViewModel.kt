@@ -51,10 +51,12 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.search.MessageResult
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -299,7 +301,8 @@ class ConversationViewModel(
     mentions: List<Mention>,
     bodyRanges: BodyRangeList?,
     contacts: List<Contact>,
-    linkPreviews: List<LinkPreview>
+    linkPreviews: List<LinkPreview>,
+    preUploadResults: List<MessageSender.PreUploadResult>
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
@@ -313,7 +316,8 @@ class ConversationViewModel(
       mentions = mentions,
       bodyRanges = bodyRanges,
       contacts = contacts,
-      linkPreviews = linkPreviews
+      linkPreviews = linkPreviews,
+      preUploadResults = preUploadResults
     ).observeOn(AndroidSchedulers.mainThread())
   }
 
@@ -353,5 +357,9 @@ class ConversationViewModel(
 
   fun resolveMessageToEdit(conversationMessage: ConversationMessage): Single<ConversationMessage> {
     return repository.resolveMessageToEdit(conversationMessage)
+  }
+
+  fun deleteSlideData(slides: List<Slide>) {
+    repository.deleteSlideData(slides)
   }
 }

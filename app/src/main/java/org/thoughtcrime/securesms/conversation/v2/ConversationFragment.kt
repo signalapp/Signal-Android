@@ -110,6 +110,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
+import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
@@ -199,19 +200,21 @@ import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.AudioSlide
+import org.thoughtcrime.securesms.mms.GifSlide
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.mms.StickerSlide
+import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -229,6 +232,7 @@ import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
@@ -240,6 +244,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DeleteDialog
+import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
@@ -1190,7 +1195,9 @@ class ConversationFragment :
     slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null,
     contacts: List<Contact> = emptyList(),
     clearCompose: Boolean = true,
-    linkPreviews: List<LinkPreview> = linkPreviewViewModel.onSend()
+    linkPreviews: List<LinkPreview> = linkPreviewViewModel.onSend(),
+    preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
+    afterSendComplete: () -> Unit = {}
   ) {
     val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup == true) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
 
@@ -1204,7 +1211,8 @@ class ConversationFragment :
       mentions = mentions,
       bodyRanges = bodyRanges,
       contacts = contacts,
-      linkPreviews = linkPreviews
+      linkPreviews = linkPreviews,
+      preUploadResults = preUploadResults
     )
 
     disposables += send
@@ -1222,7 +1230,10 @@ class ConversationFragment :
             is RecipientFormattingException -> toast(R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation, Toast.LENGTH_LONG)
           }
         },
-        onComplete = this::onSendComplete
+        onComplete = {
+          onSendComplete()
+          afterSendComplete()
+        }
       )
   }
 
@@ -2501,7 +2512,70 @@ class ConversationFragment :
     }
 
     override fun onMediaSend(result: MediaSendActivityResult) {
-      // TODO [cfv2] media send
+      val recipientSnapshot = viewModel.recipientSnapshot
+      if (result.recipientId != recipientSnapshot?.id) {
+        Log.w(TAG, "Result's recipientId did not match ours! Result: " + result.recipientId + ", Ours: " + recipientSnapshot?.id)
+        toast(R.string.ConversationActivity_error_sending_media)
+        return
+      }
+
+      if (result.isPushPreUpload) {
+        sendPreUploadMediaMessage(result)
+        return
+      }
+
+      val slides: List<Slide> = result.nonUploadedMedia.mapNotNull {
+        when {
+          MediaUtil.isVideoType(it.mimeType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption.orNull(), it.transformProperties.orNull())
+          MediaUtil.isGif(it.mimeType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption.orNull())
+          MediaUtil.isImageType(it.mimeType) -> ImageSlide(requireContext(), it.uri, it.mimeType, it.size, it.width, it.height, it.isBorderless, it.caption.orNull(), null, it.transformProperties.orNull())
+          else -> {
+            Log.w(TAG, "Asked to send an unexpected mimeType: '${it.mimeType}'. Skipping.")
+            null
+          }
+        }
+      }
+
+      sendMessage(
+        body = result.body,
+        mentions = result.mentions,
+        bodyRanges = result.bodyRanges,
+        messageToEdit = null,
+        quote = if (result.isViewOnce) null else inputPanel.quote.orNull(),
+        scheduledDate = result.scheduledTime,
+        slideDeck = SlideDeck().apply { slides.forEach { addSlide(it) } },
+        contacts = emptyList(),
+        clearCompose = true,
+        linkPreviews = emptyList()
+      ) {
+        viewModel.deleteSlideData(slides)
+      }
+    }
+
+    private fun sendPreUploadMediaMessage(result: MediaSendActivityResult) {
+      if (ExpiredBuildReminder.isEligible()) {
+        /* TODO [cfv2] -- Show expired dialog */
+        return
+      }
+
+      if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && result.bodyRanges != null && result.bodyRanges.rangesCount > 0) {
+        Dialogs.showFormattedTextDialog(requireContext()) { sendPreUploadMediaMessage(result) }
+        return
+      }
+
+      sendMessage(
+        body = result.body,
+        mentions = result.mentions,
+        bodyRanges = result.bodyRanges,
+        messageToEdit = null,
+        quote = if (result.isViewOnce) null else inputPanel.quote.orNull(),
+        scheduledDate = result.scheduledTime,
+        slideDeck = null,
+        contacts = emptyList(),
+        clearCompose = true,
+        linkPreviews = emptyList(),
+        preUploadResults = result.preUploadResults
+      )
     }
   }
 
@@ -2951,7 +3025,7 @@ class ConversationFragment :
           AttachmentKeyboardButton.PAYMENT -> AttachmentManager.selectPayment(this@ConversationFragment, viewModel.recipientSnapshot!!)
         }
       } else if (media != null) {
-        startActivityForResult(MediaSelectionActivity.editor(requireActivity(), sendButton.selectedSendType, listOf(media), viewModel.recipientSnapshot!!.id, composeText.textTrimmed), 12)
+        conversationActivityResultContracts.launchMediaEditor(listOf(media), viewModel.recipientSnapshot!!.id, composeText.textTrimmed)
       }
 
       container.hideInput()

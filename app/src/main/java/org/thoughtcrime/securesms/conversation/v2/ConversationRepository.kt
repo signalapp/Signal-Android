@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -87,6 +88,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -196,10 +198,11 @@ class ConversationRepository(
     mentions: List<Mention>,
     bodyRanges: BodyRangeList?,
     contacts: List<Contact>,
-    linkPreviews: List<LinkPreview>
+    linkPreviews: List<LinkPreview>,
+    preUploadResults: List<PreUploadResult>
   ): Completable {
     val sendCompletable = Completable.create { emitter ->
-      if (body.isEmpty() && slideDeck?.containsMediaSlide() != true) {
+      if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty()) {
         emitter.onError(InvalidMessageException("Message is empty!"))
         return@create
       }
@@ -225,14 +228,25 @@ class ConversationRepository(
         linkPreviews = linkPreviews
       )
 
-      MessageSender.send(
-        ApplicationDependencies.getApplication(),
-        message,
-        threadId,
-        MessageSender.SendType.SIGNAL,
-        metricId
-      ) {
-        emitter.onComplete()
+      if (preUploadResults.isEmpty()) {
+        MessageSender.send(
+          ApplicationDependencies.getApplication(),
+          message,
+          threadId,
+          MessageSender.SendType.SIGNAL,
+          metricId
+        ) {
+          emitter.onComplete()
+        }
+      } else {
+        MessageSender.sendPushWithPreUploadedMedia(
+          ApplicationDependencies.getApplication(),
+          message,
+          preUploadResults,
+          threadId
+        ) {
+          emitter.onComplete()
+        }
       }
     }
 
@@ -524,6 +538,17 @@ class ConversationRepository(
 
   fun resolveMessageToEdit(conversationMessage: ConversationMessage): Single<ConversationMessage> {
     return oldConversationRepository.resolveMessageToEdit(conversationMessage)
+  }
+
+  fun deleteSlideData(slides: List<Slide>) {
+    SignalExecutors.BOUNDED_IO.execute {
+      slides
+        .mapNotNull(Slide::getUri)
+        .filter(BlobProvider::isAuthority)
+        .forEach {
+          BlobProvider.getInstance().delete(applicationContext, it)
+        }
+    }
   }
 
   /**
