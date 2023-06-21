@@ -64,10 +64,10 @@ fun TextView.setRelativeDrawables(
  * Get a lifecycle associated with this view. Care must be taken to ensure
  * if activity fallback occurs that the context of the view is correct.
  */
-fun View.getLifecycle(): Lifecycle {
+fun View.getLifecycle(): Lifecycle? {
   return try {
     findFragment<Fragment>().viewLifecycleOwner.lifecycle
   } catch (e: IllegalStateException) {
-    ViewUtil.getActivityLifecycle(this)!!
+    ViewUtil.getActivityLifecycle(this)
   }
 }

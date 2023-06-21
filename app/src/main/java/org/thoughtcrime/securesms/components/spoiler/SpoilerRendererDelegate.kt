@@ -56,7 +56,7 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
     view.addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
       override fun onViewDetachedFromWindow(v: View) = stopAnimating()
       override fun onViewAttachedToWindow(v: View) {
-        view.getLifecycle().addObserver(object : DefaultLifecycleObserver {
+        view.getLifecycle()?.addObserver(object : DefaultLifecycleObserver {
           override fun onResume(owner: LifecycleOwner) {
             canAnimate = true
             systemAnimationsEnabled = !AccessibilityUtil.areAnimationsDisabled(view.context)
