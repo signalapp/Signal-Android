@@ -103,8 +103,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
       }
     }
 
-    val label = context.getString(currentOutput.labelRes)
-    Log.i(TAG, "Switching to $label")
+    Log.i(TAG, "Switching to $currentOutput")
 
     val drawableState = super.onCreateDrawableState(extraSpace + extra.size)
     mergeDrawableStates(drawableState, extra)
