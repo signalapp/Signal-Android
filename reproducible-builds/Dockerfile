@@ -5,7 +5,16 @@ COPY docker/apt.conf docker/sources.list /etc/apt/
 
 RUN apt-get update -y
 
-RUN apt-get update -y && apt-get install -y $(cat docker/dependencies.txt)
+RUN apt-get install -y --allow-downgrades libc6=2.31-13+deb11u5
+RUN apt-get install -y --allow-downgrades libncurses5=6.2+20201114-2
+RUN apt-get install -y --allow-downgrades libstdc++6=10.2.1-6
+RUN apt-get install -y --allow-downgrades lib32z1=1:1.2.11.dfsg-2+deb11u2
+RUN apt-get install -y --allow-downgrades wget=1.21-1+deb11u1
+RUN apt-get install -y --allow-downgrades openjdk-11-jdk=11.0.18+10-1~deb11u1
+RUN apt-get install -y --allow-downgrades openjdk-17-jdk=17.0.6+10-1~deb11u1
+RUN apt-get install -y --allow-downgrades git=1:2.30.2-1+deb11u2
+RUN apt-get install -y --allow-downgrades unzip=6.0-26+deb11u1
+
 RUN docker/print-versions.sh docker/dependencies.txt
 
 ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-7583922_latest.zip
