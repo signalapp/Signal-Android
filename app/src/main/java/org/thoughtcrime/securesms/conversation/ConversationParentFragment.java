@@ -472,8 +472,6 @@ public class ConversationParentFragment extends Fragment
   private Callback             callback;
   private RecentEmojiPageModel recentEmojis;
 
-  private ConversationOptionsMenu.Provider menuProvider;
-
   private Set<KeyboardPage> previousPages;
 
   public static ConversationParentFragment create(Intent intent) {
@@ -494,7 +492,6 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     disposables.bindTo(getViewLifecycleOwner());
-    menuProvider = new ConversationOptionsMenu.Provider(this, disposables);
     SpoilerAnnotation.resetRevealedSpoilers();
 
     if (requireActivity() instanceof Callback) {
@@ -574,10 +571,6 @@ public class ConversationParentFragment extends Fragment
       }
     };
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backPressedCallback);
-
-    if (isSearchRequested && savedInstanceState == null) {
-      menuProvider.onCreateMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
-    }
 
     sendButton.post(() -> sendButton.triggerSelectedChangedEvent());
   }
@@ -990,7 +983,7 @@ public class ConversationParentFragment extends Fragment
     if (!isSearchRequested && getActivity() != null) {
       optionsMenuDebouncer.publish(() -> {
         if (getActivity() != null) {
-          menuProvider.onCreateMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
+          toolbar.invalidateMenu();
         }
       });
     }
@@ -2108,8 +2101,8 @@ public class ConversationParentFragment extends Fragment
   }
 
   protected void initializeActionBar() {
+    toolbar.addMenuProvider(new ConversationOptionsMenu.Provider(this, disposables));
     invalidateOptionsMenu();
-    toolbar.setOnMenuItemClickListener(menuProvider::onMenuItemSelected);
     toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button);
     if (isInBubble()) {
       toolbar.setNavigationIcon(DrawableUtil.tint(ContextUtil.requireDrawable(requireContext(), R.drawable.ic_notification),
@@ -2368,6 +2361,11 @@ public class ConversationParentFragment extends Fragment
                 .setText(R.string.ConversationActivity__tap_here_to_start_a_group_call)
                 .setOnDismissListener(() -> SignalStore.tooltips().markGroupCallingTooltipSeen())
                 .show(TooltipPopup.POSITION_BELOW);
+  }
+
+  @Override
+  public void handleFormatText(@IdRes int id) {
+    composeText.handleFormatText(id);
   }
 
   private void showStickerIntroductionTooltip() {
@@ -3677,6 +3675,11 @@ public class ConversationParentFragment extends Fragment
         isInMessageRequest(),
         isInBubble()
     );
+  }
+
+  @Override
+  public boolean isTextHighlighted() {
+    return composeText.isTextHighlighted();
   }
 
   @Override

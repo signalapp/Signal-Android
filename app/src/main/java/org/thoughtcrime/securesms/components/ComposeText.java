@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Annotation;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.Selection;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -338,48 +340,11 @@ public class ComposeText extends EmojiEditText {
 
       @Override
       public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        Editable text = getText();
-
-        if (text == null) {
-          return false;
+        boolean handled = handleFormatText(item.getItemId());
+        if (handled) {
+          mode.finish();
         }
-
-        if (item.getItemId() != R.id.edittext_bold &&
-            item.getItemId() != R.id.edittext_italic &&
-            item.getItemId() != R.id.edittext_strikethrough &&
-            item.getItemId() != R.id.edittext_monospace &&
-            item.getItemId() != R.id.edittext_spoiler &&
-            item.getItemId() != R.id.edittext_clear_formatting)
-        {
-          return false;
-        }
-
-        int                           start = getSelectionStart();
-        int                           end   = getSelectionEnd();
-        BodyRangeList.BodyRange.Style style = null;
-
-        if (item.getItemId() == R.id.edittext_bold) {
-          style = BodyRangeList.BodyRange.Style.BOLD;
-        } else if (item.getItemId() == R.id.edittext_italic) {
-          style = BodyRangeList.BodyRange.Style.ITALIC;
-        } else if (item.getItemId() == R.id.edittext_strikethrough) {
-          style = BodyRangeList.BodyRange.Style.STRIKETHROUGH;
-        } else if (item.getItemId() == R.id.edittext_monospace) {
-          style = BodyRangeList.BodyRange.Style.MONOSPACE;
-        } else if (item.getItemId() == R.id.edittext_spoiler) {
-          style = BodyRangeList.BodyRange.Style.SPOILER;
-        }
-
-        clearComposingText();
-
-        if (style != null) {
-          MessageStyler.toggleStyle(style, text, start, end);
-        } else if (item.getItemId() == R.id.edittext_clear_formatting) {
-          MessageStyler.clearStyling(text, start, end);
-        }
-
-        mode.finish();
-        return true;
+        return handled;
       }
 
       @Override
@@ -565,6 +530,56 @@ public class ComposeText extends EmojiEditText {
     }
 
     return TIME_PATTERN.matcher(text.subSequence(startOfToken, endOfToken)).find();
+  }
+
+  public boolean isTextHighlighted() {
+    return getText() != null && getSelectionStart() < getSelectionEnd();
+  }
+
+  public boolean handleFormatText(@IdRes int id) {
+    Editable text = getText();
+
+    if (text == null) {
+      return false;
+    }
+
+    if (id != R.id.edittext_bold &&
+        id != R.id.edittext_italic &&
+        id != R.id.edittext_strikethrough &&
+        id != R.id.edittext_monospace &&
+        id != R.id.edittext_spoiler &&
+        id != R.id.edittext_clear_formatting)
+    {
+      return false;
+    }
+
+    int                           start = getSelectionStart();
+    int                           end   = getSelectionEnd();
+    BodyRangeList.BodyRange.Style style = null;
+
+    if (id == R.id.edittext_bold) {
+      style = BodyRangeList.BodyRange.Style.BOLD;
+    } else if (id == R.id.edittext_italic) {
+      style = BodyRangeList.BodyRange.Style.ITALIC;
+    } else if (id == R.id.edittext_strikethrough) {
+      style = BodyRangeList.BodyRange.Style.STRIKETHROUGH;
+    } else if (id == R.id.edittext_monospace) {
+      style = BodyRangeList.BodyRange.Style.MONOSPACE;
+    } else if (id == R.id.edittext_spoiler) {
+      style = BodyRangeList.BodyRange.Style.SPOILER;
+    }
+
+    clearComposingText();
+
+    if (style != null) {
+      MessageStyler.toggleStyle(style, text, start, end);
+    } else {
+      MessageStyler.clearStyling(text, start, end);
+    }
+
+    Selection.setSelection(getText(), end);
+
+    return true;
   }
 
   private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
