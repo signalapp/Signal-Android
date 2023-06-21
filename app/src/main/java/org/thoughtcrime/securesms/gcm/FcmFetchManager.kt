@@ -119,19 +119,16 @@ object FcmFetchManager {
           startForegroundOnDestroy = true
           Log.i(TAG, "Legacy fallback: foreground service is stopping, but trying to run in background anyways.")
         }
-        val performedReplace = EXECUTOR.enqueue { fetch(context) }
+      }
+      val performedReplace = EXECUTOR.enqueue { fetch(context) }
 
-        if (performedReplace) {
-          Log.i(TAG, "Legacy fallback: already have one running and one enqueued. Ignoring.")
-        } else {
-          activeCount++
-          Log.i(TAG, "Legacy fallback: Incrementing active count to $activeCount")
-        }
-        return
+      if (performedReplace) {
+        Log.i(TAG, "Legacy fallback: already have one running and one enqueued. Ignoring.")
+      } else {
+        activeCount++
+        Log.i(TAG, "Legacy fallback: Incrementing active count to $activeCount")
       }
     }
-    Log.i(TAG, "No foreground running, performing legacy fallback")
-    retrieveMessages(context)
   }
 
   @JvmStatic
