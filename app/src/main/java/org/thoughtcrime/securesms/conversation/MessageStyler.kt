@@ -261,6 +261,22 @@ object MessageStyler {
     }
   }
 
+  @JvmStatic
+  fun convertSpoilersToComposeMode(text: Spannable) {
+    SpoilerAnnotation.getSpoilerAndClickAnnotations(text)
+      .forEach { (spoiler, clickSpan) ->
+        val start = text.getSpanStart(spoiler)
+        val end = text.getSpanEnd(spoiler)
+        val convertedSpoiler = copyStyleSpan(spoiler, start, end - start)
+        text.removeSpan(spoiler)
+        text.setSpan(convertedSpoiler, start, end, SPAN_FLAGS)
+
+        if (clickSpan != null) {
+          text.removeSpan(clickSpan)
+        }
+      }
+  }
+
   fun Any.isSupportedStyle(): Boolean {
     return when (this) {
       is CharacterStyle -> isSupportedCharacterStyle()
