@@ -11,7 +11,6 @@ import androidx.annotation.MainThread
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.util.AccessibilityUtil
 import org.thoughtcrime.securesms.util.Util
 import kotlin.random.Random
 
@@ -65,14 +64,14 @@ object SpoilerPaint {
       bounds.bottom + strokeWidth.toInt()
     )
 
-    update(!AccessibilityUtil.areAnimationsDisabled(ApplicationDependencies.getApplication()))
+    update()
   }
 
   /**
    * Invoke every time before you need to use the [shader].
    */
   @MainThread
-  fun update(animationsEnabled: Boolean) {
+  fun update() {
     val now = System.currentTimeMillis()
     var dt = now - lastDrawTime
     if (dt < 48) {
@@ -87,7 +86,7 @@ object SpoilerPaint {
     // To avoid that, we draw into a buffer, then swap the buffer into the shader when it's fully drawn.
     val canvas = Canvas(bufferBitmap)
     bufferBitmap.eraseColor(Color.TRANSPARENT)
-    draw(canvas, if (animationsEnabled) dt else 0)
+    draw(canvas, dt)
 
     val swap = shaderBitmap
     shaderBitmap = bufferBitmap
