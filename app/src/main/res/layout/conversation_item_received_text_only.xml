@@ -117,6 +117,7 @@
             android:textColor="@color/signal_text_primary"
             android:textColorLink="@color/signal_text_primary"
             app:emoji_maxLength="1000"
+            app:emoji_renderSpoilers="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />

@@ -68,9 +68,10 @@ public class EmojiTextView extends AppCompatTextView {
   private TextDirectionHeuristic textDirection;
   private boolean                isJumbomoji;
   private boolean                forceJumboEmoji;
+  private boolean                renderSpoilers;
 
-  private       MentionRendererDelegate mentionRendererDelegate;
-  private final SpoilerRendererDelegate spoilerRendererDelegate;
+  private MentionRendererDelegate mentionRendererDelegate;
+  private SpoilerRendererDelegate spoilerRendererDelegate;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -90,6 +91,7 @@ public class EmojiTextView extends AppCompatTextView {
     renderMentions  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
     measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
     forceJumboEmoji = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
+    renderSpoilers  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderSpoilers, false);
     a.recycle();
 
     a                = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.textSize });
@@ -99,7 +101,10 @@ public class EmojiTextView extends AppCompatTextView {
     if (renderMentions) {
       mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.transparent_black_20));
     }
-    spoilerRendererDelegate = new SpoilerRendererDelegate(this);
+
+    if (renderSpoilers) {
+      spoilerRendererDelegate = new SpoilerRendererDelegate(this);
+    }
 
     textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
 
@@ -127,14 +132,16 @@ public class EmojiTextView extends AppCompatTextView {
     }
   }
 
-  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
+  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @Nullable SpoilerRendererDelegate spoilerDelegate) {
     int checkpoint = canvas.save();
     canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
     try {
       if (mentionDelegate != null) {
         mentionDelegate.draw(canvas, (Spanned) getText(), getLayout());
       }
-      spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      if (spoilerDelegate != null) {
+        spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      }
     } finally {
       canvas.restoreToCount(checkpoint);
     }
@@ -431,7 +438,9 @@ public class EmojiTextView extends AppCompatTextView {
   @Override
   public void setTextColor(int color) {
     super.setTextColor(color);
-    spoilerRendererDelegate.updateFromTextColor();
+    if (spoilerRendererDelegate != null) {
+      spoilerRendererDelegate.updateFromTextColor();
+    }
   }
 
   @Override

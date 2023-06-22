@@ -60,6 +60,7 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
           override fun onResume(owner: LifecycleOwner) {
             canAnimate = true
             systemAnimationsEnabled = !AccessibilityUtil.areAnimationsDisabled(view.context)
+            view.invalidate()
           }
 
           override fun onPause(owner: LifecycleOwner) {

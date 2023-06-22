@@ -228,6 +228,7 @@
             app:emoji_maxLength="1000"
             app:measureLastLine="true"
             app:scaleEmojis="true"
+            app:emoji_renderSpoilers="true"
             tools:text="Mango pickle lorem ipsum" />
 
         <ViewStub

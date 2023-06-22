@@ -167,6 +167,7 @@
             android:textColor="@color/conversation_item_sent_text_primary_color"
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             app:emoji_maxLength="1000"
+            app:emoji_renderSpoilers="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
