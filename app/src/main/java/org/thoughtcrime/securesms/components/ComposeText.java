@@ -73,6 +73,7 @@ public class ComposeText extends EmojiEditText {
   @Nullable private InputPanel.MediaListener      mediaListener;
   @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
   @Nullable private InlineQueryChangedListener    inlineQueryChangedListener;
+  @Nullable private StylingChangedListener        stylingChangedListener;
 
   public ComposeText(Context context) {
     super(context);
@@ -221,6 +222,10 @@ public class ComposeText extends EmojiEditText {
 
   public void setMentionValidator(@Nullable MentionValidatorWatcher.MentionValidator mentionValidator) {
     mentionValidatorWatcher.setMentionValidator(mentionValidator);
+  }
+
+  public void setStylingChangedListener(@Nullable StylingChangedListener listener) {
+    stylingChangedListener = listener;
   }
 
   private boolean isLandscape() {
@@ -579,6 +584,10 @@ public class ComposeText extends EmojiEditText {
 
     Selection.setSelection(getText(), end);
 
+    if (stylingChangedListener != null) {
+      stylingChangedListener.onStylingChanged();
+    }
+
     return true;
   }
 
@@ -628,4 +637,7 @@ public class ComposeText extends EmojiEditText {
     void onCursorPositionChanged(int start, int end);
   }
 
+  public interface StylingChangedListener {
+    void onStylingChanged();
+  }
 }

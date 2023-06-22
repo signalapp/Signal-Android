@@ -563,6 +563,7 @@ class ConversationFragment :
       setCursorPositionChangedListener(composeTextEventsListener)
       setOnKeyListener(composeTextEventsListener)
       addTextChangedListener(composeTextEventsListener)
+      setStylingChangedListener(composeTextEventsListener)
       setOnClickListener(composeTextEventsListener)
       onFocusChangeListener = composeTextEventsListener
     }
@@ -2667,7 +2668,8 @@ class ConversationFragment :
     View.OnClickListener,
     TextWatcher,
     OnFocusChangeListener,
-    ComposeText.CursorPositionChangedListener {
+    ComposeText.CursorPositionChangedListener,
+    ComposeText.StylingChangedListener {
 
     private var beforeLength = 0
     private var previousText = ""
@@ -2745,6 +2747,10 @@ class ConversationFragment :
       }
 
       previousText = text
+    }
+
+    override fun onStylingChanged() {
+      handleSaveDraftOnTextChange(composeText.textTrimmed)
     }
   }
 

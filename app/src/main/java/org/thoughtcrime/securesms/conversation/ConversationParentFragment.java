@@ -862,6 +862,7 @@ public class ConversationParentFragment extends Fragment
         }
 
         composeText.addTextChangedListener(typingTextWatcher);
+        composeText.setStylingChangedListener(typingTextWatcher);
         composeText.setSelection(composeText.length(), composeText.length());
       }
     });
@@ -3865,7 +3866,7 @@ public class ConversationParentFragment extends Fragment
     }
   }
 
-  private class ComposeTextWatcher extends SimpleTextWatcher {
+  private class ComposeTextWatcher extends SimpleTextWatcher implements ComposeText.StylingChangedListener {
 
     private boolean typingStatusEnabled = true;
 
@@ -3905,6 +3906,11 @@ public class ConversationParentFragment extends Fragment
 
     public void setTypingStatusEnabled(boolean enabled) {
       this.typingStatusEnabled = enabled;
+    }
+
+    @Override
+    public void onStylingChanged() {
+      handleSaveDraftOnTextChange(composeText.getTextTrimmed());
     }
   }
 
