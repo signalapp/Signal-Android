@@ -54,7 +54,6 @@ public class CallNotificationBuilder {
     Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     contentIntent.putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_FULLSCREEN, true);
-    contentIntent.putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, isVideoCall);
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, PendingIntentFlags.mutable());
 

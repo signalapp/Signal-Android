@@ -171,7 +171,9 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     processIntent(getIntent());
 
-    if (ANSWER_ACTION.equals(getIntent().getAction())) {
+    if (ANSWER_VIDEO_ACTION.equals(getIntent().getAction())) {
+      enableVideoIfAvailable = true;
+    } else if (ANSWER_ACTION.equals(getIntent().getAction()) || getIntent().getBooleanExtra(EXTRA_STARTED_FROM_FULLSCREEN, false)) {
       enableVideoIfAvailable = false;
     } else {
       enableVideoIfAvailable = getIntent().getBooleanExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
