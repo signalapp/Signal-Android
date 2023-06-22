@@ -1,21 +1,18 @@
-FROM debian:bullseye
+FROM ubuntu:22.04
 
 COPY docker/ docker/
 COPY docker/apt.conf docker/sources.list /etc/apt/
 
-RUN apt-get update -y
+# Bit of a chicken-and-egg problem.
+# Ubuntu needs the ca-certificates package before it'll trust our mirror.
+# But we can't install it because it doesn't trust our mirror!
+# To resolve, we temporarily disable verification.
+RUN apt update -oAcquire::https::Verify-Peer=false
+RUN apt install -oAcquire::https::Verify-Peer=false -y ca-certificates
 
-RUN apt-get install -y --allow-downgrades libc6=2.31-13+deb11u5
-RUN apt-get install -y --allow-downgrades libncurses5=6.2+20201114-2
-RUN apt-get install -y --allow-downgrades libstdc++6=10.2.1-6
-RUN apt-get install -y --allow-downgrades lib32z1=1:1.2.11.dfsg-2+deb11u2
-RUN apt-get install -y --allow-downgrades wget=1.21-1+deb11u1
-RUN apt-get install -y --allow-downgrades openjdk-11-jdk=11.0.18+10-1~deb11u1
-RUN apt-get install -y --allow-downgrades openjdk-17-jdk=17.0.6+10-1~deb11u1
-RUN apt-get install -y --allow-downgrades git=1:2.30.2-1+deb11u2
-RUN apt-get install -y --allow-downgrades unzip=6.0-26+deb11u1
-
-RUN docker/print-versions.sh docker/dependencies.txt
+# Back to normal, verification back on
+RUN apt update
+RUN apt install -y git openjdk-11-jdk openjdk-17-jdk unzip wget
 
 ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-7583922_latest.zip
 ENV ANDROID_API_LEVELS                  android-33

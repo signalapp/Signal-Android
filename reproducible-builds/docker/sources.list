@@ -1,2 +1,3 @@
-deb http://snapshot.debian.org/archive/debian-security/20230414T163652Z/ bullseye-security/updates main
-deb http://snapshot.debian.org/archive/debian/20230415T205358Z/ bullseye main
+deb http://mirror.signalusers.org/ubuntu/1687461439/ jammy main universe
+deb http://mirror.signalusers.org/ubuntu/1687461439/ jammy-security main universe
+deb http://mirror.signalusers.org/ubuntu/1687461439/ jammy-updates main universe
