@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 apply plugin: 'java-library'
 apply plugin: 'org.jetbrains.kotlin.jvm'
 apply plugin: 'java-test-fixtures'
@@ -15,16 +17,14 @@ group            = lib_signal_service_group_info
 java {
     withJavadocJar()
     withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
-kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "11"
     }
-}
-
-compileJava {
-    options.release = 11
 }
 
 configurations {
