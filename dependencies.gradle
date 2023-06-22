@@ -107,7 +107,7 @@ dependencyResolutionManagement {
             bundle('exoplayer', ['exoplayer-core', 'exoplayer-ui', 'exoplayer-extension-mediasession'])
 
             // Firebase
-            library('firebase-messaging', 'com.google.firebase:firebase-messaging:23.1.0')
+            library('firebase-messaging', 'com.google.firebase:firebase-messaging:23.1.2')
 
             // 1st Party
             library('libsignal-client', 'org.signal', 'libsignal-client').versionRef('libsignal-client')
