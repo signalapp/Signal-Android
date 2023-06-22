@@ -3508,6 +3508,8 @@
     <string name="conversation__menu_conversation_settings">Nastavitve klepeta</string>
     <string name="conversation__menu_add_shortcut">Dodaj na domači zaslon</string>
     <string name="conversation__menu_create_bubble">Ustvari mehurček</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Razširi pojavno okno</string>
@@ -6162,6 +6164,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Skrito besedilo</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

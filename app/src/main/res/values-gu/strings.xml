@@ -3342,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">ચેટ સેટિંગ્સ</string>
     <string name="conversation__menu_add_shortcut">હોમ સ્ક્રીન પર ઉમેરો</string>
     <string name="conversation__menu_create_bubble">બબલ બનાવો</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">પોપઅપ વિસ્તૃત કરો</string>
@@ -5916,6 +5918,8 @@
     <string name="TextFormatting_monospace">મોનોસ્પેસ</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">મેસેજ ઝાંખો કરનાર</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

@@ -1481,7 +1481,7 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s-მა ჯგუფური ზარი წამოიწყო · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">შენ წამოიწყე ჯგუფის ზარი · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">შენ დიწყე ჯგუფური ზარი · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ჯგუფურ ზარზეა · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">ჯგუფურ ზარზე ხარ · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s და %2$s ჯგუფურ ზარზე არიან · %3$s</string>
@@ -3342,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">ჩატის პარამეტრები</string>
     <string name="conversation__menu_add_shortcut">მთავარ გვერდზე დამატება</string>
     <string name="conversation__menu_create_bubble">ბაბლის შექმნა</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">ფანჯრის გაფართოება</string>
@@ -5916,6 +5918,8 @@
     <string name="TextFormatting_monospace">მონოგამოსივრცული</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">სპოილერი</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -6115,7 +6119,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">შესაძლებელია მხოლოდ Signal-ის ბეტა ვერსიაში</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">წერილების რედაქტირება მხოლოდ Signal-ის ბეტა ვერსიის მომხმარებლებს შეუძლიათ. თუ ამ წერილს დაარედაქტირებ, მას მხოლოდ Signal ბეტას უახლესი ვერსიის მომხმარებლები ნახავენ.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">შეტყობინებების რედაქტირება მხოლოდ Signal-ის ბეტა ვერსიის მომხმარებლებს შეუძლიათ. თუ ამ შეტყობინებას დაარედაქტირებ, მას მხოლოდ Signal-ის უახლესი ბეტა ვერსიის მომხმარებლები ნახავენ.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">გაუქმება</string>
     <!-- Button to continue sending edit message despite it being beta only -->

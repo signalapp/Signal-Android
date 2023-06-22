@@ -3259,6 +3259,8 @@
     <string name="conversation__menu_conversation_settings">ချက်(တ်) ဆက်တင်</string>
     <string name="conversation__menu_add_shortcut">ပင်မစာမျက်နှာသို့ ထည့်ပါ</string>
     <string name="conversation__menu_create_bubble">ပူဖောင်းကို ဖန်တီးပါ</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">popup ကို တိုးချဲ့ပါ</string>
@@ -5793,6 +5795,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">စာကို ဝါးထားရန်</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

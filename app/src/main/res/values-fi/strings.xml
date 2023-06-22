@@ -2907,7 +2907,7 @@
     <string name="preferences__linked_devices">Yhdistetyt laitteet</string>
     <string name="preferences__light_theme">Vaalea</string>
     <string name="preferences__dark_theme">Tumma</string>
-    <string name="preferences__appearance">Ulkonäkö</string>
+    <string name="preferences__appearance">Ulkoasu</string>
     <string name="preferences__theme">Teema</string>
     <string name="preferences__chat_color_and_wallpaper">Keskustelun väri ja taustakuva</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
@@ -3342,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">Keskusteluasetukset</string>
     <string name="conversation__menu_add_shortcut">Lisätty kotinäytölle</string>
     <string name="conversation__menu_create_bubble">Luo kupla</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Suurenna ponnahdusikkuna</string>
@@ -5916,6 +5918,8 @@
     <string name="TextFormatting_monospace">Suhteuttamaton</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Sumennus</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

@@ -3591,6 +3591,8 @@
     <string name="conversation__menu_conversation_settings">Socruithe an comhrá</string>
     <string name="conversation__menu_add_shortcut">Cuir leis an scáileán baile é</string>
     <string name="conversation__menu_create_bubble">Cruthaigh bolgán</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Méadaigh an fógra aníos</string>
@@ -6285,6 +6287,8 @@
     <string name="TextFormatting_monospace">Aonleithead</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Bacóir</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -6491,9 +6495,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Stair eagarthóireachta</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Beta Signal amháin</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Béite Signal amháin</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Níl cur teachtaireachtaí in eagar ar fáil ach ag úsáideoirí Beta. Má chuirfidh tú teachtaireacht in eagar, ní fheicfidh ach na daoine a bhfuil an leagan is déanaí de Signal acu í.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Níl cur teachtaireachtaí in eagar ar fáil ach ag úsáideoirí Béite. Má chuirfidh tú teachtaireacht in eagar, ní fheicfidh ach na daoine a bhfuil an leagan is déanaí de Signal acu í.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Cuir ar ceal</string>
     <!-- Button to continue sending edit message despite it being beta only -->
