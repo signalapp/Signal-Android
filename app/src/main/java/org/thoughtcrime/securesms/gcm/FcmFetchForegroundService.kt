@@ -37,7 +37,6 @@ class FcmFetchForegroundService : Service() {
 
   override fun onCreate() {
     Log.d(TAG, "onCreate()")
-    postForegroundNotification()
   }
 
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
