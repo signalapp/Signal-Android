@@ -116,7 +116,7 @@ class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMe
     return if (scheduleMessageMode) {
       (conversationMessage.messageRecord as MediaMmsMessageRecord).scheduledDate
     } else {
-      conversationMessage.messageRecord.conversationTimestamp
+      conversationMessage.conversationTimestamp
     }
   }
 

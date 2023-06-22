@@ -741,17 +741,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return originalMessageId;
   }
 
-  /**
-   * Get the timestamp of a message, shown in the conversation. This is used
-   * for example when showing the conversation date separators.
-   */
-  public long getConversationTimestamp() {
-    if (isEditMessage()) {
-      return getDateReceived();
-    }
-    return getDateSent();
-  }
-
   public int getRevisionNumber() {
     return revisionNumber;
   }

@@ -8,11 +8,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.Conversions;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.database.BodyRangeUtil;
 import org.thoughtcrime.securesms.database.MentionUtil;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -30,6 +32,9 @@ import java.util.Objects;
  * for various presentations.
  */
 public class ConversationMessage {
+
+  private static final String TAG = Log.tag(ConversationMessage.class);
+
   @NonNull  private final MessageRecord          messageRecord;
   @NonNull  private final List<Mention>          mentions;
   @Nullable private final SpannableString        body;
@@ -37,19 +42,22 @@ public class ConversationMessage {
   @NonNull  private final MessageStyler.Result   styleResult;
   @NonNull  private final Recipient              threadRecipient;
             private final boolean                hasBeenQuoted;
+  @Nullable private final MessageRecord          originalMessage;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
                               @Nullable List<Mention> mentions,
                               boolean hasBeenQuoted,
                               @Nullable MessageStyler.Result styleResult,
-                              @NonNull Recipient threadRecipient)
+                              @NonNull Recipient threadRecipient,
+                              @Nullable MessageRecord originalMessage)
   {
     this.messageRecord   = messageRecord;
     this.hasBeenQuoted   = hasBeenQuoted;
     this.mentions        = mentions != null ? mentions : Collections.emptyList();
     this.styleResult     = styleResult != null ? styleResult : MessageStyler.Result.none();
     this.threadRecipient = threadRecipient;
+    this.originalMessage = originalMessage;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -120,6 +128,20 @@ public class ConversationMessage {
            getBottomButton() == null;
   }
 
+  public long getConversationTimestamp() {
+    if (originalMessage != null) {
+      return originalMessage.getDateSent();
+    }
+    return messageRecord.getDateSent();
+  }
+
+  public MessageRecord getOriginalMessage() {
+    if (originalMessage != null) {
+      return originalMessage;
+    }
+    return messageRecord;
+  }
+
   public boolean hasBeenScheduled() {
     return MessageRecordUtil.isScheduled(messageRecord);
   }
@@ -163,12 +185,22 @@ public class ConversationMessage {
         styleResult          = MessageStyler.style(messageRecord.getDateSent(), bodyRanges, styledAndMentionBody);
       }
 
+      MessageRecord originalMessage = null;
+      if (messageRecord.isEditMessage()) {
+        try {
+          originalMessage = SignalDatabase.messages().getMessageRecord(messageRecord.getOriginalMessageId().getId());
+        } catch (NoSuchMessageException e) {
+          Log.e(TAG, "Original message of edit message not found!", e);
+        }
+      }
+
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
                                      hasBeenQuoted,
                                      styleResult,
-                                     threadRecipient);
+                                     threadRecipient,
+                                     originalMessage);
     }
 
     /**
