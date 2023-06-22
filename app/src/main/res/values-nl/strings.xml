@@ -3291,7 +3291,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Reageren</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Aanpassen</string>
+    <string name="conversation_selection__menu_edit">Bewerken</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Bijlage opslaan</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -6115,7 +6115,7 @@
     <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">Bewerkgeschiedenis</string>
+    <string name="EditMessageHistoryDialog_title">Bewerkingsgeschiedenis</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Alleen Signal-bèta</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
