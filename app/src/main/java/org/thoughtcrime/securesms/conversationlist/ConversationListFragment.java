@@ -1324,7 +1324,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (cameraFab != null) {
       ViewUtil.fadeOut(cameraFab, fadeDuration);
     }
-    if (megaphoneContainer.resolved()) {
+    if (megaphoneContainer != null && megaphoneContainer.resolved()) {
       ViewUtil.fadeOut(megaphoneContainer.get(), fadeDuration);
     }
   }
@@ -1336,7 +1336,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (cameraFab != null) {
       ViewUtil.fadeIn(cameraFab, fadeDuration);
     }
-    if (megaphoneContainer.resolved()) {
+    if (megaphoneContainer != null && megaphoneContainer.resolved()) {
       ViewUtil.fadeIn(megaphoneContainer.get(), fadeDuration);
     }
   }
