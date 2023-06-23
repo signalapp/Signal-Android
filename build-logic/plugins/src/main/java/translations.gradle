@@ -133,6 +133,8 @@ task postTranslateIpFetch {
             ext.kbs_ips='${staticIpResolver.resolveToBuildConfig("api.backup.signal.org")}'
             ext.sfu_ips='${staticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}'
             ext.content_proxy_ips='${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}'
+            ext.svr2_ips='${staticIpResolver.resolveToBuildConfig("svr2.signal.org")}'
+            ext.cdsi_ips='${staticIpResolver.resolveToBuildConfig("cdsi.signal.org")}'
         """.stripIndent().trim()
     }
 }
