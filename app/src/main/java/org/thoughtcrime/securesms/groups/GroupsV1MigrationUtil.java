@@ -137,7 +137,7 @@ public final class GroupsV1MigrationUtil {
   public static void performLocalMigration(@NonNull Context context, @NonNull GroupId.V1 gv1Id) throws IOException
   {
     Log.i(TAG, "Beginning local migration! V1 ID: " + gv1Id, new Throwable());
-    try (Closeable ignored = GroupsV2ProcessingLock.acquireGroupProcessingLock()) {
+    try (Closeable ignored = GroupsV2ProcessingLock.acquireGroupProcessingLock(1000)) {
       if (SignalDatabase.groups().groupExists(gv1Id.deriveV2MigrationGroupId())) {
         Log.w(TAG, "Group was already migrated! Could have been waiting for the lock.", new Throwable());
         return;

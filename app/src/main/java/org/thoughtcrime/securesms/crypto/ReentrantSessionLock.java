@@ -18,4 +18,8 @@ public enum ReentrantSessionLock implements SignalSessionLock {
     LOCK.lock();
     return LOCK::unlock;
   }
+
+  public boolean isHeldByCurrentThread() {
+    return LOCK.isHeldByCurrentThread();
+  }
 }
