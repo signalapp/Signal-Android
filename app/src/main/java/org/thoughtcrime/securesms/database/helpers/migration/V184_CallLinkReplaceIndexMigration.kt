@@ -6,6 +6,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * [V183_CallLinkTableMigration] accidentally setup a unique constraint incorrectly and missed an index. This fixes it.
  */
+@Suppress("ClassName")
 object V184_CallLinkReplaceIndexMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

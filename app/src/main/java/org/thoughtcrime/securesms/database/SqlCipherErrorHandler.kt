@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicReference
 /**
  * The default error handler wipes the file. This one instead prints some diagnostics and then crashes so the original corrupt file isn't lost.
  */
+@Suppress("ClassName")
 class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHandler {
 
   override fun onCorruption(db: SQLiteDatabase, message: String) {

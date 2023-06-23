@@ -11,6 +11,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Introduces [org.thoughtcrime.securesms.database.KyberPreKeyTable].
  */
+@Suppress("ClassName")
 object V194_KyberPreKeyMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

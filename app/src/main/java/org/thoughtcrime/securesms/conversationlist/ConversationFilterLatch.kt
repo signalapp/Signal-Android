@@ -6,5 +6,5 @@ package org.thoughtcrime.securesms.conversationlist
  */
 enum class ConversationFilterLatch {
   SET,
-  RESET;
+  RESET
 }

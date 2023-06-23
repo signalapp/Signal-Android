@@ -8,6 +8,7 @@ import org.signal.core.util.logging.Log
 /**
  * I found some other tables that didn't have the proper indexes setup to correspond with their foreign keys.
  */
+@Suppress("ClassName")
 object V187_MoreForeignKeyIndexesMigration : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V187_MoreForeignKeyIndexesMigration::class.java)

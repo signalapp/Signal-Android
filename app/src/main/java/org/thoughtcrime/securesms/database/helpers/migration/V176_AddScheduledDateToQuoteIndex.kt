@@ -6,6 +6,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Expand quote index to included scheduled date so they can be excluded.
  */
+@Suppress("ClassName")
 object V176_AddScheduledDateToQuoteIndex : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL("DROP INDEX IF EXISTS mms_quote_id_quote_author_index")

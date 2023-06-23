@@ -4929,7 +4929,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   protected enum class ReceiptType(val columnName: String, val groupStatus: Int) {
     READ(READ_RECEIPT_COUNT, GroupReceiptTable.STATUS_READ),
     DELIVERY(DELIVERY_RECEIPT_COUNT, GroupReceiptTable.STATUS_DELIVERED),
-    VIEWED(VIEWED_RECEIPT_COUNT, GroupReceiptTable.STATUS_VIEWED);
+    VIEWED(VIEWED_RECEIPT_COUNT, GroupReceiptTable.STATUS_VIEWED)
   }
 
   data class SyncMessageId(

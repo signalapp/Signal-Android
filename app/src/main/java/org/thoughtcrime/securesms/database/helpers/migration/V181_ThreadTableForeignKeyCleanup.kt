@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log
  * We saw evidence (via failed backup restores) that some people have recipients in their thread table that do not exist in the recipient table.
  * This is likely the result of a bad past migration, since a foreign key is in place. Cleaning it up now.
  */
+@Suppress("ClassName")
 object V181_ThreadTableForeignKeyCleanup : SignalDatabaseMigration {
 
   val TAG = Log.tag(V181_ThreadTableForeignKeyCleanup::class.java)

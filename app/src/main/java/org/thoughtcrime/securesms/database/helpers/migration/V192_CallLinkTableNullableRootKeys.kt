@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log
 /**
  * Allow ROOT_KEY in CallLinkTable to be null.
  */
+@Suppress("ClassName")
 object V192_CallLinkTableNullableRootKeys : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V192_CallLinkTableNullableRootKeys::class.java)

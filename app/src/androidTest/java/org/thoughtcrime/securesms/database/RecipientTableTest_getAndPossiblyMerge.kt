@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
 import java.util.UUID
 
+@Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
 class RecipientTableTest_getAndPossiblyMerge {
 

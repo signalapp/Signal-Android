@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import static junit.framework.TestCase.assertEquals;
 
+@SuppressWarnings("NewClassNamingConvention")
 @RunWith(Parameterized.class)
 public class LinkUtilTest_isLegal {
 

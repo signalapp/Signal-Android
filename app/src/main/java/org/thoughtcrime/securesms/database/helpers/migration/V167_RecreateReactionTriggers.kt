@@ -6,6 +6,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Forgot to recreate the triggers for the reactions table in [V166_ThreadAndMessageForeignKeys]. So we gotta fix stuff up and do it here.
  */
+@Suppress("ClassName")
 object V167_RecreateReactionTriggers : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

@@ -13,6 +13,7 @@ import org.signal.core.util.update
  * When we ran [V166_ThreadAndMessageForeignKeys], we forgot to update the actual table definition in [ThreadTable].
  * We could make this conditional, but I'd rather run it on everyone just so it's more predictable.
  */
+@Suppress("ClassName")
 object V171_ThreadForeignKeyFix : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V171_ThreadForeignKeyFix::class.java)

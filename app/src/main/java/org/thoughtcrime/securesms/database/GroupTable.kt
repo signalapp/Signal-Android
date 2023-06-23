@@ -1428,7 +1428,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   enum class MemberSet(val includeSelf: Boolean, val includePending: Boolean) {
-    FULL_MEMBERS_INCLUDING_SELF(true, false), FULL_MEMBERS_EXCLUDING_SELF(false, false), FULL_MEMBERS_AND_PENDING_INCLUDING_SELF(true, true), FULL_MEMBERS_AND_PENDING_EXCLUDING_SELF(false, true);
+    FULL_MEMBERS_INCLUDING_SELF(true, false), FULL_MEMBERS_EXCLUDING_SELF(false, false), FULL_MEMBERS_AND_PENDING_INCLUDING_SELF(true, true), FULL_MEMBERS_AND_PENDING_EXCLUDING_SELF(false, true)
   }
 
   /**

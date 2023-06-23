@@ -7,6 +7,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
  * In order to support scheduled sending, we need to add another column to keep track of when to send the message. We also use this
  * column to hide future scheduled messages from views.
  */
+@Suppress("ClassName")
 object V173_ScheduledMessagesMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL("ALTER TABLE mms ADD COLUMN scheduled_date INTEGER DEFAULT -1")

@@ -205,7 +205,7 @@ class VerifyAccountRepository(private val context: Application) {
   enum class Mode(val isSmsRetrieverSupported: Boolean) {
     SMS_WITH_LISTENER(true),
     SMS_WITHOUT_LISTENER(false),
-    PHONE_CALL(false);
+    PHONE_CALL(false)
   }
 
   private class PushTokenChallengeSubscriber {

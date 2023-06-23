@@ -17,5 +17,5 @@ enum class TextColorStyle(@DrawableRes val icon: Int) {
   /**
    * textColor background with white foreground.
    */
-  INVERT(R.drawable.ic_text_effect);
+  INVERT(R.drawable.ic_text_effect)
 }

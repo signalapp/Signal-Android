@@ -6,6 +6,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Marks story recipients with a new group type constant.
  */
+@Suppress("ClassName")
 object V152_StoryGroupTypesMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

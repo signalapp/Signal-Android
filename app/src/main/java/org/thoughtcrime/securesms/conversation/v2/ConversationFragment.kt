@@ -1188,7 +1188,8 @@ class ConversationFragment :
   }
 
   private fun updateLinkPreviewState() {
-    if (/* TODO [cfv2] -- viewModel.isPushAvailable && */ !attachmentManager.isAttachmentPresent && context != null) {
+    // TODO [cfv2] include viewModel.isPushAvailable && in check
+    if (!attachmentManager.isAttachmentPresent && context != null) {
       linkPreviewViewModel.onEnabled()
       linkPreviewViewModel.onTextChanged(composeText.textTrimmed.toString(), composeText.selectionStart, composeText.selectionEnd)
     } else {
@@ -2185,7 +2186,7 @@ class ConversationFragment :
           }
 
           val conversationItem: ConversationItem = itemView
-          val isAttachmentKeyboardOpen = false /* TODO [cfv2] -- isAttachmentKeyboardOpen */
+          val isAttachmentKeyboardOpen = false // TODO [cfv2] -- isAttachmentKeyboardOpen
           handleReaction(
             item.conversationMessage,
             ReactionsToolbarListener(item.conversationMessage),
