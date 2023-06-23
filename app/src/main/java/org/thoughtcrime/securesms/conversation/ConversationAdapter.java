@@ -338,7 +338,7 @@ public class ConversationAdapter
     if (scheduledMessagesMode) {
       calendar.setTimeInMillis(((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate());
     } else {
-      calendar.setTimeInMillis(conversationMessage.getMessageRecord().getDateSent());
+      calendar.setTimeInMillis(conversationMessage.getConversationTimestamp());
     }
     return calendar.get(Calendar.YEAR) * 1000L + calendar.get(Calendar.DAY_OF_YEAR);
   }
