@@ -14,6 +14,7 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.KeyHelper;
+import org.signal.libsignal.protocol.util.Medium;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -216,7 +217,7 @@ public final class RegistrationRepository {
     KyberPreKeyRecord lastResortKyberPreKey = PreKeyUtil.generateKyberPreKey(nextKyberPreKeyId, keyPair.getPrivateKey());
     metadataStore.setLastResortKyberPreKeyId(nextKyberPreKeyId);
 
-    int                     oneTimeKyberPreKeyIdOffset = metadataStore.getNextKyberPreKeyId();
+    int                     oneTimeKyberPreKeyIdOffset = (nextKyberPreKeyId + 1) % Medium.MAX_VALUE;
     List<KyberPreKeyRecord> oneTimeKyberPreKeys        = PreKeyUtil.generateOneTimeKyberPreKeyRecords(oneTimeKyberPreKeyIdOffset, keyPair.getPrivateKey());
 
     return new PreKeyCollection(
