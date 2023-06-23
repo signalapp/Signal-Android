@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
@@ -32,6 +33,7 @@ class ConversationActivityResultContracts(fragment: Fragment, private val callba
 
   private val contactShareLauncher = fragment.registerForActivityResult(ContactShareEditor) { contacts -> callbacks.onSendContacts(contacts) }
   private val mediaSelectionLauncher = fragment.registerForActivityResult(MediaSelection) { result -> callbacks.onMediaSend(result) }
+  private val gifSearchLauncher = fragment.registerForActivityResult(GifSearch) { result -> callbacks.onMediaSend(result) }
 
   fun launchContactShareEditor(uri: Uri, chatColors: ChatColors) {
     contactShareLauncher.launch(uri to chatColors)
@@ -41,14 +43,18 @@ class ConversationActivityResultContracts(fragment: Fragment, private val callba
     mediaSelectionLauncher.launch(MediaSelectionInput(mediaList, recipientId, text))
   }
 
-  private object MediaSelection : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult>() {
+  fun launchGifSearch(recipientId: RecipientId, text: CharSequence?) {
+    gifSearchLauncher.launch(GifSearchInput(recipientId, text))
+  }
+
+  private object MediaSelection : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (media, recipientId, text) = input
       return MediaSelectionActivity.editor(context, MessageSendType.SignalMessageSendType, media, recipientId, text)
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult {
-      return MediaSendActivityResult.fromData(intent!!)
+    override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
+      return intent?.let { MediaSendActivityResult.fromData(intent) }
     }
   }
 
@@ -63,10 +69,27 @@ class ConversationActivityResultContracts(fragment: Fragment, private val callba
     }
   }
 
+  private object GifSearch : ActivityResultContract<GifSearchInput, MediaSendActivityResult?>() {
+    override fun createIntent(context: Context, input: GifSearchInput): Intent {
+      return Intent(context, GiphyActivity::class.java).apply {
+        putExtra(GiphyActivity.EXTRA_IS_MMS, false)
+        putExtra(GiphyActivity.EXTRA_RECIPIENT_ID, input.recipientId)
+        putExtra(GiphyActivity.EXTRA_TRANSPORT, MessageSendType.SignalMessageSendType)
+        putExtra(GiphyActivity.EXTRA_TEXT, input.text)
+      }
+    }
+
+    override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
+      return intent?.let { MediaSendActivityResult.fromData(intent) }
+    }
+  }
+
   private data class MediaSelectionInput(val media: List<Media>, val recipientId: RecipientId, val text: CharSequence?)
+
+  private data class GifSearchInput(val recipientId: RecipientId, val text: CharSequence?)
 
   interface Callbacks {
     fun onSendContacts(contacts: List<Contact>)
-    fun onMediaSend(result: MediaSendActivityResult)
+    fun onMediaSend(result: MediaSendActivityResult?)
   }
 }

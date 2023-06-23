@@ -52,6 +52,7 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentResultListener
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -106,6 +107,9 @@ import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
+import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
@@ -190,6 +194,12 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestio
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
+import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
+import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
+import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
+import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
+import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
@@ -219,6 +229,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
@@ -233,7 +244,9 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.stickers.StickerManagementActivity
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
@@ -271,6 +284,7 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.ExecutionException
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * A single unified fragment for Conversations.
@@ -278,7 +292,13 @@ import java.util.concurrent.ExecutionException
 class ConversationFragment :
   LoggingFragment(R.layout.v2_conversation_fragment),
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
-  ReactionsBottomSheetDialogFragment.Callback {
+  ReactionsBottomSheetDialogFragment.Callback,
+  EmojiKeyboardPageFragment.Callback,
+  EmojiEventListener,
+  GifKeyboardPageFragment.Host,
+  StickerEventListener,
+  StickerKeyboardPageFragment.Callback,
+  MediaKeyboard.MediaKeyboardListener {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -340,6 +360,8 @@ class ConversationFragment :
     ConversationSearchViewModel(getString(R.string.note_to_self))
   }
 
+  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
+
   private val stickerViewModel: StickerSuggestionsViewModel by viewModel {
     StickerSuggestionsViewModel()
   }
@@ -347,6 +369,7 @@ class ConversationFragment :
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
   private val textDraftSaveDebouncer = Debouncer(500)
+  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY) }
 
   private lateinit var layoutManager: LinearLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
@@ -441,7 +464,7 @@ class ConversationFragment :
     container.fragmentManager = childFragmentManager
 
     ToolbarDependentMarginListener(binding.toolbar)
-    initializeMediaKeyboardToggle()
+    initializeMediaKeyboard()
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -504,6 +527,70 @@ class ConversationFragment :
 
   override fun onReactionsDialogDismissed() {
     clearFocusedItem()
+  }
+
+  override fun openEmojiSearch() {
+    // TODO [cfv2] emoji search
+  }
+
+  override fun onEmojiSelected(emoji: String?) {
+    if (emoji != null) {
+      inputPanel.onEmojiSelected(emoji)
+      recentEmojis.onCodePointSelected(emoji)
+    }
+  }
+
+  override fun onKeyEvent(keyEvent: KeyEvent?) {
+    if (keyEvent != null) {
+      inputPanel.onKeyEvent(keyEvent)
+    }
+  }
+
+  override fun openStickerSearch() {
+    StickerSearchDialogFragment.show(childFragmentManager)
+  }
+
+  override fun onStickerSelected(sticker: StickerRecord) {
+    sendSticker(
+      stickerRecord = sticker,
+      clearCompose = false
+    )
+  }
+
+  override fun onStickerManagementClicked() {
+    startActivity(StickerManagementActivity.getIntent(requireContext()))
+    container.hideInput()
+  }
+
+  override fun isMms(): Boolean {
+    return false
+  }
+
+  override fun openGifSearch() {
+    val recipientId = viewModel.recipientSnapshot?.id ?: return
+    conversationActivityResultContracts.launchGifSearch(recipientId, composeText.textTrimmed)
+  }
+
+  override fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {
+    setMedia(
+      uri = blobUri,
+      mediaType = SlideFactory.MediaType.from(BlobProvider.getMimeType(blobUri))!!,
+      width = width,
+      height = height,
+      videoGif = true
+    )
+  }
+
+  override fun onShown() {
+    inputPanel.mediaKeyboardListener.onShown()
+  }
+
+  override fun onHidden() {
+    inputPanel.mediaKeyboardListener.onHidden()
+  }
+
+  override fun onKeyboardChanged(page: KeyboardPage) {
+    inputPanel.mediaKeyboardListener.onKeyboardChanged(page)
   }
 
   private fun observeConversationThread() {
@@ -1069,20 +1156,21 @@ class ConversationFragment :
       .addTo(disposables)
   }
 
-  private fun initializeMediaKeyboardToggle() {
+  private fun initializeMediaKeyboard() {
     val isSystemEmojiPreferred = SignalStore.settings().isPreferSystemEmoji
     val keyboardMode: TextSecurePreferences.MediaKeyboardMode = TextSecurePreferences.getMediaKeyboardMode(requireContext())
     val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
 
     inputPanel.showMediaKeyboardToggle(true)
 
-    val toggleMode = when (keyboardMode) {
+    val keyboardPage = when (keyboardMode) {
       TextSecurePreferences.MediaKeyboardMode.EMOJI -> if (isSystemEmojiPreferred) KeyboardPage.STICKER else KeyboardPage.EMOJI
       TextSecurePreferences.MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
       TextSecurePreferences.MediaKeyboardMode.GIF -> KeyboardPage.GIF
     }
 
-    inputPanel.setMediaKeyboardToggleMode(toggleMode)
+    inputPanel.setMediaKeyboardToggleMode(keyboardPage)
+    keyboardPagerViewModel.switchToPage(keyboardPage)
 
     if (stickerIntro) {
       TextSecurePreferences.setMediaKeyboardMode(requireContext(), TextSecurePreferences.MediaKeyboardMode.STICKER)
@@ -1165,6 +1253,8 @@ class ConversationFragment :
     )
 
     sendMessageWithoutComposeInput(slide, clearCompose = clearCompose)
+
+    viewModel.updateStickerLastUsedTime(stickerRecord, System.currentTimeMillis().milliseconds)
   }
 
   private fun sendMessageWithoutComposeInput(
@@ -1199,7 +1289,7 @@ class ConversationFragment :
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
     afterSendComplete: () -> Unit = {}
   ) {
-    val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup == true) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
+    val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
 
     val send: Completable = viewModel.sendMessage(
       metricId = metricId,
@@ -2511,7 +2601,11 @@ class ConversationFragment :
       )
     }
 
-    override fun onMediaSend(result: MediaSendActivityResult) {
+    override fun onMediaSend(result: MediaSendActivityResult?) {
+      if (result == null) {
+        return
+      }
+
       val recipientSnapshot = viewModel.recipientSnapshot
       if (result.recipientId != recipientSnapshot?.id) {
         Log.w(TAG, "Result's recipientId did not match ours! Result: " + result.recipientId + ", Ours: " + recipientSnapshot?.id)
@@ -2955,7 +3049,7 @@ class ConversationFragment :
     }
 
     override fun onEmojiToggle() {
-      // TODO [cfv2] Not yet implemented
+      container.toggleInput(MediaKeyboardFragmentCreator, composeText, showSoftKeyOnHide = true)
     }
 
     override fun onLinkPreviewCanceled() {
@@ -3030,6 +3124,11 @@ class ConversationFragment :
 
       container.hideInput()
     }
+  }
+
+  private object MediaKeyboardFragmentCreator : InputAwareConstraintLayout.FragmentCreator {
+    override val id: Int = 2
+    override fun create(): Fragment = KeyboardPagerFragment()
   }
 
   private inner class KeyboardEvents : OnBackPressedCallback(false), InputAwareConstraintLayout.Listener {

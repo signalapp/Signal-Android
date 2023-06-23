@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -62,6 +63,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     conversationViewModel = ViewModelProvider(requireParentFragment()).get(ConversationViewModel::class.java)
     conversationViewModel
       .recipient
+      .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy {
         attachmentKeyboardView.setWallpaperEnabled(it.hasWallpaper())
       }

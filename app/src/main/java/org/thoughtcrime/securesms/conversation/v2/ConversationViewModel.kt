@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
@@ -62,6 +63,7 @@ import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import java.util.Optional
+import kotlin.time.Duration
 
 /**
  * ConversationViewModel, which operates solely off of a thread id that never changes.
@@ -361,5 +363,9 @@ class ConversationViewModel(
 
   fun deleteSlideData(slides: List<Slide>) {
     repository.deleteSlideData(slides)
+  }
+
+  fun updateStickerLastUsedTime(stickerRecord: StickerRecord, timestamp: Duration) {
+    repository.updateStickerLastUsedTime(stickerRecord, timestamp)
   }
 }

@@ -105,7 +105,6 @@ public class MediaKeyboard extends FrameLayout implements InputView {
     if (!isInitialised) initView();
 
     setVisibility(VISIBLE);
-    if (keyboardListener != null) keyboardListener.onShown();
     keyboardPagerFragment.show();
   }
 
@@ -113,7 +112,6 @@ public class MediaKeyboard extends FrameLayout implements InputView {
   public void hide(boolean immediate) {
     setVisibility(GONE);
     onCloseEmojiSearchInternal(false);
-    if (keyboardListener != null) keyboardListener.onHidden();
     Log.i(TAG, "hide()");
     keyboardPagerFragment.hide();
   }

@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
@@ -102,6 +103,7 @@ import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
 import java.util.Optional
 import kotlin.math.max
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class ConversationRepository(
@@ -225,7 +227,8 @@ class ConversationRepository(
         messageToEdit = messageToEdit?.id ?: 0,
         mentions = mentions,
         sharedContacts = contacts,
-        linkPreviews = linkPreviews
+        linkPreviews = linkPreviews,
+        attachments = slideDeck?.asAttachments() ?: emptyList()
       )
 
       if (preUploadResults.isEmpty()) {
@@ -548,6 +551,12 @@ class ConversationRepository(
         .forEach {
           BlobProvider.getInstance().delete(applicationContext, it)
         }
+    }
+  }
+
+  fun updateStickerLastUsedTime(stickerRecord: StickerRecord, timestamp: Duration) {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.stickers.updateStickerLastUsedTime(stickerRecord.rowId, timestamp.inWholeMilliseconds)
     }
   }
 
