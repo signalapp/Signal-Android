@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.lock.v2;
 
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.R;
+
 public enum PinKeyboardType {
   NUMERIC("numeric"),
   ALPHA_NUMERIC("alphaNumeric");
@@ -29,5 +31,10 @@ public enum PinKeyboardType {
     }
 
     return NUMERIC;
+  }
+
+  public int getIconResource() {
+    if (this == ALPHA_NUMERIC) return R.drawable.ic_keyboard_24;
+    else                       return R.drawable.ic_number_pad_conversation_filter_24;
   }
 }

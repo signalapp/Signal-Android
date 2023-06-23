@@ -1629,8 +1629,8 @@
         <item quantity="other">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registration - Need Help with PIN for Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Enter alphanumeric PIN</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Enter numeric PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Create your PIN</string>
@@ -3449,7 +3449,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Next</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Create alphanumeric PIN</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Create numeric PIN</string>
     <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
@@ -3511,8 +3513,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Enter the PIN you created for your account. This is different from your SMS verification code.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Enter alphanumeric PIN</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Enter numeric PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
     <string name="RegistrationLockFragment__forgot_pin">Forgot PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Incorrect PIN</string>

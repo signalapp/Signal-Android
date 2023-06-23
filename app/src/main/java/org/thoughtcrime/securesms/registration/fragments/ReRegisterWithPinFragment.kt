@@ -5,7 +5,6 @@ import android.text.InputType
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -74,13 +73,12 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
     }
 
     binding.pinRestoreKeyboardToggle.setOnClickListener {
-      val keyboardType: PinKeyboardType = getPinEntryKeyboardType()
-      updateKeyboard(keyboardType.other)
-      binding.pinRestoreKeyboardToggle.setText(resolveKeyboardToggleText(keyboardType))
+      val currentKeyboardType: PinKeyboardType = getPinEntryKeyboardType()
+      updateKeyboard(currentKeyboardType.other)
+      binding.pinRestoreKeyboardToggle.setIconResource(currentKeyboardType.iconResource)
     }
 
-    val keyboardType: PinKeyboardType = getPinEntryKeyboardType().other
-    binding.pinRestoreKeyboardToggle.setText(resolveKeyboardToggleText(keyboardType))
+    binding.pinRestoreKeyboardToggle.setIconResource(getPinEntryKeyboardType().other.iconResource)
 
     reRegisterViewModel.updateTokenData(registrationViewModel.keyBackupCurrentToken)
 
@@ -210,15 +208,6 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
     val isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC
     binding.pinRestorePinInput.inputType = if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
     binding.pinRestorePinInput.text?.clear()
-  }
-
-  @StringRes
-  private fun resolveKeyboardToggleText(keyboard: PinKeyboardType): Int {
-    return if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
-      R.string.RegistrationLockFragment__enter_alphanumeric_pin
-    } else {
-      R.string.RegistrationLockFragment__enter_numeric_pin
-    }
   }
 
   private fun onNeedHelpClicked() {

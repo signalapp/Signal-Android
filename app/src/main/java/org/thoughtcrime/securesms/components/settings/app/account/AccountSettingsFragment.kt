@@ -7,7 +7,6 @@ import android.graphics.Typeface
 import android.text.InputType
 import android.util.DisplayMetrics
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.thoughtcrime.securesms.R
@@ -208,15 +208,15 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       val statusText = DialogCompat.requireViewById(dialog, R.id.reminder_disable_status) as TextView
       val cancelButton = DialogCompat.requireViewById(dialog, R.id.reminder_disable_cancel)
       val turnOffButton = DialogCompat.requireViewById(dialog, R.id.reminder_disable_turn_off)
-      val changeKeyboard = DialogCompat.requireViewById(dialog, R.id.reminder_change_keyboard) as Button
+      val changeKeyboard = DialogCompat.requireViewById(dialog, R.id.reminder_change_keyboard) as MaterialButton
 
       changeKeyboard.setOnClickListener {
         if (pinEditText.inputType and InputType.TYPE_CLASS_NUMBER == 0) {
           pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_alphanumeric_pin)
+          changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
         } else {
           pinEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_numeric_pin)
+          changeKeyboard.setIconResource(PinKeyboardType.NUMERIC.iconResource)
         }
         pinEditText.typeface = Typeface.DEFAULT
       }
@@ -230,11 +230,11 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       when (SignalStore.pinValues().keyboardType) {
         PinKeyboardType.NUMERIC -> {
           pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_alphanumeric_pin)
+          changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
         }
         PinKeyboardType.ALPHA_NUMERIC -> {
           pinEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_numeric_pin)
+          changeKeyboard.setIconResource(PinKeyboardType.NUMERIC.iconResource)
         }
       }
 

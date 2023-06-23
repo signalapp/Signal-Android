@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.autofill.HintConstants;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
@@ -52,7 +52,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private View                           skipButton;
   private CircularProgressMaterialButton pinButton;
   private TextView                       errorLabel;
-  private TextView                       keyboardToggle;
+  private MaterialButton                 keyboardToggle;
   private PinRestoreViewModel            viewModel;
 
   @Override
@@ -102,12 +102,12 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     keyboardToggle.setOnClickListener((v) -> {
       PinKeyboardType keyboardType = getPinEntryKeyboardType();
 
+      keyboardToggle.setIconResource(keyboardType.getIconResource());
+
       updateKeyboard(keyboardType.getOther());
-      keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
     });
 
-    PinKeyboardType keyboardType = getPinEntryKeyboardType().getOther();
-    keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+    keyboardToggle.setIconResource(getPinEntryKeyboardType().getOther().getIconResource());
   }
 
   private void initViewModel() {
@@ -258,14 +258,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
                                          : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
     pinEntry.getText().clear();
-  }
-
-  private @StringRes static int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {
-    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
-      return R.string.PinRestoreEntryFragment_enter_alphanumeric_pin;
-    } else {
-      return R.string.PinRestoreEntryFragment_enter_numeric_pin;
-    }
   }
 
   private void enableAndFocusPinEntry() {

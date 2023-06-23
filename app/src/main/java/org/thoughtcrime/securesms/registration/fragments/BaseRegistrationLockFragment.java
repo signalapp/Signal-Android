@@ -10,10 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
@@ -49,7 +50,7 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
   private   View                           forgotPin;
   protected CircularProgressMaterialButton pinButton;
   private   TextView                       errorLabel;
-  private   TextView                       keyboardToggle;
+  private   MaterialButton                 keyboardToggle;
   private   long                           timeRemaining;
 
   private BaseRegistrationViewModel viewModel;
@@ -101,11 +102,11 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
       PinKeyboardType keyboardType = getPinEntryKeyboardType();
 
       updateKeyboard(keyboardType.getOther());
-      keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+      keyboardToggle.setIconResource(keyboardType.getIconResource());
     });
 
     PinKeyboardType keyboardType = getPinEntryKeyboardType().getOther();
-    keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+    keyboardToggle.setIconResource(keyboardType.getIconResource());
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
     viewModel = getViewModel();
@@ -272,14 +273,6 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
                                          : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
     pinEntry.getText().clear();
-  }
-
-  private @StringRes static int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {
-    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
-      return R.string.RegistrationLockFragment__enter_alphanumeric_pin;
-    } else {
-      return R.string.RegistrationLockFragment__enter_numeric_pin;
-    }
   }
 
   private void enableAndFocusPinEntry() {

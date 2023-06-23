@@ -14,11 +14,14 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.button.MaterialButton;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -36,7 +39,7 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
   private LearnMoreTextView              description;
   private EditText                       input;
   private TextView                       label;
-  private TextView                       keyboardToggle;
+  private MaterialButton                 keyboardToggle;
   private CircularProgressMaterialButton confirm;
   private ViewModel                      viewModel;
 
@@ -69,6 +72,7 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
     viewModel.getKeyboard().observe(getViewLifecycleOwner(), keyboardType -> {
       updateKeyboard(keyboardType);
       keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+      keyboardToggle.setIconResource(keyboardType.getOther().getIconResource());
     });
 
     description.setOnLinkClickListener(v -> {
