@@ -82,6 +82,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
         val processor: RegistrationSessionProcessor = (result as RequestCodeResult.RequestedVerificationCode).processor
 
         if (processor.hasResult()) {
+          Log.i(TAG, "Successfully requested SMS code.")
           findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
         } else if (processor.captchaRequired(viewModel.excludedChallenges)) {
           Log.i(TAG, "Unable to request sms code due to captcha required")
