@@ -120,10 +120,17 @@ class CustomGestureDetector {
     }
 
     private boolean processTouchEvent(MotionEvent ev) {
+        int oldActivePointerIndex = mActivePointerIndex;
+        mActivePointerIndex = ev
+            .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
+                                                                     : 0);
         final int action = ev.getAction();
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
                 mActivePointerId = ev.getPointerId(0);
+                mActivePointerIndex = ev
+                    .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
+                                                                             : 0);
 
                 mVelocityTracker = VelocityTracker.obtain();
                 if (null != mVelocityTracker) {
@@ -146,7 +153,9 @@ class CustomGestureDetector {
                 }
 
                 if (mIsDragging) {
-                    mListener.onDrag(dx, dy);
+                    if (oldActivePointerIndex == mActivePointerIndex) {
+                        mListener.onDrag(dx, dy);
+                    }
                     mLastTouchX = x;
                     mLastTouchY = y;
 
@@ -157,6 +166,7 @@ class CustomGestureDetector {
                 break;
             case MotionEvent.ACTION_CANCEL:
                 mActivePointerId = INVALID_POINTER_ID;
+                mActivePointerIndex = -1;
                 // Recycle Velocity Tracker
                 if (null != mVelocityTracker) {
                     mVelocityTracker.recycle();
@@ -165,6 +175,7 @@ class CustomGestureDetector {
                 break;
             case MotionEvent.ACTION_UP:
                 mActivePointerId = INVALID_POINTER_ID;
+                mActivePointerIndex = -1;
                 if (mIsDragging) {
                     if (null != mVelocityTracker) {
                         mLastTouchX = getActiveX(ev);
@@ -200,15 +211,14 @@ class CustomGestureDetector {
                     // active pointer and adjust accordingly.
                     final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
                     mActivePointerId = ev.getPointerId(newPointerIndex);
+                    mActivePointerIndex = ev
+                        .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
+                        : 0);
                     mLastTouchX = ev.getX(newPointerIndex);
                     mLastTouchY = ev.getY(newPointerIndex);
                 }
                 break;
         }
-
-        mActivePointerIndex = ev
-                .findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId
-                        : 0);
         return true;
     }
 }
