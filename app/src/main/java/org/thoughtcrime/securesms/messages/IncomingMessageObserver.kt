@@ -84,6 +84,7 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   private val decryptionDrainedListeners: MutableList<Runnable> = CopyOnWriteArrayList()
+  private val serviceConnectedListeners: MutableList<Runnable> = CopyOnWriteArrayList();
   private val keepAliveTokens: MutableMap<String, Long> = mutableMapOf()
 
   private val lock: ReentrantLock = ReentrantLock()
@@ -93,6 +94,7 @@ class IncomingMessageObserver(private val context: Application) {
       if (isNetworkAvailable()) {
         Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
         decryptionDrained = false
+        serviceConnected = false
         disconnect()
       }
       connectionNecessarySemaphore.release()
@@ -109,6 +111,10 @@ class IncomingMessageObserver(private val context: Application) {
 
   @Volatile
   var decryptionDrained = false
+    private set
+
+  @Volatile
+  var serviceConnected = false
     private set
 
   init {
@@ -174,7 +180,18 @@ class IncomingMessageObserver(private val context: Application) {
     }
   }
 
-  private fun onAppForegrounded() {
+  fun addServiceConnectedListener(listener: Runnable) {
+    serviceConnectedListeners.add(listener);
+    if (serviceConnected) {
+      listener.run()
+    }
+  }
+
+  fun removeServiceConnectedListener(listener: Runnable) {
+    serviceConnectedListeners.remove(listener);
+  }
+
+    private fun onAppForegrounded() {
     lock.withLock {
       appVisible = true
       BackgroundService.start(context)
@@ -382,6 +399,16 @@ class IncomingMessageObserver(private val context: Application) {
         val webSocketDisposable = signalWebSocket.webSocketState.subscribe { state: WebSocketConnectionState ->
           Log.d(TAG, "WebSocket State: $state")
 
+          if (state == WebSocketConnectionState.CONNECTED) {
+            serviceConnected = true;
+            for (listener in serviceConnectedListeners.toList()) {
+              listener.run();
+            }
+          } else {
+            serviceConnected = false;
+          }
+
+
           // Any state change at all means that we are not drained
           decryptionDrained = false
         }
@@ -431,6 +458,7 @@ class IncomingMessageObserver(private val context: Application) {
               }
             } catch (e: WebSocketUnavailableException) {
               Log.i(TAG, "Pipe unexpectedly unavailable, connecting")
+              serviceConnected = false;
               signalWebSocket.connect()
             } catch (e: TimeoutException) {
               Log.w(TAG, "Application level read timeout...")
@@ -443,6 +471,7 @@ class IncomingMessageObserver(private val context: Application) {
           }
         } catch (e: Throwable) {
           attempts++
+          serviceConnected = false;
           Log.w(TAG, e)
         } finally {
           Log.w(TAG, "Shutting down pipe...")

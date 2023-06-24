@@ -32,6 +32,10 @@ public class WebSocketStrategy extends MessageRetrievalStrategy {
     Stopwatch               stopwatch = new Stopwatch("websocket-strategy");
     IncomingMessageObserver observer  = ApplicationDependencies.getIncomingMessageObserver();
 
+    if (!blockUntilWebsocketConnected(observer)) {
+      return false;
+    }
+
     observer.registerKeepAliveToken(KEEP_ALIVE_TOKEN);
     try {
       JobManager              jobManager    = ApplicationDependencies.getJobManager();
@@ -61,6 +65,29 @@ public class WebSocketStrategy extends MessageRetrievalStrategy {
     } finally {
       ApplicationDependencies.getIncomingMessageObserver().removeKeepAliveToken(KEEP_ALIVE_TOKEN);
     }
+  }
+
+  private static boolean blockUntilWebsocketConnected(IncomingMessageObserver observer) {
+    CountDownLatch latch = new CountDownLatch(1);
+
+    observer.addServiceConnectedListener(new Runnable() {
+      @Override public void run() {
+        latch.countDown();
+        observer.removeServiceConnectedListener(this);
+      }
+    });
+
+    try {
+      if (!latch.await(5, TimeUnit.SECONDS)) {
+        Log.w(TAG, "Hit timeout while waiting for websocket to connect!");
+        return false;
+      }
+    } catch (InterruptedException e) {
+      Log.w(TAG, "Interrupted!", e);
+      return false;
+    }
+
+    return true;
   }
 
   private static boolean blockUntilWebsocketDrained(IncomingMessageObserver observer) {
