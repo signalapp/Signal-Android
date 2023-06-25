@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.calls.links.create
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -24,7 +23,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager
 class CreateCallLinkRepository(
   private val callLinkManager: SignalCallLinkManager = ApplicationDependencies.getSignalCallManager().callLinkManager
 ) {
-  fun ensureCallLinkCreated(credentials: CallLinkCredentials, avatarColor: AvatarColor): Single<EnsureCallLinkCreatedResult> {
+  fun ensureCallLinkCreated(credentials: CallLinkCredentials): Single<EnsureCallLinkCreatedResult> {
     val callLinkRecipientId = Single.fromCallable {
       SignalDatabase.recipients.getByCallLinkRoomId(credentials.roomId)
     }
@@ -41,8 +40,7 @@ class CreateCallLinkRepository(
                   recipientId = RecipientId.UNKNOWN,
                   roomId = credentials.roomId,
                   credentials = credentials,
-                  state = it.state,
-                  avatarColor = avatarColor
+                  state = it.state
                 )
               )
 

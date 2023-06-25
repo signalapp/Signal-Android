@@ -162,7 +162,9 @@ public final class MenuState {
              .shouldShowResendAction(false)
              .shouldShowEdit(false);
     } else {
-      MessageRecord messageRecord = selectedParts.iterator().next().getMessageRecord();
+      MultiselectPart multiSelectRecord = selectedParts.iterator().next();
+
+      MessageRecord messageRecord = multiSelectRecord.getMessageRecord();
 
       builder.shouldShowResendAction(messageRecord.isFailed())
              .shouldShowSaveAttachmentAction(mediaIsSelected                                             &&
@@ -180,7 +182,7 @@ public final class MenuState {
 
       builder.shouldShowEdit(!actionMessage &&
                              hasText &&
-                             MessageConstraintsUtil.isValidEditMessageSend(messageRecord, System.currentTimeMillis()));
+                             MessageConstraintsUtil.isValidEditMessageSend(multiSelectRecord.getConversationMessage().getOriginalMessage(), System.currentTimeMillis()));
     }
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment)

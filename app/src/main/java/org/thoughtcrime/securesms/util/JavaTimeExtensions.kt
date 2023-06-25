@@ -5,6 +5,7 @@ import android.os.Build
 import android.text.format.DateFormat
 import java.time.DayOfWeek
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.OffsetDateTime
@@ -66,6 +67,13 @@ fun LocalDateTime.isBetween(start: LocalDateTime, end: LocalDateTime): Boolean {
  */
 fun Long.toLocalDateTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalDateTime {
   return LocalDateTime.ofInstant(Instant.ofEpochMilli(this), zoneId)
+}
+
+/**
+ * Convert milliseconds to local date with provided [zoneId].
+ */
+fun Long.toLocalDate(zoneId: ZoneId = ZoneId.systemDefault()): LocalDate {
+  return Instant.ofEpochMilli(this).atZone(zoneId).toLocalDate()
 }
 
 /**

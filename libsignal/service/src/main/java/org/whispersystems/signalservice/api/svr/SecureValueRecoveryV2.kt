@@ -12,6 +12,11 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery.DeleteResponse
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery.InvalidRequestException
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
+import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
@@ -27,7 +32,7 @@ class SecureValueRecoveryV2(
   private val serviceConfiguration: SignalServiceConfiguration,
   private val mrEnclave: String,
   private val pushServiceSocket: PushServiceSocket
-) {
+) : SecureValueRecovery {
 
   /**
    * Begins a PIN change.
@@ -42,8 +47,8 @@ class SecureValueRecoveryV2(
    * @param pin The user-specified PIN.
    * @param masterKey The data to set on SVR.
    */
-  fun setPin(userPin: String, masterKey: MasterKey): PinChangeSession {
-    return PinChangeSession(userPin, masterKey)
+  override fun setPin(userPin: String, masterKey: MasterKey): PinChangeSession {
+    return Svr2PinChangeSession(userPin, masterKey)
   }
 
   /**
@@ -53,21 +58,21 @@ class SecureValueRecoveryV2(
    *
    * If the user is already registered, use [restoreDataPostRegistration]
    */
-  fun restoreDataPreRegistration(authorization: AuthCredentials, userPin: String): Single<RestoreResponse> {
+  override fun restoreDataPreRegistration(authorization: AuthCredentials, userPin: String): Single<RestoreResponse> {
     return restoreData(Single.just(authorization), userPin)
   }
 
   /**
    * Restores data from SVR. Only intended to be called if the user is already registered. If the user is not yet registered, use [restoreDataPreRegistration]
    */
-  fun restoreDataPostRegistration(userPin: String): Single<RestoreResponse> {
+  override fun restoreDataPostRegistration(userPin: String): Single<RestoreResponse> {
     return restoreData(getAuthorization(), userPin)
   }
 
   /**
    * Deletes the user's SVR data from the service.
    */
-  fun deleteData(): Single<DeleteResponse> {
+  override fun deleteData(): Single<DeleteResponse> {
     val request: (Svr2PinHasher) -> Request = { Request(delete = DeleteRequest()) }
 
     return getAuthorization()
@@ -149,16 +154,16 @@ class SecureValueRecoveryV2(
    * The first should _never_ be retried after it completes successfully, and this class will help ensure that doesn't happen by doing the
    * proper bookkeeping.
    */
-  inner class PinChangeSession(
+  inner class Svr2PinChangeSession(
     val userPin: String,
     val masterKey: MasterKey,
     private var setupComplete: Boolean = false
-  ) {
+  ) : PinChangeSession {
 
     /**
      * Performs the PIN change operation. This is safe to call repeatedly if you get back a retryable error.
      */
-    fun execute(): Single<BackupResponse> {
+    override fun execute(): Single<BackupResponse> {
       val normalizedPin: ByteArray = PinHashUtil.normalize(userPin)
 
       return getAuthorization()
@@ -233,7 +238,7 @@ class SecureValueRecoveryV2(
         .map { (response, _) ->
           when (response.expose?.status) {
             ProtoExposeResponse.Status.OK -> {
-              BackupResponse.Success
+              BackupResponse.Success(masterKey)
             }
             ProtoExposeResponse.Status.ERROR -> {
               BackupResponse.ExposeFailure
@@ -245,52 +250,4 @@ class SecureValueRecoveryV2(
         }
     }
   }
-
-  /** Response for setting a PIN. */
-  sealed class BackupResponse {
-    /** Operation completed successfully. */
-    object Success : BackupResponse()
-
-    /** The operation failed because the server was unable to expose the backup data we created. There is no further action that can be taken besides logging the error and treating it as a success. */
-    object ExposeFailure : BackupResponse()
-
-    /** There as a network error. Not a bad response, but rather interference or some other inability to make a network request. */
-    data class NetworkError(val exception: IOException) : BackupResponse()
-
-    /** Something went wrong when making the request that is related to application logic. */
-    data class ApplicationError(val exception: Throwable) : BackupResponse()
-  }
-
-  /** Response for restoring data with you PIN. */
-  sealed class RestoreResponse {
-    /** Operation completed successfully. Includes the restored data. */
-    data class Success(val masterKey: MasterKey) : RestoreResponse()
-
-    /** No data was found for this user. Could mean that none ever existed, or that the service deleted the data after too many incorrect PIN guesses. */
-    object Missing : RestoreResponse()
-
-    /** The PIN was incorrect. Includes the number of attempts the user has remaining. */
-    data class PinMismatch(val triesRemaining: Int) : RestoreResponse()
-
-    /** There as a network error. Not a bad response, but rather interference or some other inability to make a network request. */
-    data class NetworkError(val exception: IOException) : RestoreResponse()
-
-    /** Something went wrong when making the request that is related to application logic. */
-    data class ApplicationError(val exception: Throwable) : RestoreResponse()
-  }
-
-  /** Response for deleting data. */
-  sealed class DeleteResponse {
-    /** Operation completed successfully. */
-    object Success : DeleteResponse()
-
-    /** There as a network error. Not a bad response, but rather interference or some other inability to make a network request. */
-    data class NetworkError(val exception: IOException) : DeleteResponse()
-
-    /** Something went wrong when making the request that is related to application logic. */
-    data class ApplicationError(val exception: Throwable) : DeleteResponse()
-  }
-
-  /** Exception indicating that we received a response from the service that our request was invalid. */
-  class InvalidRequestException(message: String) : Exception(message)
 }

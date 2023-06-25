@@ -93,12 +93,12 @@ public class WebRtcInteractor {
     signalCallManager.updateGroupCallUpdateMessage(groupId, groupCallEraId, joinedMembers, isCallFull);
   }
 
-  void setCallInProgressNotification(int type, @NonNull RemotePeer remotePeer) {
-    WebRtcCallService.update(context, type, remotePeer.getRecipient().getId());
+  void setCallInProgressNotification(int type, @NonNull RemotePeer remotePeer, boolean isVideoCall) {
+    WebRtcCallService.update(context, type, remotePeer.getRecipient().getId(), isVideoCall);
   }
 
-  void setCallInProgressNotification(int type, @NonNull Recipient recipient) {
-    WebRtcCallService.update(context, type, recipient.getId());
+  void setCallInProgressNotification(int type, @NonNull Recipient recipient, boolean isVideoCall) {
+    WebRtcCallService.update(context, type, recipient.getId(), isVideoCall);
   }
 
   void retrieveTurnServers(@NonNull RemotePeer remotePeer) {

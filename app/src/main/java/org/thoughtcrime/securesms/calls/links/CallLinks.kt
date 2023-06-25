@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.calls.links
 
 import io.reactivex.rxjava3.core.Observable
-import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -21,11 +21,12 @@ import java.net.URLDecoder
  */
 object CallLinks {
   private const val ROOT_KEY = "key"
-  private const val LINK_PREFIX = "https://signal.link/call/#key="
+  private const val HTTPS_LINK_PREFIX = "https://signal.link/call/#key="
+  private const val SNGL_LINK_PREFIX = "sgnl://signal.link/#key="
 
   private val TAG = Log.tag(CallLinks::class.java)
 
-  fun url(linkKeyBytes: ByteArray) = "$LINK_PREFIX${Hex.dump(linkKeyBytes)}"
+  fun url(linkKeyBytes: ByteArray) = "$HTTPS_LINK_PREFIX${CallLinkRootKey(linkKeyBytes)}"
 
   fun watchCallLink(roomId: CallLinkRoomId): Observable<CallLinkTable.CallLink> {
     return Observable.create { emitter ->
@@ -52,7 +53,8 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
-    if (!url.startsWith(LINK_PREFIX)) {
+    if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
+      Log.w(TAG, "Invalid url prefix.")
       return null
     }
 
@@ -82,7 +84,11 @@ object CallLinks {
       return null
     }
 
-    // TODO Parse the key into a byte array
-    return null
+    return try {
+      CallLinkRootKey(key)
+    } catch (e: CallException) {
+      Log.w(TAG, "Invalid root key found in fragment query string.")
+      null
+    }
   }
 }

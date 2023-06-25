@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.calls.log
 
+import android.annotation.SuppressLint
 import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -36,9 +38,7 @@ class CallLogViewModel(
 
   val controller = ProxyPagingController<CallLogRow.Id>()
   val data: Flowable<MutableList<CallLogRow?>> = pagedData.switchMap { it.data.toFlowable(BackpressureStrategy.LATEST) }
-  val selectedAndStagedDeletion: Flowable<Pair<CallLogSelectionState, CallLogStagedDeletion?>> = callLogStore
-    .stateFlowable
-    .map { it.selectionState to it.stagedDeletion }
+  val selected: Flowable<CallLogSelectionState> = callLogStore.stateFlowable.map { it.selectionState }
 
   private val _isEmpty: BehaviorProcessor<Boolean> = BehaviorProcessor.createDefault(false)
   val isEmpty: Boolean get() = _isEmpty.value ?: false
@@ -98,7 +98,6 @@ class CallLogViewModel(
   }
 
   override fun onCleared() {
-    commitStagedDeletion()
     disposables.dispose()
   }
 
@@ -121,63 +120,52 @@ class CallLogViewModel(
   }
 
   @MainThread
-  fun stageCallDeletion(call: CallLogRow) {
-    callLogStore.state.stagedDeletion?.commit()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = CallLogStagedDeletion(
-          it.filter,
-          CallLogSelectionState.empty().toggle(call.id),
-          callLogRepository
-        )
-      )
-    }
+  fun stageCallDeletion(call: CallLogRow): CallLogStagedDeletion {
+    return CallLogStagedDeletion(
+      callLogStore.state.filter,
+      CallLogSelectionState.empty().toggle(call.id),
+      callLogRepository
+    )
   }
 
   @MainThread
-  fun stageSelectionDeletion() {
-    callLogStore.state.stagedDeletion?.commit()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = CallLogStagedDeletion(
-          it.filter,
-          it.selectionState,
-          callLogRepository
-        )
-      )
-    }
+  fun stageSelectionDeletion(): CallLogStagedDeletion {
+    return CallLogStagedDeletion(
+      callLogStore.state.filter,
+      callLogStore.state.selectionState,
+      callLogRepository
+    )
   }
 
-  fun stageDeleteAll() {
-    callLogStore.state.stagedDeletion?.cancel()
+  fun stageDeleteAll(): CallLogStagedDeletion {
     callLogStore.update {
       it.copy(
-        selectionState = CallLogSelectionState.empty(),
-        stagedDeletion = CallLogStagedDeletion(
-          it.filter,
-          CallLogSelectionState.selectAll(),
-          callLogRepository
-        )
+        selectionState = CallLogSelectionState.empty()
       )
     }
+
+    return CallLogStagedDeletion(
+      callLogStore.state.filter,
+      CallLogSelectionState.selectAll(),
+      callLogRepository
+    )
   }
 
-  fun commitStagedDeletion() {
-    callLogStore.state.stagedDeletion?.commit()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = null
-      )
-    }
-  }
-
-  fun cancelStagedDeletion() {
-    callLogStore.state.stagedDeletion?.cancel()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = null
-      )
-    }
+  @SuppressLint("CheckResult")
+  fun delete(stagedDeletion: CallLogStagedDeletion): Maybe<CallLogDeletionResult> {
+    return stagedDeletion.commit()
+      .doOnSubscribe {
+        clearSelected()
+      }
+      .map { failedRevocations ->
+        if (failedRevocations == 0) {
+          CallLogDeletionResult.Success
+        } else {
+          CallLogDeletionResult.FailedToRevoke(failedRevocations)
+        }
+      }
+      .onErrorReturn { CallLogDeletionResult.UnknownFailure(it) }
+      .toMaybe()
   }
 
   fun clearSelected() {
@@ -197,7 +185,6 @@ class CallLogViewModel(
   private data class CallLogState(
     val query: String? = null,
     val filter: CallLogFilter = CallLogFilter.ALL,
-    val selectionState: CallLogSelectionState = CallLogSelectionState.empty(),
-    val stagedDeletion: CallLogStagedDeletion? = null
+    val selectionState: CallLogSelectionState = CallLogSelectionState.empty()
   )
 }

@@ -5,10 +5,11 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version('androidx-appcompat', '1.6.1')
+            version('androidx-activity', '1.7.2')
             version('androidx-camera', '1.2.3')
-            version('androidx-fragment', '1.5.5')
-            version('androidx-lifecycle', '2.5.1')
-            version('androidx-navigation', '2.5.3')
+            version('androidx-fragment', '1.6.0')
+            version('androidx-lifecycle', '2.6.1')
+            version('androidx-navigation', '2.6.0')
             version('androidx-window', '1.0.0')
             version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
@@ -23,10 +24,11 @@ dependencyResolutionManagement {
             alias('android-application').to('com.android.application', 'com.android.application.gradle.plugin').versionRef('android-gradle-plugin')
 
             // Compose
-            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2023.01.00')
-            alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion();
+            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2023.05.01')
+            alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion()
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
+            alias('androidx-compose-runtime-livedata').to('androidx.compose.runtime', 'runtime-livedata').withoutVersion()
             alias('androidx-compose-rxjava3').to('androidx.compose.runtime:runtime-rxjava3:1.4.2')
             alias('ktlint-twitter-compose').to('com.twitter.compose.rules:ktlint:0.0.26')
 
@@ -43,7 +45,7 @@ dependencyResolutionManagement {
             alias('ktlint').to('org.jlleitschuh.gradle:ktlint-gradle:11.1.0')
 
             // Android X
-            alias('androidx-activity-ktx').to('androidx.activity', 'activity-ktx').versionRef('androidx-appcompat')
+            alias('androidx-activity-ktx').to('androidx.activity', 'activity-ktx').versionRef('androidx-activity')
             alias('androidx-appcompat').to('androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
             alias('androidx-core-ktx').to('androidx.core:core-ktx:1.10.0')
             alias('androidx-fragment-ktx').to('androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
@@ -111,8 +113,8 @@ dependencyResolutionManagement {
             alias('libsignal-client').to('org.signal', 'libsignal-client').versionRef('libsignal-client')
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.28.0')
-            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S1')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.28.1')
+            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S2')
 
             // Third Party
             alias('greenrobot-eventbus').to('org.greenrobot:eventbus:3.0.0')

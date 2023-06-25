@@ -4,10 +4,7 @@ import android.app.Application;
 import android.app.job.JobInfo;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,15 +45,9 @@ public class NetworkConstraint implements Constraint {
 
   public static boolean isMet(@NonNull Context context) {
     ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
-    if (Build.VERSION.SDK_INT >= 23) {
-      Network             activeNetwork       = connectivityManager.getActiveNetwork();
-      NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork);
-      return networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
-    } else {
-      NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-      return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
+    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
   }
 
   public static final class Factory implements Constraint.Factory<NetworkConstraint> {

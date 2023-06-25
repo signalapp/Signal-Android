@@ -87,6 +87,9 @@ class CallLinkPreJoinActionProcessor(
 
     SignalStore.tooltips().markGroupCallingLobbyEntered()
     return currentState.builder()
+      .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
+      .setRingGroup(false)
+      .commit()
       .changeCallInfoState()
       .groupCall(groupCall)
       .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)

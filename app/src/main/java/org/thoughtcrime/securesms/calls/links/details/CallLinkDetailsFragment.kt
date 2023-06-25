@@ -200,8 +200,7 @@ private fun CallLinkDetailsPreview() {
         revoked = false,
         restrictions = Restrictions.NONE,
         expiration = Instant.MAX
-      ),
-      avatarColor = avatarColor
+      )
     )
   }
 

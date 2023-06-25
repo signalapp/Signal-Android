@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -112,6 +114,9 @@ class ConversationViewModel(
 
   private val refreshIdentityRecords: Subject<Unit> = PublishSubject.create()
   val identityRecords: Observable<IdentityRecordsState>
+
+  private val _searchQuery = BehaviorSubject.createDefault("")
+  val searchQuery: Observable<String> = _searchQuery
 
   init {
     disposables += recipient
@@ -203,6 +208,10 @@ class ConversationViewModel(
       .distinctUntilChanged()
   }
 
+  fun setSearchQuery(query: String?) {
+    _searchQuery.onNext(query ?: "")
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
@@ -215,6 +224,10 @@ class ConversationViewModel(
 
   fun getQuotedMessagePosition(quote: Quote): Single<Int> {
     return repository.getQuotedMessagePosition(threadId, quote)
+  }
+
+  fun moveToSearchResult(messageResult: MessageResult): Single<Int> {
+    return repository.getMessageResultPosition(threadId, messageResult)
   }
 
   fun getNextMentionPosition(): Single<Int> {
@@ -248,7 +261,31 @@ class ConversationViewModel(
     }
   }
 
-  fun requestMarkRead(timestamp: Long) {
+  fun updateReaction(messageRecord: MessageRecord, emoji: String): Completable {
+    val oldRecord = messageRecord.oldReactionRecord()
+
+    return if (oldRecord != null && oldRecord.emoji == emoji) {
+      repository.sendReactionRemoval(messageRecord, oldRecord)
+    } else {
+      repository.sendNewReaction(messageRecord, emoji)
+    }
+  }
+
+  /**
+   * @return Maybe which only emits if the "React with any" sheet should be displayed.
+   */
+  fun updateCustomReaction(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean): Maybe<Unit> {
+    val oldRecord = messageRecord.oldReactionRecord()
+
+    return if (oldRecord != null && hasAddedCustomEmoji) {
+      repository.sendReactionRemoval(messageRecord, oldRecord).toMaybe()
+    } else {
+      Maybe.just(Unit)
+    }
+  }
+
+  private fun MessageRecord.oldReactionRecord(): ReactionRecord? {
+    return reactions.firstOrNull { it.author == Recipient.self().id }
   }
 
   fun sendMessage(
@@ -294,6 +331,10 @@ class ConversationViewModel(
 
   fun copyToClipboard(context: Context, messageParts: Set<MultiselectPart>): Maybe<CharSequence> {
     return repository.copyToClipboard(context, messageParts)
+  }
+
+  fun resendMessage(conversationMessage: ConversationMessage): Completable {
+    return repository.resendMessage(conversationMessage.messageRecord)
   }
 
   fun getRequestReviewState(): Observable<RequestReviewState> {

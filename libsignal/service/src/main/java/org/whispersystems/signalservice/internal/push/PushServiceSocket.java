@@ -40,6 +40,8 @@ import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
+import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
+import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
@@ -162,6 +164,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -216,6 +219,7 @@ public class PushServiceSocket {
   private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
   private static final String REQUEST_ACCOUNT_DATA_PATH  = "/v2/accounts/data_report";
+  private static final String PNI_KEY_DISTRUBTION_PATH   = "/v2/accounts/phone_number_identity_key_distribution";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
@@ -389,22 +393,46 @@ public class PushServiceSocket {
     }
   }
 
-  public VerifyAccountResponse submitRegistrationRequest(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, boolean skipDeviceTransfer) throws IOException {
+  public VerifyAccountResponse submitRegistrationRequest(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, @Nullable String fcmToken, boolean skipDeviceTransfer) throws IOException {
     String path = REGISTRATION_PATH;
     if (sessionId == null && recoveryPassword == null) {
       throw new IllegalArgumentException("Neither Session ID nor Recovery Password provided.");
-
     }
 
     if (sessionId != null && recoveryPassword != null) {
       throw new IllegalArgumentException("You must supply one and only one of either: Session ID, or Recovery Password.");
     }
-    RegistrationSessionRequestBody body;
-    if (sessionId != null) {
-      body = new RegistrationSessionRequestBody(sessionId, null, attributes, skipDeviceTransfer);
+
+    GcmRegistrationId gcmRegistrationId;
+    if (attributes.getFetchesMessages()) {
+      gcmRegistrationId = null;
     } else {
-      body = new RegistrationSessionRequestBody(null, recoveryPassword, attributes, skipDeviceTransfer);
+      gcmRegistrationId = new GcmRegistrationId(fcmToken, true);
     }
+
+    final SignedPreKeyEntity aciSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(aciPreKeys.getSignedPreKey()).getId(),
+                                                                      aciPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
+                                                                      aciPreKeys.getSignedPreKey().getSignature());
+    final SignedPreKeyEntity pniSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(pniPreKeys.getSignedPreKey()).getId(),
+                                                                      pniPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
+                                                                      pniPreKeys.getSignedPreKey().getSignature());
+    final KyberPreKeyEntity aciLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(aciPreKeys.getLastResortKyberPreKey()).getId(),
+                                                                             aciPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
+                                                                             aciPreKeys.getLastResortKyberPreKey().getSignature());
+    final KyberPreKeyEntity pniLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(pniPreKeys.getLastResortKyberPreKey()).getId(),
+                                                                             pniPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
+                                                                             pniPreKeys.getLastResortKyberPreKey().getSignature());
+    RegistrationSessionRequestBody body = new RegistrationSessionRequestBody(sessionId,
+                                                                             recoveryPassword,
+                                                                             attributes,
+                                                                             Base64.encodeBytesWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
+                                                                             Base64.encodeBytesWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
+                                                                             aciSignedPreKey,
+                                                                             pniSignedPreKey,
+                                                                             aciLastResortKyberPreKey,
+                                                                             pniLastResortKyberPreKey,
+                                                                             gcmRegistrationId,
+                                                                             skipDeviceTransfer);
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty());
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
@@ -448,6 +476,13 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
+  public VerifyAccountResponse distributePniKeys(@NonNull PniKeyDistributionRequest distributionRequest) throws IOException {
+    String request  = JsonUtil.toJson(distributionRequest);
+    String response = makeServiceRequest(PNI_KEY_DISTRUBTION_PATH, "PUT", request);
+
+    return JsonUtil.fromJson(response, VerifyAccountResponse.class);
+  }
+
   public void setAccountAttributes(@Nonnull AccountAttributes accountAttributes)
       throws IOException
   {
@@ -477,7 +512,7 @@ public class PushServiceSocket {
                        JsonUtil.toJson(new ProvisioningMessage(Base64.encodeBytes(body))));
   }
 
-  public void registerGcmId(String gcmRegistrationId) throws IOException {
+  public void registerGcmId(@Nonnull String gcmRegistrationId) throws IOException {
     GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId, true);
     makeServiceRequest(REGISTER_GCM_PATH, "PUT", JsonUtil.toJson(registration));
   }
@@ -2260,22 +2295,6 @@ public class PushServiceSocket {
       throws PushNetworkException, MalformedResponseException
   {
       return readBodyJson(response.body(), clazz);
-  }
-
-  private static class GcmRegistrationId {
-
-    @JsonProperty
-    private String gcmRegistrationId;
-
-    @JsonProperty
-    private boolean webSocketChannel;
-
-    public GcmRegistrationId() {}
-
-    public GcmRegistrationId(String gcmRegistrationId, boolean webSocketChannel) {
-      this.gcmRegistrationId = gcmRegistrationId;
-      this.webSocketChannel  = webSocketChannel;
-    }
   }
 
   public enum VerificationCodeTransport { SMS, VOICE }

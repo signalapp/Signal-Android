@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Chamar</string>
     <string name="CommunicationActions_insecure_call">Chamada insegura</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Posibles custos da operadora. O número ao que chamas non está rexistrado en Signal. Esta chamada farase a través da rede móbil, non por Internet.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Non podes unirte á chamada</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Esta ligazón de chamada caducou.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -319,7 +319,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">editada hai %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">Unirse á chamada</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Engadir anexo</string>
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Abrir Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Non verificado</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Limpar filtro</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Debuxar para difuminar máis caras ou áreas</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toca e mantén premido para gravar unha mensaxe de voz; solta para enviar</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Preme para gravar unha mensaxe e solta para enviar</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Xa non se poden mandar mensaxes SMS en Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1217,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">Respostas</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
     <string name="NotificationBarManager__establishing_signal_call">Establecendo chamada Signal</string>
-    <string name="NotificationBarManager__incoming_signal_call">Chamada entrante Signal</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Chamada grupal entrante</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Iniciando chamada</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Colgar chamada</string>
@@ -1484,12 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou unha chamada en grupo · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Iniciaches unha chamada de grupo · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada en grupo · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Estás na chamada en grupo - %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s e %2$s están na chamada en grupo · %3$s</string>
     <string name="MessageRecord_group_call_s">Chamada en grupo · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s iniciou unha chamada en grupo</string>
+    <string name="MessageRecord_you_started_a_group_call">Iniciaches unha chamada de grupo</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s está na chamada en grupo</string>
     <string name="MessageRecord_you_are_in_the_group_call">Estás na chamada en grupo</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s e %2$s están na chamada en grupo</string>
@@ -1854,9 +1853,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Levas demasiados intentos para rexistrar este número. Téntao de novo en %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Non é posible contactar co servizo. Comproba a túa conexión de rede e téntao de novo.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Algo saíu mal!</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Non puidemos enviarche un código de verificación por SMS. Intenta recibir o código por chamada de voz.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Non foi posible solicitar un código de verificación. Comproba a conexión a Internet e inténtao de novo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Número con formato non-estándar</string>
@@ -1876,9 +1875,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Signal non puido enviar un código SMS debido a un erro externo.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">Chamada de voz</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">Cancelar</string>
     <string name="RegistrationActivity_next">Seguinte</string>
     <string name="RegistrationActivity_continue">Continuar</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leva a túa privacidade contigo.\nSé ti mesmo/a en cada mensaxe.</string>
@@ -2342,7 +2341,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Altofalante</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Auriculares con cable</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Auricular con cable</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Auricular con cable (USB)</string>
@@ -3057,7 +3058,7 @@
     <string name="PaymentsAllActivityFragment__received">Recibida</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Presentámosche pagamentos (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Empregar Signal para enviar e recibir MobileCoin, unha nova moeda dixital que se centra na privacidade. Activar para comezar.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Emprega Signal para enviar e recibir MobileCoin, unha nova moeda dixital que se centra na privacidade. Actívao para comezar.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activar Pagamentos</string>
     <string name="PaymentsHomeFragment__activating_payments">Activando pagamentos…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Restablecer conta de pagamentos</string>
@@ -3341,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">Axustes de conversa</string>
     <string name="conversation__menu_add_shortcut">Engadir á pantalla de inicio</string>
     <string name="conversation__menu_create_bubble">Crear burbulla</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expandir xanela emerxente</string>
@@ -3542,6 +3545,20 @@
     <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Os números PIN cifran a información que gardas con Signal.</string>
     <string name="KbsMegaphone__create_pin">Crear PIN</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Chamada de voz de Signal entrante</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Videochamada de Signal entrante</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Chamada grupal entrante</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Chamada de voz de Signal en curso</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Videochamada de Signal en curso</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Chamada de grupo de Signal en curso</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
@@ -5901,6 +5918,8 @@
     <string name="TextFormatting_monospace">Monoespazada</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Revelación</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5967,14 +5986,23 @@
     <string name="CallContextMenu__delete">Eliminar</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Borrando…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Erro ao borrar.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Non se puido borrar a ligazón. Comproba a túa conexión a Internet e inténtao de novo.</item>
+        <item quantity="other">Non se puideron borrar todas a ligazóns de chamadas. Comproba a túa conexión a Internet e inténtao de novo.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Historial de chamadas baleiro</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Baleirar historial de chamadas?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Isto borrará o historial de chamadas de xeito permanente</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Baleirar historial de chamadas</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrar chamadas perdidas</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6088,6 +6116,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historial de edicións</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Só para versión beta de Signal</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Editar mensaxes só está dispoñible para usuarios da versión beta de Signal. Se editas unha mensaxe, só será visible para as persoas que teñan a última versión beta de Signal.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancelar</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Enviar</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

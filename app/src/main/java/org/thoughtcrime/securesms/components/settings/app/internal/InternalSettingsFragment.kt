@@ -136,6 +136,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("SVR Playground"),
+        summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+        }
+      )
+
       switchPref(
         title = DSLSettingsText.from("'Internal Details' button"),
         summary = DSLSettingsText.from("Show a button in conversation settings that lets you see more information about a user."),
@@ -560,8 +568,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(DSLSettingsText.from("PNP"))
 
       clickPref(
-        title = DSLSettingsText.from("Trigger No-Op Change Number"),
-        summary = DSLSettingsText.from("Mimics the 'Hello world' event"),
+        title = DSLSettingsText.from("Trigger 'Hello World' event"),
         isEnabled = true,
         onClick = {
           SimpleTask.run(viewLifecycleOwner.lifecycle, {

@@ -37,7 +37,6 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -49,7 +48,6 @@ import java.time.Instant
 @Preview
 @Composable
 private fun SignalCallRowPreview() {
-  val avatarColor = remember { AvatarColor.random() }
   val callLink = remember {
     val credentials = CallLinkCredentials.generate()
     CallLinkTable.CallLink(
@@ -61,8 +59,7 @@ private fun SignalCallRowPreview() {
         restrictions = org.signal.ringrtc.CallLinkState.Restrictions.NONE,
         expiration = Instant.MAX,
         revoked = false
-      ),
-      avatarColor = avatarColor
+      )
     )
   }
   SignalTheme(false) {
@@ -76,7 +73,7 @@ private fun SignalCallRowPreview() {
 @Composable
 fun SignalCallRow(
   callLink: CallLinkTable.CallLink,
-  onJoinClicked: () -> Unit,
+  onJoinClicked: (() -> Unit)?,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -122,13 +119,15 @@ fun SignalCallRow(
       )
     }
 
-    Spacer(modifier = Modifier.width(10.dp))
+    if (onJoinClicked != null) {
+      Spacer(modifier = Modifier.width(10.dp))
 
-    Buttons.Small(
-      onClick = onJoinClicked,
-      modifier = Modifier.align(CenterVertically)
-    ) {
-      Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))
+      Buttons.Small(
+        onClick = onJoinClicked,
+        modifier = Modifier.align(CenterVertically)
+      ) {
+        Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))
+      }
     }
   }
 }

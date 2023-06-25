@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversation.VoiceNoteDraftView;
 import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -396,6 +397,7 @@ public class InputPanel extends LinearLayout
   public void enterEditMessageMode(@NonNull GlideRequests glideRequests, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft) {
     SpannableString textToEdit = conversationMessageToEdit.getDisplayBody(getContext());
     if (!fromDraft) {
+      MessageStyler.convertSpoilersToComposeMode(textToEdit);
       composeText.setText(textToEdit);
       composeText.setSelection(textToEdit.length());
     }

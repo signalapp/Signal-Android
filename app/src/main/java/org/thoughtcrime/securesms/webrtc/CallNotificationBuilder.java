@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import org.signal.core.util.PendingIntentFlags;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -50,7 +50,7 @@ public class CallNotificationBuilder {
    */
   public static final int API_LEVEL_CALL_STYLE = 29;
 
-  public static Single<Notification> getCallInProgressNotification(Context context, int type, Recipient recipient) {
+  public static Single<Notification> getCallInProgressNotification(Context context, int type, Recipient recipient, boolean isVideoCall) {
     Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     contentIntent.putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_FULLSCREEN, true);
@@ -69,13 +69,12 @@ public class CallNotificationBuilder {
       builder.setContentIntent(null);
       return Single.just(builder.build());
     } else if (type == TYPE_INCOMING_RINGING) {
-      builder.setContentText(context.getString(recipient.isGroup() ? R.string.NotificationBarManager__incoming_signal_group_call : R.string.NotificationBarManager__incoming_signal_call));
+      builder.setContentText(getIncomingCallContentText(context, recipient, isVideoCall));
       builder.setPriority(NotificationCompat.PRIORITY_HIGH);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
+      builder.setFullScreenIntent(pendingIntent, true);
 
-      if (deviceVersionSupportsIncomingCallStyle() &&
-          ServiceUtil.getPowerManager(context).isInteractive() &&
-          !ServiceUtil.getKeyguardManager(context).isDeviceLocked())
+      if (deviceVersionSupportsIncomingCallStyle())
       {
         return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
                      .subscribeOn(Schedulers.io())
@@ -84,33 +83,37 @@ public class CallNotificationBuilder {
                        builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
                            person,
                            getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
-                           getActivityPendingIntent(context, WebRtcCallActivity.ANSWER_ACTION)
-                       ));
+                           getActivityPendingIntent(context, isVideoCall ? WebRtcCallActivity.ANSWER_VIDEO_ACTION : WebRtcCallActivity.ANSWER_ACTION)
+                       ).setIsVideo(isVideoCall));
                        return builder.build();
                      });
       } else {
-        return Single.just(builder.setFullScreenIntent(pendingIntent, true).build());
+        return Single.just(builder.build());
       }
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
       return Single.just(builder.build());
     } else {
-      builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.setContentText(getOngoingCallContentText(context, recipient, isVideoCall));
       builder.setOnlyAlertOnce(true);
-      builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+      builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
-      return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
-                   .subscribeOn(Schedulers.io())
-                   .observeOn(AndroidSchedulers.mainThread())
-                   .map(person -> {
-                     builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
-                         person,
-                         getServicePendingIntent(context, WebRtcCallService.hangupIntent(context))
-                     ));
-                     return builder.build();
-                   });
+      if (deviceVersionSupportsIncomingCallStyle()) {
+        return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
+                     .subscribeOn(Schedulers.io())
+                     .observeOn(AndroidSchedulers.mainThread())
+                     .map(person -> {
+                       builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
+                           person,
+                           getServicePendingIntent(context, WebRtcCallService.hangupIntent(context))
+                       ).setIsVideo(isVideoCall));
+                       return builder.build();
+                     });
+      } else {
+        return Single.just(builder.build());
+      }
     }
   }
 
@@ -154,8 +157,28 @@ public class CallNotificationBuilder {
     return notificationId == WEBRTC_NOTIFICATION || notificationId == WEBRTC_NOTIFICATION_RINGING;
   }
 
+  private static @NonNull String getIncomingCallContentText(@NonNull Context context, @NonNull Recipient recipient, boolean isVideoCall) {
+    if (recipient.isGroup()) {
+      return context.getString(R.string.CallNotificationBuilder__incoming_signal_group_call);
+    } else if (isVideoCall) {
+      return context.getString(R.string.CallNotificationBuilder__incoming_signal_video_call);
+    } else {
+      return context.getString(R.string.CallNotificationBuilder__incoming_signal_voice_call);
+    }
+  }
+
+  private static @NonNull String getOngoingCallContentText(@NonNull Context context, @NonNull Recipient recipient, boolean isVideoCall) {
+    if (recipient.isGroup()) {
+      return context.getString(R.string.CallNotificationBuilder__ongoing_signal_group_call);
+    } else if (isVideoCall) {
+      return context.getString(R.string.CallNotificationBuilder__ongoing_signal_video_call);
+    } else {
+      return context.getString(R.string.CallNotificationBuilder__ongoing_signal_voice_call);
+    }
+  }
+
   private static @NonNull String getNotificationChannel(int type) {
-    if ((deviceVersionSupportsIncomingCallStyle() && type == TYPE_INCOMING_RINGING) || type == TYPE_ESTABLISHED) {
+    if (type == TYPE_INCOMING_RINGING) {
       return NotificationChannels.getInstance().CALLS;
     } else {
       return NotificationChannels.getInstance().CALL_STATUS;

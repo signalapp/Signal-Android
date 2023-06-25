@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">कॉल करा</string>
     <string name="CommunicationActions_insecure_call">असुरक्षित कॉल</string>
     <string name="CommunicationActions_carrier_charges_may_apply">वाहक शुल्क लागू शकते. आपण कॉल करीत असलेला नंबर Signal सह नोंदणीकृत नाही. हा कॉल इंटरनेटवरून नव्हे तर आपल्या मोबाइल कॅरियरद्वारे दिला जाईल.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">कॉलमध्ये सामील होऊ शकत नाही</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">ही कॉल लिंक यापुढे वैध नाही.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -319,7 +319,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">संपादित केलेले %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">कॉलमध्ये सामील व्हा</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">संलग्न जोडा</string>
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal उघडा</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">सत्यापित केली जाणार नाही</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">फिल्टर साफ करा</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">अतिरिक्त चेहरे किंवा क्षेत्र अस्पष्ट करण्यासाठी रेखाटा</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">व्हॉईस संदेश रेकॉर्ड करण्यासाठी टॅप करा आणि धरून ठेवा, पाठविण्यासाठी सोडा</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">व्हॉईस संदेश रेकॉर्ड करण्यास टॅप व धरा, पाठवण्यास सोडा</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1217,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">प्रत्युत्तरे</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
     <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
-    <string name="NotificationBarManager__incoming_signal_call">येणारा Signal कॉल</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">येणारा Signal गट कॉल</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Signal कॉल सेवा सुरू करत आहे</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद करत आहे</string>
@@ -1484,12 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">आपण गट कॉल · %1$s सुरू केला</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये आहे · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">आपण गट कॉलमध्ये आहात · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s आणि %2$s गट कॉलमध्ये आहेत · %3$s</string>
     <string name="MessageRecord_group_call_s">गट कॉल · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ने गट कॉल चालू केला</string>
+    <string name="MessageRecord_you_started_a_group_call">आपण गट कॉल चालू केला</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s गट कॉलमध्ये आहे</string>
     <string name="MessageRecord_you_are_in_the_group_call">आपण गट कॉलमध्ये आहात</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s आणि %2$s गट कॉलमध्ये आहेत</string>
@@ -1854,9 +1853,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">आपण या क्रमांकांची नोंदणी करण्यास असंख्य प्रयत्न केले आहेत. कृपया %1$s मध्ये पुन्हा प्रयत्न करा.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">सेवेसोबत कनेक्ट करण्यात अक्षम. कृपया नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">अनपेक्षित त्रूटी उद्भवली.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">आम्ही SMS मार्फत आपणाला सत्यापन कोड पाठवू शकत नाही. त्याऐवजी व्हॉइस कॉल मार्फत आपला कोड प्राप्त करण्याचा प्रयत्न करा.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">सत्यापन कोडची विनंती करण्यास अक्षम. कृपया आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
     <string name="RegistrationActivity_non_standard_number_format">अ-मानक क्रमांक स्वरूप</string>
@@ -1876,9 +1875,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">बाह्य अपयशांमुळे Signal हे SMS कोड पाठवण्यास अक्षम आहे.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">व्हॉईस कॉल</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">रद्द करा</string>
     <string name="RegistrationActivity_next">पुढे</string>
     <string name="RegistrationActivity_continue">सुरू ठेवा</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">गोपनीयता आपल्यासोबत न्या.\nप्रत्येक संदेशात आपण स्वतः रहा.</string>
@@ -2342,7 +2341,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">स्पीकर</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ब्लुटूथ</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">वायर्ड हेडफोन्स</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">वायर्ड हेडसेट</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">वायर्ड हेडसेट (USB)</string>
@@ -3341,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">चॅट सेटिंग्ज</string>
     <string name="conversation__menu_add_shortcut">मुख्यस्क्रीन वर जोडा</string>
     <string name="conversation__menu_create_bubble">बबल तयार करा</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">पॉपअप विस्तारित करा</string>
@@ -3542,6 +3545,20 @@
     <string name="KbsMegaphone__create_a_pin">PIN तयार करा.</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात.</string>
     <string name="KbsMegaphone__create_pin">PIN तयार करा</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">येणारा Signal व्हॉईस कॉल</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">येणारा Signal व्हिडिओ कॉल</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">येणारा Signal गट कॉल</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">सुरू असलेला Signal व्हॉईस कॉल</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">सुरू असलेला Signal व्हिडिओ कॉल</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">सुरू असलेला Signal गट कॉल</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
@@ -5901,6 +5918,8 @@
     <string name="TextFormatting_monospace">मोनोस्पेस</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">स्पॉईलर</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5967,14 +5986,23 @@
     <string name="CallContextMenu__delete">हटवा</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">हटवत आहे…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">हटवणे अयशस्वी.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">लिंक हटवू शकत नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</item>
+        <item quantity="other">सर्व कॉल लिंक हटवल्या जाऊ शकत नाहीत. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">साफ केलेला कॉल इतिहास</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">कॉल इतिहास साफ करायचा?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">हे कायमस्वरूपी सर्व कॉल इतिहास हटवेल</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">कॉल इतिहास साफ करा</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">मिस्ड कॉल्स फिल्टर करा</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6088,6 +6116,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">संपादनाचा इतिहास</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">फक्त Signal बीटा</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">संदेश संपादन करणे हे फक्त Signal बीटा वापरकर्त्यासाठी उपलब्ध आहे. आपण संदेश संपादित केल्यास, तो जे लोक Signal बीटाच्या नवीनतम आवृत्तीवर आहेत फक्त त्यांनाच दृश्यमान असेल.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">रद्द करा</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">पाठवा</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

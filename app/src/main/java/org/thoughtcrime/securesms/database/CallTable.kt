@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
 import java.util.UUID
@@ -205,6 +206,48 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .delete(TABLE_NAME)
       .where("$DELETION_TIMESTAMP > 0 AND $DELETION_TIMESTAMP <= ?", threshold)
       .run()
+  }
+
+  fun getCallLinkRoomIdsFromCallRowIds(callRowIds: Set<Long>): Set<CallLinkRoomId> {
+    return SqlUtil.buildCollectionQuery("$TABLE_NAME.$ID", callRowIds).map { query ->
+      //language=sql
+      val statement = """
+        SELECT ${CallLinkTable.ROOM_ID} FROM $TABLE_NAME
+        INNER JOIN ${CallLinkTable.TABLE_NAME} ON ${CallLinkTable.TABLE_NAME}.${CallLinkTable.RECIPIENT_ID} = $PEER
+        WHERE $TYPE = ${Type.serialize(Type.AD_HOC_CALL)} AND ${query.where}
+      """.toSingleLine()
+
+      readableDatabase.query(statement, query.whereArgs).readToList {
+        CallLinkRoomId.DatabaseSerializer.deserialize(it.requireNonNullString(CallLinkTable.ROOM_ID))
+      }
+    }.flatten().toSet()
+  }
+
+  /**
+   * If a call link has been revoked, or if we do not have a CallLink table entry for an AD_HOC_CALL type
+   * event, we mark it deleted.
+   */
+  fun updateAdHocCallEventDeletionTimestamps() {
+    //language=sql
+    val statement = """
+      UPDATE $TABLE_NAME
+      SET $DELETION_TIMESTAMP = ${System.currentTimeMillis()}, $EVENT = ${Event.serialize(Event.DELETE)}
+      WHERE $TYPE = ${Type.serialize(Type.AD_HOC_CALL)}
+      AND (
+        (NOT EXISTS (SELECT 1 FROM ${CallLinkTable.TABLE_NAME} WHERE ${CallLinkTable.RECIPIENT_ID} = $PEER))
+        OR
+        (SELECT ${CallLinkTable.REVOKED} FROM ${CallLinkTable.TABLE_NAME} WHERE ${CallLinkTable.RECIPIENT_ID} = $PEER)
+      )
+      RETURNING *
+    """.toSingleLine()
+
+    val toSync = writableDatabase.query(statement).readToList {
+      Call.deserialize(it)
+    }.toSet()
+
+    CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   /**
@@ -385,6 +428,23 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     peekJoinedUuids: Collection<UUID>,
     isCallFull: Boolean
   ) {
+    val recipient = Recipient.resolved(groupRecipientId)
+    if (recipient.isCallLink) {
+      handleCallLinkUpdate(recipient, timestamp, peekGroupCallEraId)
+    } else {
+      handleGroupUpdate(recipient, sender, timestamp, peekGroupCallEraId, peekJoinedUuids, isCallFull)
+    }
+  }
+
+  private fun handleGroupUpdate(
+    groupRecipient: Recipient,
+    sender: RecipientId,
+    timestamp: Long,
+    peekGroupCallEraId: String?,
+    peekJoinedUuids: Collection<UUID>,
+    isCallFull: Boolean
+  ) {
+    check(groupRecipient.isPushV2Group)
     writableDatabase.withinTransaction {
       if (peekGroupCallEraId.isNullOrEmpty()) {
         Log.w(TAG, "Dropping local call event with null era id.")
@@ -392,7 +452,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       }
 
       val callId = CallId.fromEra(peekGroupCallEraId).longValue()
-      val call = getCallById(callId, groupRecipientId)
+      val call = getCallById(callId, groupRecipient.id)
       val messageId: MessageId = if (call != null) {
         if (call.event == Event.DELETE) {
           Log.d(TAG, "Dropping group call update for deleted call.")
@@ -417,7 +477,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         )
       } else {
         SignalDatabase.messages.insertGroupCall(
-          groupRecipientId,
+          groupRecipient.id,
           sender,
           timestamp,
           peekGroupCallEraId,
@@ -430,10 +490,41 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         callId,
         messageId,
         sender,
-        groupRecipientId,
+        groupRecipient.id,
         timestamp
       )
     }
+  }
+
+  private fun handleCallLinkUpdate(
+    callLinkRecipient: Recipient,
+    timestamp: Long,
+    peekGroupCallEraId: String?
+  ) {
+    check(callLinkRecipient.isCallLink)
+
+    val callId = peekGroupCallEraId?.let { CallId.fromEra(it).longValue() } ?: return
+
+    writableDatabase.withinTransaction { db ->
+      db.delete(TABLE_NAME)
+        .where("$PEER = ?", callLinkRecipient.id.serialize())
+        .run()
+
+      db.insertInto(TABLE_NAME)
+        .values(
+          CALL_ID to callId,
+          MESSAGE_ID to null,
+          PEER to callLinkRecipient.id.toLong(),
+          EVENT to Event.serialize(Event.GENERIC_GROUP_CALL),
+          TYPE to Type.serialize(Type.AD_HOC_CALL),
+          DIRECTION to Direction.serialize(Direction.OUTGOING),
+          TIMESTAMP to timestamp,
+          RINGER to null
+        ).run(SQLiteDatabase.CONFLICT_ABORT)
+    }
+
+    Log.d(TAG, "Inserted new call event for call link. Call Id: $callId")
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   private fun insertCallEventFromGroupUpdate(
@@ -648,6 +739,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   ) {
     val direction = if (ringerRecipient == Recipient.self().id) Direction.OUTGOING else Direction.INCOMING
 
+    val recipient = Recipient.resolved(groupRecipientId)
+    check(recipient.isPushV2Group)
+
     writableDatabase.withinTransaction { db ->
       val messageId = SignalDatabase.messages.insertGroupCall(
         groupRecipientId = groupRecipientId,
@@ -706,13 +800,13 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
   }
 
-  fun deleteCallEvents(callRowIds: Set<Long>) {
+  fun deleteNonAdHocCallEvents(callRowIds: Set<Long>) {
     val messageIds = getMessageIds(callRowIds)
     SignalDatabase.messages.deleteCallUpdates(messageIds)
     updateCallEventDeletionTimestamps()
   }
 
-  fun deleteAllCallEventsExcept(callRowIds: Set<Long>, missedOnly: Boolean) {
+  fun deleteAllNonAdHocCallEventsExcept(callRowIds: Set<Long>, missedOnly: Boolean) {
     val callFilter = if (missedOnly) {
       "$EVENT = ${Event.serialize(Event.MISSED)} AND $DELETION_TIMESTAMP = 0"
     } else {
@@ -934,7 +1028,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           cte
       ) p
       INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $PEER
-      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
+      LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
       LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
       ORDER BY p.$TIMESTAMP DESC
@@ -1007,12 +1101,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     companion object Deserializer : Serializer<Call, Cursor> {
       fun getMessageType(type: Type, direction: Direction, event: Event): Long {
-        if (type == Type.GROUP_CALL) {
+        if (type == Type.GROUP_CALL || type == Type.AD_HOC_CALL) {
           return MessageTypes.GROUP_CALL_TYPE
-        }
-
-        if (type == Type.AD_HOC_CALL) {
-          error("Ad-Hoc calls are not linked to messages.")
         }
 
         return if (direction == Direction.INCOMING && event == Event.MISSED) {

@@ -708,7 +708,7 @@ public class SignalServiceMessageSender {
    * @param pniChangeNumber - Linked device specific updated PNI details
    * @return Encrypted {@link OutgoingPushMessage} to be included in the change number request sent to the server
    */
-  public @Nonnull OutgoingPushMessage getEncryptedSyncPniChangeNumberMessage(int deviceId, @Nonnull SyncMessage.PniChangeNumber pniChangeNumber)
+  public @Nonnull OutgoingPushMessage getEncryptedSyncPniInitializeDeviceMessage(int deviceId, @Nonnull SyncMessage.PniChangeNumber pniChangeNumber)
       throws UntrustedIdentityException, IOException, InvalidKeyException
   {
     SyncMessage.Builder syncMessage     = createSyncMessageBuilder().setPniChangeNumber(pniChangeNumber);

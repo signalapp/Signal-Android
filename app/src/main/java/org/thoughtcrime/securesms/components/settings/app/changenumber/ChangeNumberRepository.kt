@@ -113,7 +113,7 @@ class ChangeNumberRepository(
       .timeout(15, TimeUnit.SECONDS)
   }
 
-  fun changeNumber(sessionId: String? = null, recoveryPassword: String? = null, newE164: String, pniUpdateMode: Boolean = false): Single<ServiceResponse<VerifyResponse>> {
+  fun changeNumber(sessionId: String? = null, recoveryPassword: String? = null, newE164: String): Single<ServiceResponse<VerifyResponse>> {
     check((sessionId != null && recoveryPassword == null) || (sessionId == null && recoveryPassword != null))
 
     return Single.fromCallable {
@@ -125,8 +125,7 @@ class ChangeNumberRepository(
         val (request: ChangePhoneNumberRequest, metadata: PendingChangeNumberMetadata) = createChangeNumberRequest(
           sessionId = sessionId,
           recoveryPassword = recoveryPassword,
-          newE164 = newE164,
-          pniUpdateMode = pniUpdateMode
+          newE164 = newE164
         )
 
         SignalStore.misc().setPendingChangeNumberMetadata(metadata)
@@ -308,19 +307,17 @@ class ChangeNumberRepository(
     }.subscribeOn(Schedulers.single())
   }
 
-  @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   private fun createChangeNumberRequest(
     sessionId: String? = null,
     recoveryPassword: String? = null,
     newE164: String,
-    registrationLock: String? = null,
-    pniUpdateMode: Boolean = false
+    registrationLock: String? = null
   ): ChangeNumberRequestData {
     val selfIdentifier: String = SignalStore.account().requireAci().toString()
     val aciProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().aci()
 
-    val pniIdentity: IdentityKeyPair = if (pniUpdateMode) SignalStore.account().pniIdentityKey else IdentityKeyUtil.generateIdentityKeyPair()
+    val pniIdentity: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
     val deviceMessages = mutableListOf<OutgoingPushMessage>()
     val devicePniSignedPreKeys = mutableMapOf<Int, SignedPreKeyEntity>()
     val devicePniLastResortKyberPreKeys = mutableMapOf<Int, KyberPreKeyEntity>()
@@ -334,11 +331,7 @@ class ChangeNumberRepository(
       .forEach { deviceId ->
         // Signed Prekeys
         val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
-          if (pniUpdateMode) {
-            ApplicationDependencies.getProtocolStore().pni().loadSignedPreKey(SignalStore.account().pniPreKeys.activeSignedPreKeyId)
-          } else {
-            PreKeyUtil.generateAndStoreSignedPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
-          }
+          PreKeyUtil.generateAndStoreSignedPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
@@ -346,22 +339,14 @@ class ChangeNumberRepository(
 
         // Last-resort kyber prekeys
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
-          if (pniUpdateMode) {
-            ApplicationDependencies.getProtocolStore().pni().loadKyberPreKey(SignalStore.account().pniPreKeys.lastResortKyberPreKeyId)
-          } else {
-            PreKeyUtil.generateAndStoreLastResortKyberPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
-          }
+          PreKeyUtil.generateAndStoreLastResortKyberPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
         } else {
           PreKeyUtil.generateKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
         devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
 
         // Registration Ids
-        var pniRegistrationId = if (deviceId == primaryDeviceId && pniUpdateMode) {
-          SignalStore.account().pniRegistrationId
-        } else {
-          -1
-        }
+        var pniRegistrationId = -1
 
         while (pniRegistrationId < 0 || pniRegistrationIds.values.contains(pniRegistrationId)) {
           pniRegistrationId = KeyHelper.generateRegistrationId(false)
@@ -378,7 +363,7 @@ class ChangeNumberRepository(
             .setNewE164(newE164)
             .build()
 
-          deviceMessages += messageSender.getEncryptedSyncPniChangeNumberMessage(deviceId, pniChangeNumber)
+          deviceMessages += messageSender.getEncryptedSyncPniInitializeDeviceMessage(deviceId, pniChangeNumber)
         }
       }
 

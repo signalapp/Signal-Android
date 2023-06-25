@@ -79,9 +79,10 @@ public class FcmReceiveService extends FirebaseMessagingService {
 
   private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
     boolean enqueueSuccessful = false;
-
+    boolean highPriority = false;
     try {
-      boolean highPriority         = remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH;
+      highPriority = remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH;
+
       long    timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
 
       Log.d(TAG, String.format(Locale.US, "[handleReceivedNotification] API: %s, FeatureFlag: %s, RemoteMessagePriority: %s, TimeSinceLastRefresh: %s ms", Build.VERSION.SDK_INT, FeatureFlags.useFcmForegroundService(), remoteMessage != null ? remoteMessage.getPriority() : "n/a", timeSinceLastRefresh));
@@ -101,7 +102,11 @@ public class FcmReceiveService extends FirebaseMessagingService {
     }
 
     if (!enqueueSuccessful) {
-      Log.w(TAG, "Unable to start service. Falling back to legacy approach.");
+      if (highPriority) {
+        Log.w(TAG, "Unable to start service though high priority push. Falling back to legacy approach.");
+      } else {
+        Log.d(TAG, "Low priority push, trying legacy fallback");
+      }
       FcmFetchManager.tryLegacyFallback(context);
     }
   }

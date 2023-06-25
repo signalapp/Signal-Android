@@ -13,6 +13,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.DistributionListTables;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -219,10 +220,10 @@ public final class LiveRecipient {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false, groupRecord.get().isActive());
+      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false, groupRecord.get().isActive(), null);
     }
 
-    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false, false);
+    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false, false, null);
   }
 
   @WorkerThread
@@ -247,10 +248,10 @@ public final class LiveRecipient {
     if (callLink != null) {
       String name = callLink.getState().getName();
 
-      return RecipientDetails.forCallLink(name, record);
+      return RecipientDetails.forCallLink(name, record, callLink.getAvatarColor());
     }
 
-    return RecipientDetails.forCallLink(null, record);
+    return RecipientDetails.forCallLink(null, record, AvatarColor.UNKNOWN);
   }
 
   synchronized void set(@NonNull Recipient recipient) {

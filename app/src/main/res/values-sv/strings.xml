@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Ring</string>
     <string name="CommunicationActions_insecure_call">Osäkert samtal</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Operatörskostnader kan tillkomma. Numret du ringer är inte registrerat hos Signal. Detta samtal placeras via din mobiloperatör, inte över internet.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Det går inte att gå med i samtal</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Den här samtalslänken är inte längre giltig.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -319,7 +319,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">redigerad %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">Gå med i samtalet</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Öppna Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Inte längre verifierad</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Rensa filter</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Rita för att oskärpa ytterligare ansikten eller områden</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll för att spela in, släpp för att skicka</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Sms-meddelanden stöds inte längre i Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1217,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">Svar</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
     <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
-    <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Startar Signal-samtalstjänsten</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
@@ -1484,12 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Du startade ett gruppsamtal · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s är i gruppsamtalet · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Du är i gruppsamtalet · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s och %2$s är i gruppsamtalet · %3$s</string>
     <string name="MessageRecord_group_call_s">Gruppsamtal · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s startade ett gruppsamtal</string>
+    <string name="MessageRecord_you_started_a_group_call">Du startade ett gruppsamtal</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s är i gruppsamtalet</string>
     <string name="MessageRecord_you_are_in_the_group_call">Du är i gruppsamtalet</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s och %2$s är i gruppsamtalet</string>
@@ -1854,9 +1853,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort för många försök att registrera detta nummer. Försök igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Kontrollera nätverksanslutning och försök igen.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Ett oväntat fel inträffade.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunde inte skicka en verifieringskod via sms. Försök att ta emot din kod via röstsamtal istället.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Det gick inte att begära en verifieringskod. Kontrollera din nätverksanslutning och försök igen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Icke-standardiserat sifferformat</string>
@@ -1876,9 +1875,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Signal kunde inte skicka en sms-kod på grund av ett externt fel.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">Röstsamtal</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">Avbryt</string>
     <string name="RegistrationActivity_next">Nästa</string>
     <string name="RegistrationActivity_continue">Fortsätt</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig integritet.\nVar dig själv i varje meddelande.</string>
@@ -2342,7 +2341,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Högtalare</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Trådbundna hörlurar</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Trådbundet headset</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Trådbundet headset (usb)</string>
@@ -2900,7 +2901,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalningssäkerhet</string>
     <string name="preferences__payments_beta">Betalningar (Beta)</string>
-    <string name="preferences__conversation_length_limit">Gräns för chattlängd</string>
+    <string name="preferences__conversation_length_limit">Högsta antal meddelanden i ett chatt</string>
     <string name="preferences__keep_messages">Spara meddelanden</string>
     <string name="preferences__clear_message_history">Rensa meddelandehistorik</string>
     <string name="preferences__linked_devices">Länkade enheter</string>
@@ -3057,7 +3058,7 @@
     <string name="PaymentsAllActivityFragment__received">Mottagen</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducerar betalningar (beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med fokus på integritet. Aktivera för att komma igång.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med integritetsfokus. Aktivera integreringen för att komma igång.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivera betalningar</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktiverar betalningar…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Återställ betalningskontot</string>
@@ -3341,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">Chattinställningar</string>
     <string name="conversation__menu_add_shortcut">Lägg till på hemskärmen</string>
     <string name="conversation__menu_create_bubble">Skapa bubbla</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
@@ -3542,6 +3545,20 @@
     <string name="KbsMegaphone__create_a_pin">Skapa en PIN-kod</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koder håller information som lagras hos Signal krypterad.</string>
     <string name="KbsMegaphone__create_pin">Skapa PIN-kod</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Inkommande Signal-röstsamtal</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Inkommande Signal-videosamtal</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Pågående Signal-röstsamtal</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Pågående Signal-videosamtal</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Pågående Signal-gruppsamtal</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transportikon</string>
@@ -5901,6 +5918,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5967,14 +5986,23 @@
     <string name="CallContextMenu__delete">Ta bort</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Tar bort …</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Det gick inte att ta bort.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Det går inte att ta bort länken. Kontrollera din anslutning och försök igen.</item>
+        <item quantity="other">Det går inte att ta bort alla samtalslänkar. Kontrollera din anslutning och försök igen.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Samtalshistoriken har rensats</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Rensa samtalshistorik?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Detta kommer att radera all samtalshistorik permanent</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Rensa samtalshistorik</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrera missade samtal</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6088,6 +6116,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redigeringshistorik</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Endast Signal beta</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Redigering av meddelanden är endast tillgängligt för betaanvändare av Signal. Om du redigerar ett meddelande kommer det bara att vara synligt för personer som använder den senaste betaversionen av Signal.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Avbryt</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Skicka</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

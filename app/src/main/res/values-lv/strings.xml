@@ -237,8 +237,8 @@
     <string name="CommunicationActions_call">Zvanīt</string>
     <string name="CommunicationActions_insecure_call">Nedrošs zvans</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Var tikt piemēroti mobilā tīkla operatora maksas. Numuram, uz kuru zvanāt, nav instalēta Signal aplikācija. Tādēļ šis zvans tiks veikts izmantojot jūsu mobilo sakaru operatoru, nevis internetu.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Nevar pievienoties grupai</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Šī zvana saite vairs nav derīga.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -320,7 +320,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">rediģēta %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">Pievienoties sarunai</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Pievienot pielikumu</string>
@@ -516,7 +516,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Atvērt Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Vairs nav verificēts</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Noņemt filtru</string>
@@ -1148,7 +1148,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Velciet, lai aizmiglotu vairākas vietas</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu audio ziņu, atlaist, lai sūtītu</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu balss ziņu, atlaist, lai sūtītu</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal vairs netiek atbalstīta SMS ziņu sūtīšana.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1260,10 +1260,7 @@
     <string name="MessageQuotesBottomSheet_replies">Atbildes</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Tiek veikts Signal zvans</string>
     <string name="NotificationBarManager__establishing_signal_call">Signal zvana savienojuma izveide</string>
-    <string name="NotificationBarManager__incoming_signal_call">Ienākošs Signal zvans</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Ienākošs Signal grupas zvans</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Tiek palaists Signal zvana pakalpojums</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Tiek apturēts Signal zvana pakalpojums</string>
@@ -1535,12 +1532,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s sāka grupas zvanu · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Jūs sākāt grupas zvanu · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ir grupas zvanā · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Jūs esat grupas zvanā · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s un %2$s ir grupas zvanā · %3$s</string>
     <string name="MessageRecord_group_call_s">Grupas zvans · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s sāka grupas zvanu</string>
+    <string name="MessageRecord_you_started_a_group_call">Jūs sākāt grupas zvanu</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s ir grupas zvanā</string>
     <string name="MessageRecord_you_are_in_the_group_call">Jūs esat grupas zvanā</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s un %2$s ir grupas zvanā</string>
@@ -1919,9 +1918,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Pārāk daudz šī numura reģistrēšanas mēģinājumu. Mēģiniet vēlreiz pēc %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nevar izveidot savienojumu ar pakalpojumu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Radās neparedzēta kļūda.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Mēs nevarējām nosūtīt jums verifikācijas kodu īsziņā. Tā vietā mēģiniet saņemt kodu, izmantojot balss zvanu.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nevar pieprasīt verifikācijas kodu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandarta numura formāts</string>
@@ -1942,9 +1941,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Signal nevarēja nosūtīt SMS kodu ārējas kļūmes dēļ.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">Audiozvans</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">Atcelt</string>
     <string name="RegistrationActivity_next">Tālāk</string>
     <string name="RegistrationActivity_continue">Turpināt</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ņem privātumu savās rokās.\nKatrā rakstītajā ziņā esi tu pats!</string>
@@ -2412,7 +2411,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Skaļrunis</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Austiņas ar vadu</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Austiņas ar vadu</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Austiņas ar vadu (USB)</string>
@@ -2981,7 +2982,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Maksājumu bloķēšana</string>
     <string name="preferences__payments_beta">Maksājumi (beta)</string>
-    <string name="preferences__conversation_length_limit">Sarunu garuma ierobežojums</string>
+    <string name="preferences__conversation_length_limit">Maksimālais sarunas ziņu skaits</string>
     <string name="preferences__keep_messages">Paturēt ziņas</string>
     <string name="preferences__clear_message_history">Dzēst ziņu vēsturi</string>
     <string name="preferences__linked_devices">Piesaistās ierīces</string>
@@ -3139,7 +3140,7 @@
     <string name="PaymentsAllActivityFragment__received">Saņemtās</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Maksājumu ieviešana (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Izmantojiet lietotni Signal, lai nosūtītu un saņemtu MobileCoin - jaunu uz privātumu vērstu digitālo valūtu. Aktivizējiet, lai sāktu.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Izmantojiet lietotni Signal, lai nosūtītu un saņemtu MobileCoin — jaunu, uz privātumu vērstu digitālo valūtu. Aktivizējiet, lai sāktu.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivizēt maksājumus</string>
     <string name="PaymentsHomeFragment__activating_payments">Tiek aktivizēti maksājumi…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Atjaunot maksājumu kontu</string>
@@ -3424,6 +3425,8 @@
     <string name="conversation__menu_conversation_settings">Sarunas iestatījumi</string>
     <string name="conversation__menu_add_shortcut">Pievienot sākuma ekrānam</string>
     <string name="conversation__menu_create_bubble">Izveidot burbuli</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Izvērst uznirstošo logu</string>
@@ -3633,6 +3636,20 @@
     <string name="KbsMegaphone__create_a_pin">Izveidot PINu</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN noglabā Signal informāciju šifrētā veidā.</string>
     <string name="KbsMegaphone__create_pin">Izveidot PINu</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Ienākošs Signal balss zvans</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Ienākošs Signal video zvans</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Ienākošs Signal grupas zvans</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Aktīvs Signal balss zvans</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Aktīvs Signal video zvans</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Aktīvs Signal grupas zvans</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
@@ -6024,6 +6041,8 @@
     <string name="TextFormatting_monospace">Vienplatuma</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoileris</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -6090,14 +6109,24 @@
     <string name="CallContextMenu__delete">Dzēst</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Notiek dzēšana…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Dzēšana neizdevās.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="zero">Visas zvanu saites nevarēja izdzēst. Pārbaudiet savienojumu un mēģiniet vēlreiz.</item>
+        <item quantity="one">Saiti nevarēja izdzēst. Pārbaudiet savienojumu un mēģiniet vēlreiz.</item>
+        <item quantity="other">Visas zvanu saites nevarēja izdzēst. Pārbaudiet savienojumu un mēģiniet vēlreiz.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Zvanu vēsture dzēsta</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Dzēst zvanu vēsturi?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Tiks neatgriezeniski dzēsta visa zvanu vēsture</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Dzēst zvanu vēsturi</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrēt neatbildētos zvanus</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6213,6 +6242,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Rediģēšanas vēsture</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Tikai Signal beta versijai</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Ziņu rediģēšana ir pieejama tikai Signal beta versijas lietotājiem. Ja rediģēsiet ziņu, tā būs redzama tikai personām, kuras izmanto Signal beta versiju.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Atcelt</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Sūtīt</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

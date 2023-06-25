@@ -62,6 +62,7 @@ abstract class WrapperDialogFragment : DialogFragment(R.layout.fragment_containe
   }
 
   override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
     findListener<WrapperDialogFragmentCallback>()?.onWrapperDialogFragmentDismissed()
   }
 

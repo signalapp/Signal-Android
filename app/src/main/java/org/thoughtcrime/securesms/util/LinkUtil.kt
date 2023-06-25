@@ -13,6 +13,7 @@ object LinkUtil {
   private val ALL_ASCII_PATTERN = Pattern.compile("^[\\x00-\\x7F]*$")
   private val ALL_NON_ASCII_PATTERN = Pattern.compile("^[^\\x00-\\x7F]*$")
   private val ILLEGAL_CHARACTERS_PATTERN = Pattern.compile("[\u202C\u202D\u202E\u2500-\u25FF]")
+  private val ILLEGAL_PERIODS_PATTERN = Pattern.compile("(\\.{2,}|…)")
 
   private val INVALID_DOMAINS = listOf("example", "example\\.com", "example\\.net", "example\\.org", "i2p", "invalid", "localhost", "onion", "test")
   private val INVALID_DOMAINS_REGEX: Regex = Regex("^(.+\\.)?(${INVALID_DOMAINS.joinToString("|")})\\.?\$")
@@ -72,8 +73,12 @@ object LinkUtil {
     }
 
     val domain = Objects.requireNonNull(matcher.group(2))
-    val cleanedDomain = domain.replace("\\.".toRegex(), "")
 
+    if (ILLEGAL_PERIODS_PATTERN.matcher(domain).find()) {
+      return LegalCharactersResult(false)
+    }
+
+    val cleanedDomain = domain.replace("\\.".toRegex(), "")
     return LegalCharactersResult(
       isLegal = ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() || ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches(),
       domain = domain

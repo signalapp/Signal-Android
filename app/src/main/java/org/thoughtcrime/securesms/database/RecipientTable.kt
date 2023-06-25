@@ -568,15 +568,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     ).recipientId
   }
 
-  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId, avatarColor: AvatarColor): RecipientId {
+  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId): RecipientId {
     return getOrInsertByColumn(
       CALL_LINK_ROOM_ID,
       callLinkRoomId.serialize(),
       contentValuesOf(
         GROUP_TYPE to GroupType.CALL_LINK.id,
         CALL_LINK_ROOM_ID to callLinkRoomId.serialize(),
-        PROFILE_SHARING to 1,
-        AVATAR_COLOR to avatarColor.serialize()
+        PROFILE_SHARING to 1
       )
     ).recipientId
   }

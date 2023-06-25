@@ -37,7 +37,6 @@ class FcmFetchForegroundService : Service() {
 
   override fun onCreate() {
     Log.d(TAG, "onCreate()")
-    postForegroundNotification()
   }
 
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -47,7 +46,6 @@ class FcmFetchForegroundService : Service() {
     return if (intent != null && intent.getBooleanExtra(KEY_STOP_SELF, false)) {
       stopForeground(true)
       stopSelf()
-      FcmFetchManager.onForegroundFetchServiceStop()
       START_NOT_STICKY
     } else {
       START_STICKY
@@ -70,6 +68,7 @@ class FcmFetchForegroundService : Service() {
 
   override fun onDestroy() {
     Log.i(TAG, "onDestroy()")
+    FcmFetchManager.onDestroyForegroundFetchService()
   }
 
   override fun onBind(intent: Intent?): IBinder? {

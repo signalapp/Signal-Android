@@ -9,9 +9,9 @@ import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
-import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.KeyHelper;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -37,9 +37,8 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KbsPinData;
-import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.account.PreKeyUpload;
+import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
@@ -145,16 +144,17 @@ public final class RegistrationRepository {
     ApplicationDependencies.getProtocolStore().pni().sessions().archiveAllSessions();
     SenderKeyUtil.clearAllState();
 
-    SignalServiceAccountManager       accountManager   = AccountManagerFactory.getInstance().createAuthenticated(context, aci, pni, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
-    SignalServiceAccountDataStoreImpl aciProtocolStore = ApplicationDependencies.getProtocolStore().aci();
-    SignalServiceAccountDataStoreImpl pniProtocolStore = ApplicationDependencies.getProtocolStore().pni();
+    SignalServiceAccountDataStoreImpl aciProtocolStore    = ApplicationDependencies.getProtocolStore().aci();
+    PreKeyCollection                  aciPreKeyCollection = registrationData.getAciPreKeyCollection();
+    PreKeyMetadataStore               aciMetadataStore    = SignalStore.account().aciPreKeys();
 
-    generateAndRegisterPreKeys(ServiceIdType.ACI, accountManager, aciProtocolStore, SignalStore.account().aciPreKeys());
-    generateAndRegisterPreKeys(ServiceIdType.PNI, accountManager, pniProtocolStore, SignalStore.account().pniPreKeys());
+    SignalServiceAccountDataStoreImpl pniProtocolStore    = ApplicationDependencies.getProtocolStore().pni();
+    PreKeyCollection                  pniPreKeyCollection = registrationData.getPniPreKeyCollection();
+    PreKeyMetadataStore               pniMetadataStore    = SignalStore.account().pniPreKeys();
 
-    if (registrationData.isFcm()) {
-      accountManager.setGcmId(Optional.ofNullable(registrationData.getFcmToken()));
-    }
+    storePreKeys(aciProtocolStore, aciMetadataStore, aciPreKeyCollection);
+    storePreKeys(pniProtocolStore, pniMetadataStore, pniPreKeyCollection);
+
 
     RecipientTable recipientTable = SignalDatabase.recipients();
     RecipientId    selfId         = Recipient.trustedPush(aci, pni, registrationData.getE164()).getId();
@@ -186,24 +186,59 @@ public final class RegistrationRepository {
     ApplicationDependencies.getIncomingMessageObserver();
   }
 
-  private void generateAndRegisterPreKeys(@NonNull ServiceIdType serviceIdType,
-                                          @NonNull SignalServiceAccountManager accountManager,
-                                          @NonNull SignalServiceAccountDataStore protocolStore,
-                                          @NonNull PreKeyMetadataStore metadataStore)
-      throws IOException
-  {
-    SignedPreKeyRecord      signedPreKey          = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore);
-    List<PreKeyRecord>      oneTimeEcPreKeys      = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(protocolStore, metadataStore);
-    KyberPreKeyRecord       lastResortKyberPreKey = PreKeyUtil.generateAndStoreLastResortKyberPreKey(protocolStore, metadataStore);
-    List<KyberPreKeyRecord> oneTimeKyberPreKeys   = PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(protocolStore, metadataStore);
-
-    accountManager.setPreKeys(new PreKeyUpload(serviceIdType,
-                                               protocolStore.getIdentityKeyPair().getPublicKey(),
-                                               signedPreKey,
-                                               oneTimeEcPreKeys,
-                                               lastResortKyberPreKey,
-                                               oneTimeKyberPreKeys));
+  public static PreKeyCollection generatePreKeysForType(ServiceIdType serviceIdType) {
+    IdentityKeyPair keyPair;
+    PreKeyMetadataStore metadataStore;
+    if (serviceIdType == ServiceIdType.ACI) {
+      if (!SignalStore.account().hasAciIdentityKey()) {
+        SignalStore.account().generateAciIdentityKeyIfNecessary();
+      }
+      keyPair = SignalStore.account().getAciIdentityKey();
+      metadataStore = SignalStore.account().aciPreKeys();
+    } else if (serviceIdType == ServiceIdType.PNI) {
+      if (!SignalStore.account().hasPniIdentityKey()) {
+        SignalStore.account().generatePniIdentityKeyIfNecessary();
+      }
+      keyPair = SignalStore.account().getPniIdentityKey();
+      metadataStore = SignalStore.account().pniPreKeys();
+    } else {
+      throw new IllegalArgumentException("serviceIdType is not one of {ACI, PNI}");
+    }
+    int                nextSignedPreKeyId = metadataStore.getNextSignedPreKeyId();
+    SignedPreKeyRecord signedPreKey       = PreKeyUtil.generateSignedPreKey(nextSignedPreKeyId, keyPair.getPrivateKey());
     metadataStore.setActiveSignedPreKeyId(signedPreKey.getId());
+
+    int                ecOneTimePreKeyIdOffset = metadataStore.getNextEcOneTimePreKeyId();
+    List<PreKeyRecord> oneTimeEcPreKeys        = PreKeyUtil.generateOneTimeEcPreKeys(ecOneTimePreKeyIdOffset);
+
+
+    int               nextKyberPreKeyId     = metadataStore.getNextKyberPreKeyId();
+    KyberPreKeyRecord lastResortKyberPreKey = PreKeyUtil.generateKyberPreKey(nextKyberPreKeyId, keyPair.getPrivateKey());
+    metadataStore.setLastResortKyberPreKeyId(nextKyberPreKeyId);
+
+    int                     oneTimeKyberPreKeyIdOffset = metadataStore.getNextKyberPreKeyId();
+    List<KyberPreKeyRecord> oneTimeKyberPreKeys        = PreKeyUtil.generateOneTimeKyberPreKeyRecords(oneTimeKyberPreKeyIdOffset, keyPair.getPrivateKey());
+
+    return new PreKeyCollection(
+        keyPair,
+        nextSignedPreKeyId,
+        ecOneTimePreKeyIdOffset,
+        nextKyberPreKeyId,
+        oneTimeKyberPreKeyIdOffset,
+        serviceIdType,
+        keyPair.getPublicKey(),
+        signedPreKey,
+        oneTimeEcPreKeys,
+        lastResortKyberPreKey,
+        oneTimeKyberPreKeys
+    );
+  }
+
+  private static void storePreKeys(SignalServiceAccountDataStoreImpl protocolStore, PreKeyMetadataStore metadataStore, PreKeyCollection preKeyCollection) {
+    PreKeyUtil.storeSignedPreKey(protocolStore, metadataStore, preKeyCollection.getNextSignedPreKeyId(), preKeyCollection.getSignedPreKey());
+    PreKeyUtil.storeOneTimeEcPreKeys(protocolStore, metadataStore, preKeyCollection.getEcOneTimePreKeyIdOffset(), preKeyCollection.getOneTimeEcPreKeys());
+    PreKeyUtil.storeLastResortKyberPreKey(protocolStore, metadataStore, preKeyCollection.getLastResortKyberPreKeyId(), preKeyCollection.getLastResortKyberPreKey());
+    PreKeyUtil.storeOneTimeKyberPreKeys(protocolStore, metadataStore, preKeyCollection.getOneTimeKyberPreKeyIdOffset(), preKeyCollection.getOneTimeKyberPreKeys());
     metadataStore.setSignedPreKeyRegistered(true);
   }
 
@@ -239,4 +274,5 @@ public final class RegistrationRepository {
                            }
                          });
   }
+
 }

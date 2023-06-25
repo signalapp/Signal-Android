@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.conversation
 
+import android.text.SpannableString
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -165,7 +166,21 @@ internal object ConversationOptionsMenu {
         hideMenuItem(menu, R.id.menu_view_media)
       }
 
+      menu.findItem(R.id.menu_format_text_submenu).subMenu?.clearHeader()
+      menu.findItem(R.id.edittext_bold).applyTitleSpan(MessageStyler.boldStyle())
+      menu.findItem(R.id.edittext_italic).applyTitleSpan(MessageStyler.italicStyle())
+      menu.findItem(R.id.edittext_strikethrough).applyTitleSpan(MessageStyler.strikethroughStyle())
+      menu.findItem(R.id.edittext_monospace).applyTitleSpan(MessageStyler.monoStyle())
+
       callback.onOptionsMenuCreated(menu)
+    }
+
+    override fun onPrepareMenu(menu: Menu) {
+      super.onPrepareMenu(menu)
+      val formatText = menu.findItem(R.id.menu_format_text_submenu)
+      if (formatText != null) {
+        formatText.isVisible = callback.isTextHighlighted()
+      }
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -189,6 +204,12 @@ internal object ConversationOptionsMenu {
         R.id.menu_expiring_messages_off, R.id.menu_expiring_messages -> callback.handleSelectMessageExpiration()
         R.id.menu_create_bubble -> callback.handleCreateBubble()
         R.id.home -> callback.handleGoHome()
+        R.id.edittext_bold,
+        R.id.edittext_italic,
+        R.id.edittext_strikethrough,
+        R.id.edittext_monospace,
+        R.id.edittext_spoiler,
+        R.id.edittext_clear_formatting -> callback.handleFormatText(menuItem.itemId)
         else -> return false
       }
 
@@ -199,6 +220,10 @@ internal object ConversationOptionsMenu {
       if (menu.findItem(menuItem) != null) {
         menu.findItem(menuItem).isVisible = false
       }
+    }
+
+    private fun MenuItem.applyTitleSpan(span: Any) {
+      title = SpannableString(title).apply { setSpan(span, 0, length, MessageStyler.SPAN_FLAGS) }
     }
   }
 
@@ -224,6 +249,7 @@ internal object ConversationOptionsMenu {
    */
   interface Callback {
     fun getSnapshot(): Snapshot
+    fun isTextHighlighted(): Boolean
 
     fun onOptionsMenuCreated(menu: Menu)
 
@@ -248,5 +274,6 @@ internal object ConversationOptionsMenu {
     fun showExpiring(recipient: Recipient)
     fun clearExpiring()
     fun showGroupCallingTooltip()
+    fun handleFormatText(@IdRes id: Int)
   }
 }

@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">அழைப்பு</string>
     <string name="CommunicationActions_insecure_call">பாதுகாப்பற்ற அழைப்பு</string>
     <string name="CommunicationActions_carrier_charges_may_apply">கேரியர் கட்டணங்கள் பொருந்தக்கூடும். நீங்கள் அழைக்கும் எண் சிக்னலில் பதிவு செய்யப்படவில்லை. இந்த அழைப்பு இணையத்தில் அல்லாமல் உங்கள் மொபைல் கேரியர் வழியாக வைக்கப்படும்.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">அழைப்பில் சேர முடியவில்லை</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">இந்த அழைப்பு இணைப்பு இனி செல்லுபடியாகாது.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -319,7 +319,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">%1$s திருத்தப்பட்டது</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">அழைப்பில் சேரவும்</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">சிக்னலைத் திறக்கவும்</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">இனி சரிபார்ப்பு நீக்கப்பட்டிருக்கும்</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ஃபில்டரை அழி</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">கூடுதல் முகங்கள் அல்லது பகுதிகளை மங்கச் செய்ய வரையவும்</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">குரல் செய்தியைப் பதிவுசெய்ய தட்டவும், பிடிக்கவும். வெளியீடு செய்ய அனுப்பவும் </string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">குரல் செய்தியை பதிய தட்டிப் பிடி, அனுப்புவதற்கு விடுவி</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1217,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">பதிலகள்</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
     <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
-    <string name="NotificationBarManager__incoming_signal_call">உள்வரும் Signal அழைப்பு</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">உள்வரும் Signal குழு அழைப்பு</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">சிக்னல் அழைப்பு சேவை தொடங்குகிறது</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal அழைப்பு சேவையை நிறுத்துதல்</string>
@@ -1484,12 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">குழு அழைப்பைத் தொடங்கியுள்ளீர்கள் · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s குழு அழைப்பில் உள்ளார் %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">நீங்கள் குழு அழைப்பில் இருக்கிறீர்கள். %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s மற்றும் %2$s குழு அழைப்பில் உள்ளனர் %3$s</string>
     <string name="MessageRecord_group_call_s">குழு அழைப்பு . %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s குழு அழைப்பைத் தொடங்கினார்</string>
+    <string name="MessageRecord_you_started_a_group_call">நீங்கள் ஒரு தொடங்கினீர்கள் குழு அழைப்பு</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s குழு அழைப்பில் இருக்கிறார்</string>
     <string name="MessageRecord_you_are_in_the_group_call">நீங்கள் குழு அழைப்பில் இருக்கிறீர்கள்</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s மற்றும் %2$s குழு அழைப்பில் உள்ளனர்</string>
@@ -1854,9 +1853,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். %1$s இல் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">எதிர்பாராத பிழை ஏற்பட்டது.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS மூலம் சரிபார்ப்புக் குறியீட்டை உங்களுக்கு அனுப்ப முடியவில்லை. அதற்குப் பதிலாக குரல் அழைப்பு மூலம் உங்கள் குறியீட்டைப் பெற முயலவும்.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">சரிபார்ப்புக் குறியீட்டைக் கோர முடியவில்லை. உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.</string>
     <string name="RegistrationActivity_non_standard_number_format">நான்-ஸ்டாண்டர்ட் எண் வடிவம்</string>
@@ -1876,9 +1875,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">வெளிப்புற செயலிழப்பு காரணமாக Signal செயலியால் SMS குறியீட்டை அனுப்ப முடியவில்லை.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">குரல் அழைப்பு</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">ரத்துசெய்</string>
     <string name="RegistrationActivity_next">அடுத்தது</string>
     <string name="RegistrationActivity_continue">தொடர்</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
@@ -2342,7 +2341,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">ஒலி பெருக்கி</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ப்ளூடூத்</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">வயர்டு ஹெட்ஃபோன்கள்</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">வயர்டு ஹெட்செட்</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">வயர்டு ஹெட்செட் (USB)</string>
@@ -3057,7 +3058,7 @@
     <string name="PaymentsAllActivityFragment__received">பெறப்பட்டது</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">பணம் செலுத்தலை அறிமுகப்படுத்துகிறோம் (பீட்டா)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalஐப் பயன்படுத்தி MobileCoin அனுப்பலாம் மற்றும் பெறலாம். இது ஒரு புதிய தனியுரிமை சார்ந்த டிஜிட்டல் நாணயம். தொடங்குவதற்கு செயல்படுத்தவும்.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal ஐ பயன்படுத்தி MobileCoin அனுப்பலாம் மற்றும் பெறலாம். இது ஒரு புதிய தனியுரிமை சார்ந்த டிஜிட்டல் நாணயம். தொடங்குவதற்கு செயல்படுத்தவும்.</string>
     <string name="PaymentsHomeFragment__activate_payments">கொடுப்பனவுகளைச் செயல்படுத்தவும்</string>
     <string name="PaymentsHomeFragment__activating_payments">கொடுப்பனவுகளை செயல்படுத்துகிறது…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">பணம் செலுத்தல் கணக்கை மீட்டமை</string>
@@ -3341,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">சாட் அமைப்புகள்</string>
     <string name="conversation__menu_add_shortcut">முகப்புத் திரையில் சேர்க்கவும்</string>
     <string name="conversation__menu_create_bubble">பபுளை உருவாக்கவும்</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">பாப்அப்பை விரிவாக்கு</string>
@@ -3542,6 +3545,20 @@
     <string name="KbsMegaphone__create_a_pin">பின்னை உருவாக்கவும்</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும்.</string>
     <string name="KbsMegaphone__create_pin">பின் உருவாக்கவும்</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">உள்வரும் Signal குரல் அழைப்பு</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">உள்வரும் Signal வீடியோ அழைப்பு</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">உள்வரும் Signal குழு அழைப்பு</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">தற்போதைய Signal குரல் அழைப்பு</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">தற்போதைய Signal வீடியோ அழைப்பு</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">தற்போதைய Signal குழு அழைப்பு</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
@@ -5901,6 +5918,8 @@
     <string name="TextFormatting_monospace">மோனோஸ்பேஸ்</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">ஸ்பாய்லர்</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5967,14 +5986,23 @@
     <string name="CallContextMenu__delete">நீக்கு</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">நீக்குகிறது…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">நீக்க முடியவில்லை.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">இணைப்பை நீக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</item>
+        <item quantity="other">அனைத்து அழைப்பு இணைப்புகளையும் நீக்க முடியாது. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">அழைப்பு வரலாறு அழிக்கப்பட்டது</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">அழைப்பு வரலாற்றை அழிக்க வேண்டுமா?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">இது அனைத்து அழைப்பு வரலாற்றையும் நிரந்தரமாக நீக்கும்</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">அழைப்பு வரலாற்றை அழிக்கவும்</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">தவறவிட்ட அழைப்புகளை வடிகட்டு</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6088,6 +6116,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">திருத்தங்களின் வரலாறு</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal பீட்டா மட்டும்</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">செய்திகளைத் திருத்துவது Signal பீட்டா பயனர்களுக்கு மட்டுமே கிடைக்கும். நீங்கள் ஒரு மெசேஜைத் திருத்தினால், அது Signal பீட்டாவின் சமீபத்திய பதிப்பில் உள்ளவர்களுக்கு மட்டுமே தெரியும்.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">ரத்துசெய்</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">அனுப்புக</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

@@ -205,7 +205,9 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);
+    boolean isRemoteVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+
+    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer, isRemoteVideoOffer);
     webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()

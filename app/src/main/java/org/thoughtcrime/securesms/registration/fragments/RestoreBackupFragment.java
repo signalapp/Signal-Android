@@ -49,6 +49,8 @@ import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
@@ -282,6 +284,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
       protected BackupImportResult doInBackground(Void... voids) {
         try {
           Log.i(TAG, "Starting backup restore.");
+          DataRestoreConstraint.setRestoringData(true);
 
           SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
@@ -310,6 +313,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
         } catch (IOException e) {
           Log.w(TAG, e);
           return BackupImportResult.FAILURE_UNKNOWN;
+        } finally {
+          DataRestoreConstraint.setRestoringData(false);
         }
       }
 

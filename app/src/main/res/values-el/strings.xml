@@ -236,8 +236,8 @@
     <string name="CommunicationActions_call">Κλήση</string>
     <string name="CommunicationActions_insecure_call">Μη ασφαλής κλήση</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Ενδέχεται να ισχύουν χρεώσεις παρόχου. Ο αριθμός που καλείς δεν έχει εγγραφεί στο Signal. Η κλήση θα πραγματοποιηθεί μέσω του παρόχου κινητής τηλεφωνίας, όχι μέσω διαδικτύου.</string>
-    <string name="CommunicationActions_cant_join_call">Can\'t join call</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">This call link is no longer valid.</string>
+    <string name="CommunicationActions_cant_join_call">Δεν είναι δυνατή η συμμετοχή στην κλήση</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ο σύνδεσμος δεν ισχύει πλέον.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -319,7 +319,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">επεξεργασία %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">Είσοδος στην κλήση</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
@@ -508,7 +508,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Άνοιγμα Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">No longer verified</string>
+    <string name="ConversationFragment__no_longer_verified">Δεν έχει πλέον επαλήθευση</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Διαγραφή φίλτρου</string>
@@ -1111,7 +1111,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Ζωγράφισε για να θολώσεις επιπλέον πρόσωπα ή περιοχές</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα μήνυμα φωνής, άφησε το κουμπί για αποστολή</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Κράτα πατημένο για ηχογράφηση και άσε για αποστολή</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Η ανταλλαγή μηνυμάτων SMS δεν υποστηρίζεται πλέον στο Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1217,10 +1217,7 @@
     <string name="MessageQuotesBottomSheet_replies">Απαντήσεις</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
     <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
-    <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Εισερχόμενη ομαδική κλήση Signal</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Έναρξη υπηρεσίας κλήσεων Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
@@ -1484,12 +1481,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Ξεκίνησες μια ομαδική κλήση · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Είσαι στην ομαδική κλήση · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
     <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση</string>
+    <string name="MessageRecord_you_started_a_group_call">Ξεκίνησες μια ομαδική κλήση</string>
     <string name="MessageRecord_s_is_in_the_group_call">Ο/Η %1$s είναι στην ομαδική κλήση</string>
     <string name="MessageRecord_you_are_in_the_group_call">Είσαι στην ομαδική κλήση</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">Οι %1$s και %2$s είναι στην ομαδική κλήση</string>
@@ -1854,9 +1853,9 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Ξαναπροσπάθησε σε %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
     <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">An unexpected error occurred.</string>
+    <string name="RegistrationActivity_generic_error">Παρουσιάστηκε απρόσμενο σφάλμα.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We couldn\'t send you a verification code via SMS. Try receiving your code via voice call instead.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Δεν μπορέσαμε να σου στείλουμε κωδικό επαλήθευσης μέσω SMS. Δοκίμασε να λάβεις τον κωδικό μέσω κλήσης.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Αδυναμία αίτησης κωδικού επαλήθευσης. Έλεγξε τη σύνδεση στο δίκτυο και προσπάθησε ξανά.</string>
     <string name="RegistrationActivity_non_standard_number_format">Μη-τυπική μορφή αριθμού</string>
@@ -1876,9 +1875,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Το Signal δεν μπόρεσε να στείλει κωδικό SMS λόγω εξωτερικής αποτυχίας.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">Βιντεοκλήση</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">Ακύρωση</string>
     <string name="RegistrationActivity_next">Επόμενο</string>
     <string name="RegistrationActivity_continue">Συνέχεια</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Πάρε την ιδιωτικότητα μαζί σου.\nΝα είσαι ο εαυτός σου σε κάθε μήνυμα.</string>
@@ -2342,7 +2341,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Μεγάφωνο</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Ενσύρματα ακουστικά</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Ενσύρματο ακουστικό</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Ενσύρματο ακουστικό (USB)</string>
@@ -3057,7 +3058,7 @@
     <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση πληρωμών (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποίησε το Signal για να στείλεις και να λάβεις MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στην ιδιωτικότητα. Ενεργοποίησέ το για να ξεκινήσεις.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Ενεργοποίησε το MobileCoin, ένα νέο ψηφιακό νόμισμα με εστίαση στο απόρρητο, για να στέλνεις και να δέχεσαι στο Signal.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
     <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Επαναφορά λογαριασμού πληρωμών</string>
@@ -3341,6 +3342,8 @@
     <string name="conversation__menu_conversation_settings">Ρυθμίσεις συνομιλίας</string>
     <string name="conversation__menu_add_shortcut">Προσθήκη στην κεντρική οθόνη</string>
     <string name="conversation__menu_create_bubble">Δημιουργία bubble</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Format text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Επέκταση popup</string>
@@ -3542,6 +3545,20 @@
     <string name="KbsMegaphone__create_a_pin">Δημιούργησε ένα PIN</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες.</string>
     <string name="KbsMegaphone__create_pin">Δημιουργία PIN</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Εισερχόμενη ηχητική κλήση Signal</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Εισερχόμενη βιντεοκλήση Signal</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Εισερχόμενη ομαδική κλήση Signal</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ηχητική κλήση Signal σε εξέλιξη</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Βιντεοκλήση Signal σε εξέλιξη</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ομαδική κλήση Signal σε εξέλιξη</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
@@ -5901,6 +5918,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Θόλωμα</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5967,14 +5986,23 @@
     <string name="CallContextMenu__delete">Διαγραφή</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Διαγραφή…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Η διαγραφή απέτυχε.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Η διαγραφή του συνδέσμου απέτυχε. Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</item>
+        <item quantity="other">Δεν ήταν δυνατή η διαγραφή όλων των συνδέσμων κλήσης. Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</item>
+    </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Cleared call history</string>
+    <string name="CallLogFragment__cleared_call_history">Διαγράφηκε το ιστορικό κλήσεων</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">Clear call history?</string>
+    <string name="CallLogFragment__clear_call_history_question">Διαγραφή ιστορικού κλήσεων;</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">This will permanently delete all call history</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Με αυτή την επιλογή θα διαγραφεί μόνιμα το ιστορικό κλήσεων</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Clear call history</string>
+    <string name="CallLogFragment__clear_call_history">Διαγραφή ιστορικού κλήσεων</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Φιλτράρισμα αναπάντητων κλήσεων</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6088,6 +6116,15 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Ιστορικό επεξεργασίας</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Μόνο στην beta έκδοση του Signal</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Η επεξεργασία μηνυμάτων είναι διαθέσιμη μόνο στους χρήστες beta του Signal. Εάν επεξεργαστείς ένα μήνυμα, θα είναι ορατό μόνο σε άτομα που χρησιμοποιούν την τελευταία beta έκδοση του Signal.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Ακύρωση</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Αποστολή</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->

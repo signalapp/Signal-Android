@@ -101,6 +101,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     handleGroupLinkInIntent(intent);
     handleProxyInIntent(intent);
     handleSignalMeIntent(intent);
+    handleCallLinkInIntent(intent);
   }
 
   @Override

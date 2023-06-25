@@ -35,6 +35,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
@@ -57,6 +58,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private static final String EXTRA_RECIPIENT_ID  = "RECIPIENT_ID";
   private static final String EXTRA_ENABLED       = "ENABLED";
   private static final String EXTRA_AUDIO_COMMAND = "AUDIO_COMMAND";
+  private static final String EXTRA_IS_VIDEO_CALL = "IS_VIDEO_CALL";
 
   private static final int  INVALID_NOTIFICATION_ID           = -1;
   private static final long REQUEST_WEBSOCKET_STAY_OPEN_DELAY = TimeUnit.MINUTES.toMillis(1);
@@ -76,11 +78,12 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private boolean                         isGroup                = true;
   private Disposable                      notificationDisposable = Disposable.empty();
 
-  public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId) {
+  public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId, boolean isVideoCall) {
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(ACTION_UPDATE)
           .putExtra(EXTRA_UPDATE_TYPE, type)
-          .putExtra(EXTRA_RECIPIENT_ID, recipientId);
+          .putExtra(EXTRA_RECIPIENT_ID, recipientId)
+          .putExtra(EXTRA_IS_VIDEO_CALL, isVideoCall);
 
     ForegroundServiceUtil.startWhenCapableOrThrow(context, intent, FOREGROUND_SERVICE_TIMEOUT);
   }
@@ -184,7 +187,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
         RecipientId recipientId = Objects.requireNonNull(intent.getParcelableExtra(EXTRA_RECIPIENT_ID));
         isGroup = Recipient.resolved(recipientId).isGroup();
         setCallInProgressNotification(intent.getIntExtra(EXTRA_UPDATE_TYPE, 0),
-                                      Objects.requireNonNull(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)));
+                                      Objects.requireNonNull(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)),
+                                      intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false));
         return START_STICKY;
       case ACTION_SEND_AUDIO_COMMAND:
         setCallNotification();
@@ -230,7 +234,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
   }
 
-  public void setCallInProgressNotification(int type, @NonNull RecipientId id) {
+  public void setCallInProgressNotification(int type, @NonNull RecipientId id, boolean isVideoCall) {
     if (lastNotificationId == INVALID_NOTIFICATION_ID) {
       lastNotificationId = CallNotificationBuilder.getStartingStoppingNotificationId();
       lastNotification   = CallNotificationBuilder.getStartingNotification(this);
@@ -238,7 +242,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
 
     notificationDisposable.dispose();
-    notificationDisposable = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id))
+    notificationDisposable = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall)
                                                     .subscribe(notification -> {
                                                       lastNotificationId = CallNotificationBuilder.getNotificationId(type);
                                                       lastNotification   = notification;
@@ -256,6 +260,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   private void stop() {
+    notificationDisposable.dispose();
     stopForeground(true);
     stopSelf();
   }

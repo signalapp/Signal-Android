@@ -63,8 +63,10 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
@@ -81,6 +83,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
@@ -159,6 +162,26 @@ class ConversationRepository(
       .subscribeOn(Schedulers.io())
   }
 
+  fun sendReactionRemoval(messageRecord: MessageRecord, oldRecord: ReactionRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.sendReactionRemoval(
+        applicationContext,
+        MessageId(messageRecord.id),
+        oldRecord
+      )
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun sendNewReaction(messageRecord: MessageRecord, emoji: String): Completable {
+    return Completable.fromAction {
+      MessageSender.sendNewReaction(
+        applicationContext,
+        MessageId(messageRecord.id),
+        emoji
+      )
+    }.subscribeOn(Schedulers.io())
+  }
+
   fun sendMessage(
     threadId: Long,
     threadRecipient: Recipient?,
@@ -221,9 +244,16 @@ class ConversationRepository(
     oldConversationRepository.markGiftBadgeRevealed(messageId)
   }
 
+  /** Quoted Message position is a zero-based index, so we need to convert it to 1-based */
   fun getQuotedMessagePosition(threadId: Long, quote: Quote): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
+      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author) + 1
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getMessageResultPosition(threadId: Long, messageResult: MessageResult): Single<Int> {
+    return Single.fromCallable {
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageResult.receivedTimestampMs) + 1
     }.subscribeOn(Schedulers.io())
   }
 
@@ -384,6 +414,12 @@ class ConversationRepository(
       .doOnSuccess {
         Util.copyToClipboard(context, it)
       }
+  }
+
+  fun resendMessage(messageRecord: MessageRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.resend(applicationContext, messageRecord)
+    }.subscribeOn(Schedulers.io())
   }
 
   private fun extractBodies(context: Context, messageParts: Set<MultiselectPart>): CharSequence {

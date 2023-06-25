@@ -46,8 +46,8 @@ ktlint {
     version = "0.47.1"
 }
 
-def canonicalVersionCode = 1273
-def canonicalVersionName = "6.23.0"
+def canonicalVersionCode = 1282
+def canonicalVersionName = "6.24.3"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -470,6 +470,7 @@ dependencies {
     implementation libs.androidx.gridlayout
     implementation libs.androidx.exifinterface
     implementation libs.androidx.compose.rxjava3
+    implementation libs.androidx.compose.runtime.livedata
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.multidex
     implementation libs.androidx.navigation.fragment.ktx

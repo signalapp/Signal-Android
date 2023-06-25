@@ -16,7 +16,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
-import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -29,7 +28,6 @@ class CreateCallLinkViewModel(
   private val mutationRepository: UpdateCallLinkRepository = UpdateCallLinkRepository()
 ) : ViewModel() {
   private val credentials = CallLinkCredentials.generate()
-  private val avatarColor = AvatarColorHash.forCallLink(credentials.linkKeyBytes)
   private val _callLink: MutableState<CallLinkTable.CallLink> = mutableStateOf(
     CallLinkTable.CallLink(
       recipientId = RecipientId.UNKNOWN,
@@ -40,8 +38,7 @@ class CreateCallLinkViewModel(
         restrictions = Restrictions.NONE,
         revoked = false,
         expiration = Instant.MAX
-      ),
-      avatarColor = avatarColor
+      )
     )
   )
 
@@ -63,7 +60,7 @@ class CreateCallLinkViewModel(
   }
 
   fun commitCallLink(): Single<EnsureCallLinkCreatedResult> {
-    return repository.ensureCallLinkCreated(credentials, avatarColor)
+    return repository.ensureCallLinkCreated(credentials)
   }
 
   fun setApproveAllMembers(approveAllMembers: Boolean): Single<UpdateCallLinkResult> {

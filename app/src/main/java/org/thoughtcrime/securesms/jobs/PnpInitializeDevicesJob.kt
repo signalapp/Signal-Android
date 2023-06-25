@@ -1,17 +1,41 @@
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.WorkerThread
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
+import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
+import org.signal.libsignal.protocol.state.SignalProtocolStore
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.libsignal.protocol.util.KeyHelper
+import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberRepository
+import org.thoughtcrime.securesms.crypto.PreKeyUtil
+import org.thoughtcrime.securesms.database.model.toProtoByteString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.registration.VerifyResponse
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
+import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
+import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
+import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import java.io.IOException
+import java.security.SecureRandom
 
 /**
  * To be run when all clients support PNP and we need to initialize all linked devices with appropriate PNP data.
@@ -23,7 +47,6 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   companion object {
     const val KEY = "PnpInitializeDevicesJob"
     private val TAG = Log.tag(PnpInitializeDevicesJob::class.java)
-    private const val PLACEHOLDER_SESSION_ID = "123456789"
 
     @JvmStatic
     fun enqueueIfNecessary() {
@@ -81,13 +104,11 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         return
       }
 
-      val changeNumberRepository = ChangeNumberRepository()
       val e164 = SignalStore.account().requireE164()
 
       try {
-        Log.i(TAG, "Calling change number with our current number to distribute PNI messages")
-        changeNumberRepository
-          .changeNumber(sessionId = PLACEHOLDER_SESSION_ID, newE164 = e164, pniUpdateMode = true)
+        Log.i(TAG, "Initializing PNI for linked devices")
+        initializeDevices(e164)
           .map(::VerifyResponseWithoutKbs)
           .safeBlockingGet()
           .resultOrThrow
@@ -102,6 +123,109 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
     } finally {
       ChangeNumberRepository.CHANGE_NUMBER_LOCK.unlock()
     }
+  }
+
+  private fun initializeDevices(newE164: String): Single<ServiceResponse<VerifyResponse>> {
+    val accountManager = ApplicationDependencies.getSignalServiceAccountManager()
+    val messageSender = ApplicationDependencies.getSignalServiceMessageSender()
+
+    return Single.fromCallable {
+      var completed = false
+      var attempts = 0
+      lateinit var distributionResponse: ServiceResponse<VerifyAccountResponse>
+
+      while (!completed && attempts < 5) {
+        val request = createInitializeDevicesRequest(
+          newE164 = newE164
+        )
+
+        distributionResponse = accountManager.distributePniKeys(request)
+
+        val possibleError: Throwable? = distributionResponse.applicationError.orNull()
+        if (possibleError is MismatchedDevicesException) {
+          messageSender.handleChangeNumberMismatchDevices(possibleError.mismatchedDevices)
+          attempts++
+        } else {
+          completed = true
+        }
+      }
+
+      VerifyResponse.from(distributionResponse, null, null)
+    }.subscribeOn(Schedulers.single())
+      .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
+  }
+
+  @WorkerThread
+  private fun createInitializeDevicesRequest(
+    newE164: String
+  ): PniKeyDistributionRequest {
+    val selfIdentifier: String = SignalStore.account().requireAci().toString()
+    val aciProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().aci()
+    val pniProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().pni()
+    val messageSender = ApplicationDependencies.getSignalServiceMessageSender()
+
+    val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
+    val deviceMessages = mutableListOf<OutgoingPushMessage>()
+    val devicePniSignedPreKeys = mutableMapOf<Int, SignedPreKeyEntity>()
+    val devicePniLastResortKyberPreKeys = mutableMapOf<Int, KyberPreKeyEntity>()
+    val pniRegistrationIds = mutableMapOf<Int, Int>()
+    val primaryDeviceId: Int = SignalServiceAddress.DEFAULT_DEVICE_ID
+
+    val devices: List<Int> = listOf(primaryDeviceId) + aciProtocolStore.getSubDeviceSessions(selfIdentifier)
+
+    devices
+      .filter { it == primaryDeviceId || aciProtocolStore.containsSession(SignalProtocolAddress(selfIdentifier, it)) }
+      .forEach { deviceId ->
+        // Signed Prekeys
+        val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
+          pniProtocolStore.loadSignedPreKey(SignalStore.account().pniPreKeys.activeSignedPreKeyId)
+        } else {
+          PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
+        }
+        devicePniSignedPreKeys[deviceId] = SignedPreKeyEntity(signedPreKeyRecord.id, signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
+
+        // Last-resort kyber prekeys
+        val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
+          pniProtocolStore.loadKyberPreKey(SignalStore.account().pniPreKeys.lastResortKyberPreKeyId)
+        } else {
+          PreKeyUtil.generateKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
+        }
+        devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
+
+        // Registration Ids
+        var pniRegistrationId = if (deviceId == primaryDeviceId) {
+          SignalStore.account().pniRegistrationId
+        } else {
+          -1
+        }
+
+        while (pniRegistrationId < 0 || pniRegistrationIds.values.contains(pniRegistrationId)) {
+          pniRegistrationId = KeyHelper.generateRegistrationId(false)
+        }
+        pniRegistrationIds[deviceId] = pniRegistrationId
+
+        // Device Messages
+        if (deviceId != primaryDeviceId) {
+          val pniChangeNumber = SignalServiceProtos.SyncMessage.PniChangeNumber.newBuilder()
+            .setIdentityKeyPair(pniIdentity.serialize().toProtoByteString())
+            .setSignedPreKey(signedPreKeyRecord.serialize().toProtoByteString())
+            .setLastResortKyberPreKey(lastResortKyberPreKeyRecord.serialize().toProtoByteString())
+            .setRegistrationId(pniRegistrationId)
+            .setNewE164(newE164)
+            .build()
+
+          deviceMessages += messageSender.getEncryptedSyncPniInitializeDeviceMessage(deviceId, pniChangeNumber)
+        }
+      }
+
+    return PniKeyDistributionRequest(
+      pniIdentity.publicKey,
+      deviceMessages,
+      devicePniSignedPreKeys.mapKeys { it.key.toString() },
+      devicePniLastResortKyberPreKeys.mapKeys { it.key.toString() },
+      pniRegistrationIds.mapKeys { it.key.toString() },
+      true
+    )
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

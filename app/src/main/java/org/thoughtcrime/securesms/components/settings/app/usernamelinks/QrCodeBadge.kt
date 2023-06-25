@@ -15,30 +15,44 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.theme.SignalTheme
+import org.thoughtcrime.securesms.compose.ScreenshotController
+import org.thoughtcrime.securesms.compose.getScreenshotBounds
 
 /**
  * Renders a QR code and username as a badge.
  */
 @Composable
-fun QrCodeBadge(data: QrCodeData?, colorScheme: UsernameQrCodeColorScheme, username: String, modifier: Modifier = Modifier) {
+fun QrCodeBadge(data: QrCodeData?, colorScheme: UsernameQrCodeColorScheme, username: String, modifier: Modifier = Modifier, screenshotController: ScreenshotController? = null) {
   val borderColor by animateColorAsState(targetValue = colorScheme.borderColor)
   val foregroundColor by animateColorAsState(targetValue = colorScheme.foregroundColor)
   val elevation by animateFloatAsState(targetValue = if (colorScheme == UsernameQrCodeColorScheme.White) 10f else 0f)
   val textColor by animateColorAsState(targetValue = if (colorScheme == UsernameQrCodeColorScheme.White) Color.Black else Color.White)
-
+  var badgeBounds by remember {
+    mutableStateOf<Rect?>(null)
+  }
+  screenshotController?.bind(LocalView.current, badgeBounds)
   Surface(
     modifier = modifier
       .fillMaxWidth()
-      .padding(horizontal = 59.dp, vertical = 24.dp),
+      .padding(horizontal = 59.dp, vertical = 24.dp)
+      .onGloballyPositioned {
+        badgeBounds = it.getScreenshotBounds()
+      },
     color = borderColor,
     shape = RoundedCornerShape(24.dp),
     shadowElevation = elevation.dp

@@ -85,9 +85,9 @@
             android:focusable="true"
             android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
             android:transitionName="camera_fab"
-            app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
             app:backgroundTint="@color/signal_colorSurfaceVariant"
             app:elevation="0dp"
+            app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
             app:srcCompat="@drawable/ic_camera_outline_24"
             app:tint="@color/signal_colorOnSurface" />
 

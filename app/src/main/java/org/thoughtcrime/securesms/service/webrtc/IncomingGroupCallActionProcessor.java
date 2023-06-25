@@ -119,7 +119,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState, RemotePeer.GROUP_CALL_ID.longValue());
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup);
+    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, remotePeerGroup, true);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
     webRtcInteractor.initializeAudioForCall();
 
@@ -207,7 +207,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                .enableVideoOnCreate(answerWithVideo)
                                .build();
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, currentState.getCallInfoState().getCallRecipient());
+    webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, currentState.getCallInfoState().getCallRecipient(), true);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
 

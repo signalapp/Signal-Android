@@ -28,26 +28,29 @@ public final class SqlCipherDeletingErrorHandler implements DatabaseErrorHandler
 
   @Override
   public void onCorruption(SQLiteDatabase db, String message) {
-    Log.e(TAG, "Database '" + databaseName + "' corrupted! Message: " + message + ". Going to try to run some diagnostics.");
+    try {
+      Log.e(TAG, "Database '" + databaseName + "' corrupted! Message: " + message + ". Going to try to run some diagnostics.");
 
-    Log.w(TAG, " ===== PRAGMA integrity_check =====");
-    try (Cursor cursor = db.rawQuery("PRAGMA integrity_check", null)) {
-      while (cursor.moveToNext()) {
-        Log.w(TAG, CursorUtil.readRowAsString(cursor));
+      Log.w(TAG, " ===== PRAGMA integrity_check =====");
+      try (Cursor cursor = db.rawQuery("PRAGMA integrity_check", null)) {
+        while (cursor.moveToNext()) {
+          Log.w(TAG, CursorUtil.readRowAsString(cursor));
+        }
+      } catch (Throwable t) {
+        Log.e(TAG, "Failed to do integrity_check!", t);
       }
-    } catch (Throwable t) {
-      Log.e(TAG, "Failed to do integrity_check!", t);
-    }
 
-    Log.w(TAG, "===== PRAGMA cipher_integrity_check =====");
-    try (Cursor cursor = db.rawQuery("PRAGMA cipher_integrity_check", null)) {
-      while (cursor.moveToNext()) {
-        Log.w(TAG, CursorUtil.readRowAsString(cursor));
+      Log.w(TAG, "===== PRAGMA cipher_integrity_check =====");
+      try (Cursor cursor = db.rawQuery("PRAGMA cipher_integrity_check", null)) {
+        while (cursor.moveToNext()) {
+          Log.w(TAG, CursorUtil.readRowAsString(cursor));
+        }
+      } catch (Throwable t) {
+        Log.e(TAG, "Failed to do cipher_integrity_check!", t);
       }
-    } catch (Throwable t) {
-      Log.e(TAG, "Failed to do cipher_integrity_check!", t);
+    } finally {
+      Log.w(TAG, "Deleting database " + databaseName);
+      ApplicationDependencies.getApplication().deleteDatabase(databaseName);
     }
-
-    ApplicationDependencies.getApplication().deleteDatabase(databaseName);
   }
 }
