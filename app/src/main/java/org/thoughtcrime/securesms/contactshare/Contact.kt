@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.contactshare
 import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
-import android.text.TextUtils
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -35,28 +34,24 @@ class Contact(
   val postalAddresses: List<PostalAddress?> = unmodifiableList(postalAddresses)
 
   constructor(contact: Contact, avatar: Avatar?) : this(
-    contact.name,
-    contact.organization,
-    contact.phoneNumbers,
-    contact.emails,
-    contact.postalAddresses,
-    avatar
+    contact.name, contact.organization, contact.phoneNumbers,
+    contact.emails, contact.postalAddresses, avatar
   )
 
-  private constructor(`in`: Parcel) : this(
-    `in`.readParcelable<Name>(Name::class.java.classLoader)!!,
-    `in`.readString(),
-    `in`.createTypedArrayList<Phone?>(Phone.CREATOR)!!,
-    `in`.createTypedArrayList<Email?>(Email.CREATOR)!!,
-    `in`.createTypedArrayList<PostalAddress?>(PostalAddress.CREATOR)!!,
-    `in`.readParcelable<Avatar>(Avatar::class.java.classLoader)
+  private constructor(p: Parcel) : this(
+    p.readParcelable<Name>(Name::class.java.classLoader)!!,
+    p.readString(),
+    p.createTypedArrayList<Phone?>(Phone.CREATOR)!!,
+    p.createTypedArrayList<Email?>(Email.CREATOR)!!,
+    p.createTypedArrayList<PostalAddress?>(PostalAddress.CREATOR)!!,
+    p.readParcelable<Avatar>(Avatar::class.java.classLoader)
   )
 
   val avatarAttachment: Attachment?
     @JsonIgnore get() = avatar?.attachment
 
   @Throws(IOException::class)
-  fun serialize() = JsonUtils.toJson(this)
+  fun serialize(): String = JsonUtils.toJson(this)
 
   override fun describeContents() = 0
 
@@ -78,15 +73,17 @@ class Contact(
     @JsonProperty val middleName: String?
   ) : Parcelable {
 
-    private constructor(`in`: Parcel) : this(`in`.readString(), `in`.readString(), `in`.readString(), `in`.readString(), `in`.readString(), `in`.readString())
+    private constructor(p: Parcel) : this(p.readString(),
+      p.readString(), p.readString(), p.readString(),
+      p.readString(), p.readString())
 
-    val isEmpty: Boolean
-      get() = TextUtils.isEmpty(displayName) &&
-        TextUtils.isEmpty(givenName) &&
-        TextUtils.isEmpty(familyName) &&
-        TextUtils.isEmpty(prefix) &&
-        TextUtils.isEmpty(suffix) &&
-        TextUtils.isEmpty(middleName)
+    val isEmpty get() =
+      displayName.isNullOrEmpty() &&
+        givenName.isNullOrEmpty() &&
+        familyName.isNullOrEmpty() &&
+        prefix.isNullOrEmpty() &&
+        suffix.isNullOrEmpty() &&
+        middleName.isNullOrEmpty()
 
     override fun describeContents() = 0
 
@@ -100,7 +97,7 @@ class Contact(
     }
 
     companion object CREATOR: Parcelable.Creator<Name> {
-      override fun createFromParcel(`in`: Parcel) = Name(`in`)
+      override fun createFromParcel(p: Parcel) = Name(p)
       override fun newArray(size: Int) = arrayOfNulls<Name>(size)
     }
   }
@@ -114,8 +111,8 @@ class Contact(
     @JsonIgnore
     override var isSelected = true
 
-    private constructor(`in`: Parcel) :
-      this(`in`.readString()!!,Type.valueOf(`in`.readString()!!), `in`.readString())
+    private constructor(p: Parcel) :
+      this(p.readString()!!,Type.valueOf(p.readString()!!), p.readString())
 
     override fun describeContents() = 0
 
@@ -128,7 +125,7 @@ class Contact(
     enum class Type { HOME, MOBILE, WORK, CUSTOM }
 
     companion object CREATOR: Parcelable.Creator<Phone> {
-      override fun createFromParcel(`in`: Parcel) = Phone(`in`)
+      override fun createFromParcel(p: Parcel) = Phone(p)
       override fun newArray(size: Int) = arrayOfNulls<Phone>(size)
     }
   }
@@ -145,7 +142,7 @@ class Contact(
     @JsonIgnore
     override var isSelected = true
 
-    private constructor(`in`: Parcel) : this(`in`.readString()!!, Type.valueOf(`in`.readString()!!), `in`.readString())
+    private constructor(p: Parcel) : this(p.readString()!!, Type.valueOf(p.readString()!!), p.readString())
 
     override fun describeContents() = 0
 
@@ -158,36 +155,36 @@ class Contact(
     enum class Type { HOME, MOBILE, WORK, CUSTOM }
 
     companion object CREATOR: Parcelable.Creator<Email> {
-      override fun createFromParcel(`in`: Parcel) = Email(`in`)
+      override fun createFromParcel(p: Parcel) = Email(p)
       override fun newArray(size: Int) = arrayOfNulls<Email>(size)
     }
   }
 
   class PostalAddress internal constructor(
-    @field:JsonProperty @param:JsonProperty("type") val type: Type,
-    @field:JsonProperty @param:JsonProperty("label") val label: String?,
-    @field:JsonProperty @param:JsonProperty("street") val street: String?,
-    @field:JsonProperty @param:JsonProperty("poBox") val poBox: String?,
-    @field:JsonProperty @param:JsonProperty("neighborhood") val neighborhood: String?,
-    @field:JsonProperty @param:JsonProperty("city") val city: String?,
-    @field:JsonProperty @param:JsonProperty("region") val region: String?,
-    @field:JsonProperty @param:JsonProperty("postalCode") val postalCode: String?,
-    @field:JsonProperty @param:JsonProperty("country") val country: String?
+    @JsonProperty val type: Type,
+    @JsonProperty val label: String?,
+    @JsonProperty val street: String?,
+    @JsonProperty val poBox: String?,
+    @JsonProperty val neighborhood: String?,
+    @JsonProperty val city: String?,
+    @JsonProperty val region: String?,
+    @JsonProperty val postalCode: String?,
+    @JsonProperty val country: String?
   ) : Selectable, Parcelable {
 
     @JsonIgnore
     override var isSelected = true
 
-    private constructor(`in`: Parcel) : this(
-      Type.valueOf(`in`.readString()!!),
-      `in`.readString(),
-      `in`.readString(),
-      `in`.readString(),
-      `in`.readString(),
-      `in`.readString(),
-      `in`.readString(),
-      `in`.readString(),
-      `in`.readString()
+    private constructor(p: Parcel) : this(
+      Type.valueOf(p.readString()!!),
+      p.readString(),
+      p.readString(),
+      p.readString(),
+      p.readString(),
+      p.readString(),
+      p.readString(),
+      p.readString(),
+      p.readString()
     )
 
     override fun describeContents() = 0
@@ -206,35 +203,26 @@ class Contact(
 
     override fun toString(): String {
       val builder = StringBuilder()
-      if (!TextUtils.isEmpty(street)) {
-        builder.append(street).append('\n')
-      }
-      if (!TextUtils.isEmpty(poBox)) {
-        builder.append(poBox).append('\n')
-      }
-      if (!TextUtils.isEmpty(neighborhood)) {
-        builder.append(neighborhood).append('\n')
-      }
-      if (!TextUtils.isEmpty(city) && !TextUtils.isEmpty(region)) {
+      if (!street.isNullOrEmpty()) builder.append(street).append('\n')
+      if (!poBox.isNullOrEmpty()) builder.append(poBox).append('\n')
+      if (!neighborhood.isNullOrEmpty()) builder.append(neighborhood).append('\n')
+      if (!city.isNullOrEmpty() && !region.isNullOrEmpty())
         builder.append(city).append(", ").append(region)
-      } else if (!TextUtils.isEmpty(city)) {
+      else if (!city.isNullOrEmpty())
         builder.append(city).append(' ')
-      } else if (!TextUtils.isEmpty(region)) {
+      else if (!region.isNullOrEmpty())
         builder.append(region).append(' ')
-      }
-      if (!TextUtils.isEmpty(postalCode)) {
+      if (!postalCode.isNullOrEmpty())
         builder.append(postalCode)
-      }
-      if (!TextUtils.isEmpty(country)) {
+      if (!country.isNullOrEmpty())
         builder.append('\n').append(country)
-      }
       return builder.toString().trim { it <= ' ' }
     }
 
     enum class Type { HOME, WORK, CUSTOM }
 
     companion object CREATOR: Parcelable.Creator<PostalAddress> {
-      override fun createFromParcel(`in`: Parcel) = PostalAddress(`in`)
+      override fun createFromParcel(p: Parcel) = PostalAddress(p)
       override fun newArray(size: Int) = arrayOfNulls<PostalAddress>(size)
     }
   }
@@ -251,9 +239,11 @@ class Contact(
       this(null, attachmentFromUri(attachmentUri), isProfile)
 
     @JsonCreator
-    private constructor(@JsonProperty("attachmentId") attachmentId: AttachmentId?, @JsonProperty("isProfile") isProfile: Boolean) : this(attachmentId, null, isProfile)
+    private constructor(@JsonProperty attachmentId: AttachmentId?, @JsonProperty isProfile: Boolean) :
+      this(attachmentId, null, isProfile)
 
-    private constructor(`in`: Parcel) : this(`in`.readParcelable<Parcelable>(Uri::class.java.classLoader) as Uri?, `in`.readByte().toInt() != 0)
+    private constructor(p: Parcel) :
+      this(p.readParcelable<Parcelable>(Uri::class.java.classLoader) as Uri?, p.readByte().toInt() != 0)
 
     override fun describeContents() = 0
 
@@ -268,7 +258,7 @@ class Contact(
           uri, MediaUtil.IMAGE_JPEG, AttachmentTable.TRANSFER_PROGRESS_DONE, 0,
           null, false, false, false, false, null, null, null, null, null)
 
-      override fun createFromParcel(`in`: Parcel) = Avatar(`in`)
+      override fun createFromParcel(p: Parcel) = Avatar(p)
 
       override fun newArray(size: Int) = arrayOfNulls<Avatar>(size)
     }
@@ -279,7 +269,7 @@ class Contact(
     fun deserialize(serialized: String): Contact =
       JsonUtils.fromJson(serialized, Contact::class.java)
 
-    override fun createFromParcel(`in`: Parcel) = Contact(`in`)
+    override fun createFromParcel(p: Parcel) = Contact(p)
 
     override fun newArray(size: Int) = arrayOfNulls<Contact>(size)
   }
