@@ -1,6 +1,5 @@
-package org.thoughtcrime.securesms.contactshare;
+package org.thoughtcrime.securesms.contactshare
 
-public interface Selectable {
-  void setSelected(boolean selected);
-  boolean isSelected();
+interface Selectable {
+  var isSelected: Boolean
 }
