@@ -23,12 +23,12 @@ import org.thoughtcrime.securesms.registration.VerifyResponse
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.UUID
-
 object TestUsers {
 
   private var generatedOthers: Int = 0
@@ -50,10 +50,11 @@ object TestUsers {
       password = Util.getSecret(18),
       registrationId = registrationRepository.registrationId,
       profileKey = registrationRepository.getProfileKey("+15555550101"),
+      aciPreKeyCollection = RegistrationRepository.generatePreKeysForType(ServiceIdType.ACI),
+      pniPreKeyCollection = RegistrationRepository.generatePreKeysForType(ServiceIdType.PNI),
       fcmToken = "fcm-token",
       pniRegistrationId = registrationRepository.pniRegistrationId,
-      recoveryPassword = "asdfasdfasdfasdf",
-      preKeyCollections = RegistrationRepository.generatePreKeys()!!
+      recoveryPassword = "asdfasdfasdfasdf"
     )
     val verifyResponse = VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null)
     AccountManagerFactory.setInstance(DummyAccountManagerFactory())
