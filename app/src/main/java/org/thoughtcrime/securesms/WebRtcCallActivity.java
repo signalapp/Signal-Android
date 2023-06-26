@@ -114,7 +114,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   /**
    * ANSWER the call via video.
    */
-  public static final String ANSWER_VIDEO_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
+  public static final String ANSWER_VIDEO_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_VIDEO_ACTION";
   public static final String DENY_ACTION         = WebRtcCallActivity.class.getCanonicalName() + ".DENY_ACTION";
   public static final String END_CALL_ACTION     = WebRtcCallActivity.class.getCanonicalName() + ".END_CALL_ACTION";
 
@@ -169,8 +169,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     initializeViewModel(isLandscapeEnabled);
     initializePictureInPictureParams();
 
-    processIntent(getIntent());
-
     if (ANSWER_VIDEO_ACTION.equals(getIntent().getAction())) {
       enableVideoIfAvailable = true;
     } else if (ANSWER_ACTION.equals(getIntent().getAction()) || getIntent().getBooleanExtra(EXTRA_STARTED_FROM_FULLSCREEN, false)) {
@@ -179,6 +177,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       enableVideoIfAvailable = getIntent().getBooleanExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
       getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
     }
+
+    processIntent(getIntent());
 
     windowLayoutInfoConsumer = new WindowLayoutInfoConsumer();
 
@@ -516,26 +516,20 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void handleAnswerWithVideo() {
-    Recipient recipient = viewModel.getRecipient().get();
+    Permissions.with(this)
+               .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera), R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
+               .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
+               .onAllGranted(() -> {
+                 callScreen.setStatus(getString(R.string.RedPhone_answering));
 
-    if (!recipient.equals(Recipient.UNKNOWN)) {
-      Permissions.with(this)
-                 .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-                 .ifNecessary()
-                 .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone, recipient.getDisplayName(this)),
-                                      R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
-                 .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
-                 .onAllGranted(() -> {
-                   callScreen.setRecipient(recipient);
-                   callScreen.setStatus(getString(R.string.RedPhone_answering));
+                 ApplicationDependencies.getSignalCallManager().acceptCall(true);
 
-                   ApplicationDependencies.getSignalCallManager().acceptCall(true);
-
-                   handleSetMuteVideo(false);
-                 })
-                 .onAnyDenied(this::handleDenyCall)
-                 .execute();
-    }
+                 handleSetMuteVideo(false);
+               })
+               .onAnyDenied(this::handleDenyCall)
+               .execute();
   }
 
   private void handleDenyCall() {
