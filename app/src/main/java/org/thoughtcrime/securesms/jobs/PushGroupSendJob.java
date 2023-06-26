@@ -231,6 +231,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
       List<SendMessageResult> results = deliver(message, originalEditedMessage, groupRecipient, target);
       processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, skipped, existingNetworkFailures, existingIdentityMismatches);
+      ConversationShortcutRankingUpdateJob.enqueueForOutgoingIfNecessary(groupRecipient);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
