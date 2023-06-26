@@ -77,6 +77,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private Notification                    lastNotification;
   private boolean                         isGroup                = true;
   private Disposable                      notificationDisposable = Disposable.empty();
+  private boolean                         stopping               = false;
 
   public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId, boolean isVideoCall) {
     Intent intent = new Intent(context, WebRtcCallService.class);
@@ -243,6 +244,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
 
     notificationDisposable.dispose();
     notificationDisposable = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall)
+                                                    .observeOn(AndroidSchedulers.mainThread())
                                                     .subscribe(notification -> {
                                                       lastNotificationId = CallNotificationBuilder.getNotificationId(type);
                                                       lastNotification   = notification;
@@ -251,7 +253,11 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
                                                     });
   }
 
-  private void startForegroundCompat(int notificationId, Notification notification) {
+  private synchronized void startForegroundCompat(int notificationId, Notification notification) {
+    if (stopping) {
+      return;
+    }
+
     if (Build.VERSION.SDK_INT >= 30) {
       startForeground(notificationId, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA | ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
     } else {
@@ -259,7 +265,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
   }
 
-  private void stop() {
+  private synchronized void stop() {
+    stopping = true;
     notificationDisposable.dispose();
     stopForeground(true);
     stopSelf();
