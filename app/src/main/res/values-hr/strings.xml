@@ -2453,7 +2453,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Da biste odgovorili na poziv, omogućite Signalu pristup vašem mikrofonu.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Da biste odgovorili na poziv od %1$s, omogućite Signalu pristup vašem mikrofonu.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal zahtijeva dopuštenja za mikrofon i kameru za upućivanje ili primanje poziva, ali ona su trajno odbijena. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Mikrofon\" i \"Kamera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Odgovoreno na povezanom uređaju.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Odbijeno na povezanom uređaju.</string>
@@ -3509,7 +3510,7 @@
     <string name="conversation__menu_add_shortcut">Dodaj na početni zaslon</string>
     <string name="conversation__menu_create_bubble">Stvori oblačić</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Oblikuj tekst</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Proširi skočni prozor</string>
@@ -6165,7 +6166,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spojler</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Poništi oblikovanje teksta</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

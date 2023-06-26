@@ -2453,7 +2453,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Norėdami atsiliepti, suteikite Signal prieigą prie mikrofono.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Norėdami atsiliepti į skambutį nuo %1$s, suteikite Signal prieigą prie mikrofono.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Atsiliepta susietame įrenginyje.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Atmesta susietame įrenginyje.</string>
@@ -3509,7 +3510,7 @@
     <string name="conversation__menu_add_shortcut">Pridėti į pradžios ekraną</string>
     <string name="conversation__menu_create_bubble">Sukurti burbulą</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Formatuoti tekstą</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Išskleisti iškylantįjį langą</string>
@@ -6165,7 +6166,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">„Spoiler“</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Išvalyti formatavimą</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

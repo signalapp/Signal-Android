@@ -2313,7 +2313,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Hvis du vil besvare opkaldet, skal du give Signal adgang til din mikrofon.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at besvare opkald fra %1$s skal Signal gives adgang til din mikrofon.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal beder om tilladelse til at tilgå mikrofon og kamera, for at kunne modtage og foretage opkald, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvaret på en forbundet enhed.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Afvist på en forbundet enhed.</string>
@@ -3343,7 +3344,7 @@
     <string name="conversation__menu_add_shortcut">Føj til startskærm</string>
     <string name="conversation__menu_create_bubble">Opret boble</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Formatér tekst</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Udvid popup</string>
@@ -5919,7 +5920,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Slet formatering</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

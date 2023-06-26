@@ -2313,7 +2313,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pour répondre à l’appel, accordez à Signal l’accès à votre microphone.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pour répondre à l’appel de %1$s, accordez à Signal l’accès à votre microphone.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal exige les autorisations Microphone et Appareil photo afin d’effectuer et de recevoir des appels, mais elles ont été refusées définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone » et « Appareil photo ».</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">L’appel a été pris sur un appareil relié.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">L’appel a été refusé sur un appareil relié.</string>
@@ -3343,7 +3344,7 @@
     <string name="conversation__menu_add_shortcut">Ajouter à l’écran d’accueil</string>
     <string name="conversation__menu_create_bubble">Créer une bulle</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Mettre en forme le texte</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Étendre la fenêtre surgissante</string>
@@ -5919,7 +5920,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Floutage</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Effacer la mise en forme</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

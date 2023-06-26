@@ -2453,7 +2453,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Aby odebrać połączenie, zezwól Signal na dostęp do mikrofonu.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Aby odebrać połączenie od %1$s, przyznaj aplikacji Signal dostęp do Twojego mikrofonu.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal wymaga pozwolenia na dostęp do mikrofonu i aparatu w celu odbierania oraz wykonywania połączeń, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\" oraz \"Aparat\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Odebrane na połączonym urządzeniu.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Odrzucone na połączonym urządzeniu.</string>

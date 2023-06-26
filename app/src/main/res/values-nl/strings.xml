@@ -990,7 +990,7 @@
     <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
     <string name="ManageProfileFragment_badges">Badges</string>
-    <string name="ManageProfileFragment__edit_photo">Profielfoto aanpassen</string>
+    <string name="ManageProfileFragment__edit_photo">Profielfoto bewerken</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Gebruikersnaam gecreëerd.</string>
     <!-- Snackbar message after copying username -->
@@ -1995,7 +1995,7 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Laden van stickerpakket mislukt</string>
 
     <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">Aanpassen</string>
+    <string name="SubmitDebugLogActivity_edit">Bewerken</string>
     <string name="SubmitDebugLogActivity_done">Klaar</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Bijlage opslaan</string>
@@ -2313,7 +2313,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voor je de oproep kunt beantwoorden.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %1$s te beantwoorden.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Geweigerd vanaf een gekoppeld apparaat.</string>
@@ -3343,7 +3344,7 @@
     <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
     <string name="conversation__menu_create_bubble">Bubbel aanmaken</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Tekstopmaak</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Pop-up vergroten</string>
@@ -3401,7 +3402,7 @@
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Opslaan</string>
-    <string name="media_preview__edit_title">Aanpassen</string>
+    <string name="media_preview__edit_title">Bewerken</string>
 
 
     <!-- media_preview_activity -->
@@ -4091,7 +4092,7 @@
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Volgende</string>
-    <string name="PaymentsRecoveryPhraseFragment__edit">Aanpassen</string>
+    <string name="PaymentsRecoveryPhraseFragment__edit">Bewerken</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jouw herstel-zin</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Schrijf de volgende %1$d woorden op in dezelfde volgorde en bewaar ze op een veilige plaats.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Ga na dat je je zin juist hebt ingevuld.</string>
@@ -4232,7 +4233,7 @@
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Telefoonnummer wijzigen</string>
     <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Je staat op het punt het telefoonnummer waarmee je geregistreerd staat te wijzigen van %1$s naar %2$s.\n\nGa na dat het telefoonnummer hieronder juist is voordat je verder gaat.</string>
-    <string name="ChangeNumberConfirmFragment__edit_number">Onjuist telefoonnummer aanpassen</string>
+    <string name="ChangeNumberConfirmFragment__edit_number">Onjuist telefoonnummer bewerken</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
     <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Telefoonnummer voor Signal veranderen - Hulp nodig bij met de pincode (pincode-versie 2)</string>
@@ -4374,7 +4375,7 @@
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Zelfgekozen kleur gebruiken</string>
     <string name="ChatColorSelectionFragment__chat_color">Chatkleur</string>
-    <string name="ChatColorSelectionFragment__edit">Aanpassen</string>
+    <string name="ChatColorSelectionFragment__edit">Bewerken</string>
     <string name="ChatColorSelectionFragment__duplicate">Kopie maken</string>
     <string name="ChatColorSelectionFragment__delete">Wissen</string>
     <string name="ChatColorSelectionFragment__delete_color">Kleur wissen</string>
@@ -4392,7 +4393,7 @@
 
     <!-- CustomChatColorCreatorFragmentPage -->
     <string name="CustomChatColorCreatorFragmentPage__save">Opslaan</string>
-    <string name="CustomChatColorCreatorFragmentPage__edit_color">Kleur aanpassen</string>
+    <string name="CustomChatColorCreatorFragmentPage__edit_color">Kleur bewerken</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
         <item quantity="one">Deze kleur wordt in %1$d chat gebruikt. Wil je de wijziging ook op dat chat toepassen?</item>
         <item quantity="other">Deze kleur wordt in %1$d chats gebruikt. Wil je de wijziging ook op die chats toepassen?</item>
@@ -4646,7 +4647,7 @@
     <string name="ImageEditorHud__write_text">Schrijf tekst</string>
     <string name="ImageEditorHud__add_a_sticker">Een sticker toevoegen</string>
     <string name="ImageEditorHud__blur">Vervagen</string>
-    <string name="ImageEditorHud__done_editing">Aanpassingen klaar</string>
+    <string name="ImageEditorHud__done_editing">Bewerkingen klaar</string>
     <string name="ImageEditorHud__clear_all">Alles wissen</string>
     <string name="ImageEditorHud__undo">Ongedaan maken</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Schakelen tussen stift en markeerstift</string>
@@ -5919,7 +5920,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Opmaak wissen</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

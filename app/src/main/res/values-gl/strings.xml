@@ -2313,7 +2313,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para responder a chamada, permite que Signal acceda ao teu micrófono.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para responder a chamada de %1$s, dálle permiso a Signal ao teu micrófono.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal require permiso para poder facer e recibir chamadas, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\" e \"Cámara\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Respondido nun dispositivo ligado.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Rexeitado nun dispositivo ligado.</string>
@@ -3343,7 +3344,7 @@
     <string name="conversation__menu_add_shortcut">Engadir á pantalla de inicio</string>
     <string name="conversation__menu_create_bubble">Crear burbulla</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Aplicar formato no texto</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expandir xanela emerxente</string>
@@ -5919,7 +5920,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Revelación</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Borrar formato</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

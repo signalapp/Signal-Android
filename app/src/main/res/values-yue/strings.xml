@@ -2243,7 +2243,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">如果要接聽通話，請允許 Signal 存取您部機個咪。</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">如果要接聽 %1$s 打嚟嘅通話，請允許 Signal 存取您部機個咪。</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 要攞「麥克風」同「相機」權限，先可以撥打同接聽通話，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」同「相機」。</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">已用連結咗嘅機接聽。</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">已用連結咗嘅機拒接。</string>
@@ -3260,7 +3261,7 @@
     <string name="conversation__menu_add_shortcut">喺主畫面加個公仔</string>
     <string name="conversation__menu_create_bubble">建立氣泡</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">文字格式化</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">過去再放大</string>
@@ -5796,7 +5797,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">劇透文字</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">清除格式</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

@@ -2523,7 +2523,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Chun an glao a fhreagairt, tabhair rochtain do Signal ar do mhicreafón.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Chun an ghlao ón %1$s a fhreaghairt, tabhairt riochtain do Shignal do do mhicreafón.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Tá gá ag Signal le ceadanna micreafóin agus cheamara chun glaonna a chuir nó a fháil, ach ní ceadaítear iad go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\" agus \"Ceamara\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Freagartha ar ghléas nasctha.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Diúltaithe dó ar ghléas nasctha.</string>
@@ -3592,7 +3593,7 @@
     <string name="conversation__menu_add_shortcut">Cuir leis an scáileán baile é</string>
     <string name="conversation__menu_create_bubble">Cruthaigh bolgán</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Formáidigh</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Méadaigh an fógra aníos</string>
@@ -6288,7 +6289,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Bacóir</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Glan formáidiú</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

@@ -2383,7 +2383,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Lai atbildētu uz zvanu, atļaujiet Signal piekļūt jūsu mikrofonam.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Lai atbildētu uz zvanu no %1$s, atļaujiet Signal piekļūt Jūsu mikrofonam.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal nepieciešama atļauja piekļuvei mikrofonam un kamerai, lai zvanītu un saņemtu zvanus, bet tā nav dota. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\" un \"Kamera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Atbildēts no savienotās ierīces</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Atteikts no savienotās ierīces.</string>

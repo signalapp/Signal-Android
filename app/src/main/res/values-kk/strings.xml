@@ -2313,7 +2313,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Қоңырауға жауап беру үшін Signal қолданбасының микрофонды пайдалануына рұқсат етіңіз.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Қоңырауға %1$s арқылы жауап беру үшін Signal қолданбасының микрофонды пайдалануына рұқсат етіңіз.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Қоңырау шалу немесе қабылдау үшін Signal қолданбасына микрофон мен камераны пайдалануға рұқсат керек, бірақ параметрлерде оларды пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Микрофон\" және \"Камера\" параметрлерін қосыңыз.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Байланыстырылған құрылғыда жауап берілді.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Байланыстырылған құрылғыда қабылданбады.</string>
@@ -3343,7 +3344,7 @@
     <string name="conversation__menu_add_shortcut">Басты экранға қосу</string>
     <string name="conversation__menu_create_bubble">Көпіршікті жасау</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Мәтінді форматтау</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Қалқылмалы терезені толық ашу</string>
@@ -5919,7 +5920,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Спойлер</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Қолданылған форматты өшіру</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->

@@ -2313,7 +2313,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Jotta voit vastata puheluun, anna Signalille lupa käyttää mikrofonia.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Jotta voit vastata yhteystiedon %1$s puheluun, anna Signalille lupa käyttää mikrofonia.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal tarvitsee luvan käyttää mikrofonia ja kameraa puheluiden soittamista ja vastaanottamista varten, mutta nämä käyttöoikeudet ovat pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Vastattu yhdistetyllä laitteella.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Hylätty yhdistetyllä laitteella.</string>
