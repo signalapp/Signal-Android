@@ -68,34 +68,25 @@ public final class BubbleUtil {
     NotificationChannel conversationChannel = notificationManager.getNotificationChannel(ConversationUtil.getChannelId(context, recipient),
                                                                                          ConversationUtil.getShortcutId(recipientId));
 
-    if (conversationChannel == null) {
-      Log.d(TAG, "Conversation channel was null, therefore no bubbles.");
-      return false;
-    }
-
-    if (!conversationChannel.canBubble()) {
-      Log.d(TAG, "Conversation channel does not allow bubbles.");
-      return false;
-    }
-
+    final StringBuilder bubbleLoggingMessage = new StringBuilder("Bubble State:");
     if (Build.VERSION.SDK_INT < 31) {
-      if (!notificationManager.areBubblesAllowed()) {
-        Log.d(TAG, "Notification Manager does not allow bubbles.");
-        return false;
-      }
+      bubbleLoggingMessage.append("\nisBelowApi31 = true");
     } else {
-      if (!notificationManager.areBubblesEnabled()) {
-        Log.d(TAG, "Notification Manager disabled bubbles.");
-        return false;
-      }
-
-      if (notificationManager.getBubblePreference() == NotificationManager.BUBBLE_PREFERENCE_NONE) {
-        Log.d(TAG, "Bubble preference in Notification Manager was none, therefore no bubbles.");
-        return false;
-      }
+      bubbleLoggingMessage.append("\nnotificationManager.areBubblesEnabled() = ").append(notificationManager.areBubblesEnabled());
+      bubbleLoggingMessage.append("\nnotificationManager.getBubblePreference() = ").append(notificationManager.getBubblePreference());
     }
-    
-    return true;
+
+    bubbleLoggingMessage.append("\nnotificationManager.areBubblesAllowed() = ").append(notificationManager.areBubblesAllowed());
+    if (conversationChannel != null) {
+      bubbleLoggingMessage.append("\nconversationChannel.canBubble() = ").append(conversationChannel.canBubble());
+    } else {
+      bubbleLoggingMessage.append("\nconversationChannel = null");
+    }
+
+    Log.d(TAG, bubbleLoggingMessage.toString());
+
+    return (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
+           (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
   }
 
   /**
