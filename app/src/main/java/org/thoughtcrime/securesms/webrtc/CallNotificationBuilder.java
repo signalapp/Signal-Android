@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import org.signal.core.util.PendingIntentFlags;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -39,6 +39,20 @@ public class CallNotificationBuilder {
   public static final int TYPE_ESTABLISHED         = 3;
   public static final int TYPE_INCOMING_CONNECTING = 4;
 
+  private enum LaunchCallScreenIntentState {
+    CONTENT(null, 0),
+    AUDIO(WebRtcCallActivity.ANSWER_ACTION, 1),
+    VIDEO(WebRtcCallActivity.ANSWER_VIDEO_ACTION, 2);
+
+    final @Nullable String action;
+    final int              requestCode;
+
+    LaunchCallScreenIntentState(@Nullable String action, int requestCode) {
+      this.action      = action;
+      this.requestCode = requestCode;
+    }
+  }
+
   /**
    * This is the API level at which call style notifications will
    * properly pop over the screen and allow a user to answer a call.
@@ -51,13 +65,8 @@ public class CallNotificationBuilder {
   public static final int API_LEVEL_CALL_STYLE = 29;
 
   public static Single<Notification> getCallInProgressNotification(Context context, int type, Recipient recipient, boolean isVideoCall) {
-    Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
-    contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    contentIntent.putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_FULLSCREEN, true);
-
-    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, PendingIntentFlags.mutable());
-
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, getNotificationChannel(type))
+    PendingIntent              pendingIntent = getActivityPendingIntent(context, LaunchCallScreenIntentState.CONTENT);
+    NotificationCompat.Builder builder       = new NotificationCompat.Builder(context, getNotificationChannel(type))
         .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
         .setContentIntent(pendingIntent)
         .setOngoing(true)
@@ -83,7 +92,7 @@ public class CallNotificationBuilder {
                        builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
                            person,
                            getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
-                           getActivityPendingIntent(context, isVideoCall ? WebRtcCallActivity.ANSWER_VIDEO_ACTION : WebRtcCallActivity.ANSWER_ACTION)
+                           getActivityPendingIntent(context, isVideoCall ? LaunchCallScreenIntentState.VIDEO : LaunchCallScreenIntentState.AUDIO)
                        ).setIsVideo(isVideoCall));
                        return builder.build();
                      });
@@ -194,11 +203,18 @@ public class CallNotificationBuilder {
     return new NotificationCompat.Action(iconResId, context.getString(titleResId), getServicePendingIntent(context, intent));
   }
 
-  private static PendingIntent getActivityPendingIntent(@NonNull Context context, @NonNull String action) {
+  private static PendingIntent getActivityPendingIntent(@NonNull Context context, @NonNull LaunchCallScreenIntentState launchCallScreenIntentState) {
     Intent intent = new Intent(context, WebRtcCallActivity.class);
-    intent.setAction(action);
+    intent.setAction(launchCallScreenIntentState.action);
 
-    return PendingIntent.getActivity(context, 0, intent, PendingIntentFlags.mutable());
+    if (launchCallScreenIntentState == LaunchCallScreenIntentState.CONTENT) {
+      intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    }
+
+    intent.putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_FULLSCREEN, launchCallScreenIntentState == LaunchCallScreenIntentState.CONTENT);
+    intent.putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
+
+    return PendingIntent.getActivity(context, launchCallScreenIntentState.requestCode, intent, PendingIntentFlags.updateCurrent());
   }
 
   private static boolean deviceVersionSupportsIncomingCallStyle() {
