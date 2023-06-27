@@ -448,6 +448,14 @@ android {
             variant.setIgnore(true)
         }
     }
+
+    android.buildTypes.each {
+        if (it.name != 'release') {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/debug/java"
+        } else {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/release/java"
+        }
+    }
 }
 
 dependencies {

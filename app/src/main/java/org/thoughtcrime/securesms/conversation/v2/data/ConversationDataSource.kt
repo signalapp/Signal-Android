@@ -32,13 +32,18 @@ import org.whispersystems.signalservice.api.push.ServiceId
 private typealias ConversationElement = MappingModel<*>
 
 sealed interface ConversationElementKey {
+
+  fun requireMessageId(): Long = error("Not implemented for this key")
+
   companion object {
     fun forMessage(id: Long): ConversationElementKey = MessageBackedKey(id)
     val threadHeader: ConversationElementKey = ThreadHeaderKey
   }
 }
 
-private data class MessageBackedKey(val id: Long) : ConversationElementKey
+private data class MessageBackedKey(val id: Long) : ConversationElementKey {
+  override fun requireMessageId(): Long = id
+}
 private object ThreadHeaderKey : ConversationElementKey
 
 /**
