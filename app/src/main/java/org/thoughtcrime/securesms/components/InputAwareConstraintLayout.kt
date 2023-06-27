@@ -26,6 +26,9 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   private var inputId: Int? = null
   private var input: Fragment? = null
 
+  val isInputShowing: Boolean
+    get() = input != null
+
   lateinit var fragmentManager: FragmentManager
   var listener: Listener? = null
 

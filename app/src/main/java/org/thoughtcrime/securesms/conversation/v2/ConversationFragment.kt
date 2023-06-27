@@ -53,6 +53,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -102,6 +103,7 @@ import org.thoughtcrime.securesms.components.ConversationSearchBottomBar
 import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.InputPanel
+import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
@@ -114,7 +116,6 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
-import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
@@ -197,6 +198,7 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
+import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment
@@ -299,12 +301,14 @@ class ConversationFragment :
   GifKeyboardPageFragment.Host,
   StickerEventListener,
   StickerKeyboardPageFragment.Callback,
-  MediaKeyboard.MediaKeyboardListener {
+  MediaKeyboard.MediaKeyboardListener,
+  EmojiSearchFragment.Callback {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
+    private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
   }
 
   private val args: ConversationIntents.Args by lazy {
@@ -391,6 +395,7 @@ class ConversationFragment :
   private var pinnedShortcutReceiver: BroadcastReceiver? = null
   private var searchMenuItem: MenuItem? = null
   private var isSearchRequested: Boolean = false
+  private var previousPages: Set<KeyboardPage>? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -531,7 +536,21 @@ class ConversationFragment :
   }
 
   override fun openEmojiSearch() {
-    // TODO [cfv2] emoji search
+    val fragment = childFragmentManager.findFragmentByTag(EMOJI_SEARCH_FRAGMENT_TAG)
+    if (fragment == null) {
+      childFragmentManager.commit {
+        add(R.id.emoji_search_container, EmojiSearchFragment(), EMOJI_SEARCH_FRAGMENT_TAG)
+      }
+    }
+  }
+
+  override fun closeEmojiSearch() {
+    val fragment = childFragmentManager.findFragmentByTag(EMOJI_SEARCH_FRAGMENT_TAG)
+    if (fragment != null) {
+      childFragmentManager.commit(allowStateLoss = true) {
+        remove(fragment)
+      }
+    }
   }
 
   override fun onEmojiSelected(emoji: String?) {
@@ -588,6 +607,7 @@ class ConversationFragment :
 
   override fun onHidden() {
     inputPanel.mediaKeyboardListener.onHidden()
+    closeEmojiSearch()
   }
 
   override fun onKeyboardChanged(page: KeyboardPage) {
@@ -701,6 +721,7 @@ class ConversationFragment :
 
     val keyboardEvents = KeyboardEvents()
     container.listener = keyboardEvents
+    container.addKeyboardStateListener(keyboardEvents)
     requireActivity()
       .onBackPressedDispatcher
       .addCallback(
@@ -1106,9 +1127,7 @@ class ConversationFragment :
     val callback = GiphyMp4ProjectionRecycler(holders)
     GiphyMp4PlaybackController.attach(binding.conversationItemRecycler, callback, maxPlayback)
     binding.conversationItemRecycler.addItemDecoration(
-      GiphyMp4ItemDecoration(callback) { translationY: Float ->
-        binding.reactionsShade.translationY = translationY + binding.conversationItemRecycler.height
-      },
+      GiphyMp4ItemDecoration(callback),
       0
     )
     return callback
@@ -1550,13 +1569,6 @@ class ConversationFragment :
     reactionDelegate.setOnHideListener(onHideListener)
     reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel)
     composeText.clearFocus()
-
-    /*
-    // TODO [cfv2]
-    if (attachmentKeyboardStub.resolved()) {
-      attachmentKeyboardStub.get().hide(true);
-    }
-     */
   }
 
   //region Message action handling
@@ -2154,8 +2166,7 @@ class ConversationFragment :
 
           val snapshot = ConversationItemSelection.snapshotView(itemView, binding.conversationItemRecycler, messageRecord, videoBitmap)
 
-          // TODO [cfv2] -- Should only have a focused view if the keyboard was open.
-          val focusedView = null // itemView.rootView.findFocus()
+          val focusedView = if (container.isInputShowing) null else itemView.rootView.findFocus()
           val bodyBubble = itemView.bodyBubble!!
           val selectedConversationModel = SelectedConversationModel(
             snapshot,
@@ -2185,7 +2196,6 @@ class ConversationFragment :
           }
 
           val conversationItem: ConversationItem = itemView
-          val isAttachmentKeyboardOpen = false // TODO [cfv2] -- isAttachmentKeyboardOpen
           handleReaction(
             item.conversationMessage,
             ReactionsToolbarListener(item.conversationMessage),
@@ -2223,10 +2233,6 @@ class ConversationFragment :
 
                 if (showScrollButtons) {
                   viewModel.setShowScrollButtons(true)
-                }
-
-                if (isAttachmentKeyboardOpen) {
-                  // listener.openAttachmentKeyboard();
                 }
               }
             }
@@ -2270,7 +2276,7 @@ class ConversationFragment :
       val recipient: Recipient? = viewModel.recipientSnapshot
       return ConversationOptionsMenu.Snapshot(
         recipient = recipient,
-        isPushAvailable = true, // TODO [cfv2]
+        isPushAvailable = recipient?.isRegistered == true && Recipient.self().isRegistered,
         canShowAsBubble = Observable.empty(),
         isActiveGroup = recipient?.isActiveGroup == true,
         isActiveV2Group = recipient?.let { it.isActiveGroup && it.isPushV2Group } == true,
@@ -2572,7 +2578,7 @@ class ConversationFragment :
   inner class ActionModeCallback : ActionMode.Callback {
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
       mode.title = calculateSelectedItemCount()
-      // TODO [cfv2] listener.onMessageActionToolbarOpened();
+      // TODO [cfv2] scheduled message - listener.onMessageActionToolbarOpened();
       setCorrectActionModeMenuVisibility()
       return true
     }
@@ -2584,7 +2590,7 @@ class ConversationFragment :
     override fun onDestroyActionMode(mode: ActionMode) {
       adapter.clearSelection()
       setBottomActionBarVisibility(false)
-      // TODO [cfv2] listener.onMessageActionToolbarClosed();
+      // TODO [cfv2] scheduled message - listener.onMessageActionToolbarClosed();
       binding.conversationItemRecycler.invalidateItemDecorations()
       actionMode = null
     }
@@ -2647,11 +2653,6 @@ class ConversationFragment :
     }
 
     private fun sendPreUploadMediaMessage(result: MediaSendActivityResult) {
-      if (ExpiredBuildReminder.isEligible()) {
-        /* TODO [cfv2] -- Show expired dialog */
-        return
-      }
-
       if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && result.bodyRanges != null && result.bodyRanges.rangesCount > 0) {
         Dialogs.showFormattedTextDialog(requireContext()) { sendPreUploadMediaMessage(result) }
         return
@@ -3073,13 +3074,18 @@ class ConversationFragment :
 
     override fun onEnterEditMode() {
       updateToggleButtonState()
-      // TODO [cfv2] -- Save keyboard pager state and force emoji
+      previousPages = keyboardPagerViewModel.pages().value
+      keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
+      onKeyboardChanged(KeyboardPage.EMOJI)
     }
 
     override fun onExitEditMode() {
       updateToggleButtonState()
       draftViewModel.deleteMessageEditDraft()
-      // TODO [cfv2] -- Restore keyboard pager pages
+      if (previousPages != null) {
+        keyboardPagerViewModel.setPages(previousPages!!)
+        previousPages = null
+      }
     }
   }
 
@@ -3131,7 +3137,7 @@ class ConversationFragment :
     override fun create(): Fragment = KeyboardPagerFragment()
   }
 
-  private inner class KeyboardEvents : OnBackPressedCallback(false), InputAwareConstraintLayout.Listener {
+  private inner class KeyboardEvents : OnBackPressedCallback(false), InputAwareConstraintLayout.Listener, InsetAwareConstraintLayout.KeyboardStateListener {
     override fun handleOnBackPressed() {
       container.hideInput()
     }
@@ -3142,6 +3148,12 @@ class ConversationFragment :
 
     override fun onInputHidden() {
       isEnabled = false
+    }
+
+    override fun onKeyboardShown() = Unit
+
+    override fun onKeyboardHidden() {
+      closeEmojiSearch()
     }
   }
 

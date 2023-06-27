@@ -178,11 +178,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
       bottomNavigationBarHeight = 0;
     }
 
-    toolbarShade.setVisibility(VISIBLE);
-    toolbarShade.setAlpha(1f);
+    if (!SignalStore.internalValues().useConversationFragmentV2()) {
+      toolbarShade.setVisibility(VISIBLE);
+      toolbarShade.setAlpha(1f);
 
-    inputShade.setVisibility(VISIBLE);
-    inputShade.setAlpha(1f);
+      inputShade.setVisibility(VISIBLE);
+      inputShade.setAlpha(1f);
+    }
 
     Bitmap conversationItemSnapshot = selectedConversationModel.getBitmap();
 
@@ -393,6 +395,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void updateToolbarShade(@NonNull Activity activity) {
+    if (SignalStore.internalValues().useConversationFragmentV2()) {
+      LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
+      layoutParams.height = 0;
+      toolbarShade.setLayoutParams(layoutParams);
+      return;
+    }
+
     View toolbar         = activity.findViewById(R.id.toolbar);
     View bannerContainer = activity.findViewById(SignalStore.internalValues().useConversationFragmentV2() ? R.id.conversation_banner
                                                                                                           : R.id.conversation_banner_container);
@@ -403,6 +412,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void updateInputShade(@NonNull Activity activity) {
+    if (SignalStore.internalValues().useConversationFragmentV2()) {
+      LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
+      layoutParams.height = 0;
+      inputShade.setLayoutParams(layoutParams);
+      return;
+    }
+
     LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
     layoutParams.bottomMargin = bottomNavigationBarHeight;
     layoutParams.height = getInputPanelHeight(activity);
@@ -899,19 +915,21 @@ public final class ConversationReactionOverlay extends FrameLayout {
     itemYAnim.setDuration(duration);
     animators.add(itemYAnim);
 
-    ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
-    toolbarShadeAnim.setProperty(View.ALPHA);
-    toolbarShadeAnim.setFloatValues(0f);
-    toolbarShadeAnim.setTarget(toolbarShade);
-    toolbarShadeAnim.setDuration(duration);
-    animators.add(toolbarShadeAnim);
+    if (!SignalStore.internalValues().useConversationFragmentV2()) {
+      ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
+      toolbarShadeAnim.setProperty(View.ALPHA);
+      toolbarShadeAnim.setFloatValues(0f);
+      toolbarShadeAnim.setTarget(toolbarShade);
+      toolbarShadeAnim.setDuration(duration);
+      animators.add(toolbarShadeAnim);
 
-    ObjectAnimator inputShadeAnim = new ObjectAnimator();
-    inputShadeAnim.setProperty(View.ALPHA);
-    inputShadeAnim.setFloatValues(0f);
-    inputShadeAnim.setTarget(inputShade);
-    inputShadeAnim.setDuration(duration);
-    animators.add(inputShadeAnim);
+      ObjectAnimator inputShadeAnim = new ObjectAnimator();
+      inputShadeAnim.setProperty(View.ALPHA);
+      inputShadeAnim.setFloatValues(0f);
+      inputShadeAnim.setTarget(inputShade);
+      inputShadeAnim.setDuration(duration);
+      animators.add(inputShadeAnim);
+    }
 
     if (activity != null) {
       ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);
