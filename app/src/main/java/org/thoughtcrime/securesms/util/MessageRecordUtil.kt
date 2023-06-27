@@ -155,3 +155,10 @@ fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
 fun MessageRecord.isEditMessage(): Boolean {
   return this is MediaMmsMessageRecord && isEditMessage
 }
+
+/**
+ * Returns whether or not the given message record can be reacted to.
+ */
+fun MessageRecord.isValidReactionTarget(): Boolean {
+  return isSecure && !isPending && !isFailed && !isRemoteDelete && !isUpdate
+}
