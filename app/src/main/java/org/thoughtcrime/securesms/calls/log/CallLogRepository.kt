@@ -68,7 +68,7 @@ class CallLogRepository(
   ): Completable {
     return Completable.fromAction {
       SignalDatabase.calls.deleteNonAdHocCallEvents(selectedCallRowIds)
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 
   fun deleteAllCallLogsExcept(
@@ -77,7 +77,7 @@ class CallLogRepository(
   ): Completable {
     return Completable.fromAction {
       SignalDatabase.calls.deleteAllNonAdHocCallEventsExcept(selectedCallRowIds, missedOnly)
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 
   /**
@@ -105,7 +105,7 @@ class CallLogRepository(
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }.doOnDispose {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 
   /**
@@ -133,7 +133,7 @@ class CallLogRepository(
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }.doOnDispose {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 
   fun peekCallLinks(): Completable {
@@ -158,6 +158,6 @@ class CallLogRepository(
       }
 
       ApplicationDependencies.getJobManager().addAll(jobs)
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 }
