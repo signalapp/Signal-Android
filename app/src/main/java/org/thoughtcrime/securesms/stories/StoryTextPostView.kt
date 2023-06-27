@@ -48,7 +48,7 @@ class StoryTextPostView @JvmOverloads constructor(
 
   init {
     TextStoryTextWatcher.install(textView)
-    textView.movementMethod = LongClickMovementMethod.getInstance(context)
+    disableCreationMode()
   }
 
   fun getLinkPreviewThumbnailWidth(useLargeThumbnail: Boolean): Int {
@@ -59,12 +59,14 @@ class StoryTextPostView @JvmOverloads constructor(
     return linkPreviewView.getThumbnailViewHeight(useLargeThumbnail)
   }
 
-  fun showCloseButton() {
+  fun enableCreationMode() {
     linkPreviewView.setCanClose(true)
+    textView.movementMethod = null
   }
 
-  fun hideCloseButton() {
+  fun disableCreationMode() {
     linkPreviewView.setCanClose(false)
+    textView.movementMethod = LongClickMovementMethod.getInstance(context)
   }
 
   fun setTypeface(typeface: Typeface) {
@@ -144,7 +146,7 @@ class StoryTextPostView @JvmOverloads constructor(
     setTextColor(storyTextPost.textForegroundColor, false)
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
 
-    hideCloseButton()
+    disableCreationMode()
 
     postAdjustLinkPreviewTranslationY()
   }
