@@ -2235,7 +2235,6 @@ public class ConversationParentFragment extends Fragment
     inlineQueryViewModel = new ViewModelProvider(requireActivity()).get(InlineQueryViewModel.class);
 
     inlineQueryResultsController = new InlineQueryResultsController(
-        requireContext(),
         inlineQueryViewModel,
         inputPanel,
         (ViewGroup) requireView(),

@@ -167,7 +167,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     mentionsViewModel = ViewModelProvider(requireActivity(), MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel::class.java)
 
     inlineQueryResultsController = InlineQueryResultsController(
-      requireContext(),
       inlineQueryViewModel,
       requireView().findViewById(R.id.background_holder),
       (requireView() as ViewGroup),

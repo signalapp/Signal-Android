@@ -29,6 +29,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageButton
@@ -161,6 +162,11 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplacement
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
@@ -369,6 +375,17 @@ class ConversationFragment :
 
   private val stickerViewModel: StickerSuggestionsViewModel by viewModel {
     StickerSuggestionsViewModel()
+  }
+
+  private val inlineQueryViewModel: InlineQueryViewModel by activityViewModels()
+  private val inlineQueryController: InlineQueryResultsController by lazy {
+    InlineQueryResultsController(
+      inlineQueryViewModel,
+      inputPanel,
+      (requireView() as ViewGroup),
+      composeText,
+      viewLifecycleOwner
+    )
   }
 
   private val conversationTooltips = ConversationTooltips(this)
@@ -798,8 +815,37 @@ class ConversationFragment :
     initializeSearch()
     initializeLinkPreviews()
     initializeStickerSuggestions()
+    initializeInlineSearch()
 
     inputPanel.setListener(InputPanelListener())
+  }
+
+  private fun initializeInlineSearch() {
+    inlineQueryController.onOrientationChange(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+
+    composeText.apply {
+      setInlineQueryChangedListener(object : InlineQueryChangedListener {
+        override fun onQueryChanged(inlineQuery: InlineQuery) {
+          inlineQueryViewModel.onQueryChange(inlineQuery)
+        }
+      })
+
+      setMentionValidator { annotations ->
+        val recipient = viewModel.recipientSnapshot ?: return@setMentionValidator annotations
+
+        val validIds = recipient.participantIds
+          .map { MentionAnnotation.idToMentionAnnotationValue(it) }
+          .toSet()
+
+        annotations.filterNot { validIds.contains(it.value) }
+      }
+    }
+
+    inlineQueryViewModel
+      .selection
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { r: InlineQueryReplacement -> composeText.replaceText(r) }
+      .addTo(disposables)
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
