@@ -189,7 +189,7 @@ class ConversationAdapterV2(
    */
   fun pulseAtPosition(position: Int) {
     if (position >= 0 && position < itemCount) {
-      // todo [cody] adjust for typing indicator
+      // TODO [cfv2] adjust for typing indicator
       val correctedPosition = position
 
       recordToPulse = getConversationMessage(correctedPosition)
