@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-abstract class BaseContentProvider extends ContentProvider {
+public abstract class BaseContentProvider extends ContentProvider {
 
   private static final String[] COLUMNS = {OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE};
 

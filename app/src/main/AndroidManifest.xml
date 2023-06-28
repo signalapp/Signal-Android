@@ -1158,6 +1158,11 @@
 
     <receiver android:name=".payments.backup.phrase.ClearClipboardAlarmReceiver" />
 
+    <provider android:name=".providers.AvatarProvider"
+              android:authorities="${applicationId}.avatar"
+              android:exported="false"
+              android:grantUriPermissions="true" />
+
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"

@@ -35,9 +35,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.Disposable;
-
 /**
  * Provide a foreground service for {@link SignalCallManager} to leverage to run in the background when necessary. Also
  * provides devices listeners needed for during a call (i.e., bluetooth, power button).
@@ -76,7 +73,6 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private int                             lastNotificationId;
   private Notification                    lastNotification;
   private boolean                         isGroup                = true;
-  private Disposable                      notificationDisposable = Disposable.empty();
   private boolean                         stopping               = false;
 
   public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId, boolean isVideoCall) {
@@ -151,8 +147,6 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   public void onDestroy() {
     Log.v(TAG, "onDestroy");
     super.onDestroy();
-
-    notificationDisposable.dispose();
 
     if (uncaughtExceptionHandlerManager != null) {
       uncaughtExceptionHandlerManager.unregister();
@@ -236,21 +230,10 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public void setCallInProgressNotification(int type, @NonNull RecipientId id, boolean isVideoCall) {
-    if (lastNotificationId == INVALID_NOTIFICATION_ID) {
-      lastNotificationId = CallNotificationBuilder.getStartingStoppingNotificationId();
-      lastNotification   = CallNotificationBuilder.getStartingNotification(this);
-      startForegroundCompat(lastNotificationId, lastNotification);
-    }
+    lastNotificationId = CallNotificationBuilder.getNotificationId(type);
+    lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall);
 
-    notificationDisposable.dispose();
-    notificationDisposable = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall)
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe(notification -> {
-                                                      lastNotificationId = CallNotificationBuilder.getNotificationId(type);
-                                                      lastNotification   = notification;
-
-                                                      startForegroundCompat(lastNotificationId, lastNotification);
-                                                    });
+    startForegroundCompat(lastNotificationId, lastNotification);
   }
 
   private synchronized void startForegroundCompat(int notificationId, Notification notification) {
@@ -267,7 +250,6 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
 
   private synchronized void stop() {
     stopping = true;
-    notificationDisposable.dispose();
     stopForeground(true);
     stopSelf();
   }

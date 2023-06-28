@@ -286,12 +286,11 @@ public final class ConversationUtil {
   /**
    * @return A Compat Library Person object representing the given Recipient
    */
-  @WorkerThread
   public static @NonNull Person buildPerson(@NonNull Context context, @NonNull Recipient recipient) {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
-                     .setIcon(AvatarUtil.getIconForNotification(context, recipient))
+                     .setIcon(AvatarUtil.getIconWithUriForNotification(context, recipient.getId()))
                      .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
                      .build();
   }

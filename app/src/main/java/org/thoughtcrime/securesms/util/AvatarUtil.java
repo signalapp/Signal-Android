@@ -24,7 +24,9 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -99,12 +101,8 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static IconCompat getIconForNotification(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      return IconCompat.createWithBitmap(requestCircle(GlideApp.with(context).asBitmap(), context, recipient, UNDEFINED_SIZE).submit().get());
-    } catch (ExecutionException | InterruptedException e) {
-      return null;
-    }
+  public static IconCompat getIconWithUriForNotification(@NonNull Context context, @NonNull RecipientId recipientId) {
+    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(context, recipientId));
   }
 
   @WorkerThread
@@ -128,8 +126,13 @@ public final class AvatarUtil {
 
   @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
+    return getBitmapForNotification(context, recipient, UNDEFINED_SIZE);
+  }
+
+  @WorkerThread
+  public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
     try {
-      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, UNDEFINED_SIZE).submit().get();
+      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).submit().get();
     } catch (ExecutionException | InterruptedException e) {
       return null;
     }
