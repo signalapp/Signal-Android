@@ -318,7 +318,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nu se poate descărca videoclipul. Va trebui să îl trimiți din nou.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">editat la %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Alătură-te apelului</string>
 
@@ -911,6 +911,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Previzualizarea linkului nu este disponibilă</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Acest link de grup nu este activ</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1685,8 +1687,8 @@
         <item quantity="other">Mai ai %1$d de încercări rămase. Dacă rămâi fără încercări, poți crea un cod PIN nou. Poți înregistra și utiliza contul, dar vei pierde unele setări salvate, cum ar fi informațiile despre profil.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Introdu un PIN alfanumeric</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Introdu un PIN numeric</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Creează-ți PIN-ul</string>
@@ -3527,7 +3529,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Următorul</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Creează un PIN alfanumeric</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Creează un PIN numeric</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3591,8 +3595,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Introdu codul PIN pe care l-ai creat pentru contul tău. Acesta este diferit față de codul de verificare prin SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introdu PIN-ul pe care l-ai creat pentru contul tău.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Introdu un PIN alfanumeric</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Introdu un PIN numeric</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorect. Încearcă din nou.</string>
     <string name="RegistrationLockFragment__forgot_pin">Ai uitat PIN-ul?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN incorect</string>
@@ -6142,15 +6146,13 @@
     <string name="CallLogFragment__filtered_by_missed">Filtrat pe bază de ratate</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Selectează tot</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Șterge</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Ștergi %1$d apel?</item>
         <item quantity="few">Ștergi %1$d apeluri?</item>
         <item quantity="other">Ștergi %1$d de apeluri?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Șterge doar pentru mine</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d apel șters</item>

@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videoja nuk mund të shkarkohet. Duhet ta dërgosh përsëri.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">përpunuar %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Bashkoju thirrjes</string>
 
@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">S\\’ka lidhje për paraparje</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s\\’është aktive</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1626,8 +1628,8 @@
         <item quantity="other">Keni edhe %1$d prova. Nëse ju mbarohen provat, mund të krijoni një PIN të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhënat e profilit tuaj.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Regjistrim Signal-i - Ju Duhet Ndihmë me PIN-in për Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Jepni PIN alfanumerik</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Jepni PIN numerik</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Krijoni PIN-in tuaj</string>
@@ -3443,7 +3445,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Pasuesi</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Krijo PIN alfanumerik</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Krijo PIN numerik</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3505,8 +3509,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Jepni PIN-in që krijuar për llogarinë tuaj. Ky është tjetër gjë nga kodi juaj i verifikimit me SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Vendos kodin PIN që krijove për llogarinë tënde.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Jepni PIN alfanumerik</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Jepni PIN numerik</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
     <string name="RegistrationLockFragment__forgot_pin">Harruat PIN-in?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN i pasaktë</string>
@@ -6018,14 +6022,12 @@
     <string name="CallLogFragment__filtered_by_missed">Filtruar sipas të humburave</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Përzgjidh të gjitha</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Fshiji</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Të fshihet %1$d thirrje?</item>
         <item quantity="other">Të fshihen %1$d thirrjet?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Fshije për mua</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d thirrja u fshi</item>

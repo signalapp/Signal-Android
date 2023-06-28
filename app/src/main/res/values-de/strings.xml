@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nachricht kann nicht heruntergeladen werden. Du musst es erneut verschicken.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">Bearbeitet %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Anruf beitreten</string>
 
@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Keine Link-Vorschau verfügbar</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1626,8 +1628,8 @@
         <item quantity="other">Du hast %1$d verbleibende Versuche. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-Registrierung – Benötige Hilfe zur PIN für Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alphanumerische PIN eingeben</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Numerische PIN eingeben</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Erstelle deine PIN</string>
@@ -3443,7 +3445,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Weiter</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alphanumerische PIN erstellen</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Numerische PIN erstellen</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3505,8 +3509,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Gib die PIN ein, die du für dein Konto erstellt hast. Sie unterscheidet sich von deinem SMS-Verifikationscode.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Gib die PIN ein, die du für dein Konto festgelegt hast.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alphanumerische PIN eingeben</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Numerische PIN eingeben</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN vergessen?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Falsche PIN</string>
@@ -6018,14 +6022,12 @@
     <string name="CallLogFragment__filtered_by_missed">Gefiltert nach Entgangen</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Alle auswählen</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Löschen</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d Anruf löschen?</item>
         <item quantity="other">%1$d Anrufe löschen?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Für mich löschen</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d Anruf gelöscht</item>

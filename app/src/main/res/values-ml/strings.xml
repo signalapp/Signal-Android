@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">വീഡിയോ ഡൗൺലോഡ് ചെയ്യാൻ കഴിയുന്നില്ല. നിങ്ങൾ അത് വീണ്ടും അയയ്‌ക്കേണ്ടതുണ്ട്.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">എഡിറ്റ് ചെയ്തത് %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">കോളിൽ ചേരുക</string>
 
@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">ലിങ്ക് പ്രിവ്യൂ ലഭ്യമല്ല</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1626,8 +1628,8 @@
         <item quantity="other">നിങ്ങൾക്ക് %1$d ശ്രമങ്ങൾ ശേഷിക്കുന്നു. നിങ്ങൾക്ക് ശ്രമങ്ങൾ തീർന്നുപോയാൽ, നിങ്ങൾക്ക് ഒരു പുതിയ പിൻ സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് രജിസ്റ്റർ ചെയ്യാനും അക്കൗണ്ട് ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള PIN സഹായം ആവശ്യമുണ്ടോ</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ആൽഫാന്യൂമെറിക് PIN നൽകുക</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">സംഖ്യാ PIN നൽകുക</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">നിങ്ങളുടെ PIN സൃഷ്ടിക്കുക</string>
@@ -3443,7 +3445,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">അടുത്തത്</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">ആൽഫാന്യൂമെറിക് PIN സൃഷ്ടിക്കുക</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">സംഖ്യാ PIN സൃഷ്ടിക്കുക</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3505,8 +3509,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">നിങ്ങളുടെ അക്കൗണ്ടിനായി നിങ്ങൾ സൃഷ്‌ടിച്ച പിൻ നൽകുക. ഇത് നിങ്ങളുടെ SMS പരിശോധന കോഡിൽ നിന്ന് വ്യത്യസ്തമാണ്.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">നിങ്ങളുടെ അക്കൗണ്ടിനായി സൃഷ്ടിച്ച PIN നൽകുക.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">ആൽഫാന്യൂമെറിക് പിൻ നൽകുക</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">സംഖ്യാ പിൻ നൽകുക</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN തെറ്റാണ്. വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN മറന്നോ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN തെറ്റാണ്</string>
@@ -6018,14 +6022,12 @@
     <string name="CallLogFragment__filtered_by_missed">മിസ്‌ഡ് അനുസരിച്ച് ഫിൽറ്റർ ചെയ്യൂ</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">ഇല്ലാതാക്കൂ</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d കോൾ ഇല്ലാതാക്കണോ?</item>
         <item quantity="other">%1$d കോളുകൾ ഇല്ലാതാക്കണോ?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">എനിക്കായി ഇല്ലാതാക്കൂ</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d കോൾ ഇല്ലാതാക്കി</item>

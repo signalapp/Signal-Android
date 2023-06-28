@@ -319,7 +319,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Невозможно загрузить видео. Вам нужно отправить его снова.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">изменено %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Присоединиться к звонку</string>
 
@@ -939,6 +939,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1744,8 +1746,8 @@
         <item quantity="other">У вас осталось %1$d попыток. Если вы исчерпаете попытки, вы сможете создать новый PIN-код. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Регистрация в Signal - Нужна помощь с PIN-кодом для Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ввести буквенно-цифровой PIN-код</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Ввести цифровой PIN-код</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Создать PIN-код</string>
@@ -3611,7 +3613,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Далее</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Создать буквенно-цифровой PIN-код</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Создать цифровой PIN-код</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3677,8 +3681,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Введите PIN-код, который вы создали для своей учётной записи. Это не то же самое. что проверочный код из SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Введите Пин-код, созданный для вашей учётной записи.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ввести буквенно-цифровой PIN-код</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Ввести цифровой PIN-код</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Неверный PIN-код. Попробуйте ещё раз.</string>
     <string name="RegistrationLockFragment__forgot_pin">Забыли PIN-код?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Неверный PIN-код</string>
@@ -6266,7 +6270,7 @@
     <string name="CallLogFragment__filtered_by_missed">Отфильтровано по пропущенным</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Выбрать все</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Удалить</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Удалить %1$d звонок?</item>
@@ -6274,8 +6278,6 @@
         <item quantity="many">Удалить %1$d звонков?</item>
         <item quantity="other">Удалить %1$d звонка?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Удалить для меня</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d звонок удалён</item>

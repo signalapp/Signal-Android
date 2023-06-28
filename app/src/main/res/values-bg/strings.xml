@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Неуспешно изтегляне на видеото. Ще трябва да го изпратите отново.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">редактирано %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Присъединете се към разговор</string>
 
@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Няма наличен преглед на връзката</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Тази групова връзка не е активна</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1626,8 +1628,8 @@
         <item quantity="other">Остават %1$d опити. Ако свършите опитите си, можете да създадете нов ПИН. Можете да се регистрирате и да използвате акаунта си, но ще загубите някои запазени настройки, като информация за вашия профил.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Регистрация за Signal - Необходима помощ за ПИН за Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Въведете буквено-цифрен ПИН</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Въведете ПИН от цифри</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Създаване на ПИН</string>
@@ -3443,7 +3445,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Следващ</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Създайте буквено-цифров ПИН</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Създайте цифров ПИН</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3505,8 +3509,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Въведете ПИН кода, който сте създали за своя акаунт. Той е различен от кода за потвърждение през SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Въведете ПИН кода, който сте създали за акаунта си.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Въведете ПИН от букви и цифри</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Въведете ПИН от цифри</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Грешен ПИН. Опитайте отново.</string>
     <string name="RegistrationLockFragment__forgot_pin">Забравен ПИН?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Грешен ПИН</string>
@@ -6018,14 +6022,12 @@
     <string name="CallLogFragment__filtered_by_missed">Филтриране по пропуснати</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Избиране на всичко</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Изтриване</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Изтриване на %1$d обаждане?</item>
         <item quantity="other">Изтриване на %1$d обаждания?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Изтриване за мен</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d изтрито повикване</item>

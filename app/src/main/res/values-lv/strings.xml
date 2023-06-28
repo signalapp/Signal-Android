@@ -318,7 +318,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nevar lejupielādēt video. Jums tas jānosūta vēlreiz.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">rediģēta %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Pievienoties sarunai</string>
 
@@ -911,6 +911,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Saites priekšskatījums nav pieejams</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Šī grupas saite nav aktīva.</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1685,8 +1687,8 @@
         <item quantity="other">Jums atlikuši %1$d mēģinājumi. Ja jums beidzas mēģinājumi, varat izveidot jaunu PIN. Varat reģistrēties un izmantot savu kontu, taču zaudēsiet saglabātos iestatījumus, piemēram, profila informāciju.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal reģistrācija - Nepieciešama palīdziba ar PIN priekš Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ievadiet no burtiem un cipariem sastāvošu PIN</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Izveido ciparu PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Izveidojiet savu PIN</string>
@@ -3427,7 +3429,7 @@
     <string name="conversation__menu_add_shortcut">Pievienot sākuma ekrānam</string>
     <string name="conversation__menu_create_bubble">Izveidot burbuli</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Formatēt tekstu</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Izvērst uznirstošo logu</string>
@@ -3527,7 +3529,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Tālāk</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Izveidojiet burtu/ciparu PIN</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Izveido ciparisko PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3591,8 +3595,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ievadiet sava konta PIN kodu. Tas atšķiras no jūsu SMS verifikācijas koda.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ievadiet savam kontam izveidoto PIN.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ievadiet no burtiem un cipariem sastāvošu PIN</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Izveido ciparisku PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
     <string name="RegistrationLockFragment__forgot_pin">Aizmirsāt PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Nepareizs PIN</string>
@@ -6043,7 +6047,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoileris</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Notīrīt formatējumu</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -6142,15 +6146,13 @@
     <string name="CallLogFragment__filtered_by_missed">Filtrēts pēc neatbildētajiem</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Atzīmēt visus</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Dzēst</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="zero">Vai dzēst %1$d zvanus?</item>
         <item quantity="one">Vai dzēst %1$d zvanu?</item>
         <item quantity="other">Vai dzēst %1$d zvanus?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Dzēst man</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="zero">Izdzēsti %1$d zvani</item>

@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Kunne ikke laste ned videoen. Du må sende den på nytt.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">redigert %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Bli med i samtalen</string>
 
@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Ingen forhåndsvisning tilgjengelig</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Denne gruppelenken er ikke aktiv</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1626,8 +1628,8 @@
         <item quantity="other">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registrering - Hjelp ønskes til PIN for Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv inn numerisk PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Opprett PIN-koden</string>
@@ -3443,7 +3445,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Neste</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Opprett alfanumerisk PIN-kode</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Opprett numerisk PIN-kode</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3505,8 +3509,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv inn PIN-koden du opprettet for kontoen din. Dette er forskjellig fra SMS-bekreftelseskoden.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Angi PIN-koden som er knyttet til kontoen din.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Skriv inn numerisk PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Har du glemt PIN-koden?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Feil PIN-kode</string>
@@ -6018,14 +6022,12 @@
     <string name="CallLogFragment__filtered_by_missed">Viser kun ubesvarte</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Velg alle</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Slett</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Vil du slette %1$d anrop?</item>
         <item quantity="other">Vil du slette %1$d anrop?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Slett for meg</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d anrop slettet</item>

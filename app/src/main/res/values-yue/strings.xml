@@ -316,7 +316,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">下載唔到影片。你要再傳送多次。</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">編輯咗 (%1$s前)</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">加入通話</string>
 
@@ -855,6 +855,8 @@
     <string name="LinkPreviewView_no_link_preview_available">條拎未有預覽</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">呢條谷拎未有生效</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1567,8 +1569,8 @@
         <item quantity="other">您仲可以試多 %1$d 次。如果用晒畀您嘅機會，都撞唔啱您先前整落嗰個 PIN 碼，您整過個新嘅都得。咁您就可以註冊同使用您嘅帳戶，但係您就會冇咗先前儲存落嘅一啲設定，例如話您嘅個人資料資訊。</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 註冊 - Android 版 PIN 碼需要幫手</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">輸入數字 PIN 碼</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">建立您嘅 PIN 碼</string>
@@ -3359,7 +3361,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">下一步</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字 PIN 碼</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">建立數字 PIN 碼</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3419,8 +3423,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">先前您咪幫您個帳戶整過一個 PIN 碼嘅，請您喺度輸入返。咪搞錯呀吓，呢度唔係講緊您個短訊驗證碼。</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">輸入你為帳戶建立嘅 PIN 碼。</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">輸入數字 PIN 碼</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 碼唔啱。請再試一次。</string>
     <string name="RegistrationLockFragment__forgot_pin">唔記得咗 PIN 碼？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN 碼唔啱</string>
@@ -5894,13 +5898,11 @@
     <string name="CallLogFragment__filtered_by_missed">根據未接來電篩選</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">全部揀晒</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">刪除</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="other">係咪要删除 %1$d 個通話呀？</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">喺我自己部機度刪除</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">刪除咗 %1$d 個通話</item>

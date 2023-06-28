@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">వీడియోను డౌన్‌లోడ్ చేసుకోలేరు. దానిని మీరు మళ్ళీ పంపాలి.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">సవరించబడింది %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Edited %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">కాల్‌లో చేరండి</string>
 
@@ -883,6 +883,8 @@
     <string name="LinkPreviewView_no_link_preview_available">లింక్ పూర్వప్రదర్శన అందుబాటులో లేదు</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">ఈ సమూహ లింక్ సక్రియంగా లేదు</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1626,8 +1628,8 @@
         <item quantity="other">మీకు %1$d ప్రయత్నాలు మిగిలివున్నాయి. అన్ని ప్రయత్నాలు కోల్పోతే, క్రొత్త పిన్ సృష్టించుకోవచ్చు. ఈ విధముగా మీరు ఖాతా నమోదు చేసి వాడవచ్చు కాని, మీ పూర్వ సరళికలను కోల్పోతారు.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal నమోదీకరణ - ఆండ్రోయిడ్ కొరకు పిన్ తొ సహాయం కావలెను</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">మీ పిన్ను సృష్టించండి</string>
@@ -3443,7 +3445,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">తరువాత</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను సృష్టించండి</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">సంఖ్యా పిన్ను సృష్టించండి</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3505,8 +3509,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">మీ ఖాతా కొరకు మీరు సృష్టించిన PIN ను ఎంటర్ చేయండి.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationLockFragment__forgot_pin">పిన్ను మరచిపోయారా?</string>
     <string name="RegistrationLockFragment__incorrect_pin">తప్పయిన పిన్</string>
@@ -6018,14 +6022,12 @@
     <string name="CallLogFragment__filtered_by_missed">మిస్ అయినవి ఫిల్టర్ చేయబడ్డాయి</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">అన్నిటిని ఎంచుకోండి</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">తొలగించండి</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d కాల్ తొలగించేదా?</item>
         <item quantity="other">%1$d కాల్‌లను తొలగించేదా?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">నాకు తొలగించండి</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d కాల్ తొలగించబడింది</item>
