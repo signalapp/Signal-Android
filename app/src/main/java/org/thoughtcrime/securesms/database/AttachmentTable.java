@@ -126,6 +126,7 @@ public class AttachmentTable extends DatabaseTable {
           static final String DISPLAY_ORDER          = "display_order";
           static final String UPLOAD_TIMESTAMP       = "upload_timestamp";
           static final String CDN_NUMBER             = "cdn_number";
+          static final String MAC_DIGEST             = "incremental_mac_digest";
 
   private static final String DIRECTORY              = "parts";
 
@@ -143,7 +144,7 @@ public class AttachmentTable extends DatabaseTable {
   private static final String[] PROJECTION = new String[] {ROW_ID,
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
                                                            CDN_NUMBER, CONTENT_LOCATION, DATA,
-                                                           TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST,
+                                                           TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST, MAC_DIGEST,
                                                            FAST_PREFLIGHT_ID, VOICE_NOTE, BORDERLESS, VIDEO_GIF, QUOTE, DATA_RANDOM,
                                                            WIDTH, HEIGHT, CAPTION, STICKER_PACK_ID,
                                                            STICKER_PACK_KEY, STICKER_ID, STICKER_EMOJI, DATA_HASH, VISUAL_HASH,
@@ -188,7 +189,8 @@ public class AttachmentTable extends DatabaseTable {
                                                                                   TRANSFER_FILE          + " TEXT DEFAULT NULL, " +
                                                                                   DISPLAY_ORDER          + " INTEGER DEFAULT 0, " +
                                                                                   UPLOAD_TIMESTAMP       + " INTEGER DEFAULT 0, " +
-                                                                                  CDN_NUMBER             + " INTEGER DEFAULT 0);";
+                                                                                  CDN_NUMBER             + " INTEGER DEFAULT 0, " +
+                                                                                  MAC_DIGEST             + " BLOB);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -698,6 +700,7 @@ public class AttachmentTable extends DatabaseTable {
     contentValues.put(CDN_NUMBER, sourceAttachment.getCdnNumber());
     contentValues.put(CONTENT_LOCATION, sourceAttachment.getLocation());
     contentValues.put(DIGEST, sourceAttachment.getDigest());
+    contentValues.put(MAC_DIGEST, sourceAttachment.getIncrementalDigest());
     contentValues.put(CONTENT_DISPOSITION, sourceAttachment.getKey());
     contentValues.put(NAME, sourceAttachment.getRelay());
     contentValues.put(SIZE, sourceAttachment.getSize());
@@ -746,6 +749,7 @@ public class AttachmentTable extends DatabaseTable {
     values.put(CDN_NUMBER, attachment.getCdnNumber());
     values.put(CONTENT_LOCATION, attachment.getLocation());
     values.put(DIGEST, attachment.getDigest());
+    values.put(MAC_DIGEST, attachment.getIncrementalDigest());
     values.put(CONTENT_DISPOSITION, attachment.getKey());
     values.put(NAME, attachment.getRelay());
     values.put(SIZE, attachment.getSize());
@@ -1272,6 +1276,7 @@ public class AttachmentTable extends DatabaseTable {
                                               object.getString(CONTENT_DISPOSITION),
                                               object.getString(NAME),
                                               null,
+                                              null,
                                               object.getString(FAST_PREFLIGHT_ID),
                                               object.getInt(VOICE_NOTE) == 1,
                                               object.getInt(BORDERLESS) == 1,
@@ -1319,6 +1324,7 @@ public class AttachmentTable extends DatabaseTable {
                                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
                                                   cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
                                                   cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
+                                                  cursor.getBlob(cursor.getColumnIndexOrThrow(MAC_DIGEST)),
                                                   cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
                                                   cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
                                                   cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
@@ -1385,6 +1391,7 @@ public class AttachmentTable extends DatabaseTable {
       contentValues.put(CDN_NUMBER, useTemplateUpload ? template.getCdnNumber() : attachment.getCdnNumber());
       contentValues.put(CONTENT_LOCATION, useTemplateUpload ? template.getLocation() : attachment.getLocation());
       contentValues.put(DIGEST, useTemplateUpload ? template.getDigest() : attachment.getDigest());
+      contentValues.put(MAC_DIGEST, useTemplateUpload ? template.getIncrementalDigest() : attachment.getIncrementalDigest());
       contentValues.put(CONTENT_DISPOSITION, useTemplateUpload ? template.getKey() : attachment.getKey());
       contentValues.put(NAME, useTemplateUpload ? template.getRelay() : attachment.getRelay());
       contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));

@@ -52,7 +52,7 @@ public class UriAttachment extends Attachment {
                        @Nullable AudioHash audioHash,
                        @Nullable TransformProperties transformProperties)
   {
-    super(contentType, transferState, size, fileName, 0, null, null, null, null, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferState, size, fileName, 0, null, null, null, null, null, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.dataUri = Objects.requireNonNull(dataUri);
   }
 

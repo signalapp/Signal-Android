@@ -247,6 +247,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                                 Optional.empty(),
                                                 0, 0,
                                                 Optional.ofNullable(attachment.getDigest()),
+                                                Optional.ofNullable(attachment.getIncrementalDigest()),
                                                 Optional.ofNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),

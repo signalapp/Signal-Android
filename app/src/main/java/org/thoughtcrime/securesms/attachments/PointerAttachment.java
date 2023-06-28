@@ -30,6 +30,7 @@ public class PointerAttachment extends Attachment {
                             @Nullable String key,
                             @Nullable String relay,
                             @Nullable byte[] digest,
+                            @Nullable byte[] incrementalDigest,
                             @Nullable String fastPreflightId,
                             boolean voiceNote,
                             boolean borderless,
@@ -41,7 +42,7 @@ public class PointerAttachment extends Attachment {
                             @Nullable StickerLocator stickerLocator,
                             @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, borderless, videoGif, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null, null);
+    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, incrementalDigest, fastPreflightId, voiceNote, borderless, videoGif, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null, null);
   }
 
   @Nullable
@@ -112,6 +113,7 @@ public class PointerAttachment extends Attachment {
                                              pointer.get().asPointer().getRemoteId().toString(),
                                              encodedKey, null,
                                              pointer.get().asPointer().getDigest().orElse(null),
+                                             pointer.get().asPointer().getincrementalDigest().orElse(null),
                                              fastPreflightId,
                                              pointer.get().asPointer().getVoiceNote(),
                                              pointer.get().asPointer().isBorderless(),
@@ -137,6 +139,7 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
+                                             thumbnail != null ? thumbnail.asPointer().getincrementalDigest().orElse(null) : null,
                                              null,
                                              false,
                                              false,
@@ -166,6 +169,7 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
+                                             thumbnail != null ? thumbnail.asPointer().getincrementalDigest().orElse(null) : null,
                                              null,
                                              false,
                                              false,
