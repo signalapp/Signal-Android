@@ -165,8 +165,8 @@ import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSe
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplacement
-import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController
-import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsControllerV2
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModelV2
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
@@ -277,6 +277,7 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
+import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -377,14 +378,17 @@ class ConversationFragment :
     StickerSuggestionsViewModel()
   }
 
-  private val inlineQueryViewModel: InlineQueryViewModel by activityViewModels()
-  private val inlineQueryController: InlineQueryResultsController by lazy {
-    InlineQueryResultsController(
+  private val inlineQueryViewModel: InlineQueryViewModelV2 by activityViewModel {
+    InlineQueryViewModelV2(recipientRepository = conversationRecipientRepository)
+  }
+
+  private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
+    InlineQueryResultsControllerV2(
+      this,
       inlineQueryViewModel,
       inputPanel,
       (requireView() as ViewGroup),
-      composeText,
-      viewLifecycleOwner
+      composeText
     )
   }
 
@@ -531,6 +535,7 @@ class ConversationFragment :
   override fun onConfigurationChanged(newConfig: Configuration) {
     super.onConfigurationChanged(newConfig)
     ToolbarDependentMarginListener(binding.toolbar)
+    inlineQueryController.onOrientationChange(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
   }
 
   override fun onDestroyView() {
