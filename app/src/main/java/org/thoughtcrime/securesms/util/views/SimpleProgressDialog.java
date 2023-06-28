@@ -7,8 +7,6 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -27,7 +25,7 @@ public final class SimpleProgressDialog {
 
   @MainThread
   public static @NonNull AlertDialog show(@NonNull Context context) {
-    AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+    AlertDialog dialog = new AlertDialog.Builder(context)
                                         .setView(R.layout.progress_dialog)
                                         .setCancelable(false)
                                         .create();
