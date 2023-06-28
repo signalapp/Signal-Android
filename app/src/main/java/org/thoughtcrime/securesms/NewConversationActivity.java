@@ -59,6 +59,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -121,7 +122,7 @@ public class NewConversationActivity extends ContactSelectionActivity
           if (!resolved.isRegistered() || !resolved.hasServiceId()) {
             Log.i(TAG, "[onContactSelected] Not registered or no UUID. Doing a directory refresh.");
             try {
-              ContactDiscovery.refresh(this, resolved, false);
+              ContactDiscovery.refresh(this, resolved, false, TimeUnit.SECONDS.toMillis(10));
               resolved = Recipient.resolved(resolved.getId());
             } catch (IOException e) {
               Log.w(TAG, "[onContactSelected] Failed to refresh directory for new contact.");

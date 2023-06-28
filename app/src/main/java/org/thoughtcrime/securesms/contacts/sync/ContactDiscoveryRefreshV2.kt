@@ -49,7 +49,7 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refreshAll(context: Context, useCompat: Boolean, ignoreResults: Boolean): ContactDiscovery.RefreshResult {
+  fun refreshAll(context: Context, useCompat: Boolean, ignoreResults: Boolean, timeoutMs: Long? = null): ContactDiscovery.RefreshResult {
     val recipientE164s: Set<String> = SignalDatabase.recipients.getAllE164s().sanitize()
     val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s(context).sanitize()
 
@@ -59,7 +59,8 @@ object ContactDiscoveryRefreshV2 {
       inputPreviousE164s = SignalDatabase.cds.getAllE164s(),
       isPartialRefresh = false,
       useCompat = useCompat,
-      ignoreResults = ignoreResults
+      ignoreResults = ignoreResults,
+      timeoutMs = timeoutMs
     )
   }
 
@@ -67,14 +68,14 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refresh(context: Context, inputRecipients: List<Recipient>, useCompat: Boolean, ignoreResults: Boolean): ContactDiscovery.RefreshResult {
+  fun refresh(context: Context, inputRecipients: List<Recipient>, useCompat: Boolean, ignoreResults: Boolean, timeoutMs: Long? = null): ContactDiscovery.RefreshResult {
     val recipients: List<Recipient> = inputRecipients.map { it.resolve() }
     val inputE164s: Set<String> = recipients.mapNotNull { it.e164.orElse(null) }.toSet().sanitize()
 
     return if (inputE164s.size > MAXIMUM_ONE_OFF_REQUEST_SIZE) {
       Log.i(TAG, "List of specific recipients to refresh is too large! (Size: ${recipients.size}). Doing a full refresh instead.")
 
-      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, useCompat = useCompat, ignoreResults = ignoreResults)
+      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, useCompat = useCompat, ignoreResults = ignoreResults, timeoutMs = timeoutMs)
       val inputIds: Set<RecipientId> = recipients.map { it.id }.toSet()
 
       ContactDiscovery.RefreshResult(
@@ -88,7 +89,8 @@ object ContactDiscoveryRefreshV2 {
         inputPreviousE164s = emptySet(),
         isPartialRefresh = true,
         useCompat = useCompat,
-        ignoreResults = ignoreResults
+        ignoreResults = ignoreResults,
+        timeoutMs = timeoutMs
       )
     }
   }
@@ -100,7 +102,8 @@ object ContactDiscoveryRefreshV2 {
     inputPreviousE164s: Set<String>,
     isPartialRefresh: Boolean,
     useCompat: Boolean,
-    ignoreResults: Boolean
+    ignoreResults: Boolean,
+    timeoutMs: Long? = null
   ): ContactDiscovery.RefreshResult {
     val tag = "refreshInternal-${if (useCompat) "compat" else "v2"}"
     val stopwatch = Stopwatch(tag)
@@ -134,7 +137,8 @@ object ContactDiscoveryRefreshV2 {
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         useCompat,
         Optional.ofNullable(token),
-        BuildConfig.CDSI_MRENCLAVE
+        BuildConfig.CDSI_MRENCLAVE,
+        timeoutMs
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {

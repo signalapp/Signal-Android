@@ -49,6 +49,7 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class CommunicationActions {
 
@@ -303,7 +304,7 @@ public class CommunicationActions {
 
           if (!recipient.isRegistered() || !recipient.hasServiceId()) {
             try {
-              ContactDiscovery.refresh(activity, recipient, false);
+              ContactDiscovery.refresh(activity, recipient, false, TimeUnit.SECONDS.toMillis(10));
               recipient = Recipient.resolved(recipient.getId());
             } catch (IOException e) {
               Log.w(TAG, "[handlePotentialSignalMeUrl] Failed to refresh directory for new contact.");

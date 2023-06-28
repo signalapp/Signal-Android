@@ -723,7 +723,7 @@ public class ConversationParentFragment extends Fragment
     case ADD_CONTACT:
       SimpleTask.run(() -> {
         try {
-          ContactDiscovery.refresh(requireContext(), recipient.get(), false);
+          ContactDiscovery.refresh(requireContext(), recipient.get(), false, TimeUnit.SECONDS.toMillis(10));
         } catch (IOException e) {
           Log.w(TAG, "Failed to refresh user after adding to contacts.");
         }

@@ -91,14 +91,15 @@ object ContactDiscovery {
   }
 
   @JvmStatic
+  @JvmOverloads
   @Throws(IOException::class)
   @WorkerThread
-  fun refresh(context: Context, recipient: Recipient, notifyOfNewUsers: Boolean): RecipientTable.RegisteredState {
+  fun refresh(context: Context, recipient: Recipient, notifyOfNewUsers: Boolean, timeoutMs: Long? = null): RecipientTable.RegisteredState {
     val result: RefreshResult = refreshRecipients(
       context = context,
       descriptor = "refresh-single",
       refresh = {
-        ContactDiscoveryRefreshV2.refresh(context, listOf(recipient), useCompat = !FeatureFlags.phoneNumberPrivacy(), ignoreResults = false)
+        ContactDiscoveryRefreshV2.refresh(context, listOf(recipient), useCompat = !FeatureFlags.phoneNumberPrivacy(), ignoreResults = false, timeoutMs = timeoutMs)
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers

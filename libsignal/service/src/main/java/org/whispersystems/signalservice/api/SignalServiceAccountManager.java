@@ -390,6 +390,7 @@ public class SignalServiceAccountManager {
                                                            boolean requireAcis,
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
+                                                           Long timeoutMs,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {
@@ -400,11 +401,20 @@ public class SignalServiceAccountManager {
 
     ServiceResponse<CdsiV2Service.Response> serviceResponse;
     try {
-      serviceResponse = single.blockingGet();
+      if (timeoutMs == null) {
+        serviceResponse = single
+            .blockingGet();
+      } else {
+        serviceResponse = single
+            .timeout(timeoutMs, TimeUnit.MILLISECONDS)
+            .blockingGet();
+      }
     } catch (RuntimeException e) {
       Throwable cause = e.getCause();
       if (cause instanceof InterruptedException) {
         throw new IOException("Interrupted", cause);
+      } else if (cause instanceof TimeoutException) {
+        throw new IOException("Timed out");
       } else {
         throw e;
       }
