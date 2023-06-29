@@ -142,7 +142,7 @@ class DraftRepository(
 
       val messageEdit: ConversationMessage? = drafts.firstOrNull { it.type == DraftTable.Draft.MESSAGE_EDIT }?.let { loadDraftMessageEditInternal(it.value) }
       if (messageEdit != null) {
-        return ShareOrDraftData.SetEditMessage(messageEdit) to drafts
+        return ShareOrDraftData.SetEditMessage(messageEdit, draftText) to drafts
       }
 
       if (draftText != null) {
@@ -287,7 +287,7 @@ class DraftRepository(
     data class SetText(val text: CharSequence) : ShareOrDraftData
     data class SetLocation(val location: SignalPlace, val draftText: CharSequence?) : ShareOrDraftData
     data class SetQuote(val quote: ConversationMessage, val draftText: CharSequence?) : ShareOrDraftData
-    data class SetEditMessage(val messageEdit: ConversationMessage) : ShareOrDraftData
+    data class SetEditMessage(val messageEdit: ConversationMessage, val draftText: CharSequence?) : ShareOrDraftData
   }
 
   data class KeyboardImageDetails(val width: Int, val height: Int, val hasTransparency: Boolean)

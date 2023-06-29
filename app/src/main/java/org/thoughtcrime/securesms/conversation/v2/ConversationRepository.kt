@@ -289,6 +289,12 @@ class ConversationRepository(
     }.subscribeOn(Schedulers.io())
   }
 
+  fun getMessagePosition(threadId: Long, messageRecord: MessageRecord): Single<Int> {
+    return Single.fromCallable {
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageRecord.dateReceived)
+    }.subscribeOn(Schedulers.io())
+  }
+
   fun getMessageCounts(threadId: Long): Flowable<MessageCounts> {
     return RxDatabaseObserver.conversationList
       .map { getUnreadCount(threadId) }

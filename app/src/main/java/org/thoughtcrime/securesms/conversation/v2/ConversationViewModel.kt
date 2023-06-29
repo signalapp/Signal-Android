@@ -30,6 +30,7 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -74,7 +75,8 @@ class ConversationViewModel(
   requestedStartingPosition: Int,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
-  messageRequestRepository: MessageRequestRepository
+  messageRequestRepository: MessageRequestRepository,
+  private val scheduledMessagesRepository: ScheduledMessagesRepository
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
@@ -246,6 +248,11 @@ class ConversationViewModel(
     return repository.getNextMentionPosition(threadId)
   }
 
+  fun moveToMessage(messageRecord: MessageRecord): Single<Int> {
+    return repository.getMessagePosition(threadId, messageRecord)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun setLastScrolled(lastScrolledTimestamp: Long) {
     repository.setLastVisibleMessageTimestamp(
       threadId,
@@ -378,5 +385,11 @@ class ConversationViewModel(
 
   fun updateStickerLastUsedTime(stickerRecord: StickerRecord, timestamp: Duration) {
     repository.updateStickerLastUsedTime(stickerRecord, timestamp)
+  }
+
+  fun getScheduledMessagesCount(): Observable<Int> {
+    return scheduledMessagesRepository
+      .getScheduledMessageCount(threadId)
+      .observeOn(AndroidSchedulers.mainThread())
   }
 }

@@ -130,6 +130,7 @@ import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
@@ -147,6 +148,13 @@ import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
+import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
+import org.thoughtcrime.securesms.conversation.ScheduleMessageContextMenu
+import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
+import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet
+import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet.Companion.showSchedule
+import org.thoughtcrime.securesms.conversation.ScheduledMessagesBottomSheet
+import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
 import org.thoughtcrime.securesms.conversation.SelectedConversationModel
 import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -272,6 +280,8 @@ import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil.getEditMessageThresholdHours
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil.isValidEditMessageSend
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -311,7 +321,10 @@ class ConversationFragment :
   StickerEventListener,
   StickerKeyboardPageFragment.Callback,
   MediaKeyboard.MediaKeyboardListener,
-  EmojiSearchFragment.Callback {
+  EmojiSearchFragment.Callback,
+  ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
+  ScheduleMessageDialogCallback,
+  ConversationBottomSheetCallback {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -340,7 +353,8 @@ class ConversationFragment :
       requestedStartingPosition = args.startingPosition,
       repository = ConversationRepository(context = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
       recipientRepository = conversationRecipientRepository,
-      messageRequestRepository = messageRequestRepository
+      messageRequestRepository = messageRequestRepository,
+      scheduledMessagesRepository = ScheduledMessagesRepository()
     )
   }
 
@@ -419,6 +433,7 @@ class ConversationFragment :
   private var searchMenuItem: MenuItem? = null
   private var isSearchRequested: Boolean = false
   private var previousPages: Set<KeyboardPage>? = null
+  private var reShowScheduleMessagesBar: Boolean = false
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -452,8 +467,12 @@ class ConversationFragment :
   private val searchNav: ConversationSearchBottomBar
     get() = binding.conversationSearchBottomBar.root
 
+  private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
+
   private lateinit var reactionDelegate: ConversationReactionDelegate
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
+
+  //region Android Lifecycle
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -548,6 +567,23 @@ class ConversationFragment :
     }
   }
 
+  //endregion
+
+  //region Fragment callbacks and listeners
+
+  override fun getConversationAdapterListener(): ConversationAdapter.ItemClickListener {
+    return adapter.clickListener
+  }
+
+  override fun jumpToMessage(messageRecord: MessageRecord) {
+    viewModel
+      .moveToMessage(messageRecord)
+      .subscribeBy {
+        moveToPosition(it)
+      }
+      .addTo(disposables)
+  }
+
   override fun onReactWithAnyEmojiDialogDismissed() {
     reactionDelegate.hide()
   }
@@ -639,6 +675,16 @@ class ConversationFragment :
     inputPanel.mediaKeyboardListener.onKeyboardChanged(page)
   }
 
+  override fun onScheduleSend(scheduledTime: Long) {
+    sendMessage(scheduledDate = scheduledTime)
+  }
+
+  override fun onSchedulePermissionsGranted(metricId: String?, scheduledDate: Long) {
+    sendMessage(scheduledDate = scheduledDate)
+  }
+
+  //endregion
+
   private fun observeConversationThread() {
     var firstRender = true
     disposables += viewModel
@@ -722,9 +768,12 @@ class ConversationFragment :
 
     sendButton.apply {
       setOnClickListener(sendButtonListener)
+      setScheduledSendListener(sendButtonListener)
       isEnabled = true
       post { sendButton.triggerSelectedChangedEvent() }
     }
+
+    sendEditButton.setOnClickListener { handleSendEditMessage() }
 
     val attachListener = { _: View ->
       container.toggleInput(AttachmentKeyboardFragmentCreator, composeText)
@@ -795,29 +844,7 @@ class ConversationFragment :
     ).attachToRecyclerView(binding.conversationItemRecycler)
 
     draftViewModel.loadShareOrDraftData()
-      .subscribeBy {
-        when (it) {
-          is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = it.slide, clearCompose = false)
-          is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = it.slide, clearCompose = true)
-          is ShareOrDraftData.SetEditMessage -> inputPanel.enterEditMessageMode(GlideApp.with(this), it.messageEdit, true)
-          is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(it.location, MediaConstraints.getPushMediaConstraints())
-          is ShareOrDraftData.SetMedia -> {
-            composeText.setDraftText(it.text)
-            setMedia(it.media, it.mediaType)
-          }
-
-          is ShareOrDraftData.SetQuote -> {
-            composeText.setDraftText(it.draftText)
-            handleReplyToMessage(it.quote)
-          }
-
-          is ShareOrDraftData.SetText -> composeText.setDraftText(it.text)
-          is ShareOrDraftData.StartSendMedia -> {
-            val recipientId = viewModel.recipientSnapshot?.id ?: return@subscribeBy
-            conversationActivityResultContracts.launchMediaEditor(it.mediaList, recipientId, it.text)
-          }
-        }
-      }
+      .subscribeBy { data -> handleShareOrDraftData(data) }
       .addTo(disposables)
 
     initializeSearch()
@@ -826,6 +853,11 @@ class ConversationFragment :
     initializeInlineSearch()
 
     inputPanel.setListener(InputPanelListener())
+
+    viewModel
+      .getScheduledMessagesCount()
+      .subscribeBy { count -> handleScheduledMessagesCountChange(count) }
+      .addTo(disposables)
   }
 
   private fun initializeInlineSearch() {
@@ -1126,6 +1158,88 @@ class ConversationFragment :
     }
   }
 
+  private fun handleShareOrDraftData(data: ShareOrDraftData) {
+    when (data) {
+      is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
+      is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = true)
+      is ShareOrDraftData.SetEditMessage -> {
+        composeText.setDraftText(data.draftText)
+        inputPanel.enterEditMessageMode(GlideApp.with(this), data.messageEdit, true)
+      }
+      is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
+      is ShareOrDraftData.SetMedia -> {
+        composeText.setDraftText(data.text)
+        setMedia(data.media, data.mediaType)
+      }
+
+      is ShareOrDraftData.SetQuote -> {
+        composeText.setDraftText(data.draftText)
+        handleReplyToMessage(data.quote)
+      }
+
+      is ShareOrDraftData.SetText -> composeText.setDraftText(data.text)
+      is ShareOrDraftData.StartSendMedia -> {
+        val recipientId = viewModel.recipientSnapshot?.id ?: return
+        conversationActivityResultContracts.launchMediaEditor(data.mediaList, recipientId, data.text)
+      }
+    }
+  }
+
+  private fun handleScheduledMessagesCountChange(count: Int) {
+    if (count <= 0) {
+      scheduledMessagesStub.visibility = View.GONE
+      reShowScheduleMessagesBar = false
+    } else {
+      scheduledMessagesStub.get().apply {
+        visibility = View.VISIBLE
+
+        findViewById<View>(R.id.scheduled_messages_show_all)
+          .setOnClickListener {
+            val recipient = viewModel.recipientSnapshot ?: return@setOnClickListener
+            ScheduledMessagesBottomSheet.show(childFragmentManager, args.threadId, recipient.id)
+          }
+
+        findViewById<TextView>(R.id.scheduled_messages_text).text = resources.getQuantityString(R.plurals.conversation_scheduled_messages_bar__number_of_messages, count, count)
+      }
+      reShowScheduleMessagesBar = true
+    }
+  }
+
+  private fun handleSendEditMessage() {
+    if (!FeatureFlags.editMessageSending()) {
+      Log.w(TAG, "Edit message sending disabled, forcing exit of edit mode")
+      inputPanel.exitEditMessageMode()
+      return
+    }
+
+    if (!inputPanel.inEditMessageMode()) {
+      Log.w(TAG, "Not in edit message mode, unknown state, forcing re-exit")
+      inputPanel.exitEditMessageMode()
+      return
+    }
+
+    if (SignalStore.uiHints().hasNotSeenEditMessageBetaAlert()) {
+      Dialogs.showEditMessageBetaDialog(requireContext()) { handleSendEditMessage() }
+      return
+    }
+
+    val editMessage = inputPanel.editMessage
+    if (editMessage == null) {
+      Log.w(TAG, "No edit message found, forcing exit")
+      inputPanel.exitEditMessageMode()
+      return
+    }
+
+    if (!isValidEditMessageSend(editMessage, System.currentTimeMillis())) {
+      Log.i(TAG, "Edit message no longer valid")
+      val editDurationHours = getEditMessageThresholdHours()
+      Dialogs.showAlertDialog(requireContext(), null, resources.getQuantityString(R.plurals.ConversationActivity_edit_message_too_old, editDurationHours, editDurationHours))
+      return
+    }
+
+    sendMessage()
+  }
+
   private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
 
   private fun initializeConversationThreadUi() {
@@ -1385,6 +1499,10 @@ class ConversationFragment :
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
     afterSendComplete: () -> Unit = {}
   ) {
+    if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
+      return
+    }
+
     val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
 
     val send: Completable = viewModel.sendMessage(
@@ -2664,7 +2782,14 @@ class ConversationFragment :
   inner class ActionModeCallback : ActionMode.Callback {
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
       mode.title = calculateSelectedItemCount()
-      // TODO [cfv2] scheduled message - listener.onMessageActionToolbarOpened();
+
+      searchMenuItem?.collapseActionView()
+      binding.toolbar.visible = false
+      if (scheduledMessagesStub.isVisible) {
+        reShowScheduleMessagesBar = true
+        scheduledMessagesStub.visibility = View.GONE
+      }
+
       setCorrectActionModeMenuVisibility()
       return true
     }
@@ -2676,7 +2801,13 @@ class ConversationFragment :
     override fun onDestroyActionMode(mode: ActionMode) {
       adapter.clearSelection()
       setBottomActionBarVisibility(false)
-      // TODO [cfv2] scheduled message - listener.onMessageActionToolbarClosed();
+
+      binding.toolbar.visible = true
+      if (reShowScheduleMessagesBar) {
+        scheduledMessagesStub.visibility = View.VISIBLE
+        reShowScheduleMessagesBar = false
+      }
+
       binding.conversationItemRecycler.invalidateItemDecorations()
       actionMode = null
     }
@@ -2997,7 +3128,7 @@ class ConversationFragment :
 
   //region Compose + Send Callbacks
 
-  private inner class SendButtonListener : View.OnClickListener, OnEditorActionListener {
+  private inner class SendButtonListener : View.OnClickListener, OnEditorActionListener, SendButton.ScheduledSendListener {
     override fun onClick(v: View) {
       sendMessage()
     }
@@ -3012,6 +3143,20 @@ class ConversationFragment :
         return true
       }
       return false
+    }
+
+    override fun onSendScheduled() {
+      ScheduleMessageContextMenu.show(sendButton, (requireView() as ViewGroup)) { time ->
+        if (time == -1L) {
+          showSchedule(childFragmentManager)
+        } else {
+          sendMessage(scheduledDate = time)
+        }
+      }
+    }
+
+    override fun canSchedule(): Boolean {
+      return !(inputPanel.isRecordingInLockedMode || draftViewModel.voiceNoteDraft != null)
     }
   }
 
