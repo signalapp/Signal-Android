@@ -263,6 +263,7 @@ public class CallParticipantView extends ConstraintLayout {
             .fallback(fallbackPhoto.asCallCard(getContext()))
             .error(fallbackPhoto.asCallCard(getContext()))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .fitCenter()
             .into(pipAvatar);
 
     pipAvatar.setScaleType(contactPhoto == null ? ImageView.ScaleType.CENTER_INSIDE : ImageView.ScaleType.CENTER_CROP);

@@ -58,6 +58,7 @@ public final class AvatarUtil {
     GlideApp.with(target)
             .load(photo)
             .transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
+            .centerCrop()
             .into(new CustomViewTarget<View, Drawable>(target) {
               @Override
               public void onLoadFailed(@Nullable Drawable errorDrawable) {

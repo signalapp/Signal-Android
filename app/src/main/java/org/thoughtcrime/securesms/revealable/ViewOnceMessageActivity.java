@@ -143,6 +143,7 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
 
     GlideApp.with(this)
             .load(new DecryptableUri(uri))
+            .fitCenter()
             .into(image);
   }
 

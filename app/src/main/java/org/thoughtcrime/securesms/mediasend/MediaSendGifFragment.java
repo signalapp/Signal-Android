@@ -41,7 +41,7 @@ public class MediaSendGifFragment extends Fragment implements MediaSendPageFragm
     super.onViewCreated(view, savedInstanceState);
 
     uri = getArguments().getParcelable(KEY_URI);
-    GlideApp.with(this).load(new DecryptableStreamUriLoader.DecryptableUri(uri)).into((ImageView) view);
+    GlideApp.with(this).load(new DecryptableStreamUriLoader.DecryptableUri(uri)).fitCenter().into((ImageView) view);
   }
 
   @Override

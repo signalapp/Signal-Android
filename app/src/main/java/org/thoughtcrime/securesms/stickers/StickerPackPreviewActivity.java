@@ -206,6 +206,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
                                                 : new StickerRemoteUri(cover.getPackId(), cover.getPackKey(), cover.getId());
       GlideApp.with(this).load(model)
               .transition(DrawableTransitionOptions.withCrossFade())
+              .fitCenter()
               .set(ApngOptions.ANIMATE, DeviceProperties.shouldAllowApngStickerAnimation(this))
               .into(coverImage);
     } else {

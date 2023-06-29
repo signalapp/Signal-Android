@@ -68,6 +68,7 @@ public class ConversationStickerSuggestionAdapter extends RecyclerView.Adapter<C
     void bind(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, @NonNull StickerRecord sticker) {
       glideRequests.load(new DecryptableUri(sticker.getUri()))
                    .transition(DrawableTransitionOptions.withCrossFade())
+                   .fitCenter()
                    .into(image);
 
       itemView.setOnClickListener(v -> {

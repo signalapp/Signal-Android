@@ -28,6 +28,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.signal.core.util.logging.Log;
+import org.signal.glide.transforms.SignalDownsampleStrategy;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentTable;
@@ -454,6 +455,7 @@ public class ThumbnailView extends FrameLayout {
 
     GlideRequest<Drawable> request = glideRequests.load(new DecryptableUri(uri))
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                                  .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                   .listener(listener);
 
     if (animate) {
@@ -486,6 +488,7 @@ public class ThumbnailView extends FrameLayout {
     GlideRequest<Drawable> request = glideRequests.load(model)
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                                                   .placeholder(model.getPlaceholder())
+                                                  .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                   .transition(withCrossFade());
 
     request = override(request, width, height);
@@ -554,6 +557,7 @@ public class ThumbnailView extends FrameLayout {
   private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
                                                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                                    .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                     .transition(withCrossFade()));
 
     boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;

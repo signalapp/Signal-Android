@@ -100,6 +100,7 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
             .placeholder(placeholder)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .transition(DrawableTransitionOptions.withCrossFade())
+            .centerCrop()
             .into(stillImage);
   }
 }
