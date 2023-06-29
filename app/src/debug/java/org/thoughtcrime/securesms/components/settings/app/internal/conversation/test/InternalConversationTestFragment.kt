@@ -64,7 +64,8 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       glideRequests = GlideApp.with(this),
       clickListener = ClickListener(),
       hasWallpaper = springboardViewModel.hasWallpaper.value,
-      colorizer = Colorizer()
+      colorizer = Colorizer(),
+      startExpirationTimeout = {}
     )
 
     if (springboardViewModel.hasWallpaper.value) {

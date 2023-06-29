@@ -170,6 +170,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResults
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModelV2
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
+import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
@@ -1117,7 +1118,8 @@ class ConversationFragment :
       glideRequests = GlideApp.with(this),
       clickListener = ConversationItemClickListener(),
       hasWallpaper = args.wallpaper != null,
-      colorizer = colorizer
+      colorizer = colorizer,
+      startExpirationTimeout = viewModel::startExpirationTimeout
     )
 
     scrollToPositionDelegate = ScrollToPositionDelegate(
@@ -2198,13 +2200,24 @@ class ConversationFragment :
         binding.reactionsShade.visibility = View.VISIBLE
         binding.conversationItemRecycler.suppressLayout(true)
 
-        if (itemView is ConversationItem) {
+        val target: InteractiveConversationElement? = if (itemView is InteractiveConversationElement) {
+          itemView
+        } else {
+          val viewHolder = binding.conversationItemRecycler.getChildViewHolder(itemView)
+          if (viewHolder is InteractiveConversationElement) {
+            viewHolder
+          } else {
+            null
+          }
+        }
+
+        if (target != null) {
           val audioUri = messageRecord.getAudioUriForLongClick()
           if (audioUri != null) {
             getVoiceNoteMediaController().pausePlayback(audioUri)
           }
 
-          val childAdapterPosition = binding.conversationItemRecycler.getChildAdapterPosition(itemView)
+          val childAdapterPosition = target.getAdapterPosition(binding.conversationItemRecycler)
           var mp4Holder: GiphyMp4ProjectionPlayerHolder? = null
           var videoBitmap: Bitmap? = null
           if (childAdapterPosition != RecyclerView.NO_POSITION) {
@@ -2216,10 +2229,10 @@ class ConversationFragment :
             }
           }
 
-          val snapshot = ConversationItemSelection.snapshotView(itemView, binding.conversationItemRecycler, messageRecord, videoBitmap)
+          val snapshot = ConversationItemSelection.snapshotView(target, binding.conversationItemRecycler, messageRecord, videoBitmap)
 
           val focusedView = if (container.isInputShowing) null else itemView.rootView.findFocus()
-          val bodyBubble = itemView.bodyBubble!!
+          val bodyBubble = target.bubbleView
           val selectedConversationModel = SelectedConversationModel(
             snapshot,
             itemView.x,
@@ -2233,11 +2246,11 @@ class ConversationFragment :
           )
 
           bodyBubble.visibility = View.INVISIBLE
-          itemView.reactionsView?.visibility = View.INVISIBLE
+          target.reactionsView.visibility = View.INVISIBLE
 
-          val quotedIndicatorVisible = itemView.quotedIndicator?.visibility == View.VISIBLE
+          val quotedIndicatorVisible = target.quotedIndicatorView?.visibility == View.VISIBLE
           if (quotedIndicatorVisible) {
-            ViewUtil.fadeOut(itemView.quotedIndicator!!, 150, View.INVISIBLE)
+            ViewUtil.fadeOut(target.quotedIndicatorView!!, 150, View.INVISIBLE)
           }
 
           ViewUtil.hideKeyboard(requireContext(), itemView)
@@ -2247,7 +2260,7 @@ class ConversationFragment :
             viewModel.setShowScrollButtons(false)
           }
 
-          val conversationItem: ConversationItem = itemView
+          val targetViews: InteractiveConversationElement = target
           handleReaction(
             item.conversationMessage,
             ReactionsToolbarListener(item.conversationMessage),
@@ -2277,10 +2290,10 @@ class ConversationFragment :
                 }
 
                 bodyBubble.visibility = View.VISIBLE
-                conversationItem.reactionsView?.visibility = View.VISIBLE
+                targetViews.reactionsView.visibility = View.VISIBLE
 
-                if (quotedIndicatorVisible && conversationItem.quotedIndicator != null) {
-                  ViewUtil.fadeIn(conversationItem.quotedIndicator!!, 150)
+                if (quotedIndicatorVisible && targetViews.quotedIndicatorView != null) {
+                  ViewUtil.fadeIn(targetViews.quotedIndicatorView!!, 150)
                 }
 
                 if (showScrollButtons) {

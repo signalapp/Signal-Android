@@ -60,6 +60,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
@@ -98,6 +99,7 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.payment.PaymentMessageView;
+import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -172,7 +174,8 @@ import kotlin.jvm.functions.Function1;
 
 public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
                                                                       RecipientForeverObserver,
-                                                                      OpenableGift
+                                                                      OpenableGift,
+                                                                      InteractiveConversationElement
 {
   private static final String TAG = Log.tag(ConversationItem.class);
 
@@ -2114,6 +2117,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return getSnapshotProjections(coordinateRoot, true, true);
   }
 
+  @Override
   public @NonNull ProjectionList getSnapshotProjections(@NonNull ViewGroup coordinateRoot, boolean clipOutMedia) {
     return getSnapshotProjections(coordinateRoot, clipOutMedia, true);
   }
@@ -2260,6 +2264,45 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public @NonNull AnimationSign getAnimationSign() {
     return AnimationSign.get(ViewUtil.isLtr(this), messageRecord.isOutgoing());
+  }
+
+  @Override
+  public @Nullable View getQuotedIndicatorView() {
+    return quotedIndicator;
+  }
+
+  @Override
+  public @NonNull View getReplyView() {
+    return reply;
+  }
+
+  @Override
+  public @Nullable View getContactPhotoHolderView() {
+    return contactPhotoHolder;
+  }
+
+  @Override
+  public @Nullable View getBadgeImageView() {
+    return badgeImageView;
+  }
+
+  @NonNull @Override public List<View> getBubbleViews() {
+    return Collections.singletonList(bodyBubble);
+  }
+
+  @Override
+  public int getAdapterPosition(@NonNull RecyclerView recyclerView) {
+    return recyclerView.getChildAdapterPosition(this);
+  }
+
+  @Override
+  public @NonNull ViewGroup getRoot() {
+    return this;
+  }
+
+  @Override
+  public @NonNull View getBubbleView() {
+    return bodyBubble;
   }
 
   private class SharedContactEventListener implements SharedContactView.EventListener {

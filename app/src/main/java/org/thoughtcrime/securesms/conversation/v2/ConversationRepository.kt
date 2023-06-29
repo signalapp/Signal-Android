@@ -560,6 +560,15 @@ class ConversationRepository(
     }
   }
 
+  fun startExpirationTimeout(messageRecord: MessageRecord) {
+    SignalExecutors.BOUNDED_IO.execute {
+      val now = System.currentTimeMillis()
+
+      SignalDatabase.messages.markExpireStarted(messageRecord.id, now)
+      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageRecord.id, messageRecord.isMms, now, messageRecord.expiresIn)
+    }
+  }
+
   /**
    * Glide target for a contact photo which expects an error drawable, and publishes
    * the result to the given emitter.

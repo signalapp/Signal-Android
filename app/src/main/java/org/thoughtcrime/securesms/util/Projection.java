@@ -248,6 +248,9 @@ public final class Projection {
 
 
   public static final class Corners {
+
+    public static final Corners NONE = new Corners(0f);
+
     private final float topLeft;
     private final float topRight;
     private final float bottomRight;

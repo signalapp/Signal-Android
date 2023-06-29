@@ -16,7 +16,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
@@ -32,7 +32,12 @@ import org.thoughtcrime.securesms.conversation.v2.data.IncomingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationContext
+import org.thoughtcrime.securesms.conversation.v2.items.V2TextOnlyViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.bridge
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncomingBinding
+import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
@@ -52,10 +57,11 @@ import java.util.Optional
 class ConversationAdapterV2(
   private val lifecycleOwner: LifecycleOwner,
   private val glideRequests: GlideRequests,
-  private val clickListener: ConversationAdapter.ItemClickListener,
+  override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
-  private val colorizer: Colorizer
-) : PagingMappingAdapter<ConversationElementKey>(), ConversationAdapterBridge {
+  private val colorizer: Colorizer,
+  private val startExpirationTimeout: (MessageRecord) -> Unit
+) : PagingMappingAdapter<ConversationElementKey>(), ConversationAdapterBridge, V2ConversationContext {
 
   companion object {
     private val TAG = Log.tag(ConversationAdapterV2::class.java)
@@ -83,8 +89,8 @@ class ConversationAdapterV2(
     }
 
     registerFactory(OutgoingTextOnly::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_text_only, parent, false)
-      OutgoingTextOnlyViewHolder(view)
+      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_outgoing, parent, false)
+      V2TextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
     }
 
     registerFactory(OutgoingMedia::class.java) { parent ->
@@ -93,8 +99,8 @@ class ConversationAdapterV2(
     }
 
     registerFactory(IncomingTextOnly::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_text_only, parent, false)
-      IncomingTextOnlyViewHolder(view)
+      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_incoming, parent, false)
+      V2TextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
     }
 
     registerFactory(IncomingMedia::class.java) { parent ->
@@ -122,6 +128,24 @@ class ConversationAdapterV2(
         recyclerView.recycledViewPool.setMaxRecycledViews(type, count)
       }
     }
+  }
+  override val displayMode: ConversationItemDisplayMode
+    get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+
+  override fun onStartExpirationTimeout(messageRecord: MessageRecord) {
+    startExpirationTimeout(messageRecord)
+  }
+
+  override fun hasWallpaper(): Boolean = hasWallpaper && displayMode.displayWallpaper()
+
+  override fun getColorizer(): Colorizer = colorizer
+
+  override fun getNextMessage(adapterPosition: Int): MessageRecord? {
+    return getConversationMessage(adapterPosition - 1)?.messageRecord
+  }
+
+  override fun getPreviousMessage(adapterPosition: Int): MessageRecord? {
+    return getConversationMessage(adapterPosition + 1)?.messageRecord
   }
 
   fun updateSearchQuery(searchQuery: String?) {
@@ -245,54 +269,8 @@ class ConversationAdapterV2(
     }
   }
 
-  private inner class OutgoingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<OutgoingTextOnly>(itemView) {
-    override fun bind(model: OutgoingTextOnly) {
-      bindable.setEventListener(clickListener)
-      bindable.bind(
-        lifecycleOwner,
-        model.conversationMessage,
-        previousMessage,
-        nextMessage,
-        glideRequests,
-        Locale.getDefault(),
-        _selected,
-        model.conversationMessage.threadRecipient,
-        searchQuery,
-        false,
-        hasWallpaper && displayMode.displayWallpaper(),
-        true, // isMessageRequestAccepted,
-        model.conversationMessage == inlineContent,
-        colorizer,
-        displayMode
-      )
-    }
-  }
-
   private inner class OutgoingMediaViewHolder(itemView: View) : ConversationViewHolder<OutgoingMedia>(itemView) {
     override fun bind(model: OutgoingMedia) {
-      bindable.setEventListener(clickListener)
-      bindable.bind(
-        lifecycleOwner,
-        model.conversationMessage,
-        previousMessage,
-        nextMessage,
-        glideRequests,
-        Locale.getDefault(),
-        _selected,
-        model.conversationMessage.threadRecipient,
-        searchQuery,
-        false,
-        hasWallpaper && displayMode.displayWallpaper(),
-        true, // isMessageRequestAccepted,
-        model.conversationMessage == inlineContent,
-        colorizer,
-        displayMode
-      )
-    }
-  }
-
-  private inner class IncomingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<IncomingTextOnly>(itemView) {
-    override fun bind(model: IncomingTextOnly) {
       bindable.setEventListener(clickListener)
       bindable.bind(
         lifecycleOwner,

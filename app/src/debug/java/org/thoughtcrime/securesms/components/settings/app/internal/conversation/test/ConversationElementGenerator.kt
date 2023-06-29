@@ -59,6 +59,10 @@ class ConversationElementGenerator {
     return MessageTypes.BASE_SENT_TYPE or MessageTypes.SECURE_MESSAGE_BIT
   }
 
+  private fun getSentFailedOutgoingType(): Long {
+    return MessageTypes.BASE_SENT_FAILED_TYPE or MessageTypes.SECURE_MESSAGE_BIT
+  }
+
   private fun generateMessage(key: ConversationElementKey): MappingModel<*> {
     val messageId = key.requireMessageId()
     val now = getNow()
@@ -82,7 +86,7 @@ class ConversationElementGenerator {
       1,
       testMessage,
       SlideDeck(),
-      if (isIncoming) getIncomingType() else getSentOutgoingType(),
+      if (isIncoming) getIncomingType() else getSentFailedOutgoingType(),
       emptySet(),
       emptySet(),
       0,

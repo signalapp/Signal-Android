@@ -266,6 +266,10 @@ class ConversationViewModel(
     }
   }
 
+  fun startExpirationTimeout(messageRecord: MessageRecord) {
+    repository.startExpirationTimeout(messageRecord)
+  }
+
   fun updateReaction(messageRecord: MessageRecord, emoji: String): Completable {
     val oldRecord = messageRecord.oldReactionRecord()
 
