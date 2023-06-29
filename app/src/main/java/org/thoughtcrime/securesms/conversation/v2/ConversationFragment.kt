@@ -1036,6 +1036,7 @@ class ConversationFragment :
     binding.scrollToBottom.setWallpaperEnabled(wallpaperEnabled)
     binding.scrollToMention.setWallpaperEnabled(wallpaperEnabled)
     binding.conversationDisabledInput.setWallpaperEnabled(wallpaperEnabled)
+    inputPanel.setWallpaperEnabled(wallpaperEnabled)
 
     adapter.onHasWallpaperChanged(wallpaperEnabled)
     dateHeaderDecoration.hasWallpaper = wallpaperEnabled
