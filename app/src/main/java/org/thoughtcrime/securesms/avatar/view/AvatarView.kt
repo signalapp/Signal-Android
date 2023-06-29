@@ -41,7 +41,7 @@ class AvatarView @JvmOverloads constructor(
     }
 
     storyRing.visible = true
-    storyRing.isActivated = hasUnreadStory
+    storyRing.setBackgroundResource(if (hasUnreadStory) R.drawable.avatar_story_ring_active else R.drawable.avatar_story_ring_inactive)
 
     avatar.scaleX = storyRingScale
     avatar.scaleY = storyRingScale

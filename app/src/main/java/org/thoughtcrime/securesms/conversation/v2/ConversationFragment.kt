@@ -479,6 +479,7 @@ class ConversationFragment :
     presentChatColors(args.chatColors)
     presentConversationTitle(viewModel.recipientSnapshot)
     presentActionBarMenu()
+    presentStoryRing()
 
     observeConversationThread()
 
@@ -853,6 +854,25 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { r: InlineQueryReplacement -> composeText.replaceText(r) }
       .addTo(disposables)
+  }
+
+  private fun presentStoryRing() {
+    if (SignalStore.storyValues().isFeatureDisabled) {
+      return
+    }
+
+    disposables += viewModel.storyRingState.subscribeBy {
+      binding.conversationTitleView.conversationTitleView.setStoryRingFromState(it)
+    }
+
+    binding.conversationTitleView.conversationTitleView.setOnStoryRingClickListener {
+      val recipient: Recipient = viewModel.recipientSnapshot ?: return@setOnStoryRingClickListener
+      val args = StoryViewerArgs.Builder(recipient.id, recipient.shouldHideStory())
+        .isFromQuote(true)
+        .build()
+
+      startActivity(StoryViewerActivity.createIntent(requireContext(), args))
+    }
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {

@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
@@ -122,6 +123,12 @@ class ConversationViewModel(
 
   private val _searchQuery = BehaviorSubject.createDefault("")
   val searchQuery: Observable<String> = _searchQuery
+
+  val storyRingState = recipient
+    .switchMap { StoryViewState.getForRecipientId(it.id) }
+    .subscribeOn(Schedulers.io())
+    .distinctUntilChanged()
+    .observeOn(AndroidSchedulers.mainThread())
 
   init {
     disposables += recipient
