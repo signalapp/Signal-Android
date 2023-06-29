@@ -9,18 +9,24 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.common.io.ByteStreams;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.media.Mp4Sanitizer;
+import org.signal.libsignal.media.ParseException;
+import org.signal.libsignal.media.SanitizedMetadata;
 import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
 
+import java.io.ByteArrayInputStream;
 import java.io.Closeable;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.SequenceInputStream;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -76,7 +82,7 @@ public final class InMemoryTranscoder implements Closeable {
 
   public @NonNull MediaStream transcode(@NonNull Progress progress,
                                         @Nullable TranscoderCancelationSignal cancelationSignal)
-      throws IOException, EncodingException, VideoSizeException
+      throws IOException, EncodingException
   {
     if (memoryFile != null) throw new AssertionError("Not expecting to reuse transcoder");
 
@@ -138,6 +144,15 @@ public final class InMemoryTranscoder implements Closeable {
 
     converter.convert();
 
+    memoryFile.seek(0);
+
+    SanitizedMetadata metadata = null;
+    try {
+      metadata = Mp4Sanitizer.sanitize(new FileInputStream(memoryFileFileDescriptor), memoryFile.size());
+    } catch (ParseException e) {
+      Log.e(TAG, "Could not parse MP4 file.", e);
+    }
+
     // output details of the transcoding
     long  outSize           = memoryFile.size();
     float encodeDurationSec = (System.currentTimeMillis() - startTime) / 1000f;
@@ -162,9 +177,14 @@ public final class InMemoryTranscoder implements Closeable {
       throw new VideoSizeException("Size constraints could not be met!");
     }
 
-    memoryFile.seek(0);
 
-    return new MediaStream(new FileInputStream(memoryFileFileDescriptor), MimeTypes.VIDEO_MP4, 0, 0);
+    if (metadata != null && metadata.getSanitizedMetadata() != null) {
+      memoryFile.seek(metadata.getDataOffset());
+      return new MediaStream(new SequenceInputStream(new ByteArrayInputStream(metadata.getSanitizedMetadata()), ByteStreams.limit(new FileInputStream(memoryFileFileDescriptor), metadata.getDataLength())), MimeTypes.VIDEO_MP4, 0, 0);
+    } else {
+      memoryFile.seek(0);
+      return new MediaStream(new FileInputStream(memoryFileFileDescriptor), MimeTypes.VIDEO_MP4, 0, 0);
+    }
   }
 
   public boolean isTranscodeRequired() {
