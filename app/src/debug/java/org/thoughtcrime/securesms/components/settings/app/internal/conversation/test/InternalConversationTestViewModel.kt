@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.internal.conversation
+package org.thoughtcrime.securesms.components.settings.app.internal.conversation.test
 
 import androidx.lifecycle.ViewModel
 import org.signal.paging.PagedData

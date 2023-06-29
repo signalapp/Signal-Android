@@ -133,6 +133,7 @@ object Rows {
     } else {
       Text(
         text = text,
+        color = foregroundTint,
         modifier = modifier
           .fillMaxWidth()
           .clickable(enabled = onClick != null, onClick = onClick ?: {})

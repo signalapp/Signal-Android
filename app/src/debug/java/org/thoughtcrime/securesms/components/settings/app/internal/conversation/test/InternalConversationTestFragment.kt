@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.internal.conversation
+package org.thoughtcrime.securesms.components.settings.app.internal.conversation.test
 
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.navGraphViewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -20,6 +21,7 @@ import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
+import org.thoughtcrime.securesms.components.settings.app.internal.conversation.springboard.InternalConversationSpringboardViewModel
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener
@@ -54,15 +56,20 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
   private val binding by ViewBinderDelegate(ConversationTestFragmentBinding::bind)
   private val viewModel: InternalConversationTestViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
+  private val springboardViewModel: InternalConversationSpringboardViewModel by navGraphViewModels(R.id.app_settings)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val adapter = ConversationAdapterV2(
       lifecycleOwner = viewLifecycleOwner,
       glideRequests = GlideApp.with(this),
       clickListener = ClickListener(),
-      hasWallpaper = false,
+      hasWallpaper = springboardViewModel.hasWallpaper.value,
       colorizer = Colorizer()
     )
+
+    if (springboardViewModel.hasWallpaper.value) {
+      binding.root.setBackgroundColor(0xFF32C7E2.toInt())
+    }
 
     var startTime = 0L
     var firstRender = true
@@ -83,10 +90,10 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       }
     }
 
-    binding.root.layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
-    binding.root.adapter = adapter
+    binding.recycler.layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
+    binding.recycler.adapter = adapter
 
-    RecyclerViewColorizer(binding.root).apply {
+    RecyclerViewColorizer(binding.recycler).apply {
       setChatColors(ChatColorsPalette.Bubbles.default.withId(ChatColors.Id.Auto))
     }
   }

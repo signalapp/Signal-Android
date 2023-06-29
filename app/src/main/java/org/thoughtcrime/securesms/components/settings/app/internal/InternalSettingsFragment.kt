@@ -613,9 +613,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
       clickPref(
-        title = DSLSettingsText.from("Launch ConversationTestFragment"),
+        title = DSLSettingsText.from("Launch Conversation Test Springboard "),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalConversationTestFragment())
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalConversationSpringboardFragment())
         }
       )
 
