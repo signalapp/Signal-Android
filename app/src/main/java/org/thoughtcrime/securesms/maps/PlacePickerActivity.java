@@ -64,7 +64,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
 
   private static final int                   ANIMATION_DURATION     = 250;
   private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator();
-  private static final String                KEY_CHAT_COLOR         = "chat_color";
+  public  static final String                KEY_CHAT_COLOR         = "chat_color";
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 

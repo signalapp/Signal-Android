@@ -113,6 +113,7 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
@@ -2723,6 +2724,28 @@ class ConversationFragment :
         preUploadResults = result.preUploadResults
       )
     }
+
+    override fun onContactSelect(uri: Uri?) {
+      val recipient = viewModel.recipientSnapshot
+      if (uri != null && recipient != null) {
+        conversationActivityResultContracts.launchContactShareEditor(uri, recipient.chatColors)
+      }
+    }
+
+    override fun onLocationSelected(place: SignalPlace?, uri: Uri?) {
+      if (place != null && uri != null) {
+        attachmentManager.setLocation(place, uri)
+        draftViewModel.setLocationDraft(place)
+      } else {
+        Log.w(TAG, "Location missing thumbnail")
+      }
+    }
+
+    override fun onFileSelected(uri: Uri?) {
+      if (uri != null) {
+        setMedia(uri, SlideFactory.MediaType.DOCUMENT)
+      }
+    }
   }
 
   //endregion
@@ -3164,19 +3187,24 @@ class ConversationFragment :
   private inner class AttachmentKeyboardFragmentListener : FragmentResultListener {
     @Suppress("DEPRECATION")
     override fun onFragmentResult(requestKey: String, result: Bundle) {
+      val recipient = viewModel.recipientSnapshot ?: return
       val button: AttachmentKeyboardButton? = result.getSerializable(AttachmentKeyboardFragment.BUTTON_RESULT) as? AttachmentKeyboardButton
       val media: Media? = result.getParcelable(AttachmentKeyboardFragment.MEDIA_RESULT)
 
       if (button != null) {
         when (button) {
-          AttachmentKeyboardButton.GALLERY -> AttachmentManager.selectGallery(this@ConversationFragment, 1, viewModel.recipientSnapshot!!, composeText.textTrimmed, sendButton.selectedSendType, inputPanel.quote.isPresent)
-          AttachmentKeyboardButton.FILE -> AttachmentManager.selectDocument(this@ConversationFragment, 1)
-          AttachmentKeyboardButton.CONTACT -> AttachmentManager.selectContactInfo(this@ConversationFragment, 1)
-          AttachmentKeyboardButton.LOCATION -> AttachmentManager.selectLocation(this@ConversationFragment, 1, viewModel.recipientSnapshot!!.chatColors.asSingleColor())
-          AttachmentKeyboardButton.PAYMENT -> AttachmentManager.selectPayment(this@ConversationFragment, viewModel.recipientSnapshot!!)
+          AttachmentKeyboardButton.GALLERY -> conversationActivityResultContracts.launchGallery(recipient.id, composeText.textTrimmed, inputPanel.quote.isPresent)
+          AttachmentKeyboardButton.CONTACT -> conversationActivityResultContracts.launchSelectContact()
+          AttachmentKeyboardButton.LOCATION -> conversationActivityResultContracts.launchSelectLocation(recipient.chatColors)
+          AttachmentKeyboardButton.PAYMENT -> AttachmentManager.selectPayment(this@ConversationFragment, recipient)
+          AttachmentKeyboardButton.FILE -> {
+            if (!conversationActivityResultContracts.launchSelectFile()) {
+              toast(R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG)
+            }
+          }
         }
       } else if (media != null) {
-        conversationActivityResultContracts.launchMediaEditor(listOf(media), viewModel.recipientSnapshot!!.id, composeText.textTrimmed)
+        conversationActivityResultContracts.launchMediaEditor(listOf(media), recipient.id, composeText.textTrimmed)
       }
 
       container.hideInput()
