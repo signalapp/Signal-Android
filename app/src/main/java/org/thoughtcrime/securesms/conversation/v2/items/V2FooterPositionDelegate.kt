@@ -9,8 +9,10 @@ import android.view.View
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
+import kotlin.math.max
 
 /**
  * Logical delegate for determining the footer position for a particular conversation item.
@@ -26,7 +28,12 @@ class V2FooterPositionDelegate private constructor(
   constructor(binding: V2ConversationItemTextOnlyBindingBridge) : this(
     binding.isIncoming,
     binding.root,
-    listOfNotNull(binding.conversationItemFooterDate, binding.conversationItemDeliveryStatus, binding.conversationItemFooterExpiry),
+    listOfNotNull(
+      binding.conversationItemFooterDate,
+      binding.conversationItemDeliveryStatus,
+      binding.conversationItemFooterExpiry,
+      binding.conversationItemFooterSpace
+    ),
     binding.conversationItemBodyWrapper,
     binding.conversationItemBody
   )
@@ -43,7 +50,7 @@ class V2FooterPositionDelegate private constructor(
   override fun onPostMeasure(): Boolean {
     val maxWidth = root.measuredWidth - gutters
     val lastLineWidth = body.lastLineWidth
-    val footerWidth = footerViews.sumOf { it.measuredWidth }
+    val footerWidth = getFooterWidth()
 
     if (footerViews.all { !it.visible }) {
       return false
@@ -74,10 +81,6 @@ class V2FooterPositionDelegate private constructor(
       return
     }
 
-    footerViews.forEach {
-      it.translationY = 0f
-    }
-
     bodyContainer.padding(right = 0, left = 0, bottom = footerViews.first().measuredHeight)
     displayState = DisplayState.UNDERNEATH
   }
@@ -87,11 +90,8 @@ class V2FooterPositionDelegate private constructor(
       return
     }
 
-    footerViews.forEach {
-      it.translationY = 0f
-    }
-
-    val end = footerViews.sumOf { it.measuredWidth } + if (isIncoming) 4.dp else 8.dp
+    val targetWidth = body.measuredWidth + getFooterWidth()
+    val end = max(0, targetWidth - bodyContainer.measuredWidth) - 8.dp
     val (left, right) = if (bodyContainer.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
       0 to end
     } else {
@@ -107,12 +107,12 @@ class V2FooterPositionDelegate private constructor(
       return
     }
 
-    footerViews.forEach {
-      it.translationY = 0f
-    }
-
     bodyContainer.padding(right = 0, left = 0, bottom = 0)
     displayState = DisplayState.TUCKED
+  }
+
+  private fun getFooterWidth(): Int {
+    return footerViews.sumOf { it.measuredWidth + ViewUtil.getLeftMargin(it) + ViewUtil.getRightMargin(it) }
   }
 
   private enum class DisplayState {

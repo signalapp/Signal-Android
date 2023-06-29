@@ -114,8 +114,7 @@
         android:paddingBottom="@dimen/message_bubble_bottom_padding"
         android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status"
-        app:layout_goneMarginEnd="@dimen/message_bubble_horizontal_padding"
+        app:layout_constraintEnd_toStartOf="@id/conversation_item_expiration_timer"
         tools:text="13:14pm" />
 
     <org.thoughtcrime.securesms.components.ExpirationTimerView
@@ -123,20 +122,25 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status"
-        app:layout_constraintStart_toEndOf="@id/conversation_item_footer_date"
-        app:layout_goneMarginEnd="@dimen/message_bubble_horizontal_padding" />
+        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status" />
 
     <org.thoughtcrime.securesms.components.DeliveryStatusView
         android:id="@+id/conversation_item_delivery_status"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:paddingBottom="@dimen/message_bubble_bottom_padding"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper" />
+        app:layout_constraintEnd_toStartOf="@id/footer_end_pad" />
+
+    <Space
+        android:id="@+id/footer_end_pad"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper"
+        android:layout_width="@dimen/message_bubble_horizontal_padding"
+        android:layout_height="@dimen/message_bubble_horizontal_padding" />
 
     <!-- End Footer -->
 

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Space
 import android.widget.TextView
 import com.google.android.material.imageview.ShapeableImageView
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -38,6 +39,7 @@ data class V2ConversationItemTextOnlyBindingBridge(
   val conversationItemFooterDate: TextView,
   val conversationItemFooterExpiry: ExpirationTimerView,
   val conversationItemFooterBackground: View,
+  val conversationItemFooterSpace: Space?,
   val conversationItemAlert: AlertView?,
   val isIncoming: Boolean
 )
@@ -60,6 +62,7 @@ fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOn
     conversationItemFooterExpiry = conversationItemExpirationTimer,
     conversationItemFooterBackground = conversationItemFooterBackground,
     conversationItemAlert = null,
+    conversationItemFooterSpace = null,
     isIncoming = false
   )
 }
@@ -82,6 +85,7 @@ fun V2ConversationItemTextOnlyOutgoingBinding.bridge(): V2ConversationItemTextOn
     conversationItemFooterExpiry = conversationItemExpirationTimer,
     conversationItemFooterBackground = conversationItemFooterBackground,
     conversationItemAlert = conversationItemAlert,
+    conversationItemFooterSpace = footerEndPad,
     isIncoming = false
   )
 }
