@@ -162,11 +162,10 @@
 
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/indicators_parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_alignParentEnd="true"
-        android:gravity="center_vertical"
-        android:orientation="vertical" />
+        android:gravity="center_vertical" />
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView
         android:id="@+id/reactions_view"

@@ -87,7 +87,6 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/conversation_list_item_name"
         app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
-        app:useSmallIcon="true"
         tools:visibility="visible" />
 
     <org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView
