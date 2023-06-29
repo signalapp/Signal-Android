@@ -216,7 +216,6 @@ class AvatarProvider : BaseContentProvider() {
     }
 
     override fun onRead(offset: Long, size: Int, data: ByteArray?): Int {
-      Log.i(TAG, "${recipient.id}:onRead")
       ensureResourceLoaded()
 
       return memoryFile!!.readBytes(data, offset.toInt(), 0, size)
