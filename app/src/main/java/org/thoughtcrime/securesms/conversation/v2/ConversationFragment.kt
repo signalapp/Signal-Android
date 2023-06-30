@@ -1098,6 +1098,14 @@ class ConversationFragment :
 
     adapter.onHasWallpaperChanged(wallpaperEnabled)
     dateHeaderDecoration.hasWallpaper = wallpaperEnabled
+    
+    val navColor = if (wallpaperEnabled) {
+      R.color.conversation_navigation_wallpaper
+    } else {
+      R.color.signal_colorBackground
+    }
+
+    WindowUtil.setNavigationBarColor(requireActivity(), ContextCompat.getColor(requireContext(), navColor))
   }
 
   private fun presentChatColors(chatColors: ChatColors) {
