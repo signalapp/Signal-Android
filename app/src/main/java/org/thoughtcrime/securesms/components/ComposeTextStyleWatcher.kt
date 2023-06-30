@@ -46,11 +46,17 @@ class ComposeTextStyleWatcher : TextWatcher {
 
     try {
       if (editStart < 0 || editEnd < 0 || editStart >= editEnd || (editStart == 0 && editEnd == s.length)) {
+        textSnapshotPriorToChange = null
         return
       }
 
       val change = s.subSequence(editStart, editEnd)
-      if (change.isEmpty() || textSnapshotPriorToChange == null || (editEnd - editStart == 1 && !StringUtil.isVisuallyEmpty(change[0])) || TextUtils.equals(textSnapshotPriorToChange, change)) {
+      if (change.isEmpty() ||
+        textSnapshotPriorToChange == null ||
+        (editEnd - editStart == 1 && !StringUtil.isVisuallyEmpty(change[0])) ||
+        TextUtils.equals(textSnapshotPriorToChange, change) ||
+        editEnd - editStart > 1
+      ) {
         textSnapshotPriorToChange = null
         return
       }
