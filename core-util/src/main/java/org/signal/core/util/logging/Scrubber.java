@@ -162,7 +162,6 @@ public final class Scrubber {
                    String match = matcher.group(0);
                    if (matcher.groupCount() == 2 &&
                        TOP_100_TLDS.contains(matcher.group(2).toLowerCase(Locale.US)) &&
-                       !match.endsWith("whispersystems.org") &&
                        !match.endsWith("signal.org")) {
                      output.append(DOMAIN_CENSOR)
                            .append(matcher.group(2));
