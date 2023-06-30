@@ -8,13 +8,12 @@ package org.thoughtcrime.securesms.conversation.v2.items
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import org.signal.core.util.dp
-import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.isScheduled
-import java.util.concurrent.TimeUnit
 import kotlin.math.abs
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Determines the shape for a conversation item based off of the appearance context
@@ -30,6 +29,8 @@ class V2ConversationItemShape(
 
     private var collapsedSpacing: Float = 1f.dp
     private var defaultSpacing: Float = 8f.dp
+
+    private val clusterTimeout = 3.minutes
   }
 
   var corners: Projection.Corners = Projection.Corners(bigRadius)
@@ -49,13 +50,12 @@ class V2ConversationItemShape(
    */
   fun setMessageShape(
     isLtr: Boolean,
-    conversationMessage: ConversationMessage,
+    currentMessage: MessageRecord,
+    isGroupThread: Boolean,
     adapterPosition: Int
   ): MessageShape {
-    val currentMessage: MessageRecord = conversationMessage.messageRecord
     val nextMessage: MessageRecord? = conversationContext.getNextMessage(adapterPosition)
     val previousMessage: MessageRecord? = conversationContext.getPreviousMessage(adapterPosition)
-    val isGroupThread: Boolean = conversationMessage.threadRecipient.isGroup
 
     if (isSingularMessage(currentMessage, previousMessage, nextMessage, isGroupThread)) {
       setBodyBubbleCorners(isLtr, bigRadius, bigRadius, bigRadius, bigRadius)
@@ -153,7 +153,7 @@ class V2ConversationItemShape(
   }
 
   private fun isWithinClusteringTime(currentMessage: MessageRecord, previousMessage: MessageRecord): Boolean {
-    return abs(currentMessage.dateSent - previousMessage.dateSent) <= TimeUnit.MINUTES.toMillis(3)
+    return abs(currentMessage.dateSent - previousMessage.dateSent) <= clusterTimeout.inWholeMilliseconds
   }
 
   enum class MessageShape {

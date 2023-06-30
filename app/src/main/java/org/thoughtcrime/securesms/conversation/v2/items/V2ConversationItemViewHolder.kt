@@ -97,9 +97,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     val shape = shapeDelegate.setMessageShape(
-      itemView.layoutDirection == View.LAYOUT_DIRECTION_LTR,
-      conversationMessage,
-      bindingAdapterPosition
+      isLtr = itemView.layoutDirection == View.LAYOUT_DIRECTION_LTR,
+      currentMessage = conversationMessage.messageRecord,
+      isGroupThread = conversationMessage.threadRecipient.isGroup,
+      adapterPosition = bindingAdapterPosition
     )
 
     binding.conversationItemBody.setTextColor(themeDelegate.getBodyTextColor(conversationMessage))
