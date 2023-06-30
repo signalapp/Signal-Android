@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.Stopwatch;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -26,6 +27,15 @@ public class WebSocketStrategy extends MessageRetrievalStrategy {
   private static final String KEEP_ALIVE_TOKEN = "WebsocketStrategy";
   private static final long   QUEUE_TIMEOUT = TimeUnit.SECONDS.toMillis(30);
 
+  private final long websocketDrainTimeoutMs;
+  public WebSocketStrategy() {
+    this(TimeUnit.MINUTES.toMillis(1));
+  }
+
+  public WebSocketStrategy(long websocketDrainTimeoutMs) {
+    this.websocketDrainTimeoutMs = websocketDrainTimeoutMs;
+  }
+
   @WorkerThread
   @Override
   public boolean execute() {
@@ -39,7 +49,7 @@ public class WebSocketStrategy extends MessageRetrievalStrategy {
 
       jobManager.addListener(job -> job.getParameters().getQueue() != null && job.getParameters().getQueue().startsWith(PushProcessMessageJob.QUEUE_PREFIX), queueListener);
 
-      if (!blockUntilWebsocketDrained(observer)) {
+      if (!blockUntilWebsocketDrained(observer, websocketDrainTimeoutMs)) {
         return false;
       }
 
@@ -63,7 +73,7 @@ public class WebSocketStrategy extends MessageRetrievalStrategy {
     }
   }
 
-  private static boolean blockUntilWebsocketDrained(IncomingMessageObserver observer) {
+  private static boolean blockUntilWebsocketDrained(IncomingMessageObserver observer, long timeoutMs) {
     CountDownLatch latch = new CountDownLatch(1);
 
     observer.addDecryptionDrainedListener(new Runnable() {
@@ -74,7 +84,7 @@ public class WebSocketStrategy extends MessageRetrievalStrategy {
     });
 
     try {
-      if (latch.await(1, TimeUnit.MINUTES)) {
+      if (latch.await(timeoutMs, TimeUnit.MILLISECONDS)) {
         return true;
       } else {
         Log.w(TAG, "Hit timeout while waiting for decryptions to drain!");

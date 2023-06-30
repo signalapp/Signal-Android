@@ -5,6 +5,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.os.PowerManager
 import androidx.core.app.NotificationCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
@@ -12,15 +13,22 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.util.WakeLockUtil
 
 /**
  * Works with {@link FcmFetchManager} to exists as a service that will keep the app process running in the foreground while we fetch messages.
  */
 class FcmFetchForegroundService : Service() {
 
+  private var wakeLock: PowerManager.WakeLock? = null
+
   companion object {
     private val TAG = Log.tag(FcmFetchForegroundService::class.java)
+
+    private const val WAKELOCK_TAG = "FcmForegroundService"
     private const val KEY_STOP_SELF = "stop_self"
+
+    private val WAKELOCK_TIMEOUT = FcmFetchManager.WEBSOCKET_DRAIN_TIMEOUT
 
     /**
      * Android's requirement for calling [startForeground] is enforced _even if your service was stopped before it started_.
@@ -44,10 +52,14 @@ class FcmFetchForegroundService : Service() {
     postForegroundNotification()
 
     return if (intent != null && intent.getBooleanExtra(KEY_STOP_SELF, false)) {
+      WakeLockUtil.release(wakeLock, WAKELOCK_TAG)
       stopForeground(true)
       stopSelf()
       START_NOT_STICKY
     } else {
+      if (wakeLock == null) {
+        wakeLock = WakeLockUtil.acquire(this, PowerManager.PARTIAL_WAKE_LOCK, WAKELOCK_TIMEOUT, WAKELOCK_TAG)
+      }
       START_STICKY
     }
   }
@@ -68,7 +80,10 @@ class FcmFetchForegroundService : Service() {
 
   override fun onDestroy() {
     Log.i(TAG, "onDestroy()")
+    WakeLockUtil.release(wakeLock, WAKELOCK_TAG)
     FcmFetchManager.onDestroyForegroundFetchService()
+
+    wakeLock = null
   }
 
   override fun onBind(intent: Intent?): IBinder? {
