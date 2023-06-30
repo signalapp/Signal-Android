@@ -78,6 +78,24 @@ object LocalMetrics {
   }
 
   /**
+   * Marks a split for an event. Updates the last time, so future splits will have duration relative to this event.
+   *
+   * If an event with the provided ID does not exist, this is effectively a no-op.
+   */
+  fun splitWithDuration(id: String, split: String, duration: Long) {
+    val time = System.currentTimeMillis()
+
+    executor.execute {
+      val lastTime: Long? = lastSplitTimeById[id]
+      val splitDoesNotExist: Boolean = eventsById[id]?.splits?.none { it.name == split } ?: true
+      if (lastTime != null && splitDoesNotExist) {
+        eventsById[id]?.splits?.add(LocalMetricsSplit(split, duration))
+        lastSplitTimeById[id] = time
+      }
+    }
+  }
+
+  /**
    * Stop tracking an event you were previously tracking. All future calls to [split] and [end] will do nothing for this id.
    */
   fun cancel(id: String) {

@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
 import org.thoughtcrime.securesms.messages.WebSocketStrategy
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 
 /**
@@ -88,7 +89,13 @@ object FcmFetchManager {
   }
 
   private fun fetch(context: Context) {
-    retrieveMessages(context)
+    val metricId = SignalLocalMetrics.PushWebsocketFetch.startFetch()
+    val success = retrieveMessages(context)
+    if (!success) {
+      SignalLocalMetrics.PushWebsocketFetch.onTimedOut(metricId)
+    } else {
+      SignalLocalMetrics.PushWebsocketFetch.onDrained(metricId)
+    }
 
     synchronized(this) {
       activeCount--
@@ -132,7 +139,7 @@ object FcmFetchManager {
   }
 
   @JvmStatic
-  fun retrieveMessages(context: Context) {
+  fun retrieveMessages(context: Context): Boolean {
     val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, WebSocketStrategy())
 
     if (success) {
@@ -146,6 +153,8 @@ object FcmFetchManager {
         ApplicationDependencies.getJobManager().add(PushNotificationReceiveJob())
       }
     }
+
+    return success
   }
 
   fun onDestroyForegroundFetchService() {

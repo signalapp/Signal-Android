@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A nice interface for {@link LocalMetrics} that gives us a place to define string constants and nicer method names.
@@ -187,6 +188,54 @@ public final class SignalLocalMetrics {
         LocalMetrics.getInstance().end(splitId);
       }
     }
+  }
+
+  public static final class PushWebsocketFetch {
+    private static final String SUCCESS_EVENT = "push-websocket-fetch";
+    private static final String TIMEOUT_EVENT = "timed-out-fetch";
+
+    private static final String SPLIT_BATCH_PROCESSED = "batches-processed";
+    private static final String SPLIT_PROCESS_TIME    = "fetch-time";
+    private static final String SPLIT_TIMED_OUT = "timeout";
+
+    private static final AtomicInteger processedBatches = new AtomicInteger(0);
+
+    public static @NonNull String startFetch() {
+      String baseId = System.currentTimeMillis() + "";
+
+      String timeoutId = TIMEOUT_EVENT + baseId;
+      String successId = SUCCESS_EVENT + baseId;
+
+      LocalMetrics.getInstance().start(successId, SUCCESS_EVENT);
+      LocalMetrics.getInstance().start(timeoutId, TIMEOUT_EVENT);
+      processedBatches.set(0);
+
+      return baseId;
+    }
+
+    public static void onProcessedBatch() {
+      processedBatches.incrementAndGet();
+    }
+
+    public static void onTimedOut(String metricId) {
+      LocalMetrics.getInstance().cancel(SUCCESS_EVENT + metricId);
+
+      String timeoutId = TIMEOUT_EVENT + metricId;
+
+      LocalMetrics.getInstance().split(timeoutId, SPLIT_TIMED_OUT);
+      LocalMetrics.getInstance().end(timeoutId);
+    }
+
+    public static void onDrained(String metricId) {
+      LocalMetrics.getInstance().cancel(TIMEOUT_EVENT + metricId);
+
+      String successId = SUCCESS_EVENT + metricId;
+
+      LocalMetrics.getInstance().split(successId, SPLIT_PROCESS_TIME);
+      LocalMetrics.getInstance().splitWithDuration(successId, SPLIT_BATCH_PROCESSED, processedBatches.get());
+      LocalMetrics.getInstance().end(successId);
+    }
+
   }
 
   public static final class GroupMessageSend {
