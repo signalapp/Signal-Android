@@ -427,6 +427,7 @@ class ConversationFragment :
   private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
   private lateinit var dateHeaderDecoration: DateHeaderDecoration
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
+  private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -859,6 +860,8 @@ class ConversationFragment :
       .getScheduledMessagesCount()
       .subscribeBy { count -> handleScheduledMessagesCountChange(count) }
       .addTo(disposables)
+
+    presentTypingIndicator()
   }
 
   private fun initializeInlineSearch() {
@@ -887,6 +890,23 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { r: InlineQueryReplacement -> composeText.replaceText(r) }
       .addTo(disposables)
+  }
+
+  private fun presentTypingIndicator() {
+    typingIndicatorDecoration = TypingIndicatorDecoration(requireContext(), binding.conversationItemRecycler)
+    binding.conversationItemRecycler.addItemDecoration(typingIndicatorDecoration)
+
+    ApplicationDependencies.getTypingStatusRepository().getTypists(args.threadId).observe(viewLifecycleOwner) {
+      val recipient = viewModel.recipientSnapshot ?: return@observe
+
+      typingIndicatorDecoration.setTypists(
+        GlideApp.with(this),
+        it.typists,
+        recipient.isGroup,
+        recipient.hasWallpaper(),
+        it.isReplacedByIncomingMessage
+      )
+    }
   }
 
   private fun presentStoryRing() {

@@ -125,4 +125,8 @@ public class TypingIndicatorView extends LinearLayout {
   public void stopAnimation() {
     isActive = false;
   }
+
+  public boolean isActive() {
+    return isActive;
+  }
 }

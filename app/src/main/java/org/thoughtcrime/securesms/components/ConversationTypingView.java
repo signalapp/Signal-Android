@@ -80,6 +80,10 @@ public class ConversationTypingView extends ConstraintLayout {
     indicator.startAnimation();
   }
 
+  public boolean isActive() {
+    return indicator.isActive();
+  }
+
   private void presentGroupThreadAvatars(@NonNull GlideRequests glideRequests, @NonNull List<Recipient> typists) {
     avatar1.setAvatar(glideRequests, typists.get(0), typists.size() == 1);
     avatar1.setVisibility(VISIBLE);
