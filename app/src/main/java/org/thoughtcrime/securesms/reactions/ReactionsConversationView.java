@@ -63,9 +63,9 @@ public class ReactionsConversationView extends LinearLayout {
     removeAllViews();
   }
 
-  public void setReactions(@NonNull List<ReactionRecord> records, int bubbleWidth) {
+  public boolean setReactions(@NonNull List<ReactionRecord> records, int bubbleWidth) {
     if (records.equals(this.records) && this.bubbleWidth == bubbleWidth) {
-      return;
+      return false;
     }
 
     this.records.clear();
@@ -102,6 +102,8 @@ public class ReactionsConversationView extends LinearLayout {
         ViewUtil.setLeftMargin(this, OUTER_MARGIN);
       }
     }
+
+    return true;
   }
 
   private static @NonNull List<Reaction> buildSortedReactionsList(@NonNull List<ReactionRecord> records) {

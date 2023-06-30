@@ -62,7 +62,6 @@
         android:orientation="vertical"
         app:cardElevation="0dp"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/contact_photo"
@@ -157,7 +156,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-4dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper"
         app:layout_constraintTop_toBottomOf="@id/conversation_item_body_wrapper"
         app:rcv_outgoing="false" />

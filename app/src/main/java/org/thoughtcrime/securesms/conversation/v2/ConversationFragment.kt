@@ -1118,7 +1118,7 @@ class ConversationFragment :
 
     adapter.onHasWallpaperChanged(wallpaperEnabled)
     dateHeaderDecoration.hasWallpaper = wallpaperEnabled
-    
+
     val navColor = if (wallpaperEnabled) {
       R.color.conversation_navigation_wallpaper
     } else {
@@ -1992,7 +1992,7 @@ class ConversationFragment :
       } else if (wasAtBottom && !isAtBottom) {
         ViewUtil.fadeIn(binding.composeDivider, 500)
       }
-      
+
       wasAtBottom = isAtBottom
     }
   }

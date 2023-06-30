@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -24,7 +26,6 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.hasNoBubble
@@ -81,8 +82,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   override val contactPhotoHolderView: View? = binding.senderPhoto
   override val badgeImageView: View? = binding.senderBadge
 
+  private var reactionMeasureListener: ReactionMeasureListener = ReactionMeasureListener()
+
   init {
-    binding.root.setOnMeasureListener(footerDelegate)
+    binding.root.addOnMeasureListener(footerDelegate)
   }
 
   override fun bind(model: Model) {
@@ -116,10 +119,12 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     presentFooterExpiry(shape)
     presentAlert()
     presentSender()
+    presentReactions()
 
-    val (topPadding, bottomPadding) = shapeDelegate.spacing
-    ViewUtil.setPaddingTop(itemView, topPadding.toInt())
-    ViewUtil.setPaddingBottom(itemView, bottomPadding.toInt())
+    itemView.updateLayoutParams<MarginLayoutParams> {
+      topMargin = shape.topPadding.toInt()
+      bottomMargin = shape.bottomPadding.toInt()
+    }
   }
 
   override fun getAdapterPosition(recyclerView: RecyclerView): Int = bindingAdapterPosition
@@ -245,6 +250,16 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     }
   }
 
+  private fun presentReactions() {
+    if (conversationMessage.messageRecord.reactions.isEmpty()) {
+      binding.conversationItemReactions.clear()
+      binding.root.removeOnMeasureListener(reactionMeasureListener)
+    } else {
+      reactionMeasureListener.onPostMeasure()
+      binding.root.addOnMeasureListener(reactionMeasureListener)
+    }
+  }
+
   private fun presentFooterBackground(shape: V2ConversationItemShape.MessageShape) {
     if (!binding.conversationItemBody.isJumbomoji ||
       !conversationContext.hasWallpaper() ||
@@ -346,5 +361,13 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
   override fun disallowSwipe(latestDownX: Float, latestDownY: Float): Boolean {
     return false
+  }
+
+  private inner class ReactionMeasureListener : V2ConversationItemLayout.OnMeasureListener {
+    override fun onPreMeasure() = Unit
+
+    override fun onPostMeasure(): Boolean {
+      return binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions, binding.conversationItemBodyWrapper.width)
+    }
   }
 }

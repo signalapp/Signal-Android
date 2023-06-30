@@ -28,7 +28,7 @@ class V2ConversationItemShape(
     private var smallRadius: Float = 4f.dp
 
     private var collapsedSpacing: Float = 1f.dp
-    private var defaultSpacing: Float = 8f.dp
+    private var defaultSpacing: Float = 6f.dp
 
     private val clusterTimeout = 3.minutes
   }
@@ -39,9 +39,6 @@ class V2ConversationItemShape(
   var bodyBubble: MaterialShapeDrawable = MaterialShapeDrawable(
     ShapeAppearanceModel.Builder().setAllCornerSizes(bigRadius).build()
   )
-    private set
-
-  var spacing: Pair<Float, Float> = Pair(defaultSpacing, defaultSpacing)
     private set
 
   /**
@@ -59,25 +56,21 @@ class V2ConversationItemShape(
 
     if (isSingularMessage(currentMessage, previousMessage, nextMessage, isGroupThread)) {
       setBodyBubbleCorners(isLtr, bigRadius, bigRadius, bigRadius, bigRadius)
-      spacing = Pair(defaultSpacing, defaultSpacing)
       return MessageShape.SINGLE
     } else if (isStartOfMessageCluster(currentMessage, previousMessage, isGroupThread)) {
       val bottomEnd = if (currentMessage.isOutgoing) smallRadius else bigRadius
       val bottomStart = if (currentMessage.isOutgoing) bigRadius else smallRadius
       setBodyBubbleCorners(isLtr, bigRadius, bigRadius, bottomEnd, bottomStart)
-      spacing = Pair(defaultSpacing, collapsedSpacing)
       return MessageShape.START
     } else if (isEndOfMessageCluster(currentMessage, nextMessage)) {
       val topStart = if (currentMessage.isOutgoing) bigRadius else smallRadius
       val topEnd = if (currentMessage.isOutgoing) smallRadius else bigRadius
       setBodyBubbleCorners(isLtr, topStart, topEnd, bigRadius, bigRadius)
-      spacing = Pair(collapsedSpacing, defaultSpacing)
       return MessageShape.END
     } else {
       val start = if (currentMessage.isOutgoing) bigRadius else smallRadius
       val end = if (currentMessage.isOutgoing) smallRadius else bigRadius
       setBodyBubbleCorners(isLtr, start, end, end, start)
-      spacing = Pair(collapsedSpacing, collapsedSpacing)
       return MessageShape.MIDDLE
     }
   }
@@ -156,25 +149,28 @@ class V2ConversationItemShape(
     return abs(currentMessage.dateSent - previousMessage.dateSent) <= clusterTimeout.inWholeMilliseconds
   }
 
-  enum class MessageShape {
+  enum class MessageShape(
+    val topPadding: Float,
+    val bottomPadding: Float
+  ) {
     /**
      * This message stands alone.
      */
-    SINGLE,
+    SINGLE(defaultSpacing, defaultSpacing),
 
     /**
      * This message is the start of a cluster
      */
-    START,
+    START(defaultSpacing, collapsedSpacing),
 
     /**
      * This message is the end of a cluster
      */
-    END,
+    END(collapsedSpacing, defaultSpacing),
 
     /**
      * This message is in the middle of a cluster
      */
-    MIDDLE
+    MIDDLE(collapsedSpacing, collapsedSpacing)
   }
 }

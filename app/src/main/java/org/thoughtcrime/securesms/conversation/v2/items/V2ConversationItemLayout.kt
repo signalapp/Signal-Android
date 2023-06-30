@@ -18,20 +18,24 @@ class V2ConversationItemLayout @JvmOverloads constructor(
   attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 
-  private var onMeasureListener: OnMeasureListener? = null
+  private var onMeasureListeners: Set<OnMeasureListener> = emptySet()
 
   /**
    * Set the onMeasureListener to be invoked by this view whenever onMeasure is called.
    */
-  fun setOnMeasureListener(onMeasureListener: OnMeasureListener?) {
-    this.onMeasureListener = onMeasureListener
+  fun addOnMeasureListener(onMeasureListener: OnMeasureListener) {
+    this.onMeasureListeners += onMeasureListener
+  }
+
+  fun removeOnMeasureListener(onMeasureListener: OnMeasureListener) {
+    this.onMeasureListeners -= onMeasureListener
   }
 
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    onMeasureListener?.onPreMeasure()
+    onMeasureListeners.forEach { it.onPreMeasure() }
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-    val remeasure = onMeasureListener?.onPostMeasure() ?: false
+    val remeasure = onMeasureListeners.map { it.onPostMeasure() }.any { it }
     if (remeasure) {
       super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
