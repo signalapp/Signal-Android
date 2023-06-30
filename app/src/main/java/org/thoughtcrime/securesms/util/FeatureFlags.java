@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -106,7 +107,8 @@ public final class FeatureFlags {
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.3";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
-  private static final String MAX_ATTACHMENT_SIZE_MB            = "android.attachments.maxSize";
+  private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
+  private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -165,7 +167,8 @@ public final class FeatureFlags {
       ANY_ADDRESS_PORTS_KILL_SWITCH,
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
-      MAX_ATTACHMENT_SIZE_MB,
+      MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
+      MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING
   );
 
@@ -231,7 +234,8 @@ public final class FeatureFlags {
       CDS_HARD_LIMIT,
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
-      MAX_ATTACHMENT_SIZE_MB
+      MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
+      MAX_ATTACHMENT_SIZE_BYTES
   );
 
   /**
@@ -594,9 +598,16 @@ public final class FeatureFlags {
     return getInteger(MAX_ATTACHMENT_COUNT, 32);
   }
 
-  /** Maximum attachment size, in mebibytes. */
-  public static int maxAttachmentSizeMb() {
-    return getInteger(MAX_ATTACHMENT_SIZE_MB, 100);
+  /** Maximum attachment size for ciphertext in bytes. */
+  public static long maxAttachmentReceiveSizeBytes() {
+    long maxAttachmentSize = maxAttachmentSizeBytes();
+    long maxReceiveSize    = getLong(MAX_ATTACHMENT_RECEIVE_SIZE_BYTES, (int) (maxAttachmentSize * 1.25));
+    return Math.max(maxAttachmentSize, maxReceiveSize);
+  }
+
+  /** Maximum attachment ciphertext size when sending in bytes */
+  public static long maxAttachmentSizeBytes() {
+    return getLong(MAX_ATTACHMENT_SIZE_BYTES, ByteUnit.MEGABYTES.toBytes(100));
   }
 
   /** Only for rendering debug info. */

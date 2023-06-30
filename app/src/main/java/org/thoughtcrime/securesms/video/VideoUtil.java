@@ -41,8 +41,8 @@ public final class VideoUtil {
   }
 
   public static int getMaxVideoRecordDurationInSeconds(@NonNull Context context, @NonNull MediaConstraints mediaConstraints) {
-    int allowedSize = mediaConstraints.getCompressedVideoMaxSize(context);
-    int duration    = (int) Math.floor((float) allowedSize / TOTAL_BYTES_PER_SECOND);
+    long allowedSize = mediaConstraints.getCompressedVideoMaxSize(context);
+    int duration     = (int) Math.floor((float) allowedSize / TOTAL_BYTES_PER_SECOND);
 
     return Math.min(duration, VIDEO_MAX_RECORD_LENGTH_S);
   }

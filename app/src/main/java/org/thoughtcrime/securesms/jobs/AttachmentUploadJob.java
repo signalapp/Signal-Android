@@ -26,13 +26,16 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.NotificationController;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
 import java.io.IOException;
@@ -63,6 +66,12 @@ public final class AttachmentUploadJob extends BaseJob {
    * Foreground notification shows while uploading attachments above this.
    */
   private static final int FOREGROUND_LIMIT = 10 * 1024 * 1024;
+
+  public static long getMaxPlaintextSize() {
+    long maxCipherTextSize = FeatureFlags.maxAttachmentSizeBytes();
+    long maxPaddedSize     = AttachmentCipherOutputStream.getPlaintextLength(maxCipherTextSize);
+    return PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize);
+  }
 
   private final AttachmentId attachmentId;
 
