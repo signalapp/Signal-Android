@@ -160,10 +160,10 @@
         android:id="@+id/mention_fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
-        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"/>
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_bottom_panel_barrier"
@@ -225,7 +225,7 @@
         android:layout_height="wrap_content"
         app:barrierDirection="top"
         app:constraint_referenced_ids="emoji_search_container,keyboard_guideline" />
-    
+
     <TextView
         android:id="@+id/conversation_input_space_left"
         android:layout_width="0dp"
@@ -238,6 +238,16 @@
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
         tools:text="160/160 (1)"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/compose_divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:alpha="1"
+        android:background="@drawable/compose_divider_background"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/conversation_input_panel"
         tools:visibility="visible" />
 
     <androidx.fragment.app.FragmentContainerView

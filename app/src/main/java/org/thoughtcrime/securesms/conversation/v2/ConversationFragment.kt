@@ -1949,6 +1949,9 @@ class ConversationFragment :
   }
 
   private inner class ScrollListener : RecyclerView.OnScrollListener() {
+
+    private var wasAtBottom = true
+
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
       if (isScrolledToBottom()) {
         viewModel.setShowScrollButtons(false)
@@ -1956,8 +1959,21 @@ class ConversationFragment :
         viewModel.setShowScrollButtons(true)
       }
 
+      presentComposeDivider()
+
       val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
       timestamp.ifPresent(markReadHelper::onViewsRevealed)
+    }
+
+    private fun presentComposeDivider() {
+      val isAtBottom = isScrolledToBottom()
+      if (isAtBottom && !wasAtBottom) {
+        ViewUtil.fadeOut(binding.composeDivider, 50, View.INVISIBLE)
+      } else if (wasAtBottom && !isAtBottom) {
+        ViewUtil.fadeIn(binding.composeDivider, 500)
+      }
+      
+      wasAtBottom = isAtBottom
     }
   }
 
