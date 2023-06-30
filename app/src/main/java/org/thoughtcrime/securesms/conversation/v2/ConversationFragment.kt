@@ -1135,11 +1135,16 @@ class ConversationFragment :
   }
 
   private fun handleVideoCall() {
-    val recipient: Single<Recipient> = viewModel.recipient.firstOrError()
+    val recipient = viewModel.recipientSnapshot ?: return
+    if (!recipient.isGroup) {
+      CommunicationActions.startVideoCall(this, recipient)
+      return
+    }
+
     val hasActiveGroupCall: Single<Boolean> = groupCallViewModel.hasActiveGroupCall.firstOrError()
     val isNonAdminInAnnouncementGroup: Boolean = conversationGroupViewModel.isNonAdminInAnnouncementGroup()
-    val cannotCreateGroupCall = Single.zip(recipient, hasActiveGroupCall) { r, active ->
-      r to (r.isPushV2Group && !active && isNonAdminInAnnouncementGroup)
+    val cannotCreateGroupCall = hasActiveGroupCall.map { active ->
+      recipient to (recipient.isPushV2Group && !active && isNonAdminInAnnouncementGroup)
     }
 
     disposables += cannotCreateGroupCall
