@@ -426,6 +426,7 @@ class ConversationFragment :
   private lateinit var openableGiftItemDecoration: OpenableGiftItemDecoration
   private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
   private lateinit var dateHeaderDecoration: DateHeaderDecoration
+  private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -1017,7 +1018,8 @@ class ConversationFragment :
   }
 
   private fun presentActionBarMenu() {
-    binding.toolbar.addMenuProvider(ConversationOptionsMenu.Provider(ConversationOptionsMenuCallback(), disposables))
+    optionsMenuCallback = ConversationOptionsMenuCallback()
+    binding.toolbar.addMenuProvider(ConversationOptionsMenu.Provider(optionsMenuCallback, disposables))
     invalidateOptionsMenu()
 
     when (args.conversationScreenType) {
@@ -1060,6 +1062,10 @@ class ConversationFragment :
       titleView.showExpiring(recipient)
     } else {
       titleView.clearExpiring()
+    }
+
+    titleView.setOnClickListener {
+      optionsMenuCallback.handleConversationSettings()
     }
   }
 
