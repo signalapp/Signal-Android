@@ -86,15 +86,18 @@ class CallSyncEventJob private constructor(
 
   override fun onFailure() = Unit
 
+  override fun onShouldRetry(e: Exception): Boolean = e is RetryableException
+
   override fun onRun() {
     val remainingEvents = events.mapNotNull(this::processEvent)
-    if (remainingEvents.isNotEmpty()) {
-      warn(TAG, "Failed to send sync messages for ${remainingEvents.size} events.")
-    } else {
-      Log.i(TAG, "Successfully sent all sync messages.")
-    }
 
-    events = remainingEvents
+    if (remainingEvents.isEmpty()) {
+      Log.i(TAG, "Successfully sent all sync messages.")
+    } else {
+      warn(TAG, "Failed to send sync messages for ${remainingEvents.size} events.")
+      events = remainingEvents
+      throw RetryableException()
+    }
   }
 
   private fun processEvent(callSyncEvent: CallSyncEventJobRecord): CallSyncEventJobRecord? {
@@ -143,8 +146,6 @@ class CallSyncEventJob private constructor(
 
   private fun CallSyncEventJobRecord.deserializeEvent(): CallTable.Event = CallTable.Event.deserialize(event)
 
-  override fun onShouldRetry(e: Exception): Boolean = false
-
   class Factory : Job.Factory<CallSyncEventJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): CallSyncEventJob {
       val events = CallSyncEventJobData.ADAPTER.decode(serializedData!!).records
@@ -155,4 +156,6 @@ class CallSyncEventJob private constructor(
       )
     }
   }
+
+  private class RetryableException : Exception()
 }
