@@ -27,9 +27,9 @@ object SpoilerPaint {
    */
   var shader: BitmapShader? = null
 
-  private val WIDTH = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 50.dp else 100.dp
-  private val HEIGHT = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 10.dp else 20.dp
-  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.002f else 0.004f
+  private val WIDTH = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 100.dp else 120.dp
+  private val HEIGHT = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 100.dp else 120.dp
+  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.0002f else 0.0006f
 
   private var shaderBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
   private var bufferBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
@@ -74,10 +74,10 @@ object SpoilerPaint {
   fun update() {
     val now = System.currentTimeMillis()
     var dt = now - lastDrawTime
-    if (dt < 48) {
+    if (dt < 64) {
       return
-    } else if (dt > 64) {
-      dt = 48
+    } else if (dt > 72) {
+      dt = 64
     }
     lastDrawTime = now
 
@@ -104,6 +104,7 @@ object SpoilerPaint {
    * the visual "gaps" between the tiles.
    */
   private fun draw(canvas: Canvas, dt: Long) {
+    val change = dt * velocity
     for (allIndex in allParticles.indices) {
       val particles = allParticles[allIndex]
       for (index in 0 until particleCount) {
@@ -117,7 +118,6 @@ object SpoilerPaint {
           particle.yVel = nextDirection()
           particle.timeRemaining = 350 + 750 * random.nextFloat()
         } else {
-          val change = dt * velocity
           particle.x += particle.xVel * change
           particle.y += particle.yVel * change
         }
@@ -130,6 +130,9 @@ object SpoilerPaint {
     canvas.drawPoints(allPoints[0], 0, particleCount * 2, particlePaints[0])
     canvas.drawPoints(allPoints[1], 0, particleCount * 2, particlePaints[1])
     canvas.drawPoints(allPoints[2], 0, particleCount * 2, particlePaints[2])
+    canvas.drawPoints(allPoints[0], 1, particleCount * 2 - 1, particlePaints[2])
+    canvas.drawPoints(allPoints[1], 1, particleCount * 2 - 1, particlePaints[0])
+    canvas.drawPoints(allPoints[2], 1, particleCount * 2 - 1, particlePaints[1])
   }
 
   private fun nextDirection(): Float {
