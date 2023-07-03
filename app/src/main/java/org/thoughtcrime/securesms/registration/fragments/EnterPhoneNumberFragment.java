@@ -458,7 +458,6 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                    @NonNull String e164number,
                                    @NonNull Runnable onConfirmed)
   {
-    enterInProgressUiState();
 
     disposables.add(
         viewModel.canEnterSkipSmsFlow()
