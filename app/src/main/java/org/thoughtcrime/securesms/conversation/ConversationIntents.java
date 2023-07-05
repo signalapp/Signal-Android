@@ -421,7 +421,13 @@ public class ConversationIntents {
         intent.setType(dataType);
       }
 
-      return intent;
+      if (SignalStore.internalValues().useConversationFragmentV2()) {
+        Bundle args = ConversationIntents.createParentFragmentArguments(intent);
+
+        return intent.putExtras(args);
+      } else {
+        return intent;
+      }
     }
   }
 

@@ -196,7 +196,10 @@ public class ComposeText extends EmojiEditText {
 
   public void setDraftText(@Nullable CharSequence draftText) {
     setText("");
-    append(draftText);
+
+    if (draftText != null) {
+      append(draftText);
+    }
   }
 
   public void appendInvite(String invite) {
