@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/kbsSplashFragment"
-        android:name="org.thoughtcrime.securesms.lock.v2.KbsSplashFragment"
+        android:name="org.thoughtcrime.securesms.lock.v2.SvrSplashFragment"
         android:label="fragment_kbs_splash"
         tools:layout="@layout/kbs_splash_fragment">
 

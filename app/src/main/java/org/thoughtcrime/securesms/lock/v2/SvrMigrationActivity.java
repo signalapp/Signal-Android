@@ -13,14 +13,14 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class KbsMigrationActivity extends BaseActivity {
+public class SvrMigrationActivity extends BaseActivity {
 
-  public static final int REQUEST_NEW_PIN = CreateKbsPinActivity.REQUEST_NEW_PIN;
+  public static final int REQUEST_NEW_PIN = CreateSvrPinActivity.REQUEST_NEW_PIN;
 
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
   public static Intent createIntent() {
-    return new Intent(ApplicationDependencies.getApplication(), KbsMigrationActivity.class);
+    return new Intent(ApplicationDependencies.getApplication(), SvrMigrationActivity.class);
   }
 
   @Override

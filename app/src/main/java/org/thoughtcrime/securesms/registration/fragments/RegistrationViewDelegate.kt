@@ -58,7 +58,7 @@ object RegistrationViewDelegate {
       setMessage(message)
       setPositiveButton(android.R.string.ok) { _, _ -> onConfirmed.run() }
       setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onEditNumber.run() }
-      setOnDismissListener { onEditNumber.run() }
+      setOnCancelListener { onEditNumber.run() }
     }.show()
   }
 }

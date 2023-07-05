@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.KbsConstants;
+import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
@@ -113,7 +113,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void initViewModel() {
     viewModel = new ViewModelProvider(this).get(PinRestoreViewModel.class);
 
-    viewModel.getTriesRemaining().observe(getViewLifecycleOwner(), this::presentTriesRemaining);
+    viewModel.triesRemaining.observe(getViewLifecycleOwner(), this::presentTriesRemaining);
     viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
   }
 
@@ -194,9 +194,9 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void onNeedHelpClicked() {
     new MaterialAlertDialogBuilder(requireContext())
                    .setTitle(R.string.PinRestoreEntryFragment_need_help)
-                   .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, KbsConstants.MINIMUM_PIN_LENGTH))
+                   .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, SvrConstants.MINIMUM_PIN_LENGTH))
                    .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, ((dialog, which) -> {
-                     PinState.onPinRestoreForgottenOrSkipped();
+                     SvrRepository.onPinRestoreForgottenOrSkipped();
                      ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
                    }))
                    .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> {
@@ -218,7 +218,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
                    .setTitle(R.string.PinRestoreEntryFragment_skip_pin_entry)
                    .setMessage(R.string.PinRestoreEntryFragment_if_you_cant_remember_your_pin)
                    .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, (dialog, which) -> {
-                     PinState.onPinRestoreForgottenOrSkipped();
+                     SvrRepository.onPinRestoreForgottenOrSkipped();
                      ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
                    })
                    .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
@@ -226,7 +226,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void onAccountLocked() {
-    PinState.onPinRestoreForgottenOrSkipped();
+    SvrRepository.onPinRestoreForgottenOrSkipped();
     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), PinRestoreEntryFragmentDirections.actionAccountLocked());
   }
 

@@ -5,10 +5,10 @@
 
 package org.whispersystems.signalservice.api.svr
 
-import io.reactivex.rxjava3.core.Single
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
+import kotlin.jvm.Throws
 
 interface SecureValueRecovery {
   /**
@@ -27,32 +27,46 @@ interface SecureValueRecovery {
   fun setPin(userPin: String, masterKey: MasterKey): PinChangeSession
 
   /**
+   * Resumes a PIN change session that you previously started via [setPin] using serialized data obtained via
+   * [PinChangeSession.serialize]. The provided [userPin] and [masterKey] will be checked against the
+   * serialized [PinChangeSession], and if the data no longer matches, a new [PinChangeSession] will be created.
+   */
+  fun resumePinChangeSession(userPin: String, masterKey: MasterKey, serializedChangeSession: String): PinChangeSession
+
+  /**
    * Restores the user's SVR data from the service. Intended to be called in the situation where the user is not yet registered.
    * Currently, this will only happen during a reglock challenge. When in this state, the user is not registered, and will instead
    * be provided credentials in a service response to give the user an opportunity to restore SVR data and generate the reglock proof.
    *
    * If the user is already registered, use [restoreDataPostRegistration]
    */
-  fun restoreDataPreRegistration(authorization: AuthCredentials, userPin: String): Single<RestoreResponse>
+  fun restoreDataPreRegistration(authorization: AuthCredentials, userPin: String): RestoreResponse
 
   /**
    * Restores data from SVR. Only intended to be called if the user is already registered. If the user is not yet registered, use [restoreDataPreRegistration]
    */
-  fun restoreDataPostRegistration(userPin: String): Single<RestoreResponse>
+  fun restoreDataPostRegistration(userPin: String): RestoreResponse
 
   /**
    * Deletes the user's SVR data from the service.
    */
-  fun deleteData(): Single<DeleteResponse>
+  fun deleteData(): DeleteResponse
+
+  /**
+   * Retrieves an auth credential that could be used to talk with the service.
+   */
+  @Throws(IOException::class)
+  fun authorization(): AuthCredentials
 
   interface PinChangeSession {
-    fun execute(): Single<BackupResponse>
+    fun execute(): BackupResponse
+    fun serialize(): String
   }
 
   /** Response for setting a PIN. */
   sealed class BackupResponse {
     /** Operation completed successfully. */
-    data class Success(val masterKey: MasterKey) : BackupResponse()
+    data class Success(val masterKey: MasterKey, val authorization: AuthCredentials) : BackupResponse()
 
     /** The operation failed because the server was unable to expose the backup data we created. There is no further action that can be taken besides logging the error and treating it as a success. */
     object ExposeFailure : BackupResponse()
@@ -73,7 +87,7 @@ interface SecureValueRecovery {
   /** Response for restoring data with you PIN. */
   sealed class RestoreResponse {
     /** Operation completed successfully. Includes the restored data. */
-    data class Success(val masterKey: MasterKey) : RestoreResponse()
+    data class Success(val masterKey: MasterKey, val authorization: AuthCredentials) : RestoreResponse()
 
     /** No data was found for this user. Could mean that none ever existed, or that the service deleted the data after too many incorrect PIN guesses. */
     object Missing : RestoreResponse()

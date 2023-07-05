@@ -6,17 +6,17 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public final class KbsPin implements Parcelable {
+public final class SvrPin implements Parcelable {
 
-  public static KbsPin EMPTY = new KbsPin("");
+  public static SvrPin EMPTY = new SvrPin("");
 
   private final String pin;
 
-  private KbsPin(String pin) {
+  private SvrPin(String pin) {
     this.pin = pin;
   }
 
-  private KbsPin(Parcel in) {
+  private SvrPin(Parcel in) {
     pin = in.readString();
   }
 
@@ -25,14 +25,14 @@ public final class KbsPin implements Parcelable {
     return pin;
   }
 
-  public static KbsPin from(@Nullable String pin) {
+  public static SvrPin from(@Nullable String pin) {
     if (pin == null) return EMPTY;
 
     pin = pin.trim();
 
     if (pin.length() == 0) return EMPTY;
 
-    return new KbsPin(pin);
+    return new SvrPin(pin);
   }
 
   public int length() {
@@ -49,15 +49,15 @@ public final class KbsPin implements Parcelable {
     dest.writeString(pin);
   }
 
-  public static final Creator<KbsPin> CREATOR = new Creator<KbsPin>() {
+  public static final Creator<SvrPin> CREATOR = new Creator<SvrPin>() {
     @Override
-    public KbsPin createFromParcel(Parcel in) {
-      return new KbsPin(in);
+    public SvrPin createFromParcel(Parcel in) {
+      return new SvrPin(in);
     }
 
     @Override
-    public KbsPin[] newArray(int size) {
-      return new KbsPin[size];
+    public SvrPin[] newArray(int size) {
+      return new SvrPin[size];
     }
   };
 }

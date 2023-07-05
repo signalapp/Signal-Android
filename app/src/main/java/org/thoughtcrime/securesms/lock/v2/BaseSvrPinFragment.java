@@ -14,7 +14,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -33,7 +32,7 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
-public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends LoggingFragment {
+public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> extends LoggingFragment {
 
   private TextView                       title;
   private LearnMoreTextView              description;
@@ -62,8 +61,8 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
     initializeViews(view);
 
     viewModel = initializeViewModel();
-    viewModel.getUserEntry().observe(getViewLifecycleOwner(), kbsPin -> {
-      boolean isEntryValid = kbsPin.length() >= KbsConstants.MINIMUM_PIN_LENGTH;
+    viewModel.getUserEntry().observe(getViewLifecycleOwner(), svrPin -> {
+      boolean isEntryValid = svrPin.length() >= SvrConstants.MINIMUM_PIN_LENGTH;
 
       confirm.setEnabled(isEntryValid);
       confirm.setAlpha(isEntryValid ? 1f : 0.5f);
@@ -100,9 +99,9 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
 
   @Override
   public void onPrepareOptionsMenu(@NonNull Menu menu) {
-    if (RegistrationLockUtil.userHasRegistrationLock(requireContext()) ||
-        SignalStore.kbsValues().hasPin()                               ||
-        SignalStore.kbsValues().hasOptedOut())
+    if (SignalStore.svr().isRegistrationLockEnabled() ||
+        SignalStore.svr().hasPin() ||
+        SignalStore.svr().hasOptedOut())
     {
       menu.clear();
     }

@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.pin.PinOptOutDialog;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
-public final class KbsSplashFragment extends Fragment {
+public final class SvrSplashFragment extends Fragment {
 
   private TextView title;
   private TextView description;
@@ -55,7 +55,7 @@ public final class KbsSplashFragment extends Fragment {
     primaryAction.setOnClickListener(v -> onCreatePin());
     secondaryAction.setOnClickListener(v -> onLearnMore());
 
-    if (RegistrationLockUtil.userHasRegistrationLock(requireContext())) {
+    if (SignalStore.svr().isRegistrationLockEnabled()) {
       setUpRegLockEnabled();
     } else {
       setUpRegLockDisabled();
@@ -80,7 +80,7 @@ public final class KbsSplashFragment extends Fragment {
 
   @Override
   public void onPrepareOptionsMenu(@NonNull Menu menu) {
-    if (RegistrationLockUtil.userHasRegistrationLock(requireContext())) {
+    if (SignalStore.svr().isRegistrationLockEnabled()) {
       menu.clear();
     }
   }
@@ -113,9 +113,9 @@ public final class KbsSplashFragment extends Fragment {
   }
 
   private void onCreatePin() {
-    KbsSplashFragmentDirections.ActionCreateKbsPin action = KbsSplashFragmentDirections.actionCreateKbsPin();
+    SvrSplashFragmentDirections.ActionCreateKbsPin action = SvrSplashFragmentDirections.actionCreateKbsPin();
 
-    action.setIsPinChange(SignalStore.kbsValues().hasPin());
+    action.setIsPinChange(SignalStore.svr().hasPin());
 
     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), action);
   }

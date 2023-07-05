@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.lock.v2;
 
-public final class KbsConstants {
+public final class SvrConstants {
 
   public static final int MINIMUM_PIN_LENGTH = 4;
 
-  private KbsConstants() { }
+  private SvrConstants() { }
 }

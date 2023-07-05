@@ -488,10 +488,6 @@ public class PushServiceSocket {
   public void setAccountAttributes(@Nonnull AccountAttributes accountAttributes)
       throws IOException
   {
-    if (accountAttributes.getRegistrationLock() != null && accountAttributes.getPin() != null) {
-      throw new AssertionError("Pin should be null if registrationLock is set.");
-    }
-
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
 
@@ -1236,8 +1232,8 @@ public class PushServiceSocket {
     return getCredentials(DIRECTORY_AUTH_PATH);
   }
 
-  public String getKeyBackupServiceAuthorization() throws IOException {
-    return getCredentials(KBS_AUTH_PATH);
+  public AuthCredentials getKeyBackupServiceAuthorization() throws IOException {
+    return getAuthCredentials(KBS_AUTH_PATH);
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {
@@ -1822,13 +1818,12 @@ public class PushServiceSocket {
       case 417:
         throw new ExpectationFailedException();
       case 423:
-        RegistrationLockFailure accountLockFailure      = readResponseJson(response, RegistrationLockFailure.class);
-        AuthCredentials         credentials             = accountLockFailure.backupCredentials;
-        String                  basicStorageCredentials = credentials != null ? credentials.asBasic() : null;
+        RegistrationLockFailure accountLockFailure = readResponseJson(response, RegistrationLockFailure.class);
 
         throw new LockedException(accountLockFailure.length,
                                   accountLockFailure.timeRemaining,
-                                  basicStorageCredentials);
+                                  accountLockFailure.svr1Credentials,
+                                  accountLockFailure.svr2Credentials);
       case 428:
         ProofRequiredResponse proofRequiredResponse = readResponseJson(response, ProofRequiredResponse.class);
         String                retryAfterRaw = response.header("Retry-After");
@@ -2330,8 +2325,11 @@ public class PushServiceSocket {
     @JsonProperty
     public long timeRemaining;
 
+    @JsonProperty("backupCredentials")
+    public AuthCredentials svr1Credentials;
+
     @JsonProperty
-    public AuthCredentials backupCredentials;
+    public AuthCredentials svr2Credentials;
   }
 
   private static class ConnectionHolder {

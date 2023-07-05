@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.KbsValues;
+import org.thoughtcrime.securesms.keyvalue.SvrValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.RegistrationRepository;
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher;
@@ -88,17 +88,13 @@ public class RefreshAttributesJob extends BaseJob {
     boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced();
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
-    String    registrationLockV1          = null;
     String    registrationLockV2          = null;
-    KbsValues kbsValues                   = SignalStore.kbsValues();
+    SvrValues svrValues                   = SignalStore.svr();
     int       pniRegistrationId           = new RegistrationRepository(ApplicationDependencies.getApplication()).getPniRegistrationId();
-    String    recoveryPassword            = kbsValues.getRecoveryPassword();
+    String    recoveryPassword            = svrValues.getRecoveryPassword();
 
-    if (kbsValues.isV2RegistrationLockEnabled()) {
-      registrationLockV2 = kbsValues.getRegistrationLockToken();
-    } else if (TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
-      //noinspection deprecation Ok to read here as they have not migrated
-      registrationLockV1 = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
+    if (svrValues.isRegistrationLockEnabled()) {
+      registrationLockV2 = svrValues.getRegistrationLockToken();
     }
 
     boolean phoneNumberDiscoverable = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isDiscoverable();
@@ -106,8 +102,8 @@ public class RefreshAttributesJob extends BaseJob {
     String deviceName = SignalStore.account().getDeviceName();
     byte[] encryptedDeviceName = (deviceName == null) ? null : DeviceNameCipher.encryptDeviceName(deviceName.getBytes(StandardCharsets.UTF_8), SignalStore.account().getAciIdentityKey());
 
-    AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(kbsValues.hasPin() && !kbsValues.hasOptedOut());
-    Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin() +
+    AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(svrValues.hasPin() && !svrValues.hasOptedOut());
+    Log.i(TAG, "Calling setAccountAttributes() reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + svrValues.hasPin() +
                "\n    Recovery password? " + !TextUtils.isEmpty(recoveryPassword) +
                "\n    Phone number discoverable : " + phoneNumberDiscoverable +
                "\n    Device Name : " + (encryptedDeviceName != null) +
@@ -117,7 +113,6 @@ public class RefreshAttributesJob extends BaseJob {
         null,
         registrationId,
         fetchesMessages,
-        registrationLockV1,
         registrationLockV2,
         unidentifiedAccessKey,
         universalUnidentifiedAccess,

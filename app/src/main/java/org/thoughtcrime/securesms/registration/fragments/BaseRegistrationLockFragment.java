@@ -21,12 +21,12 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
-import org.thoughtcrime.securesms.pin.TokenData;
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -114,10 +114,9 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
     viewModel.getLockedTimeRemaining()
              .observe(getViewLifecycleOwner(), t -> timeRemaining = t);
 
-    TokenData keyBackupCurrentToken = viewModel.getKeyBackupCurrentToken();
+    Integer triesRemaining = viewModel.getSvrTriesRemaining();
 
-    if (keyBackupCurrentToken != null) {
-      int triesRemaining = keyBackupCurrentToken.getTriesRemaining();
+    if (triesRemaining != null) {
       if (triesRemaining <= 3) {
         int daysRemaining = getLockoutDays(timeRemaining);
 
@@ -177,8 +176,8 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
                                    if (processor.hasResult()) {
                                      handleSuccessfulPinEntry(pin);
                                    } else if (processor.wrongPin()) {
-                                     onIncorrectKbsRegistrationLockPin(processor.getTokenData());
-                                   } else if (processor.isKbsLocked() || processor.registrationLock()) {
+                                     onIncorrectKbsRegistrationLockPin(Objects.requireNonNull(processor.getSvrTriesRemaining()));
+                                   } else if (processor.isRegistrationLockPresentAndSvrExhausted() || processor.registrationLock()) {
                                      onKbsAccountLocked();
                                    } else if (processor.rateLimit()) {
                                      onRateLimited();
@@ -191,35 +190,33 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
     disposables.add(verify);
   }
 
-  public void onIncorrectKbsRegistrationLockPin(@NonNull TokenData tokenData) {
+  public void onIncorrectKbsRegistrationLockPin(int svrTriesRemaining) {
     pinButton.cancelSpinning();
     pinEntry.getText().clear();
     enableAndFocusPinEntry();
 
-    viewModel.setKeyBackupTokenData(tokenData);
+    viewModel.setSvrTriesRemaining(svrTriesRemaining);
 
-    int triesRemaining = tokenData.getTriesRemaining();
-
-    if (triesRemaining == 0) {
+    if (svrTriesRemaining == 0) {
       Log.w(TAG, "Account locked. User out of attempts on KBS.");
       onAccountLocked();
       return;
     }
 
-    if (triesRemaining == 3) {
+    if (svrTriesRemaining == 3) {
       int daysRemaining = getLockoutDays(timeRemaining);
 
       new MaterialAlertDialogBuilder(requireContext())
           .setTitle(R.string.RegistrationLockFragment__incorrect_pin)
-          .setMessage(getTriesRemainingDialogMessage(triesRemaining, daysRemaining))
+          .setMessage(getTriesRemainingDialogMessage(svrTriesRemaining, daysRemaining))
           .setPositiveButton(android.R.string.ok, null)
           .show();
     }
 
-    if (triesRemaining > 5) {
+    if (svrTriesRemaining > 5) {
       errorLabel.setText(R.string.RegistrationLockFragment__incorrect_pin_try_again);
     } else {
-      errorLabel.setText(requireContext().getResources().getQuantityString(R.plurals.RegistrationLockFragment__incorrect_pin_d_attempts_remaining, triesRemaining, triesRemaining));
+      errorLabel.setText(requireContext().getResources().getQuantityString(R.plurals.RegistrationLockFragment__incorrect_pin_d_attempts_remaining, svrTriesRemaining, svrTriesRemaining));
       forgotPin.setVisibility(View.VISIBLE);
     }
   }

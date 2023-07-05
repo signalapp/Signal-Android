@@ -470,7 +470,6 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                                                                          : R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number,
                                                                               e164number,
                                                                               () -> {
-                                                                                exitInProgressUiState();
                                                                                 ViewUtil.hideKeyboard(context, number.getEditText());
                                                                                 onConfirmed.run();
                                                                               },

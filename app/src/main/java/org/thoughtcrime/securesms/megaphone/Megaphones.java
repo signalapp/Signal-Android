@@ -30,8 +30,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.SmsExportPhase;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
-import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
+import org.thoughtcrime.securesms.lock.v2.SvrMigrationActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -164,7 +164,7 @@ public final class Megaphones {
           .enableSnooze(null)
           .setOnVisibleListener((megaphone, listener) -> {
             if (new NetworkConstraint.Factory(ApplicationDependencies.getApplication()).create().isMet()) {
-              listener.onMegaphoneNavigationRequested(KbsMigrationActivity.createIntent(), KbsMigrationActivity.REQUEST_NEW_PIN);
+              listener.onMegaphoneNavigationRequested(SvrMigrationActivity.createIntent(), SvrMigrationActivity.REQUEST_NEW_PIN);
             }
           })
           .build();
@@ -174,9 +174,9 @@ public final class Megaphones {
           .setTitle(R.string.KbsMegaphone__create_a_pin)
           .setBody(R.string.KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped)
           .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
-            Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
+            Intent intent = CreateSvrPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
 
-            listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
+            listener.onMegaphoneNavigationRequested(intent, CreateSvrPinActivity.REQUEST_NEW_PIN);
           })
           .build();
     }

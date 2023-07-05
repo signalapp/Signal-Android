@@ -10,6 +10,6 @@ package signal;
 
 option java_package = "org.thoughtcrime.securesms.absbackup.protos";
 
-message KbsAuthToken {
+message SvrAuthToken {
   repeated string tokens = 1;
 }

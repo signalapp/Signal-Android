@@ -152,7 +152,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
       VerifyResponse.from(
         response = distributionResponse,
-        kbsData = null,
+        masterKey = null,
         pin = null,
         aciPreKeyCollection = null,
         pniPreKeyCollection = null

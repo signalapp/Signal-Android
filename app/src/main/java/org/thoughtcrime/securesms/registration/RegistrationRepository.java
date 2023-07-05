@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
-import org.thoughtcrime.securesms.pin.PinState;
+import org.thoughtcrime.securesms.pin.SvrRepository;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -102,12 +102,7 @@ public final class RegistrationRepository {
   {
     return Single.<ServiceResponse<VerifyResponse>>fromCallable(() -> {
       try {
-        String pin = response.getPin();
         registerAccountInternal(registrationData, response, setRegistrationLockEnabled);
-
-        if (pin != null && !pin.isEmpty()) {
-          PinState.onPinChangedOrCreated(context, pin, SignalStore.pinValues().getKeyboardType());
-        }
 
         JobManager jobManager = ApplicationDependencies.getJobManager();
         jobManager.add(new DirectoryRefreshJob(false));
@@ -176,7 +171,7 @@ public final class RegistrationRepository {
     TextSecurePreferences.setUnauthorizedReceived(context, false);
     NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID);
 
-    PinState.onRegistration(context, response.getKbsData(), response.getPin(), hasPin, setRegistrationLockEnabled);
+    SvrRepository.onRegistrationComplete(response.getMasterKey(), response.getPin(), hasPin, setRegistrationLockEnabled);
 
     ApplicationDependencies.closeConnections();
     ApplicationDependencies.getIncomingMessageObserver();
@@ -226,13 +221,13 @@ public final class RegistrationRepository {
     return null;
   }
 
-  public Single<BackupAuthCheckProcessor> getKbsAuthCredential(@NonNull RegistrationData registrationData, List<String> usernamePasswords) {
+  public Single<BackupAuthCheckProcessor> getSvrAuthCredential(@NonNull RegistrationData registrationData, List<String> usernamePasswords) {
     SignalServiceAccountManager accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
 
     return accountManager.checkBackupAuthCredentials(registrationData.getE164(), usernamePasswords)
                          .map(BackupAuthCheckProcessor::new)
                          .doOnSuccess(processor -> {
-                           if (SignalStore.kbsValues().removeAuthTokens(processor.getInvalid())) {
+                           if (SignalStore.svr().removeAuthTokens(processor.getInvalid())) {
                              new BackupManager(context).dataChanged();
                            }
                          });

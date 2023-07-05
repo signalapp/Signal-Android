@@ -12,16 +12,13 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.pin.KbsRepository;
-import org.thoughtcrime.securesms.pin.TokenData;
 import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 import org.thoughtcrime.securesms.registration.VerifyResponse;
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
-import org.thoughtcrime.securesms.registration.VerifyResponseWithFailedKbs;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
-import org.thoughtcrime.securesms.registration.VerifyResponseWithSuccessfulKbs;
+import org.thoughtcrime.securesms.registration.VerifyResponseHitRegistrationLock;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -48,7 +45,8 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   private static final String STATE_PUSH_TIMED_OUT          = "PUSH_TIMED_OUT";
   private static final String STATE_INCORRECT_CODE_ATTEMPTS = "STATE_INCORRECT_CODE_ATTEMPTS";
   private static final String STATE_REQUEST_RATE_LIMITER    = "REQUEST_RATE_LIMITER";
-  private static final String STATE_KBS_TOKEN               = "KBS_TOKEN";
+  private static final String STATE_SVR_AUTH                = "SVR_AUTH";
+  private static final String STATE_SVR_TRIES_REMAINING     = "SVR_TRIES_REMAINING";
   private static final String STATE_TIME_REMAINING          = "TIME_REMAINING";
   private static final String STATE_CAN_CALL_AT_TIME        = "CAN_CALL_AT_TIME";
   private static final String STATE_CAN_SMS_AT_TIME         = "CAN_SMS_AT_TIME";
@@ -56,24 +54,21 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
 
   protected final SavedStateHandle        savedState;
   protected final VerifyAccountRepository verifyAccountRepository;
-  protected final KbsRepository           kbsRepository;
 
   public BaseRegistrationViewModel(@NonNull SavedStateHandle savedStateHandle,
                                    @NonNull VerifyAccountRepository verifyAccountRepository,
-                                   @NonNull KbsRepository kbsRepository,
                                    @NonNull String password)
   {
     this.savedState = savedStateHandle;
 
     this.verifyAccountRepository = verifyAccountRepository;
-    this.kbsRepository           = kbsRepository;
 
     setInitialDefaultValue(STATE_NUMBER, NumberViewState.INITIAL);
     setInitialDefaultValue(STATE_REGISTRATION_SECRET, password);
     setInitialDefaultValue(STATE_VERIFICATION_CODE, "");
     setInitialDefaultValue(STATE_INCORRECT_CODE_ATTEMPTS, 0);
     setInitialDefaultValue(STATE_REQUEST_RATE_LIMITER, new LocalCodeRequestRateLimiter(60_000));
-    setInitialDefaultValue(STATE_RECOVERY_PASSWORD, SignalStore.kbsValues().getRecoveryPassword());
+    setInitialDefaultValue(STATE_RECOVERY_PASSWORD, SignalStore.svr().getRecoveryPassword());
     setInitialDefaultValue(STATE_PUSH_TIMED_OUT, false);
   }
 
@@ -188,12 +183,20 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     return challengeKeys;
   }
 
-  public @Nullable TokenData getKeyBackupCurrentToken() {
-    return savedState.get(STATE_KBS_TOKEN);
+  protected void setSvrAuthCredentials(SvrAuthCredentialSet credentials) {
+    savedState.set(STATE_SVR_AUTH, credentials);
   }
 
-  public void setKeyBackupTokenData(@Nullable TokenData tokenData) {
-    savedState.set(STATE_KBS_TOKEN, tokenData);
+  protected @Nullable SvrAuthCredentialSet getSvrAuthCredentials() {
+    return savedState.get(STATE_SVR_AUTH);
+  }
+
+  public @Nullable Integer getSvrTriesRemaining() {
+    return savedState.get(STATE_SVR_TRIES_REMAINING);
+  }
+
+  public void setSvrTriesRemaining(@Nullable Integer triesRemaining) {
+    savedState.set(STATE_SVR_TRIES_REMAINING, triesRemaining);
   }
 
   public void setRecoveryPassword(@Nullable String recoveryPassword) {
@@ -338,56 +341,54 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
 
     return verifyAccountWithoutRegistrationLock()
         .flatMap(response -> {
-          if (response.getResult().isPresent() && response.getResult().get().getKbsData() != null) {
+          if (response.getResult().isPresent() && response.getResult().get().getMasterKey() != null) {
             return onVerifySuccessWithRegistrationLock(new VerifyResponseWithRegistrationLockProcessor(response, null), response.getResult().get().getPin());
           }
 
           VerifyResponseProcessor processor = new VerifyResponseWithoutKbs(response);
           if (processor.hasResult()) {
             return onVerifySuccess(processor);
-          } else if (processor.registrationLock() && !processor.isKbsLocked()) {
-            return kbsRepository.getToken(processor.getLockedException().getBasicStorageCredentials())
-                                .map(r -> r.getResult().isPresent() ? new VerifyResponseWithSuccessfulKbs(processor.getResponse(), r.getResult().get())
-                                                                    : new VerifyResponseWithFailedKbs(r));
+          } else if (processor.registrationLock() && !processor.isRegistrationLockPresentAndSvrExhausted()) {
+            return Single.just(new VerifyResponseHitRegistrationLock(processor.getResponse()));
           }
           return Single.just(processor);
         })
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess(processor -> {
-          if (processor.registrationLock() && !processor.isKbsLocked()) {
+          if (processor.registrationLock() && !processor.isRegistrationLockPresentAndSvrExhausted()) {
             setLockedTimeRemaining(processor.getLockedException().getTimeRemaining());
-            setKeyBackupTokenData(processor.getTokenData());
-          } else if (processor.isKbsLocked()) {
+            setSvrTriesRemaining(processor.getSvrTriesRemaining());
+            setSvrAuthCredentials(processor.getSvrAuthCredentials());
+          } else if (processor.isRegistrationLockPresentAndSvrExhausted()) {
             setLockedTimeRemaining(processor.getLockedException().getTimeRemaining());
           }
         });
   }
 
   public Single<VerifyResponseWithRegistrationLockProcessor> verifyCodeAndRegisterAccountWithRegistrationLock(@NonNull String pin) {
-    TokenData kbsTokenData = Objects.requireNonNull(getKeyBackupCurrentToken());
+    SvrAuthCredentialSet authCredentials = Objects.requireNonNull(getSvrAuthCredentials());
 
-    return verifyAccountWithRegistrationLock(pin, kbsTokenData)
-        .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, kbsTokenData))
+    return verifyAccountWithRegistrationLock(pin, authCredentials)
+        .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, authCredentials))
         .flatMap(processor -> {
           if (processor.hasResult()) {
             return onVerifySuccessWithRegistrationLock(processor, pin);
           } else if (processor.wrongPin()) {
-            TokenData newToken = TokenData.withResponse(kbsTokenData, processor.getTokenResponse());
-            return Single.just(new VerifyResponseWithRegistrationLockProcessor(processor.getResponse(), newToken));
+            return Single.just(new VerifyResponseWithRegistrationLockProcessor(processor.getResponse(), authCredentials));
           }
           return Single.just(processor);
         })
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess(processor -> {
           if (processor.wrongPin()) {
-            setKeyBackupTokenData(processor.getTokenData());
+            setSvrTriesRemaining(processor.getSvrTriesRemaining());
           }
         });
   }
 
   protected abstract Single<ServiceResponse<VerifyResponse>> verifyAccountWithoutRegistrationLock();
 
-  protected abstract Single<ServiceResponse<VerifyResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull TokenData kbsTokenData);
+  protected abstract Single<ServiceResponse<VerifyResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull SvrAuthCredentialSet svrAuthCredentials);
 
   protected abstract Single<VerifyResponseProcessor> onVerifySuccess(@NonNull VerifyResponseProcessor processor);
 

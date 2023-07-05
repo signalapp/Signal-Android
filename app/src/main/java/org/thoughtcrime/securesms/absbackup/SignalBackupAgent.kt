@@ -5,7 +5,7 @@ import android.app.backup.BackupDataInput
 import android.app.backup.BackupDataOutput
 import android.os.ParcelFileDescriptor
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.absbackup.backupables.KbsAuthTokens
+import org.thoughtcrime.securesms.absbackup.backupables.SvrAuthTokens
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.FileInputStream
@@ -17,7 +17,7 @@ import java.io.IOException
  */
 class SignalBackupAgent : BackupAgent() {
   private val items: List<AndroidBackupItem> = listOf(
-    KbsAuthTokens
+    SvrAuthTokens
   )
 
   override fun onBackup(oldState: ParcelFileDescriptor?, data: BackupDataOutput, newState: ParcelFileDescriptor) {

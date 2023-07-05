@@ -10,6 +10,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -49,9 +50,12 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
       loading = true
     )
 
-    disposables += _state.value.selected.toImplementation()
-      .setPin(_state.value.userPin, SignalStore.kbsValues().getOrCreateMasterKey())
-      .execute()
+    disposables += Single
+      .fromCallable {
+        _state.value.selected.toImplementation()
+          .setPin(_state.value.userPin, SignalStore.svr().getOrCreateMasterKey())
+          .execute()
+      }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { response ->
@@ -67,8 +71,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
       loading = true
     )
 
-    disposables += _state.value.selected.toImplementation()
-      .restoreDataPostRegistration(_state.value.userPin)
+    disposables += Single.fromCallable { _state.value.selected.toImplementation().restoreDataPostRegistration(_state.value.userPin) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { response ->
@@ -84,8 +87,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
       loading = true
     )
 
-    disposables += _state.value.selected.toImplementation()
-      .deleteData()
+    disposables += Single.fromCallable { _state.value.selected.toImplementation().deleteData() }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { response ->

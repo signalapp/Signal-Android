@@ -933,12 +933,12 @@
             android:theme="@style/TextSecure.LightRegistrationTheme"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".lock.v2.CreateKbsPinActivity"
+    <activity android:name=".lock.v2.CreateSvrPinActivity"
             android:theme="@style/TextSecure.LightRegistrationTheme"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".lock.v2.KbsMigrationActivity"
+    <activity android:name=".lock.v2.SvrMigrationActivity"
             android:theme="@style/TextSecure.LightRegistrationTheme"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>

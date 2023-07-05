@@ -42,7 +42,7 @@ public final class PinHashKbsDataTest {
     for (KbsTestVector vector : getKbsTestVectorList()) {
       PinHash hashedPin = fromArgon2Hash(vector.getArgon2Hash());
 
-      KbsData kbsData = PinHashUtil.decryptKbsDataIVCipherText(hashedPin, vector.getIvAndCipher());
+      KbsData kbsData = PinHashUtil.decryptSvrDataIVCipherText(hashedPin, vector.getIvAndCipher());
 
       assertArrayEquals(vector.getMasterKey(), kbsData.getMasterKey().serialize());
       assertArrayEquals(vector.getIvAndCipher(), kbsData.getCipherText());

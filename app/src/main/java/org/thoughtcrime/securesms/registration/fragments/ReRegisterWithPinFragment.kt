@@ -14,8 +14,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PinRestoreEntryFragmentBinding
-import org.thoughtcrime.securesms.lock.v2.KbsConstants
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
+import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor
 import org.thoughtcrime.securesms.registration.viewmodel.ReRegisterWithPinViewModel
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel
@@ -80,7 +80,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
 
     binding.pinRestoreKeyboardToggle.setIconResource(getPinEntryKeyboardType().other.iconResource)
 
-    reRegisterViewModel.updateTokenData(registrationViewModel.keyBackupCurrentToken)
+    reRegisterViewModel.updateSvrTriesRemaining(registrationViewModel.svrTriesRemaining)
 
     disposables += reRegisterViewModel.triesRemaining.subscribe(this::updateTriesRemaining)
   }
@@ -93,7 +93,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
   private fun handlePinEntry() {
     val pin: String? = binding.pinRestorePinInput.text?.toString()
 
-    val trimmedLength = pin?.replace(" ", "")?.length ?: 0
+    val trimmedLength = pin?.trim()?.length ?: 0
     if (trimmedLength == 0) {
       Toast.makeText(requireContext(), R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show()
       enableAndFocusPinEntry()
@@ -126,12 +126,12 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
         reRegisterViewModel.hasIncorrectGuess = true
 
         if (processor is VerifyResponseWithRegistrationLockProcessor && processor.wrongPin()) {
-          reRegisterViewModel.updateTokenData(processor.tokenData)
-          if (processor.tokenData != null) {
-            registrationViewModel.setKeyBackupTokenData(processor.tokenData)
+          reRegisterViewModel.updateSvrTriesRemaining(processor.svrTriesRemaining)
+          if (processor.svrTriesRemaining != null) {
+            registrationViewModel.svrTriesRemaining = processor.svrTriesRemaining
           }
           return@subscribe
-        } else if (processor.isKbsLocked()) {
+        } else if (processor.isRegistrationLockPresentAndSvrExhausted()) {
           Log.w(TAG, "Unable to continue skip flow, KBS is locked")
           onAccountLocked()
         } else if (processor.isIncorrectRegistrationRecoveryPassword()) {
@@ -215,7 +215,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
 
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.PinRestoreEntryFragment_need_help)
-      .setMessage(getString(message, KbsConstants.MINIMUM_PIN_LENGTH))
+      .setMessage(getString(message, SvrConstants.MINIMUM_PIN_LENGTH))
       .setPositiveButton(R.string.PinRestoreEntryFragment_skip) { _, _ -> onSkipPinEntry() }
       .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support) { _, _ ->
         val body = SupportEmailUtil.generateSupportEmailBody(requireContext(), R.string.ReRegisterWithPinFragment_support_email_subject, null, null)

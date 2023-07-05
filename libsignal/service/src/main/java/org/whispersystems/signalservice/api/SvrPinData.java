@@ -3,13 +3,13 @@ package org.whispersystems.signalservice.api;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
-public final class KbsPinData {
+public final class SvrPinData {
 
   private final MasterKey     masterKey;
   private final TokenResponse tokenResponse;
 
   // Visible for testing
-  public KbsPinData(MasterKey masterKey, TokenResponse tokenResponse) {
+  public SvrPinData(MasterKey masterKey, TokenResponse tokenResponse) {
     this.masterKey     = masterKey;
     this.tokenResponse = tokenResponse;
   }

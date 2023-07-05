@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.api.kbs;
 
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.internal.util.Hex;
+import org.whispersystems.util.Base64;
 import org.whispersystems.util.StringUtil;
 
 import java.security.SecureRandom;
@@ -32,7 +33,7 @@ public final class MasterKey {
   }
 
   public String deriveRegistrationRecoveryPassword() {
-    return Hex.toStringCondensed(derive("Registration Recovery"));
+    return Base64.encodeBytes(derive("Registration Recovery"));
   }
 
   public StorageKey deriveStorageServiceKey() {
@@ -61,6 +62,6 @@ public final class MasterKey {
 
   @Override
   public String toString() {
-    return "MasterKey(HashCode: " + hashCode() + ")";
+    return "MasterKey(xxx)";
   }
 }

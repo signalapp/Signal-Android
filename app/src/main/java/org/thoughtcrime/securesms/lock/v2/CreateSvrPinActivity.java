@@ -17,14 +17,14 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
-public class CreateKbsPinActivity extends BaseActivity {
+public class CreateSvrPinActivity extends BaseActivity {
 
   public static final int REQUEST_NEW_PIN = 27698;
 
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
   public static @NonNull Intent getIntentForPinCreate(@NonNull Context context) {
-    CreateKbsPinFragmentArgs args = new CreateKbsPinFragmentArgs.Builder()
+    CreateSvrPinFragmentArgs args = new CreateSvrPinFragmentArgs.Builder()
                                                                 .setIsForgotPin(false)
                                                                 .setIsPinChange(false)
                                                                 .build();
@@ -33,7 +33,7 @@ public class CreateKbsPinActivity extends BaseActivity {
   }
 
   public static @NonNull Intent getIntentForPinChangeFromForgotPin(@NonNull Context context) {
-    CreateKbsPinFragmentArgs args = new CreateKbsPinFragmentArgs.Builder()
+    CreateSvrPinFragmentArgs args = new CreateSvrPinFragmentArgs.Builder()
                                                                 .setIsForgotPin(true)
                                                                 .setIsPinChange(true)
                                                                 .build();
@@ -42,7 +42,7 @@ public class CreateKbsPinActivity extends BaseActivity {
   }
 
   public static @NonNull Intent getIntentForPinChangeFromSettings(@NonNull Context context) {
-    CreateKbsPinFragmentArgs args = new CreateKbsPinFragmentArgs.Builder()
+    CreateSvrPinFragmentArgs args = new CreateSvrPinFragmentArgs.Builder()
                                                                 .setIsForgotPin(false)
                                                                 .setIsPinChange(true)
                                                                 .build();
@@ -50,8 +50,8 @@ public class CreateKbsPinActivity extends BaseActivity {
     return getIntentWithArgs(context, args);
   }
 
-  private static @NonNull Intent getIntentWithArgs(@NonNull Context context, @NonNull CreateKbsPinFragmentArgs args) {
-    return new Intent(context, CreateKbsPinActivity.class).putExtras(args.toBundle());
+  private static @NonNull Intent getIntentWithArgs(@NonNull Context context, @NonNull CreateSvrPinFragmentArgs args) {
+    return new Intent(context, CreateSvrPinActivity.class).putExtras(args.toBundle());
   }
 
   @Override
@@ -68,7 +68,7 @@ public class CreateKbsPinActivity extends BaseActivity {
 
     setContentView(R.layout.create_kbs_pin_activity);
 
-    CreateKbsPinFragmentArgs arguments = CreateKbsPinFragmentArgs.fromBundle(getIntent().getExtras());
+    CreateSvrPinFragmentArgs arguments = CreateSvrPinFragmentArgs.fromBundle(getIntent().getExtras());
 
     NavGraph graph = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
     Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, arguments.toBundle());

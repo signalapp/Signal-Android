@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -109,6 +108,7 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
+  private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -169,7 +169,8 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
-      AD_HOC_CALLING
+      AD_HOC_CALLING,
+      SVR2_KILLSWITCH
   );
 
   @VisibleForTesting
@@ -235,7 +236,8 @@ public final class FeatureFlags {
       EDIT_MESSAGE_SEND,
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
-      MAX_ATTACHMENT_SIZE_BYTES
+      MAX_ATTACHMENT_SIZE_BYTES,
+      SVR2_KILLSWITCH
   );
 
   /**
@@ -243,7 +245,8 @@ public final class FeatureFlags {
    */
   @VisibleForTesting
   static final Set<String> STICKY = SetUtil.newHashSet(
-      VERIFY_V2
+      VERIFY_V2,
+      SVR2_KILLSWITCH
   );
 
   /**
@@ -750,6 +753,14 @@ public final class FeatureFlags {
    */
   public static long getBackgroundMessageProcessForegroundDelay() {
     return getInteger(MESSAGE_PROCESSOR_DELAY, 300);
+  }
+
+  /**
+   * Whether or not SVR2 should be used at all. Defaults to true. In practice this is reserved as a killswitch.
+   */
+  public static boolean svr2() {
+    // Despite us always inverting the value, it's important that this defaults to false so that the STICKY property works as intended
+    return !getBoolean(SVR2_KILLSWITCH, false);
   }
 
   private enum VersionFlag {

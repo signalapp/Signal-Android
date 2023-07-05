@@ -10,16 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.lock.v2.ConfirmKbsPinViewModel.SaveAnimation
+import org.thoughtcrime.securesms.lock.v2.ConfirmSvrPinViewModel.SaveAnimation
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SpanUtil
 
-internal class ConfirmKbsPinFragment : BaseKbsPinFragment<ConfirmKbsPinViewModel>() {
+internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel>() {
 
   override fun initializeViewStates() {
-    val args = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments())
+    val args = ConfirmSvrPinFragmentArgs.fromBundle(requireArguments())
     if (args.isPinChange) {
       initializeViewStatesForPinChange()
     } else {
@@ -28,14 +28,13 @@ internal class ConfirmKbsPinFragment : BaseKbsPinFragment<ConfirmKbsPinViewModel
     ViewCompat.setAutofillHints(input, HintConstants.AUTOFILL_HINT_NEW_PASSWORD)
   }
 
-  override fun initializeViewModel(): ConfirmKbsPinViewModel {
-    val args = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments())
+  override fun initializeViewModel(): ConfirmSvrPinViewModel {
+    val args = ConfirmSvrPinFragmentArgs.fromBundle(requireArguments())
     val userEntry = args.userEntry!!
     val keyboard = args.keyboard
-    val repository = ConfirmKbsPinRepository()
-    val factory = ConfirmKbsPinViewModel.Factory(userEntry, keyboard, repository)
-    val viewModel = ViewModelProvider(this, factory)[ConfirmKbsPinViewModel::class.java]
-    viewModel.label.observe(viewLifecycleOwner) { label: ConfirmKbsPinViewModel.LabelState -> updateLabel(label) }
+    val factory = ConfirmSvrPinViewModel.Factory(userEntry, keyboard)
+    val viewModel = ViewModelProvider(this, factory)[ConfirmSvrPinViewModel::class.java]
+    viewModel.label.observe(viewLifecycleOwner) { label: ConfirmSvrPinViewModel.LabelState -> updateLabel(label) }
     viewModel.saveAnimation.observe(viewLifecycleOwner) { animation: SaveAnimation -> updateSaveAnimation(animation) }
     return viewModel
   }
@@ -58,15 +57,15 @@ internal class ConfirmKbsPinFragment : BaseKbsPinFragment<ConfirmKbsPinViewModel
     confirm.isEnabled = true
   }
 
-  private fun updateLabel(labelState: ConfirmKbsPinViewModel.LabelState) {
+  private fun updateLabel(labelState: ConfirmSvrPinViewModel.LabelState) {
     when (labelState) {
-      ConfirmKbsPinViewModel.LabelState.EMPTY -> label.text = ""
-      ConfirmKbsPinViewModel.LabelState.CREATING_PIN -> {
+      ConfirmSvrPinViewModel.LabelState.EMPTY -> label.text = ""
+      ConfirmSvrPinViewModel.LabelState.CREATING_PIN -> {
         label.setText(R.string.ConfirmKbsPinFragment__creating_pin)
         input.isEnabled = false
       }
-      ConfirmKbsPinViewModel.LabelState.RE_ENTER_PIN -> label.setText(R.string.ConfirmKbsPinFragment__re_enter_your_pin)
-      ConfirmKbsPinViewModel.LabelState.PIN_DOES_NOT_MATCH -> {
+      ConfirmSvrPinViewModel.LabelState.RE_ENTER_PIN -> label.setText(R.string.ConfirmKbsPinFragment__re_enter_your_pin)
+      ConfirmSvrPinViewModel.LabelState.PIN_DOES_NOT_MATCH -> {
         label.text = SpanUtil.color(
           ContextCompat.getColor(requireContext(), R.color.red_500),
           getString(R.string.ConfirmKbsPinFragment__pins_dont_match)

@@ -37,15 +37,15 @@ public final class PinOptOutMigration extends MigrationJob {
 
   @Override
   void performMigration() {
-    if (SignalStore.kbsValues().hasOptedOut() && SignalStore.kbsValues().hasPin()) {
+    if (SignalStore.svr().hasOptedOut() && SignalStore.svr().hasPin()) {
       Log.w(TAG, "Discovered a legacy opt-out user! Resetting the state.");
 
-      SignalStore.kbsValues().optOut();
+      SignalStore.svr().optOut();
       ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
                                              .then(new RefreshOwnProfileJob())
                                              .then(new StorageForcePushJob())
                                              .enqueue();
-    } else if (SignalStore.kbsValues().hasOptedOut()) {
+    } else if (SignalStore.svr().hasOptedOut()) {
       Log.i(TAG, "Discovered an opt-out user, but they're already in a good state. No action required.");
     } else {
       Log.i(TAG, "Discovered a normal PIN user. No action required.");

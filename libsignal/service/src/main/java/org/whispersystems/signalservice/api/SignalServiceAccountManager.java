@@ -549,6 +549,21 @@ public class SignalServiceAccountManager {
     return writeStorageRecords(storageKey, manifest, inserts, deletes, false);
   }
 
+
+  /**
+   * Enables registration lock for this account.
+   */
+  public void enableRegistrationLock(MasterKey masterKey) throws IOException {
+    pushServiceSocket.setRegistrationLockV2(masterKey.deriveRegistrationLock());
+  }
+
+  /**
+   * Disables registration lock for this account.
+   */
+  public void disableRegistrationLock() throws IOException {
+    pushServiceSocket.disableRegistrationLockV2();
+  }
+
   /**
    * @return If there was a conflict, the latest {@link SignalStorageManifest}. Otherwise absent.
    */

@@ -26,4 +26,9 @@ public class AuthCredentials {
   public String username() { return username; }
 
   public String password() { return password; }
+
+  @Override
+  public String toString() {
+    return "AuthCredentials(xxx)";
+  }
 }

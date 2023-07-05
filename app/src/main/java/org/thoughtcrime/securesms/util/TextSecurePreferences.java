@@ -334,14 +334,6 @@ public class TextSecurePreferences {
     return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, null);
   }
 
-  public static void clearRegistrationLockV1(@NonNull Context context) {
-    //noinspection deprecation
-    getSharedPreferences(context)
-                     .edit()
-                     .remove(REGISTRATION_LOCK_PIN_PREF_V1)
-                     .apply();
-  }
-
   /**
    * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
    */

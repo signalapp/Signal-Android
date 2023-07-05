@@ -172,11 +172,9 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                        handleSuccessfulVerify();
                                      } else if (processor.rateLimit()) {
                                        handleRateLimited();
-                                     } else if (processor.registrationLock() && !processor.isKbsLocked()) {
+                                     } else if (processor.registrationLock() && !processor.isRegistrationLockPresentAndSvrExhausted()) {
                                        LockedException lockedException = processor.getLockedException();
                                        handleRegistrationLock(lockedException.getTimeRemaining());
-                                     } else if (processor.isKbsLocked()) {
-                                       handleKbsAccountLocked();
                                      } else if (processor.authorizationFailed()) {
                                        handleIncorrectCodeError();
                                      } else {
@@ -227,7 +225,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     });
   }
 
-  protected void handleKbsAccountLocked() {
+  protected void handleSvrAccountLocked() {
     navigateToKbsAccountLocked();
   }
 

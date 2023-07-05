@@ -22,7 +22,7 @@ public final class RegistrationUtil {
     if (!SignalStore.registrationValues().isRegistrationComplete() &&
         SignalStore.account().isRegistered()                       &&
         !Recipient.self().getProfileName().isEmpty()               &&
-        (SignalStore.kbsValues().hasPin() || SignalStore.kbsValues().hasOptedOut()))
+        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut()))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
       SignalStore.registrationValues().setRegistrationComplete();

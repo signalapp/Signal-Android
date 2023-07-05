@@ -10,14 +10,14 @@ import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinViewModel.NavigationEvent
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinViewModel.PinErrorEvent
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinViewModel.NavigationEvent
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinViewModel.PinErrorEvent
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-class CreateKbsPinFragment : BaseKbsPinFragment<CreateKbsPinViewModel?>() {
+class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
   override fun initializeViewStates() {
-    val args = CreateKbsPinFragmentArgs.fromBundle(requireArguments())
+    val args = CreateSvrPinFragmentArgs.fromBundle(requireArguments())
     if (args.isPinChange) {
       initializeViewStatesForPinChange(args.isForgotPin)
     } else {
@@ -40,9 +40,9 @@ class CreateKbsPinFragment : BaseKbsPinFragment<CreateKbsPinViewModel?>() {
     description.setLearnMoreVisible(true)
   }
 
-  override fun initializeViewModel(): CreateKbsPinViewModel {
-    val viewModel = ViewModelProvider(this)[CreateKbsPinViewModel::class.java]
-    val args = CreateKbsPinFragmentArgs.fromBundle(requireArguments())
+  override fun initializeViewModel(): CreateSvrPinViewModel {
+    val viewModel = ViewModelProvider(this)[CreateSvrPinViewModel::class.java]
+    val args = CreateSvrPinFragmentArgs.fromBundle(requireArguments())
     viewModel.navigationEvents.observe(viewLifecycleOwner) { e: NavigationEvent -> onConfirmPin(e.userEntry, e.keyboard, args.isPinChange) }
     viewModel.errorEvents.observe(viewLifecycleOwner) { e: PinErrorEvent ->
       if (e == PinErrorEvent.WEAK_PIN) {
@@ -62,8 +62,8 @@ class CreateKbsPinFragment : BaseKbsPinFragment<CreateKbsPinViewModel?>() {
     return viewModel
   }
 
-  private fun onConfirmPin(userEntry: KbsPin, keyboard: PinKeyboardType, isPinChange: Boolean) {
-    val action = CreateKbsPinFragmentDirections.actionConfirmPin()
+  private fun onConfirmPin(userEntry: SvrPin, keyboard: PinKeyboardType, isPinChange: Boolean) {
+    val action = CreateSvrPinFragmentDirections.actionConfirmPin()
     action.userEntry = userEntry
     action.keyboard = keyboard
     action.isPinChange = isPinChange
@@ -79,7 +79,7 @@ class CreateKbsPinFragment : BaseKbsPinFragment<CreateKbsPinViewModel?>() {
   }
 
   private fun getPinLengthRestrictionText(@PluralsRes plurals: Int): String {
-    return resources.getQuantityString(plurals, KbsConstants.MINIMUM_PIN_LENGTH, KbsConstants.MINIMUM_PIN_LENGTH)
+    return resources.getQuantityString(plurals, SvrConstants.MINIMUM_PIN_LENGTH, SvrConstants.MINIMUM_PIN_LENGTH)
   }
 
   companion object {
