@@ -1976,13 +1976,6 @@ public class ConversationParentFragment extends Fragment
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
 
-    if (Camera.getNumberOfCameras() > 0) {
-      quickCameraToggle.setVisibility(View.VISIBLE);
-      quickCameraToggle.setOnClickListener(new QuickCameraToggleListener());
-    } else {
-      quickCameraToggle.setVisibility(View.GONE);
-    }
-
     searchNav.setEventListener(this);
 
     inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
@@ -3767,24 +3760,6 @@ public class ConversationParentFragment extends Fragment
     }
   }
 
-  private class QuickCameraToggleListener implements OnClickListener {
-    @Override
-    public void onClick(View v) {
-      Permissions.with(ConversationParentFragment.this)
-                 .request(Manifest.permission.CAMERA)
-                 .ifNecessary()
-                 .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
-                 .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
-                 .onAllGranted(() -> {
-                   composeText.clearFocus();
-                   startActivityForResult(MediaSelectionActivity.camera(requireActivity(), sendButton.getSelectedSendType(), recipient.getId(), inputPanel.getQuote().isPresent()), MEDIA_SENDER);
-                   requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary);
-                 })
-                 .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
-                 .execute();
-    }
-  }
-
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
@@ -4270,6 +4245,22 @@ public class ConversationParentFragment extends Fragment
       keyboardPagerViewModel.setPages(previousPages);
       previousPages = null;
     }
+  }
+
+  @Override
+  public void onQuickCameraToggleClicked() {
+    Permissions.with(ConversationParentFragment.this)
+               .request(Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
+               .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
+               .onAllGranted(() -> {
+                 composeText.clearFocus();
+                 startActivityForResult(MediaSelectionActivity.camera(requireActivity(), sendButton.getSelectedSendType(), recipient.getId(), inputPanel.getQuote().isPresent()), MEDIA_SENDER);
+                 requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary);
+               })
+               .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
+               .execute();
   }
 
   @Override

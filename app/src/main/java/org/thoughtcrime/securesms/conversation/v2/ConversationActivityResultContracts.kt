@@ -12,6 +12,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.IntentCompat
 import androidx.fragment.app.Fragment
@@ -52,6 +53,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   private val mediaGalleryLauncher = fragment.registerForActivityResult(MediaGallery) { result -> callbacks.onMediaSend(result) }
   private val selectLocationLauncher = fragment.registerForActivityResult(SelectLocation) { result -> callbacks.onLocationSelected(result?.place, result?.uri) }
   private val selectFileLauncher = fragment.registerForActivityResult(SelectFile) { result -> callbacks.onFileSelected(result) }
+  private val cameraLauncher = fragment.registerForActivityResult(MediaCapture) { result -> callbacks.onMediaSend(result) }
 
   fun launchContactShareEditor(uri: Uri, chatColors: ChatColors) {
     contactShareLauncher.launch(uri to chatColors)
@@ -74,6 +76,20 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
       .ifNecessary()
       .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
       .onAllGranted { mediaGalleryLauncher.launch(MediaSelectionInput(emptyList(), recipientId, text, isReply)) }
+      .execute()
+  }
+
+  fun launchCamera(recipientId: RecipientId, isReply: Boolean) {
+    Permissions.with(fragment)
+      .request(Manifest.permission.CAMERA)
+      .ifNecessary()
+      .withRationaleDialog(fragment.getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.symbol_camera_24)
+      .withPermanentDenialDialog(fragment.getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
+      .onAllGranted {
+        cameraLauncher.launch(MediaSelectionInput(emptyList(), recipientId, null, isReply))
+        fragment.requireActivity().overridePendingTransition(R.anim.camera_slide_from_bottom, R.anim.stationary)
+      }
+      .onAnyDenied { Toast.makeText(fragment.requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show() }
       .execute()
   }
 
@@ -120,6 +136,21 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (media, recipientId, text) = input
       return MediaSelectionActivity.editor(context, MessageSendType.SignalMessageSendType, media, recipientId, text)
+    }
+
+    override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
+      return if (resultCode == Activity.RESULT_OK) {
+        intent?.let { MediaSendActivityResult.fromData(intent) }
+      } else {
+        null
+      }
+    }
+  }
+
+  private object MediaCapture : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
+    override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
+      val (_, recipientId, _, isReply) = input
+      return MediaSelectionActivity.camera(context, MessageSendType.SignalMessageSendType, recipientId, isReply)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {

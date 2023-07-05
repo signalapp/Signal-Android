@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.text.SpannableString;
 import android.text.format.DateUtils;
@@ -189,6 +190,8 @@ public class InputPanel extends LinearLayout
     stickerSuggestion.setAdapter(stickerSuggestionAdapter);
 
     editMessageCancel.setOnClickListener(v -> exitEditMessageMode());
+
+    quickCameraToggle.setVisibility(View.GONE);
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -196,6 +199,13 @@ public class InputPanel extends LinearLayout
 
     mediaKeyboard.setOnClickListener(v -> listener.onEmojiToggle());
     voiceNoteDraftView.setListener(listener);
+
+    if (Camera.getNumberOfCameras() > 0) {
+      quickCameraToggle.setOnClickListener(v -> listener.onQuickCameraToggleClicked());
+      quickCameraToggle.setVisibility(View.VISIBLE);
+    } else {
+      quickCameraToggle.setVisibility(View.GONE);
+    }
   }
 
   public void setMediaListener(@NonNull MediaListener listener) {
@@ -730,6 +740,7 @@ public class InputPanel extends LinearLayout
     void onQuoteCleared();
     void onEnterEditMode();
     void onExitEditMode();
+    void onQuickCameraToggleClicked();
   }
 
   private static class SlideToCancel {

@@ -1205,6 +1205,7 @@ class ConversationFragment :
         composeText.setDraftText(data.draftText)
         inputPanel.enterEditMessageMode(GlideApp.with(this), data.messageEdit, true)
       }
+
       is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetMedia -> {
         composeText.setDraftText(data.text)
@@ -3394,6 +3395,12 @@ class ConversationFragment :
         keyboardPagerViewModel.setPages(previousPages!!)
         previousPages = null
       }
+    }
+
+    override fun onQuickCameraToggleClicked() {
+      val recipientId = viewModel.recipientSnapshot?.id ?: return
+      composeText.clearFocus()
+      conversationActivityResultContracts.launchCamera(recipientId, inputPanel.quote.isPresent)
     }
   }
 
