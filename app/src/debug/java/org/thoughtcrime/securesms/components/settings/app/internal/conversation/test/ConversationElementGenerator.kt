@@ -67,7 +67,7 @@ class ConversationElementGenerator {
     val messageId = key.requireMessageId()
     val now = getNow()
 
-    val testMessageWordLength = random.nextInt(40) + 1
+    val testMessageWordLength = random.nextInt(3) + 1
     val testMessage = (0 until testMessageWordLength).map {
       wordBank.random()
     }.joinToString(" ")
@@ -86,7 +86,7 @@ class ConversationElementGenerator {
       1,
       testMessage,
       SlideDeck(),
-      if (isIncoming) getIncomingType() else getSentFailedOutgoingType(),
+      if (isIncoming) getIncomingType() else getSentOutgoingType(),
       emptySet(),
       emptySet(),
       0,

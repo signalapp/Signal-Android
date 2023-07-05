@@ -120,8 +120,8 @@
         android:id="@+id/conversation_item_expiration_timer"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status" />
 
@@ -136,10 +136,10 @@
 
     <Space
         android:id="@+id/footer_end_pad"
-        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper"
         android:layout_width="@dimen/message_bubble_horizontal_padding"
-        android:layout_height="@dimen/message_bubble_horizontal_padding" />
+        android:layout_height="@dimen/message_bubble_horizontal_padding"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper" />
 
     <!-- End Footer -->
 
@@ -150,9 +150,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-4dp"
+        android:layout_marginStart="5dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintStart_toStartOf="@id/conversation_item_body_wrapper"
         app:layout_constraintTop_toBottomOf="@id/conversation_item_body_wrapper"
-        app:rcv_outgoing="false" />
+        app:rcv_outgoing="true" />
 
 </org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemLayout>
