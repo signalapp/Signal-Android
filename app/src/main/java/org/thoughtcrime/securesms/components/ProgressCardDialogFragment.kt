@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.R
 class ProgressCardDialogFragment : DialogFragment(R.layout.progress_card_dialog) {
 
   companion object {
-    fun create(title: String): ProgressCardDialogFragment {
+    fun create(title: String? = null): ProgressCardDialogFragment {
       return ProgressCardDialogFragment().apply {
         arguments = ProgressCardDialogFragmentArgs.Builder(title).build().toBundle()
       }

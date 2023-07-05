@@ -45,7 +45,7 @@ class StoriesPrivacySettingsFragment :
   })
 
   private val lifecycleDisposable = LifecycleDisposable()
-  private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment() }
+  private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment.create() }
 
   override fun createAdapters(): Array<MappingAdapter> {
     return arrayOf(DSLSettingsAdapter(), PagingMappingAdapter<ContactSearchKey>(), DSLSettingsAdapter())
