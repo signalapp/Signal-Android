@@ -17,12 +17,14 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizable
+import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -86,6 +88,15 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
   init {
     binding.root.addOnMeasureListener(footerDelegate)
+
+    binding.conversationItemReactions.setOnClickListener {
+      conversationContext.clickListener
+        .onReactionClicked(
+          Multiselect.getParts(conversationMessage).asSingle().singlePart,
+          conversationMessage.messageRecord.id,
+          conversationMessage.messageRecord.isMms
+        )
+    }
   }
 
   override fun bind(model: Model) {
