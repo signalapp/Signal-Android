@@ -856,7 +856,7 @@
     <string name="LinkPreviewView_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
     <string name="LinkPreviewView_domain_date">%1$s, %2$s</string>
     <!-- Description for Call Link url previews -->
-    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">이 링크를 사용하여 Signal 통화에 참여하세요.</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1570,7 +1570,7 @@
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 등록 - Android용 PIN에 대한 도움이 필요합니다.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
+    <string name="PinRestoreEntryFragment_switch_keyboard">키보드 전환</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">번호 생성</string>
@@ -2246,7 +2246,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">통화를 수락하려면 Signal에서 마이크를 사용하도록 허용하세요.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">영상 통화를 수락하려면 Signal에서 마이크와 카메라를 사용하도록 허용하세요.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal에서 전화 기능을 사용하려면 마이크와 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">연결된 기기에서 응답했습니다.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">연결된 기기에서 거부했습니다.</string>
@@ -3424,7 +3424,7 @@
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">계정에 대해 만든 PIN을 입력하세요.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
+    <string name="RegistrationLockFragment__switch_keyboard">키보드 전환</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
     <string name="RegistrationLockFragment__forgot_pin">번호를 잊으셨나요?</string>
     <string name="RegistrationLockFragment__incorrect_pin">잘못된 번호</string>

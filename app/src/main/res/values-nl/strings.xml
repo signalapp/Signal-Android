@@ -317,7 +317,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Kan video niet downloaden. Je zal het opnieuw moeten verzenden.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">bewerkt %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Bewerkt %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Aan oproep deelnemen</string>
 
@@ -884,7 +884,7 @@
     <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepslink is niet actief</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
-    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Gebruik deze link om deel te nemen aan een Signal-oproep</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -951,7 +951,7 @@
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Wie mogen nieuwe leden toevoegen?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie mogen de groepsinformatie aanpassen?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie mogen de groepsinformatie bewerken?</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d persoon toegevoegd.</item>
@@ -966,7 +966,7 @@
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Het bijwerken van de groep is mislukt. Probeer het later opnieuw</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Het bijwerken van de groep is mislukt vanwege een netwerkfout. Probeer het later opnieuw</string>
 
-    <string name="ManageGroupActivity_edit_name_and_picture">Naam en afbeelding aanpassen</string>
+    <string name="ManageGroupActivity_edit_name_and_picture">Naam en afbeelding bewerken</string>
     <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
     <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten zoals groepsbeheer te kunnen gebruiken moet je een nieuwe groep aanmaken.</string>
     <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders,</string>
@@ -1389,14 +1389,14 @@
     <string name="MessageRecord_the_group_group_avatar_has_been_changed">De groepsafbeelding is aangepast.</string>
 
     <!-- GV2 attribute access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Je hebt de instelling voor wie de groepsinformatie kan wijzigen op ‘%1$s’ ingesteld.</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s heeft de instelling voor wie de groepsinformatie kan wijzigen op ‘%2$s’ ingesteld.</string>
-    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">De instelling voor wie de groepsinformatie kan aanpassen is op ‘%1$s’ ingesteld.</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Je hebt de instelling voor wie de groepsinformatie kan bewerken op ‘%1$s’ ingesteld.</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s heeft de instelling voor wie de groepsinformatie kan bewerken op ‘%2$s’ ingesteld.</string>
+    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">De instelling voor wie de groepsinformatie kan bewerken is op ‘%1$s’ ingesteld.</string>
 
     <!-- GV2 membership access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Je hebt de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%1$s’ ingesteld.</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
-    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Je hebt de instelling voor wie de groepslidmaatschap kan bewerken op ‘%1$s’ ingesteld.</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan bewerken op ‘%2$s’ ingesteld.</string>
+    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan bewerken is op ‘%1$s’ ingesteld.</string>
 
     <!-- GV2 announcement group change -->
     <string name="MessageRecord_you_allow_all_members_to_send">Je hebt de groepsinstellingen aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden en oproepen te beginnen.</string>
@@ -1629,7 +1629,7 @@
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op een Android apparaat</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
+    <string name="PinRestoreEntryFragment_switch_keyboard">Toetsenbord wisselen</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
@@ -1841,7 +1841,7 @@
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Er wordt een verificatiecode naar dit nummer gestuurd. Providertarieven kunnen van toepassing zijn.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Je zal gebeld worden om dit telefoonnummer te verifiëren.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Is je telefoonnummer hierboven correct?</string>
-    <string name="RegistrationActivity_edit_number">Telefoonnummer wijzigen</string>
+    <string name="RegistrationActivity_edit_number">Telefoonnummer bewerken</string>
     <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
     <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
@@ -2316,7 +2316,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voor je de oproep kunt beantwoorden.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Geef Signal toegang tot je microfoon en camera om de video-oproep te beantwoorden.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Geweigerd vanaf een gekoppeld apparaat.</string>
@@ -2679,7 +2679,7 @@
     <string name="EditAboutFragment_working_on_something_new">Ik werk aan iets nieuws</string>
 
     <!-- EditProfileFragment -->
-    <string name="EditProfileFragment__edit_group">Groep aanpassen</string>
+    <string name="EditProfileFragment__edit_group">Groep bewerken</string>
     <string name="EditProfileFragment__group_name">Groepsnaam</string>
     <string name="EditProfileFragment__group_description">Groepsomschrijving</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -3510,7 +3510,7 @@
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Voer de pincode in die je voor je account hebt gemaakt.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
+    <string name="RegistrationLockFragment__switch_keyboard">Toetsenbord wisselen</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
     <string name="RegistrationLockFragment__forgot_pin">Pincode vergeten?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Foutieve pincode</string>
@@ -3839,7 +3839,7 @@
     <string name="RecipientBottomSheet_remove_from_group">Uit de groep verwijderen</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
-    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen aanpassen."</string>
+    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen bewerken."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s uit deze groep verwijderen?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
@@ -4505,12 +4505,12 @@
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Groepsleden toevoegen</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Groepsinformatie aanpassen</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Groepsinformatie bewerken</string>
     <string name="PermissionsSettingsFragment__send_messages">Berichten verzenden &amp; oproepen beginnen</string>
     <string name="PermissionsSettingsFragment__all_members">Alle groepsleden</string>
     <string name="PermissionsSettingsFragment__only_admins">Uitsluitend beheerders</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Wie mogen nieuwe leden toevoegen?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie mogen de groepsinformatie aanpassen?</string>
+    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie mogen de groepsinformatie bewerken?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Wie mogen berichten verzenden en oproepen beginnen?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
@@ -4912,7 +4912,7 @@
     <!-- Call to action button once the profile name is edited -->
     <string name="EditNotificationProfileFragment__save">Opslaan</string>
     <!-- Title of edit notification profile screen -->
-    <string name="EditNotificationProfileFragment__edit_this_profile">Dit meldingsprofiel aanpassen</string>
+    <string name="EditNotificationProfileFragment__edit_this_profile">Dit meldingsprofiel bewerken</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
     <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Er bestaat al een meldingsprofiel met deze naam</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
@@ -4958,7 +4958,7 @@
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">Wissen</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
-    <string name="NotificationProfileDetails__edit_notification_profile">Meldingsprofiel aanpassen</string>
+    <string name="NotificationProfileDetails__edit_notification_profile">Meldingsprofiel bewerken</string>
     <!-- Schedule description if all days are selected -->
     <string name="NotificationProfileDetails__everyday">Elke dag</string>
     <!-- Profile status on if it is the active profile -->
@@ -5268,7 +5268,7 @@
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">Verhaalnaam wijzigen</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">Verhaalnaam bewerken</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Verhaalnaam</string>
     <!-- Save button label when editing a custom story name -->

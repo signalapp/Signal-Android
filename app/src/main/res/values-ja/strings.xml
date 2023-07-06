@@ -856,7 +856,7 @@
     <string name="LinkPreviewView_this_group_link_is_not_active">このグループリンクは利用できません</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
-    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">リンクを使用して Signal 通話に参加する</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1570,7 +1570,7 @@
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal登録 - AndroidのPINに関するサポートが必要</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
+    <string name="PinRestoreEntryFragment_switch_keyboard">キーボードを切り替える</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">PINを作成</string>
@@ -2246,7 +2246,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">着信に出るには、Signalにマイクへのアクセスを許可してください。</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">ビデオ通話に出るには、Signal にマイクとカメラへのアクセスを許可してください。</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">通話するには、Signalにマイクとカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「マイク」と「カメラ」を有効にしてください。</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">リンクした端末で応答しました。</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">リンクした端末で拒否しました。</string>
@@ -3424,7 +3424,7 @@
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">アカウント用に作成した PIN を入力してください。</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
+    <string name="RegistrationLockFragment__switch_keyboard">キーボードを切り替える</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PINが違います。再度試してください。</string>
     <string name="RegistrationLockFragment__forgot_pin">PINを忘れましたか？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PINが違います</string>

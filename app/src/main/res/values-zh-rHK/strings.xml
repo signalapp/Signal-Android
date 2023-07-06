@@ -856,7 +856,7 @@
     <string name="LinkPreviewView_this_group_link_is_not_active">此群組連結不在使用中</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
-    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Use this link to join a Signal Call</string>
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">使用此連結以加入 Signal 通話</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1570,7 +1570,7 @@
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 註冊 — Android 用戶需要 PIN 碼的協助</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Switch keyboard</string>
+    <string name="PinRestoreEntryFragment_switch_keyboard">切換鍵盤</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">建立您的 PIN 碼</string>
@@ -2246,7 +2246,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">若要接聽通話，請授予 Signal 存取您的咪高峰。</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">To answer the video call, give Signal access to your microphone and camera.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">若要接聽視訊通話，請允許 Signal 存取你的麥克風和相機。</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要咪高峰和相機權限才可致電或接聽通話，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「咪高峰」和「相機」。</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">已在連結的裝置上接聽。</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">已在連結的裝置上拒接。</string>
@@ -3424,7 +3424,7 @@
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">輸入你為帳戶建立的 PIN 碼。</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
+    <string name="RegistrationLockFragment__switch_keyboard">切換鍵盤</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 碼不正確。請再試一次。</string>
     <string name="RegistrationLockFragment__forgot_pin">忘記 PIN 碼？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN 碼不正確</string>
