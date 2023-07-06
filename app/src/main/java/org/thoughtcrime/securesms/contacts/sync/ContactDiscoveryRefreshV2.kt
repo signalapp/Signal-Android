@@ -170,7 +170,7 @@ object ContactDiscoveryRefreshV2 {
     val registeredIds: MutableSet<RecipientId> = mutableSetOf()
     val rewrites: MutableMap<String, String> = mutableMapOf()
 
-    if (useCompat) {
+    if (useCompat && response.isCompatResponse()) {
       val transformed: Map<String, ACI?> = response.results.mapValues { entry -> entry.value.aci.orElse(null) }
       val fuzzyOutput: OutputResult<ACI> = FuzzyPhoneNumberHelper.generateOutput(transformed, fuzzyInput)
 
@@ -196,6 +196,10 @@ object ContactDiscoveryRefreshV2 {
       SignalDatabase.recipients.bulkUpdatedRegisteredStatus(aciMap, inactiveIds)
       stopwatch.split("update-registered")
     } else {
+      if (useCompat) {
+        Log.w(TAG, "Was told to useCompat, but the server responded with a non-compat response! Assuming the server has shut off compat mode.")
+      }
+
       val transformed: Map<String, CdsV2Result> = response.results.mapValues { entry -> CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
       val fuzzyOutput: OutputResult<CdsV2Result> = FuzzyPhoneNumberHelper.generateOutput(transformed, fuzzyInput)
 
@@ -283,5 +287,14 @@ object ContactDiscoveryRefreshV2 {
   private fun Int.roundedString(): String {
     val nearestThousand = (this.toDouble() / 1000).roundToInt()
     return "~${nearestThousand}k"
+  }
+
+  /**
+   * Responses that respect useCompat will have an ACI for every user. If it doesn't, it means is a PNP response where some accounts may only have PNI's.
+   * There may come a day when we request compat mode but the server refuses to allow it, so we need to be able to detect when that happens to fallback
+   * to the PNP behavior.
+   */
+  private fun CdsiV2Service.Response.isCompatResponse(): Boolean {
+    return this.results.values.all { it.hasAci() }
   }
 }
