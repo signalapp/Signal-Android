@@ -29,6 +29,7 @@ import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
+import org.thoughtcrime.securesms.conversation.BodyBubbleLayoutTransition
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
@@ -148,6 +149,8 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     } else {
       binding.conversationItemBody.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
     }
+
+    binding.conversationItemBodyWrapper.layoutTransition = BodyBubbleLayoutTransition()
   }
 
   override fun bind(model: Model) {
@@ -195,7 +198,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
         coordinateRoot,
         binding.conversationItemBodyWrapper,
         Projection.Corners.NONE
-      ).translateX(binding.conversationItemBodyWrapper.translationX)
+      ).translateX(binding.conversationItemBodyWrapper.translationX).translateY(root.translationY)
     )
 
     return projections
@@ -211,7 +214,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
             coordinateRoot,
             binding.conversationItemBodyWrapper,
             shapeDelegate.corners
-          ).translateX(binding.conversationItemBodyWrapper.translationX)
+          ).translateX(binding.conversationItemBodyWrapper.translationX).translateY(root.translationY)
         )
       } else if (conversationContext.hasWallpaper()) {
         projections.add(
@@ -219,7 +222,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
             coordinateRoot,
             binding.conversationItemFooterBackground,
             conversationItemFooterBackgroundCorners
-          ).translateX(binding.conversationItemFooterBackground.translationX)
+          ).translateX(binding.conversationItemFooterBackground.translationX).translateY(root.translationY)
         )
       }
     }

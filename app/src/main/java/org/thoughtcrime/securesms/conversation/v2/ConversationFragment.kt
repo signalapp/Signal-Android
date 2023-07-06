@@ -793,7 +793,7 @@ class ConversationFragment :
       scrollToNextMention()
     }
 
-    adapter.registerAdapterDataObserver(DataObserver(scrollToPositionDelegate))
+    adapter.registerAdapterDataObserver(DataObserver())
 
     val keyboardEvents = KeyboardEvents()
     container.listener = keyboardEvents
@@ -1998,14 +1998,12 @@ class ConversationFragment :
     }
   }
 
-  private inner class DataObserver(
-    private val scrollToPositionDelegate: ScrollToPositionDelegate
-  ) : RecyclerView.AdapterDataObserver() {
+  private inner class DataObserver : RecyclerView.AdapterDataObserver() {
     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
       Log.d(TAG, "onItemRangeInserted $positionStart $itemCount")
       if (positionStart == 0 && itemCount == 1 && !binding.conversationItemRecycler.canScrollVertically(1)) {
         Log.d(TAG, "Requesting scroll to bottom.")
-        scrollToPositionDelegate.resetScrollPosition()
+        layoutManager.scrollToPositionWithOffset(0, 0)
       }
     }
   }

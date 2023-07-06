@@ -101,7 +101,10 @@ class ConversationViewModel(
 
   val pagingController = ProxyPagingController<ConversationElementKey>()
 
-  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = recipient.flatMap { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
+  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = recipient
+    .filter { it.isGroup }
+    .flatMap { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
+    .distinctUntilChanged()
 
   @Volatile
   var recipientSnapshot: Recipient? = null
