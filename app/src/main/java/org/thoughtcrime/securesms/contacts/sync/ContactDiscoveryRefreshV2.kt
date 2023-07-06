@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.core.util.Stopwatch
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResult
@@ -12,7 +11,6 @@ import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputRes
 import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -24,8 +22,6 @@ import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhauste
 import org.whispersystems.signalservice.api.services.CdsiV2Service
 import java.io.IOException
 import java.util.Optional
-import java.util.concurrent.Callable
-import java.util.concurrent.Future
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.seconds
 
@@ -190,7 +186,7 @@ object ContactDiscoveryRefreshV2 {
       val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
       stopwatch.split("get-ids")
 
-      val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
+      val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removePossiblyRegisteredButUnlisted()
       stopwatch.split("registered-but-unlisted")
 
       SignalDatabase.recipients.bulkUpdatedRegisteredStatus(aciMap, inactiveIds)
@@ -213,7 +209,7 @@ object ContactDiscoveryRefreshV2 {
       val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
       stopwatch.split("get-ids")
 
-      val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
+      val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removePossiblyRegisteredButUnlisted()
       stopwatch.split("registered-but-unlisted")
 
       SignalDatabase.recipients.bulkUpdatedRegisteredStatusV2(registeredIds, inactiveIds)
@@ -230,42 +226,19 @@ object ContactDiscoveryRefreshV2 {
     return SignalDatabase.threads.hasThread(recipient.id) || (recipient.hasServiceId() && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
   }
 
+  /**
+   * If an account is unlisted, it won't come back in the CDS response. So just because we're missing a entry doesn't mean they've become unregistered.
+   * This function removes people from the list that both have a serviceId and some history of communication. We consider this a good hueristic for
+   * "maybe this person just removed themselves from CDS". We'll rely on profile fetches that occur during chat opens to check registered status and clear
+   * actually-unregistered users out.
+   */
   @WorkerThread
-  private fun Set<RecipientId>.removeRegisteredButUnlisted(): Set<RecipientId> {
-    val futures: List<Future<Pair<RecipientId, Boolean?>>> = Recipient.resolvedList(this)
+  private fun Set<RecipientId>.removePossiblyRegisteredButUnlisted(): Set<RecipientId> {
+    return this - Recipient.resolvedList(this)
       .filter { it.hasServiceId() }
       .filter { hasCommunicatedWith(it) }
-      .map {
-        SignalExecutors.UNBOUNDED.submit(
-          Callable {
-            try {
-              it.id to ApplicationDependencies.getSignalServiceAccountManager().isIdentifierRegistered(it.requireServiceId())
-            } catch (e: IOException) {
-              it.id to null
-            }
-          }
-        )
-      }
-
-    val registeredIds: MutableSet<RecipientId> = mutableSetOf()
-    val retryIds: MutableSet<RecipientId> = mutableSetOf()
-
-    for (future in futures) {
-      val (id, registered) = future.get()
-      if (registered == null) {
-        retryIds += id
-        registeredIds += id
-      } else if (registered) {
-        registeredIds += id
-      }
-    }
-
-    if (retryIds.isNotEmpty()) {
-      Log.w(TAG, "Failed to determine registered status of ${retryIds.size} recipients. Assuming registered, but enqueuing profile jobs to check later.")
-      RetrieveProfileJob.enqueue(retryIds)
-    }
-
-    return this - registeredIds
+      .map { it.id }
+      .toSet()
   }
 
   private fun Set<String>.toE164s(context: Context): Set<String> {
