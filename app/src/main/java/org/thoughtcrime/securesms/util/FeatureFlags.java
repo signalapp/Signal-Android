@@ -94,7 +94,6 @@ public final class FeatureFlags {
   private static final String CAMERAX_MIXED_MODEL_BLOCKLIST     = "android.cameraXMixedModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
-  public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.3";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   public  static final String GOOGLE_PAY_DISABLED_REGIONS       = "global.donations.gpayDisabledRegions";
   public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
@@ -155,7 +154,6 @@ public final class FeatureFlags {
       CAMERAX_MIXED_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
       HIDE_CONTACTS,
-      CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       GOOGLE_PAY_DISABLED_REGIONS,
       CREDIT_CARD_DISABLED_REGIONS,
@@ -229,7 +227,6 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
       EDIT_MESSAGE_SEND,
@@ -514,13 +511,6 @@ public final class FeatureFlags {
    */
   public static boolean hideContacts() {
     return getBoolean(HIDE_CONTACTS, false);
-  }
-
-  /**
-   * Whether or not we should allow credit card payments for donations
-   */
-  public static boolean creditCardPayments() {
-    return getBoolean(CREDIT_CARD_PAYMENTS, Environment.IS_STAGING);
   }
 
   /** Whether client supports sending a request to another to activate payments */
