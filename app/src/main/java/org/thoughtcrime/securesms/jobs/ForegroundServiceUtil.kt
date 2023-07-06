@@ -103,6 +103,22 @@ object ForegroundServiceUtil {
   }
 
   /**
+   * Identical to [startWhenCapable], but we swallow the error.
+   *
+   * @param timeout The maximum time you're willing to wait to create the conditions for a foreground service to start.
+   */
+  @JvmOverloads
+  @JvmStatic
+  @WorkerThread
+  fun tryToStartWhenCapable(context: Context, intent: Intent, timeout: Long = DEFAULT_TIMEOUT) {
+    return try {
+      startWhenCapable(context, intent, timeout)
+    } catch (e: UnableToStartException) {
+      Log.w(TAG, "Failed to start foreground service", e)
+    }
+  }
+
+  /**
    * Does its best to start a foreground service with your task name, including possibly blocking and waiting until we are able to.
    * However, it is always possible that the attempt will fail, so always handle the [UnableToStartException].
    */

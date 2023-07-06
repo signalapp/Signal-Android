@@ -80,22 +80,22 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
           .putExtra(EXTRA_RECIPIENT_ID, recipientId)
           .putExtra(EXTRA_IS_VIDEO_CALL, isVideoCall);
 
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, intent, FOREGROUND_SERVICE_TIMEOUT);
+    ForegroundServiceUtil.tryToStartWhenCapable(context, intent, FOREGROUND_SERVICE_TIMEOUT);
   }
 
   public static void denyCall(@NonNull Context context) {
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, denyCallIntent(context), FOREGROUND_SERVICE_TIMEOUT);
+    ForegroundServiceUtil.tryToStartWhenCapable(context, denyCallIntent(context), FOREGROUND_SERVICE_TIMEOUT);
   }
 
   public static void hangup(@NonNull Context context) {
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, hangupIntent(context), FOREGROUND_SERVICE_TIMEOUT);
+    ForegroundServiceUtil.tryToStartWhenCapable(context, hangupIntent(context), FOREGROUND_SERVICE_TIMEOUT);
   }
 
   public static void stop(@NonNull Context context) {
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(ACTION_STOP);
 
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, intent, FOREGROUND_SERVICE_TIMEOUT);
+    ForegroundServiceUtil.tryToStartWhenCapable(context, intent, FOREGROUND_SERVICE_TIMEOUT);
   }
 
   public static @NonNull Intent denyCallIntent(@NonNull Context context) {
@@ -110,7 +110,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(ACTION_SEND_AUDIO_COMMAND)
           .putExtra(EXTRA_AUDIO_COMMAND, command);
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, intent, FOREGROUND_SERVICE_TIMEOUT);
+    ForegroundServiceUtil.tryToStartWhenCapable(context, intent, FOREGROUND_SERVICE_TIMEOUT);
   }
 
   public static void changePowerButtonReceiver(@NonNull Context context, boolean register) {
@@ -118,7 +118,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     intent.setAction(ACTION_CHANGE_POWER_BUTTON)
           .putExtra(EXTRA_ENABLED, register);
 
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, intent, FOREGROUND_SERVICE_TIMEOUT);
+    ForegroundServiceUtil.tryToStartWhenCapable(context, intent, FOREGROUND_SERVICE_TIMEOUT);
   }
 
   @Override
