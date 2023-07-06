@@ -7,14 +7,13 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
-import org.thoughtcrime.securesms.util.FeatureFlags
 
 class ConversationFilterBehavior(context: Context, attributeSet: AttributeSet) : AppBarLayout.Behavior(context, attributeSet) {
 
   var callback: Callback? = null
 
   override fun onStartNestedScroll(parent: CoordinatorLayout, child: AppBarLayout, directTargetChild: View, target: View, nestedScrollAxes: Int, type: Int): Boolean {
-    if (type == ViewCompat.TYPE_NON_TOUCH || !FeatureFlags.chatFilters() || callback?.canStartNestedScroll() == false) {
+    if (type == ViewCompat.TYPE_NON_TOUCH || callback?.canStartNestedScroll() == false) {
       return false
     } else {
       return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type)

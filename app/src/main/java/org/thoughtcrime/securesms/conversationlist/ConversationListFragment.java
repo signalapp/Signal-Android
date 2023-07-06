@@ -568,8 +568,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     ConversationFilterRequest request             = viewModel.getConversationFilterRequest();
     boolean                   isChatFilterEnabled = request != null && request.getFilter() == ConversationFilter.UNREAD;
 
-    menu.findItem(R.id.menu_filter_unread_chats).setVisible(FeatureFlags.chatFilters() && !isChatFilterEnabled);
-    menu.findItem(R.id.menu_clear_unread_filter).setVisible(FeatureFlags.chatFilters() && isChatFilterEnabled);
+    menu.findItem(R.id.menu_filter_unread_chats).setVisible(!isChatFilterEnabled);
+    menu.findItem(R.id.menu_clear_unread_filter).setVisible(isChatFilterEnabled);
   }
 
   @Override

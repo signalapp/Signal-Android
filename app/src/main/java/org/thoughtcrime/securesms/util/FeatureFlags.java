@@ -100,7 +100,6 @@ public final class FeatureFlags {
   public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
   public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
-  private static final String CHAT_FILTERS                      = "android.chat.filters.3";
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
@@ -162,7 +161,6 @@ public final class FeatureFlags {
       CREDIT_CARD_DISABLED_REGIONS,
       PAYPAL_DISABLED_REGIONS,
       CDS_HARD_LIMIT,
-      CHAT_FILTERS,
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
@@ -556,13 +554,6 @@ public final class FeatureFlags {
    */
   public static int cdsHardLimit() {
     return getInteger(CDS_HARD_LIMIT, 50_000);
-  }
-
-  /**
-   * Enables chat filters. Note that this UI is incomplete.
-   */
-  public static boolean chatFilters() {
-    return getBoolean(CHAT_FILTERS, false);
   }
 
   /**
