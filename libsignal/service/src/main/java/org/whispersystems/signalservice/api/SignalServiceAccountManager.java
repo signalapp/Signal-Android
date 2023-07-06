@@ -626,7 +626,7 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Map<String, Object> getRemoteConfig() throws IOException {
+  public RemoteConfigResult getRemoteConfig() throws IOException {
     RemoteConfigResponse response = this.pushServiceSocket.getRemoteConfig();
     Map<String, Object>  out      = new HashMap<>();
 
@@ -634,7 +634,7 @@ public class SignalServiceAccountManager {
       out.put(config.getName(), config.getValue() != null ? config.getValue() : config.isEnabled());
     }
 
-    return out;
+    return new RemoteConfigResult(out, response.getServerEpochTime());
   }
 
   public String getAccountDataReport() throws IOException {

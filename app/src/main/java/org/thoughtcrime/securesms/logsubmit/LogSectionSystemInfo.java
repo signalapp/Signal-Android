@@ -85,6 +85,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Emoji Version     : ").append(getEmojiVersionString(context)).append("\n");
     builder.append("RenderBigEmoji    : ").append(FontUtil.canRenderEmojiAtFontSize(1024)).append("\n");
     builder.append("DontKeepActivities: ").append(getDontKeepActivities(context)).append("\n");
+    builder.append("Server Time Offset: ").append(SignalStore.misc().getLastKnownServerTimeOffset()).append(" ms (last updated: ").append(SignalStore.misc().getLastKnownServerTimeOffsetUpdateTime()).append(")").append("\n");
     builder.append("Telecom           : ").append(AndroidTelecomUtil.getTelecomSupported()).append("\n");
     builder.append("User-Agent        : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
     builder.append("App               : ");

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
+import org.whispersystems.signalservice.api.RemoteConfigResult;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -293,8 +294,8 @@ public final class FeatureFlags {
 
   @WorkerThread
   public static void refreshSync() throws IOException {
-    Map<String, Object> config = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
-    FeatureFlags.update(config);
+    RemoteConfigResult result = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
+    FeatureFlags.update(result.getConfig());
   }
 
   public static synchronized void update(@NonNull Map<String, Object> config) {
