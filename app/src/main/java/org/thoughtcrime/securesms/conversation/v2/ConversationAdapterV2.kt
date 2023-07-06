@@ -72,13 +72,16 @@ class ConversationAdapterV2(
   override val selectedItems: Set<MultiselectPart>
     get() = _selected.toSet()
 
-  private var searchQuery: String? = null
+  override var searchQuery: String? = null
   private var inlineContent: ConversationMessage? = null
 
   private var recordToPulse: ConversationMessage? = null
   private var pulseRequest: ConversationAdapterBridge.PulseRequest? = null
 
   private val condensedMode: ConversationItemDisplayMode? = null
+
+  // TODO [cfv2]
+  override val isMessageRequestAccepted: Boolean = true
 
   init {
     registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_thread_header)

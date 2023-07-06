@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.payment.PaymentMessageView;
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement;
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationBodyUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -1509,7 +1510,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void linkifyMessageBody(@NonNull Spannable messageBody,
                                   boolean shouldLinkifyAllLinks)
   {
-    linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener);
+    V2ConversationBodyUtil.linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener);
 
     if (conversationMessage.hasStyleLinks()) {
       for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
@@ -1529,29 +1530,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
-
-  @VisibleForTesting
-  static void linkifyUrlLinks(@NonNull Spannable messageBody, boolean shouldLinkifyAllLinks, @NonNull UrlClickHandler urlClickHandler) {
-    int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-    boolean hasLinks    = LinkifyCompat.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
-
-    if (hasLinks) {
-      Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
-            .filterNot(url -> LinkUtil.isLegalUrl(url.getURL()))
-            .forEach(messageBody::removeSpan);
-
-      URLSpan[] urlSpans = messageBody.getSpans(0, messageBody.length(), URLSpan.class);
-
-      for (URLSpan urlSpan : urlSpans) {
-        int     start = messageBody.getSpanStart(urlSpan);
-        int     end   = messageBody.getSpanEnd(urlSpan);
-        URLSpan span  = new InterceptableLongClickCopyLinkSpan(urlSpan.getURL(), urlClickHandler);
-        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        messageBody.removeSpan(urlSpan);
-      }
-    }
-  }
-
   private void setStatusIcons(MessageRecord messageRecord, boolean hasWallpaper) {
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
 

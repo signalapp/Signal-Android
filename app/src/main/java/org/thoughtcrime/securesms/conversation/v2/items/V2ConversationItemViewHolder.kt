@@ -5,15 +5,30 @@
 
 package org.thoughtcrime.securesms.conversation.v2.items
 
+import android.graphics.Color
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.style.BackgroundColorSpan
+import android.text.style.CharacterStyle
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.URLSpan
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
+import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
@@ -23,12 +38,22 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElemen
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
+import org.thoughtcrime.securesms.util.LongClickMovementMethod
+import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
+import org.thoughtcrime.securesms.util.SearchUtil
+import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import org.thoughtcrime.securesms.util.ThemeUtil
+import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
+import org.thoughtcrime.securesms.util.hasExtraText
 import org.thoughtcrime.securesms.util.hasNoBubble
 import org.thoughtcrime.securesms.util.isScheduled
 import org.thoughtcrime.securesms.util.visible
@@ -52,6 +77,11 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   private val binding: V2ConversationItemTextOnlyBindingBridge,
   private val conversationContext: V2ConversationContext
 ) : V2BaseViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement {
+
+  companion object {
+    private val STYLE_FACTORY = StyleFactory { arrayOf<CharacterStyle>(BackgroundColorSpan(Color.YELLOW), ForegroundColorSpan(Color.BLACK)) }
+    private const val CONDENSED_MODE_MAX_LINES = 3
+  }
 
   private var messageId: Long = Long.MAX_VALUE
 
@@ -107,6 +137,17 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
       true
     }
+
+    binding.conversationItemBody.isClickable = false
+    binding.conversationItemBody.isFocusable = false
+    binding.conversationItemBody.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().messageFontSize.toFloat())
+    binding.conversationItemBody.movementMethod = LongClickMovementMethod.getInstance(context)
+
+    if (binding.isIncoming) {
+      binding.conversationItemBody.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) R.color.core_grey_60 else R.color.core_grey_20))
+    } else {
+      binding.conversationItemBody.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
+    }
   }
 
   override fun bind(model: Model) {
@@ -120,13 +161,12 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
       adapterPosition = bindingAdapterPosition
     )
 
-    binding.conversationItemBody.setTextColor(themeDelegate.getBodyTextColor(conversationMessage))
     shapeDelegate.bodyBubble.fillColor = themeDelegate.getBodyBubbleColor(conversationMessage)
 
-    binding.conversationItemBody.text = conversationMessage.getDisplayBody(context)
     binding.conversationItemBodyWrapper.background = shapeDelegate.bodyBubble
     binding.conversationItemReply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
 
+    presentBody()
     presentDate(shape)
     presentDeliveryStatus(shape)
     presentFooterBackground(shape)
@@ -232,6 +272,99 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private fun MessageRecord.buildMessageId(): Long {
     return if (isMms) -id else id
+  }
+
+  private fun presentBody() {
+    binding.conversationItemBody.setTextColor(themeDelegate.getBodyTextColor(conversationMessage))
+    binding.conversationItemBody.setLinkTextColor(themeDelegate.getBodyTextColor(conversationMessage))
+
+    val record = conversationMessage.messageRecord
+    var styledText: Spannable = conversationMessage.getDisplayBody(context)
+    if (conversationContext.isMessageRequestAccepted) {
+      linkifyMessageBody(styledText)
+    }
+
+    styledText = SearchUtil.getHighlightedSpan(Locale.getDefault(), STYLE_FACTORY, styledText, conversationContext.searchQuery, SearchUtil.STRICT)
+    if (record.hasExtraText()) {
+      binding.conversationItemBody.setOverflowText(getLongMessageSpan())
+    } else {
+      binding.conversationItemBody.setOverflowText(null)
+    }
+
+    if (isContentCondensed()) {
+      binding.conversationItemBody.maxLines = CONDENSED_MODE_MAX_LINES
+    } else {
+      binding.conversationItemBody.maxLines = Integer.MAX_VALUE
+    }
+
+    binding.conversationItemBody.text = StringUtil.trim(styledText)
+  }
+
+  private fun linkifyMessageBody(messageBody: Spannable) {
+    V2ConversationBodyUtil.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked)
+
+    if (conversationMessage.hasStyleLinks()) {
+      messageBody.getSpans(0, messageBody.length, PlaceholderURLSpan::class.java).forEach { placeholder ->
+        val start = messageBody.getSpanStart(placeholder)
+        val end = messageBody.getSpanEnd(placeholder)
+        val span: URLSpan = InterceptableLongClickCopyLinkSpan(
+          placeholder.value,
+          conversationContext.clickListener::onUrlClicked,
+          ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
+          false
+        )
+
+        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+      }
+    }
+
+    MentionAnnotation.getMentionAnnotations(messageBody).forEach { annotation ->
+      messageBody.setSpan(
+        MentionClickableSpan(RecipientId.from(annotation.value)),
+        messageBody.getSpanStart(annotation),
+        messageBody.getSpanEnd(annotation),
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+      )
+    }
+  }
+
+  private fun getLongMessageSpan(): CharSequence {
+    val message = context.getString(R.string.ConversationItem_read_more)
+    val span = SpannableStringBuilder(message)
+
+    span.setSpan(ReadMoreSpan(), 0, span.length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+    return span
+  }
+
+  private inner class MentionClickableSpan(
+    private val recipientId: RecipientId
+  ) : ClickableSpan() {
+    override fun onClick(widget: View) {
+      VibrateUtil.vibrateTick(context)
+      conversationContext.clickListener.onGroupMemberClicked(recipientId, conversationMessage.threadRecipient.requireGroupId())
+    }
+
+    override fun updateDrawState(ds: TextPaint) = Unit
+  }
+
+  private inner class ReadMoreSpan : ClickableSpan() {
+    override fun onClick(widget: View) {
+      if (conversationContext.selectedItems.isEmpty()) {
+        conversationContext.clickListener.onMoreTextClicked(
+          conversationMessage.threadRecipient.id,
+          conversationMessage.messageRecord.id,
+          conversationMessage.messageRecord.isMms
+        )
+      }
+    }
+
+    override fun updateDrawState(ds: TextPaint) {
+      ds.typeface = Typeface.DEFAULT_BOLD
+    }
+  }
+
+  private fun isContentCondensed(): Boolean {
+    return conversationContext.displayMode == ConversationItemDisplayMode.CONDENSED && conversationContext.getPreviousMessage(bindingAdapterPosition) == null
   }
 
   private fun presentFooterExpiry(shape: V2ConversationItemShape.MessageShape) {
