@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks
 
 import androidx.annotation.WorkerThread
+import androidx.compose.ui.unit.IntOffset
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
@@ -17,92 +18,17 @@ class QrCodeData(
   private val bits: BitSet
 ) {
 
-  fun get(x: Int, y: Int): Boolean {
-    return bits.get(y * width + x)
-  }
-
   /**
-   * Returns the position of the "eyes" of the QR code -- the big squares in the three corners.
+   * Returns true if the bit in the QR code is "on" for the specified position, false if it is "off" or out of bounds.
    */
-  fun eyes(): List<Eye> {
-    val eyes: MutableList<Eye> = mutableListOf()
-
-    val size: Int = getPossibleEyeSize()
-
-    // Top left
-    if (
-      horizontalLineExists(0, 0, size) &&
-      horizontalLineExists(0, size - 1, size) &&
-      verticalLineExists(0, 0, size) &&
-      verticalLineExists(size - 1, 0, size)
-    ) {
-      eyes += Eye(
-        position = 0 to 0,
-        size = size
-      )
+  fun get(position: IntOffset): Boolean {
+    val (x, y) = position
+    return if (x < 0 || y < 0 || x >= width || y >= height) {
+      false
+    } else {
+      bits.get(y * width + x)
     }
-
-    // Bottom left
-    if (
-      horizontalLineExists(0, height - size, size) &&
-      horizontalLineExists(0, size - 1, size) &&
-      verticalLineExists(0, height - size, size) &&
-      verticalLineExists(size - 1, height - size, size)
-    ) {
-      eyes += Eye(
-        position = 0 to height - size,
-        size = size
-      )
-    }
-
-    // Top right
-    if (
-      horizontalLineExists(width - size, 0, size) &&
-      horizontalLineExists(width - size, size - 1, size) &&
-      verticalLineExists(width - size, 0, size) &&
-      verticalLineExists(width - 1, 0, size)
-    ) {
-      eyes += Eye(
-        position = width - size to 0,
-        size = size
-      )
-    }
-
-    return eyes
   }
-
-  private fun getPossibleEyeSize(): Int {
-    var x = 0
-
-    while (get(x, 0)) {
-      x++
-    }
-
-    return x
-  }
-
-  private fun horizontalLineExists(x: Int, y: Int, length: Int): Boolean {
-    for (p in x until x + length) {
-      if (!get(p, y)) {
-        return false
-      }
-    }
-    return true
-  }
-
-  private fun verticalLineExists(x: Int, y: Int, length: Int): Boolean {
-    for (p in y until y + length) {
-      if (!get(x, p)) {
-        return false
-      }
-    }
-    return true
-  }
-
-  data class Eye(
-    val position: Pair<Int, Int>,
-    val size: Int
-  )
 
   companion object {
 

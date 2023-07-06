@@ -74,7 +74,7 @@ fun QrCodeBadge(data: QrCodeData?, colorScheme: UsernameQrCodeColorScheme, usern
         if (data != null) {
           QrCode(
             data = data,
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(16.dp),
             foregroundColor = foregroundColor,
             backgroundColor = Color.White
           )
