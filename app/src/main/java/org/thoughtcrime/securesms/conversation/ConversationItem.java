@@ -2122,6 +2122,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return getSnapshotProjections(coordinateRoot, clipOutMedia, true);
   }
 
+  @Override
   public @NonNull ProjectionList getSnapshotProjections(@NonNull ViewGroup coordinateRoot, boolean clipOutMedia, boolean outgoingOnly) {
     colorizerProjections.clear();
 

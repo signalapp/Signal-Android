@@ -16,9 +16,9 @@ import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
-import org.thoughtcrime.securesms.conversation.colors.Colorizable
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -51,7 +51,7 @@ abstract class V2BaseViewHolder<Model : MappingModel<Model>>(
 class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   private val binding: V2ConversationItemTextOnlyBindingBridge,
   private val conversationContext: V2ConversationContext
-) : V2BaseViewHolder<Model>(binding.root, conversationContext), Colorizable, InteractiveConversationElement {
+) : V2BaseViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement {
 
   private var messageId: Long = Long.MAX_VALUE
 
@@ -66,6 +66,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   )
 
   override lateinit var conversationMessage: ConversationMessage
+
   override val root: ViewGroup = binding.root
   override val bubbleView: View = binding.conversationItemBodyWrapper
 
@@ -96,18 +97,21 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
           conversationMessage.messageRecord.isMms
         )
     }
+
+    binding.root.setOnClickListener {
+      conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+    }
+
+    binding.root.setOnLongClickListener {
+      conversationContext.clickListener.onItemLongClick(binding.root, getMultiselectPartForLatestTouch())
+
+      true
+    }
   }
 
   override fun bind(model: Model) {
     check(model is ConversationMessageElement)
     conversationMessage = model.conversationMessage
-
-    itemView.setOnClickListener(null)
-    itemView.setOnLongClickListener {
-      conversationContext.clickListener.onItemLongClick(itemView, MultiselectPart.Message(conversationMessage))
-
-      true
-    }
 
     val shape = shapeDelegate.setMessageShape(
       isLtr = itemView.layoutDirection == View.LAYOUT_DIRECTION_LTR,
@@ -140,6 +144,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   override fun getAdapterPosition(recyclerView: RecyclerView): Int = bindingAdapterPosition
 
   override fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean): ProjectionList {
+    return getSnapshotProjections(coordinateRoot, clipOutMedia, true)
+  }
+
+  override fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean, outgoingOnly: Boolean): ProjectionList {
     projections.clear()
 
     projections.add(
@@ -178,6 +186,49 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
     return projections
   }
+
+  override fun getTopBoundaryOfMultiselectPart(multiselectPart: MultiselectPart): Int {
+    return root.top
+  }
+
+  override fun getBottomBoundaryOfMultiselectPart(multiselectPart: MultiselectPart): Int {
+    return root.bottom
+  }
+
+  override fun getMultiselectPartForLatestTouch(): MultiselectPart {
+    return conversationMessage.multiselectCollection.asSingle().singlePart
+  }
+
+  override fun getHorizontalTranslationTarget(): View? {
+    return if (conversationMessage.messageRecord.isOutgoing) {
+      null
+    } else if (conversationMessage.threadRecipient.isGroup) {
+      binding.senderPhoto
+    } else {
+      binding.conversationItemBodyWrapper
+    }
+  }
+
+  override fun hasNonSelectableMedia(): Boolean = false
+  override fun showProjectionArea() = Unit
+
+  override fun hideProjectionArea() = Unit
+
+  override fun getGiphyMp4PlayableProjection(coordinateRoot: ViewGroup): Projection {
+    return Projection
+      .relativeToParent(
+        coordinateRoot,
+        binding.conversationItemBodyWrapper,
+        shapeDelegate.corners
+      )
+      .translateY(root.translationY)
+      .translateX(binding.conversationItemBodyWrapper.translationX)
+      .translateX(root.translationX)
+  }
+
+  override fun canPlayContent(): Boolean = false
+
+  override fun shouldProjectContent(): Boolean = false
 
   private fun MessageRecord.buildMessageId(): Long {
     return if (isMms) -id else id

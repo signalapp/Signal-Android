@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizable
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationUpdate
@@ -38,7 +39,6 @@ import org.thoughtcrime.securesms.conversation.v2.items.bridge
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
@@ -315,9 +315,11 @@ class ConversationAdapterV2(
     }
   }
 
-  private abstract inner class ConversationViewHolder<T>(itemView: View) : MappingViewHolder<T>(itemView), GiphyMp4Playable, Colorizable {
+  private abstract inner class ConversationViewHolder<T>(itemView: View) : MappingViewHolder<T>(itemView), Multiselectable, Colorizable {
     val bindable: BindableConversationItem
       get() = itemView as BindableConversationItem
+
+    override val root: ViewGroup = bindable.root
 
     protected val previousMessage: Optional<MessageRecord>
       get() = getConversationMessage(bindingAdapterPosition + 1)?.messageRecord.toOptional()
@@ -327,6 +329,9 @@ class ConversationAdapterV2(
 
     protected val displayMode: ConversationItemDisplayMode
       get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+
+    override val conversationMessage: ConversationMessage
+      get() = bindable.conversationMessage
 
     init {
       itemView.setOnClickListener {
@@ -370,9 +375,17 @@ class ConversationAdapterV2(
       return bindable.shouldProjectContent()
     }
 
-    override fun getColorizerProjections(coordinateRoot: ViewGroup): ProjectionList {
-      return bindable.getColorizerProjections(coordinateRoot)
-    }
+    override fun hasNonSelectableMedia(): Boolean = bindable.hasNonSelectableMedia()
+
+    override fun getColorizerProjections(coordinateRoot: ViewGroup): ProjectionList = bindable.getColorizerProjections(coordinateRoot)
+
+    override fun getTopBoundaryOfMultiselectPart(multiselectPart: MultiselectPart): Int = bindable.getTopBoundaryOfMultiselectPart(multiselectPart)
+
+    override fun getBottomBoundaryOfMultiselectPart(multiselectPart: MultiselectPart): Int = bindable.getBottomBoundaryOfMultiselectPart(multiselectPart)
+
+    override fun getHorizontalTranslationTarget(): View? = bindable.getHorizontalTranslationTarget()
+
+    override fun getMultiselectPartForLatestTouch(): MultiselectPart = bindable.getMultiselectPartForLatestTouch()
   }
 
   inner class ThreadHeaderViewHolder(itemView: View) : MappingViewHolder<ThreadHeader>(itemView) {

@@ -254,6 +254,11 @@ public final class ConversationUpdateItem extends FrameLayout
     return background;
   }
 
+  @Override
+  public @NonNull ViewGroup getRoot() {
+    return this;
+  }
+
   static final class RecipientObserverManager {
 
     private final Observer<Recipient> recipientObserver;

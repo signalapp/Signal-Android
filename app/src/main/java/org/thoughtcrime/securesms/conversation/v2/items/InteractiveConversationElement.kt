@@ -42,4 +42,6 @@ interface InteractiveConversationElement {
    * projection list. This will prevent artifacts when we draw the bitmap.
    */
   fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean): ProjectionList
+
+  fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean, outgoingOnly: Boolean): ProjectionList
 }
