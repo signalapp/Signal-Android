@@ -492,7 +492,7 @@ class ConversationFragment :
 
     val conversationToolbarOnScrollHelper = ConversationToolbarOnScrollHelper(
       requireActivity(),
-      binding.toolbar,
+      binding.toolbarBackground,
       viewModel::wallpaperSnapshot
     )
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
