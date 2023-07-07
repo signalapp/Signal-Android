@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 
@@ -30,6 +32,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
  * don't have to worry about view hierarchies or anything.
  */
 public class TooltipPopup extends PopupWindow {
+  private static final String TAG = Log.tag(TooltipPopup.class);
 
   public static final int POSITION_ABOVE = 0;
   public static final int POSITION_BELOW = 1;
@@ -114,7 +117,6 @@ public class TooltipPopup extends PopupWindow {
   private void show() {
     if (anchor.getWidth() == 0 && anchor.getHeight() == 0) {
       anchor.post(this::show);
-      return;
     }
 
     getContentView().measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
@@ -185,7 +187,11 @@ public class TooltipPopup extends PopupWindow {
       }
     });
 
-    showAsDropDown(anchor, xoffset, yoffset);
+    try {
+      showAsDropDown(anchor, xoffset, yoffset);
+    } catch (WindowManager.BadTokenException e) {
+      Log.w(TAG, "Failed to display popup, window disappeared.", e);
+    }
   }
 
   private void onLayout(@NonNull Runnable runnable) {
