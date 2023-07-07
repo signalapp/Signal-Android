@@ -211,9 +211,11 @@ public final class MediaOverviewPageFragment extends Fragment
   @Override
   public void onDestroy() {
     super.onDestroy();
-    int childCount = recyclerView.getChildCount();
-    for (int i = 0; i < childCount; i++) {
-      adapter.detach(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)));
+    if (recyclerView != null) {
+      int childCount = recyclerView.getChildCount();
+      for (int i = 0; i < childCount; i++) {
+        adapter.detach(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)));
+      }
     }
   }
 
