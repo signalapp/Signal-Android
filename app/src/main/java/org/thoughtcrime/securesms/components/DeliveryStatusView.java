@@ -18,6 +18,14 @@ import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+/**
+ * View responsible for displaying the delivery status (NONE, PENDING, SENT, DELIVERED, READ) of a given outgoing message.
+ * <p>
+ * This view manipulates its start / end padding to properly place the corresponding icon, and also performs a rotation
+ * animation on itself in the pending mode. Thus, users should be aware that padding values set in XML will be overwritten.
+ * <p>
+ * If you need to control the horizontal spacing of this view, utilize margins instead.
+ */
 public class DeliveryStatusView extends AppCompatImageView {
 
   private static final String STATE_KEY = "DeliveryStatusView.STATE";
