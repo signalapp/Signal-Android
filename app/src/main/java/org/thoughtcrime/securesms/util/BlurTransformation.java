@@ -20,6 +20,7 @@ import java.util.Locale;
 
 public final class BlurTransformation extends BitmapTransformation {
 
+  private static final int  VERSION = 1;
   public static final float MAX_RADIUS = 25f;
 
   private final RenderScript rs;
@@ -58,6 +59,6 @@ public final class BlurTransformation extends BitmapTransformation {
 
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-    messageDigest.update(String.format(Locale.US, "blur-%f-%f", bitmapScaleFactor, blurRadius).getBytes());
+    messageDigest.update(String.format(Locale.US, "blur-%f-%f-%d", bitmapScaleFactor, blurRadius, VERSION).getBytes());
   }
 }
