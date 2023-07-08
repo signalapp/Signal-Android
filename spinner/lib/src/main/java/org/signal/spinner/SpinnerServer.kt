@@ -144,7 +144,7 @@ internal class SpinnerServer(
     }
 
     val query = "select * from $table limit $pageSize offset ${pageSize * pageIndex}"
-    val queryResult = dbConfig.db().query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers) }
+    val queryResult = dbConfig.db().query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers, table = table) }
 
     return renderTemplate(
       "browse",
@@ -264,14 +264,14 @@ internal class SpinnerServer(
     )
   }
 
-  private fun Cursor.toQueryResult(queryStartTimeNanos: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
+  private fun Cursor.toQueryResult(queryStartTimeNanos: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList(), table: String? = null): QueryResult {
     val numColumns = this.columnCount
     val columns = mutableListOf<String>()
     val transformers = mutableListOf<ColumnTransformer>()
 
     for (i in 0 until numColumns) {
       val columnName = getColumnName(i)
-      val customTransformer: ColumnTransformer? = columnTransformers.find { it.matches(null, columnName) }
+      val customTransformer: ColumnTransformer? = columnTransformers.find { it.matches(table, columnName) }
 
       columns += if (customTransformer != null) {
         "$columnName *"
