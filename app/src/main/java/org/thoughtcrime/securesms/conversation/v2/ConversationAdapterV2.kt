@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncoming
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
@@ -91,24 +92,36 @@ class ConversationAdapterV2(
       ConversationUpdateViewHolder(view)
     }
 
-    registerFactory(OutgoingTextOnly::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_outgoing, parent, false)
-      V2TextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
-    }
-
     registerFactory(OutgoingMedia::class.java) { parent ->
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_multimedia, parent, false)
       OutgoingMediaViewHolder(view)
     }
 
-    registerFactory(IncomingTextOnly::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_incoming, parent, false)
-      V2TextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
-    }
-
     registerFactory(IncomingMedia::class.java) { parent ->
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
       IncomingMediaViewHolder(view)
+    }
+
+    if (SignalStore.internalValues().useConversationItemV2()) {
+      registerFactory(OutgoingTextOnly::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_outgoing, parent, false)
+        V2TextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
+      }
+
+      registerFactory(IncomingTextOnly::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_incoming, parent, false)
+        V2TextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
+      }
+    } else {
+      registerFactory(OutgoingTextOnly::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_text_only, parent, false)
+        OutgoingTextOnlyViewHolder(view)
+      }
+
+      registerFactory(IncomingTextOnly::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_text_only, parent, false)
+        IncomingTextOnlyViewHolder(view)
+      }
     }
   }
 
@@ -272,8 +285,54 @@ class ConversationAdapterV2(
     }
   }
 
+  private inner class OutgoingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<OutgoingTextOnly>(itemView) {
+    override fun bind(model: OutgoingTextOnly) {
+      bindable.setEventListener(clickListener)
+      bindable.bind(
+        lifecycleOwner,
+        model.conversationMessage,
+        previousMessage,
+        nextMessage,
+        glideRequests,
+        Locale.getDefault(),
+        _selected,
+        model.conversationMessage.threadRecipient,
+        searchQuery,
+        false,
+        hasWallpaper && displayMode.displayWallpaper(),
+        true, // isMessageRequestAccepted,
+        model.conversationMessage == inlineContent,
+        colorizer,
+        displayMode
+      )
+    }
+  }
+
   private inner class OutgoingMediaViewHolder(itemView: View) : ConversationViewHolder<OutgoingMedia>(itemView) {
     override fun bind(model: OutgoingMedia) {
+      bindable.setEventListener(clickListener)
+      bindable.bind(
+        lifecycleOwner,
+        model.conversationMessage,
+        previousMessage,
+        nextMessage,
+        glideRequests,
+        Locale.getDefault(),
+        _selected,
+        model.conversationMessage.threadRecipient,
+        searchQuery,
+        false,
+        hasWallpaper && displayMode.displayWallpaper(),
+        true, // isMessageRequestAccepted,
+        model.conversationMessage == inlineContent,
+        colorizer,
+        displayMode
+      )
+    }
+  }
+
+  private inner class IncomingTextOnlyViewHolder(itemView: View) : ConversationViewHolder<IncomingTextOnly>(itemView) {
+    override fun bind(model: IncomingTextOnly) {
       bindable.setEventListener(clickListener)
       bindable.bind(
         lifecycleOwner,

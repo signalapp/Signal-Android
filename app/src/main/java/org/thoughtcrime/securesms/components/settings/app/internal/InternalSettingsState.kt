@@ -22,5 +22,6 @@ data class InternalSettingsState(
   val disableStorageService: Boolean,
   val canClearOnboardingState: Boolean,
   val pnpInitialized: Boolean,
-  val useConversationFragmentV2: Boolean
+  val useConversationFragmentV2: Boolean,
+  val useConversationItemV2: Boolean
 )
