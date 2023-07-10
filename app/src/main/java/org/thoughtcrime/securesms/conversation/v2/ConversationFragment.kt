@@ -180,6 +180,7 @@ import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallVi
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
+import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
@@ -551,7 +552,20 @@ class ConversationFragment :
 
   override fun onPause() {
     super.onPause()
-    ApplicationDependencies.getMessageNotifier().clearVisibleThread()
+
+    if (!args.conversationScreenType.isInBubble) {
+      ApplicationDependencies.getMessageNotifier().clearVisibleThread()
+    }
+
+    if (activity?.isFinishing == true) {
+      activity?.overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_end)
+    }
+
+    inputPanel.onPause()
+
+    // todo [cfv2] setLastSeen(System.currentTimeMillis())
+    // todo [cfv2] markLastSeen()
+
     motionEventRelay.setDrain(null)
     EventBus.getDefault().unregister(this)
   }
@@ -848,6 +862,15 @@ class ConversationFragment :
     draftViewModel.loadShareOrDraftData()
       .subscribeBy { data -> handleShareOrDraftData(data) }
       .addTo(disposables)
+
+    disposables.add(
+      draftViewModel
+        .state
+        .subscribe {
+          inputPanel.voiceNoteDraft = it.voiceNoteDraft
+          updateToggleButtonState()
+        }
+    )
 
     initializeSearch()
     initializeLinkPreviews()
@@ -1201,12 +1224,13 @@ class ConversationFragment :
     when (data) {
       is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
       is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = true)
+      is ShareOrDraftData.SetText -> composeText.setDraftText(data.text)
+      is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetEditMessage -> {
         composeText.setDraftText(data.draftText)
         inputPanel.enterEditMessageMode(GlideApp.with(this), data.messageEdit, true)
       }
 
-      is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetMedia -> {
         composeText.setDraftText(data.text)
         setMedia(data.media, data.mediaType)
@@ -1217,7 +1241,6 @@ class ConversationFragment :
         handleReplyToMessage(data.quote)
       }
 
-      is ShareOrDraftData.SetText -> composeText.setDraftText(data.text)
       is ShareOrDraftData.StartSendMedia -> {
         val recipientId = viewModel.recipientSnapshot?.id ?: return
         conversationActivityResultContracts.launchMediaEditor(data.mediaList, recipientId, data.text)
@@ -1541,6 +1564,19 @@ class ConversationFragment :
   ) {
     if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
       return
+    }
+
+    if (inputPanel.isRecordingInLockedMode) {
+      inputPanel.releaseRecordingLock()
+      return
+    }
+
+    if (slideDeck == null) {
+      val voiceNote: DraftTable.Draft? = draftViewModel.voiceNoteDraft
+      if (voiceNote != null) {
+        sendMessageWithoutComposeInput(slide = AudioSlide.createFromVoiceNoteDraft(requireContext(), voiceNote), clearCompose = true)
+        return
+      }
     }
 
     val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
@@ -3557,7 +3593,7 @@ class ConversationFragment :
     }
 
     override fun saveEphemeralVoiceNoteDraft(draft: VoiceNoteDraft) {
-      draftViewModel.cancelEphemeralVoiceNoteDraft(draft.asDraft())
+      draftViewModel.saveEphemeralVoiceNoteDraft(draft.asDraft())
     }
   }
 }

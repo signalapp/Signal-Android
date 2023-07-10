@@ -175,7 +175,13 @@ class DraftViewModel @JvmOverloads constructor(
           store.update { saveDrafts(it.copyAndSetDrafts(drafts = drafts)) }
         }
       }
-      .map { (data, _) -> data }
+      .flatMap { (data, _) ->
+        if (data == null) {
+          Maybe.empty()
+        } else {
+          Maybe.just(data)
+        }
+      }
       .observeOn(AndroidSchedulers.mainThread())
   }
 }
