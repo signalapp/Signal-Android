@@ -82,29 +82,41 @@ public final class SignalLocalMetrics {
     private static String id;
 
     public static void start() {
+      SignalTrace.beginSection("6-ConversationOpen");
       id = NAME + "-" + System.currentTimeMillis();
       LocalMetrics.getInstance().start(id, NAME);
+      SignalTrace.beginSection("1-ConversationOpen-ViewModel-Init");
     }
 
     public static void onMetadataLoadStarted() {
+      SignalTrace.endSection();
       LocalMetrics.getInstance().split(id, SPLIT_VIEWMODEL_INIT);
+      SignalTrace.beginSection("2-ConversationOpen-Metadata-Loaded");
     }
 
     public static void onMetadataLoaded() {
+      SignalTrace.endSection();
       LocalMetrics.getInstance().split(id, SPLIT_METADATA_LOADED);
+      SignalTrace.beginSection("3-ConversationOpen-Data-Loaded");
     }
 
     public static void onDataLoaded() {
+      SignalTrace.endSection();
       LocalMetrics.getInstance().split(id, SPLIT_DATA_LOADED);
+      SignalTrace.beginSection("4-ConversationOpen-Data-Posted");
     }
 
     public static void onDataPostedToMain() {
+      SignalTrace.endSection();
       LocalMetrics.getInstance().split(id, SPLIT_DATA_POSTED);
+      SignalTrace.beginSection("5-ConversationOpen-Render");
     }
 
     public static void onRenderFinished() {
+      SignalTrace.endSection();
       LocalMetrics.getInstance().split(id, SPLIT_RENDER);
       LocalMetrics.getInstance().end(id);
+      SignalTrace.endSection();
     }
   }
 

@@ -65,7 +65,7 @@ object TestUsers {
     ).blockingGet()
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
 
-    SignalStore.kbsValues().optOut()
+    SignalStore.svr().optOut()
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 

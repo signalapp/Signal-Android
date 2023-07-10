@@ -1,15 +1,21 @@
 package org.thoughtcrime.securesms.util
 
 import org.thoughtcrime.securesms.BuildConfig
+import java.util.concurrent.Executors
 import androidx.tracing.Trace as AndroidTrace
 
 object SignalTrace {
+
+  private val executor by lazy(LazyThreadSafetyMode.NONE) {
+    Executors.newSingleThreadExecutor()
+  }
+
   @JvmStatic
   fun beginSection(methodName: String) {
     if (!BuildConfig.TRACING_ENABLED) {
       return
     }
-    AndroidTrace.beginSection(methodName)
+    executor.execute { AndroidTrace.beginSection(methodName) }
   }
 
   @JvmStatic
@@ -17,6 +23,6 @@ object SignalTrace {
     if (!BuildConfig.TRACING_ENABLED) {
       return
     }
-    AndroidTrace.endSection()
+    executor.execute { AndroidTrace.endSection() }
   }
 }

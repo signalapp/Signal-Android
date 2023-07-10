@@ -292,7 +292,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     this.locale = Locale.getDefault();
     startupStopwatch = new Stopwatch("conversation-open");
     SignalLocalMetrics.ConversationOpen.start();
-    SignalTrace.beginSection("ConversationOpen");
   }
 
   @Override
@@ -405,7 +404,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
               startupStopwatch.stop(TAG);
               SignalLocalMetrics.ConversationOpen.onRenderFinished();
               listener.onFirstRender();
-              SignalTrace.endSection();
               return Unit.INSTANCE;
             });
           }
