@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.GroupUtil
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException
@@ -111,7 +112,7 @@ class PushProcessMessageJobV2 private constructor(
       return QUEUE_PREFIX + recipientId.toQueueKey()
     }
 
-    fun processOrDefer(messageProcessor: MessageContentProcessorV2, result: MessageDecryptor.Result.Success): PushProcessMessageJobV2? {
+    fun processOrDefer(messageProcessor: MessageContentProcessorV2, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive): PushProcessMessageJobV2? {
       val queueName: String
 
       val groupContext = GroupUtil.getGroupContextIfPresent(result.content)
@@ -146,7 +147,7 @@ class PushProcessMessageJobV2 private constructor(
         PushProcessMessageJobV2(builder.build(), result.envelope.toBuilder().clearContent().build(), result.content, result.metadata, result.serverDeliveredTimestamp)
       } else {
         try {
-          messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
+          messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp, localMetric = localReceiveMetric)
         } catch (e: Exception) {
           Log.e(TAG, "Failed to process message with timestamp ${result.envelope.timestamp}. Dropping.")
         }

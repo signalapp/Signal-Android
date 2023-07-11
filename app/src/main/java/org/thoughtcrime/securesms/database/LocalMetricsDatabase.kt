@@ -136,7 +136,7 @@ class LocalMetricsDatabase private constructor(
             put(EVENT_ID, event.eventId)
             put(EVENT_NAME, event.eventName)
             put(SPLIT_NAME, split.name)
-            put(DURATION, split.duration)
+            put(DURATION, event.timeunit.convert(split.duration, TimeUnit.NANOSECONDS))
           }
         )
       }

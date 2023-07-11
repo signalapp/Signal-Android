@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A nice interface for {@link LocalMetrics} that gives us a place to define string constants and nicer method names.
@@ -354,6 +355,82 @@ public final class SignalLocalMetrics {
       String splitId = ID_MAP.get(messageId);
       if (splitId != null) {
         LocalMetrics.getInstance().end(splitId);
+      }
+    }
+  }
+
+  public static final class MessageReceive {
+    private static final String NAME_GROUP      = "group-message-receive";
+    private static final String NAME_INDIVIDUAL = "individual-message-receive";
+
+    private static final String SPLIT_DECRYPTION        = "decryption";
+    private static final String SPLIT_PRE_PROCESS       = "pre-process";
+    private static final String SPLIT_GROUPS_PROCESSING = "groups-v2";
+    private static final String SPLIT_DB_INSERT_MEDIA   = "media-insert";
+    private static final String SPLIT_DB_INSERT_TEXT    = "text-insert";
+    private static final String SPLIT_POST_PROCESS      = "post-process";
+    private boolean insertedToDb = false;
+
+    private final String individualMetricId;
+    private final String groupMetricId;
+
+    public static MessageReceive start() {
+      return new MessageReceive();
+    }
+
+    private MessageReceive() {
+      long time = System.currentTimeMillis();
+      individualMetricId = NAME_INDIVIDUAL + time;
+      groupMetricId = NAME_GROUP + time;
+
+      LocalMetrics.getInstance().start(individualMetricId, NAME_INDIVIDUAL, TimeUnit.MICROSECONDS);
+      LocalMetrics.getInstance().start(groupMetricId, NAME_GROUP, TimeUnit.MICROSECONDS);
+    }
+
+    public void onEnvelopeDecrypted() {
+      split(SPLIT_DECRYPTION);
+    }
+
+    public void onPreProcessComplete() {
+      split(SPLIT_PRE_PROCESS);
+    }
+
+    public void onInsertedMediaMessage() {
+      split(SPLIT_DB_INSERT_MEDIA);
+      insertedToDb = true;
+    }
+
+    public void onInsertedTextMessage() {
+      split(SPLIT_DB_INSERT_TEXT);
+      insertedToDb = true;
+    }
+
+    public void onPostProcessComplete() {
+      split(SPLIT_POST_PROCESS);
+    }
+
+    public void onGv2Processed() {
+      split(SPLIT_GROUPS_PROCESSING);
+    }
+
+    private void split(String name) {
+      LocalMetrics.getInstance().split(groupMetricId, name);
+      LocalMetrics.getInstance().split(individualMetricId, name);
+    }
+
+    public void complete(boolean isGroup) {
+      if (!insertedToDb) {
+        LocalMetrics.getInstance().cancel(groupMetricId);
+        LocalMetrics.getInstance().cancel(individualMetricId);
+        return;
+      }
+
+      if (isGroup) {
+        LocalMetrics.getInstance().cancel(individualMetricId);
+        LocalMetrics.getInstance().end(groupMetricId);
+      } else {
+        LocalMetrics.getInstance().cancel(groupMetricId);
+        LocalMetrics.getInstance().end(individualMetricId);
       }
     }
   }
