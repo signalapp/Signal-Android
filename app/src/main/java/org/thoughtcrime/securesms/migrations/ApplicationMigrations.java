@@ -133,9 +133,10 @@ public class ApplicationMigrations {
     static final int DEDUPE_DB_MIGRATION_2         = 89;
     static final int EMOJI_VERSION_8               = 90;
     static final int SVR2_MIRROR                   = 91;
+    static final int ATTACHMENT_CLEANUP_3          = 92;
   }
 
-  public static final int CURRENT_VERSION = 91;
+  public static final int CURRENT_VERSION = 92;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -599,6 +600,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SVR2_MIRROR) {
       jobs.put(Version.SVR2_MIRROR, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ATTACHMENT_CLEANUP_3) {
+      jobs.put(Version.ATTACHMENT_CLEANUP_3, new AttachmentCleanupMigrationJob());
     }
 
     return jobs;
