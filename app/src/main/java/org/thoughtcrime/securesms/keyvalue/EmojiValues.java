@@ -123,6 +123,14 @@ public class EmojiValues extends SignalStoreValues {
     return getInteger(SEARCH_VERSION, 0);
   }
 
+  public void clearSearchIndexMetadata() {
+    getStore().beginWrite()
+              .remove(SEARCH_VERSION)
+              .remove(SEARCH_LANGUAGE)
+              .remove(LAST_SEARCH_CHECK)
+              .apply();
+  }
+
   public @Nullable String getSearchLanguage() {
     return getString(SEARCH_LANGUAGE, null);
   }
