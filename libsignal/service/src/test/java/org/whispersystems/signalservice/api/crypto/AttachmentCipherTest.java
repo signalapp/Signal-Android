@@ -333,9 +333,7 @@ public final class AttachmentCipherTest {
   }
 
   private static byte[] readInputStreamFully(InputStream inputStream) throws IOException {
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    Util.copy(inputStream, outputStream);
-    return outputStream.toByteArray();
+    return Util.readFullyAsBytes(inputStream);
   }
 
   private static byte[] expandPackKey(byte[] shortKey) {

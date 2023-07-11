@@ -120,7 +120,6 @@ public class Util {
     }
 
     in.close();
-    out.close();
   }
 
   public static void sleep(long millis) {
