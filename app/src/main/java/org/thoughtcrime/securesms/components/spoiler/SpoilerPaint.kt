@@ -10,6 +10,7 @@ import android.graphics.Shader
 import androidx.annotation.MainThread
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.dp
+import org.thoughtcrime.securesms.components.spoiler.SpoilerPaint.update
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.Util
 import kotlin.random.Random
@@ -28,8 +29,8 @@ object SpoilerPaint {
   var shader: BitmapShader? = null
 
   private val WIDTH = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 50.dp else 100.dp
-  private val HEIGHT = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 10.dp else 20.dp
-  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.002f else 0.004f
+  private val HEIGHT = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 20.dp else 40.dp
+  private val PARTICLES_PER_PIXEL = if (Util.isLowMemory(ApplicationDependencies.getApplication())) 0.001f else 0.002f
 
   private var shaderBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
   private var bufferBitmap: Bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ALPHA_8)
@@ -110,7 +111,7 @@ object SpoilerPaint {
         val particle = particles[index]
 
         particle.timeRemaining = particle.timeRemaining - dt
-        if (particle.timeRemaining < 0 || !paddedBounds.contains(particle.x.toInt(), particle.y.toInt())) {
+        if (particle.timeRemaining < 0) {
           particle.x = (random.nextFloat() * paddedBounds.width()) + paddedBounds.left
           particle.y = (random.nextFloat() * paddedBounds.height()) + paddedBounds.top
           particle.xVel = nextDirection()
