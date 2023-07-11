@@ -11,6 +11,7 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.WakeLockUtil
@@ -27,6 +28,7 @@ class FcmFetchForegroundService : Service() {
 
     private const val WAKELOCK_TAG = "FcmForegroundService"
     private const val KEY_STOP_SELF = "stop_self"
+    private const val MAX_BLOCKING_TIME_MS = 500L
 
     private val WAKELOCK_TIMEOUT = FcmFetchManager.WEBSOCKET_DRAIN_TIMEOUT
 
@@ -36,10 +38,75 @@ class FcmFetchForegroundService : Service() {
      * The safest thing to do is to just tell it to start so it can call [startForeground] and then stop itself.
      * Fun.
      */
-    fun buildStopIntent(context: Context): Intent {
+    private fun buildStopIntent(context: Context): Intent {
       return Intent(context, FcmFetchForegroundService::class.java).apply {
         putExtra(KEY_STOP_SELF, true)
       }
+    }
+
+    enum class State {
+      STOPPED,
+      STARTED,
+      STOPPING,
+      RESTARTING
+    }
+
+    private var foregroundServiceState: State = State.STOPPED
+
+    fun startServiceIfNecessary(context: Context) {
+      synchronized(this) {
+        when (foregroundServiceState) {
+          State.STOPPING -> foregroundServiceState = State.RESTARTING
+          State.STOPPED -> {
+            foregroundServiceState = try {
+              startForegroundFetchService(context)
+              State.STARTED
+            } catch (e: IllegalStateException) {
+              Log.e(TAG, "Failed to start foreground service", e)
+              State.STOPPED
+            }
+          }
+          else -> Log.i(TAG, "Already started foreground service")
+        }
+      }
+    }
+
+    fun stopServiceIfNecessary(context: Context) {
+      synchronized(this) {
+        when (foregroundServiceState) {
+          State.STARTED -> {
+            foregroundServiceState = State.STOPPING
+            try {
+              context.startService(buildStopIntent(context))
+            } catch (e: IllegalStateException) {
+              Log.w(TAG, "Failed to stop the foreground service, assuming already stopped", e)
+              foregroundServiceState = State.STOPPED
+            }
+          }
+          State.RESTARTING -> foregroundServiceState = State.STOPPED
+          else -> Log.i(TAG, "No service to stop")
+        }
+      }
+    }
+
+    private fun onServiceDestroyed(context: Context) {
+      synchronized(this) {
+        Log.i(TAG, "Fcm fetch service destroyed")
+        when (foregroundServiceState) {
+          State.RESTARTING -> {
+            foregroundServiceState = State.STOPPED
+            Log.i(TAG, "Restarting service.")
+            startServiceIfNecessary(context)
+          }
+          else -> {
+            foregroundServiceState = State.STOPPED
+          }
+        }
+      }
+    }
+
+    private fun startForegroundFetchService(context: Context) {
+      ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
     }
   }
 
@@ -81,7 +148,7 @@ class FcmFetchForegroundService : Service() {
   override fun onDestroy() {
     Log.i(TAG, "onDestroy()")
     WakeLockUtil.release(wakeLock, WAKELOCK_TAG)
-    FcmFetchManager.onDestroyForegroundFetchService()
+    onServiceDestroyed(this)
 
     wakeLock = null
   }

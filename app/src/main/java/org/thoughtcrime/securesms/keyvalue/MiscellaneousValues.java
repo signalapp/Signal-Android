@@ -29,7 +29,6 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_GV2_PROFILE_CHECK_TIME    = "misc.last_gv2_profile_check_time";
   private static final String CDS_TOKEN                      = "misc.cds_token";
   private static final String CDS_BLOCKED_UNTIL              = "misc.cds_blocked_until";
-  private static final String LAST_FCM_FOREGROUND_TIME       = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME           = "misc.last_foreground_time";
   private static final String PNI_INITIALIZED_DEVICES        = "misc.pni_initialized_devices";
   private static final String SMS_PHASE_1_START_MS           = "misc.sms_export.phase_1_start.3";
@@ -215,14 +214,6 @@ public final class MiscellaneousValues extends SignalStoreValues {
    */
   public long getCdsBlockedUtil() {
     return getLong(CDS_BLOCKED_UNTIL, 0);
-  }
-
-  public long getLastFcmForegroundServiceTime() {
-    return getLong(LAST_FCM_FOREGROUND_TIME, 0);
-  }
-
-  public void setLastFcmForegroundServiceTime(long time) {
-    putLong(LAST_FCM_FOREGROUND_TIME, time);
   }
 
   public long getLastForegroundTime() {
