@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -24,7 +25,7 @@ public class DeliveryStatusView extends AppCompatImageView {
 
   private final int horizontalPadding = (int) DimensionUnit.DP.toPixels(2);
 
-  private final RotateAnimation rotationAnimation;
+  private RotateAnimation rotationAnimation;
 
   private State state = State.NONE;
 
@@ -38,13 +39,6 @@ public class DeliveryStatusView extends AppCompatImageView {
 
   public DeliveryStatusView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-
-    rotationAnimation = new RotateAnimation(0, 360f,
-                                            Animation.RELATIVE_TO_SELF, 0.5f,
-                                            Animation.RELATIVE_TO_SELF, 0.5f);
-    rotationAnimation.setInterpolator(new LinearInterpolator());
-    rotationAnimation.setDuration(1500);
-    rotationAnimation.setRepeatCount(Animation.INFINITE);
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DeliveryStatusView, 0, 0);
@@ -97,8 +91,39 @@ public class DeliveryStatusView extends AppCompatImageView {
     return stateBundle;
   }
 
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    if (state == State.PENDING && rotationAnimation == null) {
+      final float pivotXValue;
+      if (ViewUtil.isLtr(this)) {
+        pivotXValue = (w - getPaddingEnd()) / 2f;
+      } else {
+        pivotXValue = ((w - getPaddingEnd()) / 2f) + getPaddingEnd();
+      }
+
+      final float pivotYValue = (h - getPaddingTop() - getPaddingBottom()) / 2f;
+
+      rotationAnimation = new RotateAnimation(0, 360f,
+                                              Animation.ABSOLUTE, pivotXValue,
+                                              Animation.ABSOLUTE, pivotYValue);
+
+      rotationAnimation.setInterpolator(new LinearInterpolator());
+      rotationAnimation.setDuration(1500);
+      rotationAnimation.setRepeatCount(Animation.INFINITE);
+
+      startAnimation(rotationAnimation);
+    }
+  }
+
+  @Override
+  public void clearAnimation() {
+    super.clearAnimation();
+    rotationAnimation = null;
+  }
+
   public void setNone() {
     state = State.NONE;
+    clearAnimation();
     setVisibility(View.GONE);
   }
 
@@ -112,7 +137,6 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingStart(this, 0);
     ViewUtil.setPaddingEnd(this, horizontalPadding);
     setImageResource(R.drawable.ic_delivery_status_sending);
-    startAnimation(rotationAnimation);
   }
 
   public void setSent() {
