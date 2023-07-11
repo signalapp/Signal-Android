@@ -1052,6 +1052,7 @@ class ConversationFragment :
     presentWallpaper(recipient.wallpaper)
     presentConversationTitle(recipient)
     presentChatColors(recipient.chatColors)
+    invalidateOptionsMenu()
   }
 
   private fun invalidateOptionsMenu() {
