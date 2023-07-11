@@ -14,7 +14,9 @@ import org.thoughtcrime.securesms.R
 /**
  * Displays a small progress spinner in a card view, as a non-cancellable dialog fragment.
  */
-class ProgressCardDialogFragment @Discouraged("Use create() instead.") constructor() : DialogFragment(R.layout.progress_card_dialog) {
+class ProgressCardDialogFragment
+@Discouraged("Use create() instead.")
+constructor() : DialogFragment(R.layout.progress_card_dialog) {
 
   companion object {
     @SuppressLint("DiscouragedApi")
