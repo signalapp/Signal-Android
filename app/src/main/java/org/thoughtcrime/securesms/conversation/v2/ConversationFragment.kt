@@ -1695,7 +1695,7 @@ class ConversationFragment :
   }
 
   private fun performAttachmentSave(attachments: Set<SaveAttachmentUtil.SaveAttachment>) {
-    val progressDialog = ProgressCardDialogFragment()
+    val progressDialog = ProgressCardDialogFragment.create()
     progressDialog.arguments = ProgressCardDialogFragmentArgs.Builder(
       resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachments.size, attachments.size)
     ).build().toBundle()

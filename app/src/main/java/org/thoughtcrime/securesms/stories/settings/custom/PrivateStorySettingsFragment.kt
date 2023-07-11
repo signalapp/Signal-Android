@@ -31,7 +31,7 @@ class PrivateStorySettingsFragment : DSLSettingsFragment(
   menuId = R.menu.story_private_menu
 ) {
 
-  private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment() }
+  private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment.create() }
 
   private val viewModel: PrivateStorySettingsViewModel by viewModels(
     factoryProducer = {
