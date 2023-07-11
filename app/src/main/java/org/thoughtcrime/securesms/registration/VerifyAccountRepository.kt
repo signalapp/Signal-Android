@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -185,9 +186,18 @@ class VerifyAccountRepository(private val context: Application) {
       recoveryPassword = registrationData.recoveryPassword
     )
 
+    SignalStore.account().generateAciIdentityKeyIfNecessary()
+    val aciIdentity: IdentityKeyPair = SignalStore.account().aciIdentityKey
+
+    SignalStore.account().generatePniIdentityKeyIfNecessary()
+    val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
+
+    val aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account().aciPreKeys)
+    val pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account().pniPreKeys)
+
     return Single.fromCallable {
-      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, registrationData.aciPreKeyCollection, registrationData.pniPreKeyCollection, registrationData.fcmToken, true)
-      VerifyResponse.from(response, kbsData, pin)
+      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
+      VerifyResponse.from(response, kbsData, pin, aciPreKeyCollection, pniPreKeyCollection)
     }.subscribeOn(Schedulers.io())
   }
 

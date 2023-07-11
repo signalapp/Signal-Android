@@ -141,7 +141,13 @@ class ChangeNumberRepository(
         }
       }
 
-      VerifyResponse.from(changeNumberResponse, null, null)
+      VerifyResponse.from(
+        response = changeNumberResponse,
+        kbsData = null,
+        pin = null,
+        aciPreKeyCollection = null,
+        pniPreKeyCollection = null
+      )
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -191,7 +197,13 @@ class ChangeNumberRepository(
         }
       }
 
-      VerifyResponse.from(changeNumberResponse, kbsData, pin)
+      VerifyResponse.from(
+        response = changeNumberResponse,
+        kbsData = kbsData,
+        pin = pin,
+        aciPreKeyCollection = null,
+        pniPreKeyCollection = null
+      )
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -341,7 +353,7 @@ class ChangeNumberRepository(
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
           PreKeyUtil.generateAndStoreLastResortKyberPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
         } else {
-          PreKeyUtil.generateKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
+          PreKeyUtil.generateLastRestortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
         devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
 

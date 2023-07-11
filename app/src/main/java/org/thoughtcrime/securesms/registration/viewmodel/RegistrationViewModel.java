@@ -236,8 +236,6 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                 getRegistrationSecret(),
                                 registrationRepository.getRegistrationId(),
                                 registrationRepository.getProfileKey(getNumber().getE164Number()),
-                                RegistrationRepository.generatePreKeysForType(ServiceIdType.ACI),
-                                RegistrationRepository.generatePreKeysForType(ServiceIdType.PNI),
                                 getFcmToken(),
                                 registrationRepository.getPniRegistrationId(),
                                 getSessionId() != null ? null : getRecoveryPassword());
@@ -334,7 +332,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                       boolean        setRegistrationLockEnabled = verifyResponse.getKbsData() != null;
 
                                       if (!setRegistrationLockEnabled) {
-                                        verifyResponse = new VerifyResponse(processor.getResult().getVerifyAccountResponse(), pinData, pin);
+                                        verifyResponse = new VerifyResponse(processor.getResult().getVerifyAccountResponse(), pinData, pin, verifyResponse.getAciPreKeyCollection(), verifyResponse.getPniPreKeyCollection());
                                       }
 
                                       return registrationRepository.registerAccount(registrationData, verifyResponse, setRegistrationLockEnabled)

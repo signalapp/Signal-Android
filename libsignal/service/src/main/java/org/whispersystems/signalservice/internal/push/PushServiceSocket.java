@@ -433,7 +433,8 @@ public class PushServiceSocket {
                                                                              aciLastResortKyberPreKey,
                                                                              pniLastResortKyberPreKey,
                                                                              gcmRegistrationId,
-                                                                             skipDeviceTransfer);
+                                                                             skipDeviceTransfer,
+                                                                             true);
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty());
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
