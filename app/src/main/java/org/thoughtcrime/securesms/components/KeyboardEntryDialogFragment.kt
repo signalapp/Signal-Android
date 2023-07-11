@@ -55,6 +55,11 @@ abstract class KeyboardEntryDialogFragment(@LayoutRes contentLayoutId: Int) :
     }
   }
 
+  override fun onPause() {
+    super.onPause()
+    hasShown = false
+  }
+
   override fun onKeyboardShown() {
     hasShown = true
   }

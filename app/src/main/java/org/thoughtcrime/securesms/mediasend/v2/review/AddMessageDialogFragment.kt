@@ -128,12 +128,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     ViewUtil.focusAndShowKeyboard(binding.content.addAMessageInput)
   }
 
-  override fun onPause() {
-    super.onPause()
-
-    ViewUtil.hideKeyboard(requireContext(), binding.content.addAMessageInput)
-  }
-
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
     if (isResumed) {
