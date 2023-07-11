@@ -22,10 +22,10 @@ public final class PinHashing_hashPin_Test {
   @Test
   public void argon2_hashed_pin_password() throws IOException {
     String    pin       = "password";
-    byte[]    backupId  = Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
+    byte[]    salt      = Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
     MasterKey masterKey = new MasterKey(Hex.fromStringCondensed("202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f"));
 
-    PinHash hashedPin = PinHashUtil.hashPin(pin, new byte[]{});
+    PinHash hashedPin = PinHashUtil.hashPin(pin, salt);
     KbsData kbsData   = PinHashUtil.createNewKbsData(hashedPin, masterKey);
 
     assertArrayEquals(hashedPin.accessKey(), kbsData.getKbsAccessKey());
@@ -40,10 +40,10 @@ public final class PinHashing_hashPin_Test {
   @Test
   public void argon2_hashed_pin_another_password() throws IOException {
     String    pin       = "anotherpassword";
-    byte[]    backupId  = Hex.fromStringCondensed("202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f");
+    byte[]    salt      = Hex.fromStringCondensed("202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f");
     MasterKey masterKey = new MasterKey(Hex.fromStringCondensed("88a787415a2ecd79da0d1016a82a27c5c695c9a19b88b0aa1d35683280aa9a67"));
 
-    PinHash hashedPin = PinHashUtil.hashPin(pin, new byte[]{});
+    PinHash hashedPin = PinHashUtil.hashPin(pin, salt);
     KbsData kbsData   = PinHashUtil.createNewKbsData(hashedPin, masterKey);
 
     assertArrayEquals(hashedPin.accessKey(), kbsData.getKbsAccessKey());
@@ -58,10 +58,10 @@ public final class PinHashing_hashPin_Test {
   @Test
   public void argon2_hashed_pin_password_with_spaces_diacritics_and_non_arabic_numerals() throws IOException {
     String    pin       = " Pass६örd ";
-    byte[]    backupId  = Hex.fromStringCondensed("cba811749042b303a6a7efa5ccd160aea5e3ea243c8d2692bd13d515732f51a8");
+    byte[]    salt      = Hex.fromStringCondensed("cba811749042b303a6a7efa5ccd160aea5e3ea243c8d2692bd13d515732f51a8");
     MasterKey masterKey = new MasterKey(Hex.fromStringCondensed("9571f3fde1e58588ba49bcf82be1b301ca3859a6f59076f79a8f47181ef952bf"));
 
-    PinHash hashedPin = PinHashUtil.hashPin(pin, new byte[]{});
+    PinHash hashedPin = PinHashUtil.hashPin(pin, salt);
     KbsData kbsData   = PinHashUtil.createNewKbsData(hashedPin, masterKey);
 
     assertArrayEquals(hashedPin.accessKey(), kbsData.getKbsAccessKey());
@@ -78,10 +78,10 @@ public final class PinHashing_hashPin_Test {
   @Test
   public void argon2_hashed_pin_password_with_just_non_arabic_numerals() throws IOException {
     String    pin       = " ६१८ ";
-    byte[]    backupId  = Hex.fromStringCondensed("717dc111a98423a57196512606822fca646c653facd037c10728f14ba0be2ab3");
+    byte[]    salt      = Hex.fromStringCondensed("717dc111a98423a57196512606822fca646c653facd037c10728f14ba0be2ab3");
     MasterKey masterKey = new MasterKey(Hex.fromStringCondensed("0432d735b32f66d0e3a70d4f9cc821a8529521a4937d26b987715d8eff4e4c54"));
 
-    PinHash hashedPin = PinHashUtil.hashPin(pin, new byte[]{});
+    PinHash hashedPin = PinHashUtil.hashPin(pin, salt);
     KbsData kbsData   = PinHashUtil.createNewKbsData(hashedPin, masterKey);
 
     assertArrayEquals(hashedPin.accessKey(), kbsData.getKbsAccessKey());

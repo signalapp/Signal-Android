@@ -10,13 +10,11 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.mock
 import org.signal.core.util.ThreadUtil
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor
@@ -48,20 +46,17 @@ class ChangeNumberViewModelTest {
   val harness = SignalActivityRule()
 
   private lateinit var viewModel: ChangeNumberViewModel
-  private lateinit var kbsRepository: KbsRepository
 
   @Before
   fun setUp() {
     ApplicationDependencies.getSignalServiceAccountManager().setSoTimeoutMillis(1000)
-    kbsRepository = mock()
     ThreadUtil.runOnMainSync {
       viewModel = ChangeNumberViewModel(
         localNumber = harness.self.requireE164(),
         changeNumberRepository = ChangeNumberRepository(),
         savedState = SavedStateHandle(),
         password = SignalStore.account().servicePassword!!,
-        verifyAccountRepository = VerifyAccountRepository(harness.application),
-        kbsRepository = kbsRepository
+        verifyAccountRepository = VerifyAccountRepository(harness.application)
       )
 
       viewModel.setNewCountry(1)
@@ -235,7 +230,7 @@ class ChangeNumberViewModelTest {
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState
 
-    MockProvider.mockGetRegistrationLockStringFlow(kbsRepository)
+    MockProvider.mockGetRegistrationLockStringFlow()
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Post("/v1/verification/session") { MockResponse().success(MockProvider.sessionMetadataJson.copy(verified = false)) },
@@ -323,7 +318,7 @@ class ChangeNumberViewModelTest {
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState
 
-    MockProvider.mockGetRegistrationLockStringFlow(kbsRepository)
+    MockProvider.mockGetRegistrationLockStringFlow()
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Post("/v1/verification/session") { MockResponse().success(MockProvider.sessionMetadataJson.copy(verified = false)) },

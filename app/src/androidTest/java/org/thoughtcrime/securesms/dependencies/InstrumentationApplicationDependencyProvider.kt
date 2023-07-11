@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalKeyBackupSe
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
+import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import java.security.KeyStore
 import java.util.Optional
 
@@ -74,20 +75,20 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
 
     serviceTrustStore = SignalServiceTrustStore(application)
     uncensoredConfiguration = SignalServiceConfiguration(
-      arrayOf(SignalServiceUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
-      mapOf(
+      signalServiceUrls = arrayOf(SignalServiceUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
+      signalCdnUrlMap = mapOf(
         0 to arrayOf(SignalCdnUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
         2 to arrayOf(SignalCdnUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT))
       ),
-      arrayOf(SignalKeyBackupServiceUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
-      arrayOf(SignalStorageUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
-      arrayOf(SignalCdsiUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
-      emptyArray(),
-      emptyList(),
-      Optional.of(SignalServiceNetworkAccess.DNS),
-      Optional.empty(),
-      Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS),
-      Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS)
+      signalKeyBackupServiceUrls = arrayOf(SignalKeyBackupServiceUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
+      signalStorageUrls = arrayOf(SignalStorageUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
+      signalCdsiUrls = arrayOf(SignalCdsiUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
+      signalSvr2Urls = arrayOf(SignalSvr2Url(baseUrl, serviceTrustStore, "localhost", ConnectionSpec.CLEARTEXT)),
+      networkInterceptors = emptyList(),
+      dns = Optional.of(SignalServiceNetworkAccess.DNS),
+      signalProxy = Optional.empty(),
+      zkGroupServerPublicParams = Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS),
+      genericServerPublicParams = Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS)
     )
 
     serviceNetworkAccessMock = mock {

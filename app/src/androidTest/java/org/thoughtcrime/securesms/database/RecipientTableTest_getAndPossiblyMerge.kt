@@ -858,6 +858,7 @@ class RecipientTableTest_getAndPossiblyMerge {
         }
 
       ApplicationDependencies.getRecipientCache().clear()
+      ApplicationDependencies.getRecipientCache().clearSelf()
       RecipientId.clearCache()
     }
 
@@ -873,7 +874,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       if (createThread) {
         // Create a thread and throw a dummy message in it so it doesn't get automatically deleted
         SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(id))
-        SignalDatabase.messages.insertMessageInbox(IncomingEncryptedMessage(IncomingTextMessage(id, 1, 0, 0, 0, "", Optional.empty(), 0, false, ""), ""))
+        SignalDatabase.messages.insertMessageInbox(IncomingEncryptedMessage(IncomingTextMessage(id, 1, (Math.random() * Long.MAX_VALUE).toLong(), 0, 0, "", Optional.empty(), 0, false, ""), ""))
       }
 
       if (pniSession) {

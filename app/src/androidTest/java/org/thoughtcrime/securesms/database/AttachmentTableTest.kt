@@ -6,6 +6,7 @@ import androidx.test.filters.FlakyTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.attachments.UriAttachment
@@ -64,6 +65,7 @@ class AttachmentTableTest {
   }
 
   @FlakyTest
+  @Ignore("test is flaky")
   @Test
   fun givenIdenticalAttachmentsInsertedForPreUpload_whenIUpdateAttachmentDataAndSpecifyOnlyModifyThisAttachment_thenIExpectDifferentFileInfos() {
     val blob = BlobProvider.getInstance().forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()

@@ -213,7 +213,12 @@ internal class Svr2Socket(
 
     private fun buildOkHttpClient(configuration: SignalServiceConfiguration, svr2Url: SignalSvr2Url): OkHttpClient {
       val socketFactory = createTlsSocketFactory(svr2Url.trustStore)
-      val builder = OkHttpClient.Builder().sslSocketFactory(Tls12SocketFactory(socketFactory.first()), socketFactory.second()).connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)).retryOnConnectionFailure(false).readTimeout(30, TimeUnit.SECONDS).connectTimeout(30, TimeUnit.SECONDS)
+      val builder = OkHttpClient.Builder()
+        .sslSocketFactory(Tls12SocketFactory(socketFactory.first()), socketFactory.second())
+        .connectionSpecs(svr2Url.connectionSpecs.orElse(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
+        .retryOnConnectionFailure(false)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
 
       for (interceptor in configuration.networkInterceptors) {
         builder.addInterceptor(interceptor)

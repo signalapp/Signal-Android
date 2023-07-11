@@ -211,6 +211,9 @@ class V2ConversationItemShapeTest {
     override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.STANDARD
 
     override val clickListener: ConversationAdapter.ItemClickListener = FakeConversationItemClickListener
+    override val selectedItems: Set<MultiselectPart> = emptySet()
+    override val isMessageRequestAccepted: Boolean = true
+    override val searchQuery: String? = null
 
     override fun onStartExpirationTimeout(messageRecord: MessageRecord) = Unit
 
