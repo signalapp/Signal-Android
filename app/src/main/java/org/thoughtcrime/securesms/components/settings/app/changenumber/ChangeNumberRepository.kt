@@ -276,6 +276,7 @@ class ChangeNumberRepository(
 
       pniProtocolStore.identities().saveIdentityWithoutSideEffects(
         Recipient.self().id,
+        pni,
         pniProtocolStore.identityKeyPair.publicKey,
         IdentityTable.VerifiedStatus.VERIFIED,
         true,

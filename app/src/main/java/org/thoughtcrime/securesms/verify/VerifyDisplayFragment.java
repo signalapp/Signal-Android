@@ -543,6 +543,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
             Log.i(TAG, "Saving identity: " + recipientId);
             ApplicationDependencies.getProtocolStore().aci().identities()
                                    .saveIdentityWithoutSideEffects(recipientId,
+                                                                   Recipient.resolved(recipientId).requireServiceId(),
                                                                    remoteIdentity,
                                                                    IdentityTable.VerifiedStatus.VERIFIED,
                                                                    false,

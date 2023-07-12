@@ -135,9 +135,10 @@ public class ApplicationMigrations {
     static final int SVR2_MIRROR                   = 91;
     static final int ATTACHMENT_CLEANUP_3          = 92;
     static final int EMOJI_SEARCH_INDEX_CHECK      = 93;
+    static final int IDENTITY_FIX                  = 94;
   }
 
-  public static final int CURRENT_VERSION = 93;
+  public static final int CURRENT_VERSION = 94;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -609,6 +610,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.EMOJI_SEARCH_INDEX_CHECK) {
       jobs.put(Version.EMOJI_SEARCH_INDEX_CHECK, new EmojiSearchIndexCheckMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.IDENTITY_FIX) {
+      jobs.put(Version.IDENTITY_FIX, new IdentityTableCleanupMigrationJob());
     }
 
     return jobs;

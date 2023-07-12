@@ -40,6 +40,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -162,8 +163,8 @@ public final class RegistrationRepository {
     SignalStore.account().setFcmEnabled(registrationData.isFcm());
 
     long now = System.currentTimeMillis();
-    saveOwnIdentityKey(selfId, aciProtocolStore, now);
-    saveOwnIdentityKey(selfId, pniProtocolStore, now);
+    saveOwnIdentityKey(selfId, aci, aciProtocolStore, now);
+    saveOwnIdentityKey(selfId, pni, pniProtocolStore, now);
 
     SignalStore.account().setServicePassword(registrationData.getPassword());
     SignalStore.account().setRegistered(true);
@@ -200,8 +201,9 @@ public final class RegistrationRepository {
     metadataStore.setLastResortKyberPreKeyRotationTime(System.currentTimeMillis());
   }
 
-  private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
+  private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull ServiceId serviceId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
     protocolStore.identities().saveIdentityWithoutSideEffects(selfId,
+                                                              serviceId,
                                                               protocolStore.getIdentityKeyPair().getPublicKey(),
                                                               IdentityTable.VerifiedStatus.VERIFIED,
                                                               true,
