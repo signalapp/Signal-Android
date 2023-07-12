@@ -13,7 +13,6 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.hasNoBubble
 
 object ConversationItemSelection {
@@ -32,7 +31,7 @@ object ConversationItemSelection {
       target = target,
       list = list,
       videoBitmap = videoBitmap,
-      drawConversationItem = !SignalStore.internalValues().useConversationFragmentV2() && (!isOutgoing || hasNoBubble),
+      drawConversationItem = (!isOutgoing || hasNoBubble),
       hasReaction = messageRecord.reactions.isNotEmpty()
     )
   }
