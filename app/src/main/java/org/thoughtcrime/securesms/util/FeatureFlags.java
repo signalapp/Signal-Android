@@ -106,6 +106,7 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
+  private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -163,7 +164,8 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING,
-      SVR2_KILLSWITCH
+      SVR2_KILLSWITCH,
+      CDS_COMPAT_MODE
   );
 
   @VisibleForTesting
@@ -227,7 +229,8 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_COUNT,
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
-      SVR2_KILLSWITCH
+      SVR2_KILLSWITCH,
+      CDS_COMPAT_MODE
   );
 
   /**
@@ -584,6 +587,11 @@ public final class FeatureFlags {
     return getLong(MAX_ATTACHMENT_SIZE_BYTES, ByteUnit.MEGABYTES.toBytes(100));
   }
 
+  /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
+  public static boolean cdsCompatMode() {
+    return getBoolean(CDS_COMPAT_MODE, true);
+  }
+
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);
@@ -754,6 +762,15 @@ public final class FeatureFlags {
     Object remote = REMOTE_VALUES.get(key);
     if (remote instanceof Boolean) {
       return (boolean) remote;
+    } else if (remote instanceof String) {
+      String stringValue = ((String) remote).toLowerCase();
+      if (stringValue.equals("true")) {
+        return true;
+      } else if (stringValue.equals("false")) {
+        return false;
+      } else {
+        Log.w(TAG, "Expected a boolean for key '" + key + "', but got something else (" + stringValue + ")! Falling back to the default.");
+      }
     } else if (remote != null) {
       Log.w(TAG, "Expected a boolean for key '" + key + "', but got something else! Falling back to the default.");
     }
