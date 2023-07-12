@@ -4,6 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -21,6 +23,9 @@ class CallLogContextMenu(
   private val fragment: Fragment,
   private val callbacks: Callbacks
 ) {
+
+  private val lifecycleDisposable by lazy { LifecycleDisposable().bindTo(fragment.viewLifecycleOwner) }
+
   fun show(recyclerView: RecyclerView, anchor: View, call: CallLogRow.Call) {
     recyclerView.suppressLayout(true)
     anchor.isSelected = true
@@ -91,7 +96,10 @@ class CallLogContextMenu(
         iconRes = R.drawable.symbol_open_24,
         title = fragment.getString(R.string.CallContextMenu__go_to_chat)
       ) {
-        fragment.startActivity(ConversationIntents.createBuilder(fragment.requireContext(), call.peer.id, -1L).build())
+        lifecycleDisposable += ConversationIntents.createBuilder(fragment.requireContext(), call.peer.id, -1L)
+          .subscribeBy {
+            fragment.startActivity(it.build())
+          }
       }
     }
   }

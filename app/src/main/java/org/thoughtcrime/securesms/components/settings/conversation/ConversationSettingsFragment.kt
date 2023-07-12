@@ -26,6 +26,7 @@ import app.cash.exhaustive.Exhaustive
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListExtraCompat
@@ -387,7 +388,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           enabled = !state.isDeprecatedOrUnregistered,
           onMessageClick = {
             val intent = ConversationIntents
-              .createBuilder(requireContext(), state.recipient.id, state.threadId)
+              .createBuilderSync(requireContext(), state.recipient.id, state.threadId)
               .build()
 
             startActivity(intent)
@@ -432,12 +433,15 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             }
           },
           onSearchClick = {
-            val intent = ConversationIntents.createBuilder(requireContext(), state.recipient.id, state.threadId)
-              .withSearchOpen(true)
-              .build()
+            lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), state.recipient.id, state.threadId)
+              .subscribeBy { builder ->
+                val intent = builder
+                  .withSearchOpen(true)
+                  .build()
 
-            startActivity(intent)
-            requireActivity().finish()
+                startActivity(intent)
+                requireActivity().finish()
+              }
           }
         )
       )

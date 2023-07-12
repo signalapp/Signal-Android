@@ -48,9 +48,9 @@ public class SmsSendtoActivity extends Activity {
       Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
     } else {
       Recipient recipient = Recipient.external(this, destination.getDestination());
-      long      threadId  = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
+      long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
-      nextIntent = ConversationIntents.createBuilder(this, recipient.getId(), threadId)
+      nextIntent = ConversationIntents.createBuilderSync(this, recipient.getId(), threadId)
                                       .withDraftText(destination.getBody())
                                       .build();
     }

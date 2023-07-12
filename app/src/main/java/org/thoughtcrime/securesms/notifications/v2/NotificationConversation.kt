@@ -128,7 +128,7 @@ data class NotificationConversation(
         )
       )
     } else {
-      ConversationIntents.createBuilder(context, recipient.id, thread.threadId)
+      ConversationIntents.createBuilderSync(context, recipient.id, thread.threadId)
         .withStartingPosition(mostRecentNotification.getStartingPosition(context))
         .build()
     }.makeUniqueToPreventMerging()

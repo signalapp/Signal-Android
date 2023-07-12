@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
@@ -45,8 +46,10 @@ class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_gro
               iconRes = R.drawable.ic_open_24_tinted,
               title = getString(R.string.StoriesLandingItem__go_to_chat),
               action = {
-                lifecycleDisposable += viewModel.getConversationData().subscribe { data ->
-                  startActivity(ConversationIntents.createBuilder(requireContext(), data.groupRecipientId, data.groupThreadId).build())
+                lifecycleDisposable += viewModel.getConversationData().flatMap { data ->
+                  ConversationIntents.createBuilder(requireContext(), data.groupRecipientId, data.groupThreadId)
+                }.subscribeBy {
+                  startActivity(it.build())
                 }
               }
             )

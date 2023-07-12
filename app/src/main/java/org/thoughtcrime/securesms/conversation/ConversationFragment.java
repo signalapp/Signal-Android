@@ -2050,7 +2050,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args) {
       if (listener.isInBubble()) {
-        Intent intent = ConversationIntents.createBuilder(requireActivity(), recipient.getId(), threadId)
+        Intent intent = ConversationIntents.createBuilderSync(requireActivity(), recipient.getId(), threadId)
                                            .withStartingPosition(list.getChildAdapterPosition(parent))
                                            .build();
 

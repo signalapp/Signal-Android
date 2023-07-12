@@ -110,7 +110,7 @@ class MediaPreviewRepository {
       stopwatch.split("get recipient ID")
 
       stopwatch.stop(TAG)
-      ConversationIntents.createBuilder(context, recipientId, threadId)
+      ConversationIntents.createBuilderSync(context, recipientId, threadId)
         .withStartingPosition(messagePosition)
         .build()
     }

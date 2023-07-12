@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -142,13 +143,12 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return SignalDatabase.threads().getThreadIdFor(recipient.getId());
+        return SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
       }
 
       @Override
-      protected void onPostExecute(@Nullable Long threadId) {
-        // TODO [alex] -- ThreadID should *always* exist
-        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId != null ? threadId : -1);
+      protected void onPostExecute(@NonNull Long threadId) {
+        ConversationIntents.Builder builder = ConversationIntents.createBuilderSync(context, recipient.getId(), Objects.requireNonNull(threadId));
         if (!TextUtils.isEmpty(text)) {
           builder.withDraftText(text);
         }

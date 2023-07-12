@@ -132,7 +132,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel.getJoinSuccess().observe(getViewLifecycleOwner(), joinGroupSuccess -> {
         Log.i(TAG, "Group joined, navigating to group");
 
-        Intent intent = ConversationIntents.createBuilder(requireContext(), joinGroupSuccess.getGroupRecipient().getId(), joinGroupSuccess.getGroupThreadId())
+        Intent intent = ConversationIntents.createBuilderSync(requireContext(), joinGroupSuccess.getGroupRecipient().getId(), joinGroupSuccess.getGroupThreadId())
                                            .build();
         requireActivity().startActivity(intent);
 

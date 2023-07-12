@@ -216,14 +216,14 @@ public final class ConversationUtil {
   {
     Recipient resolved   = recipient.resolve();
     Person[]  persons    = buildPersons(context, resolved);
-    Long      threadId   = SignalDatabase.threads().getThreadIdFor(resolved.getId());
+    long      threadId   = SignalDatabase.threads().getOrCreateThreadIdFor(resolved);
     String    shortName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
     String    longName   = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
     String    shortcutId = getShortcutId(resolved);
 
     ShortcutInfoCompat.Builder builder = new ShortcutInfoCompat.Builder(context, shortcutId)
                                  .setLongLived(true)
-                                 .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId != null ? threadId : -1).build())
+                                 .setIntent(ConversationIntents.createBuilderSync(context, resolved.getId(), threadId).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))

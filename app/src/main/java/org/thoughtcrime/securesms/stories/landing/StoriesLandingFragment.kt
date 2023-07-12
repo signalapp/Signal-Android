@@ -183,6 +183,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       R.id.reminder_action_update_now -> {
         PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
       }
+
       R.id.reminder_action_re_register -> {
         startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
       }
@@ -324,8 +325,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           MultiselectForwardFragment.showBottomSheet(childFragmentManager, args)
         }
       },
-      onGoToChat = {
-        startActivityIfAble(ConversationIntents.createBuilder(requireContext(), it.data.storyRecipient.id, -1L).build())
+      onGoToChat = { model ->
+        lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), model.data.storyRecipient.id, -1L)
+          .subscribeBy {
+            startActivityIfAble(it.build())
+          }
       },
       onHideStory = {
         if (!it.data.isHidden) {

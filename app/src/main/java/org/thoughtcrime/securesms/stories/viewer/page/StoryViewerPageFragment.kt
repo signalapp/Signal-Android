@@ -34,6 +34,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicatorSp
 import com.google.android.material.progressindicator.IndeterminateDrawable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
@@ -1064,7 +1065,9 @@ class StoryViewerPageFragment :
         }
       },
       onGoToChat = {
-        startActivity(ConversationIntents.createBuilder(requireContext(), storyViewerPageArgs.recipientId, -1L).build())
+        lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), storyViewerPageArgs.recipientId, -1L).subscribeBy {
+          startActivity(it.build())
+        }
       },
       onHide = {
         viewModel.setIsDisplayingHideDialog(true)

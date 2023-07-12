@@ -4451,7 +4451,7 @@ public class ConversationParentFragment extends Fragment
     @Override
     public void onNavigateToMessage(long threadId, @NonNull RecipientId threadRecipientId, @NonNull RecipientId senderId, long messageTimestamp, long messagePositionInThread) {
       if (threadId != ConversationParentFragment.this.threadId) {
-        startActivity(ConversationIntents.createBuilder(requireActivity(), threadRecipientId, threadId)
+        startActivity(ConversationIntents.createBuilderSync(requireActivity(), threadRecipientId, threadId)
                                          .withStartingPosition((int) messagePositionInThread)
                                          .build());
       } else {
