@@ -39,6 +39,7 @@ object EnvelopeContentValidator {
       content.hasDataMessage() -> validateDataMessage(envelope, content.dataMessage)
       content.hasSyncMessage() -> validateSyncMessage(envelope, content.syncMessage)
       content.hasCallMessage() -> Result.Valid
+      content.hasNullMessage() -> Result.Valid
       content.hasReceiptMessage() -> validateReceiptMessage(content.receiptMessage)
       content.hasTypingMessage() -> validateTypingMessage(envelope, content.typingMessage)
       content.hasDecryptionErrorMessage() -> validateDecryptionErrorMessage(content.decryptionErrorMessage.toByteArray())
