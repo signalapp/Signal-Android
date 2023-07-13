@@ -203,7 +203,8 @@ class ConversationRepository(
     bodyRanges: BodyRangeList?,
     contacts: List<Contact>,
     linkPreviews: List<LinkPreview>,
-    preUploadResults: List<PreUploadResult>
+    preUploadResults: List<PreUploadResult>,
+    identityRecordsState: IdentityRecordsState?
   ): Completable {
     val sendCompletable = Completable.create { emitter ->
       if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty()) {
@@ -213,6 +214,11 @@ class ConversationRepository(
 
       if (threadRecipient == null) {
         emitter.onError(RecipientFormattingException("Badly formatted"))
+        return@create
+      }
+
+      if (identityRecordsState != null && identityRecordsState.hasRecentSafetyNumberChange()) {
+        emitter.onError(RecentSafetyNumberChangeException(identityRecordsState.getRecentSafetyNumberChangeRecords()))
         return@create
       }
 
@@ -369,7 +375,7 @@ class ConversationRepository(
         records.isVerified &&
         !recipient.isSelf
 
-      IdentityRecordsState(isVerified, records, isGroup = groupRecord != null)
+      IdentityRecordsState(recipient, groupRecord, isVerified, records, isGroup = groupRecord != null)
     }.subscribeOn(Schedulers.io())
   }
 

@@ -125,6 +125,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.ConversationS
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearchKey
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
@@ -327,7 +328,8 @@ class ConversationFragment :
   EmojiSearchFragment.Callback,
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback,
-  ConversationBottomSheetCallback {
+  ConversationBottomSheetCallback,
+  SafetyNumberBottomSheet.Callbacks {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -553,7 +555,7 @@ class ConversationFragment :
 
     motionEventRelay.setDrain(MotionEventRelayDrain())
 
-    viewModel.updateIdentityRecords()
+    viewModel.updateIdentityRecordsInBackground()
   }
 
   override fun onPause() {
@@ -712,6 +714,24 @@ class ConversationFragment :
     sendMessage(scheduledDate = scheduledDate)
   }
 
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<RecipientSearchKey>) {
+    Log.d(TAG, "onSendAnywayAfterSafetyNumberChange")
+    viewModel
+      .updateIdentityRecords()
+      .subscribeBy(
+        onError = { t -> Log.w(TAG, "Error sending", t) },
+        onComplete = { sendMessage() }
+      )
+      .addTo(disposables)
+  }
+
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() {
+    Log.d(TAG, "onMessageResentAfterSafetyNumberChange")
+    viewModel.updateIdentityRecordsInBackground()
+  }
+
+  override fun onCanceled() = Unit
+
   //endregion
 
   private fun observeConversationThread() {
@@ -859,6 +879,7 @@ class ConversationFragment :
 
     viewModel
       .identityRecords
+      .distinctUntilChanged()
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { presentIdentityRecordsState(it) }
       .addTo(disposables)
@@ -1574,7 +1595,8 @@ class ConversationFragment :
       bodyRanges = null,
       messageToEdit = null,
       quote = null,
-      linkPreviews = emptyList()
+      linkPreviews = emptyList(),
+      bypassPreSendSafetyNumberCheck = true
     )
   }
 
@@ -1590,6 +1612,7 @@ class ConversationFragment :
     clearCompose: Boolean = true,
     linkPreviews: List<LinkPreview> = linkPreviewViewModel.onSend(),
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
+    bypassPreSendSafetyNumberCheck: Boolean = false,
     afterSendComplete: () -> Unit = {}
   ) {
     if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
@@ -1622,25 +1645,26 @@ class ConversationFragment :
       bodyRanges = bodyRanges,
       contacts = contacts,
       linkPreviews = linkPreviews,
-      preUploadResults = preUploadResults
+      preUploadResults = preUploadResults,
+      bypassPreSendSafetyNumberCheck = bypassPreSendSafetyNumberCheck
     )
 
     disposables += send
-      .doOnSubscribe {
-        if (clearCompose) {
-          composeText.setText("")
-          inputPanel.clearQuote()
-        }
-      }
       .subscribeBy(
         onError = { t ->
           Log.w(TAG, "Error sending", t)
           when (t) {
             is InvalidMessageException -> toast(R.string.ConversationActivity_message_is_empty_exclamation)
             is RecipientFormattingException -> toast(R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation, Toast.LENGTH_LONG)
+            is RecentSafetyNumberChangeException -> handleRecentSafetyNumberChange(t.changedRecords)
           }
         },
         onComplete = {
+          if (clearCompose) {
+            composeText.setText("")
+            inputPanel.clearQuote()
+          }
+
           onSendComplete()
           afterSendComplete()
         }
@@ -1665,6 +1689,13 @@ class ConversationFragment :
     draftViewModel.onSendComplete()
 
     inputPanel.exitEditMessageMode()
+  }
+
+  private fun handleRecentSafetyNumberChange(changedRecords: List<IdentityRecord>) {
+    val recipient = viewModel.recipientSnapshot ?: return
+    SafetyNumberBottomSheet
+      .forIdentityRecordsAndDestination(changedRecords, RecipientSearchKey(recipient.getId(), false))
+      .show(childFragmentManager)
   }
 
   private fun toast(@StringRes toastTextId: Int, toastDuration: Int = Toast.LENGTH_SHORT) {
@@ -3617,7 +3648,7 @@ class ConversationFragment :
 
   @Subscribe(threadMode = ThreadMode.POSTING)
   fun onIdentityRecordUpdate(event: IdentityRecord?) {
-    viewModel.updateIdentityRecords()
+    viewModel.updateIdentityRecordsInBackground()
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
