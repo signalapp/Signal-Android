@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -93,6 +94,7 @@ import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.hasLinkPreview
@@ -214,10 +216,22 @@ class ConversationRepository(
         return@create
       }
 
+      val splitMessage: MessageUtil.SplitResult = MessageUtil.getSplitMessage(
+        applicationContext,
+        body,
+        MessageSendType.SignalMessageSendType.calculateCharacters(body).maxPrimaryMessageSize
+      )
+
+      val outgoingMessageSlideDeck: SlideDeck? = splitMessage.textSlide.map {
+        (slideDeck ?: SlideDeck()).apply {
+          addSlide(it)
+        }
+      }.orElse(slideDeck)
+
       val message = OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
-        body = body,
+        body = splitMessage.body,
         expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
         isUrgent = true,
         isSecure = true,
@@ -228,7 +242,7 @@ class ConversationRepository(
         mentions = mentions,
         sharedContacts = contacts,
         linkPreviews = linkPreviews,
-        attachments = slideDeck?.asAttachments() ?: emptyList()
+        attachments = outgoingMessageSlideDeck?.asAttachments() ?: emptyList()
       )
 
       if (preUploadResults.isEmpty()) {
