@@ -9,7 +9,6 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +17,8 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElemen
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.drawAsItemDecoration
+import org.thoughtcrime.securesms.util.layoutIn
 import org.thoughtcrime.securesms.util.toLocalDate
 import java.util.Locale
 
@@ -61,12 +62,7 @@ class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMe
 
       if (hasHeader(position)) {
         val headerView = getHeader(parent, currentItems[position] as ConversationMessageElement).itemView
-        c.save()
-        val left = parent.left
-        val top = child.y.toInt() - headerView.height
-        c.translate(left.toFloat(), top.toFloat())
-        headerView.draw(c)
-        c.restore()
+        headerView.drawAsItemDecoration(c, parent, child)
       }
     }
   }
@@ -102,13 +98,8 @@ class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMe
       holder
     }
 
-    val headerView = headerHolder.itemView
-    val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY)
-    val heightSpec = View.MeasureSpec.makeMeasureSpec(parent.height, View.MeasureSpec.UNSPECIFIED)
-    val childWidth = ViewGroup.getChildMeasureSpec(widthSpec, parent.paddingLeft + parent.paddingRight, headerView.layoutParams.width)
-    val childHeight = ViewGroup.getChildMeasureSpec(heightSpec, parent.paddingTop + parent.paddingBottom, headerView.layoutParams.height)
-    headerView.measure(childWidth, childHeight)
-    headerView.layout(0, 0, headerView.measuredWidth, headerView.measuredHeight)
+    headerHolder.itemView.layoutIn(parent)
+
     return headerHolder
   }
 

@@ -258,7 +258,7 @@ class ConversationRepository(
   }
 
   fun setLastVisibleMessageTimestamp(threadId: Long, lastVisibleMessageTimestamp: Long) {
-    SignalExecutors.BOUNDED.submit { SignalDatabase.threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
+    SignalExecutors.BOUNDED_IO.execute { SignalDatabase.threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
   }
 
   fun markGiftBadgeRevealed(messageId: Long) {
@@ -572,6 +572,12 @@ class ConversationRepository(
 
       SignalDatabase.messages.markExpireStarted(messageRecord.id, now)
       ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageRecord.id, messageRecord.isMms, now, messageRecord.expiresIn)
+    }
+  }
+
+  fun markLastSeen(threadId: Long) {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.threads.setLastSeen(threadId)
     }
   }
 

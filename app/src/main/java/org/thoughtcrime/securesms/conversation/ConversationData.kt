@@ -14,7 +14,8 @@ data class ConversationData(
   val jumpToPosition: Int,
   val threadSize: Int,
   val messageRequestData: MessageRequestData,
-  @get:JvmName("showUniversalExpireTimerMessage") val showUniversalExpireTimerMessage: Boolean
+  @get:JvmName("showUniversalExpireTimerMessage") val showUniversalExpireTimerMessage: Boolean,
+  val unreadCount: Int
 ) {
 
   fun shouldJumpToMessage(): Boolean {

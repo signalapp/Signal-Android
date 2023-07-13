@@ -119,7 +119,7 @@ public class ConversationRepository {
       showUniversalExpireTimerUpdate = true;
     }
 
-    return new ConversationData(conversationRecipient, threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
+    return new ConversationData(conversationRecipient, threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate, metadata.getUnreadCount());
   }
 
   public void markGiftBadgeRevealed(long messageId) {

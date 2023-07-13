@@ -196,7 +196,7 @@ open class MessageContentProcessorV2(private val context: Context) {
 
         val threadId = SignalDatabase.threads.getThreadIdFor(destination.id)
         if (threadId != null) {
-          val (lastSeen) = SignalDatabase.threads.getConversationMetadata(threadId)
+          val lastSeen = SignalDatabase.threads.getConversationMetadata(threadId).lastSeen
           val visibleThread = ApplicationDependencies.getMessageNotifier().visibleThread.map(ConversationId::threadId).orElse(-1L)
 
           if (threadId != visibleThread && lastSeen > 0 && lastSeen < pending.receivedTimestamp) {

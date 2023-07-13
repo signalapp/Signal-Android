@@ -1014,16 +1014,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun setLastSeen(threadId: Long) {
-    setLastSeenSilently(threadId)
-    notifyConversationListListeners()
-  }
-
-  fun setLastSeenSilently(threadId: Long) {
     writableDatabase
       .update(TABLE_NAME)
       .values(LAST_SEEN to System.currentTimeMillis())
       .where("$ID = ?", threadId)
       .run()
+
+    notifyConversationListListeners()
   }
 
   fun setLastScrolled(threadId: Long, lastScrolledTimestamp: Long) {
@@ -1036,7 +1033,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun getConversationMetadata(threadId: Long): ConversationMetadata {
     return readableDatabase
-      .select(LAST_SEEN, HAS_SENT, LAST_SCROLLED)
+      .select(UNREAD_COUNT, LAST_SEEN, HAS_SENT, LAST_SCROLLED)
       .from(TABLE_NAME)
       .where("$ID = ?", threadId)
       .run()
@@ -1045,13 +1042,15 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           ConversationMetadata(
             lastSeen = cursor.requireLong(LAST_SEEN),
             hasSent = cursor.requireBoolean(HAS_SENT),
-            lastScrolled = cursor.requireLong(LAST_SCROLLED)
+            lastScrolled = cursor.requireLong(LAST_SCROLLED),
+            unreadCount = cursor.requireInt(UNREAD_COUNT)
           )
         } else {
           ConversationMetadata(
             lastSeen = -1L,
             hasSent = false,
-            lastScrolled = -1
+            lastScrolled = -1,
+            unreadCount = 0
           )
         }
       }
@@ -2033,7 +2032,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val lastSeen: Long,
     @get:JvmName("hasSent")
     val hasSent: Boolean,
-    val lastScrolled: Long
+    val lastScrolled: Long,
+    val unreadCount: Int
   )
 
   data class MergeResult(val threadId: Long, val previousThreadId: Long, val neededMerge: Boolean)

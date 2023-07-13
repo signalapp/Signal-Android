@@ -88,6 +88,8 @@ class ConversationViewModel(
     .observeOn(AndroidSchedulers.mainThread())
   val showScrollButtonsSnapshot: Boolean
     get() = scrollButtonStateStore.state.showScrollButtons
+  val unreadCount: Int
+    get() = scrollButtonStateStore.state.unreadCount
 
   val recipient: Observable<Recipient> = recipientRepository.conversationRecipient
 
@@ -394,5 +396,9 @@ class ConversationViewModel(
     return scheduledMessagesRepository
       .getScheduledMessageCount(threadId)
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun markLastSeen() {
+    repository.markLastSeen(threadId)
   }
 }
