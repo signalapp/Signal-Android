@@ -193,6 +193,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   override fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean, outgoingOnly: Boolean): ProjectionList {
     projections.clear()
 
+    if (outgoingOnly && binding.isIncoming) {
+      return projections
+    }
+
     projections.add(
       Projection.relativeToParent(
         coordinateRoot,
