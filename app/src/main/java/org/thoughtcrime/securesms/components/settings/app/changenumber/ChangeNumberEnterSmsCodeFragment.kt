@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getCaptchaArguments
@@ -12,6 +13,8 @@ import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNum
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.fragments.BaseEnterSmsCodeFragment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+
+private val TAG: String = Log.tag(ChangeNumberEnterSmsCodeFragment::class.java)
 
 class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberViewModel>(R.layout.fragment_change_number_enter_code) {
 
@@ -47,18 +50,22 @@ class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberVi
   }
 
   override fun handleSuccessfulVerify() {
+    Log.d(TAG, "handleSuccessfulVerify")
     displaySuccess { changeNumberSuccess() }
   }
 
   override fun navigateToCaptcha() {
+    Log.d(TAG, "navigateToCaptcha")
     findNavController().safeNavigate(R.id.action_changeNumberEnterCodeFragment_to_captchaFragment, getCaptchaArguments())
   }
 
   override fun navigateToRegistrationLock(timeRemaining: Long) {
+    Log.d(TAG, "navigateToRegistrationLock")
     findNavController().safeNavigate(ChangeNumberEnterSmsCodeFragmentDirections.actionChangeNumberEnterCodeFragmentToChangeNumberRegistrationLock(timeRemaining))
   }
 
   override fun navigateToKbsAccountLocked() {
+    Log.d(TAG, "navigateToKbsAccountLocked")
     findNavController().safeNavigate(ChangeNumberEnterSmsCodeFragmentDirections.actionChangeNumberEnterCodeFragmentToChangeNumberAccountLocked())
   }
 }
