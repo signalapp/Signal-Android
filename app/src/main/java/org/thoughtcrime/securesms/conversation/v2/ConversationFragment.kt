@@ -583,6 +583,11 @@ class ConversationFragment :
     }
   }
 
+  @Suppress("OVERRIDE_DEPRECATION")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
   //endregion
 
   //region Fragment callbacks and listeners
