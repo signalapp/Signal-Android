@@ -406,6 +406,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $TABLE_NAME.$SEEN_INVITE_REMINDER < ${InsightsBannerTier.TIER_TWO.id} AND
         ${ThreadTable.TABLE_NAME}.${ThreadTable.HAS_SENT} AND
         ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} > ? AND
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND
         $TABLE_NAME.$HIDDEN = 0
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC LIMIT 50
       """
@@ -3344,13 +3345,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return SqlUtil.Query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
   }
 
+  /**
+   * Queries all contacts without an active thread.
+   */
   fun getAllContactsWithoutThreads(inputQuery: String): Cursor {
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
 
     //language=sql
     val subquery = """
       SELECT ${SEARCH_PROJECTION.joinToString(", ")} FROM $TABLE_NAME
-      WHERE $BLOCKED = ? AND $HIDDEN = ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1) 
+      WHERE $BLOCKED = ? AND $HIDDEN = ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1) 
       AND (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 

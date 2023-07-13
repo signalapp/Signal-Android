@@ -3562,7 +3562,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun deleteAbandonedMessages(): Int {
     val deletes = writableDatabase
       .delete(TABLE_NAME)
-      .where("$THREAD_ID NOT IN (SELECT _id FROM ${ThreadTable.TABLE_NAME})")
+      .where("$THREAD_ID NOT IN (SELECT _id FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.ACTIVE} = 1)")
       .run()
 
     if (deletes > 0) {

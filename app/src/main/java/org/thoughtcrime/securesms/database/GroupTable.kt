@@ -369,7 +369,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       FROM $TABLE_NAME          
       INNER JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
       INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
-      WHERE $ACTIVE = 1 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
+      WHERE $TABLE_NAME.$ACTIVE = 1 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
       GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
       ORDER BY $TITLE COLLATE NOCASE ASC
     """
@@ -407,10 +407,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val queryArgs: Array<String>
 
     if (includeInactive) {
-      query = "${membershipQuery.where} AND ($ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}))"
+      query = "${membershipQuery.where} AND ($TABLE_NAME.$ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1))"
       queryArgs = membershipQuery.whereArgs + buildArgs(1)
     } else {
-      query = "${membershipQuery.where} AND $ACTIVE = ?"
+      query = "${membershipQuery.where} AND $TABLE_NAME.$ACTIVE = ?"
       queryArgs = membershipQuery.whereArgs + buildArgs(1)
     }
 
@@ -464,10 +464,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val caseInsensitiveQuery = buildCaseInsensitiveGlobPattern(inputQuery)
 
     if (includeInactive) {
-      query = "$TITLE GLOB ? AND ($ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}))"
+      query = "$TITLE GLOB ? AND ($TABLE_NAME.$ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1))"
       queryArgs = buildArgs(caseInsensitiveQuery, 1)
     } else {
-      query = "$TITLE GLOB ? AND $ACTIVE = ?"
+      query = "$TITLE GLOB ? AND $TABLE_NAME.$ACTIVE = ?"
       queryArgs = buildArgs(caseInsensitiveQuery, 1)
     }
 
@@ -590,7 +590,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     if (!includeInactive) {
-      query += " AND $ACTIVE = ?"
+      query += " AND $TABLE_NAME.$ACTIVE = ?"
       args = appendArg(args, "1")
     }
 
@@ -1313,7 +1313,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         ) AS active_timestamp 
       FROM $TABLE_NAME INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID 
       WHERE 
-        $ACTIVE = 1 AND 
+        $TABLE_NAME.$ACTIVE = 1 AND 
         (
           $SHOW_AS_STORY_STATE = ${ShowAsStoryState.ALWAYS.code} OR 
           (

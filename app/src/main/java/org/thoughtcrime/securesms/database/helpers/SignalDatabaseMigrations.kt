@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V195_GroupMemberFor
 import org.thoughtcrime.securesms.database.helpers.migration.V196_BackCallLinksWithRecipientV2
 import org.thoughtcrime.securesms.database.helpers.migration.V197_DropAvatarColorFromCallLinks
 import org.thoughtcrime.securesms.database.helpers.migration.V198_AddMacDigestColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V199_AddThreadActiveColumn
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -62,7 +63,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 198
+  const val DATABASE_VERSION = 199
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -264,6 +265,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 198) {
       V198_AddMacDigestColumn.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 199) {
+      V199_AddThreadActiveColumn.migrate(context, db, oldVersion, newVersion)
     }
   }
 
