@@ -31,6 +31,7 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageButton
 import android.widget.TextView
@@ -274,6 +275,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.Dialogs
@@ -332,6 +334,9 @@ class ConversationFragment :
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
     private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
+
+    private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
+    private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
   }
 
   private val args: ConversationIntents.Args by lazy {
@@ -1158,6 +1163,17 @@ class ConversationFragment :
     } else {
       R.color.signal_colorBackground
     }
+
+    binding.scrollDateHeader.setBackgroundResource(
+      if (wallpaperEnabled) R.drawable.sticky_date_header_background_wallpaper else R.drawable.sticky_date_header_background
+    )
+
+    binding.scrollDateHeader.setTextColor(
+      ContextCompat.getColor(
+        requireContext(),
+        if (wallpaperEnabled) R.color.sticky_header_foreground_wallpaper else R.color.signal_colorOnSurfaceVariant
+      )
+    )
 
     WindowUtil.setNavigationBarColor(requireActivity(), ContextCompat.getColor(requireContext(), navColor))
   }
@@ -2019,9 +2035,63 @@ class ConversationFragment :
     return layoutManager.findFirstCompletelyVisibleItemPosition() > 4
   }
 
+  /**
+   * Controls animation and visibility of the scrollDateHeader.
+   */
+  private inner class ScrollDateHeaderHelper {
+
+    private val slideIn = AnimationUtils.loadAnimation(
+      requireContext(),
+      R.anim.slide_from_top
+    ).apply {
+      duration = SCROLL_HEADER_ANIMATION_DURATION
+    }
+
+    private val slideOut = AnimationUtils.loadAnimation(
+      requireContext(),
+      R.anim.conversation_scroll_date_header_slide_to_top
+    ).apply {
+      duration = SCROLL_HEADER_ANIMATION_DURATION
+    }
+
+    private var pendingHide = false
+
+    fun show() {
+      if (binding.scrollDateHeader.text.isNullOrEmpty()) {
+        return
+      }
+
+      if (pendingHide) {
+        pendingHide = false
+      } else {
+        ViewUtil.animateIn(binding.scrollDateHeader, slideIn)
+      }
+    }
+
+    fun bind(message: ConversationMessage?) {
+      if (message != null) {
+        binding.scrollDateHeader.text = DateUtils.getConversationDateHeaderString(requireContext(), Locale.getDefault(), message.conversationTimestamp)
+      } else {
+        binding.scrollDateHeader.text = null
+      }
+    }
+
+    fun hide() {
+      pendingHide = true
+
+      binding.scrollDateHeader.postDelayed({
+        if (pendingHide) {
+          pendingHide = false
+          ViewUtil.animateOut(binding.scrollDateHeader, slideOut)
+        }
+      }, SCROLL_HEADER_CLOSE_DELAY)
+    }
+  }
+
   private inner class ScrollListener : RecyclerView.OnScrollListener() {
 
     private var wasAtBottom = true
+    private val scrollDateHeaderHelper = ScrollDateHeaderHelper()
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
       if (isScrolledToBottom()) {
@@ -2032,8 +2102,19 @@ class ConversationFragment :
 
       presentComposeDivider()
 
+      val message = adapter.getConversationMessage(layoutManager.findLastVisibleItemPosition())
+      scrollDateHeaderHelper.bind(message)
+
       val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
       timestamp.ifPresent(markReadHelper::onViewsRevealed)
+    }
+
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+      if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+        scrollDateHeaderHelper.show()
+      } else {
+        scrollDateHeaderHelper.hide()
+      }
     }
 
     private fun presentComposeDivider() {

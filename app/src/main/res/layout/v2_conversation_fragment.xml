@@ -51,6 +51,27 @@
         tools:itemCount="20"
         tools:listitem="@layout/conversation_item_sent_text_only" />
 
+    <TextView
+        android:id="@+id/scroll_date_header"
+        style="@style/Signal.Text.BodySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sticky_date_header_background"
+        android:elevation="9dp"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/conversation_banner"
+        tools:text="March 1, 2015"
+        tools:visibility="visible" />
+
     <View
         android:id="@+id/toolbar_background"
         android:layout_width="0dp"
