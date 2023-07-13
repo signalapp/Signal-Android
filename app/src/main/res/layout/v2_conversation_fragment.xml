@@ -200,7 +200,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub,attachment_editor,conversation_disabled_input,scheduled_messages_stub,scheduled_messages" />
+        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub,attachment_editor,conversation_disabled_input,scheduled_messages_stub,scheduled_messages,conversation_search_bottom_bar" />
 
     <ViewStub
         android:id="@+id/attachment_editor_stub"
