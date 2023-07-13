@@ -328,12 +328,12 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   private fun processReceipt(envelope: SignalServiceProtos.Envelope) {
-    if (!UuidUtil.isUuid(envelope.sourceUuid)) {
+    if (!UuidUtil.isUuid(envelope.sourceServiceId)) {
       Log.w(TAG, "Invalid envelope source UUID!")
       return
     }
 
-    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceUuid))
+    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceServiceId))
 
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDevice}, Timestamp: ${envelope.timestamp}")
     SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp, senderId, System.currentTimeMillis())

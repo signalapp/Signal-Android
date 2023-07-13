@@ -57,7 +57,7 @@ public class PushTable extends DatabaseTable {
     } else {
       ContentValues values = new ContentValues();
       values.put(TYPE, envelope.getType());
-      values.put(SOURCE_UUID, envelope.getSourceUuid().orElse(null));
+      values.put(SOURCE_UUID, envelope.getSourceServiceId().orElse(null));
       values.put(DEVICE_ID, envelope.getSourceDevice());
       values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
       values.put(TIMESTAMP, envelope.getTimestamp());
@@ -132,7 +132,7 @@ public class PushTable extends DatabaseTable {
                                               String.valueOf(envelope.getSourceDevice()),
                                               envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
                                               String.valueOf(envelope.getTimestamp()),
-                                              String.valueOf(envelope.getSourceUuid().orElse(null)) };
+                                              String.valueOf(envelope.getSourceServiceId().orElse(null)) };
 
 
     try (Cursor cursor = database.query(TABLE_NAME, null, query, args, null, null, null)) {

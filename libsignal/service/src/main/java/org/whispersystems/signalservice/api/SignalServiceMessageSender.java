@@ -1036,7 +1036,7 @@ public class SignalServiceMessageSender {
       DataMessage.Quote.Builder quoteBuilder = DataMessage.Quote.newBuilder()
                                                                 .setId(message.getQuote().get().getId())
                                                                 .setText(message.getQuote().get().getText())
-                                                                .setAuthorUuid(message.getQuote().get().getAuthor().toString())
+                                                                .setAuthorAci(message.getQuote().get().getAuthor().toString())
                                                                 .setType(message.getQuote().get().getType().getProtoType());
 
       List<SignalServiceDataMessage.Mention> mentions = message.getQuote().get().getMentions();
@@ -1045,7 +1045,7 @@ public class SignalServiceMessageSender {
           quoteBuilder.addBodyRanges(BodyRange.newBuilder()
                                               .setStart(mention.getStart())
                                               .setLength(mention.getLength())
-                                              .setMentionUuid(mention.getServiceId().toString()));
+                                              .setMentionAci(mention.getServiceId().toString()));
         }
 
         builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
@@ -1093,7 +1093,7 @@ public class SignalServiceMessageSender {
         builder.addBodyRanges(BodyRange.newBuilder()
                                        .setStart(mention.getStart())
                                        .setLength(mention.getLength())
-                                       .setMentionUuid(mention.getServiceId().toString()));
+                                       .setMentionAci(mention.getServiceId().toString()));
       }
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
     }
@@ -1128,7 +1128,7 @@ public class SignalServiceMessageSender {
                                                                          .setEmoji(message.getReaction().get().getEmoji())
                                                                          .setRemove(message.getReaction().get().isRemove())
                                                                          .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp())
-                                                                         .setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().toString());
+                                                                         .setTargetAuthorAci(message.getReaction().get().getTargetAuthor().toString());
 
       builder.setReaction(reactionBuilder.build());
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS_VALUE, builder.getRequiredProtocolVersion()));
@@ -1172,7 +1172,7 @@ public class SignalServiceMessageSender {
       SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
 
       builder.setStoryContext(DataMessage.StoryContext.newBuilder()
-                                                      .setAuthorUuid(storyContext.getAuthorServiceId().toString())
+                                                      .setAuthorAci(storyContext.getAuthorServiceId().toString())
                                                       .setSentTimestamp(storyContext.getSentTimestamp()));
     }
 
@@ -1338,7 +1338,7 @@ public class SignalServiceMessageSender {
     for (SendMessageResult result : sendMessageResults) {
       if (result.getSuccess() != null) {
         sentMessage.addUnidentifiedStatus(SyncMessage.Sent.UnidentifiedDeliveryStatus.newBuilder()
-                                                                                     .setDestinationUuid(result.getAddress().getServiceId().toString())
+                                                                                     .setDestinationServiceId(result.getAddress().getServiceId().toString())
                                                                                      .setUnidentified(result.getSuccess().isUnidentified())
                                                                                      .build());
 
@@ -1346,7 +1346,7 @@ public class SignalServiceMessageSender {
     }
 
     if (recipient.isPresent()) {
-      sentMessage.setDestinationUuid(recipient.get().getServiceId().toString());
+      sentMessage.setDestinationServiceId(recipient.get().getServiceId().toString());
       if (recipient.get().getNumber().isPresent()) {
         sentMessage.setDestinationE164(recipient.get().getNumber().get());
       }
@@ -1384,7 +1384,7 @@ public class SignalServiceMessageSender {
   private SyncMessage.Sent.StoryMessageRecipient createStoryMessageRecipient(SignalServiceStoryMessageRecipient storyMessageRecipient) {
     return SyncMessage.Sent.StoryMessageRecipient.newBuilder()
                                                  .addAllDistributionListIds(storyMessageRecipient.getDistributionListIds())
-                                                 .setDestinationUuid(storyMessageRecipient.getSignalServiceAddress().getIdentifier())
+                                                 .setDestinationServiceId(storyMessageRecipient.getSignalServiceAddress().getIdentifier())
                                                  .setIsAllowedToReply(storyMessageRecipient.isAllowedToReply())
                                                  .build();
   }
@@ -1396,7 +1396,7 @@ public class SignalServiceMessageSender {
     for (ReadMessage readMessage : readMessages) {
       builder.addRead(SyncMessage.Read.newBuilder()
                                       .setTimestamp(readMessage.getTimestamp())
-                                      .setSenderUuid(readMessage.getSender().toString()));
+                                      .setSenderAci(readMessage.getSender().toString()));
     }
 
     return container.setSyncMessage(builder).build();
@@ -1409,7 +1409,7 @@ public class SignalServiceMessageSender {
     for (ViewedMessage readMessage : readMessages) {
       builder.addViewed(SyncMessage.Viewed.newBuilder()
                                           .setTimestamp(readMessage.getTimestamp())
-                                          .setSenderUuid(readMessage.getSender().toString()));
+                                          .setSenderAci(readMessage.getSender().toString()));
     }
 
     return container.setSyncMessage(builder).build();
@@ -1421,7 +1421,7 @@ public class SignalServiceMessageSender {
 
     builder.setViewOnceOpen(SyncMessage.ViewOnceOpen.newBuilder()
                                                     .setTimestamp(readMessage.getTimestamp())
-                                                    .setSenderUuid(readMessage.getSender().toString()));
+                                                    .setSenderAci(readMessage.getSender().toString()));
 
     return container.setSyncMessage(builder).build();
   }
@@ -1432,7 +1432,7 @@ public class SignalServiceMessageSender {
     SyncMessage.Blocked.Builder blockedMessage = SyncMessage.Blocked.newBuilder();
 
     for (SignalServiceAddress address : blocked.getAddresses()) {
-      blockedMessage.addUuids(address.getServiceId().toString());
+      blockedMessage.addAcis(address.getServiceId().toString());
       if (address.getNumber().isPresent()) {
         blockedMessage.addNumbers(address.getNumber().get());
       }
@@ -1532,7 +1532,7 @@ public class SignalServiceMessageSender {
     }
 
     if (message.getPerson().isPresent()) {
-      responseMessage.setThreadUuid(message.getPerson().get().toString());
+      responseMessage.setThreadAci(message.getPerson().get().toString());
     }
 
     switch (message.getType()) {
@@ -1565,7 +1565,7 @@ public class SignalServiceMessageSender {
     SyncMessage.OutgoingPayment.Builder paymentMessage = SyncMessage.OutgoingPayment.newBuilder();
 
     if (message.getRecipient().isPresent()) {
-      paymentMessage.setRecipientUuid(message.getRecipient().get().toString());
+      paymentMessage.setRecipientServiceId(message.getRecipient().get().toString());
     }
 
     if (message.getNote().isPresent()) {
@@ -1617,7 +1617,7 @@ public class SignalServiceMessageSender {
 
     verifiedMessageBuilder.setNullMessage(ByteString.copyFrom(nullMessage));
     verifiedMessageBuilder.setIdentityKey(ByteString.copyFrom(verifiedMessage.getIdentityKey().serialize()));
-    verifiedMessageBuilder.setDestinationUuid(verifiedMessage.getDestination().getServiceId().toString());
+    verifiedMessageBuilder.setDestinationAci(verifiedMessage.getDestination().getServiceId().toString());
 
 
     switch(verifiedMessage.getVerified()) {

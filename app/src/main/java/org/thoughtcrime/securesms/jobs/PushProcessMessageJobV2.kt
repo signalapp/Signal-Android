@@ -130,8 +130,8 @@ class PushProcessMessageJobV2 private constructor(
             requireNetwork = true
           }
         }
-      } else if (result.content.hasSyncMessage() && result.content.syncMessage.hasSent() && result.content.syncMessage.sent.hasDestinationUuid()) {
-        queueName = getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage.sent.destinationUuid)))
+      } else if (result.content.hasSyncMessage() && result.content.syncMessage.hasSent() && result.content.syncMessage.sent.hasDestinationServiceId()) {
+        queueName = getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage.sent.destinationServiceId)))
       } else {
         queueName = getQueueName(RecipientId.from(result.metadata.sourceServiceId))
       }

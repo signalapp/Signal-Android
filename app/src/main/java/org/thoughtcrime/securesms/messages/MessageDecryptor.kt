@@ -89,10 +89,10 @@ object MessageDecryptor {
 
     val destination: ServiceId = envelope.getDestination(selfAci, selfPni)
 
-    if (destination == selfPni && envelope.hasSourceUuid()) {
+    if (destination == selfPni && envelope.hasSourceServiceId()) {
       Log.i(TAG, "${logPrefix(envelope)} Received a message at our PNI. Marking as needing a PNI signature.")
 
-      val sourceServiceId = ServiceId.parseOrNull(envelope.sourceUuid)
+      val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId)
 
       if (sourceServiceId != null) {
         val sender = RecipientId.from(sourceServiceId)
@@ -102,7 +102,7 @@ object MessageDecryptor {
       }
     }
 
-    if (destination == selfPni && !envelope.hasSourceUuid()) {
+    if (destination == selfPni && !envelope.hasSourceServiceId()) {
       Log.w(TAG, "${logPrefix(envelope)} Got a sealed sender message to our PNI? Invalid message, ignoring.")
       return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
     }
@@ -352,7 +352,7 @@ object MessageDecryptor {
   }
 
   private fun logPrefix(envelope: Envelope): String {
-    return logPrefix(envelope.timestamp, envelope.sourceUuid ?: "<sealed>", envelope.sourceDevice)
+    return logPrefix(envelope.timestamp, envelope.sourceServiceId ?: "<sealed>", envelope.sourceDevice)
   }
 
   private fun logPrefix(envelope: Envelope, sender: ServiceId): String {
@@ -367,7 +367,7 @@ object MessageDecryptor {
     return if (exception.sender != null) {
       logPrefix(envelope.timestamp, exception.sender, exception.senderDevice)
     } else {
-      logPrefix(envelope.timestamp, envelope.sourceUuid, envelope.sourceDevice)
+      logPrefix(envelope.timestamp, envelope.sourceServiceId, envelope.sourceDevice)
     }
   }
 
@@ -409,8 +409,8 @@ object MessageDecryptor {
   private fun Envelope.getDestination(selfAci: ServiceId, selfPni: ServiceId): ServiceId {
     return if (!FeatureFlags.phoneNumberPrivacy()) {
       selfAci
-    } else if (this.hasDestinationUuid()) {
-      val serviceId = ServiceId.parseOrThrow(this.destinationUuid)
+    } else if (this.hasDestinationServiceId()) {
+      val serviceId = ServiceId.parseOrThrow(this.destinationServiceId)
       if (serviceId == selfAci || serviceId == selfPni) {
         serviceId
       } else {

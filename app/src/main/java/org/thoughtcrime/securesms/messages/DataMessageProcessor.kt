@@ -368,7 +368,7 @@ object DataMessageProcessor {
       return null
     }
 
-    val authorServiceId: ServiceId = ServiceId.parseOrThrow(message.storyContext.authorUuid)
+    val authorServiceId: ServiceId = ServiceId.parseOrThrow(message.storyContext.authorAci)
     val sentTimestamp = message.storyContext.sentTimestamp
 
     SignalDatabase.messages.beginTransaction()
@@ -459,7 +459,7 @@ object DataMessageProcessor {
 
     val emoji: String = message.reaction.emoji
     val isRemove: Boolean = message.reaction.remove
-    val targetAuthorServiceId: ServiceId = ServiceId.parseOrThrow(message.reaction.targetAuthorUuid)
+    val targetAuthorServiceId: ServiceId = ServiceId.parseOrThrow(message.reaction.targetAuthorAci)
     val targetSentTimestamp = message.reaction.targetSentTimestamp
 
     if (targetAuthorServiceId.isUnknown) {
@@ -668,7 +668,7 @@ object DataMessageProcessor {
   ): MessageId? {
     log(envelope.timestamp, "Story reply.")
 
-    val authorServiceId: ServiceId = ServiceId.parseOrThrow(message.storyContext.authorUuid)
+    val authorServiceId: ServiceId = ServiceId.parseOrThrow(message.storyContext.authorAci)
     val sentTimestamp = message.storyContext.sentTimestamp
 
     SignalDatabase.messages.beginTransaction()
@@ -990,9 +990,9 @@ object DataMessageProcessor {
 
   fun getMentions(mentionBodyRanges: List<BodyRange>): List<Mention> {
     return mentionBodyRanges
-      .filter { it.hasMentionUuid() }
+      .filter { it.hasMentionAci() }
       .mapNotNull {
-        val serviceId = ServiceId.parseOrNull(it.mentionUuid)
+        val serviceId = ServiceId.parseOrNull(it.mentionAci)
 
         if (serviceId != null && !serviceId.isUnknown) {
           val id = Recipient.externalPush(serviceId).id
@@ -1031,7 +1031,7 @@ object DataMessageProcessor {
       return null
     }
 
-    val authorId = Recipient.externalPush(ServiceId.parseOrThrow(quote.authorUuid)).id
+    val authorId = Recipient.externalPush(ServiceId.parseOrThrow(quote.authorAci)).id
     var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id, authorId) as? MediaMmsMessageRecord
 
     if (quotedMessage != null && !quotedMessage.isRemoteDelete) {
@@ -1086,7 +1086,7 @@ object DataMessageProcessor {
       quote.attachmentsList.mapNotNull { PointerAttachment.forPointer(it).orNull() },
       getMentions(quote.bodyRangesList),
       QuoteModel.Type.fromProto(quote.type),
-      quote.bodyRangesList.filterNot { it.hasMentionUuid() }.toBodyRangeList()
+      quote.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
     )
   }
 

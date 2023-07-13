@@ -238,7 +238,7 @@ object SyncMessageProcessor {
     return if (message.message.hasGroupContext) {
       Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.message.groupV2.groupMasterKey))
     } else {
-      Recipient.externalPush(SignalServiceAddress(ServiceId.parseOrThrow(message.destinationUuid), message.destinationE164))
+      Recipient.externalPush(SignalServiceAddress(ServiceId.parseOrThrow(message.destinationServiceId), message.destinationE164))
     }
   }
 
@@ -265,7 +265,7 @@ object SyncMessageProcessor {
       val toRecipient: Recipient = if (message.hasGroupContext) {
         Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2.groupMasterKey))
       } else {
-        Recipient.externalPush(ServiceId.parseOrThrow(sent.destinationUuid))
+        Recipient.externalPush(ServiceId.parseOrThrow(sent.destinationServiceId))
       }
       if (message.isMediaMessage) {
         handleSynchronizeSentEditMediaMessage(context, targetMessage, toRecipient, sent, message, envelope.timestamp)
@@ -287,7 +287,7 @@ object SyncMessageProcessor {
     log(envelopeTimestamp, "Synchronize sent edit text message for message: ${targetMessage.id}")
 
     val body = message.body ?: ""
-    val bodyRanges = message.bodyRangesList.filterNot { it.hasMentionUuid() }.toBodyRangeList()
+    val bodyRanges = message.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
     val isGroup = toRecipient.isGroup
@@ -637,7 +637,7 @@ object SyncMessageProcessor {
     try {
       val reaction: DataMessage.Reaction = sent.message.reaction
       val parentStoryId: ParentStoryId
-      val authorServiceId: ServiceId = ServiceId.parseOrThrow(sent.message.storyContext.authorUuid)
+      val authorServiceId: ServiceId = ServiceId.parseOrThrow(sent.message.storyContext.authorAci)
       val sentTimestamp: Long = sent.message.storyContext.sentTimestamp
       val recipient: Recipient = getSyncMessageDestination(sent)
       var quoteModel: QuoteModel? = null
@@ -812,7 +812,7 @@ object SyncMessageProcessor {
     val recipient = getSyncMessageDestination(sent)
     val body = sent.message.body ?: ""
     val expiresInMillis = sent.message.expireTimer.seconds.inWholeMilliseconds
-    val bodyRanges = sent.message.bodyRangesList.filterNot { it.hasMentionUuid() }.toBodyRangeList()
+    val bodyRanges = sent.message.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
 
     if (recipient.expiresInSeconds != sent.message.expireTimer) {
       handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
@@ -923,7 +923,7 @@ object SyncMessageProcessor {
 
     val records = viewedMessages
       .mapNotNull { message ->
-        val author = Recipient.externalPush(ServiceId.parseOrThrow(message.senderUuid)).id
+        val author = Recipient.externalPush(ServiceId.parseOrThrow(message.senderAci)).id
         SignalDatabase.messages.getMessageFor(message.timestamp, author)
       }
 
@@ -950,7 +950,7 @@ object SyncMessageProcessor {
   private fun handleSynchronizeViewOnceOpenMessage(context: Context, openMessage: ViewOnceOpen, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
     log(envelopeTimestamp, "Handling a view-once open for message: " + openMessage.timestamp)
 
-    val author: RecipientId = Recipient.externalPush(ServiceId.parseOrThrow(openMessage.senderUuid)).id
+    val author: RecipientId = Recipient.externalPush(ServiceId.parseOrThrow(openMessage.senderAci)).id
     val timestamp: Long = openMessage.timestamp
     val record: MessageRecord? = SignalDatabase.messages.getMessageFor(timestamp, author)
 
@@ -1019,7 +1019,7 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeBlockedListMessage(blockMessage: Blocked) {
-    val addresses: List<SignalServiceAddress> = blockMessage.uuidsList.mapNotNull { SignalServiceAddress.fromRaw(it, null).orNull() }
+    val addresses: List<SignalServiceAddress> = blockMessage.acisList.mapNotNull { SignalServiceAddress.fromRaw(it, null).orNull() }
     val groupIds: List<ByteArray> = blockMessage.groupIdsList.mapNotNull { it.toByteArray() }
 
     SignalDatabase.recipients.applyBlockedUpdate(addresses, groupIds)
@@ -1039,8 +1039,8 @@ object SyncMessageProcessor {
   private fun handleSynchronizeMessageRequestResponse(response: MessageRequestResponse, envelopeTimestamp: Long) {
     log(envelopeTimestamp, "Synchronize message request response.")
 
-    val recipient: Recipient = if (response.hasThreadUuid()) {
-      Recipient.externalPush(ServiceId.parseOrThrow(response.threadUuid))
+    val recipient: Recipient = if (response.hasThreadAci()) {
+      Recipient.externalPush(ServiceId.parseOrThrow(response.threadAci))
     } else if (response.hasGroupId()) {
       val groupId: GroupId = GroupId.push(response.groupId)
       Recipient.externalPossiblyMigratedGroup(groupId)
@@ -1083,7 +1083,7 @@ object SyncMessageProcessor {
       return
     }
 
-    var recipientId: RecipientId? = ServiceId.parseOrNull(outgoingPayment.recipientUuid)?.let { RecipientId.from(it) }
+    var recipientId: RecipientId? = ServiceId.parseOrNull(outgoingPayment.recipientServiceId)?.let { RecipientId.from(it) }
 
     var timestamp = outgoingPayment.mobileCoin.ledgerBlockTimestamp
     if (timestamp == 0L) {

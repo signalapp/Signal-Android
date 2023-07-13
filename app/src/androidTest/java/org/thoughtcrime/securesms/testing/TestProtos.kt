@@ -41,7 +41,7 @@ class TestProtos private constructor() {
     authorUuid: String = UUID.randomUUID().toString()
   ): DataMessage.StoryContext.Builder {
     return DataMessage.StoryContext.newBuilder()
-      .setAuthorUuid(authorUuid)
+      .setAuthorAci(authorUuid)
       .setSentTimestamp(sentTimestamp)
   }
 

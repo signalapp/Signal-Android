@@ -69,7 +69,7 @@ object FakeClientHelpers {
       .setSourceDevice(1)
       .setTimestamp(timestamp)
       .setServerTimestamp(timestamp + 1)
-      .setDestinationUuid(destination.toString())
+      .setDestinationServiceId(destination.toString())
       .setServerGuid(UUID.randomUUID().toString())
       .setContent(Base64.decode(this.content).toProtoByteString())
       .setUrgent(true)
