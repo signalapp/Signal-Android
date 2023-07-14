@@ -1506,8 +1506,7 @@ class ConversationFragment :
   }
 
   private fun updateLinkPreviewState() {
-    // TODO [cfv2] include viewModel.isPushAvailable && in check
-    if (!attachmentManager.isAttachmentPresent && context != null) {
+    if (viewModel.isPushAvailable && !attachmentManager.isAttachmentPresent && context != null) {
       linkPreviewViewModel.onEnabled()
       linkPreviewViewModel.onTextChanged(composeText.textTrimmed.toString(), composeText.selectionStart, composeText.selectionEnd)
     } else {
@@ -2693,7 +2692,7 @@ class ConversationFragment :
       val recipient: Recipient? = viewModel.recipientSnapshot
       return ConversationOptionsMenu.Snapshot(
         recipient = recipient,
-        isPushAvailable = recipient?.isRegistered == true && Recipient.self().isRegistered,
+        isPushAvailable = viewModel.isPushAvailable,
         canShowAsBubble = Observable.empty(),
         isActiveGroup = recipient?.isActiveGroup == true,
         isActiveV2Group = recipient?.let { it.isActiveGroup && it.isPushV2Group } == true,
@@ -3572,7 +3571,6 @@ class ConversationFragment :
 
   private inner class AttachmentManagerListener : AttachmentManager.AttachmentListener {
     override fun onAttachmentChanged() {
-      // TODO [cfv2] handleSecurityChange(viewModel.getConversationStateSnapshot().getSecurityInfo());
       updateToggleButtonState()
       updateLinkPreviewState()
     }

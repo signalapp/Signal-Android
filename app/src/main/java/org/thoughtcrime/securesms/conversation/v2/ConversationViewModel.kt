@@ -112,6 +112,9 @@ class ConversationViewModel(
   var recipientSnapshot: Recipient? = null
     private set
 
+  val isPushAvailable: Boolean
+    get() = recipientSnapshot?.isRegistered == true && Recipient.self().isRegistered
+
   val wallpaperSnapshot: ChatWallpaper?
     get() = recipientSnapshot?.wallpaper
 

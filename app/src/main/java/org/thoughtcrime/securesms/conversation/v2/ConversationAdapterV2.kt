@@ -184,19 +184,16 @@ class ConversationAdapterV2(
   }
 
   fun canJumpToPosition(absolutePosition: Int): Boolean {
-    // todo [cody] handle typing indicator
-    val position = absolutePosition
-
-    if (position < 0) {
+    if (absolutePosition < 0) {
       return false
     }
 
-    if (position > super.getItemCount()) {
-      Log.d(TAG, "Could not access corrected position $position as it is out of bounds.")
+    if (absolutePosition > super.getItemCount()) {
+      Log.d(TAG, "Could not access corrected position $absolutePosition as it is out of bounds.")
       return false
     }
 
-    if (!isRangeAvailable(position - 10, position + 5)) {
+    if (!isRangeAvailable(absolutePosition - 10, absolutePosition + 5)) {
       getItem(absolutePosition)
       return false
     }
@@ -228,15 +225,12 @@ class ConversationAdapterV2(
    * Momentarily highlights a mention at the requested position.
    */
   fun pulseAtPosition(position: Int) {
-    if (position >= 0 && position < itemCount) {
-      // TODO [cfv2] adjust for typing indicator
-      val correctedPosition = position
-
-      recordToPulse = getConversationMessage(correctedPosition)
+    if (position in 0 until itemCount) {
+      recordToPulse = getConversationMessage(position)
       if (recordToPulse != null) {
         pulseRequest = ConversationAdapterBridge.PulseRequest(position, recordToPulse!!.messageRecord.isOutgoing)
       }
-      notifyItemChanged(correctedPosition)
+      notifyItemChanged(position)
     }
   }
 
