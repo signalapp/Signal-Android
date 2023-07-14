@@ -3291,7 +3291,11 @@ class ConversationFragment :
         composeText.postDelayed({ updateToggleButtonState() }, 50)
       }
 
-      stickerViewModel.onInputTextUpdated(s.toString())
+      if (!inputPanel.inEditMessageMode()) {
+        stickerViewModel.onInputTextUpdated(s.toString())
+      } else {
+        stickerViewModel.onInputTextUpdated("")
+      }
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
@@ -3421,6 +3425,7 @@ class ConversationFragment :
       previousPages = keyboardPagerViewModel.pages().value
       keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
       onKeyboardChanged(KeyboardPage.EMOJI)
+      stickerViewModel.onInputTextUpdated("")
     }
 
     override fun onExitEditMode() {

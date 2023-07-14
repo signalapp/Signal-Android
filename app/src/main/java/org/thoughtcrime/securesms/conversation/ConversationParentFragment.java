@@ -3829,7 +3829,11 @@ public class ConversationParentFragment extends Fragment
         composeText.postDelayed(ConversationParentFragment.this::updateToggleButtonState, 50);
       }
 
-      stickerViewModel.onInputTextUpdated(s.toString());
+      if (!inputPanel.inEditMessageMode()) {
+        stickerViewModel.onInputTextUpdated(s.toString());
+      } else {
+        stickerViewModel.onInputTextUpdated("");
+      }
     }
 
     @Override
@@ -4232,6 +4236,7 @@ public class ConversationParentFragment extends Fragment
     previousPages = keyboardPagerViewModel.pages().getValue();
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI);
     onKeyboardChanged(KeyboardPage.EMOJI);
+    stickerViewModel.onInputTextUpdated("");
   }
 
   @Override
