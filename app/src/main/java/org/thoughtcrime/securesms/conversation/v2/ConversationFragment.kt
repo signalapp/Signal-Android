@@ -2110,10 +2110,12 @@ class ConversationFragment :
     fun hide() {
       pendingHide = true
 
-      binding.scrollDateHeader.postDelayed({
+      val header = binding.scrollDateHeader
+
+      header.postDelayed({
         if (pendingHide) {
           pendingHide = false
-          ViewUtil.animateOut(binding.scrollDateHeader, slideOut)
+          ViewUtil.animateOut(header, slideOut)
         }
       }, SCROLL_HEADER_CLOSE_DELAY)
     }
