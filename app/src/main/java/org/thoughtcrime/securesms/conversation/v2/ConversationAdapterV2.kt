@@ -81,8 +81,7 @@ class ConversationAdapterV2(
 
   private val condensedMode: ConversationItemDisplayMode? = null
 
-  // TODO [cfv2]
-  override val isMessageRequestAccepted: Boolean = true
+  override var isMessageRequestAccepted: Boolean = false
 
   init {
     registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_thread_header)
@@ -242,6 +241,15 @@ class ConversationAdapterV2(
 
   fun onHasWallpaperChanged(hasChanged: Boolean) {
     // todo [cody] implement
+  }
+
+  fun onMessageRequestStateChanged(isMessageRequestAccepted: Boolean) {
+    val oldState = this.isMessageRequestAccepted
+    this.isMessageRequestAccepted = isMessageRequestAccepted
+
+    if (oldState != isMessageRequestAccepted) {
+      notifyItemRangeChanged(0, itemCount)
+    }
   }
 
   fun clearSelection() {

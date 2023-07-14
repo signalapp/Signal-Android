@@ -1087,6 +1087,8 @@ class ConversationFragment :
     presentConversationTitle(recipient)
     presentChatColors(recipient.chatColors)
     invalidateOptionsMenu()
+
+    adapter.onMessageRequestStateChanged(!viewModel.hasMessageRequestState)
   }
 
   private fun invalidateOptionsMenu() {
