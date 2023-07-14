@@ -117,6 +117,8 @@ internal class Svr2Socket(
           Stage.WAITING_FOR_RESPONSE -> {
             Log.d(TAG, "[onMessage] Received response for our request.")
             emitSuccess(Svr2Response.ADAPTER.decode(client.establishedRecv(bytes.toByteArray())))
+            Log.d(TAG, "[onMessage] Success! Closing.")
+            webSocket.close(1000, "OK")
           }
 
           Stage.CLOSED -> {
@@ -134,7 +136,7 @@ internal class Svr2Socket(
         emitError(e)
       } catch (e: AttestationDataException) {
         Log.w(TAG, e)
-        webSocket.close(1000, "OK")
+        webSocket.close(1007, "OK")
         emitError(IOException(e))
       } catch (e: SgxCommunicationFailureException) {
         Log.w(TAG, e)
