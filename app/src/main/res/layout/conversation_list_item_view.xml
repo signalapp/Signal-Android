@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@id/conversation_list_item_name"
         tools:visibility="visible" />
 
-    <org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/conversation_list_item_summary"
         style="@style/Signal.Text.BodyMedium"
         android:layout_width="0dp"
@@ -99,6 +99,7 @@
         android:lines="2"
         android:maxLines="2"
         android:textColor="@color/signal_text_secondary"
+        app:emoji_renderSpoilers="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/conversation_list_item_status_container"
         app:layout_constraintStart_toEndOf="@id/conversation_list_item_alert"

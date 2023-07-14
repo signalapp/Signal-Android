@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
@@ -114,7 +115,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private LiveRecipient       recipient;
   private long                threadId;
   private GlideRequests       glideRequests;
-  private SimpleEmojiTextView subjectView;
+  private EmojiTextView       subjectView;
   private TypingIndicatorView typingView;
   private FromTextView        fromView;
   private TextView            dateView;
@@ -172,6 +173,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
 
     getLayoutTransition().setDuration(150);
+
+    this.subjectView.setOverflowText(" ");
   }
 
   /**
