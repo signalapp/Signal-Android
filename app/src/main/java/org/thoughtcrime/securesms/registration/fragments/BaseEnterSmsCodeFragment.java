@@ -389,12 +389,16 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (!processor.hasResult()) {
+                                      Log.d(TAG, "Network error.");
                                       returnToPhoneEntryScreen();
                                     } else if (processor.isInvalidSession()) {
+                                      Log.d(TAG, "Registration session is invalid.");
                                       returnToPhoneEntryScreen();
                                     } else if (processor.cannotSubmitVerificationAttempt()) {
+                                      Log.d(TAG, "Cannot submit any more verification attempts.");
                                       returnToPhoneEntryScreen();
-                                    } else if (!processor.canSubmitProofImmediately()) {
+                                    } else if (processor.mustWaitToSubmitProof()) {
+                                      Log.d(TAG, "Blocked from submitting proof at this time.");
                                       handleRateLimited();
                                     }
                                     // else session state is valid and server is ready to accept code
