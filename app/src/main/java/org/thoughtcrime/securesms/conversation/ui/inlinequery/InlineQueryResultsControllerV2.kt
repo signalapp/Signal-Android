@@ -126,7 +126,7 @@ class InlineQueryResultsControllerV2(
     emojiPopup = null
 
     mentionFragment?.let {
-      parentFragment.childFragmentManager.commit {
+      parentFragment.childFragmentManager.commit(allowStateLoss = true) {
         hide(it)
       }
     }
