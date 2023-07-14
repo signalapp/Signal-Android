@@ -6261,7 +6261,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Tá tacaíocht do SMS le críochnú</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Cuirfear deireadh le tacaíocht le cur teachtaireachtaí SMS san aip Signal an %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Cuirfear deireadh le tacaíocht le cur teachtaireachtaí SMS san aip Signal ar ball.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Ní hionann teachtaireachtaí SMS agus teachtaireachtaí Signal. <b>Ní chuirfidh sé sin isteach ar chur teachtaireachtaí criptithe Signal, leanfar leosan.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

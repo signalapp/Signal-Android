@@ -5769,7 +5769,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS ئىقتىدارى ئەمەلدىن قالدۇرۇلماقچى</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">%1$s دىكى Signal ئەپىدە يېقىن كەلگۈسىدىن باشلاپ SMS ئۇچۇرى يوللىغىلى بولمايدۇ.</string>
+    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS ئۇچۇرلىرى Signal ئۇچۇرلىرىغا ئوخشىمايدۇ. <b> بۇ مەخپىيلەشتۈرۈلگەن Signal ئۇچۇرلىشىشىنىڭ داۋاملىق ئىشلىشىگە تەسىر يەتكۈزمەيدۇ.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

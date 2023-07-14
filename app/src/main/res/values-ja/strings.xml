@@ -5769,7 +5769,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMSサポートの終了</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">SignalアプリのSMSメッセージのサポートは%1$sに終了します。</string>
+    <string name="SmsRemoval_info_bullet_1">SignalアプリのSMSメッセージは、近日中にサポートが終了します。</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMSメッセージはSignalのメッセージとは異なります。<b>暗号化されたSignalメッセージへの影響はなく、引き続きご使用になれます。</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

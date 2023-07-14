@@ -5892,7 +5892,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Los SMS dejarán de ser compatibles</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">La mensajería SMS pronto dejará de ser compatible con la app de Signal para %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">La mensajería SMS pronto dejará de ser compatible con la app de Signal.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Los mensajes SMS son diferentes a los mensajes de Signal. <b>Esto no afectará a los mensajes encriptados de Signal, que seguirán funcionando.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

@@ -6138,7 +6138,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Підтримка SMS припиняється</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Застосунок Signal припинить підтримувати SMS-повідомлення з %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Невдовзі застосунок Signal припинить підтримувати SMS-повідомлення.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS-повідомлення відрізняються від повідомлень Signal. <b>Ця зміна ніяк не впливатиме на зашифровані повідомлення Signal, які продовжать працювати.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

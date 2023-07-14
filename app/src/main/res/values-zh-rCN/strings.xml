@@ -5769,7 +5769,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">短信服务即将结束</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal 应用将于 %1$s停止支持短信消息服务。</string>
+    <string name="SmsRemoval_info_bullet_1">Signal 应用即将下线短信聊天服务。</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">短信消息与 Signal 消息不一样。<b>这不会影响加密的 Signal 消息服务。此服务仍然可用。</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

@@ -5892,7 +5892,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS പിന്തുണ അവസാനിക്കുകയാണ്</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal ആപ്പിലെ SMS സന്ദേശമയയ്ക്കലിനുള്ള പിന്തുണ %1$s എന്നതിൽ ഉടൻ അവസാനിക്കും.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal ആപ്പിലെ SMS സന്ദേശമയയ്ക്കലിനുള്ള പിന്തുണ ഉടനടി അവസാനിക്കും.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS സന്ദേശങ്ങളും Signal സന്ദേശങ്ങളും വ്യത്യസ്തമാണ്. <b>ഇത് എൻക്രിപ്റ്റ് ചെയ്ത Signal സന്ദേശമയയ്ക്കലിനെ ബാധിക്കില്ല, അവ തുടർന്നും പ്രവർത്തിക്കും.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

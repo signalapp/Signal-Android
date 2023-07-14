@@ -5892,7 +5892,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Msaada wa SMS utaondolewa</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Utumaji wa SMS kwenye programu ya Signal muda si mrefu hautakuwepo kwenye %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Utumaji wa SMS kwenye programu ya Signal muda si mrefu hautakuwepo.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Jumbe za SMS ni tofauti na jumbe za Signal. <b>Hii haiathiri utumaji jumbe kwa usimbwaji wa Signal ambao utaendelea kufanya kazi.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

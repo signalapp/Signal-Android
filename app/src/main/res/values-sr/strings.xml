@@ -5892,7 +5892,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Подршка за SMS се укида</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Размена SMS порука у апликацији Signal више неће бити подржана од дана %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Размена SMS порука у апликацији Signal ускоро више неће бити подржана.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS поруке се разликују од порука у Signal-у. <b>То неће утицати на шифровану размену порука у Signal-у, која ће и даље функционисати.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

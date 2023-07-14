@@ -1,5 +1,5 @@
 ext.service_ips='new String[]{"13.248.212.111","76.223.92.165"}'
-ext.storage_ips='new String[]{"172.253.122.121"}'
+ext.storage_ips='new String[]{"172.253.62.121"}'
 ext.cdn_ips='new String[]{"18.160.18.106","18.160.18.114","18.160.18.42","18.160.18.45"}'
 ext.cdn2_ips='new String[]{"104.18.2.43","104.18.3.43"}'
 ext.kbs_ips='new String[]{"20.85.156.233"}'

@@ -5892,7 +5892,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS-ке қолдау көрсетілмейтін болады</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal қолданбасындағы SMS хат алмасу функциясы %1$s күнінен бастап жұмыс істемейтін болады.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal қолданбасындағы SMS хаттарға бұдан былай қолдау көрсетілмейтін болады.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS хаттары Signal хаттарынан басқа. <b>Ол шифрланған Signal хаттарының жұмысына әсер етпейді.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
