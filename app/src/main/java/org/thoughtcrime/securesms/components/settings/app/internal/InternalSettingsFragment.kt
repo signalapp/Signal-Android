@@ -617,14 +617,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Use V2 ConversationFragment"),
-        isChecked = state.useConversationFragmentV2,
-        onClick = {
-          viewModel.setUseConversationFragmentV2(!state.useConversationFragmentV2)
-        }
-      )
-
-      switchPref(
         title = DSLSettingsText.from("Use V2 ConversationItem"),
         isChecked = state.useConversationItemV2,
         onClick = {

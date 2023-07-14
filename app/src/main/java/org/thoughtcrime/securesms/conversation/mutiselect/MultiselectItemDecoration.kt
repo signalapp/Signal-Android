@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge.PulseRequest
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -402,7 +402,7 @@ class MultiselectItemDecoration(
         }
       }
 
-      if (!SignalStore.internalValues().useConversationFragmentV2()) {
+      if (!FeatureFlags.useConversationFragmentV2()) {
         canvas.clipPath(path)
         canvas.drawShade()
         canvas.restore()
@@ -422,7 +422,7 @@ class MultiselectItemDecoration(
         }
       }
 
-      if (!SignalStore.internalValues().useConversationFragmentV2()) {
+      if (!FeatureFlags.useConversationFragmentV2()) {
         canvas.clipPath(path, Region.Op.DIFFERENCE)
         canvas.drawShade()
         canvas.restore()
@@ -570,7 +570,7 @@ class MultiselectItemDecoration(
   }
 
   private fun RecyclerView.getMultiselectableChildren(): Sequence<Multiselectable> {
-    return if (SignalStore.internalValues().useConversationFragmentV2()) {
+    return if (FeatureFlags.useConversationFragmentV2()) {
       children.map { getChildViewHolder(it) }.filterIsInstance<Multiselectable>()
     } else {
       children.filterIsInstance<Multiselectable>()
@@ -578,7 +578,7 @@ class MultiselectItemDecoration(
   }
 
   private fun RecyclerView.getInteractableChildren(): Sequence<InteractiveConversationElement> {
-    return if (SignalStore.internalValues().useConversationFragmentV2()) {
+    return if (FeatureFlags.useConversationFragmentV2()) {
       children.map { getChildViewHolder(it) }.filterIsInstance<InteractiveConversationElement>()
     } else {
       children.filterIsInstance<InteractiveConversationElement>()
@@ -586,7 +586,7 @@ class MultiselectItemDecoration(
   }
 
   private fun resolveMultiselectable(parent: RecyclerView, child: View): Multiselectable? {
-    return if (SignalStore.internalValues().useConversationFragmentV2()) {
+    return if (FeatureFlags.useConversationFragmentV2()) {
       parent.getChildViewHolder(child) as? Multiselectable
     } else {
       child as? Multiselectable

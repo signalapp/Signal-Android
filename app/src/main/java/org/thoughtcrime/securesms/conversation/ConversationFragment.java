@@ -273,7 +273,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
 
-    if (SignalStore.internalValues().useConversationFragmentV2() && SignalStore.internalValues().useConversationItemV2()) {
+    if (FeatureFlags.useConversationFragmentV2() && SignalStore.internalValues().useConversationItemV2()) {
       CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_incoming, parent, 25);
       CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, parent, 25);
     } else {

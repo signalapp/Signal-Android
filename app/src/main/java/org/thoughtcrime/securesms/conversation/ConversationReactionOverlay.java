@@ -178,7 +178,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       bottomNavigationBarHeight = 0;
     }
 
-    if (!SignalStore.internalValues().useConversationFragmentV2()) {
+    if (!FeatureFlags.useConversationFragmentV2()) {
       toolbarShade.setVisibility(VISIBLE);
       toolbarShade.setAlpha(1f);
 
@@ -395,7 +395,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void updateToolbarShade(@NonNull Activity activity) {
-    if (SignalStore.internalValues().useConversationFragmentV2()) {
+    if (FeatureFlags.useConversationFragmentV2()) {
       LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
       layoutParams.height = 0;
       toolbarShade.setLayoutParams(layoutParams);
@@ -403,7 +403,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     }
 
     View toolbar         = activity.findViewById(R.id.toolbar);
-    View bannerContainer = activity.findViewById(SignalStore.internalValues().useConversationFragmentV2() ? R.id.conversation_banner
+    View bannerContainer = activity.findViewById(FeatureFlags.useConversationFragmentV2() ? R.id.conversation_banner
                                                                                                           : R.id.conversation_banner_container);
 
     LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
@@ -412,7 +412,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void updateInputShade(@NonNull Activity activity) {
-    if (SignalStore.internalValues().useConversationFragmentV2()) {
+    if (FeatureFlags.useConversationFragmentV2()) {
       LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
       layoutParams.height = 0;
       inputShade.setLayoutParams(layoutParams);
@@ -426,7 +426,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private int getInputPanelHeight(@NonNull Activity activity) {
-    if (SignalStore.internalValues().useConversationFragmentV2()) {
+    if (FeatureFlags.useConversationFragmentV2()) {
       View bottomPanel = activity.findViewById(R.id.conversation_input_panel);
 
       return bottomPanel.getHeight();
@@ -915,7 +915,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     itemYAnim.setDuration(duration);
     animators.add(itemYAnim);
 
-    if (!SignalStore.internalValues().useConversationFragmentV2()) {
+    if (!FeatureFlags.useConversationFragmentV2()) {
       ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
       toolbarShadeAnim.setProperty(View.ALPHA);
       toolbarShadeAnim.setFloatValues(0f);

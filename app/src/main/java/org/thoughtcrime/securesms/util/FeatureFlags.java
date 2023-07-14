@@ -107,6 +107,7 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
+  private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -165,7 +166,8 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
-      CDS_COMPAT_MODE
+      CDS_COMPAT_MODE,
+      CONVERSATION_FRAGMENT_V2
   );
 
   @VisibleForTesting
@@ -230,7 +232,8 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
-      CDS_COMPAT_MODE
+      CDS_COMPAT_MODE,
+      CONVERSATION_FRAGMENT_V2
   );
 
   /**
@@ -590,6 +593,11 @@ public final class FeatureFlags {
   /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
   public static boolean cdsCompatMode() {
     return getBoolean(CDS_COMPAT_MODE, true);
+  }
+
+  /** True if the new conversation fragment should be used. */
+  public static boolean useConversationFragmentV2() {
+    return getBoolean(CONVERSATION_FRAGMENT_V2, false);
   }
 
   /** Only for rendering debug info. */

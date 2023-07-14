@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.util.ArrayList;
@@ -458,7 +459,7 @@ public class ConversationIntents {
         intent.setType(dataType);
       }
 
-      if (SignalStore.internalValues().useConversationFragmentV2()) {
+      if (FeatureFlags.useConversationFragmentV2()) {
         Bundle args = ConversationIntents.createParentFragmentArguments(intent);
 
         return intent.putExtras(args);
@@ -513,7 +514,7 @@ public class ConversationIntents {
   }
 
   private static long checkThreadId(long threadId) {
-    if (threadId < 0 && SignalStore.internalValues().useConversationFragmentV2()) {
+    if (threadId < 0 && FeatureFlags.useConversationFragmentV2()) {
       throw new IllegalArgumentException("ThreadId is a required field in CFV2");
     } else {
       return threadId;
@@ -521,7 +522,7 @@ public class ConversationIntents {
   }
 
   private static Class<? extends Activity> getBaseConversationActivity() {
-    if (SignalStore.internalValues().useConversationFragmentV2()) {
+    if (FeatureFlags.useConversationFragmentV2()) {
       return ConversationActivity.class;
     } else {
       return org.thoughtcrime.securesms.conversation.ConversationActivity.class;
