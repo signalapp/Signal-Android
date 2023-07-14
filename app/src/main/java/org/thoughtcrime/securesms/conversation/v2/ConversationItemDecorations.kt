@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElemen
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
-import org.thoughtcrime.securesms.util.drawAsItemDecoration
+import org.thoughtcrime.securesms.util.drawAsTopItemDecoration
 import org.thoughtcrime.securesms.util.layoutIn
 import org.thoughtcrime.securesms.util.toLocalDate
 import java.util.Locale
@@ -30,9 +30,19 @@ private typealias ConversationElement = MappingModel<*>
  *
  * This is a converted and trimmed down version of [org.thoughtcrime.securesms.util.StickyHeaderDecoration].
  */
-class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMessageMode: Boolean = false) : RecyclerView.ItemDecoration() {
+class ConversationItemDecorations(hasWallpaper: Boolean = false, private val scheduleMessageMode: Boolean = false) : RecyclerView.ItemDecoration() {
 
   private val headerCache: MutableMap<Long, DateHeaderViewHolder> = hashMapOf()
+  private var unreadViewHolder: UnreadViewHolder? = null
+
+  var unreadCount: Int = 0
+    set(value) {
+      field = value
+      unreadViewHolder?.bind()
+    }
+
+  private val firstUnreadPosition: Int
+    get() = unreadCount - 1
 
   var currentItems: MutableList<ConversationElement?> = mutableListOf()
 
@@ -40,29 +50,44 @@ class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMe
     set(value) {
       field = value
       headerCache.values.forEach { it.updateForWallpaper() }
+      unreadViewHolder?.updateForWallpaper()
     }
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     val position = parent.getChildAdapterPosition(view)
 
-    val headerHeight = if (position in currentItems.indices && hasHeader(position)) {
+    val unreadHeight = if (unreadCount > 0 && position == firstUnreadPosition) {
+      getUnreadViewHolder(parent).height
+    } else {
+      0
+    }
+
+    val dateHeaderHeight = if (position in currentItems.indices && hasHeader(position)) {
       getHeader(parent, currentItems[position] as ConversationMessageElement).height
     } else {
       0
     }
 
-    outRect.set(0, headerHeight, 0, 0)
+    outRect.set(0, unreadHeight + dateHeaderHeight, 0, 0)
   }
 
   override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
     val count = parent.childCount
     for (layoutPosition in 0 until count) {
-      val child = parent.getChildAt(parent.childCount - 1 - layoutPosition)
+      val child = parent.getChildAt(count - 1 - layoutPosition)
       val position = parent.getChildAdapterPosition(child)
+
+      val unreadOffset = if (position == firstUnreadPosition) {
+        val unread = getUnreadViewHolder(parent)
+        unread.itemView.drawAsTopItemDecoration(c, parent, child)
+        unread.height
+      } else {
+        0
+      }
 
       if (hasHeader(position)) {
         val headerView = getHeader(parent, currentItems[position] as ConversationMessageElement).itemView
-        headerView.drawAsItemDecoration(c, parent, child)
+        headerView.drawAsTopItemDecoration(c, parent, child, unreadOffset)
       }
     }
   }
@@ -103,6 +128,15 @@ class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMe
     return headerHolder
   }
 
+  private fun getUnreadViewHolder(parent: RecyclerView): UnreadViewHolder {
+    if (unreadViewHolder != null) {
+      return unreadViewHolder!!
+    }
+
+    unreadViewHolder = UnreadViewHolder(parent)
+    return unreadViewHolder!!
+  }
+
   private fun ConversationMessageElement.timestamp(): Long {
     return if (scheduleMessageMode) {
       (conversationMessage.messageRecord as MediaMmsMessageRecord).scheduledDate
@@ -134,6 +168,40 @@ class DateHeaderDecoration(hasWallpaper: Boolean = false, private val scheduleMe
       } else {
         date.background = null
         date.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurfaceVariant))
+      }
+    }
+  }
+
+  private inner class UnreadViewHolder(parent: RecyclerView) {
+    val itemView: View
+
+    private val unreadText: TextView
+    private val unreadDivider: View
+
+    val height: Int
+      get() = itemView.height
+
+    init {
+      itemView = LayoutInflater.from(parent.context).inflate(R.layout.conversation_item_last_seen, parent, false)
+      unreadText = itemView.findViewById(R.id.text)
+      unreadDivider = itemView.findViewById(R.id.last_seen_divider)
+
+      bind()
+      itemView.layoutIn(parent)
+    }
+
+    fun bind() {
+      unreadText.text = itemView.context.resources.getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, unreadCount, unreadCount)
+      updateForWallpaper()
+    }
+
+    fun updateForWallpaper() {
+      if (hasWallpaper) {
+        unreadText.setBackgroundResource(R.drawable.wallpaper_bubble_background_18)
+        unreadDivider.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.transparent_black_80))
+      } else {
+        unreadText.background = null
+        unreadDivider.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.core_grey_45))
       }
     }
   }

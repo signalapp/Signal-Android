@@ -433,8 +433,7 @@ class ConversationFragment :
   private lateinit var multiselectItemDecoration: MultiselectItemDecoration
   private lateinit var openableGiftItemDecoration: OpenableGiftItemDecoration
   private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
-  private lateinit var dateHeaderDecoration: DateHeaderDecoration
-  private lateinit var unreadLineDecoration: UnreadLineDecoration
+  private lateinit var conversationItemDecorations: ConversationItemDecorations
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
   private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
 
@@ -571,7 +570,7 @@ class ConversationFragment :
 
     inputPanel.onPause()
 
-    unreadLineDecoration.unreadCount = viewModel.unreadCount
+    conversationItemDecorations.unreadCount = viewModel.unreadCount
     binding.conversationItemRecycler.invalidateItemDecorations()
 
     viewModel.markLastSeen()
@@ -747,7 +746,7 @@ class ConversationFragment :
             binding.conversationItemRecycler.height
           )
         }
-        unreadLineDecoration.unreadCount = state.meta.unreadCount
+        conversationItemDecorations.unreadCount = state.meta.unreadCount
       }
       .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
@@ -758,7 +757,7 @@ class ConversationFragment :
 
         adapter.submitList(it) {
           scrollToPositionDelegate.notifyListCommitted()
-          dateHeaderDecoration.currentItems = it
+          conversationItemDecorations.currentItems = it
 
           if (firstRender) {
             firstRender = false
@@ -1176,8 +1175,7 @@ class ConversationFragment :
     inputPanel.setWallpaperEnabled(wallpaperEnabled)
 
     adapter.onHasWallpaperChanged(wallpaperEnabled)
-    dateHeaderDecoration.hasWallpaper = wallpaperEnabled
-    unreadLineDecoration.hasWallpaper = wallpaperEnabled
+    conversationItemDecorations.hasWallpaper = wallpaperEnabled
 
     val navColor = if (wallpaperEnabled) {
       R.color.conversation_navigation_wallpaper
@@ -1411,11 +1409,8 @@ class ConversationFragment :
     threadHeaderMarginDecoration = ThreadHeaderMarginDecoration()
     binding.conversationItemRecycler.addItemDecoration(threadHeaderMarginDecoration)
 
-    dateHeaderDecoration = DateHeaderDecoration(hasWallpaper = args.wallpaper != null)
-    binding.conversationItemRecycler.addItemDecoration(dateHeaderDecoration, 0)
-
-    unreadLineDecoration = UnreadLineDecoration(hasWallpaper = args.wallpaper != null)
-    binding.conversationItemRecycler.addItemDecoration(unreadLineDecoration)
+    conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.wallpaper != null)
+    binding.conversationItemRecycler.addItemDecoration(conversationItemDecorations, 0)
   }
 
   private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
@@ -1679,7 +1674,7 @@ class ConversationFragment :
       return
     }
 
-    unreadLineDecoration.unreadCount = 0
+    conversationItemDecorations.unreadCount = 0
 
     scrollToPositionDelegate.resetScrollPosition()
     attachmentManager.cleanup()

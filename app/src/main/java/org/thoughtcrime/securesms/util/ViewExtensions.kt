@@ -83,10 +83,10 @@ fun View.layoutIn(parent: View) {
   layout(0, 0, measuredWidth, measuredHeight)
 }
 
-fun View.drawAsItemDecoration(canvas: Canvas, parent: View, child: View) {
+fun View.drawAsTopItemDecoration(canvas: Canvas, parent: View, child: View, offset: Int = 0) {
   canvas.save()
   val left = parent.left
-  val top = child.y.toInt() - height
+  val top = child.y.toInt() - height - offset
   canvas.translate(left.toFloat(), top.toFloat())
   draw(canvas)
   canvas.restore()
