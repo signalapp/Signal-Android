@@ -2658,16 +2658,13 @@ public class ConversationParentFragment extends Fragment
 
       TextView       message      = smsExportStub.get().findViewById(R.id.export_sms_message);
       MaterialButton actionButton = smsExportStub.get().findViewById(R.id.export_sms_button);
-      boolean        isPhase1     = SignalStore.misc().getSmsExportPhase() == SmsExportPhase.PHASE_1;
 
       if (conversationSecurityInfo.getHasUnexportedInsecureMessages()) {
-        message.setText(isPhase1 ? R.string.ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone
-                                 : R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone);
+        message.setText(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone);
         actionButton.setText(R.string.ConversationActivity__export_sms_messages);
         actionButton.setOnClickListener(v -> startActivity(SmsExportActivity.createIntent(requireContext())));
       } else {
-        message.setText(requireContext().getString(isPhase1 ? R.string.ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here
-                                                            : R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here,
+        message.setText(requireContext().getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here,
                                                    recipient.getDisplayName(requireContext())));
         actionButton.setText(R.string.ConversationActivity__invite_to_signal);
         actionButton.setOnClickListener(v -> handleInviteLink());

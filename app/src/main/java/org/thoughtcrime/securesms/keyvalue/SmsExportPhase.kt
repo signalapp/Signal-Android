@@ -5,8 +5,7 @@ import org.thoughtcrime.securesms.util.Util
 import kotlin.time.Duration.Companion.days
 
 enum class SmsExportPhase(val duration: Long) {
-  PHASE_1(0.days.inWholeMilliseconds),
-  PHASE_2(21.days.inWholeMilliseconds),
+  PHASE_2(0.days.inWholeMilliseconds),
   PHASE_3(51.days.inWholeMilliseconds);
 
   fun allowSmsFeatures(): Boolean {
@@ -15,10 +14,6 @@ enum class SmsExportPhase(val duration: Long) {
 
   fun isSmsSupported(): Boolean {
     return this != PHASE_3
-  }
-
-  fun isFullscreen(): Boolean {
-    return this.ordinal > PHASE_1.ordinal
   }
 
   fun isBlockingUi(): Boolean {

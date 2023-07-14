@@ -699,7 +699,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == SmsExportMegaphoneActivity.REQUEST_CODE && SignalStore.misc().getSmsExportPhase().isFullscreen()) {
+    if (requestCode == SmsExportMegaphoneActivity.REQUEST_CODE) {
       ApplicationDependencies.getMegaphoneRepository().markSeen(Megaphones.Event.SMS_EXPORT);
       if (resultCode == RESULT_CANCELED) {
         Snackbar.make(fab, R.string.ConversationActivity__you_will_be_reminded_again_soon, Snackbar.LENGTH_LONG).show();
