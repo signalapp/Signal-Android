@@ -23,7 +23,10 @@ class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberVi
 
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.title = viewModel.number.fullFormattedNumber
-    toolbar.setNavigationOnClickListener { navigateUp() }
+    toolbar.setNavigationOnClickListener {
+      Log.d(TAG, "Toolbar navigation clicked.")
+      navigateUp()
+    }
 
     view.findViewById<View>(R.id.verify_header).setOnClickListener(null)
 
@@ -31,6 +34,7 @@ class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberVi
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
+          Log.d(TAG, "onBackPressed")
           navigateUp()
         }
       }
@@ -39,8 +43,10 @@ class ChangeNumberEnterSmsCodeFragment : BaseEnterSmsCodeFragment<ChangeNumberVi
 
   private fun navigateUp() {
     if (SignalStore.misc().isChangeNumberLocked) {
+      Log.d(TAG, "Change number locked, navigateUp")
       startActivity(ChangeNumberLockActivity.createIntent(requireContext()))
     } else {
+      Log.d(TAG, "navigateUp")
       findNavController().navigateUp()
     }
   }
