@@ -30,6 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
+        app:emoji_renderSpoilers="true"
         tools:itemCount="0" />
 
     <androidx.fragment.app.FragmentContainerView

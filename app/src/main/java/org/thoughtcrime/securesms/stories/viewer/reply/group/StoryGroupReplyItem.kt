@@ -24,7 +24,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
+import org.thoughtcrime.securesms.conversation.MessageStyler.spoilerStyle
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
@@ -235,6 +238,27 @@ object StoryGroupReplyItem {
       val mentionAnnotations = MentionAnnotation.getMentionAnnotations(body)
       for (annotation in mentionAnnotations) {
         body.setSpan(MentionClickableSpan(model, RecipientId.from(annotation.value)), body.getSpanStart(annotation), body.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+      }
+      val bodyRanges = model.messageRecord.messageRanges?.rangesList
+      if (bodyRanges != null) {
+        for (range in bodyRanges) {
+          if (range.style == BodyRangeList.BodyRange.Style.SPOILER) {
+            val start = range.start
+            val end = (range.start + range.length).coerceAtMost(body.length)
+            val spoiler = spoilerStyle(model.text.sentAtMillis, start, range.length)
+            body.setSpan(SpoilerClickableSpan(SpoilerAnnotation.SpoilerClickableSpan(spoiler)), range.start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+          }
+        }
+      }
+    }
+
+    private class SpoilerClickableSpan(
+      private val spoiler: SpoilerAnnotation.SpoilerClickableSpan
+    ) : ClickableSpan() {
+      override fun onClick(widget: View) {
+        spoiler.onClick(widget)
+      }
+      override fun updateDrawState(ds: TextPaint) {
       }
     }
 
