@@ -117,6 +117,7 @@ public class TooltipPopup extends PopupWindow {
   private void show() {
     if (anchor.getWidth() == 0 && anchor.getHeight() == 0) {
       anchor.post(this::show);
+      return;
     }
 
     getContentView().measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
