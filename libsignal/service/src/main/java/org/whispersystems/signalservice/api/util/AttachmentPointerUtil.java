@@ -42,6 +42,7 @@ public final class AttachmentPointerUtil {
                                                                                                  .setContentType(attachment.getContentType())
                                                                                                  .setKey(ByteString.copyFrom(attachment.getKey()))
                                                                                                  .setDigest(ByteString.copyFrom(attachment.getDigest().get()))
+                                                                                                 .setIncrementalDigest(ByteString.copyFrom(attachment.getincrementalDigest().get()))
                                                                                                  .setSize(attachment.getSize().get())
                                                                                                  .setUploadTimestamp(attachment.getUploadTimestamp());
 
