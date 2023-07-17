@@ -71,7 +71,7 @@ import kotlin.time.Duration
  * ConversationViewModel, which operates solely off of a thread id that never changes.
  */
 class ConversationViewModel(
-  private val threadId: Long,
+  val threadId: Long,
   requestedStartingPosition: Int,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,

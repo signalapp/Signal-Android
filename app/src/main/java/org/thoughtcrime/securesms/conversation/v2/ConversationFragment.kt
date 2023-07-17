@@ -227,7 +227,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
-import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
@@ -436,6 +435,7 @@ class ConversationFragment :
   private lateinit var conversationItemDecorations: ConversationItemDecorations
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
   private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
+  private lateinit var backPressedCallback: BackPressedDelegate
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -773,6 +773,11 @@ class ConversationFragment :
 
   private fun doAfterFirstRender() {
     Log.d(TAG, "doAfterFirstRender")
+    activity?.supportStartPostponedEnterTransition()
+
+    backPressedCallback = BackPressedDelegate()
+    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
+
     attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 
     EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
@@ -900,6 +905,7 @@ class ConversationFragment :
     disposables.add(
       draftViewModel
         .state
+        .distinctUntilChanged { previous, next -> previous.voiceNoteDraft == next.voiceNoteDraft }
         .subscribe {
           inputPanel.voiceNoteDraft = it.voiceNoteDraft
           updateToggleButtonState()
@@ -1897,6 +1903,21 @@ class ConversationFragment :
     composeText.clearFocus()
   }
 
+  private inner class BackPressedDelegate : OnBackPressedCallback(true) {
+    override fun handleOnBackPressed() {
+      Log.d(TAG, "onBackPressed()")
+      if (reactionDelegate.isShowing) {
+        reactionDelegate.hide()
+      } else if (isSearchRequested) {
+        searchMenuItem?.collapseActionView()
+      } else if (args.conversationScreenType.isInBubble) {
+        requireActivity().onBackPressed()
+      } else {
+        requireActivity().finish()
+      }
+    }
+  }
+
   //region Message action handling
 
   private fun handleReplyToMessage(conversationMessage: ConversationMessage) {
@@ -2490,7 +2511,13 @@ class ConversationFragment :
 
     override fun goToMediaPreview(parent: ConversationItem, sharedElement: View, args: MediaIntentFactory.MediaPreviewArgs) {
       if (this@ConversationFragment.args.conversationScreenType.isInBubble) {
-        requireActivity().startActivity(create(requireActivity(), args.skipSharedElementTransition(true)))
+        val recipient = viewModel.recipientSnapshot ?: return
+        val intent = ConversationIntents.createBuilderSync(requireActivity(), recipient.id, viewModel.threadId)
+          .withStartingPosition(binding.conversationItemRecycler.getChildAdapterPosition(parent))
+          .build()
+
+        requireActivity().startActivity(intent)
+        requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args.skipSharedElementTransition(true)))
         return
       }
 
@@ -2506,7 +2533,7 @@ class ConversationFragment :
       sharedElement.transitionName = MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME
       requireActivity().setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
       val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), sharedElement, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME)
-      requireActivity().startActivity(create(requireActivity(), args), options.toBundle())
+      requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args), options.toBundle())
     }
 
     override fun onEditedIndicatorClicked(messageRecord: MessageRecord) {
@@ -2655,13 +2682,13 @@ class ConversationFragment :
               }
             }
           )
-        } else {
-          clearFocusedItem()
-          adapter.toggleSelection(item)
-          binding.conversationItemRecycler.invalidateItemDecorations()
-
-          actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(actionModeCallback)
         }
+      } else {
+        clearFocusedItem()
+        adapter.toggleSelection(item)
+        binding.conversationItemRecycler.invalidateItemDecorations()
+
+        actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(actionModeCallback)
       }
     }
 

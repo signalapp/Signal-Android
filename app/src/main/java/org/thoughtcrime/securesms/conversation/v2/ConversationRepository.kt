@@ -207,7 +207,7 @@ class ConversationRepository(
     identityRecordsState: IdentityRecordsState?
   ): Completable {
     val sendCompletable = Completable.create { emitter ->
-      if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty()) {
+      if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
         emitter.onError(InvalidMessageException("Message is empty!"))
         return@create
       }
