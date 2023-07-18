@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
+import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
@@ -318,6 +319,10 @@ class ConversationViewModel(
     } else {
       Maybe.just(Unit)
     }
+  }
+
+  fun getKeyboardImageDetails(uri: Uri): Maybe<KeyboardUtil.ImageDetails> {
+    return repository.getKeyboardImageDetails(uri)
   }
 
   private fun MessageRecord.oldReactionRecord(): ReactionRecord? {

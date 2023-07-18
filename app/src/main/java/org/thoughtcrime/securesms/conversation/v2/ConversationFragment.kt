@@ -216,6 +216,7 @@ import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
+import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
@@ -921,6 +922,7 @@ class ConversationFragment :
     initializeInlineSearch()
 
     inputPanel.setListener(InputPanelListener())
+    inputPanel.setMediaListener(InputPanelMediaListener())
 
     viewModel
       .getScheduledMessagesCount()
@@ -3595,6 +3597,42 @@ class ConversationFragment :
       val recipientId = viewModel.recipientSnapshot?.id ?: return
       composeText.clearFocus()
       conversationActivityResultContracts.launchCamera(recipientId, inputPanel.quote.isPresent)
+    }
+  }
+
+  private inner class InputPanelMediaListener : InputPanel.MediaListener {
+    override fun onMediaSelected(uri: Uri, contentType: String?) {
+      if (MediaUtil.isGif(contentType) || MediaUtil.isImageType(contentType)) {
+        disposables += viewModel.getKeyboardImageDetails(uri)
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy(
+            onSuccess = {
+              sendKeyboardImage(uri, contentType!!, it)
+            },
+            onComplete = {
+              sendKeyboardImage(uri, contentType!!, null)
+            }
+          )
+      } else if (MediaUtil.isVideoType(contentType)) {
+        setMedia(uri, SlideFactory.MediaType.VIDEO)
+      } else {
+        setMedia(uri, SlideFactory.MediaType.AUDIO)
+      }
+    }
+
+    private fun sendKeyboardImage(uri: Uri, contentType: String, keyboardImageDetails: KeyboardUtil.ImageDetails?) {
+      if (keyboardImageDetails == null || !keyboardImageDetails.hasTransparency) {
+        setMedia(uri, requireNotNull(SlideFactory.MediaType.from(contentType)))
+        return
+      }
+
+      val slide: Slide = when {
+        MediaUtil.isGif(contentType) -> GifSlide(requireContext(), uri, 0, keyboardImageDetails.width, keyboardImageDetails.height, true, null)
+        MediaUtil.isImageType(contentType) -> ImageSlide(requireContext(), uri, contentType, 0, keyboardImageDetails.width, keyboardImageDetails.height, true, null, null)
+        else -> null
+      } ?: error("Only images are supported!")
+
+      sendMessageWithoutComposeInput(slide)
     }
   }
 

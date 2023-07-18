@@ -74,9 +74,11 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
+import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
+import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
@@ -119,6 +121,15 @@ class ConversationRepository(
 
   private val applicationContext = context.applicationContext
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
+
+  /**
+   * Gets image details for an image sent from the keyboard
+   */
+  fun getKeyboardImageDetails(uri: Uri): Maybe<KeyboardUtil.ImageDetails> {
+    return MaybeCompat.fromCallable {
+      KeyboardUtil.getImageDetails(GlideApp.with(applicationContext), uri)
+    }.subscribeOn(Schedulers.io())
+  }
 
   /**
    * Loads the details necessary to display the conversation thread.
