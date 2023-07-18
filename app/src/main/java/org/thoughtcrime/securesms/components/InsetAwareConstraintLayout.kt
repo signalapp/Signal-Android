@@ -61,6 +61,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private var overridingKeyboard: Boolean = false
   private var previousKeyboardHeight: Int = 0
 
+  val isKeyboardShowing: Boolean
+    get() = previousKeyboardHeight > 0
+
   init {
     ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsetsCompat ->
       applyInsets(windowInsets = windowInsetsCompat.getInsets(windowTypes), keyboardInsets = windowInsetsCompat.getInsets(keyboardType))

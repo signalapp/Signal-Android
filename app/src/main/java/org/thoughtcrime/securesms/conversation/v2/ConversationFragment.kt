@@ -1868,18 +1868,21 @@ class ConversationFragment :
     val additionalScrollOffset = 54.dp
     if (isVisible) {
       ViewUtil.animateIn(bottomActionBar, bottomActionBar.enterAnimation)
+      container.hideInput()
       inputPanel.setHideForSelection(true)
+      animationsAllowed = false
 
       bottomActionBar.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
         override fun onPreDraw(): Boolean {
           if (bottomActionBar.height == 0 && bottomActionBar.visible) {
             return false
           }
-
           bottomActionBar.viewTreeObserver.removeOnPreDrawListener(this)
-          val bottomPadding = bottomActionBar.height + 18.dp
+
+          val bottomPadding = bottomActionBar.height + ((bottomActionBar.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 18.dp)
           ViewUtil.setPaddingBottom(binding.conversationItemRecycler, bottomPadding)
           binding.conversationItemRecycler.scrollBy(0, -(bottomPadding - additionalScrollOffset))
+          animationsAllowed = true
           return false
         }
       })
@@ -2638,7 +2641,7 @@ class ConversationFragment :
 
           val snapshot = ConversationItemSelection.snapshotView(target, binding.conversationItemRecycler, messageRecord, videoBitmap)
 
-          val focusedView = if (container.isInputShowing) null else itemView.rootView.findFocus()
+          val focusedView = if (container.isInputShowing || !container.isKeyboardShowing) null else itemView.rootView.findFocus()
           val bodyBubble = target.bubbleView
           val selectedConversationModel = SelectedConversationModel(
             snapshot,
