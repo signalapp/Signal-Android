@@ -28,7 +28,6 @@ class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
 
   private val theme = DynamicNoActionBarTheme()
   private val transitionDebouncer: Debouncer = Debouncer(150, TimeUnit.MILLISECONDS)
-  private var shareDataTimestamp: Long = -1L
 
   override val voiceNoteMediaController = VoiceNoteMediaController(this, true)
 
@@ -36,6 +35,7 @@ class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
+  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
 
   override fun onPreCreate() {
     theme.onCreate(this)
@@ -47,9 +47,9 @@ class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
     window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
 
     if (savedInstanceState != null) {
-      shareDataTimestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
+      shareDataTimestampViewModel.timestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
     } else if (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY != 0) {
-      shareDataTimestamp = System.currentTimeMillis()
+      shareDataTimestampViewModel.timestamp = System.currentTimeMillis()
     }
 
     setContentView(R.layout.fragment_container)
@@ -66,7 +66,7 @@ class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
 
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
-    outState.putLong(STATE_WATERMARK, shareDataTimestamp)
+    outState.putLong(STATE_WATERMARK, shareDataTimestampViewModel.timestamp)
   }
 
   override fun onDestroy() {

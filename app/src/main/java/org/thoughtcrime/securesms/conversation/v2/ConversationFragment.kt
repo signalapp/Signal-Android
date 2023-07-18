@@ -407,6 +407,8 @@ class ConversationFragment :
     InlineQueryViewModelV2(recipientRepository = conversationRecipientRepository)
   }
 
+  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
+
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
     InlineQueryResultsControllerV2(
       this,
@@ -907,7 +909,7 @@ class ConversationFragment :
       this::handleReplyToMessage
     ).attachToRecyclerView(binding.conversationItemRecycler)
 
-    draftViewModel.loadShareOrDraftData()
+    draftViewModel.loadShareOrDraftData(shareDataTimestampViewModel.timestamp)
       .subscribeBy { data -> handleShareOrDraftData(data) }
       .addTo(disposables)
 
@@ -1298,6 +1300,8 @@ class ConversationFragment :
   }
 
   private fun handleShareOrDraftData(data: ShareOrDraftData) {
+    shareDataTimestampViewModel.timestamp = args.shareDataTimestamp
+
     when (data) {
       is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
       is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = true)

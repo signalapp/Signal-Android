@@ -62,8 +62,8 @@ class DraftRepository(
     val TAG = Log.tag(DraftRepository::class.java)
   }
 
-  fun getShareOrDraftData(): Maybe<Pair<ShareOrDraftData?, Drafts?>> {
-    return MaybeCompat.fromCallable { getShareOrDraftDataInternal() }
+  fun getShareOrDraftData(lastShareDataTimestamp: Long): Maybe<Pair<ShareOrDraftData?, Drafts?>> {
+    return MaybeCompat.fromCallable { getShareOrDraftDataInternal(lastShareDataTimestamp) }
       .observeOn(Schedulers.io())
   }
 
@@ -73,7 +73,17 @@ class DraftRepository(
    *
    * Note: Voice note drafts are handled differently and via the [DraftViewModel.state]
    */
-  private fun getShareOrDraftDataInternal(): Pair<ShareOrDraftData?, Drafts?>? {
+  @Suppress("ConvertTwoComparisonsToRangeCheck")
+  private fun getShareOrDraftDataInternal(lastShareDataTimestamp: Long): Pair<ShareOrDraftData?, Drafts?>? {
+    val sharedDataTimestamp: Long = conversationArguments?.shareDataTimestamp ?: -1
+    Log.d(TAG, "Shared this data at $sharedDataTimestamp and last processed share data at $lastShareDataTimestamp")
+    if (sharedDataTimestamp > 0 && sharedDataTimestamp <= lastShareDataTimestamp) {
+      Log.d(TAG, "Already processed this share data. Skipping.")
+      return null
+    } else {
+      Log.d(TAG, "Have not processed this share data. Proceeding.")
+    }
+
     val shareText = conversationArguments?.draftText
     val shareMedia = conversationArguments?.draftMedia
     val shareContentType = conversationArguments?.draftContentType

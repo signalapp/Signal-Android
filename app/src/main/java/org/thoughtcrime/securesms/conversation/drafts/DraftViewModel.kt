@@ -168,8 +168,8 @@ class DraftViewModel @JvmOverloads constructor(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun loadShareOrDraftData(): Maybe<DraftRepository.ShareOrDraftData> {
-    return repository.getShareOrDraftData()
+  fun loadShareOrDraftData(lastShareDataTimestamp: Long): Maybe<DraftRepository.ShareOrDraftData> {
+    return repository.getShareOrDraftData(lastShareDataTimestamp)
       .doOnSuccess { (_, drafts) ->
         if (drafts != null) {
           store.update { saveDrafts(it.copyAndSetDrafts(drafts = drafts)) }
