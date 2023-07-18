@@ -71,7 +71,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private PhoneStateListener              hangUpRtcOnDeviceCallAnswered;
   private SignalAudioManager              signalAudioManager;
   private int                             lastNotificationId;
-  private boolean                         stopping               = false;
+  private Notification                    lastNotification;
+  private boolean                         stopping = false;
 
   public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId, boolean isVideoCall) {
     Intent intent = new Intent(context, WebRtcCallService.class);
@@ -167,8 +168,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     if (intent == null || intent.getAction() == null) {
-      lastNotificationId = INVALID_NOTIFICATION_ID;
-      stopIfUpdateNotCalledFirst();
+      setCallNotification();
+      stop();
       return START_NOT_STICKY;
     }
 
@@ -182,7 +183,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
                                       intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false));
         return START_STICKY;
       case ACTION_SEND_AUDIO_COMMAND:
-        stopIfUpdateNotCalledFirst();
+        setCallNotification();
         if (signalAudioManager == null) {
           signalAudioManager = SignalAudioManager.create(this, this);
         }
@@ -191,7 +192,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
         signalAudioManager.handleCommand(audioCommand);
         return START_STICKY;
       case ACTION_CHANGE_POWER_BUTTON:
-        stopIfUpdateNotCalledFirst();
+        setCallNotification();
         if (intent.getBooleanExtra(EXTRA_ENABLED, false)) {
           registerPowerButtonReceiver();
         } else {
@@ -199,15 +200,15 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
         }
         return START_STICKY;
       case ACTION_STOP:
-        stopIfUpdateNotCalledFirst();
+        setCallNotification();
         stop();
         return START_NOT_STICKY;
       case ACTION_DENY_CALL:
-        stopIfUpdateNotCalledFirst();
+        setCallNotification();
         callManager.denyCall();
         return START_NOT_STICKY;
       case ACTION_LOCAL_HANGUP:
-        stopIfUpdateNotCalledFirst();
+        setCallNotification();
         callManager.localHangup();
         return START_NOT_STICKY;
       default:
@@ -215,8 +216,10 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
   }
 
-  private void stopIfUpdateNotCalledFirst() {
-    if (lastNotificationId == INVALID_NOTIFICATION_ID) {
+  private void setCallNotification() {
+    if (lastNotificationId != INVALID_NOTIFICATION_ID) {
+      startForegroundCompat(lastNotificationId, lastNotification);
+    } else {
       Log.w(TAG, "Service running without having called start first, show temp notification and terminate service.");
       startForegroundCompat(CallNotificationBuilder.getStartingStoppingNotificationId(), CallNotificationBuilder.getStoppingNotification(this));
       stop();
@@ -225,11 +228,12 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
 
   public void setCallInProgressNotification(int type, @NonNull RecipientId id, boolean isVideoCall) {
     lastNotificationId = CallNotificationBuilder.getNotificationId(type);
+    lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall);
 
-    startForegroundCompat(lastNotificationId, CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall));
+    startForegroundCompat(lastNotificationId, lastNotification);
   }
 
-  private void startForegroundCompat(int notificationId, Notification notification) {
+  private synchronized void startForegroundCompat(int notificationId, Notification notification) {
     if (stopping) {
       return;
     }
@@ -241,7 +245,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
   }
 
-  private void stop() {
+  private synchronized void stop() {
     stopping = true;
     stopForeground(true);
     stopSelf();
