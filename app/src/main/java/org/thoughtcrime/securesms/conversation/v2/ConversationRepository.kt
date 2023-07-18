@@ -320,9 +320,9 @@ class ConversationRepository(
     }.subscribeOn(Schedulers.io())
   }
 
-  fun getMessagePosition(threadId: Long, messageRecord: MessageRecord): Single<Int> {
+  fun getMessagePosition(threadId: Long, dateReceived: Long, authorId: RecipientId): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageRecord.dateReceived)
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, dateReceived, authorId)
     }.subscribeOn(Schedulers.io())
   }
 

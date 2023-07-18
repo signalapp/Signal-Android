@@ -262,8 +262,13 @@ class ConversationViewModel(
     return repository.getNextMentionPosition(threadId)
   }
 
+  fun moveToMessage(dateReceived: Long, author: RecipientId): Single<Int> {
+    return repository.getMessagePosition(threadId, dateReceived, author)
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun moveToMessage(messageRecord: MessageRecord): Single<Int> {
-    return repository.getMessagePosition(threadId, messageRecord)
+    return repository.getMessagePosition(threadId, messageRecord.dateReceived, messageRecord.fromRecipient.id)
       .observeOn(AndroidSchedulers.mainThread())
   }
 

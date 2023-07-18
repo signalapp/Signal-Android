@@ -125,6 +125,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.ConversationS
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearchKey
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
@@ -414,6 +415,10 @@ class ConversationFragment :
       (requireView() as ViewGroup),
       composeText
     )
+  }
+
+  private val voiceNotePlayerListener: VoiceNotePlayerView.Listener by lazy {
+    VoiceNotePlayerViewListener()
   }
 
   private val conversationTooltips = ConversationTooltips(this)
@@ -930,6 +935,18 @@ class ConversationFragment :
       .addTo(disposables)
 
     presentTypingIndicator()
+
+    getVoiceNoteMediaController().finishPostpone()
+
+    getVoiceNoteMediaController()
+      .voiceNotePlayerViewState
+      .observe(viewLifecycleOwner) { state: Optional<VoiceNotePlayerView.State> ->
+        if (state.isPresent) {
+          binding.conversationBanner.showVoiceNotePlayer(state.get(), voiceNotePlayerListener)
+        } else {
+          binding.conversationBanner.clearVoiceNotePlayer()
+        }
+      }
   }
 
   private fun initializeInlineSearch() {
@@ -3791,6 +3808,41 @@ class ConversationFragment :
 
     override fun saveEphemeralVoiceNoteDraft(draft: VoiceNoteDraft) {
       draftViewModel.saveEphemeralVoiceNoteDraft(draft.asDraft())
+    }
+  }
+
+  private inner class VoiceNotePlayerViewListener : VoiceNotePlayerView.Listener {
+    override fun onCloseRequested(uri: Uri) {
+      getVoiceNoteMediaController().stopPlaybackAndReset(uri)
+    }
+
+    override fun onSpeedChangeRequested(uri: Uri, speed: Float) {
+      getVoiceNoteMediaController().setPlaybackSpeed(uri, speed)
+    }
+
+    override fun onPlay(uri: Uri, messageId: Long, position: Double) {
+      getVoiceNoteMediaController().startSinglePlayback(uri, messageId, position)
+    }
+
+    override fun onPause(uri: Uri) {
+      getVoiceNoteMediaController().pausePlayback(uri)
+    }
+
+    override fun onNavigateToMessage(threadId: Long, threadRecipientId: RecipientId, senderId: RecipientId, messageTimestamp: Long, messagePositionInThread: Long) {
+      if (threadId != viewModel.threadId) {
+        startActivity(
+          ConversationIntents.createBuilderSync(requireActivity(), threadRecipientId, threadId)
+            .withStartingPosition(messagePositionInThread.toInt())
+            .build()
+        )
+      } else {
+        viewModel
+          .moveToMessage(messageTimestamp, senderId)
+          .subscribeBy {
+            moveToPosition(it)
+          }
+          .addTo(disposables)
+      }
     }
   }
 }
