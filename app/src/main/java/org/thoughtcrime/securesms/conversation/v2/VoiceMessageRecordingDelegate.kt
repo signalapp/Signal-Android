@@ -9,7 +9,6 @@ import android.content.pm.ActivityInfo
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
@@ -19,13 +18,9 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.audio.AudioRecorder
-import org.thoughtcrime.securesms.audio.BluetoothVoiceNoteUtil
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.conversation.VoiceRecorderWakeLock
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat
 
 /**
  * Delegate class for VoiceMessage recording.
@@ -45,22 +40,11 @@ class VoiceMessageRecordingDelegate(
   }
 
   private val voiceRecorderWakeLock = VoiceRecorderWakeLock(fragment.requireActivity())
-  private val bluetoothVoiceNoteUtil = BluetoothVoiceNoteUtil.create(
-    fragment.requireContext(),
-    this::onBluetoothConnectionAttempt,
-    this::onBluetoothPermissionDenied
-  )
 
   private var session: Session? = null
 
   fun onRecorderStarted() {
-    val audioManager: AudioManagerCompat = ApplicationDependencies.getAndroidCallAudioManager()
-    if (audioManager.isBluetoothHeadsetAvailable) {
-      connectToBluetoothAndBeginRecording()
-    } else {
-      Log.d(TAG, "Recording from phone mic because no bluetooth devices were available.")
-      beginRecording()
-    }
+    beginRecording()
   }
 
   fun onRecorderLocked() {
@@ -69,14 +53,12 @@ class VoiceMessageRecordingDelegate(
   }
 
   fun onRecorderFinished() {
-    bluetoothVoiceNoteUtil.disconnectBluetoothScoConnection()
     voiceRecorderWakeLock.release()
     vibrateAndResetOrientation(20)
     session?.completeRecording()
   }
 
   fun onRecorderCanceled(byUser: Boolean) {
-    bluetoothVoiceNoteUtil.disconnectBluetoothScoConnection()
     voiceRecorderWakeLock.release()
     vibrateAndResetOrientation(50)
 
@@ -99,15 +81,6 @@ class VoiceMessageRecordingDelegate(
     }
   }
 
-  private fun connectToBluetoothAndBeginRecording() {
-    Log.d(TAG, "Initiating Bluetooth SCO connection...")
-    bluetoothVoiceNoteUtil.connectBluetoothScoConnection()
-  }
-
-  private fun onBluetoothConnectionAttempt(success: Boolean) {
-    beginRecording()
-  }
-
   @Suppress("DEPRECATION")
   private fun beginRecording() {
     val vibrator = ServiceUtil.getVibrator(fragment.requireContext())
@@ -120,15 +93,6 @@ class VoiceMessageRecordingDelegate(
     session = Session(audioRecorder.startRecording(), sessionCallback).apply {
       addTo(disposables)
     }
-  }
-
-  private fun onBluetoothPermissionDenied() {
-    MaterialAlertDialogBuilder(fragment.requireContext())
-      .setTitle(R.string.ConversationParentFragment__bluetooth_permission_denied)
-      .setMessage(R.string.ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call)
-      .setPositiveButton(R.string.ConversationParentFragment__open_settings) { _, _ -> fragment.startActivity(Permissions.getApplicationSettingsIntent(fragment.requireContext())) }
-      .setNegativeButton(R.string.ConversationParentFragment__not_now, null)
-      .show()
   }
 
   interface SessionCallback {
