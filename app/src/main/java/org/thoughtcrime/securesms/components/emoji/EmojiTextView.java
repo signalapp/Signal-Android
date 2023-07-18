@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Util;
@@ -151,7 +152,12 @@ public class EmojiTextView extends AppCompatTextView {
   public void setText(@Nullable CharSequence text, BufferType type) {
     EmojiParser.CandidateList candidates = isInEditMode() ? null : EmojiProvider.getCandidates(text);
 
-    if (scaleEmojis && candidates != null && candidates.allEmojis && (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(getContext()))) {
+    if (scaleEmojis &&
+        candidates != null &&
+        candidates.allEmojis &&
+        (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(getContext())) &&
+        (text instanceof Spanned && !MessageStyler.hasStyling((Spanned) text)))
+    {
       int   emojis = candidates.size();
       float scale  = 1.0f;
 
