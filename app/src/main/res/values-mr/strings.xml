@@ -810,7 +810,7 @@
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">नवीन गट काय आहेत?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट अॅडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट ऍडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">सर्व संदेश इतिहास आणि मिडिया श्रेणीसुधारणेपूर्वी ठेवण्यात आले आहेत.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">या गटात पुन्हा सामील होण्यासाठी आपल्याला आमंत्रण स्वीकार करावे लागेल, आणि आपण स्वीकार करेपर्यंत आपल्याला गट संदेश प्राप्त होणार नाहीत.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -825,7 +825,7 @@
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">नवीन गटात श्रेणीसुधारणा करा</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">हा गट श्रेणीसुधारित करा</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट अॅडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट ऍडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">सर्व संदेश इतिहास आणि मिडिया श्रेणीसुधारणेपूर्वी ठेवले जातील.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">नेटवर्क त्रुटी आली. पुन्हा प्रयत्न करा</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">श्रेणीसुधारित करण्यात अयशस्वी</string>
@@ -968,8 +968,8 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">नाव आणि चित्र संपादित करा</string>
     <string name="ManageGroupActivity_legacy_group">लेगसी गट</string>
-    <string name="ManageGroupActivity_legacy_group_learn_more">हा एक लेगसी गट आहे. गट अॅडमिन सारखे वैशिष्ट्ये फक्त नवीन गटांसाठी उपलब्ध आहेत.</string>
-    <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये प्रवेश करण्यासाठी, </string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">हा एक लेगसी गट आहे. गट ऍडमिन सारखे वैशिष्ट्ये फक्त नवीन गटांसाठी उपलब्ध आहेत.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि ऍडमिन सारखे वैशिष्ट्ये प्रवेश करण्यासाठी, </string>
     <string name="ManageGroupActivity_legacy_group_too_large">या लेगसी गटाला नवीन गटामध्ये श्रेणीसुधारित केला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
     <string name="ManageGroupActivity_upgrade_this_group">हा गट श्रेणीसुधारित करा.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">हा एक असुरक्षित MMS गट आहे. खाजगीरीत्या चॅट करण्यासाठी, आपल्या संपर्कांना Signal वर आमंत्रित करा.</string>
@@ -1040,12 +1040,12 @@
     <string name="ShareableGroupLinkDialogFragment__share">सामायिक करा</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">लिंक रीसेट करा</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">नवीन सदस्य स्वीकारा</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">नवीन सदस्यांना गट लिंक द्वारा सामील होण्यासाठी अॅडमिनने स्वीकार करणे आवश्यक आहे.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">नवीन सदस्यांना गट लिंक द्वारा सामील होण्यासाठी ऍडमिन स्वीकार करणे आवश्यक आहे.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">गट लिंक रीसेट करण्याची आपणास खात्री आहे का? वर्तमान लिंक वापरून लोक यापुढे गटात सामील होऊ शकणार नाहीत.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR कोड</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ज्या व्यक्ती हा कोड स्कॅन करतील त्यांना आपल्या गटात सामील होता येईल. अॅडमिन यांना तरीही नवीन सदस्यांना स्वीकार करावे लागेल जर ती सेटिंग चालू असेल.</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ज्या व्यक्ती हा कोड स्कॅन करतील त्यांना आपल्या गटात सामील होता येईल. ऍडमिन यांना तरीही नवीन सदस्यांना स्वीकार करावे लागेल जर ती सेटिंग चालू असेल.</string>
     <string name="GroupLinkShareQrDialogFragment__share_code">कोड शेअर करा</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
@@ -1095,7 +1095,7 @@
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">गट लिंक सक्षम करण्यात अक्षम. कृपया नंतर पुन्हा प्रयत्न करा</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">आपण गट लिंक सक्षम करू शकत नाही. कृपया अॅडमिनला विचारा.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">आपण गट लिंक सक्षम करू शकत नाही. कृपया ऍडमिन विचारा.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">आपण सध्या या गटाचे सदस्य नाही.</string>
 
     <!-- GV2 Request confirmation dialog -->
@@ -1325,16 +1325,16 @@
     <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s आता गटात नाही.</string>
 
     <!-- GV2 role change -->
-    <string name="MessageRecord_you_made_s_an_admin">आपण %1$s ला अॅडमिन केले.</string>
-    <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला अॅडमिन केले.</string>
-    <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला अॅडमिन केले.</string>
-    <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s चे अॅडमिन विशेषाधिकार आपण रद्द केले.</string>
-    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले अॅडमिन विशेषाधिकार रद्द केले.</string>
-    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
-    <string name="MessageRecord_s_is_now_an_admin">%1$s आता अॅडमिन आहे.</string>
+    <string name="MessageRecord_you_made_s_an_admin">आपण %1$s ला ऍडमिन केले.</string>
+    <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला ऍडमिन केले.</string>
+    <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला ऍडमिन केले.</string>
+    <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s चे ऍडमिन विशेषाधिकार आपण रद्द केले.</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले ऍडमिन विशेषाधिकार रद्द केले.</string>
+    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण ऍडमिन विशेषाधिकार रद्द केले.</string>
+    <string name="MessageRecord_s_is_now_an_admin">%1$s आता ऍडमिन आहे.</string>
     <string name="MessageRecord_you_are_now_an_admin">आपण आता प्रशासक आहात.</string>
-    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s आता अॅडमिन नाही.</string>
-    <string name="MessageRecord_you_are_no_longer_an_admin">आपण यापुढे अॅडमिन नाही.</string>
+    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s आता ऍडमिन नाही.</string>
+    <string name="MessageRecord_you_are_no_longer_an_admin">आपण यापुढे ऍडमिन नाही.</string>
 
     <!-- GV2 invitations -->
     <string name="MessageRecord_you_invited_s_to_the_group">आपण %1$s ला गटात आमंत्रित केले.</string>
@@ -1361,7 +1361,7 @@
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">कुणीतरी गटाचे आमंत्रण रद्द केले.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">आपण गटाचे आमंत्रण रद्द केले.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ने गटाचे आपले आमंत्रण रद्द केले.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">अॅडमिनने गटाचे आपले आमंत्रण रद्द केले.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ऍडमिनने गटाचे आपले आमंत्रण रद्द केले.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
         <item quantity="one">गटाचे आमंत्रण मागे घेतले गेले होते.</item>
         <item quantity="other">%1$d गटाची आमंत्रणे मागे घेतली गेली होती.</item>
@@ -1407,21 +1407,21 @@
     <string name="MessageRecord_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">अॅडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">अॅडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ऍडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ऍडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
     <string name="MessageRecord_you_turned_off_the_group_link">आपण गट लिंक बंद केली आहे.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ने अॅडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने अॅडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ने ऍडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने ऍडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
     <string name="MessageRecord_s_turned_off_the_group_link">%1$s ने गट लिंक बंद केली आहे.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">अॅडमिन मान्यता बंद असलेली गट लिंक चालू केली गेली आहे.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">अॅडमिन मान्यता चालू असलेली गट लिंक चालू केली गेली आहे.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ऍडमिन मान्यता बंद असलेली गट लिंक चालू केली गेली आहे.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ऍडमिन मान्यता चालू असलेली गट लिंक चालू केली गेली आहे.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">गट लिंक बंद केली गेली आहे.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपण गट लिंकसाठी अॅडमिन मान्यता बंद केली आहे.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी अॅडमिन मान्यता बंद केली आहे.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">गट लिंकसाठी अॅडमिन मान्यता बंद केली गेली आहे.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">आपण गट लिंकसाठी अॅडमिन मान्यता चालू केली आहे.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी अॅडमिन मान्यता चालू केली आहे.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">गट लिंकसाठी अॅडमिन मान्यता चालू केली गेली आहे.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपण गट लिंकसाठी ऍडमिन मान्यता बंद केली आहे.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी ऍडमिन मान्यता बंद केली आहे.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">गट लिंकसाठी ऍडमिन मान्यता बंद केली गेली आहे.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">आपण गट लिंकसाठी ऍडमिन मान्यता चालू केली आहे.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी ऍडमिन मान्यता चालू केली आहे.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">गट लिंकसाठी ऍडमिन मान्यता चालू केली गेली आहे.</string>
 
     <!-- GV2 group link reset -->
     <string name="MessageRecord_you_reset_the_group_link">आपण गट लिंक रीसेट केली.</string>
@@ -1530,7 +1530,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s ला आपल्याला संदेश पाठवू द्यायचे? जोपर्यंत आपण त्यांना अनावरोधित करत नाही तोपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s कडून अद्यतने आणि बातम्या मिळवायच्या? आपण त्यांना अनावरोधित करेपर्यंत आपल्याला कोणतीही अद्यतने मिळणार नाहीत.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">आपले या गटासोबतचे चॅट सुरू ठेवायचे आणि त्याच्या सदस्यांसह आपले नाव आणि फोटो सामायिक करायचे?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@उल्लेख आणि अॅडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@उल्लेख आणि ऍडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">हा लेगसी गट वापरला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">आपले %1$s सोबतचे चॅट सुरू ठेवायचे आणि त्याच्या सदस्यांसह आपले नाव आणि फोटो सामायिक करायचे?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हा आणि आपले नाव आणि फोटो त्याचा सदस्यांसह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
