@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import org.signal.benchmark.DummyAccountManagerFactory
+import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.UUID
+
 object TestUsers {
 
   private var generatedOthers: Int = 0
@@ -42,6 +44,9 @@ object TestUsers {
     val preferences: SharedPreferences = application.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0)
     preferences.edit().putBoolean("passphrase_initialized", true).commit()
 
+    SignalStore.account().generateAciIdentityKeyIfNecessary()
+    SignalStore.account().generatePniIdentityKeyIfNecessary()
+
     val registrationRepository = RegistrationRepository(application)
     val registrationData = RegistrationData(
       code = "123123",
@@ -53,13 +58,23 @@ object TestUsers {
       pniRegistrationId = registrationRepository.pniRegistrationId,
       recoveryPassword = "asdfasdfasdfasdf"
     )
-    val verifyResponse = VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null, null, null)
+
+    val verifyResponse = VerifyResponse(
+      VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false),
+      masterKey = null,
+      pin = null,
+      aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().aciPreKeys),
+      pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().pniPreKeys)
+    )
+
     AccountManagerFactory.setInstance(DummyAccountManagerFactory())
+
     val response: ServiceResponse<VerifyResponse> = registrationRepository.registerAccount(
       registrationData,
       verifyResponse,
       false
-    ).blockingGet()
+    ).safeBlockingGet()
+
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
 
     SignalStore.svr().optOut()

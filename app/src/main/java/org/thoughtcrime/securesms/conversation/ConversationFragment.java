@@ -291,7 +291,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     super.onCreate(icicle);
     this.locale = Locale.getDefault();
     startupStopwatch = new Stopwatch("conversation-open");
-    SignalLocalMetrics.ConversationOpen.start();
   }
 
   @Override

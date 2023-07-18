@@ -32,10 +32,17 @@ internal object ConversationOptionsMenu {
    */
   class Provider(
     private val callback: Callback,
-    private val lifecycleDisposable: LifecycleDisposable
+    private val lifecycleDisposable: LifecycleDisposable,
+    var afterFirstRenderMode: Boolean = false
   ) : MenuProvider {
 
+    private var createdPreRenderMenu = false
+
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+      if (createdPreRenderMenu && !afterFirstRenderMode) {
+        return
+      }
+
       menu.clear()
 
       val (
@@ -54,6 +61,27 @@ internal object ConversationOptionsMenu {
 
       if (recipient == null) {
         Log.w(TAG, "Recipient is null, no menu")
+        return
+      }
+
+      if (!afterFirstRenderMode) {
+        createdPreRenderMenu = true
+        if (recipient.isSelf) {
+          return
+        }
+
+        menuInflater.inflate(R.menu.conversation_first_render, menu)
+
+        if (recipient.isGroup) {
+          hideMenuItem(menu, R.id.menu_call_secure)
+          if (!isActiveV2Group) {
+            hideMenuItem(menu, R.id.menu_video_secure)
+          }
+        } else if (!isPushAvailable) {
+          hideMenuItem(menu, R.id.menu_call_secure)
+          hideMenuItem(menu, R.id.menu_video_secure)
+        }
+
         return
       }
 

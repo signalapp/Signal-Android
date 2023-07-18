@@ -485,6 +485,12 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    SignalLocalMetrics.ConversationOpen.start();
+  }
+
+  @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     return inflater.inflate(R.layout.conversation_activity, container, false);
   }
@@ -2095,7 +2101,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   protected void initializeActionBar() {
-    toolbar.addMenuProvider(new ConversationOptionsMenu.Provider(this, disposables));
+    toolbar.addMenuProvider(new ConversationOptionsMenu.Provider(this, disposables, true));
     invalidateOptionsMenu();
     toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button);
     if (isInBubble()) {

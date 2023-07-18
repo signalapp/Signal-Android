@@ -6,8 +6,6 @@ import org.signal.benchmark.setup.TestMessages
 import org.signal.benchmark.setup.TestUsers
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
-import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class BenchmarkSetupActivity : BaseActivity() {
@@ -52,13 +50,6 @@ class BenchmarkSetupActivity : BaseActivity() {
         TestMessages.insertIncomingTextMessage(other = recipient, body = "Test message $i", timestamp = generator.nextTimestamp())
         TestMessages.insertOutgoingTextMessage(other = recipient, body = "Test message $i", timestamp = generator.nextTimestamp())
       }
-
-      val voiceMessageId = TestMessages.insertIncomingVoiceMessage(other = recipient, timestamp = generator.nextTimestamp())
-      val mmsRecord = SignalDatabase.messages.getMessageRecord(voiceMessageId) as MediaMmsMessageRecord
-      TestMessages.insertOutgoingImageMessage(other = recipient, body = "test", 2, generator.nextTimestamp())
-      TestMessages.insertIncomingTextMessage(other = recipient, "reply to the test message", generator.nextTimestamp())
-      TestMessages.insertIncomingQuoteTextMessage(other = recipient, quote = QuoteModel(mmsRecord.timestamp, recipient.id, "Fake voice message text", false, mmsRecord.slideDeck.asAttachments(), null, QuoteModel.Type.NORMAL, null), body = "Here is a cool quote", timestamp = generator.nextTimestamp())
-      TestMessages.insertOutgoingTextMessage(other = recipient, body = "longaweorijoaijwerijoiajwer", timestamp = generator.nextTimestamp())
 
       SignalDatabase.threads.update(SignalDatabase.threads.getOrCreateThreadIdFor(recipient = recipient), true)
     }

@@ -434,6 +434,7 @@ class ConversationFragment :
   private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
   private lateinit var conversationItemDecorations: ConversationItemDecorations
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
+  private lateinit var menuProvider: ConversationOptionsMenu.Provider
   private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
   private lateinit var backPressedCallback: BackPressedDelegate
 
@@ -778,6 +779,8 @@ class ConversationFragment :
     backPressedCallback = BackPressedDelegate()
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
 
+    menuProvider.afterFirstRenderMode = true
+
     attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 
     EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
@@ -1105,7 +1108,8 @@ class ConversationFragment :
 
   private fun presentActionBarMenu() {
     optionsMenuCallback = ConversationOptionsMenuCallback()
-    binding.toolbar.addMenuProvider(ConversationOptionsMenu.Provider(optionsMenuCallback, disposables))
+    menuProvider = ConversationOptionsMenu.Provider(optionsMenuCallback, disposables)
+    binding.toolbar.addMenuProvider(menuProvider)
     invalidateOptionsMenu()
 
     when (args.conversationScreenType) {
