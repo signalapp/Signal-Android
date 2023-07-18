@@ -93,7 +93,11 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
   }
 
   private fun hasHeader(position: Int): Boolean {
-    val model = currentItems[position]
+    val model = if (position in currentItems.indices) {
+      currentItems[position]
+    } else {
+      null
+    }
 
     if (model == null || model !is ConversationMessageElement) {
       return false
