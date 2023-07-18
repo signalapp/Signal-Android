@@ -134,6 +134,7 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
 
           builder
             .setCustomTitle(title)
+            .setOnDismissListener { viewModel.refresh() }
             .show()
         } else {
           startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
