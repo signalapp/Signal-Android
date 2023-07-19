@@ -109,6 +109,7 @@ public final class FeatureFlags {
   private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
   private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2";
 
+  private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
    * remotely, place it in here.
@@ -167,7 +168,8 @@ public final class FeatureFlags {
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
       CDS_COMPAT_MODE,
-      CONVERSATION_FRAGMENT_V2
+      CONVERSATION_FRAGMENT_V2,
+      SAFETY_NUMBER_ACI
   );
 
   @VisibleForTesting
@@ -233,7 +235,8 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
       CDS_COMPAT_MODE,
-      CONVERSATION_FRAGMENT_V2
+      CONVERSATION_FRAGMENT_V2,
+      SAFETY_NUMBER_ACI
   );
 
   /**
@@ -338,6 +341,14 @@ public final class FeatureFlags {
   /** Whether or not to use the UUID in verification codes. */
   public static boolean verifyV2() {
     return getBoolean(VERIFY_V2, false);
+  }
+
+  /** Whether or not we show the ACI safety number as the default initial safety number. */
+  public static boolean showAciSafetyNumberAsDefault() {
+    long estimatedServerTimeSeconds = (System.currentTimeMillis() - SignalStore.misc().getLastKnownServerTimeOffset()) / 1000;
+    long flagEnableTimeSeconds      = getLong(SAFETY_NUMBER_ACI, Long.MAX_VALUE);
+
+    return estimatedServerTimeSeconds > flagEnableTimeSeconds;
   }
 
   /** The raw client expiration JSON string. */

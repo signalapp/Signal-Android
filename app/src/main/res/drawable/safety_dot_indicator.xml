@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/selected_page_dot_indicator"
+        android:state_selected="true"/>
+
+    <item android:drawable="@drawable/unselected_page_dot_indicator"/>
+</selector>

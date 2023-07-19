@@ -4391,7 +4391,7 @@ public class ConversationParentFragment extends Fragment
     public void onClicked(final List<IdentityRecord> unverifiedIdentities) {
       Log.i(TAG, "onClicked: " + unverifiedIdentities.size());
       if (unverifiedIdentities.size() == 1) {
-        startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities.get(0), false));
+        VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), unverifiedIdentities.get(0), false);
       } else {
         String[] unverifiedNames = new String[unverifiedIdentities.size()];
 
@@ -4403,7 +4403,7 @@ public class ConversationParentFragment extends Fragment
         builder.setIcon(R.drawable.ic_warning);
         builder.setTitle(R.string.ConversationFragment__no_longer_verified);
         builder.setItems(unverifiedNames, (dialog, which) -> {
-          startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities.get(which), false));
+          VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), unverifiedIdentities.get(which), false);
         });
         builder.show();
       }

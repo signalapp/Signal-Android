@@ -549,7 +549,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
             isEnabled = !state.isDeprecatedOrUnregistered,
             onClick = {
-              startActivity(VerifyIdentityActivity.newIntent(requireActivity(), recipientState.identityRecord))
+              VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), recipientState.identityRecord)
             }
           )
         }

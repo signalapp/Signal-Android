@@ -3246,7 +3246,7 @@ class ConversationFragment :
 
     override fun onUnverifiedBannerClicked(unverifiedIdentities: List<IdentityRecord>) {
       if (unverifiedIdentities.size == 1) {
-        startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities[0], false))
+        VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), unverifiedIdentities[0], false)
       } else {
         val unverifiedNames = unverifiedIdentities
           .map { Recipient.resolved(it.recipientId).getDisplayName(requireContext()) }
@@ -3255,7 +3255,7 @@ class ConversationFragment :
         MaterialAlertDialogBuilder(requireContext())
           .setIcon(R.drawable.ic_warning)
           .setTitle(R.string.ConversationFragment__no_longer_verified)
-          .setItems(unverifiedNames) { _, which: Int -> startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities[which], false)) }
+          .setItems(unverifiedNames) { _, which: Int -> VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireContext(), unverifiedIdentities[which], false) }
           .show()
       }
     }
