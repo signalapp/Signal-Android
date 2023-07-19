@@ -35,16 +35,17 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
   private val headerCache: MutableMap<Long, DateHeaderViewHolder> = hashMapOf()
   private var unreadViewHolder: UnreadViewHolder? = null
 
-  var unreadCount: Int = 0
+  private var unreadState: UnreadState = UnreadState.None
     set(value) {
       field = value
       unreadViewHolder?.bind()
     }
 
-  private val firstUnreadPosition: Int
-    get() = unreadCount - 1
-
-  var currentItems: MutableList<ConversationElement?> = mutableListOf()
+  var currentItems: List<ConversationElement?> = emptyList()
+    set(value) {
+      field = value
+      updateUnreadState(value)
+    }
 
   var hasWallpaper: Boolean = hasWallpaper
     set(value) {
@@ -56,13 +57,13 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     val position = parent.getChildAdapterPosition(view)
 
-    val unreadHeight = if (unreadCount > 0 && position == firstUnreadPosition) {
+    val unreadHeight = if (isFirstUnread(position)) {
       getUnreadViewHolder(parent).height
     } else {
       0
     }
 
-    val dateHeaderHeight = if (position in currentItems.indices && hasHeader(position)) {
+    val dateHeaderHeight = if (hasHeader(position)) {
       getHeader(parent, currentItems[position] as ConversationMessageElement).height
     } else {
       0
@@ -77,7 +78,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
       val child = parent.getChildAt(count - 1 - layoutPosition)
       val position = parent.getChildAdapterPosition(child)
 
-      val unreadOffset = if (position == firstUnreadPosition) {
+      val unreadOffset = if (isFirstUnread(position)) {
         val unread = getUnreadViewHolder(parent)
         unread.itemView.drawAsTopItemDecoration(c, parent, child)
         unread.height
@@ -90,6 +91,57 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
         headerView.drawAsTopItemDecoration(c, parent, child, unreadOffset)
       }
     }
+  }
+
+  /** Must be called before first setting of [currentItems] */
+  fun setFirstUnreadCount(unreadCount: Int) {
+    if (unreadState == UnreadState.None && unreadCount > 0) {
+      unreadState = UnreadState.InitialUnreadState(unreadCount)
+    }
+  }
+
+  /**
+   * If [unreadState] is [UnreadState.InitialUnreadState] we need to determine the first unread timestamp based on
+   * initial unread count.
+   *
+   * Once in [UnreadState.CompleteUnreadState], need to update the unread count based on new incoming messages since
+   * the first unread timestamp. If an outgoing message is found in this range the unread state is cleared completely,
+   * which causes the unread divider to be removed.
+   */
+  private fun updateUnreadState(items: List<ConversationElement?>) {
+    val state = unreadState
+
+    if (state is UnreadState.InitialUnreadState) {
+      val timestamp = (items[state.unreadCount - 1] as? ConversationMessageElement)?.timestamp()
+      if (timestamp != null) {
+        unreadState = UnreadState.CompleteUnreadState(unreadCount = state.unreadCount, firstUnreadTimestamp = timestamp)
+      }
+    } else if (state is UnreadState.CompleteUnreadState) {
+      var newUnreadCount = 0
+      for (element in items) {
+        if (element is ConversationMessageElement) {
+          if (element.conversationMessage.messageRecord.isOutgoing) {
+            unreadState = UnreadState.None
+            break
+          } else {
+            newUnreadCount++
+            if (element.timestamp() == state.firstUnreadTimestamp) {
+              unreadState = state.copy(unreadCount = newUnreadCount)
+              break
+            }
+          }
+        }
+      }
+    }
+  }
+
+  private fun isFirstUnread(position: Int): Boolean {
+    val state = unreadState
+
+    return state is UnreadState.CompleteUnreadState &&
+      state.firstUnreadTimestamp != null &&
+      position in currentItems.indices &&
+      (currentItems[position] as? ConversationMessageElement)?.timestamp() == state.firstUnreadTimestamp
   }
 
   private fun hasHeader(position: Int): Boolean {
@@ -134,6 +186,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
 
   private fun getUnreadViewHolder(parent: RecyclerView): UnreadViewHolder {
     if (unreadViewHolder != null) {
+      unreadViewHolder!!.itemView.layoutIn(parent)
       return unreadViewHolder!!
     }
 
@@ -195,6 +248,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     }
 
     fun bind() {
+      val unreadCount = (unreadState as? UnreadState.CompleteUnreadState)?.unreadCount ?: 0
       unreadText.text = itemView.context.resources.getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, unreadCount, unreadCount)
       updateForWallpaper()
     }
@@ -208,5 +262,16 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
         unreadDivider.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.core_grey_45))
       }
     }
+  }
+
+  sealed class UnreadState {
+    /** Unread state hasn't been initialized or there are 0 unreads upon entering the conversation */
+    object None : UnreadState()
+
+    /** On first load of data, there is at least 1 unread message but we don't know the 'position' in the list yet */
+    data class InitialUnreadState(val unreadCount: Int) : UnreadState()
+
+    /** We have at least one unread and know the timestamp of the first unread message and thus 'position' for the header */
+    data class CompleteUnreadState(val unreadCount: Int, val firstUnreadTimestamp: Long? = null) : UnreadState()
   }
 }

@@ -579,9 +579,6 @@ class ConversationFragment :
 
     inputPanel.onPause()
 
-    conversationItemDecorations.unreadCount = viewModel.unreadCount
-    binding.conversationItemRecycler.invalidateItemDecorations()
-
     viewModel.markLastSeen()
 
     motionEventRelay.setDrain(null)
@@ -755,7 +752,7 @@ class ConversationFragment :
             binding.conversationItemRecycler.height
           )
         }
-        conversationItemDecorations.unreadCount = state.meta.unreadCount
+        conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
       }
       .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
@@ -1708,8 +1705,6 @@ class ConversationFragment :
       }
       return
     }
-
-    conversationItemDecorations.unreadCount = 0
 
     scrollToPositionDelegate.resetScrollPositionAfterMarkListVersionSurpassed()
     attachmentManager.cleanup()
