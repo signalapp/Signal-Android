@@ -1639,9 +1639,17 @@ class ConversationFragment :
     linkPreviews: List<LinkPreview> = linkPreviewViewModel.onSend(),
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
     bypassPreSendSafetyNumberCheck: Boolean = false,
+    isViewOnce: Boolean = false,
     afterSendComplete: () -> Unit = {}
   ) {
     if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
+      return
+    }
+
+    if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && bodyRanges != null && bodyRanges.rangesCount > 0) {
+      Dialogs.showFormattedTextDialog(requireContext()) {
+        sendMessage(body, mentions, bodyRanges, messageToEdit, quote, scheduledDate, slideDeck, contacts, clearCompose, linkPreviews, preUploadResults, bypassPreSendSafetyNumberCheck, isViewOnce, afterSendComplete)
+      }
       return
     }
 
@@ -1672,7 +1680,8 @@ class ConversationFragment :
       contacts = contacts,
       linkPreviews = linkPreviews,
       preUploadResults = preUploadResults,
-      bypassPreSendSafetyNumberCheck = bypassPreSendSafetyNumberCheck
+      bypassPreSendSafetyNumberCheck = bypassPreSendSafetyNumberCheck,
+      isViewOnce = isViewOnce
     )
 
     disposables += send
@@ -3130,18 +3139,14 @@ class ConversationFragment :
         slideDeck = SlideDeck().apply { slides.forEach { addSlide(it) } },
         contacts = emptyList(),
         clearCompose = true,
-        linkPreviews = emptyList()
+        linkPreviews = emptyList(),
+        isViewOnce = result.isViewOnce
       ) {
         viewModel.deleteSlideData(slides)
       }
     }
 
     private fun sendPreUploadMediaMessage(result: MediaSendActivityResult) {
-      if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && result.bodyRanges != null && result.bodyRanges.rangesCount > 0) {
-        Dialogs.showFormattedTextDialog(requireContext()) { sendPreUploadMediaMessage(result) }
-        return
-      }
-
       sendMessage(
         body = result.body,
         mentions = result.mentions,
@@ -3153,7 +3158,8 @@ class ConversationFragment :
         contacts = emptyList(),
         clearCompose = true,
         linkPreviews = emptyList(),
-        preUploadResults = result.preUploadResults
+        preUploadResults = result.preUploadResults,
+        isViewOnce = result.isViewOnce
       )
     }
 

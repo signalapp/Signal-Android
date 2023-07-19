@@ -346,7 +346,8 @@ class ConversationViewModel(
     contacts: List<Contact>,
     linkPreviews: List<LinkPreview>,
     preUploadResults: List<MessageSender.PreUploadResult>,
-    bypassPreSendSafetyNumberCheck: Boolean
+    bypassPreSendSafetyNumberCheck: Boolean,
+    isViewOnce: Boolean
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
@@ -362,7 +363,8 @@ class ConversationViewModel(
       contacts = contacts,
       linkPreviews = linkPreviews,
       preUploadResults = preUploadResults,
-      identityRecordsState = if (bypassPreSendSafetyNumberCheck) null else identityRecordsStore.state
+      identityRecordsState = if (bypassPreSendSafetyNumberCheck) null else identityRecordsStore.state,
+      isViewOnce = isViewOnce
     ).observeOn(AndroidSchedulers.mainThread())
   }
 

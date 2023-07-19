@@ -215,7 +215,8 @@ class ConversationRepository(
     contacts: List<Contact>,
     linkPreviews: List<LinkPreview>,
     preUploadResults: List<PreUploadResult>,
-    identityRecordsState: IdentityRecordsState?
+    identityRecordsState: IdentityRecordsState?,
+    isViewOnce: Boolean
   ): Completable {
     val sendCompletable = Completable.create { emitter ->
       if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
@@ -259,7 +260,8 @@ class ConversationRepository(
         mentions = mentions,
         sharedContacts = contacts,
         linkPreviews = linkPreviews,
-        attachments = outgoingMessageSlideDeck?.asAttachments() ?: emptyList()
+        attachments = outgoingMessageSlideDeck?.asAttachments() ?: emptyList(),
+        isViewOnce = isViewOnce
       )
 
       if (preUploadResults.isEmpty()) {
