@@ -613,7 +613,7 @@ public final class FeatureFlags {
 
   /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
   public static boolean cdsCompatMode() {
-    return getBoolean(CDS_COMPAT_MODE, true);
+    return !phoneNumberPrivacy() && getBoolean(CDS_COMPAT_MODE, true);
   }
 
   /** True if the new conversation fragment should be used. */
