@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -35,8 +36,12 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity {
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   public static void startOrShowExchangeMessagesDialog(@NonNull Context context,
-                                                       @NonNull IdentityRecord identityRecord) {
-    startOrShowExchangeMessagesDialog(context, identityRecord.getRecipientId(), identityRecord.getIdentityKey(), identityRecord.getVerifiedStatus() == IdentityTable.VerifiedStatus.VERIFIED);
+                                                       @Nullable IdentityRecord identityRecord) {
+    if (identityRecord != null) {
+      startOrShowExchangeMessagesDialog(context, identityRecord.getRecipientId(), identityRecord.getIdentityKey(), identityRecord.getVerifiedStatus() == IdentityTable.VerifiedStatus.VERIFIED);
+    } else {
+      showExchangeMessagesDialog(context);
+    }
   }
 
   public static void startOrShowExchangeMessagesDialog(@NonNull Context context,
