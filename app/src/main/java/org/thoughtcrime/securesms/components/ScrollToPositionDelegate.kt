@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.BehaviorSubject
@@ -27,7 +28,7 @@ class ScrollToPositionDelegate private constructor(
   private val recyclerView: RecyclerView,
   canJumpToPosition: (Int) -> Boolean,
   mapToTruePosition: (Int) -> Int,
-  disposables: CompositeDisposable
+  private val disposables: CompositeDisposable
 ) : Disposable by disposables {
   companion object {
     private val TAG = Log.tag(ScrollToPositionDelegate::class.java)
@@ -41,9 +42,11 @@ class ScrollToPositionDelegate private constructor(
     )
   }
 
-  private val listCommitted = BehaviorSubject.create<Unit>()
+  private val listCommitted = BehaviorSubject.create<Long>()
   private val scrollPositionRequested = BehaviorSubject.createDefault(EMPTY)
   private val scrollPositionRequests: Observable<ScrollToPositionRequest> = Observable.combineLatest(listCommitted, scrollPositionRequested) { _, b -> b }
+
+  private var markedListCommittedTimestamp: Long = 0L
 
   constructor(
     recyclerView: RecyclerView,
@@ -92,14 +95,35 @@ class ScrollToPositionDelegate private constructor(
   }
 
   /**
+   * Reset the scroll position to 0 after a list update is committed that occurs later
+   * than the version set by [markListCommittedVersion].
+   */
+  @AnyThread
+  fun resetScrollPositionAfterMarkListVersionSurpassed() {
+    val currentMark = markedListCommittedTimestamp
+    listCommitted
+      .observeOn(AndroidSchedulers.mainThread())
+      .filter { it > currentMark }
+      .firstElement()
+      .subscribeBy {
+        requestScrollPosition(0, true)
+      }
+      .addTo(disposables)
+  }
+
+  /**
    * This should be called every time a list is submitted to the RecyclerView's adapter.
    */
   @AnyThread
   fun notifyListCommitted() {
-    listCommitted.onNext(Unit)
+    listCommitted.onNext(System.currentTimeMillis())
   }
 
   fun isListCommitted(): Boolean = listCommitted.value != null
+
+  fun markListCommittedVersion() {
+    markedListCommittedTimestamp = listCommitted.value ?: 0L
+  }
 
   private fun handleScrollPositionRequest(
     request: ScrollToPositionRequest,

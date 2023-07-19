@@ -1679,6 +1679,7 @@ class ConversationFragment :
     )
 
     disposables += send
+      .doOnSubscribe { scrollToPositionDelegate.markListCommittedVersion() }
       .subscribeBy(
         onError = { t ->
           Log.w(TAG, "Error sending", t)
@@ -1710,7 +1711,7 @@ class ConversationFragment :
 
     conversationItemDecorations.unreadCount = 0
 
-    scrollToPositionDelegate.resetScrollPosition()
+    scrollToPositionDelegate.resetScrollPositionAfterMarkListVersionSurpassed()
     attachmentManager.cleanup()
 
     updateLinkPreviewState()

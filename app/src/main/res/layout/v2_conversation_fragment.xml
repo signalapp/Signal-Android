@@ -320,7 +320,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/keyboard_guideline"
         app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@+id/parent_start_guideline" />
 
