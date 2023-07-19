@@ -36,21 +36,28 @@
         app:layout_constraintStart_toStartOf="@+id/conversation_item_recycler"
         app:layout_constraintTop_toTopOf="@+id/conversation_item_recycler" />
 
-    <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
-        android:id="@+id/conversation_item_recycler"
+    <FrameLayout
+        android:id="@+id/conversation_item_recycler_frame"
         android:layout_width="0dp"
-        android:layout_height="0dip"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbars="vertical"
-        android:splitMotionEvents="false"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="20"
-        tools:listitem="@layout/conversation_item_sent_text_only" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
+            android:id="@+id/conversation_item_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbars="vertical"
+            android:splitMotionEvents="false"
+            tools:itemCount="20"
+            tools:listitem="@layout/conversation_item_sent_text_only" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/scroll_date_header"
