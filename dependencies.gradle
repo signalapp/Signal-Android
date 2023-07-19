@@ -11,7 +11,7 @@ dependencyResolutionManagement {
             version('androidx-lifecycle', '2.6.1')
             version('androidx-navigation', '2.6.0')
             version('androidx-window', '1.0.0')
-            version('exoplayer', '2.18.1')
+            version('exoplayer', '2.19.0')
             version('glide', '4.13.2')
             version('kotlin', '1.8.10')
             version('libsignal-client', '0.26.0')
