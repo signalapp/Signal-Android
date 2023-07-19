@@ -2721,7 +2721,7 @@
     <string name="verify_display_fragment__loading">Loading…</string>
     <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
     <string name="verify_display_fragment__clear_verification">Clear verification</string>
-    <!-- Banner at top of safety numbers screen explaining that we're updating how safety numbers work. -->
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
     <string name="verify_display_fragment__safety_numbers_are_updating_banner"><![CDATA[Safety numbers are being updated. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
