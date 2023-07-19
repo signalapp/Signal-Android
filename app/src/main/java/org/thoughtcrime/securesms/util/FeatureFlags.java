@@ -107,7 +107,7 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
-  private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2";
+  private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2.2";
 
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
   /**
