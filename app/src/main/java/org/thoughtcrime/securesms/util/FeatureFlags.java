@@ -108,7 +108,7 @@ public final class FeatureFlags {
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
   private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2.2";
-
+  private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -169,7 +169,8 @@ public final class FeatureFlags {
       SVR2_KILLSWITCH,
       CDS_COMPAT_MODE,
       CONVERSATION_FRAGMENT_V2,
-      SAFETY_NUMBER_ACI
+      SAFETY_NUMBER_ACI,
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
   );
 
   @VisibleForTesting
@@ -236,7 +237,8 @@ public final class FeatureFlags {
       SVR2_KILLSWITCH,
       CDS_COMPAT_MODE,
       CONVERSATION_FRAGMENT_V2,
-      SAFETY_NUMBER_ACI
+      SAFETY_NUMBER_ACI,
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
   );
 
   /**
@@ -245,7 +247,8 @@ public final class FeatureFlags {
   @VisibleForTesting
   static final Set<String> STICKY = SetUtil.newHashSet(
       VERIFY_V2,
-      SVR2_KILLSWITCH
+      SVR2_KILLSWITCH,
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
   );
 
   /**
@@ -571,6 +574,13 @@ public final class FeatureFlags {
    */
   public static boolean callingFieldTrialAnyAddressPortsKillSwitch() {
     return getBoolean(ANY_ADDRESS_PORTS_KILL_SWITCH, false);
+  }
+
+  /**
+   * Enable/disable for notification when we cannot fetch messages despite receiving an urgent push.
+   */
+  public static boolean fcmMayHaveMessagesNotificationKillSwitch() {
+    return getBoolean(FCM_MAY_HAVE_MESSAGES_KILL_SWITCH, false);
   }
 
   public static boolean editMessageSending() {

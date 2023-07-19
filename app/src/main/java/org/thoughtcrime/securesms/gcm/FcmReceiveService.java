@@ -74,9 +74,8 @@ public class FcmReceiveService extends FirebaseMessagingService {
   }
 
   private static void handleReceivedNotification(Context context, @Nullable RemoteMessage remoteMessage) {
+    boolean highPriority = remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH;
     try {
-      boolean highPriority = remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH;
-
       Log.d(TAG, String.format(Locale.US, "[handleReceivedNotification] API: %s, RemoteMessagePriority: %s", Build.VERSION.SDK_INT, remoteMessage != null ? remoteMessage.getPriority() : "n/a"));
 
       if (highPriority) {
@@ -88,7 +87,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
       Log.w(TAG, "Failed to start service.", e);
     }
 
-    FcmFetchManager.enqueueFetch(context);
+    FcmFetchManager.enqueueFetch(context, highPriority);
   }
 
   private static void handleRegistrationPushChallenge(@NonNull String challenge) {
