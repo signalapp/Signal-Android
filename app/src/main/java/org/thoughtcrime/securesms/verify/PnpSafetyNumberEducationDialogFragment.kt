@@ -65,7 +65,9 @@ class PnpSafetyNumberEducationDialogFragment : FixedRoundedCornerBottomSheetDial
       }
 
       val fragment = PnpSafetyNumberEducationDialogFragment()
-      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      if (fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
+        fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      }
     }
   }
 }
