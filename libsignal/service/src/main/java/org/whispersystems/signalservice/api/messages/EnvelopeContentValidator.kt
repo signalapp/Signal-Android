@@ -162,6 +162,8 @@ object EnvelopeContentValidator {
         validateDataMessage(envelope, syncMessage.sent.message)
       } else if (syncMessage.sent.hasStoryMessage()) {
         validateStoryMessage(syncMessage.sent.storyMessage)
+      } else if (syncMessage.sent.storyMessageRecipientsList.isNotEmpty()) {
+        Result.Valid
       } else if (syncMessage.sent.hasEditMessage()) {
         validateEditMessage(syncMessage.sent.editMessage)
       } else {
