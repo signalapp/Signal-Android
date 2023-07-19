@@ -108,6 +108,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.StoryM
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Blocked
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLinkUpdate
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLogEvent
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Configuration
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.FetchLatest
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.MessageRequestResponse
@@ -150,6 +151,7 @@ object SyncMessageProcessor {
       syncMessage.hasContacts() -> handleSynchronizeContacts(syncMessage.contacts, envelope.timestamp)
       syncMessage.hasCallEvent() -> handleSynchronizeCallEvent(syncMessage.callEvent, envelope.timestamp)
       syncMessage.hasCallLinkUpdate() -> handleSynchronizeCallLink(syncMessage.callLinkUpdate, envelope.timestamp)
+      syncMessage.hasCallLogEvent() -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent, envelope.timestamp)
       else -> warn(envelope.timestamp, "Contains no known sync types...")
     }
   }
@@ -1162,6 +1164,16 @@ object SyncMessageProcessor {
     }
   }
 
+  private fun handleSynchronizeCallLogEvent(callLogEvent: CallLogEvent, envelopeTimestamp: Long) {
+    if (callLogEvent.type != CallLogEvent.Type.CLEAR) {
+      log(envelopeTimestamp, "Synchronize call log event has an invalid type ${callLogEvent.type}, ignoring.")
+      return
+    }
+
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(callLogEvent.timestamp)
+    SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(callLogEvent.timestamp)
+  }
+
   private fun handleSynchronizeCallLink(callLinkUpdate: CallLinkUpdate, envelopeTimestamp: Long) {
     if (!callLinkUpdate.hasRootKey()) {
       log(envelopeTimestamp, "Synchronize call link missing root key, ignoring.")
@@ -1185,21 +1197,20 @@ object SyncMessageProcessor {
           callLinkUpdate.adminPassKey?.toByteArray()
         )
       )
-
-      return
-    }
-
-    SignalDatabase.callLinks.insertCallLink(
-      CallLinkTable.CallLink(
-        recipientId = RecipientId.UNKNOWN,
-        roomId = roomId,
-        credentials = CallLinkCredentials(
-          linkKeyBytes = callLinkRootKey.keyBytes,
-          adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()
-        ),
-        state = SignalCallLinkState()
+    } else {
+      log(envelopeTimestamp, "Synchronize call link for a link we do not know about. Inserting.")
+      SignalDatabase.callLinks.insertCallLink(
+        CallLinkTable.CallLink(
+          recipientId = RecipientId.UNKNOWN,
+          roomId = roomId,
+          credentials = CallLinkCredentials(
+            linkKeyBytes = callLinkRootKey.keyBytes,
+            adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()
+          ),
+          state = SignalCallLinkState()
+        )
       )
-    )
+    }
 
     ApplicationDependencies.getJobManager().add(RefreshCallLinkDetailsJob(callLinkUpdate))
   }
