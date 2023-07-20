@@ -106,10 +106,11 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
-  private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
+  private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
   private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2.2";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
+
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
    * remotely, place it in here.
@@ -167,7 +168,7 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
-      CDS_COMPAT_MODE,
+      CDS_DISABLE_COMPAT_MODE,
       CONVERSATION_FRAGMENT_V2,
       SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
@@ -235,7 +236,7 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
-      CDS_COMPAT_MODE,
+      CDS_DISABLE_COMPAT_MODE,
       CONVERSATION_FRAGMENT_V2,
       SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
@@ -613,7 +614,11 @@ public final class FeatureFlags {
 
   /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
   public static boolean cdsCompatMode() {
-    return !phoneNumberPrivacy() && getBoolean(CDS_COMPAT_MODE, true);
+    if (phoneNumberPrivacy()) {
+      return false;
+    } else {
+      return !getBoolean(CDS_DISABLE_COMPAT_MODE, false);
+    }
   }
 
   /** True if the new conversation fragment should be used. */
