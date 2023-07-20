@@ -356,7 +356,18 @@ class ConversationFragment :
   }
 
   private val disposables = LifecycleDisposable()
-  private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind)
+  private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind) {
+    composeText.apply {
+      setOnEditorActionListener(null)
+      setCursorPositionChangedListener(null)
+      setOnKeyListener(null)
+      removeTextChangedListener(composeTextEventsListener)
+      setStylingChangedListener(null)
+      setOnClickListener(null)
+      removeOnFocusChangeListener(composeTextEventsListener)
+    }
+  }
+
   private val viewModel: ConversationViewModel by viewModel {
     ConversationViewModel(
       threadId = args.threadId,
@@ -454,6 +465,7 @@ class ConversationFragment :
   private var isSearchRequested: Boolean = false
   private var previousPages: Set<KeyboardPage>? = null
   private var reShowScheduleMessagesBar: Boolean = false
+  private var composeTextEventsListener: ComposeTextEventsListener? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -814,7 +826,7 @@ class ConversationFragment :
     binding.conversationDisabledInput.listener = disabledInputListener
 
     val sendButtonListener = SendButtonListener()
-    val composeTextEventsListener = ComposeTextEventsListener()
+    composeTextEventsListener = ComposeTextEventsListener()
 
     composeText.apply {
       setOnEditorActionListener(sendButtonListener)
