@@ -67,6 +67,12 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
       .addTo(lifecycleDisposable)
 
     conversationViewModel = ViewModelProvider(requireParentFragment()).get(ConversationViewModel::class.java)
+
+    val snapshot = conversationViewModel.recipientSnapshot
+    if (snapshot != null) {
+      updatePaymentsAvailable(snapshot)
+    }
+
     conversationViewModel
       .recipient
       .observeOn(AndroidSchedulers.mainThread())

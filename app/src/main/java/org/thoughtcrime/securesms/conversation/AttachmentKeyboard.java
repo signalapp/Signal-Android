@@ -61,6 +61,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     this.permissionButton = findViewById(R.id.attachment_keyboard_permission_button);
 
     RecyclerView buttonList = findViewById(R.id.attachment_keyboard_button_list);
+    buttonList.setItemAnimator(null);
 
     mediaAdapter  = new AttachmentKeyboardMediaAdapter(GlideApp.with(this), media -> {
       if (callback != null) {
