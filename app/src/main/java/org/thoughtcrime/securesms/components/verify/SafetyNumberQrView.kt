@@ -115,7 +115,7 @@ class SafetyNumberQrView : ConstraintLayout {
 
     val qrCodeData = fingerprint.scannableFingerprint.serialized
     val qrCodeString = String(qrCodeData, Charset.forName("ISO-8859-1"))
-    val qrCodeBitmap = QrCodeUtil.create(qrCodeString)
+    val qrCodeBitmap = QrCodeUtil.createNoPadding(qrCodeString)
 
     qrCode.setImageBitmap(qrCodeBitmap)
     shareButton.visible = true

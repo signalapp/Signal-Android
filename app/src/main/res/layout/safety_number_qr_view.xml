@@ -40,13 +40,14 @@
                 android:text="@string/verify_display_fragment__loading"
                 android:textSize="20sp" />
 
-            <org.thoughtcrime.securesms.components.SquareImageView
+            <ImageView
                 android:id="@+id/qr_code"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
                 android:visibility="invisible"
                 tools:src="@drawable/ic_about_mc_80"
                 tools:visibility="visible" />
@@ -100,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/verify_identity_vertical_margin"
         android:layout_marginBottom="49dp"
-        android:layout_marginHorizontal="25dp"
+        android:layout_marginHorizontal="24dp"
         app:layout_constraintTop_toBottomOf="@id/qr_code_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

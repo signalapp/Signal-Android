@@ -91,7 +91,6 @@
                 android:id="@+id/dot_indicators"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 app:tabBackground="@drawable/safety_dot_indicator"
                 app:tabGravity="center"
                 app:tabPaddingEnd="10dp"
@@ -104,8 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="@dimen/verify_identity_vertical_margin"
                 android:layout_marginEnd="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:lineSpacingExtra="3sp"
@@ -143,11 +142,12 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/verify_button"
             style="@style/Signal.Widget.Button.Large.Tonal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_gravity="center_horizontal"
             android:text="@string/verify_display_fragment__mark_as_verified"
             android:textAllCaps="false" />
     </FrameLayout>
