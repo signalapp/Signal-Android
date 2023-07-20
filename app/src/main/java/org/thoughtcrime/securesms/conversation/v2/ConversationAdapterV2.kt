@@ -168,11 +168,6 @@ class ConversationAdapterV2(
     notifyItemRangeChanged(0, itemCount)
   }
 
-  /** [messagePosition] is one-based index and adapter is zero-based. */
-  fun getAdapterPositionForMessagePosition(messagePosition: Int): Int {
-    return messagePosition - 1
-  }
-
   fun getLastVisibleConversationMessage(position: Int): ConversationMessage? {
     return try {
       getConversationMessage(position) ?: getConversationMessage(position - 1)

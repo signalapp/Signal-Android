@@ -298,16 +298,15 @@ class ConversationRepository(
     oldConversationRepository.markGiftBadgeRevealed(messageId)
   }
 
-  /** Quoted Message position is a zero-based index, so we need to convert it to 1-based */
   fun getQuotedMessagePosition(threadId: Long, quote: Quote): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author) + 1
+      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
     }.subscribeOn(Schedulers.io())
   }
 
   fun getMessageResultPosition(threadId: Long, messageResult: MessageResult): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageResult.receivedTimestampMs) + 1
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageResult.receivedTimestampMs)
     }.subscribeOn(Schedulers.io())
   }
 

@@ -49,7 +49,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.view.ViewCompat
-import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -135,6 +134,7 @@ import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
+import org.thoughtcrime.securesms.conversation.ConversationData
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
@@ -757,12 +757,7 @@ class ConversationFragment :
       .subscribeOn(Schedulers.io())
       .doOnSuccess { state ->
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
-        binding.conversationItemRecycler.doOnNextLayout {
-          layoutManager.scrollToPositionWithOffset(
-            adapter.getAdapterPositionForMessagePosition(state.meta.getStartPosition()),
-            binding.conversationItemRecycler.height
-          )
-        }
+        moveToStartPosition(state.meta)
         conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
       }
       .flatMapObservable { it.items.data }
@@ -1411,9 +1406,8 @@ class ConversationFragment :
     )
 
     scrollToPositionDelegate = ScrollToPositionDelegate(
-      binding.conversationItemRecycler,
-      adapter::canJumpToPosition,
-      adapter::getAdapterPositionForMessagePosition
+      recyclerView = binding.conversationItemRecycler,
+      canJumpToPosition = adapter::canJumpToPosition
     )
 
     adapter.setPagingController(viewModel.pagingController)
@@ -2105,6 +2099,18 @@ class ConversationFragment :
   //endregion
 
   //region Scroll Handling
+
+  private fun moveToStartPosition(meta: ConversationData) {
+    scrollToPositionDelegate.requestScrollPosition(
+      position = meta.getStartPosition(),
+      smooth = true,
+      scrollStrategy = if (meta.shouldJumpToMessage()) {
+        jumpAndPulseScrollStrategy
+      } else {
+        ScrollToPositionDelegate.DefaultScrollStrategy
+      }
+    )
+  }
 
   /**
    * Requests a jump to the desired position, and ensures that the position desired will be visible on the screen.
