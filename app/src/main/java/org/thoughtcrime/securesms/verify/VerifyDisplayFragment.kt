@@ -5,9 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import android.text.TextUtils
-import android.text.method.LinkMovementMethod
 import android.view.ContextMenu
 import android.view.ContextMenu.ContextMenuInfo
 import android.view.LayoutInflater
@@ -16,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnScrollChangedListener
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -82,8 +81,9 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     initializeViewModel()
 
-    binding.safetyNumberUpdatingBannerText.text = Html.fromHtml(String.format(getString(R.string.verify_display_fragment__safety_numbers_are_updating_banner)))
-    binding.safetyNumberUpdatingBannerText.movementMethod = LinkMovementMethod.getInstance()
+    binding.safetyNumberUpdatingBannerText.text = getString(R.string.verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more)
+    binding.safetyNumberUpdatingBannerText.setLink("https://signal.org/redirect/safety-numbers")
+    binding.safetyNumberUpdatingBannerText.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
 
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
@@ -320,9 +320,9 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   }
 
   private fun setRecipientText(recipient: Recipient) {
-    val escapedDisplayName = Html.escapeHtml(recipient.getDisplayName(requireContext()))
-    binding.description.text = Html.fromHtml(String.format(getString(R.string.verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s_pnp), escapedDisplayName))
-    binding.description.movementMethod = LinkMovementMethod.getInstance()
+    binding.description.text = getString(R.string.verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s, recipient.getDisplayName(requireContext()))
+    binding.description.setLink("https://signal.org/redirect/safety-numbers")
+    binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
   }
 
   private fun updateVerifyButton(verified: Boolean, update: Boolean) {

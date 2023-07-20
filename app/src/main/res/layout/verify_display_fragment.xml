@@ -32,7 +32,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"/>
 
-    <TextView
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/safety_number_updating_banner_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toEndOf="@id/safety_number_image"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="30dp"
-        tools:text="Safety numbers are being updated. Learn more"/>
+        tools:text="Safety numbers are being updated."/>
     
     <View
         android:id="@+id/divider"
@@ -98,7 +98,7 @@
                 app:tabPaddingStart="10dp"
                 app:tabIndicatorHeight="0dp"/>
 
-            <TextView
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                 android:id="@+id/description"
                 style="@style/Signal.Text.BodyMedium"
                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"
+                android:text="@string/verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s"
                 android:textColor="@color/signal_colorOnSurfaceVariant"
                 android:textColorLink="@color/signal_colorPrimary" />
         </LinearLayout>
