@@ -77,6 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="@string/verify_display_fragment__tap_to_scan"
                 android:textColor="@color/qr_card_text_color" />
 
@@ -85,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="@string/verify_display_fragment__successful_match"
                 android:textColor="@color/qr_card_text_color" />
 

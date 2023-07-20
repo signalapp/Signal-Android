@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import org.signal.core.util.ThreadUtil
@@ -119,5 +120,16 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+      if (childFragmentManager.backStackEntryCount > 0) {
+        childFragmentManager.popBackStack()
+      } else {
+        requireActivity().finish()
+      }
+    }
   }
 }

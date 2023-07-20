@@ -38,6 +38,7 @@ class VerifySafetyNumberViewModel(
   }
 
   val recipient: LiveRecipient = Recipient.live(recipientId)
+  var showedSafetyNumberEducationDialog = SignalStore.uiHints().hasSeenSafetyNumberUpdateNux()
 
   private val fingerprintListLiveData = MutableLiveData<List<SafetyNumberFingerprint>>()
 

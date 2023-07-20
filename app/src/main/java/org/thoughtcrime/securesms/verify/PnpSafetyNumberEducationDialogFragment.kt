@@ -59,11 +59,7 @@ class PnpSafetyNumberEducationDialogFragment : FixedRoundedCornerBottomSheetDial
 
   companion object {
     @JvmStatic
-    fun showIfNeeded(fragmentManager: FragmentManager) {
-      if (SignalStore.uiHints().hasSeenSafetyNumberUpdateNux()) {
-        return
-      }
-
+    fun show(fragmentManager: FragmentManager) {
       val fragment = PnpSafetyNumberEducationDialogFragment()
       if (fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
         fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)

@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
-import org.thoughtcrime.securesms.verify.PnpSafetyNumberEducationDialogFragment.Companion.showIfNeeded
 import java.nio.charset.StandardCharsets
 import java.util.Locale
 
@@ -58,6 +57,8 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   private var selectedFingerPrint = 0
 
   private var callback: Callback? = null
+
+  private var animateCodeChanges = true
 
   private var animateSuccessOnDraw = false
   private var animateFailureOnDraw = false
@@ -82,6 +83,7 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
     initializeViewModel()
 
     binding.safetyNumberUpdatingBannerText.text = Html.fromHtml(String.format(getString(R.string.verify_display_fragment__safety_numbers_are_updating_banner)))
+    binding.safetyNumberUpdatingBannerText.movementMethod = LinkMovementMethod.getInstance()
 
     updateVerifyButton(requireArguments().getBoolean(VERIFIED_STATE, false), false)
 
@@ -141,7 +143,10 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
 
   override fun onStart() {
     super.onStart()
-    showIfNeeded(childFragmentManager)
+    if (!viewModel.showedSafetyNumberEducationDialog) {
+      PnpSafetyNumberEducationDialogFragment.show(childFragmentManager)
+      viewModel.showedSafetyNumberEducationDialog = true
+    }
   }
 
   override fun onResume() {
@@ -201,6 +206,8 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
     }
 
   fun setScannedFingerprint(scanned: String) {
+    animateCodeChanges = false
+
     val fingerprints = viewModel.getFingerprints().value
     var haveMatchingVersion = false
     if (fingerprints != null) {
@@ -218,16 +225,23 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
           Log.w(TAG, e)
         } catch (e: Exception) {
           Log.w(TAG, e)
-          Toast.makeText(activity, R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show()
+          showAlertDialog(R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number)
           animateFailureOnDraw = true
           return
         }
       }
     }
     if (!haveMatchingVersion) {
-      Toast.makeText(activity, R.string.VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal, Toast.LENGTH_LONG).show()
+      showAlertDialog(R.string.VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal)
       animateFailureOnDraw = true
     }
+  }
+
+  private fun showAlertDialog(stringResId: Int) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setMessage(stringResId)
+      .setPositiveButton(R.string.VerifyDisplayFragment__scan_result_dialog_ok, null)
+      .show()
   }
 
   private fun getFormattedSafetyNumbers(fingerprint: Fingerprint): String {
@@ -249,12 +263,12 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   private fun handleCompareWithClipboard() {
     val clipboardData = Util.readTextFromClipboard(requireActivity())
     if (clipboardData == null) {
-      Toast.makeText(requireActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show()
+      showAlertDialog(R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard)
       return
     }
     val numericClipboardData = clipboardData.replace("\\D".toRegex(), "")
     if (TextUtils.isEmpty(numericClipboardData) || numericClipboardData.length != 60) {
-      Toast.makeText(requireActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show()
+      showAlertDialog(R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard)
       return
     }
     var success = false
@@ -276,10 +290,14 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
   }
 
   private fun animateSuccess(position: Int) {
+    animateCodeChanges = false
+
     safetyNumberAdapter.notifyItemChanged(position, true)
   }
 
   private fun animateFailure(position: Int) {
+    animateCodeChanges = false
+
     safetyNumberAdapter.notifyItemChanged(position, false)
   }
 
@@ -372,7 +390,7 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
 
     override fun onBindViewHolder(holder: SafetyNumberQrViewHolder, position: Int) {
       val (version, _, _, _, _, fingerprint1) = fingerprints!![position]
-      holder.safetyNumberQrView.setFingerprintViews(fingerprint1, true)
+      holder.safetyNumberQrView.setFingerprintViews(fingerprint1, animateCodeChanges)
       holder.safetyNumberQrView.setSafetyNumberType(version == 2)
       holder.safetyNumberQrView.shareButton.setOnClickListener { v: View? -> handleShare(fingerprints!![position].fingerprint) }
       holder.safetyNumberQrView.qrCodeContainer.setOnClickListener { v: View? -> callback!!.onQrCodeContainerClicked() }
