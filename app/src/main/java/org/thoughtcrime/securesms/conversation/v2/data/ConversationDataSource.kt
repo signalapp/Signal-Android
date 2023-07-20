@@ -44,6 +44,7 @@ sealed interface ConversationElementKey {
 private data class MessageBackedKey(val id: Long) : ConversationElementKey {
   override fun requireMessageId(): Long = id
 }
+
 private object ThreadHeaderKey : ConversationElementKey
 
 /**
@@ -107,24 +108,27 @@ class ConversationDataSource(
     val callHelper = CallHelper()
     val referencedIds = hashSetOf<ServiceId>()
 
-    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong())).forEach { record ->
-      if (cancellationSignal.isCanceled) {
-        return@forEach
-      }
+    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong()))
+      .use { reader ->
+        reader.forEach { record ->
+          if (cancellationSignal.isCanceled) {
+            return@forEach
+          }
 
-      records.add(record)
-      mentionHelper.add(record)
-      quotedHelper.add(record)
-      reactionHelper.add(record)
-      attachmentHelper.add(record)
-      paymentHelper.add(record)
-      callHelper.add(record)
+          records.add(record)
+          mentionHelper.add(record)
+          quotedHelper.add(record)
+          reactionHelper.add(record)
+          attachmentHelper.add(record)
+          paymentHelper.add(record)
+          callHelper.add(record)
 
-      val updateDescription = record.getUpdateDisplayBody(context, null)
-      if (updateDescription != null) {
-        referencedIds.addAll(updateDescription.mentioned)
+          val updateDescription = record.getUpdateDisplayBody(context, null)
+          if (updateDescription != null) {
+            referencedIds.addAll(updateDescription.mentioned)
+          }
+        }
       }
-    }
 
     if (messageRequestData.includeWarningUpdateMessage() && (start + length >= totalSize)) {
       records.add(NoGroupsInCommon(threadId, messageRequestData.isGroup))

@@ -8,6 +8,8 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import com.google.android.material.appbar.AppBarLayout
@@ -22,31 +24,39 @@ import org.thoughtcrime.securesms.util.views.Stub
 open class Material3OnScrollHelper(
   private val context: Context,
   private val setStatusBarColor: (Int) -> Unit,
+  private val getStatusBarColor: () -> Int,
   private val views: List<View>,
-  private val viewStubs: List<Stub<out View>> = emptyList()
+  private val viewStubs: List<Stub<out View>> = emptyList(),
+  lifecycleOwner: LifecycleOwner
 ) {
 
-  constructor(activity: Activity, views: List<View>, viewStubs: List<Stub<out View>>) : this(activity, { WindowUtil.setStatusBarColor(activity.window, it) }, views, viewStubs)
+  constructor(activity: Activity, view: View, lifecycleOwner: LifecycleOwner) : this(activity = activity, views = listOf(view), lifecycleOwner = lifecycleOwner)
 
-  constructor(activity: Activity, views: List<View>) : this(activity, { WindowUtil.setStatusBarColor(activity.window, it) }, views, emptyList())
-
-  constructor(activity: Activity, view: View) : this(activity, { WindowUtil.setStatusBarColor(activity.window, it) }, listOf(view), emptyList())
-
-  /**
-   * A pair of colors tied to a specific state.
-   */
-  data class ColorSet(
-    @ColorRes val toolbarColorRes: Int,
-    @ColorRes val statusBarColorRes: Int
-  ) {
-    constructor(@ColorRes color: Int) : this(color, color)
-  }
+  constructor(activity: Activity, views: List<View>, viewStubs: List<Stub<out View>> = emptyList(), lifecycleOwner: LifecycleOwner) : this(
+    context = activity,
+    setStatusBarColor = { WindowUtil.setStatusBarColor(activity.window, it) },
+    getStatusBarColor = { WindowUtil.getStatusBarColor(activity.window) },
+    views = views,
+    viewStubs = viewStubs,
+    lifecycleOwner = lifecycleOwner
+  )
 
   open val activeColorSet: ColorSet = ColorSet(R.color.signal_colorSurface2)
   open val inactiveColorSet: ColorSet = ColorSet(R.color.signal_colorBackground)
 
+  protected var previousStatusBarColor: Int = getStatusBarColor()
+
   private var animator: ValueAnimator? = null
   private var active: Boolean? = null
+
+  init {
+    lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+      override fun onDestroy(owner: LifecycleOwner) {
+        animator?.cancel()
+        setStatusBarColor(previousStatusBarColor)
+      }
+    })
+  }
 
   fun attach(nestedScrollView: NestedScrollView) {
     nestedScrollView.setOnScrollChangeListener(
@@ -140,5 +150,15 @@ open class Material3OnScrollHelper(
     override fun onScrollChange(v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
       updateActiveState(v.canScrollVertically(-1))
     }
+  }
+
+  /**
+   * A pair of colors tied to a specific state.
+   */
+  data class ColorSet(
+    @ColorRes val toolbarColorRes: Int,
+    @ColorRes val statusBarColorRes: Int
+  ) {
+    constructor(@ColorRes color: Int) : this(color, color)
   }
 }

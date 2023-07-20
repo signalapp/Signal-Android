@@ -32,4 +32,8 @@ class CreateStoryFlowDialogFragment : DialogFragment(R.layout.create_story_flow_
   override fun setStatusBarColor(color: Int) {
     WindowUtil.setStatusBarColor(requireDialog().window!!, color)
   }
+
+  override fun getStatusBarColor(): Int {
+    return WindowUtil.getStatusBarColor(requireDialog().window!!)
+  }
 }

@@ -3193,6 +3193,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         return@withinTransaction kotlin.Pair(-1L, null)
       }
 
+      threads.markAsActiveEarly(threadId)
       SignalDatabase.mentions.insert(threadId, messageId, mentions)
 
       val insertedAttachments = SignalDatabase.attachments.insertAttachmentsForMessage(messageId, allAttachments, quoteAttachments)

@@ -58,6 +58,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -510,7 +511,8 @@ class ConversationFragment :
     val conversationToolbarOnScrollHelper = ConversationToolbarOnScrollHelper(
       requireActivity(),
       binding.toolbarBackground,
-      viewModel::wallpaperSnapshot
+      viewModel::wallpaperSnapshot,
+      viewLifecycleOwner
     )
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
     presentWallpaper(args.wallpaper)
@@ -561,8 +563,6 @@ class ConversationFragment :
       ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId.forConversation(args.threadId))
     }
 
-    motionEventRelay.setDrain(MotionEventRelayDrain())
-
     viewModel.updateIdentityRecordsInBackground()
   }
 
@@ -581,7 +581,6 @@ class ConversationFragment :
 
     viewModel.markLastSeen()
 
-    motionEventRelay.setDrain(null)
     EventBus.getDefault().unregister(this)
   }
 
@@ -870,6 +869,7 @@ class ConversationFragment :
     val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
     reactionDelegate = ConversationReactionDelegate(conversationReactionStub)
     reactionDelegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
+    motionEventRelay.setDrain(MotionEventRelayDrain(this))
 
     voiceMessageRecordingDelegate = VoiceMessageRecordingDelegate(
       this,
@@ -1698,6 +1698,7 @@ class ConversationFragment :
         onComplete = {
           if (clearCompose) {
             composeText.setText("")
+            attachmentManager.clear(GlideApp.with(this@ConversationFragment), false)
             inputPanel.clearQuote()
           }
 
@@ -3030,9 +3031,15 @@ class ConversationFragment :
     }
   }
 
-  private inner class MotionEventRelayDrain : MotionEventRelay.Drain {
+  private inner class MotionEventRelayDrain(lifecycleOwner: LifecycleOwner) : MotionEventRelay.Drain {
+    private val lifecycle = lifecycleOwner.lifecycle
+
     override fun accept(motionEvent: MotionEvent): Boolean {
-      return reactionDelegate.applyTouchEvent(motionEvent)
+      return if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+        reactionDelegate.applyTouchEvent(motionEvent)
+      } else {
+        false
+      }
     }
   }
 
@@ -3406,7 +3413,7 @@ class ConversationFragment :
       sendMessage()
     }
 
-    override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
+    override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
       if (actionId == EditorInfo.IME_ACTION_SEND) {
         if (inputPanel.isInEditMode) {
           sendEditButton.performClick()

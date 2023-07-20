@@ -1366,6 +1366,18 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
   }
 
+  /**
+   * Set a thread as active prior to an [update] call. Useful when a thread is for sure active but
+   * hasn't had the update call yet. e.g., inserting a message in a new thread.
+   */
+  fun markAsActiveEarly(threadId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(ACTIVE to 1)
+      .where("$ID = ?", threadId)
+      .run()
+  }
+
   fun update(threadId: Long, unarchive: Boolean): Boolean {
     return update(
       threadId = threadId,

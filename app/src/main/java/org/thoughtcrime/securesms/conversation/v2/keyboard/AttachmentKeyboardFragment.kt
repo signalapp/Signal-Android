@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
+import java.util.function.Predicate
 
 /**
  * Fragment wrapped version of [AttachmentKeyboard] to help encapsulate logic the view
@@ -44,6 +45,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
   private lateinit var attachmentKeyboardView: AttachmentKeyboard
 
   private val lifecycleDisposable = LifecycleDisposable()
+  private val removePaymentFilter: Predicate<AttachmentKeyboardButton> = Predicate { button -> button != AttachmentKeyboardButton.PAYMENT }
 
   @Suppress("ReplaceGetOrSet")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,8 +53,12 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
     attachmentKeyboardView = view.findViewById(R.id.attachment_keyboard)
-
-    attachmentKeyboardView.setCallback(this)
+    attachmentKeyboardView.apply {
+      setCallback(this@AttachmentKeyboardFragment)
+      if (!SignalStore.paymentsValues().paymentsAvailability.isSendAllowed) {
+        filterAttachmentKeyboardButtons(removePaymentFilter)
+      }
+    }
 
     viewModel.getRecentMedia()
       .subscribeBy {
@@ -97,7 +103,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     ) {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(null)
     } else {
-      attachmentKeyboardView.filterAttachmentKeyboardButtons { button -> button != AttachmentKeyboardButton.PAYMENT }
+      attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter)
     }
   }
 }

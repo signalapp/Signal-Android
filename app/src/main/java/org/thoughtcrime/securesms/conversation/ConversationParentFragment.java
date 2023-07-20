@@ -1993,7 +1993,7 @@ public class ConversationParentFragment extends Fragment
 
     voiceNoteMediaController.getVoiceNotePlaybackState().observe(getViewLifecycleOwner(), inputPanel.getPlaybackStateObserver());
 
-    material3OnScrollHelper = new Material3OnScrollHelper(requireActivity(), Collections.singletonList(toolbarBackground), Collections.emptyList()) {
+    material3OnScrollHelper = new Material3OnScrollHelper(requireActivity(), Collections.singletonList(toolbarBackground), Collections.emptyList(), getViewLifecycleOwner()) {
       @Override
       public @NonNull ColorSet getActiveColorSet() {
         return new ColorSet(getActiveToolbarColor(wallpaper.getDrawable() != null));

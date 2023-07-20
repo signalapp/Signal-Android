@@ -36,7 +36,7 @@ class ExportYourSmsMessagesFragment : Fragment(R.layout.export_your_sms_messages
       }
     }
 
-    Material3OnScrollHelper(requireActivity(), binding.toolbar).attach(binding.scrollView)
+    Material3OnScrollHelper(requireActivity(), binding.toolbar, viewLifecycleOwner).attach(binding.scrollView)
   }
 
   override fun onResume() {
