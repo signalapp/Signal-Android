@@ -182,6 +182,7 @@ public final class MenuState {
 
       builder.shouldShowEdit(!actionMessage &&
                              hasText &&
+                             !multiSelectRecord.getConversationMessage().getOriginalMessage().isFailed() &&
                              MessageConstraintsUtil.isValidEditMessageSend(multiSelectRecord.getConversationMessage().getOriginalMessage(), System.currentTimeMillis()));
     }
 
