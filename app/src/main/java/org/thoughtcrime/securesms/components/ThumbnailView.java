@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Objects;
@@ -378,7 +379,7 @@ public class ThumbnailView extends FrameLayout {
       this.playOverlay.setVisibility(View.GONE);
     }
 
-    if (Util.equals(slide, this.slide)) {
+    if (hasSameContents(this.slide, slide)) {
       Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getUri());
       return new SettableFuture<>(false);
     }
@@ -607,6 +608,20 @@ public class ThumbnailView extends FrameLayout {
       return Math.max(params.height, 0);
     }
     return 0;
+  }
+
+  private static boolean hasSameContents(@Nullable Slide slide, @Nullable Slide other) {
+    if (Util.equals(slide, other)) {
+
+      if (slide != null && other != null) {
+        byte[] digestLeft = slide.asAttachment().getDigest();
+        byte[] digestRight = other.asAttachment().getDigest();
+
+        return Arrays.equals(digestLeft, digestRight);
+      }
+    }
+
+    return false;
   }
 
   public interface ThumbnailRequestListener extends RequestListener<Drawable> {
