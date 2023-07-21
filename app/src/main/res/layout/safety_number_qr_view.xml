@@ -66,16 +66,17 @@
 
         <TextSwitcher
             android:id="@+id/tap_label"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="17dp"
+            android:layout_gravity="center_horizontal"
             android:inAnimation="@android:anim/fade_in"
             android:outAnimation="@android:anim/fade_out">
 
             <TextView
                 style="@style/Signal.Text.BodyMedium"
-                android:layout_width="wrap_content"
+                android:layout_width="156dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:gravity="center_horizontal"
@@ -84,7 +85,7 @@
 
             <TextView
                 style="@style/Signal.Text.BodyMedium"
-                android:layout_width="wrap_content"
+                android:layout_width="156dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:gravity="center_horizontal"
