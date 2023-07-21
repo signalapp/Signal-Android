@@ -852,10 +852,12 @@ class ConversationFragment :
     presentGroupCallJoinButton()
 
     binding.scrollToBottom.setOnClickListener {
+      binding.conversationItemRecycler.stopScroll()
       scrollToPositionDelegate.resetScrollPosition()
     }
 
     binding.scrollToMention.setOnClickListener {
+      binding.conversationItemRecycler.stopScroll()
       scrollToNextMention()
     }
 
