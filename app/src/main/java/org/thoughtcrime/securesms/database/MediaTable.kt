@@ -70,6 +70,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.VIEW_ONCE} = 0 AND 
         ${MessageTable.STORY_TYPE} = 0 AND 
         ${AttachmentTable.DATA} IS NOT NULL AND 
+        ${MessageTable.LATEST_REVISION_ID} IS NULL AND 
         (
           ${AttachmentTable.QUOTE} = 0 OR 
           (
