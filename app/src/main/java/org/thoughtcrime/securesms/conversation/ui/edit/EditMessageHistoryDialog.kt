@@ -88,10 +88,10 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
     }
 
     binding.editHistoryList.apply {
-      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
       adapter = messageAdapter
       itemAnimator = null
-      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.EditMessageHistoryDialog_title))
+      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.EditMessageHistoryDialog_title) { 0 })
       doOnNextLayout {
         // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
         addItemDecoration(StickyHeaderDecoration(messageAdapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE))
