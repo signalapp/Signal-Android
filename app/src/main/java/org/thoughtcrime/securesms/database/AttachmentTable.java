@@ -20,7 +20,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.media.MediaDataSource;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -612,6 +611,20 @@ public class AttachmentTable extends DatabaseTable {
     return new DataUsageResult(quoteRows);
   }
 
+  /**
+   * Check if data file is in use by another attachment row with a different hash. Rows with the same data and has
+   * will be fixed in a later call to {@link #updateAttachmentAndMatchingHashes(SQLiteDatabase, AttachmentId, String, ContentValues)}.
+   */
+  private boolean isAttachmentFileUsedByOtherAttachments(@Nullable AttachmentId attachmentId, @NonNull DataInfo dataInfo) {
+    if (attachmentId == null) {
+      return false;
+    }
+
+    return SQLiteDatabaseExtensionsKt.exists(getReadableDatabase(), TABLE_NAME)
+                                     .where(DATA + " = ? AND " + DATA_HASH + " != ?", dataInfo.file.getAbsolutePath(), dataInfo.hash)
+                                     .run();
+  }
+
   public void insertAttachmentsForPlaceholder(long mmsId, @NonNull AttachmentId attachmentId, @NonNull InputStream inputStream)
       throws MmsException
   {
@@ -1192,8 +1205,14 @@ public class AttachmentTable extends DatabaseTable {
     Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(db, dataInfo.hash, attachmentId);
     if (sharedDataInfo.isPresent()) {
       Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
-      if (!dataInfo.file.equals(sharedDataInfo.get().file) && dataInfo.file.delete()) {
-        Log.i(TAG, "[setAttachmentData] Deleted original file. " + dataInfo.file);
+      if (!dataInfo.file.equals(sharedDataInfo.get().file)) {
+        if (isAttachmentFileUsedByOtherAttachments(attachmentId, dataInfo)) {
+          Log.i(TAG, "[setAttachmentData] Original file still in use by another attachment with a different hash.");
+        } else if (dataInfo.file.delete()) {
+          Log.i(TAG, "[setAttachmentData] Deleted original file. " + dataInfo.file);
+        } else {
+          Log.w(TAG, "[setAttachmentData] Original file could not be deleted.");
+        }
       }
       return sharedDataInfo.get();
     } else {
@@ -1367,8 +1386,9 @@ public class AttachmentTable extends DatabaseTable {
       long           uniqueId        = System.currentTimeMillis();
 
       if (attachment.getUri() != null) {
-        dataInfo = deduplicateAttachment(storeAttachmentStream(PartAuthority.getAttachmentStream(context, attachment.getUri())), attachmentId);
-        Log.d(TAG, "Wrote part to file: " + dataInfo.file.getAbsolutePath());
+        DataInfo storeDataInfo = storeAttachmentStream(PartAuthority.getAttachmentStream(context, attachment.getUri()));
+        Log.d(TAG, "Wrote part to file: " + storeDataInfo.file.getAbsolutePath());
+        dataInfo = deduplicateAttachment(storeDataInfo, attachmentId);
       }
 
       Attachment template = attachment;
@@ -1516,10 +1536,10 @@ public class AttachmentTable extends DatabaseTable {
 
   @VisibleForTesting
   static class DataInfo {
-    private final File   file;
-    private final long   length;
-    private final byte[] random;
-    private final String hash;
+    final File   file;
+    final long   length;
+    final byte[] random;
+    final String hash;
 
     private DataInfo(File file, long length, byte[] random, String hash) {
       this.file   = file;
@@ -1528,7 +1548,8 @@ public class AttachmentTable extends DatabaseTable {
       this.hash   = hash;
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       final DataInfo dataInfo = (DataInfo) o;
@@ -1538,7 +1559,8 @@ public class AttachmentTable extends DatabaseTable {
              Objects.equals(hash, dataInfo.hash);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
       int result = Objects.hash(file, length, hash);
       result = 31 * result + Arrays.hashCode(random);
       return result;
