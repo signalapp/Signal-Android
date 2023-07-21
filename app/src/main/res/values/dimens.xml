@@ -222,5 +222,4 @@
     <dimen name="registrationactivity_text_view_padding">32dp</dimen>
 
     <dimen name="safety_number_qr_peek">24dp</dimen>
-    <dimen name="safety_number_qr_width">288dp</dimen>
 </resources>

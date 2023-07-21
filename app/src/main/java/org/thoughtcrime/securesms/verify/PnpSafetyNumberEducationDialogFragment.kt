@@ -6,12 +6,15 @@
 package org.thoughtcrime.securesms.verify
 
 import android.animation.Animator
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.LottieDrawable
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
@@ -23,12 +26,19 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.visible
 
 class PnpSafetyNumberEducationDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
-  override val peekHeightPercentage: Float = 0.66f
-
   private val binding by ViewBinderDelegate(SafetyNumberPnpEducationBottomSheetBinding::bind)
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     return inflater.inflate(R.layout.safety_number_pnp_education_bottom_sheet, container, false)
+  }
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+    dialog.behavior.skipCollapsed = true
+    dialog.setOnShowListener {
+      dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+    return dialog
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

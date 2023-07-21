@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.StandardCharsets
 import java.util.Locale
+import kotlin.math.max
 
 /**
  * Fragment to display a user's identity key.
@@ -100,8 +101,11 @@ class VerifyDisplayFragment : Fragment(), OnScrollChangedListener {
       }
     })
     val peekSize = resources.getDimensionPixelSize(R.dimen.safety_number_qr_peek)
-    val pageWidth = resources.getDimensionPixelSize(R.dimen.safety_number_qr_width)
-    val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float -> page.translationX = -position * (peekSize + (page.width - pageWidth) / 2f) }
+    val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+      val remainingWidth = (max(0, page.width - ((page as ViewGroup).getChildAt(0).width))) / 2f
+      val peekWidth = peekSize.toFloat().coerceAtMost(remainingWidth / 2f)
+      page.translationX = -position * (peekWidth + remainingWidth)
+    }
     binding.verifyViewPager.setPageTransformer(pageTransformer)
     binding.verifyViewPager.offscreenPageLimit = 1
     TabLayoutMediator(binding.dotIndicators, binding.verifyViewPager) { _: TabLayout.Tab?, _: Int -> }.attach()
