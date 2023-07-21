@@ -171,9 +171,9 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment imple
   @Override
   public void onViewEditHistoryClicked(MessageRecord record) {
     if (record.isOutgoing()) {
-      EditMessageHistoryDialog.show(requireParentFragment().getChildFragmentManager(), record.getToRecipient().getId(), record);
+      EditMessageHistoryDialog.show(getParentFragmentManager(), record.getToRecipient().getId(), record);
     } else {
-      EditMessageHistoryDialog.show(requireParentFragment().getChildFragmentManager(), record.getFromRecipient().getId(), record);
+      EditMessageHistoryDialog.show(getParentFragmentManager(), record.getFromRecipient().getId(), record);
     }
   }
 
