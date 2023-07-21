@@ -81,6 +81,9 @@ def selectableVariants = [
         'playStagingRelease',
         'websiteProdSpinner',
         'websiteProdRelease',
+        'carbonProdRelease',
+        'carbonStagingRelease',
+        'carbonStagingDebug',
 ]
 
 android {
@@ -301,6 +304,7 @@ android {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Release\""
+            signingConfig signingConfigs.debug
         }
 
         perf {
@@ -405,6 +409,14 @@ android {
             applicationIdSuffix ".pnp"
 
             buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"Pnp\""
+        }
+        carbon {
+            dimension 'distribution'
+            resValue "string", "app_name", "Carbon" // app name, specified in AndroidManifest.xml by @string(.xml)/app_name
+            ext.websiteUpdateUrl = "https://updates.signal.org/android"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"website\""
         }
     }
 

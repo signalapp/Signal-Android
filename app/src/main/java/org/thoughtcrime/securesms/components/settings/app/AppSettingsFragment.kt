@@ -157,7 +157,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         isEnabled = state.isDeprecatedOrUnregistered()
       )
 
-      if (state.allowUserToGoToDonationManagementScreen) {
+      /*if (state.allowUserToGoToDonationManagementScreen) {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
           icon = DSLSettingsIcon.from(R.drawable.symbol_heart_24),
@@ -173,7 +173,7 @@ class AppSettingsFragment : DSLSettingsFragment(
           icon = DSLSettingsIcon.from(R.drawable.symbol_heart_24),
           linkId = R.string.donate_url
         )
-      }
+      }*/
 
       dividerPref()
 
@@ -194,14 +194,14 @@ class AppSettingsFragment : DSLSettingsFragment(
         isEnabled = state.isDeprecatedOrUnregistered()
       )
 
-      clickPref(
+      /*clickPref(
         title = DSLSettingsText.from(R.string.preferences__stories),
         icon = DSLSettingsIcon.from(R.drawable.symbol_stories_24),
         onClick = {
           findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
         },
         isEnabled = state.isDeprecatedOrUnregistered()
-      )
+      )*/
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__notifications),
@@ -229,7 +229,7 @@ class AppSettingsFragment : DSLSettingsFragment(
         }
       )
 
-      dividerPref()
+      /*dividerPref()
 
       if (SignalStore.paymentsValues().paymentsAvailability.showPaymentsMenu()) {
         customPref(
@@ -238,7 +238,7 @@ class AppSettingsFragment : DSLSettingsFragment(
           ) {
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_paymentsActivity)
           }
-        )
+        )*/
 
         dividerPref()
       }
@@ -251,13 +251,13 @@ class AppSettingsFragment : DSLSettingsFragment(
         }
       )
 
-      clickPref(
+      /*clickPref(
         title = DSLSettingsText.from(R.string.AppSettingsFragment__invite_your_friends),
         icon = DSLSettingsIcon.from(R.drawable.symbol_invite_24),
         onClick = {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_inviteActivity)
         }
-      )
+      )*/
 
       if (FeatureFlags.internalUser()) {
         dividerPref()
