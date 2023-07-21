@@ -42,9 +42,12 @@ public final class AttachmentPointerUtil {
                                                                                                  .setContentType(attachment.getContentType())
                                                                                                  .setKey(ByteString.copyFrom(attachment.getKey()))
                                                                                                  .setDigest(ByteString.copyFrom(attachment.getDigest().get()))
-                                                                                                 .setIncrementalDigest(ByteString.copyFrom(attachment.getincrementalDigest().get()))
                                                                                                  .setSize(attachment.getSize().get())
                                                                                                  .setUploadTimestamp(attachment.getUploadTimestamp());
+
+    if (attachment.getIncrementalDigest().isPresent()) {
+      builder.setIncrementalDigest(ByteString.copyFrom(attachment.getIncrementalDigest().get()));
+    }
 
     if (attachment.getRemoteId().getV2().isPresent()) {
       builder.setCdnId(attachment.getRemoteId().getV2().get());

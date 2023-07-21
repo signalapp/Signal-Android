@@ -111,7 +111,7 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
     return digest;
   }
 
-  public Optional<byte[]> getincrementalDigest() {
+  public Optional<byte[]> getIncrementalDigest() {
     return incrementalDigest;
   }
 
