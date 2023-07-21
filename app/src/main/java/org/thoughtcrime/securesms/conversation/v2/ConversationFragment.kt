@@ -366,6 +366,8 @@ class ConversationFragment :
       setOnClickListener(null)
       removeOnFocusChangeListener(composeTextEventsListener)
     }
+
+    textDraftSaveDebouncer.clear()
   }
 
   private val viewModel: ConversationViewModel by viewModel {
