@@ -16,6 +16,7 @@ import androidx.core.graphics.withTranslation
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ConversationTypingView
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -28,6 +29,10 @@ class TypingIndicatorDecoration(
   private val context: Context,
   private val rootView: RecyclerView
 ) : ItemDecoration() {
+
+  companion object {
+    private val TAG = Log.tag(TypingIndicatorDecoration::class.java)
+  }
 
   private val typingView: ConversationTypingView by lazy(LazyThreadSafetyMode.NONE) {
     LayoutInflater.from(context).inflate(R.layout.conversation_typing_view, rootView, false) as ConversationTypingView
@@ -87,6 +92,8 @@ class TypingIndicatorDecoration(
     hasWallpaper: Boolean,
     isReplacedByIncomingMessage: Boolean
   ) {
+    Log.d(TAG, "setTypists: Updating typists: ${typists.size} $isGroupThread $hasWallpaper $isReplacedByIncomingMessage")
+
     val isEdge = displayIndicator != typists.isNotEmpty()
     displayIndicator = typists.isNotEmpty()
 
