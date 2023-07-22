@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
@@ -414,9 +415,21 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setStoryReactionLabel(messageRecord);
     setHasBeenQuoted(conversationMessage);
     setHasBeenScheduled(conversationMessage);
-
+    setBodyTextBubbleBackground();
     if (audioViewStub.resolved()) {
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
+    }
+  }
+
+  private void setBodyTextBubbleBackground() {
+    if(bodyBubble.getBackground().getAlpha() == Color.TRANSPARENT) {
+      switch (SignalStore.settings().getTheme()) {
+        case DARK:
+          bodyText.setTextColor(Color.WHITE);
+          break;
+        default:
+          bodyText.setTextColor(Color.BLACK);
+      }
     }
   }
 
