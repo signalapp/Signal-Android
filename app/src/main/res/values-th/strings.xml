@@ -108,7 +108,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">You may have new messages</string>
+    <string name="FcmFetchManager__you_may_have_messages">คุณอาจมีข้อความใหม่</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกบล็อก</string>
@@ -2076,11 +2076,11 @@
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ตกลง</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Learn more</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Confirmation button on scan result dialogs -->
-    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">ตกลง</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2633,7 +2633,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[หากต้องการตรวจยืนยันความปลอดภัยของการเข้ารหัสจากต้นทางถึงปลายทางด้วย%1$s ให้เปรียบเทียบหมายเลขข้างบนกับอุปกรณ์ของพวกเขา นอกจากนี้คุณยังสามารถสแกนรหัสบนโทรศัพท์ของพวกเขาได้ด้วย <a href=\"https://signal.org/redirect/safety-numbers\">เรียนรู้เพิ่มเติม</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">เพื่อยืนยันว่าการติดต่อสื่อสารกับ %1$s ถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ให้ตรวจสอบแถบสีด้านบนนี้กับแถบสีบนอุปกรณ์ของคนคนนั้น พร้อมเปรียบเทียบหมายเลขที่แสดงว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
     <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
     <string name="verify_display_fragment__successful_match">จับคู่สำเร็จ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">การตรวจยืนยันหมายเลขความปลอดภัยล้มเหลว</string>
@@ -2641,16 +2641,16 @@
     <string name="verify_display_fragment__mark_as_verified">ทำเครื่องหมายว่าตรวจยืนยันแล้ว</string>
     <string name="verify_display_fragment__clear_verification">ล้างการตรวจยืนยัน</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">กำลังอัปเดตหมายเลขความปลอดภัย</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">การเปลี่ยนแปลงเกี่ยวกับหมายเลขความปลอดภัย</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">กำลังอัปเดตหมายเลขความปลอดภัยเพื่อให้พร้อมรองรับการใช้งานฟีเจอร์ด้านความเป็นส่วนตัวใหม่ๆ ของ Signal\n\nเพื่อยืนยันหมายเลขความปลอดภัย ให้ตรวจสอบแถบสีบนอุปกรณ์ของคุณกับแถบสีบนอุปกรณ์ของผู้ติดต่อว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Need help?</string>
+    <string name="PnpSafetyNumberEducationDialog__help">ต้องการความช่วยเหลือหรือไม่?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Got it</string>
+    <string name="PnpSafetyNumberEducationDialog__confirm">เข้าใจแล้ว</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">แบ่งปันหมายเลขความปลอดภัย</string>

@@ -108,7 +108,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">You may have new messages</string>
+    <string name="FcmFetchManager__you_may_have_messages">Olet saattanut saada uusia viestejä</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Estetyt käyttäjät</string>
@@ -2145,7 +2145,7 @@
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Learn more</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Lue lisää</string>
     <!-- Confirmation button on scan result dialogs -->
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Varmentaaksesi viestinnän päästä päähän -salauksen käyttäjän %1$s kanssa, vertaa yllä näkyviä numeroita vastapuolen laitteen kanssa. Voit myös skannata koodin vastapuolen puhelimesta. <a href=\"https://signal.org/redirect/safety-numbers\">Lue lisää.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Varmentaaksesi päästä päähän -salauksen henkilön %1$s kanssa, varmista, että yllä oleva värikortti vastaa hänen laitettaan ja vertaa numeroita. Jos ne eivät vastaa, sipaise ja kokeile toista turvanumeroparia. Vain yhden parin on vastattava.</string>
     <string name="verify_display_fragment__tap_to_scan">Skannaa napauttamalla</string>
     <string name="verify_display_fragment__successful_match">Vastaavuus varmistettu</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Turvanumeron varmentaminen epäonnistui</string>
@@ -2721,16 +2721,16 @@
     <string name="verify_display_fragment__mark_as_verified">Merkitse varmennetuksi</string>
     <string name="verify_display_fragment__clear_verification">Poista varmennus</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Turvanumeroita päivitetään.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">Muutoksia turvanumeroihin</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Turvanumeroita päivitetään siirtymäkauden aikana, jotta Signalin tulevat yksityisyysominaisuudet voidaan ottaa käyttöön.\n\nTarkista turvanumerot varmistamalla, että värikortti vastaa yhteystietosi laitetta. Jos ne eivät vastaa, sipaise ja kokeile toista turvanumeroparia. Vain yhden parin on vastattava.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Need help?</string>
+    <string name="PnpSafetyNumberEducationDialog__help">Tarvitsetko apua?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Got it</string>
+    <string name="PnpSafetyNumberEducationDialog__confirm">Selvä</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Jaa turvanumero</string>

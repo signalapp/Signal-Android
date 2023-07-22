@@ -108,7 +108,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">You may have new messages</string>
+    <string name="FcmFetchManager__you_may_have_messages">새 메시지가 있을 수 있음</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">차단한 사용자</string>
@@ -2076,11 +2076,11 @@
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">확인</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Learn more</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">자세히 알아보기</string>
     <!-- Confirmation button on scan result dialogs -->
-    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">확인</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2633,7 +2633,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$s 님과의 종단간 암호화의 보안을 검증하기 위해, 상대의 기기와의 코드를 비교하세요. 또는 상대의 폰의 코드를 스캔 할 수 있습니다. <a href=\"https://signal.org/redirect/safety-numbers\">더 알아보기</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s님과의 종단간 암호화를 검증하려면 위 컬러 카드에 기기를 매칭하여 번호를 비교하세요. 일치하지 않으면 스와이프하여 다른 안전 번호 쌍을 시도해 보세요. 한 쌍만 일치하면 됩니다.</string>
     <string name="verify_display_fragment__tap_to_scan">탭하여 스캔</string>
     <string name="verify_display_fragment__successful_match">일치 확인</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">안전 번호 확인에 실패함</string>
@@ -2641,16 +2641,16 @@
     <string name="verify_display_fragment__mark_as_verified">검증으로 표시</string>
     <string name="verify_display_fragment__clear_verification">인증 초기화하기</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">안전 번호가 업데이트됩니다.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">안전 번호 변경</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">전환 기간에 안전 번호가 업데이트 되어 앞으로 Signal에서 예정된 개인정보 보호 기능이 활성화됩니다.\n\n안전 번호를 검증하려면 컬러 카드와 상대의 기기를 매칭하세요. 일치하지 않으면 스와이프하여 다른 안전 번호 쌍을 시도해 보세요. 한 쌍만 일치하면 됩니다.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Need help?</string>
+    <string name="PnpSafetyNumberEducationDialog__help">도움이 필요하신가요?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Got it</string>
+    <string name="PnpSafetyNumberEducationDialog__confirm">확인</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">안전 번호 공유</string>

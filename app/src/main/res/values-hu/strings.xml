@@ -108,7 +108,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">You may have new messages</string>
+    <string name="FcmFetchManager__you_may_have_messages">Új üzeneteid érkezhettek</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Letiltott felhasználók</string>
@@ -2145,7 +2145,7 @@
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Learn more</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Tudj meg többet</string>
     <!-- Confirmation button on scan result dialogs -->
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás sértetlenségét %1$s nevű partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot telefonja kijelzőjéről <a href=\"https://signal.org/redirect/safety-numbers\">Tudj meg többet!</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">A végpontok közötti titkosítás ellenőrzéséhez %1$s segítségével egyeztesd a fenti színkártyát az eszközöddel, és hasonlítsd össze a számokat. Ha ezek nem egyeznek, húzd el az ujjad, és próbáld ki a másik biztonsági számpárt. Csak egy párnak kell egyeznie.</string>
     <string name="verify_display_fragment__tap_to_scan">Koppints a szkenneléshez</string>
     <string name="verify_display_fragment__successful_match">Sikeres egyezés</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Biztonsági azonosító ellenőrzése sikertelen</string>
@@ -2721,16 +2721,16 @@
     <string name="verify_display_fragment__mark_as_verified">Megjelölés ellenőrzöttként</string>
     <string name="verify_display_fragment__clear_verification">Ellenőrzött állapot törlése</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">A biztonsági számok frissítése folyamatban van.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">Változások a biztonsági számokban</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">A biztonsági számok egy átmeneti időszak alatt frissülnek, hogy lehetővé tegyék a Signal közelgő adatvédelmi funkcióit.\n\nA biztonsági számok ellenőrzéséhez illeszd a színkártyát a névjegyed eszközéhez. Ha ezek nem egyeznek, húzd el az ujjad, és próbáld ki a másik biztonsági számpárt. Csak egy párnak kell egyeznie.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Need help?</string>
+    <string name="PnpSafetyNumberEducationDialog__help">Segítségre van szükséged?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Got it</string>
+    <string name="PnpSafetyNumberEducationDialog__confirm">Rendben</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Biztonsági szám megosztása</string>

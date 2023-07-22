@@ -108,7 +108,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">You may have new messages</string>
+    <string name="FcmFetchManager__you_may_have_messages">Du har måske nye beskeder</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokerede brugere</string>
@@ -2141,11 +2141,11 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ikke muligt at scanne QR-koden uden tilladelse til at tilgå kameraet</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du skal først udveksle beskeder, før du kan se %1$s\'s sikkerhedsnummer.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Der oprettes et sikkerhedsnummer med denne person, når vedkommende har udvekslet beskeder med dig.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Learn more</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Få mere at vide</string>
     <!-- Confirmation button on scan result dialogs -->
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Vigtige appadvarsler</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">Yderligere beskednotifikationer</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekræfte sikkerheden af din end-to-end-kryptering med %1$s, kan du sammenligne tallene ovenfor med deres enhed. Du kan også scanne koden på deres telefon. <a href=\"https://signal.org/redirect/safety-numbers\">Få mere at vide.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Hvis du vil verificere din E2E-kryptering med %1$s, skal du matche farvekortet ovenfor med deres enhed og sammenligne tallene. Hvis de ikke matcher, skal du swipe for at prøve et andet sæt sikkerhedsnumre. Det er kun ét sæt, der skal matche.</string>
     <string name="verify_display_fragment__tap_to_scan">Tryk for at scanne</string>
     <string name="verify_display_fragment__successful_match">Vellykket match</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Kunne ikke verificere sikkerhedsnummer</string>
@@ -2721,16 +2721,16 @@
     <string name="verify_display_fragment__mark_as_verified">Markér som verificeret</string>
     <string name="verify_display_fragment__clear_verification">Fjern verifikation</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Sikkerhedsnumrene opdateres.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">Ændring af sikkerhedsnumre</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Sikkerhedsnumre opdateres i en overgangsperiode for at muliggøre kommende privatlivsfunktioner i Signal.\n\nFor at verificere sikkerhedsnumrene, skal du matche farvekortet med din kontakts enhed. Hvis de ikke matcher, skal du swipe og prøve et andet sæt sikkerhedsnumre. Det er kun ét sæt, der skal matche.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Need help?</string>
+    <string name="PnpSafetyNumberEducationDialog__help">Brug for hjælp?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Got it</string>
+    <string name="PnpSafetyNumberEducationDialog__confirm">Forstået</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Del sikkerhedsnummer</string>
