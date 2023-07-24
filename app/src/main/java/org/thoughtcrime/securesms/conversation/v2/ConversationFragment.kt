@@ -835,6 +835,8 @@ class ConversationFragment :
     }
 
     sendButton.apply {
+      snackbarContainer = binding.root
+      setPopupContainer(binding.root)
       setOnClickListener(sendButtonListener)
       setScheduledSendListener(sendButtonListener)
       isEnabled = true
@@ -955,6 +957,8 @@ class ConversationFragment :
           binding.conversationBanner.clearVoiceNotePlayer()
         }
       }
+
+    getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
   }
 
   private fun initializeInlineSearch() {
@@ -3616,6 +3620,7 @@ class ConversationFragment :
 
     override fun onVoiceNoteDraftDelete(audioUri: Uri) {
       getVoiceNoteMediaController().stopPlaybackAndReset(audioUri)
+      draftViewModel.deleteVoiceNoteDraft()
     }
 
     override fun onRecorderStarted() {
