@@ -325,7 +325,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     joinMembersDisposable.dispose();
     setSubjectViewText(null);
 
-    fromView.setText(recipient.get(), false);
+    fromView.setText(recipient.get(), recipient.get().getDisplayNameOrUsername(getContext()), false, null, false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
     dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
     archivedView.setVisibility(GONE);
@@ -336,7 +336,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     setSelectedConversations(new ConversationSet());
     setBadgeFromRecipient(recipient.get());
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode, true);
   }
 
   public void bindGroupWithMembers(@NonNull LifecycleOwner lifecycleOwner,
@@ -555,12 +555,17 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     }
 
     if (highlightSubstring != null) {
-      String name = recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayName(getContext());
-      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), true, null);
+      String name;
+      if (thread != null && recipient.isSelf()) {
+        name = getContext().getString(R.string.note_to_self);
+      } else {
+        name = recipient.getDisplayName(getContext());
+      }
+      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), true, null, thread != null);
     } else {
       fromView.setText(recipient, false);
     }
-    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
+    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode, thread != null);
     setBadgeFromRecipient(recipient);
   }
 

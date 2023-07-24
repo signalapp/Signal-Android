@@ -367,7 +367,7 @@ public class SearchRepository {
           CharSequence updatedBody    = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
           CharSequence updatedSnippet = makeSnippet(cleanQueries, Objects.requireNonNull(updatedBody));
 
-          results.add(new MessageResult(record.getToRecipient(), record.getFromRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
+          results.add(new MessageResult(record.getFromRecipient(), record.getToRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
         }
       }
     }
