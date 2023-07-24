@@ -2265,7 +2265,7 @@ class ConversationFragment :
     }
 
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-      if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+      if (newState != RecyclerView.SCROLL_STATE_IDLE) {
         scrollDateHeaderHelper.show()
       } else {
         scrollDateHeaderHelper.hide()
