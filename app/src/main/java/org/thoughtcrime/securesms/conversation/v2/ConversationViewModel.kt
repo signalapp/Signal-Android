@@ -131,7 +131,9 @@ class ConversationViewModel(
 
   private val refreshIdentityRecords: Subject<Unit> = PublishSubject.create()
   private val identityRecordsStore: RxStore<IdentityRecordsState> = RxStore(IdentityRecordsState())
-  val identityRecords: Observable<IdentityRecordsState> = identityRecordsStore.stateFlowable.toObservable()
+  val identityRecordsObservable: Observable<IdentityRecordsState> = identityRecordsStore.stateFlowable.toObservable()
+  val identityRecordsState: IdentityRecordsState
+    get() = identityRecordsStore.state
 
   private val _searchQuery = BehaviorSubject.createDefault("")
   val searchQuery: Observable<String> = _searchQuery
@@ -336,6 +338,7 @@ class ConversationViewModel(
 
   fun sendMessage(
     metricId: String?,
+    threadRecipient: Recipient,
     body: String,
     slideDeck: SlideDeck?,
     scheduledDate: Long,
@@ -346,12 +349,11 @@ class ConversationViewModel(
     contacts: List<Contact>,
     linkPreviews: List<LinkPreview>,
     preUploadResults: List<MessageSender.PreUploadResult>,
-    bypassPreSendSafetyNumberCheck: Boolean,
     isViewOnce: Boolean
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
-      threadRecipient = recipientSnapshot,
+      threadRecipient = threadRecipient,
       metricId = metricId,
       body = body,
       slideDeck = slideDeck,
@@ -363,7 +365,6 @@ class ConversationViewModel(
       contacts = contacts,
       linkPreviews = linkPreviews,
       preUploadResults = preUploadResults,
-      identityRecordsState = if (bypassPreSendSafetyNumberCheck) null else identityRecordsStore.state,
       isViewOnce = isViewOnce
     ).observeOn(AndroidSchedulers.mainThread())
   }

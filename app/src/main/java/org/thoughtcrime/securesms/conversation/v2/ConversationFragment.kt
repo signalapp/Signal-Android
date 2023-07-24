@@ -86,7 +86,6 @@ import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.setActionItemTint
-import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.GroupMembersDialog
@@ -258,7 +257,6 @@ import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity
@@ -901,7 +899,7 @@ class ConversationFragment :
       .addTo(disposables)
 
     viewModel
-      .identityRecords
+      .identityRecordsObservable
       .distinctUntilChanged()
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { presentIdentityRecordsState(it) }
@@ -1652,6 +1650,14 @@ class ConversationFragment :
     isViewOnce: Boolean = false,
     afterSendComplete: () -> Unit = {}
   ) {
+    val threadRecipient = viewModel.recipientSnapshot
+
+    if (threadRecipient == null) {
+      Log.w(TAG, "Unable to send due to invalid thread recipient")
+      toast(R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation, Toast.LENGTH_LONG)
+      return
+    }
+
     if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
       return
     }
@@ -1676,10 +1682,23 @@ class ConversationFragment :
       }
     }
 
+    if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
+      Log.i(TAG, "Unable to send due to empty message")
+      toast(R.string.ConversationActivity_message_is_empty_exclamation)
+      return
+    }
+
+    if (viewModel.identityRecordsState.hasRecentSafetyNumberChange() && !bypassPreSendSafetyNumberCheck) {
+      Log.i(TAG, "Unable to send due to SNC")
+      handleRecentSafetyNumberChange(viewModel.identityRecordsState.getRecentSafetyNumberChangeRecords())
+      return
+    }
+
     val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
 
     val send: Completable = viewModel.sendMessage(
       metricId = metricId,
+      threadRecipient = threadRecipient,
       body = body,
       slideDeck = slideDeck,
       scheduledDate = scheduledDate,
@@ -1690,28 +1709,20 @@ class ConversationFragment :
       contacts = contacts,
       linkPreviews = linkPreviews,
       preUploadResults = preUploadResults,
-      bypassPreSendSafetyNumberCheck = bypassPreSendSafetyNumberCheck,
       isViewOnce = isViewOnce
     )
 
     disposables += send
-      .doOnSubscribe { scrollToPositionDelegate.markListCommittedVersion() }
+      .doOnSubscribe {
+        if (clearCompose) {
+          composeText.setText("")
+          attachmentManager.clear(GlideApp.with(this@ConversationFragment), false)
+          inputPanel.clearQuote()
+        }
+        scrollToPositionDelegate.markListCommittedVersion()
+      }
       .subscribeBy(
-        onError = { t ->
-          Log.w(TAG, "Error sending", t)
-          when (t) {
-            is InvalidMessageException -> toast(R.string.ConversationActivity_message_is_empty_exclamation)
-            is RecipientFormattingException -> toast(R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation, Toast.LENGTH_LONG)
-            is RecentSafetyNumberChangeException -> handleRecentSafetyNumberChange(t.changedRecords)
-          }
-        },
         onComplete = {
-          if (clearCompose) {
-            composeText.setText("")
-            attachmentManager.clear(GlideApp.with(this@ConversationFragment), false)
-            inputPanel.clearQuote()
-          }
-
           onSendComplete()
           afterSendComplete()
         }
