@@ -60,6 +60,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ConversationLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -118,7 +119,6 @@ import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
-import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
@@ -442,7 +442,7 @@ class ConversationFragment :
   private val textDraftSaveDebouncer = Debouncer(500)
   private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY) }
 
-  private lateinit var layoutManager: LinearLayoutManager
+  private lateinit var layoutManager: ConversationLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
   private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
@@ -519,6 +519,7 @@ class ConversationFragment :
     FullscreenHelper(requireActivity()).showSystemUI()
 
     markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner)
+    markReadHelper.ignoreViewReveals()
 
     initializeConversationThreadUi()
 
@@ -778,7 +779,6 @@ class ConversationFragment :
             binding.conversationItemRecycler.doAfterNextLayout {
               SignalLocalMetrics.ConversationOpen.onRenderFinished()
               doAfterFirstRender()
-              animationsAllowed = true
             }
           }
         }
@@ -1395,7 +1395,7 @@ class ConversationFragment :
   private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
 
   private fun initializeConversationThreadUi() {
-    layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
+    layoutManager = ConversationLayoutManager(requireContext())
     binding.conversationItemRecycler.setHasFixedSize(false)
     binding.conversationItemRecycler.layoutManager = layoutManager
     binding.conversationItemRecycler.addOnScrollListener(ScrollListener())
@@ -2105,15 +2105,43 @@ class ConversationFragment :
   //region Scroll Handling
 
   private fun moveToStartPosition(meta: ConversationData) {
-    scrollToPositionDelegate.requestScrollPosition(
-      position = meta.getStartPosition(),
-      smooth = true,
-      scrollStrategy = if (meta.shouldJumpToMessage()) {
-        jumpAndPulseScrollStrategy
-      } else {
-        ScrollToPositionDelegate.DefaultScrollStrategy
+    if (meta.getStartPosition() == 0) {
+      layoutManager.scrollToPositionWithOffset(0, 0) {
+        animationsAllowed = true
+        markReadHelper.stopIgnoringViewReveals(MarkReadHelper.getLatestTimestamp(adapter, layoutManager).orNull())
       }
-    )
+    } else {
+      binding.toolbar.viewTreeObserver.addOnGlobalLayoutListener(StartPositionScroller(meta))
+    }
+  }
+
+  /** Helper to scroll the conversation to the correct position and offset based on toolbar height and the type of position */
+  private inner class StartPositionScroller(private val meta: ConversationData) : ViewTreeObserver.OnGlobalLayoutListener {
+
+    override fun onGlobalLayout() {
+      val rect = Rect()
+      binding.toolbar.getGlobalVisibleRect(rect)
+      val toolbarOffset = rect.bottom
+      binding.toolbar.viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+      val offset = when {
+        meta.getStartPosition() == 0 -> 0
+        meta.shouldJumpToMessage() -> (binding.conversationItemRecycler.height - toolbarOffset) / 4
+        meta.shouldScrollToLastSeen() -> binding.conversationItemRecycler.height - toolbarOffset
+        else -> binding.conversationItemRecycler.height
+      }
+
+      Log.d(TAG, "Scrolling to start position ${meta.getStartPosition()}")
+      layoutManager.scrollToPositionWithOffset(meta.getStartPosition(), offset) {
+        animationsAllowed = true
+        markReadHelper.stopIgnoringViewReveals(MarkReadHelper.getLatestTimestamp(adapter, layoutManager).orNull())
+        if (meta.shouldJumpToMessage()) {
+          binding.conversationItemRecycler.post {
+            adapter.pulseAtPosition(meta.getStartPosition())
+          }
+        }
+      }
+    }
   }
 
   /**
