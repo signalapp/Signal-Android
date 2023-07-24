@@ -269,7 +269,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="emoji_search_container,keyboard_guideline" />
+        app:constraint_referenced_ids="emoji_search_container,keyboard_guideline,navigation_bar_guideline" />
 
     <TextView
         android:id="@+id/conversation_input_space_left"
