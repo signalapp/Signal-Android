@@ -65,6 +65,9 @@ class LinkPreviewViewModelV2(
       }
 
       val link: Optional<Link> = LinkPreviewUtil.findValidPreviewUrls(text).findFirst()
+      if (link.isPresent && link.get().url.equals(activeUrl)) {
+        return@publish
+      }
 
       activeRequest.dispose()
 
