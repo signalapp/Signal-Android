@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s యొక్క భద్రతా నంబర్‌ను చూడటానికి మీరు మొదట సందేశాలను మార్పిడి చేసుకోవాలి.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">ఈ వ్యక్తి మీతో సందేశాలను మార్పిడి చేసిన తర్వాత వారితో భద్రతా సంఖ్య సృష్టించబడుతుంది.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">సరే</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">క్లిష్టమైన యాప్ అలర్ట్స్</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">అదనపు సందేశం నోటిఫికేషన్‌లు</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$sతో మీ ఎండ్ టూ ఎండ్ ఎన్‌క్రిప్షన్ భద్రతను ధృవీకరించడానికి, పైన నెంబర్‌లను వారి పరికరంతో పోల్చండి. మీరు కోడ్‌ను వారి పరికరాలపైన కూడా స్కాన్ చేయవచ్చు. <a href=\"https://signal.org/redirect/safety-numbers\">మరింత తెలుసుకోండి.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s‌తో పూర్తి స్థాయి ఎన్‌క్రిప్షన్‌ను ధృవీకరించడానికి, పైన ఉన్న రంగు కార్డును వారి పరికరంతో మ్యాచ్ చేయండి మరియు సంఖ్యలను పోల్చండి. ఒకవేళ ఇవి మ్యాచ్ కాకపోతే, భద్రతా సంఖ్యల మరో జతను స్వైప్ చేసి ప్రయత్నించండి. కేవలం ఒక జత మాత్రమే మ్యాచ్ కావాలి.</string>
     <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
     <string name="verify_display_fragment__successful_match">విజయవంతంగా మ్యాచ్ అయింది</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">భద్రతా సంఖ్యను ధృవీకరించడం విఫలమైంది</string>
@@ -2721,12 +2721,12 @@
     <string name="verify_display_fragment__mark_as_verified">ధృవీకరించినట్లు గుర్తించండి</string>
     <string name="verify_display_fragment__clear_verification">ధృవీకరణను క్లియర్ చేయండి</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">భద్రతా సంఖ్యలు అప్‌డేట్ చేయబడుతున్నాయి.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">భద్రతా సంఖ్యలకు మార్పులు</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Signal లో రాబోయే గోప్యతా విలక్షణతలను ప్రారంభించడానికి పరివర్తన వ్యవధిలో భద్రతా సంఖ్యలు అప్‌డేట్ చేయబడుతున్నాయి.\n\nభద్రతా సంఖ్యలను ధృవీకరించడానికి, మీ కాంటాక్ట్ యొక్క పరికరంతో రంగు కార్డును మ్యాచ్ చేయండి. ఒకవేళ ఇవి మ్యాచ్ కాకపోతే, భద్రతా సంఖ్యల మరో జతను స్వైప్ చేసి ప్రయత్నించండి. కేవలం ఒక జత మాత్రమే మ్యాచ్ కావాలి.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">సాయం అవసరమా?</string>
     <!-- Confirmation button for educating users about new safety number changes -->

@@ -2074,7 +2074,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Камерага уруксат алынбагандыктан, QR код скандалган жок</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s менен болгон коопсуздук кодун көрүү үчүн жазышып башташыңар керек.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Коопсуздук коду, бул адам сиз менен жазышкандан кийин түзүлөт.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2201,7 +2201,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Колдонмого байланыштуу шашылыш эскертүү</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">Кошумча билдирмелер</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2633,7 +2633,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s менен болгон баштан аяк шифрлөөнүн коопсуздугун текшерүү үчүн жогорудагы сандарды маектешиңиздин түзмөгү менен салыштырыңыз. Кааласаңыз, анын телефонундагы кодду скандасаңыз болот. <a href=\"https://signal.org/redirect/safety-numbers\">Кененирээк маалымат</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s аркылуу баштан аяк шифрлөөнү ырастоо үчүн жогорудагы түс картасын түзмөгүнө дал келтирип, коддорду салыштырыңыз. Эгер алар дал келбесе, экранды сүрүп, коопсуздук коддорунун башка жубун байкап көрүңүз. Бир гана жупту дал келтирүү керек.</string>
     <string name="verify_display_fragment__tap_to_scan">Скандоо үчүн басыңыз</string>
     <string name="verify_display_fragment__successful_match">Дал келди</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Коопсуздук коду ырасталбай калды</string>
@@ -2641,12 +2641,12 @@
     <string name="verify_display_fragment__mark_as_verified">Ырасталды деп белгилөө</string>
     <string name="verify_display_fragment__clear_verification">Ырастоону өчүрүү</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Коопсуздук коддору жаңырууда.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">Коопсуздук коддорунун өзгөрүшү</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Signal\'да болочок купуялык функцияларын иштетүү үчүн коопсуздук коддору өткөөл мезгилде жаңырат.\n\nКоопсуздук коддорун ырастоо үчүн түс картасын байланыштын түзмөгүнө дал келтириңиз. Эгер алар дал келбесе, экранды сүрүп, коопсуздук коддорунун башка жубун байкап көрүңүз. Бир гана жупту дал келтирүү керек.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">Жардам керекпи?</string>
     <!-- Confirmation button for educating users about new safety number changes -->

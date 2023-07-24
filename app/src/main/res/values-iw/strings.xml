@@ -1567,7 +1567,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">סימנת את מספר הביטחון שלך עם %1$s כמוודא</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">סימנת את מספר הביטחון שלך עם %1$s כמוודא ממכשיר אחר</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">סימנת את מספר הביטחון שלך עם %1$s כבלתי מוודא</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %1$s כבלתי מוודא ממכשיר אחר</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הבטיחות שלך עם %1$s כבלתי מוודא ממכשיר אחר</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %1$s לא יכלה להימסר</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את המספר שלו/שלה.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
@@ -2104,7 +2104,7 @@
     <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         הודעת החלפת מפתחות התקבלה עבור גרסת פרוטוקול בלתי־תקפה.
     </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">הודעה התקבלה עם מספר ביטחון חדש. הקש כדי לעבד ולהציג אותה.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">הודעה התקבלה עם מספר בטיחות חדש. יש ללחוץ כדי לעבד ולהציג אותה.</string>
     <string name="SmsMessageRecord_secure_session_reset">איפסת את השיח המאובטח.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s איפס את השיח המאובטח.</string>
     <string name="SmsMessageRecord_duplicate_message">הודעה כפולה.</string>
@@ -2182,7 +2182,7 @@
     <string name="ThreadRecord_s_is_on_signal">%1$s נמצא ב־Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %1$s</string>
-    <string name="ThreadRecord_safety_number_changed">מספר ביטחון השתנה</string>
+    <string name="ThreadRecord_safety_number_changed">מספר בטיחות השתנה</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %1$s השתנה.</string>
     <string name="ThreadRecord_you_marked_verified">סימנת כמוודא</string>
     <string name="ThreadRecord_you_marked_unverified">סימנת כבלתי מוודא</string>
@@ -2275,7 +2275,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">לא היה ניתן לסרוק קוד QR ללא הרשאת מצלמה</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">אתה חייב תחילה להחליף הודעות על מנת להציג את מספר הביטחון של %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">מספר בטיחות ייווצר עם אדם זה אחרי שתחליפו ביניכם הודעות.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">אישור</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2408,7 +2408,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">התראות אפליקציה קריטיות</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">עוד התראות של הודעות</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2876,7 +2876,7 @@
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">כדי לאמת את האבטחה מקצה לקצה שלך עם %1$s, יש להתאים את כרטיסיית הצבע שלמעלה עם המכשיר שלו או שלה ולהשוות את המספרים. אם הם לא תואמים, אפשר להחליק ולנסות זוג אחר של מספרי בטיחות. רק זוג אחד צריך להתאים.</string>
     <string name="verify_display_fragment__tap_to_scan">הקש כדי לסרוק</string>
     <string name="verify_display_fragment__successful_match">התאמה מוצלחת</string>
-    <string name="verify_display_fragment__failed_to_verify_safety_number">נכשל בווידוא מספר ביטחון</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">אימות מספר בטיחות נכשל</string>
     <string name="verify_display_fragment__loading">טוען…</string>
     <string name="verify_display_fragment__mark_as_verified">סמן כמוֻדא</string>
     <string name="verify_display_fragment__clear_verification">נקה וידוא</string>
@@ -2893,7 +2893,7 @@
     <string name="PnpSafetyNumberEducationDialog__confirm">הבנתי</string>
 
     <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">שתף מספר ביטחון</string>
+    <string name="verify_identity__share_safety_number">שיתוף מספר בטיחות</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">סרוק את קוד ה־QR במכשיר של איש הקשר שלך.</string>
@@ -2929,7 +2929,7 @@
     <string name="AndroidManifest__create_passphrase">צור משפט־סיסמה</string>
     <string name="AndroidManifest__select_contacts">בחר אנשי קשר</string>
     <string name="AndroidManifest__change_passphrase">שנה משפט־סיסמה</string>
-    <string name="AndroidManifest__verify_safety_number">וודא מספר ביטחון</string>
+    <string name="AndroidManifest__verify_safety_number">אימות מספר בטיחות</string>
     <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
     <string name="AndroidManifest__message_details">פרטי הודעה</string>
     <string name="AndroidManifest__linked_devices">מכשירים מקושרים</string>
@@ -5812,7 +5812,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">יש לך %1$d חברי Signal שיתכן והתקינו מחדש את Signal או החליפו מכשירים. לפני שיתוף הסטורי שלך איתם, כדאי לסקור את מספרי הבטיחות שלהם או לשקול להסיר אותם מהסטורי שלך.</string>
     <!-- Menu action to launch safety number verification screen -->
-    <string name="SafetyNumberBottomSheetFragment__verify_safety_number">וודא מספר ביטחון</string>
+    <string name="SafetyNumberBottomSheetFragment__verify_safety_number">אימות מספר בטיחות</string>
     <!-- Menu action to remove user from story -->
     <string name="SafetyNumberBottomSheetFragment__remove_from_story">הסרה מסטורי</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->

@@ -2074,7 +2074,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតសិទ្ធប្រើប្រាស់កាមេរ៉ា</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">ដំបូង អ្នកត្រូវផ្លាស់ប្តូរសារ ដើម្បីបង្ហាញលេខសុវត្ថិភាពរបស់ %1$s។</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">លេខសុវត្ថិភាពមួយនឹងត្រូវបានបង្កើតឡើងជាមួយបុគ្គលនេះ បន្ទាប់ពីគេផ្ញើសារទៅវិញទៅមកជាមួយអ្នក។</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">យល់ព្រម</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2201,7 +2201,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">ការជូនដំណឹងសំខាន់ៗអំពីកម្មវិធី</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">ការជូនដំណឹងសារបន្ថែម</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2633,7 +2633,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ដើម្បីផ្ទៀងផ្ទាត់សន្តិសុខនៃកូដនីយកម្មទាំងសងខាងរបស់អ្នកជាមួយ %1$s, ប្រៀបធៀបលេខខាងលើជាមួយឧបករណ៍របស់ពួកគេ។ អ្នកក៏អាចស្កេនលេខកូដនៅលើទូរស័ព្ទរបស់គេបានដែរ។ <a href=\"https://signal.org/redirect/safety-numbers\">សិក្សាបន្ថែម</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">ដើម្បីផ្ទៀងផ្ទាត់ការអ៊ីនគ្រីបទាំងសងខាងជាមួយ %1$s សូមផ្គូផ្គងកាតពណ៌ខាងលើជាមួយឧបករណ៍របស់ពួកគេ ហើយប្រៀបធៀបលេខ។ ប្រសិនបើលេខទាំងនេះមិនត្រូវគ្នាទេ សូមអូស ហើយសាកល្បងលេខសុវត្ថិភាពគូផ្សេងទៀត។ មានតែមួយគូប៉ុណ្ណោះដែលត្រូវផ្គូផ្គង។</string>
     <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
     <string name="verify_display_fragment__successful_match">ផ្គូរផ្គងដោយជោគជ័យ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">បរាជ័យក្នុងការផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
@@ -2641,12 +2641,12 @@
     <string name="verify_display_fragment__mark_as_verified">ដាក់ថាបានផ្ទៀងផ្ទាត់</string>
     <string name="verify_display_fragment__clear_verification">សំអាតការផ្ទៀងផ្ទាត់</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">លេខសុវត្ថិភាពកំពុងត្រូវបានធ្វើបច្ចុប្បន្នភាព។</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">ការផ្លាស់ប្តូរចំពោះលេខសុវត្ថិភាព</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">លេខសុវត្ថិភាពកំពុងត្រូវបានធ្វើបច្ចុប្បន្នភាពក្នុងរយៈពេលផ្លាស់ប្តូរ ដើម្បីបើកមុខងារឯកជនភាពនាពេលខាងមុខនៅក្នុង Signal។\n\nដើម្បីផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព សូមផ្គូផ្គងកាតពណ៌ជាមួយឧបករណ៍នៃឈ្មោះទំនាក់ទំនងរបស់អ្នក។ ប្រសិនបើលេខទាំងនេះមិនត្រូវគ្នាទេ សូមអូស ហើយសាកល្បងលេខសុវត្ថិភាពគូផ្សេងទៀត។ មានតែមួយគូប៉ុណ្ណោះដែលត្រូវផ្គូផ្គង។</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">ត្រូវការជំនួយ?</string>
     <!-- Confirmation button for educating users about new safety number changes -->

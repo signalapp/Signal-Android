@@ -2074,7 +2074,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">冇「相機」權限冇得掃二維碼</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">您要先交流過訊息，先可以睇到 %1$s 嘅安全碼。</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">你同對方互相傳送訊息之後，系統就會幫你建立一個同佢嘅安全碼。</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">確定</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2201,7 +2201,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">重要應用程式提示</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">其他訊息通知</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5796,7 +5796,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">系統即將停止支援短訊服務</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal 應用程式即將停止支援短訊服務。</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">短訊同 Signal 訊息唔同。<b>咁做唔會影響 Signal 嘅加密訊息，呢個功能仍然會繼續運作。</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

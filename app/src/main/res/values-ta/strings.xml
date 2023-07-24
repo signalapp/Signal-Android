@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">கேமரா அனுமதியின்றி QR குறியீட்டை ஸ்கேன் செய்ய முடியவில்லை</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$sவின் பாதுகாப்பு எண்ணைக் காண, நீங்கள் முதலில் உங்கள் இருவருக்கும் இடையில் செய்திகளைப் பரிமாறிக் கொள்ள வேண்டும்.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">அவர் உங்களுடன் மெசேஜ்களைப் பரிமாறிய பிறகு அவருடன் ஒரு பாதுகாப்பு எண் உருவாக்கப்படும்.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">சரி</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">முக்கியமான ஆப் விழிப்பூட்டல்கள்</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">கூடுதல் மெசேஜ் அறிவிப்புகள்</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$s உடன் உங்கள் முடிவிலிருந்து-முடிவுவரை குறியாக்கத்தின் பாதுகாப்பை சரிபார்க்க, அவர்களின் சாதனத்துடன் மேலிருக்கும் எண்களோடு ஒப்பிடுக. நீங்கள் அவர்களின் தொலைபேசியில் உள்ள குறியீட்டை ஸ்கேன் செய்யலாம். <a href=\"https://signal.org/redirect/safety-numbers\"> மேலும் அறிக.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s இன் எண்ட்-டு-எண்ட் என்க்ரிப்ஷனைச் சரிபார்க்க, மேலே உள்ள வண்ண அட்டையை அவற்றின் டிவைஸ் உடன் பொருத்தி எண்களை ஒப்பிடவும். இவை பொருந்தவில்லை என்றால், ஸ்வைப் செய்து மற்ற பாதுகாப்பு எண்கள் ஜோடியை முயற்சிக்கவும். ஒரு ஜோடி மட்டுமே பொருந்த வேண்டும்.</string>
     <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
     <string name="verify_display_fragment__successful_match">வெற்றிகரமான இணை</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கத் தவறியது</string>
@@ -2721,12 +2721,12 @@
     <string name="verify_display_fragment__mark_as_verified">சரிபார்க்கப்பட்டதாகக் குறிக்கவும்</string>
     <string name="verify_display_fragment__clear_verification">சரிபார்ப்பை நீக்கவும்</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">பாதுகாப்பு எண்கள் புதுப்பிக்கப்படுகின்றன.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">பாதுகாப்பு எண்களில் செய்யப்படும் மாற்றங்கள்</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Signal இல் வரவிருக்கும் தனியுரிமை அம்சங்களை இயக்க, பாதுகாப்பு எண்கள் குறிப்பிட்ட நிலை மாற்றப்படும் காலத்தில் புதுப்பிக்கப்படவுள்ளன.\n\nபாதுகாப்பு எண்களைச் சரிபார்க்க, உங்கள் தொடர்பின் டிவைஸ் உடன் வண்ண அட்டையைப் பொருத்தவும். இவை பொருந்தவில்லை என்றால், ஸ்வைப் செய்து மற்ற பாதுகாப்பு எண்கள் ஜோடியை முயற்சிக்கவும். ஒரு ஜோடி மட்டுமே பொருந்த வேண்டும்.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">உங்களுக்கு உதவி வேண்டுமா?</string>
     <!-- Confirmation button for educating users about new safety number changes -->

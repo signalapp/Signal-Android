@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ক্যামেরা অনুমতি ছাড়া কিউআর কোড স্ক্যান করা সম্ভব নয়</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s-এর নিরাপত্তা নাম্বার দেখতে আপনাকে প্রথমে তার সাথে মেসেজ আদান-প্রদান করতে হবে।</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">এই ব্যক্তি আপনার সাথে মেসেজ আদান-প্রদান করার পর তার সাথে একটি নিরাপত্তা নম্বর তৈরি করা হবে।</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ঠিক আছে</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">অ্যাপ সম্পর্কিত গুরুত্বপূর্ণ সতর্কবার্তা</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">অতিরিক্ত মেসেজ নোটিফিকেশন</string>
 
     <!-- ProfileEditNameFragment -->
 

@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ਕੈਮਰਾ ਦੀ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ QR ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$sਦਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਪਹਿਲਾਂ ਸੁਨੇਹਿਆਂ ਦਾ ਆਦਾਨ-ਪ੍ਰਦਾਨ ਕਰਨਾ ਪਵੇਗਾ।</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">ਜਦੋਂ ਉਹ ਤੁਹਾਨੂੰ ਸੁਨੇਹੇ ਭੇਜਣਗੇ ਜਾਂ ਪ੍ਰਾਪਤ ਕਰਨਗੇ ਤਾਂ ਇਹਨਾਂ ਨਾਲ ਇੱਕ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਣਾਇਆ ਜਾਵੇਗਾ।</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ਠੀਕ ਹੈ</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">ਮਹੱਤਵਪੂਰਨ ਐਪ ਚੇਤਾਵਨੀ</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">ਵਾਧੂ ਸੁਨੇਹਾ ਸੂਚਨਾਵਾਂ</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s ਦੇ ਨਾਲ ਆਪਣੀ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ ਵਿੱਚ ਦਿਖਾਏ ਨੰਬਰਾਂ ਦੇ ਨਾਲ ਕਰੋ। ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਫ਼ੋਨ ਵਿੱਚ ਦਿਖਾਏ ਕੋਡ ਨੂੰ ਵੀ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ। <a href=\"https://signal.org/redirect/safety-numbers\">ਹੋਰ ਜਾਣੋ।</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s ਦੇ ਨਾਲ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਰੰਗੀਨ ਕਾਰਡ ਨੂੰ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ ਨਾਲ ਮਿਲਾਓ ਅਤੇ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਕਰੋ। ਜੇਕਰ ਇਹ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ, ਤਾਂ ਸਵਾਈਪ ਕਰੋ ਅਤੇ ਸੁਰੱਖਿਆ ਨੰਬਰਾਂ ਦੀ ਦੂਜੀ ਜੋੜੀ ਨੂੰ ਮਿਲਾ ਕੇ ਦੇਖੋ। ਸਿਰਫ਼ ਇੱਕ ਜੋੜੀ ਦੇ ਮੇਲ ਖਾਣ ਦੀ ਲੋੜ ਹੈ।</string>
     <string name="verify_display_fragment__tap_to_scan">ਸਕੈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="verify_display_fragment__successful_match">ਸਫਲਤਾਪੂਰਵਕ ਮੇਲ ਖਾਂਦਾ ਹੈ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
@@ -2721,12 +2721,12 @@
     <string name="verify_display_fragment__mark_as_verified">ਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
     <string name="verify_display_fragment__clear_verification">ਤਸਦੀਕ ਨੂੰ ਮਿਟਾਓ</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">ਸੁਰੱਖਿਆ ਨੰਬਰ ਅੱਪਡੇਟ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ।</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">ਸੁਰੱਖਿਆ ਨੰਬਰਾਂ ਵਿੱਚ ਬਦਲਾਅ</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Signal ਵਿੱਚ ਆਉਣ ਵਾਲੇ ਪਰਦੇਦਾਰੀ ਫੀਚਰਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਸੁਰੱਖਿਆ ਨੰਬਰਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।\n\nਸੁਰੱਖਿਆ ਨੰਬਰਾਂ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ, ਰੰਗੀਨ ਕਾਰਡ ਨੂੰ ਆਪਣੇ ਸੰਪਰਕ ਦੇ ਡਿਵਾਈਸ ਨਾਲ ਮਿਲਾਓ। ਜੇਕਰ ਇਹ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ, ਤਾਂ ਸਵਾਈਪ ਕਰੋ ਅਤੇ ਸੁਰੱਖਿਆ ਨੰਬਰਾਂ ਦੀ ਦੂਜੀ ਜੋੜੀ ਨੂੰ ਮਿਲਾ ਕੇ ਦੇਖੋ। ਸਿਰਫ਼ ਇੱਕ ਜੋੜੀ ਦੇ ਮੇਲ ਖਾਣ ਦੀ ਲੋੜ ਹੈ।</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">ਮਦਦ ਚਾਹੀਦੀ ਹੈ?</string>
     <!-- Confirmation button for educating users about new safety number changes -->

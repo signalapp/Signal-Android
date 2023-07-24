@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossibile scannerizzare i codici QR senza il permesso all\'uso della fotocamera</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">È necessario prima scambiarsi messaggi per poter visualizzare il codice di sicurezza di %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Verrà creato un codice di sicurezza per questa persona dopo che avrete iniziato a chattare.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">Ok</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Avvisi importanti sull\'app</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">Altre notifiche per messaggi</string>
 
     <!-- ProfileEditNameFragment -->
 

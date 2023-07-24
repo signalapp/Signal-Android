@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">You must first exchange messages Që të mund të shihni numrin e sigurisë për %1$s, së pari duhet të shkëmbeni mesazhe.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Një numër sigurie do të krijohet me këtë person, pasi të shkëmbejë mesazhe me ty.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Sinjalizimet jetike të aplikacioneve</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">Njoftimet shtesë të mesazheve</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Që të verifikoni sigurinë e fshehtëzimit tuaj skaj-më-skaj me %1$s, krahasoni numrat më sipër me pajisjen e tij. Mundeni edhe të skanoni kodin në telefonin e tij. <a href=\"https://signal.org/redirect/safety-numbers\">Mësoni më tepër.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, match the color card above with their device and compare the numbers. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Për të verifikuar kodimin nga skaji në skaj me %1$s, përputh kartën e mësipërme të ngjyrave me pajisjen e tyre dhe krahaso numrat. Nëse këto nuk përputhen, shfleto dhe provo çiftin tjetër të numrave të sigurisë. Vetëm një palë duhet të përputhet.</string>
     <string name="verify_display_fragment__tap_to_scan">Prekeni që të skanohet</string>
     <string name="verify_display_fragment__successful_match">Përputhje e suksesshme</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">S\\’u arri të verifikohet numër sigurie</string>
@@ -2721,12 +2721,12 @@
     <string name="verify_display_fragment__mark_as_verified">Vëri shenjë si i verifikuar</string>
     <string name="verify_display_fragment__clear_verification">Spastroje verifikimin</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Safety numbers are being updated.</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Numrat e sigurisë po përditësohen.</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Changes to safety numbers</string>
+    <string name="PnpSafetyNumberEducationDialog__title">Ndryshimet në numrat e sigurisë</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Safety numbers are being updated over a transition period to enable upcoming privacy features in Signal.\n\nTo verify safety numbers, match the color card with your contact’s device. If these don’t match, swipe and try the other pair of safety numbers. Only one pair needs to match.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Numrat e sigurisë po përditësohen gjatë një periudhe tranzicioni për të aktivizuar veçoritë e ardhshme të privatësisë në Signal.\n\nPër të verifikuar numrat e sigurisë, përputh kartën e ngjyrave me pajisjen e kontaktit tënd. Nëse këto nuk përputhen, shfleto dhe provo çiftin tjetër të numrave të sigurisë. Vetëm një palë duhet të përputhet.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">Ju duhet ndihmë?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
