@@ -365,6 +365,8 @@ class ConversationFragment :
       removeOnFocusChangeListener(composeTextEventsListener)
     }
 
+    adapter.unregisterAdapterDataObserver(dataObserver)
+
     textDraftSaveDebouncer.clear()
   }
 
@@ -457,6 +459,7 @@ class ConversationFragment :
   private lateinit var menuProvider: ConversationOptionsMenu.Provider
   private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
   private lateinit var backPressedCallback: BackPressedDelegate
+  private lateinit var dataObserver: DataObserver
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -863,7 +866,8 @@ class ConversationFragment :
       scrollToNextMention()
     }
 
-    adapter.registerAdapterDataObserver(DataObserver())
+    dataObserver = DataObserver()
+    adapter.registerAdapterDataObserver(dataObserver)
 
     val keyboardEvents = KeyboardEvents()
     container.listener = keyboardEvents
