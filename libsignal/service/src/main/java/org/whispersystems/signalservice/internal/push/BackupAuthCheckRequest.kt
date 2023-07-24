@@ -30,6 +30,10 @@ data class BackupAuthCheckResponse @JsonCreator constructor(
   private fun String.toBasic(): String {
     return "Basic ${encode(StandardCharsets.ISO_8859_1).base64()}"
   }
+
+  fun merge(other: BackupAuthCheckResponse): BackupAuthCheckResponse {
+    return BackupAuthCheckResponse(this.matches + other.matches)
+  }
 }
 
 /**
