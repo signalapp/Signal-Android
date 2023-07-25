@@ -195,8 +195,10 @@ class AvatarProvider : BaseContentProvider() {
     }
 
     val memoryFile = MemoryFile("${recipient.id}-imf", outputStream.size())
-    StreamUtil.copy(ByteArrayInputStream(outputStream.toByteArray()), memoryFile.outputStream)
-    StreamUtil.close(memoryFile.outputStream)
+
+    val memoryFileOutputStream = memoryFile.outputStream
+    StreamUtil.copy(ByteArrayInputStream(outputStream.toByteArray()), memoryFileOutputStream)
+    StreamUtil.close(memoryFileOutputStream)
 
     return MemoryFileUtil.getParcelFileDescriptor(memoryFile)
   }
@@ -217,8 +219,8 @@ class AvatarProvider : BaseContentProvider() {
 
     override fun onRead(offset: Long, size: Int, data: ByteArray?): Int {
       ensureResourceLoaded()
-
-      return memoryFile!!.readBytes(data, offset.toInt(), 0, size)
+      val memoryFileSnapshot = memoryFile
+      return memoryFileSnapshot!!.readBytes(data, offset.toInt(), 0, size.coerceAtMost((memoryFileSnapshot.length() - offset).toInt()))
     }
 
     override fun onRelease() {
@@ -240,8 +242,10 @@ class AvatarProvider : BaseContentProvider() {
       Log.i(TAG, "Writing ${recipient.id} icon to MemoryFile")
 
       memoryFile = MemoryFile("${recipient.id}-imf", outputStream.size())
-      StreamUtil.copy(ByteArrayInputStream(outputStream.toByteArray()), memoryFile!!.outputStream)
-      StreamUtil.close(memoryFile!!.outputStream)
+
+      val memoryFileOutputStream = memoryFile!!.outputStream
+      StreamUtil.copy(ByteArrayInputStream(outputStream.toByteArray()), memoryFileOutputStream)
+      StreamUtil.close(memoryFileOutputStream)
     }
   }
 }
