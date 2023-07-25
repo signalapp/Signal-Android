@@ -206,7 +206,7 @@ public final class PartProvider extends BaseContentProvider {
     Handler        handler        = new Handler(thread.getLooper());
 
     ParcelFileDescriptor parcelFileDescriptor = storageManager.openProxyFileDescriptor(ParcelFileDescriptor.MODE_READ_ONLY,
-                                                                                       new ProxyCallback(SignalDatabase.attachments(), attachmentId),
+                                                                                       new ProxyCallback(SignalDatabase.attachments(), attachmentId, thread),
                                                                                        handler);
 
     Log.i(TAG, attachmentId + ":createdProxy");
@@ -218,10 +218,12 @@ public final class PartProvider extends BaseContentProvider {
 
     private AttachmentTable attachments;
     private AttachmentId    attachmentId;
+    private HandlerThread   handlerThread;
 
-    public ProxyCallback(@NonNull AttachmentTable attachments, @NonNull AttachmentId attachmentId) {
-      this.attachments  = attachments;
-      this.attachmentId = attachmentId;
+    public ProxyCallback(@NonNull AttachmentTable attachments, @NonNull AttachmentId attachmentId, @NonNull HandlerThread handlerThread) {
+      this.attachments   = attachments;
+      this.attachmentId  = attachmentId;
+      this.handlerThread = handlerThread;
     }
 
     @Override
@@ -270,6 +272,10 @@ public final class PartProvider extends BaseContentProvider {
 
       attachments  = null;
       attachmentId = null;
+      if (handlerThread != null) {
+        handlerThread.quitSafely();
+        handlerThread = null;
+      }
     }
   }
 }

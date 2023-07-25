@@ -15,6 +15,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.os.HandlerThread
 import android.os.MemoryFile
 import android.os.ParcelFileDescriptor
 import android.os.ProxyFileDescriptorCallback
@@ -180,7 +181,7 @@ class AvatarProvider : BaseContentProvider() {
 
     val parcelFileDescriptor = storageManager.openProxyFileDescriptor(
       ParcelFileDescriptor.MODE_READ_ONLY,
-      ProxyCallback(context!!.applicationContext, recipient),
+      ProxyCallback(context!!.applicationContext, recipient, handlerThread),
       handler
     )
 
@@ -206,7 +207,8 @@ class AvatarProvider : BaseContentProvider() {
   @RequiresApi(26)
   private class ProxyCallback(
     private val context: Context,
-    private val recipient: Recipient
+    private val recipient: Recipient,
+    private val handlerThread: HandlerThread
   ) : ProxyFileDescriptorCallback() {
 
     private var memoryFile: MemoryFile? = null
@@ -226,6 +228,7 @@ class AvatarProvider : BaseContentProvider() {
     override fun onRelease() {
       Log.i(TAG, "${recipient.id}:onRelease")
       memoryFile = null
+      handlerThread.quitSafely()
     }
 
     private fun ensureResourceLoaded() {
