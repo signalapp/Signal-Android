@@ -761,8 +761,11 @@ class ConversationFragment :
       .subscribeOn(Schedulers.io())
       .doOnSuccess { state ->
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
-        moveToStartPosition(state.meta)
         conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
+      .doOnSuccess { state ->
+        moveToStartPosition(state.meta)
       }
       .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
