@@ -168,7 +168,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     if (intent == null || intent.getAction() == null) {
-      setCallNotification();
+      setCallNotification(true);
       stop();
       return START_NOT_STICKY;
     }
@@ -200,7 +200,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
         }
         return START_STICKY;
       case ACTION_STOP:
-        setCallNotification();
+        setCallNotification(true);
         stop();
         return START_NOT_STICKY;
       case ACTION_DENY_CALL:
@@ -217,7 +217,10 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   private void setCallNotification() {
-    if (lastNotificationId != INVALID_NOTIFICATION_ID) {
+    setCallNotification(false);
+  }
+  private void setCallNotification(boolean stopping) {
+    if (!stopping && lastNotificationId != INVALID_NOTIFICATION_ID) {
       startForegroundCompat(lastNotificationId, lastNotification);
     } else {
       Log.w(TAG, "Service running without having called start first, show temp notification and terminate service.");
