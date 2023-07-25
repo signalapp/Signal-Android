@@ -18,7 +18,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -164,19 +163,10 @@ class ConversationRepository(
    * Generates the name color-map for groups.
    */
   fun getNameColorsMap(
-    recipient: Recipient,
+    group: GroupRecord,
     groupAuthorNameColorHelper: GroupAuthorNameColorHelper
-  ): Observable<Map<RecipientId, NameColor>> {
-    return Recipient.observable(recipient.id)
-      .distinctUntilChanged { a, b -> a.participantIds == b.participantIds }
-      .map {
-        if (it.groupId.isPresent) {
-          groupAuthorNameColorHelper.getColorMap(it.requireGroupId())
-        } else {
-          emptyMap()
-        }
-      }
-      .subscribeOn(Schedulers.io())
+  ): Map<RecipientId, NameColor> {
+    return groupAuthorNameColorHelper.getColorMap(group)
   }
 
   fun sendReactionRemoval(messageRecord: MessageRecord, oldRecord: ReactionRecord): Completable {

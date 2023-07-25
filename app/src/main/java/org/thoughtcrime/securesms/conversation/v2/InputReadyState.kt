@@ -5,11 +5,13 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
+import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Information necessary for rendering compose input.
@@ -19,7 +21,8 @@ data class InputReadyState(
   val messageRequestState: MessageRequestState,
   val groupRecord: GroupRecord?,
   val isClientExpired: Boolean,
-  val isUnauthorized: Boolean
+  val isUnauthorized: Boolean,
+  val groupNameColors: Map<RecipientId, NameColor>
 ) {
   private val selfMemberLevel: GroupTable.MemberLevel? = groupRecord?.memberLevel(Recipient.self())
 

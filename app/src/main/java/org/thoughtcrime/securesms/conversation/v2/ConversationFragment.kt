@@ -1060,6 +1060,8 @@ class ConversationFragment :
     }
 
     composeText.setMessageSendType(MessageSendType.SignalMessageSendType)
+
+    colorizer.onNameColorsChanged(inputReadyState.groupNameColors)
   }
 
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {

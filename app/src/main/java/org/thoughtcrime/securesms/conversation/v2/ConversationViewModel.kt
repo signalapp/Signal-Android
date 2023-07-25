@@ -104,10 +104,14 @@ class ConversationViewModel(
 
   val pagingController = ProxyPagingController<ConversationElementKey>()
 
-  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = recipient
-    .filter { it.isGroup }
-    .flatMap { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
+  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = recipientRepository
+    .groupRecord
+    .filter { it.isPresent }
+    .map { it.get() }
+    .distinctUntilChanged { previous, next -> previous.hasSameMembers(next) }
+    .map { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
     .distinctUntilChanged()
+    .observeOn(AndroidSchedulers.mainThread())
 
   @Volatile
   var recipientSnapshot: Recipient? = null
@@ -210,6 +214,7 @@ class ConversationViewModel(
         conversationRecipient = recipient,
         messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
         groupRecord = groupRecord.orNull(),
+        groupNameColors = groupRecord.map { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }.orElse(emptyMap()),
         isClientExpired = SignalStore.misc().isClientDeprecated,
         isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())
       )
