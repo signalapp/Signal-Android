@@ -262,7 +262,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   }
 
   public int getKeyboardLandscapeHeight() {
-    int height = getInteger(KEYBOARD_LANDSCAPE_HEIGHT, 0);
+    int height = (int) getLong(KEYBOARD_LANDSCAPE_HEIGHT, 0);
     if (height == 0) {
       //noinspection deprecation
       height = PreferenceManager.getDefaultSharedPreferences(ApplicationDependencies.getApplication())
