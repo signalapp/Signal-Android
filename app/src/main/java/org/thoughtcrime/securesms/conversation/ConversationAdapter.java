@@ -96,10 +96,6 @@ public class ConversationAdapter
   public  static final int MESSAGE_TYPE_FOOTER              = 6;
   private static final int MESSAGE_TYPE_PLACEHOLDER         = 7;
 
-  private static final int PAYLOAD_TIMESTAMP   = 0;
-  public  static final int PAYLOAD_NAME_COLORS = 1;
-  public  static final int PAYLOAD_SELECTED    = 2;
-
   private final ItemClickListener clickListener;
   private final Context           context;
   private final LifecycleOwner    lifecycleOwner;

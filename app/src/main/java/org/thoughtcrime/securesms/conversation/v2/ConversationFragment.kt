@@ -147,6 +147,7 @@ import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay
 import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnActionSelectedListener
 import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnHideListener
 import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
+import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -820,7 +821,7 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onNext = {
         colorizer.onNameColorsChanged(it)
-        adapter.notifyItemRangeChanged(0, adapter.itemCount)
+        adapter.updateNameColors()
       })
 
     val disabledInputListener = DisabledInputListener()
@@ -966,6 +967,9 @@ class ConversationFragment :
       }
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
+
+    val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
+    viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
   }
 
   private fun initializeInlineSearch() {
@@ -1224,8 +1228,11 @@ class ConversationFragment :
     binding.conversationDisabledInput.setWallpaperEnabled(wallpaperEnabled)
     inputPanel.setWallpaperEnabled(wallpaperEnabled)
 
-    adapter.onHasWallpaperChanged(wallpaperEnabled)
+    val stateChanged = adapter.onHasWallpaperChanged(wallpaperEnabled)
     conversationItemDecorations.hasWallpaper = wallpaperEnabled
+    if (stateChanged) {
+      binding.conversationItemRecycler.invalidateItemDecorations()
+    }
 
     val navColor = if (wallpaperEnabled) {
       R.color.conversation_navigation_wallpaper
@@ -2293,6 +2300,25 @@ class ConversationFragment :
       if (positionStart == 0 && itemCount == 1 && !binding.conversationItemRecycler.canScrollVertically(1)) {
         Log.d(TAG, "Requesting scroll to bottom.")
         layoutManager.scrollToPositionWithOffset(0, 0)
+      }
+    }
+
+    override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+      if (actionMode == null) {
+        return
+      }
+
+      val expired: Set<MultiselectPart> = adapter
+        .selectedItems
+        .filter { it.isExpired() }
+        .toSet()
+
+      adapter.removeFromSelection(expired)
+
+      if (adapter.selectedItems.isEmpty()) {
+        actionMode?.finish()
+      } else {
+        actionMode?.setTitle(calculateSelectedItemCount())
       }
     }
   }
