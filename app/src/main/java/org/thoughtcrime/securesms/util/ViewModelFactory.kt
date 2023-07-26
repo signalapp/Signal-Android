@@ -45,3 +45,9 @@ inline fun <reified VM : ViewModel> Fragment.activityViewModel(
     factoryProducer = ViewModelFactory.factoryProducer(create)
   )
 }
+
+@Suppress("ReplaceGetOrSet")
+@MainThread
+inline fun <reified VM : ViewModel> Fragment.createActivityViewModel(noinline create: () -> VM): VM {
+  return ViewModelProvider(requireActivity().viewModelStore, ViewModelFactory { create() }).get(VM::class.java)
+}

@@ -294,8 +294,8 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
-import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
+import org.thoughtcrime.securesms.util.createActivityViewModel
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.getRecordQuoteType
@@ -355,8 +355,8 @@ class ConversationFragment :
   }
 
   private val disposables = LifecycleDisposable()
-  private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind) {
-    composeText.apply {
+  private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind) { _binding ->
+    _binding.conversationInputPanel.embeddedTextEditor.apply {
       setOnEditorActionListener(null)
       setCursorPositionChangedListener(null)
       setOnKeyListener(null)
@@ -366,7 +366,9 @@ class ConversationFragment :
       removeOnFocusChangeListener(composeTextEventsListener)
     }
 
-    adapter.unregisterAdapterDataObserver(dataObserver)
+    dataObserver?.let {
+      adapter.unregisterAdapterDataObserver(it)
+    }
 
     textDraftSaveDebouncer.clear()
   }
@@ -416,9 +418,7 @@ class ConversationFragment :
     StickerSuggestionsViewModel()
   }
 
-  private val inlineQueryViewModel: InlineQueryViewModelV2 by activityViewModel {
-    InlineQueryViewModelV2(recipientRepository = conversationRecipientRepository)
-  }
+  private lateinit var inlineQueryViewModel: InlineQueryViewModelV2
 
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
 
@@ -458,7 +458,6 @@ class ConversationFragment :
   private lateinit var menuProvider: ConversationOptionsMenu.Provider
   private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
   private lateinit var backPressedCallback: BackPressedDelegate
-  private lateinit var dataObserver: DataObserver
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -468,6 +467,7 @@ class ConversationFragment :
   private var previousPages: Set<KeyboardPage>? = null
   private var reShowScheduleMessagesBar: Boolean = false
   private var composeTextEventsListener: ComposeTextEventsListener? = null
+  private var dataObserver: DataObserver? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -520,6 +520,8 @@ class ConversationFragment :
 
     markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner)
     markReadHelper.ignoreViewReveals()
+
+    inlineQueryViewModel = createActivityViewModel { InlineQueryViewModelV2(recipientRepository = conversationRecipientRepository) }
 
     initializeConversationThreadUi()
 
@@ -868,7 +870,7 @@ class ConversationFragment :
     }
 
     dataObserver = DataObserver()
-    adapter.registerAdapterDataObserver(dataObserver)
+    adapter.registerAdapterDataObserver(dataObserver!!)
 
     val keyboardEvents = KeyboardEvents()
     container.listener = keyboardEvents
