@@ -197,6 +197,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.events.GroupCallPeekEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
@@ -388,11 +389,9 @@ class ConversationFragment :
     )
   }
 
-  private val groupCallViewModel: ConversationGroupCallViewModel by viewModels(
-    factoryProducer = {
-      ConversationGroupCallViewModel.Factory(args.threadId, conversationRecipientRepository)
-    }
-  )
+  private val groupCallViewModel: ConversationGroupCallViewModel by viewModel {
+    ConversationGroupCallViewModel(conversationRecipientRepository)
+  }
 
   private val conversationGroupViewModel: ConversationGroupViewModel by viewModels(
     factoryProducer = {
@@ -801,7 +800,6 @@ class ConversationFragment :
 
     attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 
-    EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
     viewLifecycleOwner.lifecycle.addObserver(LastScrolledPositionUpdater(adapter, layoutManager, viewModel))
 
     disposables += viewModel.recipient
@@ -1278,16 +1276,14 @@ class ConversationFragment :
       handleVideoCall()
     }
 
-    disposables += groupCallViewModel.hasActiveGroupCall.subscribeBy(onNext = {
-      invalidateOptionsMenu()
-      binding.conversationGroupCallJoin.visible = it
-    })
-
-    disposables += groupCallViewModel.hasCapacity.subscribeBy(onNext = {
-      binding.conversationGroupCallJoin.setText(
-        if (it) R.string.ConversationActivity_join else R.string.ConversationActivity_full
-      )
-    })
+    disposables += groupCallViewModel
+      .state
+      .distinctUntilChanged()
+      .subscribeBy {
+        binding.conversationGroupCallJoin.visible = it.ongoingCall
+        binding.conversationGroupCallJoin.setText(if (it.hasCapacity) R.string.ConversationActivity_join else R.string.ConversationActivity_full)
+        invalidateOptionsMenu()
+      }
   }
 
   private fun handleVideoCall() {
@@ -1297,7 +1293,7 @@ class ConversationFragment :
       return
     }
 
-    val hasActiveGroupCall: Single<Boolean> = groupCallViewModel.hasActiveGroupCall.firstOrError()
+    val hasActiveGroupCall: Single<Boolean> = groupCallViewModel.state.map { it.ongoingCall }.firstOrError()
     val isNonAdminInAnnouncementGroup: Boolean = conversationGroupViewModel.isNonAdminInAnnouncementGroup()
     val cannotCreateGroupCall = hasActiveGroupCall.map { active ->
       recipient to (recipient.isPushV2Group && !active && isNonAdminInAnnouncementGroup)
@@ -2865,7 +2861,7 @@ class ConversationFragment :
         isActiveGroup = recipient?.isActiveGroup == true,
         isActiveV2Group = recipient?.let { it.isActiveGroup && it.isPushV2Group } == true,
         isInActiveGroup = recipient?.isActiveGroup == false,
-        hasActiveGroupCall = groupCallViewModel.hasActiveGroupCallSnapshot,
+        hasActiveGroupCall = groupCallViewModel.hasOngoingGroupCallSnapshot,
         distributionType = args.distributionType,
         threadId = args.threadId,
         isInMessageRequest = viewModel.hasMessageRequestState,
@@ -3869,6 +3865,11 @@ class ConversationFragment :
     if (!inputPanel.isStickerMode) {
       conversationTooltips.displayStickerPackInstalledTooltip(inputPanel.mediaKeyboardToggleAnchorView, event)
     }
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+  fun onGroupCallPeekEvent(groupCallPeekEvent: GroupCallPeekEvent) {
+    groupCallViewModel.onGroupCallPeekEvent(groupCallPeekEvent)
   }
 
   //endregion
