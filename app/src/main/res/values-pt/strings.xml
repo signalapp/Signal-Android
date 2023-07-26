@@ -108,7 +108,7 @@
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">Você poderá ter novas mensagens</string>
+    <string name="FcmFetchManager__you_may_have_messages">Poderá ter novas mensagens</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utilizadores bloqueados</string>
@@ -2141,7 +2141,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiro deverá trocar mensagens de forma a poder ver o número de segurança de %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">A safety number will be created with this person after they exchange messages with you.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Após trocar mensagens com essa pessoa, um número de segurança será criado.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -2270,7 +2270,7 @@
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Alertas críticos da app</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_additional_message_notifications">Additional message notifications</string>
+    <string name="NotificationChannel_additional_message_notifications">Notificações adicionais de mensagens</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2713,7 +2713,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar a segurança da sua encriptação ponta-a-ponta com %1$s, compare os números acima com o dispositivo da outra pessoa. Também pode digitalizar o código no telefone da outra pessoa. <a href=\"https://signal.org/redirect/safety-numbers\">Mais informações.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Para verificar a a encriptação ponta-a-ponta com %1$s, corresponda a carta de cor em cima com o seu dispositivo e compare os números. Se não corresponderem, deslize e experimente o outro par de números de segurança. Só um par precisa de corresponder.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Para verificar a encriptação ponta-a-ponta com %1$s, corresponda a carta de cor em cima com o seu dispositivo e compare os números. Se não corresponderem, deslize e experimente o outro par de números de segurança. Só um par precisa de corresponder.</string>
     <string name="verify_display_fragment__tap_to_scan">Toque para ler</string>
     <string name="verify_display_fragment__successful_match">Correspondência bem sucedida</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Falha o verificar o número de segurança</string>
@@ -2726,7 +2726,7 @@
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
     <string name="PnpSafetyNumberEducationDialog__title">Alterações aos Números de Segurança</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Os números de segurança estão a ser atualizados ao longo de um período de transição para permitirem opções de privacidade do Signal a serem lançadas em breve.\n\nPara verificar os números de segurança, corresponda a carta de cor com o dispositivo do seu contacto. Se não corresponderem, deslize e experimente o outro par de números de segurança. Só um par precisa de corresponder.</string>
+    <string name="PnpSafetyNumberEducationDialog__body">Os números de segurança estão a ser atualizados ao longo de um período de transição para possibilitarem as opções de privacidade do Signal a serem lançadas em breve.\n\nPara verificar os números de segurança, corresponda a carta de cor com o dispositivo do seu contacto. Se não corresponderem, deslize e experimente o outro par de números de segurança. Só um par precisa de corresponder.</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">Necessita de ajuda?</string>
     <!-- Confirmation button for educating users about new safety number changes -->

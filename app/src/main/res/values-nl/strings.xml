@@ -179,7 +179,7 @@
     <string name="BucketedThreadMedia_This_week">Deze week</string>
     <string name="BucketedThreadMedia_This_month">Deze maand</string>
     <string name="BucketedThreadMedia_Large">Grote bestanden</string>
-    <string name="BucketedThreadMedia_Medium">Middelgroot</string>
+    <string name="BucketedThreadMedia_Medium">Middel</string>
     <string name="BucketedThreadMedia_Small">Kleine bestanden</string>
 
     <!-- CameraFragment -->
@@ -553,7 +553,7 @@
     <string name="ConversationListFragment_archive">Archiveren</string>
     <string name="ConversationListFragment_unarchive">Dearchiveren</string>
     <string name="ConversationListFragment_delete">Verwijderen</string>
-    <string name="ConversationListFragment_select_all">Selecteren</string>
+    <string name="ConversationListFragment_select_all">Alles selecteren</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d geselecteerd</item>
         <item quantity="other">%1$d geselecteerd</item>
@@ -6034,7 +6034,7 @@
     <!-- Dialog body to clear all call events -->
     <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Hiermee wordt de oproepgeschiedenis voorgoed verwijderd</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">Wis oproepgeschiedenis</string>
+    <string name="CallLogFragment__clear_call_history">Oproepgeschiedenis wissen</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Gemiste oproepen filteren</string>
     <!-- Action bar menu item to clear missed call filter -->

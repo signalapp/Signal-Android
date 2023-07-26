@@ -1956,8 +1956,8 @@
     <string name="SignalPinReminders_well_remind_you_again_later">Успешна провера PIN-а. Касније ћемо вас поново подсетити.</string>
     <string name="SignalPinReminders_well_remind_you_again_tomorrow">ПИН је успешно верификован. Сутра ћемо вас поново подсетити.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">ПИН је успешно верификован. За неколико дана ћемо вас поново подсетити.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_week">ПИН је успешно верификован. за недељу дана ћемо вас поново подсетити.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ПИН је успешно верификован. За 2 недеље ћемо вас поново подсетити.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">ПИН је успешно верификован. за 1 седмицу ћемо вас поново подсетити.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ПИН је успешно верификован. За 2 седмице ћемо вас поново подсетити.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">ПИН је успешно верификован. За месец дана ћемо вас поново подсетити.</string>
 
     <!-- Slide -->
@@ -2598,8 +2598,8 @@
     <string name="expiration_days_abbreviated">%1$d д</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d нед.</item>
-        <item quantity="other">%1$d нед.</item>
+        <item quantity="one">%1$d сед.</item>
+        <item quantity="other">%1$d сед.</item>
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%1$d с</string>
@@ -4381,7 +4381,7 @@
     <string name="CustomExpireTimerSelectorView__minutes">минута</string>
     <string name="CustomExpireTimerSelectorView__hours">сати</string>
     <string name="CustomExpireTimerSelectorView__days">дан(а)</string>
-    <string name="CustomExpireTimerSelectorView__weeks">недељ(а)</string>
+    <string name="CustomExpireTimerSelectorView__weeks">седмиц(а)</string>
 
     <!-- HelpSettingsFragment -->
     <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
