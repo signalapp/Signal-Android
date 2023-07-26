@@ -37,6 +37,11 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
     hideInput(resetKeyboardGuideline = false)
   }
 
+  fun hideAll(imeTarget: EditText) {
+    ViewUtil.hideKeyboard(context, imeTarget)
+    hideInput(resetKeyboardGuideline = true)
+  }
+
   fun toggleInput(fragmentCreator: FragmentCreator, imeTarget: EditText, showSoftKeyOnHide: Boolean = false) {
     if (fragmentCreator.id == inputId) {
       if (showSoftKeyOnHide) {

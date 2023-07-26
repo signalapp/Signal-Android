@@ -2412,6 +2412,7 @@ class ConversationFragment :
 
       disposables += viewModel.getTemporaryViewOnceUri(messageRecord).subscribeBy(
         onSuccess = {
+          container.hideAll(composeText)
           startActivity(ViewOnceMessageActivity.getIntent(requireContext(), messageRecord.id, it))
         },
         onComplete = {
@@ -2665,6 +2666,8 @@ class ConversationFragment :
           holder.hide()
         }
       }
+
+      container.hideAll(composeText)
 
       sharedElement.transitionName = MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME
       requireActivity().setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
