@@ -557,7 +557,7 @@ class ConversationFragment :
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
     super.onViewStateRestored(savedInstanceState)
 
-    isSearchRequested = savedInstanceState?.getBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, false) ?: false
+    isSearchRequested = savedInstanceState?.getBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, false) ?: args.isWithSearchOpen
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
@@ -1145,7 +1145,7 @@ class ConversationFragment :
   }
 
   private fun invalidateOptionsMenu() {
-    if (!isSearchRequested) {
+    if (searchMenuItem?.isActionViewExpanded != true) {
       binding.toolbar.invalidateMenu()
     }
   }
