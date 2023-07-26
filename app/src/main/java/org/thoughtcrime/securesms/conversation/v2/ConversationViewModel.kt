@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -61,6 +62,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.util.BubbleUtil
+import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -401,6 +404,12 @@ class ConversationViewModel(
 
   fun getTemporaryViewOnceUri(mmsMessageRecord: MmsMessageRecord): Maybe<Uri> {
     return repository.getTemporaryViewOnceUri(mmsMessageRecord).observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun canShowAsBubble(context: Context): Observable<Boolean> {
+    return recipient
+      .map { Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION && BubbleUtil.canBubble(context, it, threadId) }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun copyToClipboard(context: Context, messageParts: Set<MultiselectPart>): Maybe<CharSequence> {

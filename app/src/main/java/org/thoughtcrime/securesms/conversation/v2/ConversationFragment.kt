@@ -69,7 +69,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -2857,7 +2856,7 @@ class ConversationFragment :
       return ConversationOptionsMenu.Snapshot(
         recipient = recipient,
         isPushAvailable = viewModel.isPushAvailable,
-        canShowAsBubble = Observable.empty(),
+        canShowAsBubble = viewModel.canShowAsBubble(requireContext()),
         isActiveGroup = recipient?.isActiveGroup == true,
         isActiveV2Group = recipient?.let { it.isActiveGroup && it.isPushV2Group } == true,
         isInActiveGroup = recipient?.isActiveGroup == false,
