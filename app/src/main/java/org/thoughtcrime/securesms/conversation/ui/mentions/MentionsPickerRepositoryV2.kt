@@ -14,7 +14,7 @@ class MentionsPickerRepositoryV2(
   private val recipients: RecipientTable = SignalDatabase.recipients
 ) {
   fun search(query: String, members: List<RecipientId>): Single<List<Recipient>> {
-    return if (query.isBlank() || members.isEmpty()) {
+    return if (members.isEmpty()) {
       Single.just(emptyList())
     } else {
       Single
