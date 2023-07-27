@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SvrNoDataException;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.kbs.PinHashUtil;
-import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -346,12 +345,12 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                    if (hasRecoveryPassword) {
                      return Single.just(true);
                    } else {
-                     return checkForValidKbsAuthCredentials();
+                     return checkForValidSvrAuthCredentials();
                    }
                  });
   }
 
-  private Single<Boolean> checkForValidKbsAuthCredentials() {
+  private Single<Boolean> checkForValidSvrAuthCredentials() {
     final List<String> svrAuthTokenList = SignalStore.svr().getAuthTokenList();
     List<String> usernamePasswords = svrAuthTokenList
         .stream()
@@ -370,7 +369,14 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     }
 
     return registrationRepository.getSvrAuthCredential(getRegistrationData(), usernamePasswords)
-                                 .flatMap(p -> Single.just(p.getValid() != null))
+                                 .flatMap(p -> {
+                                   if (p.hasValidSvr2AuthCredential()) {
+                                     setSvrAuthCredentials(new SvrAuthCredentialSet(null, p.requireSvr2AuthCredential()));
+                                     return Single.just(true);
+                                   } else {
+                                     return Single.just(false);
+                                   }
+                                 })
                                  .onErrorReturnItem(false)
                                  .observeOn(AndroidSchedulers.mainThread());
   }

@@ -297,8 +297,7 @@ public class PushServiceSocket {
 
   private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
 
-  private static final String BACKUP_AUTH_CHECK_V1 = "/v1/backup/auth/check";
-  private static final String BACKUP_AUTH_CHECK_V2 = "/v2/backup/auth/check";
+  private static final String BACKUP_AUTH_CHECK = "/v2/backup/auth/check";
 
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
@@ -974,26 +973,14 @@ public class PushServiceSocket {
   public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull BackupAuthCheckRequest request,
                                                                                      @Nonnull ResponseMapper<BackupAuthCheckResponse> responseMapper)
   {
-    return Single
-        .zip(
-          createBackupAuthCheckSingle(BACKUP_AUTH_CHECK_V1, request, responseMapper),
-          createBackupAuthCheckSingle(BACKUP_AUTH_CHECK_V2, request, responseMapper),
-          (v1, v2) -> {
-            if (v1.getResult().isPresent() && v2.getResult().isPresent()) {
-              BackupAuthCheckResponse v1Result = v1.getResult().get();
-              BackupAuthCheckResponse v2Result = v2.getResult().get();
-              BackupAuthCheckResponse merged   = v1Result.merge(v2Result);
+    Single<ServiceResponse<BackupAuthCheckResponse>> requestSingle = Single.fromCallable(() -> {
+      try (Response response = getServiceConnection(BACKUP_AUTH_CHECK, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), Optional.empty(), false)) {
+        String body = response.body() != null ? readBodyString(response.body()): "";
+        return responseMapper.map(response.code(), body, response::header, false);
+      }
+    });
 
-              return new ServiceResponse<>(v2.getStatus(), null, merged, null, null);
-            } else if (v1.getResult().isEmpty() && v2.getResult().isEmpty()) {
-              return v2;
-            } else if (v2.getResult().isEmpty()) {
-              return v1;
-            } else {
-              return v2;
-            }
-          }
-        )
+    return requestSingle
         .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .onErrorReturn(ServiceResponse::forUnknownError);
