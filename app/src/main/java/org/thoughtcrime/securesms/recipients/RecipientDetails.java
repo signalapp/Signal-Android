@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -88,6 +89,7 @@ public class RecipientDetails {
   final boolean                      isReleaseChannel;
   final boolean                      needsPniSignature;
   final CallLinkRoomId               callLinkRoomId;
+  final Optional<GroupRecord>        groupRecord;
 
   public RecipientDetails(@Nullable String groupName,
                           @Nullable String systemContactName,
@@ -99,7 +101,8 @@ public class RecipientDetails {
                           @Nullable List<RecipientId> participantIds,
                           boolean isReleaseChannel,
                           boolean isActiveGroup,
-                          @Nullable AvatarColor avatarColor)
+                          @Nullable AvatarColor avatarColor,
+                          Optional<GroupRecord> groupRecord)
   {
     this.groupAvatarId                = groupAvatarId;
     this.systemContactPhoto           = Util.uri(record.getSystemContactPhotoUri());
@@ -154,6 +157,7 @@ public class RecipientDetails {
     this.isReleaseChannel             = isReleaseChannel;
     this.needsPniSignature            = record.needsPniSignature();
     this.callLinkRoomId               = record.getCallLinkRoomId();
+    this.groupRecord                  = groupRecord;
   }
 
   private RecipientDetails() {
@@ -210,6 +214,7 @@ public class RecipientDetails {
     this.needsPniSignature            = false;
     this.isActiveGroup                = false;
     this.callLinkRoomId               = null;
+    this.groupRecord                  = Optional.empty();
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {
@@ -228,15 +233,15 @@ public class RecipientDetails {
       }
     }
 
-    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.empty(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel, false, null);
+    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.empty(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel, false, null, Optional.empty());
   }
 
   public static @NonNull RecipientDetails forDistributionList(String title, @Nullable List<RecipientId> members, @NonNull RecipientRecord record) {
-    return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false, false, null);
+    return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false, false, null, Optional.empty());
   }
 
   public static @NonNull RecipientDetails forCallLink(String name, @NonNull RecipientRecord record, @NonNull AvatarColor avatarColor) {
-    return new RecipientDetails(name, null, Optional.empty(), false, false, record.getRegistered(), record, Collections.emptyList(), false, false, avatarColor);
+    return new RecipientDetails(name, null, Optional.empty(), false, false, record.getRegistered(), record, Collections.emptyList(), false, false, avatarColor, Optional.empty());
   }
 
   public static @NonNull RecipientDetails forUnknown() {

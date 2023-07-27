@@ -1294,6 +1294,17 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
       return recipients
     }
+
+    fun getMemberServiceIds(): List<ServiceId> {
+      return decryptedGroup
+        .membersList
+        .asSequence()
+        .map { UuidUtil.fromByteStringOrNull(it.uuid) }
+        .filterNotNull()
+        .map { ServiceId.from(it) }
+        .sortedBy { it.toString() }
+        .toList()
+    }
   }
 
   @Throws(BadGroupIdException::class)

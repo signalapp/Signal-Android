@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.conversation.colors
 
 import android.content.Context
-import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Helper class for all things ChatColors.
@@ -18,7 +18,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 class Colorizer {
 
   private var colorsHaveBeenSet = false
+
+  @Deprecated("Not needed for CFv2")
   private val groupSenderColors: MutableMap<RecipientId, NameColor> = mutableMapOf()
+
+  private val groupMembers: LinkedHashSet<ServiceId> = linkedSetOf()
 
   @ColorInt
   fun getOutgoingBodyTextColor(context: Context): Int {
@@ -63,8 +67,26 @@ class Colorizer {
   }
 
   @ColorInt
-  fun getIncomingGroupSenderColor(context: Context, recipient: Recipient): Int = groupSenderColors[recipient.id]?.getColor(context) ?: getDefaultColor(context, recipient.id)
+  fun getIncomingGroupSenderColor(context: Context, recipient: Recipient): Int {
+    return if (groupMembers.isEmpty()) {
+      groupSenderColors[recipient.id]?.getColor(context) ?: getDefaultColor(context, recipient)
+    } else {
+      val memberPosition = groupMembers.indexOf(recipient.requireServiceId())
 
+      if (memberPosition >= 0) {
+        val colorPosition = memberPosition % ChatColorsPalette.Names.all.size
+        ChatColorsPalette.Names.all[colorPosition].getColor(context)
+      } else {
+        getDefaultColor(context, recipient)
+      }
+    }
+  }
+
+  fun onGroupMembershipChanged(serviceIds: List<ServiceId>) {
+    groupMembers.addAll(serviceIds.sortedBy { it.toString() })
+  }
+
+  @Deprecated("Not needed for CFv2", ReplaceWith("onGroupMembershipChanged"))
   fun onNameColorsChanged(nameColorMap: Map<RecipientId, NameColor>) {
     groupSenderColors.clear()
     groupSenderColors.putAll(nameColorMap)
@@ -72,13 +94,13 @@ class Colorizer {
   }
 
   @ColorInt
-  private fun getDefaultColor(context: Context, recipientId: RecipientId): Int {
+  private fun getDefaultColor(context: Context, recipient: Recipient): Int {
     return if (colorsHaveBeenSet) {
       val color = ChatColorsPalette.Names.all[groupSenderColors.size % ChatColorsPalette.Names.all.size]
-      groupSenderColors[recipientId] = color
+      groupSenderColors[recipient.id] = color
       return color.getColor(context)
     } else {
-      Color.TRANSPARENT
+      getIncomingBodyTextColor(context, recipient.hasWallpaper())
     }
   }
 }

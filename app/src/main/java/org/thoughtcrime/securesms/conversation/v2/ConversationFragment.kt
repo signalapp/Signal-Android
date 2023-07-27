@@ -766,6 +766,7 @@ class ConversationFragment :
       .doOnSuccess { state ->
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
         conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
+        colorizer.onGroupMembershipChanged(state.meta.groupMemberAcis)
       }
       .observeOn(AndroidSchedulers.mainThread())
       .doOnSuccess { state ->
@@ -817,10 +818,9 @@ class ConversationFragment :
       .subscribeBy(onNext = this::presentScrollButtons)
 
     disposables += viewModel
-      .nameColorsMap
-      .observeOn(AndroidSchedulers.mainThread())
+      .groupMemberServiceIds
       .subscribeBy(onNext = {
-        colorizer.onNameColorsChanged(it)
+        colorizer.onGroupMembershipChanged(it)
         adapter.updateNameColors()
       })
 
@@ -1059,8 +1059,6 @@ class ConversationFragment :
     }
 
     composeText.setMessageSendType(MessageSendType.SignalMessageSendType)
-
-    colorizer.onNameColorsChanged(inputReadyState.groupNameColors)
   }
 
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation
 
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Represents metadata about a conversation.
@@ -15,7 +16,8 @@ data class ConversationData(
   val threadSize: Int,
   val messageRequestData: MessageRequestData,
   @get:JvmName("showUniversalExpireTimerMessage") val showUniversalExpireTimerMessage: Boolean,
-  val unreadCount: Int
+  val unreadCount: Int,
+  val groupMemberAcis: List<ServiceId>
 ) {
 
   fun shouldJumpToMessage(): Boolean {

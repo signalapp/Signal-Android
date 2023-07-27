@@ -1859,7 +1859,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             null,
             false,
             group.isActive,
-            null
+            null,
+            Optional.of(group)
           )
           Recipient(recipientId, details, false)
         } ?: Recipient.live(recipientId).get()

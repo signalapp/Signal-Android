@@ -220,10 +220,10 @@ public final class LiveRecipient {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false, groupRecord.get().isActive(), null);
+      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false, groupRecord.get().isActive(), null, groupRecord);
     }
 
-    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false, false, null);
+    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false, false, null, Optional.empty());
   }
 
   @WorkerThread

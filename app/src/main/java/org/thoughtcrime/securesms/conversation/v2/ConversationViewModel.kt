@@ -32,8 +32,6 @@ import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
-import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
-import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -68,6 +66,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
 import kotlin.time.Duration
 
@@ -84,7 +83,6 @@ class ConversationViewModel(
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  private val groupAuthorNameColorHelper = GroupAuthorNameColorHelper()
 
   private val scrollButtonStateStore = RxStore(ConversationScrollButtonState()).addTo(disposables)
   val scrollButtonState: Flowable<ConversationScrollButtonState> = scrollButtonStateStore.stateFlowable
@@ -107,12 +105,10 @@ class ConversationViewModel(
 
   val pagingController = ProxyPagingController<ConversationElementKey>()
 
-  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = recipientRepository
+  val groupMemberServiceIds: Observable<List<ServiceId>> = recipientRepository
     .groupRecord
-    .filter { it.isPresent }
-    .map { it.get() }
-    .distinctUntilChanged { previous, next -> previous.hasSameMembers(next) }
-    .map { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
+    .filter { it.isPresent && it.get().isV2Group }
+    .map { it.get().requireV2GroupProperties().getMemberServiceIds() }
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())
 
@@ -217,7 +213,6 @@ class ConversationViewModel(
         conversationRecipient = recipient,
         messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
         groupRecord = groupRecord.orNull(),
-        groupNameColors = groupRecord.map { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }.orElse(emptyMap()),
         isClientExpired = SignalStore.misc().isClientDeprecated,
         isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())
       )

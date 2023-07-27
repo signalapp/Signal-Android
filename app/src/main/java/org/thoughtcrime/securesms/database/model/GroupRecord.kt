@@ -13,8 +13,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.Optional
 
 class GroupRecord(
@@ -42,22 +40,6 @@ class GroupRecord(
       emptyList()
     } else {
       RecipientId.fromSerializedList(serializedMembers)
-    }
-  }
-
-  /** Valid for v2 groups only */
-  val decryptedMemberServiceIds: List<ServiceId> by lazy {
-    if (isV2Group) {
-      requireV2GroupProperties()
-        .decryptedGroup
-        .membersList
-        .asSequence()
-        .map { DecryptedGroupUtil.toUuid(it) }
-        .filterNot { it == UuidUtil.UNKNOWN_UUID }
-        .map { ServiceId.from(it) }
-        .toList()
-    } else {
-      emptyList()
     }
   }
 
@@ -199,13 +181,5 @@ class GroupRecord(
       }
     }
     return false
-  }
-
-  fun hasSameMembers(other: GroupRecord): Boolean {
-    if (!isV2Group || !other.isV2Group) {
-      return false
-    }
-
-    return decryptedMemberServiceIds == other.decryptedMemberServiceIds
   }
 }
