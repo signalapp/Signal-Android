@@ -1747,7 +1747,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">您唔會收到人哋嘅聲音或者畫面，人哋都唔會收到您嘅聲畫。</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">收唔到 %1$s 嘅聲同畫</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">收唔到 %1$s 嘅聲同畫</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">可能係因為佢哋冇驗證你嘅安全號碼變更、佢哋部裝置有問題，又或者佢哋封鎖咗你。</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">可能係因為佢哋冇驗證你嘅安全碼變更、佢哋部裝置有問題，又或者佢哋封鎖咗你。</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">滑動去睇畫面分享</string>

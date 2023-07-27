@@ -4993,7 +4993,7 @@
     <!-- Profile status on if it is not the active profile -->
     <string name="NotificationProfileDetails__off">Uitgeschakeld</string>
     <!-- Description of hours for schedule (start to end) times -->
-    <string name="NotificationProfileDetails__s_to_s">%1$s naar %2$s</string>
+    <string name="NotificationProfileDetails__s_to_s">%1$s tot %2$s</string>
     <!-- Section header for exceptions to the notification profile -->
     <string name="NotificationProfileDetails__exceptions">Uitzonderingen</string>
     <!-- Profile exception to allow all calls through the profile restrictions -->

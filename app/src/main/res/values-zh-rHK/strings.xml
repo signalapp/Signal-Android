@@ -1747,7 +1747,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">您不會收到別人的音訊或視訊，他們亦不會收到您的視像或音訊。</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">無法接收來自 %1$s 的音訊和視訊</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">無法接收來自 %1$s 的音訊和視訊</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">這可能是由於對方未驗證你的安全號碼變更、對方的裝置有問題，或者對方已經將你封鎖。</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">這可能是由於對方未驗證你的安全碼變更、對方的裝置有問題，或者對方已經將你封鎖。</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">滑動以檢視畫面分享</string>
@@ -2633,7 +2633,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若要驗證您與 %1$s 之間端對端加密的安全性，請比對上方數字與對方裝置上的數字是否一樣。您亦可掃描對方裝置上的二維碼。<a href=\"https://signal.org/redirect/safety-numbers\">了解更多。</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">若要驗證你與 %1$s 之間的端對端加密，請比對上方色卡與對方裝置上的色卡是否匹配，以及比較數字。如果這些無法匹配，請滑動並嘗試另一組安全號碼。只需要匹配一對。</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">若要驗證你與 %1$s 之間的端對端加密，請比對上方色卡與對方裝置上的色卡是否匹配，以及比較數字。如果這些無法匹配，請滑動並嘗試另一組安全碼。只需要匹配一對。</string>
     <string name="verify_display_fragment__tap_to_scan">輕觸以掃描</string>
     <string name="verify_display_fragment__successful_match">比對成功</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">驗證安全碼失敗</string>
@@ -2641,12 +2641,12 @@
     <string name="verify_display_fragment__mark_as_verified">標記為已驗證</string>
     <string name="verify_display_fragment__clear_verification">清除驗證</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">安全號碼正在更新中。</string>
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">安全碼正在更新中。</string>
 
     <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">安全號碼變更</string>
+    <string name="PnpSafetyNumberEducationDialog__title">安全碼變更</string>
     <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">安全號碼會在過渡期間進行更新，以啟用 Signal 即將推出的隱私功能。\n\n要驗證安全號碼，請將色卡與聯絡人的裝置配對。如果這些無法匹配，請滑動並嘗試另一組安全號碼。只需要匹配一對。</string>
+    <string name="PnpSafetyNumberEducationDialog__body">安全碼會在過渡期間進行更新，以啟用 Signal 即將推出的隱私功能。\n\n要驗證安全碼，請將色卡與聯絡人的裝置配對。如果這些無法匹配，請滑動並嘗試另一組安全號碼。只需要匹配一對。</string>
     <!-- Button for more information about the safety number changes. Takes user to support article -->
     <string name="PnpSafetyNumberEducationDialog__help">需要說明嗎？</string>
     <!-- Confirmation button for educating users about new safety number changes -->
