@@ -842,7 +842,6 @@ class ConversationFragment :
     }
 
     sendButton.apply {
-      snackbarContainer = binding.root
       setPopupContainer(binding.root)
       setOnClickListener(sendButtonListener)
       setScheduledSendListener(sendButtonListener)
