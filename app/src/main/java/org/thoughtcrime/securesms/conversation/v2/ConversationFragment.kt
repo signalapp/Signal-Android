@@ -514,7 +514,6 @@ class ConversationFragment :
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    registerForResults()
     disposables.bindTo(viewLifecycleOwner)
     FullscreenHelper(requireActivity()).showSystemUI()
 
@@ -522,6 +521,8 @@ class ConversationFragment :
     markReadHelper.ignoreViewReveals()
 
     inlineQueryViewModel = createActivityViewModel { InlineQueryViewModelV2(recipientRepository = conversationRecipientRepository) }
+
+    attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 
     initializeConversationThreadUi()
 
@@ -552,6 +553,8 @@ class ConversationFragment :
 
     ToolbarDependentMarginListener(binding.toolbar)
     initializeMediaKeyboard()
+
+    registerForResults()
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -798,8 +801,6 @@ class ConversationFragment :
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
 
     menuProvider.afterFirstRenderMode = true
-
-    attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 
     viewLifecycleOwner.lifecycle.addObserver(LastScrolledPositionUpdater(adapter, layoutManager, viewModel))
 
