@@ -100,7 +100,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
                  .commit()
                  .actionProcessor(actionProcessorFactory.createConnectedActionProcessor(webRtcInteractor));
 
-        } else if (device.getJoinState() == GroupCall.JoinState.JOINING) {
+        } else if (device.getJoinState() == GroupCall.JoinState.JOINING || device.getJoinState() == GroupCall.JoinState.PENDING) {
           builder.changeCallInfoState()
                  .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
                  .commit();

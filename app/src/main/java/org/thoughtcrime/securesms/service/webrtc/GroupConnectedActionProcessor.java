@@ -68,7 +68,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     if (connectionState == GroupCall.ConnectionState.CONNECTED || connectionState == GroupCall.ConnectionState.CONNECTING) {
       if (joinState == GroupCall.JoinState.JOINED) {
         groupCallState = WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
-      } else if (joinState == GroupCall.JoinState.JOINING) {
+      } else if (joinState == GroupCall.JoinState.JOINING || joinState == GroupCall.JoinState.PENDING) {
         groupCallState = WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING;
       }
     }
