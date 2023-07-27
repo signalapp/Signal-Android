@@ -1732,7 +1732,7 @@ public class ConversationParentFragment extends Fragment
       reminderView.get().showReminder(new ExpiredBuildReminder(context));
       reminderView.get().setOnActionClickListener(this::handleReminderAction);
     } else if (UnauthorizedReminder.isEligible(context)) {
-      reminderView.get().showReminder(new UnauthorizedReminder(context));
+      reminderView.get().showReminder(new UnauthorizedReminder());
       reminderView.get().setOnActionClickListener(this::handleReminderAction);
     } else if (ServiceOutageReminder.isEligible(context)) {
       ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());

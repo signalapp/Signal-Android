@@ -307,7 +307,7 @@ class ConversationRepository(
     return Maybe.fromCallable {
       val reminder: Reminder? = when {
         ExpiredBuildReminder.isEligible() -> ExpiredBuildReminder(applicationContext)
-        UnauthorizedReminder.isEligible(applicationContext) -> UnauthorizedReminder(applicationContext)
+        UnauthorizedReminder.isEligible(applicationContext) -> UnauthorizedReminder()
         ServiceOutageReminder.isEligible(applicationContext) -> {
           ApplicationDependencies.getJobManager().add(ServiceOutageDetectionJob())
           ServiceOutageReminder()

@@ -154,7 +154,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     if (ExpiredBuildReminder.isEligible()) {
       showReminder(ExpiredBuildReminder(context))
     } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder(context))
+      showReminder(UnauthorizedReminder())
     } else {
       hideReminders()
     }

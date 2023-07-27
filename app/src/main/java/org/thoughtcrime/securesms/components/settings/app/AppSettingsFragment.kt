@@ -75,7 +75,7 @@ class AppSettingsFragment : DSLSettingsFragment(
     if (ExpiredBuildReminder.isEligible()) {
       showReminder(ExpiredBuildReminder(context))
     } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder(context))
+      showReminder(UnauthorizedReminder())
     } else {
       hideReminders()
     }
