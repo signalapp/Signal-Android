@@ -3381,7 +3381,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     RecipientReader(readableDatabase.query(TABLE_NAME, MENTION_SEARCH_PROJECTION, selection, SqlUtil.buildArgs(query), null, null, SORT_NAME)).use { reader ->
       var recipient: Recipient? = reader.getNext()
       while (recipient != null) {
-        recipients.add(recipient)
+        if (!recipient.isSelf) {
+          recipients.add(recipient)
+        }
         recipient = reader.getNext()
       }
     }
