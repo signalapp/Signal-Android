@@ -1047,6 +1047,7 @@ class ConversationFragment :
       inputReadyState.isActiveGroup == false -> disabledInputView.showAsNoLongerAMember()
       inputReadyState.isRequestingMember == true -> disabledInputView.showAsRequestingMember()
       inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false -> disabledInputView.showAsAnnouncementGroupAdminsOnly()
+      !inputReadyState.conversationRecipient.isGroup && !inputReadyState.conversationRecipient.isRegistered -> disabledInputView.showAsInviteToSignal(requireContext(), inputReadyState.conversationRecipient)
       else -> inputDisabled = false
     }
 
@@ -3485,6 +3486,15 @@ class ConversationFragment :
       }
 
       GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(childFragmentManager, recipient.id)
+    }
+
+    override fun onInviteToSignal(recipient: Recipient) {
+      InviteActions.inviteUserToSignal(
+        context = requireContext(),
+        recipient = recipient,
+        appendInviteToComposer = null,
+        launchIntent = this@ConversationFragment::startActivity
+      )
     }
 
     private fun Single<Result<Unit, GroupChangeFailureReason>>.subscribeWithShowProgress(logMessage: String): Disposable {

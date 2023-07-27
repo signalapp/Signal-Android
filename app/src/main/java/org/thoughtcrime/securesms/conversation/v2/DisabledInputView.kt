@@ -44,6 +44,7 @@ class DisabledInputView @JvmOverloads constructor(
   private var noLongerAMember: View? = null
   private var requestingGroup: View? = null
   private var announcementGroupOnly: TextView? = null
+  private var inviteToSignal: View? = null
 
   private var currentView: View? = null
 
@@ -125,6 +126,20 @@ class DisabledInputView @JvmOverloads constructor(
     )
   }
 
+  fun showAsInviteToSignal(context: Context, recipient: Recipient) {
+    inviteToSignal = show(
+      existingView = inviteToSignal,
+      create = { inflater.inflate(R.layout.conversation_activity_sms_export_stub, this, false) },
+      bind = {
+        findViewById<TextView>(R.id.export_sms_message).text = context.getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here, recipient.getDisplayName(context))
+        findViewById<MaterialButton>(R.id.export_sms_button).apply {
+          setText(R.string.ConversationActivity__invite_to_signal)
+          setOnClickListener { listener?.onInviteToSignal(recipient) }
+        }
+      }
+    )
+  }
+
   fun setWallpaperEnabled(wallpaperEnabled: Boolean) {
     color = ContextCompat.getColor(context, if (wallpaperEnabled) R.color.wallpaper_bubble_color else R.color.signal_colorBackground)
     setBackgroundColor(color)
@@ -193,5 +208,6 @@ class DisabledInputView @JvmOverloads constructor(
     fun onBlockClicked()
     fun onUnblockClicked()
     fun onGroupV1MigrationClicked()
+    fun onInviteToSignal(recipient: Recipient)
   }
 }
