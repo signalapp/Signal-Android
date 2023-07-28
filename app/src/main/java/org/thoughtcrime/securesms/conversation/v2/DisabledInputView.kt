@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * A one-stop-view for all your conversation input disabled needs.
@@ -45,6 +46,7 @@ class DisabledInputView @JvmOverloads constructor(
   private var requestingGroup: View? = null
   private var announcementGroupOnly: TextView? = null
   private var inviteToSignal: View? = null
+  private var releaseNoteChannel: View? = null
 
   private var currentView: View? = null
 
@@ -140,6 +142,21 @@ class DisabledInputView @JvmOverloads constructor(
     )
   }
 
+  fun showAsReleaseNotesChannel(recipient: Recipient) {
+    releaseNoteChannel = show(
+      existingView = releaseNoteChannel,
+      create = { inflater.inflate(R.layout.conversation_activity_unmute, this, false) },
+      bind = {
+        if (recipient.isMuted) {
+          visible = true
+          findViewById<View>(R.id.conversation_activity_unmute_button).setOnClickListener { listener?.onUnmuteReleaseNotesChannel() }
+        } else {
+          visible = false
+        }
+      }
+    )
+  }
+
   fun setWallpaperEnabled(wallpaperEnabled: Boolean) {
     color = ContextCompat.getColor(context, if (wallpaperEnabled) R.color.wallpaper_bubble_color else R.color.signal_colorBackground)
     setBackgroundColor(color)
@@ -209,5 +226,6 @@ class DisabledInputView @JvmOverloads constructor(
     fun onUnblockClicked()
     fun onGroupV1MigrationClicked()
     fun onInviteToSignal(recipient: Recipient)
+    fun onUnmuteReleaseNotesChannel()
   }
 }

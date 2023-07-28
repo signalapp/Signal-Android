@@ -417,7 +417,7 @@ class ConversationViewModel(
 
   fun getRequestReviewState(): Observable<RequestReviewState> {
     return _inputReadyState
-      .flatMapSingle { (recipient, messageRequestState, group) -> repository.getRequestReviewState(recipient, group, messageRequestState) }
+      .flatMapSingle { state -> repository.getRequestReviewState(state.conversationRecipient, state.groupRecord, state.messageRequestState) }
       .distinctUntilChanged()
       .observeOn(AndroidSchedulers.mainThread())
   }

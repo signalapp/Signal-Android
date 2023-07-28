@@ -1047,7 +1047,8 @@ class ConversationFragment :
       inputReadyState.isActiveGroup == false -> disabledInputView.showAsNoLongerAMember()
       inputReadyState.isRequestingMember == true -> disabledInputView.showAsRequestingMember()
       inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false -> disabledInputView.showAsAnnouncementGroupAdminsOnly()
-      !inputReadyState.conversationRecipient.isGroup && !inputReadyState.conversationRecipient.isRegistered -> disabledInputView.showAsInviteToSignal(requireContext(), inputReadyState.conversationRecipient)
+      inputReadyState.conversationRecipient.isReleaseNotes -> disabledInputView.showAsReleaseNotesChannel(inputReadyState.conversationRecipient)
+      inputReadyState.shouldShowInviteToSignal() -> disabledInputView.showAsInviteToSignal(requireContext(), inputReadyState.conversationRecipient)
       else -> inputDisabled = false
     }
 
@@ -3495,6 +3496,10 @@ class ConversationFragment :
         appendInviteToComposer = null,
         launchIntent = this@ConversationFragment::startActivity
       )
+    }
+
+    override fun onUnmuteReleaseNotesChannel() {
+      viewModel.muteConversation(0L)
     }
 
     private fun Single<Result<Unit, GroupChangeFailureReason>>.subscribeWithShowProgress(logMessage: String): Disposable {

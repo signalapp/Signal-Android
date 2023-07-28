@@ -300,7 +300,7 @@
         android:alpha="1"
         android:background="@drawable/compose_divider_background"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/conversation_input_panel"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
         tools:visibility="visible" />
 
     <androidx.fragment.app.FragmentContainerView
