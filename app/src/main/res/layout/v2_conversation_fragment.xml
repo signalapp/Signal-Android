@@ -76,7 +76,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/conversation_banner"
+        app:layout_constraintTop_toBottomOf="@id/conversation_banner_frame"
         tools:text="March 1, 2015"
         tools:visibility="visible" />
 
