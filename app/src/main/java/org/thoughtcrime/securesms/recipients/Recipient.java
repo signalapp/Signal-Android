@@ -49,7 +49,8 @@ import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -86,7 +87,7 @@ public class Recipient {
 
   private final RecipientId                  id;
   private final boolean                      resolving;
-  private final ServiceId                    serviceId;
+  private final ACI                          aci;
   private final PNI                          pni;
   private final String                       username;
   private final String                       e164;
@@ -219,8 +220,8 @@ public class Recipient {
    * Create a recipient with a full (ACI, PNI, E164) tuple. It is assumed that the association between the PNI and serviceId is trusted.
    * That means it must be from either storage service or a PNI verification message.
    */
-  public static @NonNull Recipient trustedPush(@NonNull ServiceId serviceId, @Nullable PNI pni, @Nullable String e164) {
-    if (ServiceId.UNKNOWN.equals(serviceId)) {
+  public static @NonNull Recipient trustedPush(@NonNull ACI aci, @Nullable PNI pni, @Nullable String e164) {
+    if (ACI.UNKNOWN.equals(aci) || PNI.UNKNOWN.equals(pni)) {
       throw new AssertionError("Unknown serviceId!");
     }
 
@@ -229,9 +230,9 @@ public class Recipient {
     RecipientId recipientId;
 
     if (FeatureFlags.phoneNumberPrivacy()) {
-      recipientId = db.getAndPossiblyMergePnpVerified(serviceId, pni, e164);
+      recipientId = db.getAndPossiblyMergePnpVerified(aci, pni, e164);
     } else {
-      recipientId = db.getAndPossiblyMerge(serviceId, e164);
+      recipientId = db.getAndPossiblyMerge(aci, e164);
     }
 
     Recipient resolved = resolved(recipientId);
@@ -242,7 +243,7 @@ public class Recipient {
 
     if (!resolved.isRegistered()) {
       Log.w(TAG, "External push was locally marked unregistered. Marking as registered.");
-      db.markRegistered(recipientId, serviceId);
+      db.markRegistered(recipientId, aci);
     }
 
     return resolved;
@@ -259,7 +260,7 @@ public class Recipient {
    */
   @WorkerThread
   static @NonNull Recipient externalPush(@Nullable ServiceId serviceId, @Nullable String e164) {
-    if (ServiceId.UNKNOWN.equals(serviceId)) {
+    if (ACI.UNKNOWN.equals(serviceId) || PNI.UNKNOWN.equals(serviceId)) {
       throw new AssertionError();
     }
 
@@ -375,7 +376,7 @@ public class Recipient {
   Recipient(@NonNull RecipientId id) {
     this.id                           = id;
     this.resolving                    = true;
-    this.serviceId                    = null;
+    this.aci                          = null;
     this.pni                          = null;
     this.username                     = null;
     this.e164                         = null;
@@ -433,7 +434,7 @@ public class Recipient {
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
     this.id                           = id;
     this.resolving                    = !resolved;
-    this.serviceId                    = details.serviceId;
+    this.aci                          = details.aci;
     this.pni                          = details.pni;
     this.username                     = details.username;
     this.e164                         = details.e164;
@@ -661,7 +662,11 @@ public class Recipient {
   }
 
   public @NonNull Optional<ServiceId> getServiceId() {
-    return Optional.ofNullable(serviceId);
+    return OptionalUtil.or(Optional.ofNullable(aci), Optional.ofNullable(pni));
+  }
+
+  public @NonNull Optional<ACI> getAci() {
+    return Optional.ofNullable(aci);
   }
 
   public @NonNull Optional<PNI> getPni() {
@@ -750,6 +755,14 @@ public class Recipient {
     return getServiceId().isPresent();
   }
 
+  public boolean hasAci() {
+    return getAci().isPresent();
+  }
+
+  public boolean hasPni() {
+    return getPni().isPresent();
+  }
+
   public boolean isServiceIdOnly() {
     return hasServiceId() && !hasSmsAddress();
   }
@@ -786,7 +799,22 @@ public class Recipient {
    * The {@link ServiceId} of the user if available, otherwise throw.
    */
   public @NonNull ServiceId requireServiceId() {
-    ServiceId resolved = resolving ? resolve().serviceId : serviceId;
+    Recipient resolved = resolving ? resolve() : this;
+
+    if (resolved.aci != null) {
+      return resolved.aci;
+    } else if (resolved.pni != null) {
+      return resolved.pni;
+    } else {
+      throw new MissingAddressError(id);
+    }
+  }
+
+  /**
+   * The {@link ACI} of the user if available, otherwise throw.
+   */
+  public @NonNull ACI requireAci() {
+    ACI resolved = resolving ? resolve().aci : aci;
 
     if (resolved == null) {
       throw new MissingAddressError(id);
@@ -1326,7 +1354,7 @@ public class Recipient {
            profileSharing == other.profileSharing &&
            isHidden == other.isHidden &&
            forceSmsSelection == other.forceSmsSelection &&
-           Objects.equals(serviceId, other.serviceId) &&
+           Objects.equals(aci, other.aci) &&
            Objects.equals(username, other.username) &&
            Objects.equals(e164, other.e164) &&
            Objects.equals(email, other.email) &&

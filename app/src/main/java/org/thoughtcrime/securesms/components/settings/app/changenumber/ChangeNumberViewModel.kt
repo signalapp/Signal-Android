@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewMod
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.Objects

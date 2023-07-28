@@ -111,7 +111,7 @@ public final class LiveGroup {
 
                                    return Stream.of(requestingMembersList)
                                                 .map(requestingMember -> {
-                                                  Recipient recipient = Recipient.externalPush(ServiceId.fromByteString(requestingMember.getUuid()));
+                                                  Recipient recipient = Recipient.externalPush(ServiceId.parseOrThrow(requestingMember.getUuid()));
                                                   return new GroupMemberEntry.RequestingMember(recipient, selfAdmin);
                                                 })
                                                 .toList();

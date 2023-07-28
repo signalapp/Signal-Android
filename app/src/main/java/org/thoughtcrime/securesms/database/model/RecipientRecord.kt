@@ -19,8 +19,9 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.Optional
 
 /**
@@ -28,7 +29,7 @@ import java.util.Optional
  */
 data class RecipientRecord(
   val id: RecipientId,
-  val serviceId: ServiceId?,
+  val aci: ACI?,
   val pni: PNI?,
   val username: String?,
   val e164: String?,
@@ -89,20 +90,22 @@ data class RecipientRecord(
   }
 
   fun e164Only(): Boolean {
-    return this.e164 != null && this.serviceId == null
+    return this.e164 != null && this.aci == null
   }
 
-  fun sidOnly(sid: ServiceId): Boolean {
-    return this.e164 == null && this.serviceId == sid && (this.pni == null || this.pni == sid)
+  fun pniOnly(): Boolean {
+    return this.e164 == null && this.aci == null && this.pni != null
   }
 
-  fun sidIsPni(): Boolean {
-    return this.serviceId != null && this.pni != null && this.serviceId == this.pni
+  fun aciOnly(): Boolean {
+    return this.e164 == null && this.pni == null && this.aci != null
   }
 
   fun pniAndAci(): Boolean {
-    return this.serviceId != null && this.pni != null && this.serviceId != this.pni
+    return this.aci != null && this.pni != null
   }
+
+  val serviceId: ServiceId? = this.aci ?: this.pni
 
   /**
    * A bundle of data that's only necessary when syncing to storage service, not for a

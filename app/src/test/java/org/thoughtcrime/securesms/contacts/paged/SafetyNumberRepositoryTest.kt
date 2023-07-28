@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.IdentityUtil
-import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -125,7 +124,7 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_batchOf1_oneChange() {
     val other = recipientPool[1]
-    val otherAci = ACI.from(other.requireServiceId())
+    val otherAci = other.requireAci()
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
@@ -146,7 +145,7 @@ class SafetyNumberRepositoryTest {
   fun batchSafetyNumberCheckSync_batchOf2_oneChange() {
     val other = recipientPool[1]
     val secondOther = recipientPool[2]
-    val otherAci = ACI.from(other.requireServiceId())
+    val otherAci = other.requireAci()
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false), ContactSearchKey.RecipientSearchKey(secondOther.id, false))
 

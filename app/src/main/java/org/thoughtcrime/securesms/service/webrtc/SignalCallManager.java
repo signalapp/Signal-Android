@@ -80,7 +80,7 @@ import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage;
 
@@ -191,7 +191,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     serviceExecutor.execute(() -> {
       if (needsToSetSelfUuid) {
         try {
-          callManager.setSelfUuid(SignalStore.account().requireAci().uuid());
+          callManager.setSelfUuid(SignalStore.account().requireAci().getRawUuid());
           needsToSetSelfUuid = false;
         } catch (CallException e) {
           Log.w(TAG, "Unable to set self UUID on CallManager", e);
@@ -724,14 +724,14 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
-  public void onSendCallMessage(@NonNull UUID uuid, @NonNull byte[] bytes, @NonNull CallManager.CallMessageUrgency urgency) {
+  public void onSendCallMessage(@NonNull UUID aciUuid, @NonNull byte[] bytes, @NonNull CallManager.CallMessageUrgency urgency) {
     Log.i(TAG, "onSendCallMessage():");
 
     OpaqueMessage            opaqueMessage = new OpaqueMessage(bytes, getUrgencyFromCallUrgency(urgency));
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
 
     networkExecutor.execute(() -> {
-      Recipient recipient = Recipient.resolved(RecipientId.from(ServiceId.from(uuid)));
+      Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(aciUuid)));
       if (recipient.isBlocked()) {
         return;
       }
@@ -826,16 +826,17 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID sender, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
+      ACI         senderAci       = ACI.from(sender);
       GroupId.V2  groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
       GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
-      Recipient   senderRecipient = Recipient.externalPush(ServiceId.from(sender));
+      Recipient   senderRecipient = Recipient.externalPush(senderAci);
 
       if (group != null &&
           group.isActive() &&
           !Recipient.resolved(group.getRecipientId()).isBlocked() &&
           (!group.isAnnouncementGroup() || group.isAdmin(senderRecipient)))
       {
-        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, sender, ringUpdate));
+        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, senderAci, ringUpdate));
       } else {
         Log.w(TAG, "Unable to ring unknown/inactive/blocked group.");
       }

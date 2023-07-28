@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Arrays;
 import java.util.LinkedList;

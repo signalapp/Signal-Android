@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.whispersystems.signalservice.api.push.PNI;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -36,7 +36,7 @@ import java.util.Optional;
 
 public class RecipientDetails {
 
-  final ServiceId                    serviceId;
+  final ACI                          aci;
   final PNI                          pni;
   final String                       username;
   final String                       e164;
@@ -108,7 +108,7 @@ public class RecipientDetails {
     this.systemContactPhoto           = Util.uri(record.getSystemContactPhotoUri());
     this.customLabel                  = record.getSystemPhoneLabel();
     this.contactUri                   = Util.uri(record.getSystemContactUri());
-    this.serviceId                    = record.getServiceId();
+    this.aci                          = record.getAci();
     this.pni                          = record.getPni();
     this.username                     = record.getUsername();
     this.e164                         = record.getE164();
@@ -165,7 +165,7 @@ public class RecipientDetails {
     this.systemContactPhoto           = null;
     this.customLabel                  = null;
     this.contactUri                   = null;
-    this.serviceId                    = null;
+    this.aci                          = null;
     this.pni                          = null;
     this.username                     = null;
     this.e164                         = null;
@@ -220,7 +220,7 @@ public class RecipientDetails {
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {
     boolean systemContact    = !settings.getSystemProfileName().isEmpty();
     boolean isSelf           = (settings.getE164() != null && settings.getE164().equals(SignalStore.account().getE164())) ||
-                               (settings.getServiceId() != null && settings.getServiceId().equals(SignalStore.account().getAci()));
+                               (settings.getAci() != null && settings.getAci().equals(SignalStore.account().getAci()));
     boolean isReleaseChannel = settings.getId().equals(SignalStore.releaseChannelValues().getReleaseChannelRecipientId());
 
     RegisteredState registeredState = settings.getRegistered();

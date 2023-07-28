@@ -104,9 +104,9 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -134,7 +134,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val TABLE_NAME = "recipient"
 
     const val ID = "_id"
-    const val SERVICE_ID = "uuid"
+    const val ACI_COLUMN = "aci"
     const val PNI_COLUMN = "pni"
     const val USERNAME = "username"
     const val PHONE = "phone"
@@ -202,7 +202,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        $SERVICE_ID TEXT UNIQUE DEFAULT NULL,
+        $ACI_COLUMN TEXT UNIQUE DEFAULT NULL,
         $USERNAME TEXT UNIQUE DEFAULT NULL,
         $PHONE TEXT UNIQUE DEFAULT NULL,
         $EMAIL TEXT UNIQUE DEFAULT NULL,
@@ -266,12 +266,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON $TABLE_NAME ($GROUP_TYPE);",
       "CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON $TABLE_NAME ($PNI_COLUMN)",
-      "CREATE INDEX IF NOT EXISTS recipient_service_id_profile_key ON $TABLE_NAME ($SERVICE_ID, $PROFILE_KEY) WHERE $SERVICE_ID NOT NULL AND $PROFILE_KEY NOT NULL"
+      "CREATE INDEX IF NOT EXISTS recipient_service_id_profile_key ON $TABLE_NAME ($ACI_COLUMN, $PROFILE_KEY) WHERE $ACI_COLUMN NOT NULL AND $PROFILE_KEY NOT NULL"
     )
 
     private val RECIPIENT_PROJECTION: Array<String> = arrayOf(
       ID,
-      SERVICE_ID,
+      ACI_COLUMN,
       PNI_COLUMN,
       USERNAME,
       PHONE,
@@ -424,17 +424,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun getByServiceId(serviceId: ServiceId): Optional<RecipientId> {
-    return getByColumn(SERVICE_ID, serviceId.toString())
+    return when (serviceId) {
+      is ACI -> getByAci(serviceId)
+      is PNI -> getByPni(serviceId)
+    }
   }
 
-  fun getByCallLinkRoomId(callLinkRoomId: CallLinkRoomId): Optional<RecipientId> {
-    return getByColumn(CALL_LINK_ROOM_ID, callLinkRoomId.serialize())
+  fun getByAci(aci: ACI): Optional<RecipientId> {
+    return getByColumn(ACI_COLUMN, aci.toString())
   }
 
-  /**
-   * Will return a recipient matching the PNI, but only in the explicit [PNI_COLUMN]. This should only be checked in conjunction with [getByServiceId] as a way
-   * to avoid creating a recipient we already merged.
-   */
   fun getByPni(pni: PNI): Optional<RecipientId> {
     return getByColumn(PNI_COLUMN, pni.toString())
   }
@@ -443,35 +442,39 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return getByColumn(USERNAME, username)
   }
 
+  fun getByCallLinkRoomId(callLinkRoomId: CallLinkRoomId): Optional<RecipientId> {
+    return getByColumn(CALL_LINK_ROOM_ID, callLinkRoomId.serialize())
+  }
+
   fun isAssociated(serviceId: ServiceId, pni: PNI): Boolean {
-    return readableDatabase.exists(TABLE_NAME).where("$SERVICE_ID = ? AND $PNI_COLUMN = ?", serviceId.toString(), pni.toString()).run()
+    return readableDatabase.exists(TABLE_NAME).where("$ACI_COLUMN = ? AND $PNI_COLUMN = ?", serviceId.toString(), pni.toString()).run()
   }
 
   @JvmOverloads
   fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
-    require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
-    return getAndPossiblyMerge(serviceId = serviceId, pni = null, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+    require(serviceId != null || e164 != null) { "Must provide an ACI or E164!" }
+    return when (serviceId) {
+      is ACI -> getAndPossiblyMerge(aci = serviceId, pni = null, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+      is PNI -> getAndPossiblyMerge(aci = null, pni = serviceId, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+      else -> getAndPossiblyMerge(aci = null, pni = null, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+    }
   }
 
   /**
    * Gets and merges a (serviceId, pni, e164) tuple, doing merges/updates as needed, and giving you back the final RecipientId.
    * It is assumed that the tuple is verified. Do not give this method an untrusted association.
    */
-  fun getAndPossiblyMergePnpVerified(serviceId: ServiceId?, pni: PNI?, e164: String?): RecipientId {
+  fun getAndPossiblyMergePnpVerified(aci: ACI?, pni: PNI?, e164: String?): RecipientId {
     if (!FeatureFlags.phoneNumberPrivacy()) {
       throw AssertionError()
     }
 
-    return getAndPossiblyMerge(serviceId = serviceId, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
+    return getAndPossiblyMerge(aci = aci, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
   }
 
   @VisibleForTesting
-  fun getAndPossiblyMerge(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
-    require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
-
-    if ((serviceId is PNI) && pni != null && serviceId != pni) {
-      throw AssertionError("Provided two non-matching PNIs! serviceId: $serviceId, pni: $pni")
-    }
+  fun getAndPossiblyMerge(aci: ACI?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
+    require(aci != null || e164 != null) { "Must provide an ACI or E164!" }
 
     val db = writableDatabase
     var transactionSuccessful = false
@@ -479,18 +482,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     db.beginTransaction()
     try {
-      result = when {
-        serviceId is ACI -> processPnpTuple(e164 = e164, pni = pni, aci = serviceId, pniVerified = pniVerified, changeSelf = changeSelf)
-        serviceId is PNI -> processPnpTuple(e164 = e164, pni = serviceId, aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
-        serviceId == null -> processPnpTuple(e164 = e164, pni = pni, aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
-        serviceId == pni -> processPnpTuple(e164 = e164, pni = pni, aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
-        pni != null -> processPnpTuple(e164 = e164, pni = pni, aci = ACI.from(serviceId.uuid()), pniVerified = pniVerified, changeSelf = changeSelf)
-        getByPni(PNI.from(serviceId.uuid())).isPresent -> processPnpTuple(e164 = e164, pni = PNI.from(serviceId.uuid()), aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
-        else -> processPnpTuple(e164 = e164, pni = pni, aci = ACI.fromNullable(serviceId), pniVerified = pniVerified, changeSelf = changeSelf)
-      }
+      result = processPnpTuple(e164 = e164, pni = pni, aci = aci, pniVerified = pniVerified, changeSelf = changeSelf)
 
       if (result.operations.isNotEmpty() || result.requiredInsert) {
-        Log.i(TAG, "[getAndPossiblyMerge] ($serviceId, $pni, $e164) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}, RequiredInsert: ${result.requiredInsert}, FinalId: ${result.finalId}")
+        Log.i(TAG, "[getAndPossiblyMerge] ($aci, $pni, $e164) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}, RequiredInsert: ${result.requiredInsert}, FinalId: ${result.finalId}")
       }
 
       db.setTransactionSuccessful()
@@ -525,17 +520,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val serviceIdToProfileKey: MutableMap<ServiceId, ProfileKey> = mutableMapOf()
 
     readableDatabase
-      .select(SERVICE_ID, PROFILE_KEY)
+      .select(ACI_COLUMN, PROFILE_KEY)
       .from(TABLE_NAME)
-      .where("$SERVICE_ID NOT NULL AND $PROFILE_KEY NOT NULL")
+      .where("$ACI_COLUMN NOT NULL AND $PROFILE_KEY NOT NULL")
       .run()
       .use { cursor ->
         while (cursor.moveToNext()) {
-          val serviceId: ServiceId? = ServiceId.parseOrNull(cursor.requireString(SERVICE_ID))
+          val aci: ACI? = ACI.parseOrNull(cursor.requireString(ACI_COLUMN))
           val profileKey: ProfileKey? = ProfileKeyUtil.profileKeyOrNull(cursor.requireString(PROFILE_KEY))
 
-          if (serviceId != null && profileKey != null) {
-            serviceIdToProfileKey[serviceId] = profileKey
+          if (aci != null && profileKey != null) {
+            serviceIdToProfileKey[aci] = profileKey
           }
         }
       }
@@ -827,19 +822,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
       if (FeatureFlags.phoneNumberPrivacy()) {
-        recipientId = getAndPossiblyMergePnpVerified(if (insert.serviceId.isValid) insert.serviceId else null, insert.pni.orElse(null), insert.number.orElse(null))
+        recipientId = getAndPossiblyMergePnpVerified(if (insert.aci.isValid) insert.aci else null, insert.pni.orElse(null), insert.number.orElse(null))
       } else {
-        recipientId = getAndPossiblyMerge(if (insert.serviceId.isValid) insert.serviceId else null, insert.number.orElse(null))
+        recipientId = getAndPossiblyMerge(if (insert.aci.isValid) insert.aci else null, insert.number.orElse(null))
       }
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
     }
 
-    if (insert.identityKey.isPresent && insert.serviceId.isValid) {
+    if (insert.identityKey.isPresent && insert.aci.isValid) {
       try {
         val identityKey = IdentityKey(insert.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(insert.serviceId.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
+        identities.updateIdentityAfterSync(insert.aci.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
       } catch (e: InvalidKeyException) {
         Log.w(TAG, "Failed to process identity key during insert! Skipping.", e)
       }
@@ -868,9 +863,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
       if (FeatureFlags.phoneNumberPrivacy()) {
-        recipientId = getAndPossiblyMergePnpVerified(if (update.new.serviceId.isValid) update.new.serviceId else null, update.new.pni.orElse(null), update.new.number.orElse(null))
+        recipientId = getAndPossiblyMergePnpVerified(if (update.new.aci.isValid) update.new.aci else null, update.new.pni.orElse(null), update.new.number.orElse(null))
       } else {
-        recipientId = getAndPossiblyMerge(if (update.new.serviceId.isValid) update.new.serviceId else null, update.new.number.orElse(null))
+        recipientId = getAndPossiblyMerge(if (update.new.aci.isValid) update.new.aci else null, update.new.number.orElse(null))
       }
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
@@ -887,9 +882,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     try {
       val oldIdentityRecord = identityStore.getIdentityRecord(recipientId)
-      if (update.new.identityKey.isPresent && update.new.serviceId.isValid) {
+      if (update.new.identityKey.isPresent && update.new.aci.isValid) {
         val identityKey = IdentityKey(update.new.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(update.new.serviceId.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.identityState))
+        identities.updateIdentityAfterSync(update.new.aci.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.identityState))
       }
 
       val newIdentityRecord = identityStore.getIdentityRecord(recipientId)
@@ -1108,7 +1103,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   private fun getRecordForSync(query: String?, args: Array<String>?): List<RecipientRecord> {
     val table =
       """
-      $TABLE_NAME LEFT OUTER JOIN ${IdentityTable.TABLE_NAME} ON $TABLE_NAME.$SERVICE_ID = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS} 
+      $TABLE_NAME LEFT OUTER JOIN ${IdentityTable.TABLE_NAME} ON $TABLE_NAME.$ACI_COLUMN = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS} 
                   LEFT OUTER JOIN ${GroupTable.TABLE_NAME} ON $TABLE_NAME.$GROUP_ID = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} 
                   LEFT OUTER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
       """
@@ -1152,7 +1147,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where(
         """
         $STORAGE_SERVICE_ID NOT NULL AND (
-            ($GROUP_TYPE = ? AND $SERVICE_ID NOT NULL AND $ID != ?)
+            ($GROUP_TYPE = ? AND $ACI_COLUMN NOT NULL AND $ID != ?)
             OR
             $GROUP_TYPE = ?
             OR
@@ -2004,7 +1999,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       Log.w(TAG, "[setPhoneNumber] Hit a conflict when trying to update $id. Possibly merging.")
 
       val existing: RecipientRecord = getRecord(id)
-      val newId = getAndPossiblyMerge(existing.serviceId, e164)
+      val newId = getAndPossiblyMerge(existing.aci, e164)
       Log.w(TAG, "[setPhoneNumber] Resulting id: $newId")
 
       db.setTransactionSuccessful()
@@ -2054,7 +2049,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Associates the provided IDs together. The assumption here is that all of the IDs correspond to the local user and have been verified.
    */
   fun linkIdsForSelf(aci: ACI, pni: PNI, e164: String) {
-    val id: RecipientId = getAndPossiblyMerge(serviceId = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
+    val id: RecipientId = getAndPossiblyMerge(aci = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
     updatePendingSelfData(id)
   }
 
@@ -2067,7 +2062,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     db.beginTransaction()
     try {
       val id = Recipient.self().id
-      val newId = getAndPossiblyMerge(serviceId = SignalStore.account().requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
+      val newId = getAndPossiblyMerge(aci = SignalStore.account().requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
 
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
@@ -2170,8 +2165,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   fun setPni(id: RecipientId, pni: PNI) {
     writableDatabase
       .update(TABLE_NAME)
-      .values(SERVICE_ID to pni.toString())
-      .where("$ID = ? AND ($SERVICE_ID IS NULL OR $SERVICE_ID = $PNI_COLUMN)", id)
+      .values(ACI_COLUMN to pni.toString())
+      .where("$ID = ? AND ($ACI_COLUMN IS NULL OR $ACI_COLUMN = $PNI_COLUMN)", id)
       .run()
 
     writableDatabase
@@ -2212,7 +2207,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   fun markRegisteredOrThrow(id: RecipientId, serviceId: ServiceId) {
     val contentValues = contentValuesOf(
       REGISTERED to RegisteredState.REGISTERED.id,
-      SERVICE_ID to serviceId.toString().lowercase(),
+      ACI_COLUMN to serviceId.toString().lowercase(),
       UNREGISTERED_TIMESTAMP to 0
     )
     if (update(id, contentValues)) {
@@ -2226,7 +2221,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (FeatureFlags.phoneNumberPrivacy()) {
       val record = getRecord(id)
 
-      if (record.pni != null && record.serviceId != record.pni) {
+      if (record.aci != null && record.pni != null) {
         markUnregisteredAndSplit(id, record)
       } else {
         markUnregisteredWithoutSplit(id)
@@ -2241,7 +2236,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * This is to allow a new user to register the number with a new ACI.
    */
   private fun markUnregisteredAndSplit(id: RecipientId, record: RecipientRecord) {
-    check(record.pni != null && record.pni != record.serviceId)
+    check(record.aci != null && record.pni != null)
 
     val contentValues = contentValuesOf(
       REGISTERED to RegisteredState.NOT_REGISTERED.id,
@@ -2256,7 +2251,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
 
-    val splitId = getAndPossiblyMerge(record.pni, record.pni, record.e164)
+    val splitId = getAndPossiblyMerge(null, record.pni, record.e164)
     Log.i(TAG, "Split off new recipient as $splitId (ACI-only recipient is $id)")
   }
 
@@ -2284,7 +2279,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     check(FeatureFlags.phoneNumberPrivacy())
 
     val record = getByStorageId(storageId)!!
-    check(record.serviceId != null && record.pni != null && record.serviceId != record.pni)
+    check(record.aci != null && record.pni != null)
 
     writableDatabase
       .update(TABLE_NAME)
@@ -2295,7 +2290,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where("$ID = ?", record.id)
       .run()
 
-    getAndPossiblyMerge(record.pni, record.pni, record.e164)
+    getAndPossiblyMerge(null, record.pni, record.e164)
   }
 
   fun bulkUpdatedRegisteredStatus(registered: Map<RecipientId, ServiceId?>, unregistered: Collection<RecipientId>) {
@@ -2308,7 +2303,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           put(REGISTERED, RegisteredState.REGISTERED.id)
           put(UNREGISTERED_TIMESTAMP, 0)
           if (serviceId != null) {
-            put(SERVICE_ID, serviceId.toString().lowercase())
+            put(ACI_COLUMN, serviceId.toString().lowercase())
           }
         }
 
@@ -2344,12 +2339,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     db.beginTransaction()
     try {
       for ((e164, aci) in mapping) {
-        var aciEntry = if (aci != null) getByServiceId(aci) else Optional.empty()
+        var aciEntry = if (aci != null) getByAci(aci) else Optional.empty()
 
         if (aciEntry.isPresent) {
           val idChanged = setPhoneNumber(aciEntry.get(), e164)
           if (idChanged) {
-            aciEntry = getByServiceId(aci!!)
+            aciEntry = getByAci(aci!!)
           }
         }
 
@@ -2380,7 +2375,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     db.beginTransaction()
     try {
       for ((e164, result) in mapping) {
-        ids += getAndPossiblyMerge(serviceId = result.aci, pni = result.pni, e164 = e164, pniVerified = false, changeSelf = false)
+        ids += getAndPossiblyMerge(aci = result.aci, pni = result.pni, e164 = e164, pniVerified = false, changeSelf = false)
       }
 
       db.setTransactionSuccessful()
@@ -2494,12 +2489,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         is PnpOperation.RemovePni -> {
           writableDatabase
             .update(TABLE_NAME)
-            .values(SERVICE_ID to null)
-            .where("$ID = ? AND $SERVICE_ID NOT NULL AND $SERVICE_ID = $PNI_COLUMN", operation.recipientId)
-            .run()
-
-          writableDatabase
-            .update(TABLE_NAME)
             .values(PNI_COLUMN to null)
             .where("$ID = ?", operation.recipientId)
             .run()
@@ -2508,7 +2497,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           writableDatabase
             .update(TABLE_NAME)
             .values(
-              SERVICE_ID to operation.aci.toString(),
+              ACI_COLUMN to operation.aci.toString(),
               REGISTERED to RegisteredState.REGISTERED.id,
               UNREGISTERED_TIMESTAMP to 0
             )
@@ -2525,8 +2514,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         is PnpOperation.SetPni -> {
           writableDatabase
             .update(TABLE_NAME)
-            .values(SERVICE_ID to operation.pni.toString())
-            .where("$ID = ? AND ($SERVICE_ID IS NULL OR $SERVICE_ID = $PNI_COLUMN)", operation.recipientId)
+            .values(ACI_COLUMN to operation.pni.toString())
+            .where("$ID = ? AND ($ACI_COLUMN IS NULL OR $ACI_COLUMN = $PNI_COLUMN)", operation.recipientId)
             .run()
 
           writableDatabase
@@ -2596,9 +2585,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       pni = pni,
       aci = aci,
       byE164 = e164?.let { getByE164(it).orElse(null) },
-      byPniSid = pni?.let { getByServiceId(it).orElse(null) },
-      byPniOnly = pni?.let { getByPni(it).orElse(null) },
-      byAciSid = aci?.let { getByServiceId(it).orElse(null) }
+      byPni = pni?.let { getByPni(it).orElse(null) },
+      byAci = aci?.let { getByAci(it).orElse(null) }
     )
 
     val allRequiredDbFields: MutableList<RecipientId?> = mutableListOf()
@@ -2606,13 +2594,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       allRequiredDbFields += partialData.byE164
     }
     if (aci != null) {
-      allRequiredDbFields += partialData.byAciSid
+      allRequiredDbFields += partialData.byAci
     }
     if (pni != null) {
-      allRequiredDbFields += partialData.byPniOnly
-    }
-    if (pni != null && aci == null) {
-      allRequiredDbFields += partialData.byPniSid
+      allRequiredDbFields += partialData.byPni
     }
 
     val allRequiredDbFieldPopulated: Boolean = allRequiredDbFields.all { it != null }
@@ -2630,7 +2615,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     // Nothing matches
-    if (partialData.byE164 == null && partialData.byPniSid == null && partialData.byAciSid == null) {
+    if (partialData.byE164 == null && partialData.byPni == null && partialData.byAci == null) {
       breadCrumbs += "NothingMatches"
       return PnpChangeSet(
         id = PnpIdResolver.PnpInsert(
@@ -2642,8 +2627,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    // TODO pni only record?
-
     // At this point, we know that records have been found for at least two of the fields,
     // and that there are at least two unique IDs among the records.
     //
@@ -2653,40 +2636,40 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     breadCrumbs += "NeedsMerge"
 
-    val fullData = partialData.copy(
+    val preMergeData = partialData.copy(
       e164Record = partialData.byE164?.let { getRecord(it) },
-      pniSidRecord = partialData.byPniSid?.let { getRecord(it) },
-      aciSidRecord = partialData.byAciSid?.let { getRecord(it) }
+      pniRecord = partialData.byPni?.let { getRecord(it) },
+      aciRecord = partialData.byAci?.let { getRecord(it) }
     )
 
-    check(fullData.commonId == null)
-    check(listOfNotNull(fullData.byE164, fullData.byPniSid, fullData.byPniOnly, fullData.byAciSid).size >= 2)
+    check(preMergeData.commonId == null)
+    check(listOfNotNull(preMergeData.byE164, preMergeData.byPni, preMergeData.byAci).size >= 2)
 
     val operations: LinkedHashSet<PnpOperation> = linkedSetOf()
 
-    operations += processPossibleE164PniSidMerge(pni, pniVerified, fullData, breadCrumbs)
-    operations += processPossiblePniSidAciSidMerge(e164, pni, aci, fullData.perform(operations), changeSelf, breadCrumbs)
-    operations += processPossibleE164AciSidMerge(e164, pni, aci, fullData.perform(operations), changeSelf, breadCrumbs)
+    operations += processPossibleE164PniMerge(preMergeData, pniVerified, changeSelf, breadCrumbs)
+    operations += processPossiblePniAciMerge(preMergeData.perform(operations), pniVerified, changeSelf, breadCrumbs)
+    operations += processPossibleE164AciMerge(preMergeData.perform(operations), pniVerified, changeSelf, breadCrumbs)
 
-    val finalData: PnpDataSet = fullData.perform(operations)
-    val primaryId: RecipientId = listOfNotNull(finalData.byAciSid, finalData.byE164, finalData.byPniSid).first()
+    val postMergeData: PnpDataSet = preMergeData.perform(operations)
+    val primaryId: RecipientId = listOfNotNull(postMergeData.byAci, postMergeData.byE164, postMergeData.byPni).first()
 
-    if (finalData.byAciSid == null && aci != null) {
+    if (postMergeData.byAci == null && aci != null) {
       breadCrumbs += "FinalUpdateAci"
       operations += PnpOperation.SetAci(
         recipientId = primaryId,
         aci = aci
       )
 
-      if (!pniVerified && finalData.pni != null && sessions.hasAnySessionFor(finalData.pni.toString())) {
+      if (!pniVerified && postMergeData.pni != null && sessions.hasAnySessionFor(postMergeData.pni.toString())) {
         operations += PnpOperation.SessionSwitchoverInsert(
           recipientId = primaryId,
-          e164 = finalData.e164
+          e164 = postMergeData.e164
         )
       }
     }
 
-    if (finalData.byE164 == null && e164 != null && (changeSelf || notSelf(e164, pni, aci))) {
+    if (postMergeData.byE164 == null && e164 != null && (changeSelf || notSelf(e164, pni, aci))) {
       breadCrumbs += "FinalUpdateE164"
       operations += PnpOperation.SetE164(
         recipientId = primaryId,
@@ -2694,7 +2677,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    if (finalData.byPniSid == null && finalData.byPniOnly == null && pni != null) {
+    if (postMergeData.byPni == null && pni != null) {
       breadCrumbs += "FinalUpdatePni"
       operations += PnpOperation.SetPni(
         recipientId = primaryId,
@@ -2702,12 +2685,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    if (!pniVerified && fullData.pniSidRecord != null && finalData.aciSidRecord != null && sessions.hasAnySessionFor(fullData.pniSidRecord.serviceId.toString())) {
+    val preSseOperationCount = operations.size
+
+    operations += sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.e164Record, postMergeData.e164Record)
+    operations += sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.pniRecord, postMergeData.pniRecord)
+    operations += sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.aciRecord, postMergeData.aciRecord)
+
+    if (operations.size > preSseOperationCount) {
       breadCrumbs += "FinalUpdateSSE"
-      operations += PnpOperation.SessionSwitchoverInsert(
-        recipientId = primaryId,
-        e164 = finalData.e164
-      )
     }
 
     return PnpChangeSet(
@@ -2717,10 +2702,49 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     )
   }
 
+  /**
+   * A session switchover event indicates a situation where we start communicating with a different session that we were before.
+   * If a switchover is "verified" (i.e. proven safe cryptographically by the sender), then this doesn't require a user-visible event.
+   * But if it's not verified and we're switching from one established session to another, the user needs to be aware.
+   */
+  private fun needsSessionSwitchoverEvent(pniVerified: Boolean, oldServiceId: ServiceId?, newServiceId: ServiceId?): Boolean {
+    return !pniVerified &&
+      oldServiceId != null &&
+      newServiceId != null &&
+      oldServiceId != newServiceId &&
+      sessions.hasAnySessionFor(oldServiceId.toString()) &&
+      identities.getIdentityStoreRecord(oldServiceId)?.identityKey != identities.getIdentityStoreRecord(newServiceId)?.identityKey
+  }
+
+  /**
+   * For details on SSE's, see [needsSessionSwitchoverEvent]. This method is just a helper around comparing service ID's from two
+   * records and turning it into a possible event.
+   */
+  private fun sessionSwitchoverEventIfNeeded(pniVerified: Boolean, oldRecord: RecipientRecord?, newRecord: RecipientRecord?): List<PnpOperation> {
+    return if (oldRecord != null && newRecord != null && needsSessionSwitchoverEvent(pniVerified, oldRecord.serviceId, newRecord.serviceId)) {
+      listOf(
+        PnpOperation.SessionSwitchoverInsert(
+          recipientId = newRecord.id,
+          e164 = newRecord.e164
+        )
+      )
+    } else {
+      emptyList()
+    }
+  }
+
+  private fun notSelf(data: PnpDataSet): Boolean {
+    return notSelf(data.e164, data.pni, data.aci)
+  }
+
   private fun notSelf(e164: String?, pni: PNI?, aci: ACI?): Boolean {
     return (e164 == null || e164 != SignalStore.account().e164) &&
       (pni == null || pni != SignalStore.account().pni) &&
       (aci == null || aci != SignalStore.account().aci)
+  }
+
+  private fun isSelf(data: PnpDataSet): Boolean {
+    return isSelf(data.e164, data.pni, data.aci)
   }
 
   private fun isSelf(e164: String?, pni: PNI?, aci: ACI?): Boolean {
@@ -2735,7 +2759,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val operations: LinkedHashSet<PnpOperation> = linkedSetOf()
 
     // This is a special case. The ACI passed in doesn't match the common record. We can't change ACIs, so we need to make a new record.
-    if (aci != null && aci != record.serviceId && record.serviceId != null && !record.sidIsPni()) {
+    if (aci != null && aci != record.aci && record.aci != null) {
       breadCrumbs += "AciDoesNotMatchCommonRecord"
 
       if (record.e164 == e164 && (changeSelf || notSelf(e164, pni, aci))) {
@@ -2773,7 +2797,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    if (aci != null && record.serviceId != aci) {
+    if (aci != null && record.aci != aci) {
       operations += PnpOperation.SetAci(
         recipientId = commonId,
         aci = aci
@@ -2788,9 +2812,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    val newServiceId: ServiceId? = aci ?: pni ?: record.serviceId
+    val oldServiceId: ServiceId? = record.aci ?: record.pni
+    val newServiceId: ServiceId? = aci ?: pni ?: oldServiceId
 
-    if (!pniVerified && record.serviceId != null && record.serviceId != newServiceId && sessions.hasAnySessionFor(record.serviceId.toString())) {
+    if (!pniVerified && newServiceId != oldServiceId && oldServiceId != null && sessions.hasAnySessionFor(oldServiceId.toString())) {
       operations += PnpOperation.SessionSwitchoverInsert(recipientId = commonId, e164 = record.e164 ?: e164)
     }
 
@@ -2801,133 +2826,180 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     )
   }
 
-  private fun processPossibleE164PniSidMerge(pni: PNI?, pniVerified: Boolean, data: PnpDataSet, breadCrumbs: MutableList<String>): LinkedHashSet<PnpOperation> {
-    if (pni == null || data.byE164 == null || data.byPniSid == null || data.e164Record == null || data.pniSidRecord == null || data.e164Record.id == data.pniSidRecord.id) {
+  /**
+   * Resolves any possible E164-PNI conflicts/merges. In these situations, the E164-based row is more dominant
+   * and can "steal" data from PNI-based rows, or merge PNI-based rows into itself.
+   *
+   * We do have to be careful when merging/stealing data to leave possible ACI's that could be on the PNI
+   * row alone: remember, ACI's are forever-bound to a given RecipientId.
+   */
+  private fun processPossibleE164PniMerge(data: PnpDataSet, pniVerified: Boolean, changeSelf: Boolean, breadCrumbs: MutableList<String>): LinkedHashSet<PnpOperation> {
+    // Filter to ensure that we're only looking at situations where a PNI and E164 record both exist but do not match
+    if (data.pni == null || data.byPni == null || data.pniRecord == null || data.e164 == null || data.byE164 == null || data.e164Record == null || data.e164Record.id == data.pniRecord.id) {
       return linkedSetOf()
     }
 
     // We have found records for both the E164 and PNI, and they're different
-    breadCrumbs += "E164PniSidMerge"
+    breadCrumbs += "E164PniMerge"
+
+    if (!changeSelf && isSelf(data)) {
+      breadCrumbs += "ChangeSelfPreventsE164PniMerge"
+      return linkedSetOf()
+    }
 
     val operations: LinkedHashSet<PnpOperation> = linkedSetOf()
 
-    // The PNI record only has a single identifier. We know we must merge.
-    if (data.pniSidRecord.sidOnly(pni)) {
+    if (data.pniRecord.pniOnly()) {
+      // The PNI record only has a single identifier. We know we must merge.
       breadCrumbs += "PniOnly"
 
       if (data.e164Record.pni != null) {
+        // The e164 record we're merging into has a PNI already. This means that we've entered an 'unstable PNI mapping' scenario.
+        // This isn't expected, but we need to handle it gracefully and merge the two rows together.
         operations += PnpOperation.RemovePni(data.byE164)
+
+        if (needsSessionSwitchoverEvent(pniVerified, data.e164Record.pni, data.pni)) {
+          breadCrumbs += "E164IdentityMismatchesPniIdentity"
+          operations += PnpOperation.SessionSwitchoverInsert(data.byE164, data.e164)
+        }
       }
 
       operations += PnpOperation.Merge(
         primaryId = data.byE164,
-        secondaryId = data.byPniSid
+        secondaryId = data.byPni
       )
-
-      // TODO: Possible session switchover?
     } else {
-      check(!data.pniSidRecord.pniAndAci() && data.pniSidRecord.e164 != null)
+      // The record we're taking data from also has either an ACI or e164, so we need to leave that data behind
 
-      breadCrumbs += "PniSidRecordHasE164"
-
-      operations += PnpOperation.RemovePni(data.byPniSid)
-      operations += PnpOperation.SetPni(
-        recipientId = data.byE164,
-        pni = pni
-      )
-
-      if (!pniVerified && sessions.hasAnySessionFor(data.pniSidRecord.serviceId.toString())) {
-        operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byPniSid, e164 = data.pniSidRecord.e164)
-
-        if (data.e164Record.serviceId == null || data.e164Record.sidIsPni()) {
-          operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byE164, e164 = data.e164Record.e164)
-        }
+      breadCrumbs += if (data.pniRecord.aci != null && data.pniRecord.e164 != null) {
+        "PniRecordHasE164AndAci"
+      } else if (data.pniRecord.aci != null) {
+        "PniRecordHasAci"
+      } else {
+        "PniRecordHasE164"
       }
 
-      if (!pniVerified && data.e164Record.serviceId != null && data.e164Record.sidIsPni() && sessions.hasAnySessionFor(data.e164Record.serviceId.toString())) {
-        operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byE164, e164 = data.e164)
+      // Move the PNI from the PNI record to the e164 record
+      operations += PnpOperation.RemovePni(data.byPni)
+      operations += PnpOperation.SetPni(
+        recipientId = data.byE164,
+        pni = data.pni
+      )
+
+      // By migrating the PNI to the e164 record, we may cause an SSE
+      if (needsSessionSwitchoverEvent(pniVerified, data.e164Record.serviceId, data.e164Record.aci ?: data.pni)) {
+        operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byE164, e164 = data.e164Record.e164)
+      }
+
+      // This is a defensive move where we put an SSE in the session we stole the PNI from and where we're moving it to in order
+      // to avoid a multi-step PNI swap. You could imagine that we might remove the PNI in this function call, but then add one back
+      // in the next function call, and each step on it's own would think that no SSE is necessary. Given that this scenario only
+      // happens with an unstable PNI-E164 mapping, we get out ahead of it by putting an SSE in both preemptively.
+      if (!pniVerified && data.pniRecord.aci == null && sessions.hasAnySessionFor(data.pni.toString())) {
+        operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byPni, e164 = data.pniRecord.e164)
+
+        if (data.e164Record.aci == null) {
+          operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byE164, e164 = data.e164Record.e164)
+        }
       }
     }
 
     return operations
   }
 
-  private fun processPossiblePniSidAciSidMerge(e164: String?, pni: PNI?, aci: ACI?, data: PnpDataSet, changeSelf: Boolean, breadCrumbs: MutableList<String>): LinkedHashSet<PnpOperation> {
-    if (pni == null || aci == null || data.byPniSid == null || data.byAciSid == null || data.pniSidRecord == null || data.aciSidRecord == null || data.pniSidRecord.id == data.aciSidRecord.id) {
-      return linkedSetOf()
-    }
-
-    if (!changeSelf && isSelf(e164, pni, aci)) {
-      breadCrumbs += "ChangeSelfPreventsPniSidAciSidMerge"
+  /**
+   * Resolves any possible PNI-ACI conflicts/merges. In these situations, the ACI-based row is more dominant
+   * and can "steal" data from PNI-based rows, or merge PNI-based rows into itself.
+   */
+  private fun processPossiblePniAciMerge(data: PnpDataSet, pniVerified: Boolean, changeSelf: Boolean, breadCrumbs: MutableList<String>): LinkedHashSet<PnpOperation> {
+    // Filter to ensure that we're only looking at situations where a PNI and ACI record both exist but do not match
+    if (data.pni == null || data.byPni == null || data.pniRecord == null || data.aci == null || data.byAci == null || data.aciRecord == null || data.pniRecord.id == data.aciRecord.id) {
       return linkedSetOf()
     }
 
     // We have found records for both the PNI and ACI, and they're different
-    breadCrumbs += "PniSidAciSidMerge"
+    breadCrumbs += "PniAciMerge"
+
+    if (!changeSelf && isSelf(data)) {
+      breadCrumbs += "ChangeSelfPreventsPniAciMerge"
+      return linkedSetOf()
+    }
 
     val operations: LinkedHashSet<PnpOperation> = linkedSetOf()
 
     // The PNI record only has a single identifier. We know we must merge.
-    if (data.pniSidRecord.sidOnly(pni)) {
+    if (data.pniRecord.pniOnly()) {
       breadCrumbs += "PniOnly"
 
-      if (data.aciSidRecord.pni != null) {
-        operations += PnpOperation.RemovePni(data.byAciSid)
+      if (data.aciRecord.pni != null) {
+        operations += PnpOperation.RemovePni(data.byAci)
       }
 
       operations += PnpOperation.Merge(
-        primaryId = data.byAciSid,
-        secondaryId = data.byPniSid
+        primaryId = data.byAci,
+        secondaryId = data.byPni
       )
-    } else if (data.pniSidRecord.e164 == e164) {
-      // The PNI record also has the E164 on it. We're going to be stealing both fields,
+    } else if (data.pniRecord.aci == null && data.pniRecord.e164 == data.e164) {
+      // The PNI record also has the E164 on it with no ACI. We're going to be stealing all of it's fields,
       // so this is basically a merge with a little bit of extra prep.
-      breadCrumbs += "PniSidRecordHasMatchingE164"
+      breadCrumbs += "PniRecordHasMatchingE164AndNoAci"
 
-      if (data.aciSidRecord.pni != null) {
-        operations += PnpOperation.RemovePni(data.byAciSid)
+      if (data.aciRecord.pni != null) {
+        operations += PnpOperation.RemovePni(data.byAci)
       }
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
-        operations += PnpOperation.RemoveE164(data.byAciSid)
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164) {
+        operations += PnpOperation.RemoveE164(data.byAci)
+
+        // This also becomes a change number event
+        if (notSelf(data) && !data.aciRecord.isBlocked) {
+          operations += PnpOperation.ChangeNumberInsert(
+            recipientId = data.byAci,
+            oldE164 = data.aciRecord.e164,
+            newE164 = data.e164!!
+          )
+        }
       }
 
       operations += PnpOperation.Merge(
-        primaryId = data.byAciSid,
-        secondaryId = data.byPniSid
+        primaryId = data.byAci,
+        secondaryId = data.byPni
+      )
+    } else {
+      // The PNI record either has an ACI or a non-matching e164, meaning we need to steal what we need and leave the rest behind
+
+      breadCrumbs += if (data.pniRecord.aci != null && data.pniRecord.e164 != data.e164) {
+        "PniRecordHasAciAndNonMatchingE164"
+      } else if (data.pniRecord.aci != null) {
+        "PniRecordHasAci"
+      } else {
+        "PniRecordHasNonMatchingE164"
+      }
+
+      operations += PnpOperation.RemovePni(data.byPni)
+
+      operations += PnpOperation.SetPni(
+        recipientId = data.byAci,
+        pni = data.pni
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
-        operations += PnpOperation.ChangeNumberInsert(
-          recipientId = data.byAciSid,
-          oldE164 = data.aciSidRecord.e164,
-          newE164 = e164!!
-        )
-      }
-    } else {
-      check(data.pniSidRecord.e164 != null && data.pniSidRecord.e164 != e164)
-      breadCrumbs += "PniSidRecordHasNonMatchingE164"
+      if (data.e164 != null && data.aciRecord.e164 != data.e164) {
+        if (data.pniRecord.e164 == data.e164) {
+          operations += PnpOperation.RemoveE164(
+            recipientId = data.byPni
+          )
+        }
 
-      operations += PnpOperation.RemovePni(data.byPniSid)
-
-      if (data.aciSidRecord.pni != pni) {
-        operations += PnpOperation.SetPni(
-          recipientId = data.byAciSid,
-          pni = pni
-        )
-      }
-
-      if (e164 != null && data.aciSidRecord.e164 != e164) {
         operations += PnpOperation.SetE164(
-          recipientId = data.byAciSid,
-          e164 = e164
+          recipientId = data.byAci,
+          e164 = data.e164
         )
 
-        if (data.aciSidRecord.e164 != null && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
+        if (data.aciRecord.e164 != null && notSelf(data) && !data.aciRecord.isBlocked) {
           operations += PnpOperation.ChangeNumberInsert(
-            recipientId = data.byAciSid,
-            oldE164 = data.aciSidRecord.e164,
-            newE164 = e164
+            recipientId = data.byAci,
+            oldE164 = data.aciRecord.e164,
+            newE164 = data.e164
           )
         }
       }
@@ -2936,18 +3008,23 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return operations
   }
 
-  private fun processPossibleE164AciSidMerge(e164: String?, pni: PNI?, aci: ACI?, data: PnpDataSet, changeSelf: Boolean, breadCrumbs: MutableList<String>): List<PnpOperation> {
-    if (e164 == null || aci == null || data.byE164 == null || data.byAciSid == null || data.e164Record == null || data.aciSidRecord == null || data.e164Record.id == data.aciSidRecord.id) {
-      return emptyList()
-    }
-
-    if (!changeSelf && isSelf(e164, pni, aci)) {
-      breadCrumbs += "ChangeSelfPreventsE164AciSidMerge"
+  /**
+   * Resolves any possible E164-ACI conflicts/merges. In these situations, the ACI-based row is more dominant
+   * and can "steal" data from E164-based rows, or merge E164-based rows into itself.
+   */
+  private fun processPossibleE164AciMerge(data: PnpDataSet, pniVerified: Boolean, changeSelf: Boolean, breadCrumbs: MutableList<String>): List<PnpOperation> {
+    // Filter to ensure that we're only looking at situations where a E164 and ACI record both exist but do not match
+    if (data.e164 == null || data.byE164 == null || data.e164Record == null || data.aci == null || data.byAci == null || data.aciRecord == null || data.e164Record.id == data.aciRecord.id) {
       return emptyList()
     }
 
     // We have found records for both the E164 and ACI, and they're different
-    breadCrumbs += "E164AciSidMerge"
+    breadCrumbs += "E164AciMerge"
+
+    if (!changeSelf && isSelf(data)) {
+      breadCrumbs += "ChangeSelfPreventsE164AciMerge"
+      return emptyList()
+    }
 
     val operations: MutableList<PnpOperation> = mutableListOf()
 
@@ -2955,63 +3032,63 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (data.e164Record.e164Only()) {
       breadCrumbs += "E164Only"
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
-        operations += PnpOperation.RemoveE164(data.byAciSid)
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164) {
+        operations += PnpOperation.RemoveE164(data.byAci)
       }
 
       operations += PnpOperation.Merge(
-        primaryId = data.byAciSid,
+        primaryId = data.byAci,
         secondaryId = data.byE164
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164 && notSelf(data) && !data.aciRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
-          recipientId = data.byAciSid,
-          oldE164 = data.aciSidRecord.e164,
-          newE164 = e164
+          recipientId = data.byAci,
+          oldE164 = data.aciRecord.e164,
+          newE164 = data.e164
         )
       }
-    } else if (data.e164Record.pni != null && data.e164Record.pni == pni) {
+    } else if (data.e164Record.pni != null && data.e164Record.pni == data.pni) {
       // The E164 record also has the PNI on it. We're going to be stealing both fields,
       // so this is basically a merge with a little bit of extra prep.
       breadCrumbs += "E164RecordHasMatchingPni"
 
-      if (data.aciSidRecord.pni != null) {
-        operations += PnpOperation.RemovePni(data.byAciSid)
+      if (data.aciRecord.pni != null) {
+        operations += PnpOperation.RemovePni(data.byAci)
       }
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
-        operations += PnpOperation.RemoveE164(data.byAciSid)
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164) {
+        operations += PnpOperation.RemoveE164(data.byAci)
       }
 
       operations += PnpOperation.Merge(
-        primaryId = data.byAciSid,
+        primaryId = data.byAci,
         secondaryId = data.byE164
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164 && notSelf(data) && !data.aciRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
-          recipientId = data.byAciSid,
-          oldE164 = data.aciSidRecord.e164,
-          newE164 = e164
+          recipientId = data.byAci,
+          oldE164 = data.aciRecord.e164,
+          newE164 = data.e164
         )
       }
     } else {
-      check(data.e164Record.pni == null || data.e164Record.pni != pni)
+      check(data.e164Record.pni == null || data.e164Record.pni != data.pni)
       breadCrumbs += "E164RecordHasNonMatchingPni"
 
       operations += PnpOperation.RemoveE164(data.byE164)
 
       operations += PnpOperation.SetE164(
-        recipientId = data.byAciSid,
-        e164 = e164
+        recipientId = data.byAci,
+        e164 = data.e164
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
+      if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164 && notSelf(data) && !data.aciRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
-          recipientId = data.byAciSid,
-          oldE164 = data.aciSidRecord.e164,
-          newE164 = e164
+          recipientId = data.byAci,
+          oldE164 = data.aciRecord.e164,
+          newE164 = data.e164
         )
       }
     }
@@ -3047,7 +3124,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .select(ID)
       .from(TABLE_NAME)
-      .where("$REGISTERED = ? and $HIDDEN = ? AND $SERVICE_ID NOT NULL", 1, 0)
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $ACI_COLUMN NOT NULL", 1, 0)
       .run()
       .readToSet { cursor ->
         RecipientId.from(cursor.requireLong(ID))
@@ -3151,7 +3228,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .select()
       .from(TABLE_NAME)
-      .where("$ID LIKE ? OR $SERVICE_ID LIKE ? OR $PNI_COLUMN LIKE ?", "%$query%", "%$query%", "%$query%")
+      .where("$ID LIKE ? OR $ACI_COLUMN LIKE ? OR $PNI_COLUMN LIKE ?", "%$query%", "%$query%", "%$query%")
       .run()
       .readToList { cursor ->
         getRecord(context, cursor)
@@ -3482,7 +3559,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       for (uuid in blockedUuid) {
-        db.update(TABLE_NAME, setBlocked, "$SERVICE_ID = ?", arrayOf(uuid))
+        db.update(TABLE_NAME, setBlocked, "$ACI_COLUMN = ?", arrayOf(uuid))
       }
 
       val groupIdStrings: MutableList<V1> = ArrayList(groupIds.size)
@@ -3810,7 +3887,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     val uuidValues = contentValuesOf(
       PHONE to (secondaryRecord.e164 ?: primaryRecord.e164),
-      SERVICE_ID to (primaryRecord.serviceId ?: secondaryRecord.serviceId)?.toString(),
+      ACI_COLUMN to (primaryRecord.aci ?: secondaryRecord.aci)?.toString(),
       PNI_COLUMN to (newPni ?: secondaryRecord.pni ?: primaryRecord.pni)?.toString(),
       BLOCKED to (secondaryRecord.isBlocked || primaryRecord.isBlocked),
       MESSAGE_RINGTONE to Optional.ofNullable(primaryRecord.messageRingtone).or(Optional.ofNullable(secondaryRecord.messageRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
@@ -3862,13 +3939,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   private fun buildContentValuesForNewUser(e164: String?, pni: PNI?, aci: ACI?): ContentValues {
     check(e164 != null || pni != null || aci != null) { "Must provide some sort of identifier!" }
 
-    val serviceId = (aci ?: pni)?.toString()
     val values = contentValuesOf(
       PHONE to e164,
-      SERVICE_ID to serviceId,
+      ACI_COLUMN to aci?.toString(),
       PNI_COLUMN to pni?.toString(),
       STORAGE_SERVICE_ID to Base64.encodeBytes(StorageSyncHelper.generateKey()),
-      AVATAR_COLOR to AvatarColorHash.forAddress(serviceId, e164).serialize()
+      AVATAR_COLOR to AvatarColorHash.forAddress((aci ?: pni)?.toString(), e164).serialize()
     )
 
     if (pni != null || aci != null) {
@@ -3885,8 +3961,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val systemName = ProfileName.fromParts(contact.systemGivenName.orElse(null), contact.systemFamilyName.orElse(null))
       val username = contact.username.orElse(null)
 
-      if (contact.serviceId.isValid) {
-        put(SERVICE_ID, contact.serviceId.toString())
+      if (contact.aci.isValid) {
+        put(ACI_COLUMN, contact.aci.toString())
       }
 
       if (FeatureFlags.phoneNumberPrivacy()) {
@@ -3918,14 +3994,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(UNREGISTERED_TIMESTAMP, contact.unregisteredTimestamp)
       if (contact.unregisteredTimestamp > 0L) {
         put(REGISTERED, RegisteredState.NOT_REGISTERED.id)
-      } else if (contact.serviceId.isValid) {
+      } else if (contact.aci.isValid) {
         put(REGISTERED, RegisteredState.REGISTERED.id)
       } else {
         Log.w(TAG, "Contact is marked as registered, but has no serviceId! Can't locally mark registered. (Phone: ${contact.number.orElse("null")}, Username: ${username?.isNotEmpty()})")
       }
 
       if (isInsert) {
-        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.serviceId.toString(), contact.number.orNull()).serialize())
+        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.aci.toString(), contact.number.orNull()).serialize())
       }
     }
   }
@@ -4006,7 +4082,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     writableDatabase
       .update(TABLE_NAME)
       .values(
-        SERVICE_ID to null,
+        ACI_COLUMN to null,
         PNI_COLUMN to null
       )
       .run {
@@ -4081,7 +4157,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     writableDatabase.execSQL(
       """
         UPDATE $TABLE_NAME
-        SET $SERVICE_ID = $PNI_COLUMN
+        SET $ACI_COLUMN = $PNI_COLUMN
         WHERE $ID = ? AND $PNI_COLUMN NOT NULL
       """,
       SqlUtil.buildArgs(recipientId)
@@ -4156,7 +4232,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     return RecipientRecord(
       id = recipientId,
-      serviceId = ServiceId.parseOrNull(cursor.requireString(SERVICE_ID)),
+      aci = ACI.parseOrNull(cursor.requireString(ACI_COLUMN)),
       pni = PNI.parseOrNull(cursor.requireString(PNI_COLUMN)),
       username = cursor.requireString(USERNAME),
       e164 = cursor.requireString(PHONE),

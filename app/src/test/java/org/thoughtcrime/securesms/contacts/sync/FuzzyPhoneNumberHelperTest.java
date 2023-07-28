@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.contacts.sync;
 import org.junit.Test;
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResult;
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResult;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Arrays;
 import java.util.Collections;

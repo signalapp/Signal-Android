@@ -191,7 +191,7 @@ public final class MessageGroupContext {
       List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.getGroupState().getMembersCount());
 
       for (DecryptedMember member : decryptedGroupV2Context.getGroupState().getMembersList()) {
-        RecipientId recipient = RecipientId.from(ServiceId.fromByteString(member.getUuid()));
+        RecipientId recipient = RecipientId.from(ServiceId.parseOrThrow(member.getUuid()));
         if (!Recipient.self().getId().equals(recipient)) {
           members.add(recipient);
         }

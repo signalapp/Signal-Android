@@ -80,12 +80,12 @@ public final class GroupProtoUtil {
 
   @WorkerThread
   public static Recipient pendingMemberToRecipient(@NonNull Context context, @NonNull DecryptedPendingMember pendingMember) {
-    return uuidByteStringToRecipient(context, pendingMember.getUuid());
+    return pendingMemberServiceIdToRecipient(context, pendingMember.getUuid());
   }
 
   @WorkerThread
-  public static Recipient uuidByteStringToRecipient(@NonNull Context context, @NonNull ByteString uuidByteString) {
-    ServiceId serviceId = ServiceId.fromByteString(uuidByteString);
+  public static Recipient pendingMemberServiceIdToRecipient(@NonNull Context context, @NonNull ByteString uuidByteString) {
+    ServiceId serviceId = ServiceId.parseOrThrow(uuidByteString);
 
     if (serviceId.isUnknown()) {
       return Recipient.UNKNOWN;
@@ -96,7 +96,7 @@ public final class GroupProtoUtil {
 
   @WorkerThread
   public static @NonNull RecipientId uuidByteStringToRecipientId(@NonNull ByteString uuidByteString) {
-    ServiceId serviceId = ServiceId.fromByteString(uuidByteString);
+    ServiceId serviceId = ServiceId.parseOrThrow(uuidByteString);
 
     if (serviceId.isUnknown()) {
       return RecipientId.UNKNOWN;

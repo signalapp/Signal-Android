@@ -81,11 +81,11 @@ public final class ProfileService {
                                                                      .setVerb("GET");
 
     if (profileKey.isPresent()) {
-      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(serviceId.uuid());
+      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(serviceId.getRawUuid());
       String            version              = profileKeyIdentifier.serialize();
 
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, serviceId.uuid(), profileKey.get());
+        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, serviceId.getRawUuid(), profileKey.get());
 
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());

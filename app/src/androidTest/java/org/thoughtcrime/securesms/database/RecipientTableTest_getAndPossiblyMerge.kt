@@ -7,6 +7,7 @@ import org.hamcrest.MatcherAssert
 import org.hamcrest.Matchers
 import org.junit.Assert
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -14,6 +15,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.exists
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
@@ -36,14 +38,13 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.Optional
 import java.util.UUID
 
@@ -60,6 +61,21 @@ class RecipientTableTest_getAndPossiblyMerge {
   }
 
   @Test
+  fun single() {
+    test("merge, e164 + pni reassigned, aci abandoned") {
+      given(E164_A, PNI_A, ACI_A)
+      given(E164_B, PNI_B, ACI_B)
+
+      process(E164_A, PNI_A, ACI_B)
+
+      expect(null, null, ACI_A)
+      expect(E164_A, PNI_A, ACI_B)
+
+      expectChangeNumberEvent()
+    }
+  }
+
+  @Test
   fun allNonMergeTests() {
     test("e164-only insert") {
       val id = process(E164_A, null, null)
@@ -69,7 +85,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       assertEquals(RecipientTable.RegisteredState.UNKNOWN, record.registered)
     }
 
-    test("pni-only insert") {
+    test("pni-only insert", exception = IllegalArgumentException::class.java) {
       val id = process(null, PNI_A, null)
       expect(null, PNI_A, null)
 
@@ -83,6 +99,21 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       val record = SignalDatabase.recipients.getRecord(id)
       assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
+    }
+
+    test("e164+pni insert") {
+      process(E164_A, PNI_A, null)
+      expect(E164_A, PNI_A, null)
+    }
+
+    test("e164+aci insert") {
+      process(E164_A, null, ACI_A)
+      expect(E164_A, null, ACI_A)
+    }
+
+    test("e164+pni+aci insert") {
+      process(E164_A, PNI_A, ACI_A)
+      expect(E164_A, PNI_A, ACI_A)
     }
   }
 
@@ -165,6 +196,12 @@ class RecipientTableTest_getAndPossiblyMerge {
       expect(E164_A, PNI_A, ACI_A)
 
       expectSessionSwitchoverEvent(E164_A)
+    }
+
+    test("e164 and pni matches, all provided, new aci, existing pni session, pni-verified") {
+      given(E164_A, PNI_A, null, pniSession = true)
+      process(E164_A, PNI_A, ACI_A, pniVerified = true)
+      expect(E164_A, PNI_A, ACI_A)
     }
 
     test("e164 and aci matches, all provided, new pni") {
@@ -307,6 +344,26 @@ class RecipientTableTest_getAndPossiblyMerge {
       expect(E164_A, null, ACI_A)
 
       expectChangeNumberEvent()
+    }
+
+    test("steal, pni is changed") {
+      given(E164_A, PNI_B, ACI_A)
+      given(E164_B, PNI_A, null)
+
+      process(E164_A, PNI_A, null)
+
+      expect(E164_A, PNI_A, ACI_A)
+      expect(E164_B, null, null)
+    }
+
+    test("steal, pni is changed, aci left behind") {
+      given(E164_B, PNI_A, ACI_A)
+      given(E164_A, PNI_B, null)
+
+      process(E164_A, PNI_A, null)
+
+      expect(E164_B, null, ACI_A)
+      expect(E164_A, PNI_A, null)
     }
 
     test("steal, e164+pni & e164+pni, no aci provided, no pni session") {
@@ -502,7 +559,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectThreadMergeEvent(E164_A)
     }
 
-    test("merge, e164+pni & aci, pni session, thread merge shadows") {
+    test("merge, e164+pni & aci, pni session, thread merge shadows SSE") {
       given(E164_A, PNI_A, null, pniSession = true)
       given(null, null, ACI_A)
 
@@ -598,6 +655,18 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectChangeNumberEvent()
 
       expectThreadMergeEvent(E164_A)
+    }
+
+    test("merge, e164 + pni reassigned, aci abandoned") {
+      given(E164_A, PNI_A, ACI_A)
+      given(E164_B, PNI_B, ACI_B)
+
+      process(E164_A, PNI_A, ACI_B)
+
+      expect(null, null, ACI_A)
+      expect(E164_A, PNI_A, ACI_B)
+
+      expectChangeNumberEvent()
     }
 
     test("local user, local e164 and aci provided, changeSelf=false, leave e164 alone") {
@@ -768,9 +837,15 @@ class RecipientTableTest_getAndPossiblyMerge {
   }
 
   private fun identityKey(value: Byte): IdentityKey {
+    val byteArray = ByteArray(32)
+    byteArray[0] = value
+    return identityKey(byteArray)
+  }
+
+  private fun identityKey(value: ByteArray): IdentityKey {
     val bytes = ByteArray(33)
     bytes[0] = 0x05
-    bytes[1] = value
+    value.copyInto(bytes, 1)
     return IdentityKey(bytes)
   }
 
@@ -873,8 +948,8 @@ class RecipientTableTest_getAndPossiblyMerge {
       generatedIds += id
       if (createThread) {
         // Create a thread and throw a dummy message in it so it doesn't get automatically deleted
-        SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(id))
-        SignalDatabase.messages.insertMessageInbox(IncomingEncryptedMessage(IncomingTextMessage(id, 1, (Math.random() * Long.MAX_VALUE).toLong(), 0, 0, "", Optional.empty(), 0, false, ""), ""))
+        val result = SignalDatabase.messages.insertMessageInbox(smsMessage(sender = id, time = (Math.random() * 10000000).toLong(), body = "1"))
+        SignalDatabase.threads.markAsActiveEarly(result.get().threadId)
       }
 
       if (pniSession) {
@@ -885,11 +960,34 @@ class RecipientTableTest_getAndPossiblyMerge {
         SignalDatabase.sessions.store(pni, SignalProtocolAddress(pni.toString(), 1), SessionRecord())
       }
 
+      if (aci != null) {
+        SignalDatabase.identities.saveIdentity(
+          addressName = aci.toString(),
+          recipientId = id,
+          identityKey = identityKey(Util.getSecretBytes(32)),
+          verifiedStatus = IdentityTable.VerifiedStatus.DEFAULT,
+          firstUse = true,
+          timestamp = 0,
+          nonBlockingApproval = false
+        )
+      }
+      if (pni != null) {
+        SignalDatabase.identities.saveIdentity(
+          addressName = pni.toString(),
+          recipientId = id,
+          identityKey = identityKey(Util.getSecretBytes(32)),
+          verifiedStatus = IdentityTable.VerifiedStatus.DEFAULT,
+          firstUse = true,
+          timestamp = 0,
+          nonBlockingApproval = false
+        )
+      }
+
       return id
     }
 
     fun process(e164: String?, pni: PNI?, aci: ACI?, changeSelf: Boolean = false, pniVerified: Boolean = false): RecipientId {
-      outputRecipientId = SignalDatabase.recipients.getAndPossiblyMerge(serviceId = aci ?: pni, pni = pni, e164 = e164, pniVerified = pniVerified, changeSelf = changeSelf)
+      outputRecipientId = SignalDatabase.recipients.getAndPossiblyMerge(aci = aci, pni = pni, e164 = e164, pniVerified = pniVerified, changeSelf = changeSelf)
       generatedIds += outputRecipientId
       return outputRecipientId
     }
@@ -903,15 +1001,15 @@ class RecipientTableTest_getAndPossiblyMerge {
       val expected = RecipientTuple(
         e164 = e164,
         pni = pni,
-        serviceId = aci ?: pni
+        aci = aci
       )
       val actual = RecipientTuple(
         e164 = recipient.e164.orElse(null),
         pni = recipient.pni.orElse(null),
-        serviceId = recipient.serviceId.orElse(null)
+        aci = recipient.aci.orElse(null)
       )
 
-      assertEquals(expected, actual)
+      assertEquals("Recipient $id did not match expected result!", expected, actual)
     }
 
     fun expectDeleted() {
@@ -919,21 +1017,21 @@ class RecipientTableTest_getAndPossiblyMerge {
     }
 
     fun expectDeleted(id: RecipientId) {
-      SignalDatabase.rawDatabase
-        .select("1")
-        .from(RecipientTable.TABLE_NAME)
+      val found = SignalDatabase.rawDatabase
+        .exists(RecipientTable.TABLE_NAME)
         .where("${RecipientTable.ID} = ?", id)
         .run()
-        .use { !it.moveToFirst() }
+
+      assertFalse("Expected $id to be deleted, but it's still present!", found)
     }
 
     fun expectChangeNumberEvent() {
-      assertEquals(1, SignalDatabase.messages.getChangeNumberMessageCount(outputRecipientId))
+      assertEquals("Missing change number event!", 1, SignalDatabase.messages.getChangeNumberMessageCount(outputRecipientId))
       changeNumberExpected = true
     }
 
     fun expectNoChangeNumberEvent() {
-      assertEquals(0, SignalDatabase.messages.getChangeNumberMessageCount(outputRecipientId))
+      assertEquals("Unexpected change number event!", 0, SignalDatabase.messages.getChangeNumberMessageCount(outputRecipientId))
       changeNumberExpected = false
     }
 
@@ -943,42 +1041,39 @@ class RecipientTableTest_getAndPossiblyMerge {
 
     fun expectSessionSwitchoverEvent(recipientId: RecipientId, e164: String) {
       val event: SessionSwitchoverEvent? = getLatestSessionSwitchoverEvent(recipientId)
-      assertNotNull(event)
+      assertNotNull("Missing session switchover event! Expected one with e164 = $e164", event)
       assertEquals(e164, event!!.e164)
       sessionSwitchoverExpected = true
     }
 
     fun expectNoSessionSwitchoverEvent() {
-      assertNull(getLatestSessionSwitchoverEvent(outputRecipientId))
+      assertNull("Unexpected session switchover event!", getLatestSessionSwitchoverEvent(outputRecipientId))
     }
 
     fun expectThreadMergeEvent(previousE164: String) {
       val event: ThreadMergeEvent? = getLatestThreadMergeEvent(outputRecipientId)
-      assertNotNull(event)
-      assertEquals(previousE164, event!!.previousE164)
+      assertNotNull("Missing thread merge event! Expected one with e164 = $previousE164", event)
+      assertEquals("E164 on thread merge event doesn't match!", previousE164, event!!.previousE164)
       threadMergeExpected = true
     }
 
     fun expectNoThreadMergeEvent() {
-      assertNull(getLatestThreadMergeEvent(outputRecipientId))
+      assertNull("Unexpected thread merge event!", getLatestThreadMergeEvent(outputRecipientId))
     }
 
     private fun insert(e164: String?, pni: PNI?, aci: ACI?): RecipientId {
-      val serviceIdString: String? = (aci ?: pni)?.toString()
-      val pniString: String? = pni?.toString()
-
       val id: Long = SignalDatabase.rawDatabase.insert(
         RecipientTable.TABLE_NAME,
         null,
         contentValuesOf(
           RecipientTable.PHONE to e164,
-          RecipientTable.SERVICE_ID to serviceIdString,
-          RecipientTable.PNI_COLUMN to pniString,
+          RecipientTable.ACI_COLUMN to aci?.toString(),
+          RecipientTable.PNI_COLUMN to pni?.toString(),
           RecipientTable.REGISTERED to RecipientTable.RegisteredState.REGISTERED.id
         )
       )
 
-      assertTrue("Failed to insert! E164: $e164, ServiceId: $serviceIdString, PNI: $pniString", id > 0)
+      assertTrue("Failed to insert! E164: $e164, ACI: $aci, PNI: $pni", id > 0)
 
       return RecipientId.from(id)
     }
@@ -987,14 +1082,14 @@ class RecipientTableTest_getAndPossiblyMerge {
   data class RecipientTuple(
     val e164: String?,
     val pni: PNI?,
-    val serviceId: ServiceId?
+    val aci: ACI?
   ) {
 
     /**
      * The intent here is to give nice diffs with the name of the constants rather than the values.
      */
     override fun toString(): String {
-      return "(${e164.e164String()}, ${pni.pniString()}, ${serviceId.serviceIdString()})"
+      return "(${e164.e164String()}, ${pni.pniString()}, ${aci.aciString()})"
     }
 
     private fun String?.e164String(): String {
@@ -1018,12 +1113,9 @@ class RecipientTableTest_getAndPossiblyMerge {
       } ?: "null"
     }
 
-    private fun ServiceId?.serviceIdString(): String {
+    private fun ACI?.aciString(): String {
       return this?.let {
         when (it) {
-          PNI_A -> "PNI_A"
-          PNI_B -> "PNI_B"
-          PNI_SELF -> "PNI_SELF"
           ACI_A -> "ACI_A"
           ACI_B -> "ACI_B"
           ACI_SELF -> "ACI_SELF"

@@ -65,7 +65,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
@@ -890,7 +890,7 @@ public class SignalServiceMessageSender {
     byte[] signature = localPniIdentity.signAlternateIdentity(aciStore.getIdentityKeyPair().getPublicKey());
 
     return SignalServiceProtos.PniSignatureMessage.newBuilder()
-        .setPni(UuidUtil.toByteString(localPni.uuid()))
+        .setPni(UuidUtil.toByteString(localPni.getRawUuid()))
         .setSignature(ByteString.copyFrom(signature))
         .build();
   }

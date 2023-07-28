@@ -8,6 +8,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import java.util.UUID
@@ -30,30 +31,30 @@ fun encryptedGroupContext(masterKey: GroupMasterKey): SignalServiceProtos.GroupC
   return SignalServiceProtos.GroupContextV2.newBuilder().setMasterKey(ByteString.copyFrom(masterKey.serialize())).build()
 }
 
-fun DecryptedGroupChange.Builder.addRequestingMember(serviceId: ServiceId) {
-  addNewRequestingMembers(requestingMember(serviceId))
+fun DecryptedGroupChange.Builder.addRequestingMember(aci: ACI) {
+  addNewRequestingMembers(requestingMember(aci))
 }
 
-fun DecryptedGroupChange.Builder.deleteRequestingMember(serviceId: ServiceId) {
-  addDeleteRequestingMembers(serviceId.toByteString())
+fun DecryptedGroupChange.Builder.deleteRequestingMember(aci: ACI) {
+  addDeleteRequestingMembers(aci.toByteString())
 }
 
-fun DecryptedGroupChange.Builder.addMember(serviceId: ServiceId) {
-  addNewMembers(member(serviceId))
+fun DecryptedGroupChange.Builder.addMember(aci: ACI) {
+  addNewMembers(member(aci))
 }
 
 fun ServiceId.toByteString(): ByteString {
-  return UuidUtil.toByteString(uuid())
+  return UuidUtil.toByteString(rawUuid)
 }
 
 fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return member(ServiceId.from(serviceId), role, joinedAt)
+  return member(ACI.from(serviceId), role, joinedAt)
 }
 
-fun member(serviceId: ServiceId, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
+fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
   return DecryptedMember.newBuilder()
     .setRole(role)
-    .setUuid(serviceId.toByteString())
+    .setUuid(aci.toByteString())
     .setJoinedAtRevision(joinedAt)
     .build()
 }

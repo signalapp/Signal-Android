@@ -38,8 +38,8 @@ import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
-import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -129,7 +129,7 @@ public final class RegistrationRepository {
     Preconditions.checkNotNull(response.getPniPreKeyCollection(), "Missing PNI prekey collection!");
 
     ACI     aci    = ACI.parseOrThrow(response.getVerifyAccountResponse().getUuid());
-    PNI     pni    = PNI.parseOrThrow(response.getVerifyAccountResponse().getPni());
+    PNI     pni    = PNI.parseUnPrefixedOrThrow(response.getVerifyAccountResponse().getPni());
     boolean hasPin = response.getVerifyAccountResponse().isStorageCapable();
 
     SignalStore.account().setAci(aci);

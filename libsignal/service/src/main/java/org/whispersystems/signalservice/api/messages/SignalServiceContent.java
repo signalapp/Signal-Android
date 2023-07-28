@@ -46,7 +46,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.StorageKey;
@@ -538,7 +539,7 @@ public final class SignalServiceContent {
     return groupId;
   }
 
-  public String getDestinationUuid() {
+  public String getDestinationServiceId() {
     return destinationUuid;
   }
 
@@ -869,9 +870,9 @@ public final class SignalServiceContent {
       List<ReadMessage> readMessages = new LinkedList<>();
 
       for (SignalServiceProtos.SyncMessage.Read read : content.getReadList()) {
-        ServiceId serviceId = ServiceId.parseOrNull(read.getSenderAci());
-        if (serviceId != null) {
-          readMessages.add(new ReadMessage(serviceId, read.getTimestamp()));
+        ACI aci = ACI.parseOrNull(read.getSenderAci());
+        if (aci != null) {
+          readMessages.add(new ReadMessage(aci, read.getTimestamp()));
         } else {
           Log.w(TAG, "Encountered an invalid ReadMessage! Ignoring.");
         }
@@ -884,9 +885,9 @@ public final class SignalServiceContent {
       List<ViewedMessage> viewedMessages = new LinkedList<>();
 
       for (SignalServiceProtos.SyncMessage.Viewed viewed : content.getViewedList()) {
-        ServiceId serviceId = ServiceId.parseOrNull(viewed.getSenderAci());
-        if (serviceId != null) {
-          viewedMessages.add(new ViewedMessage(serviceId, viewed.getTimestamp()));
+        ACI aci = ACI.parseOrNull(viewed.getSenderAci());
+        if (aci != null) {
+          viewedMessages.add(new ViewedMessage(aci, viewed.getTimestamp()));
         } else {
           Log.w(TAG, "Encountered an invalid ReadMessage! Ignoring.");
         }
@@ -896,9 +897,9 @@ public final class SignalServiceContent {
     }
 
     if (content.hasViewOnceOpen()) {
-      ServiceId serviceId = ServiceId.parseOrNull(content.getViewOnceOpen().getSenderAci());
-      if (serviceId != null) {
-        ViewOnceOpenMessage timerRead = new ViewOnceOpenMessage(serviceId, content.getViewOnceOpen().getTimestamp());
+      ACI aci = ACI.parseOrNull(content.getViewOnceOpen().getSenderAci());
+      if (aci != null) {
+        ViewOnceOpenMessage timerRead = new ViewOnceOpenMessage(aci, content.getViewOnceOpen().getTimestamp());
         return SignalServiceSyncMessage.forViewOnceOpen(timerRead);
       } else {
         throw new InvalidMessageStructureException("ViewOnceOpen message has no sender!");
@@ -1021,9 +1022,9 @@ public final class SignalServiceContent {
       if (content.getMessageRequestResponse().hasGroupId()) {
         responseMessage = MessageRequestResponseMessage.forGroup(content.getMessageRequestResponse().getGroupId().toByteArray(), type);
       } else {
-        ServiceId serviceId = ServiceId.parseOrNull(content.getMessageRequestResponse().getThreadAci());
-        if (serviceId != null) {
-          responseMessage = MessageRequestResponseMessage.forIndividual(serviceId, type);
+        ACI aci = ACI.parseOrNull(content.getMessageRequestResponse().getThreadAci());
+        if (aci != null) {
+          responseMessage = MessageRequestResponseMessage.forIndividual(aci, type);
         } else {
           throw new InvalidMessageStructureException("Message request response has an invalid thread identifier!");
         }
@@ -1194,7 +1195,7 @@ public final class SignalServiceContent {
                                                                           attachment.hasThumbnail() ? createAttachmentPointer(attachment.getThumbnail()) : null));
     }
 
-    ServiceId author = ServiceId.parseOrNull(content.getQuote().getAuthorAci());
+    ACI author = ACI.parseOrNull(content.getQuote().getAuthorAci());
     if (author != null) {
       return new SignalServiceDataMessage.Quote(content.getQuote().getId(),
                                                 author,
@@ -1305,17 +1306,17 @@ public final class SignalServiceContent {
       return null;
     }
 
-    SignalServiceProtos.DataMessage.Reaction reaction  = content.getReaction();
-    ServiceId                                serviceId = ServiceId.parseOrNull(reaction.getTargetAuthorAci());
+    SignalServiceProtos.DataMessage.Reaction reaction = content.getReaction();
+    ACI                                      aci      = ACI.parseOrNull(reaction.getTargetAuthorAci());
 
-    if (serviceId == null) {
+    if (aci == null) {
       Log.w(TAG, "Cannot parse author UUID on reaction");
       return null;
     }
 
     return new SignalServiceDataMessage.Reaction(reaction.getEmoji(),
                                                  reaction.getRemove(),
-                                                 serviceId,
+                                                 aci,
                                                  reaction.getTargetSentTimestamp());
   }
 
@@ -1361,13 +1362,13 @@ public final class SignalServiceContent {
       return null;
     }
 
-    ServiceId serviceId = ServiceId.parseOrNull(content.getStoryContext().getAuthorAci());
+    ACI aci = ACI.parseOrNull(content.getStoryContext().getAuthorAci());
 
-    if (serviceId == null) {
+    if (aci == null) {
       throw new InvalidMessageStructureException("Invalid author ACI!");
     }
 
-    return new SignalServiceDataMessage.StoryContext(serviceId, content.getStoryContext().getSentTimestamp());
+    return new SignalServiceDataMessage.StoryContext(aci, content.getStoryContext().getSentTimestamp());
   }
 
   private static @Nullable SignalServiceDataMessage.GiftBadge createGiftBadge(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {

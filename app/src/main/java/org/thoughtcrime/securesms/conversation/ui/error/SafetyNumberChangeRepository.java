@@ -176,7 +176,7 @@ public final class SafetyNumberChangeRepository {
         Log.d(TAG, "Saving identity result: " + result);
         if (result == SignalIdentityKeyStore.SaveResult.NO_CHANGE) {
           Log.i(TAG, "Archiving sessions explicitly as they appear to be out of sync.");
-          ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+          ApplicationDependencies.getProtocolStore().aci().sessions().archiveSessions(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
           ApplicationDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(mismatchAddress);
           SignalDatabase.senderKeyShared().deleteAllFor(changedRecipient.getRecipient().getId());
         }

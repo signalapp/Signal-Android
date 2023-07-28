@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder
 import org.webrtc.PeerConnection;
 import org.webrtc.VideoTrack;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     seen.add(Recipient.self());
 
     for (GroupCall.RemoteDeviceState device : remoteDeviceStates) {
-      Recipient                   recipient         = Recipient.externalPush(ServiceId.from(device.getUserId()));
+      Recipient                   recipient         = Recipient.externalPush(ACI.from(device.getUserId()));
       CallParticipantId           callParticipantId = new CallParticipantId(device.getDemuxId(), recipient.getId());
       CallParticipant             callParticipant   = participants.get(callParticipantId);
 

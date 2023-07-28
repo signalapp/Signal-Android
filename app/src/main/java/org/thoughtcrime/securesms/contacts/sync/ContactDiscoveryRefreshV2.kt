@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
 import org.whispersystems.signalservice.api.services.CdsiV2Service

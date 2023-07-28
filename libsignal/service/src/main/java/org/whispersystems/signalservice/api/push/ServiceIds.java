@@ -2,7 +2,8 @@ package org.whispersystems.signalservice.api.push;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -37,7 +38,7 @@ public final class ServiceIds {
   }
 
   public boolean matches(UUID uuid) {
-    return uuid.equals(aci.uuid()) || (pni != null && uuid.equals(pni.uuid()));
+    return uuid.equals(aci.getRawUuid()) || (pni != null && uuid.equals(pni.getRawUuid()));
   }
 
   public boolean matches(ByteString uuid) {

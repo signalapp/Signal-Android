@@ -100,9 +100,9 @@ public class SignalServiceMessageReceiver {
 
     if (profileKey.isPresent()) {
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(serviceId.uuid(), profileKey.get(), unidentifiedAccess, locale);
+        return socket.retrieveVersionedProfileAndCredential(serviceId.getRawUuid(), profileKey.get(), unidentifiedAccess, locale);
       } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(serviceId.uuid(), profileKey.get(), unidentifiedAccess, locale), profile -> {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(serviceId.getRawUuid(), profileKey.get(), unidentifiedAccess, locale), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
                                           Optional.empty());

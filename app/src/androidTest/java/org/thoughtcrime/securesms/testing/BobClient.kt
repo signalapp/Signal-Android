@@ -50,7 +50,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   private val serviceAddress = SignalServiceAddress(serviceId, e164)
   private val registrationId = KeyHelper.generateRegistrationId(false)
   private val aciStore = BobSignalServiceAccountDataStore(registrationId, identityKeyPair)
-  private val senderCertificate = FakeClientHelpers.createCertificateFor(trustRoot, serviceId.uuid(), e164, 1, identityKeyPair.publicKey.publicKey, 31337)
+  private val senderCertificate = FakeClientHelpers.createCertificateFor(trustRoot, serviceId.rawUuid, e164, 1, identityKeyPair.publicKey.publicKey, 31337)
   private val sessionLock = object : SignalSessionLock {
     private val lock = ReentrantLock()
 

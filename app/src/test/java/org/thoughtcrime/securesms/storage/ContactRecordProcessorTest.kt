@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
@@ -56,9 +56,9 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServicePni(PNI_B.toString())
-      setServiceE164(E164_B)
+      setAci(ACI_B.toString())
+      setPni(PNI_B.toString())
+      setE164(E164_B)
     }
 
     // WHEN
@@ -74,7 +74,7 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceE164(E164_B)
+      setE164(E164_B)
     }
 
     // WHEN
@@ -90,8 +90,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164(E164_A)
+      setAci(ACI_B.toString())
+      setE164(E164_A)
     }
 
     // WHEN
@@ -107,7 +107,7 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_A.toString())
+      setAci(ACI_A.toString())
     }
 
     // WHEN
@@ -123,7 +123,7 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(PNI_A.toString())
+      setAci(PNI_A.toString())
     }
 
     // WHEN
@@ -139,8 +139,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServicePni(PNI_A.toString())
+      setAci(ACI_B.toString())
+      setPni(PNI_A.toString())
     }
 
     // WHEN
@@ -148,44 +148,6 @@ class ContactRecordProcessorTest {
 
     // THEN
     assertTrue(result)
-  }
-
-  @Test
-  fun `isInvalid, pniOnly pnpDisabled, true`() {
-    // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
-
-    featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(false)
-
-    val record = buildRecord {
-      setServiceId(PNI_B.toString())
-      setServicePni(PNI_B.toString())
-    }
-
-    // WHEN
-    val result = subject.isInvalid(record)
-
-    // THEN
-    assertTrue(result)
-  }
-
-  @Test
-  fun `isInvalid, pniOnly pnpEnabled, false`() {
-    // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
-
-    featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
-
-    val record = buildRecord {
-      setServiceId(PNI_B.toString())
-      setServicePni(PNI_B.toString())
-    }
-
-    // WHEN
-    val result = subject.isInvalid(record)
-
-    // THEN
-    assertFalse(result)
   }
 
   @Test
@@ -194,8 +156,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164(E164_B)
+      setAci(ACI_B.toString())
+      setE164(E164_B)
     }
 
     // WHEN
@@ -211,8 +173,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164("15551234567")
+      setAci(ACI_B.toString())
+      setE164("15551234567")
     }
 
     // WHEN
@@ -228,8 +190,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164("+1555ABC4567")
+      setAci(ACI_B.toString())
+      setE164("+1555ABC4567")
     }
 
     // WHEN
@@ -245,8 +207,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164("+")
+      setAci(ACI_B.toString())
+      setE164("+")
     }
 
     // WHEN
@@ -262,8 +224,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164("+12345678901234567890")
+      setAci(ACI_B.toString())
+      setE164("+12345678901234567890")
     }
 
     // WHEN
@@ -279,8 +241,8 @@ class ContactRecordProcessorTest {
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
-      setServiceId(ACI_B.toString())
-      setServiceE164("+05551234567")
+      setAci(ACI_B.toString())
+      setE164("+05551234567")
     }
 
     // WHEN
@@ -298,22 +260,22 @@ class ContactRecordProcessorTest {
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
     val local = buildRecord(STORAGE_ID_A) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_A)
-      setServicePni(PNI_A.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_A)
+      setPni(PNI_A.toString())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_A)
-      setServicePni(PNI_B.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_A)
+      setPni(PNI_B.toString())
     }
 
     // WHEN
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(local.serviceId, result.serviceId)
+    assertEquals(local.aci, result.aci)
     assertEquals(local.number.get(), result.number.get())
     assertEquals(local.pni.get(), result.pni.get())
   }
@@ -326,22 +288,22 @@ class ContactRecordProcessorTest {
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
     val local = buildRecord(STORAGE_ID_A) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_A)
-      setServicePni(PNI_A.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_A)
+      setPni(PNI_A.toString())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_B)
-      setServicePni(PNI_A.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_B)
+      setPni(PNI_A.toString())
     }
 
     // WHEN
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(local.serviceId, result.serviceId)
+    assertEquals(local.aci, result.aci)
     assertEquals(local.number.get(), result.number.get())
     assertEquals(local.pni.get(), result.pni.get())
   }
@@ -354,22 +316,22 @@ class ContactRecordProcessorTest {
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
     val local = buildRecord(STORAGE_ID_A) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_A)
-      setServicePni(PNI_A.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_A)
+      setPni(PNI_A.toString())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_B)
-      setServicePni(PNI_B.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_B)
+      setPni(PNI_B.toString())
     }
 
     // WHEN
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(remote.serviceId, result.serviceId)
+    assertEquals(remote.aci, result.aci)
     assertEquals(remote.number.get(), result.number.get())
     assertEquals(remote.pni.get(), result.pni.get())
   }
@@ -382,22 +344,22 @@ class ContactRecordProcessorTest {
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(false)
 
     val local = buildRecord(STORAGE_ID_A) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_A)
-      setServicePni(PNI_A.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_A)
+      setPni(PNI_A.toString())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
-      setServiceId(ACI_A.toString())
-      setServiceE164(E164_B)
-      setServicePni(PNI_B.toString())
+      setAci(ACI_A.toString())
+      setE164(E164_B)
+      setPni(PNI_B.toString())
     }
 
     // WHEN
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(remote.serviceId, result.serviceId)
+    assertEquals(remote.aci, result.aci)
     assertEquals(remote.number.get(), result.number.get())
     assertEquals(false, result.pni.isPresent)
   }

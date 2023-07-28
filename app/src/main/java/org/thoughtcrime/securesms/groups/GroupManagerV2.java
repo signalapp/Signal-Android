@@ -64,8 +64,8 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
-import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
@@ -176,7 +176,7 @@ final class GroupManagerV2 {
 
     Map<UUID, UuidCiphertext> uuidCipherTexts = new HashMap<>();
     for (Recipient recipient : recipients) {
-      uuidCipherTexts.put(recipient.requireServiceId().uuid(), clientZkGroupCipher.encryptUuid(recipient.requireServiceId().uuid()));
+      uuidCipherTexts.put(recipient.requireServiceId().getRawUuid(), clientZkGroupCipher.encryptUuid(recipient.requireServiceId().getRawUuid()));
     }
 
     return uuidCipherTexts;
@@ -231,7 +231,7 @@ final class GroupManagerV2 {
       return latest;
     }
 
-    Optional<DecryptedMember> selfInFullMemberList = DecryptedGroupUtil.findMemberByUuid(latest.getMembersList(), selfAci.uuid());
+    Optional<DecryptedMember> selfInFullMemberList = DecryptedGroupUtil.findMemberByUuid(latest.getMembersList(), selfAci.getRawUuid());
 
     if (!selfInFullMemberList.isPresent()) {
       return latest;
@@ -356,7 +356,7 @@ final class GroupManagerV2 {
         groupCandidates = GroupCandidate.withoutExpiringProfileKeyCredentials(groupCandidates);
       }
 
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createModifyGroupMembershipChange(groupCandidates, bannedMembers, selfAci.uuid()));
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createModifyGroupMembershipChange(groupCandidates, bannedMembers, selfAci.getRawUuid()));
     }
 
     @WorkerThread
@@ -431,7 +431,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       Set<UUID> uuids = Stream.of(recipientIds)
-                              .map(r -> Recipient.resolved(r).requireServiceId().uuid())
+                              .map(r -> Recipient.resolved(r).requireServiceId().getRawUuid())
                               .collect(Collectors.toSet());
 
       return commitChangeWithConflictResolution(selfAci, groupOperations.createApproveGroupJoinRequest(uuids));
@@ -442,7 +442,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       Set<UUID> uuids = Stream.of(recipientIds)
-                              .map(r -> Recipient.resolved(r).requireServiceId().uuid())
+                              .map(r -> Recipient.resolved(r).requireServiceId().getRawUuid())
                               .collect(Collectors.toSet());
 
       return commitChangeWithConflictResolution(selfAci, groupOperations.createRefuseGroupJoinRequest(uuids, true, v2GroupProperties.getDecryptedGroup().getBannedMembersList()));
@@ -454,7 +454,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       Recipient recipient = Recipient.resolved(recipientId);
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberRole(recipient.requireServiceId().uuid(), admin ? Member.Role.ADMINISTRATOR : Member.Role.DEFAULT));
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberRole(recipient.requireServiceId().getRawUuid(), admin ? Member.Role.ADMINISTRATOR : Member.Role.DEFAULT));
     }
 
     @WorkerThread
@@ -463,9 +463,9 @@ final class GroupManagerV2 {
     {
       GroupRecord    groupRecord    = groupDatabase.requireGroup(groupId);
       DecryptedGroup decryptedGroup = groupRecord.requireV2GroupProperties().getDecryptedGroup();
-      Optional<DecryptedMember>        selfMember        = DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), selfAci.uuid());
-      Optional<DecryptedPendingMember> aciPendingMember  = DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), selfAci.uuid());
-      Optional<DecryptedPendingMember> pniPendingMember  = DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), selfPni.uuid());
+      Optional<DecryptedMember>        selfMember        = DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), selfAci.getRawUuid());
+      Optional<DecryptedPendingMember> aciPendingMember  = DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), selfAci.getRawUuid());
+      Optional<DecryptedPendingMember> pniPendingMember  = DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), selfPni.getRawUuid());
       Optional<DecryptedPendingMember> selfPendingMember = Optional.empty();
       ServiceId                        serviceId         = selfAci;
 
@@ -494,7 +494,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       return commitChangeWithConflictResolution(selfAci,
-                                                groupOperations.createRemoveMembersChange(Collections.singleton(serviceId.uuid()),
+                                                groupOperations.createRemoveMembersChange(Collections.singleton(serviceId.getRawUuid()),
                                                                                           ban,
                                                                                           ban ? v2GroupProperties.getDecryptedGroup().getBannedMembersList()
                                                                                               : Collections.emptyList()),
@@ -506,9 +506,9 @@ final class GroupManagerV2 {
     @NonNull GroupManager.GroupActionResult addMemberAdminsAndLeaveGroup(Collection<RecipientId> newAdmins)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
-      List<UUID> newAdminRecipients = Stream.of(newAdmins).map(id -> Recipient.resolved(id).requireServiceId().uuid()).toList();
+      List<UUID> newAdminRecipients = Stream.of(newAdmins).map(id -> Recipient.resolved(id).requireServiceId().getRawUuid()).toList();
 
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createLeaveAndPromoteMembersToAdmin(selfAci.uuid(),
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createLeaveAndPromoteMembersToAdmin(selfAci.getRawUuid(),
                                                                                                     newAdminRecipients));
     }
 
@@ -518,7 +518,7 @@ final class GroupManagerV2 {
     {
       ProfileKey                profileKey  = ProfileKeyUtil.getSelfProfileKey();
       DecryptedGroup            group       = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getDecryptedGroup();
-      Optional<DecryptedMember> selfInGroup = DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfAci.uuid());
+      Optional<DecryptedMember> selfInGroup = DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfAci.getRawUuid());
 
       if (!selfInGroup.isPresent()) {
         Log.w(TAG, "Self not in group " + groupId);
@@ -548,15 +548,15 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       DecryptedGroup            group       = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getDecryptedGroup();
-      Optional<DecryptedMember> selfInGroup = DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfAci.uuid());
+      Optional<DecryptedMember> selfInGroup = DecryptedGroupUtil.findMemberByUuid(group.getMembersList(), selfAci.getRawUuid());
 
       if (selfInGroup.isPresent()) {
         Log.w(TAG, "Self already in group");
         return null;
       }
 
-      Optional<DecryptedPendingMember> aciInPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfAci.uuid());
-      Optional<DecryptedPendingMember> pniInPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfPni.uuid());
+      Optional<DecryptedPendingMember> aciInPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfAci.getRawUuid());
+      Optional<DecryptedPendingMember> pniInPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfPni.getRawUuid());
 
       GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
@@ -650,7 +650,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
       boolean refetchedAddMemberCredentials = false;
-      change.setSourceUuid(UuidUtil.toByteString(authServiceId.uuid()));
+      change.setSourceUuid(UuidUtil.toByteString(authServiceId.getRawUuid()));
 
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
@@ -704,7 +704,7 @@ final class GroupManagerV2 {
         GroupChange.Actions changeActions = change.build();
 
         return GroupChangeUtil.resolveConflict(groupUpdateResult.getLatestServer(),
-                                               groupOperations.decryptChange(changeActions, authServiceId.uuid()),
+                                               groupOperations.decryptChange(changeActions, authServiceId.getRawUuid()),
                                                changeActions);
       } catch (VerificationFailedException | InvalidGroupStateException ex) {
         throw new GroupChangeFailedException(ex);
@@ -1203,7 +1203,7 @@ final class GroupManagerV2 {
     void cancelJoinRequest()
         throws GroupChangeFailedException, IOException
     {
-      Set<UUID> uuids = Collections.singleton(selfAci.uuid());
+      Set<UUID> uuids = Collections.singleton(selfAci.getRawUuid());
 
       GroupChange signedGroupChange;
       try {
@@ -1331,8 +1331,9 @@ final class GroupManagerV2 {
   }
 
   private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
+    // TODO [greyson][ServiceId] Pending members can be ACI's or PNI's
     return Stream.of(DecryptedGroupUtil.pendingToUuidList(newPendingMembersList))
-                 .map(uuid -> RecipientId.from(ServiceId.from(uuid)))
+                 .map(uuid -> RecipientId.from(ACI.from(uuid)))
                  .toList();
   }
 

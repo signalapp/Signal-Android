@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Optional;
@@ -49,7 +50,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                   @NonNull RemotePeer remotePeerGroup,
                                                                   @NonNull GroupId.V2 groupId,
                                                                   long ringId,
-                                                                  @NonNull UUID sender,
+                                                                  @NonNull ACI sender,
                                                                   @NonNull CallManager.RingUpdate ringUpdate)
   {
     Log.i(TAG, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + Long.toHexString(ringId) + " update: " + ringUpdate);
@@ -108,7 +109,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
 
     Log.i(TAG, "Requesting new ring: " + Long.toHexString(ringId));
 
-    Recipient ringerRecipient = Recipient.externalPush(ServiceId.from(sender));
+    Recipient ringerRecipient = Recipient.externalPush(sender);
     SignalDatabase.calls().insertOrUpdateGroupCallFromRingState(
         ringId,
         remotePeerGroup.getId(),

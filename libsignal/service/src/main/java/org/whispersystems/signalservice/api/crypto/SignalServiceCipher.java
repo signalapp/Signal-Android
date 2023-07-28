@@ -47,7 +47,7 @@ import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceMetadata;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -102,7 +102,7 @@ public class SignalServiceCipher {
     PushTransportDetails             transport            = new PushTransportDetails();
     SignalProtocolAddress            localProtocolAddress = new SignalProtocolAddress(localAddress.getIdentifier(), localDeviceId);
     SignalGroupCipher                groupCipher          = new SignalGroupCipher(sessionLock, new GroupCipher(signalProtocolStore, localProtocolAddress));
-    SignalSealedSessionCipher        sessionCipher        = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().uuid(), localAddress.getNumber().orElse(null), localDeviceId));
+    SignalSealedSessionCipher        sessionCipher        = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber().orElse(null), localDeviceId));
     CiphertextMessage                message              = groupCipher.encrypt(distributionId.asUuid(), transport.getPaddedMessageBody(unpaddedMessage));
     UnidentifiedSenderMessageContent messageContent       = new UnidentifiedSenderMessageContent(message,
                                                                                                  senderCertificate,
@@ -119,7 +119,7 @@ public class SignalServiceCipher {
   {
     if (unidentifiedAccess.isPresent()) {
       SignalSessionCipher       sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
-      SignalSealedSessionCipher sealedSessionCipher  = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().uuid(), localAddress.getNumber().orElse(null), localDeviceId));
+      SignalSealedSessionCipher sealedSessionCipher  = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber().orElse(null), localDeviceId));
 
       return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, unidentifiedAccess.get().getUnidentifiedCertificate());
     } else {
@@ -231,7 +231,7 @@ public class SignalServiceCipher {
         paddedMessage = new PlaintextContent(envelope.getContent().toByteArray()).getBody();
         metadata      = new SignalServiceMetadata(getSourceAddress(envelope), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerTimestamp(), serverDeliveredTimestamp, false, envelope.getServerGuid(), Optional.empty(), envelope.getDestinationServiceId());
       } else if (envelope.getType().getNumber() == Envelope.Type.UNIDENTIFIED_SENDER_VALUE) {
-        SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().uuid(), localAddress.getNumber().orElse(null), localDeviceId));
+        SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber().orElse(null), localDeviceId));
         DecryptionResult          result              = sealedSessionCipher.decrypt(certificateValidator, envelope.getContent().toByteArray(), envelope.getServerTimestamp());
         SignalServiceAddress      resultAddress       = new SignalServiceAddress(ACI.parseOrThrow(result.getSenderUuid()), result.getSenderE164());
         Optional<byte[]>          groupId             = result.getGroupId();

@@ -98,6 +98,7 @@ import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.StorageKey
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
@@ -1227,8 +1228,8 @@ object SyncMessageProcessor {
       return
     }
 
-    val serviceId = ServiceId.fromByteString(callEvent.conversationId)
-    val recipientId = RecipientId.from(serviceId)
+    val aci = ACI.parseOrThrow(callEvent.conversationId)
+    val recipientId = RecipientId.from(aci)
 
     log(envelopeTimestamp, "Synchronize call event call: $callId")
 

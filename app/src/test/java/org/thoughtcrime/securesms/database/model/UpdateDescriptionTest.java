@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Arrays;
@@ -46,7 +47,7 @@ public final class UpdateDescriptionTest {
 
   @Test(expected = UnsupportedOperationException.class)
   public void stringFactory_cannot_call_static_string() {
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), () -> new SpannableString("update"), 0);
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), () -> new SpannableString("update"), 0);
 
     description.getStaticSpannable();
   }
@@ -60,7 +61,7 @@ public final class UpdateDescriptionTest {
       return new SpannableString("update");
     };
 
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory, 0);
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory, 0);
 
     assertEquals(0, factoryCalls.get());
 
@@ -74,7 +75,7 @@ public final class UpdateDescriptionTest {
   public void stringFactory_reevaluated_on_every_call() {
     AtomicInteger                      factoryCalls  = new AtomicInteger();
     UpdateDescription.SpannableFactory stringFactory = () -> new SpannableString( "call" + factoryCalls.incrementAndGet());
-    UpdateDescription                  description   = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory, 0);
+    UpdateDescription                  description   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory, 0);
 
     assertEquals("call1", description.getSpannable().toString());
     assertEquals("call2", description.getSpannable().toString());
@@ -108,8 +109,8 @@ public final class UpdateDescriptionTest {
     AtomicInteger                      factoryCalls2  = new AtomicInteger();
     UpdateDescription.SpannableFactory stringFactory1 = () -> new SpannableString("update." + factoryCalls1.incrementAndGet());
     UpdateDescription.SpannableFactory stringFactory2 = () -> new SpannableString("update." + factoryCalls2.incrementAndGet());
-    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory1, 0);
-    UpdateDescription                  description2   = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory2, 0);
+    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory1, 0);
+    UpdateDescription                  description2   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory2, 0);
 
     factoryCalls1.set(10);
     factoryCalls2.set(20);
@@ -129,9 +130,9 @@ public final class UpdateDescriptionTest {
     AtomicInteger                      factoryCalls2  = new AtomicInteger();
     UpdateDescription.SpannableFactory stringFactory1 = () -> new SpannableString("update." + factoryCalls1.incrementAndGet());
     UpdateDescription.SpannableFactory stringFactory2 = () -> new SpannableString("update." + factoryCalls2.incrementAndGet());
-    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory1, 0);
+    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory1, 0);
     UpdateDescription                  description2   = UpdateDescription.staticDescription("static", 0);
-    UpdateDescription                  description3   = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory2, 0);
+    UpdateDescription                  description3   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory2, 0);
 
     factoryCalls1.set(100);
     factoryCalls2.set(200);

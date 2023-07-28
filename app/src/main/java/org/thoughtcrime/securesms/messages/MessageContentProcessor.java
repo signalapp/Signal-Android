@@ -537,7 +537,7 @@ public class MessageContentProcessor {
     Optional<GroupRecord> groupRecord = groupDatabase.getGroup(groupId);
 
     if (groupRecord.isPresent() && !groupRecord.get().getMembers().contains(senderRecipient.getId())) {
-      log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId + ". Sender: " + senderRecipient.getId() + " | " + senderRecipient.requireServiceId());
+      log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId + ". Sender: " + senderRecipient.getId() + " | " + senderRecipient.requireAci());
       return true;
     }
 
@@ -739,7 +739,7 @@ public class MessageContentProcessor {
     }
 
     ApplicationDependencies.getSignalCallManager()
-                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(senderRecipient.requireServiceId().uuid(),
+                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(senderRecipient.requireAci().getRawUuid(),
                                                                                        message.getOpaque(),
                                                                                        content.getSenderDevice(),
                                                                                        messageAgeSeconds));
@@ -843,7 +843,7 @@ public class MessageContentProcessor {
     log(content.getTimestamp(), "Unknown group message.");
 
     warn(content.getTimestamp(), "Received a GV2 message for a group we have no knowledge of -- attempting to fix this state.");
-    ServiceId authServiceId = ServiceId.parseOrNull(content.getDestinationUuid());
+    ServiceId authServiceId = ServiceId.parseOrNull(content.getDestinationServiceId());
     if (authServiceId == null) {
       warn(content.getTimestamp(), "Group message missing destination uuid, defaulting to ACI");
       authServiceId = SignalStore.account().requireAci();
@@ -1290,7 +1290,7 @@ public class MessageContentProcessor {
       return;
     }
 
-    ServiceId   serviceId   = ServiceId.fromByteString(callEvent.getConversationId());
+    ServiceId   serviceId   = ServiceId.parseOrThrow(callEvent.getConversationId());
     RecipientId recipientId = RecipientId.from(serviceId);
 
     log(envelopeTimestamp, "Synchronize call event call: " + callId);
@@ -3061,7 +3061,7 @@ public class MessageContentProcessor {
         ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
     {
       warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");
-      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(requester.getId(), content.getSenderDevice());
+      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(requester.requireServiceId(), content.getSenderDevice());
       archivedSession = true;
     }
 

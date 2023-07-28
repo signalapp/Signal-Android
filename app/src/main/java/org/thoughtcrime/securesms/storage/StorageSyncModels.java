@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -93,7 +94,7 @@ public final class StorageSyncModels {
 
   private static @NonNull SignalAccountRecord.PinnedConversation localToRemotePinnedConversation(@NonNull RecipientRecord settings) {
     switch (settings.getGroupType()) {
-      case NONE     : return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getServiceId(), settings.getE164()));
+      case NONE     : return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getAci(), settings.getE164()));
       case SIGNAL_V1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
       case SIGNAL_V2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
       default       : throw new AssertionError("Unexpected group type!");
@@ -101,14 +102,14 @@ public final class StorageSyncModels {
   }
 
   private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientRecord recipient, byte[] rawStorageId) {
-    if (recipient.getServiceId() == null && recipient.getE164() == null) {
+    if (recipient.getAci() == null && recipient.getE164() == null) {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 
-    ServiceId serviceId = recipient.getServiceId() != null ? recipient.getServiceId() : ServiceId.UNKNOWN;
+    ACI       aci       = recipient.getAci() != null ? recipient.getAci() : ACI.UNKNOWN;
     boolean   hideStory = recipient.getExtras() != null && recipient.getExtras().hideStory();
 
-    return new SignalContactRecord.Builder(rawStorageId, serviceId, recipient.getSyncExtras().getStorageProto())
+    return new SignalContactRecord.Builder(rawStorageId, aci, recipient.getSyncExtras().getStorageProto())
                                   .setE164(recipient.getE164())
                                   .setPni(recipient.getPni())
                                   .setProfileKey(recipient.getProfileKey())

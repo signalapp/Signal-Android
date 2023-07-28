@@ -20,7 +20,7 @@ import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
@@ -41,7 +41,7 @@ class SignalClient {
     private val trustRoot: ECKeyPair = Curve.generateKeyPair()
   }
 
-  private val serviceId: ServiceId = ServiceId.from(UUID.randomUUID())
+  private val aci: ACI = ACI.from(UUID.randomUUID())
 
   private val store: SignalServiceAccountDataStore = InMemorySignalServiceAccountDataStore()
 
@@ -60,21 +60,21 @@ class SignalClient {
 
   private val senderCertificate: SenderCertificate = createCertificateFor(
     trustRoot = trustRoot,
-    uuid = serviceId.uuid(),
+    uuid = aci.rawUuid,
     e164 = "+${Random.nextLong(1111111111L, 9999999999L)}",
     deviceId = 1,
     identityKey = store.identityKeyPair.publicKey.publicKey,
     expires = Long.MAX_VALUE
   )
 
-  private val cipher = SignalServiceCipher(SignalServiceAddress(serviceId), 1, store, TestSessionLock(), CertificateValidator(trustRoot.publicKey))
+  private val cipher = SignalServiceCipher(SignalServiceAddress(aci), 1, store, TestSessionLock(), CertificateValidator(trustRoot.publicKey))
 
   /**
    * Sets up sessions using the [to] client's [preKeyBundle]. Note that you can only initialize a client once
    * since we currently only make a single prekey bundle.
    */
   fun initializeSession(to: SignalClient) {
-    val address = SignalProtocolAddress(to.serviceId.toString(), 1)
+    val address = SignalProtocolAddress(to.aci.toString(), 1)
     SessionBuilder(store, address).process(to.preKeyBundle)
   }
 
@@ -91,7 +91,7 @@ class SignalClient {
       .build()
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
-      SignalProtocolAddress(to.serviceId.toString(), 1),
+      SignalProtocolAddress(to.aci.toString(), 1),
       Optional.empty(),
       EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty())
     )
@@ -99,9 +99,9 @@ class SignalClient {
     val encryptedContent: ByteArray = Base64.decode(outgoingPushMessage.content)
 
     return SignalServiceProtos.Envelope.newBuilder()
-      .setSourceServiceId(serviceId.toString())
+      .setSourceServiceId(aci.toString())
       .setSourceDevice(1)
-      .setDestinationServiceId(to.serviceId.toString())
+      .setDestinationServiceId(to.aci.toString())
       .setTimestamp(sentTimestamp)
       .setServerTimestamp(sentTimestamp)
       .setServerGuid(UUID.randomUUID().toString())
@@ -124,7 +124,7 @@ class SignalClient {
       .build()
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
-      SignalProtocolAddress(to.serviceId.toString(), 1),
+      SignalProtocolAddress(to.aci.toString(), 1),
       Optional.of(UnidentifiedAccess(to.unidentifiedAccessKey, senderCertificate.serialized, false)),
       EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty())
     )
@@ -132,9 +132,9 @@ class SignalClient {
     val encryptedContent: ByteArray = Base64.decode(outgoingPushMessage.content)
 
     return SignalServiceProtos.Envelope.newBuilder()
-      .setSourceServiceId(serviceId.toString())
+      .setSourceServiceId(aci.toString())
       .setSourceDevice(1)
-      .setDestinationServiceId(to.serviceId.toString())
+      .setDestinationServiceId(to.aci.toString())
       .setTimestamp(sentTimestamp)
       .setServerTimestamp(sentTimestamp)
       .setServerGuid(UUID.randomUUID().toString())

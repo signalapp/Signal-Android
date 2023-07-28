@@ -55,7 +55,7 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;

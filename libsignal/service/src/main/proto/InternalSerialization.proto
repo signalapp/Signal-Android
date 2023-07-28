@@ -23,7 +23,7 @@ message SignalServiceContentProto {
 
 message SignalServiceEnvelopeProto {
   optional int32  type                     = 1;
-  optional string sourceUuid               = 2;
+  optional string sourceServiceId          = 2;
   reserved      /*sourceE164*/               3;
   optional int32  deviceId                 = 4;
   reserved      /*legacyMessage*/            5;
@@ -32,7 +32,7 @@ message SignalServiceEnvelopeProto {
   optional int64  serverReceivedTimestamp  = 8;
   optional int64  serverDeliveredTimestamp = 9;
   optional string serverGuid               = 10;
-  optional string destinationUuid          = 11;
+  optional string destinationServiceId     = 11;
   optional bool   urgent                   = 12 [default = true];
   optional bool   story                    = 13;
   optional bytes  reportingToken           = 14;

@@ -39,6 +39,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -989,7 +990,7 @@ public final class GroupsV2Operations {
         GroupChange.Actions.AddMemberAction addMember                        = addMembers.get(i);
         ProfileKeyCredentialPresentation    profileKeyCredentialPresentation = new ProfileKeyCredentialPresentation(addMember.getAdded().getPresentation().toByteArray());
 
-        ids.add(ServiceId.from(clientZkGroupCipher.decryptUuid(profileKeyCredentialPresentation.getUuidCiphertext())));
+        ids.add(ACI.from(clientZkGroupCipher.decryptUuid(profileKeyCredentialPresentation.getUuidCiphertext())));
       }
       return ids;
     }

@@ -13,8 +13,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
@@ -173,10 +173,10 @@ class RecipientTableTest {
 
     SignalDatabase.recipients.markUnregistered(mainId)
 
-    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+    val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
 
     val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
-    val byPni: RecipientId = SignalDatabase.recipients.getByServiceId(PNI_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByPni(PNI_A).get()
 
     assertEquals(mainId, byAci)
     assertEquals(byE164, byPni)
@@ -192,10 +192,10 @@ class RecipientTableTest {
 
     SignalDatabase.recipients.splitForStorageSync(mainRecord.storageId!!)
 
-    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+    val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
 
     val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
-    val byPni: RecipientId = SignalDatabase.recipients.getByServiceId(PNI_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByPni(PNI_A).get()
 
     assertEquals(mainId, byAci)
     assertEquals(byE164, byPni)

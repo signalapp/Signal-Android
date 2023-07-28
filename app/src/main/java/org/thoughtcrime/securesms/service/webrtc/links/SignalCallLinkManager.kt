@@ -45,7 +45,7 @@ class SignalCallLinkManager(
     linkRootKey: ByteArray,
     roomId: ByteArray
   ): CreateCallLinkCredentialPresentation {
-    val userUuid = Recipient.self().requireServiceId().uuid()
+    val userUuid = Recipient.self().requireAci().rawUuid
     val requestContext = CreateCallLinkCredentialRequestContext.forRoom(roomId)
     val request = requestContext.request
 

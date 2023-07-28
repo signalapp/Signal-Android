@@ -54,6 +54,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Collection;
 import java.util.List;
@@ -789,7 +790,7 @@ public abstract class WebRtcActionProcessor {
                                                                   @NonNull RemotePeer remotePeerGroup,
                                                                   @NonNull GroupId.V2 groupId,
                                                                   long ringId,
-                                                                  @NonNull UUID sender,
+                                                                  @NonNull ACI sender,
                                                                   @NonNull RingUpdate ringUpdate)
   {
     Log.i(tag, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);

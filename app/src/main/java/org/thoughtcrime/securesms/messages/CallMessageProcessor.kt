@@ -42,7 +42,7 @@ object CallMessageProcessor {
         handleCallHangupMessage(envelope, metadata, hangup, senderRecipient.id, callMessage.hasLegacyHangup())
       }
       callMessage.hasBusy() -> handleCallBusyMessage(envelope, metadata, callMessage.busy, senderRecipient.id)
-      callMessage.hasOpaque() -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque, senderRecipient.requireServiceId(), serverDeliveredTimestamp)
+      callMessage.hasOpaque() -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque, senderRecipient.requireAci(), serverDeliveredTimestamp)
     }
   }
 
@@ -146,7 +146,7 @@ object CallMessageProcessor {
     ApplicationDependencies.getSignalCallManager()
       .receivedOpaqueMessage(
         OpaqueMessageMetadata(
-          senderServiceId.uuid(),
+          senderServiceId.rawUuid,
           opaque.data.toByteArray(),
           metadata.sourceDeviceId,
           messageAgeSeconds

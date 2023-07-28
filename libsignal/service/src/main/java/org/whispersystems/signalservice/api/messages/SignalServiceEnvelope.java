@@ -170,13 +170,6 @@ public class SignalServiceEnvelope {
   }
 
   /**
-   * @return The envelope's sender as a SignalServiceAddress.
-   */
-  public SignalServiceAddress getSourceAddress() {
-    return new SignalServiceAddress(ServiceId.parseOrNull(envelope.getSourceServiceId()));
-  }
-
-  /**
    * @return The envelope content type.
    */
   public int getType() {
@@ -286,7 +279,7 @@ public class SignalServiceEnvelope {
                                                                            .setStory(isStory());
 
     if (getSourceServiceId().isPresent()) {
-      builder.setSourceUuid(getSourceServiceId().get());
+      builder.setSourceServiceId(getSourceServiceId().get());
     }
 
     if (hasContent()) {
@@ -298,7 +291,7 @@ public class SignalServiceEnvelope {
     }
 
     if (hasDestinationUuid()) {
-      builder.setDestinationUuid(getDestinationServiceId());
+      builder.setDestinationServiceId(getDestinationServiceId());
     }
 
     if (hasReportingToken()) {
@@ -322,7 +315,7 @@ public class SignalServiceEnvelope {
 
     Preconditions.checkNotNull(proto);
 
-    ServiceId sourceServiceId = proto.hasSourceUuid() ? ServiceId.parseOrNull(proto.getSourceUuid()) : null;
+    ServiceId sourceServiceId = proto.hasSourceServiceId() ? ServiceId.parseOrNull(proto.getSourceServiceId()) : null;
 
     return new SignalServiceEnvelope(proto.getType(),
                                      sourceServiceId != null ? Optional.of(new SignalServiceAddress(sourceServiceId)) : Optional.empty(),
@@ -332,7 +325,7 @@ public class SignalServiceEnvelope {
                                      proto.getServerReceivedTimestamp(),
                                      proto.getServerDeliveredTimestamp(),
                                      proto.getServerGuid(),
-                                     proto.getDestinationUuid(),
+                                     proto.getDestinationServiceId(),
                                      proto.getUrgent(),
                                      proto.getStory(),
                                      proto.hasReportingToken() ? proto.getReportingToken().toByteArray() : null);

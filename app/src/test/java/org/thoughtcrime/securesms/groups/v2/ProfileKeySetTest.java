@@ -5,6 +5,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Collections;
@@ -40,7 +41,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(editor).addMember(newMember, profileKey).build());
 
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
-    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ServiceId.from(newMember), profileKey)));
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ACI.from(newMember), profileKey)));
   }
 
   @Test
@@ -52,7 +53,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(newMember).addMember(newMember, profileKey).build());
 
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
-    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ServiceId.from(newMember), profileKey)));
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ACI.from(newMember), profileKey)));
   }
 
   @Test
@@ -64,7 +65,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(newMember).promote(newMember, profileKey).build());
 
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
-    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ServiceId.from(newMember), profileKey)));
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ACI.from(newMember), profileKey)));
   }
 
   @Test
@@ -77,7 +78,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(editor).promote(newMember, profileKey).build());
 
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
-    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ServiceId.from(newMember), profileKey)));
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ACI.from(newMember), profileKey)));
   }
 
   @Test
@@ -89,7 +90,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeByUnknown().promote(newMember, profileKey).build());
 
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
-    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ServiceId.from(newMember), profileKey)));
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ACI.from(newMember), profileKey)));
   }
 
   @Test
@@ -101,7 +102,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(member).profileKeyUpdate(member, profileKey).build());
 
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
-    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ServiceId.from(member), profileKey)));
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ACI.from(member), profileKey)));
   }
 
   @Test
@@ -114,7 +115,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(editor).profileKeyUpdate(member, profileKey).build());
 
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
-    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ServiceId.from(member), profileKey)));
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ACI.from(member), profileKey)));
   }
 
   @Test
@@ -129,7 +130,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(editor).profileKeyUpdate(member, profileKey2).build());
 
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
-    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ServiceId.from(member), profileKey2)));
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ACI.from(member), profileKey2)));
   }
 
   @Test
@@ -144,7 +145,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(editor).profileKeyUpdate(member, profileKey2).build());
 
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
-    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ServiceId.from(member), profileKey1)));
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ACI.from(member), profileKey1)));
   }
 
   @Test
@@ -159,7 +160,7 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(member).profileKeyUpdate(member, profileKey2).build());
 
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
-    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ServiceId.from(member), profileKey2)));
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ACI.from(member), profileKey2)));
   }
 
   @Test
@@ -186,7 +187,7 @@ public final class ProfileKeySetTest {
 
     profileKeySet.addKeysFromGroupChange(changeBy(editor).requestJoin(profileKey).build());
 
-    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ServiceId.from(editor), profileKey)));
+    assertThat(profileKeySet.getAuthoritativeProfileKeys(), is(Collections.singletonMap(ACI.from(editor), profileKey)));
     assertTrue(profileKeySet.getProfileKeys().isEmpty());
   }
 
@@ -200,6 +201,6 @@ public final class ProfileKeySetTest {
     profileKeySet.addKeysFromGroupChange(changeBy(editor).requestJoin(requesting, profileKey).build());
 
     assertTrue(profileKeySet.getAuthoritativeProfileKeys().isEmpty());
-    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ServiceId.from(requesting), profileKey)));
+    assertThat(profileKeySet.getProfileKeys(), is(Collections.singletonMap(ACI.from(requesting), profileKey)));
   }
 }

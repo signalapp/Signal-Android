@@ -12,6 +12,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -97,11 +98,11 @@ public final class ProfileKeySet {
     }
 
     if (memberUuid.equals(changeSource)) {
-      authoritativeProfileKeys.put(ServiceId.from(memberUuid), profileKey);
-      profileKeys.remove(ServiceId.from(memberUuid));
+      authoritativeProfileKeys.put(ACI.from(memberUuid), profileKey);
+      profileKeys.remove(ACI.from(memberUuid));
     } else {
-      if (!authoritativeProfileKeys.containsKey(ServiceId.from(memberUuid))) {
-        profileKeys.put(ServiceId.from(memberUuid), profileKey);
+      if (!authoritativeProfileKeys.containsKey(ACI.from(memberUuid))) {
+        profileKeys.put(ACI.from(memberUuid), profileKey);
       }
     }
   }

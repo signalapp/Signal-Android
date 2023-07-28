@@ -95,6 +95,7 @@ import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
@@ -992,10 +993,10 @@ object DataMessageProcessor {
     return mentionBodyRanges
       .filter { it.hasMentionAci() }
       .mapNotNull {
-        val serviceId = ServiceId.parseOrNull(it.mentionAci)
+        val aci = ACI.parseOrNull(it.mentionAci)
 
-        if (serviceId != null && !serviceId.isUnknown) {
-          val id = Recipient.externalPush(serviceId).id
+        if (aci != null && !aci.isUnknown) {
+          val id = Recipient.externalPush(aci).id
           Mention(id, it.start, it.length)
         } else {
           null

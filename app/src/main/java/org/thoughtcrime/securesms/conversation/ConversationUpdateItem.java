@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -315,7 +315,7 @@ public final class ConversationUpdateItem extends FrameLayout
         liveBannedMembers     = liveGroup.getBannedMembers();
         liveFullMembers       = Transformations.map(liveGroup.getFullMembers(),
                                                     members -> members.stream()
-                                                                      .map(m -> m.getMember().requireServiceId().uuid())
+                                                                      .map(m -> m.getMember().requireAci().getRawUuid())
                                                                       .collect(Collectors.toSet()));
 
         liveIsSelfAdmin.observe(lifecycleOwner, updater);
@@ -343,7 +343,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
       Set<UUID> bannedMembers = liveBannedMembers.getValue();
       if (bannedMembers != null) {
-        return recipient.getServiceId().isPresent() && bannedMembers.contains(recipient.requireServiceId().uuid());
+        return recipient.getServiceId().isPresent() && bannedMembers.contains(recipient.requireServiceId().getRawUuid());
       }
       return false;
     }
@@ -355,7 +355,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
       Set<UUID> members = liveFullMembers.getValue();
       if (members != null) {
-        return recipient.getServiceId().isPresent() && members.contains(recipient.requireServiceId().uuid());
+        return recipient.hasAci() && members.contains(recipient.requireAci().getRawUuid());
       }
       return false;
     }
@@ -446,12 +446,12 @@ public final class ConversationUpdateItem extends FrameLayout
         }
       });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
-      UpdateDescription     updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
-      Collection<ServiceId> sids              = updateDescription.getMentioned();
+      UpdateDescription updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
+      Collection<ACI>   acis              = updateDescription.getMentioned();
 
       int text = 0;
-      if (Util.hasItems(sids)) {
-        if (sids.contains(SignalStore.account().requireAci())) {
+      if (Util.hasItems(acis)) {
+        if (acis.contains(SignalStore.account().requireAci())) {
           text = R.string.ConversationUpdateItem_return_to_call;
         } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).getIsCallFull()) {
           text = R.string.ConversationUpdateItem_call_is_full;

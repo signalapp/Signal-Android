@@ -4,7 +4,8 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.libsignal.protocol.logging.Log;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
@@ -25,7 +26,7 @@ public final class SignalContactRecord implements SignalRecord {
   private final ContactRecord proto;
   private final boolean       hasUnknownFields;
 
-  private final ServiceId        serviceId;
+  private final ACI              aci;
   private final Optional<PNI>    pni;
   private final Optional<String> e164;
   private final Optional<String> profileGivenName;
@@ -38,13 +39,12 @@ public final class SignalContactRecord implements SignalRecord {
   private final Optional<byte[]> identityKey;
 
   public SignalContactRecord(StorageId id, ContactRecord proto) {
-    this.id               = id;
-    this.proto            = proto;
-    this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
-
-    this.serviceId         = ServiceId.parseOrUnknown(proto.getServiceId());
-    this.pni               = OptionalUtil.absentIfEmpty(proto.getServicePni()).map(PNI::parseOrNull);
-    this.e164              = OptionalUtil.absentIfEmpty(proto.getServiceE164());
+    this.id                = id;
+    this.proto             = proto;
+    this.hasUnknownFields  = ProtoUtil.hasUnknownFields(proto);
+    this.aci               = ACI.parseOrUnknown(proto.getAci());
+    this.pni               = OptionalUtil.absentIfEmpty(proto.getPni()).map(PNI::parseOrNull);
+    this.e164              = OptionalUtil.absentIfEmpty(proto.getE164());
     this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.getGivenName());
     this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.getFamilyName());
     this.systemGivenName   = OptionalUtil.absentIfEmpty(proto.getSystemGivenName());
@@ -75,8 +75,8 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("ID");
       }
 
-      if (!Objects.equals(this.getServiceId(), that.getServiceId())) {
-        diff.add("ServiceId");
+      if (!Objects.equals(this.getAci(), that.getAci())) {
+        diff.add("ACI");
       }
 
       if (!Objects.equals(this.getPni(), that.getPni())) {
@@ -173,8 +173,8 @@ public final class SignalContactRecord implements SignalRecord {
     return hasUnknownFields ? proto.toByteArray() : null;
   }
 
-  public ServiceId getServiceId() {
-    return serviceId;
+  public ACI getAci() {
+    return aci;
   }
 
   public Optional<PNI> getPni() {
@@ -257,7 +257,7 @@ public final class SignalContactRecord implements SignalRecord {
    * Returns the same record, but stripped of the PNI field. Only used while PNP is in development.
    */
   public SignalContactRecord withoutPni() {
-    return new SignalContactRecord(id, proto.toBuilder().clearServicePni().build());
+    return new SignalContactRecord(id, proto.toBuilder().clearPni().build());
   }
 
   public ContactRecord toProto() {
@@ -282,7 +282,7 @@ public final class SignalContactRecord implements SignalRecord {
     private final StorageId             id;
     private final ContactRecord.Builder builder;
 
-    public Builder(byte[] rawId, ServiceId serviceId, byte[] serializedUnknowns) {
+    public Builder(byte[] rawId, ACI aci, byte[] serializedUnknowns) {
       this.id = StorageId.forContact(rawId);
 
       if (serializedUnknowns != null) {
@@ -291,16 +291,16 @@ public final class SignalContactRecord implements SignalRecord {
         this.builder = ContactRecord.newBuilder();
       }
 
-      builder.setServiceId(serviceId.toString());
+      builder.setAci(aci.toString());
     }
 
     public Builder setE164(String e164) {
-      builder.setServiceE164(e164 == null ? "" : e164);
+      builder.setE164(e164 == null ? "" : e164);
       return this;
     }
 
     public Builder setPni(PNI pni) {
-      builder.setServicePni(pni == null ? "" : pni.toString());
+      builder.setPni(pni == null ? "" : pni.toString());
       return this;
     }
 

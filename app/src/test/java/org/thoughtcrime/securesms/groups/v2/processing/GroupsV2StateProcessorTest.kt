@@ -46,9 +46,8 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import java.util.UUID
 
@@ -60,9 +59,9 @@ class GroupsV2StateProcessorTest {
     private val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
     private val selfAci: ACI = ACI.from(UUID.randomUUID())
     private val serviceIds: ServiceIds = ServiceIds(selfAci, PNI.from(UUID.randomUUID()))
-    private val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
-    private val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
-    private val others: List<DecryptedMember> = listOf(member(otherSid))
+    private val otherAci: ACI = ACI.from(UUID.randomUUID())
+    private val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherAci))
+    private val others: List<DecryptedMember> = listOf(member(otherAci))
   }
 
   private lateinit var groupTable: GroupTable
@@ -268,7 +267,7 @@ class GroupsV2StateProcessorTest {
         revision = 2,
         title = "Breaking Signal for Science",
         description = "We break stuff, because we must.",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 2))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
       )
       changeSet {
         changeLog(2) {
@@ -290,7 +289,7 @@ class GroupsV2StateProcessorTest {
         revision = 3,
         title = "Breaking Signal for Science",
         description = "We break stuff, because we must.",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 2))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
       )
       changeSet {
         changeLog(2) {
@@ -346,7 +345,7 @@ class GroupsV2StateProcessorTest {
       serverState(
         revision = 3,
         title = "Beam me up",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 3))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 3))
       )
       changeSet {
         changeLog(3) {
@@ -376,7 +375,7 @@ class GroupsV2StateProcessorTest {
       serverState(
         revision = 5,
         title = "Beam me up!",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 3))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 3))
       )
       changeSet {
         changeLog(3) {
@@ -470,7 +469,7 @@ class GroupsV2StateProcessorTest {
    */
   @Test
   fun missedMemberAddResolvesWithMultipleRevisionUpdate() {
-    val secondOther = member(ServiceId.from(UUID.randomUUID()))
+    val secondOther = member(ACI.from(UUID.randomUUID()))
 
     profileAndMessageHelper.masterKey = masterKey
 
@@ -521,7 +520,7 @@ class GroupsV2StateProcessorTest {
    */
   @Test
   fun missedMemberAddResolvesWithForcedUpdate() {
-    val secondOther = member(ServiceId.from(UUID.randomUUID()))
+    val secondOther = member(ACI.from(UUID.randomUUID()))
 
     profileAndMessageHelper.masterKey = masterKey
 

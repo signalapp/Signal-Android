@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms.database
 import app.cash.exhaustive.Exhaustive
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 
 /**
  * Encapsulates data around processing a tuple of user data into a user entry in [RecipientTable].
@@ -15,18 +16,20 @@ data class PnpDataSet(
   val pni: PNI?,
   val aci: ACI?,
   val byE164: RecipientId?,
-  val byPniSid: RecipientId?,
-  val byPniOnly: RecipientId?,
-  val byAciSid: RecipientId?,
+  val byPni: RecipientId?,
+  val byAci: RecipientId?,
   val e164Record: RecipientRecord? = null,
-  val pniSidRecord: RecipientRecord? = null,
-  val aciSidRecord: RecipientRecord? = null
+  val pniRecord: RecipientRecord? = null,
+  val aciRecord: RecipientRecord? = null
 ) {
 
   /**
    * @return The common id if all non-null ids are equal, or null if all are null or at least one non-null pair doesn't match.
    */
-  val commonId: RecipientId? = findCommonId(listOf(byE164, byPniSid, byPniOnly, byAciSid))
+  val commonId: RecipientId? = findCommonId(listOf(byE164, byPni, byAci))
+
+  /** The ID that would be used to contact this user. */
+  val serviceId: ServiceId? = aci ?: pni
 
   fun MutableSet<RecipientRecord>.replace(recipientId: RecipientId, update: (RecipientRecord) -> RecipientRecord) {
     val toUpdate = this.first { it.id == recipientId }
@@ -43,7 +46,7 @@ data class PnpDataSet(
       return this
     }
 
-    val records: MutableSet<RecipientRecord> = listOfNotNull(e164Record, pniSidRecord, aciSidRecord).toMutableSet()
+    val records: MutableSet<RecipientRecord> = listOfNotNull(e164Record, pniRecord, aciRecord).toMutableSet()
 
     for (operation in operations) {
       @Exhaustive
@@ -55,16 +58,12 @@ data class PnpDataSet(
           records.replace(operation.recipientId) { record ->
             record.copy(
               pni = null,
-              serviceId = if (record.sidIsPni()) {
-                null
-              } else {
-                record.serviceId
-              }
+              aci = record.aci
             )
           }
         }
         is PnpOperation.SetAci -> {
-          records.replace(operation.recipientId) { it.copy(serviceId = operation.aci) }
+          records.replace(operation.recipientId) { it.copy(aci = operation.aci) }
         }
         is PnpOperation.SetE164 -> {
           records.replace(operation.recipientId) { it.copy(e164 = operation.e164) }
@@ -72,12 +71,7 @@ data class PnpDataSet(
         is PnpOperation.SetPni -> {
           records.replace(operation.recipientId) { record ->
             record.copy(
-              pni = operation.pni,
-              serviceId = if (record.sidIsPni()) {
-                operation.pni
-              } else {
-                record.serviceId ?: operation.pni
-              }
+              pni = operation.pni
             )
           }
         }
@@ -89,7 +83,7 @@ data class PnpDataSet(
             primary.copy(
               e164 = primary.e164 ?: secondary.e164,
               pni = primary.pni ?: secondary.pni,
-              serviceId = primary.serviceId ?: secondary.serviceId
+              aci = primary.aci ?: secondary.aci
             )
           }
 
@@ -101,20 +95,16 @@ data class PnpDataSet(
     }
 
     val newE164Record = if (e164 != null) records.firstOrNull { it.e164 == e164 } else null
-    val newPniSidRecord = if (pni != null) records.firstOrNull { it.serviceId == pni } else null
-    val newAciSidRecord = if (aci != null) records.firstOrNull { it.serviceId == aci } else null
+    val newPniRecord = if (pni != null) records.firstOrNull { it.pni == pni } else null
+    val newAciRecord = if (aci != null) records.firstOrNull { it.aci == aci } else null
 
-    return PnpDataSet(
-      e164 = e164,
-      pni = pni,
-      aci = aci,
+    return this.copy(
       byE164 = newE164Record?.id,
-      byPniSid = newPniSidRecord?.id,
-      byPniOnly = byPniOnly,
-      byAciSid = newAciSidRecord?.id,
+      byPni = newPniRecord?.id,
+      byAci = newAciRecord?.id,
       e164Record = newE164Record,
-      pniSidRecord = newPniSidRecord,
-      aciSidRecord = newAciSidRecord
+      pniRecord = newPniRecord,
+      aciRecord = newAciRecord
     )
   }
 

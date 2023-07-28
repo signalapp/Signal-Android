@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.components.settings.app.internal.search
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -46,7 +45,7 @@ class InternalSearchViewModel : ViewModel() {
             InternalSearchResult(
               id = record.id,
               name = record.displayName(),
-              aci = record.serviceId?.toString(),
+              aci = record.aci?.toString(),
               pni = record.pni.toString(),
               groupId = record.groupId
             )

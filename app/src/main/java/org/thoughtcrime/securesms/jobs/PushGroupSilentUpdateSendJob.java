@@ -33,7 +33,7 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
@@ -77,8 +77,8 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
 
     Set<RecipientId> recipients = Stream.concat(Stream.of(memberUuids), Stream.of(pendingUuids))
                                         .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
-                                        .filter(uuid -> !SignalStore.account().requireAci().uuid().equals(uuid))
-                                        .map(uuid -> Recipient.externalPush(ServiceId.from(uuid)))
+                                        .filter(uuid -> !SignalStore.account().requireAci().getRawUuid().equals(uuid))
+                                        .map(uuid -> Recipient.externalPush(ACI.from(uuid)))
                                         .filter(recipient -> recipient.getRegistered() != RecipientTable.RegisteredState.NOT_REGISTERED)
                                         .map(Recipient::getId)
                                         .collect(Collectors.toSet());

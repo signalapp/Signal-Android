@@ -24,7 +24,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.util.UuidUtil;

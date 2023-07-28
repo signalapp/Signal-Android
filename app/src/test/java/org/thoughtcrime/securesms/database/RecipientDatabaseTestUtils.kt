@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientDetails
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.Optional
 import java.util.UUID
 import kotlin.random.Random
@@ -34,7 +34,7 @@ object RecipientDatabaseTestUtils {
     isSelf: Boolean = false,
     participants: List<RecipientId> = listOf(),
     recipientId: RecipientId = RecipientId.from(Random.nextLong()),
-    serviceId: ServiceId? = ServiceId.from(UUID.randomUUID()),
+    serviceId: ACI? = ACI.from(UUID.randomUUID()),
     username: String? = null,
     e164: String? = null,
     email: String? = null,

@@ -39,9 +39,8 @@ import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import java.util.UUID
 
@@ -58,9 +57,9 @@ class GroupManagerV2Test_edit {
     val selfAci: ACI = ACI.from(UUID.randomUUID())
     val selfPni: PNI = PNI.from(UUID.randomUUID())
     val serviceIds: ServiceIds = ServiceIds(selfAci, selfPni)
-    val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
-    val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
-    val others: List<DecryptedMember> = listOf(member(otherSid))
+    val otherAci: ACI = ACI.from(UUID.randomUUID())
+    val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherAci))
+    val others: List<DecryptedMember> = listOf(member(otherAci))
   }
 
   private lateinit var groupTable: GroupTable
@@ -136,13 +135,13 @@ class GroupManagerV2Test_edit {
         revision = 5,
         members = listOf(
           member(selfAci, role = Member.Role.ADMINISTRATOR),
-          member(otherSid)
+          member(otherAci)
         )
       )
       groupChange(6) {
         source(selfAci)
         deleteMember(selfAci)
-        modifyRole(otherSid, Member.Role.ADMINISTRATOR)
+        modifyRole(otherAci, Member.Role.ADMINISTRATOR)
       }
     }
 
@@ -153,7 +152,7 @@ class GroupManagerV2Test_edit {
     then { patchedGroup ->
       assertThat("Revision updated by one", patchedGroup.revision, `is`(6))
       assertThat("Self is no longer in the group", patchedGroup.membersList.find { it.uuid == selfAci.toByteString() }, Matchers.nullValue())
-      assertThat("Other is now an admin in the group", patchedGroup.membersList.find { it.uuid == otherSid.toByteString() }?.role, `is`(Member.Role.ADMINISTRATOR))
+      assertThat("Other is now an admin in the group", patchedGroup.membersList.find { it.uuid == otherAci.toByteString() }?.role, `is`(Member.Role.ADMINISTRATOR))
     }
   }
 }

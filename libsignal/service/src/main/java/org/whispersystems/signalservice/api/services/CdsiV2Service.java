@@ -7,8 +7,8 @@ import org.signal.cdsi.proto.ClientResponse;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
-import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -130,7 +130,7 @@ public final class CdsiV2Service {
 
     for (Map.Entry<ServiceId, ProfileKey> entry : serviceIds.entrySet()) {
       try {
-        os.write(UuidUtil.toByteArray(entry.getKey().uuid()));
+        os.write(UuidUtil.toByteArray(entry.getKey().getRawUuid()));
         os.write(UnidentifiedAccess.deriveAccessKeyFrom(entry.getValue()));
       } catch (IOException e) {
         throw new AssertionError("Failed to write long to ByteString", e);

@@ -6,8 +6,8 @@
 
 package org.whispersystems.signalservice.api.util;
 
-import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 
 public interface CredentialsProvider {
   ACI getAci();

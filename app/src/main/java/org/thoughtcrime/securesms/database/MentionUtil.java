@@ -96,7 +96,7 @@ public final class MentionUtil {
     BodyRangeList.Builder builder = BodyRangeList.newBuilder();
 
     for (Mention mention : mentions) {
-      String uuid = Recipient.resolved(mention.getRecipientId()).requireServiceId().toString();
+      String uuid = Recipient.resolved(mention.getRecipientId()).requireAci().toString();
       builder.addRanges(BodyRangeList.BodyRange.newBuilder()
                                                .setMentionUuid(uuid)
                                                .setStart(mention.getStart())

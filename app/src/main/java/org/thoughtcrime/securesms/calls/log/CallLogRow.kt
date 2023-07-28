@@ -93,7 +93,7 @@ sealed class CallLogRow {
           return FULL
         }
 
-        if (groupCallUpdateDetails.inCallUuidsList.contains(Recipient.self().requireServiceId().uuid().toString())) {
+        if (groupCallUpdateDetails.inCallUuidsList.contains(Recipient.self().requireAci().rawUuid.toString())) {
           return LOCAL_USER_JOINED
         }
 

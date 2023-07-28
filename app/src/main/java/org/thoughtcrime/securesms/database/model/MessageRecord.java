@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -307,7 +308,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   private static boolean selfCreatedGroup(@NonNull DecryptedGroupChange change) {
     return change.getRevision() == 0 &&
-           change.getEditor().equals(UuidUtil.toByteString(SignalStore.account().requireAci().uuid()));
+           change.getEditor().equals(UuidUtil.toByteString(SignalStore.account().requireAci().getRawUuid()));
   }
 
   public static @NonNull UpdateDescription getGv2ChangeDescription(@NonNull Context context, @NonNull String body, @Nullable Consumer<RecipientId> recipientClickHandler) {
@@ -345,13 +346,13 @@ public abstract class MessageRecord extends DisplayRecord {
     }
 
     DecryptedGroup groupState = decryptedGroupV2Context.getGroupState();
-    boolean        invited    = DecryptedGroupUtil.findPendingByUuid(groupState.getPendingMembersList(), SignalStore.account().requireAci().uuid()).isPresent();
+    boolean        invited    = DecryptedGroupUtil.findPendingByUuid(groupState.getPendingMembersList(), SignalStore.account().requireAci().getRawUuid()).isPresent();
 
     if (decryptedGroupV2Context.hasChange()) {
       UUID changeEditor = UuidUtil.fromByteStringOrNull(decryptedGroupV2Context.getChange().getEditor());
 
       if (changeEditor != null) {
-        return new InviteAddState(invited, changeEditor);
+        return new InviteAddState(invited, ACI.from(changeEditor));
       }
     }
 
@@ -367,7 +368,7 @@ public abstract class MessageRecord extends DisplayRecord {
                                                             @NonNull Function<Recipient, String> stringGenerator,
                                                             @DrawableRes int iconResource)
   {
-    return UpdateDescription.mentioning(Collections.singletonList(recipient.getServiceId().orElse(ServiceId.UNKNOWN)),
+    return UpdateDescription.mentioning(Collections.singletonList(recipient.getAci().orElse(ACI.UNKNOWN)),
                                         () -> new SpannableString(stringGenerator.apply(recipient.resolve())),
                                         iconResource);
   }
@@ -435,10 +436,10 @@ public abstract class MessageRecord extends DisplayRecord {
   public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body, boolean withTime) {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
-    List<ServiceId> joinedMembers = Stream.of(groupCallUpdateDetails.getInCallUuidsList())
+    List<ACI> joinedMembers = Stream.of(groupCallUpdateDetails.getInCallUuidsList())
                                           .map(UuidUtil::parseOrNull)
                                           .withoutNulls()
-                                          .map(ServiceId::from)
+                                          .map(ACI::from)
                                           .toList();
 
     UpdateDescription.SpannableFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, withTime, groupCallUpdateDetails);
@@ -467,7 +468,7 @@ public abstract class MessageRecord extends DisplayRecord {
       return false;
     }
 
-    return isGroupV2JoinRequest(UuidUtil.toByteString(serviceId.uuid()));
+    return isGroupV2JoinRequest(UuidUtil.toByteString(serviceId.getRawUuid()));
   }
 
   public boolean isGroupV2JoinRequest(@NonNull ByteString uuid) {
@@ -489,7 +490,7 @@ public abstract class MessageRecord extends DisplayRecord {
       DecryptedGroupChange change = decryptedGroupV2Context.getChange();
       return change.getNewRequestingMembersCount() > 0 &&
              change.getDeleteRequestingMembersCount() > 0 &&
-             (serviceId == null || change.getEditor().equals(UuidUtil.toByteString(serviceId.uuid())));
+             (serviceId == null || change.getEditor().equals(UuidUtil.toByteString(serviceId.getRawUuid())));
     }
     return false;
   }
@@ -748,14 +749,14 @@ public abstract class MessageRecord extends DisplayRecord {
   public static final class InviteAddState {
 
     private final boolean invited;
-    private final UUID    addedOrInvitedBy;
+    private final ACI     addedOrInvitedBy;
 
-    public InviteAddState(boolean invited, @NonNull UUID addedOrInvitedBy) {
+    public InviteAddState(boolean invited, @NonNull ACI addedOrInvitedBy) {
       this.invited          = invited;
       this.addedOrInvitedBy = addedOrInvitedBy;
     }
 
-    public @NonNull UUID getAddedOrInvitedBy() {
+    public @NonNull ACI getAddedOrInvitedBy() {
       return addedOrInvitedBy;
     }
 

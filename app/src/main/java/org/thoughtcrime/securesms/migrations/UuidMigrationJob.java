@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.io.IOException;
 import java.util.Objects;

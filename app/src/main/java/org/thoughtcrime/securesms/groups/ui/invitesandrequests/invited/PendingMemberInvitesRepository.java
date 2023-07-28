@@ -77,7 +77,7 @@ final class PendingMemberInvitesRepository {
                     }
                   }
                 } else {
-                  Recipient                 inviter         = GroupProtoUtil.uuidByteStringToRecipient(context, inviterUuid);
+                  Recipient                 inviter         = GroupProtoUtil.pendingMemberServiceIdToRecipient(context, inviterUuid);
                   ArrayList<UuidCiphertext> uuidCipherTexts = new ArrayList<>(invitedMembers.size());
 
                   for (DecryptedPendingMember pendingMember : invitedMembers) {

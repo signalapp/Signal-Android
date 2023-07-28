@@ -55,8 +55,9 @@ import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipherResult
 import org.whispersystems.signalservice.api.messages.EnvelopeContentValidator
-import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
@@ -158,13 +159,17 @@ object MessageDecryptor {
       }
 
       if (FeatureFlags.phoneNumberPrivacy() && cipherResult.content.hasPniSignatureMessage()) {
-        handlePniSignatureMessage(
-          envelope,
-          cipherResult.metadata.sourceServiceId,
-          cipherResult.metadata.sourceE164,
-          cipherResult.metadata.sourceDeviceId,
-          cipherResult.content.pniSignatureMessage
-        )
+        if (cipherResult.metadata.sourceServiceId is ACI) {
+          handlePniSignatureMessage(
+            envelope,
+            cipherResult.metadata.sourceServiceId as ACI,
+            cipherResult.metadata.sourceE164,
+            cipherResult.metadata.sourceDeviceId,
+            cipherResult.content.pniSignatureMessage
+          )
+        } else {
+          Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the sourceServiceId isn't an ACI!")
+        }
       } else if (cipherResult.content.hasPniSignatureMessage()) {
         Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the feature flag is disabled!")
       }
@@ -295,37 +300,37 @@ object MessageDecryptor {
     SignalGroupSessionBuilder(ReentrantSessionLock.INSTANCE, GroupSessionBuilder(senderKeyStore)).process(sender, message)
   }
 
-  private fun handlePniSignatureMessage(envelope: Envelope, serviceId: ServiceId, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
-    Log.i(TAG, "${logPrefix(envelope, serviceId)} Processing PniSignatureMessage")
+  private fun handlePniSignatureMessage(envelope: Envelope, aci: ACI, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
+    Log.i(TAG, "${logPrefix(envelope, aci)} Processing PniSignatureMessage")
 
     val pni: PNI = PNI.parseOrThrow(pniSignatureMessage.pni.toByteArray())
 
-    if (SignalDatabase.recipients.isAssociated(serviceId, pni)) {
-      Log.i(TAG, "${logPrefix(envelope, serviceId)}[handlePniSignatureMessage] ACI ($serviceId) and PNI ($pni) are already associated.")
+    if (SignalDatabase.recipients.isAssociated(aci, pni)) {
+      Log.i(TAG, "${logPrefix(envelope, aci)}[handlePniSignatureMessage] ACI ($aci) and PNI ($pni) are already associated.")
       return
     }
 
     val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
-    val aciAddress = SignalProtocolAddress(serviceId.toString(), deviceId)
+    val aciAddress = SignalProtocolAddress(aci.toString(), deviceId)
     val pniAddress = SignalProtocolAddress(pni.toString(), deviceId)
     val aciIdentity = identityStore.getIdentity(aciAddress)
     val pniIdentity = identityStore.getIdentity(pniAddress)
 
     if (aciIdentity == null) {
-      Log.w(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] No identity found for ACI address $aciAddress")
+      Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for ACI address $aciAddress")
       return
     }
 
     if (pniIdentity == null) {
-      Log.w(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] No identity found for PNI address $pniAddress")
+      Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for PNI address $pniAddress")
       return
     }
 
     if (pniIdentity.verifyAlternateIdentity(aciIdentity, pniSignatureMessage.signature.toByteArray())) {
-      Log.i(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] PNI signature is valid. Associating ACI ($serviceId) with PNI ($pni)")
-      SignalDatabase.recipients.getAndPossiblyMergePnpVerified(serviceId, pni, e164)
+      Log.i(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] PNI signature is valid. Associating ACI ($aci) with PNI ($pni)")
+      SignalDatabase.recipients.getAndPossiblyMergePnpVerified(aci, pni, e164)
     } else {
-      Log.w(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] Invalid PNI signature! Cannot associate ACI ($serviceId) with PNI ($pni)")
+      Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] Invalid PNI signature! Cannot associate ACI ($aci) with PNI ($pni)")
     }
   }
 

@@ -26,8 +26,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -88,8 +88,8 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), new ServiceIds(ACI.from(you), PNI.from(UUID.randomUUID())), null);
 
-    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(alice))).thenReturn(aliceId);
-    recipientIdMockedStatic.when(() -> RecipientId.from(ServiceId.from(bob))).thenReturn(bobId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(ACI.from(alice))).thenReturn(aliceId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(ACI.from(bob))).thenReturn(bobId);
     recipientMockedStatic.when(() -> Recipient.resolved(aliceId)).thenReturn(aliceRecipient);
     recipientMockedStatic.when(() -> Recipient.resolved(bobId)).thenReturn(bobRecipient);
   }
@@ -1446,7 +1446,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private void assertSingleChangeMentioning(DecryptedGroupChange change, List<UUID> expectedMentions) {
-    List<ServiceId> expectedMentionSids = expectedMentions.stream().map(ServiceId::from).collect(Collectors.toList());
+    List<ServiceId> expectedMentionSids = expectedMentions.stream().map(ACI::from).collect(Collectors.toList());
 
     List<UpdateDescription> changes = producer.describeChanges(null, change);
 

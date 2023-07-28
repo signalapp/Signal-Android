@@ -10,7 +10,7 @@ import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
 
 @Suppress("ClassName")
@@ -25,7 +25,7 @@ class ThreadTableTest_recents {
 
   @Before
   fun setUp() {
-    recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ServiceId.from(UUID.randomUUID())))
+    recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())))
   }
 
   @Test
