@@ -13,10 +13,12 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
 import kotlin.concurrent.withLock
+import kotlin.time.Duration.Companion.days
 
 /**
  * Ensures a user's SVR data is written to SVR2.
@@ -34,7 +36,7 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
   constructor() : this(
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
-      .setLifespan(Parameters.IMMORTAL)
+      .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
       .setQueue("Svr2MirrorJob")
       .setMaxInstancesForFactory(1)
@@ -86,8 +88,13 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
           Result.success()
         }
         is BackupResponse.ApplicationError -> {
-          Log.w(TAG, "Hit an application error. Retrying.", response.exception)
-          Result.retry(defaultBackoff())
+          if (response.exception.isUnauthorized()) {
+            Log.w(TAG, "Unauthorized! Giving up.", response.exception)
+            Result.success()
+          } else {
+            Log.w(TAG, "Hit an application error. Retrying.", response.exception)
+            Result.retry(defaultBackoff())
+          }
         }
         BackupResponse.EnclaveNotFound -> {
           Log.w(TAG, "Could not find the enclave. Giving up.")
@@ -107,6 +114,10 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
         }
       }
     }
+  }
+
+  private fun Throwable.isUnauthorized(): Boolean {
+    return this is NonSuccessfulResponseCodeException && this.code == 401
   }
 
   override fun onFailure() = Unit
