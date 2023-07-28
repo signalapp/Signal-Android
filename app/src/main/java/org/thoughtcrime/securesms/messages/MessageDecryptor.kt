@@ -85,8 +85,8 @@ object MessageDecryptor {
     envelope: Envelope,
     serverDeliveredTimestamp: Long
   ): Result {
-    val selfAci: ServiceId = SignalStore.account().requireAci()
-    val selfPni: ServiceId = SignalStore.account().requirePni()
+    val selfAci: ACI = SignalStore.account().requireAci()
+    val selfPni: PNI = SignalStore.account().requirePni()
 
     val destination: ServiceId = envelope.getDestination(selfAci, selfPni)
 

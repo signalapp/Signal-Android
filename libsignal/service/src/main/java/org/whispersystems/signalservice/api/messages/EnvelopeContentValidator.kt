@@ -5,7 +5,8 @@ import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
-import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
@@ -33,6 +34,12 @@ object EnvelopeContentValidator {
         return result
       }
     }
+
+    if (envelope.hasSourceServiceId() && envelope.sourceServiceId.isInvalidServiceId()) {
+      return Result.Invalid("Envelope had an invalid sourceServiceId!")
+    }
+
+    // Reminder: envelope.destinationServiceId was already validated since we need that for decryption
 
     return when {
       envelope.story && !content.meetsStoryFlagCriteria() -> Result.Invalid("Envelope was flagged as a story, but it did not have any story-related content!")
@@ -67,8 +74,12 @@ object EnvelopeContentValidator {
       Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.timestamp}, content: ${dataMessage.timestamp}")
     }
 
-    if (dataMessage.hasQuote() && dataMessage.quote.authorAci.isNullOrInvalidOrUnknownUuid()) {
-      return Result.Invalid("[DataMessage] Invalid UUID on quote!")
+    if (dataMessage.hasQuote() && dataMessage.quote.authorAci.isNullOrInvalidAci()) {
+      return Result.Invalid("[DataMessage] Invalid ACI on quote!")
+    }
+
+    if (dataMessage.contactList.any { it.hasAvatar() && it.avatar.avatar.isPresentAndInvalid() }) {
+      return Result.Invalid("[DataMessage] Invalid AttachmentPointer on DataMessage.contactList.avatar!")
     }
 
     if (dataMessage.contactList.any { it.hasAvatar() && it.avatar.avatar.isPresentAndInvalid() }) {
@@ -79,8 +90,8 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid AttachmentPointer on DataMessage.previewList.image!")
     }
 
-    if (dataMessage.bodyRangesList.any { it.hasMentionAci() && it.mentionAci.isNullOrInvalidOrUnknownUuid() }) {
-      return Result.Invalid("[DataMessage] Invalid UUID on body range!")
+    if (dataMessage.bodyRangesList.any { it.hasMentionAci() && it.mentionAci.isNullOrInvalidAci() }) {
+      return Result.Invalid("[DataMessage] Invalid ACI on body range!")
     }
 
     if (dataMessage.hasSticker() && dataMessage.sticker.data.isNullOrInvalid()) {
@@ -91,8 +102,8 @@ object EnvelopeContentValidator {
       if (!dataMessage.reaction.hasTargetSentTimestamp()) {
         return Result.Invalid("[DataMessage] Missing timestamp on DataMessage.reaction!")
       }
-      if (dataMessage.reaction.targetAuthorAci.isNullOrInvalidOrUnknownUuid()) {
-        return Result.Invalid("[DataMessage] Invalid UUID on DataMessage.reaction!")
+      if (dataMessage.reaction.targetAuthorAci.isNullOrInvalidAci()) {
+        return Result.Invalid("[DataMessage] Invalid ACI on DataMessage.reaction!")
       }
     }
 
@@ -100,8 +111,8 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Missing timestamp on DataMessage.delete!")
     }
 
-    if (dataMessage.hasStoryContext() && dataMessage.storyContext.authorAci.isNullOrInvalidOrUnknownUuid()) {
-      return Result.Invalid("[DataMessage] Invalid UUID on DataMessage.storyContext!")
+    if (dataMessage.hasStoryContext() && dataMessage.storyContext.authorAci.isNullOrInvalidAci()) {
+      return Result.Invalid("[DataMessage] Invalid ACI on DataMessage.storyContext!")
     }
 
     if (dataMessage.hasGiftBadge()) {
@@ -130,7 +141,7 @@ object EnvelopeContentValidator {
 
   private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage): Result {
     if (syncMessage.hasSent()) {
-      val validAddress = syncMessage.sent.destinationServiceId.isValidUuid()
+      val validAddress = syncMessage.sent.destinationServiceId.isValidServiceId()
       val hasDataGroup = syncMessage.sent.message?.hasGroupV2() ?: false
       val hasStoryGroup = syncMessage.sent.storyMessage?.hasGroup() ?: false
       val hasStoryManifest = syncMessage.sent.storyMessageRecipientsList.isNotEmpty()
@@ -153,8 +164,8 @@ object EnvelopeContentValidator {
       }
 
       for (status in syncMessage.sent.unidentifiedStatusList) {
-        if (status.destinationServiceId.isNullOrInvalidUuid()) {
-          return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.sent.unidentifiedStatusList!")
+        if (status.destinationServiceId.isNullOrInvalidServiceId()) {
+          return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.sent.unidentifiedStatusList!")
         }
       }
 
@@ -171,32 +182,36 @@ object EnvelopeContentValidator {
       }
     }
 
-    if (syncMessage.readList.any { it.senderAci.isNullOrInvalidOrUnknownUuid() }) {
-      return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.readList!")
+    if (syncMessage.readList.any { it.senderAci.isNullOrInvalidAci() }) {
+      return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.readList!")
     }
 
-    if (syncMessage.viewedList.any { it.senderAci.isNullOrInvalidOrUnknownUuid() }) {
-      return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.viewList!")
+    if (syncMessage.viewedList.any { it.senderAci.isNullOrInvalidAci() }) {
+      return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.viewList!")
     }
 
-    if (syncMessage.hasViewOnceOpen() && syncMessage.viewOnceOpen.senderAci.isNullOrInvalidOrUnknownUuid()) {
-      return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.viewOnceOpen!")
+    if (syncMessage.hasViewOnceOpen() && syncMessage.viewOnceOpen.senderAci.isNullOrInvalidAci()) {
+      return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.viewOnceOpen!")
     }
 
-    if (syncMessage.hasVerified() && syncMessage.verified.destinationAci.isNullOrInvalidOrUnknownUuid()) {
-      return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.verified!")
+    if (syncMessage.hasVerified() && syncMessage.verified.destinationAci.isNullOrInvalidAci()) {
+      return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.verified!")
     }
 
     if (syncMessage.stickerPackOperationList.any { !it.hasPackId() }) {
       return Result.Invalid("[SyncMessage] Missing packId in stickerPackOperationList!")
     }
 
-    if (syncMessage.hasBlocked() && syncMessage.blocked.acisList.any { it.isNullOrInvalidOrUnknownUuid() }) {
-      return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.blocked!")
+    if (syncMessage.hasBlocked() && syncMessage.blocked.acisList.any { it.isNullOrInvalidAci() }) {
+      return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.blocked!")
     }
 
-    if (syncMessage.hasMessageRequestResponse() && !syncMessage.messageRequestResponse.hasGroupId() && syncMessage.messageRequestResponse.threadAci.isNullOrInvalidOrUnknownUuid()) {
-      return Result.Invalid("[SyncMessage] Invalid UUID in SyncMessage.messageRequestResponse!")
+    if (syncMessage.hasMessageRequestResponse() && !syncMessage.messageRequestResponse.hasGroupId() && syncMessage.messageRequestResponse.threadAci.isNullOrInvalidAci()) {
+      return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.messageRequestResponse!")
+    }
+
+    if (syncMessage.hasOutgoingPayment() && syncMessage.outgoingPayment.recipientServiceId.isNullOrInvalidServiceId()) {
+      return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.outgoingPayment!")
     }
 
     return Result.Valid
@@ -261,7 +276,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[EditMessage] Invalid AttachmentPointer on DataMessage.previewList.image!")
     }
 
-    if (dataMessage.bodyRangesList.any { it.hasMentionAci() && it.mentionAci.isNullOrInvalidOrUnknownUuid() }) {
+    if (dataMessage.bodyRangesList.any { it.hasMentionAci() && it.mentionAci.isNullOrInvalidAci() }) {
       return Result.Invalid("[EditMessage] Invalid UUID on body range!")
     }
 
@@ -284,16 +299,24 @@ object EnvelopeContentValidator {
     return this != null && this.attachmentIdentifierCase == AttachmentPointer.AttachmentIdentifierCase.ATTACHMENTIDENTIFIER_NOT_SET
   }
 
-  private fun String?.isValidUuid(): Boolean {
-    return UuidUtil.isUuid(this)
+  private fun String?.isValidServiceId(): Boolean {
+    val parsed = ServiceId.parseOrNull(this)
+    return parsed != null && parsed.isValid
   }
 
-  private fun String?.isNullOrInvalidOrUnknownUuid(): Boolean {
-    return !UuidUtil.isUuid(this) || this == UuidUtil.UNKNOWN_UUID_STRING
+  private fun String?.isNullOrInvalidServiceId(): Boolean {
+    val parsed = ServiceId.parseOrNull(this)
+    return parsed == null || parsed.isUnknown
   }
 
-  private fun String?.isNullOrInvalidUuid(): Boolean {
-    return !UuidUtil.isUuid(this)
+  private fun String.isInvalidServiceId(): Boolean {
+    val parsed = ServiceId.parseOrNull(this)
+    return parsed == null || parsed.isUnknown
+  }
+
+  private fun String?.isNullOrInvalidAci(): Boolean {
+    val parsed = ACI.parseOrNull(this)
+    return parsed == null || parsed.isUnknown
   }
 
   private fun Content?.meetsStoryFlagCriteria(): Boolean {
