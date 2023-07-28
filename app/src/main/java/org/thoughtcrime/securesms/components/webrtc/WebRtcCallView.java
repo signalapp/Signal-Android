@@ -248,9 +248,8 @@ public class WebRtcCallView extends ConstraintLayout {
       runIfNonNull(controlsListener, listener ->
       {
         if (Build.VERSION.SDK_INT >= 31) {
-          final Integer deviceId = webRtcAudioDevice.getDeviceId();
-          if (deviceId != null) {
-            listener.onAudioOutputChanged31(deviceId);
+          if (webRtcAudioDevice.getDeviceId() != null) {
+            listener.onAudioOutputChanged31(webRtcAudioDevice);
           } else {
             Log.e(TAG, "Attempted to change audio output to null device ID.");
           }
@@ -1102,7 +1101,7 @@ public class WebRtcCallView extends ConstraintLayout {
     void hideSystemUI();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
     @RequiresApi(31)
-    void onAudioOutputChanged31(@NonNull Integer audioOutputAddress);
+    void onAudioOutputChanged31(@NonNull WebRtcAudioDevice audioOutput);
     void onVideoChanged(boolean isVideoEnabled);
     void onMicChanged(boolean isMicEnabled);
     void onCameraDirectionChanged();

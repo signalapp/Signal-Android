@@ -163,6 +163,10 @@ public class WebRtcCallViewModel extends ViewModel {
     return shouldShowSpeakerHint;
   }
 
+  public WebRtcAudioOutput getCurrentAudioOutput() {
+    return getWebRtcControls().getValue().getAudioOutput();
+  }
+
   public LiveData<WebRtcEphemeralState> getEphemeralState() {
     return ephemeralState;
   }

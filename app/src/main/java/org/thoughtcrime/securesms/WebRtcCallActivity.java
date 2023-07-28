@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
+import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
@@ -833,6 +834,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
+      maybeDisplaySpeakerphonePopup(audioOutput);
       switch (audioOutput) {
         case HANDSET:
           handleSetAudioHandset();
@@ -853,8 +855,9 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @RequiresApi(31)
     @Override
-    public void onAudioOutputChanged31(@NonNull Integer audioDeviceInfo) {
-      ApplicationDependencies.getSignalCallManager().selectAudioDevice(new SignalAudioManager.ChosenAudioDeviceIdentifier(audioDeviceInfo));
+    public void onAudioOutputChanged31(@NonNull WebRtcAudioDevice audioOutput) {
+      maybeDisplaySpeakerphonePopup(audioOutput.getWebRtcAudioOutput());
+      ApplicationDependencies.getSignalCallManager().selectAudioDevice(new SignalAudioManager.ChosenAudioDeviceIdentifier(audioOutput.getDeviceId()));
     }
 
     @Override
@@ -934,6 +937,15 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onNavigateUpClicked() {
       onBackPressed();
+    }
+  }
+
+  private void maybeDisplaySpeakerphonePopup(WebRtcAudioOutput nextOutput) {
+    final WebRtcAudioOutput currentOutput = viewModel.getCurrentAudioOutput();
+    if (currentOutput == WebRtcAudioOutput.SPEAKER && nextOutput != WebRtcAudioOutput.SPEAKER) {
+      callStateUpdatePopupWindow.onCallStateUpdate(CallStateUpdatePopupWindow.CallStateUpdate.SPEAKER_OFF);
+    } else if (currentOutput != WebRtcAudioOutput.SPEAKER && nextOutput == WebRtcAudioOutput.SPEAKER) {
+      callStateUpdatePopupWindow.onCallStateUpdate(CallStateUpdatePopupWindow.CallStateUpdate.SPEAKER_ON);
     }
   }
 
