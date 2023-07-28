@@ -53,7 +53,12 @@ class FcmFetchForegroundService : Service() {
 
     private var foregroundServiceState: State = State.STOPPED
 
-    fun startServiceIfNecessary(context: Context) {
+    /**
+     * Attempts to start the foreground service if it isn't already running.
+     *
+     * @return false if we failed to start the foreground service
+     */
+    fun startServiceIfNecessary(context: Context): Boolean {
       synchronized(this) {
         when (foregroundServiceState) {
           State.STOPPING -> foregroundServiceState = State.RESTARTING
@@ -64,11 +69,13 @@ class FcmFetchForegroundService : Service() {
             } catch (e: IllegalStateException) {
               Log.e(TAG, "Failed to start foreground service", e)
               State.STOPPED
+              return false
             }
           }
           else -> Log.i(TAG, "Already started foreground service")
         }
       }
+      return true
     }
 
     fun stopServiceIfNecessary(context: Context) {

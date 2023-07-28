@@ -51,22 +51,21 @@ object FcmFetchManager {
   @Volatile
   private var highPriority = false
 
-  /**
-   * @return True if a service was successfully started, otherwise false.
-   */
   @JvmStatic
   fun startBackgroundService(context: Context) {
     Log.i(TAG, "Starting in the background.")
     context.startService(Intent(context, FcmFetchBackgroundService::class.java))
+    SignalLocalMetrics.FcmServiceStartSuccess.onFcmStarted()
   }
 
-  /**
-   * @return True if a service was successfully started, otherwise false.
-   */
   @JvmStatic
   fun startForegroundService(context: Context) {
     Log.i(TAG, "Starting in the foreground.")
-    FcmFetchForegroundService.startServiceIfNecessary(context)
+    if (FcmFetchForegroundService.startServiceIfNecessary(context)) {
+      SignalLocalMetrics.FcmServiceStartSuccess.onFcmStarted()
+    } else {
+      SignalLocalMetrics.FcmServiceStartFailure.onFcmFailedToStart()
+    }
   }
 
   private fun postMayHaveMessagesNotification(context: Context) {

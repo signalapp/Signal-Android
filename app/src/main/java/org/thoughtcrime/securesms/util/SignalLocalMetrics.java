@@ -203,9 +203,51 @@ public final class SignalLocalMetrics {
     }
   }
 
+  public static final class MessageLatency {
+    public static final String NAME = "message-latency";
+
+    private static final String SPLIT_LATENCY = "latency";
+
+    public static void onMessageReceived(long serverReceiveTimestamp, long serverDeliverTimestamp) {
+      long latency = serverDeliverTimestamp - serverReceiveTimestamp;
+
+      String id = NAME + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, NAME);
+      LocalMetrics.getInstance().splitWithDuration(id, SPLIT_LATENCY, latency);
+      LocalMetrics.getInstance().end(id);
+    }
+  }
+
+  public static final class FcmServiceStartFailure {
+    public static final String NAME = "fcm-service-start-failure";
+
+    private static final String SPLIT_EVENT = "event";
+
+    public static void onFcmFailedToStart() {
+      String id = NAME + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, NAME);
+      LocalMetrics.getInstance().splitWithDuration(id, SPLIT_EVENT, 1);
+      LocalMetrics.getInstance().end(id);
+    }
+
+  }
+
+  public static final class FcmServiceStartSuccess {
+    public static final String NAME = "fcm-service-start-success";
+
+    private static final String SPLIT_EVENT = "event";
+
+    public static void onFcmStarted() {
+      String id = NAME + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, NAME);
+      LocalMetrics.getInstance().splitWithDuration(id, SPLIT_EVENT, 1);
+      LocalMetrics.getInstance().end(id);
+    }
+
+  }
   public static final class PushWebsocketFetch {
-    private static final String SUCCESS_EVENT = "push-websocket-fetch";
-    private static final String TIMEOUT_EVENT = "timed-out-fetch";
+    public static final String SUCCESS_EVENT = "push-websocket-fetch";
+    public static final String TIMEOUT_EVENT = "timed-out-fetch";
 
     private static final String SPLIT_BATCH_PROCESSED = "batches-processed";
     private static final String SPLIT_PROCESS_TIME    = "fetch-time";

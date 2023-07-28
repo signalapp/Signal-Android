@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.NetworkUtil;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 
 import java.util.Locale;
 
@@ -85,6 +86,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
       }
     } catch (Exception e) {
       Log.w(TAG, "Failed to start service.", e);
+      SignalLocalMetrics.FcmServiceStartFailure.onFcmFailedToStart();
     }
 
     FcmFetchManager.enqueueFetch(context, highPriority);
