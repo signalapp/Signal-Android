@@ -4055,6 +4055,22 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
+  public void onDeleteMessage(long id) {
+    MessageId messageId = inputPanel.getEditMessageId();
+    if (messageId != null && messageId.getId() == id) {
+      inputPanel.exitEditMessageMode();
+    }
+  }
+
+  @Override
+  public void onRemoteDeleteMessage(long targetId) {
+    MessageId messageId = inputPanel.getEditMessageId();
+    if (messageId != null && messageId.getId() == targetId) {
+      inputPanel.exitEditMessageMode();
+    }
+  }
+
+  @Override
   public void onCursorChanged() {
     if (!reactionDelegate.isShowing()) {
       return;

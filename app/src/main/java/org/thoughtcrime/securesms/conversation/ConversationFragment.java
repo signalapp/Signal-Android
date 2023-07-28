@@ -1085,6 +1085,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+      for (MessageRecord messageRecord : messageRecords) {
+        listener.onDeleteMessage(messageRecord.getId());
+      }
     });
 
     int deleteForEveryoneResId = isNoteToSelfDelete ? R.string.ConversationFragment_delete_everywhere : R.string.ConversationFragment_delete_for_everyone;
@@ -1110,6 +1114,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private void handleDeleteForEveryone(Set<MessageRecord> messageRecords) {
     Runnable deleteForEveryone = () -> {
+      for (MessageRecord messageRecord : messageRecords) {
+        listener.onRemoteDeleteMessage(messageRecord.getId());
+      }
       SignalExecutors.BOUNDED.execute(() -> {
         for (MessageRecord message : messageRecords) {
           MessageSender.sendRemoteDelete(message.getId());
@@ -1477,6 +1484,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     void    onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void    onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void    onInviteToSignal();
+    void    onDeleteMessage(long id);
+    void    onRemoteDeleteMessage(long targetId);
     boolean isInBubble();
   }
 

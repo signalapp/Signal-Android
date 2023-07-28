@@ -2119,10 +2119,17 @@ class ConversationFragment :
   }
 
   private fun handleDeleteMessages(messageParts: Set<MultiselectPart>) {
+    val records = messageParts.map(MultiselectPart::getMessageRecord).toSet()
     disposables += DeleteDialog.show(
       context = requireContext(),
-      messageRecords = messageParts.map(MultiselectPart::getMessageRecord).toSet()
-    ).subscribe()
+      messageRecords = records
+    ).subscribe { (deleted: Boolean, _: Boolean) ->
+      if (!deleted) return@subscribe
+      val editMessageId = inputPanel.editMessageId?.id
+      if (editMessageId != null && records.any { it.id == editMessageId }) {
+        inputPanel.exitEditMessageMode()
+      }
+    }
   }
 
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
