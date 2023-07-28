@@ -1144,7 +1144,7 @@ class ConversationFragment :
   }
 
   private fun invalidateOptionsMenu() {
-    if (searchMenuItem?.isActionViewExpanded != true) {
+    if (searchMenuItem?.isActionViewExpanded != true || !isSearchRequested) {
       binding.toolbar.invalidateMenu()
     }
   }
