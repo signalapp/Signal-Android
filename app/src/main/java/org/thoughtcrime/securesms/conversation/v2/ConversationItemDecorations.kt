@@ -109,10 +109,11 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
    * which causes the unread divider to be removed.
    */
   private fun updateUnreadState(items: List<ConversationElement?>) {
-    val state = unreadState
+    val state: UnreadState = unreadState
 
     if (state is UnreadState.InitialUnreadState) {
-      val timestamp = (items[state.unreadCount - 1] as? ConversationMessageElement)?.timestamp()
+      val firstUnread = items[(state.unreadCount - 1).coerceIn(items.indices)]
+      val timestamp = (firstUnread as? ConversationMessageElement)?.timestamp()
       if (timestamp != null) {
         unreadState = UnreadState.CompleteUnreadState(unreadCount = state.unreadCount, firstUnreadTimestamp = timestamp)
       }

@@ -3285,6 +3285,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     threadIds.forEach {
+      threads.updateReadState(it)
       threads.update(
         threadId = it,
         unarchive = false,
