@@ -337,8 +337,10 @@ class ConversationRepository(
     return Single.fromCallable {
       val recipients = if (groupRecord == null) {
         listOf(recipient)
-      } else {
+      } else if (groupRecord.isV2Group) {
         groupRecord.requireV2GroupProperties().getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
+      } else {
+        emptyList()
       }
 
       val records = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients)
