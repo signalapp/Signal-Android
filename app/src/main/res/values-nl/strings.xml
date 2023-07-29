@@ -2074,7 +2074,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Heeft %1$s op je verhaal gereageerd</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Hebt %1$s op hun verhaal gereageerd</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Reageerde met %1$s op een verhaal</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Overschrijving</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
