@@ -294,10 +294,11 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void updateTimeLabel() {
-    final int backupHour   = SignalStore.settings().getBackupHour();
-    final int backupMinute = SignalStore.settings().getBackupMinute();
-    LocalTime time         = LocalTime.of(backupHour, backupMinute);
-    timeLabel.setText(JavaTimeExtensionsKt.formatHours(time, requireContext()));
+    final int backupFrequency = SignalStore.settings().getBackupFrequency();
+    final int backupHour      = SignalStore.settings().getBackupHour();
+    final int backupMinute    = SignalStore.settings().getBackupMinute();
+    LocalTime time            = LocalTime.of(backupHour, backupMinute);
+    timeLabel.setText(JavaTimeExtensionsKt.formatHours(time, requireContext()) + " every " + backupFrequency + " days");
   }
 
   private void setBackupsEnabled() {
