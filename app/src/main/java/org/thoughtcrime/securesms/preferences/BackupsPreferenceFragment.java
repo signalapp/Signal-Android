@@ -259,8 +259,8 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void pickTime() {
+    // User should select the backup frequency first, and then the time of day to do the backups.
     final BackupFrequencyPickerDialogFragment frequencyPickerDialogFragment = new BackupFrequencyPickerDialogFragment(SignalStore.settings().getBackupFrequency());
-    frequencyPickerDialogFragment.show(getChildFragmentManager(), "FREQUENCY_PICKER");
     frequencyPickerDialogFragment.setOnPositiveButtonClickListener((unused1, unused2) -> {
       int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
       final MaterialTimePicker timePickerFragment = new MaterialTimePicker.Builder()
@@ -277,8 +277,11 @@ public class BackupsPreferenceFragment extends Fragment {
         TextSecurePreferences.setNextBackupTime(requireContext(), 0);
         LocalBackupListener.schedule(requireContext());
       });
+
       timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");
     });
+
+    frequencyPickerDialogFragment.show(getChildFragmentManager(), "FREQUENCY_PICKER");
   }
 
   private void onCreateClickedLegacy() {

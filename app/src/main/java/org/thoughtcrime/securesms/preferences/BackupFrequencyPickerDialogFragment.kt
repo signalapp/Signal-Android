@@ -14,13 +14,14 @@ class BackupFrequencyPickerDialogFragment(private val defaultFrequency: Int) : D
 
   override fun onCreateDialog(savedInstance: Bundle?): Dialog {
     val defaultIndex = this.dayOptions.indexOf(this.defaultFrequency.toString())  // preselect the backup frequency choice if it's valid
+    this.index = defaultIndex
     return AlertDialog.Builder(requireContext())
       .setSingleChoiceItems(this.dayOptions, defaultIndex) { _, i -> this.index = i }
       .setTitle("Every N days")
       .setPositiveButton("OK") { dialog, i ->
           val backupFrequencyDays = this.dayOptions[this.index].toInt()
           Toast.makeText(requireContext(), "Backup every $backupFrequencyDays days", Toast.LENGTH_LONG).show()
-          callback?.onClick(dialog, i)
+          this.callback?.onClick(dialog, i)
       }
       .setNegativeButton("Cancel", null)
       .create()
