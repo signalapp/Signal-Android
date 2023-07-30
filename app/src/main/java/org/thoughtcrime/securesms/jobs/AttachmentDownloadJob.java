@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.s3.S3;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -54,8 +55,7 @@ public final class AttachmentDownloadJob extends BaseJob {
 
   public static final String KEY = "AttachmentDownloadJob";
 
-  private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
-  private static final String TAG                  = Log.tag(AttachmentDownloadJob.class);
+  private static final String TAG = Log.tag(AttachmentDownloadJob.class);
 
   private static final String KEY_MESSAGE_ID    = "message_id";
   private static final String KEY_PART_ROW_ID   = "part_row_id";
@@ -184,14 +184,21 @@ public final class AttachmentDownloadJob extends BaseJob {
                                   final Attachment attachment)
       throws IOException, RetryLaterException
   {
+    long maxReceiveSize = FeatureFlags.maxAttachmentReceiveSizeBytes();
 
     AttachmentTable database       = SignalDatabase.attachments();
     File            attachmentFile = database.getOrCreateTransferFile(attachmentId);
 
     try {
+      if (attachment.getSize() > maxReceiveSize) {
+        throw new MmsException("Attachment too large, failing download");
+      }
       SignalServiceMessageReceiver   messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
       SignalServiceAttachmentPointer pointer         = createAttachmentPointer(attachment);
-      InputStream                    stream          = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)));
+      InputStream                    stream          = messageReceiver.retrieveAttachment(pointer,
+                                                                                          attachmentFile,
+                                                                                          maxReceiveSize,
+                                                                                          (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)));
 
       database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
     } catch (RangeException e) {
@@ -240,6 +247,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                                 Optional.empty(),
                                                 0, 0,
                                                 Optional.ofNullable(attachment.getDigest()),
+                                                Optional.ofNullable(attachment.getIncrementalDigest()),
                                                 Optional.ofNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),
@@ -261,6 +269,9 @@ public final class AttachmentDownloadJob extends BaseJob {
     try (Response response = S3.getObject(Objects.requireNonNull(attachment.getFileName()))) {
       ResponseBody body = response.body();
       if (body != null) {
+        if (body.contentLength() > FeatureFlags.maxAttachmentReceiveSizeBytes()) {
+          throw new MmsException("Attachment too large, failing download");
+        }
         SignalDatabase.attachments().insertAttachmentsForPlaceholder(messageId, attachmentId, Okio.buffer(body.source()).inputStream());
       }
     } catch (MmsException e) {

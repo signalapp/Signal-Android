@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.thoughtcrime.securesms.webrtc.CallBandwidthMode
+import org.thoughtcrime.securesms.webrtc.CallDataMode
 
 class DataAndStorageSettingsViewModel(
   private val sharedPreferences: SharedPreferences,
@@ -41,9 +41,9 @@ class DataAndStorageSettingsViewModel(
     getStateAndCopyStorageUsage()
   }
 
-  fun setCallBandwidthMode(callBandwidthMode: CallBandwidthMode) {
-    SignalStore.settings().callBandwidthMode = callBandwidthMode
-    ApplicationDependencies.getSignalCallManager().bandwidthModeUpdate()
+  fun setCallDataMode(callDataMode: CallDataMode) {
+    SignalStore.settings().callDataMode = callDataMode
+    ApplicationDependencies.getSignalCallManager().dataModeUpdate()
     getStateAndCopyStorageUsage()
   }
 
@@ -67,7 +67,7 @@ class DataAndStorageSettingsViewModel(
     roamingAutoDownloadValues = TextSecurePreferences.getRoamingMediaDownloadAllowed(
       ApplicationDependencies.getApplication()
     ),
-    callBandwidthMode = SignalStore.settings().callBandwidthMode,
+    callDataMode = SignalStore.settings().callDataMode,
     isProxyEnabled = SignalStore.proxy().isProxyEnabled,
     sentMediaQuality = SignalStore.settings().sentMediaQuality
   )

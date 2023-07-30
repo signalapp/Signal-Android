@@ -140,7 +140,7 @@ data class StoryTextPostModel(
       val useLargeThumbnail = source.text.isBlank()
 
       view.setTypeface(typeface)
-      view.bindFromStoryTextPost(source.storyTextPost, source.bodyRanges)
+      view.bindFromStoryTextPost(source.storySentAtMillis, source.storyTextPost, source.bodyRanges)
       view.bindLinkPreview(linkPreview, useLargeThumbnail, loadThumbnail = false)
       view.postAdjustLinkPreviewTranslationY()
 

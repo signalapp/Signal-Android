@@ -33,7 +33,7 @@ public class StorageServiceValues extends SignalStoreValues {
     if (getStore().containsKey(SYNC_STORAGE_KEY)) {
       return new StorageKey(getBlob(SYNC_STORAGE_KEY, null));
     }
-    return SignalStore.kbsValues().getOrCreateMasterKey().deriveStorageServiceKey();
+    return SignalStore.svr().getOrCreateMasterKey().deriveStorageServiceKey();
   }
 
   public long getLastSyncTime() {

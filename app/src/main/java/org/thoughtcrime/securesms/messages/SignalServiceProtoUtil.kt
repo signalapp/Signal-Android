@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointer
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -131,14 +131,14 @@ object SignalServiceProtoUtil {
     }
 
   fun Sent.isUnidentified(serviceId: ServiceId?): Boolean {
-    return serviceId != null && unidentifiedStatusList.firstOrNull { ServiceId.parseOrNull(it.destinationUuid) == serviceId }?.unidentified ?: false
+    return serviceId != null && unidentifiedStatusList.firstOrNull { ServiceId.parseOrNull(it.destinationServiceId) == serviceId }?.unidentified ?: false
   }
 
   val Sent.serviceIdsToUnidentifiedStatus: Map<ServiceId, Boolean>
     get() {
       return unidentifiedStatusList
         .mapNotNull { status ->
-          val serviceId = ServiceId.parseOrNull(status.destinationUuid)
+          val serviceId = ServiceId.parseOrNull(status.destinationServiceId)
           if (serviceId != null) {
             serviceId to status.unidentified
           } else {
@@ -159,8 +159,8 @@ object SignalServiceProtoUtil {
     }
   }
 
-  fun List<AttachmentPointer>.toPointers(): List<Attachment> {
-    return mapNotNull { it.toPointer() }
+  fun List<AttachmentPointer>.toPointersWithinLimit(): List<Attachment> {
+    return mapNotNull { it.toPointer() }.take(FeatureFlags.maxAttachmentCount())
   }
 
   fun AttachmentPointer.toPointer(stickerLocator: StickerLocator? = null): Attachment? {

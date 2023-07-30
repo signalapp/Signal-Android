@@ -15,6 +15,7 @@
     <color name="signal_dark_colorOnSecondaryContainer">#DCE1F9</color>
     <color name="signal_dark_colorOnSurface">#E2E1E5</color>
     <color name="signal_dark_colorOnSurfaceVariant">#BEBFC5</color>
+    <color name="signal_dark_colorOnSurfaceVariant1">#4D5059</color>
     <color name="signal_dark_colorOnBackground">#E2E1E5</color>
     <color name="signal_dark_colorOutline">#5C5E65</color>
     <color name="signal_dark_neutralSurface">#14FFFFFF</color>

@@ -46,13 +46,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
-import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -97,10 +95,6 @@ public class ConversationAdapter
   private static final int MESSAGE_TYPE_HEADER              = 5;
   public  static final int MESSAGE_TYPE_FOOTER              = 6;
   private static final int MESSAGE_TYPE_PLACEHOLDER         = 7;
-
-  private static final int PAYLOAD_TIMESTAMP   = 0;
-  public  static final int PAYLOAD_NAME_COLORS = 1;
-  public  static final int PAYLOAD_SELECTED    = 2;
 
   private final ItemClickListener clickListener;
   private final Context           context;
@@ -339,8 +333,10 @@ public class ConversationAdapter
 
     if (scheduledMessagesMode) {
       calendar.setTimeInMillis(((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate());
-    } else {
+    } else if (condensedMode == ConversationItemDisplayMode.EDIT_HISTORY) {
       calendar.setTimeInMillis(conversationMessage.getMessageRecord().getDateSent());
+    } else {
+      calendar.setTimeInMillis(conversationMessage.getConversationTimestamp());
     }
     return calendar.get(Calendar.YEAR) * 1000L + calendar.get(Calendar.DAY_OF_YEAR);
   }
@@ -357,8 +353,10 @@ public class ConversationAdapter
 
     if (scheduledMessagesMode) {
       viewHolder.setText(DateUtils.getScheduledMessagesDateHeaderString(viewHolder.itemView.getContext(), locale, ((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate()));
-    } else {
+    } else if (condensedMode == ConversationItemDisplayMode.EDIT_HISTORY) {
       viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateSent()));
+    } else {
+      viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getConversationTimestamp()));
     }
 
     if (type == HEADER_TYPE_POPOVER_DATE) {

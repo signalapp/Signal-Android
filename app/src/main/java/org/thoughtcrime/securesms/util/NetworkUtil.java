@@ -33,16 +33,16 @@ public final class NetworkUtil {
     return info != null && info.isConnected() && info.isRoaming() && info.getType() == ConnectivityManager.TYPE_MOBILE;
   }
 
-  public static @NonNull CallManager.BandwidthMode getCallingBandwidthMode(@NonNull Context context) {
-    return getCallingBandwidthMode(context, PeerConnection.AdapterType.UNKNOWN);
+  public static @NonNull CallManager.DataMode getCallingDataMode(@NonNull Context context) {
+    return getCallingDataMode(context, PeerConnection.AdapterType.UNKNOWN);
   }
 
-  public static @NonNull CallManager.BandwidthMode getCallingBandwidthMode(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
-    if (SignalStore.internalValues().callingBandwidthMode() != CallManager.BandwidthMode.NORMAL) {
-      return SignalStore.internalValues().callingBandwidthMode();
+  public static @NonNull CallManager.DataMode getCallingDataMode(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
+    if (SignalStore.internalValues().callingDataMode() != CallManager.DataMode.NORMAL) {
+      return SignalStore.internalValues().callingDataMode();
     }
 
-    return useLowBandwidthCalling(context, networkAdapter) ? CallManager.BandwidthMode.LOW : CallManager.BandwidthMode.NORMAL;
+    return useLowDataCalling(context, networkAdapter) ? CallManager.DataMode.LOW : CallManager.DataMode.NORMAL;
   }
 
   public static String getNetworkTypeDescriptor(@NonNull Context context) {
@@ -97,8 +97,8 @@ public final class NetworkUtil {
     }
   }
 
-  private static boolean useLowBandwidthCalling(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
-    switch (SignalStore.settings().getCallBandwidthMode()) {
+  private static boolean useLowDataCalling(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
+    switch (SignalStore.settings().getCallDataMode()) {
       case HIGH_ON_WIFI:
         switch (networkAdapter) {
           case UNKNOWN:

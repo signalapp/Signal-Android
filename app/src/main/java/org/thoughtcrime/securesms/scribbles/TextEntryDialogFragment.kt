@@ -99,6 +99,7 @@ class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_im
   }
 
   override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
     controller.onTextEntryDialogDismissed(!hiddenTextEntry.text.isNullOrEmpty())
   }
 

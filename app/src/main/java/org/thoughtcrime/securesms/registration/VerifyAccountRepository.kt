@@ -6,18 +6,19 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
+import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.registration.PushChallengeRequest.PushChallengeEvent
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.KbsPinData
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
+import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
+import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -77,19 +78,24 @@ class VerifyAccountRepository(private val context: Application) {
       return response
     }
 
-    subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
-
+    val receivedPush = subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
     eventBus.unregister(subscriber)
 
-    val challenge = subscriber.challenge
-
-    return if (challenge != null) {
-      accountManager.submitPushChallengeToken(response.result.get().body.id, challenge)
+    if (receivedPush) {
+      val challenge = subscriber.challenge
+      if (challenge != null) {
+        Log.w(TAG, "Push challenge token received.")
+        return accountManager.submitPushChallengeToken(response.result.get().body.id, challenge)
+      } else {
+        Log.w(TAG, "Push received but challenge token was null.")
+      }
     } else {
-      val registrationSessionState = RegistrationSessionState(pushChallengeTimedOut = true)
-      val rawResponse: RegistrationSessionMetadataResponse = response.result.get()
-      ServiceResponse.forResult(rawResponse.copy(state = registrationSessionState), 200, null)
+      Log.i(TAG, "Push challenge timed out.")
     }
+    Log.i(TAG, "Push challenge unsuccessful. Updating registration state accordingly.")
+    val registrationSessionState = RegistrationSessionState(pushChallengeTimedOut = true)
+    val rawResponse: RegistrationSessionMetadataResponse = response.result.get()
+    return ServiceResponse.forResult(rawResponse.copy(state = registrationSessionState), 200, null)
   }
 
   fun requestAndVerifyPushToken(
@@ -151,7 +157,7 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun registerAccount(sessionId: String?, registrationData: RegistrationData, pin: String? = null, kbsPinDataProducer: KbsPinDataProducer? = null): Single<ServiceResponse<VerifyResponse>> {
+  fun registerAccount(sessionId: String?, registrationData: RegistrationData, pin: String? = null, masterKeyProducer: MasterKeyProducer? = null): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -162,15 +168,14 @@ class VerifyAccountRepository(private val context: Application) {
       registrationData.password
     )
 
-    val kbsData = kbsPinDataProducer?.produceKbsPinData()
-    val registrationLockV2: String? = kbsData?.masterKey?.deriveRegistrationLock()
+    val masterKey: MasterKey? = masterKeyProducer?.produceMasterKey()
+    val registrationLock: String? = masterKey?.deriveRegistrationLock()
 
     val accountAttributes = AccountAttributes(
       signalingKey = null,
       registrationId = registrationData.registrationId,
       fetchesMessages = registrationData.isNotFcm,
-      pin = pin,
-      registrationLock = registrationLockV2,
+      registrationLock = registrationLock,
       unidentifiedAccessKey = unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
       capabilities = AppCapabilities.getCapabilities(true),
@@ -180,9 +185,18 @@ class VerifyAccountRepository(private val context: Application) {
       recoveryPassword = registrationData.recoveryPassword
     )
 
+    SignalStore.account().generateAciIdentityKeyIfNecessary()
+    val aciIdentity: IdentityKeyPair = SignalStore.account().aciIdentityKey
+
+    SignalStore.account().generatePniIdentityKeyIfNecessary()
+    val pniIdentity: IdentityKeyPair = SignalStore.account().pniIdentityKey
+
+    val aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account().aciPreKeys)
+    val pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account().pniPreKeys)
+
     return Single.fromCallable {
-      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, true)
-      VerifyResponse.from(response, kbsData, pin)
+      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
+      VerifyResponse.from(response, masterKey, pin, aciPreKeyCollection, pniPreKeyCollection)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -192,15 +206,15 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  interface KbsPinDataProducer {
-    @Throws(IOException::class, KeyBackupSystemWrongPinException::class, KeyBackupSystemNoDataException::class)
-    fun produceKbsPinData(): KbsPinData
+  interface MasterKeyProducer {
+    @Throws(IOException::class, SvrWrongPinException::class, SvrNoDataException::class)
+    fun produceMasterKey(): MasterKey
   }
 
   enum class Mode(val isSmsRetrieverSupported: Boolean) {
     SMS_WITH_LISTENER(true),
     SMS_WITHOUT_LISTENER(false),
-    PHONE_CALL(false);
+    PHONE_CALL(false)
   }
 
   private class PushTokenChallengeSubscriber {

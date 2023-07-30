@@ -95,7 +95,7 @@ public final class PreKeyMigrationHelper {
         reader.close();
 
         Log.i(TAG, "Setting next prekey id: " + index.nextPreKeyId);
-        SignalStore.account().aciPreKeys().setNextOneTimePreKeyId(index.nextPreKeyId);
+        SignalStore.account().aciPreKeys().setNextEcOneTimePreKeyId(index.nextPreKeyId);
       } catch (IOException e) {
         Log.w(TAG, e);
       }

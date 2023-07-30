@@ -3,11 +3,8 @@ package org.thoughtcrime.securesms.messages
 import android.annotation.SuppressLint
 import android.app.Application
 import android.app.Service
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.IBinder
 import androidx.annotation.VisibleForTesting
 import androidx.core.app.NotificationCompat
@@ -15,16 +12,17 @@ import kotlinx.collections.immutable.toImmutableSet
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.groups.GroupsV2ProcessingLock
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobmanager.JobTracker.JobListener
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil.startWhenCapable
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
@@ -36,6 +34,7 @@ import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AppForegroundObserver
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -49,6 +48,9 @@ import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.math.round
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * The application-level manager of our websocket connection.
@@ -60,20 +62,44 @@ class IncomingMessageObserver(private val context: Application) {
 
   companion object {
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
-    private val WEBSOCKET_READ_TIMEOUT = TimeUnit.MINUTES.toMillis(1)
-    private val KEEP_ALIVE_TOKEN_MAX_AGE = TimeUnit.MINUTES.toMillis(5)
-    private val MAX_BACKGROUND_TIME = TimeUnit.MINUTES.toMillis(2)
+
+    /** How long we wait for the websocket to time out before we try to connect again. */
+    private val websocketReadTimeout: Long
+      get() = if (censored) 30.seconds.inWholeMilliseconds else 1.minutes.inWholeMilliseconds
+
+    /** How long a keep-alive token is allowed to keep the websocket open for. These are usually used for calling + FCM messages. */
+    private val keepAliveTokenMaxAge: Long
+      get() = if (censored) 2.minutes.inWholeMilliseconds else 5.minutes.inWholeMilliseconds
+
+    /** How long the websocket is allowed to keep running after the user backgrounds the app. Higher numbers allow us to rely on FCM less. */
+    private val maxBackgroundTime: Long
+      get() = if (censored) 10.seconds.inWholeMilliseconds else 2.minutes.inWholeMilliseconds
+
     private val INSTANCE_COUNT = AtomicInteger(0)
 
     const val FOREGROUND_ID = 313399
+
+    private val censored: Boolean
+      get() = ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()
   }
 
   private val decryptionDrainedListeners: MutableList<Runnable> = CopyOnWriteArrayList()
   private val keepAliveTokens: MutableMap<String, Long> = mutableMapOf()
-  private val connectionReceiver: BroadcastReceiver
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
+  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkUnavailable ->
+    lock.withLock {
+      if (isNetworkUnavailable()) {
+        Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
+        decryptionDrained = false
+        disconnect()
+      }
+      connectionNecessarySemaphore.release()
+    }
+  }
+
+  private val messageContentProcessor = MessageContentProcessorV2(context)
 
   private var appVisible = false
   private var lastInteractionTime: Long = System.currentTimeMillis()
@@ -94,9 +120,16 @@ class IncomingMessageObserver(private val context: Application) {
 
     if (!SignalStore.account().fcmEnabled || SignalStore.internalValues().isWebsocketModeForced) {
       try {
-        startWhenCapable(context, Intent(context, ForegroundService::class.java))
+        ForegroundServiceUtil.start(context, Intent(context, ForegroundService::class.java))
       } catch (e: UnableToStartException) {
-        Log.w(TAG, "Unable to start foreground service for websocket!", e)
+        Log.w(TAG, "Unable to start foreground service for websocket. Deferring to background to try with blocking")
+        SignalExecutors.UNBOUNDED.execute {
+          try {
+            startWhenCapable(context, Intent(context, ForegroundService::class.java))
+          } catch (e: UnableToStartException) {
+            Log.w(TAG, "Unable to start foreground service for websocket!", e)
+          }
+        }
       }
     }
 
@@ -110,20 +143,7 @@ class IncomingMessageObserver(private val context: Application) {
       }
     })
 
-    connectionReceiver = object : BroadcastReceiver() {
-      override fun onReceive(context: Context, intent: Intent) {
-        lock.withLock {
-          if (!NetworkConstraint.isMet(context)) {
-            Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
-            decryptionDrained = false
-            disconnect()
-          }
-          connectionNecessarySemaphore.release()
-        }
-      }
-    }
-
-    context.registerReceiver(connectionReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    networkConnectionListener.register()
   }
 
   fun notifyRegistrationChanged() {
@@ -179,7 +199,7 @@ class IncomingMessageObserver(private val context: Application) {
       appVisibleSnapshot = appVisible
       timeIdle = if (appVisibleSnapshot) 0 else System.currentTimeMillis() - lastInteractionTime
 
-      val keepAliveCutoffTime = System.currentTimeMillis() - KEEP_ALIVE_TOKEN_MAX_AGE
+      val keepAliveCutoffTime = System.currentTimeMillis() - keepAliveTokenMaxAge
       val removedKeepAliveToken = keepAliveTokens.entries.removeIf { (_, createTime) -> createTime < keepAliveCutoffTime }
       if (removedKeepAliveToken) {
         Log.d(TAG, "Removed old keep web socket open requests.")
@@ -195,9 +215,9 @@ class IncomingMessageObserver(private val context: Application) {
     val forceWebsocket = SignalStore.internalValues().isWebsocketModeForced
     val decryptQueueEmpty = ApplicationDependencies.getJobManager().isQueueEmpty(PushDecryptMessageJob.QUEUE)
 
-    val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < MAX_BACKGROUND_TIME) "within limit" else "over limit") + ")"
+    val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < maxBackgroundTime) "within limit" else "over limit") + ")"
     val conclusion = registered &&
-      (appVisibleSnapshot || timeIdle < MAX_BACKGROUND_TIME || !fcmEnabled || keepAliveEntries.isNotEmpty()) &&
+      (appVisibleSnapshot || timeIdle < maxBackgroundTime || !fcmEnabled || keepAliveEntries.isNotEmpty()) &&
       hasNetwork &&
       decryptQueueEmpty
 
@@ -224,8 +244,7 @@ class IncomingMessageObserver(private val context: Application) {
   fun terminateAsync() {
     Log.w(TAG, "Termination Enqueued! ${this.hashCode()}", Throwable())
     INSTANCE_COUNT.decrementAndGet()
-    context.unregisterReceiver(connectionReceiver)
-
+    networkConnectionListener.unregister()
     SignalExecutors.BOUNDED.execute {
       Log.w(TAG, "Beginning termination. ${this.hashCode()}")
       terminated = true
@@ -276,43 +295,45 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
+    val localReceiveMetric = SignalLocalMetrics.MessageReceive.start()
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
-
-    val extraJob: Job? = when (result) {
+    localReceiveMetric.onEnvelopeDecrypted()
+    when (result) {
       is MessageDecryptor.Result.Success -> {
-        PushProcessMessageJobV2(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
+        val job = PushProcessMessageJobV2.processOrDefer(messageContentProcessor, result, localReceiveMetric)
+        if (job != null) {
+          return result.followUpOperations + FollowUpOperation { job }
+        }
       }
-
       is MessageDecryptor.Result.Error -> {
-        PushProcessMessageJob(
-          result.toMessageState(),
-          null,
-          result.errorMetadata.toExceptionMetadata(),
-          -1,
-          result.envelope.timestamp
-        )
+        return result.followUpOperations + FollowUpOperation {
+          PushProcessMessageJob(
+            result.toMessageState(),
+            null,
+            result.errorMetadata.toExceptionMetadata(),
+            -1,
+            result.envelope.timestamp
+          )
+        }
       }
-
       is MessageDecryptor.Result.Ignore -> {
         // No action needed
-        null
       }
-
       else -> {
         throw AssertionError("Unexpected result! ${result.javaClass.simpleName}")
       }
     }
 
-    return result.followUpOperations + FollowUpOperation { extraJob }
+    return result.followUpOperations
   }
 
   private fun processReceipt(envelope: SignalServiceProtos.Envelope) {
-    if (!UuidUtil.isUuid(envelope.sourceUuid)) {
+    if (!UuidUtil.isUuid(envelope.sourceServiceId)) {
       Log.w(TAG, "Invalid envelope source UUID!")
       return
     }
 
-    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceUuid))
+    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceServiceId))
 
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDevice}, Timestamp: ${envelope.timestamp}")
     SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp, senderId, System.currentTimeMillis())
@@ -373,31 +394,32 @@ class IncomingMessageObserver(private val context: Application) {
             try {
               Log.d(TAG, "Reading message...")
 
-              val hasMore = signalWebSocket.readMessageBatch(WEBSOCKET_READ_TIMEOUT, 30) { batch ->
+              val hasMore = signalWebSocket.readMessageBatch(websocketReadTimeout, 30) { batch ->
                 Log.i(TAG, "Retrieved ${batch.size} envelopes!")
                 val bufferedStore = BufferedProtocolStore.create()
 
                 val startTime = System.currentTimeMillis()
-                ReentrantSessionLock.INSTANCE.acquire().use {
-                  SignalDatabase.rawDatabase.withinTransaction {
-                    val followUpOperations: List<FollowUpOperation> = batch
-                      .mapNotNull { processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp) }
-                      .flatten()
-
-                    bufferedStore.flushToDisk()
-
-                    val jobs = followUpOperations.mapNotNull { it.run() }
-                    ApplicationDependencies.getJobManager().addAll(jobs)
+                GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
+                  ReentrantSessionLock.INSTANCE.acquire().use {
+                    batch.forEach {
+                      SignalDatabase.runInTransaction {
+                        val followUpOperations: List<FollowUpOperation>? = processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp)
+                        bufferedStore.flushToDisk()
+                        if (followUpOperations != null) {
+                          val jobs = followUpOperations.mapNotNull { it.run() }
+                          ApplicationDependencies.getJobManager().addAll(jobs)
+                        }
+                      }
+                      signalWebSocket.sendAck(it)
+                    }
                   }
                 }
-
                 val duration = System.currentTimeMillis() - startTime
-                Log.d(TAG, "Decrypted ${batch.size} envelopes in $duration ms (~${duration / batch.size} ms per message)")
-
-                true
+                val timePerMessage: Float = duration / batch.size.toFloat()
+                Log.d(TAG, "Decrypted ${batch.size} envelopes in $duration ms (~${round(timePerMessage * 100) / 100} ms per message)")
               }
-
               attempts = 0
+              SignalLocalMetrics.PushWebsocketFetch.onProcessedBatch()
 
               if (!hasMore && !decryptionDrained) {
                 Log.i(TAG, "Decryptions newly-drained.")

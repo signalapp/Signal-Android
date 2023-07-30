@@ -192,7 +192,7 @@
     <dimen name="toolbar_avatar_margin">26dp</dimen>
     <dimen name="conversation_list_avatar_size">48dp</dimen>
 
-    <dimen name="verify_identity_vertical_margin">16dp</dimen>
+    <dimen name="verify_identity_vertical_margin">26dp</dimen>
 
     <dimen name="signal_context_menu_corner_radius">18dp</dimen>
 
@@ -220,4 +220,6 @@
     <dimen name="media_rail_item_size">46dp</dimen>
     <dimen name="media_rail_thumbnail_size">44dp</dimen>
     <dimen name="registrationactivity_text_view_padding">32dp</dimen>
+
+    <dimen name="safety_number_qr_peek">24dp</dimen>
 </resources>

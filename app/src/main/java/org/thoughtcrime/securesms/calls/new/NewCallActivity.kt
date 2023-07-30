@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import java.io.IOException
 import java.util.Optional
 import java.util.function.Consumer
+import kotlin.time.Duration.Companion.seconds
 
 class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment.NewCallCallback {
 
@@ -49,7 +50,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
           if (!resolved.isRegistered || !resolved.hasServiceId()) {
             Log.i(TAG, "[onContactSelected] Not registered or no UUID. Doing a directory refresh.")
             resolved = try {
-              refresh(this, resolved, false)
+              refresh(this, resolved, false, 10.seconds.inWholeMilliseconds)
               Recipient.resolved(resolved.id)
             } catch (e: IOException) {
               Log.w(TAG, "[onContactSelected] Failed to refresh directory for new contact.")

@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -20,7 +22,7 @@ final class InviteRevokeConfirmationDialog {
                                                            @NonNull Recipient invitee,
                                                            @NonNull Runnable onRevoke)
   {
-    return new AlertDialog.Builder(context)
+    return new MaterialAlertDialogBuilder(context)
                           .setMessage(context.getString(R.string.InviteRevokeConfirmationDialog_revoke_own_single_invite,
                                                         invitee.getDisplayName(context)))
                           .setPositiveButton(R.string.yes, (dialog, which) -> onRevoke.run())
@@ -36,7 +38,7 @@ final class InviteRevokeConfirmationDialog {
                                                               int numberOfInvitations,
                                                               @NonNull Runnable onRevoke)
   {
-    return new AlertDialog.Builder(context)
+    return new MaterialAlertDialogBuilder(context)
                           .setMessage(context.getResources().getQuantityString(R.plurals.InviteRevokeConfirmationDialog_revoke_others_invites,
                                                                                numberOfInvitations,
                                                                                inviter.getDisplayName(context),

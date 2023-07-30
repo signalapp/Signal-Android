@@ -24,6 +24,15 @@
     <string name="save">Įrašyti</string>
     <string name="note_to_self">Priminimas sau</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Orai</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Užrašai</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Naujienos</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Bangos</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -96,6 +105,10 @@
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Tikrinama, ar yra žinučių…</string>
+
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Gali būti, kad gavote naujų žinučių</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Užblokuoti naudotojai</string>
@@ -183,7 +196,13 @@
     <string name="CameraContacts_recent_contacts">Paskiausi adresatai</string>
     <string name="CameraContacts_signal_contacts">Signal adresatai</string>
     <string name="CameraContacts_signal_groups">Signal grupės</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">Gali bendrinti ne daugiau kaip %1$d pokalbyje.</item>
+        <item quantity="few">Gali bendrinti ne daugiau kaip %1$d pokalbiuose.</item>
+        <item quantity="many">Gali bendrinti ne daugiau kaip %1$d pokalbio.</item>
+        <item quantity="other">Gali bendrinti ne daugiau kaip %1$d pokalbių.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Pasirinkti Signal gavėjus</string>
     <string name="CameraContacts_no_signal_contacts">Nėra Signal adresatų</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Galite naudoti kameros mygtuką tik tam, kad siųstumėte nuotraukas Signal adresatams. </string>
@@ -223,6 +242,8 @@
     <string name="CommunicationActions_call">Skambinti</string>
     <string name="CommunicationActions_insecure_call">Nesaugus skambutis</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai. Numeris, kuriuo skambinate, nėra registruotas Signal. Šis skambutis bus inicijuotas per jūsų mobiliojo ryšio tinklo operatorių, o ne per internetą.</string>
+    <string name="CommunicationActions_cant_join_call">Negalima prisijungti prie skambučio</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ši skambučio nuoroda nebegalioja.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -302,7 +323,9 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nepavyksta atsisiųsti vaizdo įrašo. Turėsi dar kartą ją išsiųsti.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">redaguota %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Redaguota %1$s</string>
+    <!-- Displayed if the link preview in the conversation item is for a call link call -->
+    <string name="ConversationItem__join_call">Prisijungti prie skambučio</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Pridėti priedą</string>
@@ -371,9 +394,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nauja! Išsakykite tai, naudodami lipdukus</string>
 
     <string name="ConversationActivity_cancel">Atsisakyti</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Ištrinti pokalbį?</string>
     <string name="ConversationActivity_delete_and_leave_group">Ištrinti ir išeiti iš grupės?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Šis pokalbis bus ištrintas iš visų tavo įrenginių.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Tu išeisi iš šios grupės ir ji bus ištrinta iš visų tavo įrenginių.</string>
     <string name="ConversationActivity_delete">Ištrinti</string>
     <string name="ConversationActivity_delete_and_leave">Ištrinti ir išeiti</string>
@@ -466,7 +489,7 @@
     <string name="ConversationFragment_delete_on_this_device">Ištrinti šiame įrenginyje</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Ištrinti visur</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ši žinutė bus ištrinta visiems žmonėms šiame pokalbyje, jeigu jie naudoja naujausią „Signal“ versiją. Jie matys, kad ištrynei žinutę.</string>
     <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
     <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
@@ -474,7 +497,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Išsiunčiami vienkartinės peržiūros medijos failai, juos išsiuntus, yra automatiškai pašalinami</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Tu jau peržiūrėjai šią žinutę</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje gali pridėti sau priminimų. Jei yra su paskyra susietų įrenginių, nauji priminimai bus sinchronizuoti.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
     <string name="ConversationFragment__tap_to_review">Bakstelėkite norėdami peržiūrėti</string>
     <string name="ConversationFragment__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
@@ -497,39 +520,46 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Užblokuotas</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Atnaujinti Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Iš naujo registruoti „Signal“</string>
+    <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
+    <string name="ConversationFragment__content_description_back_button">Grįžti atgal.</string>
+    <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
+    <string name="ConversationFragment__content_description_launch_signal_button">Atidaryti „Signal“</string>
+    <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
+    <string name="ConversationFragment__no_longer_verified">Nebepatvirtintas</string>
+
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Išvalyti filtrą</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Nėra neskaitytų pokalbių</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="few">Delete selected chats?</item>
-        <item quantity="many">Delete selected chats?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Ištrinti pasirinktą pokalbį?</item>
+        <item quantity="few">Ištrinti pasirinktus pokalbius?</item>
+        <item quantity="many">Ištrinti pasirinktus pokalbius?</item>
+        <item quantity="other">Ištrinti pasirinktus pokalbius?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="few">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="many">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Pasirinktas pokalbis bus negrįžtamai ištrintas.</item>
+        <item quantity="few">Visi %1$d pasirinkti pokalbiai bus negrįžtamai ištrinti.</item>
+        <item quantity="many">Visi %1$d pasirinkti pokalbiai bus negrįžtamai ištrinti.</item>
+        <item quantity="other">Visi %1$d pasirinktų pokalbių bus negrįžtamai ištrinti.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Ištrinama</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Ištrinami pasirinkti pokalbiai…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="few">%1$d chats archived</item>
-        <item quantity="many">%1$d chats archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Pokalbis suarchyvuotas</item>
+        <item quantity="few">%1$d pokalbiai suarchyvuoti</item>
+        <item quantity="many">%1$d pokalbio suarchyvuota</item>
+        <item quantity="other">%1$d pokalbių suarchyvuota</item>
     </plurals>
     <string name="ConversationListFragment_undo">Atšaukti</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="few">Moved %1$d chats to inbox</item>
-        <item quantity="many">Moved %1$d chats to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Pokalbis perkeltas į gautuosius</item>
+        <item quantity="few">%1$d pokalbiai perkelti į gautuosius</item>
+        <item quantity="many">%1$d pokalbio perkelta į gautuosius</item>
+        <item quantity="other">%1$d pokalbių perkelta į gautuosius</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Perskaityt.</item>
@@ -570,7 +600,7 @@
     <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Archyvuoti pokalbiai (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Patvirtinta(s)</string>
@@ -913,6 +943,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Nuorodos peržiūra neprieinama</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Naudokis šia nuoroda, kad prisijungtum prie „Signal“ skambučio</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1159,7 +1191,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Pieškite norėdami sulieti pridėtinius veidus ar sritis</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Bakstelėkite ir laikykite, kad įrašinėtumėte balso žinutę, atleiskite, kad išsiųstumėte</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Spaudžiant žinutė įrašinėjama, o atleidus išsiunčiama</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS žinutės programėlėje „Signal“ nebepalaikomos.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1277,10 +1309,7 @@
     <string name="MessageQuotesBottomSheet_replies">Atsakymai</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
     <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
-    <string name="NotificationBarManager__incoming_signal_call">Gaunamasis Signal skambutis</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Gaunamasis Signal grupės skambutis</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Pradedama tekti „Signal“ skambučių paslauga</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Stabdoma Signal skambučių paslauga</string>
@@ -1560,12 +1589,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Tu pradėjai grupės skambutį · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Jūs esate grupės skambutyje · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s ir %2$s yra grupės skambutyje · %3$s</string>
     <string name="MessageRecord_group_call_s">Grupės skambutis · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s pradėjo grupės skambutį</string>
+    <string name="MessageRecord_you_started_a_group_call">Jūs pradėjote grupės skambutį</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s yra grupės skambutyje</string>
     <string name="MessageRecord_you_are_in_the_group_call">Jūs esate grupės skambutyje</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s ir %2$s yra grupės skambutyje</string>
@@ -1608,10 +1639,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Ar nori leisti, kad %1$s siųstų tau žinutes? Negausi žinučių, kol neatblokuosi.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ar gauti atnaujinimus ir naujienas iš %1$s? Negausi jokių atnaujinimų, kol neatblokuosi.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tęsti jūsų pokalbį su šia grupe ir bendrinti jūsų vardą ir nuotrauką su jos nariais?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naujinkite šią grupę, norėdami aktyvuoti tokias naujas ypatybes kaip @paminėjimai ir administratoriai. Nariai, kurie šioje grupėje nebendrino savo vardo ar nuotraukos, bus pakviesti prie jos prisijungti.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Pasenusi grupė daugiau nebegali būti naudojama, nes yra per didelė. Didžiausias grupės dydis yra %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Tęsti pokalbį su %1$s ir bendrinti tavo vardą bei nuotrauką su šiuo žmogumi?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs nematysite jų žinučių tol, kol nesutiksite.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės? Kiti asmenys nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
@@ -1719,8 +1750,8 @@
         <item quantity="other">Jums liko %1$d bandymas. Jei išnaudosite visus bandymus, galėsite susikurti naują PIN kodą. Galėsite registruotis ir naudotis savo paskyra, bet prarasite kai kuriuos įrašytus nustatymus, kaip pavyzdžiui, profilio informaciją.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registracija - Reikia pagalbos su PIN kodu „Android“ įrenginyje</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Įvesti tekstinį PIN kodą</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Perjungti klaviatūrą</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Susikurti PIN kodą</string>
@@ -1769,6 +1800,8 @@
     <string name="Recipient_you">Jūs</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">„Mano istorija“</string>
+    <!-- Name of recipient for a call link without a name -->
+    <string name="Recipient_signal_call">„Signal“ skambutis</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Užblokuoti</string>
@@ -1955,8 +1988,12 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Atlikai per daug bandymų užregistruoti šį numerį. Pabandyk už %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
+    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
+    <string name="RegistrationActivity_generic_error">Įvyko nenumatyta klaida.</string>
+    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Mums nepavyko tau išsiųsti patvirtinimo kodo SMS žinute. Pabandyk gauti savo kodą balso skambučiu.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Nepavyko paprašyti patvirtinimo kodo. Patikrink tinklo ryšį ir bandyk dar kartą.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandartinis numerio formatas</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Atrodo, kad jūsų įvestas numeris (%1$s) yra nestandartinio formato.\n\nAr turėjote omenyje %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal „Android“ - Telefono numerio formatas</string>
@@ -1975,6 +2012,10 @@
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Turime įsitikinti, kad esate žmogus.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">„Signal“ negalėjo išsiųsti SMS kodo dėl išorinės trikties.</string>
+    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
+    <string name="RegistrationActivity_voice_call">Balso skambutis</string>
+    <!-- Dialog button to cancel the pending action and return to the previous state. -->
+    <string name="RegistrationActivity_cancel">Atšaukti</string>
     <string name="RegistrationActivity_next">Kitas</string>
     <string name="RegistrationActivity_continue">Tęsti</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pasiimkite privatumą kartu su savimi.\nBūkite savimi kiekvienoje žinutėje.</string>
@@ -2017,7 +2058,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių „%1$s“</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">Pokalbiai</string>
     <string name="SearchFragment_header_contacts">Adresatai</string>
     <string name="SearchFragment_header_messages">Žinutės</string>
 
@@ -2086,7 +2127,8 @@
     <string name="StickerPackPreviewActivity_untitled">Be pavadinimo</string>
     <string name="StickerPackPreviewActivity_unknown">Nežinoma</string>
     <string name="StickerPackPreviewActivity_install">Įdiegti</string>
-    <string name="StickerPackPreviewActivity_remove">Šalinti</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Pašalinti</string>
     <string name="StickerPackPreviewActivity_stickers">Lipdukai</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nepavyko įkelti lipdukų paketo</string>
 
@@ -2232,6 +2274,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Norėdami matyti naudotojo %1$s saugumo numerį, iš pradžių, turite apsikeisti su juo žinutėmis.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Saugumo numeris su šiuo asmeniu bus sukurtas tada, kai parašysite vienas kitam žinutes.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">Gerai</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Sužinoti daugiau</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">Gerai</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2286,7 +2336,23 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Skaityti daugiau</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s grupėje %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d žinutė</item>
+        <item quantity="few">%1$d žinutės</item>
+        <item quantity="many">%1$d žinutės</item>
+        <item quantity="other">%1$d žinučių</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d pokalbis</item>
+        <item quantity="few">%1$d pokalbiai</item>
+        <item quantity="many">%1$d pokalbio</item>
+        <item quantity="other">%1$d pokalbių</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujos žinutės %2$d pokalbiuose</string>
     <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>
     <string name="MessageNotifier_locked_message">Užrakinta žinutė</string>
     <string name="MessageNotifier_message_delivery_failed">Žinutės pristatymas nepavyko.</string>
@@ -2341,6 +2407,8 @@
     <string name="NotificationChannel_call_status">Skambučio būsena</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Kritiniai programėlės įspėjimai</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Papildomi žinučių pranešimai</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2348,15 +2416,14 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
     <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
 
-    <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_saved_to">Įrašyta į %1$s</string>
-    <string name="SaveAttachmentTask_saved">Įrašyta</string>
+    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
+    <string name="SaveAttachmentTask_saved">Įrašas išsaugotas</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Ieškoti</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Ieškoti neperskaitytuose pokalbiuose</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Ieškok pokalbių, adresatų ir žinučių</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Užverti</string>
@@ -2388,9 +2455,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Įrenginys daugiau nebėra registruotas</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Šis įrenginys nebėra registruotas. Taip gali būti dėl to, kad registravai savo telefono numerį „Signal“ programėlėje kitame įrenginyje.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Iš naujo registruoti įrenginį</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Buvai atjungtas nuo „Signal“ šiame įrenginyje.</string>
@@ -2402,7 +2469,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Norėdami atsiliepti, suteikite Signal prieigą prie mikrofono.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Norėdami atsiliepti į skambutį nuo %1$s, suteikite Signal prieigą prie mikrofono.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Kad atsilieptum į vaizdo skambutį, suteik „Signal“ prieigą prie mikrofono ir kameros.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Atsiliepta susietame įrenginyje.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Atmesta susietame įrenginyje.</string>
@@ -2430,7 +2498,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Garsiakalbis</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Laidinės ausinės</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Laidinės ausinės</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Laidinės ausinės (USB)</string>
@@ -2584,13 +2654,13 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth leidimas uždraustas</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Jei nori įrašyti balso žinutes per „Bluetooth“, įjunk leidimą „Šalia esantiems įrenginiams“.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Atverti nustatymus</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Ne dabar</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
@@ -2727,7 +2797,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Žiūrėti visą pokalbį</string>
     <string name="load_more_header__loading">Įkeliama</string>
 
     <!-- media_overview_activity -->
@@ -2802,12 +2872,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Norėdami patvirtinti savo ištisinio šifravimo su %1$s saugumą, palyginkite aukščiau esančius skaičius su skaičiais šio adresato įrenginyje. Taip pat galite nuskenuoti kodą adresato telefone. <a href=\"https://signal.org/redirect/safety-numbers\">Sužinokite daugiau.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Jei nori patikrinti, ar pokalbis su %1$s yra visiškai užšifruotas, palygink skaičius viršuje ir pašnekovo įrenginyje. Jei jie nesutampa, paslink į šoną ir pabandyk kitą saugumo numerių porą. Tereikia vienos sutampančios poros.</string>
     <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
     <string name="verify_display_fragment__successful_match">Sėkminga atitiktis</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Nepavyko patvirtinti saugumo numerio</string>
     <string name="verify_display_fragment__loading">Įkeliama…</string>
     <string name="verify_display_fragment__mark_as_verified">Žymėti kaip patvirtintą</string>
     <string name="verify_display_fragment__clear_verification">Išvalyti patvirtinimą</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Saugumo numeriai atnaujinami.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Saugumo numerių pakeitimai</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Saugumo numeriai atnaujinami pereinamuoju laikotarpiu, kad įjungtume būsimas „Signal“ privatumo funkcijas.\n\nJei nori patikrinti saugumo numerius, palygink spalvotoje kortelėje rodomus skaičius savo ir pašnekovo įrenginyje. Jei jie nesutampa, paslink į šoną ir pabandyk kitą saugumo numerių porą. Tereikia vienos sutampančios poros.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Reikia pagalbos?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Supratau</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Dalintis saugumo numeriu</string>
@@ -2851,7 +2934,7 @@
     <string name="AndroidManifest__message_details">Išsamesnė žinutės informacija</string>
     <string name="AndroidManifest__linked_devices">Susieti įrenginiai</string>
     <string name="AndroidManifest__invite_friends">Pakviesti draugus</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Archyvuoti pokalbiai</string>
     <string name="AndroidManifest_remove_photo">Šalinti nuotrauką</string>
 
     <!-- HelpFragment -->
@@ -3010,7 +3093,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Mokėjimo užraktas</string>
     <string name="preferences__payments_beta">Mokėjimai (Beta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Pokalbio ilgio ribojimas</string>
     <string name="preferences__keep_messages">Saugoti žinutes</string>
     <string name="preferences__clear_message_history">Išvalyti žinučių istoriją</string>
     <string name="preferences__linked_devices">Susieti įrenginiai</string>
@@ -3019,6 +3102,28 @@
     <string name="preferences__appearance">Išvaizda</string>
     <string name="preferences__theme">Apipavidalinimas</string>
     <string name="preferences__chat_color_and_wallpaper">Pokalbio spalva ir fonas</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Programėlės piktograma</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">Gerai</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Atšaukti</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Keisti programėlės piktogramą ir pavadinimą į „%1$s“</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Keičiant programėlės piktogramą ir pavadinimą, „Signal“ turės užsiverti. Pranešimuose visada bus rodoma numatytoji „Signal“ piktograma ir pavadinimas.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Pasirink programėlės piktogramą ir pavadinimą, kurie bus matomi telefono pradžios ekrane ir programėlių aplanke. Pranešimuose visada bus rodoma numatytoji „Signal“ piktograma ir pavadinimas. Sužinoti daugiau</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Programėlių piktogramos ir pavadinimai matomi telefono pradžios ekrane ir programėlių aplanke.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Pranešimuose visada bus rodoma numatytoji „Signal“ piktograma ir pavadinimas.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Sužinoti daugiau</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">%1$s piktograma</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Vaizdas, iliustruojantis, kur bus matoma pakeista programėlės piktograma.</string>
     <string name="preferences__disable_pin">Išjungti PIN kodą</string>
     <string name="preferences__enable_pin">Įjungti PIN kodą</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
@@ -3054,7 +3159,13 @@
     <string name="preferences_storage__delete_older_messages">Ištrinti senesnes žinutes?</string>
     <string name="preferences_storage__clear_message_history">Išvalyti žinučių istoriją?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus, kurie senesni nei %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Visi pokalbiai bus negrįžtamai apkarpyti iki naujausios žinutės.</item>
+        <item quantity="few">Visi pokalbiai bus negrįžtamai apkarpyti iki %1$s naujausių žinučių.</item>
+        <item quantity="many">Visi pokalbiai bus negrįžtamai apkarpyti iki %1$s naujausios žinutės.</item>
+        <item quantity="other">Visi pokalbiai bus negrįžtamai apkarpyti iki %1$s naujausių žinučių.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ar tikrai nori ištrinti visą žinučių istoriją?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Visa žinučių istorija bus pašalinta visam laikui. Šio veiksmo nebus galima atšaukti.</string>
@@ -3398,6 +3509,7 @@
     <string name="conversation_list_search_description">Ieškoti</string>
     <string name="conversation_list__pinned">Prisegti pokalbiai</string>
     <string name="conversation_list__chats">Pokalbiai</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Galite prisegti daugiausiai %1$d pokalbių</string>
 
     <!-- conversation_list_item_view -->
@@ -3406,7 +3518,7 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Naujas pokalbis</string>
     <string name="conversation_list_fragment__open_camera_description">Atverti kamerą</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Kol kas pokalbių nėra.\nPradėkite, bendraudami su draugais.</string>
 
@@ -3423,9 +3535,11 @@
     <string name="conversation__menu_group_settings">Grupės nustatymai</string>
     <string name="conversation__menu_leave_group">Išeiti iš grupės</string>
     <string name="conversation__menu_view_all_media">Visa medija</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Pokalbio nustatymai</string>
     <string name="conversation__menu_add_shortcut">Pridėti į pradžios ekraną</string>
     <string name="conversation__menu_create_bubble">Sukurti burbulą</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Formatuoti tekstą</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Išskleisti iškylantįjį langą</string>
@@ -3448,7 +3562,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Gavėjų sąrašas</string>
     <string name="conversation_group_options__delivery">Pristatymas</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">Pokalbis</string>
     <string name="conversation_group_options__broadcast">Transliavimas</string>
 
     <!-- text_secure_normal -->
@@ -3498,11 +3613,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Įžvalgos</string>
     <string name="InsightsDashboardFragment__title">Įžvalgos</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">„Signal“ protokolas automatiškai apsaugojo %1$d %% tavo siunčiamų žinučių per pastarąsias %2$d d. Pokalbiai tarp „Signal“ naudotojų visada yra visiškai užšifruoti.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Skleiskite žinią</string>
     <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tavo įžvalgų procentinė dalis yra apskaičiuojama remiantis per pastarąsias %1$d d. išsiunčiamų žinučių, kurios neišnyko ir nebuvo ištrintos, skaičiumi.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Nuo šiol, pakvietę daugiau adresatų naudotis Signal, bendraukite saugiai ir įjunkite naujas ypatybes, kurios viršija nešifruotų SMS žinučių apribojimus.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ši statistika buvo sugeneruota jūsų įrenginyje ir ją galite matyti tik jūs. Ji niekada nėra niekur persiunčiama.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Šifruotos žinutės</string>
@@ -3523,7 +3640,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Kitas</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Sukurti tekstinį PIN kodą</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Sukurti skaitinį PIN kodą</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3589,8 +3708,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Įveskite savo paskyrai sukurtą PIN kodą. Tai yra kas kita, nei jūsų SMS patvirtinimo kodas.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Įvesk PIN kodą, kurį susikūrei savo paskyrai.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Įvesti tekstinį PIN kodą</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Perjungti klaviatūrą</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
     <string name="RegistrationLockFragment__forgot_pin">Užmiršote PIN kodą?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Neteisingas PIN</string>
@@ -3640,6 +3759,20 @@
     <string name="KbsMegaphone__create_a_pin">Susikurkite PIN kodą</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal.</string>
     <string name="KbsMegaphone__create_pin">Susikurti PIN kodą</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Gaunamasis „Signal“ balso skambutis</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Gaunamasis „Signal“ vaizdo skambutis</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Gaunamasis Signal grupės skambutis</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Vykstantis „Signal“ balso skambutis</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Vykstantis „Signal“ vaizdo skambutis</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Vykstantis „Signal“ grupės skambutis</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
@@ -3760,21 +3893,21 @@
     <string name="Recipient_unknown">Nežinoma</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Iš naujo registruoti paskyrą</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Atnaujinti Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Ištrinti visus duomenis</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Ištrinti visus duomenis?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Programėlė bus nustatyta iš naujo, o visos žinutės ištrintos. Užbaigus šį procesą, programėlė bus užverta.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Tęsti</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Atšaukti</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Nepavyko ištrinti duomenų</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Perkelti ar atkurti paskyrą</string>
@@ -4445,9 +4578,11 @@
     <string name="HelpSettingsFragment__contact_us">Susisiekite su mumis</string>
     <string name="HelpSettingsFragment__version">Versija</string>
     <string name="HelpSettingsFragment__debug_log">Derinimo žurnalas</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Licencijos</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Sąlygos ir Privatumo politika</string>
     <string name="HelpFragment__copyright_signal_messenger">Autorių teisės Signal pokalbių programėlė</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Licencijuota pagal GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licencijuota pagal GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Medijos kokybė</string>
@@ -4548,7 +4683,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Kontaktų programėlė nerasta</string>
     <string name="ConversationSettingsFragment__start_video_call">Pradėti vaizdo skambutį</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Pradėti balso skambutį</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Istorija</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4582,8 +4717,9 @@
     <string name="ConversationSettingsFragment__group_link">Grupės nuoroda</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Pridėti kaip adresatą</string>
     <string name="ConversationSettingsFragment__unmute">Įjungti garsą</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Pokalbis nutildytas iki %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Pokalbis nutildytas visam laikui</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono numeris nukopijuotas į iškarpinę.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefono numeris</string>
     <string name="ConversationSettingsFragment__get_badges">Gauk ženklelių savo profiliui už paramą „Signal“. Bakstelėk ženklelį ir sužinok daugiau.</string>
@@ -4623,7 +4759,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Žinutė</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Balso skambutis</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Vaizdo skambutis</string>
     <!-- Context menu item remove -->
@@ -4854,22 +4990,22 @@
     <string name="MySupportPreference__please_contact_support">Susisiekite su palaikymu.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Atnaujinti Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Ši „Signal“ versija nebegalioja. Atnaujink programėlę dabar ir naudokis toliau.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Atnaujinti</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Atšaukti</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Įrenginys neregistruotas</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Šis įrenginys nebėra registruotas. Registruok iš naujo ir toliau naudok „Signal“ šiame įrenginyje.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Iš naujo registruoti</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Atšaukti</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Rėmėjo ženklelis nebegalioja</string>
@@ -5353,7 +5489,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">„Signal“ kontaktai – tai žmonės, pasitikėjimą kuriais išreiškėte kuriuo nors iš šių veiksmų:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Pradėjai pokalbį</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Priimdami iš jų žinutės užklausą</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -6029,7 +6165,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Nebelieka SMS palaikymo</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Programėlėje „Signal“ nebebus SMS žinučių palaikymo nuo %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Programėlėje „Signal“ greit nebebus SMS žinučių palaikymo.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS žinutės skiriasi nuo „Signal“ žinučių. <b>Pastarųjų šis pokytis nepaveiks – užšifruotos „Signal“ žinutės veiks ir toliau.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -6060,6 +6196,8 @@
     <string name="TextFormatting_monospace">Lygiaplotis</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">„Spoiler“</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Išvalyti formatavimą</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -6104,6 +6242,8 @@
     <string name="CallLogAdapter__return">Grįžti</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+    <!-- Status text on call links -->
+    <string name="CallLogAdapter__call_link">Skambučio nuoroda</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6113,7 +6253,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Grįžti į skambutį</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Balso skambutis</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Pereiti į pokalbį</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -6124,6 +6264,25 @@
     <string name="CallContextMenu__delete">Ištrinti</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Ištrinama…</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Ištrinti nepavyko.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Nepavyko ištrinti nuorodos. Patikrink ryšį ir bandyk dar kartą.</item>
+        <item quantity="few">Ne visas skambučio nuorodas pavyko ištrinti. Patikrink ryšį ir bandyk dar kartą.</item>
+        <item quantity="many">Ne visas skambučio nuorodas pavyko ištrinti. Patikrink ryšį ir bandyk dar kartą.</item>
+        <item quantity="other">Ne visas skambučio nuorodas pavyko ištrinti. Patikrink ryšį ir bandyk dar kartą.</item>
+    </plurals>
+    <!-- Snackbar text after clearing the call history -->
+    <string name="CallLogFragment__cleared_call_history">Skambučių istorija išvalyta</string>
+    <!-- Dialog title to clear all call events -->
+    <string name="CallLogFragment__clear_call_history_question">Išvalyti skambučių istoriją?</string>
+    <!-- Dialog body to clear all call events -->
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Visa skambučių istorija bus ištrinta visam laikui</string>
+    <!-- Action bar menu item to delete all call events -->
+    <string name="CallLogFragment__clear_call_history">Išvalyti skambučių istoriją</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtruoti praleistus skambučius</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -6138,16 +6297,14 @@
     <string name="CallLogFragment__filtered_by_missed">Filtravimas pagal praleistus</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Žymėti visus</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Ištrinti</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="few">Delete %1$d calls?</item>
-        <item quantity="many">Delete %1$d calls?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Ištrinti %1$d skambutį?</item>
+        <item quantity="few">Ištrinti %1$d skambučius?</item>
+        <item quantity="many">Ištrinti %1$d skambučio?</item>
+        <item quantity="other">Ištrinti %1$d skambučių?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Ištrinti man</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">Ištrintas %1$d skambutis</item>
@@ -6241,41 +6398,63 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redagavimo istorija</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Tik „Signal“ beta versijai</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Redaguoti žinutes gali tik „Signal“ beta versijos naudotojai. Jei redaguosi žinutę, tai bus matoma tik naujausią „Signal“ beta versiją naudojantiems žmonėms.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Atšaukti</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Siųsti</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Skambučio informacija</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Pridėti skambučio pavadinimą</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Patvirtinti visus narius</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Bendrinti nuorodą</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Ištrinti skambučio nuorodą</string>
+    <!-- Displayed whenever a name change, revocation, etc, fails. -->
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">Nepavyko išsaugoti pakeitimų. Patikrink tinklo ryšį ir bandyk dar kartą.</string>
+    <!-- Displayed as title in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__delete_link">Ištrinti nuorodą?</string>
+    <!-- Displayed as body in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ši nuoroda nebeveiks nė vienam ją gavusiam žmogui.</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Bendrinti</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Spalva</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Bendrink savo QR kodą ir nuorodą tik su žmonėmis, kuriais pasitiki. Jei bendrinsi, kiti galės matyti tavo naudotojo vardą ir pradėti pokalbį su tavimi.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Naudotojo vardas nukopijuotas</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Nuoroda nukopijuota</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Atstatyti</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Atlikta</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Kodas</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Nuskaityti</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Nuskaityk QR kodą savo adresato įrenginyje.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Spalva</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR kodas neteisingas.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">Nepavyko rasti naudotojo, vardu %1$s.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Įvyko tinklo klaida. Bandyk dar kartą.</string>
+
 
     <!-- EOF -->
 </resources>

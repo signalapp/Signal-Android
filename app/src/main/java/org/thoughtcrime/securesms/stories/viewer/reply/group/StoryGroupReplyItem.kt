@@ -4,7 +4,6 @@ import android.content.Context
 import android.text.Spannable
 import android.text.Spanned
 import android.text.TextPaint
-import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +29,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -225,7 +225,7 @@ object StoryGroupReplyItem {
     override fun bind(model: TextModel) {
       super.bind(model)
 
-      body.movementMethod = LinkMovementMethod.getInstance()
+      body.movementMethod = LongClickMovementMethod.getInstance()
       body.text = model.text.message.getDisplayBody(context).apply {
         linkifyBody(model, this)
       }

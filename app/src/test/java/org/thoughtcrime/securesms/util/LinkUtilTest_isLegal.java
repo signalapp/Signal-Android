@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import static junit.framework.TestCase.assertEquals;
 
+@SuppressWarnings("NewClassNamingConvention")
 @RunWith(Parameterized.class)
 public class LinkUtilTest_isLegal {
 
@@ -45,7 +46,8 @@ public class LinkUtilTest_isLegal {
         { "cool.localhost",                        true },
         { "localhost",                             true },
         { "https://localhost",                     true },
-        { "cool.test",                             true }
+        { "cool.test",                             true },
+        { "https://github.com/signalapp/Signal-Android/compare/v6.23.2...v6.23.3", true }
     });
   }
 

@@ -119,12 +119,10 @@ public final class DefaultErrorMapper implements ErrorMapper {
           return e;
         }
 
-        AuthCredentials credentials = accountLockFailure.backupCredentials;
-        String basicStorageCredentials = credentials != null ? credentials.asBasic() : null;
-
         return new LockedException(accountLockFailure.length,
                                    accountLockFailure.timeRemaining,
-                                   basicStorageCredentials);
+                                   accountLockFailure.svr1Credentials,
+                                   accountLockFailure.svr2Credentials);
       case 428:
         ProofRequiredResponse proofRequiredResponse;
         try {

@@ -10,6 +10,7 @@ import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord;
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
@@ -31,15 +32,18 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   private final SignalIdentityKeyStore identityKeyStore;
   private final TextSecureSessionStore sessionStore;
   private final SignalSenderKeyStore   senderKeyStore;
+  private final SignalKyberPreKeyStore kyberPreKeyStore;
 
   public SignalServiceAccountDataStoreImpl(@NonNull Context context,
                                            @NonNull TextSecurePreKeyStore preKeyStore,
+                                           @NonNull SignalKyberPreKeyStore kyberPreKeyStore,
                                            @NonNull SignalIdentityKeyStore identityKeyStore,
                                            @NonNull TextSecureSessionStore sessionStore,
                                            @NonNull SignalSenderKeyStore senderKeyStore)
   {
     this.context           = context;
     this.preKeyStore       = preKeyStore;
+    this.kyberPreKeyStore  = kyberPreKeyStore;
     this.signedPreKeyStore = preKeyStore;
     this.identityKeyStore  = identityKeyStore;
     this.sessionStore      = sessionStore;
@@ -165,6 +169,46 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   @Override
   public void removeSignedPreKey(int signedPreKeyId) {
     signedPreKeyStore.removeSignedPreKey(signedPreKeyId);
+  }
+
+  @Override
+  public KyberPreKeyRecord loadKyberPreKey(int kyberPreKeyId) throws InvalidKeyIdException {
+    return kyberPreKeyStore.loadKyberPreKey(kyberPreKeyId);
+  }
+
+  @Override
+  public List<KyberPreKeyRecord> loadKyberPreKeys() {
+    return kyberPreKeyStore.loadKyberPreKeys();
+  }
+
+  @Override
+  public @NonNull List<KyberPreKeyRecord> loadLastResortKyberPreKeys() {
+    return kyberPreKeyStore.loadLastResortKyberPreKeys();
+  }
+
+  @Override
+  public void storeKyberPreKey(int kyberPreKeyId, KyberPreKeyRecord record) {
+    kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, record);
+  }
+
+  @Override
+  public void storeLastResortKyberPreKey(int kyberPreKeyId, @NonNull KyberPreKeyRecord kyberPreKeyRecord) {
+    kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, kyberPreKeyRecord);
+  }
+
+  @Override
+  public boolean containsKyberPreKey(int kyberPreKeyId) {
+    return kyberPreKeyStore.containsKyberPreKey(kyberPreKeyId);
+  }
+
+  @Override
+  public void markKyberPreKeyUsed(int kyberPreKeyId) {
+    kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId);
+  }
+
+  @Override
+  public void removeKyberPreKey(int kyberPreKeyId) {
+    kyberPreKeyStore.removeKyberPreKey(kyberPreKeyId);
   }
 
   @Override

@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -30,6 +32,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -115,12 +118,12 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static void leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId)
+  public static void leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId, boolean sendToMembers)
       throws GroupChangeBusyException, GroupChangeFailedException, IOException
   {
     if (groupId.isV2()) {
       try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        edit.leaveGroup();
+        edit.leaveGroup(sendToMembers);
         Log.i(TAG, "Left group " + groupId);
       } catch (GroupInsufficientRightsException e) {
         Log.w(TAG, "Unexpected prevention from leaving " + groupId + " due to rights", e);
@@ -143,7 +146,7 @@ public final class GroupManager {
       throws IOException, GroupChangeBusyException, GroupChangeFailedException
   {
     if (groupId.isV2()) {
-      leaveGroup(context, groupId.requireV2());
+      leaveGroup(context, groupId.requireV2(), true);
     } else {
       if (!GroupManagerV1.silentLeaveGroup(context, groupId.requireV1())) {
         throw new GroupChangeFailedException();
@@ -166,7 +169,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
   {
     try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      edit.ejectMember(recipient.requireServiceId(), false, true);
+      edit.ejectMember(recipient.requireServiceId(), false, true, true);
       Log.i(TAG, "Member removed from group " + groupId);
     }
   }
@@ -178,15 +181,30 @@ public final class GroupManager {
    *                                  processing deny messages.
    */
   @WorkerThread
-  public static void updateGroupFromServer(@NonNull Context context,
-                                           @NonNull GroupMasterKey groupMasterKey,
-                                           int revision,
-                                           long timestamp,
-                                           @Nullable byte[] signedGroupChange)
+  public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
+                                                                               @NonNull GroupMasterKey groupMasterKey,
+                                                                               int revision,
+                                                                               long timestamp,
+                                                                               @Nullable byte[] signedGroupChange)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
+      return updater.updateLocalToServerRevision(revision, timestamp, null, signedGroupChange);
+    }
+  }
+
+  @WorkerThread
+  public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
+                                                                               @NonNull GroupMasterKey groupMasterKey,
+                                                                               @NonNull Optional<GroupRecord> groupRecord,
+                                                                               @Nullable GroupSecretParams groupSecretParams,
+                                                                               int revision,
+                                                                               long timestamp,
+                                                                               @Nullable byte[] signedGroupChange)
+      throws GroupChangeBusyException, IOException, GroupNotAMemberException
+  {
+    try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
+      return updater.updateLocalToServerRevision(revision, timestamp, groupRecord, groupSecretParams, signedGroupChange);
     }
   }
 

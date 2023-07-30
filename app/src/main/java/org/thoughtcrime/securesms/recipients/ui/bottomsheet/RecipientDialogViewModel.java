@@ -7,7 +7,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -181,7 +183,7 @@ final class RecipientDialogViewModel extends ViewModel {
   }
 
   void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityRecord identityRecord) {
-    activity.startActivity(VerifyIdentityActivity.newIntent(activity, identityRecord));
+    VerifyIdentityActivity.startOrShowExchangeMessagesDialog(activity, identityRecord);
   }
 
   void onAvatarClicked(@NonNull Activity activity) {

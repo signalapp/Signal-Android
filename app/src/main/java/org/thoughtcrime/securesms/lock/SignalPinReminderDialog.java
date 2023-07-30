@@ -31,10 +31,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
-import org.thoughtcrime.securesms.lock.v2.KbsConstants;
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
+import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 
 import java.util.Objects;
 
@@ -43,7 +44,7 @@ public final class SignalPinReminderDialog {
   private static final String TAG = Log.tag(SignalPinReminderDialog.class);
 
   public static void show(@NonNull Context context, @NonNull Launcher launcher, @NonNull Callback mainCallback) {
-    if (!SignalStore.kbsValues().hasPin()) {
+    if (!SignalStore.svr().hasPin()) {
       throw new AssertionError("Must have a PIN!");
     }
 
@@ -88,7 +89,7 @@ public final class SignalPinReminderDialog {
       @Override
       public void onClick(@NonNull View widget) {
         dialog.dismiss();
-        launcher.launch(CreateKbsPinActivity.getIntentForPinChangeFromForgotPin(context), CreateKbsPinActivity.REQUEST_NEW_PIN);
+        launcher.launch(CreateSvrPinActivity.getIntentForPinChangeFromForgotPin(context), CreateSvrPinActivity.REQUEST_NEW_PIN);
       }
     };
 
@@ -114,14 +115,14 @@ public final class SignalPinReminderDialog {
 
     pinEditText.addTextChangedListener(new SimpleTextWatcher() {
 
-      private final String localHash = Objects.requireNonNull(SignalStore.kbsValues().getLocalPinHash());
+      private final String localHash = Objects.requireNonNull(SignalStore.svr().getLocalPinHash());
 
       @Override
       public void onTextChanged(String text) {
-        if (text.length() >= KbsConstants.MINIMUM_PIN_LENGTH) {
+        if (text.length() >= SvrConstants.MINIMUM_PIN_LENGTH) {
           submit.setEnabled(true);
 
-          if (PinHashing.verifyLocalPinHash(localHash, text)) {
+          if (PinHashUtil.verifyLocalPinHash(localHash, text)) {
             dialog.dismiss();
             mainCallback.onReminderCompleted(text, callback.hadWrongGuess());
           }
@@ -168,7 +169,7 @@ public final class SignalPinReminderDialog {
     private final String localPinHash;
 
     V2PinVerifier() {
-      localPinHash = SignalStore.kbsValues().getLocalPinHash();
+      localPinHash = SignalStore.svr().getLocalPinHash();
 
       if (localPinHash == null) throw new AssertionError("No local pin hash set at time of reminder");
     }
@@ -178,9 +179,9 @@ public final class SignalPinReminderDialog {
       if (pin == null) return;
       if (TextUtils.isEmpty(pin)) return;
 
-      if (pin.length() < KbsConstants.MINIMUM_PIN_LENGTH) return;
+      if (pin.length() < SvrConstants.MINIMUM_PIN_LENGTH) return;
 
-      if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
+      if (PinHashUtil.verifyLocalPinHash(localPinHash, pin)) {
         callback.onPinCorrect(pin);
       } else {
         callback.onPinWrong();

@@ -147,7 +147,7 @@ class GroupManagerV2Test_edit {
     }
 
     editGroup {
-      leaveGroup()
+      leaveGroup(true)
     }
 
     then { patchedGroup ->

@@ -48,14 +48,14 @@ public class AudioRecorder {
     if (this.uiHandler != null) {
       onAudioFocusChangeListener = focusChange -> {
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-          Log.i(TAG, "Audio focus change " + focusChange + " stopping recording");
+          Log.i(TAG, "Audio focus change " + focusChange + " stopping recording via UI handler.");
           this.uiHandler.onRecordCanceled(false);
         }
       };
     } else {
       onAudioFocusChangeListener = focusChange -> {
         if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-          Log.i(TAG, "Audio focus change " + focusChange + " stopping recording");
+          Log.i(TAG, "Audio focus change " + focusChange + " stopping recording.");
           stopRecording();
         }
       };
@@ -89,7 +89,7 @@ public class AudioRecorder {
         }
         recorder.start(fds[1]);
         this.recordingSubject = recordingSingle;
-      } catch (IOException e) {
+      } catch (IOException | RuntimeException e) {
         recordingSingle.onError(e);
         recorder = null;
         Log.w(TAG, e);

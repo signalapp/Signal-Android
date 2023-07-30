@@ -4,6 +4,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.lang.Exception
 import java.lang.IllegalStateException
@@ -24,6 +25,7 @@ class RebuildMessageSearchIndexJob private constructor(params: Parameters) : Bas
   private constructor() : this(
     Parameters.Builder()
       .setQueue("RebuildMessageSearchIndex")
+      .addConstraint(DataRestoreConstraint.KEY)
       .setMaxAttempts(3)
       .build()
   )

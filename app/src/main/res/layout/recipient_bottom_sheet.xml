@@ -97,6 +97,7 @@
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_marginBottom="8dp"
             android:text="@string/ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation"
             android:textAlignment="center"
             android:textAppearance="@style/Signal.Text.BodyMedium"

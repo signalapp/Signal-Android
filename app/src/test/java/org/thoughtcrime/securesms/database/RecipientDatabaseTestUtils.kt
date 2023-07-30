@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import org.signal.core.util.Bitmask
+import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.groups.GroupId
@@ -84,7 +86,9 @@ object RecipientDatabaseTestUtils {
     extras: Recipient.Extras? = null,
     hasGroupsInCommon: Boolean = false,
     badges: List<Badge> = emptyList(),
-    isReleaseChannel: Boolean = false
+    isReleaseChannel: Boolean = false,
+    isActive: Boolean = true,
+    groupRecord: GroupRecord? = null
   ): Recipient = Recipient(
     recipientId,
     RecipientDetails(
@@ -152,10 +156,14 @@ object RecipientDatabaseTestUtils {
         hasGroupsInCommon,
         badges,
         needsPniSignature = false,
-        isHidden = false
+        isHidden = false,
+        null
       ),
       participants,
-      isReleaseChannel
+      isReleaseChannel,
+      isActive,
+      null,
+      groupRecord.toOptional()
     ),
     resolved
   )

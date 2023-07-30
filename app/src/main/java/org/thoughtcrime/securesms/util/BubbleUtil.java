@@ -47,26 +47,48 @@ public final class BubbleUtil {
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   @WorkerThread
   public static boolean canBubble(@NonNull Context context, @NonNull RecipientId recipientId, @Nullable Long threadId) {
+    Recipient recipient = Recipient.resolved(recipientId);
+    return canBubble(context, recipient, threadId);
+  }
+
+  @RequiresApi(CONVERSATION_SUPPORT_VERSION)
+  public static boolean canBubble(@NonNull Context context, @NonNull Recipient recipient, @Nullable Long threadId) {
     if (threadId == null) {
-      Log.i(TAG, "Cannot bubble recipient without thread");
+      Log.d(TAG, "Cannot bubble recipient without thread");
       return false;
     }
 
     NotificationPrivacyPreference privacyPreference = SignalStore.settings().getMessageNotificationsPrivacy();
     if (!privacyPreference.isDisplayContact()) {
-      Log.i(TAG, "Bubbles are not available when notification privacy settings are enabled.");
+      Log.d(TAG, "Bubbles are not available when notification privacy settings are enabled.");
       return false;
     }
 
-    Recipient recipient = Recipient.resolved(recipientId);
     if (recipient.isBlocked()) {
-      Log.i(TAG, "Cannot bubble blocked recipient");
+      Log.d(TAG, "Cannot bubble blocked recipient");
       return false;
     }
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
     NotificationChannel conversationChannel = notificationManager.getNotificationChannel(ConversationUtil.getChannelId(context, recipient),
-                                                                                         ConversationUtil.getShortcutId(recipientId));
+                                                                                         ConversationUtil.getShortcutId(recipient.getId()));
+
+    final StringBuilder bubbleLoggingMessage = new StringBuilder("Bubble State:");
+    if (Build.VERSION.SDK_INT < 31) {
+      bubbleLoggingMessage.append("\nisBelowApi31 = true");
+    } else {
+      bubbleLoggingMessage.append("\nnotificationManager.areBubblesEnabled() = ").append(notificationManager.areBubblesEnabled());
+      bubbleLoggingMessage.append("\nnotificationManager.getBubblePreference() = ").append(notificationManager.getBubblePreference());
+    }
+
+    bubbleLoggingMessage.append("\nnotificationManager.areBubblesAllowed() = ").append(notificationManager.areBubblesAllowed());
+    if (conversationChannel != null) {
+      bubbleLoggingMessage.append("\nconversationChannel.canBubble() = ").append(conversationChannel.canBubble());
+    } else {
+      bubbleLoggingMessage.append("\nconversationChannel = null");
+    }
+
+    Log.d(TAG, bubbleLoggingMessage.toString());
 
     return (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
            (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));

@@ -1,53 +1,74 @@
 package org.thoughtcrime.securesms.components.spoiler
 
-import android.animation.ValueAnimator
+import android.animation.TimeAnimator
 import android.graphics.Canvas
 import android.text.Annotation
 import android.text.Layout
 import android.text.Spanned
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
-import android.view.animation.LinearInterpolator
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import org.signal.core.util.dp
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation.SpoilerClickableSpan
-import org.thoughtcrime.securesms.components.spoiler.SpoilerRenderer.MultiLineSpoilerRenderer
-import org.thoughtcrime.securesms.components.spoiler.SpoilerRenderer.SingleLineSpoilerRenderer
+import org.thoughtcrime.securesms.util.AccessibilityUtil
+import org.thoughtcrime.securesms.util.getLifecycle
 
 /**
- * Performs initial calculation on how to render spoilers and then delegates to the single line or
- * multi-line version of actually drawing the spoiler sparkles.
+ * Performs initial calculation on how to render spoilers and then delegates to actually drawing the spoiler sparkles.
  */
-class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextView, private val renderForComposing: Boolean = false) {
+class SpoilerRendererDelegate @JvmOverloads constructor(
+  private val view: TextView,
+  private val renderForComposing: Boolean = false
+) {
 
-  private val single: SpoilerRenderer
-  private val multi: SpoilerRenderer
+  private val renderer: SpoilerRenderer
   private val spoilerDrawable: SpoilerDrawable
   private var animatorRunning = false
   private var textColor: Int
+  private var canAnimate = false
 
   private val cachedAnnotations = HashMap<Int, Map<Annotation, SpoilerClickableSpan?>>()
   private val cachedMeasurements = HashMap<Int, SpanMeasurements>()
 
-  private val animator = ValueAnimator.ofInt(0, 100).apply {
-    duration = 1000
-    interpolator = LinearInterpolator()
-    addUpdateListener {
+  private var systemAnimationsEnabled = !AccessibilityUtil.areAnimationsDisabled(view.context)
+
+  private val animator = TimeAnimator().apply {
+    setTimeListener { _, _, _ ->
       SpoilerPaint.update()
       view.invalidate()
     }
-    repeatCount = ValueAnimator.INFINITE
-    repeatMode = ValueAnimator.REVERSE
   }
 
   init {
     textColor = view.textColors.defaultColor
     spoilerDrawable = SpoilerDrawable(textColor)
-    single = SingleLineSpoilerRenderer(spoilerDrawable)
-    multi = MultiLineSpoilerRenderer(spoilerDrawable)
+    renderer = SpoilerRenderer(
+      spoilerDrawable = spoilerDrawable,
+      renderForComposing = renderForComposing,
+      padding = 2.dp,
+      composeBackgroundColor = ContextCompat.getColor(view.context, R.color.signal_colorOnSurfaceVariant1)
+    )
 
     view.addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
       override fun onViewDetachedFromWindow(v: View) = stopAnimating()
-      override fun onViewAttachedToWindow(v: View) = Unit
+      override fun onViewAttachedToWindow(v: View) {
+        view.getLifecycle()?.addObserver(object : DefaultLifecycleObserver {
+          override fun onResume(owner: LifecycleOwner) {
+            canAnimate = true
+            systemAnimationsEnabled = !AccessibilityUtil.areAnimationsDisabled(view.context)
+            view.invalidate()
+          }
+
+          override fun onPause(owner: LifecycleOwner) {
+            canAnimate = false
+            stopAnimating()
+          }
+        })
+      }
     })
   }
 
@@ -60,6 +81,10 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
   }
 
   fun draw(canvas: Canvas, text: Spanned, layout: Layout) {
+    if (!canAnimate) {
+      return
+    }
+
     var hasSpoilersToRender = false
     val annotations: Map<Annotation, SpoilerClickableSpan?> = cachedAnnotations.getFromCache(text) { SpoilerAnnotation.getSpoilerAndClickAnnotations(text) }
 
@@ -85,13 +110,11 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
         )
       }
 
-      val renderer: SpoilerRenderer = if (measurements.startLine == measurements.endLine) single else multi
-
       renderer.draw(canvas, layout, measurements.startLine, measurements.endLine, measurements.startOffset, measurements.endOffset)
       hasSpoilersToRender = true
     }
 
-    if (hasSpoilersToRender) {
+    if (hasSpoilersToRender && systemAnimationsEnabled) {
       if (!animatorRunning) {
         animator.start()
         animatorRunning = true

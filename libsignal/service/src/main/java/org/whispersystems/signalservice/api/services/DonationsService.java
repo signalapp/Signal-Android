@@ -215,9 +215,9 @@ public class DonationsService {
   /**
    * Creates a PayPal one-time payment and returns the approval URL
    * Response Codes
-   * 200 — success
-   * 400 — request error
-   * 409 — level requires a valid currency/amount combination that does not match
+   * 200 - success
+   * 400 - request error
+   * 409 - level requires a valid currency/amount combination that does not match
    *
    * @param locale        User locale for proper language presentation
    * @param currencyCode  3 letter currency code of the desired currency
@@ -250,9 +250,9 @@ public class DonationsService {
   /**
    * Confirms a PayPal one-time payment and returns the paymentId for receipt credentials
    * Response Codes
-   * 200 — success
-   * 400 — request error
-   * 409 — level requires a valid currency/amount combination that does not match
+   * 200 - success
+   * 400 - request error
+   * 409 - level requires a valid currency/amount combination that does not match
    *
    * @param currency      3 letter currency code of the desired currency
    * @param amount        Stringified minimum precision amount
@@ -279,9 +279,9 @@ public class DonationsService {
    * Sets up a payment method via PayPal for recurring charges.
    *
    * Response Codes
-   * 200 — success
-   * 403 — subscriberId password mismatches OR account authentication is present
-   * 404 — subscriberId is not found or malformed
+   * 200 - success
+   * 403 - subscriberId password mismatches OR account authentication is present
+   * 404 - subscriberId is not found or malformed
    *
    * @param locale        User locale
    * @param subscriberId  User subscriber id
@@ -303,10 +303,10 @@ public class DonationsService {
    * Sets the given payment method as the default in PayPal
    *
    * Response Codes
-   * 200 — success
-   * 403 — subscriberId password mismatches OR account authentication is present
-   * 404 — subscriberId is not found or malformed
-   * 409 — subscriber record is missing customer ID - must call POST /v1/subscription/{subscriberId}/create_payment_method first
+   * 200 - success
+   * 403 - subscriberId password mismatches OR account authentication is present
+   * 404 - subscriberId is not found or malformed
+   * 409 - subscriber record is missing customer ID - must call POST /v1/subscription/{subscriberId}/create_payment_method first
    *
    * @param subscriberId    User subscriber id
    * @param paymentMethodId Payment method id to make default

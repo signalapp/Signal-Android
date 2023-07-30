@@ -8,13 +8,10 @@ import org.thoughtcrime.securesms.util.PlayStoreUtil
 /**
  * Banner to update app to the latest version because of enclave failure
  */
-class EnclaveFailureReminder(context: Context) : Reminder(
-  null,
-  context.getString(R.string.EnclaveFailureReminder_update_signal)
-) {
+class EnclaveFailureReminder(context: Context) : Reminder(R.string.EnclaveFailureReminder_update_signal) {
 
   init {
-    addAction(Action(context.getString(R.string.ExpiredBuildReminder_update_now), R.id.reminder_action_update_now))
+    addAction(Action(R.string.ExpiredBuildReminder_update_now, R.id.reminder_action_update_now))
     okListener = View.OnClickListener { PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context) }
   }
 

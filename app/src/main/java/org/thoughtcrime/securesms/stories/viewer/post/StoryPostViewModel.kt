@@ -90,6 +90,7 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
 
         store.update {
           StoryPostState.TextPost(
+            storyTextPostId = record.id,
             storyTextPost = text,
             linkPreview = linkPreview,
             typeface = t,

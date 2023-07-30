@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-final class MenuState {
+public final class MenuState {
 
   private static final int MAX_FORWARDABLE_COUNT = 32;
 
@@ -41,50 +41,50 @@ final class MenuState {
     edit           = builder.edit;
   }
 
-  boolean shouldShowForwardAction() {
+  public boolean shouldShowForwardAction() {
     return forward;
   }
 
-  boolean shouldShowReplyAction() {
+  public boolean shouldShowReplyAction() {
     return reply;
   }
 
-  boolean shouldShowDetailsAction() {
+  public boolean shouldShowDetailsAction() {
     return details;
   }
 
-  boolean shouldShowSaveAttachmentAction() {
+  public boolean shouldShowSaveAttachmentAction() {
     return saveAttachment;
   }
 
-  boolean shouldShowResendAction() {
+  public boolean shouldShowResendAction() {
     return resend;
   }
 
-  boolean shouldShowCopyAction() {
+  public boolean shouldShowCopyAction() {
     return copy;
   }
 
-  boolean shouldShowDeleteAction() {
+  public boolean shouldShowDeleteAction() {
     return delete;
   }
 
-  boolean shouldShowReactions() {
+  public boolean shouldShowReactions() {
     return reactions;
   }
 
-  boolean shouldShowPaymentDetails() {
+  public boolean shouldShowPaymentDetails() {
     return paymentDetails;
   }
 
-  boolean shouldShowEditAction() {
+  public boolean shouldShowEditAction() {
     return edit;
   }
 
-  static MenuState getMenuState(@NonNull Recipient conversationRecipient,
-                                @NonNull Set<MultiselectPart> selectedParts,
-                                boolean shouldShowMessageRequest,
-                                boolean isNonAdminInAnnouncementGroup)
+  public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
+                                       @NonNull Set<MultiselectPart> selectedParts,
+                                       boolean shouldShowMessageRequest,
+                                       boolean isNonAdminInAnnouncementGroup)
   {
     
     Builder builder         = new Builder();
@@ -162,7 +162,9 @@ final class MenuState {
              .shouldShowResendAction(false)
              .shouldShowEdit(false);
     } else {
-      MessageRecord messageRecord = selectedParts.iterator().next().getMessageRecord();
+      MultiselectPart multiSelectRecord = selectedParts.iterator().next();
+
+      MessageRecord messageRecord = multiSelectRecord.getMessageRecord();
 
       builder.shouldShowResendAction(messageRecord.isFailed())
              .shouldShowSaveAttachmentAction(mediaIsSelected                                             &&
@@ -180,7 +182,8 @@ final class MenuState {
 
       builder.shouldShowEdit(!actionMessage &&
                              hasText &&
-                             MessageConstraintsUtil.isValidEditMessageSend(messageRecord, System.currentTimeMillis()));
+                             !multiSelectRecord.getConversationMessage().getOriginalMessage().isFailed() &&
+                             MessageConstraintsUtil.isValidEditMessageSend(multiSelectRecord.getConversationMessage().getOriginalMessage(), System.currentTimeMillis()));
     }
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment)
@@ -197,11 +200,11 @@ final class MenuState {
                            .allMatch(collection -> multiselectParts.containsAll(collection.toSet()));
   }
 
-  static boolean canReplyToMessage(@NonNull Recipient conversationRecipient,
-                                   boolean actionMessage,
-                                   @NonNull MessageRecord messageRecord,
-                                   boolean isDisplayingMessageRequest,
-                                   boolean isNonAdminInAnnouncementGroup)
+  public static boolean canReplyToMessage(@NonNull Recipient conversationRecipient,
+                                          boolean actionMessage,
+                                          @NonNull MessageRecord messageRecord,
+                                          boolean isDisplayingMessageRequest,
+                                          boolean isNonAdminInAnnouncementGroup)
   {
     return !actionMessage &&
            !isNonAdminInAnnouncementGroup &&
@@ -215,7 +218,7 @@ final class MenuState {
            !conversationRecipient.isReleaseNotes();
   }
 
-  static boolean isActionMessage(@NonNull MessageRecord messageRecord) {
+  public static boolean isActionMessage(@NonNull MessageRecord messageRecord) {
     return messageRecord.isInMemoryMessageRecord() || messageRecord.isUpdate();
   }
 

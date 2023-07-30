@@ -1,24 +1,31 @@
 package org.thoughtcrime.securesms.conversation.ui.edit
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.quotes.OriginalMessageSeparatorDecoration
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.databinding.MessageEditHistoryBottomSheetBinding
@@ -33,6 +40,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.ViewModelFactory
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import java.util.Locale
@@ -42,19 +50,24 @@ import java.util.Locale
  */
 class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
-  override val peekHeightPercentage: Float = 0.4f
-
   private val binding: MessageEditHistoryBottomSheetBinding by ViewBinderDelegate(MessageEditHistoryBottomSheetBinding::bind)
-  private val messageId: Long by lazy { requireArguments().getLong(ARGUMENT_MESSAGE_ID) }
+  private val originalMessageId: Long by lazy { requireArguments().getLong(ARGUMENT_ORIGINAL_MESSAGE_ID) }
   private val conversationRecipient: Recipient by lazy { Recipient.resolved(requireArguments().getParcelable(ARGUMENT_CONVERSATION_RECIPIENT_ID)!!) }
-  private val viewModel: EditMessageHistoryViewModel by viewModels(factoryProducer = ViewModelFactory.factoryProducer { EditMessageHistoryViewModel(messageId, conversationRecipient) })
+  private val viewModel: EditMessageHistoryViewModel by viewModels(factoryProducer = ViewModelFactory.factoryProducer { EditMessageHistoryViewModel(originalMessageId, conversationRecipient) })
 
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+    dialog.behavior.skipCollapsed = true
+    dialog.setOnShowListener {
+      dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+    return dialog
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    val view = MessageEditHistoryBottomSheetBinding.inflate(inflater, container, false).root
-    view.minimumHeight = (resources.displayMetrics.heightPixels * peekHeightPercentage).toInt()
-    return view
+    return MessageEditHistoryBottomSheetBinding.inflate(inflater, container, false).root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,13 +85,18 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
       conversationRecipient.hasWallpaper(),
       colorizer
     ).apply {
-      setCondensedMode(ConversationItemDisplayMode.EXTRA_CONDENSED)
+      setCondensedMode(ConversationItemDisplayMode.EDIT_HISTORY)
     }
 
     binding.editHistoryList.apply {
       layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
       adapter = messageAdapter
       itemAnimator = null
+      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.EditMessageHistoryDialog_title) { 0 })
+      doOnNextLayout {
+        // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
+        addItemDecoration(StickyHeaderDecoration(messageAdapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE))
+      }
     }
 
     val recyclerViewColorizer = RecyclerViewColorizer(binding.editHistoryList)
@@ -96,7 +114,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
     disposables += viewModel.getNameColorsMap().subscribe { map ->
       colorizer.onNameColorsChanged(map)
-      messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapter.PAYLOAD_NAME_COLORS)
+      messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapterBridge.PAYLOAD_NAME_COLORS)
     }
 
     initializeGiphyMp4()
@@ -144,15 +162,15 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
   }
 
   companion object {
-    private const val ARGUMENT_MESSAGE_ID = "message_id"
+    private const val ARGUMENT_ORIGINAL_MESSAGE_ID = "message_id"
     private const val ARGUMENT_CONVERSATION_RECIPIENT_ID = "recipient_id"
 
     @JvmStatic
-    fun show(fragmentManager: FragmentManager, threadRecipient: RecipientId, messageId: Long) {
+    fun show(fragmentManager: FragmentManager, threadRecipient: RecipientId, messageRecord: MessageRecord) {
       EditMessageHistoryDialog()
         .apply {
           arguments = bundleOf(
-            ARGUMENT_MESSAGE_ID to messageId,
+            ARGUMENT_ORIGINAL_MESSAGE_ID to (messageRecord.originalMessageId?.id ?: messageRecord.id),
             ARGUMENT_CONVERSATION_RECIPIENT_ID to threadRecipient
           )
         }

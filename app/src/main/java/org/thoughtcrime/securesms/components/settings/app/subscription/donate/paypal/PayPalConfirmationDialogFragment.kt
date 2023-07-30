@@ -68,6 +68,7 @@ class PayPalConfirmationDialogFragment : DialogFragment(R.layout.donation_webvie
   }
 
   override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
     val result = this.result
     this.result = null
     setFragmentResult(REQUEST_KEY, result ?: Bundle())

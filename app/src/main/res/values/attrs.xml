@@ -84,10 +84,6 @@
         <attr name="iconColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="AlertView">
-        <attr name="useSmallIcon" format="boolean" />
-    </declare-styleable>
-
     <declare-styleable name="AudioView">
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
@@ -146,6 +142,7 @@
         <attr name="emoji_forceCustom" format="boolean" />
         <attr name="emoji_renderMentions" format="boolean" />
         <attr name="emoji_forceJumbo" format="boolean" />
+        <attr name="emoji_renderSpoilers" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="EmojiImageView">
@@ -373,5 +370,9 @@
     <declare-styleable name="AnimatedInOutImageButton">
         <attr name="rotationWhenVisible" format="float" />
         <attr name="rotationWhenHidden" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="InsetAwareConstraintLayout">
+        <attr name="animateKeyboardChanges" format="boolean" />
     </declare-styleable>
 </resources>

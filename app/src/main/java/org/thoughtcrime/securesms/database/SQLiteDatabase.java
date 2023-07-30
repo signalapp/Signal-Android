@@ -313,12 +313,13 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
   public void endTransaction() {
     trace("endTransaction()", wrapped::endTransaction);
     traceLockEnd();
-
-    Set<Runnable> tasks = getPostSuccessfulTransactionTasks();
-    for (Runnable r : new HashSet<>(tasks)) {
-      r.run();
+    if (!wrapped.inTransaction()) {
+      Set<Runnable> tasks = getPostSuccessfulTransactionTasks();
+      for (Runnable r : new HashSet<>(tasks)) {
+        r.run();
+      }
+      tasks.clear();
     }
-    tasks.clear();
   }
 
   public void setTransactionSuccessful() {

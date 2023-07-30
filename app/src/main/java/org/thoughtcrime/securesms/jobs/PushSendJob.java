@@ -283,6 +283,7 @@ public abstract class PushSendJob extends SendJob {
                                                 width,
                                                 height,
                                                 Optional.ofNullable(attachment.getDigest()),
+                                                Optional.ofNullable(attachment.getIncrementalDigest()),
                                                 Optional.ofNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),

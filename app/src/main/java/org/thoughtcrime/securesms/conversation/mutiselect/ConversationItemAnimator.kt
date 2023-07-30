@@ -17,7 +17,8 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter
 class ConversationItemAnimator(
   private val isInMultiSelectMode: () -> Boolean,
   private val shouldPlayMessageAnimations: () -> Boolean,
-  private val isParentFilled: () -> Boolean
+  private val isParentFilled: () -> Boolean,
+  private val shouldUseSlideAnimation: (RecyclerView.ViewHolder) -> Boolean
 ) : RecyclerView.ItemAnimator() {
 
   private data class TweeningInfo(
@@ -54,7 +55,7 @@ class ConversationItemAnimator(
   }
 
   override fun animateAppearance(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo?, postLayoutInfo: ItemHolderInfo): Boolean {
-    if (viewHolder.absoluteAdapterPosition > 1) {
+    if (viewHolder.absoluteAdapterPosition > 1 || !shouldUseSlideAnimation(viewHolder)) {
       dispatchAnimationFinished(viewHolder)
       return false
     }
@@ -95,7 +96,7 @@ class ConversationItemAnimator(
 
   override fun animatePersistence(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo, postLayoutInfo: ItemHolderInfo): Boolean {
     return if (!isInMultiSelectMode() && shouldPlayMessageAnimations() && isParentFilled()) {
-      if (pendingSlideAnimations.contains(viewHolder) || slideAnimations.containsKey(viewHolder)) {
+      if (pendingSlideAnimations.contains(viewHolder) || slideAnimations.containsKey(viewHolder) || !shouldUseSlideAnimation(viewHolder)) {
         dispatchAnimationFinished(viewHolder)
         false
       } else {

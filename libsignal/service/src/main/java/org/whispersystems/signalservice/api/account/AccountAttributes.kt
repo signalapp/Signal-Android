@@ -16,7 +16,6 @@ class AccountAttributes @JsonCreator constructor(
   @JsonProperty val voice: Boolean,
   @JsonProperty val video: Boolean,
   @JsonProperty val fetchesMessages: Boolean,
-  @JsonProperty val pin: String?,
   @JsonProperty val registrationLock: String?,
   @JsonProperty val unidentifiedAccessKey: ByteArray?,
   @JsonProperty val unrestrictedUnidentifiedAccess: Boolean,
@@ -30,7 +29,6 @@ class AccountAttributes @JsonCreator constructor(
     signalingKey: String?,
     registrationId: Int,
     fetchesMessages: Boolean,
-    pin: String?,
     registrationLock: String?,
     unidentifiedAccessKey: ByteArray?,
     unrestrictedUnidentifiedAccess: Boolean,
@@ -45,7 +43,6 @@ class AccountAttributes @JsonCreator constructor(
     voice = true,
     video = true,
     fetchesMessages = fetchesMessages,
-    pin = pin,
     registrationLock = registrationLock,
     unidentifiedAccessKey = unidentifiedAccessKey,
     unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess,
@@ -57,10 +54,7 @@ class AccountAttributes @JsonCreator constructor(
   )
 
   data class Capabilities @JsonCreator constructor(
-    @JsonProperty val uuid: Boolean,
-    @JsonProperty("gv2-3") val gv2: Boolean,
     @JsonProperty val storage: Boolean,
-    @JsonProperty("gv1-migration") val gv1Migration: Boolean,
     @JsonProperty val senderKey: Boolean,
     @JsonProperty val announcementGroup: Boolean,
     @JsonProperty val changeNumber: Boolean,

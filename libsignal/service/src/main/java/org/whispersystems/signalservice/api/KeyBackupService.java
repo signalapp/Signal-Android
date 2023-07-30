@@ -2,10 +2,11 @@ package org.whispersystems.signalservice.api;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
+import org.signal.libsignal.svr2.PinHash;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.KbsData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.internal.contacts.crypto.KeyBackupCipher;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
 import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestation;
@@ -16,6 +17,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResp
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.keybackup.protos.BackupResponse;
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
+import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -58,7 +60,7 @@ public class KeyBackupService {
   public PinChangeSession newPinChangeSession()
     throws IOException
   {
-    return newSession(pushServiceSocket.getKeyBackupServiceAuthorization(), null);
+    return newSession(pushServiceSocket.getKeyBackupServiceAuthorization().asBasic(), null);
   }
 
   /**
@@ -68,7 +70,7 @@ public class KeyBackupService {
   public PinChangeSession newPinChangeSession(TokenResponse currentToken)
     throws IOException
   {
-    return newSession(pushServiceSocket.getKeyBackupServiceAuthorization(), currentToken);
+    return newSession(pushServiceSocket.getKeyBackupServiceAuthorization().asBasic(), currentToken);
   }
 
   /**
@@ -83,7 +85,7 @@ public class KeyBackupService {
   /**
    * Retrieve the authorization token to be used with other requests.
    */
-  public String getAuthorization() throws IOException {
+  public AuthCredentials getAuthorization() throws IOException {
     return pushServiceSocket.getKeyBackupServiceAuthorization();
   }
 
@@ -96,6 +98,14 @@ public class KeyBackupService {
     throws IOException
   {
     return newSession(authAuthorization, tokenResponse);
+  }
+
+  public String getEnclaveName() {
+    return enclaveName;
+  }
+
+  public String getMrenclave() {
+    return mrenclave;
   }
 
   private Session newSession(String authorization, TokenResponse currentToken)
@@ -122,8 +132,8 @@ public class KeyBackupService {
     }
 
     @Override
-    public KbsPinData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException, InvalidKeyException
+    public SvrPinData restorePin(PinHash hashedPin)
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, SvrNoDataException, InvalidKeyException
     {
       int           attempt = 0;
       SecureRandom  random  = new SecureRandom();
@@ -155,13 +165,13 @@ public class KeyBackupService {
       }
     }
 
-    private KbsPinData restorePin(HashedPin hashedPin, TokenResponse token)
-      throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException, InvalidKeyException
+    private SvrPinData restorePin(PinHash hashedPin, TokenResponse token)
+      throws UnauthenticatedResponseException, IOException, TokenException, SvrNoDataException, InvalidKeyException
     {
       try {
         final int               remainingTries    = token.getTries();
         final RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
-        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.getKbsAccessKey(), token, remoteAttestation, serviceId);
+        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.accessKey(), token, remoteAttestation, serviceId);
         final KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         final RestoreResponse   status            = KeyBackupCipher.getKeyRestoreResponse(response, remoteAttestation);
 
@@ -172,9 +182,9 @@ public class KeyBackupService {
         Log.i(TAG, "Restore " + status.getStatus());
         switch (status.getStatus()) {
           case OK:
-            KbsData kbsData = hashedPin.decryptKbsDataIVCipherText(status.getData().toByteArray());
+            KbsData kbsData = PinHashUtil.decryptSvrDataIVCipherText(hashedPin, status.getData().toByteArray());
             MasterKey masterKey = kbsData.getMasterKey();
-            return new KbsPinData(masterKey, nextToken);
+            return new SvrPinData(masterKey, nextToken);
           case PIN_MISMATCH:
             Log.i(TAG, "Restore PIN_MISMATCH");
             throw new KeyBackupServicePinException(nextToken);
@@ -186,7 +196,7 @@ public class KeyBackupService {
             throw new TokenException(nextToken, canRetry);
           case MISSING:
             Log.i(TAG, "Restore OK! No data though");
-            throw new KeyBackupSystemNoDataException();
+            throw new SvrNoDataException();
           case NOT_YET_VALID:
             throw new UnauthenticatedResponseException("Key is not valid yet, clock mismatch");
           default:
@@ -206,14 +216,14 @@ public class KeyBackupService {
     }
 
     @Override
-    public KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException {
-      KbsData       newKbsData    = hashedPin.createNewKbsData(masterKey);
+    public SvrPinData setPin(PinHash pinHash, MasterKey masterKey) throws IOException, UnauthenticatedResponseException {
+      KbsData       newKbsData    = PinHashUtil.createNewKbsData(pinHash, masterKey);
       TokenResponse tokenResponse = putKbsData(newKbsData.getKbsAccessKey(),
                                                newKbsData.getCipherText(),
                                                enclaveName,
                                                currentToken);
 
-      return new KbsPinData(masterKey, tokenResponse);
+      return new SvrPinData(masterKey, tokenResponse);
     }
 
     @Override
@@ -274,13 +284,13 @@ public class KeyBackupService {
 
   public interface RestoreSession extends HashSession {
 
-    KbsPinData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException, InvalidKeyException;
+    SvrPinData restorePin(PinHash hashedPin)
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, SvrNoDataException, InvalidKeyException;
   }
 
   public interface PinChangeSession extends HashSession {
     /** Creates a PIN. Does nothing to registration lock. */
-    KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
+    SvrPinData setPin(PinHash hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
 
     /** Removes the PIN data from KBS. */
     void removePin() throws IOException, UnauthenticatedResponseException;

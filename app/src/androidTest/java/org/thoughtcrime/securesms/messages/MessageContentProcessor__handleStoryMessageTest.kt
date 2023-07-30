@@ -111,7 +111,7 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
       decryptedGroupState
     )
 
-    val groupRecipient = Recipient.externalGroupExact(group)
+    val groupRecipient = Recipient.externalGroupExact(group!!)
     val threadForGroup = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
 
     val insertResult = MmsHelper.insert(

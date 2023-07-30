@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.payments.preferences.transfer;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -14,6 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -67,7 +68,7 @@ public final class PaymentsTransferFragment extends LoggingFragment {
       MobileCoinPublicAddress publicAddress = MobileCoinPublicAddress.fromBase58(base58Address);
 
       if (ownAddress.equals(publicAddress)) {
-        new AlertDialog.Builder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext())
                        .setTitle(R.string.PaymentsTransferFragment__invalid_address)
                        .setMessage(R.string.PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address)
                        .setPositiveButton(android.R.string.ok, null)
@@ -82,7 +83,7 @@ public final class PaymentsTransferFragment extends LoggingFragment {
       return true;
     } catch (MobileCoinPublicAddress.AddressException e) {
       Log.w(TAG, "Address is not valid", e);
-      new AlertDialog.Builder(requireContext())
+      new MaterialAlertDialogBuilder(requireContext())
                      .setTitle(R.string.PaymentsTransferFragment__invalid_address)
                      .setMessage(R.string.PaymentsTransferFragment__check_the_wallet_address)
                      .setPositiveButton(android.R.string.ok, null)
@@ -103,7 +104,7 @@ public final class PaymentsTransferFragment extends LoggingFragment {
   }
 
   private void onCameraPermissionPermanentlyDenied() {
-    new AlertDialog.Builder(requireContext())
+    new MaterialAlertDialogBuilder(requireContext())
                    .setTitle(R.string.Permissions_permission_required)
                    .setMessage(R.string.PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings)
                    .setPositiveButton(R.string.PaymentsTransferFragment__settings, (dialog, which) -> requireActivity().startActivity(Permissions.getApplicationSettingsIntent(requireContext())))

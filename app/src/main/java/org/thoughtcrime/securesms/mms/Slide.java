@@ -40,10 +40,8 @@ import java.util.Optional;
 public abstract class Slide {
 
   protected final Attachment attachment;
-  protected final Context    context;
 
-  public Slide(@NonNull Context context, @NonNull Attachment attachment) {
-    this.context    = context;
+  public Slide(@NonNull Attachment attachment) {
     this.attachment = attachment;
   }
 
@@ -122,7 +120,7 @@ public abstract class Slide {
     return hasVideo() && attachment.isVideoGif();
   }
 
-  public @NonNull String getContentDescription() { return ""; }
+  public @NonNull String getContentDescription(@NonNull Context context) { return ""; }
 
   public @NonNull Attachment asAttachment() {
     return attachment;

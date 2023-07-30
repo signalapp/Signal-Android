@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,6 +12,8 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.DatabaseId;
 import org.signal.core.util.LongSerializer;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -21,7 +22,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -70,6 +70,16 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
     return from(null, identifier);
   }
 
+  public static @NonNull RecipientId from(@NonNull GroupId groupId) {
+    RecipientId recipientId = RecipientIdCache.INSTANCE.get(groupId);
+    if (recipientId == null) {
+      recipientId = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId);
+      if (groupId.isV2()) {
+        RecipientIdCache.INSTANCE.put(groupId, recipientId);
+      }
+    }
+    return recipientId;
+  }
   /**
    * Used for when you have a string that could be either a UUID or an e164. This was primarily
    * created for interacting with protocol stores.
@@ -94,9 +104,8 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
     RecipientId recipientId = RecipientIdCache.INSTANCE.get(serviceId, e164);
 
     if (recipientId == null) {
-      Recipient recipient = Recipient.externalPush(serviceId, e164);
-      RecipientIdCache.INSTANCE.put(recipient);
-      recipientId = recipient.getId();
+      recipientId = SignalDatabase.recipients().getAndPossiblyMerge(serviceId, e164);
+      RecipientIdCache.INSTANCE.put(recipientId, e164, serviceId);
     }
 
     return recipientId;

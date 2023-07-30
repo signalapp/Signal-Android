@@ -11,10 +11,7 @@ object AppCapabilities {
   @JvmStatic
   fun getCapabilities(storageCapable: Boolean): AccountAttributes.Capabilities {
     return AccountAttributes.Capabilities(
-      uuid = false,
-      gv2 = true,
       storage = storageCapable,
-      gv1Migration = true,
       senderKey = true,
       announcementGroup = true,
       changeNumber = true,

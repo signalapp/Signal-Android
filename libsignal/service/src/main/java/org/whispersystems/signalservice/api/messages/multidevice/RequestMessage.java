@@ -28,10 +28,6 @@ public class RequestMessage {
     return request.getType() == Request.Type.CONTACTS;
   }
 
-  public boolean isGroupsRequest() {
-    return request.getType() == Request.Type.GROUPS;
-  }
-
   public boolean isBlockedListRequest() {
     return request.getType() == Request.Type.BLOCKED;
   }

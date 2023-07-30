@@ -5,13 +5,34 @@
     tools:parentTag="com.google.android.material.card.MaterialCardView"
     tools:visibility="visible">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_card_child"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="24dp"
-        android:indeterminate="true"
-        android:background="@color/transparent"
-        app:indicatorColor="@color/signal_colorPrimary" />
+        android:layout_margin="24dp">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_card_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:indeterminate="true"
+            app:indicatorColor="@color/signal_colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/progress_card_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/progress_card_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_card_child"
+            tools:text="Loading..." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

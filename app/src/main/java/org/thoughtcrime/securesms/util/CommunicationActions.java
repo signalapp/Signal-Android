@@ -25,10 +25,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -39,12 +42,15 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class CommunicationActions {
 
@@ -137,13 +143,12 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return SignalDatabase.threads().getThreadIdFor(recipient.getId());
+        return SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
       }
 
       @Override
-      protected void onPostExecute(@Nullable Long threadId) {
-        // TODO [alex] -- ThreadID should *always* exist
-        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId != null ? threadId : -1);
+      protected void onPostExecute(@NonNull Long threadId) {
+        ConversationIntents.Builder builder = ConversationIntents.createBuilderSync(context, recipient.getId(), Objects.requireNonNull(threadId));
         if (!TextUtils.isEmpty(text)) {
           builder.withDraftText(text);
         }
@@ -299,7 +304,7 @@ public class CommunicationActions {
 
           if (!recipient.isRegistered() || !recipient.hasServiceId()) {
             try {
-              ContactDiscovery.refresh(activity, recipient, false);
+              ContactDiscovery.refresh(activity, recipient, false, TimeUnit.SECONDS.toMillis(10));
               recipient = Recipient.resolved(recipient.getId());
             } catch (IOException e) {
               Log.w(TAG, "[handlePotentialSignalMeUrl] Failed to refresh directory for new contact.");
@@ -327,6 +332,54 @@ public class CommunicationActions {
         }
       });
     }
+  }
+
+  public static void handlePotentialCallLinkUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    CallLinkRootKey rootKey = CallLinks.parseUrl(potentialUrl);
+    if (rootKey == null) {
+      Log.w(TAG, "Failed to parse root key from call link");
+      return;
+    }
+
+    startVideoCall(new ActivityCallContext(activity), rootKey);
+  }
+
+  /**
+   * Attempts to start a video call for the given call link via root key. This will insert a call link into
+   * the user's database if one does not already exist.
+   *
+   * @param fragment The fragment, which will be used for context and permissions routing.
+   */
+  public static void startVideoCall(@NonNull Fragment fragment, @NonNull CallLinkRootKey rootKey) {
+    startVideoCall(new FragmentCallContext(fragment), rootKey);
+  }
+
+  private static void startVideoCall(@NonNull CallContext callContext, @NonNull CallLinkRootKey rootKey) {
+    if (!FeatureFlags.adHocCalling()) {
+      Toast.makeText(callContext.getContext(), R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
+      return;
+    }
+
+    SimpleTask.run(() -> {
+      CallLinkRoomId         roomId   = CallLinkRoomId.fromBytes(rootKey.deriveRoomId());
+      CallLinkTable.CallLink callLink = SignalDatabase.callLinks().getOrCreateCallLinkByRootKey(rootKey);
+
+      if (callLink.getState().hasBeenRevoked()) {
+        return Optional.<Recipient>empty();
+      }
+
+      return SignalDatabase.recipients().getByCallLinkRoomId(roomId).map(Recipient::resolved);
+    }, callLinkRecipient -> {
+      if (callLinkRecipient.isEmpty()) {
+        new MaterialAlertDialogBuilder(callContext.getContext())
+            .setTitle(R.string.CommunicationActions_cant_join_call)
+            .setMessage(R.string.CommunicationActions_this_call_link_is_no_longer_valid)
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
+      } else {
+        startVideoCall(callContext, callLinkRecipient.get());
+      }
+    });
   }
 
   private static void startInsecureCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient) {

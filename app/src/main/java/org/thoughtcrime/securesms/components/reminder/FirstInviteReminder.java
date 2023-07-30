@@ -5,17 +5,21 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
 
 public final class FirstInviteReminder extends Reminder {
 
-  public FirstInviteReminder(final @NonNull Context context,
-                             final @NonNull Recipient recipient,
-                             final int percentIncrease) {
-    super(context.getString(R.string.FirstInviteReminder__title),
-          context.getString(R.string.FirstInviteReminder__description, percentIncrease));
+  private final int percentIncrease;
 
-    addAction(new Action(context.getString(R.string.InsightsReminder__invite), R.id.reminder_action_invite));
-    addAction(new Action(context.getString(R.string.InsightsReminder__view_insights), R.id.reminder_action_view_insights));
+  public FirstInviteReminder(final int percentIncrease) {
+    super(R.string.FirstInviteReminder__title, NO_RESOURCE);
+    this.percentIncrease = percentIncrease;
+
+    addAction(new Action(R.string.InsightsReminder__invite, R.id.reminder_action_invite));
+    addAction(new Action(R.string.InsightsReminder__view_insights, R.id.reminder_action_view_insights));
+  }
+
+  @Override
+  public @NonNull CharSequence getText(@NonNull Context context) {
+    return context.getString(R.string.FirstInviteReminder__description, percentIncrease);
   }
 }

@@ -57,7 +57,7 @@ public final class InviteReminderModel {
       if (conversationCount >= SECOND_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenSecondInviteReminder()) {
         return new SecondInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
       } else if (conversationCount >= FIRST_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenFirstInviteReminder()) {
-        return new FirstInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
+        return new FirstInviteReminderInfo(resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
       }
     }
     return new NoReminderInfo();
@@ -108,8 +108,8 @@ public final class InviteReminderModel {
     private final Repository repository;
     private final Recipient  recipient;
 
-    private FirstInviteReminderInfo(@NonNull Context context, @NonNull Recipient recipient, @NonNull Repository repository, int percentInsecure) {
-      super(new FirstInviteReminder(context, recipient, percentInsecure));
+    private FirstInviteReminderInfo(@NonNull Recipient recipient, @NonNull Repository repository, int percentInsecure) {
+      super(new FirstInviteReminder(percentInsecure));
 
       this.recipient  = recipient;
       this.repository = repository;

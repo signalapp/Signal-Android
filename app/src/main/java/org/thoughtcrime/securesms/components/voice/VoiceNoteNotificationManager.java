@@ -99,7 +99,7 @@ class VoiceNoteNotificationManager {
 
       notificationManager.setColor(color);
 
-      Intent conversationActivity = ConversationIntents.createBuilder(context, recipientId, threadId)
+      Intent conversationActivity = ConversationIntents.createBuilderSync(context, recipientId, threadId)
                                                        .withStartingPosition(startingPosition)
                                                        .build();
 

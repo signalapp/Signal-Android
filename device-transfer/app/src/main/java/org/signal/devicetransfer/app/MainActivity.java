@@ -20,6 +20,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -103,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
     list.addView(text);
 
     if (event.getTransferMode() == TransferStatus.TransferMode.VERIFICATION_REQUIRED) {
-      new AlertDialog.Builder(this).setTitle("Verification Required")
-                                   .setMessage("Code: " + event.getAuthenticationCode())
-                                   .setPositiveButton("Yes, Same", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, true))
-                                   .setNegativeButton("No, different", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, false))
-                                   .setCancelable(false)
-                                   .show();
+      new MaterialAlertDialogBuilder(this).setTitle("Verification Required")
+                                          .setMessage("Code: " + event.getAuthenticationCode())
+                                          .setPositiveButton("Yes, Same", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, true))
+                                          .setNegativeButton("No, different", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, false))
+                                          .setCancelable(false)
+                                          .show();
     }
   }
 

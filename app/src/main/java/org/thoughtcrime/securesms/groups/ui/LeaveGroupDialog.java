@@ -104,7 +104,7 @@ public final class LeaveGroupDialog {
 
   private @NonNull GroupChangeResult leaveGroup() {
     try {
-      GroupManager.leaveGroup(activity, groupId);
+      GroupManager.leaveGroup(activity, groupId, true);
       return GroupChangeResult.SUCCESS;
     } catch (GroupChangeException | IOException e) {
       Log.w(TAG, e);

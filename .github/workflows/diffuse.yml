@@ -1,0 +1,82 @@
+name: APK Diff
+
+on:
+  pull_request:
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+  pull-requests: write # to comment on PR
+
+jobs:
+  assemble-base:
+    if: ${{ github.repository != 'signalapp/Signal-Android' }}
+    runs-on: ubuntu-latest-8-cores
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.base.sha }}
+
+    - name: set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: 17
+        cache: gradle
+
+    - name: Validate Gradle Wrapper
+      uses: gradle/wrapper-validation-action@v1
+
+    - name: Cache base apk
+      id: cache-base
+      uses: actions/cache@v3
+      with:
+        path: diffuse-base.apk
+        key: diffuse-${{ github.event.pull_request.base.sha }}
+
+
+    - name: Build with Gradle
+      if: steps.cache-base.outputs.cache-hit != 'true'
+      run: ./gradlew assemblePlayProdRelease --parallel
+
+    - name: Copy base apk
+      if: steps.cache-base.outputs.cache-hit != 'true'
+      run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-base.apk
+
+    - uses: actions/checkout@v3
+      with:
+        clean: 'false'
+
+    - name: Build with Gradle
+      run: ./gradlew assemblePlayProdRelease --parallel
+
+    - name: Copy PR apk
+      run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-new.apk
+
+    - id: diffuse
+      uses: usefulness/diffuse-action@v1
+      with:
+        old-file-path: diffuse-base.apk
+        new-file-path: diffuse-new.apk
+
+    - uses: peter-evans/find-comment@v2
+      id: find-comment
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body-includes: Diffuse output
+
+    - uses: peter-evans/create-or-update-comment@v3
+      with:
+        body: |
+          Diffuse output: 
+
+          ${{ steps.diffuse.outputs.diff-gh-comment }}
+        edit-mode: replace
+        comment-id: ${{ steps.find-comment.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: diffuse-output
+        path: ${{ steps.diffuse.outputs.diff-file }}

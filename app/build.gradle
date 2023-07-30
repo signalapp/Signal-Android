@@ -42,12 +42,11 @@ wire {
 }
 
 ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version = "0.47.1"
+    version = "0.49.1"
 }
 
-def canonicalVersionCode = 1259
-def canonicalVersionName = "6.20.2"
+def canonicalVersionCode = 1302
+def canonicalVersionName = "6.27.8"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -159,7 +158,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = '1.3.2'
+        kotlinCompilerExtensionVersion = '1.4.4'
     }
 
     defaultConfig {
@@ -185,6 +184,7 @@ android {
         buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
+        buildConfigField "String", "SIGNAL_SVR2_URL", "\"https://svr2.signal.org\""
         buildConfigField "String", "SIGNAL_SFU_URL", "\"https://sfu.voip.signal.org\""
         buildConfigField "String", "SIGNAL_STAGING_SFU_URL", "\"https://sfu.staging.voip.signal.org\""
         buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_NAMES", "new String[]{\"Test\", \"Staging\", \"Development\"}"
@@ -198,8 +198,11 @@ android {
         buildConfigField "String[]", "SIGNAL_KBS_IPS", kbs_ips
         buildConfigField "String[]", "SIGNAL_SFU_IPS", sfu_ips
         buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
+        buildConfigField "String[]", "SIGNAL_CDSI_IPS", cdsi_ips
+        buildConfigField "String[]", "SIGNAL_SVR2_IPS", svr2_ips
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\""
+        buildConfigField "String", "SVR2_MRENCLAVE", "\"6ee1042f9e20f880326686dd4ba50c25359f01e9f733eeba4382bca001d45094\""
         buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"e18376436159cda3ad7a45d9320e382e4a497f26b0dca34d8eab0bd0139483b5\", " +
                                                                                                                            "\"3a485adb56e2058ef7737764c738c4069dd62bc457637eafb6bbce1ce29ddb89\", " +
                                                                                                                            "\"45627094b2ea4a66f4cf0b182858a8dcf4b8479122c3820fe7fd0551a6d4cf5c\")"
@@ -208,6 +211,7 @@ android {
                                                                                                                                                                              "\"ee19f1965b1eefa3dc4204eb70c04f397755f771b8c1909d080c04dad2a6a9ba\") }"
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
         buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X36nOoGPs54XsEGzPdEV+itQNGUFEjY6X9Uv+Acuks7NpyGvCoKxGwgKgE5XyJ+nNKlyHHOLb6N1NuHyBrZrgtY/JYJHRooo5CEqYKBqdFnmbTVGEkCvJKxLnjwKWf+fEPoWeQFj5ObDjcKMZf2Jm2Ae69x+ikU5gBXsRmoF94GXTLfN0/vLt98KDPnxwAQL9j5V1jGOY8jQl6MLxEs56cwXN0dqCnImzVH3TZT1cJ8SW1BRX6qIVxEzjsSGx3yxF3suAilPMqGRp4ffyopjMD1JXiKR2RwLKzizUe5e8XyGOy9fplzhw3jVzTRyUZTRSZKkMLWcQ/gv0E4aONNqs4P\""
+        buildConfigField "String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AByD873dTilmOSG0TjKrvpeaKEsUmIO8Vx9BeMmftwUs9v7ikPwM8P3OHyT0+X3EUMZrSe9VUp26Wai51Q9I8mdk0hX/yo7CeFGJyzoOqn8e/i4Ygbn5HoAyXJx5eXfIbqpc0bIxzju4H/HOQeOpt6h742qii5u/cbwOhFZCsMIbElZTaeU+BWMBQiZHIGHT5IE0qCordQKZ5iPZom0HeFa8Yq0ShuEyAl0WINBiY6xE3H/9WnvzXBbMuuk//eRxXgzO8ieCeK8FwQNxbfXqZm6Ro1cMhCOF3u7xoX83QhpN\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
         buildConfigField "String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\""
@@ -225,8 +229,8 @@ android {
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
+        resourceConfigurations += []
 
-        resConfigs autoResConfig()
 
         splits {
             abi {
@@ -375,6 +379,8 @@ android {
             buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.staging.signal.org\""
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
+            buildConfigField "String", "SIGNAL_SVR2_URL", "\"https://svr2.staging.signal.org\""
+            buildConfigField "String", "SVR2_MRENCLAVE", "\"a8a261420a6bb9b61aa25bf8a79e8bd20d7652531feb3381cbffd446d270be95\""
             buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"39963b736823d5780be96ab174869a9499d56d66497aa8f9b2244f777ebc366b\", " +
                                                                                                                                "\"9dbc6855c198e04f21b5cc35df839fdcd51b53658454dfa3f817afefaffc95ef\", " +
                                                                                                                                "\"45627094b2ea4a66f4cf0b182858a8dcf4b8479122c3820fe7fd0551a6d4cf5c\")"
@@ -383,6 +389,7 @@ android {
                                                                                                                                                                                  "\"ee19f1965b1eefa3dc4204eb70c04f397755f771b8c1909d080c04dad2a6a9ba\") }"
             buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\""
             buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdlukrpzzsCIvEwjwQlJYVPOQPj4V0F4UXXBdHSLK05uoPBCQG8G9rYIGedYsClJXnbrgGYG3eMTG5hnx4X4ntARBgELuMWWUEEfSK0mjXg+/2lPmWcTZWR9nkqgQQP0tbzuiPm74H2wMO4u1Wafe+UwyIlIT9L7KLS19Aw8r4sPrXZSSsOZ6s7M1+rTJN0bI5CKY2PX29y5Ok3jSWufIKcgKOnWoP67d5b2du2ZVJjpjfibNIHbT/cegy/sBLoFwtHogVYUewANUAXIaMPyCLRArsKhfJ5wBtTminG/PAvuBdJ70Z/bXVPf8TVsR292zQ65xwvWTejROW6AZX6aqucUj\""
+            buildConfigField "String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AHILOIrFPXX9laLbalbA9+L1CXpSbM/bTJXZGZiuyK1JaI6dK5FHHWL6tWxmHKYAZTSYmElmJ5z2A5YcirjO/yfoemE03FItyaf8W1fE4p14hzb5qnrmfXUSiAIVrhaXVwIwSzH6RL/+EO8jFIjJ/YfExfJ8aBl48CKHgu1+A6kWynhttonvWWx6h7924mIzW0Czj2ROuh4LwQyZypex4GuOPW8sgIT21KNZaafgg+KbV7XM1x1tF3XA17B4uGUaDbDw2O+nR1+U5p6qHPzmJ7ggFjSN6Utu+35dS1sS0P9N\""
             buildConfigField "String", "MOBILE_COIN_ENVIRONMENT", "\"testnet\""
             buildConfigField "String", "SIGNAL_CAPTCHA_URL", "\"https://signalcaptchas.org/staging/registration/generate.html\""
             buildConfigField "String", "RECAPTCHA_PROOF_URL", "\"https://signalcaptchas.org/staging/challenge/generate.html\""
@@ -441,6 +448,14 @@ android {
             variant.setIgnore(true)
         }
     }
+
+    android.buildTypes.each {
+        if (it.name != 'release') {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/debug/java"
+        } else {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/release/java"
+        }
+    }
 }
 
 dependencies {
@@ -463,6 +478,8 @@ dependencies {
     implementation libs.androidx.legacy.preference
     implementation libs.androidx.gridlayout
     implementation libs.androidx.exifinterface
+    implementation libs.androidx.compose.rxjava3
+    implementation libs.androidx.compose.runtime.livedata
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.multidex
     implementation libs.androidx.navigation.fragment.ktx
@@ -520,23 +537,15 @@ dependencies {
         exclude group: 'com.google.protobuf'
     }
 
-    implementation(libs.signal.argon2) {
-        artifact {
-            type = "aar"
-        }
-    }
-
     implementation libs.signal.ringrtc
 
     implementation libs.leolin.shortcutbadger
     implementation libs.emilsjolander.stickylistheaders
-    implementation libs.jpardogo.materialtabstrip
     implementation libs.apache.httpclient.android
     implementation libs.glide.glide
     implementation libs.roundedimageview
     implementation libs.materialish.progress
     implementation libs.greenrobot.eventbus
-    implementation libs.waitingdots
     implementation libs.google.zxing.android.integration
     implementation libs.google.zxing.core
     implementation libs.google.flexbox
@@ -563,6 +572,7 @@ dependencies {
     }
     implementation libs.dnsjava
     implementation libs.kotlinx.collections.immutable
+    implementation libs.accompanist.permissions
 
     spinnerImplementation project(":spinner")
 
@@ -578,9 +588,8 @@ dependencies {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
     testImplementation testLibs.robolectric.shadows.multidex
-    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) {
-        force = true
-    }
+    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 

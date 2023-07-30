@@ -179,13 +179,13 @@ public final class GenericForegroundService extends Service {
     return new NotificationController(context, id);
   }
 
-  public static void stopForegroundTask(@NonNull Context context, int id) {
+  public static void stopForegroundTask(@NonNull Context context, int id) throws UnableToStartException, IllegalStateException {
     Intent intent = new Intent(context, GenericForegroundService.class);
     intent.setAction(ACTION_STOP);
     intent.putExtra(EXTRA_ID, id);
 
     Log.i(TAG, String.format(Locale.US, "Stopping foreground service id=%d", id));
-    ForegroundServiceUtil.startWhenCapableOrThrow(context, intent);
+    ForegroundServiceUtil.startWhenCapable(context, intent);
   }
 
   synchronized void replaceTitle(int id, @NonNull String title) {

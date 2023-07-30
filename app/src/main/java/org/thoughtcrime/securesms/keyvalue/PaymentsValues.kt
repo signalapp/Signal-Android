@@ -4,7 +4,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
 import com.google.protobuf.InvalidProtocolBufferException
 import com.mobilecoin.lib.Mnemonics
 import com.mobilecoin.lib.exceptions.BadMnemonicException
@@ -70,7 +70,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
   private val liveCurrentCurrency: MutableLiveData<Currency> by lazy { MutableLiveData(currentCurrency()) }
   private val enclaveFailure: MutableLiveData<Boolean> by lazy { MutableLiveData(false) }
   private val liveMobileCoinLedger: MutableLiveData<MobileCoinLedgerWrapper> by lazy { MutableLiveData(mobileCoinLatestFullLedger()) }
-  private val liveMobileCoinBalance: LiveData<Balance> by lazy { Transformations.map(liveMobileCoinLedger) { obj: MobileCoinLedgerWrapper -> obj.balance } }
+  private val liveMobileCoinBalance: LiveData<Balance> by lazy { liveMobileCoinLedger.map { obj: MobileCoinLedgerWrapper -> obj.balance } }
 
   public override fun onFirstEverAppLaunch() {}
 
@@ -245,8 +245,8 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
 
   fun showUpdatePinInfoCard(): Boolean {
     return if (userHasLargeBalance() &&
-      SignalStore.kbsValues().hasPin() &&
-      !SignalStore.kbsValues().hasOptedOut() && SignalStore.pinValues().keyboardType == PinKeyboardType.NUMERIC
+      SignalStore.svr().hasPin() &&
+      !SignalStore.svr().hasOptedOut() && SignalStore.pinValues().keyboardType == PinKeyboardType.NUMERIC
     ) {
       store.getBoolean(SHOW_CASHING_OUT_INFO_CARD, true)
     } else {

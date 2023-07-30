@@ -18,6 +18,13 @@
         tools:layout_constraintGuide_end="48dp" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/keyboard_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_constraintGuide_end="48dp" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/parent_start_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2014-2016 Open Whisper Systems
- *
+ * <p>
  * Licensed according to the LICENSE file in this repository.
  */
 
@@ -13,16 +13,19 @@ import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 public class PreKeyResponseItem {
 
   @JsonProperty
-  public int                deviceId;
+  public int deviceId;
 
   @JsonProperty
-  public int                registrationId;
+  public int registrationId;
 
   @JsonProperty
   public SignedPreKeyEntity signedPreKey;
 
   @JsonProperty
-  public PreKeyEntity       preKey;
+  public PreKeyEntity preKey;
+
+  @JsonProperty("pqPreKey")
+  public KyberPreKeyEntity kyberPreKey;
 
   public int getDeviceId() {
     return deviceId;
@@ -38,6 +41,10 @@ public class PreKeyResponseItem {
 
   public PreKeyEntity getPreKey() {
     return preKey;
+  }
+
+  public KyberPreKeyEntity getKyberPreKey() {
+    return kyberPreKey;
   }
 
 }

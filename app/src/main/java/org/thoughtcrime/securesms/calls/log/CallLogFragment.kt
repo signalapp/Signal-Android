@@ -7,7 +7,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -27,9 +29,13 @@ import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.addTo
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
+import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -64,6 +70,10 @@ import java.util.concurrent.TimeUnit
 @SuppressLint("DiscouragedApi")
 class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Callbacks, CallLogContextMenu.Callbacks {
 
+  companion object {
+    private val TAG = Log.tag(CallLogFragment::class.java)
+  }
+
   private val viewModel: CallLogViewModel by viewModels()
   private val binding: CallLogFragmentBinding by ViewBinderDelegate(CallLogFragmentBinding::bind)
   private val disposables = LifecycleDisposable()
@@ -83,10 +93,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       val isFiltered = viewModel.filterSnapshot == CallLogFilter.MISSED
       menu.findItem(R.id.action_clear_missed_call_filter).isVisible = isFiltered
       menu.findItem(R.id.action_filter_missed_calls).isVisible = !isFiltered
+      menu.findItem(R.id.action_clear_call_history).isVisible = !viewModel.isEmpty
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
       when (menuItem.itemId) {
+        R.id.action_clear_call_history -> clearCallHistory()
         R.id.action_settings -> startActivity(AppSettingsActivity.home(requireContext()))
         R.id.action_notification_profile -> NotificationProfileSelectionFragment.show(parentFragmentManager)
         R.id.action_filter_missed_calls -> filterMissedCalls()
@@ -111,24 +123,23 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     )
 
     disposables += scrollToPositionDelegate
-    disposables += Flowables.combineLatest(viewModel.data, viewModel.selectedAndStagedDeletion)
+    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (data, selected) ->
         val filteredCount = adapter.submitCallRows(
           data,
-          selected.first,
-          selected.second,
+          selected,
           scrollToPositionDelegate::notifyListCommitted
         )
         binding.emptyState.visible = filteredCount == 0
       }
 
-    disposables += Flowables.combineLatest(viewModel.selectedAndStagedDeletion, viewModel.totalCount)
+    disposables += Flowables.combineLatest(viewModel.selected, viewModel.totalCount)
       .distinctUntilChanged()
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (selected, totalCount) ->
-        if (selected.first.isNotEmpty(totalCount)) {
-          callLogActionMode.setCount(selected.first.count(totalCount))
+        if (selected.isNotEmpty(totalCount)) {
+          callLogActionMode.setCount(selected.count(totalCount))
         } else {
           callLogActionMode.end()
         }
@@ -219,20 +230,9 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     val count = callLogActionMode.getCount()
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
-      .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
-        viewModel.stageSelectionDeletion()
+      .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
+        performDeletion(count, viewModel.stageSelectionDeletion())
         callLogActionMode.end()
-        Snackbar
-          .make(
-            binding.root,
-            resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, count, count),
-            Snackbar.LENGTH_SHORT
-          )
-          .addCallback(SnackbarDeletionCallback())
-          .setAction(R.string.CallLogFragment__undo) {
-            viewModel.cancelStagedDeletion()
-          }
-          .show()
       }
       .setNegativeButton(android.R.string.cancel) { _, _ -> }
       .show()
@@ -269,6 +269,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
             scrollToPositionDelegate.resetScrollPosition()
           }
         }
+
         FilterPullState.OPENING -> {
           ViewUtil.setMinimumHeight(collapsingToolbarLayout, openHeight)
           viewModel.setFilter(CallLogFilter.MISSED)
@@ -311,9 +312,23 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun onCallClicked(callLogRow: CallLogRow.Call) {
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
-    } else {
-      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, (callLogRow.id as CallLogRow.Id.Call).children.toLongArray())
+    } else if (!callLogRow.peer.isCallLink) {
+      val intent = ConversationSettingsActivity.forCall(
+        requireContext(),
+        callLogRow.peer,
+        (callLogRow.id as CallLogRow.Id.Call).children.toLongArray()
+      )
       startActivity(intent)
+    } else {
+      startActivity(CallLinkDetailsActivity.createIntent(requireContext(), callLogRow.peer.requireCallLinkRoomId()))
+    }
+  }
+
+  override fun onCallLinkClicked(callLogRow: CallLogRow.CallLink) {
+    if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
+      viewModel.toggleSelected(callLogRow.id)
+    } else {
+      startActivity(CallLinkDetailsActivity.createIntent(requireContext(), callLogRow.record.roomId))
     }
   }
 
@@ -322,48 +337,53 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     return true
   }
 
+  override fun onCallLinkLongClicked(itemView: View, callLinkLogRow: CallLogRow.CallLink): Boolean {
+    callLogContextMenu.show(binding.recycler, itemView, callLinkLogRow)
+    return true
+  }
+
   override fun onClearFilterClicked() {
     binding.pullView.toggle()
     binding.recyclerCoordinatorAppBar.setExpanded(false, true)
   }
 
-  override fun onStartAudioCallClicked(peer: Recipient) {
-    CommunicationActions.startVoiceCall(this, peer)
+  override fun onStartAudioCallClicked(recipient: Recipient) {
+    CommunicationActions.startVoiceCall(this, recipient)
   }
 
-  override fun onStartVideoCallClicked(peer: Recipient) {
-    CommunicationActions.startVideoCall(this, peer)
+  override fun onStartVideoCallClicked(recipient: Recipient) {
+    CommunicationActions.startVideoCall(this, recipient)
   }
 
-  override fun startSelection(call: CallLogRow.Call) {
+  override fun startSelection(call: CallLogRow) {
     callLogActionMode.start()
     viewModel.toggleSelected(call.id)
   }
 
-  override fun deleteCall(call: CallLogRow.Call) {
+  override fun deleteCall(call: CallLogRow) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
-      .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
-        viewModel.stageCallDeletion(call)
-        Snackbar
-          .make(
-            binding.root,
-            resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, 1, 1),
-            Snackbar.LENGTH_SHORT
-          )
-          .addCallback(SnackbarDeletionCallback())
-          .setAction(R.string.CallLogFragment__undo) {
-            viewModel.cancelStagedDeletion()
-          }
-          .show()
+      .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
+        performDeletion(1, viewModel.stageCallDeletion(call))
       }
-      .setNegativeButton(android.R.string.cancel) { _, _ -> }
       .show()
   }
 
   private fun filterMissedCalls() {
     binding.pullView.toggle()
     binding.recyclerCoordinatorAppBar.setExpanded(false, true)
+  }
+
+  private fun clearCallHistory() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.CallLogFragment__clear_call_history_question)
+      .setMessage(R.string.CallLogFragment__this_will_permanently_delete_all_call_history)
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        callLogActionMode.end()
+        performDeletion(-1, viewModel.stageDeleteAll())
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
   }
 
   private fun isSearchOpen(): Boolean {
@@ -381,7 +401,59 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
   private fun isSearchVisible(): Boolean {
     return requireListener<SearchBinder>().getSearchToolbar().resolved() &&
-      requireListener<SearchBinder>().getSearchToolbar().get().getVisibility() == View.VISIBLE
+      requireListener<SearchBinder>().getSearchToolbar().get().visibility == View.VISIBLE
+  }
+
+  private fun performDeletion(count: Int, callLogStagedDeletion: CallLogStagedDeletion) {
+    var progressDialog: ProgressCardDialogFragment? = null
+    var errorDialog: AlertDialog? = null
+
+    fun cleanUp() {
+      progressDialog?.dismissAllowingStateLoss()
+      progressDialog = null
+      errorDialog?.dismiss()
+      errorDialog = null
+    }
+
+    val snackbarMessage = if (count == -1) {
+      getString(R.string.CallLogFragment__cleared_call_history)
+    } else {
+      resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, count, count)
+    }
+
+    viewModel.delete(callLogStagedDeletion)
+      .observeOn(AndroidSchedulers.mainThread())
+      .doOnSubscribe {
+        progressDialog = ProgressCardDialogFragment.create(getString(R.string.CallLogFragment__deleting))
+        progressDialog?.show(parentFragmentManager, null)
+      }
+      .doOnDispose { cleanUp() }
+      .subscribeBy {
+        cleanUp()
+        when (it) {
+          CallLogDeletionResult.Empty -> Unit
+          is CallLogDeletionResult.FailedToRevoke -> {
+            errorDialog = MaterialAlertDialogBuilder(requireContext())
+              .setMessage(resources.getQuantityString(R.plurals.CallLogFragment__cant_delete_call_link, it.failedRevocations))
+              .setPositiveButton(R.string.ok, null)
+              .show()
+          }
+          CallLogDeletionResult.Success -> {
+            Snackbar
+              .make(
+                binding.root,
+                snackbarMessage,
+                Snackbar.LENGTH_SHORT
+              )
+              .show()
+          }
+          is CallLogDeletionResult.UnknownFailure -> {
+            Log.w(TAG, "Deletion failed.", it.reason)
+            Toast.makeText(requireContext(), R.string.CallLogFragment__deletion_failed, Toast.LENGTH_SHORT).show()
+          }
+        }
+      }
+      .addTo(disposables)
   }
 
   private inner class BottomActionBarControllerCallback : SignalBottomActionBarController.Callback {
@@ -406,12 +478,6 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     override fun getResources(): Resources = resources
     override fun onResetSelectionState() {
       viewModel.clearSelected()
-    }
-  }
-
-  private inner class SnackbarDeletionCallback : Snackbar.Callback() {
-    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-      viewModel.commitStagedDeletion()
     }
   }
 

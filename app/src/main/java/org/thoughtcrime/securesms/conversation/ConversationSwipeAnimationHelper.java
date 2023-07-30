@@ -8,7 +8,10 @@ import android.view.animation.Interpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement;
 import org.thoughtcrime.securesms.util.Util;
+
+import java.util.List;
 
 final class ConversationSwipeAnimationHelper {
 
@@ -30,23 +33,25 @@ final class ConversationSwipeAnimationHelper {
   private ConversationSwipeAnimationHelper() {
   }
 
-  public static void update(@NonNull ConversationItem conversationItem, float dx, float sign) {
+  public static void update(@NonNull InteractiveConversationElement interactiveConversationElement, float dx, float sign) {
     float progress = dx / TRIGGER_DX;
 
-    updateBodyBubbleTransition(conversationItem.bodyBubble, dx, sign);
-    updateReactionsTransition(conversationItem.reactionsView, dx, sign);
-    updateQuotedIndicatorTransition(conversationItem.quotedIndicator, dx, progress, sign);
-    updateReplyIconTransition(conversationItem.reply, dx, progress, sign);
-    updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, progress, sign);
-    updateContactPhotoHolderTransition(conversationItem.badgeImageView, progress, sign);
+    updateBodyBubbleTransition(interactiveConversationElement.getBubbleViews(), dx, sign);
+    updateReactionsTransition(interactiveConversationElement.getReactionsView(), dx, sign);
+    updateQuotedIndicatorTransition(interactiveConversationElement.getQuotedIndicatorView(), dx, progress, sign);
+    updateReplyIconTransition(interactiveConversationElement.getReplyView(), dx, progress, sign);
+    updateContactPhotoHolderTransition(interactiveConversationElement.getContactPhotoHolderView(), progress, sign);
+    updateContactPhotoHolderTransition(interactiveConversationElement.getBadgeImageView(), progress, sign);
   }
 
-  public static void trigger(@NonNull ConversationItem conversationItem) {
-    triggerReplyIcon(conversationItem.reply);
+  public static void trigger(@NonNull InteractiveConversationElement interactiveConversationElement) {
+    triggerReplyIcon(interactiveConversationElement.getReplyView());
   }
 
-  private static void updateBodyBubbleTransition(@NonNull View bodyBubble, float dx, float sign) {
-    bodyBubble.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
+  private static void updateBodyBubbleTransition(@NonNull List<View> bubbleViews, float dx, float sign) {
+    for (View view : bubbleViews) {
+      view.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
+    }
   }
 
   private static void updateReactionsTransition(@NonNull View reactionsContainer, float dx, float sign) {

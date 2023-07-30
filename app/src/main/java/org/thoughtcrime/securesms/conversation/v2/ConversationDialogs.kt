@@ -55,7 +55,7 @@ object ConversationDialogs {
           { ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.id) },
           { identityRecord ->
             identityRecord.ifPresent {
-              fragment.startActivity(VerifyIdentityActivity.newIntent(fragment.requireContext(), identityRecord.get()))
+              VerifyIdentityActivity.startOrShowExchangeMessagesDialog(fragment.requireContext(), identityRecord.get())
             }
             d.dismiss()
           }
@@ -108,6 +108,28 @@ object ConversationDialogs {
       .setPositiveButton(R.string.conversation_activity__send) { _, _ ->
         SignalExecutors.BOUNDED.execute {
           MessageSender.resend(context, messageRecord)
+        }
+      }
+      .show()
+  }
+
+  @JvmStatic
+  fun displayDeleteDialog(context: Context, recipient: Recipient, onDelete: () -> Unit) {
+    MaterialAlertDialogBuilder(context)
+      .setNeutralButton(R.string.ConversationActivity_cancel, null)
+      .apply {
+        if (recipient.isGroup && recipient.isBlocked) {
+          setTitle(R.string.ConversationActivity_delete_conversation)
+          setMessage(R.string.ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices)
+          setPositiveButton(R.string.ConversationActivity_delete) { _, _ -> onDelete() }
+        } else if (recipient.isGroup) {
+          setTitle(R.string.ConversationActivity_delete_and_leave_group)
+          setMessage(R.string.ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices)
+          setNegativeButton(R.string.ConversationActivity_delete_and_leave) { _, _ -> onDelete() }
+        } else {
+          setTitle(R.string.ConversationActivity_delete_conversation)
+          setMessage(R.string.ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices)
+          setNegativeButton(R.string.ConversationActivity_delete) { _, _ -> onDelete() }
         }
       }
       .show()

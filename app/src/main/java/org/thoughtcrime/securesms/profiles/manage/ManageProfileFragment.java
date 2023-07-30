@@ -247,14 +247,7 @@ public class ManageProfileFragment extends LoggingFragment {
       binding.manageProfileUsernameShare.setVisibility(View.GONE);
     } else {
       binding.manageProfileUsername.setText(username);
-
-      try {
-        binding.manageProfileUsernameSubtitle.setText(UsernameUtil.generateLink(username));
-      } catch (BaseUsernameException e) {
-        Log.w(TAG, "Could not format username link", e);
-        binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
-      }
-
+      binding.manageProfileUsernameSubtitle.setText(UsernameUtil.generateLink(username));
       binding.manageProfileUsernameShare.setVisibility(View.VISIBLE);
     }
   }

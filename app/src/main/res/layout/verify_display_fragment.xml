@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -22,12 +21,57 @@
         app:titleTextAppearance="@style/Signal.Text.TitleLarge"
         tools:title="@string/AndroidManifest__verify_safety_number" />
 
+    <ImageView
+        android:id="@+id/safety_number_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/safety_numbers_updating_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"/>
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+        android:id="@+id/safety_number_updating_banner_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/safety_number_image"
+        app:layout_constraintBottom_toBottomOf="@id/safety_number_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/safety_number_image"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="30dp"
+        tools:text="Safety numbers are being updated."/>
+    
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/safety_number_image"
+        android:background="@color/signal_colorSurfaceVariant"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/safety_number_change_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="divider,safety_number_updating_banner_text,safety_number_image"/>
+    
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/header_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="divider,toolbar"/>
+
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/header_barrier"
         app:layout_constraintBottom_toTopOf="@id/verify_button_container">
 
         <LinearLayout
@@ -35,209 +79,36 @@
             android:layout_height="wrap_content"
             android:background="@color/signal_background_primary"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/qr_code_container"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/verify_view_pager"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/dot_indicators"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/verify_identity_vertical_margin"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/qr_code_background"
-                android:orientation="vertical">
+                app:tabBackground="@drawable/safety_dot_indicator"
+                app:tabGravity="center"
+                app:tabPaddingEnd="10dp"
+                app:tabPaddingStart="10dp"
+                app:tabIndicatorHeight="0dp"/>
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="36dp">
-
-                    <TextView
-                        android:id="@+id/loading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/verify_display_fragment__loading"
-                        android:textSize="20sp" />
-
-                    <org.thoughtcrime.securesms.components.SquareImageView
-                        android:id="@+id/qr_code"
-                        android:layout_width="164dp"
-                        android:layout_height="164dp"
-                        android:layout_gravity="center_horizontal"
-                        android:visibility="invisible"
-                        tools:src="@drawable/ic_about_mc_80"
-                        tools:visibility="visible" />
-
-                    <org.thoughtcrime.securesms.components.SquareImageView
-                        android:id="@+id/qr_verified"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_tintable"
-                        android:backgroundTint="@color/green_500"
-                        android:src="@drawable/ic_check_white_48dp"
-                        android:visibility="gone"
-                        tools:visibility="visible" />
-                </FrameLayout>
-
-                <TextSwitcher
-                    android:id="@+id/tap_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="27dp"
-                    android:inAnimation="@android:anim/fade_in"
-                    android:outAnimation="@android:anim/fade_out">
-
-                    <TextView
-                        style="@style/Signal.Text.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center_horizontal"
-                        android:text="@string/verify_display_fragment__tap_to_scan"
-                        android:textColor="@color/qr_card_text_color" />
-
-                    <TextView
-                        style="@style/Signal.Text.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center_horizontal"
-                        android:text="@string/verify_display_fragment__successful_match"
-                        android:textColor="@color/qr_card_text_color" />
-
-                </TextSwitcher>
-
-            </LinearLayout>
-
-            <TableLayout
-                android:id="@+id/number_table"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/verify_identity_vertical_margin"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TableRow
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:gravity="center_horizontal">
-
-                    <TextView
-                        android:id="@+id/code_first"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="22934" />
-
-                    <TextView
-                        android:id="@+id/code_second"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="56944" />
-
-                    <TextView
-                        android:id="@+id/code_third"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="42738" />
-
-                    <TextView
-                        android:id="@+id/code_fourth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="20038" />
-                </TableRow>
-
-                <TableRow android:gravity="center_horizontal">
-
-                    <TextView
-                        android:id="@+id/code_fifth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="34431" />
-
-                    <TextView
-                        android:id="@+id/code_sixth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="24922" />
-
-                    <TextView
-                        android:id="@+id/code_seventh"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="58594" />
-
-                    <TextView
-                        android:id="@+id/code_eighth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="24109" />
-                </TableRow>
-
-                <TableRow android:gravity="center_horizontal">
-
-                    <TextView
-                        android:id="@+id/code_ninth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="00257" />
-
-                    <TextView
-                        android:id="@+id/code_tenth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="34956" />
-
-                    <TextView
-                        android:id="@+id/code_eleventh"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="32440" />
-
-                    <TextView
-                        android:id="@+id/code_twelth"
-                        style="@style/IdentityKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        tools:text="15774" />
-                </TableRow>
-            </TableLayout>
-
-            <TextView
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                 android:id="@+id/description"
                 style="@style/Signal.Text.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="@dimen/verify_identity_vertical_margin"
-                android:layout_marginEnd="30dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"
+                android:text="@string/verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s"
                 android:textColor="@color/signal_colorOnSurfaceVariant"
                 android:textColorLink="@color/signal_colorPrimary" />
         </LinearLayout>
@@ -251,7 +122,7 @@
         android:background="@drawable/toolbar_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/header_barrier"
         tools:visibility="visible" />
 
     <View
@@ -271,11 +142,12 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/verify_button"
             style="@style/Signal.Widget.Button.Large.Tonal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_gravity="center_horizontal"
             android:text="@string/verify_display_fragment__mark_as_verified"
             android:textAllCaps="false" />
     </FrameLayout>

@@ -30,7 +30,7 @@
         android:id="@+id/layout_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/keyboard_guideline"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
         app:layout_constraintTop_toTopOf="parent">

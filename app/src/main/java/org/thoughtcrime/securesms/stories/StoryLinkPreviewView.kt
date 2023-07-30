@@ -12,8 +12,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.databinding.StoriesTextPostLinkPreviewBinding
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.Slide
@@ -73,7 +73,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
     return future ?: SettableFuture(false)
   }
 
-  fun bind(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE, useLargeThumbnail: Boolean) {
+  fun bind(linkPreviewState: LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE, useLargeThumbnail: Boolean) {
     val linkPreview: LinkPreview? = linkPreviewState.linkPreview.orElseGet {
       linkPreviewState.activeUrlForError?.let {
         LinkPreview(it, LinkPreviewUtil.getTopLevelDomain(it) ?: it, null, -1L, null)
@@ -116,7 +116,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
 
     notImage.visible = false
 
-    val imageSlide: Slide? = linkPreview.thumbnail.map { ImageSlide(context, it) }.orElse(null)
+    val imageSlide: Slide? = linkPreview.thumbnail.map { ImageSlide(it) }.orElse(null)
     if (imageSlide != null) {
       if (loadThumbnail) {
         future = image.setImageResource(

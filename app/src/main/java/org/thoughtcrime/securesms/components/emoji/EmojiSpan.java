@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
@@ -55,6 +56,10 @@ public class EmojiSpan extends AnimatingImageSpan {
 
   @Override
   public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, @NonNull Paint paint) {
+    if (paint.getColor() == Color.TRANSPARENT) {
+      return;
+    }
+
     int height          = bottom - top;
     int centeringMargin = (height - size) / 2;
     int adjustedMargin  = (int) (centeringMargin * SHIFT_FACTOR);

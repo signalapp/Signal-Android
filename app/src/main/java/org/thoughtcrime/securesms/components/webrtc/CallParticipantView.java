@@ -18,6 +18,7 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.R;
@@ -262,6 +263,7 @@ public class CallParticipantView extends ConstraintLayout {
             .fallback(fallbackPhoto.asCallCard(getContext()))
             .error(fallbackPhoto.asCallCard(getContext()))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .fitCenter()
             .into(pipAvatar);
 
     pipAvatar.setScaleType(contactPhoto == null ? ImageView.ScaleType.CENTER_INSIDE : ImageView.ScaleType.CENTER_CROP);
@@ -272,7 +274,7 @@ public class CallParticipantView extends ConstraintLayout {
   }
 
   private void showBlockedDialog(@NonNull Recipient recipient) {
-    new AlertDialog.Builder(getContext())
+    new MaterialAlertDialogBuilder(getContext())
                    .setTitle(getContext().getString(R.string.CallParticipantView__s_is_blocked, recipient.getShortDisplayName(getContext())))
                    .setMessage(R.string.CallParticipantView__you_wont_receive_their_audio_or_video)
                    .setPositiveButton(android.R.string.ok, null)
@@ -280,7 +282,7 @@ public class CallParticipantView extends ConstraintLayout {
   }
 
   private void showNoMediaKeysDialog(@NonNull Recipient recipient) {
-    new AlertDialog.Builder(getContext())
+    new MaterialAlertDialogBuilder(getContext())
                    .setTitle(getContext().getString(R.string.CallParticipantView__cant_receive_audio_and_video_from_s, recipient.getShortDisplayName(getContext())))
                    .setMessage(R.string.CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change)
                    .setPositiveButton(android.R.string.ok, null)

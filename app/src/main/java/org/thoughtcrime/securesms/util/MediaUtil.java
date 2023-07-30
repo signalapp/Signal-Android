@@ -92,12 +92,12 @@ public class MediaUtil {
 
   public static @NonNull Slide getSlideForAttachment(Context context, Attachment attachment) {
     if (attachment.isSticker()) {
-      return new StickerSlide(context, attachment);
+      return new StickerSlide(attachment);
     }
 
     switch (getSlideTypeFromContentType(attachment.getContentType())) {
-      case GIF       : return new GifSlide(context, attachment);
-      case IMAGE     : return new ImageSlide(context, attachment);
+      case GIF       : return new GifSlide(attachment);
+      case IMAGE     : return new ImageSlide(attachment);
       case VIDEO     : return new VideoSlide(context, attachment);
       case AUDIO     : return new AudioSlide(context, attachment);
       case MMS       : return new MmsSlide(context, attachment);

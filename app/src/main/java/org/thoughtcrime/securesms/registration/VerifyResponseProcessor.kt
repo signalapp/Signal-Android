@@ -1,14 +1,12 @@
 package org.thoughtcrime.securesms.registration
 
-import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
-import org.thoughtcrime.securesms.pin.TokenData
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
+import org.thoughtcrime.securesms.pin.SvrWrongPinException
+import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
+import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException
-import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 import org.whispersystems.signalservice.internal.push.LockedException
 
 /**
@@ -16,7 +14,19 @@ import org.whispersystems.signalservice.internal.push.LockedException
  */
 sealed class VerifyResponseProcessor(response: ServiceResponse<VerifyResponse>) : ServiceResponseProcessor<VerifyResponse>(response) {
 
-  open val tokenData: TokenData? = null
+  open val svrTriesRemaining: Int?
+    get() = (error as? SvrWrongPinException)?.triesRemaining
+
+  open val svrAuthCredentials: SvrAuthCredentialSet?
+    get() {
+      return error?.let {
+        if (it is LockedException) {
+          SvrAuthCredentialSet(it.svr1Credentials, it.svr2Credentials)
+        } else {
+          null
+        }
+      }
+    }
 
   public override fun authorizationFailed(): Boolean {
     return super.authorizationFailed()
@@ -34,10 +44,6 @@ sealed class VerifyResponseProcessor(response: ServiceResponse<VerifyResponse>) 
     return super.getError()
   }
 
-  fun invalidSession(): Boolean {
-    return error is NoSuchSessionException
-  }
-
   fun getLockedException(): LockedException {
     return error as LockedException
   }
@@ -50,34 +56,24 @@ sealed class VerifyResponseProcessor(response: ServiceResponse<VerifyResponse>) 
     return error is IncorrectRegistrationRecoveryPasswordException
   }
 
-  abstract fun isKbsLocked(): Boolean
+  /** True if the account has reglock enabled but all guesses have been exhausted, otherwise false. */
+  abstract fun isRegistrationLockPresentAndSvrExhausted(): Boolean
 }
 
 /**
  * Verify processor specific to verifying without needing to handle registration lock.
  */
 class VerifyResponseWithoutKbs(response: ServiceResponse<VerifyResponse>) : VerifyResponseProcessor(response) {
-  override fun isKbsLocked(): Boolean {
-    return registrationLock() && getLockedException().basicStorageCredentials == null
+  override fun isRegistrationLockPresentAndSvrExhausted(): Boolean {
+    return registrationLock() && getLockedException().svr1Credentials == null && getLockedException().svr2Credentials == null
   }
 }
 
 /**
- * Verify processor specific to verifying and successfully retrieving KBS information to
- * later attempt to verif with registration lock data (pin).
+ * Verify processor indicating we cannot register until registration lock has been resolved.
  */
-class VerifyResponseWithSuccessfulKbs(response: ServiceResponse<VerifyResponse>, override val tokenData: TokenData) : VerifyResponseProcessor(response) {
-  override fun isKbsLocked(): Boolean {
-    return registrationLock() && tokenData.triesRemaining == 0
-  }
-}
-
-/**
- * Verify processor specific to verifying and unsuccessfully retrieving KBS information that
- * is required for attempting to verify a registration locked account.
- */
-class VerifyResponseWithFailedKbs(response: ServiceResponse<TokenData>) : VerifyResponseProcessor(ServiceResponse.coerceError(response)) {
-  override fun isKbsLocked(): Boolean {
+class VerifyResponseHitRegistrationLock(response: ServiceResponse<VerifyResponse>) : VerifyResponseProcessor(response) {
+  override fun isRegistrationLockPresentAndSvrExhausted(): Boolean {
     return false
   }
 }
@@ -86,18 +82,14 @@ class VerifyResponseWithFailedKbs(response: ServiceResponse<TokenData>) : Verify
  * Process responses from attempting to verify an account with registration lock for use in
  * account registration.
  */
-class VerifyResponseWithRegistrationLockProcessor(response: ServiceResponse<VerifyResponse>, override val tokenData: TokenData?) : VerifyResponseProcessor(response) {
+class VerifyResponseWithRegistrationLockProcessor(response: ServiceResponse<VerifyResponse>, override val svrAuthCredentials: SvrAuthCredentialSet?) : VerifyResponseProcessor(response) {
 
   fun wrongPin(): Boolean {
-    return error is KeyBackupSystemWrongPinException
+    return error is SvrWrongPinException
   }
 
-  fun getTokenResponse(): TokenResponse {
-    return (error as KeyBackupSystemWrongPinException).tokenResponse
-  }
-
-  override fun isKbsLocked(): Boolean {
-    return error is KeyBackupSystemNoDataException
+  override fun isRegistrationLockPresentAndSvrExhausted(): Boolean {
+    return error is SvrNoDataException
   }
 
   fun updatedIfRegistrationFailed(response: ServiceResponse<VerifyResponse>): VerifyResponseWithRegistrationLockProcessor {
@@ -105,12 +97,12 @@ class VerifyResponseWithRegistrationLockProcessor(response: ServiceResponse<Veri
       return this
     }
 
-    return VerifyResponseWithRegistrationLockProcessor(ServiceResponse.coerceError(response), tokenData)
+    return VerifyResponseWithRegistrationLockProcessor(ServiceResponse.coerceError(response), svrAuthCredentials)
   }
 
   override fun isServerSentError(): Boolean {
     return super.isServerSentError() ||
-      error is KeyBackupSystemWrongPinException ||
-      error is KeyBackupSystemNoDataException
+      error is SvrWrongPinException ||
+      error is SvrNoDataException
   }
 }

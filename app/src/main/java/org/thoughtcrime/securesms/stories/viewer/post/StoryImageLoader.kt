@@ -60,8 +60,8 @@ class StoryImageLoader(
 
   fun load() {
     val cacheValue = storyCache.getFromCache(imagePost.imageUri)
-    if (cacheValue != null) {
-      loadViaCache(cacheValue)
+    if (cacheValue?.imageTarget != null) {
+      loadViaCache(cacheValue.imageTarget)
     } else {
       loadViaGlide(storySize)
     }
@@ -77,10 +77,9 @@ class StoryImageLoader(
     blurLoader.clear()
   }
 
-  private fun loadViaCache(cacheValue: StoryCache.StoryCacheValue) {
+  private fun loadViaCache(imageTarget: StoryCache.StoryCacheTarget) {
     Log.d(TAG, "Image in cache. Loading via cache...")
 
-    val imageTarget = cacheValue.imageTarget!!
     imageTarget.addListener(imageListener)
     fragment.viewLifecycleOwner.lifecycle.addObserver(OnDestroy { imageTarget.removeListener(imageListener) })
   }

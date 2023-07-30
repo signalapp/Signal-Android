@@ -65,7 +65,7 @@ public final class SupportEmailUtil {
            "\n" +
            context.getString(R.string.SupportEmailUtil_signal_package) + " " + getSignalPackage(context) +
            "\n" +
-           context.getString(R.string.SupportEmailUtil_registration_lock) + " " + getRegistrationLockEnabled(context) +
+           context.getString(R.string.SupportEmailUtil_registration_lock) + " " + getRegistrationLockEnabled() +
            "\n" +
            context.getString(R.string.SupportEmailUtil_locale) + " " + Locale.getDefault().toString();
   }
@@ -86,7 +86,7 @@ public final class SupportEmailUtil {
     return String.format("%s (%s)", BuildConfig.APPLICATION_ID, AppSignatureUtil.getAppSignature(context));
   }
 
-  private static CharSequence getRegistrationLockEnabled(@NonNull Context context) {
-    return String.valueOf(TextSecurePreferences.isV1RegistrationLockEnabled(context) || SignalStore.kbsValues().isV2RegistrationLockEnabled());
+  private static CharSequence getRegistrationLockEnabled() {
+    return String.valueOf(SignalStore.svr().isRegistrationLockEnabled());
   }
 }

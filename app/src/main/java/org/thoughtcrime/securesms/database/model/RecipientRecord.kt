@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -79,7 +80,8 @@ data class RecipientRecord(
   val badges: List<Badge>,
   @get:JvmName("needsPniSignature")
   val needsPniSignature: Boolean,
-  val isHidden: Boolean
+  val isHidden: Boolean,
+  val callLinkRoomId: CallLinkRoomId?
 ) {
 
   fun getDefaultSubscriptionId(): Optional<Int> {

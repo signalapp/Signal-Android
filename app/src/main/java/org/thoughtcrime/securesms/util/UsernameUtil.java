@@ -18,8 +18,10 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UsernameUtil {
@@ -31,6 +33,7 @@ public class UsernameUtil {
 
   private static final Pattern FULL_PATTERN        = Pattern.compile(String.format(Locale.US, "^[a-zA-Z_][a-zA-Z0-9_]{%d,%d}$", MIN_LENGTH - 1, MAX_LENGTH - 1), Pattern.CASE_INSENSITIVE);
   private static final Pattern DIGIT_START_PATTERN = Pattern.compile("^[0-9].*$");
+  private static final Pattern URL_PATTERN         = Pattern.compile("(https://)?signal.me/#u/([a-zA-Z0-9+/]*={0,2})");
 
 
   private static final String BASE_URL_SCHEMELESS = "signal.me/#u/";
@@ -80,6 +83,14 @@ public class UsernameUtil {
     }
   }
 
+  /**
+   * Hashes a username to a url-safe base64 string.
+   * @throws BaseUsernameException If the username is invalid and un-hashable.
+   */
+  public static String hashUsernameToBase64(String username) throws BaseUsernameException {
+    return Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username));
+  }
+
   @WorkerThread
   public static @NonNull Optional<ServiceId> fetchAciForUsernameHash(@NonNull String base64UrlSafeEncodedUsernameHash) {
     try {
@@ -91,11 +102,31 @@ public class UsernameUtil {
     }
   }
 
-  public static String generateLink(String username) throws BaseUsernameException {
-    byte[] hash   = Username.hash(username);
-    String base64 = Base64UrlSafe.encodeBytesWithoutPadding(hash);
+  public static String generateLink(String username) {
+    String base64 = Base64UrlSafe.encodeBytesWithoutPadding(username.getBytes(StandardCharsets.UTF_8));
 
     return BASE_URL + base64;
+  }
+
+  /**
+   * Parses the username from a link if possible, otherwise null.
+   */
+  public static @Nullable String parseLink(String url) {
+    Matcher matcher = URL_PATTERN.matcher(url);
+    if (!matcher.matches()) {
+      return null;
+    }
+
+    String base64 = matcher.group(2);
+    if (base64 == null) {
+      return null;
+    }
+
+    try {
+      return new String(Base64.decodeWithoutPadding(base64));
+    } catch (IOException e) {
+      return null;
+    }
   }
 
   public enum InvalidReason {

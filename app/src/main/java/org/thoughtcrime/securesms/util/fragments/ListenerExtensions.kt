@@ -17,7 +17,7 @@ inline fun <reified T> Fragment.findListener(): T? {
     parent = parent.parentFragment
   }
 
-  return requireActivity() as? T
+  return activity as? T
 }
 
 /**
@@ -40,9 +40,9 @@ inline fun <reified T> Fragment.requireListener(): T {
       parent = parent.parentFragment
     }
 
-    return requireActivity() as T
+    return activity as T
   } catch (e: ClassCastException) {
-    hierarchy.add(requireActivity()::class.java.name)
+    hierarchy.add(activity?.let { it::class.java.name } ?: "<null activity>")
     throw ListenerNotFoundException(hierarchy, e)
   }
 }

@@ -9,9 +9,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ServiceOutageReminder extends Reminder {
 
-  public ServiceOutageReminder(@NonNull Context context) {
-    super(null,
-          context.getString(R.string.reminder_header_service_outage_text));
+  public ServiceOutageReminder() {
+    super(R.string.reminder_header_service_outage_text);
   }
 
   public static boolean isEligible(@NonNull Context context) {

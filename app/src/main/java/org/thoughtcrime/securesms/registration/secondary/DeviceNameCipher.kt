@@ -27,7 +27,7 @@ object DeviceNameCipher {
     val cipherKey: ByteArray = computeCipherKey(masterSecret, syntheticIv)
 
     val cipher = Cipher.getInstance("AES/CTR/NoPadding")
-    cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(cipherKey, "AES"), IvParameterSpec(ByteArray(16)))
+    cipher.init(Cipher.ENCRYPT_MODE, SecretKeySpec(cipherKey, "AES"), IvParameterSpec(createEmptyByteArray(16)))
     val cipherText = cipher.doFinal(plaintext)
 
     return DeviceName(
@@ -60,4 +60,6 @@ object DeviceNameCipher {
     ivMac.init(SecretKeySpec(syntheticIvKey, "HmacSHA256"))
     return ivMac.doFinal(plaintext).sliceArray(0 until SYNTHETIC_IV_LENGTH)
   }
+
+  private fun createEmptyByteArray(length: Int): ByteArray = ByteArray(length)
 }

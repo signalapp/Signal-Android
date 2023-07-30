@@ -104,7 +104,7 @@ class GroupsV2StateProcessorTest {
     val data = givenData(init)
 
     every { groupTable.getGroup(any<GroupId.V2>()) } returns data.groupRecord
-    every { groupTable.isUnknownGroup(any()) } returns !data.groupRecord.isPresent
+    every { groupTable.isUnknownGroup(any<GroupId>()) } returns !data.groupRecord.isPresent
 
     data.serverState?.let { serverState ->
       val testPartial = object : PartialDecryptedGroup(null, serverState, null, null) {
@@ -305,7 +305,7 @@ class GroupsV2StateProcessorTest {
       apiCallParameters(2, true)
     }
 
-    every { groupTable.isUnknownGroup(any()) } returns true
+    every { groupTable.isUnknownGroup(any<GroupId>()) } returns true
 
     val result = processor.updateLocalGroupToRevision(2, 0, DecryptedGroupChange.getDefaultInstance())
 

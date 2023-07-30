@@ -16,12 +16,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.calls.links.CallLinks;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -166,8 +170,12 @@ public class LinkPreviewView extends FrameLayout {
     spinner.setVisibility(GONE);
     noPreview.setVisibility(GONE);
 
+    CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
     if (!Util.isEmpty(linkPreview.getTitle())) {
       title.setText(linkPreview.getTitle());
+      title.setVisibility(VISIBLE);
+    } else if (callLinkRootKey != null) {
+      title.setText(R.string.Recipient_signal_call);
       title.setVisibility(VISIBLE);
     } else {
       title.setVisibility(GONE);
@@ -175,6 +183,9 @@ public class LinkPreviewView extends FrameLayout {
 
     if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
+      description.setVisibility(VISIBLE);
+    } else if (callLinkRootKey != null) {
+      description.setText(R.string.LinkPreviewView__use_this_link_to_join_a_signal_call);
       description.setVisibility(VISIBLE);
     } else {
       description.setVisibility(GONE);
@@ -205,7 +216,18 @@ public class LinkPreviewView extends FrameLayout {
     if (showThumbnail && linkPreview.getThumbnail().isPresent()) {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
-      thumbnail.get().setImageResource(glideRequests, new ImageSlide(getContext(), linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION, false);
+      thumbnail.get().setImageResource(glideRequests, new ImageSlide(linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION, false);
+      thumbnail.get().showDownloadText(false);
+    } else if (callLinkRootKey != null) {
+      thumbnail.setVisibility(VISIBLE);
+      thumbnailState.applyState(thumbnail);
+      thumbnail.get().setImageDrawable(
+          glideRequests,
+          Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER
+                   .getPhotoForCallLink()
+                   .asDrawable(getContext(),
+                               AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
+      );
       thumbnail.get().showDownloadText(false);
     } else {
       thumbnail.setVisibility(GONE);

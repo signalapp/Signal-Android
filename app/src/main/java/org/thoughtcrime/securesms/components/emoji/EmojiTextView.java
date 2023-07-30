@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Util;
@@ -68,11 +69,10 @@ public class EmojiTextView extends AppCompatTextView {
   private TextDirectionHeuristic textDirection;
   private boolean                isJumbomoji;
   private boolean                forceJumboEmoji;
-  private boolean                isInOnDraw;
+  private boolean                renderSpoilers;
 
-  private       MentionRendererDelegate          mentionRendererDelegate;
-  private final SpoilerRendererDelegate          spoilerRendererDelegate;
-  private       SpoilerFilteringSpannableFactory spoilerFilteringSpannableFactory;
+  private MentionRendererDelegate mentionRendererDelegate;
+  private SpoilerRendererDelegate spoilerRendererDelegate;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -92,6 +92,7 @@ public class EmojiTextView extends AppCompatTextView {
     renderMentions  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
     measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
     forceJumboEmoji = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
+    renderSpoilers  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderSpoilers, false);
     a.recycle();
 
     a                = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.textSize });
@@ -101,7 +102,10 @@ public class EmojiTextView extends AppCompatTextView {
     if (renderMentions) {
       mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.transparent_black_20));
     }
-    spoilerRendererDelegate = new SpoilerRendererDelegate(this);
+
+    if (renderSpoilers) {
+      spoilerRendererDelegate = new SpoilerRendererDelegate(this);
+    }
 
     textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
 
@@ -113,15 +117,8 @@ public class EmojiTextView extends AppCompatTextView {
     setText(getText());
   }
 
-  public void enableSpoilerFiltering() {
-    spoilerFilteringSpannableFactory = new SpoilerFilteringSpannableFactory(() -> isInOnDraw);
-    setSpannableFactory(spoilerFilteringSpannableFactory);
-  }
-
   @Override
   protected void onDraw(Canvas canvas) {
-    isInOnDraw = true;
-
     boolean hasSpannedText = getText() instanceof Spanned;
     boolean hasLayout      = getLayout() != null;
 
@@ -134,18 +131,18 @@ public class EmojiTextView extends AppCompatTextView {
     if (hasSpannedText && !hasLayout && getLayout() != null) {
       drawSpecialRenderers(canvas, null, spoilerRendererDelegate);
     }
-
-    isInOnDraw = false;
   }
 
-  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
+  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @Nullable SpoilerRendererDelegate spoilerDelegate) {
     int checkpoint = canvas.save();
     canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
     try {
       if (mentionDelegate != null) {
         mentionDelegate.draw(canvas, (Spanned) getText(), getLayout());
       }
-      spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      if (spoilerDelegate != null) {
+        spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      }
     } finally {
       canvas.restoreToCount(checkpoint);
     }
@@ -155,7 +152,12 @@ public class EmojiTextView extends AppCompatTextView {
   public void setText(@Nullable CharSequence text, BufferType type) {
     EmojiParser.CandidateList candidates = isInEditMode() ? null : EmojiProvider.getCandidates(text);
 
-    if (scaleEmojis && candidates != null && candidates.allEmojis && (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(getContext()))) {
+    if (scaleEmojis &&
+        candidates != null &&
+        candidates.allEmojis &&
+        (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(getContext())) &&
+        (text instanceof Spanned && !MessageStyler.hasStyling((Spanned) text)))
+    {
       int   emojis = candidates.size();
       float scale  = 1.0f;
 
@@ -187,9 +189,6 @@ public class EmojiTextView extends AppCompatTextView {
       textToSet = new SpannableStringBuilder(EmojiProvider.emojify(candidates, text, this, isJumbomoji || forceJumboEmoji));
     }
 
-    if (spoilerFilteringSpannableFactory != null) {
-      textToSet = spoilerFilteringSpannableFactory.wrap(textToSet);
-    }
     super.setText(textToSet, BufferType.SPANNABLE);
 
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
@@ -333,11 +332,7 @@ public class EmojiTextView extends AppCompatTextView {
         newTextToSet = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
       }
 
-      if (spoilerFilteringSpannableFactory != null) {
-        spoilerFilteringSpannableFactory.wrap(newTextToSet);
-      }
-
-      super.setText(newContent, BufferType.SPANNABLE);
+      super.setText(newTextToSet, BufferType.SPANNABLE);
     }
   }
 
@@ -366,7 +361,9 @@ public class EmojiTextView extends AppCompatTextView {
         newContent.append(getText().subSequence(0, overflowStart).toString())
                   .append(ellipsized.subSequence(0, ellipsized.length()).toString());
 
-        TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+        if (newContent.length() > 0) {
+          TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+        }
 
         newContent.append(Optional.ofNullable(overflowText).orElse(""));
 
@@ -447,7 +444,9 @@ public class EmojiTextView extends AppCompatTextView {
   @Override
   public void setTextColor(int color) {
     super.setTextColor(color);
-    spoilerRendererDelegate.updateFromTextColor();
+    if (spoilerRendererDelegate != null) {
+      spoilerRendererDelegate.updateFromTextColor();
+    }
   }
 
   @Override

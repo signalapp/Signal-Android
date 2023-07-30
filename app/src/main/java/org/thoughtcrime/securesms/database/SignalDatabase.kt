@@ -6,7 +6,6 @@ import androidx.annotation.VisibleForTesting
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.MasterSecret
@@ -74,6 +73,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val remoteMegaphoneTable: RemoteMegaphoneTable = RemoteMegaphoneTable(context, this)
   val pendingPniSignatureMessageTable: PendingPniSignatureMessageTable = PendingPniSignatureMessageTable(context, this)
   val callTable: CallTable = CallTable(context, this)
+  val kyberPreKeyTable: KyberPreKeyTable = KyberPreKeyTable(context, this)
+  val callLinkTable: CallLinkTable = CallLinkTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -110,6 +111,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(PendingPniSignatureMessageTable.CREATE_TABLE)
     db.execSQL(CallLinkTable.CREATE_TABLE)
     db.execSQL(CallTable.CREATE_TABLE)
+    db.execSQL(KyberPreKeyTable.CREATE_TABLE)
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
@@ -135,6 +137,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, PendingPniSignatureMessageTable.CREATE_INDEXES)
     executeStatements(db, CallTable.CREATE_INDEXES)
     executeStatements(db, ReactionTable.CREATE_INDEXES)
+    executeStatements(db, KyberPreKeyTable.CREATE_INDEXES)
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
@@ -168,7 +171,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       db.version = newVersion
       db.setTransactionSuccessful()
     } finally {
-      db.endTransaction()
+      if (db.inTransaction()) {
+        db.endTransaction()
+      }
 
       // We have to re-begin the transaction for the calling code (see comment at start of method)
       db.beginTransaction()
@@ -251,12 +256,12 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @JvmStatic
     fun runPostSuccessfulTransaction(dedupeKey: String, task: Runnable) {
-      instance!!.signalReadableDatabase.runPostSuccessfulTransaction(dedupeKey, task)
+      instance!!.signalWritableDatabase.runPostSuccessfulTransaction(dedupeKey, task)
     }
 
     @JvmStatic
     fun runPostSuccessfulTransaction(task: Runnable) {
-      instance!!.signalReadableDatabase.runPostSuccessfulTransaction(task)
+      instance!!.signalWritableDatabase.runPostSuccessfulTransaction(task)
     }
 
     @JvmStatic
@@ -276,9 +281,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @JvmStatic
     fun runPostBackupRestoreTasks(database: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       synchronized(SignalDatabase::class.java) {
-        database.withinTransaction { db ->
-          instance!!.onUpgrade(db, db.getVersion(), -1)
-          instance!!.markCurrent(db)
+        database.setForeignKeyConstraintsEnabled(false)
+        database.beginTransaction()
+        try {
+          instance!!.onUpgrade(database, database.getVersion(), -1)
+          instance!!.markCurrent(database)
           instance!!.messageTable.deleteAbandonedMessages()
           instance!!.messageTable.trimEntriesForExpiredMessages()
           instance!!.reactionTable.deleteAbandonedReactions()
@@ -288,6 +295,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS constraint_spec")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS dependency_spec")
+          database.setTransactionSuccessful()
+        } finally {
+          database.endTransaction()
+          database.setForeignKeyConstraintsEnabled(true)
         }
 
         instance!!.rawWritableDatabase.close()
@@ -400,6 +411,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("identities")
     val identities: IdentityTable
       get() = instance!!.identityTable
+
+    @get:JvmStatic
+    @get:JvmName("kyberPreKeys")
+    val kyberPreKeys: KyberPreKeyTable
+      get() = instance!!.kyberPreKeyTable
 
     @get:JvmStatic
     @get:JvmName("media")
@@ -521,5 +537,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("calls")
     val calls: CallTable
       get() = instance!!.callTable
+
+    @get:JvmStatic
+    @get:JvmName("callLinks")
+    val callLinks: CallLinkTable
+      get() = instance!!.callLinkTable
   }
 }

@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms.util
 
+import android.graphics.Canvas
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.doOnNextLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+import androidx.lifecycle.Lifecycle
 
 var View.visible: Boolean
   get() {
@@ -55,4 +60,34 @@ fun TextView.setRelativeDrawables(
     end,
     bottom
   )
+}
+
+/**
+ * Get a lifecycle associated with this view. Care must be taken to ensure
+ * if activity fallback occurs that the context of the view is correct.
+ */
+fun View.getLifecycle(): Lifecycle? {
+  return try {
+    findFragment<Fragment>().viewLifecycleOwner.lifecycle
+  } catch (e: IllegalStateException) {
+    ViewUtil.getActivityLifecycle(this)
+  }
+}
+
+fun View.layoutIn(parent: View) {
+  val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY)
+  val heightSpec = View.MeasureSpec.makeMeasureSpec(parent.height, View.MeasureSpec.UNSPECIFIED)
+  val childWidth = ViewGroup.getChildMeasureSpec(widthSpec, parent.paddingLeft + parent.paddingRight, layoutParams.width)
+  val childHeight = ViewGroup.getChildMeasureSpec(heightSpec, parent.paddingTop + parent.paddingBottom, layoutParams.height)
+  measure(childWidth, childHeight)
+  layout(0, 0, measuredWidth, measuredHeight)
+}
+
+fun View.drawAsTopItemDecoration(canvas: Canvas, parent: View, child: View, offset: Int = 0) {
+  canvas.save()
+  val left = parent.left
+  val top = child.y.toInt() - height - offset
+  canvas.translate(left.toFloat(), top.toFloat())
+  draw(canvas)
+  canvas.restore()
 }

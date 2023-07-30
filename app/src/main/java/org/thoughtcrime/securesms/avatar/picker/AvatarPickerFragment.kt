@@ -140,7 +140,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       viewModel.onAvatarEditCompleted(vector)
     }
 
-    setFragmentResultListener(PhotoEditorFragment.REQUEST_KEY_EDIT) { _, bundle ->
+    setFragmentResultListener(PhotoEditorFragment.REQUEST_KEY_EDIT) { _, _ ->
     }
 
     photoEditorLauncher = registerForActivityResult(PhotoEditorActivity.Contract()) { photo ->
@@ -155,6 +155,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     ViewUtil.hideKeyboard(requireContext(), requireView())
   }
 
+  @Deprecated("Deprecated in Java")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
       val media: Media = requireNotNull(data.getParcelableExtraCompat(AvatarSelectionActivity.EXTRA_MEDIA, Media::class.java))
@@ -194,7 +195,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     return true
   }
 
-  fun openEditor(avatar: Avatar) {
+  private fun openEditor(avatar: Avatar) {
     when (avatar) {
       is Avatar.Photo -> openPhotoEditor(avatar)
       is Avatar.Resource -> throw UnsupportedOperationException()
@@ -250,6 +251,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       .execute()
   }
 
+  @Deprecated("Deprecated in Java")
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }

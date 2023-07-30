@@ -313,7 +313,7 @@
     <style name="IdentityKey">
         <item name="android:fontFamily">monospace</item>
         <item name="android:typeface">monospace</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
@@ -402,6 +402,10 @@
         <item name="arcWidth">8dp</item>
         <item name="arcRoundedEnds">true</item>
     </style>
+
+    <declare-styleable name="ProgressCard">
+        <attr name="progressCardTitle" format="string" />
+    </declare-styleable>
 
     <declare-styleable name="CameraButtonView">
         <attr name="imageCaptureSize" format="dimension" />

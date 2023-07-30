@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance
 
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import org.signal.core.util.concurrent.observe
@@ -66,6 +67,15 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_appearanceSettings_to_wallpaperActivity)
         }
       )
+
+      if (Build.VERSION.SDK_INT >= 26) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__app_icon),
+          onClick = {
+            Navigation.findNavController(requireView()).safeNavigate(R.id.action_appearanceSettings_to_appIconActivity)
+          }
+        )
+      }
 
       radioListPref(
         title = DSLSettingsText.from(R.string.preferences_chats__message_text_size),

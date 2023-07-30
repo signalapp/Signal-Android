@@ -54,7 +54,7 @@ fun MessageRecord.isBorderless(context: Context): Boolean {
 }
 
 fun MessageRecord.hasNoBubble(context: Context): Boolean =
-  hasSticker() || isBorderless(context) || (isTextOnly(context) && isJumbomoji(context))
+  hasSticker() || isBorderless(context) || (isTextOnly(context) && isJumbomoji(context) && (messageRanges?.rangesList?.isEmpty() ?: true))
 
 fun MessageRecord.hasOnlyThumbnail(context: Context): Boolean {
   return hasThumbnail() &&
@@ -154,4 +154,11 @@ fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
 
 fun MessageRecord.isEditMessage(): Boolean {
   return this is MediaMmsMessageRecord && isEditMessage
+}
+
+/**
+ * Returns whether or not the given message record can be reacted to.
+ */
+fun MessageRecord.isValidReactionTarget(): Boolean {
+  return isSecure && !isPending && !isFailed && !isRemoteDelete && !isUpdate
 }

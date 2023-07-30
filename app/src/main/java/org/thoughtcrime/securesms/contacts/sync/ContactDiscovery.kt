@@ -66,7 +66,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-all",
       refresh = {
-        ContactDiscoveryRefreshV2.refreshAll(context, useCompat = !FeatureFlags.phoneNumberPrivacy(), ignoreResults = false)
+        ContactDiscoveryRefreshV2.refreshAll(context, useCompat = FeatureFlags.cdsCompatMode())
       },
       removeSystemContactLinksIfMissing = true,
       notifyOfNewUsers = notifyOfNewUsers
@@ -83,7 +83,7 @@ object ContactDiscovery {
       context = context,
       descriptor = "refresh-multiple",
       refresh = {
-        ContactDiscoveryRefreshV2.refresh(context, recipients, useCompat = !FeatureFlags.phoneNumberPrivacy(), ignoreResults = false)
+        ContactDiscoveryRefreshV2.refresh(context, recipients, useCompat = FeatureFlags.cdsCompatMode())
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers
@@ -91,14 +91,15 @@ object ContactDiscovery {
   }
 
   @JvmStatic
+  @JvmOverloads
   @Throws(IOException::class)
   @WorkerThread
-  fun refresh(context: Context, recipient: Recipient, notifyOfNewUsers: Boolean): RecipientTable.RegisteredState {
+  fun refresh(context: Context, recipient: Recipient, notifyOfNewUsers: Boolean, timeoutMs: Long? = null): RecipientTable.RegisteredState {
     val result: RefreshResult = refreshRecipients(
       context = context,
       descriptor = "refresh-single",
       refresh = {
-        ContactDiscoveryRefreshV2.refresh(context, listOf(recipient), useCompat = !FeatureFlags.phoneNumberPrivacy(), ignoreResults = false)
+        ContactDiscoveryRefreshV2.refresh(context, listOf(recipient), useCompat = FeatureFlags.cdsCompatMode(), timeoutMs = timeoutMs)
       },
       removeSystemContactLinksIfMissing = false,
       notifyOfNewUsers = notifyOfNewUsers

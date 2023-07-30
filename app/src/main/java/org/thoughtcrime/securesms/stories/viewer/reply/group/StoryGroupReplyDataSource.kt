@@ -15,7 +15,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
     return SignalDatabase.messages.getNumberOfStoryReplies(parentStoryId)
   }
 
-  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ReplyBody> {
+  override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ReplyBody> {
     val results: MutableList<ReplyBody> = ArrayList(length)
     SignalDatabase.messages.getStoryReplies(parentStoryId).use { cursor ->
       cursor.moveToPosition(start - 1)

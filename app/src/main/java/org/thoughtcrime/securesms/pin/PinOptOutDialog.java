@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 public final class PinOptOutDialog {
@@ -17,7 +19,7 @@ public final class PinOptOutDialog {
 
   public static void show(@NonNull Context context, @NonNull Runnable onSuccess) {
     Log.i(TAG, "show()");
-    AlertDialog dialog = new AlertDialog.Builder(context)
+    AlertDialog dialog = new MaterialAlertDialogBuilder(context)
                                         .setTitle(R.string.PinOptOutDialog_warning)
                                         .setMessage(R.string.PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data)
                                         .setCancelable(true)
@@ -27,7 +29,7 @@ public final class PinOptOutDialog {
                                           AlertDialog progress = SimpleProgressDialog.show(context);
 
                                           SimpleTask.run(() -> {
-                                            PinState.onPinOptOut();
+                                            SvrRepository.optOutOfPin();
                                             return null;
                                           }, success -> {
                                             Log.i(TAG, "Disable operation finished.");

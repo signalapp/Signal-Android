@@ -13,12 +13,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 /**
  * View model to show history of edits for a specific message.
  */
-class EditMessageHistoryViewModel(private val messageId: Long, private val conversationRecipient: Recipient) : ViewModel() {
+class EditMessageHistoryViewModel(private val originalMessageId: Long, private val conversationRecipient: Recipient) : ViewModel() {
   private val groupAuthorNameColorHelper = GroupAuthorNameColorHelper()
 
   fun getEditHistory(): Observable<List<ConversationMessage>> {
     return EditMessageHistoryRepository
-      .getEditHistory(messageId)
+      .getEditHistory(originalMessageId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 

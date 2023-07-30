@@ -42,7 +42,7 @@ object InAppDonations {
    * Whether the user is in a region that supports credit cards, based off local phone number.
    */
   fun isCreditCardAvailable(): Boolean {
-    return FeatureFlags.creditCardPayments() && !LocaleFeatureFlags.isCreditCardDisabled()
+    return !LocaleFeatureFlags.isCreditCardDisabled()
   }
 
   /**

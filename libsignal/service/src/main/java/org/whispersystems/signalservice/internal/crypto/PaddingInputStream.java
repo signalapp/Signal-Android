@@ -56,4 +56,8 @@ public class PaddingInputStream extends FilterInputStream {
   public static long getPaddedSize(long size) {
     return (int) Math.max(541, Math.floor(Math.pow(1.05, Math.ceil(Math.log(size) / Math.log(1.05)))));
   }
+
+  public static long getMaxUnpaddedSize(long maxPaddedSize) {
+    return (int) Math.floor(Math.pow(1.05, Math.floor(Math.log(maxPaddedSize) / Math.log(1.05))));
+  }
 }

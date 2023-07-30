@@ -8,7 +8,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 
 class ChangeNumberPinDiffersFragment : LoggingFragment(R.layout.fragment_change_number_pin_differs) {
 
@@ -18,13 +18,13 @@ class ChangeNumberPinDiffersFragment : LoggingFragment(R.layout.fragment_change_
     }
 
     val changePin = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-      if (result.resultCode == CreateKbsPinActivity.RESULT_OK) {
+      if (result.resultCode == CreateSvrPinActivity.RESULT_OK) {
         changeNumberSuccess()
       }
     }
 
     view.findViewById<View>(R.id.change_number_pin_differs_update_pin).setOnClickListener {
-      changePin.launch(CreateKbsPinActivity.getIntentForPinChangeFromSettings(requireContext()))
+      changePin.launch(CreateSvrPinActivity.getIntentForPinChangeFromSettings(requireContext()))
     }
 
     requireActivity().onBackPressedDispatcher.addCallback(

@@ -25,6 +25,7 @@ public final class AttachmentPointerUtil {
                                               pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.empty(),
                                               pointer.getWidth(), pointer.getHeight(),
                                               pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.empty(),
+                                              pointer.hasIncrementalDigest() ? Optional.of(pointer.getIncrementalDigest().toByteArray()) : Optional.empty(),
                                               pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.empty(),
                                               (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE)) != 0,
                                               (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.BORDERLESS_VALUE)) != 0,
@@ -43,6 +44,10 @@ public final class AttachmentPointerUtil {
                                                                                                  .setDigest(ByteString.copyFrom(attachment.getDigest().get()))
                                                                                                  .setSize(attachment.getSize().get())
                                                                                                  .setUploadTimestamp(attachment.getUploadTimestamp());
+
+    if (attachment.getIncrementalDigest().isPresent()) {
+      builder.setIncrementalDigest(ByteString.copyFrom(attachment.getIncrementalDigest().get()));
+    }
 
     if (attachment.getRemoteId().getV2().isPresent()) {
       builder.setCdnId(attachment.getRemoteId().getV2().get());

@@ -36,7 +36,9 @@ object AvatarPreference {
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return super.areContentsTheSame(newItem) && recipient.hasSameContent(newItem.recipient)
+      return super.areContentsTheSame(newItem) &&
+        recipient.hasSameContent(newItem.recipient) &&
+        storyViewState == newItem.storyViewState
     }
   }
 

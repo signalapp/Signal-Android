@@ -5,6 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -37,8 +39,12 @@ class StoryViewsFragment :
   private val storyId: Long
     get() = requireArguments().getLong(ARG_STORY_ID)
 
+  private val lifecycleDisposable = LifecycleDisposable()
+
   override fun bindAdapter(adapter: MappingAdapter) {
     StoryViewItem.register(adapter)
+
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
 
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)
     val disabledNotice: View = requireView().findViewById(R.id.disabled_notice)
@@ -74,9 +80,11 @@ class StoryViewsFragment :
           StoryViewItem.Model(
             storyViewItemData = storyViewItemData,
             canRemoveMember = state.storyRecipient?.isDistributionList ?: false,
-            goToChat = {
-              val chatIntent = ConversationIntents.createBuilder(requireContext(), it.storyViewItemData.recipient.id, -1L).build()
-              startActivity(chatIntent)
+            goToChat = { model ->
+              lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), model.storyViewItemData.recipient.id, -1L).subscribeBy {
+                val chatIntent = it.build()
+                startActivity(chatIntent)
+              }
             },
             removeFromStory = {
               if (state.storyRecipient?.isDistributionList == true) {

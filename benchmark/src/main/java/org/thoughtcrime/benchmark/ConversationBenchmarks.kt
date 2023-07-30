@@ -1,5 +1,7 @@
 package org.thoughtcrime.benchmark
 
+import android.Manifest
+import android.os.Build
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.TraceSectionMetric
@@ -22,7 +24,14 @@ class ConversationBenchmarks {
     var setup = false
     benchmarkRule.measureRepeated(
       packageName = "org.thoughtcrime.securesms",
-      metrics = listOf(TraceSectionMetric("ConversationOpen")),
+      metrics = listOf(
+        TraceSectionMetric("6-ConversationOpen"),
+        TraceSectionMetric("1-ConversationOpen-ViewModel-Init"),
+        TraceSectionMetric("2-ConversationOpen-Metadata-Loaded"),
+        TraceSectionMetric("3-ConversationOpen-Data-Loaded"),
+        TraceSectionMetric("4-ConversationOpen-Data-Posted"),
+        TraceSectionMetric("5-ConversationOpen-Render"),
+      ),
       iterations = 10,
       compilationMode = CompilationMode.Partial(),
       setupBlock = {
@@ -31,10 +40,13 @@ class ConversationBenchmarks {
           setup = true
         }
         killProcess()
+        if (Build.VERSION.SDK_INT >= 33) {
+          device.executeShellCommand("pm grant $packageName ${Manifest.permission.POST_NOTIFICATIONS}")
+        }
         startActivityAndWait()
         device.waitForIdle()
       }) {
-      device.findObject(By.textContains("Buddy")).click();
+      device.findObject(By.textContains("Buddy")).click()
       device.wait(Until.hasObject(By.textContains("Signal message")), 10_000L)
       device.wait(Until.hasObject(By.textContains("Test")), 5_000L)
     }

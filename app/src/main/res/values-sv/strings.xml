@@ -24,6 +24,15 @@
     <string name="save">Spara</string>
     <string name="note_to_self">Egen anteckning</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Väder</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Anteckningar</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Nyheter</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Vågor</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -96,6 +105,10 @@
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Söker efter meddelanden…</string>
+
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Du kan ha nya meddelanden</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blockerade användare</string>
@@ -183,7 +196,11 @@
     <string name="CameraContacts_recent_contacts">Senaste kontakter</string>
     <string name="CameraContacts_signal_contacts">Signal-kontakter</string>
     <string name="CameraContacts_signal_groups">Signal-grupper</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">Du kan dela med maximalt %1$d chatt.</item>
+        <item quantity="other">Du kan dela med maximalt %1$d chattar.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Välj Signal-mottagare</string>
     <string name="CameraContacts_no_signal_contacts">Inga Signal-kontakter</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bara använda kameraknappen för att skicka foton till Signal-kontakter. </string>
@@ -223,6 +240,8 @@
     <string name="CommunicationActions_call">Ring</string>
     <string name="CommunicationActions_insecure_call">Osäkert samtal</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Operatörskostnader kan tillkomma. Numret du ringer är inte registrerat hos Signal. Detta samtal placeras via din mobiloperatör, inte över internet.</string>
+    <string name="CommunicationActions_cant_join_call">Det går inte att gå med i samtal</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Den här samtalslänken är inte längre giltig.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -302,7 +321,9 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Det går inte att ladda ner videon. Du behöver skicka den igen.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">redigerad %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Redigerad %1$s</string>
+    <!-- Displayed if the link preview in the conversation item is for a call link call -->
+    <string name="ConversationItem__join_call">Gå med i samtalet</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
@@ -369,9 +390,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nytt! Säg det med klistermärken</string>
 
     <string name="ConversationActivity_cancel">Avbryt</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Ta bort chatt?</string>
     <string name="ConversationActivity_delete_and_leave_group">Ta bort och lämna gruppen?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Denna chatt kommer att tas bort från alla dina enheter.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du lämnar denna grupp och den tas bort från alla dina enheter.</string>
     <string name="ConversationActivity_delete">Ta bort</string>
     <string name="ConversationActivity_delete_and_leave">Ta bort och lämna</string>
@@ -452,7 +473,7 @@
     <string name="ConversationFragment_delete_on_this_device">Ta bort från den här enheten</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Ta bort överallt</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Detta meddelande tas bort för alla i chatten om de använder en ny version av Signal. De kommer att kunna se att du har tagit bort ett meddelande.</string>
     <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
     <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>
@@ -460,7 +481,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan dra åt vänster på ett meddelande för att snabbt svara</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Filer för utgående visa-en-gång media tas bort automatiskt efter att de har skickats</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du har redan sett detta meddelande</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan lägga till anteckningar för dig själv i denna chatt. Om ditt konto har några länkade enheter synkroniseras nya anteckningar.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppmedlemmar har samma namn.</string>
     <string name="ConversationFragment__tap_to_review">Tryck för att granska</string>
     <string name="ConversationFragment__review_requests_carefully">Granska förfrågningar noggrant</string>
@@ -483,31 +504,38 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Blockerade</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Uppdatera Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Registrera om Signal</string>
+    <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
+    <string name="ConversationFragment__content_description_back_button">Navigera tillbaka.</string>
+    <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
+    <string name="ConversationFragment__content_description_launch_signal_button">Öppna Signal</string>
+    <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
+    <string name="ConversationFragment__no_longer_verified">Inte längre verifierad</string>
+
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Rensa filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Inga olästa chattar</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Ta bort vald chatt?</item>
+        <item quantity="other">Ta bort valda chattar?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Detta kommer att ta bort den valda chatten permanent.</item>
+        <item quantity="other">Detta kommer att ta bort alla %1$d valda chattar permanent.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Tar bort</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Tar bort valda chattar …</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Chat arkiverad</item>
+        <item quantity="other">%1$d chattar arkiverade</item>
     </plurals>
     <string name="ConversationListFragment_undo">Ångra</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Flyttade chatt till inkorgen</item>
+        <item quantity="other">Flyttade %1$d chattar till inkorgen</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Läst</item>
@@ -542,7 +570,7 @@
     <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Arkiverade chattar (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Verifierat</string>
@@ -859,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Använd den här länken för att gå med i ett Signal-samtal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1087,7 +1117,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Rita för att oskärpa ytterligare ansikten eller områden</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll in för att spela in ett röstmeddelande, släpp för att skicka</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tryck och håll för att spela in, släpp för att skicka</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Sms-meddelanden stöds inte längre i Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1193,10 +1223,7 @@
     <string name="MessageQuotesBottomSheet_replies">Svar</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
     <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
-    <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
-    <string name="NotificationBarManager__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Startar Signal-samtalstjänsten</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
@@ -1460,12 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Du startade ett gruppsamtal · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s är i gruppsamtalet · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Du är i gruppsamtalet · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s och %2$s är i gruppsamtalet · %3$s</string>
     <string name="MessageRecord_group_call_s">Gruppsamtal · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s startade ett gruppsamtal</string>
+    <string name="MessageRecord_you_started_a_group_call">Du startade ett gruppsamtal</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s är i gruppsamtalet</string>
     <string name="MessageRecord_you_are_in_the_group_call">Du är i gruppsamtalet</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s och %2$s är i gruppsamtalet</string>
@@ -1504,10 +1533,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Låta %1$s skicka meddelanden till dig? Du kommer inte att få några meddelanden förrän du avblockerar dem.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Få uppdateringar och nyheter från %1$s? Du kommer inte att få några uppdateringar förrän du avblockerar dem.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätt din chatt med denna grupp och dela ditt namn och foto med dess medlemmar?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i denna grupp kommer att inbjudas att gå med.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denna Äldre gruppen kan inte längre användas eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din chatt med %1$s och dela ditt namn och foto?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De vet inte att du har sett deras meddelanden förrän du accepterar.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? Du kommer inte se deras meddelanden förrän du accepterar.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
@@ -1603,8 +1632,8 @@
         <item quantity="other">Du har %1$d försök kvar. Om du får slut på försök kan du skapa en ny PIN-kod. Du kan registrera och använda ditt konto men du kommer att förlora några sparade inställningar som din profilinformation.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registrering - Behöver du hjälp med PIN-kod för Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ange alfanumerisk PIN-kod</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Ange numerisk PIN-kod</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Växla tangentbord</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Skapa din PIN-kod</string>
@@ -1653,6 +1682,8 @@
     <string name="Recipient_you">Du</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">Min Story</string>
+    <!-- Name of recipient for a call link without a name -->
+    <string name="Recipient_signal_call">Signal-samtal</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Blockera</string>
@@ -1827,8 +1858,12 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort för många försök att registrera detta nummer. Försök igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Kontrollera nätverksanslutning och försök igen.</string>
+    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
+    <string name="RegistrationActivity_generic_error">Ett oväntat fel inträffade.</string>
+    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunde inte skicka en verifieringskod via sms. Försök att ta emot din kod via röstsamtal istället.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Det gick inte att begära en verifieringskod. Kontrollera din nätverksanslutning och försök igen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Icke-standardiserat sifferformat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Siffran du angav (%1$s) verkar vara ett icke-standardformat.\n\nMenade du %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
@@ -1845,6 +1880,10 @@
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi måste verifiera att du är en människa.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Signal kunde inte skicka en sms-kod på grund av ett externt fel.</string>
+    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
+    <string name="RegistrationActivity_voice_call">Röstsamtal</string>
+    <!-- Dialog button to cancel the pending action and return to the previous state. -->
+    <string name="RegistrationActivity_cancel">Avbryt</string>
     <string name="RegistrationActivity_next">Nästa</string>
     <string name="RegistrationActivity_continue">Fortsätt</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig integritet.\nVar dig själv i varje meddelande.</string>
@@ -1887,7 +1926,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Inga resultat hittades för \"%1$s\"</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">Chattar</string>
     <string name="SearchFragment_header_contacts">Kontakter</string>
     <string name="SearchFragment_header_messages">Meddelanden</string>
 
@@ -1956,7 +1995,8 @@
     <string name="StickerPackPreviewActivity_untitled">Utan titel</string>
     <string name="StickerPackPreviewActivity_unknown">Okänt</string>
     <string name="StickerPackPreviewActivity_install">Installera</string>
-    <string name="StickerPackPreviewActivity_remove">Ta bort</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Avinstallera</string>
     <string name="StickerPackPreviewActivity_stickers">Stickers</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Det gick inte att läsa in klistermärkespaketet</string>
 
@@ -2100,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att skanna QR-koder men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du måste först utbyta meddelanden för att kunna se %1$ss säkerhetsnummer.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Ett säkerhetsnummer kommer att skapas med den här personen efter att ni skickar meddelanden till varandra.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Läs mer</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2154,7 +2202,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Läs mer</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s i %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d meddelande</item>
+        <item quantity="other">%1$d meddelanden</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chatt</item>
+        <item quantity="other">%1$d chattar</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d chattar</string>
     <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
     <string name="MessageNotifier_locked_message">Låst meddelande</string>
     <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
@@ -2209,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Samtalsstatus</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Kritiska appvarningar</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Ytterligare meddelandeaviseringar</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2216,15 +2278,14 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är otillgängligt när Signal är låst!</string>
     <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
 
-    <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_saved_to">Sparad i %1$s</string>
-    <string name="SaveAttachmentTask_saved">Sparad</string>
+    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
+    <string name="SaveAttachmentTask_saved">Media sparade</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Sök</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Sök efter olästa chattar</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Sök efter chattar, kontakter och meddelanden</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Stäng</string>
@@ -2254,9 +2315,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Enhet inte längre registreread</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Den här enheten är inte längre registrerad. Detta beror troligen på att du registrerade ditt telefonnummer med Signal på en annan enhet.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Registrera om enheten</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Du har loggats ut från Signal på den här enheten.</string>
@@ -2268,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">För att svara på samtalet, ge Signal åtkomst till din mikrofon.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %1$s, ge Signal åtkomst till din mikrofon.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Ge Signal åtkomst till din mikrofon och kamera för att svara på videosamtalet.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Avböjde på en länkad enhet.</string>
@@ -2296,7 +2358,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Högtalare</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Trådbundna hörlurar</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Trådbundet headset</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Trådbundet headset (usb)</string>
@@ -2444,13 +2508,13 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth-behörighet avvisad</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Aktivera behörigheten Enheter i närheten för att använda Bluetooth för att spela in röstmeddelanden.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Öppna inställningar</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Inte nu</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Bläddra till botten</string>
@@ -2575,7 +2639,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Se hela chatten</string>
     <string name="load_more_header__loading">Läser in</string>
 
     <!-- media_overview_activity -->
@@ -2648,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[För att verifiera säkerheten för din ände-till-ände-kryptering med %1$s, jämför siffrorna ovan med deras enhet. Du kan också skanna koden på deras telefon. <a href=\"https://signal.org/redirect/safety-numbers\">Läs mer.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">För att verifiera totalsträckskryptering med %1$s, matcha färgkortet ovan med deras enhet och jämför siffrorna. Om dessa inte matchar, svep och prova det andra paret av säkerhetsnummer. Endast ett par behöver matcha.</string>
     <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
     <string name="verify_display_fragment__successful_match">Lyckad matchning</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Det gick inte att verifiera säkerhetsnumret</string>
     <string name="verify_display_fragment__loading">Hämtar in…</string>
     <string name="verify_display_fragment__mark_as_verified">Markera som verifierat</string>
     <string name="verify_display_fragment__clear_verification">Rensa verifiering</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Säkerhetsnummer uppdateras.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Ändringar av säkerhetsnummer</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Säkerhetsnummer uppdateras under en övergångsperiod för att möjliggöra kommande sekretessfunktioner i Signal.\n\nFör att verifiera säkerhetsnummer, matcha färgkortet med din kontakts enhet. Om dessa inte matchar, svep och prova det andra paret av säkerhetsnummer. Endast ett par behöver matcha.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Behöver du hjälp?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Uppfattat</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
@@ -2697,7 +2774,7 @@
     <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
     <string name="AndroidManifest__linked_devices">Länkade enheter</string>
     <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Arkiverade chattar</string>
     <string name="AndroidManifest_remove_photo">Ta bort bild</string>
 
     <!-- HelpFragment -->
@@ -2854,7 +2931,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalningssäkerhet</string>
     <string name="preferences__payments_beta">Betalningar (Beta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Högsta antal meddelanden i ett chatt</string>
     <string name="preferences__keep_messages">Spara meddelanden</string>
     <string name="preferences__clear_message_history">Rensa meddelandehistorik</string>
     <string name="preferences__linked_devices">Länkade enheter</string>
@@ -2863,6 +2940,28 @@
     <string name="preferences__appearance">Utseende</string>
     <string name="preferences__theme">Tema</string>
     <string name="preferences__chat_color_and_wallpaper">Chattfärg och -bakgrund</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">Appikon</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Avbryt</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Ändra appikon och namn till \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal måste stängas för att ändra appikonen och namn. Aviseringar visar alltid standardikonen för Signal och namn.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Välj en appikon och ett namn som kommer att synas på telefonens startskärm och app-låda. Aviseringar visar alltid standardikonen för Signal och namn. Läs mer</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">Appikoner och namn syns på startskärmen och app-lådan.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Aviseringar visar alltid standardikonen för Signal och namn.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Läs mer</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">Ikon för %1$s</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik som illustrerar var ersättningsappikonen kommer att synas.</string>
     <string name="preferences__disable_pin">Inaktivera PIN-koden</string>
     <string name="preferences__enable_pin">Aktivera PIN-koden</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
@@ -2898,7 +2997,11 @@
     <string name="preferences_storage__delete_older_messages">Ta bort äldre meddelanden?</string>
     <string name="preferences_storage__clear_message_history">Rensa meddelandehistorik?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Detta tar bort all meddelandehistorik och media från din enhet som är äldre än %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Detta kommer att permanent korta ner alla chattar till det senaste meddelandet.</item>
+        <item quantity="other">Detta kommer att permanent korta ner alla chattar till de %1$s senaste meddelandena.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Detta tar bort all meddelandehistorik och media permanent från din enhet.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Är du säker på att du vill ta bort all meddelandehistorik?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meddelandehistorik tas bort permanent. Denna åtgärd kan inte ångras.</string>
@@ -2985,7 +3088,7 @@
     <string name="PaymentsAllActivityFragment__received">Mottagen</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducerar betalningar (beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med fokus på integritet. Aktivera för att komma igång.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med integritetsfokus. Aktivera integreringen för att komma igång.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivera betalningar</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktiverar betalningar…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Återställ betalningskontot</string>
@@ -3240,6 +3343,7 @@
     <string name="conversation_list_search_description">Sök</string>
     <string name="conversation_list__pinned">Nålade</string>
     <string name="conversation_list__chats">Chattar</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara nåla %1$d chattar</string>
 
     <!-- conversation_list_item_view -->
@@ -3248,7 +3352,7 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Ny chatt</string>
     <string name="conversation_list_fragment__open_camera_description">Öppna kameran</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Inga chattar ännu.\nKom igång genom att skriva till en vän.</string>
 
@@ -3265,9 +3369,11 @@
     <string name="conversation__menu_group_settings">Gruppinställningar</string>
     <string name="conversation__menu_leave_group">Lämna grupp</string>
     <string name="conversation__menu_view_all_media">Alla media</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Chattinställningar</string>
     <string name="conversation__menu_add_shortcut">Lägg till på hemskärmen</string>
     <string name="conversation__menu_create_bubble">Skapa bubbla</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Formatera text</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
@@ -3288,7 +3394,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Mottagarlista</string>
     <string name="conversation_group_options__delivery">Leverans</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">Chatt</string>
     <string name="conversation_group_options__broadcast">Sändning</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3445,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Statistik</string>
     <string name="InsightsDashboardFragment__title">Statistik</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollet skyddade automatiskt %1$d %% av dina utgående meddelanden under de senaste %2$d dagarna. Chattar mellan Signal-användare är alltid totalsträckskrypterade.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Sprid ordet</string>
     <string name="InsightsDashboardFragment__not_enough_data">Inte tillräckligt med data</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Din statistikprocentsats beräknas utifrån utgående meddelanden inom det förflutna %1$d dagarna som inte har försvunnit eller tagits bort.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Starta en chatt</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Börja kommunicera säkert och aktivera nya funktioner som går utöver begränsningarna för okrypterade SMS-meddelanden genom att bjuda in fler kontakter att gå med i Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denna statistik skapades lokalt på din enhet och kan bara ses av dig. Den överförs aldrig någonstans.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Krypterade meddelanden</string>
@@ -3363,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Nästa</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Skapa alfanumerisk PIN-kod</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Skapa numerisk PIN-kod</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3425,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ange PIN-koden du skapade för ditt konto. Denna skiljer sig från din SMS-verifieringskod.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ange pinkoden du skapade för ditt konto.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ange alfanumerisk PIN-kod</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Ange numerisk PIN-kod</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Växla tangentbord</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Glömt PIN-kod?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Felaktig PIN-kod</string>
@@ -3466,6 +3577,20 @@
     <string name="KbsMegaphone__create_a_pin">Skapa en PIN-kod</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koder håller information som lagras hos Signal krypterad.</string>
     <string name="KbsMegaphone__create_pin">Skapa PIN-kod</string>
+
+    <!-- CallNotificationBuilder -->
+    <!-- Displayed in a notification when a Signal voice call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Inkommande Signal-röstsamtal</string>
+    <!-- Displayed in a notification when a Signal video call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Inkommande Signal-videosamtal</string>
+    <!-- Displayed in a notification when a Signal group call is ringing -->
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Inkommande Signal-gruppsamtal</string>
+    <!-- Displayed in a notification when a Signal voice call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Pågående Signal-röstsamtal</string>
+    <!-- Displayed in a notification when a Signal video call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Pågående Signal-videosamtal</string>
+    <!-- Displayed in a notification when a Signal group call is in progress -->
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Pågående Signal-gruppsamtal</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transportikon</string>
@@ -3586,21 +3711,21 @@
     <string name="Recipient_unknown">Okänt</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Registrera om konto</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Uppdatera Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Ta bort alla data</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Ta bort alla data?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Detta återställer appen och tar bort alla meddelanden. Appen stängs när den här processen är klar.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Fortsätt</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Avbryt</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Det gick inte att ta bort data</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Överför eller återställ konto</string>
@@ -4263,9 +4388,11 @@
     <string name="HelpSettingsFragment__contact_us">Kontakta oss</string>
     <string name="HelpSettingsFragment__version">Version</string>
     <string name="HelpSettingsFragment__debug_log">Felsökningslogg</string>
+    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
+    <string name="HelpSettingsFragment__licenses">Licenser</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; integritetspolicy</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensierad under GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
@@ -4362,7 +4489,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">App för kontakter hittades inte</string>
     <string name="ConversationSettingsFragment__start_video_call">Starta videosamtal</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Starta röstsamtal?</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Story</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4523,9 @@
     <string name="ConversationSettingsFragment__group_link">Grupplänk</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Lägg till som en kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Avtysta</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chatt tystad till %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Chatt tystad för alltid</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierat telefonnummer till urklipp.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att läsa mer.</string>
@@ -4437,7 +4565,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Meddelande</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Röstsamtal</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Videosamtal</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4788,22 @@
     <string name="MySupportPreference__please_contact_support">Kontakta supporten.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Uppdatera Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Denna version av Signal har upphört att gälla. Uppdatera nu för att fortsätta använda Signal.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Uppdatera</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Avbryt</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Enheten är inte registrerad</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Den här enheten är inte längre registrerad. Registrera om för att fortsätta använda Signal på den här enheten.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Registrera igen</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Avbryt</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-märket har upphört att gälla</string>
@@ -5147,7 +5275,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-förbindelser är personer som du har valt att lita på, antingen genom att:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Startar en chatt</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptera en meddelandeförfrågan</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5791,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Stöd för sms kommer försvinna</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Sms i Signal-appen stöds inte längre efter %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Sms i Signal-appen stöds snart inte längre.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Sms skiljer sig från Signal-meddelanden. <b>Detta påverkar inte krypterade Signal-meddelanden som fortsätter att fungera.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5822,6 +5950,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Rensa formatering</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5866,6 +5996,8 @@
     <string name="CallLogAdapter__return">Återgå</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+    <!-- Status text on call links -->
+    <string name="CallLogAdapter__call_link">Samtalslänk</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5875,7 +6007,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Återgå till samtal</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Röstsamtal</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Gå till chatt</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -5886,6 +6018,23 @@
     <string name="CallContextMenu__delete">Ta bort</string>
 
     <!-- Call Log Fragment -->
+    <!-- Displayed when deleting call history items -->
+    <string name="CallLogFragment__deleting">Tar bort …</string>
+    <!-- Displayed in a toast when a deletion fails for an unknown reason -->
+    <string name="CallLogFragment__deletion_failed">Det gick inte att ta bort.</string>
+    <!-- Displayed as message in error dialog when can\'t delete links -->
+    <plurals name="CallLogFragment__cant_delete_call_link">
+        <item quantity="one">Det går inte att ta bort länken. Kontrollera din anslutning och försök igen.</item>
+        <item quantity="other">Det går inte att ta bort alla samtalslänkar. Kontrollera din anslutning och försök igen.</item>
+    </plurals>
+    <!-- Snackbar text after clearing the call history -->
+    <string name="CallLogFragment__cleared_call_history">Samtalshistoriken har rensats</string>
+    <!-- Dialog title to clear all call events -->
+    <string name="CallLogFragment__clear_call_history_question">Rensa samtalshistorik?</string>
+    <!-- Dialog body to clear all call events -->
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Detta kommer att radera all samtalshistorik permanent</string>
+    <!-- Action bar menu item to delete all call events -->
+    <string name="CallLogFragment__clear_call_history">Rensa samtalshistorik</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filtrera missade samtal</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -5900,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Filtrerad efter missade</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Markera alla</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Ta bort</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Ta bort %1$d samtal?</item>
+        <item quantity="other">Ta bort %1$d samtal?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Ta bort för mig</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d samtal raderat</item>
@@ -5999,41 +6146,63 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redigeringshistorik</string>
+    <!-- Title of dialog shown alerting user that edit message is in beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_title">Endast Signal beta</string>
+    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
+    <string name="SendingEditMessageBetaOnlyDialog_body">Redigering av meddelanden är endast tillgängligt för betaanvändare av Signal. Om du redigerar ett meddelande kommer det bara att vara synligt för personer som använder den senaste betaversionen av Signal.</string>
+    <!-- Button to cancel sending edit message as it is beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Avbryt</string>
+    <!-- Button to continue sending edit message despite it being beta only -->
+    <string name="SendingEditMessageBetaOnlyDialog_send">Skicka</string>
+
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Samtalsuppgifter</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Lägg till samtalsnamn</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Godkänn alla medlemmar</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Dela länk</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Ta bort samtalslänk</string>
+    <!-- Displayed whenever a name change, revocation, etc, fails. -->
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">Det gick inte att spara ändringar. Kontrollera nätverksanslutningen och försök igen.</string>
+    <!-- Displayed as title in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__delete_link">Radera länk?</string>
+    <!-- Displayed as body in dialog when user attempts to delete the link -->
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Den här länken fungerar inte längre för alla som har den.</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Dela</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Färg</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Dela bara din QR-kod och länk med personer du litar på. När de delas kommer andra att kunna se ditt användarnamn och starta en chatt med dig.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Användarnamn kopierat</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Länken kopierades</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Återställ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Klar</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Kod</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Skanna</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Skanna QR-koden på din kontakts enhet.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Färg</string>
+    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
+    <string name="UsernameLinkSettings_qr_result_invalid">QR-koden är ogiltig.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
+    <string name="UsernameLinkSettings_qr_result_not_found">En användare med användarnamnet %1$s kunde inte hittas.</string>
+    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
+    <string name="UsernameLinkSettings_qr_result_network_error">Stött på ett nätverksfel. Försök igen.</string>
+
 
     <!-- EOF -->
 </resources>

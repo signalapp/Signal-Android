@@ -43,4 +43,8 @@ public class Stub<T extends View> {
     }
   }
 
+  public boolean isVisible() {
+    return getVisibility() == View.VISIBLE;
+  }
+
 }

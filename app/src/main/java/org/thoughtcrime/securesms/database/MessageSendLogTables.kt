@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
+import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
@@ -330,24 +332,28 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     if (!FeatureFlags.retryReceipts()) return
 
     val db = databaseHelper.signalWritableDatabase
-
     db.beginTransaction()
     try {
       val query = """
+        DELETE FROM ${MslRecipientTable.TABLE_NAME} WHERE
         ${MslRecipientTable.RECIPIENT_ID} = ? AND
         ${MslRecipientTable.DEVICE} = ? AND
         ${MslRecipientTable.PAYLOAD_ID} IN (
           SELECT ${MslPayloadTable.ID} 
           FROM ${MslPayloadTable.TABLE_NAME} 
           WHERE ${MslPayloadTable.DATE_SENT} IN (${dateSent.joinToString(",")}) 
-        )"""
+        )
+        RETURNING ${MslRecipientTable.PAYLOAD_ID}"""
       val args = SqlUtil.buildArgs(recipientId, device)
 
-      db.delete(MslRecipientTable.TABLE_NAME, query, args)
+      val payloadIds = db.rawQuery(query, args).readToList {
+        it.requireLong(MslRecipientTable.PAYLOAD_ID)
+      }
 
-      val cleanQuery = "${MslPayloadTable.ID} NOT IN (SELECT ${MslRecipientTable.PAYLOAD_ID} FROM ${MslRecipientTable.TABLE_NAME})"
-      db.delete(MslPayloadTable.TABLE_NAME, cleanQuery, null)
-
+      val queries = SqlUtil.buildCollectionQuery(MslPayloadTable.ID, payloadIds)
+      queries.forEach {
+        db.delete(MslPayloadTable.TABLE_NAME, "${it.where} AND ${MslPayloadTable.ID} NOT IN (SELECT ${MslRecipientTable.PAYLOAD_ID} FROM ${MslRecipientTable.TABLE_NAME})", it.whereArgs)
+      }
       db.setTransactionSuccessful()
     } finally {
       db.endTransaction()

@@ -100,7 +100,7 @@ import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.reminder.CdsPermanentErrorReminder;
-import org.thoughtcrime.securesms.components.reminder.CdsTemporyErrorReminder;
+import org.thoughtcrime.securesms.components.reminder.CdsTemporaryErrorReminder;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
@@ -141,7 +141,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
 import org.thoughtcrime.securesms.main.SearchBinder;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
@@ -170,7 +170,6 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -568,8 +567,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     ConversationFilterRequest request             = viewModel.getConversationFilterRequest();
     boolean                   isChatFilterEnabled = request != null && request.getFilter() == ConversationFilter.UNREAD;
 
-    menu.findItem(R.id.menu_filter_unread_chats).setVisible(FeatureFlags.chatFilters() && !isChatFilterEnabled);
-    menu.findItem(R.id.menu_clear_unread_filter).setVisible(FeatureFlags.chatFilters() && isChatFilterEnabled);
+    menu.findItem(R.id.menu_filter_unread_chats).setVisible(!isChatFilterEnabled);
+    menu.findItem(R.id.menu_clear_unread_filter).setVisible(isChatFilterEnabled);
   }
 
   @Override
@@ -699,7 +698,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == SmsExportMegaphoneActivity.REQUEST_CODE && SignalStore.misc().getSmsExportPhase().isFullscreen()) {
+    if (requestCode == SmsExportMegaphoneActivity.REQUEST_CODE) {
       ApplicationDependencies.getMegaphoneRepository().markSeen(Megaphones.Event.SMS_EXPORT);
       if (resultCode == RESULT_CANCELED) {
         Snackbar.make(fab, R.string.ConversationActivity__you_will_be_reminded_again_soon, Snackbar.LENGTH_LONG).show();
@@ -708,7 +707,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       }
     }
 
-    if (resultCode == RESULT_OK && requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
+    if (resultCode == RESULT_OK && requestCode == CreateSvrPinActivity.REQUEST_NEW_PIN) {
       Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
     }
@@ -1048,22 +1047,22 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       if (ExpiredBuildReminder.isEligible()) {
         return Optional.of(new ExpiredBuildReminder(context));
       } else if (UnauthorizedReminder.isEligible(context)) {
-        return Optional.of(new UnauthorizedReminder(context));
+        return Optional.of(new UnauthorizedReminder());
       } else if (ServiceOutageReminder.isEligible(context)) {
         ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
-        return Optional.of(new ServiceOutageReminder(context));
+        return Optional.of(new ServiceOutageReminder());
       } else if (OutdatedBuildReminder.isEligible()) {
         return Optional.of(new OutdatedBuildReminder(context));
-      } else if (PushRegistrationReminder.isEligible(context)) {
+      } else if (PushRegistrationReminder.isEligible()) {
         return Optional.of((new PushRegistrationReminder(context)));
       } else if (DozeReminder.isEligible(context)) {
         return Optional.of(new DozeReminder(context));
-      } else if (CdsTemporyErrorReminder.isEligible()) {
-        return Optional.of(new CdsTemporyErrorReminder(context));
+      } else if (CdsTemporaryErrorReminder.isEligible()) {
+        return Optional.of(new CdsTemporaryErrorReminder());
       } else if (CdsPermanentErrorReminder.isEligible()) {
-        return Optional.of(new CdsPermanentErrorReminder(context));
+        return Optional.of(new CdsPermanentErrorReminder());
       } else if (UsernameOutOfSyncReminder.isEligible()) {
-        return Optional.of(new UsernameOutOfSyncReminder(context));
+        return Optional.of(new UsernameOutOfSyncReminder());
       } else {
         return Optional.<Reminder>empty();
       }
@@ -1324,7 +1323,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (cameraFab != null) {
       ViewUtil.fadeOut(cameraFab, fadeDuration);
     }
-    if (megaphoneContainer.resolved()) {
+    if (megaphoneContainer != null && megaphoneContainer.resolved()) {
       ViewUtil.fadeOut(megaphoneContainer.get(), fadeDuration);
     }
   }
@@ -1336,7 +1335,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (cameraFab != null) {
       ViewUtil.fadeIn(cameraFab, fadeDuration);
     }
-    if (megaphoneContainer.resolved()) {
+    if (megaphoneContainer != null && megaphoneContainer.resolved()) {
       ViewUtil.fadeIn(megaphoneContainer.get(), fadeDuration);
     }
   }

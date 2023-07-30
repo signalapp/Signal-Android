@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -84,9 +85,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDevicePniIdentityUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
@@ -121,6 +120,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -133,8 +133,8 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -522,11 +522,11 @@ public class MessageContentProcessor {
   private boolean handleGv2PreProcessing(@NonNull GroupId.V2 groupId, @NonNull SignalServiceContent content, @NonNull SignalServiceGroupV2 groupV2, @NonNull Recipient senderRecipient)
       throws IOException, GroupChangeBusyException
   {
-    GroupTable            groupDatabase = SignalDatabase.groups();
-    Optional<GroupRecord> possibleGv1   = groupDatabase.getGroupV1ByExpectedV2(groupId);
+    GroupTable  groupDatabase = SignalDatabase.groups();
+    GroupRecord possibleGv1   = GroupsV1MigratedCache.getV1GroupByV2Id(groupId);
 
-    if (possibleGv1.isPresent()) {
-      GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
+    if (possibleGv1 != null) {
+      GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.getId().requireV1());
     }
 
     if (!updateGv2GroupFromServerOrP2PChange(content, groupV2)) {
@@ -793,7 +793,7 @@ public class MessageContentProcessor {
       insertResult = smsDatabase.insertMessageInbox(incomingEndSessionMessage);
     } else {
       smsDatabase.markAsEndSession(smsMessageId.get());
-      insertResult = Optional.of(new InsertResult(smsMessageId.get(), smsDatabase.getThreadIdForMessage(smsMessageId.get())));
+      insertResult = Optional.of(new InsertResult(smsMessageId.get(), smsDatabase.getThreadIdForMessage(smsMessageId.get()), null));
     }
 
     if (insertResult.isPresent()) {
@@ -1004,6 +1004,11 @@ public class MessageContentProcessor {
 
     if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
       Log.w(TAG, "Reaction text is not a valid emoji! Ignoring the message.");
+      return null;
+    }
+
+    if (reaction.getTargetAuthor().isUnknown()) {
+      Log.w(TAG, "Invalid author UUID!");
       return null;
     }
 
@@ -1290,7 +1295,7 @@ public class MessageContentProcessor {
 
     log(envelopeTimestamp, "Synchronize call event call: " + callId);
 
-    CallTable.Call call = SignalDatabase.calls().getCallById(callId, new CallTable.CallConversationId.Peer(recipientId));
+    CallTable.Call call = SignalDatabase.calls().getCallById(callId, recipientId);
     if (call != null) {
       boolean typeMismatch      = call.getType() != type;
       boolean directionMismatch = call.getDirection() != direction;
@@ -1331,11 +1336,29 @@ public class MessageContentProcessor {
       return;
     }
 
-    GroupId                      groupId            = GroupId.push(callEvent.getConversationId().toByteArray());
-    RecipientId                  recipientId        = Recipient.externalGroupExact(groupId).getId();
-    CallTable.CallConversationId callConversationId = new CallTable.CallConversationId.Peer(recipientId);
+    RecipientId recipientId;
+    switch (type) {
+      case AD_HOC_CALL:
+        CallLinkRoomId callLinkRoomId = CallLinkRoomId.fromBytes(callEvent.getConversationId().toByteArray());
 
-    CallTable.Call call = SignalDatabase.calls().getCallById(callId, callConversationId);
+        recipientId = SignalDatabase.recipients().getByCallLinkRoomId(callLinkRoomId).orElse(null);
+        break;
+      case GROUP_CALL:
+        GroupId groupId = GroupId.push(callEvent.getConversationId().toByteArray());
+
+        recipientId = Recipient.externalGroupExact(groupId).getId();
+        break;
+      default:
+        warn(envelopeTimestamp, "Group/Ad-hoc call event has a bad type " + type + ". Ignoring.");
+        return;
+    }
+
+    if (recipientId == null) {
+      Log.w(TAG, "Could not find a matching group or ad-hoc call. Dropping sync event.");
+      return;
+    }
+
+    CallTable.Call call = SignalDatabase.calls().getCallById(callId, recipientId);
     if (call != null) {
       if (call.getType() != type) {
         warn(envelopeTimestamp, "Group/Ad-hoc call event type mismatch, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId());
@@ -1348,7 +1371,7 @@ public class MessageContentProcessor {
           break;
         case ACCEPTED:
           if (call.getTimestamp() < callEvent.getTimestamp()) {
-            SignalDatabase.calls().setTimestamp(call.getCallId(), callConversationId, callEvent.getTimestamp());
+            SignalDatabase.calls().setTimestamp(call.getCallId(), recipientId, callEvent.getTimestamp());
           }
 
           if (callEvent.getDirection() == SyncMessage.CallEvent.Direction.INCOMING) {
@@ -1485,10 +1508,6 @@ public class MessageContentProcessor {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
     }
 
-    if (message.isGroupsRequest()) {
-      ApplicationDependencies.getJobManager().add(new MultiDeviceGroupUpdateJob());
-    }
-
     if (message.isBlockedListRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     }
@@ -1503,10 +1522,6 @@ public class MessageContentProcessor {
 
     if (message.isKeysRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceKeysUpdateJob());
-    }
-
-    if (message.isPniIdentityRequest()) {
-      ApplicationDependencies.getJobManager().add(new MultiDevicePniIdentityUpdateJob());
     }
   }
 
@@ -3267,7 +3282,9 @@ public class MessageContentProcessor {
     List<Mention> mentions = new ArrayList<>(signalServiceMentions.size());
 
     for (SignalServiceDataMessage.Mention mention : signalServiceMentions) {
-      mentions.add(new Mention(Recipient.externalPush(mention.getServiceId()).getId(), mention.getStart(), mention.getLength()));
+      if (!mention.getServiceId().isUnknown()) {
+        mentions.add(new Mention(Recipient.externalPush(mention.getServiceId()).getId(), mention.getStart(), mention.getLength()));
+      }
     }
 
     return mentions;

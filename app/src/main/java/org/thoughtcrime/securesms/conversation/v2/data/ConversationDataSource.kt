@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -31,12 +32,20 @@ import org.whispersystems.signalservice.api.push.ServiceId
 private typealias ConversationElement = MappingModel<*>
 
 sealed interface ConversationElementKey {
+
+  fun requireMessageId(): Long = error("Not implemented for this key")
+
   companion object {
     fun forMessage(id: Long): ConversationElementKey = MessageBackedKey(id)
+    val threadHeader: ConversationElementKey = ThreadHeaderKey
   }
 }
 
-private data class MessageBackedKey(val id: Long) : ConversationElementKey
+private data class MessageBackedKey(val id: Long) : ConversationElementKey {
+  override fun requireMessageId(): Long = id
+}
+
+private object ThreadHeaderKey : ConversationElementKey
 
 /**
  * ConversationDataSource for V2. Assumes that ThreadId is never -1L.
@@ -46,11 +55,13 @@ class ConversationDataSource(
   private val threadId: Long,
   private val messageRequestData: ConversationData.MessageRequestData,
   private val showUniversalExpireTimerUpdate: Boolean,
-  private var baseSize: Int
+  private var baseSize: Int,
+  private val messageRequestRepository: MessageRequestRepository = MessageRequestRepository(context)
 ) : PagedDataSource<ConversationElementKey, ConversationElement> {
 
   companion object {
     private val TAG = Log.tag(ConversationDataSource::class.java)
+    private const val THREAD_HEADER_COUNT = 1
   }
 
   init {
@@ -64,6 +75,7 @@ class ConversationDataSource(
   override fun size(): Int {
     val startTime = System.currentTimeMillis()
     val size: Int = getSizeInternal() +
+      THREAD_HEADER_COUNT +
       messageRequestData.includeWarningUpdateMessage().toInt() +
       messageRequestData.isHidden.toInt() +
       showUniversalExpireTimerUpdate.toInt()
@@ -85,7 +97,7 @@ class ConversationDataSource(
     return SignalDatabase.messages.getMessageCountForThread(threadId)
   }
 
-  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<ConversationElement> {
+  override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<ConversationElement> {
     val stopwatch = Stopwatch("load($start, $length), thread $threadId")
     var records: MutableList<MessageRecord> = ArrayList(length)
     val mentionHelper = MentionHelper()
@@ -96,30 +108,33 @@ class ConversationDataSource(
     val callHelper = CallHelper()
     val referencedIds = hashSetOf<ServiceId>()
 
-    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong())).forEach { record ->
-      if (cancellationSignal.isCanceled) {
-        return@forEach
+    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong()))
+      .use { reader ->
+        reader.forEach { record ->
+          if (cancellationSignal.isCanceled) {
+            return@forEach
+          }
+
+          records.add(record)
+          mentionHelper.add(record)
+          quotedHelper.add(record)
+          reactionHelper.add(record)
+          attachmentHelper.add(record)
+          paymentHelper.add(record)
+          callHelper.add(record)
+
+          val updateDescription = record.getUpdateDisplayBody(context, null)
+          if (updateDescription != null) {
+            referencedIds.addAll(updateDescription.mentioned)
+          }
+        }
       }
 
-      records.add(record)
-      mentionHelper.add(record)
-      quotedHelper.add(record)
-      reactionHelper.add(record)
-      attachmentHelper.add(record)
-      paymentHelper.add(record)
-      callHelper.add(record)
-
-      val updateDescription = record.getUpdateDisplayBody(context, null)
-      if (updateDescription != null) {
-        referencedIds.addAll(updateDescription.mentioned)
-      }
-    }
-
-    if (messageRequestData.includeWarningUpdateMessage() && (start + length >= size())) {
+    if (messageRequestData.includeWarningUpdateMessage() && (start + length >= totalSize)) {
       records.add(NoGroupsInCommon(threadId, messageRequestData.isGroup))
     }
 
-    if (messageRequestData.isHidden && (start + length >= size())) {
+    if (messageRequestData.isHidden && (start + length >= totalSize)) {
       records.add(RemovedContactHidden(threadId))
     }
 
@@ -174,12 +189,26 @@ class ConversationDataSource(
     }
 
     stopwatch.split("conversion")
+
+    val threadHeaderIndex = totalSize - THREAD_HEADER_COUNT
+
+    val threadHeaders: List<ConversationElement> = if (start + length > threadHeaderIndex) {
+      listOf(loadThreadHeader())
+    } else {
+      emptyList()
+    }
+
+    stopwatch.split("header")
     stopwatch.stop(TAG)
 
-    return messages
+    return if (threadHeaders.isNotEmpty()) messages + threadHeaders else messages
   }
 
   override fun load(key: ConversationElementKey): ConversationElement? {
+    if (key is ThreadHeaderKey) {
+      return loadThreadHeader()
+    }
+
     if (key !is MessageBackedKey) {
       Log.w(TAG, "Loading non-message related id $key")
       return null
@@ -249,8 +278,13 @@ class ConversationDataSource(
   override fun getKey(conversationMessage: ConversationElement): ConversationElementKey {
     return when (conversationMessage) {
       is ConversationMessageElement -> MessageBackedKey(conversationMessage.conversationMessage.messageRecord.id)
+      is ThreadHeader -> ThreadHeaderKey
       else -> throw AssertionError()
     }
+  }
+
+  private fun loadThreadHeader(): ThreadHeader {
+    return ThreadHeader(messageRequestRepository.getRecipientInfo(threadRecipient.id, threadId))
   }
 
   private fun ConversationMessage.toMappingModel(): MappingModel<*> {

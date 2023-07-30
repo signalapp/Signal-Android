@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.InsetAwareConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.InputAwareConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
-        android:id="@+id/conversation_video_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/conversation_item_recycler"
-        app:layout_constraintEnd_toEndOf="@+id/conversation_item_recycler"
-        app:layout_constraintStart_toStartOf="@+id/conversation_item_recycler"
-        app:layout_constraintTop_toTopOf="@+id/conversation_item_recycler" />
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    app:animateKeyboardChanges="true">
 
     <include layout="@layout/system_ui_guidelines" />
 
@@ -34,19 +27,67 @@
         tools:alpha="0.2f"
         tools:visibility="visible" />
 
-    <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
-        android:id="@+id/conversation_item_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbars="vertical"
-        android:splitMotionEvents="false"
-        app:layout_constraintTop_toTopOf="parent"
+    <FrameLayout
+        android:id="@+id/conversation_video_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/conversation_item_recycler"
+        app:layout_constraintStart_toStartOf="@+id/conversation_item_recycler"
+        app:layout_constraintTop_toTopOf="@+id/conversation_item_recycler" />
+
+    <FrameLayout
+        android:id="@+id/conversation_item_recycler_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
-        tools:itemCount="20"
-        tools:listitem="@layout/conversation_item_sent_text_only" />
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
+            android:id="@+id/conversation_item_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbars="vertical"
+            android:splitMotionEvents="false"
+            tools:itemCount="20"
+            tools:listitem="@layout/conversation_item_sent_text_only" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/scroll_date_header"
+        style="@style/Signal.Text.BodySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sticky_date_header_background"
+        android:elevation="9dp"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/conversation_banner_frame"
+        tools:text="March 1, 2015"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/toolbar_background"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@id/status_bar_guideline" />
 
     <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
         android:id="@+id/toolbar"
@@ -97,6 +138,52 @@
 
     </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
+    <FrameLayout
+        android:id="@+id/conversation_banner_frame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipChildren="true"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <org.thoughtcrime.securesms.conversation.v2.ConversationBannerView
+            android:id="@+id/conversation_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ViewStub
+                android:id="@+id/voice_note_player_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/voice_note_player"
+                android:layout="@layout/voice_note_player_stub" />
+
+            <ViewStub
+                android:id="@+id/unverified_banner_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/unverified_banner"
+                android:layout="@layout/conversation_activity_unverified_banner_stub" />
+
+            <ViewStub
+                android:id="@+id/reminder_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/reminder"
+                android:layout="@layout/conversation_activity_reminderview_stub" />
+
+            <ViewStub
+                android:id="@+id/review_banner_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/review_banner"
+                android:layout="@layout/review_banner_view" />
+
+        </org.thoughtcrime.securesms.conversation.v2.ConversationBannerView>
+
+    </FrameLayout>
+
     <org.thoughtcrime.securesms.components.ConversationScrollToView
         android:id="@+id/scroll_to_mention"
         android:layout_width="wrap_content"
@@ -106,7 +193,7 @@
         android:visibility="invisible"
         app:cstv_scroll_button_src="@drawable/ic_at_20"
         app:layout_constraintBottom_toTopOf="@id/scroll_to_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_goneMarginBottom="20dp"
         tools:visibility="visible" />
 
@@ -119,22 +206,148 @@
         android:visibility="invisible"
         app:cstv_scroll_button_src="@drawable/ic_chevron_down_20"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         tools:visibility="visible" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mention_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_bottom_panel_barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel" />
+        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub,attachment_editor,conversation_disabled_input,scheduled_messages_stub,scheduled_messages,conversation_search_bottom_bar" />
+
+    <ViewStub
+        android:id="@+id/attachment_editor_stub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/attachment_editor"
+        android:layout="@layout/conversation_activity_attachment_editor_stub"
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_panel"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <ViewStub
+        android:id="@+id/scheduled_messages_stub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/scheduled_messages"
+        android:layout="@layout/conversation_activity_scheduled_messages_stub"
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_panel"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 
     <include
         android:id="@+id/conversation_input_panel"
         layout="@layout/conversation_input_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_space_left"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <include
+        android:id="@+id/conversation_search_bottom_bar"
+        layout="@layout/conversation_search_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <org.thoughtcrime.securesms.conversation.v2.DisabledInputView
+        android:id="@+id/conversation_disabled_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/conversation_input_panel_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="emoji_search_container,keyboard_guideline,navigation_bar_guideline" />
+
+    <TextView
+        android:id="@+id/conversation_input_space_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:windowBackground"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_input_panel_barrier"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        tools:text="160/160 (1)"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/compose_divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:alpha="1"
+        android:background="@drawable/compose_divider_background"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
+        tools:visibility="visible" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/input_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@id/keyboard_guideline" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/emoji_search_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <FrameLayout
+        android:id="@+id/reactions_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color"
+        android:visibility="gone" />
+
+    <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+        android:id="@+id/conversation_bottom_action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@+id/parent_start_guideline" />
 
-</org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>
+    <ViewStub
+        android:id="@+id/conversation_reaction_scrubber_stub"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:inflatedId="@+id/conversation_reaction_scrubber"
+        android:layout="@layout/conversation_reaction_scrubber"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@+id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@+id/status_bar_guideline" />
+
+</org.thoughtcrime.securesms.components.InputAwareConstraintLayout>

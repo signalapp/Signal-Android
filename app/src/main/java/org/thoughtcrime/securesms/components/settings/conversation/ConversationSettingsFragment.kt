@@ -26,6 +26,7 @@ import app.cash.exhaustive.Exhaustive
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListExtraCompat
@@ -206,7 +207,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
-    return object : Material3OnScrollHelper(requireActivity(), toolbar!!) {
+    return object : Material3OnScrollHelper(requireActivity(), toolbar!!, viewLifecycleOwner) {
       override val inactiveColorSet = ColorSet(
         toolbarColorRes = R.color.signal_colorBackground_0,
         statusBarColorRes = R.color.signal_colorBackground
@@ -387,7 +388,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           enabled = !state.isDeprecatedOrUnregistered,
           onMessageClick = {
             val intent = ConversationIntents
-              .createBuilder(requireContext(), state.recipient.id, state.threadId)
+              .createBuilderSync(requireContext(), state.recipient.id, state.threadId)
               .build()
 
             startActivity(intent)
@@ -432,12 +433,15 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             }
           },
           onSearchClick = {
-            val intent = ConversationIntents.createBuilder(requireContext(), state.recipient.id, state.threadId)
-              .withSearchOpen(true)
-              .build()
+            lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), state.recipient.id, state.threadId)
+              .subscribeBy { builder ->
+                val intent = builder
+                  .withSearchOpen(true)
+                  .build()
 
-            startActivity(intent)
-            requireActivity().finish()
+                startActivity(intent)
+                requireActivity().finish()
+              }
           }
         )
       )
@@ -539,16 +543,14 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           }
         }
 
-        if (recipientState.identityRecord != null) {
-          clickPref(
-            title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
-            icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
-            isEnabled = !state.isDeprecatedOrUnregistered,
-            onClick = {
-              startActivity(VerifyIdentityActivity.newIntent(requireActivity(), recipientState.identityRecord))
-            }
-          )
-        }
+        clickPref(
+          title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
+          icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
+          isEnabled = !state.isDeprecatedOrUnregistered,
+          onClick = {
+            VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), recipientState.identityRecord)
+          }
+        )
       }
 
       if (state.sharedMedia != null && state.sharedMedia.count > 0) {

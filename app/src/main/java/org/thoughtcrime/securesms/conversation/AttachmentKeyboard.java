@@ -12,9 +12,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Stream;
-import com.annimon.stream.function.Predicate;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -23,6 +20,8 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.InputView {
 
@@ -62,6 +61,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     this.permissionButton = findViewById(R.id.attachment_keyboard_permission_button);
 
     RecyclerView buttonList = findViewById(R.id.attachment_keyboard_button_list);
+    buttonList.setItemAnimator(null);
 
     mediaAdapter  = new AttachmentKeyboardMediaAdapter(GlideApp.with(this), media -> {
       if (callback != null) {
@@ -94,7 +94,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     if (buttonPredicate == null) {
       buttonAdapter.setButtons(DEFAULT_BUTTONS);
     } else {
-      buttonAdapter.setButtons(Stream.of(DEFAULT_BUTTONS).filter(buttonPredicate).toList());
+      buttonAdapter.setButtons(DEFAULT_BUTTONS.stream().filter(buttonPredicate).collect(Collectors.toList()));
     }
   }
 

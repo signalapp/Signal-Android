@@ -64,7 +64,9 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
                                .changeLocalDeviceState()
                                .build();
 
-    webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer);
+    boolean isRemoteVideoOffer = currentState.getCallSetupState(activePeer).isRemoteVideoOffer();
+
+    webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer, isRemoteVideoOffer);
     webRtcInteractor.unregisterPowerButtonReceiver();
 
     try {

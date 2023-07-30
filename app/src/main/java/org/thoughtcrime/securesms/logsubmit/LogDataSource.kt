@@ -24,7 +24,7 @@ class LogDataSource(
     return prefixLines.size + logDatabase.getLogCountBeforeTime(untilTime)
   }
 
-  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<LogLine> {
+  override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<LogLine> {
     if (start + length < prefixLines.size) {
       return prefixLines.subList(start, start + length)
     } else if (start < prefixLines.size) {

@@ -1,17 +1,24 @@
 package org.thoughtcrime.securesms.calls.log
 
+import android.annotation.SuppressLint
 import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.paging.ObservablePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.rx.RxStore
+import java.util.concurrent.TimeUnit
 
 /**
  * ViewModel for call log management.
@@ -31,12 +38,14 @@ class CallLogViewModel(
 
   val controller = ProxyPagingController<CallLogRow.Id>()
   val data: Flowable<MutableList<CallLogRow?>> = pagedData.switchMap { it.data.toFlowable(BackpressureStrategy.LATEST) }
-  val selectedAndStagedDeletion: Flowable<Pair<CallLogSelectionState, CallLogStagedDeletion?>> = callLogStore
-    .stateFlowable
-    .map { it.selectionState to it.stagedDeletion }
+  val selected: Flowable<CallLogSelectionState> = callLogStore.stateFlowable.map { it.selectionState }
+
+  private val _isEmpty: BehaviorProcessor<Boolean> = BehaviorProcessor.createDefault(false)
+  val isEmpty: Boolean get() = _isEmpty.value ?: false
 
   val totalCount: Flowable<Int> = Flowable.combineLatest(distinctQueryFilterPairs, data) { a, _ -> a }
     .map { (query, filter) -> callLogRepository.getCallsCount(query, filter) }
+    .doOnNext { _isEmpty.onNext(it <= 0) }
 
   val selectionStateSnapshot: CallLogSelectionState
     get() = callLogStore.state.selectionState
@@ -70,10 +79,25 @@ class CallLogViewModel(
     disposables += callLogRepository.listenForChanges().subscribe {
       controller.onDataInvalidated()
     }
+
+    if (FeatureFlags.adHocCalling()) {
+      disposables += Observable
+        .interval(30, TimeUnit.SECONDS, Schedulers.computation())
+        .flatMapCompletable { callLogRepository.peekCallLinks() }
+        .subscribe()
+
+      disposables += ApplicationDependencies
+        .getSignalCallManager()
+        .peekInfoCache
+        .observeOn(Schedulers.computation())
+        .distinctUntilChanged()
+        .subscribe {
+          controller.onDataInvalidated()
+        }
+    }
   }
 
   override fun onCleared() {
-    commitStagedDeletion()
     disposables.dispose()
   }
 
@@ -96,49 +120,52 @@ class CallLogViewModel(
   }
 
   @MainThread
-  fun stageCallDeletion(call: CallLogRow.Call) {
-    callLogStore.state.stagedDeletion?.commit()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = CallLogStagedDeletion(
-          it.filter,
-          CallLogSelectionState.empty().toggle(call.id),
-          callLogRepository
-        )
-      )
-    }
+  fun stageCallDeletion(call: CallLogRow): CallLogStagedDeletion {
+    return CallLogStagedDeletion(
+      callLogStore.state.filter,
+      CallLogSelectionState.empty().toggle(call.id),
+      callLogRepository
+    )
   }
 
   @MainThread
-  fun stageSelectionDeletion() {
-    callLogStore.state.stagedDeletion?.commit()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = CallLogStagedDeletion(
-          it.filter,
-          it.selectionState,
-          callLogRepository
-        )
-      )
-    }
+  fun stageSelectionDeletion(): CallLogStagedDeletion {
+    return CallLogStagedDeletion(
+      callLogStore.state.filter,
+      callLogStore.state.selectionState,
+      callLogRepository
+    )
   }
 
-  fun commitStagedDeletion() {
-    callLogStore.state.stagedDeletion?.commit()
+  fun stageDeleteAll(): CallLogStagedDeletion {
     callLogStore.update {
       it.copy(
-        stagedDeletion = null
+        selectionState = CallLogSelectionState.empty()
       )
     }
+
+    return CallLogStagedDeletion(
+      callLogStore.state.filter,
+      CallLogSelectionState.selectAll(),
+      callLogRepository
+    )
   }
 
-  fun cancelStagedDeletion() {
-    callLogStore.state.stagedDeletion?.cancel()
-    callLogStore.update {
-      it.copy(
-        stagedDeletion = null
-      )
-    }
+  @SuppressLint("CheckResult")
+  fun delete(stagedDeletion: CallLogStagedDeletion): Maybe<CallLogDeletionResult> {
+    return stagedDeletion.commit()
+      .doOnSubscribe {
+        clearSelected()
+      }
+      .map { failedRevocations ->
+        if (failedRevocations == 0) {
+          CallLogDeletionResult.Success
+        } else {
+          CallLogDeletionResult.FailedToRevoke(failedRevocations)
+        }
+      }
+      .onErrorReturn { CallLogDeletionResult.UnknownFailure(it) }
+      .toMaybe()
   }
 
   fun clearSelected() {
@@ -158,7 +185,6 @@ class CallLogViewModel(
   private data class CallLogState(
     val query: String? = null,
     val filter: CallLogFilter = CallLogFilter.ALL,
-    val selectionState: CallLogSelectionState = CallLogSelectionState.empty(),
-    val stagedDeletion: CallLogStagedDeletion? = null
+    val selectionState: CallLogSelectionState = CallLogSelectionState.empty()
   )
 }

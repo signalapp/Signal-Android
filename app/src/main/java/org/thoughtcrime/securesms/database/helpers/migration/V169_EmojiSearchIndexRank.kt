@@ -7,6 +7,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
  * We want to add a new `rank` column to the emoji_search table, and we no longer use it as an FTS
  * table, so we can get rid of that too.
  */
+@Suppress("ClassName")
 object V169_EmojiSearchIndexRank : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

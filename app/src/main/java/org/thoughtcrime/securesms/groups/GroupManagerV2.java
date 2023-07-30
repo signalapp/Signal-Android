@@ -458,7 +458,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    void leaveGroup()
+    void leaveGroup(boolean sendToMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       GroupRecord    groupRecord    = groupDatabase.requireGroup(groupId);
@@ -483,14 +483,14 @@ final class GroupManagerV2 {
           throw new AssertionError(e);
         }
       } else if (selfMember.isPresent()) {
-        ejectMember(serviceId, true, false);
+        ejectMember(serviceId, true, false, sendToMembers);
       } else {
         Log.i(TAG, "Unable to leave group we are not pending or in");
       }
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId serviceId, boolean allowWhenBlocked, boolean ban)
+    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull ServiceId serviceId, boolean allowWhenBlocked, boolean ban, boolean sendToMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       return commitChangeWithConflictResolution(selfAci,
@@ -498,7 +498,8 @@ final class GroupManagerV2 {
                                                                                           ban,
                                                                                           ban ? v2GroupProperties.getDecryptedGroup().getBannedMembersList()
                                                                                               : Collections.emptyList()),
-                                                allowWhenBlocked);
+                                                allowWhenBlocked,
+                                                sendToMembers);
     }
 
     @WorkerThread
@@ -797,11 +798,19 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    void updateLocalToServerRevision(int revision, long timestamp, @Nullable byte[] signedGroupChange)
+    GroupsV2StateProcessor.GroupUpdateResult updateLocalToServerRevision(int revision, long timestamp, @Nullable GroupSecretParams groupSecretParams, @Nullable byte[] signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
-      new GroupsV2StateProcessor(context).forGroup(serviceIds, groupMasterKey)
-                                         .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange));
+      return new GroupsV2StateProcessor(context).forGroup(serviceIds, groupMasterKey, groupSecretParams)
+                                                .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange));
+    }
+
+    @WorkerThread
+    GroupsV2StateProcessor.GroupUpdateResult updateLocalToServerRevision(int revision, long timestamp, @NonNull Optional<GroupRecord> localRecord, @Nullable GroupSecretParams groupSecretParams, @Nullable byte[] signedGroupChange)
+        throws IOException, GroupNotAMemberException
+    {
+      return new GroupsV2StateProcessor(context).forGroup(serviceIds, groupMasterKey, groupSecretParams)
+                                                .updateLocalGroupToRevision(revision, timestamp, localRecord, getDecryptedGroupChange(signedGroupChange));
     }
 
     @WorkerThread
@@ -929,11 +938,11 @@ final class GroupManagerV2 {
         alreadyAMember = true;
       }
 
-      Optional<GroupRecord> unmigratedV1Group = groupDatabase.getGroupV1ByExpectedV2(groupId);
+      GroupRecord unmigratedV1Group = GroupsV1MigratedCache.getV1GroupByV2Id(groupId);
 
-      if (unmigratedV1Group.isPresent()) {
+      if (unmigratedV1Group != null) {
         Log.i(TAG, "Group link was for a migrated V1 group we know about! Migrating it and using that as the base.");
-        GroupsV1MigrationUtil.performLocalMigration(context, unmigratedV1Group.get().getId().requireV1());
+        GroupsV1MigrationUtil.performLocalMigration(context, unmigratedV1Group.getId().requireV1());
       }
 
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);

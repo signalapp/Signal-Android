@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.reminder
 
-import android.content.Context
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import kotlin.time.Duration.Companion.days
@@ -8,12 +7,12 @@ import kotlin.time.Duration.Companion.days
 /**
  * Reminder shown when CDS is in a permanent error state, preventing us from doing a sync.
  */
-class CdsPermanentErrorReminder(context: Context) : Reminder(null, context.getString(R.string.reminder_cds_permanent_error_body)) {
+class CdsPermanentErrorReminder : Reminder(R.string.reminder_cds_permanent_error_body) {
 
   init {
     addAction(
       Action(
-        context.getString(R.string.reminder_cds_permanent_error_learn_more),
+        R.string.reminder_cds_permanent_error_learn_more,
         R.id.reminder_action_cds_permanent_error_learn_more
       )
     )

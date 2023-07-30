@@ -59,6 +59,7 @@
             android:textColor="@color/conversation_item_sent_text_primary_color"
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             app:emoji_maxLength="1000"
+            app:emoji_renderSpoilers="true"
             app:scaleEmojis="true"
             app:measureLastLine="true"
             tools:text="Mango pickle lorem ipsum" />
@@ -101,13 +102,11 @@
 
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/indicators_parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:padding="8dp"
-        android:orientation="vertical" />
+        android:padding="8dp" />
 
     <FrameLayout
         android:layout_width="wrap_content"

@@ -119,6 +119,7 @@ class ConversationListViewModel(
           SignalDatabase.threads.getArchivedConversationListCount(filterRequest.filter) == 0
         }
       }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun onCleared() {
@@ -149,7 +150,10 @@ class ConversationListViewModel(
     conversationListDataSource
       .subscribeOn(Schedulers.io())
       .firstOrError()
-      .map { dataSource -> dataSource.load(0, dataSource.size()) { disposables.isDisposed } }
+      .map { dataSource ->
+        val totalSize = dataSource.size()
+        dataSource.load(0, totalSize, totalSize) { disposables.isDisposed }
+      }
       .subscribe { newSelection -> setSelection(newSelection) }
       .addTo(disposables)
   }

@@ -54,8 +54,9 @@ message DatabaseVersion {
 }
 
 message Header {
-    optional bytes iv   = 1;
-    optional bytes salt = 2;
+    optional bytes  iv      = 1;
+    optional bytes  salt    = 2;
+    optional uint32 version = 3;
 }
 
 message KeyValue {

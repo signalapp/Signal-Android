@@ -8,11 +8,15 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement;
 import org.thoughtcrime.securesms.util.AccessibilityUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+
+import java.util.Objects;
 
 public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
@@ -29,8 +33,8 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
   private final ConversationItemTouchListener itemTouchListener;
   private final OnSwipeListener               onSwipeListener;
 
-  ConversationItemSwipeCallback(@NonNull SwipeAvailabilityProvider swipeAvailabilityProvider,
-                                @NonNull OnSwipeListener onSwipeListener)
+  public ConversationItemSwipeCallback(@NonNull SwipeAvailabilityProvider swipeAvailabilityProvider,
+                                       @NonNull OnSwipeListener onSwipeListener)
   {
     super(0, ItemTouchHelper.END);
     this.itemTouchListener          = new ConversationItemTouchListener(this::updateLatestDownCoordinate);
@@ -40,7 +44,7 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
     this.canTriggerSwipe            = true;
   }
 
-  void attachToRecyclerView(@NonNull RecyclerView recyclerView) {
+  public void attachToRecyclerView(@NonNull RecyclerView recyclerView) {
     recyclerView.addOnItemTouchListener(itemTouchListener);
     new ItemTouchHelper(this).attachToRecyclerView(recyclerView);
   }
@@ -87,14 +91,14 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
     boolean isCorrectSwipeDir = sameSign(dx, sign);
 
     if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && isCorrectSwipeDir) {
-      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, Math.abs(dx), sign);
+      ConversationSwipeAnimationHelper.update(requireInteractiveConversationElement(viewHolder), Math.abs(dx), sign);
       recyclerView.invalidate();
-      handleSwipeFeedback((ConversationItem) viewHolder.itemView, Math.abs(dx));
+      handleSwipeFeedback(recyclerView.getContext(), requireInteractiveConversationElement(viewHolder), Math.abs(dx));
       if (canTriggerSwipe) {
         setTouchListener(recyclerView, viewHolder, Math.abs(dx));
       }
     } else if (actionState == ItemTouchHelper.ACTION_STATE_IDLE || dx == 0) {
-      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, 0, 1);
+      ConversationSwipeAnimationHelper.update(requireInteractiveConversationElement(viewHolder), 0, 1);
       recyclerView.invalidate();
     }
 
@@ -104,10 +108,10 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
     }
   }
 
-  private void handleSwipeFeedback(@NonNull ConversationItem item, float dx) {
+  private void handleSwipeFeedback(@NonNull Context context, @NonNull InteractiveConversationElement interactiveConversationElement, float dx) {
     if (dx > SWIPE_SUCCESS_DX && shouldTriggerSwipeFeedback) {
-      vibrate(item.getContext());
-      ConversationSwipeAnimationHelper.trigger(item);
+      vibrate(context);
+      ConversationSwipeAnimationHelper.trigger(interactiveConversationElement);
       shouldTriggerSwipeFeedback = false;
     }
   }
@@ -115,10 +119,9 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
   private void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder) {
     if (cannotSwipeViewHolder(viewHolder)) return;
 
-    ConversationItem    item          = ((ConversationItem) viewHolder.itemView);
-    ConversationMessage messageRecord = item.getConversationMessage();
+    InteractiveConversationElement element = requireInteractiveConversationElement(viewHolder);
 
-    onSwipeListener.onSwipe(messageRecord);
+    onSwipeListener.onSwipe(element.getConversationMessage());
   }
 
   @SuppressLint("ClickableViewAccessibility")
@@ -160,19 +163,35 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
 
   private void resetProgressIfAnimationsDisabled(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
     if (AccessibilityUtil.areAnimationsDisabled(viewHolder.itemView.getContext())) {
-      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView,
+      ConversationSwipeAnimationHelper.update(requireInteractiveConversationElement(viewHolder),
                                               0f,
                                               getSignFromDirection(viewHolder.itemView));
       recyclerView.invalidate();
     }
   }
 
-  private boolean cannotSwipeViewHolder(@NonNull RecyclerView.ViewHolder viewHolder) {
-    if (!(viewHolder.itemView instanceof ConversationItem)) return true;
+  private @NonNull InteractiveConversationElement requireInteractiveConversationElement(@NonNull RecyclerView.ViewHolder viewHolder) {
+    return Objects.requireNonNull(getInteractiveConversationElement(viewHolder));
+  }
 
-    ConversationItem item = ((ConversationItem) viewHolder.itemView);
-    return !swipeAvailabilityProvider.isSwipeAvailable(item.getConversationMessage()) ||
-           item.disallowSwipe(latestDownX, latestDownY);
+  private @Nullable InteractiveConversationElement getInteractiveConversationElement(@NonNull RecyclerView.ViewHolder viewHolder) {
+    if (viewHolder instanceof InteractiveConversationElement) {
+      return (InteractiveConversationElement) viewHolder;
+    } else if (viewHolder.itemView instanceof InteractiveConversationElement) {
+      return (InteractiveConversationElement) viewHolder.itemView;
+    } else {
+      return null;
+    }
+  }
+
+  private boolean cannotSwipeViewHolder(@NonNull RecyclerView.ViewHolder viewHolder) {
+    InteractiveConversationElement element = getInteractiveConversationElement(viewHolder);
+    if (element == null) {
+      return true;
+    }
+
+    return !swipeAvailabilityProvider.isSwipeAvailable(element.getConversationMessage()) ||
+           element.disallowSwipe(latestDownX, latestDownY);
   }
 
   private void updateLatestDownCoordinate(float x, float y) {
@@ -193,11 +212,11 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
     if (vibrator != null) vibrator.vibrate(SWIPE_SUCCESS_VIBE_TIME_MS);
   }
 
-  interface SwipeAvailabilityProvider {
+  public interface SwipeAvailabilityProvider {
     boolean isSwipeAvailable(ConversationMessage conversationMessage);
   }
 
-  interface OnSwipeListener {
+  public interface OnSwipeListener {
     void onSwipe(ConversationMessage conversationMessage);
   }
 }

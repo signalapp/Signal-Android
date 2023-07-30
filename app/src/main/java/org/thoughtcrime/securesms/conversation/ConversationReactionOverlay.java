@@ -23,7 +23,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
@@ -33,6 +33,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.DimensionUnit;
+import org.signal.glide.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
@@ -177,11 +178,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
       bottomNavigationBarHeight = 0;
     }
 
-    toolbarShade.setVisibility(VISIBLE);
-    toolbarShade.setAlpha(1f);
+    if (!FeatureFlags.useConversationFragmentV2()) {
+      toolbarShade.setVisibility(VISIBLE);
+      toolbarShade.setAlpha(1f);
 
-    inputShade.setVisibility(VISIBLE);
-    inputShade.setAlpha(1f);
+      inputShade.setVisibility(VISIBLE);
+      inputShade.setAlpha(1f);
+    }
 
     Bitmap conversationItemSnapshot = selectedConversationModel.getBitmap();
 
@@ -392,8 +395,16 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void updateToolbarShade(@NonNull Activity activity) {
+    if (FeatureFlags.useConversationFragmentV2()) {
+      LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
+      layoutParams.height = 0;
+      toolbarShade.setLayoutParams(layoutParams);
+      return;
+    }
+
     View toolbar         = activity.findViewById(R.id.toolbar);
-    View bannerContainer = activity.findViewById(R.id.conversation_banner_container);
+    View bannerContainer = activity.findViewById(FeatureFlags.useConversationFragmentV2() ? R.id.conversation_banner
+                                                                                                          : R.id.conversation_banner_container);
 
     LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
     layoutParams.height = toolbar.getHeight() + bannerContainer.getHeight();
@@ -401,6 +412,13 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private void updateInputShade(@NonNull Activity activity) {
+    if (FeatureFlags.useConversationFragmentV2()) {
+      LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
+      layoutParams.height = 0;
+      inputShade.setLayoutParams(layoutParams);
+      return;
+    }
+
     LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
     layoutParams.bottomMargin = bottomNavigationBarHeight;
     layoutParams.height = getInputPanelHeight(activity);
@@ -408,6 +426,12 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   private int getInputPanelHeight(@NonNull Activity activity) {
+    if (FeatureFlags.useConversationFragmentV2()) {
+      View bottomPanel = activity.findViewById(R.id.conversation_input_panel);
+
+      return bottomPanel.getHeight();
+    }
+
     View bottomPanel = activity.findViewById(R.id.conversation_activity_panel_parent);
     View emojiDrawer = activity.findViewById(R.id.emoji_drawer);
 
@@ -428,7 +452,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     }
   }
 
-  @RequiresApi(api = 21)
   private void updateSystemUiOnShow(@NonNull Activity activity) {
     Window window   = activity.getWindow();
     int    barColor = ContextCompat.getColor(getContext(), R.color.conversation_item_selected_system_ui);
@@ -892,19 +915,21 @@ public final class ConversationReactionOverlay extends FrameLayout {
     itemYAnim.setDuration(duration);
     animators.add(itemYAnim);
 
-    ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
-    toolbarShadeAnim.setProperty(View.ALPHA);
-    toolbarShadeAnim.setFloatValues(0f);
-    toolbarShadeAnim.setTarget(toolbarShade);
-    toolbarShadeAnim.setDuration(duration);
-    animators.add(toolbarShadeAnim);
+    if (!FeatureFlags.useConversationFragmentV2()) {
+      ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
+      toolbarShadeAnim.setProperty(View.ALPHA);
+      toolbarShadeAnim.setFloatValues(0f);
+      toolbarShadeAnim.setTarget(toolbarShade);
+      toolbarShadeAnim.setDuration(duration);
+      animators.add(toolbarShadeAnim);
 
-    ObjectAnimator inputShadeAnim = new ObjectAnimator();
-    inputShadeAnim.setProperty(View.ALPHA);
-    inputShadeAnim.setFloatValues(0f);
-    inputShadeAnim.setTarget(inputShade);
-    inputShadeAnim.setDuration(duration);
-    animators.add(inputShadeAnim);
+      ObjectAnimator inputShadeAnim = new ObjectAnimator();
+      inputShadeAnim.setProperty(View.ALPHA);
+      inputShadeAnim.setFloatValues(0f);
+      inputShadeAnim.setTarget(inputShade);
+      inputShadeAnim.setDuration(duration);
+      animators.add(inputShadeAnim);
+    }
 
     if (activity != null) {
       ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);

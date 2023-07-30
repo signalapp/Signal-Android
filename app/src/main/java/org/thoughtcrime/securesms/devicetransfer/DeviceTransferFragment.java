@@ -9,7 +9,8 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -98,16 +99,16 @@ public abstract class DeviceTransferFragment extends LoggingFragment {
   }
 
   private void cancelActiveTransfer() {
-    new AlertDialog.Builder(requireContext()).setTitle(R.string.DeviceTransfer__stop_transfer)
-                                             .setMessage(R.string.DeviceTransfer__all_transfer_progress_will_be_lost)
-                                             .setPositiveButton(R.string.DeviceTransfer__stop_transfer, (d, w) -> {
-                                               EventBus.getDefault().unregister(transferModeListener);
-                                               DeviceToDeviceTransferService.stop(requireContext());
-                                               EventBus.getDefault().removeStickyEvent(TransferStatus.class);
-                                               navigateAwayFromTransfer();
-                                             })
-                                             .setNegativeButton(android.R.string.cancel, null)
-                                             .show();
+    new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.DeviceTransfer__stop_transfer)
+                                                    .setMessage(R.string.DeviceTransfer__all_transfer_progress_will_be_lost)
+                                                    .setPositiveButton(R.string.DeviceTransfer__stop_transfer, (d, w) -> {
+                                                      EventBus.getDefault().unregister(transferModeListener);
+                                                      DeviceToDeviceTransferService.stop(requireContext());
+                                                      EventBus.getDefault().removeStickyEvent(TransferStatus.class);
+                                                      navigateAwayFromTransfer();
+                                                    })
+                                                    .setNegativeButton(android.R.string.cancel, null)
+                                                    .show();
   }
 
   protected void ignoreTransferStatusEvents() {

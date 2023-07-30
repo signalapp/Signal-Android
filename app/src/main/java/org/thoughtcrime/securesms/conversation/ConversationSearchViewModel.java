@@ -31,11 +31,11 @@ public class ConversationSearchViewModel extends ViewModel {
     searchRepository = new SearchRepository(noteToSelfTitle);
   }
 
-  LiveData<SearchResult> getSearchResults() {
+  public @NonNull LiveData<SearchResult> getSearchResults() {
     return result;
   }
 
-  void onQueryUpdated(@NonNull String query, long threadId, boolean forced) {
+  public void onQueryUpdated(@NonNull String query, long threadId, boolean forced) {
     if (firstSearch && query.length() < 2) {
       result.postValue(new SearchResult(Collections.emptyList(), 0));
       return;
@@ -48,13 +48,13 @@ public class ConversationSearchViewModel extends ViewModel {
     updateQuery(query, threadId);
   }
 
-  void onMissingResult() {
+  public void onMissingResult() {
     if (activeQuery != null) {
       updateQuery(activeQuery, activeThreadId);
     }
   }
 
-  void onMoveUp() {
+  public void onMoveUp() {
     if (result.getValue() == null) {
       return;
     }
@@ -67,7 +67,7 @@ public class ConversationSearchViewModel extends ViewModel {
     result.setValue(new SearchResult(messages, position));
   }
 
-  void onMoveDown() {
+  public void onMoveDown() {
     if (result.getValue() == null) {
       return;
     }
@@ -81,12 +81,12 @@ public class ConversationSearchViewModel extends ViewModel {
   }
 
 
-  void onSearchOpened() {
+  public void onSearchOpened() {
     searchOpen  = true;
     firstSearch = true;
   }
 
-  void onSearchClosed() {
+  public void onSearchClosed() {
     searchOpen = false;
     debouncer.clear();
   }
@@ -108,7 +108,7 @@ public class ConversationSearchViewModel extends ViewModel {
     });
   }
 
-  static class SearchResult {
+  public static class SearchResult {
 
     private final List<MessageResult> results;
     private final int                 position;

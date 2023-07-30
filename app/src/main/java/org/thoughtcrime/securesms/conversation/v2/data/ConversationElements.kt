@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2.data
 
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.messagerequests.MessageRequestRecipientInfo
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 sealed interface ConversationMessageElement {
@@ -68,6 +69,16 @@ data class IncomingMedia(
   }
 
   override fun areContentsTheSame(newItem: IncomingMedia): Boolean {
+    return false
+  }
+}
+
+data class ThreadHeader(val recipientInfo: MessageRequestRecipientInfo) : MappingModel<ThreadHeader> {
+  override fun areItemsTheSame(newItem: ThreadHeader): Boolean {
+    return true
+  }
+
+  override fun areContentsTheSame(newItem: ThreadHeader): Boolean {
     return false
   }
 }

@@ -13,6 +13,7 @@ import org.greenrobot.eventbus.ThreadMode
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.components.reminder.ReminderView
@@ -74,7 +75,7 @@ class AppSettingsFragment : DSLSettingsFragment(
     if (ExpiredBuildReminder.isEligible()) {
       showReminder(ExpiredBuildReminder(context))
     } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder(context))
+      showReminder(UnauthorizedReminder())
     } else {
       hideReminders()
     }
@@ -130,7 +131,7 @@ class AppSettingsFragment : DSLSettingsFragment(
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
           },
           onQrButtonClicked = {
-            if (Recipient.self().getUsername().isPresent()) {
+            if (Recipient.self().username.isPresent && Recipient.self().username.get().isNotEmpty()) {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
             } else {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameEducationFragment)
@@ -321,9 +322,13 @@ class AppSettingsFragment : DSLSettingsFragment(
   private class BioPreferenceViewHolder(itemView: View) : PreferenceViewHolder<BioPreference>(itemView) {
 
     private val avatarView: AvatarImageView = itemView.findViewById(R.id.icon)
-    private val aboutView: TextView = itemView.findViewById(R.id.about)
+    private val aboutView: EmojiTextView = itemView.findViewById(R.id.about)
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
     private val qrButton: View = itemView.findViewById(R.id.qr_button)
+
+    init {
+      aboutView.setOverflowText(" ")
+    }
 
     override fun bind(model: BioPreference) {
       super.bind(model)

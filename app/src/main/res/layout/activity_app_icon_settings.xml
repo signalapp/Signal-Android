@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+
+<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container_view"
+    android:name="org.thoughtcrime.securesms.components.settings.app.appearance.appicon.AppIconSettingsFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />

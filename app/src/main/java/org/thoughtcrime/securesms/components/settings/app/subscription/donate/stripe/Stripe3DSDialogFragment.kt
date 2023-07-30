@@ -60,6 +60,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
     val result = this.result
     this.result = null
     setFragmentResult(REQUEST_KEY, result ?: Bundle())

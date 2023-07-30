@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -151,17 +152,17 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
           sasNumber.setText(String.format(Locale.US, "%07d", state.getAuthenticationCode()));
           //noinspection CodeBlock2Expr
           verifyNo.setOnClickListener(v -> {
-            new AlertDialog.Builder(requireContext()).setTitle(R.string.DeviceTransferSetup__the_numbers_do_not_match)
-                                                     .setMessage(R.string.DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device)
-                                                     .setPositiveButton(R.string.DeviceTransferSetup__stop_transfer, (d, w) -> {
-                                                       EventBus.getDefault().unregister(this);
-                                                       DeviceToDeviceTransferService.setAuthenticationCodeVerified(requireContext(), false);
-                                                       DeviceToDeviceTransferService.stop(requireContext());
-                                                       EventBus.getDefault().removeStickyEvent(TransferStatus.class);
-                                                       navigateAwayFromTransfer();
-                                                     })
-                                                     .setNegativeButton(android.R.string.cancel, null)
-                                                     .show();
+            new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.DeviceTransferSetup__the_numbers_do_not_match)
+                                                            .setMessage(R.string.DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device)
+                                                            .setPositiveButton(R.string.DeviceTransferSetup__stop_transfer, (d, w) -> {
+                                                              EventBus.getDefault().unregister(this);
+                                                              DeviceToDeviceTransferService.setAuthenticationCodeVerified(requireContext(), false);
+                                                              DeviceToDeviceTransferService.stop(requireContext());
+                                                              EventBus.getDefault().removeStickyEvent(TransferStatus.class);
+                                                              navigateAwayFromTransfer();
+                                                            })
+                                                            .setNegativeButton(android.R.string.cancel, null)
+                                                            .show();
           });
           verifyYes.setOnClickListener(v -> {
             DeviceToDeviceTransferService.setAuthenticationCodeVerified(requireContext(), true);
@@ -211,7 +212,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
           errorResolve.setOnClickListener(v -> viewModel.checkPermissions());
           DeviceToDeviceTransferService.stop(requireContext());
           cancelTakingTooLong();
-          new AlertDialog.Builder(requireContext()).setTitle(R.string.DeviceTransferSetup__error_connecting)
+          new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.DeviceTransferSetup__error_connecting)
                                                    .setMessage(getStatusTextForStep(step, false))
                                                    .setPositiveButton(R.string.DeviceTransferSetup__retry, (d, w) -> viewModel.checkPermissions())
                                                    .setNegativeButton(android.R.string.cancel, (d, w) -> {

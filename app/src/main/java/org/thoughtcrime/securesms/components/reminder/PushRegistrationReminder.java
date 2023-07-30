@@ -9,8 +9,7 @@ import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 public class PushRegistrationReminder extends Reminder {
 
   public PushRegistrationReminder(final Context context) {
-    super(context.getString(R.string.reminder_header_push_title),
-          context.getString(R.string.reminder_header_push_text));
+    super(R.string.reminder_header_push_title, R.string.reminder_header_push_text);
 
     setOkListener(v -> context.startActivity(RegistrationNavigationActivity.newIntentForReRegistration(context)));
   }
@@ -20,7 +19,7 @@ public class PushRegistrationReminder extends Reminder {
     return false;
   }
 
-  public static boolean isEligible(Context context) {
+  public static boolean isEligible() {
     return !SignalStore.account().isRegistered();
   }
 }

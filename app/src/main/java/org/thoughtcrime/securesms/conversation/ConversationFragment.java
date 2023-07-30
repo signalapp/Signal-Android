@@ -76,6 +76,8 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallLinkRootKey;
+import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
@@ -89,7 +91,6 @@ import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment;
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -190,11 +191,11 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TopToastPopup;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewExtensionsKt;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.io.IOException;
@@ -208,6 +209,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import kotlin.Unit;
@@ -241,7 +243,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private ConversationScrollToView    scrollToBottomButton;
   private ConversationScrollToView    scrollToMentionButton;
   private TextView                    scrollDateHeader;
-  private ConversationBannerView      conversationBanner;
+  private ConversationHeaderView      conversationHeader;
   private MessageRequestViewModel     messageRequestViewModel;
   private MessageCountsViewModel      messageCountsViewModel;
   private ConversationViewModel       conversationViewModel;
@@ -271,8 +273,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
 
-    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_text_only, parent, 25);
-    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_text_only, parent, 25);
+    if (FeatureFlags.useConversationFragmentV2() && SignalStore.internalValues().useConversationItemV2()) {
+      CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_incoming, parent, 25);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, parent, 25);
+    } else {
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_text_only, parent, 25);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_text_only, parent, 25);
+    }
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_multimedia, parent, 10);
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_multimedia, parent, 10);
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
@@ -284,8 +291,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     super.onCreate(icicle);
     this.locale = Locale.getDefault();
     startupStopwatch = new Stopwatch("conversation-open");
-    SignalLocalMetrics.ConversationOpen.start();
-    SignalTrace.beginSection("ConversationOpen");
   }
 
   @Override
@@ -320,7 +325,17 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           }
         },
         () -> conversationViewModel.shouldPlayMessageAnimations() && list.getScrollState() == RecyclerView.SCROLL_STATE_IDLE,
-        () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
+        () -> list.canScrollVertically(1) || list.canScrollVertically(-1),
+        (viewHolder) -> {
+          if (viewHolder instanceof ConversationAdapter.ConversationViewHolder) {
+            ConversationAdapter.ConversationViewHolder conversationViewHolder = (ConversationAdapter.ConversationViewHolder) viewHolder;
+            BindableConversationItem                   conversationItem       = conversationViewHolder.getBindable();
+            if (conversationItem != null) {
+              return !MessageRecordUtil.isEditMessage(conversationItem.getConversationMessage().getMessageRecord());
+            }
+          }
+          return true;
+        });
 
     multiselectItemDecoration = new MultiselectItemDecoration(requireContext(), () -> chatWallpaper);
 
@@ -341,7 +356,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     getViewLifecycleOwner().getLifecycle().addObserver(multiselectItemDecoration);
 
     snapToTopDataObserver = new ConversationSnapToTopDataObserver(list, new ConversationScrollRequestValidator());
-    conversationBanner    = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
+    conversationHeader    = (ConversationHeaderView) inflater.inflate(R.layout.conversation_item_banner, container, false);
     topLoadMoreView       = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     bottomLoadMoreView    = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
 
@@ -377,8 +392,21 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
+        final AtomicBoolean firstRender = new AtomicBoolean(true);
         List<ConversationMessage> messages = messageData.getMessages();
         getListAdapter().submitList(messages, () -> {
+
+          if (firstRender.get()) {
+            firstRender.set(false);
+            ViewExtensionsKt.doAfterNextLayout(list, () -> {
+              startupStopwatch.split("first-render");
+              startupStopwatch.stop(TAG);
+              SignalLocalMetrics.ConversationOpen.onRenderFinished();
+              listener.onFirstRender();
+              return Unit.INSTANCE;
+            });
+          }
+
           list.post(() -> {
             conversationViewModel.onMessagesCommitted(messages);
           });
@@ -577,7 +605,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     listener.onMessageRequest(messageRequestViewModel);
 
     messageRequestViewModel.getRecipientInfo().observe(getViewLifecycleOwner(), recipientInfo -> {
-      presentMessageRequestProfileView(requireContext(), recipientInfo, conversationBanner);
+      presentMessageRequestProfileView(requireContext(), recipientInfo, conversationHeader);
     });
 
     messageRequestViewModel.getMessageData().observe(getViewLifecycleOwner(), data -> {
@@ -588,7 +616,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     });
   }
 
-  private void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
+  private void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationHeaderView conversationBanner) {
     if (conversationBanner == null) {
       return;
     }
@@ -729,13 +757,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         public void onItemRangeInserted(int positionStart, int itemCount) {
           adapter.unregisterAdapterDataObserver(this);
           startupStopwatch.split("data-set");
-          list.post(() -> {
-            startupStopwatch.split("first-render");
-            startupStopwatch.stop(TAG);
-            SignalLocalMetrics.ConversationOpen.onRenderFinished();
-            listener.onFirstRender();
-            SignalTrace.endSection();
-          });
         }
       });
     }
@@ -1191,7 +1212,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   public void stageOutgoingMessage(OutgoingMessage message) {
-    if (message.getScheduledDate() != -1) {
+    if (message.getScheduledDate() != -1 || message.isMessageEdit()) {
       return;
     }
 
@@ -1214,7 +1235,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       return;
     }
 
-    adapter.setFooterView(conversationBanner);
+    adapter.setFooterView(conversationHeader);
 
     Runnable afterScroll = () -> {
       if (!conversation.getMessageRequestData().isMessageRequestAccepted()) {
@@ -1375,7 +1396,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         Rect rect = new Rect();
         toolbar.getGlobalVisibleRect(rect);
         conversationViewModel.setToolbarBottom(rect.bottom);
-        ViewUtil.setTopMargin(conversationBanner, rect.bottom + ViewUtil.dpToPx(16));
+        ViewUtil.setTopMargin(conversationHeader, rect.bottom + ViewUtil.dpToPx(16));
         toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
       }
     });
@@ -1551,9 +1572,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         return;
       }
 
-      if (messageRecord.isSecure()                                        &&
-          !messageRecord.isRemoteDelete()                                 &&
-          !messageRecord.isUpdate()                                       &&
+      if (MessageRecordUtil.isValidReactionTarget(messageRecord)          &&
           !recipient.get().isBlocked()                                    &&
           !messageRequestViewModel.shouldShowMessageRequest()             &&
           (!recipient.get().isGroup() || recipient.get().isActiveGroup()) &&
@@ -1778,7 +1797,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
           ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
 
-          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getToRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getFromRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {
@@ -1838,8 +1857,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms) {
       if (getParentFragment() == null) return;
+      final String REACTIONS_TAG = "REACTIONS";
 
-      ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(getParentFragmentManager(), null);
+      if (getParentFragmentManager().findFragmentByTag(REACTIONS_TAG) == null) {
+        ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(getParentFragmentManager(), REACTIONS_TAG);
+      }
     }
 
     @Override
@@ -2027,6 +2049,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args) {
       if (listener.isInBubble()) {
+        Intent intent = ConversationIntents.createBuilderSync(requireActivity(), recipient.getId(), threadId)
+                                           .withStartingPosition(list.getChildAdapterPosition(parent))
+                                           .build();
+
+        requireActivity().startActivity(intent);
         requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args.skipSharedElementTransition(true)));
         return;
       }
@@ -2045,24 +2072,26 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       requireActivity().setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
       ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), sharedElement, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
 
-      final Intent mediaPreviewIntent = MediaIntentFactory.create(requireActivity(), args);
-
-      if (listener.isInBubble()) {
-        mediaPreviewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                    Intent.FLAG_ACTIVITY_NEW_TASK |
-                                    Intent.FLAG_ACTIVITY_SINGLE_TOP);
-      }
-
-      requireActivity().startActivity(mediaPreviewIntent, options.toBundle());
+      requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args), options.toBundle());
     }
 
     @Override
     public void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord) {
       if (messageRecord.isOutgoing()) {
-        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getToRecipient().getId(), messageRecord.getId());
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getToRecipient().getId(), messageRecord);
       } else {
-        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord.getId());
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord);
       }
+    }
+
+    @Override
+    public void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks) {
+      GroupDescriptionDialog.show(getChildFragmentManager(), groupName, description, shouldLinkifyWebLinks);
+    }
+
+    @Override
+    public void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey) {
+      CommunicationActions.startVideoCall(ConversationFragment.this, callLinkRootKey);
     }
 
     @Override

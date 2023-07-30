@@ -451,7 +451,6 @@ class StoryGroupReplyFragment :
 
   private fun initializeMentions() {
     inlineQueryResultsController = InlineQueryResultsController(
-      requireContext(),
       inlineQueryViewModel,
       composer,
       (requireView() as ViewGroup),

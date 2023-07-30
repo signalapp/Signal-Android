@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.conversation.ui.inlinequery
 
-import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -17,7 +16,6 @@ import org.thoughtcrime.securesms.util.doOnEachLayout
  * Controller for inline search results.
  */
 class InlineQueryResultsController(
-  private val context: Context,
   private val viewModel: InlineQueryViewModel,
   private val anchor: View,
   private val container: ViewGroup,
@@ -44,6 +42,7 @@ class InlineQueryResultsController(
       }
     })
 
+    canShow = editText.hasFocus()
     editText.addOnFocusChangeListener { _, hasFocus ->
       canShow = hasFocus
       updateList(previousResults ?: emptyList())

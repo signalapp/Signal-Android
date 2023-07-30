@@ -8,6 +8,8 @@ import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -92,6 +94,12 @@ public abstract class Job {
   final void cancel() {
     this.canceled = true;
   }
+
+  /** Provides a default exponential backoff given the current run attempt. */
+  protected final long defaultBackoff() {
+    return BackoffUtil.exponentialBackoff(runAttempt + 1, FeatureFlags.getDefaultMaxBackoff());
+  }
+
 
   @WorkerThread
   final void onSubmit() {
@@ -196,7 +204,6 @@ public abstract class Job {
       return new Result(ResultType.FAILURE, runtimeException, null, INVALID_BACKOFF);
     }
 
-    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public boolean isSuccess() {
       return resultType == ResultType.SUCCESS;
     }

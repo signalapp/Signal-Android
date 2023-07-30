@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
+import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -35,7 +36,7 @@ class RelinkDevicesReminderBottomSheetFragment : ComposeBottomSheetDialogFragmen
         .padding(16.dp)
         .wrapContentSize()
     ) {
-      Handle()
+      BottomSheets.Handle()
       Column(horizontalAlignment = Alignment.Start) {
         Text(
           text = stringResource(id = R.string.RelinkDevicesReminderFragment__relink_your_devices),

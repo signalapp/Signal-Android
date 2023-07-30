@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -160,7 +161,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       for (Recipient recipient : registeredChecks) {
         try {
-          ContactDiscovery.refresh(this, recipient, false);
+          ContactDiscovery.refresh(this, recipient, false, TimeUnit.SECONDS.toMillis(10));
         } catch (IOException e) {
           Log.w(TAG, "Failed to refresh registered status for " + recipient.getId(), e);
         }

@@ -958,6 +958,7 @@ public final class GroupsV2Operations {
       try {
         signature = new NotarySignature(groupChange.getServerSignature().toByteArray());
       } catch (InvalidInputException e) {
+        Log.w(TAG, "Invalid input while verifying group change", e);
         throw new VerificationFailedException();
       }
 

@@ -6,6 +6,8 @@ import android.view.Window;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.signal.core.util.logging.Log;
 
 public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
@@ -20,7 +22,7 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
-    AlertDialog dialog = new AlertDialog.Builder(this)
+    AlertDialog dialog = new MaterialAlertDialogBuilder(this)
         .setTitle(getString(R.string.DeviceProvisioningActivity_link_a_signal_device))
         .setMessage(getString(R.string.DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner))
         .setPositiveButton(R.string.DeviceProvisioningActivity_continue, (dialog1, which) -> {

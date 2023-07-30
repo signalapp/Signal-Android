@@ -395,8 +395,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
                        Toast.LENGTH_LONG).show();
         break;
       case SUCCESS:
-        String message = !TextUtils.isEmpty(result.second()) ? context.getResources().getString(R.string.SaveAttachmentTask_saved_to, result.second()) : context.getResources().getString(R.string.SaveAttachmentTask_saved);
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.SaveAttachmentTask_saved, Toast.LENGTH_LONG).show();
         break;
       case WRITE_ACCESS_FAILURE:
         Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation, Toast.LENGTH_LONG).show();

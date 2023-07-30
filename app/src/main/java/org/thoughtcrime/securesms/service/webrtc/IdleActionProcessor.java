@@ -7,7 +7,6 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
-import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -52,8 +51,8 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
     Log.i(TAG, "handleOutgoingCall():");
 
     Recipient recipient = Recipient.resolved(remotePeer.getId());
-    if (recipient.isGroup()) {
-      Log.w(TAG, "Aborting attempt to start 1:1 call for group recipient: " + remotePeer.getId());
+    if (recipient.isGroup() || recipient.isCallLink()) {
+      Log.w(TAG, "Aborting attempt to start 1:1 call for group or call link recipient: " + remotePeer.getId());
       return currentState;
     }
 
@@ -65,9 +64,16 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handlePreJoinCall():");
 
-    boolean               isGroupCall = remotePeer.getRecipient().isPushV2Group();
-    WebRtcActionProcessor processor   = isGroupCall ? new GroupPreJoinActionProcessor(webRtcInteractor)
-                                                    : new PreJoinActionProcessor(webRtcInteractor);
+    boolean isGroupCall = remotePeer.getRecipient().isPushV2Group() || remotePeer.getRecipient().isCallLink();
+
+    final WebRtcActionProcessor processor;
+    if (remotePeer.getRecipient().isCallLink()) {
+      processor = MultiPeerActionProcessorFactory.CallLinkActionProcessorFactory.INSTANCE.createPreJoinActionProcessor(webRtcInteractor);
+    } else if (remotePeer.getRecipient().isPushV2Group()) {
+      processor = MultiPeerActionProcessorFactory.GroupActionProcessorFactory.INSTANCE.createPreJoinActionProcessor(webRtcInteractor);
+    } else {
+      processor = new PreJoinActionProcessor(webRtcInteractor);
+    }
 
     currentState = WebRtcVideoUtil.initializeVanityCamera(WebRtcVideoUtil.initializeVideo(context,
                                                                                           webRtcInteractor.getCameraEventListener(),

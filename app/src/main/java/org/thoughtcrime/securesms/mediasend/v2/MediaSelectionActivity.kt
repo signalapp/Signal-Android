@@ -141,7 +141,7 @@ class MediaSelectionActivity :
 
       navigateToStartDestination()
     } else {
-      viewModel.onRestoreState(savedInstanceState)
+      viewModel.onRestoreState(this, savedInstanceState)
       textViewModel.restoreFromInstanceState(savedInstanceState)
     }
 

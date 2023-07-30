@@ -30,6 +30,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
+import org.signal.core.ui.BottomSheets
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -49,7 +50,7 @@ class WebRtcAudioOutputBottomSheet : ComposeBottomSheetDialogFragment(), DialogI
         .padding(16.dp)
         .wrapContentSize()
     ) {
-      Handle()
+      BottomSheets.Handle()
       DeviceList(audioOutputOptions = viewModel.audioRoutes.toImmutableList(), initialDeviceId = viewModel.defaultDeviceId, modifier = Modifier.fillMaxWidth(), onDeviceSelected = viewModel.onClick)
     }
   }

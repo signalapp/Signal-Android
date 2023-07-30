@@ -38,8 +38,8 @@ public class ImageSlide extends Slide {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ImageSlide.class);
 
-  public ImageSlide(@NonNull Context context, @NonNull Attachment attachment) {
-    super(context, attachment);
+  public ImageSlide(@NonNull Attachment attachment) {
+    super(attachment);
     this.borderless = attachment.isBorderless();
   }
 
@@ -52,7 +52,7 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, String contentType, long size, int width, int height, boolean borderless, @Nullable String caption, @Nullable BlurHash blurHash, @Nullable TransformProperties transformProperties) {
-    super(context, constructAttachmentFromUri(context, uri, contentType, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false, false, transformProperties));
+    super(constructAttachmentFromUri(context, uri, contentType, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false, false, transformProperties));
     this.borderless = borderless;
   }
 
@@ -78,7 +78,7 @@ public class ImageSlide extends Slide {
 
   @NonNull
   @Override
-  public String getContentDescription() {
+  public String getContentDescription(Context context) {
     return context.getString(R.string.Slide_image);
   }
 }

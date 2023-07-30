@@ -103,41 +103,47 @@ object Rows {
   fun TextRow(
     text: String,
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    foregroundTint: Color = MaterialTheme.colorScheme.onSurface
+    foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
+    onClick: (() -> Unit)? = null
   ) {
     if (icon != null) {
       Row(
         modifier = modifier
           .fillMaxWidth()
+          .clickable(enabled = onClick != null, onClick = onClick ?: {})
           .padding(defaultPadding())
       ) {
         Icon(
           imageVector = icon,
           contentDescription = null,
-          tint = foregroundTint
+          tint = foregroundTint,
+          modifier = iconModifier
         )
 
         Spacer(modifier = Modifier.width(24.dp))
 
         Text(
           text = text,
-          modifier = Modifier.weight(1f),
+          modifier = Modifier.weight(1f).align(CenterVertically),
           color = foregroundTint
         )
       }
     } else {
       Text(
         text = text,
+        color = foregroundTint,
         modifier = modifier
           .fillMaxWidth()
+          .clickable(enabled = onClick != null, onClick = onClick ?: {})
           .padding(defaultPadding())
       )
     }
   }
 
   @Composable
-  private fun defaultPadding(): PaddingValues {
+  fun defaultPadding(): PaddingValues {
     return PaddingValues(
       horizontal = dimensionResource(id = R.dimen.core_ui__gutter),
       vertical = 16.dp

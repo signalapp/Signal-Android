@@ -112,18 +112,14 @@ public class SignalBaseIdentityKeyStore {
   }
 
   public void saveIdentityWithoutSideEffects(@NonNull RecipientId recipientId,
+                                             @NonNull ServiceId serviceId,
                                              IdentityKey identityKey,
                                              VerifiedStatus verifiedStatus,
                                              boolean firstUse,
                                              long timestamp,
                                              boolean nonBlockingApproval)
   {
-    Recipient recipient = Recipient.resolved(recipientId);
-    if (recipient.hasServiceId()) {
-      cache.save(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
-    } else {
-      Log.w(TAG, "[saveIdentity] No serviceId for " + recipient.getId(), new Throwable());
-    }
+    cache.save(serviceId.toString(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
   }
 
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, IdentityKeyStore.Direction direction) {

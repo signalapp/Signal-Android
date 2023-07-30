@@ -183,7 +183,7 @@ final class EditorElementHierarchy {
       cropEditorElement.addElement(createThumbs(cropEditorElement, renderCenterThumbs));
 
       if (cropStyle == CropStyle.CIRCLE) {
-        EditorElement circle = new EditorElement(new OvalGuideRenderer(R.color.crop_circle_guide_color));
+        EditorElement circle = new EditorElement(new OvalGuideRenderer(R.color.crop_circle_guide_color), EditorModel.Z_CIRCLE);
         circle.getFlags().setSelectable(false)
               .persist();
 

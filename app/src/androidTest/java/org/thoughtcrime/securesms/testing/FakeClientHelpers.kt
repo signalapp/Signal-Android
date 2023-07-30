@@ -48,7 +48,7 @@ object FakeClientHelpers {
     val selfUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(myProfileKey)
     val themUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey)
 
-    return UnidentifiedAccessPair(UnidentifiedAccess(selfUnidentifiedAccessKey, senderCertificate.serialized), UnidentifiedAccess(themUnidentifiedAccessKey, senderCertificate.serialized)).targetUnidentifiedAccess
+    return UnidentifiedAccessPair(UnidentifiedAccess(selfUnidentifiedAccessKey, senderCertificate.serialized, false), UnidentifiedAccess(themUnidentifiedAccessKey, senderCertificate.serialized, false)).targetUnidentifiedAccess
   }
 
   fun encryptedTextMessage(now: Long, message: String = "Test body message"): EnvelopeContent {
@@ -69,7 +69,7 @@ object FakeClientHelpers {
       .setSourceDevice(1)
       .setTimestamp(timestamp)
       .setServerTimestamp(timestamp + 1)
-      .setDestinationUuid(destination.toString())
+      .setDestinationServiceId(destination.toString())
       .setServerGuid(UUID.randomUUID().toString())
       .setContent(Base64.decode(this.content).toProtoByteString())
       .setUrgent(true)

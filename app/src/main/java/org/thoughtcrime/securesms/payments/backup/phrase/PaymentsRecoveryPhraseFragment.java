@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.payments.backup.phrase;
 
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -21,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.R;
@@ -134,7 +134,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
   }
 
   private void confirmCopy(@NonNull List<String> words) {
-    new AlertDialog.Builder(requireContext())
+    new MaterialAlertDialogBuilder(requireContext())
                    .setTitle(R.string.PaymentsRecoveryPhraseFragment__copy_to_clipboard)
                    .setMessage(R.string.PaymentsRecoveryPhraseFragment__if_you_choose_to_store)
                    .setPositiveButton(R.string.PaymentsRecoveryPhraseFragment__copy, (dialog, which) -> copyWordsToClipboard(words))
@@ -149,7 +149,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
         Navigation.findNavController(requireView()).popBackStack(R.id.paymentsHome, false);
         break;
       case ERROR:
-        new AlertDialog.Builder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext())
                        .setTitle(R.string.PaymentsRecoveryPhraseFragment__invalid_recovery_phrase)
                        .setMessage(R.string.PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again)
                        .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())

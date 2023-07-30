@@ -70,7 +70,7 @@ class EditMessageSyncProcessorTest {
       val syncContent = SignalServiceProtos.Content.newBuilder().setSyncMessage(
         SignalServiceProtos.SyncMessage.newBuilder().setSent(
           SignalServiceProtos.SyncMessage.Sent.newBuilder()
-            .setDestinationUuid(metadata.destinationServiceId.toString())
+            .setDestinationServiceId(metadata.destinationServiceId.toString())
             .setTimestamp(originalTimestamp)
             .setExpirationStartTimestamp(originalTimestamp)
             .setMessage(content.dataMessage)
@@ -89,7 +89,7 @@ class EditMessageSyncProcessorTest {
       val editSyncContent = SignalServiceProtos.Content.newBuilder().setSyncMessage(
         SignalServiceProtos.SyncMessage.newBuilder().setSent(
           SignalServiceProtos.SyncMessage.Sent.newBuilder()
-            .setDestinationUuid(metadata.destinationServiceId.toString())
+            .setDestinationServiceId(metadata.destinationServiceId.toString())
             .setTimestamp(editTimestamp)
             .setExpirationStartTimestamp(editTimestamp)
             .setEditMessage(

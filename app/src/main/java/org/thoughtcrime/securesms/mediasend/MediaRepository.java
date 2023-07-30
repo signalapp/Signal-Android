@@ -22,6 +22,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.signal.core.util.SqlUtil;
@@ -39,6 +40,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Handles the retrieval of media present on the user's device.
@@ -59,6 +63,25 @@ public class MediaRepository {
     }
 
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getFolders(context)));
+  }
+
+  /**
+   * Retrieves a list of recent media items (images and videos).
+   */
+  public Single<List<Media>> getRecentMedia() {
+    return Single.<List<Media>>fromCallable(() -> {
+                   if (!StorageUtil.canReadFromMediaStore()) {
+                     Log.w(TAG, "No storage permissions!", new Throwable());
+                     return Collections.emptyList();
+                   }
+
+                   return getMediaInBucket(ApplicationDependencies.getApplication(), Media.ALL_MEDIA_BUCKET_ID);
+                 })
+                 .onErrorReturn(t -> {
+                   Log.w(TAG, "Unable to get recent media", t);
+                   return Collections.emptyList();
+                 })
+                 .subscribeOn(Schedulers.io());
   }
 
   /**

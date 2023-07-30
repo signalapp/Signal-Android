@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.profiles.spoofing;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -14,6 +13,8 @@ import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
@@ -185,7 +186,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
           startActivity(contactEditIntent);
           break;
         case REMOVE_FROM_GROUP:
-          new AlertDialog.Builder(requireContext())
+          new MaterialAlertDialogBuilder(requireContext())
                          .setMessage(getString(R.string.ReviewCardDialogFragment__remove_s_from_group,
                                                card.getReviewRecipient().getDisplayName(requireContext())))
                          .setPositiveButton(R.string.ReviewCardDialogFragment__remove, (dialog, which) -> {

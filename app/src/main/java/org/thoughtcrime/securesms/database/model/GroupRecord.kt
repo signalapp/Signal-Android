@@ -7,12 +7,12 @@ import org.signal.storageservice.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.push.DistributionId
-import java.lang.AssertionError
 import java.util.Optional
 
 class GroupRecord(
@@ -117,6 +117,28 @@ class GroupRecord(
         GroupAccessControl.ALL_MEMBERS
       }
     }
+
+  val actionableRequestingMembersCount: Int by lazy {
+    if (isV2Group && memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR) {
+      requireV2GroupProperties()
+        .decryptedGroup
+        .requestingMembersCount
+    } else {
+      0
+    }
+  }
+
+  val gv1MigrationSuggestions: List<RecipientId> by lazy {
+    if (!isActive || !isV2Group || isPendingMember(Recipient.self())) {
+      emptyList()
+    } else {
+      unmigratedV1Members
+        .filterNot { members.contains(it) }
+        .map { Recipient.resolved(it) }
+        .filter { GroupsV1MigrationUtil.isAutoMigratable(it) }
+        .map { it.id }
+    }
+  }
 
   fun hasAvatar(): Boolean {
     return avatarId != 0L

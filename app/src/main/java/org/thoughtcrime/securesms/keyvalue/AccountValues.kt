@@ -49,6 +49,9 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_ACI_ACTIVE_SIGNED_PREKEY_ID = "account.aci_active_signed_prekey_id"
     private const val KEY_ACI_LAST_SIGNED_PREKEY_ROTATION_TIME = "account.aci_last_signed_prekey_rotation_time"
     private const val KEY_ACI_NEXT_ONE_TIME_PREKEY_ID = "account.aci_next_one_time_prekey_id"
+    private const val KEY_ACI_NEXT_KYBER_PREKEY_ID = "account.aci_next_kyber_prekey_id"
+    private const val KEY_ACI_LAST_RESORT_KYBER_PREKEY_ID = "account.aci_last_resort_kyber_prekey_id"
+    private const val KEY_ACI_LAST_RESORT_KYBER_PREKEY_ROTATION_TIME = "account.aci_last_resort_kyber_prekey_rotation_time"
 
     private const val KEY_PNI_IDENTITY_PUBLIC_KEY = "account.pni_identity_public_key"
     private const val KEY_PNI_IDENTITY_PRIVATE_KEY = "account.pni_identity_private_key"
@@ -57,6 +60,9 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_PNI_ACTIVE_SIGNED_PREKEY_ID = "account.pni_active_signed_prekey_id"
     private const val KEY_PNI_LAST_SIGNED_PREKEY_ROTATION_TIME = "account.pni_last_signed_prekey_rotation_time"
     private const val KEY_PNI_NEXT_ONE_TIME_PREKEY_ID = "account.pni_next_one_time_prekey_id"
+    private const val KEY_PNI_NEXT_KYBER_PREKEY_ID = "account.pni_next_kyber_prekey_id"
+    private const val KEY_PNI_LAST_RESORT_KYBER_PREKEY_ID = "account.pni_last_resort_kyber_prekey_id"
+    private const val KEY_PNI_LAST_RESORT_KYBER_PREKEY_ROTATION_TIME = "account.pni_last_resort_kyber_prekey_rotation_time"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -258,7 +264,10 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     override var activeSignedPreKeyId: Int by integerValue(KEY_ACI_ACTIVE_SIGNED_PREKEY_ID, -1)
     override var isSignedPreKeyRegistered: Boolean by booleanValue(KEY_ACI_SIGNED_PREKEY_REGISTERED, false)
     override var lastSignedPreKeyRotationTime: Long by longValue(KEY_ACI_LAST_SIGNED_PREKEY_ROTATION_TIME, System.currentTimeMillis() - PreKeysSyncJob.REFRESH_INTERVAL)
-    override var nextOneTimePreKeyId: Int by integerValue(KEY_ACI_NEXT_ONE_TIME_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var nextEcOneTimePreKeyId: Int by integerValue(KEY_ACI_NEXT_ONE_TIME_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var nextKyberPreKeyId: Int by integerValue(KEY_ACI_NEXT_KYBER_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var lastResortKyberPreKeyId: Int by integerValue(KEY_ACI_LAST_RESORT_KYBER_PREKEY_ID, -1)
+    override var lastResortKyberPreKeyRotationTime: Long by longValue(KEY_ACI_LAST_RESORT_KYBER_PREKEY_ROTATION_TIME, 0)
   }
 
   @get:JvmName("pniPreKeys")
@@ -267,7 +276,10 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     override var activeSignedPreKeyId: Int by integerValue(KEY_PNI_ACTIVE_SIGNED_PREKEY_ID, -1)
     override var isSignedPreKeyRegistered: Boolean by booleanValue(KEY_PNI_SIGNED_PREKEY_REGISTERED, false)
     override var lastSignedPreKeyRotationTime: Long by longValue(KEY_PNI_LAST_SIGNED_PREKEY_ROTATION_TIME, System.currentTimeMillis() - PreKeysSyncJob.REFRESH_INTERVAL)
-    override var nextOneTimePreKeyId: Int by integerValue(KEY_PNI_NEXT_ONE_TIME_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var nextEcOneTimePreKeyId: Int by integerValue(KEY_PNI_NEXT_ONE_TIME_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var nextKyberPreKeyId: Int by integerValue(KEY_PNI_NEXT_KYBER_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var lastResortKyberPreKeyId: Int by integerValue(KEY_PNI_LAST_RESORT_KYBER_PREKEY_ID, -1)
+    override var lastResortKyberPreKeyRotationTime: Long by longValue(KEY_PNI_LAST_RESORT_KYBER_PREKEY_ROTATION_TIME, 0)
   }
 
   /** Indicates whether the user has the ability to receive FCM messages. Largely coupled to whether they have Play Service. */

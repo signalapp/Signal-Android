@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -46,7 +48,6 @@ import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -252,6 +253,17 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
         }
         debouncer.clear();
       });
+
+      task.addOnCanceledListener(() -> {
+        if (!handled.getAndSet(true)) {
+          Log.w(TAG, "SMS listener registration canceled.");
+          requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
+        } else {
+          Log.w(TAG, "SMS listener registration canceled after timeout.");
+        }
+        debouncer.clear();
+      });
+
     } else {
       Log.i(TAG, "FCM is not supported, using no SMS listener");
       requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
@@ -275,12 +287,19 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void requestVerificationCode(@NonNull Mode mode) {
-    NavController  navController  = NavHostFragment.findNavController(this);
-    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
+    NavController                         navController       = NavHostFragment.findNavController(this);
+    MccMncProducer                        mccMncProducer      = new MccMncProducer(requireContext());
+    final DialogInterface.OnClickListener proceedToNextScreen = (dialog, which) -> SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
     Disposable request = viewModel.requestVerificationCode(mode, mccMncProducer.getMcc(), mccMncProducer.getMnc())
                                   .doOnSubscribe(unused -> SignalStore.account().setRegistered(false))
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe((RegistrationSessionProcessor processor) -> {
+                                    Context context = getContext();
+                                    if (context == null) {
+                                      Log.w(TAG, "[requestVerificationCode] Invalid context! Skipping.");
+                                      return;
+                                    }
+
                                     if (processor.verificationCodeRequestSuccess()) {
                                       disposables.add(updateFcmTokenValue());
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
@@ -289,28 +308,40 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
                                     } else if (processor.exhaustedVerificationCodeAttempts()) {
                                       Log.i(TAG, "Unable to request sms code due to exhausting attempts");
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_rate_limited_to_service));
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_rate_limited_to_service));
                                     } else if (processor.rateLimit()) {
                                       Log.i(TAG, "Unable to request sms code due to rate limit");
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_rate_limited_to_try_again, formatMillisecondsToString(processor.getRateLimit())));
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_rate_limited_to_try_again, formatMillisecondsToString(processor.getRateLimit())));
                                     } else if (processor.isImpossibleNumber()) {
                                       Log.w(TAG, "Impossible number", processor.getError());
                                       Dialogs.showAlertDialog(requireContext(),
-                                                              getString(R.string.RegistrationActivity_invalid_number),
-                                                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.getNumber().getFullFormattedNumber()));
+                                                              context.getString(R.string.RegistrationActivity_invalid_number),
+                                                              String.format(context.getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.getNumber().getFullFormattedNumber()));
                                     } else if (processor.isNonNormalizedNumber()) {
                                       handleNonNormalizedNumberError(processor.getOriginalNumber(), processor.getNormalizedNumber(), mode);
                                     } else if (processor.isTokenRejected()) {
                                       Log.i(TAG, "The server did not accept the information.", processor.getError());
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human));
-                                    } else if (processor instanceof RegistrationSessionProcessor.RegistrationSessionProcessorForVerification
-                                               && ((RegistrationSessionProcessor.RegistrationSessionProcessorForVerification) processor).externalServiceFailure())
-                                    {
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human));
+                                    } else if (processor.externalServiceFailure()) {
                                       Log.w(TAG, "The server reported a failure with an external service.", processor.getError());
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_external_service_error));
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_unable_to_connect_to_service), proceedToNextScreen);
+                                    } else if (processor.invalidTransportModeFailure()) {
+                                      Log.w(TAG, "The server reported an invalid transport mode failure.", processor.getError());
+                                      new MaterialAlertDialogBuilder(context)
+                                          .setMessage(R.string.RegistrationActivity_we_couldnt_send_you_a_verification_code)
+                                          .setPositiveButton(R.string.RegistrationActivity_voice_call, (dialog, which) -> requestVerificationCode(Mode.PHONE_CALL))
+                                          .setNegativeButton(R.string.RegistrationActivity_cancel, null)
+                                          .show();
+                                    } else if ( processor.isMalformedRequest()){
+                                      Log.w(TAG, "The server reported a malformed request.", processor.getError());
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_unable_to_connect_to_service), proceedToNextScreen);
+
+                                    } else if (processor.isRetryException()) {
+                                      Log.w(TAG, "The server reported a failure that is retryable.", processor.getError());
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_unable_to_connect_to_service), proceedToNextScreen);
                                     } else {
                                       Log.i(TAG, "Unknown error during verification code request", processor.getError());
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service));
+                                      showErrorDialog(context, context.getString(R.string.RegistrationActivity_unable_to_connect_to_service));
                                     }
 
                                     exitInProgressUiState();
@@ -332,7 +363,11 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   public void showErrorDialog(Context context, String msg) {
-    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(R.string.ok, null).show();
+    showErrorDialog(context, msg, null);
+  }
+
+  public void showErrorDialog(Context context, String msg, DialogInterface.OnClickListener positiveButtonListener) {
+    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(R.string.ok, positiveButtonListener).show();
   }
 
   @Override
@@ -441,7 +476,6 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                                                                          : R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number,
                                                                               e164number,
                                                                               () -> {
-                                                                                exitInProgressUiState();
                                                                                 ViewUtil.hideKeyboard(context, number.getEditText());
                                                                                 onConfirmed.run();
                                                                               },

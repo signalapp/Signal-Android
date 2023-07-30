@@ -76,7 +76,13 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
       }
     }
 
-    Material3OnScrollHelper(requireContext(), { requireListener<Callback>().setStatusBarColor(it) }, listOf(binding.toolbar)).attach(binding.appBarLayout)
+    Material3OnScrollHelper(
+      context = requireContext(),
+      setStatusBarColor = { requireListener<Callback>().setStatusBarColor(it) },
+      getStatusBarColor = { requireListener<Callback>().getStatusBarColor() },
+      views = listOf(binding.toolbar),
+      lifecycleOwner = viewLifecycleOwner
+    ).attach(binding.appBarLayout)
     ViewUtil.focusAndShowKeyboard(binding.nameField.editText)
   }
 
@@ -135,6 +141,7 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
 
   interface Callback {
     fun setStatusBarColor(@ColorInt color: Int)
+    fun getStatusBarColor(): Int
     fun onDone(recipientId: RecipientId)
   }
 }

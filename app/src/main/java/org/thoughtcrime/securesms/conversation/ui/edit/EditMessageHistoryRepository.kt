@@ -35,16 +35,17 @@ object EditMessageHistoryRepository {
       .messages
       .getMessageEditHistory(messageId)
       .toList()
+      .reversed()
+
+    if (records.isEmpty()) {
+      return emptyList()
+    }
 
     val attachmentHelper = AttachmentHelper()
       .apply {
         addAll(records)
         fetchAttachments()
       }
-
-    if (records.isEmpty()) {
-      return emptyList()
-    }
 
     val threadRecipient: Recipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(records[0].threadId))
 

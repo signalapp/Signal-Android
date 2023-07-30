@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Optional
@@ -127,6 +126,22 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
+
+      clickPref(
+        title = DSLSettingsText.from("Search for a recipient"),
+        summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("SVR Playground"),
+        summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+        }
+      )
 
       switchPref(
         title = DSLSettingsText.from("'Internal Details' button"),
@@ -392,10 +407,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       radioListPref(
         title = DSLSettingsText.from("Bandwidth mode"),
-        listItems = CallManager.BandwidthMode.values().map { it.name }.toTypedArray(),
-        selected = CallManager.BandwidthMode.values().indexOf(state.callingBandwidthMode),
+        listItems = CallManager.DataMode.values().map { it.name }.toTypedArray(),
+        selected = CallManager.DataMode.values().indexOf(state.callingDataMode),
         onSelected = {
-          viewModel.setInternalCallingBandwidthMode(CallManager.BandwidthMode.values()[it])
+          viewModel.setInternalCallingDataMode(CallManager.DataMode.values()[it])
         }
       )
 
@@ -552,8 +567,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(DSLSettingsText.from("PNP"))
 
       clickPref(
-        title = DSLSettingsText.from("Trigger No-Op Change Number"),
-        summary = DSLSettingsText.from("Mimics the 'Hello world' event"),
+        title = DSLSettingsText.from("Trigger 'Hello World' event"),
         isEnabled = true,
         onClick = {
           SimpleTask.run(viewLifecycleOwner.lifecycle, {
@@ -585,23 +599,28 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
-      if (FeatureFlags.chatFilters()) {
-        dividerPref()
-        sectionHeaderPref(DSLSettingsText.from("Chat Filters"))
-        clickPref(
-          title = DSLSettingsText.from("Reset pull to refresh tip count"),
-          onClick = {
-            SignalStore.uiHints().resetNeverDisplayPullToRefreshCount()
-          }
-        )
-      }
+      dividerPref()
+      sectionHeaderPref(DSLSettingsText.from("Chat Filters"))
+      clickPref(
+        title = DSLSettingsText.from("Reset pull to refresh tip count"),
+        onClick = {
+          SignalStore.uiHints().resetNeverDisplayPullToRefreshCount()
+        }
+      )
 
       dividerPref()
-      switchPref(
-        title = DSLSettingsText.from("Use V2 ConversationFragment"),
-        isChecked = state.useConversationFragmentV2,
+      clickPref(
+        title = DSLSettingsText.from("Launch Conversation Test Springboard "),
         onClick = {
-          viewModel.setUseConversationFragmentV2(!state.useConversationFragmentV2)
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalConversationSpringboardFragment())
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("Use V2 ConversationItem"),
+        isChecked = state.useConversationItemV2,
+        onClick = {
+          viewModel.setUseConversationItemV2(!state.useConversationItemV2)
         }
       )
     }

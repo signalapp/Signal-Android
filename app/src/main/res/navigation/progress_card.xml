@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/progress_card"
+    app:startDestination="@id/progressCardDialogFragment">
+
+    <dialog
+        android:id="@+id/progressCardDialogFragment"
+        android:name="org.thoughtcrime.securesms.components.ProgressCardDialogFragment"
+        android:label="progress_card_dialog_fragment">
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true" />
+
+    </dialog>
+
+</navigation>

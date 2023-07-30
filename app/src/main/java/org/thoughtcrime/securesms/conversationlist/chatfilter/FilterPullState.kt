@@ -40,5 +40,5 @@ enum class FilterPullState {
   /**
    * The filter is being removed and the animation is running
    */
-  CLOSING;
+  CLOSING
 }

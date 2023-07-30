@@ -58,3 +58,18 @@ fun <S : Subject<T>, T : Any> Observable<T>.subscribeWithSubject(
 
   return subject
 }
+
+fun <S : Subject<T>, T : Any> Single<T>.subscribeWithSubject(
+  subject: S,
+  disposables: CompositeDisposable
+): S {
+  subscribeBy(
+    onSuccess = {
+      subject.onNext(it)
+      subject.onComplete()
+    },
+    onError = subject::onError
+  ).addTo(disposables)
+
+  return subject
+}

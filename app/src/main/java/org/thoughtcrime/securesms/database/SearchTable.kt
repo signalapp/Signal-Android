@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.text.TextUtils
+import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.intellij.lang.annotations.Language
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
@@ -231,7 +232,8 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   /**
    * Drops all tables and recreates them.
    */
-  fun fullyResetTables() {
+  @JvmOverloads
+  fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
     Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
     writableDatabase.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
     writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")

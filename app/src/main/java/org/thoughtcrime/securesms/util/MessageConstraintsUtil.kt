@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -51,7 +52,12 @@ object MessageConstraintsUtil {
    */
   @JvmStatic
   fun isValidEditMessageSend(targetMessage: MessageRecord, currentTime: Long): Boolean {
-    return isValidRemoteDeleteSend(targetMessage, currentTime) &&
+    val originalMessage = if (targetMessage.isEditMessage && targetMessage.id != targetMessage.originalMessageId?.id) {
+      SignalDatabase.messages.getMessageRecord(targetMessage.originalMessageId!!.id)
+    } else {
+      targetMessage
+    }
+    return isValidRemoteDeleteSend(originalMessage, currentTime) &&
       targetMessage.revisionNumber < MAX_EDIT_COUNT &&
       !targetMessage.isViewOnceMessage() &&
       !targetMessage.hasAudio() &&

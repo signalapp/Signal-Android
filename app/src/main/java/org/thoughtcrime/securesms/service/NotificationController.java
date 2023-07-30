@@ -9,6 +9,7 @@ import android.os.IBinder;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.jobs.UnableToStartException;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -54,7 +55,7 @@ public final class NotificationController implements AutoCloseable,
       }
 
       GenericForegroundService.stopForegroundTask(context, id);
-    } catch (IllegalArgumentException e) {
+    } catch (IllegalStateException | UnableToStartException e) {
       Log.w(TAG, "Failed to unbind service...", e);
     }
   }

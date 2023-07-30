@@ -111,6 +111,7 @@ public final class InsightsModalDialogFragment extends DialogFragment {
 
   @Override
   public void onDismiss(@NonNull DialogInterface dialog) {
+    super.onDismiss(dialog);
     InsightsOptOut.userRequestedOptOut(requireContext());
   }
 

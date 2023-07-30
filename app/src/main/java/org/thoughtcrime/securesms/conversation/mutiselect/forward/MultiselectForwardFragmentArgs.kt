@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.color.ViewColorSet
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -117,7 +118,6 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         .withMentions(conversationMessage.mentions)
         .withTimestamp(conversationMessage.messageRecord.timestamp)
         .withExpiration(conversationMessage.messageRecord.expireStarted + conversationMessage.messageRecord.expiresIn)
-        .withBodyRanges(conversationMessage.messageRecord.messageRanges)
 
       if (conversationMessage.multiselectCollection.isTextSelected(selectedParts)) {
         val mediaMessage: MmsMessageRecord? = conversationMessage.messageRecord as? MmsMessageRecord
@@ -126,10 +126,14 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
           PartAuthority.getAttachmentStream(context, textSlideUri).use {
             val body = StreamUtil.readFullyAsString(it)
             val msg = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, mediaMessage, body, conversationMessage.threadRecipient)
-            builder.withDraftText(msg.getDisplayBody(context).toString())
+            val displayText = msg.getDisplayBody(context)
+            builder.withDraftText(displayText.toString())
+              .withBodyRanges(MessageStyler.getStyling(displayText))
           }
         } else {
-          builder.withDraftText(conversationMessage.getDisplayBody(context).toString())
+          val displayText = conversationMessage.getDisplayBody(context)
+          builder.withDraftText(displayText.toString())
+            .withBodyRanges(MessageStyler.getStyling(displayText))
         }
 
         val linkPreview = mediaMessage?.linkPreviews?.firstOrNull()

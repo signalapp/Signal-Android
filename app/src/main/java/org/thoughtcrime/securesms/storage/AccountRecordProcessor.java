@@ -9,6 +9,7 @@ import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord.PinnedConversation;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -116,7 +117,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean                              preferContactAvatars          = remote.isPreferContactAvatars();
     int                                  universalExpireTimer          = remote.getUniversalExpireTimer();
     boolean                              primarySendsSms               = SignalStore.account().isPrimaryDevice() ? local.isPrimarySendsSms() : remote.isPrimarySendsSms();
-    String                               e164                          = SignalStore.account().isPrimaryDevice() ? local.getE164() : remote.getE164();
+    String                               e164                          = SignalStore.account().isPrimaryDevice() && (!FeatureFlags.phoneNumberPrivacy() || !self.getPnpCapability().isSupported()) ? local.getE164() : remote.getE164();
     List<String>                         defaultReactions              = remote.getDefaultReactions().size() > 0 ? remote.getDefaultReactions() : local.getDefaultReactions();
     boolean                              displayBadgesOnProfile        = remote.isDisplayBadgesOnProfile();
     boolean                              subscriptionManuallyCancelled = remote.isSubscriptionManuallyCancelled();
@@ -135,38 +136,42 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     } else if (matchesLocal) {
       return local;
     } else {
-      return new SignalAccountRecord.Builder(keyGenerator.generate(), unknownFields)
-                                    .setGivenName(givenName)
-                                    .setFamilyName(familyName)
-                                    .setAvatarUrlPath(avatarUrlPath)
-                                    .setProfileKey(profileKey)
-                                    .setNoteToSelfArchived(noteToSelfArchived)
-                                    .setNoteToSelfForcedUnread(noteToSelfForcedUnread)
-                                    .setReadReceiptsEnabled(readReceipts)
-                                    .setTypingIndicatorsEnabled(typingIndicators)
-                                    .setSealedSenderIndicatorsEnabled(sealedSenderIndicators)
-                                    .setLinkPreviewsEnabled(linkPreviews)
-                                    .setUnlistedPhoneNumber(unlisted)
-                                    .setPhoneNumberSharingMode(phoneNumberSharingMode)
-                                    .setUnlistedPhoneNumber(unlisted)
-                                    .setPinnedConversations(pinnedConversations)
-                                    .setPreferContactAvatars(preferContactAvatars)
-                                    .setPayments(payments.isEnabled(), payments.getEntropy().orElse(null))
-                                    .setUniversalExpireTimer(universalExpireTimer)
-                                    .setPrimarySendsSms(primarySendsSms)
-                                    .setE164(e164)
-                                    .setDefaultReactions(defaultReactions)
-                                    .setSubscriber(subscriber)
-                                    .setDisplayBadgesOnProfile(displayBadgesOnProfile)
-                                    .setSubscriptionManuallyCancelled(subscriptionManuallyCancelled)
-                                    .setKeepMutedChatsArchived(keepMutedChatsArchived)
-                                    .setHasSetMyStoriesPrivacy(hasSetMyStoriesPrivacy)
-                                    .setHasViewedOnboardingStory(hasViewedOnboardingStory)
-                                    .setStoriesDisabled(storiesDisabled)
-                                    .setHasReadOnboardingStory(hasReadOnboardingStory)
-                                    .setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducation)
-                                    .setUsername(username)
-                                    .build();
+      SignalAccountRecord.Builder builder = new SignalAccountRecord.Builder(keyGenerator.generate(), unknownFields)
+                                                                   .setGivenName(givenName)
+                                                                   .setFamilyName(familyName)
+                                                                   .setAvatarUrlPath(avatarUrlPath)
+                                                                   .setProfileKey(profileKey)
+                                                                   .setNoteToSelfArchived(noteToSelfArchived)
+                                                                   .setNoteToSelfForcedUnread(noteToSelfForcedUnread)
+                                                                   .setReadReceiptsEnabled(readReceipts)
+                                                                   .setTypingIndicatorsEnabled(typingIndicators)
+                                                                   .setSealedSenderIndicatorsEnabled(sealedSenderIndicators)
+                                                                   .setLinkPreviewsEnabled(linkPreviews)
+                                                                   .setUnlistedPhoneNumber(unlisted)
+                                                                   .setPhoneNumberSharingMode(phoneNumberSharingMode)
+                                                                   .setUnlistedPhoneNumber(unlisted)
+                                                                   .setPinnedConversations(pinnedConversations)
+                                                                   .setPreferContactAvatars(preferContactAvatars)
+                                                                   .setPayments(payments.isEnabled(), payments.getEntropy().orElse(null))
+                                                                   .setUniversalExpireTimer(universalExpireTimer)
+                                                                   .setPrimarySendsSms(primarySendsSms)
+                                                                   .setDefaultReactions(defaultReactions)
+                                                                   .setSubscriber(subscriber)
+                                                                   .setDisplayBadgesOnProfile(displayBadgesOnProfile)
+                                                                   .setSubscriptionManuallyCancelled(subscriptionManuallyCancelled)
+                                                                   .setKeepMutedChatsArchived(keepMutedChatsArchived)
+                                                                   .setHasSetMyStoriesPrivacy(hasSetMyStoriesPrivacy)
+                                                                   .setHasViewedOnboardingStory(hasViewedOnboardingStory)
+                                                                   .setStoriesDisabled(storiesDisabled)
+                                                                   .setHasReadOnboardingStory(hasReadOnboardingStory)
+                                                                   .setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducation)
+                                                                   .setUsername(username);
+
+      if (!FeatureFlags.phoneNumberPrivacy() || !self.getPnpCapability().isSupported()) {
+        builder.setE164(e164);
+      }
+
+      return builder.build();
     }
   }
 

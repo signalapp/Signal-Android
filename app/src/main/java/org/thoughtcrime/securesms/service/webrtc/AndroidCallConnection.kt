@@ -23,7 +23,7 @@ class AndroidCallConnection(
   private val context: Context,
   private val recipientId: RecipientId,
   isOutgoing: Boolean,
-  isVideoCall: Boolean
+  private val isVideoCall: Boolean
 ) : Connection() {
 
   private var needToResetAudioRoute = isOutgoing && !isVideoCall
@@ -38,7 +38,7 @@ class AndroidCallConnection(
 
   override fun onShowIncomingCallUi() {
     Log.i(TAG, "onShowIncomingCallUi()")
-    WebRtcCallService.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId)
+    WebRtcCallService.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId, isVideoCall)
     setRinging()
   }
 
@@ -67,7 +67,7 @@ class AndroidCallConnection(
       ApplicationDependencies.getSignalCallManager().acceptCall(false)
     } else {
       val intent = Intent(context, WebRtcCallActivity::class.java)
-      intent.action = WebRtcCallActivity.ANSWER_ACTION
+      intent.action = if (isVideoCall) WebRtcCallActivity.ANSWER_VIDEO_ACTION else WebRtcCallActivity.ANSWER_ACTION
       intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NEW_TASK
       context.startActivity(intent)
     }

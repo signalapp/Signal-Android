@@ -7,6 +7,7 @@ import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
 
+@Suppress("ClassName")
 @RunWith(value = ParameterizedRobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class NameUtil_getAbbreviation(

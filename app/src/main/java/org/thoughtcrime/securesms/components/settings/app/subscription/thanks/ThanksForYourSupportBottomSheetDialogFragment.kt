@@ -128,6 +128,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
   }
 
   override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
     val controlChecked = switch.isChecked
     val args = ThanksForYourSupportBottomSheetDialogFragmentArgs.fromBundle(requireArguments())
 

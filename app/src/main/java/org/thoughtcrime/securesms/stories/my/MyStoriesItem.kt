@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
@@ -37,7 +36,7 @@ object MyStoriesItem {
   }
 
   class Model(
-    val distributionStory: ConversationMessage,
+    val distributionStory: MyStoriesState.DistributionStory,
     val onClick: (Model, View) -> Unit,
     val onSaveClick: (Model) -> Unit,
     val onDeleteClick: (Model) -> Unit,
@@ -118,8 +117,8 @@ object MyStoriesItem {
         if (SignalStore.storyValues().viewedReceiptsEnabled) {
           viewCount.text = context.resources.getQuantityString(
             R.plurals.MyStories__d_views,
-            model.distributionStory.messageRecord.viewedReceiptCount,
-            model.distributionStory.messageRecord.viewedReceiptCount
+            model.distributionStory.views,
+            model.distributionStory.views
           )
         } else {
           viewCount.setText(R.string.StoryViewerPageFragment__views_off)

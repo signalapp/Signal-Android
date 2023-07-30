@@ -27,9 +27,11 @@ th {
 }
 
 .query-input {
-  width: 100%;
-  height: 10rem;
-  margin-bottom: 8px;
+  width: calc(100% - 18px);
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 200px;
+  margin-bottom: 2px;
 }
 
 li.active {
@@ -95,4 +97,10 @@ table.device-info, table.device-info tr, table.device-info td {
 
 .null {
   color: #666
+}
+
+#grow-button {
+  width: calc(100% - 18px);
+  height: 0.75rem;
+  margin-bottom: 8px;
 }

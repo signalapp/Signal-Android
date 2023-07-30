@@ -128,12 +128,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     ViewUtil.focusAndShowKeyboard(binding.content.addAMessageInput)
   }
 
-  override fun onPause() {
-    super.onPause()
-
-    ViewUtil.hideKeyboard(requireContext(), binding.content.addAMessageInput)
-  }
-
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
     if (isResumed) {
@@ -167,7 +161,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     mentionsViewModel = ViewModelProvider(requireActivity(), MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel::class.java)
 
     inlineQueryResultsController = InlineQueryResultsController(
-      requireContext(),
       inlineQueryViewModel,
       requireView().findViewById(R.id.background_holder),
       (requireView() as ViewGroup),

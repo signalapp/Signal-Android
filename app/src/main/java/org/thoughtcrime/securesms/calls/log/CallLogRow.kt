@@ -1,8 +1,16 @@
+/**
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.calls.log
 
+import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 
 /**
  * A row to be displayed in the call log
@@ -10,6 +18,17 @@ import org.thoughtcrime.securesms.recipients.Recipient
 sealed class CallLogRow {
 
   abstract val id: Id
+
+  /**
+   * A call link with no "active" events.
+   */
+  data class CallLink(
+    val record: CallLinkTable.CallLink,
+    val recipient: Recipient,
+    val searchQuery: String?,
+    val callLinkPeekInfo: CallLinkPeekInfo?,
+    override val id: Id = Id.CallLink(record.roomId)
+  ) : CallLogRow()
 
   /**
    * An incoming, outgoing, or missed call.
@@ -20,6 +39,8 @@ sealed class CallLogRow {
     val date: Long,
     val groupCallState: GroupCallState,
     val children: Set<Long>,
+    val searchQuery: String?,
+    val callLinkPeekInfo: CallLinkPeekInfo?,
     override val id: Id = Id.Call(children)
   ) : CallLogRow()
 
@@ -36,6 +57,7 @@ sealed class CallLogRow {
 
   sealed class Id {
     data class Call(val children: Set<Long>) : Id()
+    data class CallLink(val roomId: CallLinkRoomId) : Id()
     object ClearFilter : Id()
     object CreateCallLink : Id()
   }

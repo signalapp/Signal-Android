@@ -172,11 +172,9 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                        handleSuccessfulVerify();
                                      } else if (processor.rateLimit()) {
                                        handleRateLimited();
-                                     } else if (processor.registrationLock() && !processor.isKbsLocked()) {
+                                     } else if (processor.registrationLock() && !processor.isRegistrationLockPresentAndSvrExhausted()) {
                                        LockedException lockedException = processor.getLockedException();
                                        handleRegistrationLock(lockedException.getTimeRemaining());
-                                     } else if (processor.isKbsLocked()) {
-                                       handleKbsAccountLocked();
                                      } else if (processor.authorizationFailed()) {
                                        handleIncorrectCodeError();
                                      } else {
@@ -227,7 +225,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     });
   }
 
-  protected void handleKbsAccountLocked() {
+  protected void handleSvrAccountLocked() {
     navigateToKbsAccountLocked();
   }
 
@@ -391,12 +389,16 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (!processor.hasResult()) {
+                                      Log.d(TAG, "Network error.");
                                       returnToPhoneEntryScreen();
                                     } else if (processor.isInvalidSession()) {
+                                      Log.d(TAG, "Registration session is invalid.");
                                       returnToPhoneEntryScreen();
                                     } else if (processor.cannotSubmitVerificationAttempt()) {
+                                      Log.d(TAG, "Cannot submit any more verification attempts.");
                                       returnToPhoneEntryScreen();
-                                    } else if (!processor.canSubmitProofImmediately()) {
+                                    } else if (processor.mustWaitToSubmitProof()) {
+                                      Log.d(TAG, "Blocked from submitting proof at this time.");
                                       handleRateLimited();
                                     }
                                     // else session state is valid and server is ready to accept code

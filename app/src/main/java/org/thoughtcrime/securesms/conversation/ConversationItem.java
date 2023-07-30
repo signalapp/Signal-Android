@@ -60,6 +60,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
@@ -69,12 +70,15 @@ import com.google.common.collect.Sets;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
+import org.thoughtcrime.securesms.calls.links.CallLinkJoinButton;
+import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -91,11 +95,12 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.payment.PaymentMessageView;
+import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement;
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationBodyUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -131,6 +136,7 @@ import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -169,7 +175,8 @@ import kotlin.jvm.functions.Function1;
 
 public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
                                                                       RecipientForeverObserver,
-                                                                      OpenableGift
+                                                                      OpenableGift,
+                                                                      InteractiveConversationElement
 {
   private static final String TAG = Log.tag(ConversationItem.class);
 
@@ -225,6 +232,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private           Stub<LinkPreviewView>                   linkPreviewStub;
   private           Stub<BorderlessImageView>               stickerStub;
   private           Stub<ViewOnceMessageView>               revealableStub;
+  private           Stub<CallLinkJoinButton>                joinCallLinkStub;
   private           Stub<Button>                            callToActionStub;
   private           Stub<GiftMessageView>                   giftViewStub;
   private           Stub<PaymentMessageView>                paymentViewStub;
@@ -324,6 +332,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.linkPreviewStub           = new Stub<>(findViewById(R.id.link_preview_stub));
     this.stickerStub               = new Stub<>(findViewById(R.id.sticker_view_stub));
     this.revealableStub            = new Stub<>(findViewById(R.id.revealable_view_stub));
+    this.joinCallLinkStub          = ViewUtil.findStubById(this, R.id.conversation_item_join_button);
     this.callToActionStub          = ViewUtil.findStubById(this, R.id.conversation_item_call_to_action_stub);
     this.groupSenderHolder         = findViewById(R.id.group_sender_holder);
     this.quoteView                 = findViewById(R.id.quote_view);
@@ -342,7 +351,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
-    bodyText.enableSpoilerFiltering();
     footer.setOnTouchDelegateChangedListener(touchDelegateChangedListener);
   }
 
@@ -486,6 +494,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     audioViewStub.get().getSeekBarGlobalVisibleRect(SWIPE_RECT);
     return SWIPE_RECT.contains((int) downX, (int) downY);
+  }
+
+  public @Nullable ConversationItemBodyBubble getBodyBubble() {
+    return bodyBubble;
+  }
+
+  public @Nullable View getQuotedIndicator() {
+    return quotedIndicator;
+  }
+
+  public @Nullable ReactionsConversationView getReactionsView() {
+    return reactionsView;
   }
 
   @Override
@@ -1069,6 +1089,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved()) linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
+      if (callToActionStub.resolved()) callToActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       revealableStub.get().setMessage((MmsMessageRecord) messageRecord, hasWallpaper);
@@ -1113,11 +1134,24 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
 
+      if (FeatureFlags.adHocCalling()) {
+        CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
+        if (callLinkRootKey != null) {
+          joinCallLinkStub.setVisibility(View.VISIBLE);
+          joinCallLinkStub.get().setTextColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorOnSurface);
+          joinCallLinkStub.get().setJoinClickListener(v -> {
+            if (eventListener != null) {
+              eventListener.onJoinCallLink(callLinkRootKey);
+            }
+          });
+        }
+      }
+
       if (hasBigImageLinkPreview(messageRecord)) {
         mediaThumbnailStub.require().setVisibility(VISIBLE);
         mediaThumbnailStub.require().setMinimumThumbnailWidth(readDimen(R.dimen.media_bubble_min_width_with_content));
         mediaThumbnailStub.require().setMaximumThumbnailHeight(readDimen(R.dimen.media_bubble_max_height));
-        mediaThumbnailStub.require().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(context, linkPreview.getThumbnail().get())), showControls, false);
+        mediaThumbnailStub.require().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(linkPreview.getThumbnail().get())), showControls, false);
         mediaThumbnailStub.require().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
         mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
         mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
@@ -1316,7 +1350,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       MediaMmsMessageRecord mediaMmsMessageRecord = (MediaMmsMessageRecord) messageRecord;
 
       paymentViewStub.setVisibility(View.VISIBLE);
-      paymentViewStub.get().bindPayment(messageRecord.getFromRecipient(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
+      paymentViewStub.get().bindPayment(conversationRecipient.get(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
 
       footer.setVisibility(VISIBLE);
     } else {
@@ -1476,7 +1510,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void linkifyMessageBody(@NonNull Spannable messageBody,
                                   boolean shouldLinkifyAllLinks)
   {
-    linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener);
+    V2ConversationBodyUtil.linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener);
 
     if (conversationMessage.hasStyleLinks()) {
       for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
@@ -1496,28 +1530,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
-
-  @VisibleForTesting
-  static void linkifyUrlLinks(@NonNull Spannable messageBody, boolean shouldLinkifyAllLinks, @NonNull UrlClickHandler urlClickHandler) {
-    int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-    boolean hasLinks    = LinkifyCompat.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
-
-    if (hasLinks) {
-      Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
-            .filterNot(url -> LinkUtil.isLegalUrl(url.getURL()))
-            .forEach(messageBody::removeSpan);
-
-      URLSpan[] urlSpans = messageBody.getSpans(0, messageBody.length(), URLSpan.class);
-
-      for (URLSpan urlSpan : urlSpans) {
-        int     start = messageBody.getSpanStart(urlSpan);
-        int     end   = messageBody.getSpanEnd(urlSpan);
-        URLSpan span  = new InterceptableLongClickCopyLinkSpan(urlSpan.getURL(), urlClickHandler);
-        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-      }
-    }
-  }
-
   private void setStatusIcons(MessageRecord messageRecord, boolean hasWallpaper) {
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
 
@@ -1725,7 +1737,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty() && displayMode != ConversationItemDisplayMode.EXTRA_CONDENSED) {
+    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty() && displayMode != ConversationItemDisplayMode.EDIT_HISTORY) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {
@@ -1852,7 +1864,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     int background;
 
-    if (isSingularMessage(current, previous, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
+    if (isSingularMessage(current, previous, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EDIT_HISTORY) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_alone;
         outliner.setRadius(bigRadius);
@@ -1933,10 +1945,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean isFooterVisible(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
-      return false;
-    }
-
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(next.get().getTimestamp(), current.getTimestamp());
 
     return forceFooter(messageRecord) || current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
@@ -1952,11 +1960,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int spacingTop    = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
     int spacingBottom = spacingTop;
 
-    if (isStartOfMessageCluster(current, previous, isGroupThread) && (displayMode != ConversationItemDisplayMode.EXTRA_CONDENSED || next.isEmpty())) {
+    if (isStartOfMessageCluster(current, previous, isGroupThread) && (displayMode != ConversationItemDisplayMode.EDIT_HISTORY || next.isEmpty())) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
-    if (isEndOfMessageCluster(current, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
+    if (isEndOfMessageCluster(current, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EDIT_HISTORY) {
       spacingBottom = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
@@ -2087,10 +2095,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return getSnapshotProjections(coordinateRoot, true, true);
   }
 
+  @Override
   public @NonNull ProjectionList getSnapshotProjections(@NonNull ViewGroup coordinateRoot, boolean clipOutMedia) {
     return getSnapshotProjections(coordinateRoot, clipOutMedia, true);
   }
 
+  @Override
   public @NonNull ProjectionList getSnapshotProjections(@NonNull ViewGroup coordinateRoot, boolean clipOutMedia, boolean outgoingOnly) {
     colorizerProjections.clear();
 
@@ -2233,6 +2243,45 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public @NonNull AnimationSign getAnimationSign() {
     return AnimationSign.get(ViewUtil.isLtr(this), messageRecord.isOutgoing());
+  }
+
+  @Override
+  public @Nullable View getQuotedIndicatorView() {
+    return quotedIndicator;
+  }
+
+  @Override
+  public @NonNull View getReplyView() {
+    return reply;
+  }
+
+  @Override
+  public @Nullable View getContactPhotoHolderView() {
+    return contactPhotoHolder;
+  }
+
+  @Override
+  public @Nullable View getBadgeImageView() {
+    return badgeImageView;
+  }
+
+  @NonNull @Override public List<View> getBubbleViews() {
+    return Collections.singletonList(bodyBubble);
+  }
+
+  @Override
+  public int getAdapterPosition(@NonNull RecyclerView recyclerView) {
+    return recyclerView.getChildAdapterPosition(this);
+  }
+
+  @Override
+  public @NonNull ViewGroup getRoot() {
+    return this;
+  }
+
+  @Override
+  public @NonNull View getBubbleView() {
+    return bodyBubble;
   }
 
   private class SharedContactEventListener implements SharedContactView.EventListener {
@@ -2601,7 +2650,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
     builder.setTitle(title);
 
     if (message > -1) builder.setMessage(message);

@@ -38,8 +38,15 @@ import java.util.Set;
  * and call specific setup information that is the same for any group call state.
  */
 public class GroupActionProcessor extends DeviceAwareActionProcessor {
-  public GroupActionProcessor(@NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
+
+  protected MultiPeerActionProcessorFactory actionProcessorFactory;
+
+  public GroupActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory,
+                              @NonNull WebRtcInteractor webRtcInteractor,
+                              @NonNull String tag)
+  {
     super(webRtcInteractor, tag);
+    this.actionProcessorFactory = actionProcessorFactory;
   }
 
   protected @NonNull WebRtcServiceState handleReceivedOffer(@NonNull WebRtcServiceState currentState,
@@ -295,7 +302,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       VideoState videoState       = currentState.getVideoState();
 
       currentState = terminateGroupCall(currentState, false).builder()
-                                                            .actionProcessor(new GroupNetworkUnavailableActionProcessor(webRtcInteractor))
+                                                            .actionProcessor(actionProcessorFactory.createNetworkUnavailableActionProcessor(webRtcInteractor))
                                                             .changeVideoState()
                                                             .eglBase(videoState.getLockableEglBase())
                                                             .camera(videoState.getCamera())

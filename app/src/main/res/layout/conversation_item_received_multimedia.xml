@@ -228,7 +228,14 @@
             app:emoji_maxLength="1000"
             app:measureLastLine="true"
             app:scaleEmojis="true"
+            app:emoji_renderSpoilers="true"
             tools:text="Mango pickle lorem ipsum" />
+
+        <ViewStub
+            android:id="@+id/conversation_item_join_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_join_button" />
 
         <ViewStub
             android:id="@+id/conversation_item_call_to_action_stub"
@@ -277,11 +284,10 @@
 
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/indicators_parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_toStartOf="@id/quoted_indicator"
         android:gravity="center_vertical"
-        android:orientation="vertical"
         android:visibility="gone"/>
 
     <FrameLayout

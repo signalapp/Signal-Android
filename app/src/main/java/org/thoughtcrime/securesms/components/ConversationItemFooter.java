@@ -320,8 +320,14 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else if (MessageRecordUtil.isScheduled(messageRecord)) {
       dateView.setText(DateUtils.getOnlyTimeString(getContext(), locale, ((MediaMmsMessageRecord) messageRecord).getScheduledDate()));
     } else {
-      String date = DateUtils.getSimpleRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp());
-      if (displayMode != ConversationItemDisplayMode.DETAILED && messageRecord instanceof MediaMmsMessageRecord && ((MediaMmsMessageRecord) messageRecord).isEditMessage()) {
+      long timestamp = messageRecord.getTimestamp();
+      if (messageRecord.isEditMessage()) {
+        if (displayMode == ConversationItemDisplayMode.EDIT_HISTORY) {
+          timestamp = messageRecord.getDateSent();
+        }
+      }
+      String date = DateUtils.getSimpleRelativeTimeSpanString(getContext(), locale, timestamp);
+      if (displayMode != ConversationItemDisplayMode.DETAILED && messageRecord.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date);
       }
       dateView.setText(date);

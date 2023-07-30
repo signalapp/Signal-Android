@@ -179,7 +179,7 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
       if (error == null) return;
 
       if (error == CameraContactSelectionViewModel.Error.MAX_SELECTION) {
-        String message = getString(R.string.CameraContacts_you_can_share_with_a_maximum_of_n_conversations, CameraContactSelectionViewModel.MAX_SELECTION_COUNT);
+        String message = getResources().getQuantityString(R.plurals.CameraContacts_you_can_share_with_a_maximum_of_n_conversations, CameraContactSelectionViewModel.MAX_SELECTION_COUNT, CameraContactSelectionViewModel.MAX_SELECTION_COUNT);
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
       }
     });

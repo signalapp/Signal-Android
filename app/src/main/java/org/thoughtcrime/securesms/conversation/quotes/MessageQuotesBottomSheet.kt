@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
@@ -80,7 +81,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
       adapter = messageAdapter
       itemAnimator = null
-      addItemDecoration(MessageQuoteHeaderDecoration(context))
+      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.MessageQuotesBottomSheet_replies))
 
       doOnNextLayout {
         // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
@@ -117,7 +118,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
 
     disposables += viewModel.getNameColorsMap().subscribe { map ->
       colorizer.onNameColorsChanged(map)
-      messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapter.PAYLOAD_NAME_COLORS)
+      messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapterBridge.PAYLOAD_NAME_COLORS)
     }
 
     initializeGiphyMp4(view.findViewById(R.id.video_container) as ViewGroup, list)

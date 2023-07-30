@@ -44,6 +44,13 @@ class HelpSettingsFragment : DSLSettingsFragment(R.string.preferences__help) {
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from(R.string.HelpSettingsFragment__licenses),
+        onClick = {
+          Navigation.findNavController(requireView()).safeNavigate(R.id.action_helpSettingsFragment_to_licenseFragment)
+        }
+      )
+
       externalLinkPref(
         title = DSLSettingsText.from(R.string.HelpSettingsFragment__terms_amp_privacy_policy),
         linkId = R.string.terms_and_privacy_policy_url
@@ -54,7 +61,7 @@ class HelpSettingsFragment : DSLSettingsFragment(R.string.preferences__help) {
           StringBuilder().apply {
             append(getString(R.string.HelpFragment__copyright_signal_messenger))
             append("\n")
-            append(getString(R.string.HelpFragment__licenced_under_the_gplv3))
+            append(getString(R.string.HelpFragment__licenced_under_the_agplv3))
           }
         )
       )

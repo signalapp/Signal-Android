@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
-import org.signal.core.util.requireLong
+import org.signal.core.util.requireString
 import org.signal.spinner.ColumnTransformer
+import org.signal.spinner.DefaultColumnTransformer
 import org.thoughtcrime.securesms.database.MessageTypes.BAD_DECRYPT_TYPE
 import org.thoughtcrime.securesms.database.MessageTypes.BASE_DRAFT_TYPE
 import org.thoughtcrime.securesms.database.MessageTypes.BASE_INBOX_TYPE
@@ -66,8 +67,13 @@ object MessageBitmaskColumnTransformer : ColumnTransformer {
     return columnName == "type" || columnName == "msg_box"
   }
 
+  @Suppress("FoldInitializerAndIfToElvis")
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
-    val type = cursor.requireLong(columnName)
+    val type: Long? = cursor.requireString(columnName)?.toLongOrNull()
+
+    if (type == null) {
+      return DefaultColumnTransformer.transform(tableName, columnName, cursor)
+    }
 
     val describe = """
       isOutgoingMessageType:${isOutgoingMessageType(type)}

@@ -12,6 +12,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public abstract class GroupId implements DatabaseId {
   private static final int    V2_BYTE_LENGTH                 = GroupIdentifier.SIZE;
 
   private final String encodedId;
+
+  private static final LRUCache<GroupMasterKey, GroupIdentifier> groupIdentifierCache = new LRUCache<>(1000);
 
   private GroupId(@NonNull String prefix, @NonNull byte[] bytes) {
     this.encodedId = prefix + Hex.toStringCondensed(bytes);
@@ -80,9 +83,23 @@ public abstract class GroupId implements DatabaseId {
   }
 
   public static GroupId.V2 v2(@NonNull GroupMasterKey masterKey) {
-    return v2(GroupSecretParams.deriveFromMasterKey(masterKey)
-                               .getPublicParams()
-                               .getGroupIdentifier());
+    return v2(getIdentifierForMasterKey(masterKey));
+  }
+
+  public static GroupIdentifier getIdentifierForMasterKey(@NonNull GroupMasterKey masterKey) {
+    GroupIdentifier cachedIdentifier;
+    synchronized (groupIdentifierCache) {
+      cachedIdentifier = groupIdentifierCache.get(masterKey);
+    }
+    if (cachedIdentifier == null) {
+      cachedIdentifier = GroupSecretParams.deriveFromMasterKey(masterKey)
+                                          .getPublicParams()
+                                          .getGroupIdentifier();
+      synchronized (groupIdentifierCache) {
+        groupIdentifierCache.put(masterKey, cachedIdentifier);
+      }
+    }
+    return cachedIdentifier;
   }
 
   public static GroupId.Push push(ByteString bytes) throws BadGroupIdException {

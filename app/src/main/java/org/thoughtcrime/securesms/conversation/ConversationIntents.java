@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -17,15 +18,21 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ConversationIntents {
   private static final String TAG = Log.tag(ConversationIntents.class);
@@ -51,8 +58,26 @@ public class ConversationIntents {
   private ConversationIntents() {
   }
 
-  public static @NonNull Builder createBuilder(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
-    return new Builder(context, recipientId, threadId);
+  /**
+   * Create a conversation builder for the given recipientId / threadId. Thread ids are required for CFV2,
+   * so we will resolve the Recipient into a ThreadId if the threadId is invalid (below 0)
+   *
+   * @param context     Context for Intent creation
+   * @param recipientId The RecipientId to query the thread ID for if the passed one is invalid.
+   * @param threadId    The threadId, or -1L
+   *
+   * @return A Single that will return a builder to create the conversation intent.
+   */
+  @MainThread
+  public static @NonNull Single<Builder> createBuilder(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
+    if (threadId > 0L) {
+      return Single.just(createBuilderSync(context, recipientId, threadId));
+    } else {
+      return Single.fromCallable(() -> {
+        long newThreadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
+        return createBuilderSync(context, recipientId, newThreadId);
+      }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
   }
 
   public static @NonNull Builder createPopUpBuilder(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
@@ -61,6 +86,20 @@ public class ConversationIntents {
 
   public static @NonNull Intent createBubbleIntent(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
     return new Builder(context, BubbleConversationActivity.class, recipientId, threadId).build();
+  }
+
+  /**
+   * Create a Builder for a Conversation Intent. Does not perform a lookup for the thread id if the thread id is < 1. For CFV2, this is
+   * considered an invalid state and will be met with an IllegalArgumentException.
+   *
+   * @param context     Context for Intent creation
+   * @param recipientId The recipientId, only used if the threadId is not valid
+   * @param threadId    The threadId, required for CFV2.
+   *
+   * @return A builder that can be used to create a conversation intent.
+   */
+  public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
+    return new Builder(context, recipientId, threadId);
   }
 
   static boolean isInvalid(@NonNull Bundle arguments) {
@@ -105,6 +144,9 @@ public class ConversationIntents {
     private final RecipientId            recipientId;
     private final long                   threadId;
     private final String                 draftText;
+    private final Uri                    draftMedia;
+    private final String                 draftContentType;
+    private final SlideFactory.MediaType draftMediaType;
     private final ArrayList<Media>       media;
     private final StickerLocator         stickerLocator;
     private final boolean                isBorderless;
@@ -124,6 +166,8 @@ public class ConversationIntents {
                         null,
                         null,
                         null,
+                        null,
+                        null,
                         false,
                         ThreadTable.DistributionTypes.DEFAULT,
                         -1,
@@ -137,6 +181,8 @@ public class ConversationIntents {
       return new Args(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
                       arguments.getLong(EXTRA_THREAD_ID, -1),
                       arguments.getString(EXTRA_TEXT),
+                      ConversationIntents.getIntentData(arguments),
+                      ConversationIntents.getIntentType(arguments),
                       arguments.getParcelableArrayList(EXTRA_MEDIA),
                       arguments.getParcelable(EXTRA_STICKER),
                       arguments.getBoolean(EXTRA_BORDERLESS, false),
@@ -152,6 +198,8 @@ public class ConversationIntents {
     private Args(@NonNull RecipientId recipientId,
                  long threadId,
                  @Nullable String draftText,
+                 @Nullable Uri draftMedia,
+                 @Nullable String draftContentType,
                  @Nullable ArrayList<Media> media,
                  @Nullable StickerLocator stickerLocator,
                  boolean isBorderless,
@@ -166,6 +214,8 @@ public class ConversationIntents {
       this.recipientId                 = recipientId;
       this.threadId                    = threadId;
       this.draftText                   = draftText;
+      this.draftMedia                  = draftMedia;
+      this.draftContentType            = draftContentType;
       this.media                       = media;
       this.stickerLocator              = stickerLocator;
       this.isBorderless                = isBorderless;
@@ -176,6 +226,7 @@ public class ConversationIntents {
       this.giftBadge                   = giftBadge;
       this.shareDataTimestamp          = shareDataTimestamp;
       this.conversationScreenType      = conversationScreenType;
+      this.draftMediaType              = SlideFactory.MediaType.from(draftContentType);
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -188,6 +239,18 @@ public class ConversationIntents {
 
     public @Nullable String getDraftText() {
       return draftText;
+    }
+
+    public @Nullable Uri getDraftMedia() {
+      return draftMedia;
+    }
+
+    public @Nullable String getDraftContentType() {
+      return draftContentType;
+    }
+
+    public @Nullable SlideFactory.MediaType getDraftMediaType() {
+      return draftMediaType;
     }
 
     public @Nullable ArrayList<Media> getMedia() {
@@ -237,6 +300,10 @@ public class ConversationIntents {
     public @NonNull ConversationScreenType getConversationScreenType() {
       return conversationScreenType;
     }
+
+    public boolean canInitializeFromDatabase() {
+      return draftText == null && (draftMedia == null || ConversationIntents.isBubbleIntentUri(draftMedia) || ConversationIntents.isNotificationIntentUri(draftMedia)) && draftMediaType == null;
+    }
   }
 
   public final static class Builder {
@@ -279,7 +346,7 @@ public class ConversationIntents {
       this.context                   = context;
       this.conversationActivityClass = conversationActivityClass;
       this.recipientId               = recipientId;
-      this.threadId                  = resolveThreadId(recipientId, threadId);
+      this.threadId                  = checkThreadId(threadId);
       this.conversationScreenType    = ConversationScreenType.fromActivityClass(conversationActivityClass);
     }
 
@@ -392,7 +459,13 @@ public class ConversationIntents {
         intent.setType(dataType);
       }
 
-      return intent;
+      if (FeatureFlags.useConversationFragmentV2()) {
+        Bundle args = ConversationIntents.createParentFragmentArguments(intent);
+
+        return intent.putExtras(args);
+      } else {
+        return intent;
+      }
     }
   }
 
@@ -409,6 +482,10 @@ public class ConversationIntents {
 
     public boolean isInBubble() {
       return Objects.equals(this, BUBBLE);
+    }
+
+    public boolean isInPopup() {
+      return Objects.equals(this, POPUP);
     }
 
     public boolean isNormal() {
@@ -436,18 +513,16 @@ public class ConversationIntents {
     }
   }
 
-  private static long resolveThreadId(@NonNull RecipientId recipientId, long threadId) {
-    if (threadId >= 0 && SignalStore.internalValues().useConversationFragmentV2()) {
-      Log.w(TAG, "Getting thread id from database...");
-      // TODO [alex] -- Yes, this hits the database. No, we shouldn't be doing this.
-      return SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
+  private static long checkThreadId(long threadId) {
+    if (threadId < 0 && FeatureFlags.useConversationFragmentV2()) {
+      throw new IllegalArgumentException("ThreadId is a required field in CFV2");
     } else {
       return threadId;
     }
   }
 
   private static Class<? extends Activity> getBaseConversationActivity() {
-    if (SignalStore.internalValues().useConversationFragmentV2()) {
+    if (FeatureFlags.useConversationFragmentV2()) {
       return ConversationActivity.class;
     } else {
       return org.thoughtcrime.securesms.conversation.ConversationActivity.class;

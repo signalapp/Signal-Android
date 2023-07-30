@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
+import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.jobs.ReportSpamJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -37,6 +37,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
+
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Unit;
 
 public final class MessageRequestRepository {
 
@@ -70,6 +74,31 @@ public final class MessageRequestRepository {
         }
       }).orElse(GroupInfo.ZERO));
     });
+  }
+
+  @WorkerThread
+  public @NonNull MessageRequestRecipientInfo getRecipientInfo(@NonNull RecipientId recipientId, long threadId) {
+    List<String>          sharedGroups = SignalDatabase.groups().getPushGroupNamesContainingMember(recipientId);
+    Optional<GroupRecord> groupRecord  = SignalDatabase.groups().getGroup(recipientId);
+    GroupInfo             groupInfo    = GroupInfo.ZERO;
+
+    if (groupRecord.isPresent()) {
+      if (groupRecord.get().isV2Group()) {
+        DecryptedGroup decryptedGroup = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
+        groupInfo = new GroupInfo(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), decryptedGroup.getDescription());
+      } else {
+        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "");
+      }
+    }
+
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    return new MessageRequestRecipientInfo(
+        recipient,
+        groupInfo,
+        sharedGroups,
+        getMessageRequestState(recipient, threadId)
+    );
   }
 
   @WorkerThread
@@ -124,6 +153,19 @@ public final class MessageRequestRepository {
     }
   }
 
+  @SuppressWarnings("unchecked")
+  public @NonNull Single<Result<Unit, GroupChangeFailureReason>> acceptMessageRequest(@NonNull RecipientId recipientId, long threadId) {
+    //noinspection CodeBlock2Expr
+    return Single.<Result<Unit, GroupChangeFailureReason>>create(emitter -> {
+      acceptMessageRequest(
+          recipientId,
+          threadId,
+          () -> emitter.onSuccess(Result.success(Unit.INSTANCE)),
+          reason -> emitter.onSuccess(Result.failure(reason))
+      );
+    }).subscribeOn(Schedulers.io());
+  }
+
   public void acceptMessageRequest(@NonNull RecipientId recipientId,
                                    long threadId,
                                    @NonNull Runnable onMessageRequestAccepted,
@@ -167,6 +209,19 @@ public final class MessageRequestRepository {
     });
   }
 
+  @SuppressWarnings("unchecked")
+  public @NonNull Single<Result<Unit, GroupChangeFailureReason>> deleteMessageRequest(@NonNull RecipientId recipientId, long threadId) {
+    //noinspection CodeBlock2Expr
+    return Single.<Result<Unit, GroupChangeFailureReason>>create(emitter -> {
+      deleteMessageRequest(
+          recipientId,
+          threadId,
+          () -> emitter.onSuccess(Result.success(Unit.INSTANCE)),
+          reason -> emitter.onSuccess(Result.failure(reason))
+      );
+    }).subscribeOn(Schedulers.io());
+  }
+
   public void deleteMessageRequest(@NonNull RecipientId recipientId,
                                    long threadId,
                                    @NonNull Runnable onMessageRequestDeleted,
@@ -204,6 +259,18 @@ public final class MessageRequestRepository {
     });
   }
 
+  @SuppressWarnings("unchecked")
+  public @NonNull Single<Result<Unit, GroupChangeFailureReason>> blockMessageRequest(@NonNull RecipientId recipientId) {
+    //noinspection CodeBlock2Expr
+    return Single.<Result<Unit, GroupChangeFailureReason>>create(emitter -> {
+      blockMessageRequest(
+          recipientId,
+          () -> emitter.onSuccess(Result.success(Unit.INSTANCE)),
+          reason -> emitter.onSuccess(Result.failure(reason))
+      );
+    }).subscribeOn(Schedulers.io());
+  }
+
   public void blockMessageRequest(@NonNull RecipientId recipientId,
                                   @NonNull Runnable onMessageRequestBlocked,
                                   @NonNull GroupChangeErrorCallback error)
@@ -225,6 +292,19 @@ public final class MessageRequestRepository {
 
       onMessageRequestBlocked.run();
     });
+  }
+
+  @SuppressWarnings("unchecked")
+  public @NonNull Single<Result<Unit, GroupChangeFailureReason>> blockAndReportSpamMessageRequest(@NonNull RecipientId recipientId, long threadId) {
+    //noinspection CodeBlock2Expr
+    return Single.<Result<Unit, GroupChangeFailureReason>>create(emitter -> {
+      blockAndReportSpamMessageRequest(
+          recipientId,
+          threadId,
+          () -> emitter.onSuccess(Result.success(Unit.INSTANCE)),
+          reason -> emitter.onSuccess(Result.failure(reason))
+      );
+    }).subscribeOn(Schedulers.io());
   }
 
   public void blockAndReportSpamMessageRequest(@NonNull RecipientId recipientId,
@@ -251,6 +331,17 @@ public final class MessageRequestRepository {
 
       onMessageRequestBlocked.run();
     });
+  }
+
+  @SuppressWarnings("unchecked")
+  public @NonNull Single<Result<Unit, GroupChangeFailureReason>> unblockAndAccept(@NonNull RecipientId recipientId) {
+    //noinspection CodeBlock2Expr
+    return Single.<Result<Unit, GroupChangeFailureReason>>create(emitter -> {
+      unblockAndAccept(
+          recipientId,
+          () -> emitter.onSuccess(Result.success(Unit.INSTANCE))
+      );
+    }).subscribeOn(Schedulers.io());
   }
 
   public void unblockAndAccept(@NonNull RecipientId recipientId, @NonNull Runnable onMessageRequestUnblocked) {

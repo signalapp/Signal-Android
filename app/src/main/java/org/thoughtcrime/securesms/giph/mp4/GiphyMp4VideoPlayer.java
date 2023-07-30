@@ -16,7 +16,7 @@ import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.StyledPlayerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -31,10 +31,9 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(GiphyMp4VideoPlayer.class);
 
-  private final PlayerView exoView;
-  private       ExoPlayer  exoPlayer;
-  private       CornerMask cornerMask;
-  private       MediaItem  mediaItem;
+  private final StyledPlayerView exoView;
+  private       ExoPlayer        exoPlayer;
+  private       CornerMask       cornerMask;
 
   public GiphyMp4VideoPlayer(Context context) {
     this(context, null);
@@ -79,7 +78,6 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
   }
 
   void setVideoItem(@NonNull MediaItem mediaItem) {
-    this.mediaItem = mediaItem;
     exoPlayer.setMediaItem(mediaItem);
     exoPlayer.prepare();
   }
@@ -110,7 +108,6 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     if (exoPlayer != null) {
       exoPlayer.stop();
       exoPlayer.clearMediaItems();
-      mediaItem = null;
     }
   }
 

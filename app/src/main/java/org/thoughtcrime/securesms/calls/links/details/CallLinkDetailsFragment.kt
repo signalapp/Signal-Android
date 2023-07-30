@@ -1,8 +1,15 @@
+/**
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.calls.links.details
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.compose.foundation.clickable
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -16,19 +23,34 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.setFragmentResultListener
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.CallLinkTable
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
+import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
+import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
+import org.thoughtcrime.securesms.util.CommunicationActions
+import java.time.Instant
 
 /**
  * Provides detailed info about a call link and allows the owner of that link
@@ -36,53 +58,115 @@ import org.thoughtcrime.securesms.database.CallLinkTable
  */
 class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
-  private val viewModel: CallLinkViewModel by viewModels()
+  companion object {
+    private val TAG = Log.tag(CallLinkDetailsFragment::class.java)
+  }
+
+  private val args: CallLinkDetailsFragmentArgs by navArgs()
+  private val viewModel: CallLinkDetailsViewModel by viewModels(factoryProducer = {
+    CallLinkDetailsViewModel.Factory(args.roomId)
+  })
+  private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
     parentFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, viewLifecycleOwner) { resultKey, bundle ->
       if (bundle.containsKey(resultKey)) {
-        viewModel.setName(bundle.getString(resultKey)!!)
+        setName(bundle.getString(resultKey)!!)
       }
     }
   }
 
   @Composable
   override fun FragmentContent() {
-    val isLoading by viewModel.isLoading
-    val callLink by viewModel.callLink
+    val state by viewModel.state
 
     CallLinkDetails(
-      isLoading,
-      callLink,
+      state,
       this
     )
   }
 
   override fun onNavigationClicked() {
-    findNavController().popBackStack()
+    ActivityCompat.finishAfterTransition(requireActivity())
   }
 
   override fun onJoinClicked() {
-    // TODO("Not yet implemented")
+    val recipientSnapshot = viewModel.recipientSnapshot
+    if (recipientSnapshot != null) {
+      CommunicationActions.startVideoCall(this, recipientSnapshot)
+    }
   }
 
   override fun onEditNameClicked() {
-    val name = viewModel.callLink.value.name
+    val name = viewModel.nameSnapshot
     findNavController().navigate(
       CallLinkDetailsFragmentDirections.actionCallLinkDetailsFragmentToEditCallLinkNameDialogFragment(name)
     )
   }
 
   override fun onShareClicked() {
-    // TODO("Not yet implemented")
+    val mimeType = Intent.normalizeMimeType("text/plain")
+    val shareIntent = ShareCompat.IntentBuilder(requireContext())
+      .setText(CallLinks.url(viewModel.rootKeySnapshot))
+      .setType(mimeType)
+      .createChooserIntent()
+
+    try {
+      startActivity(shareIntent)
+    } catch (e: ActivityNotFoundException) {
+      Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet, Toast.LENGTH_LONG).show()
+    }
   }
 
   override fun onDeleteClicked() {
-    // TODO("Not yet implemented")
+    viewModel.setDisplayRevocationDialog(true)
+  }
+
+  override fun onDeleteConfirmed() {
+    viewModel.setDisplayRevocationDialog(false)
+    lifecycleDisposable += viewModel.revoke().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+      when (it) {
+        is UpdateCallLinkResult.Success -> ActivityCompat.finishAfterTransition(requireActivity())
+        else -> {
+          Log.w(TAG, "Failed to revoke. $it")
+          toastFailure()
+        }
+      }
+    }, onError = handleError("onDeleteClicked"))
+  }
+
+  override fun onDeleteCanceled() {
+    viewModel.setDisplayRevocationDialog(false)
   }
 
   override fun onApproveAllMembersChanged(checked: Boolean) {
-    // TODO("Not yet implemented")
+    lifecycleDisposable += viewModel.setApproveAllMembers(checked).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+      if (it !is UpdateCallLinkResult.Success) {
+        Log.w(TAG, "Failed to change restrictions. $it")
+        toastFailure()
+      }
+    }, onError = handleError("onApproveAllMembersChanged"))
+  }
+
+  private fun setName(name: String) {
+    lifecycleDisposable += viewModel.setName(name).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+      if (it !is UpdateCallLinkResult.Success) {
+        Log.w(TAG, "Failed to set name. $it")
+        toastFailure()
+      }
+    }, onError = handleError("setName"))
+  }
+
+  private fun handleError(method: String): (throwable: Throwable) -> Unit {
+    return {
+      Log.w(TAG, "Failure during $method", it)
+      toastFailure()
+    }
+  }
+
+  private fun toastFailure() {
+    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }
 }
 
@@ -92,6 +176,8 @@ private interface CallLinkDetailsCallback {
   fun onEditNameClicked()
   fun onShareClicked()
   fun onDeleteClicked()
+  fun onDeleteConfirmed()
+  fun onDeleteCanceled()
   fun onApproveAllMembersChanged(checked: Boolean)
 }
 
@@ -103,19 +189,29 @@ private fun CallLinkDetailsPreview() {
   }
 
   val callLink = remember {
+    val credentials = CallLinkCredentials.generate()
     CallLinkTable.CallLink(
-      name = "Call Name",
-      identifier = "call-id-1",
-      isApprovalRequired = false,
-      avatarColor = avatarColor
+      recipientId = RecipientId.UNKNOWN,
+      roomId = credentials.roomId,
+      credentials = credentials,
+      state = SignalCallLinkState(
+        name = "Call Name",
+        revoked = false,
+        restrictions = Restrictions.NONE,
+        expiration = Instant.MAX
+      )
     )
   }
 
   SignalTheme(false) {
     CallLinkDetails(
-      false,
-      callLink,
+      CallLinkDetailsState(
+        false,
+        callLink
+      ),
       object : CallLinkDetailsCallback {
+        override fun onDeleteConfirmed() = Unit
+        override fun onDeleteCanceled() = Unit
         override fun onNavigationClicked() = Unit
         override fun onJoinClicked() = Unit
         override fun onEditNameClicked() = Unit
@@ -129,8 +225,7 @@ private fun CallLinkDetailsPreview() {
 
 @Composable
 private fun CallLinkDetails(
-  isLoading: Boolean,
-  callLink: CallLinkTable.CallLink,
+  state: CallLinkDetailsState,
   callback: CallLinkDetailsCallback
 ) {
   Scaffolds.Settings(
@@ -138,24 +233,24 @@ private fun CallLinkDetails(
     onNavigationClick = callback::onNavigationClicked,
     navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
   ) { paddingValues ->
-    if (isLoading) {
+    if (state.callLink == null) {
       return@Settings
     }
 
     Column(modifier = Modifier.padding(paddingValues)) {
       SignalCallRow(
-        callLink = callLink,
+        callLink = state.callLink,
         onJoinClicked = callback::onJoinClicked,
         modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
-        modifier = Modifier.clickable(onClick = callback::onEditNameClicked)
+        onClick = callback::onEditNameClicked
       )
 
       Rows.ToggleRow(
-        checked = callLink.isApprovalRequired,
+        checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
         text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
         onCheckChanged = callback::onApproveAllMembersChanged
       )
@@ -165,14 +260,25 @@ private fun CallLinkDetails(
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
-        modifier = Modifier.clickable(onClick = callback::onShareClicked)
+        onClick = callback::onShareClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
         foregroundTint = MaterialTheme.colorScheme.error,
-        modifier = Modifier.clickable(onClick = callback::onDeleteClicked)
+        onClick = callback::onDeleteClicked
+      )
+    }
+
+    if (state.displayRevocationDialog) {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.CallLinkDetailsFragment__delete_link),
+        body = stringResource(id = R.string.CallLinkDetailsFragment__this_link_will_no_longer_work),
+        confirm = stringResource(id = R.string.delete),
+        dismiss = stringResource(id = android.R.string.cancel),
+        onConfirm = callback::onDeleteConfirmed,
+        onDismiss = callback::onDeleteCanceled
       )
     }
   }

@@ -72,7 +72,7 @@ class ScheduledMessageManager(
 
   @WorkerThread
   override fun scheduleAlarm(application: Application, event: Event, delay: Long) {
-    val conversationIntent = ConversationIntents.createBuilder(application, event.recipientId, event.threadId).build()
+    val conversationIntent = ConversationIntents.createBuilderSync(application, event.recipientId, event.threadId).build()
 
     trySetExactAlarm(
       application,

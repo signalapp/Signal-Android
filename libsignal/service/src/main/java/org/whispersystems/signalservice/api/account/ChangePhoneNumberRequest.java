@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.signal.libsignal.protocol.IdentityKey;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
+import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
@@ -36,6 +37,9 @@ public final class ChangePhoneNumberRequest {
   @JsonProperty
   private Map<String, SignedPreKeyEntity> devicePniSignedPrekeys;
 
+  @JsonProperty("devicePniPqLastResortPrekeys")
+  private Map<String, KyberPreKeyEntity> devicePniLastResortKyberPrekeys;
+
   @JsonProperty
   private Map<String, Integer> pniRegistrationIds;
 
@@ -49,16 +53,18 @@ public final class ChangePhoneNumberRequest {
                                   IdentityKey pniIdentityKey,
                                   List<OutgoingPushMessage> deviceMessages,
                                   Map<String, SignedPreKeyEntity> devicePniSignedPrekeys,
+                                  Map<String, KyberPreKeyEntity> devicePniLastResortKyberPrekeys,
                                   Map<String, Integer> pniRegistrationIds)
   {
-    this.sessionId              = sessionId;
-    this.recoveryPassword       = recoveryPassword;
-    this.number                 = number;
-    this.registrationLock       = registrationLock;
-    this.pniIdentityKey         = pniIdentityKey;
-    this.deviceMessages         = deviceMessages;
-    this.devicePniSignedPrekeys = devicePniSignedPrekeys;
-    this.pniRegistrationIds     = pniRegistrationIds;
+    this.sessionId                       = sessionId;
+    this.recoveryPassword                = recoveryPassword;
+    this.number                          = number;
+    this.registrationLock                = registrationLock;
+    this.pniIdentityKey                  = pniIdentityKey;
+    this.deviceMessages                  = deviceMessages;
+    this.devicePniSignedPrekeys          = devicePniSignedPrekeys;
+    this.devicePniLastResortKyberPrekeys = devicePniLastResortKyberPrekeys;
+    this.pniRegistrationIds              = pniRegistrationIds;
   }
 
   public String getNumber() {

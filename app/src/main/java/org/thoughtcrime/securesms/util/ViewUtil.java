@@ -261,6 +261,10 @@ public final class ViewUtil {
     return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin;
   }
 
+  public static int getBottomMargin(@NonNull View view) {
+    return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin;
+  }
+
   public static void setLeftMargin(@NonNull View view, int margin) {
     if (isLtr(view)) {
       ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = margin;

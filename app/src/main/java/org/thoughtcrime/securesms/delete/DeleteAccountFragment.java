@@ -230,14 +230,14 @@ public class DeleteAccountFragment extends Fragment {
         Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_number, Snackbar.LENGTH_SHORT).show();
         break;
       case NOT_A_MATCH:
-        new AlertDialog.Builder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext())
                        .setMessage(R.string.DeleteAccountFragment__the_phone_number)
                        .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
                        .setCancelable(true)
                        .show();
         break;
       case CONFIRM_DELETION:
-        new AlertDialog.Builder(requireContext())
+        new MaterialAlertDialogBuilder(requireContext())
                        .setTitle(R.string.DeleteAccountFragment__are_you_sure)
                        .setMessage(R.string.DeleteAccountFragment__this_will_delete_your_signal_account)
                        .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
@@ -289,7 +289,7 @@ public class DeleteAccountFragment extends Fragment {
   }
 
   private void showLocalDataDeletionFailedDialog() {
-    new AlertDialog.Builder(requireContext())
+    new MaterialAlertDialogBuilder(requireContext())
                    .setMessage(R.string.DeleteAccountFragment__failed_to_delete_local_data)
                    .setPositiveButton(R.string.DeleteAccountFragment__launch_app_settings, (dialog, which) -> {
                      Intent settingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);

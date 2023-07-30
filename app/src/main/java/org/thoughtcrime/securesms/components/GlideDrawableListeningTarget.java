@@ -8,9 +8,12 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.request.target.DrawableImageViewTarget;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 public class GlideDrawableListeningTarget extends DrawableImageViewTarget {
+
+  private static final String TAG = Log.tag(GlideDrawableListeningTarget.class);
 
   private final SettableFuture<Boolean> loaded;
 
@@ -21,6 +24,12 @@ public class GlideDrawableListeningTarget extends DrawableImageViewTarget {
 
   @Override
   protected void setResource(@Nullable Drawable resource) {
+    if (resource == null) {
+      Log.d(TAG, "Loaded null resource");
+    } else {
+      Log.d(TAG, "Loaded resource of w " + resource.getIntrinsicWidth() + " by h " + resource.getIntrinsicHeight());
+    }
+
     super.setResource(resource);
     loaded.set(true);
   }
