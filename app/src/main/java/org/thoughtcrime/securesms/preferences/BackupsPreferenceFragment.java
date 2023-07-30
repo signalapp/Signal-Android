@@ -2,16 +2,12 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
-import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.text.HtmlCompat;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
@@ -264,9 +259,9 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void pickTime() {
-    final DayPickerShitDialogFragment shit = new DayPickerShitDialogFragment(SignalStore.settings().getBackupFrequency());
-    shit.show(getChildFragmentManager(), "SHITFUCK");
-    shit.setOnPositiveButtonClickListener((unused1, unused2) -> {
+    final BackupFrequencyPickerDialogFragment frequencyPickerDialogFragment = new BackupFrequencyPickerDialogFragment(SignalStore.settings().getBackupFrequency());
+    frequencyPickerDialogFragment.show(getChildFragmentManager(), "FREQUENCY_PICKER");
+    frequencyPickerDialogFragment.setOnPositiveButtonClickListener((unused1, unused2) -> {
       int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
       final MaterialTimePicker timePickerFragment = new MaterialTimePicker.Builder()
           .setTimeFormat(timeFormat)
@@ -277,7 +272,7 @@ public class BackupsPreferenceFragment extends Fragment {
       timePickerFragment.addOnPositiveButtonClickListener(v -> {
         int hour = timePickerFragment.getHour();
         int minute = timePickerFragment.getMinute();
-        SignalStore.settings().setBackupSchedule(shit.getValue(), hour, minute);
+        SignalStore.settings().setBackupSchedule(frequencyPickerDialogFragment.getValue(), hour, minute);
         updateTimeLabel();
         TextSecurePreferences.setNextBackupTime(requireContext(), 0);
         LocalBackupListener.schedule(requireContext());
