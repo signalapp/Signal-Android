@@ -17,11 +17,12 @@ class BackupFrequencyPickerDialogFragment(private val defaultFrequency: Int) : D
     return AlertDialog.Builder(requireContext())
       .setSingleChoiceItems(this.dayOptions, defaultIndex) { _, i -> this.index = i }
       .setTitle("Every N days")
-      .setPositiveButton("okeydokey") { dialog, i ->
+      .setPositiveButton("OK") { dialog, i ->
           val backupFrequencyDays = this.dayOptions[this.index].toInt()
           Toast.makeText(requireContext(), "Backup every $backupFrequencyDays days", Toast.LENGTH_LONG).show()
           callback?.onClick(dialog, i)
       }
+      .setNegativeButton("Cancel", null)
       .create()
   }
 
