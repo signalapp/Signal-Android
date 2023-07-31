@@ -361,7 +361,7 @@ class ConversationAdapterV2(
         searchQuery,
         false,
         hasWallpaper && displayMode.displayWallpaper(),
-        true, // isMessageRequestAccepted,
+        isMessageRequestAccepted,
         model.conversationMessage == inlineContent,
         colorizer,
         displayMode
@@ -417,7 +417,7 @@ class ConversationAdapterV2(
         searchQuery,
         false,
         hasWallpaper && displayMode.displayWallpaper(),
-        true, // isMessageRequestAccepted,
+        isMessageRequestAccepted,
         model.conversationMessage == inlineContent,
         colorizer,
         displayMode
