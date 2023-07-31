@@ -48,7 +48,7 @@ object DeleteDialog {
       }
 
       if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(context))) {
-        builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context, messageRecords, emitter) }
+        builder.setNeutralButton(if (isNoteToSelfDelete) R.string.ConversationFragment_delete_everywhere else R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context, messageRecords, emitter) }
       }
     }
 
