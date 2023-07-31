@@ -209,7 +209,7 @@ class ConversationRepository(
       val message = OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
-        body = splitMessage.body,
+        body = if (slideDeck != null) OutgoingMessage.buildMessage(slideDeck, splitMessage.body) else splitMessage.body,
         expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
         isUrgent = true,
         isSecure = true,
