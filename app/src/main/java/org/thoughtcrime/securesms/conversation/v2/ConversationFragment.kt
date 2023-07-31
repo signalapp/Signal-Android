@@ -1637,7 +1637,7 @@ class ConversationFragment :
       stickerRecord.contentType
     )
 
-    sendMessageWithoutComposeInput(slide, clearCompose = clearCompose)
+    sendMessageWithoutComposeInput(slide = slide, clearCompose = clearCompose)
 
     viewModel.updateStickerLastUsedTime(stickerRecord, System.currentTimeMillis().milliseconds)
   }
@@ -1645,6 +1645,7 @@ class ConversationFragment :
   private fun sendMessageWithoutComposeInput(
     slide: Slide? = null,
     contacts: List<Contact> = emptyList(),
+    quote: QuoteModel? = null,
     clearCompose: Boolean = true
   ) {
     sendMessage(
@@ -1655,7 +1656,7 @@ class ConversationFragment :
       mentions = emptyList(),
       bodyRanges = null,
       messageToEdit = null,
-      quote = null,
+      quote = quote,
       linkPreviews = emptyList(),
       bypassPreSendSafetyNumberCheck = true
     )
@@ -3791,7 +3792,7 @@ class ConversationFragment :
         else -> null
       } ?: error("Only images are supported!")
 
-      sendMessageWithoutComposeInput(slide)
+      sendMessageWithoutComposeInput(slide = slide)
     }
   }
 
@@ -3949,7 +3950,8 @@ class ConversationFragment :
       val audioSlide = AudioSlide(requireContext(), draft.uri, draft.size, MediaUtil.AUDIO_AAC, true)
 
       sendMessageWithoutComposeInput(
-        slide = audioSlide
+        slide = audioSlide,
+        quote = inputPanel.quote.orNull()
       )
     }
 
