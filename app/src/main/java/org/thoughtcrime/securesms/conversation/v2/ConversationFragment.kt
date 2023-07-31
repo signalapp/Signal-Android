@@ -370,6 +370,8 @@ class ConversationFragment :
       adapter.unregisterAdapterDataObserver(it)
     }
 
+    _binding.conversationItemRecycler.adapter = null
+
     textDraftSaveDebouncer.clear()
   }
 
