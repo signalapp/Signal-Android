@@ -414,8 +414,6 @@ public class MessageContentProcessor {
         warn(String.valueOf(content.getTimestamp()), "Got unrecognized message!");
       }
 
-      resetRecipientToPush(senderRecipient);
-
       if (pending != null) {
         warn(content.getTimestamp(), "Pending retry was processed. Deleting.");
         ApplicationDependencies.getPendingRetryReceiptCache().delete(pending);
@@ -2219,7 +2217,6 @@ public class MessageContentProcessor {
                                                          body,
                                                          Collections.emptyList(),
                                                          message.getTimestamp(),
-                                                         -1,
                                                          expiresInMillis,
                                                          false,
                                                          ThreadTable.DistributionTypes.DEFAULT,
@@ -2342,7 +2339,6 @@ public class MessageContentProcessor {
                                                        textStoryBody,
                                                        pendingAttachments,
                                                        sentAtTimestamp,
-                                                       -1,
                                                        0,
                                                        false,
                                                        ThreadTable.DistributionTypes.DEFAULT,
@@ -2442,7 +2438,6 @@ public class MessageContentProcessor {
                                                        message.getDataMessage().get().getBody().orElse(null),
                                                        syncAttachments,
                                                        message.getTimestamp(),
-                                                       -1,
                                                        TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds()),
                                                        viewOnce,
                                                        ThreadTable.DistributionTypes.DEFAULT,
@@ -2657,7 +2652,6 @@ public class MessageContentProcessor {
                                                             new SlideDeck(),
                                                             body,
                                                             message.getTimestamp(),
-                                                            -1,
                                                             expiresInMillis,
                                                             false,
                                                             StoryType.NONE,
@@ -3401,12 +3395,6 @@ public class MessageContentProcessor {
     }
 
     return false;
-  }
-
-  private void resetRecipientToPush(@NonNull Recipient recipient) {
-    if (recipient.isForceSmsSelection()) {
-      SignalDatabase.recipients().setForceSmsSelection(recipient.getId(), false);
-    }
   }
 
   private void forceStickerDownloadIfNecessary(long messageId, List<DatabaseAttachment> stickerAttachments) {

@@ -184,10 +184,7 @@ import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog;
-import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteActions;
-import org.thoughtcrime.securesms.invites.InviteReminderModel;
-import org.thoughtcrime.securesms.invites.InviteReminderRepository;
 import org.thoughtcrime.securesms.jobs.ForceUpdateGroupV2Job;
 import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
@@ -437,7 +434,6 @@ public class ConversationParentFragment extends Fragment
   private ConversationSearchViewModel  searchViewModel;
   private ConversationStickerViewModel stickerViewModel;
   private ConversationViewModel        viewModel;
-  private InviteReminderModel          inviteReminderModel;
   private ConversationGroupViewModel   groupViewModel;
   private MentionsPickerViewModel      mentionsViewModel;
   private InlineQueryViewModel         inlineQueryViewModel;
@@ -1364,8 +1360,7 @@ public class ConversationParentFragment extends Fragment
     if (paymentsValues.getPaymentsAvailability().isSendAllowed() &&
         !recipient.get().isSelf()                                &&
         !recipient.get().isGroup()                               &&
-        recipient.get().isRegistered()                           &&
-        !recipient.get().isForceSmsSelection())
+        recipient.get().isRegistered())
     {
       attachmentKeyboardStub.get().filterAttachmentKeyboardButtons(null);
     } else {
@@ -1425,16 +1420,11 @@ public class ConversationParentFragment extends Fragment
       sendButton.disableTransportType(MessageSendType.TransportType.SIGNAL);
     }
 
-    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
+    if (isPushAvailable || isPushGroupConversation() || recipient.get().isServiceIdOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
+      sendButton.setDefaultTransport(MessageSendType.TransportType.SIGNAL);
+    } else {
       sendButton.setDefaultTransport(MessageSendType.TransportType.SMS);
       viewModel.insertSmsExportUpdateEvent(recipient.get());
-    } else {
-      if (isPushAvailable || isPushGroupConversation() || recipient.get().isServiceIdOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
-        sendButton.setDefaultTransport(MessageSendType.TransportType.SIGNAL);
-      } else {
-        sendButton.setDefaultTransport(MessageSendType.TransportType.SMS);
-        viewModel.insertSmsExportUpdateEvent(recipient.get());
-      }
     }
 
     calculateCharactersRemaining();
@@ -1710,12 +1700,9 @@ public class ConversationParentFragment extends Fragment
   private void onSecurityUpdated() {
     Log.i(TAG, "onSecurityUpdated()");
     updateReminders();
-    updateDefaultSubscriptionId(recipient.get().getDefaultSubscriptionId());
   }
 
   private void initializeInsightObserver() {
-    inviteReminderModel = new InviteReminderModel(requireContext(), new InviteReminderRepository(requireContext()));
-    inviteReminderModel.loadReminder(recipient, this::updateReminders);
   }
 
   protected void updateReminders() {
@@ -1724,7 +1711,6 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    Optional<Reminder> inviteReminder              = inviteReminderModel.getReminder();
     Integer            actionableRequestingMembers = groupViewModel.getActionableRequestingMembers().getValue();
     List<RecipientId>  gv1MigrationSuggestions     = groupViewModel.getGroupV1MigrationSuggestions().getValue();
 
@@ -1740,11 +1726,8 @@ public class ConversationParentFragment extends Fragment
     } else if (SignalStore.account().isRegistered()                 &&
                TextSecurePreferences.isShowInviteReminders(context) &&
                !viewModel.isPushAvailable()                         &&
-               inviteReminder.isPresent()                           &&
                !recipient.get().isGroup()) {
       reminderView.get().setOnActionClickListener(this::handleReminderAction);
-      reminderView.get().setOnDismissListener(() -> inviteReminderModel.dismissReminder());
-      reminderView.get().showReminder(inviteReminder.get());
     } else if (actionableRequestingMembers != null && actionableRequestingMembers > 0) {
       reminderView.get().showReminder(new PendingGroupJoinRequestsReminder(actionableRequestingMembers));
       reminderView.get().setOnActionClickListener(id -> {
@@ -1785,8 +1768,6 @@ public class ConversationParentFragment extends Fragment
     if (reminderActionId == R.id.reminder_action_invite) {
       handleInviteLink();
       reminderView.get().requestDismiss();
-    } else if (reminderActionId == R.id.reminder_action_view_insights) {
-      InsightsLauncher.showInsightsDashboard(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_update_now) {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
     } else if (reminderActionId == R.id.reminder_action_re_register) {
@@ -1958,8 +1939,6 @@ public class ConversationParentFragment extends Fragment
       composeText.setMessageSendType(newMessageSendType);
 
       updateSendButtonColor(newMessageSendType);
-
-      if (manuallySelected) recordTransportPreference(newMessageSendType);
     });
 
     titleView.setOnStoryRingClickListener(v -> handleStoryRingClick());
@@ -2461,7 +2440,6 @@ public class ConversationParentFragment extends Fragment
     titleView.setVerified(identityRecords.isVerified() && !recipient.isSelf());
     setBlockedUserState(recipient, viewModel.getConversationStateSnapshot().getSecurityInfo());
     updateReminders();
-    updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     updatePaymentsAvailable();
     updateSendButtonColor(sendButton.getSelectedSendType());
 
@@ -2904,7 +2882,6 @@ public class ConversationParentFragment extends Fragment
                                                     result.getBody(),
                                                     Collections.emptyList(),
                                                     System.currentTimeMillis(),
-                                                    -1,
                                                     expiresIn,
                                                     result.isViewOnce(),
                                                     distributionType,
@@ -3033,7 +3010,6 @@ public class ConversationParentFragment extends Fragment
                                                                    OutgoingMessage.buildMessage(slideDeck, body),
                                                                    slideDeck.asAttachments(),
                                                                    System.currentTimeMillis(),
-                                                                   sendType.getSimSubscriptionIdOr(-1),
                                                                    expiresIn,
                                                                    viewOnce,
                                                                    distributionType,
@@ -3126,7 +3102,7 @@ public class ConversationParentFragment extends Fragment
       }
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
-      message = OutgoingMessage.sms(recipient.get(), messageBody, sendType.getSimSubscriptionIdOr(-1));
+      message = OutgoingMessage.sms(recipient.get(), messageBody);
     }
 
     Permissions.with(this)
@@ -3244,23 +3220,6 @@ public class ConversationParentFragment extends Fragment
       TextView scheduledText = scheduledMessagesBar.findViewById(R.id.scheduled_messages_text);
       scheduledText.setText(getResources().getQuantityString(R.plurals.conversation_scheduled_messages_bar__number_of_messages, count, count));
     }
-  }
-
-  private void recordTransportPreference(MessageSendType sendType) {
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        RecipientTable recipientTable = SignalDatabase.recipients();
-
-        recipientTable.setDefaultSubscriptionId(recipient.getId(), sendType.getSimSubscriptionIdOr(-1));
-
-        if (!recipient.resolve().isPushGroup()) {
-          recipientTable.setForceSmsSelection(recipient.getId(), recipient.get().getRegistered() == RegisteredState.REGISTERED && sendType.usesSmsTransport());
-        }
-
-        return null;
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   @Override

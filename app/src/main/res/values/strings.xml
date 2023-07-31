@@ -3445,33 +3445,6 @@
     <string name="new_conversation_activity__refresh">Refresh</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Insights</string>
-    <string name="InsightsDashboardFragment__title">Insights</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Spread the word</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Not enough data</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Your Insights percentage is calculated based on outgoing messages within the past %1$d days that have not disappeared or been deleted.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Start communicating securely and enable new features that go beyond the limitations of unencrypted SMS messages by inviting more contacts to join Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">These statistics were locally generated on your device and can only be seen by you. They are never transmitted anywhere.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Encrypted messages</string>
-    <string name="InsightsDashboardFragment__cancel">Cancel</string>
-    <string name="InsightsDashboardFragment__send">Send</string>
-    <string name="InsightsModalFragment__title">Introducing Insights</string>
-    <string name="InsightsModalFragment__description">Find out how many of your outgoing messages were sent securely, then quickly invite new contacts to boost your Signal percentage.</string>
-    <string name="InsightsModalFragment__view_insights">View Insights</string>
-
-    <string name="FirstInviteReminder__title">Invite to Signal</string>
-    <string name="FirstInviteReminder__description">You could increase the number of encrypted messages you send by %1$d%%</string>
-    <string name="SecondInviteReminder__title">Boost your Signal</string>
-    <string name="SecondInviteReminder__description">Invite %1$s</string>
-    <string name="InsightsReminder__view_insights">View Insights</string>
-    <string name="InsightsReminder__invite">Invite</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->

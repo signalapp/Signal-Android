@@ -112,7 +112,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchove
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
-import org.thoughtcrime.securesms.insights.InsightsConstants
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
@@ -1083,10 +1082,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       } else {
         if (unread && editedMessage == null) {
           threads.incrementUnread(threadId, 1, 0)
-        }
-
-        if (message.subscriptionId != -1) {
-          recipients.setDefaultSubscriptionId(message.authorId, message.subscriptionId)
         }
       }
 
@@ -2507,7 +2502,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           body = body,
           attachments = attachments,
           timestamp = timestamp,
-          subscriptionId = subscriptionId,
           expiresIn = expiresIn,
           viewOnce = viewOnce,
           distributionType = distributionType,
@@ -3712,15 +3706,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleInt()
   }
 
-  fun getInsecureMessageSentCount(threadId: Long): Int {
-    return readableDatabase
-      .select("COUNT(*)")
-      .from(TABLE_NAME)
-      .where("$THREAD_ID = ? AND $outgoingInsecureMessageClause AND $DATE_SENT > ?", threadId, (System.currentTimeMillis() - InsightsConstants.PERIOD_IN_MILLIS))
-      .run()
-      .readToSingleInt()
-  }
-
   fun getSecureMessageCount(threadId: Long): Int {
     return readableDatabase
       .select("COUNT(*)")
@@ -3739,28 +3724,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleInt()
   }
 
-  fun getInsecureMessageCountForInsights(): Int {
-    return getMessageCountForRecipientsAndType(outgoingInsecureMessageClause)
-  }
-
-  fun getSecureMessageCountForInsights(): Int {
-    return getMessageCountForRecipientsAndType(outgoingSecureMessageClause)
-  }
-
   private fun hasSmsExportMessage(threadId: Long): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
       .where("$THREAD_ID = ? AND $TYPE = ?", threadId, MessageTypes.SMS_EXPORT_TYPE)
       .run()
-  }
-
-  private fun getMessageCountForRecipientsAndType(typeClause: String): Int {
-    return readableDatabase
-      .select("COUNT(*)")
-      .from(TABLE_NAME)
-      .where("$typeClause AND $DATE_SENT > ?", (System.currentTimeMillis() - InsightsConstants.PERIOD_IN_MILLIS))
-      .run()
-      .readToSingleInt()
   }
 
   private val outgoingInsecureMessageClause = "($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_TYPE} AND NOT ($TYPE & ${MessageTypes.SECURE_MESSAGE_BIT})"

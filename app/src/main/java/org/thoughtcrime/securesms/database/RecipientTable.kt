@@ -285,8 +285,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       CALL_VIBRATE,
       MUTE_UNTIL,
       AVATAR_COLOR,
-      SEEN_INVITE_REMINDER,
-      DEFAULT_SUBSCRIPTION_ID,
       MESSAGE_EXPIRATION_TIME,
       REGISTERED,
       PROFILE_KEY,
@@ -305,7 +303,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       LAST_PROFILE_FETCH,
       NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
-      FORCE_SMS_SELECTION,
       CAPABILITIES,
       STORAGE_SERVICE_ID,
       MENTION_SETTING,
@@ -395,21 +392,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       ) AS $SORT_NAME
       """
     )
-
-    private val INSIGHTS_INVITEE_LIST =
-      """
-      SELECT $TABLE_NAME.$ID
-      FROM $TABLE_NAME INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
-      WHERE 
-        $TABLE_NAME.$GROUP_ID IS NULL AND
-        $TABLE_NAME.$REGISTERED = ${RegisteredState.NOT_REGISTERED.id} AND
-        $TABLE_NAME.$SEEN_INVITE_REMINDER < ${InsightsBannerTier.TIER_TWO.id} AND
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.HAS_SENT} AND
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} > ? AND
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND
-        $TABLE_NAME.$HIDDEN = 0
-      ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC LIMIT 50
-      """
 
     /** Used as a placeholder recipient for self during migrations when self isn't yet available. */
     private val PLACEHOLDER_SELF_ID = -2L
@@ -1348,24 +1330,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setDefaultSubscriptionId(id: RecipientId, defaultSubscriptionId: Int) {
-    val values = ContentValues().apply {
-      put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId)
-    }
-    if (update(id, values)) {
-      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
-    }
-  }
-
-  fun setForceSmsSelection(id: RecipientId, forceSmsSelection: Boolean) {
-    val contentValues = ContentValues(1).apply {
-      put(FORCE_SMS_SELECTION, if (forceSmsSelection) 1 else 0)
-    }
-    if (update(id, contentValues)) {
-      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
-    }
-  }
-
   fun setBlocked(id: RecipientId, blocked: Boolean) {
     val values = ContentValues().apply {
       put(BLOCKED, if (blocked) 1 else 0)
@@ -1450,29 +1414,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     StorageSyncHelper.scheduleSyncForDataChange()
-  }
-
-  fun setSeenFirstInviteReminder(id: RecipientId) {
-    setInsightsBannerTier(id, InsightsBannerTier.TIER_ONE)
-  }
-
-  fun setSeenSecondInviteReminder(id: RecipientId) {
-    setInsightsBannerTier(id, InsightsBannerTier.TIER_TWO)
-  }
-
-  fun setHasSentInvite(id: RecipientId) {
-    setSeenSecondInviteReminder(id)
-  }
-
-  private fun setInsightsBannerTier(id: RecipientId, insightsBannerTier: InsightsBannerTier) {
-    val query = "$ID = ? AND $SEEN_INVITE_REMINDER < ?"
-    val args = arrayOf(id.serialize(), insightsBannerTier.toString())
-    val values = ContentValues(1).apply {
-      put(SEEN_INVITE_REMINDER, insightsBannerTier.id)
-    }
-
-    writableDatabase.update(TABLE_NAME, values, query, args)
-    ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
   }
 
   fun setExpireMessages(id: RecipientId, expiration: Int) {
@@ -3096,19 +3037,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return operations
   }
 
-  fun getUninvitedRecipientsForInsights(): List<RecipientId> {
-    val results: MutableList<RecipientId> = LinkedList()
-    val args = arrayOf((System.currentTimeMillis() - TimeUnit.DAYS.toMillis(31)).toString())
-
-    readableDatabase.rawQuery(INSIGHTS_INVITEE_LIST, args).use { cursor ->
-      while (cursor != null && cursor.moveToNext()) {
-        results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))))
-      }
-    }
-
-    return results
-  }
-
   fun getRegistered(): List<RecipientId> {
     val results: MutableList<RecipientId> = LinkedList()
 
@@ -3899,8 +3827,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       CHAT_COLORS to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.serialize().toByteArray() }.orElse(null),
       AVATAR_COLOR to primaryRecord.avatarColor.serialize(),
       CUSTOM_CHAT_COLORS_ID to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.id.longValue }.orElse(null),
-      SEEN_INVITE_REMINDER to secondaryRecord.insightsBannerTier.id,
-      DEFAULT_SUBSCRIPTION_ID to secondaryRecord.getDefaultSubscriptionId().orElse(-1),
       MESSAGE_EXPIRATION_TIME to if (primaryRecord.expireMessages > 0) primaryRecord.expireMessages else secondaryRecord.expireMessages,
       REGISTERED to RegisteredState.REGISTERED.id,
       SYSTEM_GIVEN_NAME to secondaryRecord.systemProfileName.givenName,
@@ -4246,7 +4172,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       callVibrateState = VibrateState.fromId(cursor.requireInt(CALL_VIBRATE)),
       messageRingtone = Util.uri(cursor.requireString(MESSAGE_RINGTONE)),
       callRingtone = Util.uri(cursor.requireString(CALL_RINGTONE)),
-      defaultSubscriptionId = cursor.requireInt(DEFAULT_SUBSCRIPTION_ID),
       expireMessages = cursor.requireInt(MESSAGE_EXPIRATION_TIME),
       registered = RegisteredState.fromId(cursor.requireInt(REGISTERED)),
       profileKey = profileKey,
@@ -4263,9 +4188,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       lastProfileFetch = cursor.requireLong(LAST_PROFILE_FETCH),
       notificationChannel = cursor.requireString(NOTIFICATION_CHANNEL),
       unidentifiedAccessMode = UnidentifiedAccessMode.fromMode(cursor.requireInt(UNIDENTIFIED_ACCESS_MODE)),
-      forceSmsSelection = cursor.requireBoolean(FORCE_SMS_SELECTION),
       capabilities = readCapabilities(cursor),
-      insightsBannerTier = InsightsBannerTier.fromId(cursor.requireInt(SEEN_INVITE_REMINDER)),
       storageId = Base64.decodeNullableOrThrow(cursor.requireString(STORAGE_SERVICE_ID)),
       mentionSetting = MentionSetting.fromId(cursor.requireInt(MENTION_SETTING)),
       wallpaper = chatWallpaper,

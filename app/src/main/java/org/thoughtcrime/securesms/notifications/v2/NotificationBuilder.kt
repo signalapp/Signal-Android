@@ -123,7 +123,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         }
       }
 
-      addActions(ReplyMethod.forRecipient(context, conversation.recipient), conversation)
+      addActions(ReplyMethod.forRecipient(conversation.recipient), conversation)
     }
   }
 
@@ -504,6 +504,5 @@ private fun ReplyMethod.toLongDescription(): Int {
   return when (this) {
     ReplyMethod.GroupMessage -> R.string.MessageNotifier_reply
     ReplyMethod.SecureMessage -> R.string.MessageNotifier_signal_message
-    ReplyMethod.UnsecuredSmsMessage -> R.string.MessageNotifier_unsecured_sms
   }
 }

@@ -104,8 +104,7 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     if (paymentsValues.paymentsAvailability.isSendAllowed &&
       !recipient.isSelf &&
       !recipient.isGroup &&
-      recipient.isRegistered &&
-      !recipient.isForceSmsSelection
+      recipient.isRegistered
     ) {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(null)
     } else {

@@ -284,12 +284,6 @@ open class MessageContentProcessorV2(private val context: Context) {
         null
       }
     }
-
-    private fun resetRecipientToPush(recipient: Recipient) {
-      if (recipient.isForceSmsSelection) {
-        SignalDatabase.recipients.setForceSmsSelection(recipient.id, false)
-      }
-    }
   }
 
   /**
@@ -424,8 +418,6 @@ open class MessageContentProcessorV2(private val context: Context) {
         warn(envelope.timestamp, "Got unrecognized message!")
       }
     }
-
-    resetRecipientToPush(senderRecipient)
 
     if (pending != null) {
       warn(envelope.timestamp, "Pending retry was processed. Deleting.")

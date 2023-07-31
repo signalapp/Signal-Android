@@ -91,7 +91,7 @@ public final class MmsSendJob extends SendJob {
     }
 
     List<Job> compressionJobs = Stream.of(message.getAttachments())
-                                      .map(a -> (Job) AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, true, message.getSubscriptionId()))
+                                      .map(a -> (Job) AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, true, -1))
                                       .toList();
 
     MmsSendJob sendJob = new MmsSendJob(messageId);
@@ -139,7 +139,7 @@ public final class MmsSendJob extends SendJob {
       validateDestinations(message, pdu);
 
       final byte[]        pduBytes = getPduBytes(pdu);
-      final SendConf      sendConf = new CompatMmsConnection(context).send(pduBytes, message.getSubscriptionId());
+      final SendConf      sendConf = new CompatMmsConnection(context).send(pduBytes, -1);
       final MmsSendResult result   = getSendResult(sendConf, pdu);
 
       database.markAsSent(messageId, false);
@@ -231,7 +231,7 @@ public final class MmsSendJob extends SendJob {
   {
     SendReq          req               = new SendReq();
     String           lineNumber        = getMyNumber(context);
-    MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
+    MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(-1);
     List<Attachment> scaledAttachments = message.getAttachments();
 
     if (!TextUtils.isEmpty(lineNumber)) {

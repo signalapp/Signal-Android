@@ -297,7 +297,6 @@ public class RecipientUtil {
            threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact()  ||
            !threadRecipient.isRegistered()    ||
-           threadRecipient.isForceSmsSelection() ||
            threadRecipient.isHidden();
   }
 
@@ -346,7 +345,6 @@ public class RecipientUtil {
            threadRecipient.isSelf() ||
            threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact() ||
-           threadRecipient.isForceSmsSelection() ||
            !threadRecipient.isRegistered() ||
            (!threadRecipient.isHidden() && (
                hasSentMessageInThread(threadId) ||

@@ -104,7 +104,6 @@ public class Recipient {
   private final VibrateState                 callVibrate;
   private final Uri                          messageRingtone;
   private final Uri                          callRingtone;
-  private final Optional<Integer>            defaultSubscriptionId;
   private final int                          expireMessages;
   private final RegisteredState              registered;
   private final byte[]                       profileKey;
@@ -121,9 +120,7 @@ public class Recipient {
   private final long                         lastProfileFetch;
   private final String                       notificationChannel;
   private final UnidentifiedAccessMode       unidentifiedAccessMode;
-  private final boolean                      forceSmsSelection;
   private final RecipientRecord.Capabilities capabilities;
-  private final InsightsBannerTier           insightsBannerTier;
   private final byte[]                       storageId;
   private final MentionSetting               mentionSetting;
   private final ChatWallpaper                wallpaper;
@@ -392,8 +389,6 @@ public class Recipient {
     this.callVibrate                  = VibrateState.DEFAULT;
     this.messageRingtone              = null;
     this.callRingtone                 = null;
-    this.insightsBannerTier           = InsightsBannerTier.TIER_TWO;
-    this.defaultSubscriptionId        = Optional.empty();
     this.expireMessages               = 0;
     this.registered                   = RegisteredState.UNKNOWN;
     this.profileKey                   = null;
@@ -410,7 +405,6 @@ public class Recipient {
     this.lastProfileFetch             = 0;
     this.notificationChannel          = null;
     this.unidentifiedAccessMode       = UnidentifiedAccessMode.DISABLED;
-    this.forceSmsSelection            = false;
     this.capabilities                 = RecipientRecord.Capabilities.UNKNOWN;
     this.storageId                    = null;
     this.mentionSetting               = MentionSetting.ALWAYS_NOTIFY;
@@ -450,8 +444,6 @@ public class Recipient {
     this.callVibrate                  = details.callVibrateState;
     this.messageRingtone              = details.messageRingtone;
     this.callRingtone                 = details.callRingtone;
-    this.insightsBannerTier           = details.insightsBannerTier;
-    this.defaultSubscriptionId        = details.defaultSubscriptionId;
     this.expireMessages               = details.expireMessages;
     this.registered                   = details.registered;
     this.profileKey                   = details.profileKey;
@@ -468,7 +460,6 @@ public class Recipient {
     this.lastProfileFetch             = details.lastProfileFetch;
     this.notificationChannel          = details.notificationChannel;
     this.unidentifiedAccessMode       = details.unidentifiedAccessMode;
-    this.forceSmsSelection            = details.forceSmsSelection;
     this.capabilities                 = details.capabilities;
     this.storageId                    = details.storageId;
     this.mentionSetting               = details.mentionSetting;
@@ -840,10 +831,6 @@ public class Recipient {
     return requireSmsAddress();
   }
 
-  public Optional<Integer> getDefaultSubscriptionId() {
-    return defaultSubscriptionId;
-  }
-
   public @NonNull ProfileName getProfileName() {
     return signalProfileName;
   }
@@ -1029,14 +1016,6 @@ public class Recipient {
     return expireMessages;
   }
 
-  public boolean hasSeenFirstInviteReminder() {
-    return insightsBannerTier.seen(InsightsBannerTier.TIER_ONE);
-  }
-
-  public boolean hasSeenSecondInviteReminder() {
-    return insightsBannerTier.seen(InsightsBannerTier.TIER_TWO);
-  }
-
   public @NonNull RegisteredState getRegistered() {
     if (isPushGroup() || isDistributionList()) {
       return RegisteredState.REGISTERED;
@@ -1061,10 +1040,6 @@ public class Recipient {
 
   public @Nullable String getNotificationChannel() {
     return !NotificationChannels.supported() ? null : notificationChannel;
-  }
-
-  public boolean isForceSmsSelection() {
-    return forceSmsSelection;
   }
 
   public @NonNull Capability getStoriesCapability() {
@@ -1353,7 +1328,6 @@ public class Recipient {
            Objects.equals(profileAvatarFileDetails, other.profileAvatarFileDetails) &&
            profileSharing == other.profileSharing &&
            isHidden == other.isHidden &&
-           forceSmsSelection == other.forceSmsSelection &&
            Objects.equals(aci, other.aci) &&
            Objects.equals(username, other.username) &&
            Objects.equals(e164, other.e164) &&
@@ -1365,7 +1339,6 @@ public class Recipient {
            callVibrate == other.callVibrate &&
            Objects.equals(messageRingtone, other.messageRingtone) &&
            Objects.equals(callRingtone, other.callRingtone) &&
-           Objects.equals(defaultSubscriptionId, other.defaultSubscriptionId) &&
            registered == other.registered &&
            Arrays.equals(profileKey, other.profileKey) &&
            Objects.equals(expiringProfileKeyCredential, other.expiringProfileKeyCredential) &&
@@ -1378,7 +1351,6 @@ public class Recipient {
            Objects.equals(profileAvatar, other.profileAvatar) &&
            Objects.equals(notificationChannel, other.notificationChannel) &&
            unidentifiedAccessMode == other.unidentifiedAccessMode &&
-           insightsBannerTier == other.insightsBannerTier &&
            Arrays.equals(storageId, other.storageId) &&
            mentionSetting == other.mentionSetting &&
            Objects.equals(wallpaper, other.wallpaper) &&

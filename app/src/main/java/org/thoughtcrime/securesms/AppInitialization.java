@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.insights.InsightsOptOut;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
@@ -30,7 +29,6 @@ public final class AppInitialization {
   public static void onFirstEverAppLaunch(@NonNull Context context) {
     Log.i(TAG, "onFirstEverAppLaunch()");
 
-    InsightsOptOut.userRequestedOptOut(context);
     TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
     TextSecurePreferences.setLastVersionCode(context, Util.getCanonicalVersionCode());
@@ -71,7 +69,6 @@ public final class AppInitialization {
   public static void onRepairFirstEverAppLaunch(@NonNull Context context) {
     Log.w(TAG, "onRepairFirstEverAppLaunch()");
 
-    InsightsOptOut.userRequestedOptOut(context);
     TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
     TextSecurePreferences.setLastVersionCode(context, Util.getCanonicalVersionCode());

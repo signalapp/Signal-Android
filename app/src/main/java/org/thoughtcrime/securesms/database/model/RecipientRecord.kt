@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.RecipientTable.InsightsBannerTier
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
-import java.util.Optional
 
 /**
  * Database model for [RecipientTable].
@@ -43,7 +41,6 @@ data class RecipientRecord(
   val callVibrateState: VibrateState,
   val messageRingtone: Uri?,
   val callRingtone: Uri?,
-  private val defaultSubscriptionId: Int,
   val expireMessages: Int,
   val registered: RegisteredState,
   val profileKey: ByteArray?,
@@ -63,10 +60,7 @@ data class RecipientRecord(
   val lastProfileFetch: Long,
   val notificationChannel: String?,
   val unidentifiedAccessMode: UnidentifiedAccessMode,
-  @get:JvmName("isForceSmsSelection")
-  val forceSmsSelection: Boolean,
   val capabilities: Capabilities,
-  val insightsBannerTier: InsightsBannerTier,
   val storageId: ByteArray?,
   val mentionSetting: MentionSetting,
   val wallpaper: ChatWallpaper?,
@@ -84,10 +78,6 @@ data class RecipientRecord(
   val isHidden: Boolean,
   val callLinkRoomId: CallLinkRoomId?
 ) {
-
-  fun getDefaultSubscriptionId(): Optional<Int> {
-    return if (defaultSubscriptionId != -1) Optional.of(defaultSubscriptionId) else Optional.empty()
-  }
 
   fun e164Only(): Boolean {
     return this.e164 != null && this.aci == null
