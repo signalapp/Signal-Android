@@ -556,6 +556,8 @@ class ConversationFragment :
     ToolbarDependentMarginListener(binding.toolbar)
     initializeMediaKeyboard()
 
+    binding.conversationVideoContainer.setClipToOutline(true)
+
     registerForResults()
   }
 

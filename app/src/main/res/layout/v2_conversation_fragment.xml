@@ -31,10 +31,10 @@
         android:id="@+id/conversation_video_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/conversation_item_recycler"
-        app:layout_constraintEnd_toEndOf="@+id/conversation_item_recycler"
-        app:layout_constraintStart_toStartOf="@+id/conversation_item_recycler"
-        app:layout_constraintTop_toTopOf="@+id/conversation_item_recycler" />
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_recycler_frame"
+        app:layout_constraintEnd_toEndOf="@+id/conversation_item_recycler_frame"
+        app:layout_constraintStart_toStartOf="@+id/conversation_item_recycler_frame"
+        app:layout_constraintTop_toTopOf="@+id/conversation_item_recycler_frame" />
 
     <FrameLayout
         android:id="@+id/conversation_item_recycler_frame"
