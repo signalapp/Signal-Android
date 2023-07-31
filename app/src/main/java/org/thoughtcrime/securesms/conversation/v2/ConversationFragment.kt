@@ -798,6 +798,12 @@ class ConversationFragment :
 
   private fun doAfterFirstRender() {
     Log.d(TAG, "doAfterFirstRender")
+
+    if (!isAdded || view == null) {
+      Log.w(TAG, "Bailing, fragment no longer added")
+      return
+    }
+
     activity?.supportStartPostponedEnterTransition()
 
     backPressedCallback = BackPressedDelegate()
@@ -2149,6 +2155,10 @@ class ConversationFragment :
   private inner class StartPositionScroller(private val meta: ConversationData) : ViewTreeObserver.OnGlobalLayoutListener {
 
     override fun onGlobalLayout() {
+      if (!isAdded || view == null) {
+        return
+      }
+
       val rect = Rect()
       binding.toolbar.getGlobalVisibleRect(rect)
       val toolbarOffset = rect.bottom
@@ -3907,6 +3917,10 @@ class ConversationFragment :
     }
 
     override fun onGlobalLayout() {
+      if (!isAdded || view == null) {
+        return
+      }
+
       val rect = Rect()
       toolbar.getGlobalVisibleRect(rect)
       threadHeaderMarginDecoration.toolbarMargin = rect.bottom + 16.dp
