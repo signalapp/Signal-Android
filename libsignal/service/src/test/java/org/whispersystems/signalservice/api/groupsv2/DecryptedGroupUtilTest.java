@@ -7,6 +7,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -15,6 +17,7 @@ import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static java.util.Arrays.asList;
 
@@ -58,39 +61,39 @@ public final class DecryptedGroupUtilTest {
 
   @Test
   public void can_extract_uuid_from_decrypted_pending_member() {
-    UUID                   uuid            = UUID.randomUUID();
+    ACI                    aci             = ACI.from(UUID.randomUUID());
     DecryptedPendingMember decryptedMember = DecryptedPendingMember.newBuilder()
-                                                                   .setUuid(UuidUtil.toByteString(uuid))
+                                                                   .setServiceIdBinary(aci.toByteString())
                                                                    .build();
 
-    UUID parsed = DecryptedGroupUtil.toUuid(decryptedMember);
+    ServiceId parsed = ServiceId.parseOrNull(decryptedMember.getServiceIdBinary());
 
-    assertEquals(uuid, parsed);
+    assertEquals(aci, parsed);
   }
 
   @Test
   public void can_extract_uuid_from_bad_decrypted_pending_member() {
     DecryptedPendingMember decryptedMember = DecryptedPendingMember.newBuilder()
-                                                                   .setUuid(ByteString.copyFrom(Util.getSecretBytes(17)))
+                                                                   .setServiceIdBinary(ByteString.copyFrom(Util.getSecretBytes(18)))
                                                                    .build();
 
-    UUID parsed = DecryptedGroupUtil.toUuid(decryptedMember);
+    ServiceId parsed = ServiceId.parseOrNull(decryptedMember.getServiceIdBinary());
 
-    assertEquals(UuidUtil.UNKNOWN_UUID, parsed);
+    assertNull(parsed);
   }
 
   @Test
   public void can_extract_uuids_for_all_pending_including_bad_entries() {
-    UUID                   uuid1            = UUID.randomUUID();
-    UUID                   uuid2            = UUID.randomUUID();
+    ACI                    aci1             = ACI.from(UUID.randomUUID());
+    ACI                    aci2             = ACI.from(UUID.randomUUID());
     DecryptedPendingMember decryptedMember1 = DecryptedPendingMember.newBuilder()
-                                                                    .setUuid(UuidUtil.toByteString(uuid1))
+                                                                    .setServiceIdBinary(aci1.toByteString())
                                                                     .build();
     DecryptedPendingMember decryptedMember2 = DecryptedPendingMember.newBuilder()
-                                                                    .setUuid(UuidUtil.toByteString(uuid2))
+                                                                    .setServiceIdBinary(aci2.toByteString())
                                                                     .build();
     DecryptedPendingMember decryptedMember3 = DecryptedPendingMember.newBuilder()
-                                                                    .setUuid(ByteString.copyFrom(Util.getSecretBytes(17)))
+                                                                    .setServiceIdBinary(ByteString.copyFrom(Util.getSecretBytes(18)))
                                                                     .build();
 
     DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder()
@@ -99,23 +102,23 @@ public final class DecryptedGroupUtilTest {
                                                            .addNewPendingMembers(decryptedMember3)
                                                            .build();
 
-    List<UUID> pendingUuids = DecryptedGroupUtil.pendingToUuidList(groupChange.getNewPendingMembersList());
+    List<ServiceId> pendingUuids = DecryptedGroupUtil.pendingToServiceIdList(groupChange.getNewPendingMembersList());
 
-    assertThat(pendingUuids, is(asList(uuid1, uuid2, UuidUtil.UNKNOWN_UUID)));
+    assertThat(pendingUuids, is(asList(aci1, aci2, ACI.UNKNOWN)));
   }
 
   @Test
   public void can_extract_uuids_for_all_deleted_pending_excluding_bad_entries() {
-    UUID                          uuid1            = UUID.randomUUID();
-    UUID                          uuid2            = UUID.randomUUID();
+    ACI                           aci1             = ACI.from(UUID.randomUUID());
+    ACI                           aci2             = ACI.from(UUID.randomUUID());
     DecryptedPendingMemberRemoval decryptedMember1 = DecryptedPendingMemberRemoval.newBuilder()
-                                                                    .setUuid(UuidUtil.toByteString(uuid1))
+                                                                    .setServiceIdBinary(aci1.toByteString())
                                                                     .build();
     DecryptedPendingMemberRemoval decryptedMember2 = DecryptedPendingMemberRemoval.newBuilder()
-                                                                    .setUuid(UuidUtil.toByteString(uuid2))
+                                                                    .setServiceIdBinary(aci2.toByteString())
                                                                     .build();
     DecryptedPendingMemberRemoval decryptedMember3 = DecryptedPendingMemberRemoval.newBuilder()
-                                                                    .setUuid(ByteString.copyFrom(Util.getSecretBytes(17)))
+                                                                    .setServiceIdBinary(ByteString.copyFrom(Util.getSecretBytes(18)))
                                                                     .build();
 
     DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder()
@@ -124,23 +127,23 @@ public final class DecryptedGroupUtilTest {
                                                            .addDeletePendingMembers(decryptedMember3)
                                                            .build();
 
-    List<UUID> removedUuids = DecryptedGroupUtil.removedPendingMembersUuidList(groupChange);
+    List<ServiceId> removedUuids = DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange);
 
-    assertThat(removedUuids, is(asList(uuid1, uuid2)));
+    assertThat(removedUuids, is(asList(aci1, aci2)));
   }
 
   @Test
   public void can_extract_uuids_for_all_deleted_members_excluding_bad_entries() {
-    UUID                 uuid1       = UUID.randomUUID();
-    UUID                 uuid2       = UUID.randomUUID();
+    ACI                  aci1        = ACI.from(UUID.randomUUID());
+    ACI                  aci2        = ACI.from(UUID.randomUUID());
     DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder()
-                                                           .addDeleteMembers(UuidUtil.toByteString(uuid1))
-                                                           .addDeleteMembers(UuidUtil.toByteString(uuid2))
-                                                           .addDeleteMembers(ByteString.copyFrom(Util.getSecretBytes(17)))
+                                                           .addDeleteMembers(aci1.toByteString())
+                                                           .addDeleteMembers(aci2.toByteString())
+                                                           .addDeleteMembers(ByteString.copyFrom(Util.getSecretBytes(18)))
                                                            .build();
 
-    List<UUID> removedUuids = DecryptedGroupUtil.removedMembersUuidList(groupChange);
+    List<ServiceId> removedServiceIds = DecryptedGroupUtil.removedMembersServiceIdList(groupChange);
 
-    assertThat(removedUuids, is(asList(uuid1, uuid2)));
+    assertThat(removedServiceIds, is(asList(aci1, aci2)));
   }
 }

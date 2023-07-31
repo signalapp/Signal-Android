@@ -949,7 +949,7 @@ public final class DecryptedGroupUtil_apply_Test {
                                                        DecryptedGroupChange.newBuilder()
                                                                            .setRevision(11)
                                                                            .addDeleteBannedMembers(DecryptedBannedMember.newBuilder()
-                                                                                                                        .setUuid(UuidUtil.toByteString(bannedUuid))
+                                                                                                                        .setServiceIdBinary(UuidUtil.toByteString(bannedUuid))
                                                                                                                         .build())
                                                                            .build());
 

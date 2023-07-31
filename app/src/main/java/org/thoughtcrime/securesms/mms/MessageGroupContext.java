@@ -166,19 +166,18 @@ public final class MessageGroupContext {
       return decryptedGroupV2Context.getChange();
     }
 
-    public @NonNull List<UUID> getAllActivePendingAndRemovedMembers() {
-      LinkedList<UUID>     memberUuids = new LinkedList<>();
-      DecryptedGroup       groupState  = decryptedGroupV2Context.getGroupState();
-      DecryptedGroupChange groupChange = decryptedGroupV2Context.getChange();
+    public @NonNull List<ServiceId> getAllActivePendingAndRemovedMembers() {
+      DecryptedGroup        groupState  = decryptedGroupV2Context.getGroupState();
+      DecryptedGroupChange  groupChange = decryptedGroupV2Context.getChange();
 
-      memberUuids.addAll(DecryptedGroupUtil.membersToUuidList(groupState.getMembersList()));
-      memberUuids.addAll(DecryptedGroupUtil.pendingToUuidList(groupState.getPendingMembersList()));
-
-      memberUuids.addAll(DecryptedGroupUtil.removedMembersUuidList(groupChange));
-      memberUuids.addAll(DecryptedGroupUtil.removedPendingMembersUuidList(groupChange));
-      memberUuids.addAll(DecryptedGroupUtil.removedRequestingMembersUuidList(groupChange));
-
-      return UuidUtil.filterKnown(memberUuids);
+      return Stream.of(DecryptedGroupUtil.membersToServiceIdList(groupState.getMembersList()),
+                       DecryptedGroupUtil.pendingToServiceIdList(groupState.getPendingMembersList()),
+                       DecryptedGroupUtil.removedMembersServiceIdList(groupChange),
+                       DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange),
+                       DecryptedGroupUtil.removedRequestingMembersServiceIdList(groupChange))
+                   .flatMap(Stream::of)
+                   .filterNot(ServiceId::isUnknown)
+                   .toList();
     }
 
     @Override

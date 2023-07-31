@@ -144,7 +144,7 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
   }
 
-  public LiveData<Set<UUID>> getBannedMembers() {
+  public LiveData<Set<ServiceId>> getBannedMembers() {
     return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
   }
 

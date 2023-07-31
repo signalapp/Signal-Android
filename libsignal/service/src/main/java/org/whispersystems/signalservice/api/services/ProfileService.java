@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.services;
 
 import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
@@ -15,6 +16,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -81,11 +83,17 @@ public final class ProfileService {
                                                                      .setVerb("GET");
 
     if (profileKey.isPresent()) {
-      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(serviceId.getRawUuid());
+      if (!(serviceId instanceof ACI)) {
+        Log.w(TAG, "ServiceId  must be an ACI if a profile key is available!");
+        return Single.just(ServiceResponse.forUnknownError(new IllegalArgumentException("ServiceId  must be an ACI if a profile key is available!")));
+      }
+
+      ACI               aci                  = (ACI) serviceId;
+      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(aci.getLibSignalAci());
       String            version              = profileKeyIdentifier.serialize();
 
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, serviceId.getRawUuid(), profileKey.get());
+        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, aci.getLibSignalAci(), profileKey.get());
 
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());

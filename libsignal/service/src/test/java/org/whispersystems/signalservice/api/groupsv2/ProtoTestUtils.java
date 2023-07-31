@@ -107,14 +107,14 @@ final class ProtoTestUtils {
 
   static DecryptedPendingMemberRemoval pendingMemberRemoval(UUID uuid) {
     return DecryptedPendingMemberRemoval.newBuilder()
-                                        .setUuid(UuidUtil.toByteString(uuid))
+                                        .setServiceIdBinary(UuidUtil.toByteString(uuid))
                                         .setUuidCipherText(encrypt(uuid))
                                         .build();
   }
 
   static DecryptedPendingMember pendingMember(UUID uuid) {
     return DecryptedPendingMember.newBuilder()
-                                 .setUuid(UuidUtil.toByteString(uuid))
+                                 .setServiceIdBinary(UuidUtil.toByteString(uuid))
                                  .setUuidCipherText(encrypt(uuid))
                                  .setRole(Member.Role.DEFAULT)
                                  .build();
@@ -133,7 +133,7 @@ final class ProtoTestUtils {
 
   static DecryptedBannedMember bannedMember(UUID uuid) {
     return DecryptedBannedMember.newBuilder()
-                                .setUuid(UuidUtil.toByteString(uuid))
+                                .setServiceIdBinary(UuidUtil.toByteString(uuid))
                                 .build();
   }
 

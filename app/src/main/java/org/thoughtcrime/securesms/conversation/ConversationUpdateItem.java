@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Collection;
@@ -291,11 +292,11 @@ public final class ConversationUpdateItem extends FrameLayout
 
     private final Observer<Object> updater;
 
-    private LiveGroup           liveGroup;
-    private LiveData<Boolean>   liveIsSelfAdmin;
-    private LiveData<Set<UUID>> liveBannedMembers;
-    private LiveData<Set<UUID>> liveFullMembers;
-    private Recipient           conversationRecipient;
+    private LiveGroup                liveGroup;
+    private LiveData<Boolean>        liveIsSelfAdmin;
+    private LiveData<Set<ServiceId>> liveBannedMembers;
+    private LiveData<Set<UUID>>      liveFullMembers;
+    private Recipient                conversationRecipient;
 
     GroupDataManager() {
       this.updater = unused -> update();
@@ -341,9 +342,9 @@ public final class ConversationUpdateItem extends FrameLayout
         return false;
       }
 
-      Set<UUID> bannedMembers = liveBannedMembers.getValue();
+      Set<ServiceId> bannedMembers = liveBannedMembers.getValue();
       if (bannedMembers != null) {
-        return recipient.getServiceId().isPresent() && bannedMembers.contains(recipient.requireServiceId().getRawUuid());
+        return recipient.getServiceId().isPresent() && bannedMembers.contains(recipient.requireServiceId());
       }
       return false;
     }

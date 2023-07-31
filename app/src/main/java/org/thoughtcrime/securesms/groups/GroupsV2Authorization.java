@@ -126,13 +126,13 @@ public class GroupsV2Authorization {
     }
 
     CallLinkAuthCredential credential     = authCredentialResponse.receive(
-        Recipient.self().requireServiceId().getRawUuid(),
+        Recipient.self().requireAci().getLibSignalAci(),
         Instant.ofEpochSecond(todaySeconds),
         genericServerPublicParams
     );
 
     return credential.present(
-        Recipient.self().requireServiceId().getRawUuid(),
+        Recipient.self().requireAci().getLibSignalAci(),
         Instant.ofEpochSecond(todaySeconds),
         genericServerPublicParams,
         callLinkSecretParams

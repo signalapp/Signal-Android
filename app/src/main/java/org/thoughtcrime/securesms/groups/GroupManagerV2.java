@@ -176,7 +176,7 @@ final class GroupManagerV2 {
 
     Map<UUID, UuidCiphertext> uuidCipherTexts = new HashMap<>();
     for (Recipient recipient : recipients) {
-      uuidCipherTexts.put(recipient.requireServiceId().getRawUuid(), clientZkGroupCipher.encryptUuid(recipient.requireServiceId().getRawUuid()));
+      uuidCipherTexts.put(recipient.requireServiceId().getRawUuid(), clientZkGroupCipher.encrypt(recipient.requireServiceId().getLibSignalServiceId()));
     }
 
     return uuidCipherTexts;
@@ -343,7 +343,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers, @NonNull Set<UUID> bannedMembers)
+    @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers, @NonNull Set<ServiceId> bannedMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, MembershipNotSuitableForV2Exception
     {
       if (!GroupsV2CapabilityChecker.allHaveServiceId(newMembers)) {
@@ -356,7 +356,7 @@ final class GroupManagerV2 {
         groupCandidates = GroupCandidate.withoutExpiringProfileKeyCredentials(groupCandidates);
       }
 
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createModifyGroupMembershipChange(groupCandidates, bannedMembers, selfAci.getRawUuid()));
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createModifyGroupMembershipChange(groupCandidates, bannedMembers, selfAci));
     }
 
     @WorkerThread
@@ -454,7 +454,7 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       Recipient recipient = Recipient.resolved(recipientId);
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberRole(recipient.requireServiceId().getRawUuid(), admin ? Member.Role.ADMINISTRATOR : Member.Role.DEFAULT));
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createChangeMemberRole(recipient.requireAci(), admin ? Member.Role.ADMINISTRATOR : Member.Role.DEFAULT));
     }
 
     @WorkerThread
@@ -464,8 +464,8 @@ final class GroupManagerV2 {
       GroupRecord    groupRecord    = groupDatabase.requireGroup(groupId);
       DecryptedGroup decryptedGroup = groupRecord.requireV2GroupProperties().getDecryptedGroup();
       Optional<DecryptedMember>        selfMember        = DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), selfAci.getRawUuid());
-      Optional<DecryptedPendingMember> aciPendingMember  = DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), selfAci.getRawUuid());
-      Optional<DecryptedPendingMember> pniPendingMember  = DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), selfPni.getRawUuid());
+      Optional<DecryptedPendingMember> aciPendingMember  = DecryptedGroupUtil.findPendingByServiceId(decryptedGroup.getPendingMembersList(), selfAci);
+      Optional<DecryptedPendingMember> pniPendingMember  = DecryptedGroupUtil.findPendingByServiceId(decryptedGroup.getPendingMembersList(), selfPni);
       Optional<DecryptedPendingMember> selfPendingMember = Optional.empty();
       ServiceId                        serviceId         = selfAci;
 
@@ -555,8 +555,8 @@ final class GroupManagerV2 {
         return null;
       }
 
-      Optional<DecryptedPendingMember> aciInPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfAci.getRawUuid());
-      Optional<DecryptedPendingMember> pniInPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfPni.getRawUuid());
+      Optional<DecryptedPendingMember> aciInPending = DecryptedGroupUtil.findPendingByServiceId(group.getPendingMembersList(), selfAci);
+      Optional<DecryptedPendingMember> pniInPending = DecryptedGroupUtil.findPendingByServiceId(group.getPendingMembersList(), selfPni);
 
       GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
@@ -584,10 +584,10 @@ final class GroupManagerV2 {
       return commitChangeWithConflictResolution(selfAci, groupOperations.createBanUuidsChange(Collections.singleton(uuid), rejectJoinRequest, v2GroupProperties.getDecryptedGroup().getBannedMembersList()));
     }
 
-    public GroupManager.GroupActionResult unban(Set<UUID> uuids)
+    public GroupManager.GroupActionResult unban(Set<ServiceId> serviceIds)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createUnbanUuidsChange(uuids));
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createUnbanServiceIdsChange(serviceIds));
     }
 
     @WorkerThread
@@ -704,7 +704,7 @@ final class GroupManagerV2 {
         GroupChange.Actions changeActions = change.build();
 
         return GroupChangeUtil.resolveConflict(groupUpdateResult.getLatestServer(),
-                                               groupOperations.decryptChange(changeActions, authServiceId.getRawUuid()),
+                                               groupOperations.decryptChange(changeActions, authServiceId),
                                                changeActions);
       } catch (VerificationFailedException | InvalidGroupStateException ex) {
         throw new GroupChangeFailedException(ex);
@@ -1331,9 +1331,8 @@ final class GroupManagerV2 {
   }
 
   private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
-    // TODO [greyson][ServiceId] Pending members can be ACI's or PNI's
-    return Stream.of(DecryptedGroupUtil.pendingToUuidList(newPendingMembersList))
-                 .map(uuid -> RecipientId.from(ACI.from(uuid)))
+    return Stream.of(DecryptedGroupUtil.pendingToServiceIdList(newPendingMembersList))
+                 .map(serviceId -> RecipientId.from(serviceId))
                  .toList();
   }
 

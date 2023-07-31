@@ -19,8 +19,17 @@ import org.signal.libsignal.protocol.ServiceId.Pni as LibSignalPni
  * The only times you truly know, and the only times you should actually care, is during CDS refreshes or specific inbound messages
  * that link them together.
  */
-sealed class ServiceId(@JvmField protected val libsignalServiceId: LibSignalServiceId) {
+sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
   companion object {
+    @JvmStatic
+    fun fromLibSignal(serviceId: LibSignalServiceId): ServiceId {
+      return when (serviceId) {
+        is LibSignalAci -> ACI(serviceId)
+        is LibSignalPni -> PNI(serviceId)
+        else -> throw IllegalArgumentException("Unknown libsignal ServiceId type!")
+      }
+    }
+
     /** Parses a ServiceId serialized as a string. Returns null if the ServiceId is invalid. */
     @JvmStatic
     fun parseOrNull(raw: String?): ServiceId? {
@@ -29,11 +38,7 @@ sealed class ServiceId(@JvmField protected val libsignalServiceId: LibSignalServ
       }
 
       return try {
-        when (val serviceId = LibSignalServiceId.parseFromString(raw)) {
-          is LibSignalAci -> ACI(serviceId)
-          is LibSignalPni -> PNI(serviceId)
-          else -> null
-        }
+        fromLibSignal(LibSignalServiceId.parseFromString(raw))
       } catch (e: IllegalArgumentException) {
         null
       } catch (e: InvalidServiceIdException) {
@@ -49,17 +54,17 @@ sealed class ServiceId(@JvmField protected val libsignalServiceId: LibSignalServ
       }
 
       return try {
-        return when (val serviceId = LibSignalServiceId.parseFromBinary(raw)) {
-          is LibSignalAci -> ACI.from(serviceId.rawUUID)
-          is LibSignalPni -> PNI.from(serviceId.rawUUID)
-          else -> null
-        }
+        fromLibSignal(LibSignalServiceId.parseFromBinary(raw))
       } catch (e: IllegalArgumentException) {
         null
       } catch (e: InvalidServiceIdException) {
         null
       }
     }
+
+    /** Parses a ServiceId serialized as a ByteString. Returns null if the ServiceId is invalid. */
+    @JvmStatic
+    fun parseOrNull(bytes: ByteString): ServiceId? = parseOrNull(bytes.toByteArray())
 
     /** Parses a ServiceId serialized as a string. Crashes if the ServiceId is invalid. */
     @JvmStatic
@@ -77,27 +82,27 @@ sealed class ServiceId(@JvmField protected val libsignalServiceId: LibSignalServ
     fun parseOrThrow(bytes: ByteString): ServiceId = parseOrThrow(bytes.toByteArray())
   }
 
-  val rawUuid: UUID = libsignalServiceId.rawUUID
+  val rawUuid: UUID = libSignalServiceId.rawUUID
 
   val isUnknown: Boolean = rawUuid == UuidUtil.UNKNOWN_UUID
 
   val isValid: Boolean = !isUnknown
 
-  fun toProtocolAddress(deviceId: Int): SignalProtocolAddress = SignalProtocolAddress(libsignalServiceId.toServiceIdString(), deviceId)
+  fun toProtocolAddress(deviceId: Int): SignalProtocolAddress = SignalProtocolAddress(libSignalServiceId.toServiceIdString(), deviceId)
 
-  fun toByteString(): ByteString = ByteString.copyFrom(libsignalServiceId.toServiceIdBinary())
+  fun toByteString(): ByteString = ByteString.copyFrom(libSignalServiceId.toServiceIdBinary())
 
-  fun toByteArray(): ByteArray = libsignalServiceId.toServiceIdBinary()
+  fun toByteArray(): ByteArray = libSignalServiceId.toServiceIdBinary()
 
-  fun logString(): String = libsignalServiceId.toLogString()
+  fun logString(): String = libSignalServiceId.toLogString()
 
   /**
    * A serialized string that can be parsed via [parseOrThrow], for instance.
    * Basically ACI's are just normal UUIDs, and PNI's are UUIDs with a `PNI:` prefix.
    */
-  override fun toString(): String = libsignalServiceId.toServiceIdString()
+  override fun toString(): String = libSignalServiceId.toServiceIdString()
 
-  data class ACI(val libsignalAci: LibSignalAci) : ServiceId(libsignalAci) {
+  data class ACI(val libSignalAci: LibSignalAci) : ServiceId(libSignalAci) {
     companion object {
       @JvmField
       val UNKNOWN = from(UuidUtil.UNKNOWN_UUID)
@@ -133,7 +138,7 @@ sealed class ServiceId(@JvmField protected val libsignalServiceId: LibSignalServ
     override fun toString(): String = super.toString()
   }
 
-  data class PNI(private val libsignalPni: LibSignalPni) : ServiceId(libsignalPni) {
+  data class PNI(val libSignalPni: LibSignalPni) : ServiceId(libSignalPni) {
     companion object {
       @JvmField
       var UNKNOWN = from(UuidUtil.UNKNOWN_UUID)

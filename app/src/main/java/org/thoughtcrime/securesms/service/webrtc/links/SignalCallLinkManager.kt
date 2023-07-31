@@ -45,7 +45,7 @@ class SignalCallLinkManager(
     linkRootKey: ByteArray,
     roomId: ByteArray
   ): CreateCallLinkCredentialPresentation {
-    val userUuid = Recipient.self().requireAci().rawUuid
+    val userAci = Recipient.self().requireAci()
     val requestContext = CreateCallLinkCredentialRequestContext.forRoom(roomId)
     val request = requestContext.request
 
@@ -60,7 +60,7 @@ class SignalCallLinkManager(
 
     val createCallLinkCredential: CreateCallLinkCredential = requestContext.receiveResponse(
       serviceResponse.result.get(),
-      userUuid,
+      userAci.libSignalAci,
       genericServerPublicParams
     )
 
@@ -68,7 +68,7 @@ class SignalCallLinkManager(
 
     return createCallLinkCredential.present(
       roomId,
-      userUuid,
+      userAci.libSignalAci,
       genericServerPublicParams,
       CallLinkSecretParams.deriveFromRootKey(linkRootKey)
     )

@@ -21,11 +21,11 @@ message DecryptedMember {
 }
 
 message DecryptedPendingMember {
-  bytes       uuid           = 1;
-  Member.Role role           = 2;
-  bytes       addedByUuid    = 3;
-  uint64      timestamp      = 4;
-  bytes       uuidCipherText = 5;
+  bytes       serviceIdBinary = 1;
+  Member.Role role            = 2;
+  bytes       addedByUuid     = 3;
+  uint64      timestamp       = 4;
+  bytes       uuidCipherText  = 5;
 }
 
 message DecryptedRequestingMember {
@@ -35,13 +35,13 @@ message DecryptedRequestingMember {
 }
 
 message DecryptedBannedMember {
-  bytes  uuid      = 1;
-  uint64 timestamp = 2;
+  bytes  serviceIdBinary = 1;
+  uint64 timestamp       = 2;
 }
 
 message DecryptedPendingMemberRemoval {
-  bytes uuid           = 1;
-  bytes uuidCipherText = 2;
+  bytes serviceIdBinary = 1;
+  bytes uuidCipherText  = 2;
 }
 
 message DecryptedApproveMember {

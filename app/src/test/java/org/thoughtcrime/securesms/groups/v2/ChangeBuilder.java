@@ -85,14 +85,14 @@ public final class ChangeBuilder {
 
   public ChangeBuilder inviteBy(@NonNull UUID potentialMember, @NonNull UUID inviter) {
     builder.addNewPendingMembers(DecryptedPendingMember.newBuilder()
-                                                       .setUuid(UuidUtil.toByteString(potentialMember))
+                                                       .setServiceIdBinary(UuidUtil.toByteString(potentialMember))
                                                        .setAddedByUuid(UuidUtil.toByteString(inviter)));
     return this;
   }
 
   public ChangeBuilder uninvite(@NonNull UUID pendingMember) {
     builder.addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                 .setUuid(UuidUtil.toByteString(pendingMember)));
+                                                                 .setServiceIdBinary(UuidUtil.toByteString(pendingMember)));
     return this;
   }
 

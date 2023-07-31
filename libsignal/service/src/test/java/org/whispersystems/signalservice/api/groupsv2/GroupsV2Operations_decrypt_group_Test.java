@@ -22,7 +22,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
@@ -122,20 +122,20 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
   @Test
   public void decrypt_full_members_field_7() throws VerificationFailedException, InvalidGroupStateException {
-    UUID       admin1           = UUID.randomUUID();
-    UUID       member1          = UUID.randomUUID();
+    ACI        admin1           = ACI.from(UUID.randomUUID());
+    ACI        member1          = ACI.from(UUID.randomUUID());
     ProfileKey adminProfileKey  = newProfileKey();
     ProfileKey memberProfileKey = newProfileKey();
 
     Group group = Group.newBuilder()
                        .addMembers(Member.newBuilder()
                                          .setRole(Member.Role.ADMINISTRATOR)
-                                         .setUserId(groupOperations.encryptUuid(admin1))
+                                         .setUserId(groupOperations.encryptServiceId(admin1))
                                          .setJoinedAtRevision(4)
                                          .setProfileKey(encryptProfileKey(admin1, adminProfileKey)))
                        .addMembers(Member.newBuilder()
                                          .setRole(Member.Role.DEFAULT)
-                                         .setUserId(groupOperations.encryptUuid(member1))
+                                         .setUserId(groupOperations.encryptServiceId(member1))
                                          .setJoinedAtRevision(7)
                                          .setProfileKey(encryptProfileKey(member1, memberProfileKey)))
                        .build();
@@ -145,13 +145,13 @@ public final class GroupsV2Operations_decrypt_group_Test {
     assertEquals(DecryptedGroup.newBuilder()
                                .addMembers(DecryptedMember.newBuilder()
                                                           .setJoinedAtRevision(4)
-                                                          .setUuid(UuidUtil.toByteString(admin1))
+                                                          .setUuid(admin1.toByteString())
                                                           .setRole(Member.Role.ADMINISTRATOR)
                                                           .setProfileKey(ByteString.copyFrom(adminProfileKey.serialize())))
                                .addMembers(DecryptedMember.newBuilder()
                                                           .setJoinedAtRevision(7)
                                                           .setRole(Member.Role.DEFAULT)
-                                                          .setUuid(UuidUtil.toByteString(member1))
+                                                          .setUuid(member1.toByteString())
                                                           .setProfileKey(ByteString.copyFrom(memberProfileKey.serialize())))
                                .build().getMembersList(),
                  decryptedGroup.getMembersList());
@@ -159,52 +159,52 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
   @Test
   public void decrypt_pending_members_field_8() throws VerificationFailedException, InvalidGroupStateException {
-    UUID admin1   = UUID.randomUUID();
-    UUID member1  = UUID.randomUUID();
-    UUID member2  = UUID.randomUUID();
-    UUID inviter1 = UUID.randomUUID();
-    UUID inviter2 = UUID.randomUUID();
+    ACI admin1   = ACI.from(UUID.randomUUID());
+    ACI member1  = ACI.from(UUID.randomUUID());
+    ACI member2  = ACI.from(UUID.randomUUID());
+    ACI inviter1 = ACI.from(UUID.randomUUID());
+    ACI inviter2 = ACI.from(UUID.randomUUID());
 
     Group group = Group.newBuilder()
                        .addPendingMembers(PendingMember.newBuilder()
-                                                       .setAddedByUserId(groupOperations.encryptUuid(inviter1))
+                                                       .setAddedByUserId(groupOperations.encryptServiceId(inviter1))
                                                        .setTimestamp(100)
                                                        .setMember(Member.newBuilder()
                                                                         .setRole(Member.Role.ADMINISTRATOR)
-                                                                        .setUserId(groupOperations.encryptUuid(admin1))))
+                                                                        .setUserId(groupOperations.encryptServiceId(admin1))))
                        .addPendingMembers(PendingMember.newBuilder()
-                                                       .setAddedByUserId(groupOperations.encryptUuid(inviter1))
+                                                       .setAddedByUserId(groupOperations.encryptServiceId(inviter1))
                                                        .setTimestamp(200)
                                                        .setMember(Member.newBuilder()
                                                                         .setRole(Member.Role.DEFAULT)
-                                                                        .setUserId(groupOperations.encryptUuid(member1))))
+                                                                        .setUserId(groupOperations.encryptServiceId(member1))))
                        .addPendingMembers(PendingMember.newBuilder()
-                                                       .setAddedByUserId(groupOperations.encryptUuid(inviter2))
+                                                       .setAddedByUserId(groupOperations.encryptServiceId(inviter2))
                                                        .setTimestamp(1500)
                                                        .setMember(Member.newBuilder()
-                                                                        .setUserId(groupOperations.encryptUuid(member2))))
+                                                                        .setUserId(groupOperations.encryptServiceId(member2))))
                        .build();
 
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
 
     assertEquals(DecryptedGroup.newBuilder()
                                .addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                        .setUuid(UuidUtil.toByteString(admin1))
-                                                                        .setUuidCipherText(groupOperations.encryptUuid(admin1))
+                                                                        .setServiceIdBinary(admin1.toByteString())
+                                                                        .setUuidCipherText(groupOperations.encryptServiceId(admin1))
                                                                         .setTimestamp(100)
-                                                                        .setAddedByUuid(UuidUtil.toByteString(inviter1))
+                                                                        .setAddedByUuid(inviter1.toByteString())
                                                                         .setRole(Member.Role.ADMINISTRATOR))
                                .addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                        .setUuid(UuidUtil.toByteString(member1))
-                                                                        .setUuidCipherText(groupOperations.encryptUuid(member1))
+                                                                        .setServiceIdBinary(member1.toByteString())
+                                                                        .setUuidCipherText(groupOperations.encryptServiceId(member1))
                                                                         .setTimestamp(200)
-                                                                        .setAddedByUuid(UuidUtil.toByteString(inviter1))
+                                                                        .setAddedByUuid(inviter1.toByteString())
                                                                         .setRole(Member.Role.DEFAULT))
                                .addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                        .setUuid(UuidUtil.toByteString(member2))
-                                                                        .setUuidCipherText(groupOperations.encryptUuid(member2))
+                                                                        .setServiceIdBinary(member2.toByteString())
+                                                                        .setUuidCipherText(groupOperations.encryptServiceId(member2))
                                                                         .setTimestamp(1500)
-                                                                        .setAddedByUuid(UuidUtil.toByteString(inviter2))
+                                                                        .setAddedByUuid(inviter2.toByteString())
                                                                         .setRole(Member.Role.DEFAULT))
                                .build().getPendingMembersList(),
                  decryptedGroup.getPendingMembersList());
@@ -212,18 +212,18 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
   @Test
   public void decrypt_requesting_members_field_9() throws VerificationFailedException, InvalidGroupStateException {
-    UUID       admin1           = UUID.randomUUID();
-    UUID       member1          = UUID.randomUUID();
+    ACI        admin1           = ACI.from(UUID.randomUUID());
+    ACI        member1          = ACI.from(UUID.randomUUID());
     ProfileKey adminProfileKey  = newProfileKey();
     ProfileKey memberProfileKey = newProfileKey();
 
     Group group = Group.newBuilder()
                        .addRequestingMembers(RequestingMember.newBuilder()
-                                                             .setUserId(groupOperations.encryptUuid(admin1))
+                                                             .setUserId(groupOperations.encryptServiceId(admin1))
                                                              .setProfileKey(encryptProfileKey(admin1, adminProfileKey))
                                                              .setTimestamp(5000))
                        .addRequestingMembers(RequestingMember.newBuilder()
-                                                             .setUserId(groupOperations.encryptUuid(member1))
+                                                             .setUserId(groupOperations.encryptServiceId(member1))
                                                              .setProfileKey(encryptProfileKey(member1, memberProfileKey))
                                                              .setTimestamp(15000))
                        .build();
@@ -232,11 +232,11 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
     assertEquals(DecryptedGroup.newBuilder()
                                .addRequestingMembers(DecryptedRequestingMember.newBuilder()
-                                                                              .setUuid(UuidUtil.toByteString(admin1))
+                                                                              .setUuid(admin1.toByteString())
                                                                               .setProfileKey(ByteString.copyFrom(adminProfileKey.serialize()))
                                                                               .setTimestamp(5000))
                                .addRequestingMembers(DecryptedRequestingMember.newBuilder()
-                                                                              .setUuid(UuidUtil.toByteString(member1))
+                                                                              .setUuid(member1.toByteString())
                                                                               .setProfileKey(ByteString.copyFrom(memberProfileKey.serialize()))
                                                                               .setTimestamp(15000))
                                .build().getRequestingMembersList(),
@@ -279,20 +279,20 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
   @Test
   public void decrypt_banned_members_field_13() throws VerificationFailedException, InvalidGroupStateException {
-    UUID member1 = UUID.randomUUID();
+    ACI member1 = ACI.from(UUID.randomUUID());
 
     Group group = Group.newBuilder()
-                       .addBannedMembers(BannedMember.newBuilder().setUserId(groupOperations.encryptUuid(member1)))
+                       .addBannedMembers(BannedMember.newBuilder().setUserId(groupOperations.encryptServiceId(member1)))
                        .build();
 
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
 
     assertEquals(1, decryptedGroup.getBannedMembersCount());
-    assertEquals(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(member1)).build(), decryptedGroup.getBannedMembers(0));
+    assertEquals(DecryptedBannedMember.newBuilder().setServiceIdBinary(member1.toByteString()).build(), decryptedGroup.getBannedMembers(0));
   }
 
-  private ByteString encryptProfileKey(UUID uuid, ProfileKey profileKey) {
-    return ByteString.copyFrom(new ClientZkGroupCipher(groupSecretParams).encryptProfileKey(profileKey, uuid).serialize());
+  private ByteString encryptProfileKey(ACI aci, ProfileKey profileKey) {
+    return ByteString.copyFrom(new ClientZkGroupCipher(groupSecretParams).encryptProfileKey(profileKey, aci.getLibSignalAci()).serialize());
   }
 
   private static ProfileKey newProfileKey() {

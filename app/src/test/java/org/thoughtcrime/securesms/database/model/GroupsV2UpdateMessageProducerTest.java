@@ -1475,7 +1475,7 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     GroupStateBuilder invite(@NonNull UUID inviter, @NonNull UUID invitee) {
        builder.addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                       .setUuid(UuidUtil.toByteString(invitee))
+                                                       .setServiceIdBinary(UuidUtil.toByteString(invitee))
                                                        .setAddedByUuid(UuidUtil.toByteString(inviter)));
        return this;
     }

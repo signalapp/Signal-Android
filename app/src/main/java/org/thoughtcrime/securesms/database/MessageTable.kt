@@ -142,7 +142,6 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage
 import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
 import java.io.Closeable
 import java.io.IOException
@@ -3089,10 +3088,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val members: MutableSet<RecipientId> = mutableSetOf()
 
       if (message.isGroupUpdate && message.isV2Group) {
-        // TODO [greyson][ServiceId] pending members could be ACI's or PNI's
         members += message.requireGroupV2Properties().allActivePendingAndRemovedMembers
           .distinct()
-          .map { uuid -> RecipientId.from(ACI.from(uuid)) }
+          .map { serviceId -> RecipientId.from(serviceId) }
           .toList()
 
         members -= Recipient.self().id

@@ -12,6 +12,8 @@ import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChange.Actions.AddBannedMemberAction;
 import org.signal.storageservice.protos.groups.GroupChange.Actions.DeleteBannedMemberAction;
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
@@ -52,7 +54,7 @@ public final class GroupsV2Operations_ban_Test {
                                                                                       Collections.emptyList());
 
     assertThat(banUuidsChange.getAddBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptUuid(ban)));
+    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ACI.from(ban))));
   }
 
   @Test
@@ -69,7 +71,7 @@ public final class GroupsV2Operations_ban_Test {
                                                                                       alreadyBanned);
 
     assertThat(banUuidsChange.getAddBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptUuid(toBan)));
+    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ACI.from(toBan))));
   }
 
   @Test
@@ -93,11 +95,11 @@ public final class GroupsV2Operations_ban_Test {
                                                                                       alreadyBanned);
 
     assertThat(banUuidsChange.getDeleteBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getDeleteBannedMembers(0).getDeletedUserId(), is(groupOperations.encryptUuid(UuidUtil.fromByteString(oldest.getUuid()))));
+    assertThat(banUuidsChange.getDeleteBannedMembers(0).getDeletedUserId(), is(groupOperations.encryptServiceId(ServiceId.parseOrThrow(oldest.getServiceIdBinary()))));
 
 
     assertThat(banUuidsChange.getAddBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptUuid(toBan)));
+    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ACI.from(toBan))));
   }
 
   @Test
@@ -112,8 +114,8 @@ public final class GroupsV2Operations_ban_Test {
     }
 
     List<ByteString> oldest = new ArrayList<>(2);
-    oldest.add(groupOperations.encryptUuid(UuidUtil.fromByteString(alreadyBanned.get(0).getUuid())));
-    oldest.add(groupOperations.encryptUuid(UuidUtil.fromByteString(alreadyBanned.get(1).getUuid())));
+    oldest.add(groupOperations.encryptServiceId(ServiceId.parseOrThrow(alreadyBanned.get(0).getServiceIdBinary())));
+    oldest.add(groupOperations.encryptServiceId(ServiceId.parseOrThrow(alreadyBanned.get(1).getServiceIdBinary())));
 
     Collections.shuffle(alreadyBanned);
 
@@ -135,6 +137,7 @@ public final class GroupsV2Operations_ban_Test {
                              .map(AddBannedMemberAction::getAdded)
                              .map(BannedMember::getUserId)
                              .collect(Collectors.toList()),
-               hasItems(groupOperations.encryptUuid(toBan.get(0)), groupOperations.encryptUuid(toBan.get(1))));
+               hasItems(groupOperations.encryptServiceId(ACI.from(toBan.get(0))),
+                        groupOperations.encryptServiceId(ACI.from(toBan.get(1)))));
   }
 }

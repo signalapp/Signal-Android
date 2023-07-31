@@ -15,6 +15,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -27,6 +28,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 public final class DecryptedGroupUtil {
 
@@ -42,18 +45,18 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
-  public static ArrayList<UUID> membersToUuidList(Collection<DecryptedMember> membersList) {
-    ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
+  public static ArrayList<ServiceId> membersToServiceIdList(Collection<DecryptedMember> membersList) {
+    ArrayList<ServiceId> serviceIdList = new ArrayList<>(membersList.size());
 
     for (DecryptedMember member : membersList) {
-      UUID uuid = toUuid(member);
+      ServiceId serviceId = ServiceId.parseOrNull(member.getUuid());
 
-      if (!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-        uuidList.add(uuid);
+      if (serviceId != null) {
+        serviceIdList.add(serviceId);
       }
     }
 
-    return uuidList;
+    return serviceIdList;
   }
 
   public static Set<ByteString> membersToUuidByteStringSet(Collection<DecryptedMember> membersList) {
@@ -67,95 +70,91 @@ public final class DecryptedGroupUtil {
   }
 
   /**
-   * Can return non-decryptable member UUIDs as {@link UuidUtil#UNKNOWN_UUID}.
+   * Can return non-decryptable member UUIDs as unknown ACIs.
    */
-  public static ArrayList<UUID> pendingToUuidList(Collection<DecryptedPendingMember> membersList) {
-    ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
+  public static ArrayList<ServiceId> pendingToServiceIdList(Collection<DecryptedPendingMember> membersList) {
+    ArrayList<ServiceId> serviceIdList = new ArrayList<>(membersList.size());
 
     for (DecryptedPendingMember member : membersList) {
-      uuidList.add(toUuid(member));
+      ServiceId serviceId = ServiceId.parseOrNull(member.getServiceIdBinary());
+      if (serviceId != null) {
+        serviceIdList.add(serviceId);
+      } else {
+        serviceIdList.add(ServiceId.ACI.UNKNOWN);
+      }
     }
 
-    return uuidList;
+    return serviceIdList;
   }
 
   /**
    * Will not return any non-decryptable member UUIDs.
    */
-  public static ArrayList<UUID> removedMembersUuidList(DecryptedGroupChange groupChange) {
-    List<ByteString> deletedMembers = groupChange.getDeleteMembersList();
-    ArrayList<UUID>  uuidList       = new ArrayList<>(deletedMembers.size());
+  public static ArrayList<ServiceId> removedMembersServiceIdList(DecryptedGroupChange groupChange) {
+    List<ByteString>     deletedMembers = groupChange.getDeleteMembersList();
+    ArrayList<ServiceId> serviceIdList  = new ArrayList<>(deletedMembers.size());
 
     for (ByteString member : deletedMembers) {
-       UUID uuid = toUuid(member);
+      ServiceId serviceId = ServiceId.parseOrNull(member);
 
-      if (!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-        uuidList.add(uuid);
+      if (serviceId != null) {
+        serviceIdList.add(serviceId);
       }
     }
 
-    return uuidList;
+    return serviceIdList;
   }
 
   /**
    * Will not return any non-decryptable member UUIDs.
    */
-  public static ArrayList<UUID> removedPendingMembersUuidList(DecryptedGroupChange groupChange) {
+  public static ArrayList<ServiceId> removedPendingMembersServiceIdList(DecryptedGroupChange groupChange) {
     List<DecryptedPendingMemberRemoval> deletedPendingMembers = groupChange.getDeletePendingMembersList();
-    ArrayList<UUID>                     uuidList              = new ArrayList<>(deletedPendingMembers.size());
+    ArrayList<ServiceId>                serviceIdList         = new ArrayList<>(deletedPendingMembers.size());
 
     for (DecryptedPendingMemberRemoval member : deletedPendingMembers) {
-      UUID uuid = toUuid(member.getUuid());
+      ServiceId serviceId = ServiceId.parseOrNull(member.getServiceIdBinary());
 
-      if(!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-        uuidList.add(uuid);
+      if(serviceId != null) {
+        serviceIdList.add(serviceId);
       }
     }
 
-    return uuidList;
+    return serviceIdList;
   }
 
   /**
    * Will not return any non-decryptable member UUIDs.
    */
-  public static ArrayList<UUID> removedRequestingMembersUuidList(DecryptedGroupChange groupChange) {
-    List<ByteString> deleteRequestingMembers = groupChange.getDeleteRequestingMembersList();
-    ArrayList<UUID>  uuidList                = new ArrayList<>(deleteRequestingMembers.size());
+  public static ArrayList<ServiceId> removedRequestingMembersServiceIdList(DecryptedGroupChange groupChange) {
+    List<ByteString>     deleteRequestingMembers = groupChange.getDeleteRequestingMembersList();
+    ArrayList<ServiceId> serviceIdList           = new ArrayList<>(deleteRequestingMembers.size());
 
     for (ByteString member : deleteRequestingMembers) {
-      UUID uuid = toUuid(member);
+      ServiceId serviceId = ServiceId.parseOrNull(member);
 
-      if(!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-        uuidList.add(uuid);
+      if(serviceId != null) {
+        serviceIdList.add(serviceId);
       }
     }
 
-    return uuidList;
+    return serviceIdList;
   }
 
-  public static Set<UUID> bannedMembersToUuidSet(Collection<DecryptedBannedMember> membersList) {
-    Set<UUID> uuidSet = new HashSet<>(membersList.size());
+  public static Set<ServiceId> bannedMembersToServiceIdSet(Collection<DecryptedBannedMember> membersList) {
+    Set<ServiceId> serviceIdSet = new HashSet<>(membersList.size());
 
     for (DecryptedBannedMember member : membersList) {
-      UUID uuid = toUuid(member);
-
-      if (!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-        uuidSet.add(uuid);
+      ServiceId serviceId = ServiceId.parseOrNull(member.getServiceIdBinary());
+      if (serviceId != null) {
+        serviceIdSet.add(serviceId);
       }
     }
 
-    return uuidSet;
+    return serviceIdSet;
   }
 
   public static UUID toUuid(DecryptedMember member) {
-    return toUuid(member.getUuid());
-  }
-
-  public static UUID toUuid(DecryptedPendingMember member) {
-    return toUuid(member.getUuid());
-  }
-
-  public static UUID toUuid(DecryptedBannedMember member) {
     return toUuid(member.getUuid());
   }
 
@@ -182,11 +181,11 @@ public final class DecryptedGroupUtil {
     return Optional.empty();
   }
 
-  public static Optional<DecryptedPendingMember> findPendingByUuid(Collection<DecryptedPendingMember> members, UUID uuid) {
-    ByteString uuidBytes = UuidUtil.toByteString(uuid);
+  public static Optional<DecryptedPendingMember> findPendingByServiceId(Collection<DecryptedPendingMember> members, ServiceId serviceId) {
+    ByteString serviceIdBinary = serviceId.toByteString();
 
     for (DecryptedPendingMember member : members) {
-      if (uuidBytes.equals(member.getUuid())) {
+      if (serviceIdBinary.equals(member.getServiceIdBinary())) {
         return Optional.of(member);
       }
     }
@@ -196,7 +195,7 @@ public final class DecryptedGroupUtil {
 
   public static Optional<DecryptedPendingMember> findPendingByServiceIds(Collection<DecryptedPendingMember> members, ServiceIds serviceIds) {
     for (DecryptedPendingMember member : members) {
-      if (serviceIds.matches(member.getUuid())) {
+      if (serviceIds.matches(member.getServiceIdBinary())) {
         return Optional.of(member);
       }
     }
@@ -215,10 +214,10 @@ public final class DecryptedGroupUtil {
     return -1;
   }
 
-  private static int findPendingIndexByUuid(List<DecryptedPendingMember> members, ByteString uuid) {
+  private static int findPendingIndexByServiceId(List<DecryptedPendingMember> members, ByteString serviceIdBinary) {
     for (int i = 0; i < members.size(); i++) {
       DecryptedPendingMember member = members.get(i);
-      if (uuid.equals(member.getUuid())) {
+      if (serviceIdBinary.equals(member.getServiceIdBinary())) {
         return i;
       }
     }
@@ -416,7 +415,7 @@ public final class DecryptedGroupUtil {
     Set<ByteString> pendingMemberCipherTexts = getPendingMemberCipherTextSet(builder.getPendingMembersList());
 
     for (DecryptedPendingMember pendingMember : newPendingMembersList) {
-      if (fullMemberSet.contains(pendingMember.getUuid())) {
+      if (fullMemberSet.contains(pendingMember.getServiceIdBinary())) {
         throw new NotAbleToApplyGroupV2ChangeException();
       }
 
@@ -441,7 +440,7 @@ public final class DecryptedGroupUtil {
 
   protected static void applyPromotePendingMemberActions(DecryptedGroup.Builder builder, List<DecryptedMember> promotePendingMembersList) throws NotAbleToApplyGroupV2ChangeException {
     for (DecryptedMember newMember : promotePendingMembersList) {
-      int index = findPendingIndexByUuid(builder.getPendingMembersList(), newMember.getUuid());
+      int index = findPendingIndexByServiceId(builder.getPendingMembersList(), newMember.getUuid());
 
       if (index == -1) {
         throw new NotAbleToApplyGroupV2ChangeException();
@@ -556,10 +555,10 @@ public final class DecryptedGroupUtil {
   }
 
   private static void applyAddBannedMembersActions(DecryptedGroup.Builder builder, List<DecryptedBannedMember> newBannedMembersList) {
-    Set<ByteString> bannedMemberUuidSet = getBannedMemberUuidSet(builder.getBannedMembersList());
+    Set<ByteString> bannedMemberServiceIdSet = getBannedMemberServiceIdSet(builder.getBannedMembersList());
 
     for (DecryptedBannedMember member : newBannedMembersList) {
-      if (bannedMemberUuidSet.contains(member.getUuid())) {
+      if (bannedMemberServiceIdSet.contains(member.getServiceIdBinary())) {
         Log.w(TAG, "Banned member already in banned list");
       } else {
         builder.addBannedMembers(member);
@@ -569,7 +568,7 @@ public final class DecryptedGroupUtil {
 
   private static void applyDeleteBannedMembersActions(DecryptedGroup.Builder builder, List<DecryptedBannedMember> deleteMembersList) {
     for (DecryptedBannedMember removedMember : deleteMembersList) {
-      int index = indexOfUuidInBannedMemberList(builder.getBannedMembersList(), removedMember.getUuid());
+      int index = indexOfServiceIdInBannedMemberList(builder.getBannedMembersList(), removedMember.getServiceIdBinary());
 
       if (index == -1) {
         Log.w(TAG, "Deleted banned member on change not found in banned list");
@@ -582,7 +581,7 @@ public final class DecryptedGroupUtil {
 
   protected static void applyPromotePendingPniAciMemberActions(DecryptedGroup.Builder builder, List<DecryptedMember> promotePendingPniAciMembersList) throws NotAbleToApplyGroupV2ChangeException {
     for (DecryptedMember newMember : promotePendingPniAciMembersList) {
-      int index = findPendingIndexByUuid(builder.getPendingMembersList(), newMember.getPni());
+      int index = findPendingIndexByServiceId(builder.getPendingMembersList(), newMember.getPni());
 
       if (index == -1) {
         throw new NotAbleToApplyGroupV2ChangeException();
@@ -619,14 +618,14 @@ public final class DecryptedGroupUtil {
     return pendingMemberCipherTexts;
   }
 
-  private static Set<ByteString> getBannedMemberUuidSet(List<DecryptedBannedMember> bannedMemberList) {
-    Set<ByteString> memberUuids = new HashSet<>(bannedMemberList.size());
+  private static Set<ByteString> getBannedMemberServiceIdSet(List<DecryptedBannedMember> bannedMemberList) {
+    Set<ByteString> memberServiceIds = new HashSet<>(bannedMemberList.size());
 
     for (DecryptedBannedMember member : bannedMemberList) {
-      memberUuids.add(member.getUuid());
+      memberServiceIds.add(member.getServiceIdBinary());
     }
 
-    return memberUuids;
+    return memberServiceIds;
   }
 
   private static void removePendingAndRequestingMembersNowInGroup(DecryptedGroup.Builder builder) {
@@ -634,7 +633,7 @@ public final class DecryptedGroupUtil {
 
     for (int i = builder.getPendingMembersCount() - 1; i >= 0; i--) {
       DecryptedPendingMember pendingMember = builder.getPendingMembers(i);
-      if (allMembers.contains(pendingMember.getUuid())) {
+      if (allMembers.contains(pendingMember.getServiceIdBinary())) {
         builder.removePendingMembers(i);
       }
     }
@@ -667,17 +666,11 @@ public final class DecryptedGroupUtil {
     return -1;
   }
 
-  private static int indexOfUuidInBannedMemberList(List<DecryptedBannedMember> memberList, ByteString uuid) {
+  private static int indexOfServiceIdInBannedMemberList(List<DecryptedBannedMember> memberList, ByteString serviceIdBinary) {
     for (int i = 0; i < memberList.size(); i++) {
-      if (uuid.equals(memberList.get(i).getUuid())) return i;
+      if (serviceIdBinary.equals(memberList.get(i).getServiceIdBinary())) return i;
     }
     return -1;
-  }
-
-  public static Optional<UUID> findInviter(List<DecryptedPendingMember> pendingMembersList, UUID uuid) {
-    return Optional.ofNullable(findPendingByUuid(pendingMembersList, uuid).map(DecryptedPendingMember::getAddedByUuid)
-                                                                          .map(UuidUtil::fromByteStringOrNull)
-                                                                          .orElse(null));
   }
 
   public static boolean changeIsEmpty(DecryptedGroupChange change) {

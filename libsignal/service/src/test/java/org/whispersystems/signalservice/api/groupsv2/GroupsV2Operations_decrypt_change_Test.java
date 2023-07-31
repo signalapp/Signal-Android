@@ -33,6 +33,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
@@ -94,8 +96,8 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Test
   public void can_decrypt_member_additions_field3() {
-    UUID           self           = UUID.randomUUID();
-    UUID           newMember      = UUID.randomUUID();
+    ACI            self           = ACI.from(UUID.randomUUID());
+    ACI            newMember      = ACI.from(UUID.randomUUID());
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
@@ -107,12 +109,12 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember))));
+                                                                       .setUuid(newMember.toByteString())));
   }
 
   @Test
   public void can_decrypt_member_direct_join_field3() {
-    UUID           newMember      = UUID.randomUUID();
+    ACI            newMember      = ACI.from(UUID.randomUUID());
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
@@ -124,13 +126,13 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember))));
+                                                                       .setUuid(newMember.toByteString())));
   }
 
   @Test
   public void can_decrypt_member_additions_direct_to_admin_field3() {
-    UUID           self           = UUID.randomUUID();
-    UUID           newMember      = UUID.randomUUID();
+    ACI            self           = ACI.from(UUID.randomUUID());
+    ACI            newMember      = ACI.from(UUID.randomUUID());
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
@@ -142,7 +144,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember))));
+                                                                       .setUuid(newMember.toByteString())));
   }
 
   @Test(expected = InvalidGroupStateException.class)
@@ -181,29 +183,29 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Test
   public void can_decrypt_modify_member_action_role_to_admin_field5() {
-    UUID member = UUID.randomUUID();
+    ACI member = ACI.from(UUID.randomUUID());
 
     assertDecryption(groupOperations.createChangeMemberRole(member, Member.Role.ADMINISTRATOR),
                      DecryptedGroupChange.newBuilder()
                                          .addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                                                        .setUuid(UuidUtil.toByteString(member))
+                                                                                        .setUuid(member.toByteString())
                                                                                         .setRole(Member.Role.ADMINISTRATOR)));
   }
 
   @Test
   public void can_decrypt_modify_member_action_role_to_member_field5() {
-    UUID member = UUID.randomUUID();
+    ACI member = ACI.from(UUID.randomUUID());
 
     assertDecryption(groupOperations.createChangeMemberRole(member, Member.Role.DEFAULT),
                      DecryptedGroupChange.newBuilder()
                                          .addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                                                        .setUuid(UuidUtil.toByteString(member))
+                                                                                        .setUuid(member.toByteString())
                                                                                         .setRole(Member.Role.DEFAULT)));
   }
 
   @Test
   public void can_decrypt_modify_member_profile_key_action_field6() {
-    UUID           self           = UUID.randomUUID();
+    ACI            self           = ACI.from(UUID.randomUUID());
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(self, profileKey);
 
@@ -215,35 +217,35 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                                 .setRole(Member.Role.UNKNOWN)
                                                                                 .setJoinedAtRevision(-1)
                                                                                 .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-                                                                                .setUuid(UuidUtil.toByteString(self))));
+                                                                                .setUuid(self.toByteString())));
   }
 
   @Test
   public void can_decrypt_member_invitations_field7() {
-    UUID           self           = UUID.randomUUID();
-    UUID           newMember      = UUID.randomUUID();
-    GroupCandidate groupCandidate = groupCandidate(newMember);
+    ACI            self           = ACI.from(UUID.randomUUID());
+    ACI            newMember      = ACI.from(UUID.randomUUID());
+    GroupCandidate groupCandidate = new GroupCandidate(newMember, Optional.empty());
 
     assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
                                     .setRevision(13),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(13)
                                          .addNewPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                                     .setAddedByUuid(UuidUtil.toByteString(self))
-                                                                                     .setUuidCipherText(groupOperations.encryptUuid(newMember))
+                                                                                     .setAddedByUuid(self.toByteString())
+                                                                                     .setUuidCipherText(groupOperations.encryptServiceId(newMember))
                                                                                      .setRole(Member.Role.DEFAULT)
-                                                                                     .setUuid(UuidUtil.toByteString(newMember))));
+                                                                                     .setServiceIdBinary(newMember.toByteString())));
   }
 
   @Test
   public void can_decrypt_pending_member_removals_field8() throws InvalidInputException {
-    UUID           oldMember      = UUID.randomUUID();
-    UuidCiphertext uuidCiphertext = new UuidCiphertext(groupOperations.encryptUuid(oldMember).toByteArray());
+    ACI            oldMember      = ACI.from(UUID.randomUUID());
+    UuidCiphertext uuidCiphertext = new UuidCiphertext(groupOperations.encryptServiceId(oldMember).toByteArray());
 
     assertDecryption(groupOperations.createRemoveInvitationChange(Collections.singleton(uuidCiphertext)),
                      DecryptedGroupChange.newBuilder()
                                          .addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                                               .setUuid(UuidUtil.toByteString(oldMember))
+                                                                                               .setServiceIdBinary(oldMember.toByteString())
                                                                                                .setUuidCipherText(ByteString.copyFrom(uuidCiphertext.serialize()))));
   }
 
@@ -257,20 +259,20 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                                                .setDeletedUserId(ByteString.copyFrom(uuidCiphertext))),
                      DecryptedGroupChange.newBuilder()
                                          .addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                                               .setUuid(UuidUtil.toByteString(UuidUtil.UNKNOWN_UUID))
+                                                                                               .setServiceIdBinary(UuidUtil.toByteString(UuidUtil.UNKNOWN_UUID))
                                                                                                .setUuidCipherText(ByteString.copyFrom(uuidCiphertext))));
   }
 
   @Test
   public void can_decrypt_promote_pending_member_field9() {
-    UUID           newMember      = UUID.randomUUID();
+    ACI            newMember      = ACI.from(UUID.randomUUID());
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
     assertDecryption(groupOperations.createAcceptInviteChange(groupCandidate.getExpiringProfileKeyCredential().get()),
                      DecryptedGroupChange.newBuilder()
                                          .addPromotePendingMembers(DecryptedMember.newBuilder()
-                                                                                  .setUuid(UuidUtil.toByteString(newMember))
+                                                                                  .setUuid(newMember.toByteString())
                                                                                   .setRole(Member.Role.DEFAULT)
                                                                                   .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                                   .setJoinedAtRevision(-1)));
@@ -328,7 +330,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Test
   public void can_decrypt_member_requests_field16() {
-    UUID           newRequestingMember = UUID.randomUUID();
+    ACI            newRequestingMember = ACI.from(UUID.randomUUID());
     ProfileKey     profileKey          = newProfileKey();
     GroupCandidate groupCandidate      = groupCandidate(newRequestingMember, profileKey);
 
@@ -337,7 +339,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
                                          .addNewRequestingMembers(DecryptedRequestingMember.newBuilder()
-                                                                                           .setUuid(UuidUtil.toByteString(newRequestingMember))
+                                                                                           .setUuid(newRequestingMember.toByteString())
                                                                                            .setProfileKey(ByteString.copyFrom(profileKey.serialize()))));
   }
 
@@ -350,7 +352,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
                                          .addDeleteRequestingMembers(UuidUtil.toByteString(newRequestingMember))
-                                         .addNewBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newRequestingMember)).build()));
+                                         .addNewBannedMembers(DecryptedBannedMember.newBuilder().setServiceIdBinary(UuidUtil.toByteString(newRequestingMember)).build()));
   }
 
   @Test
@@ -402,42 +404,42 @@ public final class GroupsV2Operations_decrypt_change_Test {
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(13)
                                          .addNewBannedMembers(DecryptedBannedMember.newBuilder()
-                                                                                   .setUuid(UuidUtil.toByteString(ban))));
+                                                                                   .setServiceIdBinary(UuidUtil.toByteString(ban))));
   }
 
   @Test
   public void can_decrypt_banned_member_removals_field23() {
-    UUID ban = UUID.randomUUID();
+    ACI ban = ACI.from(UUID.randomUUID());
 
-    assertDecryption(groupOperations.createUnbanUuidsChange(Collections.singleton(ban))
+    assertDecryption(groupOperations.createUnbanServiceIdsChange(Collections.singleton(ban))
                                     .setRevision(13),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(13)
                                          .addDeleteBannedMembers(DecryptedBannedMember.newBuilder()
-                                                                                      .setUuid(UuidUtil.toByteString(ban))));
+                                                                                      .setServiceIdBinary(ban.toByteString())));
   }
 
   @Test
   public void can_decrypt_promote_pending_pni_aci_member_field24() {
-    UUID       memberUuid = UUID.randomUUID();
-    UUID       memberPni  = UUID.randomUUID();
+    ACI        memberAci  = ACI.from(UUID.randomUUID());
+    PNI        memberPni  = PNI.from(UUID.randomUUID());
     ProfileKey profileKey = newProfileKey();
 
     GroupChange.Actions.Builder builder = GroupChange.Actions.newBuilder()
-                                                             .setSourceUuid(groupOperations.encryptUuid(memberPni))
+                                                             .setSourceUuid(groupOperations.encryptServiceId(memberPni))
                                                              .setRevision(5)
                                                              .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder()
-                                                                                                                                                           .setUserId(groupOperations.encryptUuid(memberUuid))
-                                                                                                                                                           .setPni(groupOperations.encryptUuid(memberPni))
-                                                                                                                                                           .setProfileKey(encryptProfileKey(memberUuid, profileKey)));
+                                                                                                                                                           .setUserId(groupOperations.encryptServiceId(memberAci))
+                                                                                                                                                           .setPni(groupOperations.encryptServiceId(memberPni))
+                                                                                                                                                           .setProfileKey(encryptProfileKey(memberAci, profileKey)));
 
     assertDecryptionWithEditorSet(builder,
                                   DecryptedGroupChange.newBuilder()
-                                                      .setEditor(UuidUtil.toByteString(memberUuid))
+                                                      .setEditor(memberAci.toByteString())
                                                       .setRevision(5)
                                                       .addPromotePendingPniAciMembers(DecryptedMember.newBuilder()
-                                                                                                     .setUuid(UuidUtil.toByteString(memberUuid))
-                                                                                                     .setPni(UuidUtil.toByteString(memberPni))
+                                                                                                     .setUuid(memberAci.toByteString())
+                                                                                                     .setPni(memberPni.toByteString())
                                                                                                      .setRole(Member.Role.DEFAULT)
                                                                                                      .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                                                      .setJoinedAtRevision(5)));
@@ -451,23 +453,23 @@ public final class GroupsV2Operations_decrypt_change_Test {
     }
   }
 
-  private ByteString encryptProfileKey(UUID uuid, ProfileKey profileKey) {
-    return ByteString.copyFrom(new ClientZkGroupCipher(groupSecretParams).encryptProfileKey(profileKey, uuid).serialize());
+  private ByteString encryptProfileKey(ACI aci, ProfileKey profileKey) {
+    return ByteString.copyFrom(new ClientZkGroupCipher(groupSecretParams).encryptProfileKey(profileKey, aci.getLibSignalAci()).serialize());
   }
 
   static GroupCandidate groupCandidate(UUID uuid) {
-    return new GroupCandidate(uuid, Optional.empty());
+    return new GroupCandidate(ACI.from(uuid), Optional.empty());
   }
 
-  GroupCandidate groupCandidate(UUID uuid, ProfileKey profileKey) {
+  GroupCandidate groupCandidate(ACI aci, ProfileKey profileKey) {
     try {
       ClientZkProfileOperations            profileOperations                    = clientZkOperations.getProfileOperations();
-      ProfileKeyCommitment                 commitment                           = profileKey.getCommitment(uuid);
-      ProfileKeyCredentialRequestContext   requestContext                       = profileOperations.createProfileKeyCredentialRequestContext(uuid, profileKey);
+      ProfileKeyCommitment                 commitment                           = profileKey.getCommitment(aci.getLibSignalAci());
+      ProfileKeyCredentialRequestContext   requestContext                       = profileOperations.createProfileKeyCredentialRequestContext(aci.getLibSignalAci(), profileKey);
       ProfileKeyCredentialRequest          request                              = requestContext.getRequest();
-      ExpiringProfileKeyCredentialResponse expiringProfileKeyCredentialResponse = server.getExpiringProfileKeyCredentialResponse(request, uuid, commitment, Instant.now().plus(7, ChronoUnit.DAYS).truncatedTo(ChronoUnit.DAYS));
+      ExpiringProfileKeyCredentialResponse expiringProfileKeyCredentialResponse = server.getExpiringProfileKeyCredentialResponse(request, aci, commitment, Instant.now().plus(7, ChronoUnit.DAYS).truncatedTo(ChronoUnit.DAYS));
       ExpiringProfileKeyCredential         profileKeyCredential                 = profileOperations.receiveExpiringProfileKeyCredential(requestContext, expiringProfileKeyCredentialResponse);
-      GroupCandidate                       groupCandidate                       = new GroupCandidate(uuid, Optional.of(profileKeyCredential));
+      GroupCandidate                       groupCandidate                       = new GroupCandidate(aci, Optional.of(profileKeyCredential));
 
       ProfileKeyCredentialPresentation presentation = profileOperations.createProfileKeyCredentialPresentation(groupSecretParams, profileKeyCredential);
       server.assertProfileKeyCredentialPresentation(groupSecretParams.getPublicParams(), presentation, Instant.now());
@@ -481,8 +483,8 @@ public final class GroupsV2Operations_decrypt_change_Test {
   void assertDecryption(GroupChange.Actions.Builder inputChange,
                         DecryptedGroupChange.Builder expectedDecrypted)
   {
-    UUID editor = UUID.randomUUID();
-    assertDecryptionWithEditorSet(inputChange.setSourceUuid(groupOperations.encryptUuid(editor)), expectedDecrypted.setEditor(UuidUtil.toByteString(editor)));
+    ACI editor = ACI.from(UUID.randomUUID());
+    assertDecryptionWithEditorSet(inputChange.setSourceUuid(groupOperations.encryptServiceId(editor)), expectedDecrypted.setEditor(editor.toByteString()));
   }
 
   void assertDecryptionWithEditorSet(GroupChange.Actions.Builder inputChange,

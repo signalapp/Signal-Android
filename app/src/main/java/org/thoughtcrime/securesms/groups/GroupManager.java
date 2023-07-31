@@ -336,7 +336,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, IOException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.unban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId().getRawUuid()));
+      editor.unban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId()));
     }
   }
 

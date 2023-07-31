@@ -9,7 +9,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import java.util.UUID
 
@@ -43,10 +42,6 @@ fun DecryptedGroupChange.Builder.addMember(aci: ACI) {
   addNewMembers(member(aci))
 }
 
-fun ServiceId.toByteString(): ByteString {
-  return UuidUtil.toByteString(rawUuid)
-}
-
 fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
   return member(ACI.from(serviceId), role, joinedAt)
 }
@@ -67,6 +62,6 @@ fun requestingMember(serviceId: ServiceId): DecryptedRequestingMember {
 
 fun pendingMember(serviceId: ServiceId): DecryptedPendingMember {
   return DecryptedPendingMember.newBuilder()
-    .setUuid(serviceId.toByteString())
+    .setServiceIdBinary(serviceId.toByteString())
     .build()
 }

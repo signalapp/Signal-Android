@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifes
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -34,6 +35,7 @@ import org.whispersystems.signalservice.internal.sticker.StickerProtos;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.util.concurrent.FutureTransformers;
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
+import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 
 import java.io.File;
@@ -96,13 +98,22 @@ public class SignalServiceMessageReceiver {
                                                                 SignalServiceProfile.RequestType requestType,
                                                                 Locale locale)
   {
-    ServiceId serviceId = address.getServiceId();
 
     if (profileKey.isPresent()) {
-      if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(serviceId.getRawUuid(), profileKey.get(), unidentifiedAccess, locale);
+      ACI aci;
+      if (address.getServiceId() instanceof ACI) {
+        aci = (ACI) address.getServiceId();
       } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(serviceId.getRawUuid(), profileKey.get(), unidentifiedAccess, locale), profile -> {
+        // We shouldn't ever have a profile key for a non-ACI.
+        SettableFuture<ProfileAndCredential> result = new SettableFuture<>();
+        result.setException(new ClassCastException("retrieving a versioned profile requires an ACI"));
+        return result;
+      }
+
+      if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
+        return socket.retrieveVersionedProfileAndCredential(aci, profileKey.get(), unidentifiedAccess, locale);
+      } else {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(aci, profileKey.get(), unidentifiedAccess, locale), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
                                           Optional.empty());

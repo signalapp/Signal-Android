@@ -153,8 +153,8 @@ class ConversationSettingsRepository(
         if (groupRecord.isV2Group) {
           val decryptedGroup: DecryptedGroup = groupRecord.requireV2GroupProperties().decryptedGroup
           val pendingMembers: List<RecipientId> = decryptedGroup.pendingMembersList
-            .map(DecryptedPendingMember::getUuid)
-            .map(GroupProtoUtil::uuidByteStringToRecipientId)
+            .map(DecryptedPendingMember::getServiceIdBinary)
+            .map(GroupProtoUtil::serviceIdBinaryToRecipientId)
 
           val members = mutableListOf<RecipientId>()
 

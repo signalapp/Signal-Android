@@ -176,7 +176,7 @@ class GroupRecord(
     if (isV2Group) {
       val serviceId = recipient.serviceId
       if (serviceId.isPresent) {
-        return DecryptedGroupUtil.findPendingByUuid(requireV2GroupProperties().decryptedGroup.pendingMembersList, serviceId.get().rawUuid)
+        return DecryptedGroupUtil.findPendingByServiceId(requireV2GroupProperties().decryptedGroup.pendingMembersList, serviceId.get())
           .isPresent
       }
     }

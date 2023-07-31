@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -72,9 +73,9 @@ final class GroupsV2UpdateMessageProducer {
    * When the revision of the group is 0, the change is very noisy and only the editor is useful.
    */
   UpdateDescription describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange decryptedGroupChange) {
-    Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfIds.getAci().getRawUuid());
+    Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByServiceId(group.getPendingMembersList(), selfIds.getAci());
     if (!selfPending.isPresent() && selfIds.getPni() != null) {
-      selfPending = DecryptedGroupUtil.findPendingByUuid(group.getPendingMembersList(), selfIds.getPni().getRawUuid());
+      selfPending = DecryptedGroupUtil.findPendingByServiceId(group.getPendingMembersList(), selfIds.getPni());
     }
 
     if (selfPending.isPresent()) {
@@ -310,13 +311,13 @@ final class GroupsV2UpdateMessageProducer {
     int     notYouInviteCount = 0;
 
     for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
-      boolean newMemberIsYou = selfIds.matches(invitee.getUuid());
+      boolean newMemberIsYou = selfIds.matches(invitee.getServiceIdBinary());
 
       if (newMemberIsYou) {
         updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, change.getEditor(), R.drawable.ic_update_group_add_16));
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, invitee.getUuid(), R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, invitee.getServiceIdBinary(), R.drawable.ic_update_group_add_16));
         } else {
           notYouInviteCount++;
         }
@@ -332,7 +333,7 @@ final class GroupsV2UpdateMessageProducer {
     int notYouInviteCount = 0;
 
     for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
-      boolean newMemberIsYou = selfIds.matches(invitee.getUuid());
+      boolean newMemberIsYou = selfIds.matches(invitee.getServiceIdBinary());
 
       if (newMemberIsYou) {
         UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.getAddedByUuid());
@@ -357,14 +358,14 @@ final class GroupsV2UpdateMessageProducer {
     int     notDeclineCount = 0;
 
     for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
-      boolean decline = invitee.getUuid().equals(change.getEditor());
+      boolean decline = invitee.getServiceIdBinary().equals(change.getEditor());
       if (decline) {
         if (editorIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
         } else {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
         }
-      } else if (selfIds.matches(invitee.getUuid())) {
+      } else if (selfIds.matches(invitee.getServiceIdBinary())) {
         updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, change.getEditor(), R.drawable.ic_update_group_decline_16));
       } else {
         notDeclineCount++;
@@ -384,7 +385,7 @@ final class GroupsV2UpdateMessageProducer {
     int notDeclineCount = 0;
 
     for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
-      boolean inviteeWasYou = selfIds.matches(invitee.getUuid());
+      boolean inviteeWasYou = selfIds.matches(invitee.getServiceIdBinary());
 
       if (inviteeWasYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
@@ -817,14 +818,14 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private UpdateDescription updateDescription(@StringRes int stringRes,
-                                              @NonNull ByteString uuid1Bytes,
+                                              @NonNull ByteString serviceId1Bytes,
                                               @DrawableRes int iconResource)
   {
-    ACI         aci          = ACI.parseOrUnknown(uuid1Bytes);
-    RecipientId recipientId = RecipientId.from(aci);
+    ACI         serviceId   = ACI.parseOrUnknown(serviceId1Bytes);
+    RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
-        Collections.singletonList(aci),
+        Collections.singletonList(serviceId),
         () -> {
           List<RecipientId> recipientIdList = Collections.singletonList(recipientId);
           String            templateString  = context.getString(stringRes, makePlaceholders(recipientIdList, null));
@@ -835,18 +836,18 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private UpdateDescription updateDescription(@StringRes int stringRes,
-                                              @NonNull ByteString uuid1Bytes,
-                                              @NonNull ByteString uuid2Bytes,
+                                              @NonNull ByteString serviceId1Bytes,
+                                              @NonNull ByteString serviceId2Bytes,
                                               @DrawableRes int iconResource)
   {
-    ACI aci1 = ACI.parseOrUnknown(uuid1Bytes);
-    ACI aci2 = ACI.parseOrUnknown(uuid2Bytes);
+    ACI serviceId1 = ACI.parseOrUnknown(serviceId1Bytes);
+    ACI serviceId2 = ACI.parseOrUnknown(serviceId2Bytes);
 
-    RecipientId recipientId1 = RecipientId.from(aci1);
-    RecipientId recipientId2 = RecipientId.from(aci2);
+    RecipientId recipientId1 = RecipientId.from(serviceId1);
+    RecipientId recipientId2 = RecipientId.from(serviceId2);
 
     return UpdateDescription.mentioning(
-        Arrays.asList(aci1, aci2),
+        Arrays.asList(serviceId1, serviceId2),
         () -> {
           List<RecipientId> recipientIdList = Arrays.asList(recipientId1, recipientId2);
           String            templateString  = context.getString(stringRes, makePlaceholders(recipientIdList, null));
@@ -858,15 +859,15 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private UpdateDescription updateDescription(@StringRes int stringRes,
-                                              @NonNull ByteString uuid1Bytes,
+                                              @NonNull ByteString serviceId1Bytes,
                                               @NonNull Object formatArg,
                                               @DrawableRes int iconResource)
   {
-    ACI         aci         = ACI.parseOrUnknown(uuid1Bytes);
-    RecipientId recipientId = RecipientId.from(aci);
+    ACI         serviceId   = ACI.parseOrUnknown(serviceId1Bytes);
+    RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
-        Collections.singletonList(aci),
+        Collections.singletonList(serviceId),
         () -> {
           List<RecipientId> recipientIdList = Collections.singletonList(recipientId);
           String            templateString  = context.getString(stringRes, makePlaceholders(recipientIdList, Collections.singletonList(formatArg)));
@@ -879,15 +880,15 @@ final class GroupsV2UpdateMessageProducer {
 
   private UpdateDescription updateDescription(@PluralsRes int stringRes,
                                               int quantity,
-                                              @NonNull ByteString uuid1Bytes,
+                                              @NonNull ByteString serviceId1Bytes,
                                               @NonNull Object formatArg,
                                               @DrawableRes int iconResource)
   {
-    ACI         aci         = ACI.parseOrUnknown(uuid1Bytes);
-    RecipientId recipientId = RecipientId.from(aci);
+    ACI         serviceId   = ACI.parseOrUnknown(serviceId1Bytes);
+    RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
-        Collections.singletonList(aci),
+        Collections.singletonList(serviceId),
         () -> {
           List<RecipientId> recipientIdList = Collections.singletonList(recipientId);
           String            templateString  = context.getResources().getQuantityString(stringRes, quantity, makePlaceholders(recipientIdList, Collections.singletonList(formatArg)));
