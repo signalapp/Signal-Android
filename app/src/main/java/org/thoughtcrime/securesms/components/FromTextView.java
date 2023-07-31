@@ -40,17 +40,21 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   public void setText(Recipient recipient, boolean read) {
-    setText(recipient, read, null);
+    setText(recipient, read, null, true);
   }
 
-  public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
-    setText(recipient, recipient.getDisplayNameOrUsername(getContext()), read, suffix);
+  public void setText(Recipient recipient, boolean read, boolean shouldSetSelfAsNoteToSelfText) {
+    setText(recipient, read, null, shouldSetSelfAsNoteToSelfText);
   }
 
-  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix) {
+  public void setText(Recipient recipient, boolean read, @Nullable String suffix, boolean shouldSetSelfAsNoteToSelfText) {
+    setText(recipient, recipient.getDisplayNameOrUsername(getContext()), read, suffix, shouldSetSelfAsNoteToSelfText);
+  }
+
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix, boolean shouldSetSelfAsNoteToSelfText) {
     SpannableStringBuilder builder  = new SpannableStringBuilder();
 
-    if (recipient.isSelf()) {
+    if (shouldSetSelfAsNoteToSelfText && recipient.isSelf()) {
       builder.append(getContext().getString(R.string.note_to_self));
     } else {
       builder.append(fromString);

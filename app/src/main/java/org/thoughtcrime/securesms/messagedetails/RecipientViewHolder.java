@@ -41,7 +41,7 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
 
   void bind(RecipientDeliveryStatus data) {
     unidentifiedDeliveryIcon.setVisibility(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(itemView.getContext()) && data.isUnidentified() ? View.VISIBLE : View.GONE);
-    fromView.setText(data.getRecipient());
+    fromView.setText(data.getRecipient(), true, null, false);
     avatar.setRecipient(data.getRecipient());
     badge.setBadgeFromRecipient(data.getRecipient());
 
