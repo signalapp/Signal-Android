@@ -2245,8 +2245,6 @@ class ConversationFragment :
     fun bind(message: ConversationMessage?) {
       if (message != null) {
         binding.scrollDateHeader.text = DateUtils.getConversationDateHeaderString(requireContext(), Locale.getDefault(), message.conversationTimestamp)
-      } else {
-        binding.scrollDateHeader.text = null
       }
     }
 
