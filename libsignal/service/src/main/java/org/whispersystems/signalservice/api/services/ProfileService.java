@@ -22,7 +22,7 @@ import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseExc
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
-import org.whispersystems.signalservice.internal.push.IdentityCheckRequest.AciFingerprintPair;
+import org.whispersystems.signalservice.internal.push.IdentityCheckRequest.ServiceIdFingerprintPair;
 import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
 import org.whispersystems.signalservice.internal.push.http.AcceptLanguagesUtil;
 import org.whispersystems.signalservice.internal.util.Hex;
@@ -120,13 +120,13 @@ public final class ProfileService {
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
-  public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> aciIdentityKeyMap) {
-    List<AciFingerprintPair> aciKeyPairs = aciIdentityKeyMap.entrySet()
-                                                            .stream()
-                                                            .map(e -> new AciFingerprintPair(e.getKey(), e.getValue()))
-                                                            .collect(Collectors.toList());
+  public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> serviceIdIdentityKeyMap) {
+    List<ServiceIdFingerprintPair> serviceIdKeyPairs = serviceIdIdentityKeyMap.entrySet()
+                                                                              .stream()
+                                                                              .map(e -> new ServiceIdFingerprintPair(e.getKey(), e.getValue()))
+                                                                              .collect(Collectors.toList());
 
-    IdentityCheckRequest request = new IdentityCheckRequest(aciKeyPairs);
+    IdentityCheckRequest request = new IdentityCheckRequest(serviceIdKeyPairs);
 
     WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
                                                                      .setId(new SecureRandom().nextLong())

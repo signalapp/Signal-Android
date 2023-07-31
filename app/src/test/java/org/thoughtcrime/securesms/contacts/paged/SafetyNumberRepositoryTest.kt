@@ -130,7 +130,7 @@ class SafetyNumberRepositoryTest {
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.AciIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
+      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
@@ -151,7 +151,7 @@ class SafetyNumberRepositoryTest {
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other, secondOther))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey, secondOther.requireServiceId() to identityPool[secondOther]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.AciIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
+      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
