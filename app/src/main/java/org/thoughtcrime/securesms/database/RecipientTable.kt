@@ -3317,7 +3317,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
     val selection =
       """
-        $BLOCKED = ? AND $HIDDEN = ? AND
+        $BLOCKED = ? AND
         (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
@@ -3325,7 +3325,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           $EMAIL GLOB ?
         )
       """
-    val args = SqlUtil.buildArgs(0, 0, query, query, query, query)
+    val args = SqlUtil.buildArgs(0, query, query, query, query)
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null)
   }
 
