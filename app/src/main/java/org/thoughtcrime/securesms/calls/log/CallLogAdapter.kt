@@ -215,6 +215,13 @@ class CallLogAdapter(
       binding.callInfo.setRelativeDrawables(start = R.drawable.symbol_link_compact_16)
       binding.callInfo.setText(R.string.CallLogAdapter__call_link)
 
+      TextViewCompat.setCompoundDrawableTintList(
+        binding.callInfo,
+        ColorStateList.valueOf(
+          ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant)
+        )
+      )
+
       binding.callType.setImageResource(R.drawable.symbol_video_24)
       binding.callType.setOnClickListener {
         onStartVideoCallClicked(model.callLink.recipient)
