@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.log
@@ -160,7 +161,16 @@ object EditMessageProcessor {
       isPushMessage = true
     )
 
-    return SignalDatabase.messages.insertEditMessageInbox(-1, mediaMessage, targetMessage).orNull()
+    val insertResult = SignalDatabase.messages.insertEditMessageInbox(-1, mediaMessage, targetMessage).orNull()
+    if (insertResult?.insertedAttachments != null) {
+      SignalDatabase.runPostSuccessfulTransaction {
+        val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (_, attachmentId) ->
+          AttachmentDownloadJob(insertResult.messageId, attachmentId, false)
+        }
+        ApplicationDependencies.getJobManager().addAll(downloadJobs)
+      }
+    }
+    return insertResult
   }
 
   private fun handleEditTextMessage(
