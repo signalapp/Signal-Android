@@ -349,7 +349,7 @@ object NotificationFactory {
     val intent: Intent = if (recipient.isDistributionList || thread.groupStoryId != null) {
       Intent(context, MyStoriesActivity::class.java)
     } else {
-      ConversationIntents.createBuilder(context, recipient.id, thread.threadId)
+      ConversationIntents.createBuilderSync(context, recipient.id, thread.threadId)
         .build()
     }.makeUniqueToPreventMerging()
 
@@ -419,7 +419,7 @@ object NotificationFactory {
     val intent: Intent = if (recipient.isDistributionList || thread.groupStoryId != null) {
       Intent(context, MyStoriesActivity::class.java)
     } else {
-      ConversationIntents.createBuilder(context, recipient.id, thread.threadId)
+      ConversationIntents.createBuilderSync(context, recipient.id, thread.threadId)
         .build()
     }.makeUniqueToPreventMerging()
 

@@ -39,7 +39,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pin_locked_next"
-        style="@style/Signal.Widget.Button.Large.Tonal"
+        style="@style/Signal.Widget.Button.Large.Primary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

@@ -126,8 +126,23 @@ public abstract class TimedEventManager<E> {
     try {
       pendingIntent.cancel();
       ServiceUtil.getAlarmManager(context).cancel(pendingIntent);
-    } catch (SecurityException e) {
-      Log.i(TAG, "Unable to cancel alarm because we don't have permission");
+    } catch (Exception e) {
+      Throwable cause = e;
+      int depth = 0;
+      while (cause != null && depth < 5) {
+        if (cause instanceof SecurityException) {
+          break;
+        } else {
+          cause = e.getCause();
+          depth++;
+        }
+      }
+
+      if (e instanceof SecurityException) {
+        Log.i(TAG, "Unable to cancel alarm because we don't have permission");
+      } else {
+        throw e;
+      }
     }
   }
 }

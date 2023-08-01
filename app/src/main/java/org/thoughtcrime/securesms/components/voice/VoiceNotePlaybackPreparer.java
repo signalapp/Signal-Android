@@ -144,7 +144,7 @@ final class   VoiceNotePlaybackPreparer implements MediaSessionConnector.Playbac
   @MainThread
   private void applyDescriptionsToQueue(@NonNull List<MediaItem> mediaItems) {
     for (MediaItem mediaItem : mediaItems) {
-      MediaItem.PlaybackProperties playbackProperties = mediaItem.playbackProperties;
+      final MediaItem.LocalConfiguration playbackProperties = mediaItem.playbackProperties;
       if (playbackProperties == null) {
         continue;
       }
@@ -194,7 +194,7 @@ final class   VoiceNotePlaybackPreparer implements MediaSessionConnector.Playbac
 
   private int indexOfPlayerMediaItemByUri(@NonNull Uri uri) {
     for (int i = 0; i < player.getMediaItemCount(); i++) {
-      MediaItem.PlaybackProperties playbackProperties = player.getMediaItemAt(i).playbackProperties;
+      final MediaItem.LocalConfiguration playbackProperties = player.getMediaItemAt(i).playbackProperties;
       if (playbackProperties != null && playbackProperties.uri.equals(uri)) {
         return i;
       }

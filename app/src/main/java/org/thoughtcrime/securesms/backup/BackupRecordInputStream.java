@@ -27,6 +27,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 class BackupRecordInputStream extends FullBackupBase.BackupStream {
 
+  private final int         version;
   private final InputStream in;
   private final Cipher      cipher;
   private final Mac         mac;
@@ -55,10 +56,19 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
 
       Header header = frame.header_;
 
+      if (header.iv == null) {
+        throw new IOException("Missing IV!");
+      }
+
       this.iv = header.iv.toByteArray();
 
       if (iv.length != 16) {
         throw new IOException("Invalid IV length!");
+      }
+
+      this.version = header.version != null ? header.version : 0;
+      if (!BackupVersions.isCompatible(version)) {
+        throw new IOException("Invalid backup version: " + version);
       }
 
       byte[]   key     = getBackupKey(passphrase, header.salt != null ? header.salt.toByteArray() : null);
@@ -135,7 +145,23 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
       byte[] length = new byte[4];
       StreamUtil.readFully(in, length);
 
-      byte[] frame = new byte[Conversions.byteArrayToInt(length)];
+      Conversions.intToByteArray(iv, 0, counter++);
+      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
+
+      int frameLength;
+      if (BackupVersions.isFrameLengthEncrypted(version)) {
+        mac.update(length);
+        // this depends upon cipher being a stream cipher mode in order to get back the length without needing a full AES block-size input
+        byte[] decryptedLength = cipher.update(length);
+        if (decryptedLength.length != length.length) {
+          throw new IOException("Cipher was not a stream cipher!");
+        }
+        frameLength = Conversions.byteArrayToInt(decryptedLength);
+      } else {
+        frameLength = Conversions.byteArrayToInt(length);
+      }
+
+      byte[] frame = new byte[frameLength];
       StreamUtil.readFully(in, frame);
 
       byte[] theirMac = new byte[10];
@@ -147,9 +173,6 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
       if (!MessageDigest.isEqual(ourMac, theirMac)) {
         throw new IOException("Bad MAC");
       }
-
-      Conversions.intToByteArray(iv, 0, counter++);
-      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
 
       byte[] plaintext = cipher.doFinal(frame, 0, frame.length - 10);
 

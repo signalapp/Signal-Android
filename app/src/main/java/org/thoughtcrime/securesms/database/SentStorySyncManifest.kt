@@ -87,7 +87,7 @@ data class SentStorySyncManifest(
     fun fromRecipientsSet(recipients: List<SignalServiceProtos.SyncMessage.Sent.StoryMessageRecipient>): SentStorySyncManifest {
       val entries = recipients.toSet().map { recipient ->
         Entry(
-          recipientId = RecipientId.from(ServiceId.parseOrThrow(recipient.destinationUuid)),
+          recipientId = RecipientId.from(ServiceId.parseOrThrow(recipient.destinationServiceId)),
           allowedToReply = recipient.isAllowedToReply,
           distributionLists = recipient.distributionListIdsList.map { DistributionId.from(it) }
         )

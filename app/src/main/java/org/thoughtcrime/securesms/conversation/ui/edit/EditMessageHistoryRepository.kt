@@ -35,6 +35,7 @@ object EditMessageHistoryRepository {
       .messages
       .getMessageEditHistory(messageId)
       .toList()
+      .reversed()
 
     if (records.isEmpty()) {
       return emptyList()

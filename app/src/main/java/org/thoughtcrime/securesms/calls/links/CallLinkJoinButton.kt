@@ -7,7 +7,9 @@ package org.thoughtcrime.securesms.calls.links
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.annotation.ColorRes
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 
@@ -21,6 +23,10 @@ class CallLinkJoinButton @JvmOverloads constructor(
   }
 
   private val joinButton: MaterialButton = findViewById(R.id.join_button)
+
+  fun setTextColor(@ColorRes textColorResId: Int) {
+    joinButton.setTextColor(ContextCompat.getColor(context, textColorResId))
+  }
 
   fun setJoinClickListener(onClickListener: OnClickListener) {
     joinButton.setOnClickListener(onClickListener)

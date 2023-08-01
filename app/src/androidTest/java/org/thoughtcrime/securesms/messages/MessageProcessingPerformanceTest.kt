@@ -9,6 +9,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -37,7 +38,7 @@ import android.util.Log as AndroidLog
 /**
  * Sends N messages from Bob to Alice to track performance of Alice's processing of messages.
  */
-// @Ignore("Ignore test in normal testing as it's a performance test with no assertions")
+@Ignore("Ignore test in normal testing as it's a performance test with no assertions")
 @RunWith(AndroidJUnit4::class)
 class MessageProcessingPerformanceTest {
 

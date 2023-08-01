@@ -137,7 +137,6 @@ class SignalCallLinkManager(
     credentials: CallLinkCredentials
   ): Single<ReadCallLinkResult> {
     return Single.create { emitter ->
-
       callManager.readCallLink(
         SignalStore.internalValues().groupCallingServer(),
         requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes).serialize(),

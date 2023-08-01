@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.util.Base64
 /**
  * Performs a check and ensures that MyStory exists at the correct distribution list id and correct distribution id.
  */
+@Suppress("ClassName")
 object V153_MyStoryMigration : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V153_MyStoryMigration::class.java)

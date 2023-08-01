@@ -14,6 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
@@ -24,7 +27,9 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -55,7 +60,7 @@ public final class AvatarUtil {
 
     GlideApp.with(target)
             .load(photo)
-            .transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
+            .transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS), new CenterCrop())
             .into(new CustomViewTarget<View, Drawable>(target) {
               @Override
               public void onLoadFailed(@Nullable Drawable errorDrawable) {
@@ -99,12 +104,8 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static IconCompat getIconForNotification(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      return IconCompat.createWithBitmap(requestCircle(GlideApp.with(context).asBitmap(), context, recipient, UNDEFINED_SIZE).submit().get());
-    } catch (ExecutionException | InterruptedException e) {
-      return null;
-    }
+  public static IconCompat getIconWithUriForNotification(@NonNull Context context, @NonNull RecipientId recipientId) {
+    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(context, recipientId));
   }
 
   @WorkerThread
@@ -128,26 +129,31 @@ public final class AvatarUtil {
 
   @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
+    return getBitmapForNotification(context, recipient, UNDEFINED_SIZE);
+  }
+
+  @WorkerThread
+  public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
     try {
-      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, UNDEFINED_SIZE).submit().get();
+      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).submit().get();
     } catch (ExecutionException | InterruptedException e) {
       return null;
     }
   }
 
   private static <T> GlideRequest<T> requestCircle(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    return request(glideRequest, context, recipient, targetSize).circleCrop();
+    return request(glideRequest, context, recipient, targetSize, new CircleCrop());
   }
 
   private static <T> GlideRequest<T> requestSquare(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
-    return request(glideRequest, context, recipient, UNDEFINED_SIZE).centerCrop();
+    return request(glideRequest, context, recipient, UNDEFINED_SIZE, new CenterCrop());
   }
 
-  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    return request(glideRequest, context, recipient, true, targetSize);
+  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, int targetSize, @Nullable BitmapTransformation transformation) {
+    return request(glideRequest, context, recipient, true, targetSize, transformation);
   }
 
-  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize) {
+  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize, @Nullable BitmapTransformation transformation) {
     final ContactPhoto photo;
     if (Recipient.self().equals(recipient) && loadSelf) {
       photo = new ProfileContactPhoto(recipient);
@@ -160,7 +166,14 @@ public final class AvatarUtil {
                                                 .diskCacheStrategy(DiskCacheStrategy.ALL);
 
     if (recipient.shouldBlurAvatar()) {
-      return request.transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS));
+      BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
+      if (transformation != null) {
+        return request.transform(blur, transformation);
+      } else {
+        return request.transform(blur);
+      }
+    } else if (transformation != null) {
+      return request.transform(transformation);
     } else {
       return request;
     }

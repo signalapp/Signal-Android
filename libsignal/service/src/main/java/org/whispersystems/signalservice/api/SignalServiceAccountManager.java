@@ -19,7 +19,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
-import org.whispersystems.signalservice.api.account.PreKeyCollections;
+import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
@@ -317,9 +317,9 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public @Nonnull ServiceResponse<VerifyAccountResponse> registerAccount(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollections preKeys, String fcmToken, boolean skipDeviceTransfer) {
+  public @Nonnull ServiceResponse<VerifyAccountResponse> registerAccount(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, String fcmToken, boolean skipDeviceTransfer) {
     try {
-      VerifyAccountResponse response = pushServiceSocket.submitRegistrationRequest(sessionId, recoveryPassword, attributes, preKeys, fcmToken, skipDeviceTransfer);
+      VerifyAccountResponse response = pushServiceSocket.submitRegistrationRequest(sessionId, recoveryPassword, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer);
       return ServiceResponse.forResult(response, 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
@@ -390,6 +390,7 @@ public class SignalServiceAccountManager {
                                                            boolean requireAcis,
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
+                                                           Long timeoutMs,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {
@@ -400,11 +401,20 @@ public class SignalServiceAccountManager {
 
     ServiceResponse<CdsiV2Service.Response> serviceResponse;
     try {
-      serviceResponse = single.blockingGet();
+      if (timeoutMs == null) {
+        serviceResponse = single
+            .blockingGet();
+      } else {
+        serviceResponse = single
+            .timeout(timeoutMs, TimeUnit.MILLISECONDS)
+            .blockingGet();
+      }
     } catch (RuntimeException e) {
       Throwable cause = e.getCause();
       if (cause instanceof InterruptedException) {
         throw new IOException("Interrupted", cause);
+      } else if (cause instanceof TimeoutException) {
+        throw new IOException("Timed out");
       } else {
         throw e;
       }
@@ -539,6 +549,21 @@ public class SignalServiceAccountManager {
     return writeStorageRecords(storageKey, manifest, inserts, deletes, false);
   }
 
+
+  /**
+   * Enables registration lock for this account.
+   */
+  public void enableRegistrationLock(MasterKey masterKey) throws IOException {
+    pushServiceSocket.setRegistrationLockV2(masterKey.deriveRegistrationLock());
+  }
+
+  /**
+   * Disables registration lock for this account.
+   */
+  public void disableRegistrationLock() throws IOException {
+    pushServiceSocket.disableRegistrationLockV2();
+  }
+
   /**
    * @return If there was a conflict, the latest {@link SignalStorageManifest}. Otherwise absent.
    */
@@ -601,7 +626,7 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Map<String, Object> getRemoteConfig() throws IOException {
+  public RemoteConfigResult getRemoteConfig() throws IOException {
     RemoteConfigResponse response = this.pushServiceSocket.getRemoteConfig();
     Map<String, Object>  out      = new HashMap<>();
 
@@ -609,7 +634,7 @@ public class SignalServiceAccountManager {
       out.put(config.getName(), config.getValue() != null ? config.getValue() : config.isEnabled());
     }
 
-    return out;
+    return new RemoteConfigResult(out, response.getServerEpochTime());
   }
 
   public String getAccountDataReport() throws IOException {

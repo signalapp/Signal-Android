@@ -1,23 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/conversation__menu_view_all_media"
-          android:id="@+id/menu_view_media" />
+    <item
+        android:id="@+id/menu_view_media"
+        android:title="@string/conversation__menu_view_all_media" />
 
-    <item android:title="@string/conversation__menu_conversation_settings"
-          android:id="@+id/menu_conversation_settings"/>
+    <item
+        android:id="@+id/menu_conversation_settings"
+        android:title="@string/conversation__menu_conversation_settings" />
 
 
-    <item android:title="@string/SearchToolbar_search"
-          android:id="@+id/menu_search"
-          app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
-          app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/menu_search"
+        android:title="@string/SearchToolbar_search"
+        app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
+        app:showAsAction="collapseActionView" />
 
-    <item android:title="@string/conversation__menu_add_shortcut"
-          android:id="@+id/menu_add_shortcut"/>
+    <item
+        android:id="@+id/menu_add_shortcut"
+        android:title="@string/conversation__menu_add_shortcut" />
 
-    <item android:title="@string/conversation__menu_create_bubble"
-          android:id="@+id/menu_create_bubble" />
+    <item
+        android:id="@+id/menu_create_bubble"
+        android:title="@string/conversation__menu_create_bubble" />
+
+    <item
+        android:id="@+id/menu_format_text_submenu"
+        android:title="@string/conversation__menu_format_text"
+        android:orderInCategory="9999">
+
+        <menu>
+            <item
+                android:id="@+id/edittext_bold"
+                android:title="@string/TextFormatting_bold"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/edittext_italic"
+                android:title="@string/TextFormatting_italic"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/edittext_strikethrough"
+                android:title="@string/TextFormatting_strikethrough"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/edittext_monospace"
+                android:title="@string/TextFormatting_monospace"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/edittext_spoiler"
+                android:title="@string/TextFormatting_spoiler"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/edittext_clear_formatting"
+                android:title="@string/TextFormatting_clear_formatting"
+                app:showAsAction="never" />
+        </menu>
+
+    </item>
 
 </menu>

@@ -22,6 +22,8 @@ class Put(path: String, responseFactory: ResponseFactory) : Verb(defaultRequestP
 
 class Post(path: String, responseFactory: ResponseFactory) : Verb(defaultRequestPredicate("POST", path), responseFactory)
 
+class Delete(path: String, responseFactory: ResponseFactory) : Verb(defaultRequestPredicate("DELETE", path), responseFactory)
+
 fun MockResponse.success(response: Any? = null): MockResponse {
   return setResponseCode(200).apply {
     if (response != null) {

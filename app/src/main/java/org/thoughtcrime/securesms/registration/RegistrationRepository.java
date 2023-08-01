@@ -11,11 +11,9 @@ import androidx.core.app.NotificationManagerCompat;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
-import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.KeyHelper;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
@@ -27,28 +25,26 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
-import org.thoughtcrime.securesms.pin.PinState;
+import org.thoughtcrime.securesms.pin.SvrRepository;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
-import org.whispersystems.signalservice.api.account.PreKeyCollections;
-import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
-import org.whispersystems.signalservice.api.push.ServiceIdType;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.BackupAuthCheckProcessor;
-import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
 import java.io.IOException;
 import java.util.List;
@@ -107,12 +103,7 @@ public final class RegistrationRepository {
   {
     return Single.<ServiceResponse<VerifyResponse>>fromCallable(() -> {
       try {
-        String pin = response.getPin();
-        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData(), setRegistrationLockEnabled);
-
-        if (pin != null && !pin.isEmpty()) {
-          PinState.onPinChangedOrCreated(context, pin, SignalStore.pinValues().getKeyboardType());
-        }
+        registerAccountInternal(registrationData, response, setRegistrationLockEnabled);
 
         JobManager jobManager = ApplicationDependencies.getJobManager();
         jobManager.add(new DirectoryRefreshJob(false));
@@ -130,15 +121,16 @@ public final class RegistrationRepository {
 
   @WorkerThread
   private void registerAccountInternal(@NonNull RegistrationData registrationData,
-                                       @NonNull VerifyAccountResponse response,
-                                       @Nullable String pin,
-                                       @Nullable KbsPinData kbsData,
+                                       @NonNull VerifyResponse response,
                                        boolean setRegistrationLockEnabled)
       throws IOException
   {
-    ACI     aci    = ACI.parseOrThrow(response.getUuid());
-    PNI     pni    = PNI.parseOrThrow(response.getPni());
-    boolean hasPin = response.isStorageCapable();
+    Preconditions.checkNotNull(response.getAciPreKeyCollection(), "Missing ACI prekey collection!");
+    Preconditions.checkNotNull(response.getPniPreKeyCollection(), "Missing PNI prekey collection!");
+
+    ACI     aci    = ACI.parseOrThrow(response.getVerifyAccountResponse().getUuid());
+    PNI     pni    = PNI.parseOrThrow(response.getVerifyAccountResponse().getPni());
+    boolean hasPin = response.getVerifyAccountResponse().isStorageCapable();
 
     SignalStore.account().setAci(aci);
     SignalStore.account().setPni(pni);
@@ -147,17 +139,14 @@ public final class RegistrationRepository {
     ApplicationDependencies.getProtocolStore().pni().sessions().archiveAllSessions();
     SenderKeyUtil.clearAllState();
 
-    SignalServiceAccountDataStoreImpl aciProtocolStore    = ApplicationDependencies.getProtocolStore().aci();
-    PreKeyCollection                  aciPreKeyCollection = registrationData.getPreKeyCollections().getAciPreKeyCollection();
-    PreKeyMetadataStore               aciMetadataStore    = SignalStore.account().aciPreKeys();
+    SignalServiceAccountDataStoreImpl aciProtocolStore = ApplicationDependencies.getProtocolStore().aci();
+    PreKeyMetadataStore               aciMetadataStore = SignalStore.account().aciPreKeys();
 
-    SignalServiceAccountDataStoreImpl pniProtocolStore    = ApplicationDependencies.getProtocolStore().pni();
-    PreKeyCollection                  pniPreKeyCollection = registrationData.getPreKeyCollections().getPniPreKeyCollection();
-    PreKeyMetadataStore               pniMetadataStore    = SignalStore.account().pniPreKeys();
+    SignalServiceAccountDataStoreImpl pniProtocolStore = ApplicationDependencies.getProtocolStore().pni();
+    PreKeyMetadataStore               pniMetadataStore = SignalStore.account().pniPreKeys();
 
-    storePreKeys(aciProtocolStore, aciMetadataStore, aciPreKeyCollection);
-    storePreKeys(pniProtocolStore, pniMetadataStore, pniPreKeyCollection);
-
+    storeSignedAndLastResortPreKeys(aciProtocolStore, aciMetadataStore, response.getAciPreKeyCollection());
+    storeSignedAndLastResortPreKeys(pniProtocolStore, pniMetadataStore, response.getPniPreKeyCollection());
 
     RecipientTable recipientTable = SignalDatabase.recipients();
     RecipientId    selfId         = Recipient.trustedPush(aci, pni, registrationData.getE164()).getId();
@@ -174,8 +163,8 @@ public final class RegistrationRepository {
     SignalStore.account().setFcmEnabled(registrationData.isFcm());
 
     long now = System.currentTimeMillis();
-    saveOwnIdentityKey(selfId, aciProtocolStore, now);
-    saveOwnIdentityKey(selfId, pniProtocolStore, now);
+    saveOwnIdentityKey(selfId, aci, aciProtocolStore, now);
+    saveOwnIdentityKey(selfId, pni, pniProtocolStore, now);
 
     SignalStore.account().setServicePassword(registrationData.getPassword());
     SignalStore.account().setRegistered(true);
@@ -183,68 +172,38 @@ public final class RegistrationRepository {
     TextSecurePreferences.setUnauthorizedReceived(context, false);
     NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID);
 
-    PinState.onRegistration(context, kbsData, pin, hasPin, setRegistrationLockEnabled);
+    SvrRepository.onRegistrationComplete(response.getMasterKey(), response.getPin(), hasPin, setRegistrationLockEnabled);
 
     ApplicationDependencies.closeConnections();
     ApplicationDependencies.getIncomingMessageObserver();
+    PreKeysSyncJob.enqueue();
   }
 
-  public static @Nullable PreKeyCollections generatePreKeys() {
-    final IdentityKeyPair     keyPair          = IdentityKeyUtil.generateIdentityKeyPair();
-    final PreKeyMetadataStore aciMetadataStore = SignalStore.account().aciPreKeys();
-    final PreKeyMetadataStore pniMetadataStore = SignalStore.account().pniPreKeys();
-
-    try {
-      return new PreKeyCollections(keyPair,
-                                   generatePreKeysForType(ServiceIdType.ACI, keyPair, aciMetadataStore),
-                                   generatePreKeysForType(ServiceIdType.PNI, keyPair, pniMetadataStore)
-      );
-    } catch (IOException e) {
-      Log.e(TAG, "Failed to generate prekeys!", e);
-      return null;
-    }
-  }
-
-  private static PreKeyCollection generatePreKeysForType(ServiceIdType serviceIdType, IdentityKeyPair keyPair, PreKeyMetadataStore metadataStore) throws IOException {
-    int                nextSignedPreKeyId = metadataStore.getNextSignedPreKeyId();
-    SignedPreKeyRecord signedPreKey       = PreKeyUtil.generateSignedPreKey(nextSignedPreKeyId, keyPair.getPrivateKey());
-    metadataStore.setActiveSignedPreKeyId(signedPreKey.getId());
-
-    int                ecOneTimePreKeyIdOffset = metadataStore.getNextEcOneTimePreKeyId();
-    List<PreKeyRecord> oneTimeEcPreKeys        = PreKeyUtil.generateOneTimeEcPreKeys(ecOneTimePreKeyIdOffset);
-
-
-    int               nextKyberPreKeyId     = metadataStore.getNextKyberPreKeyId();
-    KyberPreKeyRecord lastResortKyberPreKey = PreKeyUtil.generateKyberPreKey(nextKyberPreKeyId, keyPair.getPrivateKey());
-    metadataStore.setLastResortKyberPreKeyId(nextKyberPreKeyId);
-
-    int                     oneTimeKyberPreKeyIdOffset = metadataStore.getNextKyberPreKeyId();
-    List<KyberPreKeyRecord> oneTimeKyberPreKeys        = PreKeyUtil.generateOneTimeKyberPreKeyRecords(oneTimeKyberPreKeyIdOffset, keyPair.getPrivateKey());
+  public static PreKeyCollection generateSignedAndLastResortPreKeys(IdentityKeyPair identity, PreKeyMetadataStore metadataStore) {
+    SignedPreKeyRecord      signedPreKey          = PreKeyUtil.generateSignedPreKey(metadataStore.getNextSignedPreKeyId(), identity.getPrivateKey());
+    KyberPreKeyRecord       lastResortKyberPreKey = PreKeyUtil.generateLastRestortKyberPreKey(metadataStore.getNextKyberPreKeyId(), identity.getPrivateKey());
 
     return new PreKeyCollection(
-        nextSignedPreKeyId,
-        ecOneTimePreKeyIdOffset,
-        nextKyberPreKeyId,
-        oneTimeKyberPreKeyIdOffset,
-        serviceIdType,
-        keyPair.getPublicKey(),
+        identity.getPublicKey(),
         signedPreKey,
-        oneTimeEcPreKeys,
-        lastResortKyberPreKey,
-        oneTimeKyberPreKeys
+        lastResortKyberPreKey
     );
   }
 
-  private static void storePreKeys(SignalServiceAccountDataStoreImpl protocolStore, PreKeyMetadataStore metadataStore, PreKeyCollection preKeyCollection) {
-    PreKeyUtil.storeSignedPreKey(protocolStore, metadataStore, preKeyCollection.getNextSignedPreKeyId(), preKeyCollection.getSignedPreKey());
-    PreKeyUtil.storeOneTimeEcPreKeys(protocolStore, metadataStore, preKeyCollection.getEcOneTimePreKeyIdOffset(), preKeyCollection.getOneTimeEcPreKeys());
-    PreKeyUtil.storeLastResortKyberPreKey(protocolStore, metadataStore, preKeyCollection.getLastResortKyberPreKeyId(), preKeyCollection.getLastResortKyberPreKey());
-    PreKeyUtil.storeOneTimeKyberPreKeys(protocolStore, metadataStore, preKeyCollection.getOneTimeKyberPreKeyIdOffset(), preKeyCollection.getOneTimeKyberPreKeys());
+  private static void storeSignedAndLastResortPreKeys(SignalServiceAccountDataStoreImpl protocolStore, PreKeyMetadataStore metadataStore, PreKeyCollection preKeyCollection) {
+    PreKeyUtil.storeSignedPreKey(protocolStore, metadataStore, preKeyCollection.getSignedPreKey());
     metadataStore.setSignedPreKeyRegistered(true);
+    metadataStore.setActiveSignedPreKeyId(preKeyCollection.getSignedPreKey().getId());
+    metadataStore.setLastSignedPreKeyRotationTime(System.currentTimeMillis());
+
+    PreKeyUtil.storeLastResortKyberPreKey(protocolStore, metadataStore, preKeyCollection.getLastResortKyberPreKey());
+    metadataStore.setLastResortKyberPreKeyId(preKeyCollection.getLastResortKyberPreKey().getId());
+    metadataStore.setLastResortKyberPreKeyRotationTime(System.currentTimeMillis());
   }
 
-  private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
+  private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull ServiceId serviceId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
     protocolStore.identities().saveIdentityWithoutSideEffects(selfId,
+                                                              serviceId,
                                                               protocolStore.getIdentityKeyPair().getPublicKey(),
                                                               IdentityTable.VerifiedStatus.VERIFIED,
                                                               true,
@@ -264,13 +223,13 @@ public final class RegistrationRepository {
     return null;
   }
 
-  public Single<BackupAuthCheckProcessor> getKbsAuthCredential(@NonNull RegistrationData registrationData, List<String> usernamePasswords) {
+  public Single<BackupAuthCheckProcessor> getSvrAuthCredential(@NonNull RegistrationData registrationData, List<String> usernamePasswords) {
     SignalServiceAccountManager accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
 
     return accountManager.checkBackupAuthCredentials(registrationData.getE164(), usernamePasswords)
                          .map(BackupAuthCheckProcessor::new)
                          .doOnSuccess(processor -> {
-                           if (SignalStore.kbsValues().removeAuthTokens(processor.getInvalid())) {
+                           if (SignalStore.svr().removeAuthTokens(processor.getInvalid())) {
                              new BackupManager(context).dataChanged();
                            }
                          });

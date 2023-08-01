@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.conversation.colors
 
-import androidx.annotation.NonNull
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.groups.GroupId
@@ -21,7 +20,7 @@ class GroupAuthorNameColorHelper {
   /**
    * Given a [GroupId], returns a map of member -> name color.
    */
-  fun getColorMap(@NonNull groupId: GroupId): Map<RecipientId, NameColor> {
+  fun getColorMap(groupId: GroupId): Map<RecipientId, NameColor> {
     val dbMembers: Set<Recipient> = SignalDatabase
       .groups
       .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)

@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/signal_colorSurface2">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/conversation_activity_unmute_button"

@@ -16,24 +16,15 @@ import com.annimon.stream.function.Predicate;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.Conversions;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.kdf.HKDF;
-import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.backup.proto.Attachment;
-import org.thoughtcrime.securesms.backup.proto.Avatar;
-import org.thoughtcrime.securesms.backup.proto.BackupFrame;
-import org.thoughtcrime.securesms.backup.proto.DatabaseVersion;
-import org.thoughtcrime.securesms.backup.proto.Header;
 import org.thoughtcrime.securesms.backup.proto.KeyValue;
 import org.thoughtcrime.securesms.backup.proto.SharedPreference;
 import org.thoughtcrime.securesms.backup.proto.SqlStatement;
-import org.thoughtcrime.securesms.backup.proto.Sticker;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
@@ -59,7 +50,6 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -67,9 +57,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -79,14 +66,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.Mac;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import okio.ByteString;
 
@@ -228,7 +207,7 @@ public class FullBackupExporter extends FullBackupBase {
         outputStream.close();
       }
     }
-    return new BackupEvent(BackupEvent.Type.FINISHED, outputStream.frames, estimatedCountOutside);
+    return new BackupEvent(BackupEvent.Type.FINISHED, outputStream.getFrames(), estimatedCountOutside);
   }
 
   private static long calculateCount(@NonNull Context context, @NonNull SQLiteDatabase input, List<String> tables) {
@@ -625,190 +604,6 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     return false;
-  }
-
-  private static class BackupFrameOutputStream extends BackupStream {
-
-    private final OutputStream outputStream;
-    private final Cipher       cipher;
-    private final Mac          mac;
-
-    private final byte[] cipherKey;
-    private final byte[] iv;
-    private       int    counter;
-
-    private       int    frames;
-
-    private BackupFrameOutputStream(@NonNull OutputStream output, @NonNull String passphrase) throws IOException {
-      try {
-        byte[]   salt    = Util.getSecretBytes(32);
-        byte[]   key     = getBackupKey(passphrase, salt);
-        byte[]   derived = HKDF.deriveSecrets(key, "Backup Export".getBytes(), 64);
-        byte[][] split   = ByteUtil.split(derived, 32, 32);
-
-        this.cipherKey = split[0];
-        byte[] macKey  = split[1];
-
-        this.cipher       = Cipher.getInstance("AES/CTR/NoPadding");
-        this.mac          = Mac.getInstance("HmacSHA256");
-        this.outputStream = output;
-        this.iv           = Util.getSecretBytes(16);
-        this.counter      = Conversions.byteArrayToInt(iv);
-
-        mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
-
-        byte[] header = new BackupFrame.Builder().header_(new Header.Builder()
-                                                                    .iv(new okio.ByteString(iv))
-                                                                    .salt(new okio.ByteString(salt))
-                                                                    .build())
-                                                 .build()
-                                                 .encode();
-
-        outputStream.write(Conversions.intToByteArray(header.length));
-        outputStream.write(header);
-      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-        throw new AssertionError(e);
-      }
-    }
-
-    public void write(SharedPreference preference) throws IOException {
-      write(outputStream, new BackupFrame.Builder().preference(preference).build());
-    }
-
-    public void write(KeyValue keyValue) throws IOException {
-      write(outputStream, new BackupFrame.Builder().keyValue(keyValue).build());
-    }
-
-    public void write(SqlStatement statement) throws IOException {
-      write(outputStream, new BackupFrame.Builder().statement(statement).build());
-    }
-
-    public void write(@NonNull String avatarName, @NonNull InputStream in, long size) throws IOException {
-      try {
-        write(outputStream, new BackupFrame.Builder()
-                                           .avatar(new Avatar.Builder()
-                                                             .recipientId(avatarName)
-                                                             .length(Util.toIntExact(size))
-                                                             .build())
-                                           .build());
-      } catch (ArithmeticException e) {
-        Log.w(TAG, "Unable to write avatar to backup", e);
-        throw new InvalidBackupStreamException();
-      }
-
-      if (writeStream(in) != size) {
-        throw new IOException("Size mismatch!");
-      }
-    }
-
-    public void write(@NonNull AttachmentId attachmentId, @NonNull InputStream in, long size) throws IOException {
-      try {
-        write(outputStream, new BackupFrame.Builder()
-                                           .attachment(new Attachment.Builder()
-                                                                     .rowId(attachmentId.getRowId())
-                                                                     .attachmentId(attachmentId.getUniqueId())
-                                                                     .length(Util.toIntExact(size))
-                                                                     .build())
-                                           .build());
-      } catch (ArithmeticException e) {
-        Log.w(TAG, "Unable to write " + attachmentId + " to backup", e);
-        throw new InvalidBackupStreamException();
-      }
-
-      if (writeStream(in) != size) {
-        throw new IOException("Size mismatch!");
-      }
-    }
-
-    public void writeSticker(long rowId, @NonNull InputStream in, long size) throws IOException {
-      try {
-        write(outputStream, new BackupFrame.Builder()
-                                           .sticker(new Sticker.Builder()
-                                                               .rowId(rowId)
-                                                               .length(Util.toIntExact(size))
-                                                               .build())
-                                           .build());
-      } catch (ArithmeticException e) {
-        Log.w(TAG, "Unable to write sticker to backup", e);
-        throw new InvalidBackupStreamException();
-      }
-
-      if (writeStream(in) != size) {
-        throw new IOException("Size mismatch!");
-      }
-    }
-
-    void writeDatabaseVersion(int version) throws IOException {
-      write(outputStream, new BackupFrame.Builder()
-                                         .version(new DatabaseVersion.Builder().version(version).build())
-                                         .build());
-    }
-
-    void writeEnd() throws IOException {
-      write(outputStream, new BackupFrame.Builder().end(true).build());
-    }
-
-    /**
-     * @return The amount of data written from the provided InputStream.
-     */
-    private long writeStream(@NonNull InputStream inputStream) throws IOException {
-      try {
-        Conversions.intToByteArray(iv, 0, counter++);
-        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
-        mac.update(iv);
-
-        byte[] buffer = new byte[8192];
-        long   total  = 0;
-
-        int read;
-
-        while ((read = inputStream.read(buffer)) != -1) {
-          byte[] ciphertext = cipher.update(buffer, 0, read);
-
-          if (ciphertext != null) {
-            outputStream.write(ciphertext);
-            mac.update(ciphertext);
-          }
-
-          total += read;
-        }
-
-        byte[] remainder = cipher.doFinal();
-        outputStream.write(remainder);
-        mac.update(remainder);
-
-        byte[] attachmentDigest = mac.doFinal();
-        outputStream.write(attachmentDigest, 0, 10);
-
-        return total;
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-        throw new AssertionError(e);
-      }
-    }
-
-    private void write(@NonNull OutputStream out, @NonNull BackupFrame frame) throws IOException {
-      try {
-        Conversions.intToByteArray(iv, 0, counter++);
-        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
-
-        byte[] frameCiphertext = cipher.doFinal(frame.encode());
-        byte[] frameMac        = mac.doFinal(frameCiphertext);
-        byte[] length          = Conversions.intToByteArray(frameCiphertext.length + 10);
-
-        out.write(length);
-        out.write(frameCiphertext);
-        out.write(frameMac, 0, 10);
-        frames++;
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-        throw new AssertionError(e);
-      }
-    }
-
-
-    public void close() throws IOException {
-      outputStream.flush();
-      outputStream.close();
-    }
   }
 
   public interface PostProcessor {

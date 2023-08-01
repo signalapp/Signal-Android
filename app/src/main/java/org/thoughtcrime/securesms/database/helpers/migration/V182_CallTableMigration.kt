@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
  * Removes the 'NOT NULL' condition on message_id and peer, as with ad-hoc calling in place, these
  * can now be null.
  */
+@Suppress("ClassName")
 object V182_CallTableMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

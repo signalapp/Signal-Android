@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.text.SpannableString;
 import android.text.format.DateUtils;
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversation.VoiceNoteDraftView;
 import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -188,6 +190,8 @@ public class InputPanel extends LinearLayout
     stickerSuggestion.setAdapter(stickerSuggestionAdapter);
 
     editMessageCancel.setOnClickListener(v -> exitEditMessageMode());
+
+    quickCameraToggle.setVisibility(View.GONE);
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -195,6 +199,13 @@ public class InputPanel extends LinearLayout
 
     mediaKeyboard.setOnClickListener(v -> listener.onEmojiToggle());
     voiceNoteDraftView.setListener(listener);
+
+    if (Camera.getNumberOfCameras() > 0) {
+      quickCameraToggle.setOnClickListener(v -> listener.onQuickCameraToggleClicked());
+      quickCameraToggle.setVisibility(View.VISIBLE);
+    } else {
+      quickCameraToggle.setVisibility(View.GONE);
+    }
   }
 
   public void setMediaListener(@NonNull MediaListener listener) {
@@ -396,6 +407,7 @@ public class InputPanel extends LinearLayout
   public void enterEditMessageMode(@NonNull GlideRequests glideRequests, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft) {
     SpannableString textToEdit = conversationMessageToEdit.getDisplayBody(getContext());
     if (!fromDraft) {
+      MessageStyler.convertSpoilersToComposeMode(textToEdit);
       composeText.setText(textToEdit);
       composeText.setSelection(textToEdit.length());
     }
@@ -728,6 +740,7 @@ public class InputPanel extends LinearLayout
     void onQuoteCleared();
     void onEnterEditMode();
     void onExitEditMode();
+    void onQuickCameraToggleClicked();
   }
 
   private static class SlideToCancel {

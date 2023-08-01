@@ -58,4 +58,7 @@
     <color name="storage_color_files">#ffA23474</color>
     <color name="conversation_list_archive_background_start">@color/signal_colorPrimary</color>
     <color name="conversation_list_archive_background_end">@color/signal_colorPrimary</color>
+
+    <color name="safety_number_card_grey">#ffEBEAE8</color>
+    <color name="safety_number_card_blue">#ff506ECD</color>
 </resources>

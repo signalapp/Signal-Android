@@ -216,14 +216,14 @@ public final class ConversationUtil {
   {
     Recipient resolved   = recipient.resolve();
     Person[]  persons    = buildPersons(context, resolved);
-    Long      threadId   = SignalDatabase.threads().getThreadIdFor(resolved.getId());
+    long      threadId   = SignalDatabase.threads().getOrCreateThreadIdFor(resolved);
     String    shortName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
     String    longName   = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
     String    shortcutId = getShortcutId(resolved);
 
     ShortcutInfoCompat.Builder builder = new ShortcutInfoCompat.Builder(context, shortcutId)
                                  .setLongLived(true)
-                                 .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId != null ? threadId : -1).build())
+                                 .setIntent(ConversationIntents.createBuilderSync(context, resolved.getId(), threadId).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
@@ -286,12 +286,11 @@ public final class ConversationUtil {
   /**
    * @return A Compat Library Person object representing the given Recipient
    */
-  @WorkerThread
   public static @NonNull Person buildPerson(@NonNull Context context, @NonNull Recipient recipient) {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
-                     .setIcon(AvatarUtil.getIconForNotification(context, recipient))
+                     .setIcon(AvatarUtil.getIconWithUriForNotification(context, recipient.getId()))
                      .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
                      .build();
   }

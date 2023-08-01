@@ -99,9 +99,9 @@ class SignalClient {
     val encryptedContent: ByteArray = Base64.decode(outgoingPushMessage.content)
 
     return SignalServiceProtos.Envelope.newBuilder()
-      .setSourceUuid(serviceId.toString())
+      .setSourceServiceId(serviceId.toString())
       .setSourceDevice(1)
-      .setDestinationUuid(to.serviceId.toString())
+      .setDestinationServiceId(to.serviceId.toString())
       .setTimestamp(sentTimestamp)
       .setServerTimestamp(sentTimestamp)
       .setServerGuid(UUID.randomUUID().toString())
@@ -132,9 +132,9 @@ class SignalClient {
     val encryptedContent: ByteArray = Base64.decode(outgoingPushMessage.content)
 
     return SignalServiceProtos.Envelope.newBuilder()
-      .setSourceUuid(serviceId.toString())
+      .setSourceServiceId(serviceId.toString())
       .setSourceDevice(1)
-      .setDestinationUuid(to.serviceId.toString())
+      .setDestinationServiceId(to.serviceId.toString())
       .setTimestamp(sentTimestamp)
       .setServerTimestamp(sentTimestamp)
       .setServerGuid(UUID.randomUUID().toString())

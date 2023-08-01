@@ -84,7 +84,7 @@ class ManageDonationsFragment :
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
-    return object : Material3OnScrollHelper(requireActivity(), toolbar!!) {
+    return object : Material3OnScrollHelper(requireActivity(), toolbar!!, viewLifecycleOwner) {
       override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
       override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
     }

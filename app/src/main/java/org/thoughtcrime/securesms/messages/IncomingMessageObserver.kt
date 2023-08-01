@@ -30,11 +30,11 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJobV2
 import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AppForegroundObserver
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -88,9 +88,9 @@ class IncomingMessageObserver(private val context: Application) {
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
-  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkAvailable ->
+  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkUnavailable ->
     lock.withLock {
-      if (isNetworkAvailable()) {
+      if (isNetworkUnavailable()) {
         Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
         decryptionDrained = false
         disconnect()
@@ -295,10 +295,12 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
+    val localReceiveMetric = SignalLocalMetrics.MessageReceive.start()
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
+    localReceiveMetric.onEnvelopeDecrypted()
     when (result) {
       is MessageDecryptor.Result.Success -> {
-        val job = PushProcessMessageJobV2.processOrDefer(messageContentProcessor, result)
+        val job = PushProcessMessageJobV2.processOrDefer(messageContentProcessor, result, localReceiveMetric)
         if (job != null) {
           return result.followUpOperations + FollowUpOperation { job }
         }
@@ -326,12 +328,12 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   private fun processReceipt(envelope: SignalServiceProtos.Envelope) {
-    if (!UuidUtil.isUuid(envelope.sourceUuid)) {
+    if (!UuidUtil.isUuid(envelope.sourceServiceId)) {
       Log.w(TAG, "Invalid envelope source UUID!")
       return
     }
 
-    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceUuid))
+    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceServiceId))
 
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDevice}, Timestamp: ${envelope.timestamp}")
     SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp, senderId, System.currentTimeMillis())
@@ -416,8 +418,8 @@ class IncomingMessageObserver(private val context: Application) {
                 val timePerMessage: Float = duration / batch.size.toFloat()
                 Log.d(TAG, "Decrypted ${batch.size} envelopes in $duration ms (~${round(timePerMessage * 100) / 100} ms per message)")
               }
-
               attempts = 0
+              SignalLocalMetrics.PushWebsocketFetch.onProcessedBatch()
 
               if (!hasMore && !decryptionDrained) {
                 Log.i(TAG, "Decryptions newly-drained.")

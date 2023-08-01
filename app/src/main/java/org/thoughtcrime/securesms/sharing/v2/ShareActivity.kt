@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
@@ -164,11 +165,13 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           Result.success(UnresolvedShareData.ExternalPrimitiveShare(stringBuilder))
         } ?: Result.failure(IntentError.SEND_MULTIPLE_TEXT)
       }
+
       intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_STREAM) -> {
         intent.getParcelableArrayListExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)?.let {
           Result.success(UnresolvedShareData.ExternalMultiShare(it))
         } ?: Result.failure(IntentError.SEND_MULTIPLE_STREAM)
       }
+
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_STREAM) -> {
         val uri: Uri? = intent.getParcelableExtraCompat(Intent.EXTRA_STREAM, Uri::class.java)
         if (uri == null) {
@@ -178,9 +181,11 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
           Result.success(UnresolvedShareData.ExternalSingleShare(uri, intent.type, text))
         }
       }
+
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_TEXT) -> {
         extractSingleExtraTextFromIntent()
       }
+
       else -> null
     } ?: Result.failure(IntentError.UNKNOWN)
   }
@@ -221,18 +226,21 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     Log.d(TAG, "Opening conversation...")
 
     val multiShareArgs = shareEvent.getMultiShareArgs()
-    val conversationIntentBuilder = ConversationIntents.createBuilder(this, shareEvent.contact.recipientId, -1L)
-      .withDataUri(multiShareArgs.dataUri)
-      .withDataType(multiShareArgs.dataType)
-      .withMedia(multiShareArgs.media)
-      .withDraftText(multiShareArgs.draftText)
-      .withStickerLocator(multiShareArgs.stickerLocator)
-      .asBorderless(multiShareArgs.isBorderless)
-      .withShareDataTimestamp(System.currentTimeMillis())
+    lifecycleDisposable += ConversationIntents.createBuilder(this, shareEvent.contact.recipientId, -1L)
+      .subscribeBy { conversationIntentBuilder ->
+        conversationIntentBuilder
+          .withDataUri(multiShareArgs.dataUri)
+          .withDataType(multiShareArgs.dataType)
+          .withMedia(multiShareArgs.media)
+          .withDraftText(multiShareArgs.draftText)
+          .withStickerLocator(multiShareArgs.stickerLocator)
+          .asBorderless(multiShareArgs.isBorderless)
+          .withShareDataTimestamp(System.currentTimeMillis())
 
-    val mainActivityIntent = MainActivity.clearTop(this)
-    finish()
-    startActivities(arrayOf(mainActivityIntent, conversationIntentBuilder.build()))
+        val mainActivityIntent = MainActivity.clearTop(this)
+        finish()
+        startActivities(arrayOf(mainActivityIntent, conversationIntentBuilder.build()))
+      }
   }
 
   private fun openMediaInterstitial(shareEvent: ShareEvent.OpenMediaInterstitial) {

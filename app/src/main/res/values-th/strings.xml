@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">กำลังตรวจหาข้อความ…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">คุณอาจมีข้อความใหม่</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกบล็อก</string>
     <string name="BlockedUsersActivity__add_blocked_user">เพิ่มผู้ใช้ที่ถูกบล็อก</string>
@@ -855,6 +859,8 @@
     <string name="LinkPreviewView_no_link_preview_available">ไม่มีภาพตัวอย่างลิงก์ให้ดู</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">ลิงก์นี้ไม่ได้เปิดให้ใช้ในตอนนี้</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">ใช้ลิงก์นี้เพื่อเข้าร่วมการโทรของ Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1430,14 +1436,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">คุณเริ่มการโทรกลุ่ม · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s อยู่ในการโทรแบบกลุ่ม %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">คุณอยู่ในการโทรแบบกลุ่ม %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s และ %2$s ได้อยู่ในการโทรแบบกลุ่ม %3$s</string>
     <string name="MessageRecord_group_call_s">โทรกลุ่ม · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ได้เริ่มการโทรแบบกลุ่ม</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">คุณได้เริ่มโทรแบบกลุ่ม</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s อยู่ในการโทรแบบกลุ่ม</string>
     <string name="MessageRecord_you_are_in_the_group_call">คุณอยู่ในการโทรแบบกลุ่ม</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s และ %2$s ได้อยู่ในการโทรแบบกลุ่ม</string>
@@ -1567,8 +1573,8 @@
         <item quantity="other">คุณสามารถลองได้อีก %1$d ครั้ง ถ้าคุณลองจนครบจำนวนครั้งแล้วคุณสามารถสร้างรหัส PIN ใหม่ คุณสามารถลงทะเบียนและใช้บัญชีของคุณได้ แต่คุณจะสูญเสียการตั้งค่าเดิมเช่นข้อมูลโปรไฟล์ของคุณ</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ใส่รหัส PIN ด้วยตัวอักษรและตัวเลข</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">ใส่รหัส PIN ด้วยตัวเลข</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">สลับแป้นพิมพ์</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">สร้างรหัส PIN ของคุณ</string>
@@ -2067,6 +2073,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">สแกนรหัส QR ไม่ได้ หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">คุณจะต้องแลกเปลี่ยนข้อความกันก่อนเพื่อที่จะดูหมายเลขความปลอดภัยของ %1$s</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">ระบบจะสร้างหมายเลขความปลอดภัยสำหรับผู้ติดต่อหลังจากที่คนคนนี้ส่งหรือรับข้อความจากคุณ</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ตกลง</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">เรียนรู้เพิ่มเติม</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">ตกลง</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2186,6 +2200,8 @@
     <string name="NotificationChannel_call_status">สถานะการโทร</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">ข้อความเตือนด้านระบบที่สำคัญ</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">การแจ้งเตือนข้อความเพิ่มเติม</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2243,7 +2259,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">หากต้องการรับสาย ต้องให้สิทธิ์ Signal เข้าถึงไมโครโฟนของคุณ</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">เพื่อที่จะรับสายโทรเข้าจาก %1$s อนุญาตให้ Signal เข้าถึงไมโครโฟนของคุณ</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">อนุญาตให้ Signal เข้าถึงไมโครโฟนและกล้องของคุณเพื่อรับสายวิดีโอคอล</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">เพื่อที่จะโทรออกและรับสาย Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">มีการรับสายบนอุปกรณ์ที่เชื่อมโยงอยู่</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">ถูกปฏิเสธสายบนอุปกรณ์ที่เชื่อมโยงอยู่</string>
@@ -2272,7 +2289,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">บลูทูธ</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">หูฟังแบบมีสาย</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">ชุดหูฟังพร้อมไมโครโฟนแบบมีสาย</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2615,12 +2632,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[หากต้องการตรวจยืนยันความปลอดภัยของการเข้ารหัสจากต้นทางถึงปลายทางด้วย%1$s ให้เปรียบเทียบหมายเลขข้างบนกับอุปกรณ์ของพวกเขา นอกจากนี้คุณยังสามารถสแกนรหัสบนโทรศัพท์ของพวกเขาได้ด้วย <a href=\"https://signal.org/redirect/safety-numbers\">เรียนรู้เพิ่มเติม</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">เพื่อยืนยันว่าการติดต่อสื่อสารกับ %1$s ถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ให้ตรวจสอบแถบสีด้านบนนี้กับแถบสีบนอุปกรณ์ของคนคนนั้น พร้อมเปรียบเทียบหมายเลขที่แสดงว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
     <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
     <string name="verify_display_fragment__successful_match">จับคู่สำเร็จ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">การตรวจยืนยันหมายเลขความปลอดภัยล้มเหลว</string>
     <string name="verify_display_fragment__loading">กำลังโหลด…</string>
     <string name="verify_display_fragment__mark_as_verified">ทำเครื่องหมายว่าตรวจยืนยันแล้ว</string>
     <string name="verify_display_fragment__clear_verification">ล้างการตรวจยืนยัน</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">กำลังอัปเดตหมายเลขความปลอดภัย</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">การเปลี่ยนแปลงเกี่ยวกับหมายเลขความปลอดภัย</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">กำลังอัปเดตหมายเลขความปลอดภัยเพื่อให้พร้อมรองรับการใช้งานฟีเจอร์ด้านความเป็นส่วนตัวใหม่ๆ ของ Signal\n\nเพื่อยืนยันหมายเลขความปลอดภัย ให้ตรวจสอบแถบสีบนอุปกรณ์ของคุณกับแถบสีบนอุปกรณ์ของผู้ติดต่อว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">ต้องการความช่วยเหลือหรือไม่?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">เข้าใจแล้ว</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">แบ่งปันหมายเลขความปลอดภัย</string>
@@ -3259,6 +3289,8 @@
     <string name="conversation__menu_conversation_settings">การตั้งค่าแชท</string>
     <string name="conversation__menu_add_shortcut">เพิ่มไปยังหน้าจอหลัก</string>
     <string name="conversation__menu_create_bubble">สร้าง bubble</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">ปรับแต่งตัวอักษร</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">ขยายป๊อปอัป</string>
@@ -3356,7 +3388,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">ต่อไป</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">สร้างรหัส PIN ด้วยตัวอักษรและตัวเลข</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">สร้างรหัส PIN ด้วยตัวเลข</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3416,8 +3450,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">ใส่รหัส PIN ที่คุณสร้างขึ้นสำหรับบัญชีของคุณ รหัสนี้แตกต่างจากรหัสตรวจยืนยันทาง SMS</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">ใส่ PIN ที่คุณสร้างไว้สำหรับบัญชีของคุณ</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">ใส่รหัส PIN ด้วยตัวอักษรและตัวเลข</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">ใส่รหัส PIN ด้วยตัวเลข</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">สลับแป้นพิมพ์</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
     <string name="RegistrationLockFragment__forgot_pin">ลืมรหัส PIN หรือ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">รหัส PIN ไม่ถูกต้อง</string>
@@ -3455,17 +3489,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">สายโทรเสียง Signal ขาเข้า</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">วิดีโอคอล Signal ขาเข้า</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">โทรกลุ่ม Signal ที่กำลังเรียกเข้า</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">สายโทรเสียง Signal ที่ใช้งานอยู่</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">วิดีโอคอล Signal ที่ใช้งานอยู่</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">สายโทรกลุ่ม Signal ที่ใช้งานอยู่</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
@@ -5762,7 +5796,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">เราจะไม่รองรับข้อความ SMS แล้ว</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">เราจะหยุดรองรับการส่งข้อความ SMS ในแอป Signal ในวันที่ %1$s</string>
+    <string name="SmsRemoval_info_bullet_1">เราจะหยุดรองรับการส่งข้อความ SMS ในแอป Signal ในอีกไม่ช้า</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">ข้อความ SMS แตกต่างจากข้อความ Signal <b>นี่จะไม่ส่งผลกระทบต่อการส่งข้อความเข้ารหัสของ Signal ที่จะยังใช้งานได้ตามปกติ</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5793,6 +5827,8 @@
     <string name="TextFormatting_monospace">โมโนสเปซ</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">โหมดสปอยเลอร์</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">ล้างการปรับแต่ง</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5860,12 +5896,12 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">กำลังลบ…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">ลบไม่สำเร็จ</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">ไม่สามารถลบลิงก์การโทรทั้งหมดได้ ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">ล้างประวัติการโทรแล้ว</string>
@@ -5889,13 +5925,11 @@
     <string name="CallLogFragment__filtered_by_missed">กรองสายที่ไม่ได้รับ</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">เลือกทั้งหมด</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">ลบ</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="other">ลบการโทร %1$d รายการใช่หรือไม่</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">ลบของฉัน</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">ลบการโทร %1$d รายการแล้ว</item>
@@ -5987,13 +6021,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ประวัติการแก้ไข</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">สำหรับ Signal รุ่นเบต้าเท่านั้น</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">ฟีเจอร์แก้ไขข้อความมีให้บริการเฉพาะในผู้ใช้ Signal รุ่นเบต้าเท่านั้น และผู้ใช้ Signal รุ่นเบต้าเวอร์ชันล่าสุดเท่านั้นที่จะเห็นข้อความที่แก้ไขแล้ว</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">ยกเลิก</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">ส่ง</string>
 
 
     <!-- CallLinkDetailsFragment -->

@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">睇緊有無新訊息…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">你可能有新訊息</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">被封鎖嘅用戶</string>
     <string name="BlockedUsersActivity__add_blocked_user">新增被封鎖嘅用戶</string>
@@ -855,6 +859,8 @@
     <string name="LinkPreviewView_no_link_preview_available">條拎未有預覽</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">呢條谷拎未有生效</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">用呢條連結嚟加入 Signal 通話</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1430,14 +1436,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s 已發起成谷通話 · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">你開始咗一個群組通話 · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 嚟到成谷通話 · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">您嚟到成谷通話 · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s 同 %2$s 嚟到成谷通話 · %3$s</string>
     <string name="MessageRecord_group_call_s">成谷通話 · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s 已發起成谷通話</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">你開始咗一個群組通話</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s 嚟到成谷通話</string>
     <string name="MessageRecord_you_are_in_the_group_call">您嚟到成谷通話</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s 同 %2$s 嚟到成谷通話</string>
@@ -1567,8 +1573,8 @@
         <item quantity="other">您仲可以試多 %1$d 次。如果用晒畀您嘅機會，都撞唔啱您先前整落嗰個 PIN 碼，您整過個新嘅都得。咁您就可以註冊同使用您嘅帳戶，但係您就會冇咗先前儲存落嘅一啲設定，例如話您嘅個人資料資訊。</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 註冊 - Android 版 PIN 碼需要幫手</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">輸入數字 PIN 碼</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">切換鍵盤</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">建立您嘅 PIN 碼</string>
@@ -1741,7 +1747,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">您唔會收到人哋嘅聲音或者畫面，人哋都唔會收到您嘅聲畫。</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">收唔到 %1$s 嘅聲同畫</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">收唔到 %1$s 嘅聲同畫</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">可能係因為佢哋冇驗證你嘅安全號碼變更、佢哋部裝置有問題，又或者佢哋封鎖咗你。</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">可能係因為佢哋冇驗證你嘅安全碼變更、佢哋部裝置有問題，又或者佢哋封鎖咗你。</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">滑動去睇畫面分享</string>
@@ -2067,6 +2073,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 要攞「相機」權限，先可以掃到二維碼，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「相機」。</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">冇「相機」權限冇得掃二維碼</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">您要先交流過訊息，先可以睇到 %1$s 嘅安全碼。</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">你同對方互相傳送訊息之後，系統就會幫你建立一個同佢嘅安全碼。</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">確定</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">了解詳情</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">確定</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2186,6 +2200,8 @@
     <string name="NotificationChannel_call_status">通話狀態</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">重要應用程式提示</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">其他訊息通知</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2243,7 +2259,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">如果要接聽通話，請允許 Signal 存取您部機個咪。</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">如果要接聽 %1$s 打嚟嘅通話，請允許 Signal 存取您部機個咪。</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">如果要接聽視像通話，請允許 Signal 存取你個咪同相機。</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 要攞「麥克風」同「相機」權限，先可以撥打同接聽通話，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」同「相機」。</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">已用連結咗嘅機接聽。</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">已用連結咗嘅機拒接。</string>
@@ -2272,7 +2289,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">藍牙</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">有線耳機</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">有線耳機</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2615,12 +2632,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若要驗證您同 %1$s 之間嘅點對點加密係咪安全，請將上面嘅數字同佢部機做比較。或者掃佢部機上面嘅二維碼亦都得。<a href=\"https://signal.org/redirect/safety-numbers\">想知多啲？</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">如果想驗證你同 %1$s 之間嘅端對端加密設定，請將畫面上方嘅色卡同對方部機嘅色卡比對一下，然後比較埋兩組數字。如果兩邊唔吻合，可以掃一下試用另一對安全碼。只有一對安全碼吻合就得㗎喇。</string>
     <string name="verify_display_fragment__tap_to_scan">撳一下去掃描</string>
     <string name="verify_display_fragment__successful_match">完全啱晒</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">驗證安全碼失敗</string>
     <string name="verify_display_fragment__loading">載入緊…</string>
     <string name="verify_display_fragment__mark_as_verified">剔低話驗證咗</string>
     <string name="verify_display_fragment__clear_verification">抹走先前個驗證</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">安全碼更新緊。</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">安全碼變更</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">安全碼喺過渡期間更新緊，以便啟用 Signal 即將推出嘅私隱功能。\n\n要驗證安全碼，請將色卡同聯絡人部機嘅色卡比對一下。如果兩邊唔吻合，可以掃一下試用另一對安全碼。只有一對安全碼吻合就得㗎喇。</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">有冇啲咩幫到您？</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">明白</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">分享安全碼</string>
@@ -3259,6 +3289,8 @@
     <string name="conversation__menu_conversation_settings">聊天設定</string>
     <string name="conversation__menu_add_shortcut">喺主畫面加個公仔</string>
     <string name="conversation__menu_create_bubble">建立氣泡</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">文字格式化</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">過去再放大</string>
@@ -3356,7 +3388,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">下一步</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字 PIN 碼</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">建立數字 PIN 碼</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3416,8 +3450,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">先前您咪幫您個帳戶整過一個 PIN 碼嘅，請您喺度輸入返。咪搞錯呀吓，呢度唔係講緊您個短訊驗證碼。</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">輸入你為帳戶建立嘅 PIN 碼。</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">輸入數字 PIN 碼</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">切換鍵盤</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 碼唔啱。請再試一次。</string>
     <string name="RegistrationLockFragment__forgot_pin">唔記得咗 PIN 碼？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN 碼唔啱</string>
@@ -3455,17 +3489,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">打入嚟嘅 Signal 語音通話</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">打入嚟嘅 Signal 視像通話</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">打入嚟嘅 Signal 成谷通話</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">傾緊 Signal 語音通話</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">傾緊 Signal 視像通話</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">傾緊 Signal 群組通話</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">物流公仔</string>
@@ -5762,7 +5796,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">系統即將停止支援短訊服務</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal 應用程式即將喺 %1$s 停止支援短訊服務。</string>
+    <string name="SmsRemoval_info_bullet_1">Signal 應用程式即將停止支援短訊服務。</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">短訊同 Signal 訊息唔同。<b>咁做唔會影響 Signal 嘅加密訊息，呢個功能仍然會繼續運作。</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5793,6 +5827,8 @@
     <string name="TextFormatting_monospace">等寬</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">劇透文字</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">清除格式</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5860,12 +5896,12 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">刪除緊…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">刪除失敗。</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">刪除唔到全部通話連結。請你檢查吓網絡連線，然後再試過啦。</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">清除咗通話紀錄</string>
@@ -5889,13 +5925,11 @@
     <string name="CallLogFragment__filtered_by_missed">根據未接來電篩選</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">全部揀晒</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">刪除</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="other">係咪要删除 %1$d 個通話呀？</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">喺我自己部機度刪除</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">刪除咗 %1$d 個通話</item>
@@ -5987,13 +6021,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">編輯紀錄</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">只限 Signal 測試版</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">編輯訊息功能只限 Signal 測試版嘅用戶使用。只有用 Signal 最新測試版嘅用戶先可以睇到你嘅編輯訊息。</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">取消</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">傳送</string>
 
 
     <!-- CallLinkDetailsFragment -->

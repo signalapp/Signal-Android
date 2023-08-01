@@ -15,59 +15,59 @@ val signalMinSdkVersion: Int by extra
 val signalJavaVersion: JavaVersion by extra
 
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("android-constants")
-    id("ktlint")
+  id("com.android.library")
+  id("kotlin-android")
+  id("android-constants")
+  id("ktlint")
 }
 
 android {
-    buildToolsVersion = signalBuildToolsVersion
-    compileSdkVersion = signalCompileSdkVersion
+  buildToolsVersion = signalBuildToolsVersion
+  compileSdkVersion = signalCompileSdkVersion
 
-    defaultConfig {
-        minSdk = signalMinSdkVersion
-        targetSdk = signalTargetSdkVersion
-        multiDexEnabled = true
-    }
+  defaultConfig {
+    minSdk = signalMinSdkVersion
+    targetSdk = signalTargetSdkVersion
+    multiDexEnabled = true
+  }
 
-    compileOptions {
-        isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = signalJavaVersion
-        targetCompatibility = signalJavaVersion
-    }
+  compileOptions {
+    isCoreLibraryDesugaringEnabled = true
+    sourceCompatibility = signalJavaVersion
+    targetCompatibility = signalJavaVersion
+  }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+  kotlinOptions {
+    jvmTarget = "11"
+  }
 
-    lint {
-        disable += "InvalidVectorPath"
-    }
+  lint {
+    disable += "InvalidVectorPath"
+  }
 }
 
 dependencies {
-    lintChecks(project(":lintchecks"))
+  lintChecks(project(":lintchecks"))
 
-    coreLibraryDesugaring(libs.android.tools.desugar)
+  coreLibraryDesugaring(libs.android.tools.desugar)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.annotation)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.rxjava3.rxandroid)
-    implementation(libs.rxjava3.rxjava)
-    implementation(libs.rxjava3.rxkotlin)
-    implementation(libs.androidx.multidex)
-    implementation(libs.kotlin.stdlib.jdk8)
+  implementation(libs.androidx.core.ktx)
+  implementation(libs.androidx.fragment.ktx)
+  implementation(libs.androidx.annotation)
+  implementation(libs.androidx.appcompat)
+  implementation(libs.rxjava3.rxandroid)
+  implementation(libs.rxjava3.rxjava)
+  implementation(libs.rxjava3.rxkotlin)
+  implementation(libs.androidx.multidex)
+  implementation(libs.kotlin.stdlib.jdk8)
 
-    ktlintRuleset(libs.ktlint.twitter.compose)
+  ktlintRuleset(libs.ktlint.twitter.compose)
 
-    testImplementation(testLibs.junit.junit)
-    testImplementation(testLibs.mockito.core)
-    testImplementation(testLibs.mockito.android)
-    testImplementation(testLibs.mockito.kotlin)
-    testImplementation(testLibs.robolectric.robolectric)
-    testImplementation(testLibs.androidx.test.core)
-    testImplementation(testLibs.androidx.test.core.ktx)
+  testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.mockito.core)
+  testImplementation(testLibs.mockito.android)
+  testImplementation(testLibs.mockito.kotlin)
+  testImplementation(testLibs.robolectric.robolectric)
+  testImplementation(testLibs.androidx.test.core)
+  testImplementation(testLibs.androidx.test.core.ktx)
 }

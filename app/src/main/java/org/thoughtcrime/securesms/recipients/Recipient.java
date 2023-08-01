@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
@@ -137,6 +138,7 @@ public class Recipient {
   private final boolean                      isReleaseNotesRecipient;
   private final boolean                      needsPniSignature;
   private final CallLinkRoomId               callLinkRoomId;
+  private final Optional<GroupRecord>        groupRecord;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -425,6 +427,7 @@ public class Recipient {
     this.needsPniSignature            = false;
     this.isActiveGroup                = false;
     this.callLinkRoomId               = null;
+    this.groupRecord                  = Optional.empty();
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -482,6 +485,7 @@ public class Recipient {
     this.needsPniSignature            = details.needsPniSignature;
     this.isActiveGroup                = details.isActiveGroup;
     this.callLinkRoomId               = details.callLinkRoomId;
+    this.groupRecord                  = details.groupRecord;
   }
 
   public @NonNull RecipientId getId() {
@@ -900,6 +904,11 @@ public class Recipient {
 
   public @NonNull List<RecipientId> getParticipantIds() {
     return new ArrayList<>(participantIds);
+  }
+
+  public @NonNull List<ServiceId> getParticipantAcis() {
+    Preconditions.checkState(groupRecord.isPresent());
+    return groupRecord.get().requireV2GroupProperties().getMemberServiceIds();
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {

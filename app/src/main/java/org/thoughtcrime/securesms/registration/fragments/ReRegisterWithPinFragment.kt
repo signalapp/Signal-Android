@@ -5,7 +5,6 @@ import android.text.InputType
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,8 +14,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PinRestoreEntryFragmentBinding
-import org.thoughtcrime.securesms.lock.v2.KbsConstants
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
+import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor
 import org.thoughtcrime.securesms.registration.viewmodel.ReRegisterWithPinViewModel
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel
@@ -74,15 +73,14 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
     }
 
     binding.pinRestoreKeyboardToggle.setOnClickListener {
-      val keyboardType: PinKeyboardType = getPinEntryKeyboardType()
-      updateKeyboard(keyboardType.other)
-      binding.pinRestoreKeyboardToggle.setText(resolveKeyboardToggleText(keyboardType))
+      val currentKeyboardType: PinKeyboardType = getPinEntryKeyboardType()
+      updateKeyboard(currentKeyboardType.other)
+      binding.pinRestoreKeyboardToggle.setIconResource(currentKeyboardType.iconResource)
     }
 
-    val keyboardType: PinKeyboardType = getPinEntryKeyboardType().other
-    binding.pinRestoreKeyboardToggle.setText(resolveKeyboardToggleText(keyboardType))
+    binding.pinRestoreKeyboardToggle.setIconResource(getPinEntryKeyboardType().other.iconResource)
 
-    reRegisterViewModel.updateTokenData(registrationViewModel.keyBackupCurrentToken)
+    reRegisterViewModel.updateSvrTriesRemaining(registrationViewModel.svrTriesRemaining)
 
     disposables += reRegisterViewModel.triesRemaining.subscribe(this::updateTriesRemaining)
   }
@@ -95,7 +93,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
   private fun handlePinEntry() {
     val pin: String? = binding.pinRestorePinInput.text?.toString()
 
-    val trimmedLength = pin?.replace(" ", "")?.length ?: 0
+    val trimmedLength = pin?.trim()?.length ?: 0
     if (trimmedLength == 0) {
       Toast.makeText(requireContext(), R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show()
       enableAndFocusPinEntry()
@@ -128,12 +126,12 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
         reRegisterViewModel.hasIncorrectGuess = true
 
         if (processor is VerifyResponseWithRegistrationLockProcessor && processor.wrongPin()) {
-          reRegisterViewModel.updateTokenData(processor.tokenData)
-          if (processor.tokenData != null) {
-            registrationViewModel.setKeyBackupTokenData(processor.tokenData)
+          reRegisterViewModel.updateSvrTriesRemaining(processor.svrTriesRemaining)
+          if (processor.svrTriesRemaining != null) {
+            registrationViewModel.svrTriesRemaining = processor.svrTriesRemaining
           }
           return@subscribe
-        } else if (processor.isKbsLocked()) {
+        } else if (processor.isRegistrationLockPresentAndSvrExhausted()) {
           Log.w(TAG, "Unable to continue skip flow, KBS is locked")
           onAccountLocked()
         } else if (processor.isIncorrectRegistrationRecoveryPassword()) {
@@ -212,21 +210,12 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
     binding.pinRestorePinInput.text?.clear()
   }
 
-  @StringRes
-  private fun resolveKeyboardToggleText(keyboard: PinKeyboardType): Int {
-    return if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
-      R.string.RegistrationLockFragment__enter_alphanumeric_pin
-    } else {
-      R.string.RegistrationLockFragment__enter_numeric_pin
-    }
-  }
-
   private fun onNeedHelpClicked() {
     val message = if (reRegisterViewModel.isLocalVerification) R.string.ReRegisterWithPinFragment_need_help_local else R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code
 
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.PinRestoreEntryFragment_need_help)
-      .setMessage(getString(message, KbsConstants.MINIMUM_PIN_LENGTH))
+      .setMessage(getString(message, SvrConstants.MINIMUM_PIN_LENGTH))
       .setPositiveButton(R.string.PinRestoreEntryFragment_skip) { _, _ -> onSkipPinEntry() }
       .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support) { _, _ ->
         val body = SupportEmailUtil.generateSupportEmailBody(requireContext(), R.string.ReRegisterWithPinFragment_support_email_subject, null, null)

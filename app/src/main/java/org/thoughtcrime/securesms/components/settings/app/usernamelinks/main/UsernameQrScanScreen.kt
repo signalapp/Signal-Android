@@ -70,7 +70,7 @@ fun UsernameQrScanScreen(
     AndroidView(
       factory = { context ->
         val view = QrScannerView(context)
-        disposables += view.qrData.subscribe { data ->
+        disposables += view.qrData.distinctUntilChanged().subscribe { data ->
           onQrCodeScanned(data)
         }
         view

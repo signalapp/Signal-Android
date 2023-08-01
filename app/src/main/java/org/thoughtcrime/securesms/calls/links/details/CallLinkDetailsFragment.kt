@@ -10,7 +10,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -247,7 +246,7 @@ private fun CallLinkDetails(
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
-        modifier = Modifier.clickable(onClick = callback::onEditNameClicked)
+        onClick = callback::onEditNameClicked
       )
 
       Rows.ToggleRow(
@@ -261,14 +260,14 @@ private fun CallLinkDetails(
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
-        modifier = Modifier.clickable(onClick = callback::onShareClicked)
+        onClick = callback::onShareClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
         foregroundTint = MaterialTheme.colorScheme.error,
-        modifier = Modifier.clickable(onClick = callback::onDeleteClicked)
+        onClick = callback::onDeleteClicked
       )
     }
 

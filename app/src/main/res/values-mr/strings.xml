@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">संदेशांसाठी तपासत आहे…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">आपल्यासाठी नवीन संदेश असू शकतात</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">अवरोधित वापरकर्ते</string>
     <string name="BlockedUsersActivity__add_blocked_user">अवरोधित वापरकर्ता जोडा</string>
@@ -810,7 +814,7 @@
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">नवीन गट काय आहेत?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट अॅडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट ऍडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">सर्व संदेश इतिहास आणि मिडिया श्रेणीसुधारणेपूर्वी ठेवण्यात आले आहेत.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">या गटात पुन्हा सामील होण्यासाठी आपल्याला आमंत्रण स्वीकार करावे लागेल, आणि आपण स्वीकार करेपर्यंत आपल्याला गट संदेश प्राप्त होणार नाहीत.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -825,7 +829,7 @@
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">नवीन गटात श्रेणीसुधारणा करा</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">हा गट श्रेणीसुधारित करा</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट अॅडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">नवीन गटांमध्ये @उल्लेख आणि गट ऍडमिन सारखे वैशिष्ट्ये आहेत, आणि भविष्यात आम्ही अधिक वैशिष्ट्यांना समर्थन देऊ.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">सर्व संदेश इतिहास आणि मिडिया श्रेणीसुधारणेपूर्वी ठेवले जातील.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">नेटवर्क त्रुटी आली. पुन्हा प्रयत्न करा</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">श्रेणीसुधारित करण्यात अयशस्वी</string>
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">कुठलेही लिंक पुनरावलोकन उपलब्ध नाही</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">ही गट लिंक सक्रिय नाही</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">एका Signal कॉलमध्ये सामील होण्यासाठी या लिंकचा वापर करा</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -966,8 +972,8 @@
 
     <string name="ManageGroupActivity_edit_name_and_picture">नाव आणि चित्र संपादित करा</string>
     <string name="ManageGroupActivity_legacy_group">लेगसी गट</string>
-    <string name="ManageGroupActivity_legacy_group_learn_more">हा एक लेगसी गट आहे. गट अॅडमिन सारखे वैशिष्ट्ये फक्त नवीन गटांसाठी उपलब्ध आहेत.</string>
-    <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये प्रवेश करण्यासाठी, </string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">हा एक लेगसी गट आहे. गट ऍडमिन सारखे वैशिष्ट्ये फक्त नवीन गटांसाठी उपलब्ध आहेत.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि ऍडमिन सारखे वैशिष्ट्ये प्रवेश करण्यासाठी, </string>
     <string name="ManageGroupActivity_legacy_group_too_large">या लेगसी गटाला नवीन गटामध्ये श्रेणीसुधारित केला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
     <string name="ManageGroupActivity_upgrade_this_group">हा गट श्रेणीसुधारित करा.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">हा एक असुरक्षित MMS गट आहे. खाजगीरीत्या चॅट करण्यासाठी, आपल्या संपर्कांना Signal वर आमंत्रित करा.</string>
@@ -1038,12 +1044,12 @@
     <string name="ShareableGroupLinkDialogFragment__share">सामायिक करा</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">लिंक रीसेट करा</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">नवीन सदस्य स्वीकारा</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">नवीन सदस्यांना गट लिंक द्वारा सामील होण्यासाठी अॅडमिनने स्वीकार करणे आवश्यक आहे.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">नवीन सदस्यांना गट लिंक द्वारा सामील होण्यासाठी ऍडमिन स्वीकार करणे आवश्यक आहे.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">गट लिंक रीसेट करण्याची आपणास खात्री आहे का? वर्तमान लिंक वापरून लोक यापुढे गटात सामील होऊ शकणार नाहीत.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR कोड</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ज्या व्यक्ती हा कोड स्कॅन करतील त्यांना आपल्या गटात सामील होता येईल. अॅडमिन यांना तरीही नवीन सदस्यांना स्वीकार करावे लागेल जर ती सेटिंग चालू असेल.</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ज्या व्यक्ती हा कोड स्कॅन करतील त्यांना आपल्या गटात सामील होता येईल. ऍडमिन यांना तरीही नवीन सदस्यांना स्वीकार करावे लागेल जर ती सेटिंग चालू असेल.</string>
     <string name="GroupLinkShareQrDialogFragment__share_code">कोड शेअर करा</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
@@ -1093,7 +1099,7 @@
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">गट लिंक सक्षम करण्यात अक्षम. कृपया नंतर पुन्हा प्रयत्न करा</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">आपण गट लिंक सक्षम करू शकत नाही. कृपया अॅडमिनला विचारा.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">आपण गट लिंक सक्षम करू शकत नाही. कृपया ऍडमिन विचारा.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">आपण सध्या या गटाचे सदस्य नाही.</string>
 
     <!-- GV2 Request confirmation dialog -->
@@ -1323,16 +1329,16 @@
     <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s आता गटात नाही.</string>
 
     <!-- GV2 role change -->
-    <string name="MessageRecord_you_made_s_an_admin">आपण %1$s ला अॅडमिन केले.</string>
-    <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला अॅडमिन केले.</string>
-    <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला अॅडमिन केले.</string>
-    <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s चे अॅडमिन विशेषाधिकार आपण रद्द केले.</string>
-    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले अॅडमिन विशेषाधिकार रद्द केले.</string>
-    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
-    <string name="MessageRecord_s_is_now_an_admin">%1$s आता अॅडमिन आहे.</string>
+    <string name="MessageRecord_you_made_s_an_admin">आपण %1$s ला ऍडमिन केले.</string>
+    <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला ऍडमिन केले.</string>
+    <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला ऍडमिन केले.</string>
+    <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s चे ऍडमिन विशेषाधिकार आपण रद्द केले.</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले ऍडमिन विशेषाधिकार रद्द केले.</string>
+    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण ऍडमिन विशेषाधिकार रद्द केले.</string>
+    <string name="MessageRecord_s_is_now_an_admin">%1$s आता ऍडमिन आहे.</string>
     <string name="MessageRecord_you_are_now_an_admin">आपण आता प्रशासक आहात.</string>
-    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s आता अॅडमिन नाही.</string>
-    <string name="MessageRecord_you_are_no_longer_an_admin">आपण यापुढे अॅडमिन नाही.</string>
+    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s आता ऍडमिन नाही.</string>
+    <string name="MessageRecord_you_are_no_longer_an_admin">आपण यापुढे ऍडमिन नाही.</string>
 
     <!-- GV2 invitations -->
     <string name="MessageRecord_you_invited_s_to_the_group">आपण %1$s ला गटात आमंत्रित केले.</string>
@@ -1359,7 +1365,7 @@
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">कुणीतरी गटाचे आमंत्रण रद्द केले.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">आपण गटाचे आमंत्रण रद्द केले.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ने गटाचे आपले आमंत्रण रद्द केले.</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">अॅडमिनने गटाचे आपले आमंत्रण रद्द केले.</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ऍडमिनने गटाचे आपले आमंत्रण रद्द केले.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
         <item quantity="one">गटाचे आमंत्रण मागे घेतले गेले होते.</item>
         <item quantity="other">%1$d गटाची आमंत्रणे मागे घेतली गेली होती.</item>
@@ -1405,21 +1411,21 @@
     <string name="MessageRecord_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">अॅडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">अॅडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ऍडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ऍडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
     <string name="MessageRecord_you_turned_off_the_group_link">आपण गट लिंक बंद केली आहे.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ने अॅडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने अॅडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ने ऍडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने ऍडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>
     <string name="MessageRecord_s_turned_off_the_group_link">%1$s ने गट लिंक बंद केली आहे.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">अॅडमिन मान्यता बंद असलेली गट लिंक चालू केली गेली आहे.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">अॅडमिन मान्यता चालू असलेली गट लिंक चालू केली गेली आहे.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ऍडमिन मान्यता बंद असलेली गट लिंक चालू केली गेली आहे.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ऍडमिन मान्यता चालू असलेली गट लिंक चालू केली गेली आहे.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">गट लिंक बंद केली गेली आहे.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपण गट लिंकसाठी अॅडमिन मान्यता बंद केली आहे.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी अॅडमिन मान्यता बंद केली आहे.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">गट लिंकसाठी अॅडमिन मान्यता बंद केली गेली आहे.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">आपण गट लिंकसाठी अॅडमिन मान्यता चालू केली आहे.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी अॅडमिन मान्यता चालू केली आहे.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">गट लिंकसाठी अॅडमिन मान्यता चालू केली गेली आहे.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपण गट लिंकसाठी ऍडमिन मान्यता बंद केली आहे.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी ऍडमिन मान्यता बंद केली आहे.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">गट लिंकसाठी ऍडमिन मान्यता बंद केली गेली आहे.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">आपण गट लिंकसाठी ऍडमिन मान्यता चालू केली आहे.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ने गट लिंकसाठी ऍडमिन मान्यता चालू केली आहे.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">गट लिंकसाठी ऍडमिन मान्यता चालू केली गेली आहे.</string>
 
     <!-- GV2 group link reset -->
     <string name="MessageRecord_you_reset_the_group_link">आपण गट लिंक रीसेट केली.</string>
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">आपण गट कॉल · %1$s सुरू केला</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये आहे · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">आपण गट कॉलमध्ये आहात · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s आणि %2$s गट कॉलमध्ये आहेत · %3$s</string>
     <string name="MessageRecord_group_call_s">गट कॉल · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ने गट कॉल चालू केला</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">आपण गट कॉल चालू केला</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s गट कॉलमध्ये आहे</string>
     <string name="MessageRecord_you_are_in_the_group_call">आपण गट कॉलमध्ये आहात</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s आणि %2$s गट कॉलमध्ये आहेत</string>
@@ -1528,7 +1534,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s ला आपल्याला संदेश पाठवू द्यायचे? जोपर्यंत आपण त्यांना अनावरोधित करत नाही तोपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s कडून अद्यतने आणि बातम्या मिळवायच्या? आपण त्यांना अनावरोधित करेपर्यंत आपल्याला कोणतीही अद्यतने मिळणार नाहीत.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">आपले या गटासोबतचे चॅट सुरू ठेवायचे आणि त्याच्या सदस्यांसह आपले नाव आणि फोटो सामायिक करायचे?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@उल्लेख आणि अॅडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@उल्लेख आणि ऍडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">हा लेगसी गट वापरला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">आपले %1$s सोबतचे चॅट सुरू ठेवायचे आणि त्याच्या सदस्यांसह आपले नाव आणि फोटो सामायिक करायचे?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हा आणि आपले नाव आणि फोटो त्याचा सदस्यांसह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">आपल्याकडे %1$d प्रयत्न उर्वरित आहे. जर आपले प्रयत्न संपले, तर आपण एक नवीन PIN तयार करू शकता. आपण नोंदणी करू शकता आणि आपले खाते वापरू शकता पण काही जतन केलेल्या सेटिंग आपण गमवाल जसे की आपली प्रोफाईल माहिती.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal नोंदणी - Android करिता PIN साठी मदत हवी</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">अल्फान्यूमेरिक PIN प्रविष्ट करा</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">न्यूमेरिक PIN प्रविष्ट करा</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">किबोर्ड स्वीच करा</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">आपला PIN तयार करा</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR कोड स्कॅन करण्यासाठी Signal ला कॅमेरा परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"कॅमेरा\" सक्षम करा.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कॅमेरा परवानगी विना QR कोड स्कॅन करण्यास अक्षम</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s चा सुरक्षितता नंबर पहाण्यासाठी आपल्याला पहिले संदेश विनिमय करावा लागेल.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">ही व्यक्ती जेव्हा आपल्यासह संदेशांची देवाणघेवाण करेल तेव्हा सुरक्षितता क्रमांक तयार केला जाईल.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ठीक</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">अधिक जाणून घ्या</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">ठीक</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">कॉल स्थिती</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">गंभीर अ‍ॅप सतर्क</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">अतिरिक्त संदेश अधिसूचना</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉलला उत्तर देण्यासाठी, Signal ला तुमच्या मायक्रोफोनचा अॅक्सेस द्या.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s कडून कॉलला उत्तर देण्यासाठी, Signal ला आपला मायक्रोफोन अॅक्सेस द्या.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">व्हिडिओ कॉलचे उत्तर देण्यास, आपल्या मायक्रोफोन आणि कॅमेऱ्याला Signal अ‍ॅक्सेस द्या.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">कॉल करण्यासाठी किंवा प्राप्त करण्यासाठी Signal ला मायक्रोफोन आणि कॅमेरा परवानग्यांची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" आणि \"कॅमेरा\" सक्षम करा.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">लिंक केलेल्या डिव्हाईसवर उत्तर दिले.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">लिंक केलेल्या डिव्हाईसवर नकार दिला.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ब्लुटूथ</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">वायर्ड हेडफोन्स</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">वायर्ड हेडसेट</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[जर आपल्याला %1$s सोबत आपल्या एन्क्रिप्शनची सुरक्षा सत्यापित करायची असेल, तर त्यांचा डिव्हाईस वरील नंबरची तुलना करा. पर्यायीरीत्या, आपण त्यांच्या फोन वरील कोड स्कॅन करू शकता, किंवा त्यांना आपला कोड स्कॅन करण्यास विचारू शकता. <a href=\"https://signal.org/redirect/safety-numbers\">अधिक जाणा</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s सह एंड-टू-एंड एन्क्रिप्शनची पडताळणी करण्यासाठी, वरील रंग कार्ड त्यांच्या डिव्हाइससह जुळवा आणि क्रमांकाची तुलना करा. ते जर जुळत नसतील तर, स्वाइप करा आणि सुरक्षितता क्रमांकांची इतर जोडी वापरून पहा. फक्त एक जोडी जुळवण्याची गरज आहे.</string>
     <string name="verify_display_fragment__tap_to_scan">स्कॅन करण्यासाठी टॅप करा</string>
     <string name="verify_display_fragment__successful_match">यशस्वी जोड</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">सुरक्षितता नंबरची पडताळणी करण्यात अयशस्वी</string>
     <string name="verify_display_fragment__loading">लोड होत आहे…</string>
     <string name="verify_display_fragment__mark_as_verified">सत्यापित म्हणून चिन्हांकित करा</string>
     <string name="verify_display_fragment__clear_verification">सत्यापन साफ करा</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">सुरक्षितता क्रमांक हे अद्यतनित करण्यात आले आहेत.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">सुरक्षितता क्रमांकामधील बदल</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Signal मधील येऊ घातलेली गोपनीयता वैशिष्ट्ये सक्षम करण्यासाठी सुरक्षितता क्रमांक हे संक्रमण कालावधीदरम्यान अद्यतनित केले जाणार आहेत.\n\nसुरक्षितता क्रमांकांची पडताळणी करण्यासाठी, आपल्या संपर्क डिव्हाइस सह रंग कार्ड जुळवा. ते जर जुळत नसतील तर, स्वाइप करा आणि सुरक्षितता क्रमांकांची इतर जोडी वापरून पहा. फक्त एक जोडी जुळवण्याची गरज आहे.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">मदत हवी?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">कळले</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">सुरक्षितता नंबर सामायिक करा</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">चॅट सेटिंग्ज</string>
     <string name="conversation__menu_add_shortcut">मुख्यस्क्रीन वर जोडा</string>
     <string name="conversation__menu_create_bubble">बबल तयार करा</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">मजकूर स्वरूपित करा</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">पॉपअप विस्तारित करा</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">पुढे</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">अल्फान्यूमेरिक PIN तयार करा</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक PIN तयार करा</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">आपल्या खात्यासाठी आपण तयार केलेला PIN प्रविष्ट करा. हे आपल्या SMS सत्यापन कोडपेक्षा वेगळे आहे.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">आपल्या अकाऊंटसाठी आपण तयार केलेला पिन प्रविष्ट करा.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">अल्फान्यूमेरिक PIN प्रविष्ट करा</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">न्यूमेरिक PIN प्रविष्ट करा</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">किबोर्ड स्वीच करा</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN विसरलात?</string>
     <string name="RegistrationLockFragment__incorrect_pin">चुकीचा PIN</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">येणारा Signal व्हॉईस कॉल</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">येणारा Signal व्हिडिओ कॉल</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">येणारा Signal गट कॉल</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">सुरू असलेला Signal व्हॉईस कॉल</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">सुरू असलेला Signal व्हिडिओ कॉल</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">सुरू असलेला Signal गट कॉल</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS सपोर्ट आता बंद होत आहे</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal अ‍ॅप मधील SMS संदेशनाला यापुढे लवकरच %1$s वर समर्थन केले जाणार नाही.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal अ‍ॅप मध्ये SMS संदेशनला यापुढे लवकरच समर्थित केले जाणार नाही.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS संदेश हे Signal संदेशांपेक्षा वेगळे असतात. <b>यामुळे काम करणे पुढे सुरु राहणार्‍या कूटबध्द केलेल्या Signal संदेशनावर परिणाम होणार नाही.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">मोनोस्पेस</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">स्पॉईलर</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">स्वरूपण साफ करा</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">हटवत आहे…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">हटवणे अयशस्वी.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">लिंक हटवू शकत नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</item>
+        <item quantity="other">सर्व कॉल लिंक हटवल्या जाऊ शकत नाहीत. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">साफ केलेला कॉल इतिहास</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">मिस्ड कॉलनुसार फिल्टर केले</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">सर्व निवडा</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">हटवा</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d कॉल हटवायचा?</item>
         <item quantity="other">%1$d कॉल्स हटवायचे?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">माझ्यासाठी हटवा</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d कॉल हटवला</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">संपादनाचा इतिहास</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">फक्त Signal बीटा</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">संदेश संपादन करणे हे फक्त Signal बीटा वापरकर्त्यासाठी उपलब्ध आहे. आपण संदेश संपादित केल्यास, तो जे लोक Signal बीटाच्या नवीनतम आवृत्तीवर आहेत फक्त त्यांनाच दृश्यमान असेल.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">रद्द करा</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">पाठवा</string>
 
 
     <!-- CallLinkDetailsFragment -->

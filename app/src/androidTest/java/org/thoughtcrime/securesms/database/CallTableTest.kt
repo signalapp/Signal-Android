@@ -10,13 +10,18 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager
+import org.thoughtcrime.securesms.calls.log.CallLogFilter
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 
 @RunWith(AndroidJUnit4::class)
 class CallTableTest {
 
   @get:Rule
-  val harness = SignalActivityRule()
+  val harness = SignalActivityRule(createGroup = true)
+
+  private val groupRecipientId: RecipientId
+    get() = harness.group!!.recipientId
 
   @Test
   fun givenACall_whenISetTimestamp_thenIExpectUpdatedTimestamp() {
@@ -24,13 +29,13 @@ class CallTableTest {
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.INCOMING,
       now
     )
 
-    SignalDatabase.calls.setTimestamp(callId, harness.others[0], -1L)
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    SignalDatabase.calls.setTimestamp(callId, groupRecipientId, -1L)
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(-1L, call?.timestamp)
 
@@ -45,15 +50,15 @@ class CallTableTest {
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.INCOMING,
       now
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     SignalDatabase.calls.deleteGroupCall(call!!)
 
-    val deletedCall = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val deletedCall = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     val oldestDeletionTimestamp = SignalDatabase.calls.getOldestDeletionTimestamp()
 
     assertEquals(CallTable.Event.DELETE, deletedCall?.event)
@@ -66,12 +71,12 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.OUTGOING,
       System.currentTimeMillis()
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
 
     val oldestDeletionTimestamp = SignalDatabase.calls.getOldestDeletionTimestamp()
@@ -86,12 +91,12 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.OUTGOING,
       System.currentTimeMillis()
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.OUTGOING_RING, call?.event)
     assertEquals(harness.self.id, call?.ringerRecipient)
@@ -103,12 +108,12 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.INCOMING,
       System.currentTimeMillis()
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.JOINED, call?.event)
     assertNull(call?.ringerRecipient)
@@ -120,13 +125,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       ringId = callId,
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       ringerRecipient = harness.others[1],
       dateReceived = System.currentTimeMillis(),
       ringState = CallManager.RingUpdate.REQUESTED
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.RINGING, call?.event)
 
@@ -134,7 +139,7 @@ class CallTableTest {
       call!!
     )
 
-    val acceptedCall = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val acceptedCall = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertEquals(CallTable.Event.ACCEPTED, acceptedCall?.event)
   }
 
@@ -143,13 +148,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       ringId = callId,
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       ringerRecipient = harness.others[1],
       dateReceived = System.currentTimeMillis(),
       ringState = CallManager.RingUpdate.EXPIRED_REQUEST
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
 
@@ -157,7 +162,7 @@ class CallTableTest {
       call!!
     )
 
-    val acceptedCall = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val acceptedCall = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertEquals(CallTable.Event.ACCEPTED, acceptedCall?.event)
   }
 
@@ -166,13 +171,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       ringId = callId,
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       ringerRecipient = harness.others[1],
       dateReceived = System.currentTimeMillis(),
       ringState = CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.DECLINED, call?.event)
 
@@ -180,7 +185,7 @@ class CallTableTest {
       call!!
     )
 
-    val acceptedCall = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val acceptedCall = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertEquals(CallTable.Event.ACCEPTED, acceptedCall?.event)
   }
 
@@ -189,7 +194,7 @@ class CallTableTest {
     val era = "aaa"
     val callId = CallId.fromEra(era).longValue()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = System.currentTimeMillis(),
       peekGroupCallEraId = "aaa",
@@ -197,7 +202,7 @@ class CallTableTest {
       isCallFull = false
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.GENERIC_GROUP_CALL, call?.event)
 
@@ -205,7 +210,7 @@ class CallTableTest {
       call!!
     )
 
-    val acceptedCall = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val acceptedCall = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertEquals(CallTable.Event.JOINED, acceptedCall?.event)
   }
 
@@ -214,7 +219,7 @@ class CallTableTest {
     val era = "aaa"
     val callId = CallId.fromEra(era).longValue()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = System.currentTimeMillis(),
       peekGroupCallEraId = "aaa",
@@ -222,7 +227,7 @@ class CallTableTest {
       isCallFull = false
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.GENERIC_GROUP_CALL, call?.event)
   }
@@ -233,7 +238,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -241,13 +246,13 @@ class CallTableTest {
       isCallFull = false
     )
 
-    SignalDatabase.calls.getCallById(callId, harness.others[0]).let {
+    SignalDatabase.calls.getCallById(callId, groupRecipientId).let {
       assertNotNull(it)
       assertEquals(now, it?.timestamp)
     }
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = 1L,
       peekGroupCallEraId = "aaa",
@@ -255,7 +260,7 @@ class CallTableTest {
       isCallFull = false
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.GENERIC_GROUP_CALL, call?.event)
     assertEquals(1L, call?.timestamp)
@@ -266,20 +271,20 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(
       callId = callId,
-      recipientId = harness.others[0],
+      recipientId = groupRecipientId,
       direction = CallTable.Direction.INCOMING,
       timestamp = System.currentTimeMillis()
     )
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       ringId = callId,
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       ringerRecipient = harness.others[1],
       dateReceived = System.currentTimeMillis(),
       ringState = CallManager.RingUpdate.REQUESTED
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.DELETE, call?.event)
   }
@@ -290,7 +295,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -300,13 +305,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.RINGING, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -319,20 +324,20 @@ class CallTableTest {
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.INCOMING,
       now
     )
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.ACCEPTED, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -344,7 +349,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -354,13 +359,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.EXPIRED_REQUEST
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -372,7 +377,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -382,7 +387,7 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
@@ -390,13 +395,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.EXPIRED_REQUEST
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -409,20 +414,20 @@ class CallTableTest {
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.INCOMING,
       now
     )
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.BUSY_LOCALLY
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.ACCEPTED, call?.event)
   }
@@ -434,20 +439,20 @@ class CallTableTest {
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.INCOMING,
       now
     )
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.BUSY_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.ACCEPTED, call?.event)
   }
@@ -458,7 +463,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -468,7 +473,7 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
@@ -476,13 +481,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.BUSY_LOCALLY
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
   }
@@ -493,7 +498,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -503,7 +508,7 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
@@ -511,13 +516,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.BUSY_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
   }
@@ -528,7 +533,7 @@ class CallTableTest {
     val callId = CallId.fromEra(era).longValue()
     val now = System.currentTimeMillis()
     SignalDatabase.calls.insertOrUpdateGroupCallFromLocalEvent(
-      groupRecipientId = harness.others[0],
+      groupRecipientId = groupRecipientId,
       sender = harness.others[1],
       timestamp = now,
       peekGroupCallEraId = "aaa",
@@ -538,13 +543,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.ACCEPTED, call?.event)
   }
@@ -556,7 +561,7 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
@@ -564,13 +569,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.DECLINED, call?.event)
   }
@@ -582,7 +587,7 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.EXPIRED_REQUEST
@@ -590,13 +595,13 @@ class CallTableTest {
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.DECLINED, call?.event)
   }
@@ -608,20 +613,20 @@ class CallTableTest {
 
     SignalDatabase.calls.insertAcceptedGroupCall(
       callId,
-      harness.others[0],
+      groupRecipientId,
       CallTable.Direction.OUTGOING,
       System.currentTimeMillis()
     )
 
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.OUTGOING_RING, call?.event)
   }
@@ -631,13 +636,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.REQUESTED
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.RINGING, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -649,13 +654,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.EXPIRED_REQUEST
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -667,13 +672,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.CANCELLED_BY_RINGER
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
     assertEquals(harness.others[1], call?.ringerRecipient)
@@ -685,13 +690,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.BUSY_LOCALLY
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
     assertNotNull(call?.messageId)
@@ -702,13 +707,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.BUSY_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.MISSED, call?.event)
     assertNotNull(call?.messageId)
@@ -719,13 +724,13 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.ACCEPTED, call?.event)
     assertNotNull(call?.messageId)
@@ -736,15 +741,85 @@ class CallTableTest {
     val callId = 1L
     SignalDatabase.calls.insertOrUpdateGroupCallFromRingState(
       callId,
-      harness.others[0],
+      groupRecipientId,
       harness.others[1],
       System.currentTimeMillis(),
       CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE
     )
 
-    val call = SignalDatabase.calls.getCallById(callId, harness.others[0])
+    val call = SignalDatabase.calls.getCallById(callId, groupRecipientId)
     assertNotNull(call)
     assertEquals(CallTable.Event.DECLINED, call?.event)
     assertNotNull(call?.messageId)
+  }
+
+  @Test
+  fun givenTwoCalls_whenIDeleteBeforeCallB_thenOnlyDeleteCallA() {
+    insertTwoCallEvents()
+
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(1500)
+
+    val allCallEvents = SignalDatabase.calls.getCalls(0, 2, null, CallLogFilter.ALL)
+    assertEquals(1, allCallEvents.size)
+    assertEquals(2, allCallEvents.first().record.callId)
+  }
+
+  @Test
+  fun givenTwoCalls_whenIDeleteBeforeCallA_thenIDoNotDeleteAnyCalls() {
+    insertTwoCallEvents()
+
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(500)
+
+    val allCallEvents = SignalDatabase.calls.getCalls(0, 2, null, CallLogFilter.ALL)
+    assertEquals(2, allCallEvents.size)
+    assertEquals(2, allCallEvents[0].record.callId)
+    assertEquals(1, allCallEvents[1].record.callId)
+  }
+
+  @Test
+  fun givenTwoCalls_whenIDeleteOnCallA_thenIOnlyDeleteCallA() {
+    insertTwoCallEvents()
+
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(1000)
+
+    val allCallEvents = SignalDatabase.calls.getCalls(0, 2, null, CallLogFilter.ALL)
+    assertEquals(1, allCallEvents.size)
+    assertEquals(2, allCallEvents.first().record.callId)
+  }
+
+  @Test
+  fun givenTwoCalls_whenIDeleteOnCallB_thenIDeleteBothCalls() {
+    insertTwoCallEvents()
+
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(2000)
+
+    val allCallEvents = SignalDatabase.calls.getCalls(0, 2, null, CallLogFilter.ALL)
+    assertEquals(0, allCallEvents.size)
+  }
+
+  @Test
+  fun givenTwoCalls_whenIDeleteAfterCallB_thenIDeleteBothCalls() {
+    insertTwoCallEvents()
+
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(2500)
+
+    val allCallEvents = SignalDatabase.calls.getCalls(0, 2, null, CallLogFilter.ALL)
+    assertEquals(0, allCallEvents.size)
+  }
+
+  private fun insertTwoCallEvents() {
+    SignalDatabase.calls.insertAcceptedGroupCall(
+      1,
+      groupRecipientId,
+      CallTable.Direction.INCOMING,
+      1000
+    )
+
+    SignalDatabase.calls.insertAcceptedGroupCall(
+      2,
+      groupRecipientId,
+      CallTable.Direction.OUTGOING,
+      2000
+    )
   }
 }

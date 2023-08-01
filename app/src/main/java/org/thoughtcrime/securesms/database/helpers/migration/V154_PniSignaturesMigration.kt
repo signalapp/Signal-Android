@@ -6,6 +6,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Introduces the tables and fields required to keep track of whether we need to send a PNI signature message and if the ones we've sent out have been received.
  */
+@Suppress("ClassName")
 object V154_PniSignaturesMigration : SignalDatabaseMigration {
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

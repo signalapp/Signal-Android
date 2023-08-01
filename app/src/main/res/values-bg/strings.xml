@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Проверка за съобщения…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Вие може да имате нови съобщения</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Блокирани потребители</string>
     <string name="BlockedUsersActivity__add_blocked_user">Добавяне на блокиран потребител</string>
@@ -317,7 +321,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Неуспешно изтегляне на видеото. Ще трябва да го изпратите отново.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">редактирано %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Редактирано %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Присъединете се към разговор</string>
 
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Няма наличен преглед на връзката</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Тази групова връзка не е активна</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Използвайте този линк, за да се присъедините към повикване в Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групов разговор · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Започнахте групово повикване · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е в групов разговор · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Вие сте в групов разговор · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s и %2$s са в групов разговор · %3$s</string>
     <string name="MessageRecord_group_call_s">Групов разговор · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s започна групов разговор</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Започнахте групово повикване</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s е в груповия разговор</string>
     <string name="MessageRecord_you_are_in_the_group_call">Вие сте в груповия разговор</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s и %2$s са в груповия разговор</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">Остават %1$d опити. Ако свършите опитите си, можете да създадете нов ПИН. Можете да се регистрирате и да използвате акаунта си, но ще загубите някои запазени настройки, като информация за вашия профил.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Регистрация за Signal - Необходима помощ за ПИН за Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Въведете буквено-цифрен ПИН</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Въведете ПИН от цифри</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Превключване на клавиатурата</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Създаване на ПИН</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal се нуждае от достъп до камерата Ви, за да може да сканира QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Неуспешно сканиране на QR код без разрешение за достъп до камерата</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Първо трябва да обменяте съобщения, за да видите %1$s номер за безопасност.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Ще бъде създаден номер за сигурност с този човек, след като той размени съобщения с вас.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ОК</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Научете повече</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">ОК</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Статус на повикване</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Критични сигнали за приложението</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Допълнителни известия за съобщения</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">За да отговорите на повикването, дайте на Signal достъп до микрофона си.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">За да можете да провеждате разговор с %1$s, разрешете на Signal достъп до микрофона.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">За да отговорите на видео повикването, дайте достъп на Signal до микрофона и камерата ви.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal се нуждае от достъп до микрофона и камерта Ви, за да може да получава обаждания, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\", \"Микрофон\" и \"Камера\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Отговорено на свързано устройство.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Отказано на свързано устройство.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Кабелни слушалки</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Слушалки с кабел</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да проверите сигурността на вашето криптиране от край до край с %1$s, сравнете числата по-горе с тяхното устройство. Можете също така да сканирате кода на другия телефон. <a href=\"https://signal.org/redirect/safety-numbers\">Научете повече.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">За да проверите сигурността на криптирането от край до край между вас и %1$s, напаснете цветната карта по-горе с устройството на другия потребител и сравнете цифрите. Ако не съвпадат, плъзнете и пробвайте другата двойка номера за сигурност. Достатъчно е една двойка да съвпадне.</string>
     <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
     <string name="verify_display_fragment__successful_match">Успешно съвпадение</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на номера за безопасност</string>
     <string name="verify_display_fragment__loading">Зареждане…</string>
     <string name="verify_display_fragment__mark_as_verified">Маркирайте, както е потвърдено</string>
     <string name="verify_display_fragment__clear_verification">Изчистване на проверка</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Номерата за сигурност се актуализират.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Промени в номерата за сигурност</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Номерата за сигурност се актуализират през преходен период, за да се активират предстоящите функции за поверителност в Signal.\n\nЗа да потвърдите номерата за сигурност, цветната карта трябва да съвпадне с устройството на вашия контакт. Ако не съвпадат, плъзнете и пробвайте другата двойка номера за сигурност. Достатъчно е една двойка да съвпадне.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Нужда от помощ?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Ясно</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Споделяне на числа за сигурност</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">Настройки на чата</string>
     <string name="conversation__menu_add_shortcut">Добавяне на работния плот</string>
     <string name="conversation__menu_create_bubble">Създаване на балон</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Форматиране на текст</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Разшири диалога</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Следващ</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Създайте буквено-цифров ПИН</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Създайте цифров ПИН</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Въведете ПИН кода, който сте създали за своя акаунт. Той е различен от кода за потвърждение през SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Въведете ПИН кода, който сте създали за акаунта си.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Въведете ПИН от букви и цифри</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Въведете ПИН от цифри</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Превключване на клавиатурата</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Грешен ПИН. Опитайте отново.</string>
     <string name="RegistrationLockFragment__forgot_pin">Забравен ПИН?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Грешен ПИН</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Входящо гласово повикване в Signal</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Входящо видео повикване в Signal</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Входящо Signal групово обаждане</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Текущо гласово повикване в Signal</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Текущо видео повикване в Signal</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Текущо групово повикване в Signal</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Поддръжката на SMS отпада</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">SMS съобщенията в приложението Signal повече няма да се поддържат от %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">SMS съобщенията в приложението Signal скоро вече няма да се поддържат.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS съобщенията са различни от Signal съобщенията. <b>Това не засяга криптираните съобщения в Signal, които ще продължат да работят.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">Моношир</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Спойлър</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Изчистване на форматирането</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Изтриване…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Неуспешно изтриване.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Линкът не може да бъде изтрит. Проверете връзката си и опитайте отново.</item>
+        <item quantity="other">Не всички линкове за повикване могат да бъдат изтрити. Проверете връзката си и опитайте отново.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Изчистена история на повикванията</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Филтриране по пропуснати</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Избиране на всичко</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Изтриване</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Изтриване на %1$d обаждане?</item>
         <item quantity="other">Изтриване на %1$d обаждания?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Изтриване за мен</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d изтрито повикване</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">История на редакциите</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Само за Signal beta</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Редактирането на съобщения е достъпно само за бета потребители на Signal. Ако редактирате съобщение, то ще се вижда само от хора, които използват най-новата версия на Signal beta.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Отказ</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Изпращане</string>
 
 
     <!-- CallLinkDetailsFragment -->

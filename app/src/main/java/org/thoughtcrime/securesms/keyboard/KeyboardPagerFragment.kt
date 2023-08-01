@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
@@ -20,7 +21,7 @@ import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 import kotlin.reflect.KClass
 
-class KeyboardPagerFragment : Fragment() {
+class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragment {
 
   private lateinit var emojiButton: View
   private lateinit var stickerButton: View
@@ -113,7 +114,8 @@ class KeyboardPagerFragment : Fragment() {
     transaction.commitAllowingStateLoss()
   }
 
-  fun show() {
+  override fun show() {
+    findListener<MediaKeyboard.MediaKeyboardListener>()?.onShown()
     if (isAdded && view != null) {
       onHiddenChanged(false)
 
@@ -121,7 +123,8 @@ class KeyboardPagerFragment : Fragment() {
     }
   }
 
-  fun hide() {
+  override fun hide() {
+    findListener<MediaKeyboard.MediaKeyboardListener>()?.onHidden()
     if (isAdded && view != null) {
       onHiddenChanged(true)
 

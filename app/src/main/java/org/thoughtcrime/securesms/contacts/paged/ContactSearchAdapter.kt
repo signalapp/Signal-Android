@@ -492,6 +492,8 @@ open class ContactSearchAdapter(
       if (isEnabled(model)) {
         itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
         bindLongPress(model)
+      } else {
+        itemView.setOnClickListener(null)
       }
 
       bindCheckbox(model)

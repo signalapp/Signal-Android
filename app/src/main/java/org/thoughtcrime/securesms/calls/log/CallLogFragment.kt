@@ -230,7 +230,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     val count = callLogActionMode.getCount()
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
-      .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
+      .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(count, viewModel.stageSelectionDeletion())
         callLogActionMode.end()
       }
@@ -363,7 +363,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun deleteCall(call: CallLogRow) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
-      .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
+      .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(1, viewModel.stageCallDeletion(call))
       }
       .show()

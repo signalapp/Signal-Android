@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.svr
 
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.core.SingleEmitter
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -28,11 +26,13 @@ import java.io.IOException
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
 import java.time.Instant
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
+import kotlin.jvm.Throws
 import okhttp3.Response as OkHttpResponse
 import org.signal.svr2.proto.Request as Svr2Request
 import org.signal.svr2.proto.Response as Svr2Response
@@ -47,41 +47,39 @@ internal class Svr2Socket(
   private val svr2Url: SignalSvr2Url = chooseUrl(configuration.signalSvr2Urls)
   private val okhttp: OkHttpClient = buildOkHttpClient(configuration, svr2Url)
 
-  fun makeRequest(authorization: AuthCredentials, clientRequest: (Svr2PinHasher) -> Svr2Request): Single<Response> {
-    return Single.create { emitter ->
-      val openRequest: Request.Builder = Request.Builder()
-        .url("${svr2Url.url}/v1/$mrEnclave")
-        .addHeader("Authorization", authorization.asBasic())
+  @Throws(IOException::class)
+  fun makeRequest(authorization: AuthCredentials, clientRequest: Svr2Request): Svr2Response {
+    val openRequest: Request.Builder = Request.Builder()
+      .url("${svr2Url.url}/v1/$mrEnclave")
+      .addHeader("Authorization", authorization.asBasic())
 
-      if (svr2Url.hostHeader.isPresent) {
-        openRequest.addHeader("Host", svr2Url.hostHeader.get())
-        Log.w(TAG, "Using alternate host: ${svr2Url.hostHeader.get()}")
-      }
-
-      val webSocket = okhttp.newWebSocket(
-        openRequest.build(),
-        SvrWebSocketListener(
-          authorization = authorization,
-          mrEnclave = mrEnclave,
-          clientRequest = clientRequest,
-          emitter = emitter
-        )
-      )
-
-      emitter.setCancellable { webSocket.close(1000, "OK") }
+    if (svr2Url.hostHeader.isPresent) {
+      openRequest.addHeader("Host", svr2Url.hostHeader.get())
+      Log.w(TAG, "Using alternate host: ${svr2Url.hostHeader.get()}")
     }
+
+    val listener = SvrWebSocketListener(
+      mrEnclave = mrEnclave,
+      clientRequest = clientRequest
+    )
+
+    okhttp.newWebSocket(openRequest.build(), listener)
+
+    return listener.blockAndWaitForResult()
   }
 
   private class SvrWebSocketListener(
-    private val authorization: AuthCredentials,
     private val mrEnclave: String,
-    private val clientRequest: (Svr2PinHasher) -> Svr2Request,
-    private val emitter: SingleEmitter<Response>
+    private val clientRequest: Svr2Request
   ) : WebSocketListener() {
 
     private val stage = AtomicReference(Stage.WAITING_TO_INITIALIZE)
     private lateinit var client: Svr2Client
-    private lateinit var pinHasher: Svr2PinHasher
+
+    private val latch: CountDownLatch = CountDownLatch(1)
+
+    private var response: Svr2Response? = null
+    private var exception: IOException? = null
 
     override fun onOpen(webSocket: WebSocket, response: OkHttpResponse) {
       Log.d(TAG, "[onOpen]")
@@ -99,7 +97,6 @@ internal class Svr2Socket(
           Stage.WAITING_FOR_CONNECTION -> {
             val mrEnclave: ByteArray = Hex.fromStringCondensed(mrEnclave)
             client = Svr2Client(mrEnclave, bytes.toByteArray(), Instant.now())
-            pinHasher = Svr2PinHasher(authorization, mrEnclave)
 
             Log.d(TAG, "[onMessage] Sending initial handshake...")
             webSocket.send(client.initialRequest().toByteString())
@@ -110,7 +107,7 @@ internal class Svr2Socket(
             client.completeHandshake(bytes.toByteArray())
             Log.d(TAG, "[onMessage] Handshake read success. Sending request...")
 
-            val ciphertextBytes = client.establishedSend(clientRequest(pinHasher).encode())
+            val ciphertextBytes = client.establishedSend(clientRequest.encode())
             webSocket.send(ciphertextBytes.toByteString())
 
             Log.d(TAG, "[onMessage] Request sent.")
@@ -119,12 +116,9 @@ internal class Svr2Socket(
 
           Stage.WAITING_FOR_RESPONSE -> {
             Log.d(TAG, "[onMessage] Received response for our request.")
-            emitter.onSuccess(
-              Response(
-                response = Svr2Response.ADAPTER.decode(client.establishedRecv(bytes.toByteArray())),
-                pinHasher = pinHasher
-              )
-            )
+            emitSuccess(Svr2Response.ADAPTER.decode(client.establishedRecv(bytes.toByteArray())))
+            Log.d(TAG, "[onMessage] Success! Closing.")
+            webSocket.close(1000, "OK")
           }
 
           Stage.CLOSED -> {
@@ -139,15 +133,15 @@ internal class Svr2Socket(
       } catch (e: IOException) {
         Log.w(TAG, e)
         webSocket.close(1000, "OK")
-        emitter.tryOnError(e)
+        emitError(e)
       } catch (e: AttestationDataException) {
         Log.w(TAG, e)
-        webSocket.close(1000, "OK")
-        emitter.tryOnError(e)
+        webSocket.close(1007, "OK")
+        emitError(IOException(e))
       } catch (e: SgxCommunicationFailureException) {
         Log.w(TAG, e)
         webSocket.close(1000, "OK")
-        emitter.tryOnError(e)
+        emitError(IOException(e))
       }
     }
 
@@ -155,23 +149,50 @@ internal class Svr2Socket(
       Log.i(TAG, "[onClosing] code: $code, reason: $reason")
 
       if (code == 1000) {
-        emitter.tryOnError(IOException("Websocket was closed with code 1000"))
+        emitError(IOException("Websocket was closed with code 1000"))
         stage.set(Stage.CLOSED)
       } else {
         Log.w(TAG, "Remote side is closing with non-normal code $code")
         webSocket.close(1000, "Remote closed with code $code")
         stage.set(Stage.FAILED)
 
-        emitter.tryOnError(NonSuccessfulResponseCodeException(code))
+        emitError(NonSuccessfulResponseCodeException(code))
       }
     }
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: OkHttpResponse?) {
-      if (emitter.tryOnError(t)) {
+      if (emitError(IOException(t))) {
         Log.w(TAG, "[onFailure] response? " + (response != null), t)
         stage.set(Stage.FAILED)
         webSocket.close(1000, "OK")
       }
+    }
+
+    @Throws(IOException::class)
+    fun blockAndWaitForResult(): Svr2Response {
+      latch.await()
+
+      exception?.let { throw it }
+      response?.let { return it }
+      throw IllegalStateException("Neither the response nor exception were set!")
+    }
+
+    private fun emitSuccess(result: Svr2Response) {
+      response = result
+      latch.countDown()
+    }
+
+    /** Returns true if this was the first error emitted, otherwise false. */
+    private fun emitError(e: IOException): Boolean {
+      val isFirstError = exception == null
+
+      if (isFirstError) {
+        exception = e
+      }
+
+      latch.countDown()
+
+      return isFirstError
     }
   }
 
@@ -194,7 +215,12 @@ internal class Svr2Socket(
 
     private fun buildOkHttpClient(configuration: SignalServiceConfiguration, svr2Url: SignalSvr2Url): OkHttpClient {
       val socketFactory = createTlsSocketFactory(svr2Url.trustStore)
-      val builder = OkHttpClient.Builder().sslSocketFactory(Tls12SocketFactory(socketFactory.first()), socketFactory.second()).connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)).retryOnConnectionFailure(false).readTimeout(30, TimeUnit.SECONDS).connectTimeout(30, TimeUnit.SECONDS)
+      val builder = OkHttpClient.Builder()
+        .sslSocketFactory(Tls12SocketFactory(socketFactory.first()), socketFactory.second())
+        .connectionSpecs(svr2Url.connectionSpecs.orElse(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
+        .retryOnConnectionFailure(false)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
 
       for (interceptor in configuration.networkInterceptors) {
         builder.addInterceptor(interceptor)

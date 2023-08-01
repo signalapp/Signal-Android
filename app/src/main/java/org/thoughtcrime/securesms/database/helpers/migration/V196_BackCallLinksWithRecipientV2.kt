@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log
 /**
  * Cleans up the call events table and restricts peer to non-null.
  */
+@Suppress("ClassName")
 object V196_BackCallLinksWithRecipientV2 : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V196_BackCallLinksWithRecipientV2::class.java)

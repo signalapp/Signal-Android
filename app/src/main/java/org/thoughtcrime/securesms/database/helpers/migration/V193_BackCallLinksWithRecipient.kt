@@ -11,6 +11,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Due to a bug, this has been replaced by [V196_BackCallLinksWithRecipientV2]
  */
+@Suppress("ClassName")
 object V193_BackCallLinksWithRecipient : SignalDatabaseMigration {
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit

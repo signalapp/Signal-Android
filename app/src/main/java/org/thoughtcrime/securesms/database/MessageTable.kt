@@ -1941,6 +1941,18 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return mmsReaderFor(cursor)
   }
 
+  private fun getPreviousEditIds(id: Long): List<Long> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$LATEST_REVISION_ID = ?", id)
+      .orderBy("$DATE_SENT ASC")
+      .run()
+      .readToList {
+        it.requireLong(ID)
+      }
+  }
+
   private fun updateMailboxBitmask(id: Long, maskOff: Long, maskOn: Long, threadId: Optional<Long>) {
     writableDatabase.withinTransaction { db ->
       db.execSQL(
@@ -2011,7 +2023,33 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
   }
 
+  fun markAsRemoteDelete(targetMessage: MessageRecord) {
+    writableDatabase.withinTransaction { db ->
+      if (targetMessage.isEditMessage) {
+        val latestRevisionId = (targetMessage as? MediaMmsMessageRecord)?.latestRevisionId?.id ?: targetMessage.id
+        markAsRemoteDeleteInternal(latestRevisionId)
+        getPreviousEditIds(latestRevisionId).map { id ->
+          db.update(TABLE_NAME)
+            .values(
+              ORIGINAL_MESSAGE_ID to null,
+              LATEST_REVISION_ID to null
+            )
+            .where("$ID = ?", id)
+            .run()
+          deleteMessage(id)
+        }
+      } else {
+        markAsRemoteDeleteInternal(targetMessage.id)
+      }
+    }
+  }
+
   fun markAsRemoteDelete(messageId: Long) {
+    val targetMessage: MessageRecord = getMessageRecord(messageId)
+    markAsRemoteDelete(targetMessage)
+  }
+
+  private fun markAsRemoteDeleteInternal(messageId: Long) {
     var deletedAttachments = false
     writableDatabase.withinTransaction { db ->
       db.update(TABLE_NAME)
@@ -2023,7 +2061,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           QUOTE_TYPE to null,
           QUOTE_ID to null,
           LINK_PREVIEWS to null,
-          SHARED_CONTACTS to null
+          SHARED_CONTACTS to null,
+          ORIGINAL_MESSAGE_ID to null,
+          LATEST_REVISION_ID to null
         )
         .where("$ID = ?", messageId)
         .run()
@@ -3153,6 +3193,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         return@withinTransaction kotlin.Pair(-1L, null)
       }
 
+      threads.markAsActiveEarly(threadId)
       SignalDatabase.mentions.insert(threadId, messageId, mentions)
 
       val insertedAttachments = SignalDatabase.attachments.insertAttachmentsForMessage(messageId, allAttachments, quoteAttachments)
@@ -3244,6 +3285,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     threadIds.forEach {
+      threads.updateReadState(it)
       threads.update(
         threadId = it,
         unarchive = false,
@@ -3522,7 +3564,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun deleteAbandonedMessages(): Int {
     val deletes = writableDatabase
       .delete(TABLE_NAME)
-      .where("$THREAD_ID NOT IN (SELECT _id FROM ${ThreadTable.TABLE_NAME})")
+      .where("$THREAD_ID NOT IN (SELECT _id FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.ACTIVE} = 1)")
       .run()
 
     if (deletes > 0) {
@@ -4489,7 +4531,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun setTimestampReadFromSyncMessageProto(readMessages: List<SyncMessage.Read>, proposedExpireStarted: Long, threadToLatestRead: MutableMap<Long, Long>): Collection<SyncMessageId> {
-    val reads: List<ReadMessage> = readMessages.map { r -> ReadMessage(ServiceId.parseOrThrow(r.senderUuid), r.timestamp) }
+    val reads: List<ReadMessage> = readMessages.map { r -> ReadMessage(ServiceId.parseOrThrow(r.senderAci), r.timestamp) }
 
     return setTimestampReadFromSyncMessage(reads, proposedExpireStarted, threadToLatestRead)
   }
@@ -4889,7 +4931,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   protected enum class ReceiptType(val columnName: String, val groupStatus: Int) {
     READ(READ_RECEIPT_COUNT, GroupReceiptTable.STATUS_READ),
     DELIVERY(DELIVERY_RECEIPT_COUNT, GroupReceiptTable.STATUS_DELIVERED),
-    VIEWED(VIEWED_RECEIPT_COUNT, GroupReceiptTable.STATUS_VIEWED);
+    VIEWED(VIEWED_RECEIPT_COUNT, GroupReceiptTable.STATUS_VIEWED)
   }
 
   data class SyncMessageId(

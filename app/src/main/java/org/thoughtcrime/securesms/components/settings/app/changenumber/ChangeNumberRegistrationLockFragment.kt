@@ -42,7 +42,7 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
   }
 
   override fun handleSuccessfulPinEntry(pin: String) {
-    val pinsDiffer: Boolean = SignalStore.kbsValues().localPinHash?.let { !PinHashUtil.verifyLocalPinHash(it, pin) } ?: false
+    val pinsDiffer: Boolean = SignalStore.svr().localPinHash?.let { !PinHashUtil.verifyLocalPinHash(it, pin) } ?: false
 
     pinButton.cancelSpinning()
 

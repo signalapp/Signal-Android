@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.push.DistributionId
-import java.lang.AssertionError
 import java.util.Optional
 
 class GroupRecord(

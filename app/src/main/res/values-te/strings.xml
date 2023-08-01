@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">సందేశాల కోసం తనిఖీ చేస్తోంది…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">మీకు క్రొత్త సందేశాలు ఉండవచ్చు</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">బ్లాక్ చేయబడిన యూజర్లు</string>
     <string name="BlockedUsersActivity__add_blocked_user">బ్లాక్ చేయబడిన యూజర్‌ను జోడించండి</string>
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">లింక్ పూర్వప్రదర్శన అందుబాటులో లేదు</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">ఈ సమూహ లింక్ సక్రియంగా లేదు</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Signal కాల్‌లో చేరడానికి ఈ లింక్ ఉపయోగించండి</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s సమూహ కాల్ ప్రారంభించారు. %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">మీరు గ్రూప్ కాల్ ప్రారంభించారు · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s సమూహ కాల్‌లో ఉన్నారు · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">మీరు గ్రూప్ కాల్‌లో ఉన్నారు. %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s మరియు %2$s గ్రూప్ కాల్‌లో ఉన్నారు · %3$s</string>
     <string name="MessageRecord_group_call_s">సమూహ కాల్ · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s సమూహ కాల్ ప్రారంభించారు</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">మీరు సమూహ కాల్ ప్రారంభించారు</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s సమూహ కాల్‌లో ఉన్నారు</string>
     <string name="MessageRecord_you_are_in_the_group_call">మీరు గ్రూప్ కాల్‌లో ఉన్నారు</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s మరియు %2$s గ్రూప్ కాల్‌లో ఉన్నారు</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">మీకు %1$d ప్రయత్నాలు మిగిలివున్నాయి. అన్ని ప్రయత్నాలు కోల్పోతే, క్రొత్త పిన్ సృష్టించుకోవచ్చు. ఈ విధముగా మీరు ఖాతా నమోదు చేసి వాడవచ్చు కాని, మీ పూర్వ సరళికలను కోల్పోతారు.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal నమోదీకరణ - ఆండ్రోయిడ్ కొరకు పిన్ తొ సహాయం కావలెను</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">కీబోర్డ్ మారండి</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">మీ పిన్ను సృష్టించండి</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ఒక QR కోడ్ను స్కాన్ చేయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s యొక్క భద్రతా నంబర్‌ను చూడటానికి మీరు మొదట సందేశాలను మార్పిడి చేసుకోవాలి.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">ఈ వ్యక్తి మీతో సందేశాలను మార్పిడి చేసిన తర్వాత వారితో భద్రతా సంఖ్య సృష్టించబడుతుంది.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">సరే</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">మరింత తెలుసుకోండి</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">సరే</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">కాల్ స్థితి</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">క్లిష్టమైన యాప్ అలర్ట్స్</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">అదనపు సందేశం నోటిఫికేషన్‌లు</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">కాల్‌కు సమాధానం ఇవ్వడానికి, Signal కు మీ మైక్రోఫోన్‌ యాక్సెస్‌ని ఇవ్వండి.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s నుండి కాల్కు సమాధానం ఇవ్వడానికి, Signalకు మీ మైక్రోఫోన్ ప్రాప్యతను ఇవ్వండి.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">వీడియో కాల్‌కు సమాధానం ఇవ్వడానికి, Signal కు మీ మైక్రోఫోన్ మరియు కెమెరాకు యాక్సెస్‌ను ఇవ్వండి.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">కాల్స్ చేయడానికి మరియు కాల్స్ స్వీకరించడానికి Signalకి మైక్రోఫోన్ మరియు కెమెరా అనుమతులు అవసరం, కానీ అవి శాశ్వతంగా తిరస్కరించబడ్డాయి. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">లింక్ చేయబడిన పరికరంలో సమాధానం ఇవ్వబడింది.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">లింక్ చేయబడిన పరికరంలో తిరస్కరించబడింది.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">వైర్డ్ హెడ్‌ఫోన్‌లు</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">వైర్డ్ హెడ్‌సెట్</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$sతో మీ ఎండ్ టూ ఎండ్ ఎన్‌క్రిప్షన్ భద్రతను ధృవీకరించడానికి, పైన నెంబర్‌లను వారి పరికరంతో పోల్చండి. మీరు కోడ్‌ను వారి పరికరాలపైన కూడా స్కాన్ చేయవచ్చు. <a href=\"https://signal.org/redirect/safety-numbers\">మరింత తెలుసుకోండి.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s‌తో పూర్తి స్థాయి ఎన్‌క్రిప్షన్‌ను ధృవీకరించడానికి, పైన ఉన్న రంగు కార్డును వారి పరికరంతో మ్యాచ్ చేయండి మరియు సంఖ్యలను పోల్చండి. ఒకవేళ ఇవి మ్యాచ్ కాకపోతే, భద్రతా సంఖ్యల మరో జతను స్వైప్ చేసి ప్రయత్నించండి. కేవలం ఒక జత మాత్రమే మ్యాచ్ కావాలి.</string>
     <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
     <string name="verify_display_fragment__successful_match">విజయవంతంగా మ్యాచ్ అయింది</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">భద్రతా సంఖ్యను ధృవీకరించడం విఫలమైంది</string>
     <string name="verify_display_fragment__loading">లోడ్…</string>
     <string name="verify_display_fragment__mark_as_verified">ధృవీకరించినట్లు గుర్తించండి</string>
     <string name="verify_display_fragment__clear_verification">ధృవీకరణను క్లియర్ చేయండి</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">భద్రతా సంఖ్యలు అప్‌డేట్ చేయబడుతున్నాయి.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">భద్రతా సంఖ్యలకు మార్పులు</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Signal లో రాబోయే గోప్యతా విలక్షణతలను ప్రారంభించడానికి పరివర్తన వ్యవధిలో భద్రతా సంఖ్యలు అప్‌డేట్ చేయబడుతున్నాయి.\n\nభద్రతా సంఖ్యలను ధృవీకరించడానికి, మీ కాంటాక్ట్ యొక్క పరికరంతో రంగు కార్డును మ్యాచ్ చేయండి. ఒకవేళ ఇవి మ్యాచ్ కాకపోతే, భద్రతా సంఖ్యల మరో జతను స్వైప్ చేసి ప్రయత్నించండి. కేవలం ఒక జత మాత్రమే మ్యాచ్ కావాలి.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">సాయం అవసరమా?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">అర్థమైంది</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">భద్రతా సంఖ్యను పంచు</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">చాట్ సెట్టింగులు</string>
     <string name="conversation__menu_add_shortcut">హోమ్ స్క్రీన్కు జోడించండి</string>
     <string name="conversation__menu_create_bubble">బబుల్ సృష్టించు</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">టెక్స్ట్‌ను ఫార్మాట్ చేయండి</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">పాపప్ విస్తరించు</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">తరువాత</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను సృష్టించండి</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">సంఖ్యా పిన్ను సృష్టించండి</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">మీ ఖాతా కొరకు మీరు సృష్టించిన PIN ను ఎంటర్ చేయండి.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">కీబోర్డ్ మారండి</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationLockFragment__forgot_pin">పిన్ను మరచిపోయారా?</string>
     <string name="RegistrationLockFragment__incorrect_pin">తప్పయిన పిన్</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">ఇన్‌కమింగ్ Signal వాయిస్ కాల్</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">ఇన్‌కమింగ్ Signal వీడియో కాల్</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">ఇన్‌కమింగ్ Signal గ్రూప్ కాల్</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">కొనసాగుతున్న Signal వాయిస్ కాల్</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">కొనసాగుతున్న Signal వీడియో కాల్</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">కొనసాగుతున్న Signal గ్రూప్ కాల్</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS మద్దతు కనుమరుగవబోతోంది</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">ఇకపై Signal యాప్‌లో %1$s పై SMS సందేశం పంపడం త్వరలో మద్దతు ఇవ్వబడదు.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal యాప్‌లో SMS మెసేజింగ్‌కు త్వరలో మద్దతు తొలగించబడుతుంది.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS సందేశాలు Signal సందేశాల కంటే భిన్నంగా ఉంటాయి. <b>ఇది ఎన్‌క్రిప్ట్ చేసిన Signal మెసేజింగ్‌ను ప్రభావితం చేయదు, ఇది పని చేయడం కొనసాగుతుంది.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">మోనోస్పేస్</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">స్పాయిలర్</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">ఫార్మాటింగ్‌ను క్లియర్ చేయండి</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">తొలగిస్తోంది…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">తొలగించడం విఫలమైంది.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">లింక్‌ను తొలగించలేదు. మీ కనెక్షన్‌ను తనిఖీ చేయండి మరియు మళ్లీ ప్రయత్నించండి.</item>
+        <item quantity="other">అన్ని కాల్ లింక్‌లను తొలగించడం సాధ్యం కాదు. మీ కనెక్షన్‌ను తనిఖీ చేయండి మరియు మళ్లీ ప్రయత్నించండి.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">కాల్ చరిత్రను తొలగించాము</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">మిస్ అయినవి ఫిల్టర్ చేయబడ్డాయి</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">అన్నిటిని ఎంచుకోండి</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">తొలగించండి</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d కాల్ తొలగించేదా?</item>
         <item quantity="other">%1$d కాల్‌లను తొలగించేదా?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">నాకు తొలగించండి</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d కాల్ తొలగించబడింది</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">సవరణ చరిత్ర</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal బీటా మాత్రమే</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Signal బీటా యూజర్లకు మాత్రమే సందేశాలను సవరించడం అందుబాటులో ఉంది. ఒకవేళ మీరు ఒక సందేశాన్ని సవరిస్తే, Signal బీటా యొక్క తాజా వెర్షన్‌పై ఉన్న వ్యక్తులకు మాత్రమే ఇది కనపడుతుంది.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">రద్దు చేయండి</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">పంపు</string>
 
 
     <!-- CallLinkDetailsFragment -->

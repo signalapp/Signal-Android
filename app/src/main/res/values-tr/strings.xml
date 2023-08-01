@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">İletiler denetleniyor…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Yeni iletileriniz olabilir</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Engellenen kullanıcılar</string>
     <string name="BlockedUsersActivity__add_blocked_user">Engellenecek kullanıcı ekle</string>
@@ -317,7 +321,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Video indirilemiyor. Videoyu tekrar göndermen gerekecek.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">%1$s düzenlendi</string>
+    <string name="ConversationItem_edited_timestamp_footer">%1$s Düzenlendi</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Aramaya katıl</string>
 
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Bağlantı önizlemesi mevcut değil</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Bir Signal Aramasına katılmak için bu bağlantıyı kullan</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s grup araması başlattı · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Bir grup araması başlattın · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s grup görüşmesinde· %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Grup görüşmesindesiniz · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s ve %2$s grup görüşmesinde · %3$s</string>
     <string name="MessageRecord_group_call_s">Grup araması · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s grup araması başlattı</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Bir grup görüşmesi başlattınız</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s grup görüşmesinde</string>
     <string name="MessageRecord_you_are_in_the_group_call">Grup görüşmesindesiniz</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s ve %2$s grup görüşmesinde</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">%1$d deneme hakkınız kaldı. Eğer hakkınız biterse, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Kaydı - Android için PIN ile ilgili Yardıma İhtiyacınız Var mı</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alfanumerik PIN\'i Girin</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Sayısal PIN\'i Girin</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Klavyeyi değiştir</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">PIN\'inizi oluşturun</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s\'in güvenli numarasını görmek için önce ona ileti gönderip almanız gerekiyor.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Bu kişi seninle mesaj alışverişinde bulunduktan sonra, kendisi için bir güvenlik numarası oluşturulacaktır.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">TAMAM</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Daha fazlasını öğren</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">TAMAM</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Arama durumu</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Kritik uygulama uyarıları</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Ek mesaj bildirimleri</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Aramayı yanıtlamak için Signal\'e mikrofon erişim izni verin.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s tarafından gelen aramayı yanıtlamak için, Signal\'in mikrofonunuza erişmesine izin verin.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Görüntülü aramayı yanıtlamak için Signal\'in mikrofonuna ve kamerana erişimine izin ver.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, arama yapmak ve almak için Mikrofon ve Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Bağlı cihazdan yanıtlandı.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Bağlı cihazdan reddedildi.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Kablolu Kulaklık</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Kablolu Kulaklık</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$s ile uçtan uca şifrelemenizin güvenliğini doğrulamak için, yukarıdaki numaraları onların aygıtındakilerle karşılaştırın. Kodu onların telefonunda da tarayabilirsiniz. <a href=\"https://signal.org/redirect/safety-numbers\">Daha fazlasını öğrenin.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s ile uçtan uca şifrelemeyi doğrulamak için yukarıdaki renk kartını cihazlarıyla eşleştir ve sayılarıyla karşılaştır. Bunlar eşleşmezse kaydır ve diğer güvenlik numarası çiftini dene. Yalnızca bir çiftin eşleşmesi gereklidir.</string>
     <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
     <string name="verify_display_fragment__successful_match">Doğru eşleşme</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Güvenlik numarası doğrulanamadı</string>
     <string name="verify_display_fragment__loading">Yükleniyor…</string>
     <string name="verify_display_fragment__mark_as_verified">Doğrulanmış olarak işaretle</string>
     <string name="verify_display_fragment__clear_verification">Doğrulamayı temizle</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Güvenlik numaraları güncelleniyor.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Güvenlik Numaralarındaki Değişiklikler</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Güvenlik numaraları, Signal\'de yakında kullanıma sunulacak olan gizlilik özelliklerini etkinleştirmek için bir geçiş döneminde güncellenmektedir.\n\nGüvenlik numaralarını doğrulamak için renk kartını kişinin cihazıyla eşleştir. Bunlar eşleşmezse kaydır ve diğer güvenlik numarası çiftini dene. Yalnızca bir çiftin eşleşmesi gereklidir.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Yardıma mı ihtiyacınız var?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Anladım</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Güvenlik numarasını paylaş</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">Sohbet ayarları</string>
     <string name="conversation__menu_add_shortcut">Ana ekrana ekle</string>
     <string name="conversation__menu_create_bubble">Balon oluştur</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Metni biçimlendir</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Açılır pencereyi genişlet</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">İleri</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alfanumerik PIN oluştur</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Sayısal PIN oluştur</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Bu hesap için oluşturduğunuz PIN kodunu girin. Bu kod, SMS doğrulama kodunuzdan farklıdır.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Hesabın için oluşturduğun PIN\'i gir.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alfanumerik PIN\'i Girin</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Sayısal PIN\'i Girin</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Klavyeyi değiştir</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN\'inizi mi unuttunuz?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Yanlış PIN</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Gelen Signal sesli araması</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Gelen Signal görüntülü araması</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Gelen Signal grup araması</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Devam eden Signal sesli araması</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Devam eden Signal görüntülü araması</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Devam eden Signal grup araması</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS desteği kaldırılıyor</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal uygulamasındaki SMS mesajları yakında artık %1$s üzerinde desteklenmeyecek.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal uygulamasında SMS mesajları yakında artık desteklenmeyecek.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS mesajları, Signal mesajlarından farklıdır. <b>Bu durum çalışmaya devam edecek olan şifreli Signal mesajlarını etkilemez.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">Tek aralıklı</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Biçimlendirmeyi temizle</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Siliniyor…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Silme başarısız.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Bağlantı silinemiyor. Bağlantını kontrol edip tekrar dene.</item>
+        <item quantity="other">Tüm arama bağlantıları silinemedi. Bağlantını kontrol edip tekrar dene.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Arama geçmişi temizlendi</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Cevapsıza göre filtrelendi</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Hepsini seç</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Sil</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d arama silinsin mi?</item>
         <item quantity="other">%1$d arama silinsin mi?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Benden sil</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d arama silindi</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Düzenleme geçmişi</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Yalnızca Signal beta</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Mesajları düzenleme yalnızca Signal beta kullanıcıları tarafından kullanılabilir. Bir mesajı düzenlersen, düzenlemen yalnızca Signal beta\'nın son sürümünü kullanan kişiler tarafından görülebilir.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">İptal</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Gönder</string>
 
 
     <!-- CallLinkDetailsFragment -->

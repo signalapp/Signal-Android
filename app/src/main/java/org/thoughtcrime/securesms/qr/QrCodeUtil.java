@@ -8,12 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.Stopwatch;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class QrCodeUtil {
 
@@ -22,13 +26,22 @@ public final class QrCodeUtil {
 
   public static final String TAG = Log.tag(QrCodeUtil.class);
 
-  public static @NonNull Bitmap create(@Nullable String data) {
-    return create(data, Color.BLACK, Color.TRANSPARENT);
+  public static @NonNull Bitmap createNoPadding(@Nullable String data) {
+    Map<EncodeHintType, Integer> hints = new HashMap<>();
+    hints.put(EncodeHintType.MARGIN, 0);
+    return create(data, Color.BLACK, Color.TRANSPARENT, hints);
   }
 
   public static @NonNull Bitmap create(@Nullable String data,
                                        @ColorInt int foregroundColor,
-                                       @ColorInt int backgroundColor)
+                                       @ColorInt int backgroundColor) {
+    return create(data, foregroundColor, backgroundColor, null);
+  }
+
+  public static @NonNull Bitmap create(@Nullable String data,
+                                       @ColorInt int foregroundColor,
+                                       @ColorInt int backgroundColor,
+                                       @Nullable Map<EncodeHintType,?> hints)
   {
     if (data == null || data.length() == 0) {
       Log.w(TAG, "No data");
@@ -38,7 +51,7 @@ public final class QrCodeUtil {
     try {
       Stopwatch    stopwatch    = new Stopwatch("QrGen");
       QRCodeWriter qrCodeWriter = new QRCodeWriter();
-      BitMatrix    qrData       = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 512, 512);
+      BitMatrix    qrData       = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 512, 512, hints);
       int          qrWidth      = qrData.getWidth();
       int          qrHeight     = qrData.getHeight();
       int[]        pixels       = new int[qrWidth * qrHeight];

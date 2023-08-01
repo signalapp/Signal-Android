@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdTable;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -171,7 +170,7 @@ public class StorageSyncJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException, UntrustedIdentityException {
-    if (!SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut()) {
+    if (!SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut()) {
       Log.i(TAG, "Doesn't have a PIN. Skipping.");
       return;
     }

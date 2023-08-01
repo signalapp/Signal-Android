@@ -11,11 +11,14 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,31 +53,39 @@ public abstract class MediaConstraints {
    */
   public abstract int[] getImageDimensionTargets(Context context);
 
-  public abstract int getGifMaxSize(Context context);
-  public abstract int getVideoMaxSize(Context context);
+  public abstract long getGifMaxSize(Context context);
+  public abstract long getVideoMaxSize(Context context);
 
   public @IntRange(from = 0, to = 100) int getImageCompressionQualitySetting(@NonNull Context context) {
     return 70;
   }
 
-  public int getUncompressedVideoMaxSize(Context context) {
+  public long getUncompressedVideoMaxSize(Context context) {
     return getVideoMaxSize(context);
   }
 
-  public int getCompressedVideoMaxSize(Context context) {
+  public long getCompressedVideoMaxSize(Context context) {
     return getVideoMaxSize(context);
   }
 
-  public abstract int getAudioMaxSize(Context context);
-  public abstract int getDocumentMaxSize(Context context);
+  public abstract long getAudioMaxSize(Context context);
+  public abstract long getDocumentMaxSize(Context context);
+
+  public long getMaxAttachmentSize() {
+    return AttachmentUploadJob.getMaxPlaintextSize();
+  }
 
   public boolean isSatisfied(@NonNull Context context, @NonNull Attachment attachment) {
     try {
-      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, attachment.getUri())) ||
-             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, attachment.getUri())) ||
-             (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize(context)) ||
-             (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize(context)) ||
-             (MediaUtil.isFile(attachment) && attachment.getSize() <= getDocumentMaxSize(context));
+      long size = attachment.getSize();
+      if (size > getMaxAttachmentSize()) {
+        return false;
+      }
+      return (MediaUtil.isGif(attachment)    && size <= getGifMaxSize(context)   && isWithinBounds(context, attachment.getUri())) ||
+             (MediaUtil.isImage(attachment)  && size <= getImageMaxSize(context) && isWithinBounds(context, attachment.getUri())) ||
+             (MediaUtil.isAudio(attachment)  && size <= getAudioMaxSize(context)) ||
+             (MediaUtil.isVideo(attachment)  && size <= getVideoMaxSize(context)) ||
+             (MediaUtil.isFile(attachment)   && size <= getDocumentMaxSize(context));
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);
       return false;
@@ -83,6 +94,9 @@ public abstract class MediaConstraints {
 
   public boolean isSatisfied(@NonNull Context context, @NonNull Uri uri, @NonNull String contentType, long size) {
     try {
+      if (size > getMaxAttachmentSize()) {
+        return false;
+      }
       return (MediaUtil.isGif(contentType)       && size <= getGifMaxSize(context) && isWithinBounds(context, uri))   ||
              (MediaUtil.isImageType(contentType) && size <= getImageMaxSize(context) && isWithinBounds(context, uri)) ||
              (MediaUtil.isAudioType(contentType) && size <= getAudioMaxSize(context))                                 ||

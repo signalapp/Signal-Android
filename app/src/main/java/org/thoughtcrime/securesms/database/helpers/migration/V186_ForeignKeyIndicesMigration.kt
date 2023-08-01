@@ -19,6 +19,7 @@ import org.signal.core.util.requireNonNullString
  *
  * While I was at it, I looked at other columns that would need indices as well.
  */
+@Suppress("ClassName")
 object V186_ForeignKeyIndicesMigration : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V186_ForeignKeyIndicesMigration::class.java)

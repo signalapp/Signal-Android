@@ -40,6 +40,7 @@ final class StickerPreviewPopup extends PopupWindow {
     emojiText.setText(emoji);
     glideRequests.load(stickerGlideModel)
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .fitCenter()
                  .into(image);
   }
 }

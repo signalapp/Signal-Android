@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.push.ACI
  * Changes needed for edit message. New foreign keys require recreating the table.
  *
  */
+@Suppress("ClassName")
 object V185_MessageRecipientsAndEditMessageMigration : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V185_MessageRecipientsAndEditMessageMigration::class.java)

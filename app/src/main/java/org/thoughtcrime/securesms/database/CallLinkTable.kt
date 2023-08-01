@@ -10,6 +10,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
@@ -226,6 +227,16 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
   }
 
+  fun deleteNonAdminCallLinksOnOrBefore(timestamp: Long) {
+    writableDatabase.withinTransaction { db ->
+      db.delete(TABLE_NAME)
+        .where("EXISTS (SELECT 1 FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.TIMESTAMP} <= ? AND ${CallTable.PEER} = $RECIPIENT_ID)", timestamp)
+        .run()
+
+      SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps(skipSync = true)
+    }
+  }
+
   fun getAdminCallLinks(roomIds: Set<CallLinkRoomId>): Set<CallLink> {
     val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds)
 
@@ -271,6 +282,18 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
           .run()
           .readToList { CallLinkDeserializer.deserialize(it) }
       }.flatten().toSet()
+    }
+  }
+
+  fun getAdminCallLinkCredentialsOnOrBefore(timestamp: Long): Set<CallLinkCredentials> {
+    val query = """
+      SELECT $ROOT_KEY, $ADMIN_KEY FROM $TABLE_NAME
+      INNER JOIN ${CallTable.TABLE_NAME} ON ${CallTable.TABLE_NAME}.${CallTable.PEER} = $TABLE_NAME.$RECIPIENT_ID
+      WHERE ${CallTable.TIMESTAMP} <= $timestamp AND $ADMIN_KEY IS NOT NULL AND $REVOKED = 0
+    """.trimIndent()
+
+    return readableDatabase.query(query).readToSet {
+      CallLinkCredentials(it.requireNonNullBlob(ROOT_KEY), it.requireNonNullBlob(ADMIN_KEY))
     }
   }
 

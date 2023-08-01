@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">संदेशों का पता लगा रहे हैं…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">आपके पास नए मेसेज हो सकते हैं</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ब्लॉक किए गए यूज़र</string>
     <string name="BlockedUsersActivity__add_blocked_user">ब्लॉक किए गए यूज़र से जुड़े</string>
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">कोई लिंक प्रिव्यु उपलब्ध नहीं है</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">यह समूह लिंक सक्रिय नहीं है</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Signal कॉल से जुड़ने के लिए यह लिंक इस्तेमाल करें</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ने एक ग्रुप कॉल शुरू की · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">आपने एक ग्रुप कॉल शुरू की · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ग्रुप कॉल में है · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">आप ग्रुप कॉल में हैं · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s और %2$s ग्रुप कॉल में हैं · %3$s</string>
     <string name="MessageRecord_group_call_s">ग्रुप कॉल · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ने एक ग्रुप कॉल शुरू की</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">आपने एक ग्रुप कॉल शुरू की</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s ग्रुप कॉल में है</string>
     <string name="MessageRecord_you_are_in_the_group_call">आप ग्रुप कॉल मे हैं</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s और %2$s ग्रुप कॉल में हैं</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">आपके पास %1$d मौके बचे हैं। अगर आपके मौके खत्म हो गए तो आप नया पिन बना सकते हैं। आप रजिस्टर करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal रजिस्ट्रेशन - Android के लिए पिन को लेकर मदद चाहिए</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">अल्फ़ान्यूमेरिक पिन दर्ज करें</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">संख्यात्मक पिन दर्ज करें</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">कीबोर्ड बदलें</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">अपना पिन बनाएँ</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">एक क्यूआर कोड स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कैमरा अनुमति के बिना क्यूआर कोड स्कैन करने में असमर्थ</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s का सुरक्षा नंबर देखने के लिए आपको पहले मेसेजेस का आदान-प्रदान करना होगा।</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">आपके साथ संदेशों का आदान-प्रदान करने के बाद इस व्यक्ति के साथ एक सुरक्षा संख्या बनाई जाएगी।</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ठीक</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">अधिक जानें</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">ठीक</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">कॉल स्टेटस</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">महत्त्वपूर्ण ऐप अलर्ट</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">अतिरिक्त संदेश नोटिफ़िकेशन</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉल का जवाब देने के लिए Signal को अपने माइक्रोफ़ोन का ऐक्सेस दें।</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s से कॉल का जवाब देने के लिए, Signal को अपने माइक्रोफ़ोन तक पहुंचने दें।</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">वीडियो कॉल का उत्तर देने के लिए, Signal को अपने माइक्रोफ़ोन और कैमरे तक पहुंच प्रदान करें।</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">कॉल करने या प्राप्त करने के लिए Signal को माइक्रोफ़ोन और कैमरा अनुमतियों की आवश्यकता होती है, लेकिन उन्हें स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" और \"कैमरा\" सक्षम करें।</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">एक लिंक किए हुए डिवाइस पर जवाब दिया गया।</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">एक लिंक किए हुए डिवाइस पर रद्द किया गया।</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ब्लूटुथ</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">वायर्ड हेडफ़ोन</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">वायर्ड हेडसेट</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s के साथ अपने एंड-टू-एंड एन्क्रिप्शन की सुरक्षा को जांचने के लिए, ऊपर दिए गए नंबरों की तुलना उनके डिवाइस से करें. आप उनके फ़ोन पर कोड को स्कैन भी कर सकते हैं. <a href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जानें.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s के साथ एंड-टू-एंड एन्क्रिप्शन सत्यापित करने के लिए, ऊपर दिए गए कलर कार्ड का उनकी डिवाइस से मिलान करें और नंबरोंकी तुलना करें। यदि ये मेल नहीं खाते, तो स्वाइप करें और सुरक्षा संख्या की दूसरी जोड़ी आज़माएं। केवल एक जोड़ी का मिलान ज़रूरी है।</string>
     <string name="verify_display_fragment__tap_to_scan">स्कैन करने के लिए टैप करें</string>
     <string name="verify_display_fragment__successful_match">सफ़ल मैच</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">सुरक्षा नंबर जांचने में असफ़ल</string>
     <string name="verify_display_fragment__loading">लोड हो रहा है</string>
     <string name="verify_display_fragment__mark_as_verified">साटिपिट होने का मार्क कीजीये</string>
     <string name="verify_display_fragment__clear_verification">जांच क्लियर करें</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">सुरक्षा संख्या को अपडेट किया जा रहा है।</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">सुरक्षा नंबरों में बदलाव</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Signal में आगामी गोपनीयता फीचर्स को सक्षम करने के लिए ट्रांजीशन अवधि में सुरक्षा संख्या अपडेट किए जा रहे हैं।\n\nसुरक्षा संख्या सत्यापित करने के लिए, कलर कार्ड का अपने संपर्क की डिवाइस से मिलान करें। यदि ये मेल नहीं खाते, तो स्वाइप करें और सुरक्षा नंबरों की दूसरी जोड़ी आज़माएं। केवल एक जोड़ी का मिलान ज़रूरी है।</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">मदद चाहिए?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">समझ गया</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">सुरक्षा संख्या साझा करें</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">चैट सेटिंग्स</string>
     <string name="conversation__menu_add_shortcut">होम स्क्रीन में शामिल करें</string>
     <string name="conversation__menu_create_bubble">बबल बनाएँ</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">फॉर्मेट टेक्स्ट</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">पॉपअप का विस्तार करें</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">अगला</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">अल्फ़ान्यूमेरिक पिन बनाएं</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक पिन बनाएं</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">अपने ख़ाते के लिये बनाया गया पिन डालें। ये पिन आपके SMS सत्यापण कोड से अलग है।</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">आपके द्वारा अपने अकाउंट के लिए बनाया गया पिन दर्ज करें।</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">अल्फ़ान्यूमेरिक पिन दर्ज करें</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">संख्यात्मक पिन दर्ज करें</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">कीबोर्ड बदलें</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">गलत पिन। पुनः प्रयास करें।</string>
     <string name="RegistrationLockFragment__forgot_pin">पिन भूल गए?</string>
     <string name="RegistrationLockFragment__incorrect_pin">ग़लत पिन</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">आने वाली Signal वॉयस कॉल</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">आने वाली Signal वीडियो कॉल</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">इनकमिंग सिग्नल ग्रूप कॉल</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">जारी Signal वॉइस कॉल</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">जारी Signal वीडियो कॉल</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">जारी Signal ग्रुप कॉल</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">परिवहन चिह्न</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS सपोर्ट बंद हो रहा है</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal ऐप में SMS मैसेजिंग जल्द ही %1$s में सपोर्ट नहीं रहेगी।</string>
+    <string name="SmsRemoval_info_bullet_1">Signal ऐप में SMS मैसेजिंग जल्द ही सपोर्ट नहीं रहेगी।</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS संदेश, Signal संदेशों से अलग होते हैं। <b>इससे एन्क्रिप्टेड Signal मैसेजिंग पर असर नहीं पड़ता जो कि आगे भी काम करती रहेगी।</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">मोनोस्पेस</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">स्पॉइलर</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">फॉर्मेटिंग साफ करें</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">डिलीट किया जा रहा है…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">डिलीट करना विफल रहा।</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">लिंक मिटाया नहीं जा सकता। अपना कनेक्शन जांचें और पुनः प्रयास करें।</item>
+        <item quantity="other">लिंक मिटाया नहीं जा सकता। अपना कनेक्शन जांचें और पुनः प्रयास करें।</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">कॉल इतिहास साफ किया गया</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">मिस्ड द्वारा फ़िल्टर किया गया</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">सभी को चुन लो</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">डिलीट करें</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d कॉल हटाएं?</item>
         <item quantity="other">%1$d कॉल हटाएं?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">मेरे लिये डिलीट करें</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d कॉल डिलीट की गई</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">संपादित इतिहास</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">केवल Signal बीटा</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">संदेशों का संपादन केवल Signal बीटा उपयोगकर्ताओं के लिए उपलब्ध है। यदि आप किसी संदेश को संपादित करते हैं, तो वह केवल उन लोगों को दिखाई देगा जो Signal बीटा के नवीनतम संस्करण पर हैं।</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">रद्द करें</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">भेजें</string>
 
 
     <!-- CallLinkDetailsFragment -->

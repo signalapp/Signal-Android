@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -45,6 +46,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
   companion object {
+    private val TAG = Log.tag(InsetAwareConstraintLayout::class.java)
     private val keyboardType = WindowInsetsCompat.Type.ime()
     private val windowTypes = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
   }
@@ -55,9 +57,14 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private val parentEndGuideline: Guideline? by lazy { findViewById(R.id.parent_end_guideline) }
   private val keyboardGuideline: Guideline? by lazy { findViewById(R.id.keyboard_guideline) }
 
+  private val listeners: MutableList<KeyboardStateListener> = mutableListOf()
   private val keyboardAnimator = KeyboardInsetAnimator()
   private val displayMetrics = DisplayMetrics()
   private var overridingKeyboard: Boolean = false
+  private var previousKeyboardHeight: Int = 0
+
+  val isKeyboardShowing: Boolean
+    get() = previousKeyboardHeight > 0
 
   init {
     ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsetsCompat ->
@@ -72,6 +79,14 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
         }
       }
     }
+  }
+
+  fun addKeyboardStateListener(listener: KeyboardStateListener) {
+    listeners += listener
+  }
+
+  fun removeKeyboardStateListener(listener: KeyboardStateListener) {
+    listeners.remove(listener)
   }
 
   private fun applyInsets(windowInsets: Insets, keyboardInsets: Insets) {
@@ -96,6 +111,18 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
         keyboardAnimator.endingGuidelineEnd = windowInsets.bottom
       }
     }
+
+    if (previousKeyboardHeight != keyboardInsets.bottom) {
+      listeners.forEach {
+        if (previousKeyboardHeight <= 0) {
+          it.onKeyboardShown()
+        } else {
+          it.onKeyboardHidden()
+        }
+      }
+    }
+
+    previousKeyboardHeight = keyboardInsets.bottom
   }
 
   protected fun overrideKeyboardGuidelineWithPreviousHeight() {
@@ -119,10 +146,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       SignalStore.misc().keyboardPortraitHeight
     }
 
-    return if (height <= 0) {
-      resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
-    } else {
+    val minHeight = resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
+    return if (height > minHeight) {
       height
+    } else {
+      Log.w(TAG, "Saved keyboard height ($height) is too low, using default size ($minHeight)")
+      minHeight
     }
   }
 
@@ -156,6 +185,11 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private val Guideline?.guidelineEnd: Int
     get() = if (this == null) 0 else (layoutParams as LayoutParams).guideEnd
+
+  interface KeyboardStateListener {
+    fun onKeyboardShown()
+    fun onKeyboardHidden()
+  }
 
   /**
    * Adjusts the [keyboardGuideline] to move with the IME keyboard opening or closing.

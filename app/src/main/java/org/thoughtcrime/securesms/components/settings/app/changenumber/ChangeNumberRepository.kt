@@ -22,18 +22,18 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.pin.KbsRepository
-import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
-import org.thoughtcrime.securesms.pin.TokenData
+import org.thoughtcrime.securesms.pin.SvrRepository
+import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.VerifyResponse
+import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.whispersystems.signalservice.api.KbsPinData
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
+import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.account.PreKeyUpload
+import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIdType
@@ -141,7 +141,13 @@ class ChangeNumberRepository(
         }
       }
 
-      VerifyResponse.from(changeNumberResponse, null, null)
+      VerifyResponse.from(
+        response = changeNumberResponse,
+        masterKey = null,
+        pin = null,
+        aciPreKeyCollection = null,
+        pniPreKeyCollection = null
+      )
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -150,18 +156,18 @@ class ChangeNumberRepository(
     sessionId: String,
     newE164: String,
     pin: String,
-    tokenData: TokenData
+    svrAuthCredentials: SvrAuthCredentialSet
   ): Single<ServiceResponse<VerifyResponse>> {
     return Single.fromCallable {
-      val kbsData: KbsPinData
+      val masterKey: MasterKey
       val registrationLock: String
 
       try {
-        kbsData = KbsRepository.restoreMasterKey(pin, tokenData.enclave, tokenData.basicAuth, tokenData.tokenResponse)!!
-        registrationLock = kbsData.masterKey.deriveRegistrationLock()
-      } catch (e: KeyBackupSystemWrongPinException) {
+        masterKey = SvrRepository.restoreMasterKeyPreRegistration(svrAuthCredentials, pin)
+        registrationLock = masterKey.deriveRegistrationLock()
+      } catch (e: SvrWrongPinException) {
         return@fromCallable ServiceResponse.forExecutionError(e)
-      } catch (e: KeyBackupSystemNoDataException) {
+      } catch (e: SvrNoDataException) {
         return@fromCallable ServiceResponse.forExecutionError(e)
       } catch (e: IOException) {
         return@fromCallable ServiceResponse.forExecutionError(e)
@@ -191,7 +197,13 @@ class ChangeNumberRepository(
         }
       }
 
-      VerifyResponse.from(changeNumberResponse, kbsData, pin)
+      VerifyResponse.from(
+        response = changeNumberResponse,
+        masterKey = masterKey,
+        pin = pin,
+        aciPreKeyCollection = null,
+        pniPreKeyCollection = null
+      )
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -264,6 +276,7 @@ class ChangeNumberRepository(
 
       pniProtocolStore.identities().saveIdentityWithoutSideEffects(
         Recipient.self().id,
+        pni,
         pniProtocolStore.identityKeyPair.publicKey,
         IdentityTable.VerifiedStatus.VERIFIED,
         true,
@@ -341,7 +354,7 @@ class ChangeNumberRepository(
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
           PreKeyUtil.generateAndStoreLastResortKyberPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
         } else {
-          PreKeyUtil.generateKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
+          PreKeyUtil.generateLastRestortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
         devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
 

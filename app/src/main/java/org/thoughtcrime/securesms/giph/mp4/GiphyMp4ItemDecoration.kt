@@ -12,8 +12,8 @@ import kotlin.math.min
  * Decoration that will make the video display params update on each recycler redraw.
  */
 class GiphyMp4ItemDecoration(
-  val callback: GiphyMp4PlaybackController.Callback,
-  val onRecyclerVerticalTranslationSet: (Float) -> Unit
+  private val callback: GiphyMp4PlaybackController.Callback,
+  private val onRecyclerVerticalTranslationSet: ((Float) -> Unit)? = null
 ) : RecyclerView.ItemDecoration() {
   override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
     setParentRecyclerTranslationY(parent)
@@ -26,7 +26,7 @@ class GiphyMp4ItemDecoration(
   private fun setParentRecyclerTranslationY(parent: RecyclerView) {
     if (parent.childCount == 0 || parent.canScrollVertically(-1) || parent.canScrollVertically(1)) {
       parent.translationY = 0f
-      onRecyclerVerticalTranslationSet(parent.translationY)
+      onRecyclerVerticalTranslationSet?.invoke(parent.translationY)
     } else {
       val threadHeaderViewHolder = parent.children
         .map { parent.getChildViewHolder(it) }
@@ -35,7 +35,7 @@ class GiphyMp4ItemDecoration(
 
       if (threadHeaderViewHolder == null) {
         parent.translationY = 0f
-        onRecyclerVerticalTranslationSet(parent.translationY)
+        onRecyclerVerticalTranslationSet?.invoke(parent.translationY)
         return
       }
 
@@ -51,7 +51,7 @@ class GiphyMp4ItemDecoration(
 
       val childTop: Int = threadHeaderViewHolder.itemView.top - toolbarMargin
       parent.translationY = min(0, -childTop).toFloat()
-      onRecyclerVerticalTranslationSet(parent.translationY)
+      onRecyclerVerticalTranslationSet?.invoke(parent.translationY)
     }
   }
 }

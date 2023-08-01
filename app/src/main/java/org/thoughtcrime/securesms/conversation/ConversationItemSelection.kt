@@ -10,54 +10,57 @@ import androidx.core.graphics.withTranslation
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.DimensionUnit
+import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
 import org.thoughtcrime.securesms.util.hasNoBubble
 
 object ConversationItemSelection {
 
   @JvmStatic
   fun snapshotView(
-    conversationItem: ConversationItem,
+    target: InteractiveConversationElement,
     list: RecyclerView,
     messageRecord: MessageRecord,
     videoBitmap: Bitmap?
   ): Bitmap {
     val isOutgoing = messageRecord.isOutgoing
-    val hasNoBubble = messageRecord.hasNoBubble(conversationItem.context)
+    val hasNoBubble = messageRecord.hasNoBubble(list.context)
 
     return snapshotMessage(
-      conversationItem = conversationItem,
+      target = target,
       list = list,
       videoBitmap = videoBitmap,
-      drawConversationItem = !isOutgoing || hasNoBubble,
+      drawConversationItem = (!isOutgoing || hasNoBubble),
       hasReaction = messageRecord.reactions.isNotEmpty()
     )
   }
 
   private fun snapshotMessage(
-    conversationItem: ConversationItem,
+    target: InteractiveConversationElement,
     list: RecyclerView,
     videoBitmap: Bitmap?,
     drawConversationItem: Boolean,
     hasReaction: Boolean
   ): Bitmap {
-    val bodyBubble = conversationItem.bodyBubble
-    val reactionsView = conversationItem.reactionsView
+    val bodyBubble = target.bubbleView
+    val reactionsView = target.reactionsView
 
     val originalScale = bodyBubble.scaleX
     bodyBubble.scaleX = 1.0f
     bodyBubble.scaleY = 1.0f
 
-    val projections = conversationItem.getSnapshotProjections(list, false)
+    val projections = target.getSnapshotProjections(list, false)
 
     val path = Path()
 
-    val xTranslation = -conversationItem.x - bodyBubble.x
-    val yTranslation = -conversationItem.y - bodyBubble.y
+    val xTranslation = -target.root.x - bodyBubble.x
+    val yTranslation = -target.root.y - bodyBubble.y
 
-    val mp4Projection = conversationItem.getGiphyMp4PlayableProjection(list)
-    var scaledVideoBitmap = videoBitmap
-    if (videoBitmap != null) {
+    val mp4Projection = (target as? GiphyMp4Playable)?.getGiphyMp4PlayableProjection(list)
+
+    var scaledVideoBitmap: Bitmap? = null
+    if (videoBitmap != null && mp4Projection != null) {
       scaledVideoBitmap = Bitmap.createScaledBitmap(
         videoBitmap,
         (videoBitmap.width / originalScale).toInt(),
@@ -78,7 +81,7 @@ object ConversationItemSelection {
       }
     }
 
-    conversationItem.destroyAllDrawingCaches()
+    target.root.destroyAllDrawingCaches()
 
     var bitmapHeight = bodyBubble.height
     if (hasReaction) {
@@ -93,7 +96,7 @@ object ConversationItemSelection {
         withTranslation(x = xTranslation, y = yTranslation) {
           list.draw(this)
 
-          if (scaledVideoBitmap != null) {
+          if (scaledVideoBitmap != null && mp4Projection != null) {
             drawBitmap(scaledVideoBitmap, mp4Projection.x - xTranslation, mp4Projection.y - yTranslation, null)
           }
         }
@@ -106,7 +109,7 @@ object ConversationItemSelection {
         reactionsView.draw(this)
       }
     }.also {
-      mp4Projection.release()
+      mp4Projection?.release()
       bodyBubble.scaleX = originalScale
       bodyBubble.scaleY = originalScale
     }

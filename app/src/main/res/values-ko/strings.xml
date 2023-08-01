@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">새로운 메시지를 확인 중입니다…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">새 메시지가 있을 수 있음</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">차단한 사용자</string>
     <string name="BlockedUsersActivity__add_blocked_user">차단한 사용자 추가</string>
@@ -855,6 +859,8 @@
     <string name="LinkPreviewView_no_link_preview_available">사용 가능한 링크 미리 보기가 없습니다.</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
     <string name="LinkPreviewView_domain_date">%1$s, %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">이 링크를 사용하여 Signal 통화에 참여하세요.</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1430,14 +1436,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">내가 그룹 통화를 시작함 · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 님이 그룹 통화 중입니다(%2$s).</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">그룹 통화 중입니다(%1$s).</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s 및 %2$s 님이 그룹 통화 중입니다(%3$s).</string>
     <string name="MessageRecord_group_call_s">그룹 통화: %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s 님이 그룹 통화를 시작했습니다.</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">그룹 통화를 시작함</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s 님이 그룹 통화 중입니다.</string>
     <string name="MessageRecord_you_are_in_the_group_call">그룹 통화 중입니다.</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s 및 %2$s 님이 그룹 통화 중입니다.</string>
@@ -1567,8 +1573,8 @@
         <item quantity="other">%1$d번의 시도가 남아 있습니다. 시도가 부족하면 새 PIN을 만들 수 있습니다. 계정을 등록하고 사용할 수 있지만 프로필 정보와 같은 일부 저장된 설정이 손실됩니다.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 등록 - Android용 PIN에 대한 도움이 필요합니다.</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">영숫자 번호 입력</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">숫자 번호 입력</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">키보드 전환</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">번호 생성</string>
@@ -2067,6 +2073,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR 코드를 읽으려면 카메라 권한이 필요함</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s의 안전 번호를 보려면 먼저 메시지를 교환해야 합니다.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">메시지를 주고받은 후 이 사용자와 안전 번호가 생성됩니다.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">확인</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">자세히 알아보기</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">확인</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2186,6 +2200,8 @@
     <string name="NotificationChannel_call_status">통화 상태</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">중요 앱 알림</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">추가 메시지 알림</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2243,7 +2259,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">통화를 수락하려면 Signal에서 마이크를 사용하도록 허용하세요.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Signal에서 %1$s의 전화를 받으려면 마이크 권한이 필요합니다.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">영상 통화를 수락하려면 Signal에서 마이크와 카메라를 사용하도록 허용하세요.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal에서 전화 기능을 사용하려면 마이크와 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">연결된 기기에서 응답했습니다.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">연결된 기기에서 거부했습니다.</string>
@@ -2272,7 +2289,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">블루투스</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">유선 헤드폰</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">유선 헤드셋</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2615,12 +2632,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$s 님과의 종단간 암호화의 보안을 검증하기 위해, 상대의 기기와의 코드를 비교하세요. 또는 상대의 폰의 코드를 스캔 할 수 있습니다. <a href=\"https://signal.org/redirect/safety-numbers\">더 알아보기</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s님과의 종단간 암호화를 검증하려면 위 컬러 카드에 기기를 매칭하여 번호를 비교하세요. 일치하지 않으면 스와이프하여 다른 안전 번호 쌍을 시도해 보세요. 한 쌍만 일치하면 됩니다.</string>
     <string name="verify_display_fragment__tap_to_scan">탭하여 스캔</string>
     <string name="verify_display_fragment__successful_match">일치 확인</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">안전 번호 확인에 실패함</string>
     <string name="verify_display_fragment__loading">로드 중…</string>
     <string name="verify_display_fragment__mark_as_verified">검증으로 표시</string>
     <string name="verify_display_fragment__clear_verification">인증 초기화하기</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">안전 번호가 업데이트됩니다.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">안전 번호 변경</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">전환 기간에 안전 번호가 업데이트 되어 앞으로 Signal에서 예정된 개인정보 보호 기능이 활성화됩니다.\n\n안전 번호를 검증하려면 컬러 카드와 상대의 기기를 매칭하세요. 일치하지 않으면 스와이프하여 다른 안전 번호 쌍을 시도해 보세요. 한 쌍만 일치하면 됩니다.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">도움이 필요하신가요?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">확인</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">안전 번호 공유</string>
@@ -3259,6 +3289,8 @@
     <string name="conversation__menu_conversation_settings">대화 설정</string>
     <string name="conversation__menu_add_shortcut">홈 화면에 추가</string>
     <string name="conversation__menu_create_bubble">거품 만들기</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">텍스트 서식 지정</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">팝업 확장</string>
@@ -3356,7 +3388,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">다음</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">영숫자 번호 생성</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">숫자 번호 생성</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3416,8 +3450,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">계정용으로 생성한 번호를 입력하세요. SMS 인증 코드와는 다릅니다.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">계정에 대해 만든 PIN을 입력하세요.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">영숫자 번호 입력</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">숫자 번호 입력</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">키보드 전환</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
     <string name="RegistrationLockFragment__forgot_pin">번호를 잊으셨나요?</string>
     <string name="RegistrationLockFragment__incorrect_pin">잘못된 번호</string>
@@ -3455,17 +3489,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Signal 음성 통화 수신 중</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Signal 영상 통화 수신 중</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Signal 단체 통화 수신</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Signal 음성 통화 진행 중</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Signal 영상 통화 진행 중</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Signal 그룹 통화 진행 중</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">아이콘 전송</string>
@@ -5762,7 +5796,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS 지원이 곧 중단됩니다.</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal 앱의 SMS 메시지에 대한 지원이 %1$s에 중단됩니다.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal 앱의 SMS 메시지에 대한 지원이 곧 중단됩니다.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS 메시지는 Signal 메시지와 다릅니다. <b>이 결정은 암호화된 Signal 메시지에는 영향을 미치지 않으며, 이 기능은 계속해서 작동합니다.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5793,6 +5827,8 @@
     <string name="TextFormatting_monospace">고정 폭</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">스포일러</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">텍스트 서식 지우기</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5860,12 +5896,12 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">삭제하는 중…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">삭제에 실패했습니다.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">모든 통화 링크를 삭제하지 못했습니다. 연결을 확인하고 다시 시도하세요.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">통화 기록을 지웠습니다.</string>
@@ -5889,13 +5925,11 @@
     <string name="CallLogFragment__filtered_by_missed">부재중 전화로 필터링함</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">모두 선택</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">삭제</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="other">통화 %1$d개를 삭제할까요?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">나에게서 삭제</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">%1$d 통화를 삭제함</item>
@@ -5987,13 +6021,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">수정 기록</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal 베타 전용</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">메시지 수정은 Signal 베타 사용자만 사용할 수 있습니다. 메시지를 수정하면 Signal 베타 최신 버전을 사용하는 사용자에게만 표시됩니다.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">취소</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">전송</string>
 
 
     <!-- CallLinkDetailsFragment -->

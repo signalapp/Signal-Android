@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrationActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.pin.PinRestoreActivity;
@@ -189,11 +189,11 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean userMustCreateSignalPin() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().lastPinCreateFailed() && !SignalStore.kbsValues().hasOptedOut();
+    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().lastPinCreateFailed() && !SignalStore.svr().hasOptedOut();
   }
 
   private boolean userHasSkippedOrForgottenPin() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut() && SignalStore.kbsValues().isPinForgottenOrSkipped();
+    return !SignalStore.registrationValues().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut() && SignalStore.svr().isPinForgottenOrSkipped();
   }
 
   private boolean userMustSetProfileName() {
@@ -234,7 +234,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       intent = getIntent();
     }
 
-    return getRoutedIntent(CreateKbsPinActivity.class, intent);
+    return getRoutedIntent(CreateSvrPinActivity.class, intent);
   }
 
   private Intent getCreateProfileNameIntent() {

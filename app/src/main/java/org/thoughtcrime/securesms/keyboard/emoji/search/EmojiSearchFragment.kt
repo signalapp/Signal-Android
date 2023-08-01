@@ -84,6 +84,7 @@ class EmojiSearchFragment : Fragment(), EmojiPageViewGridAdapter.VariationSelect
   private inner class SearchCallbacks : KeyboardPageSearchView.Callbacks {
     override fun onNavigationClicked() {
       ViewUtil.hideKeyboard(requireContext(), requireView())
+      callback.closeEmojiSearch()
     }
 
     override fun onQueryChanged(query: String) {

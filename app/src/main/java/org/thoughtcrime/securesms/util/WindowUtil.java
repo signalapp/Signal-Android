@@ -82,6 +82,10 @@ public final class WindowUtil {
     window.setStatusBarColor(color);
   }
 
+  public static int getStatusBarColor(@NonNull Window window) {
+    return window.getStatusBarColor();
+  }
+
   /**
    * A sort of roundabout way of determining if the status bar is present by seeing if there's a
    * vertical window offset.

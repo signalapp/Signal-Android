@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.core.util.Stopwatch
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResult
@@ -12,7 +11,6 @@ import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputRes
 import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -24,8 +22,6 @@ import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhauste
 import org.whispersystems.signalservice.api.services.CdsiV2Service
 import java.io.IOException
 import java.util.Optional
-import java.util.concurrent.Callable
-import java.util.concurrent.Future
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.seconds
 
@@ -49,7 +45,7 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refreshAll(context: Context, useCompat: Boolean, ignoreResults: Boolean): ContactDiscovery.RefreshResult {
+  fun refreshAll(context: Context, useCompat: Boolean, timeoutMs: Long? = null): ContactDiscovery.RefreshResult {
     val recipientE164s: Set<String> = SignalDatabase.recipients.getAllE164s().sanitize()
     val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s(context).sanitize()
 
@@ -59,7 +55,7 @@ object ContactDiscoveryRefreshV2 {
       inputPreviousE164s = SignalDatabase.cds.getAllE164s(),
       isPartialRefresh = false,
       useCompat = useCompat,
-      ignoreResults = ignoreResults
+      timeoutMs = timeoutMs
     )
   }
 
@@ -67,14 +63,14 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refresh(context: Context, inputRecipients: List<Recipient>, useCompat: Boolean, ignoreResults: Boolean): ContactDiscovery.RefreshResult {
+  fun refresh(context: Context, inputRecipients: List<Recipient>, useCompat: Boolean, timeoutMs: Long? = null): ContactDiscovery.RefreshResult {
     val recipients: List<Recipient> = inputRecipients.map { it.resolve() }
     val inputE164s: Set<String> = recipients.mapNotNull { it.e164.orElse(null) }.toSet().sanitize()
 
     return if (inputE164s.size > MAXIMUM_ONE_OFF_REQUEST_SIZE) {
       Log.i(TAG, "List of specific recipients to refresh is too large! (Size: ${recipients.size}). Doing a full refresh instead.")
 
-      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, useCompat = useCompat, ignoreResults = ignoreResults)
+      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, useCompat = useCompat, timeoutMs = timeoutMs)
       val inputIds: Set<RecipientId> = recipients.map { it.id }.toSet()
 
       ContactDiscovery.RefreshResult(
@@ -88,7 +84,7 @@ object ContactDiscoveryRefreshV2 {
         inputPreviousE164s = emptySet(),
         isPartialRefresh = true,
         useCompat = useCompat,
-        ignoreResults = ignoreResults
+        timeoutMs = timeoutMs
       )
     }
   }
@@ -100,7 +96,7 @@ object ContactDiscoveryRefreshV2 {
     inputPreviousE164s: Set<String>,
     isPartialRefresh: Boolean,
     useCompat: Boolean,
-    ignoreResults: Boolean
+    timeoutMs: Long? = null
   ): ContactDiscovery.RefreshResult {
     val tag = "refreshInternal-${if (useCompat) "compat" else "v2"}"
     val stopwatch = Stopwatch(tag)
@@ -134,7 +130,8 @@ object ContactDiscoveryRefreshV2 {
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         useCompat,
         Optional.ofNullable(token),
-        BuildConfig.CDSI_MRENCLAVE
+        BuildConfig.CDSI_MRENCLAVE,
+        timeoutMs
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {
@@ -169,54 +166,54 @@ object ContactDiscoveryRefreshV2 {
     val registeredIds: MutableSet<RecipientId> = mutableSetOf()
     val rewrites: MutableMap<String, String> = mutableMapOf()
 
-    if (ignoreResults) {
-      Log.w(TAG, "[$tag] Ignoring CDSv2 results.")
+    if (useCompat && response.isCompatResponse()) {
+      val transformed: Map<String, ACI?> = response.results.mapValues { entry -> entry.value.aci.orElse(null) }
+      val fuzzyOutput: OutputResult<ACI> = FuzzyPhoneNumberHelper.generateOutput(transformed, fuzzyInput)
+
+      if (transformed.values.any { it == null }) {
+        throw IOException("Unexpected null ACI!")
+      }
+
+      SignalDatabase.recipients.rewritePhoneNumbers(fuzzyOutput.rewrites)
+      stopwatch.split("rewrite-e164")
+
+      val aciMap: Map<RecipientId, ACI?> = SignalDatabase.recipients.bulkProcessCdsResult(fuzzyOutput.numbers)
+
+      registeredIds += aciMap.keys
+      rewrites += fuzzyOutput.rewrites
+      stopwatch.split("process-result")
+
+      val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
+      stopwatch.split("get-ids")
+
+      val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removePossiblyRegisteredButUnlisted()
+      stopwatch.split("registered-but-unlisted")
+
+      SignalDatabase.recipients.bulkUpdatedRegisteredStatus(aciMap, inactiveIds)
+      stopwatch.split("update-registered")
     } else {
       if (useCompat) {
-        val transformed: Map<String, ACI?> = response.results.mapValues { entry -> entry.value.aci.orElse(null) }
-        val fuzzyOutput: OutputResult<ACI> = FuzzyPhoneNumberHelper.generateOutput(transformed, fuzzyInput)
-
-        if (transformed.values.any { it == null }) {
-          throw IOException("Unexpected null ACI!")
-        }
-
-        SignalDatabase.recipients.rewritePhoneNumbers(fuzzyOutput.rewrites)
-        stopwatch.split("rewrite-e164")
-
-        val aciMap: Map<RecipientId, ACI?> = SignalDatabase.recipients.bulkProcessCdsResult(fuzzyOutput.numbers)
-
-        registeredIds += aciMap.keys
-        rewrites += fuzzyOutput.rewrites
-        stopwatch.split("process-result")
-
-        val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
-        stopwatch.split("get-ids")
-
-        val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
-        stopwatch.split("registered-but-unlisted")
-
-        SignalDatabase.recipients.bulkUpdatedRegisteredStatus(aciMap, inactiveIds)
-        stopwatch.split("update-registered")
-      } else {
-        val transformed: Map<String, CdsV2Result> = response.results.mapValues { entry -> CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
-        val fuzzyOutput: OutputResult<CdsV2Result> = FuzzyPhoneNumberHelper.generateOutput(transformed, fuzzyInput)
-
-        SignalDatabase.recipients.rewritePhoneNumbers(fuzzyOutput.rewrites)
-        stopwatch.split("rewrite-e164")
-
-        registeredIds += SignalDatabase.recipients.bulkProcessCdsV2Result(fuzzyOutput.numbers)
-        rewrites += fuzzyOutput.rewrites
-        stopwatch.split("process-result")
-
-        val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
-        stopwatch.split("get-ids")
-
-        val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
-        stopwatch.split("registered-but-unlisted")
-
-        SignalDatabase.recipients.bulkUpdatedRegisteredStatusV2(registeredIds, inactiveIds)
-        stopwatch.split("update-registered")
+        Log.w(TAG, "Was told to useCompat, but the server responded with a non-compat response! Assuming the server has shut off compat mode.")
       }
+
+      val transformed: Map<String, CdsV2Result> = response.results.mapValues { entry -> CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
+      val fuzzyOutput: OutputResult<CdsV2Result> = FuzzyPhoneNumberHelper.generateOutput(transformed, fuzzyInput)
+
+      SignalDatabase.recipients.rewritePhoneNumbers(fuzzyOutput.rewrites)
+      stopwatch.split("rewrite-e164")
+
+      registeredIds += SignalDatabase.recipients.bulkProcessCdsV2Result(fuzzyOutput.numbers)
+      rewrites += fuzzyOutput.rewrites
+      stopwatch.split("process-result")
+
+      val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
+      stopwatch.split("get-ids")
+
+      val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removePossiblyRegisteredButUnlisted()
+      stopwatch.split("registered-but-unlisted")
+
+      SignalDatabase.recipients.bulkUpdatedRegisteredStatusV2(registeredIds, inactiveIds)
+      stopwatch.split("update-registered")
     }
 
     stopwatch.stop(TAG)
@@ -229,42 +226,19 @@ object ContactDiscoveryRefreshV2 {
     return SignalDatabase.threads.hasThread(recipient.id) || (recipient.hasServiceId() && SignalDatabase.sessions.hasSessionFor(localAci, recipient.requireServiceId().toString()))
   }
 
+  /**
+   * If an account is unlisted, it won't come back in the CDS response. So just because we're missing a entry doesn't mean they've become unregistered.
+   * This function removes people from the list that both have a serviceId and some history of communication. We consider this a good hueristic for
+   * "maybe this person just removed themselves from CDS". We'll rely on profile fetches that occur during chat opens to check registered status and clear
+   * actually-unregistered users out.
+   */
   @WorkerThread
-  private fun Set<RecipientId>.removeRegisteredButUnlisted(): Set<RecipientId> {
-    val futures: List<Future<Pair<RecipientId, Boolean?>>> = Recipient.resolvedList(this)
+  private fun Set<RecipientId>.removePossiblyRegisteredButUnlisted(): Set<RecipientId> {
+    return this - Recipient.resolvedList(this)
       .filter { it.hasServiceId() }
       .filter { hasCommunicatedWith(it) }
-      .map {
-        SignalExecutors.UNBOUNDED.submit(
-          Callable {
-            try {
-              it.id to ApplicationDependencies.getSignalServiceAccountManager().isIdentifierRegistered(it.requireServiceId())
-            } catch (e: IOException) {
-              it.id to null
-            }
-          }
-        )
-      }
-
-    val registeredIds: MutableSet<RecipientId> = mutableSetOf()
-    val retryIds: MutableSet<RecipientId> = mutableSetOf()
-
-    for (future in futures) {
-      val (id, registered) = future.get()
-      if (registered == null) {
-        retryIds += id
-        registeredIds += id
-      } else if (registered) {
-        registeredIds += id
-      }
-    }
-
-    if (retryIds.isNotEmpty()) {
-      Log.w(TAG, "Failed to determine registered status of ${retryIds.size} recipients. Assuming registered, but enqueuing profile jobs to check later.")
-      RetrieveProfileJob.enqueue(retryIds)
-    }
-
-    return this - registeredIds
+      .map { it.id }
+      .toSet()
   }
 
   private fun Set<String>.toE164s(context: Context): Set<String> {
@@ -286,5 +260,14 @@ object ContactDiscoveryRefreshV2 {
   private fun Int.roundedString(): String {
     val nearestThousand = (this.toDouble() / 1000).roundToInt()
     return "~${nearestThousand}k"
+  }
+
+  /**
+   * Responses that respect useCompat will have an ACI for every user. If it doesn't, it means is a PNP response where some accounts may only have PNI's.
+   * There may come a day when we request compat mode but the server refuses to allow it, so we need to be able to detect when that happens to fallback
+   * to the PNP behavior.
+   */
+  private fun CdsiV2Service.Response.isCompatResponse(): Boolean {
+    return this.results.values.all { it.hasAci() }
   }
 }

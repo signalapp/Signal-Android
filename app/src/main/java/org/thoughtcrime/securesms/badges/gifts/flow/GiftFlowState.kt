@@ -23,6 +23,6 @@ data class GiftFlowState(
     RECIPIENT_VERIFICATION,
     TOKEN_REQUEST,
     PAYMENT_PIPELINE,
-    FAILURE;
+    FAILURE
   }
 }

@@ -30,8 +30,16 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
 
   private static final String TAG = Log.tag(SignalWebSocketHealthMonitor.class);
 
-  private static final long KEEP_ALIVE_SEND_CADENCE              = TimeUnit.SECONDS.toMillis(WebSocketConnection.KEEPALIVE_TIMEOUT_SECONDS);
-  private static final long MAX_TIME_SINCE_SUCCESSFUL_KEEP_ALIVE = KEEP_ALIVE_SEND_CADENCE * 3;
+  /**
+   * This is the amount of time in between sent keep alives. Must be greater than {@link SignalWebSocketHealthMonitor#KEEP_ALIVE_TIMEOUT}
+   */
+  private static final long KEEP_ALIVE_SEND_CADENCE = TimeUnit.SECONDS.toMillis(WebSocketConnection.KEEPALIVE_FREQUENCY_SECONDS);
+
+  /**
+   * This is the amount of time we will wait for a response to the keep alive before we consider the websockets dead.
+   * It is required that this value be less than {@link SignalWebSocketHealthMonitor#KEEP_ALIVE_SEND_CADENCE}
+   */
+  private static final long KEEP_ALIVE_TIMEOUT = TimeUnit.SECONDS.toMillis(20);
 
   private final Executor executor = Executors.newSingleThreadExecutor();
 
@@ -103,11 +111,12 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
 
   @Override
   public void onKeepAliveResponse(long sentTimestamp, boolean isIdentifiedWebSocket) {
+    final long keepAliveTime = System.currentTimeMillis();
     executor.execute(() -> {
       if (isIdentifiedWebSocket) {
-        identified.lastKeepAliveReceived = System.currentTimeMillis();
+        identified.lastKeepAliveReceived = keepAliveTime;
       } else {
-        unidentified.lastKeepAliveReceived = System.currentTimeMillis();
+        unidentified.lastKeepAliveReceived = keepAliveTime;
       }
     });
   }
@@ -138,7 +147,7 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
 
   /**
    * Sends periodic heartbeats/keep-alives over both WebSockets to prevent connection timeouts. If
-   * either WebSocket fails 3 times to get a return heartbeat both are forced to be recreated.
+   * either WebSocket fails to get a return heartbeat after {@link SignalWebSocketHealthMonitor#KEEP_ALIVE_TIMEOUT} seconds, both are forced to be recreated.
    */
   private class KeepAliveSender extends Thread {
 
@@ -148,24 +157,43 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
       identified.lastKeepAliveReceived   = System.currentTimeMillis();
       unidentified.lastKeepAliveReceived = System.currentTimeMillis();
 
+      long keepAliveSendTime = System.currentTimeMillis();
       while (shouldKeepRunning && isKeepAliveNecessary()) {
         try {
-          sleepTimer.sleep(KEEP_ALIVE_SEND_CADENCE);
+          long nextKeepAliveSendTime = (keepAliveSendTime + KEEP_ALIVE_SEND_CADENCE);
+          sleepUntil(nextKeepAliveSendTime);
 
           if (shouldKeepRunning && isKeepAliveNecessary()) {
-            long keepAliveRequiredSinceTime = System.currentTimeMillis() - MAX_TIME_SINCE_SUCCESSFUL_KEEP_ALIVE;
+            keepAliveSendTime = System.currentTimeMillis();
+            signalWebSocket.sendKeepAlive();
+          }
 
-            if (identified.lastKeepAliveReceived < keepAliveRequiredSinceTime || unidentified.lastKeepAliveReceived < keepAliveRequiredSinceTime) {
+          final long responseRequiredTime = keepAliveSendTime + KEEP_ALIVE_TIMEOUT;
+          sleepUntil(responseRequiredTime);
+
+          if (shouldKeepRunning && isKeepAliveNecessary()) {
+            if (identified.lastKeepAliveReceived < keepAliveSendTime || unidentified.lastKeepAliveReceived < keepAliveSendTime) {
               Log.w(TAG, "Missed keep alives, identified last: " + identified.lastKeepAliveReceived +
                          " unidentified last: " + unidentified.lastKeepAliveReceived +
-                         " needed by: " + keepAliveRequiredSinceTime);
+                         " needed by: " + responseRequiredTime);
               signalWebSocket.forceNewWebSockets();
-            } else {
-              signalWebSocket.sendKeepAlive();
             }
           }
         } catch (Throwable e) {
           Log.w(TAG, e);
+        }
+      }
+    }
+
+    private void sleepUntil(long timeMs) {
+      while (System.currentTimeMillis() < timeMs) {
+        long waitTime = timeMs - System.currentTimeMillis();
+        if (waitTime > 0) {
+          try {
+            sleepTimer.sleep(waitTime);
+          } catch (InterruptedException e) {
+            Log.w(TAG, e);
+          }
         }
       }
     }

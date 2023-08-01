@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Хаттар тексерілуде…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Жаңа хаттарыңыз болуы мүмкін</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Блокталған пайдаланушылар</string>
     <string name="BlockedUsersActivity__add_blocked_user">Блокталған пайдаланушыны қосу</string>
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Сілтеменің шағын көрінісі жоқ</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Бұл топ сілтемесі істемейді</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Signal қоңырауына қосылу үшін осы сілтемені пайдаланыңыз</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s топтық қоңырауды бастады · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Топтық қоңырау басталған уақыт · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s топтық қоңырауға қатысып отыр · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Топтық қоңырауға қатысып отырсыз · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s және %2$s топтық қоңырауға қатысып отыр · %3$s</string>
     <string name="MessageRecord_group_call_s">Топтық қоңырау · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s топтық қоңырауды бастады</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Топтық қоңырау бастадыңыз</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s топтық қоңырауға қатысып отыр</string>
     <string name="MessageRecord_you_are_in_the_group_call">Топтық қоңырауға қатысып отырсыз</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s және %2$s топтық қоңырауға қатысып отыр</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">%1$d мүмкіндігіңіз қалды. Егер мүмкіндіктердің барлығын пайдаланып қойсаңыз, жаңа PIN-код жасауыңызға болады. Тіркеліп, аккаунтыңызды қолдана аласыз, бірақ профиль ақпараты сияқты кейбір сақталған параметрлер жоғалады.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal қолданбасында тіркелу - Android жүйесіне арналған PIN кодына қатысты көмек керек</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Әріпті-санды PIN енгізу</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Санды PIN енгізу</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Пернетақтаны ауыстырыңыз</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">PIN код жасау</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal қолданбасы QR кодты сканерлеу үшін камераны пайдалануға рұқсат болу керек, бірақ параметрлерде оны пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Камера\" функциясын қосыңыз.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Камера рұқсатынсыз QR кодын сканерлеу мүмкін емес</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s қауіпсіздік нөмірін көру үшін алдымен хат алмасуыңыз керек.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Сізбен хат алмасқан соң, қауіпсіздік нөмірі осы адаммен жасалады.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Толық ақпарат</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Қоңырау күйі</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Маңызды қолданба ескертулері</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Қосымша хабарландырулар</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Қоңырауға жауап беру үшін Signal қолданбасының микрофонды пайдалануына рұқсат етіңіз.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Қоңырауға %1$s арқылы жауап беру үшін Signal қолданбасының микрофонды пайдалануына рұқсат етіңіз.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Видеоқоңырауға жауап беру үшін Signal қолданбасының микрофоныңызды және камераңызды пайдалануына рұқсат етіңіз.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Қоңырау шалу немесе қабылдау үшін Signal қолданбасына микрофон мен камераны пайдалануға рұқсат керек, бірақ параметрлерде оларды пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Микрофон\" және \"Камера\" параметрлерін қосыңыз.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Байланыстырылған құрылғыда жауап берілді.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Байланыстырылған құрылғыда қабылданбады.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Сымды құлаққаптар</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Сымды гарнитура</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s арқылы өтпелі шифрлаудың қауіпсіздігін тексеру үшін, жоғарыдағы сандарды осы құрылғымен салыстырыңыз. Сонымен қатар оның телефонындағы кодты сканерлеуіңізге болады. <a href=\"https://signal.org/redirect/safety-numbers\">Толығырақ.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s деген пайдаланушымен өтпелі шифрлау функциясын тексеру үшін, жоғарыдағы түрлі түсті картаны оның құрылғысымен қатар қойып, нөмірлерді салыстырыңыз. Егер нөмірлері сәйкес келмесе, свайп жасап, қауіпсіздік нөмірлерінің басқа жұбын қолданып көріңіз. Тек бір жұп сәйкес келуі керек.</string>
     <string name="verify_display_fragment__tap_to_scan">Сканерлеу үшін түртіңіз</string>
     <string name="verify_display_fragment__successful_match">Сәйкес келді</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Қауіпсіздік нөмірі тексерілмеді</string>
     <string name="verify_display_fragment__loading">Жүктелуде…</string>
     <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
     <string name="verify_display_fragment__clear_verification">Верификацияны тазалау</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Қауіпсіздік нөмірлері жаңартылып жатыр.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Қауіпсіздік нөмірлерінің өзгерістері</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Signal қолданбасындағы құпиялылықтың жаңа функцияларын қосу үшін қауіпсіздік нөмірлері ауысым кезеңінде жаңартылады.\n\nҚауіпсіздік нөмірлерін тексеру үшін түрлі түсті картаны контактінің құрылғысымен қатар қойыңыз. Егер нөмірлері сәйкес келмесе, свайп жасап, қауіпсіздік нөмірлерінің басқа жұбын қолданып көріңіз. Тек бір жұп сәйкес келуі керек.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Көмек керек пе?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Түсінікті</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Қауіпсіздік нөмірін бөлісу</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">Чат параметрлері</string>
     <string name="conversation__menu_add_shortcut">Басты экранға қосу</string>
     <string name="conversation__menu_create_bubble">Көпіршікті жасау</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Мәтінді форматтау</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Қалқылмалы терезені толық ашу</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Келесі</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Әріптік-сандық PIN-код жасау</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Сандық PIN-код жасау</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Тіркелгіңіз үшін жасаған PIN кодты енгізіңіз. Ол сіздің SMS арқылы жіберілген тексеру кодыңыздан басқаша.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Аккаунт үшін ойлап тапқан PIN кодыңызды енгізіңіз.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Әріпті-санды PIN енгізу</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Санды PIN енгізу</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Пернетақтаны ауыстырыңыз</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Дұрыс емес PIN. Қайтадан байқап көріңіз.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN кодын ұмытып қалдыңыз ба?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Дұрыс емес PIN</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Кіріс Signal дауыстық қоңырауы</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Кіріс Signal видео қоңырауы</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Кіріс Signal топтық қоңырауы</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ағымдағы Signal дауыстық қоңырауы</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ағымдағы Signal видео қоңырауы</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ағымдағы Signal топтық қоңырауы</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Тасымалдау белгішесі</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS-ке қолдау көрсетілмейтін болады</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal қолданбасындағы SMS хат алмасу функциясы %1$s күнінен бастап жұмыс істемейтін болады.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal қолданбасындағы SMS хаттарға бұдан былай қолдау көрсетілмейтін болады.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS хаттары Signal хаттарынан басқа. <b>Ол шифрланған Signal хаттарының жұмысына әсер етпейді.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">Monospace қарпі</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Спойлер</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Қолданылған форматты өшіру</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Жойылуда…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Жойылмады.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Сілтемені жою мүмкін емес. Байланысты тексеріп, қайталап көріңіз.</item>
+        <item quantity="other">Қоңырау сілтемелерінің барлығын жою мүмкін болмады. Байланысты тексеріп, қайталап көріңіз.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Қоңыраулар тарихы өшірілді</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Қабылданбаған қоңыраулар ғана көрсетілді</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Барлығын таңдау</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Жою</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d қоңырауды жою керек пе?</item>
         <item quantity="other">%1$d қоңырауды жою керек пе?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Меннен ғана жою</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d қоңырау жойылды</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Өзгертулер тарихы</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal бета нұсқасы ғана</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Хаттарды тек Signal бета нұсқасын пайдаланушылар ғана түзете алады. Егер сіз хатты түзетсеңіз, ол Signal-дың ең соңғы бета нұсқасын пайдаланатындарға ғана көрінеді.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Бас тарту</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Жіберу</string>
 
 
     <!-- CallLinkDetailsFragment -->

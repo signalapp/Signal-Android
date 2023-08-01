@@ -82,6 +82,7 @@ public final class StickerPackPreviewAdapter extends RecyclerView.Adapter<Sticke
       glideRequests.load(currentGlideModel)
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .set(ApngOptions.ANIMATE, allowApngAnimation)
+                   .centerInside()
                    .into(image);
 
       image.setOnLongClickListener(v -> {

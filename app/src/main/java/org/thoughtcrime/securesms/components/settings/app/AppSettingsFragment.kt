@@ -75,7 +75,7 @@ class AppSettingsFragment : DSLSettingsFragment(
     if (ExpiredBuildReminder.isEligible()) {
       showReminder(ExpiredBuildReminder(context))
     } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder(context))
+      showReminder(UnauthorizedReminder())
     } else {
       hideReminders()
     }
@@ -131,7 +131,7 @@ class AppSettingsFragment : DSLSettingsFragment(
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
           },
           onQrButtonClicked = {
-            if (Recipient.self().getUsername().isPresent()) {
+            if (Recipient.self().username.isPresent && Recipient.self().username.get().isNotEmpty()) {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
             } else {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameEducationFragment)

@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Ελέγχουμε για μηνύματα…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Ίσως έχεις νέα μηνύματα</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Αποκλεισμένοι χρήστες</string>
     <string name="BlockedUsersActivity__add_blocked_user">Προσθήκη αποκλεισμένου χρήστη</string>
@@ -317,7 +321,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Η λήψη του βίντεο απέτυχε. Πρέπει να το στείλεις ξανά.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">επεξεργασία %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Έγινε επεξεργασία %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Είσοδος στην κλήση</string>
 
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Δεν υπάρχει διαθέσιμη προεπισκόπιση συνδέσμου</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Χρησιμοποίησε αυτόν τον σύνδεσμο για να μπεις σε μία Κλήση Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Ξεκίνησες μια ομαδική κλήση · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Είσαι στην ομαδική κλήση · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
     <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Ξεκίνησες μια ομαδική κλήση</string>
     <string name="MessageRecord_s_is_in_the_group_call">Ο/Η %1$s είναι στην ομαδική κλήση</string>
     <string name="MessageRecord_you_are_in_the_group_call">Είσαι στην ομαδική κλήση</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">Οι %1$s και %2$s είναι στην ομαδική κλήση</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">Έχεις ακόμα %1$d προσπάθειες. Αν τις εξαντλήσεις, θα πρέπει να δημιουργήσεις ένα νέο PIN. Θα έχεις τη δυνατότητα να εγγραφτείς και να χρησιμοποιήσεις τον λογαριασμό σου, αλλά θα χάσεις κάποιες αποθηκευμένες ρυθμίσεις όπως οι πληροφορίες προφίλ σου.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Εγγραφή στο Signal - Βοήθεια με το PIN σε Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Εισαγωγή αλφαριθμητικού PIN</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Εισαγωγή αριθμητικού PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Εναλλαγή πληκτρολογίου</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Δημιούργησε το PIN σου</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Κάμερας για το σκανάρισμα του κωδικού QR, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε την \"Κάμερα\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Δεν μπορούμε να σκανάρουμε τον QR κωδικό χωρίς τα δικαιώματα Κάμερας</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Θα πρέπει πρώτα να ανταλλάξετε μηνύματα για να δείς τον αριθμό ασφαλείας του/της %1$s.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Θα δημιουργηθεί ένας αριθμός ασφαλείας με αυτό το άτομο αφού ανταλλάξετε μηνύματα μεταξύ σας.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Μάθε περισσότερα</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Κατάσταση κλήσης</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Κρίσιμες ειδοποιήσεις εφαρμογών</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Πρόσθετες ειδοποιήσεις μηνυμάτων</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Για να απαντήσεις στη κλήση, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Για να απαντήσεις την κλήση από τον/την %1$s, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Για να απαντήσεις στη βιντεοκλήση, δώσε στο Signal πρόσβαση στο μικρόφωνο και στην κάμερα.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Το Signal χρειάζεται τα δικαιώματα Μικροφώνου και Κάμερας για την πραγματοποίηση κλήσεων, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Μικρόφωνο\" και \"Κάμερα\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Απαντήθηκε από συνδεμένη συσκευή.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Απορρίφθηκε απο συνδεμένη συσκευή.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Ενσύρματα ακουστικά</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Ενσύρματο ακουστικό</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Για να επιβεβαιώσεις την ασφάλεια της κρυπτογράφησης από άκρο σε άκρο με τον/την %1$s, σύγκρινε τον παραπάνω αριθμό με αυτόν στη συσκευή του/της. Μπορείς επίσης να σκανάρεις τον κωδικό στο τηλέφωνό του/της. <a href=\"https://signal.org/redirect/safety-numbers\">Μάθε περισσότερα.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Για να επαληθεύσεις την κρυπτογράφηση από άκρο σε άκρο με τον/την %1$s, αντιστοίχισε την έγχρωμη κάρτα παραπάνω με τη συσκευή του/της και συγκρίνετε τους αριθμούς. Εάν δεν ταιριάζουν, σύρε και δοκίμασε το άλλο ζεύγος αριθμών ασφαλείας. Μόνο ένα ζευγάρι χρειάζεται να ταιριάζει.</string>
     <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
     <string name="verify_display_fragment__successful_match">Επιτυχής σύγκριση</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Αποτυχία επιβεβαίωσης αριθμού ασφαλείας</string>
     <string name="verify_display_fragment__loading">Φόρτωση…</string>
     <string name="verify_display_fragment__mark_as_verified">Σημείωση ως επιβεβαιωμένο</string>
     <string name="verify_display_fragment__clear_verification">Αφαίρεση επιβεβαίωσης</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Οι αριθμοί ασφαλείας ενημερώνονται.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Αλλαγές στους Αριθμούς Ασφαλείας</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Οι αριθμοί ασφαλείας ενημερώνονται κατά τη διάρκεια μιας μεταβατικής περιόδου για να ενεργοποιηθούν οι επερχόμενες λειτουργίες απορρήτου στο Signal.\n\nΓια να επαληθεύσεις τους αριθμούς ασφαλείας, αντιστοίχισε την έγχρωμη κάρτα με τη συσκευή της επαφής σου. Εάν δεν ταιριάζουν, σύρε και δοκίμασε το άλλο ζεύγος αριθμών ασφαλείας. Μόνο ένα ζευγάρι χρειάζεται να ταιριάζει.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Χρειάζεσαι βοήθεια;</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Εντάξει</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Μοιράσου τον αριθμό ασφαλείας</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">Ρυθμίσεις συνομιλίας</string>
     <string name="conversation__menu_add_shortcut">Προσθήκη στην κεντρική οθόνη</string>
     <string name="conversation__menu_create_bubble">Δημιουργία bubble</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Μορφοποίηση κειμένου</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Επέκταση popup</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Επόμενο</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Δημιουργία αλφαριθμητικού PIN</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Δημιουργία αριθμητικού PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Γράψε το PIN που δημιούργησες για το λογαριασμό σου. Αυτό είναι διαφορετικό από τον κωδικό επαλήθευσης που έλαβες μέσω SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Εισήγαγε το PIN που δημιούργησες για τον λογαριασμό σου.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Εισαγωγή αλφαριθμητικού PIN</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Εισαγωγή αριθμητικού PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Εναλλαγή πληκτρολογίου</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Λάθος PIN. Ξαναδοκίμασε.</string>
     <string name="RegistrationLockFragment__forgot_pin">Ξέχασες το PIN;</string>
     <string name="RegistrationLockFragment__incorrect_pin">Λάθος ΡΙΝ</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Εισερχόμενη ηχητική κλήση Signal</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Εισερχόμενη βιντεοκλήση Signal</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Εισερχόμενη ομαδική κλήση Signal</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ηχητική κλήση Signal σε εξέλιξη</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Βιντεοκλήση Signal σε εξέλιξη</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ομαδική κλήση Signal σε εξέλιξη</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Η υποστήριξη SMS καταργείται</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Η ανταλλαγή μηνυμάτων SMS στην εφαρμογή Signal δεν θα υποστηρίζεται πλέον στις %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Η ανταλλαγή μηνυμάτων SMS στην εφαρμογή Signal σύντομα δεν θα υποστηρίζεται πλέον.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Τα μηνύματα SMS διαφέρουν από τα μηνύματα Signal. <b>Αυτή η αλλαγή δεν επηρεάζει τα κρυπτογραφημένα μηνύματα Signal, τα οποία θα συνεχίσουν να λειτουργούν.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Θόλωμα</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Διαγραφή μορφοποίησης</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Διαγραφή…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Η διαγραφή απέτυχε.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Η διαγραφή του συνδέσμου απέτυχε. Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</item>
+        <item quantity="other">Δεν ήταν δυνατή η διαγραφή όλων των συνδέσμων κλήσης. Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Διαγράφηκε το ιστορικό κλήσεων</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Φιλτράρισμα ανά αναπάντητες</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Επιλογή όλων</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Διαγραφή</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Διαγραφή %1$d κλήσης;</item>
         <item quantity="other">Διαγραφή %1$d κλήσεων;</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Διαγραφή για μένα</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d κλήση διαγράφηκε</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Ιστορικό επεξεργασίας</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Μόνο στην beta έκδοση του Signal</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Η επεξεργασία μηνυμάτων είναι διαθέσιμη μόνο στους χρήστες beta του Signal. Εάν επεξεργαστείς ένα μήνυμα, θα είναι ορατό μόνο σε άτομα που χρησιμοποιούν την τελευταία beta έκδοση του Signal.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Ακύρωση</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Αποστολή</string>
 
 
     <!-- CallLinkDetailsFragment -->

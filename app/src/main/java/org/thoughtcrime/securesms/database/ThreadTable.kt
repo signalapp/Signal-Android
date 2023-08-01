@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.MergeCursor
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.json.JSONObject
@@ -106,6 +107,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val LAST_SCROLLED = "last_scrolled"
     const val PINNED = "pinned"
     const val UNREAD_SELF_MENTION_COUNT = "unread_self_mention_count"
+    const val ACTIVE = "active"
 
     const val MAX_CACHE_SIZE = 1000
 
@@ -134,16 +136,18 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $HAS_SENT INTEGER DEFAULT 0, 
         $LAST_SCROLLED INTEGER DEFAULT 0, 
         $PINNED INTEGER DEFAULT 0, 
-        $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0
+        $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0,
+        $ACTIVE INTEGER DEFAULT 0
       )
     """
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
-      "CREATE INDEX IF NOT EXISTS thread_recipient_id_index ON $TABLE_NAME ($RECIPIENT_ID);",
-      "CREATE INDEX IF NOT EXISTS archived_count_index ON $TABLE_NAME ($ARCHIVED, $MEANINGFUL_MESSAGES);",
+      "CREATE INDEX IF NOT EXISTS thread_recipient_id_index ON $TABLE_NAME ($RECIPIENT_ID, $ACTIVE);",
+      "CREATE INDEX IF NOT EXISTS archived_count_index ON $TABLE_NAME ($ACTIVE, $ARCHIVED, $MEANINGFUL_MESSAGES, $PINNED);",
       "CREATE INDEX IF NOT EXISTS thread_pinned_index ON $TABLE_NAME ($PINNED);",
-      "CREATE INDEX IF NOT EXISTS thread_read ON $TABLE_NAME ($READ);"
+      "CREATE INDEX IF NOT EXISTS thread_read ON $TABLE_NAME ($READ);",
+      "CREATE INDEX IF NOT EXISTS thread_active ON $TABLE_NAME ($ACTIVE);"
     )
 
     private val THREAD_PROJECTION = arrayOf(
@@ -240,7 +244,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       STATUS to status,
       DELIVERY_RECEIPT_COUNT to deliveryReceiptCount,
       READ_RECEIPT_COUNT to readReceiptCount,
-      EXPIRES_IN to expiresIn
+      EXPIRES_IN to expiresIn,
+      ACTIVE to 1
     )
 
     writableDatabase
@@ -873,7 +878,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ARCHIVED = 1 AND $MEANINGFUL_MESSAGES != 0 $filterQuery")
+      .where("$ACTIVE = 1 AND $ARCHIVED = 1 AND $MEANINGFUL_MESSAGES != 0 $filterQuery")
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -889,7 +894,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ARCHIVED = 0 AND $PINNED != 0 $filterQuery")
+      .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND $PINNED != 0 $filterQuery")
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -905,7 +910,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0) $filterQuery")
+      .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0) $filterQuery")
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -968,7 +973,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       for (threadId in threadIds) {
         pinnedCount++
         db.update(TABLE_NAME)
-          .values(PINNED to pinnedCount)
+          .values(PINNED to pinnedCount, ACTIVE to 1)
           .where("$ID = ?", threadId)
           .run()
       }
@@ -1009,16 +1014,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun setLastSeen(threadId: Long) {
-    setLastSeenSilently(threadId)
-    notifyConversationListListeners()
-  }
-
-  fun setLastSeenSilently(threadId: Long) {
     writableDatabase
       .update(TABLE_NAME)
       .values(LAST_SEEN to System.currentTimeMillis())
       .where("$ID = ?", threadId)
       .run()
+
+    notifyConversationListListeners()
   }
 
   fun setLastScrolled(threadId: Long, lastScrolledTimestamp: Long) {
@@ -1031,7 +1033,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun getConversationMetadata(threadId: Long): ConversationMetadata {
     return readableDatabase
-      .select(LAST_SEEN, HAS_SENT, LAST_SCROLLED)
+      .select(UNREAD_COUNT, LAST_SEEN, HAS_SENT, LAST_SCROLLED)
       .from(TABLE_NAME)
       .where("$ID = ?", threadId)
       .run()
@@ -1040,13 +1042,15 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           ConversationMetadata(
             lastSeen = cursor.requireLong(LAST_SEEN),
             hasSent = cursor.requireBoolean(HAS_SENT),
-            lastScrolled = cursor.requireLong(LAST_SCROLLED)
+            lastScrolled = cursor.requireLong(LAST_SCROLLED),
+            unreadCount = cursor.requireInt(UNREAD_COUNT)
           )
         } else {
           ConversationMetadata(
             lastSeen = -1L,
             hasSent = false,
-            lastScrolled = -1
+            lastScrolled = -1,
+            unreadCount = 0
           )
         }
       }
@@ -1058,9 +1062,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     writableDatabase.withinTransaction { db ->
       messages.deleteThread(threadId)
       drafts.clearDrafts(threadId)
-      db.delete(TABLE_NAME)
-        .where("$ID = ?", threadId)
-        .run()
+      db.deactivateThread(threadId)
       synchronized(threadIdCache) {
         threadIdCache.remove(recipientIdForThreadId)
       }
@@ -1078,7 +1080,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
       for (query in queries) {
-        db.delete(TABLE_NAME, query.where, query.whereArgs)
+        db.deactivateThread(query)
       }
 
       messages.deleteAbandonedMessages()
@@ -1100,13 +1102,21 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     ConversationUtil.clearShortcuts(context, recipientIds)
   }
 
+  @VisibleForTesting
+  fun clearForTests() {
+    writableDatabase.withinTransaction {
+      deleteAllConversations()
+      it.delete(TABLE_NAME).run()
+    }
+  }
+
   @SuppressLint("DiscouragedApi")
   fun deleteAllConversations() {
     writableDatabase.withinTransaction { db ->
       messageLog.deleteAll()
       messages.deleteAllThreads()
       drafts.clearAllDrafts()
-      db.delete(TABLE_NAME, null, null)
+      db.deactivateThreads()
       calls.deleteAllCalls()
       synchronized(threadIdCache) {
         threadIdCache.clear()
@@ -1316,7 +1326,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         if (pinnedRecipient != null) {
           db.update(TABLE_NAME)
-            .values(PINNED to pinnedPosition)
+            .values(PINNED to pinnedPosition, ACTIVE to 1)
             .where("$RECIPIENT_ID = ?", pinnedRecipient.id)
             .run()
         }
@@ -1354,6 +1364,18 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     if (threadId != null) {
       notifyConversationListeners(threadId)
     }
+  }
+
+  /**
+   * Set a thread as active prior to an [update] call. Useful when a thread is for sure active but
+   * hasn't had the update call yet. e.g., inserting a message in a new thread.
+   */
+  fun markAsActiveEarly(threadId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(ACTIVE to 1)
+      .where("$ID = ?", threadId)
+      .run()
   }
 
   fun update(threadId: Long, unarchive: Boolean): Boolean {
@@ -1598,6 +1620,48 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
   }
 
+  private fun SQLiteDatabase.deactivateThreads() {
+    deactivateThread(query = null)
+  }
+
+  private fun SQLiteDatabase.deactivateThread(threadId: Long) {
+    deactivateThread(SqlUtil.Query("$ID = ?", SqlUtil.buildArgs(threadId)))
+  }
+
+  private fun SQLiteDatabase.deactivateThread(query: SqlUtil.Query?) {
+    val update = update(TABLE_NAME)
+      .values(
+        DATE to 0,
+        MEANINGFUL_MESSAGES to 0,
+        READ to ReadStatus.READ.serialize(),
+        TYPE to 0,
+        ERROR to 0,
+        SNIPPET to null,
+        SNIPPET_TYPE to 0,
+        SNIPPET_URI to null,
+        SNIPPET_CONTENT_TYPE to null,
+        SNIPPET_EXTRAS to null,
+        UNREAD_COUNT to 0,
+        ARCHIVED to 0,
+        STATUS to 0,
+        DELIVERY_RECEIPT_COUNT to 0,
+        READ_RECEIPT_COUNT to 0,
+        EXPIRES_IN to 0,
+        LAST_SEEN to 0,
+        HAS_SENT to 0,
+        LAST_SCROLLED to 0,
+        PINNED to 0,
+        UNREAD_SELF_MENTION_COUNT to 0,
+        ACTIVE to 0
+      )
+
+    if (query != null) {
+      update.where(query.where, query.whereArgs).run()
+    } else {
+      update.run()
+    }
+  }
+
   private fun getAttachmentUriFor(record: MessageRecord): Uri? {
     if (!record.isMms || record.isMmsNotification || record.isGroupAction) {
       return null
@@ -1721,7 +1785,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           SELECT group_id, GROUP_CONCAT(${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID}) as ${GroupTable.MEMBER_GROUP_CONCAT} 
           FROM ${GroupTable.MembershipTable.TABLE_NAME}
         ) as MembershipAlias ON MembershipAlias.${GroupTable.MembershipTable.GROUP_ID} = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID}
-      WHERE $where
+      WHERE $TABLE_NAME.$ACTIVE = 1 AND $where
       ORDER BY $orderBy
     """
 
@@ -1795,7 +1859,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             null,
             false,
             group.isActive,
-            null
+            null,
+            Optional.of(group)
           )
           Recipient(recipientId, details, false)
         } ?: Recipient.live(recipientId).get()
@@ -1980,7 +2045,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val lastSeen: Long,
     @get:JvmName("hasSent")
     val hasSent: Boolean,
-    val lastScrolled: Long
+    val lastScrolled: Long,
+    val unreadCount: Int
   )
 
   data class MergeResult(val threadId: Long, val previousThreadId: Long, val neededMerge: Boolean)

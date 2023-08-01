@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -123,40 +124,42 @@ public final class StorageSyncHelper {
 
     final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
 
-    SignalAccountRecord account = new SignalAccountRecord.Builder(self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
-                                                         .setProfileKey(self.getProfileKey())
-                                                         .setGivenName(self.getProfileName().getGivenName())
-                                                         .setFamilyName(self.getProfileName().getFamilyName())
-                                                         .setAvatarUrlPath(self.getProfileAvatar())
-                                                         .setNoteToSelfArchived(record != null && record.getSyncExtras().isArchived())
-                                                         .setNoteToSelfForcedUnread(record != null && record.getSyncExtras().isForcedUnread())
-                                                         .setTypingIndicatorsEnabled(TextSecurePreferences.isTypingIndicatorsEnabled(context))
-                                                         .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
-                                                         .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
-                                                         .setLinkPreviewsEnabled(SignalStore.settings().isLinkPreviewsEnabled())
-                                                         .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isUnlisted())
-                                                         .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
-                                                         .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
-                                                         .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
-                                                         .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.paymentsValues().getPaymentsEntropy()).map(Entropy::getBytes).orElse(null))
-                                                         .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
-                                                         .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
-                                                         .setE164(self.requireE164())
-                                                         .setDefaultReactions(SignalStore.emojiValues().getReactions())
-                                                         .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
-                                                         .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
-                                                         .setSubscriptionManuallyCancelled(SignalStore.donationsValues().isUserManuallyCancelled())
-                                                         .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
-                                                         .setHasSetMyStoriesPrivacy(SignalStore.storyValues().getUserHasBeenNotifiedAboutStories())
-                                                         .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasViewedOnboardingStory())
-                                                         .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
-                                                         .setStoryViewReceiptsState(storyViewReceiptsState)
-                                                         .setHasReadOnboardingStory(hasReadOnboardingStory)
-                                                         .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
-                                                         .setUsername(self.getUsername().orElse(null))
-                                                         .build();
+    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
+                                                                 .setProfileKey(self.getProfileKey())
+                                                                 .setGivenName(self.getProfileName().getGivenName())
+                                                                 .setFamilyName(self.getProfileName().getFamilyName())
+                                                                 .setAvatarUrlPath(self.getProfileAvatar())
+                                                                 .setNoteToSelfArchived(record != null && record.getSyncExtras().isArchived())
+                                                                 .setNoteToSelfForcedUnread(record != null && record.getSyncExtras().isForcedUnread())
+                                                                 .setTypingIndicatorsEnabled(TextSecurePreferences.isTypingIndicatorsEnabled(context))
+                                                                 .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
+                                                                 .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
+                                                                 .setLinkPreviewsEnabled(SignalStore.settings().isLinkPreviewsEnabled())
+                                                                 .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isUnlisted())
+                                                                 .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
+                                                                 .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
+                                                                 .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
+                                                                 .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.paymentsValues().getPaymentsEntropy()).map(Entropy::getBytes).orElse(null))
+                                                                 .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
+                                                                 .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
+                                                                 .setDefaultReactions(SignalStore.emojiValues().getReactions())
+                                                                 .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
+                                                                 .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
+                                                                 .setSubscriptionManuallyCancelled(SignalStore.donationsValues().isUserManuallyCancelled())
+                                                                 .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
+                                                                 .setHasSetMyStoriesPrivacy(SignalStore.storyValues().getUserHasBeenNotifiedAboutStories())
+                                                                 .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasViewedOnboardingStory())
+                                                                 .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
+                                                                 .setStoryViewReceiptsState(storyViewReceiptsState)
+                                                                 .setHasReadOnboardingStory(hasReadOnboardingStory)
+                                                                 .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
+                                                                 .setUsername(self.getUsername().orElse(null));
 
-    return SignalStorageRecord.forAccount(account);
+    if (!FeatureFlags.phoneNumberPrivacy() || !self.getPnpCapability().isSupported()) {
+      account.setE164(self.requireE164());
+    }
+
+    return SignalStorageRecord.forAccount(account.build());
   }
 
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull SignalAccountRecord updatedRecord, boolean fetchProfile) {

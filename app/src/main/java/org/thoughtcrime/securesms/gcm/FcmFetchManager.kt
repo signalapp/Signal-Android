@@ -1,15 +1,26 @@
 package org.thoughtcrime.securesms.gcm
 
+import android.app.Notification
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import org.signal.core.util.PendingIntentFlags.mutable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.MainActivity
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
 import org.thoughtcrime.securesms.messages.WebSocketStrategy
+import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Our goals with FCM processing are as follows:
@@ -30,65 +41,70 @@ import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 object FcmFetchManager {
 
   private val TAG = Log.tag(FcmFetchManager::class.java)
-  private const val MAX_BLOCKING_TIME_MS = 500L
   private val EXECUTOR = SerialMonoLifoExecutor(SignalExecutors.UNBOUNDED)
+
+  val WEBSOCKET_DRAIN_TIMEOUT = 5.minutes.inWholeMilliseconds
 
   @Volatile
   private var activeCount = 0
 
   @Volatile
-  private var startedForeground = false
-
-  @Volatile
-  private var stoppingForeground = false
-
-  @Volatile
-  private var startForegroundOnDestroy = false
+  private var highPriority = false
 
   /**
    * @return True if a service was successfully started, otherwise false.
    */
   @JvmStatic
-  fun enqueue(context: Context, foreground: Boolean): Boolean {
-    synchronized(this) {
-      try {
-        if (foreground) {
-          Log.i(TAG, "Starting in the foreground.")
-          if (!startedForeground) {
-            if (!stoppingForeground) {
-              ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
-              startedForeground = true
-            } else {
-              Log.w(TAG, "Foreground service currently stopping, enqueuing a start after destroy")
-              startForegroundOnDestroy = true
-            }
-          } else {
-            Log.i(TAG, "Already started foreground service")
-          }
-        } else {
-          Log.i(TAG, "Starting in the background.")
-          context.startService(Intent(context, FcmFetchBackgroundService::class.java))
-        }
+  fun startBackgroundService(context: Context) {
+    Log.i(TAG, "Starting in the background.")
+    context.startService(Intent(context, FcmFetchBackgroundService::class.java))
+  }
 
-        val performedReplace = EXECUTOR.enqueue { fetch(context) }
+  /**
+   * @return True if a service was successfully started, otherwise false.
+   */
+  @JvmStatic
+  fun startForegroundService(context: Context) {
+    Log.i(TAG, "Starting in the foreground.")
+    FcmFetchForegroundService.startServiceIfNecessary(context)
+  }
 
-        if (performedReplace) {
-          Log.i(TAG, "Already have one running and one enqueued. Ignoring.")
-        } else {
-          activeCount++
-          Log.i(TAG, "Incrementing active count to $activeCount")
-        }
-      } catch (e: Exception) {
-        Log.w(TAG, "Failed to start service!", e)
-        return false
-      }
+  private fun postMayHaveMessagesNotification(context: Context) {
+    if (FeatureFlags.fcmMayHaveMessagesNotificationKillSwitch()) {
+      Log.w(TAG, "May have messages notification kill switch")
+      return
     }
+    val mayHaveMessagesNotification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().ADDITIONAL_MESSAGE_NOTIFICATIONS)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle(context.getString(R.string.FcmFetchManager__you_may_have_messages))
+      .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+      .setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), mutable()))
+      .setVibrate(longArrayOf(0))
+      .setOnlyAlertOnce(true)
+      .build()
 
-    return true
+    NotificationManagerCompat.from(context)
+      .notify(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID, mayHaveMessagesNotification)
+  }
+
+  private fun cancelMayHaveMessagesNotification(context: Context) {
+    NotificationManagerCompat.from(context).cancel(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID)
   }
 
   private fun fetch(context: Context) {
-    retrieveMessages(context)
+    val hasHighPriorityContext = highPriority
+
+    val metricId = SignalLocalMetrics.PushWebsocketFetch.startFetch()
+    val success = retrieveMessages(context)
+    if (success) {
+      SignalLocalMetrics.PushWebsocketFetch.onDrained(metricId)
+      cancelMayHaveMessagesNotification(context)
+    } else {
+      SignalLocalMetrics.PushWebsocketFetch.onTimedOut(metricId)
+      if (hasHighPriorityContext) {
+        postMayHaveMessagesNotification(context)
+      }
+    }
 
     synchronized(this) {
       activeCount--
@@ -96,47 +112,36 @@ object FcmFetchManager {
       if (activeCount <= 0) {
         Log.i(TAG, "No more active. Stopping.")
         context.stopService(Intent(context, FcmFetchBackgroundService::class.java))
-
-        if (startedForeground) {
-          try {
-            context.startService(FcmFetchForegroundService.buildStopIntent(context))
-            stoppingForeground = true
-          } catch (e: IllegalStateException) {
-            Log.w(TAG, "Failed to stop the foreground notification!", e)
-          }
-
-          startedForeground = false
-        }
+        FcmFetchForegroundService.stopServiceIfNecessary(context)
+        highPriority = false
       }
     }
   }
 
   @JvmStatic
-  fun tryLegacyFallback(context: Context) {
+  fun onForeground(context: Context) {
+    cancelMayHaveMessagesNotification(context)
+  }
+
+  @JvmStatic
+  fun enqueueFetch(context: Context, highPriority: Boolean) {
     synchronized(this) {
-      if (startedForeground || stoppingForeground) {
-        if (stoppingForeground) {
-          startForegroundOnDestroy = true
-          Log.i(TAG, "Legacy fallback: foreground service is stopping, but trying to run in background anyways.")
-        }
-        val performedReplace = EXECUTOR.enqueue { fetch(context) }
-
-        if (performedReplace) {
-          Log.i(TAG, "Legacy fallback: already have one running and one enqueued. Ignoring.")
-        } else {
-          activeCount++
-          Log.i(TAG, "Legacy fallback: Incrementing active count to $activeCount")
-        }
-        return
+      if (highPriority) {
+        this.highPriority = true
+      }
+      val performedReplace = EXECUTOR.enqueue { fetch(context) }
+      if (performedReplace) {
+        Log.i(TAG, "Already have one running and one enqueued. Ignoring.")
+      } else {
+        activeCount++
+        Log.i(TAG, "Incrementing active count to $activeCount")
       }
     }
-    Log.i(TAG, "No foreground running, performing legacy fallback")
-    retrieveMessages(context)
   }
 
   @JvmStatic
-  fun retrieveMessages(context: Context) {
-    val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, WebSocketStrategy())
+  fun retrieveMessages(context: Context): Boolean {
+    val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, WebSocketStrategy(WEBSOCKET_DRAIN_TIMEOUT))
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.")
@@ -149,19 +154,7 @@ object FcmFetchManager {
         ApplicationDependencies.getJobManager().add(PushNotificationReceiveJob())
       }
     }
-  }
 
-  fun onDestroyForegroundFetchService() {
-    synchronized(this) {
-      stoppingForeground = false
-      if (startForegroundOnDestroy) {
-        startForegroundOnDestroy = false
-        try {
-          enqueue(ApplicationDependencies.getApplication(), true)
-        } catch (e: Exception) {
-          Log.e(TAG, "Failed to restart foreground service after onDestroy")
-        }
-      }
-    }
+    return success
   }
 }

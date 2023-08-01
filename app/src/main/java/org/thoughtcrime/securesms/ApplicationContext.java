@@ -30,6 +30,7 @@ import com.google.android.gms.security.ProviderInstaller;
 import org.conscrypt.Conscrypt;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.signal.core.util.MemoryTracker;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
+import org.thoughtcrime.securesms.gcm.FcmFetchManager;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob;
 import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
@@ -60,7 +62,7 @@ import org.thoughtcrime.securesms.jobs.PnpInitializeDevicesJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.jobs.RefreshKbsCredentialsJob;
+import org.thoughtcrime.securesms.jobs.RefreshSvrCredentialsJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob;
 import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob;
@@ -198,7 +200,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(this::initializeExpiringMessageManager)
                             .addPostRender(() -> SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(this)))
                             .addPostRender(this::initializeTrimThreadsByDateManager)
-                            .addPostRender(RefreshKbsCredentialsJob::enqueueIfNecessary)
+                            .addPostRender(RefreshSvrCredentialsJob::enqueueIfNecessary)
                             .addPostRender(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
                             .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
                             .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge()))
@@ -229,6 +231,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
     ApplicationDependencies.getDeadlockDetector().start();
     SubscriptionKeepAliveJob.enqueueAndTrackTimeIfNecessary();
+    FcmFetchManager.onForeground(this);
 
     SignalExecutors.BOUNDED.execute(() -> {
       FeatureFlags.refreshIfNecessary();
@@ -237,6 +240,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       KeyCachingService.onAppForegrounded(this);
       ApplicationDependencies.getShakeToReport().enable();
       checkBuildExpiration();
+      MemoryTracker.start();
 
       long lastForegroundTime = SignalStore.misc().getLastForegroundTime();
       long currentTime        = System.currentTimeMillis();
@@ -260,6 +264,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     ApplicationDependencies.getFrameRateTracker().stop();
     ApplicationDependencies.getShakeToReport().disable();
     ApplicationDependencies.getDeadlockDetector().stop();
+    MemoryTracker.stop();
   }
 
   public PersistentLogger getPersistentLogger() {

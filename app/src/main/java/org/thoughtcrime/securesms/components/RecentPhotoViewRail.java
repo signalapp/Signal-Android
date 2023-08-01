@@ -125,6 +125,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .signature(signature)
               .diskCacheStrategy(DiskCacheStrategy.NONE)
               .transition(DrawableTransitionOptions.withCrossFade())
+              .centerCrop()
               .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(v -> {

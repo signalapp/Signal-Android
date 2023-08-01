@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.registration
 
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.whispersystems.signalservice.api.account.PreKeyCollections
 
 data class RegistrationData(
   val code: String,
@@ -9,7 +8,6 @@ data class RegistrationData(
   val password: String,
   val registrationId: Int,
   val profileKey: ProfileKey,
-  val preKeyCollections: PreKeyCollections,
   val fcmToken: String?,
   val pniRegistrationId: Int,
   val recoveryPassword: String?

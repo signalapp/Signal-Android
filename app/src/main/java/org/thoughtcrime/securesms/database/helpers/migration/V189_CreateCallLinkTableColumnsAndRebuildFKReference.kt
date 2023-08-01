@@ -12,6 +12,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
  * Fleshes out the call link table and rebuilds the call event table.
  * At this point, there should be no records in the call link database.
  */
+@Suppress("ClassName")
 object V189_CreateCallLinkTableColumnsAndRebuildFKReference : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL(

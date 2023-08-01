@@ -41,11 +41,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     SignalServiceProtos.ContactDetails details = SignalServiceProtos.ContactDetails.parseFrom(detailsSerialized);
 
-    if (!SignalServiceAddress.isValidAddress(details.getUuid(), details.getNumber())) {
+    if (!SignalServiceAddress.isValidAddress(details.getAci(), details.getNumber())) {
       throw new IOException("Missing contact address!");
     }
 
-    SignalServiceAddress                    address       = new SignalServiceAddress(ServiceId.parseOrThrow(details.getUuid()), details.getNumber());
+    SignalServiceAddress                    address       = new SignalServiceAddress(ServiceId.parseOrThrow(details.getAci()), details.getNumber());
     Optional<String>                        name          = Optional.ofNullable(details.getName());
     Optional<SignalServiceAttachmentStream> avatar        = Optional.empty();
     Optional<String>                        color         = details.hasColor() ? Optional.of(details.getColor()) : Optional.empty();
@@ -66,11 +66,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     if (details.hasVerified()) {
       try {
-        if (!SignalServiceAddress.isValidAddress(details.getVerified().getDestinationUuid(), null)) {
+        if (!SignalServiceAddress.isValidAddress(details.getVerified().getDestinationAci(), null)) {
           throw new InvalidMessageException("Missing Verified address!");
         }
         IdentityKey          identityKey = new IdentityKey(details.getVerified().getIdentityKey().toByteArray(), 0);
-        SignalServiceAddress destination = new SignalServiceAddress(ServiceId.parseOrThrow(details.getVerified().getDestinationUuid()));
+        SignalServiceAddress destination = new SignalServiceAddress(ServiceId.parseOrThrow(details.getVerified().getDestinationAci()));
 
         VerifiedMessage.VerifiedState state;
 

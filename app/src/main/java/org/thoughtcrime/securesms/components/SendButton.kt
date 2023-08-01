@@ -35,7 +35,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
   private var defaultTransportType: MessageSendType.TransportType = MessageSendType.TransportType.SIGNAL
   private var defaultSubscriptionId: Int? = null
 
-  lateinit var snackbarContainer: View
+  var snackbarContainer: View? = null
   private var popupContainer: ViewGroup? = null
 
   init {
@@ -157,8 +157,8 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
 
   fun showSendTypeMenu(): Boolean {
     return if (availableSendTypes.size == 1) {
-      if (scheduledSendListener == null && !SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
-        Snackbar.make(snackbarContainer, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
+      if (scheduledSendListener == null && snackbarContainer != null && !SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
+        Snackbar.make(snackbarContainer!!, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
       }
       false
     } else {
@@ -177,8 +177,8 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
       return if (scheduleListener?.canSchedule() == true && selectedSendType.transportType != MessageSendType.TransportType.SMS) {
         scheduleListener.onSendScheduled()
         true
-      } else if (!SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
-        Snackbar.make(snackbarContainer, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
+      } else if (snackbarContainer != null && !SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
+        Snackbar.make(snackbarContainer!!, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
         true
       } else {
         false

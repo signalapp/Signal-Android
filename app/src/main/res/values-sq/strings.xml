@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Duke kontrolluar për mesazhe…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Mund të keni mesazhe të rinj</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Përdoruesit e bllokuar</string>
     <string name="BlockedUsersActivity__add_blocked_user">Shto përdorues të bllokuar</string>
@@ -317,7 +321,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videoja nuk mund të shkarkohet. Duhet ta dërgosh përsëri.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">përpunuar %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Përpunuar %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Bashkoju thirrjes</string>
 
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">S\\’ka lidhje për paraparje</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s\\’është aktive</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Përdor këtë lidhje për t\'iu bashkuar një thirrjeje në Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Ti fillove një thirrje në grup · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Gjendeni te thirrja e grupit · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s dhe %2$s gjenden te thirrja e grupit · %3$s</string>
     <string name="MessageRecord_group_call_s">Thirrje grupi · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s nisi një thirrje grupi</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Nisët një thirrje grupi</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s gjendet te thirrja e grupit</string>
     <string name="MessageRecord_you_are_in_the_group_call">Gjendeni te thirrja e grupit</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s dhe %2$s gjenden te thirrja e grupit</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">Keni edhe %1$d prova. Nëse ju mbarohen provat, mund të krijoni një PIN të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhënat e profilit tuaj.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Regjistrim Signal-i - Ju Duhet Ndihmë me PIN-in për Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Jepni PIN alfanumerik</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Jepni PIN numerik</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Ndërro tastierën</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Krijoni PIN-in tuaj</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">You must first exchange messages Që të mund të shihni numrin e sigurisë për %1$s, së pari duhet të shkëmbeni mesazhe.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Një numër sigurie do të krijohet me këtë person, pasi të shkëmbejë mesazhe me ty.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Mëso më shumë</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Gjendje thirrjeje</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Sinjalizimet jetike të aplikacioneve</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Njoftimet shtesë të mesazheve</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Që t’i përgjigjeni thirrjes, jepini Signal-it leje të përdorë mikrofonin tuaj.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Për t\\’iu përgjigjur thirrjes prej %1$s, lejojini Signal-it të përdorë mikrofonin tuaj.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Që t\'i përgjigjesh thirrjes me video, jepi leje Signal të përdorë mikrofonin dhe kamerën.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Që të bëjë ose pranojë thirrje, Signal-i lyp leje mbi Mikrofonin dhe Kamerën, por këto i janë mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">U përgjigj në një pajisje të lidhur.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Hedhur tej në një pajisje të lidhur.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Kufje me kabull</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Kufje me tela</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Që të verifikoni sigurinë e fshehtëzimit tuaj skaj-më-skaj me %1$s, krahasoni numrat më sipër me pajisjen e tij. Mundeni edhe të skanoni kodin në telefonin e tij. <a href=\"https://signal.org/redirect/safety-numbers\">Mësoni më tepër.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Për të verifikuar kodimin nga skaji në skaj me %1$s, përputh kartën e mësipërme të ngjyrave me pajisjen e tyre dhe krahaso numrat. Nëse këto nuk përputhen, shfleto dhe provo çiftin tjetër të numrave të sigurisë. Vetëm një palë duhet të përputhet.</string>
     <string name="verify_display_fragment__tap_to_scan">Prekeni që të skanohet</string>
     <string name="verify_display_fragment__successful_match">Përputhje e suksesshme</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">S\\’u arri të verifikohet numër sigurie</string>
     <string name="verify_display_fragment__loading">Po ngarkohet…</string>
     <string name="verify_display_fragment__mark_as_verified">Vëri shenjë si i verifikuar</string>
     <string name="verify_display_fragment__clear_verification">Spastroje verifikimin</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Numrat e sigurisë po përditësohen.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Ndryshimet në numrat e sigurisë</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Numrat e sigurisë po përditësohen gjatë një periudhe tranzicioni për të aktivizuar veçoritë e ardhshme të privatësisë në Signal.\n\nPër të verifikuar numrat e sigurisë, përputh kartën e ngjyrave me pajisjen e kontaktit tënd. Nëse këto nuk përputhen, shfleto dhe provo çiftin tjetër të numrave të sigurisë. Vetëm një palë duhet të përputhet.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Ju duhet ndihmë?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">E kuptova</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Ndajeni me të tjerët numrin tuaj të sigurisë</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">Parametrat e bisedës</string>
     <string name="conversation__menu_add_shortcut">Shtoje te skena e kreut</string>
     <string name="conversation__menu_create_bubble">Krijo flluskë</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Formato tekstin</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Zgjero flluskën</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Pasuesi</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Krijo PIN alfanumerik</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Krijo PIN numerik</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Jepni PIN-in që krijuar për llogarinë tuaj. Ky është tjetër gjë nga kodi juaj i verifikimit me SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Vendos kodin PIN që krijove për llogarinë tënde.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Jepni PIN alfanumerik</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Jepni PIN numerik</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Ndërro tastierën</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
     <string name="RegistrationLockFragment__forgot_pin">Harruat PIN-in?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN i pasaktë</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Thirrje zanore hyrëse në Signal</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Thirrje video hyrëse në Signal</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Thirrje ardhëse për grup Signal</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Thirrje zanore në Signal në vijim</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Thirrje video në Signal në vijim</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Thirrje në grup në Signal në vijim</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Mbështetja për SMS po hiqet</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Mesazhet SMS në aplikacionin Signal së shpejti nuk do të mbështeten më në %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Mesazhet SMS në aplikacionin Signal së shpejti do të hiqet.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Mesazhet SMS janë të ndryshme nga mesazhet e Signal. <b>Kjo nuk ndikon në mesazhet e koduara të Signal të cilat do të vazhdojnë të funksionojnë.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">Njëhapësirëshe</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Fsheh</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Pastro formatimin</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Po fshihet…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Fshirja dështoi.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Lidhja nuk mund të fshihet. Kontrollo lidhjen dhe provo përsëri.</item>
+        <item quantity="other">Jo të gjitha lidhjet e thirrjeve mundën të fshiheshin. Kontrollo rrjetin tënd dhe provo përsëri.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Historiku i thirrjeve u pastrua</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Filtruar sipas të humburave</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Përzgjidh të gjitha</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Fshiji</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Të fshihet %1$d thirrje?</item>
         <item quantity="other">Të fshihen %1$d thirrjet?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Fshije për mua</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d thirrja u fshi</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historiku i përpunimeve</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Vetëm Signal beta</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Përpunimi i mesazheve është i disponueshëm vetëm për përdoruesit e Signal beta. Nëse përpunon një mesazh, ai do të jetë i dukshëm vetëm për personat që kanë versionin më të fundit të Signal beta.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Anulo</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Dërgoje</string>
 
 
     <!-- CallLinkDetailsFragment -->

@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit
  * Adds an 'unregistered timestamp' on a recipient to keep track of when they became unregistered.
  * Also updates all currently-unregistered users to have an unregistered time of "now".
  */
+@Suppress("ClassName")
 object V156_RecipientUnregisteredTimestampMigration : SignalDatabaseMigration {
 
   const val UNREGISTERED = 2

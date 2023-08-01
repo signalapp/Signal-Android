@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.components.reminder.ReminderView
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
@@ -52,6 +53,7 @@ class ConversationBannerView @JvmOverloads constructor(
   private val unverifiedBannerStub: Stub<UnverifiedBannerView> by lazy { ViewUtil.findStubById(this, R.id.unverified_banner_stub) }
   private val reminderStub: Stub<ReminderView> by lazy { ViewUtil.findStubById(this, R.id.reminder_stub) }
   private val reviewBannerStub: Stub<ReviewBannerView> by lazy { ViewUtil.findStubById(this, R.id.review_banner_stub) }
+  private val voiceNotePlayerStub: Stub<View> by lazy { ViewUtil.findStubById(this, R.id.voice_note_player_stub) }
 
   var listener: Listener? = null
 
@@ -138,6 +140,20 @@ class ConversationBannerView @JvmOverloads constructor(
 
   fun clearRequestReview() {
     hide(reviewBannerStub)
+  }
+
+  fun showVoiceNotePlayer(state: VoiceNotePlayerView.State, voiceNotePlayerViewListener: VoiceNotePlayerView.Listener) {
+    show(
+      stub = voiceNotePlayerStub
+    ) {
+      val playerView: VoiceNotePlayerView = findViewById(R.id.voice_note_player_view)
+      playerView.listener = voiceNotePlayerViewListener
+      playerView.setState(state)
+    }
+  }
+
+  fun clearVoiceNotePlayer() {
+    hide(voiceNotePlayerStub)
   }
 
   private fun <V : View> show(stub: Stub<V>, bind: V.() -> Unit = {}) {

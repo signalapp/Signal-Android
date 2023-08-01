@@ -19,7 +19,7 @@ public final class SignalStore {
   private KeyValueStore store;
 
   private final AccountValues             accountValues;
-  private final KbsValues                 kbsValues;
+  private final SvrValues                 svrValues;
   private final RegistrationValues        registrationValues;
   private final PinValues                 pinValues;
   private final RemoteConfigValues        remoteConfigValues;
@@ -63,7 +63,7 @@ public final class SignalStore {
   private SignalStore(@NonNull KeyValueStore store) {
     this.store                     = store;
     this.accountValues             = new AccountValues(store);
-    this.kbsValues                 = new KbsValues(store);
+    this.svrValues                 = new SvrValues(store);
     this.registrationValues        = new RegistrationValues(store);
     this.pinValues                 = new PinValues(store);
     this.remoteConfigValues        = new RemoteConfigValues(store);
@@ -92,7 +92,7 @@ public final class SignalStore {
 
   public static void onFirstEverAppLaunch() {
     account().onFirstEverAppLaunch();
-    kbsValues().onFirstEverAppLaunch();
+    svr().onFirstEverAppLaunch();
     registrationValues().onFirstEverAppLaunch();
     pinValues().onFirstEverAppLaunch();
     remoteConfigValues().onFirstEverAppLaunch();
@@ -121,7 +121,7 @@ public final class SignalStore {
   public static List<String> getKeysToIncludeInBackup() {
     List<String> keys = new ArrayList<>();
     keys.addAll(account().getKeysToIncludeInBackup());
-    keys.addAll(kbsValues().getKeysToIncludeInBackup());
+    keys.addAll(svr().getKeysToIncludeInBackup());
     keys.addAll(registrationValues().getKeysToIncludeInBackup());
     keys.addAll(pinValues().getKeysToIncludeInBackup());
     keys.addAll(remoteConfigValues().getKeysToIncludeInBackup());
@@ -168,8 +168,8 @@ public final class SignalStore {
     return getInstance().accountValues;
   }
 
-  public static @NonNull KbsValues kbsValues() {
-    return getInstance().kbsValues;
+  public static @NonNull SvrValues svr() {
+    return getInstance().svrValues;
   }
 
   public static @NonNull RegistrationValues registrationValues() {

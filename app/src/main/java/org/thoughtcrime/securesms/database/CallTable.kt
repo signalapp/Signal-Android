@@ -56,7 +56,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     const val TYPE = "type"
     private const val DIRECTION = "direction"
     const val EVENT = "event"
-    private const val TIMESTAMP = "timestamp"
+    const val TIMESTAMP = "timestamp"
     private const val RINGER = "ringer"
     private const val DELETION_TIMESTAMP = "deletion_timestamp"
 
@@ -227,7 +227,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
    * If a call link has been revoked, or if we do not have a CallLink table entry for an AD_HOC_CALL type
    * event, we mark it deleted.
    */
-  fun updateAdHocCallEventDeletionTimestamps() {
+  fun updateAdHocCallEventDeletionTimestamps(skipSync: Boolean = false) {
     //language=sql
     val statement = """
       UPDATE $TABLE_NAME
@@ -245,7 +245,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       Call.deserialize(it)
     }.toSet()
 
-    CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    if (!skipSync) {
+      CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    }
+
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
@@ -254,7 +257,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
    * If a non-ad-hoc call has been deleted from the message database, then we need to
    * set its deletion_timestamp to now.
    */
-  fun updateCallEventDeletionTimestamps() {
+  fun updateCallEventDeletionTimestamps(skipSync: Boolean = false) {
     val where = "$TYPE != ? AND $DELETION_TIMESTAMP = 0 AND $MESSAGE_ID IS NULL"
     val type = Type.serialize(Type.AD_HOC_CALL)
 
@@ -281,7 +284,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       result
     }
 
-    CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    if (!skipSync) {
+      CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    }
+
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
@@ -798,6 +804,20 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .values(MESSAGE_ID to messageId.id)
       .where("$CALL_ID = ?", callId)
       .run()
+  }
+
+  fun deleteNonAdHocCallEventsOnOrBefore(timestamp: Long) {
+    val messageIdsOnOrBeforeTimestamp = """
+      SELECT $MESSAGE_ID FROM $TABLE_NAME WHERE $TIMESTAMP <= $timestamp AND $MESSAGE_ID IS NOT NULL
+    """.trimIndent()
+
+    writableDatabase.withinTransaction { db ->
+      db.delete(MessageTable.TABLE_NAME)
+        .where("${MessageTable.ID} IN ($messageIdsOnOrBeforeTimestamp)")
+        .run()
+
+      updateCallEventDeletionTimestamps(skipSync = true)
+    }
   }
 
   fun deleteNonAdHocCallEvents(callRowIds: Set<Long>) {

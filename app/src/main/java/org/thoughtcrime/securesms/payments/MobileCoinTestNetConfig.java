@@ -71,8 +71,8 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
                                                             new ServiceConfig(
                                                                 "5341c6702a3312243c0f049f87259352ff32aa80f0f6426351c3dd063d817d7a",
                                                                 "248356aa0d3431abc45da1773cfd6191a4f2989a4a99da31f450bd7c461e312b",
-                                                                "ac292a1ad27c0338a5159d5fab2bed3917ea144536cb13b5c1226d09a2fbc648",
                                                                 "b61188a6c946557f32e612eff5615908abd1b72ec11d8b7070595a92d4abbbf1",
+                                                                "ac292a1ad27c0338a5159d5fab2bed3917ea144536cb13b5c1226d09a2fbc648",
                                                                 new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
                                                             ));
 

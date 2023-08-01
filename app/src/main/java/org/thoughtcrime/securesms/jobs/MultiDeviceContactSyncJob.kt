@@ -103,14 +103,19 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
           else -> VerifiedStatus.DEFAULT
         }
 
-        ApplicationDependencies.getProtocolStore().aci().identities().saveIdentityWithoutSideEffects(
-          recipient.id,
-          contact.verified.get().identityKey,
-          verifiedStatus,
-          false,
-          contact.verified.get().timestamp,
-          true
-        )
+        if (recipient.serviceId.isPresent) {
+          ApplicationDependencies.getProtocolStore().aci().identities().saveIdentityWithoutSideEffects(
+            recipient.id,
+            recipient.serviceId.get(),
+            contact.verified.get().identityKey,
+            verifiedStatus,
+            false,
+            contact.verified.get().timestamp,
+            true
+          )
+        } else {
+          Log.w(TAG, "Missing serviceId for ${recipient.id} -- cannot save identity!")
+        }
       }
 
       recipients.setBlocked(recipient.id, contact.isBlocked)

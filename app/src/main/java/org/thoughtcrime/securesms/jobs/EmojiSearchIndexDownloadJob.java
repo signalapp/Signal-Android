@@ -103,6 +103,10 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
 
     List<EmojiSearchData> searchIndex = downloadSearchIndex(manifest.getVersion(), remoteLanguage);
 
+    if (searchIndex.isEmpty()) {
+      throw new IOException("Emoji search data is empty");
+    }
+
     SignalDatabase.emojiSearch().setSearchIndex(searchIndex);
     SignalStore.emojiValues().onSearchIndexUpdated(manifest.getVersion(), remoteLanguage);
     SignalStore.emojiValues().setLastSearchIndexCheck(System.currentTimeMillis());

@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">မက်ဆေ့ချ်များ စစ်နေပါသည်…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">သင့်တွင် မက်ဆေ့ချ်အသစ်များ ရောက်ရှိနေပါသည်</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ဘလော့ခ်ထားသော သုံးစွဲသူများ</string>
     <string name="BlockedUsersActivity__add_blocked_user">ဘလော့ခ်ထားသော သုံးစွဲသူ ပေါင်းထည့်ရန်</string>
@@ -855,6 +859,8 @@
     <string name="LinkPreviewView_no_link_preview_available">လင့်ခ်ကို ကြိုကြည့်ခြင်း မရရှိပါ</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">ဤအဖွဲ့လင့်ခ်ကို အသုံးမပြုတော့ပါ။</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Signal ကောလ်တွင် ပါဝင်ရန် ဤလင့်ခ်ကို သုံးပါ</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1430,14 +1436,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည် · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">အဖွဲ့ကောလ်ကို သင် စတင်ခဲ့ပါသည် · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည် · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">သင်သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲတွင် ရှိပါသည် · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s နှင့် %2$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည် · %3$s</string>
     <string name="MessageRecord_group_call_s">အဖွဲ့လိုက်ခေါ်ဆိုမှု · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည်</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">အဖွဲ့လိုက် ဖုန်းခေါ်ဆိုမှု သင်စခဲ့ပါသည်</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည်</string>
     <string name="MessageRecord_you_are_in_the_group_call">သင်သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည်</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s နှင့် %2$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည်</string>
@@ -1567,8 +1573,8 @@
         <item quantity="other">သင့်တွင် ကြိုးစားရန် %1$d ကြိမ် ကျန်ရှိပါတော့သည်။ ကြိုးစားနိုင်ရန်အကြိမ် မရှိတော့လျှင် ပင်နံပါတ်အသစ်တစ်ခု ဖန်တီးနိုင်ပါသည်။ မှတ်ပုံစာရင်းသွင်း၍ သင့်အကောင့်ကို ပြန်သုံးနိုင်ပါသည်၊ သို့သော် သိမ်းဆည်းထားသော အချို့သောအပြင်အဆင်များ (ဥပမာ သင့်ပရိုဖိုင်း အချက်အလက်များ) ဆုံရှုံးပါမည်။</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal မှတ်ပုံတင်ခြင်း - Android ပေါ်တွင် ပင်နံပါတ်နှင့် ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">အက္ခရာနံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">နံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">ကီးဘုတ် ပြောင်းရန်</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">သင်၏ပင်နံပါတ်ကိုဖန်တီးပါ</string>
@@ -2067,6 +2073,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s ၏ လုံခြုံရေးနံပါတ်ကို ကြည်ရှုရန် သင်မှအရင် မက်ဆေ့ချ်များကို ပေးပို့လက်ခံ ရပါမည်။</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">ဤပုဂ္ဂိုလ်သည် သင်နှင့် မက်ဆေ့ချ်များ အပြန်အလှန်ပေးပို့ပြီးသောအခါ ၎င်းနှင့်သက်ဆိုင်သော လုံခြုံရေးနံပါတ်တစ်ခုကို ဖန်တီးလိုက်ပါမည်။</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">အိုကေ</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">ပိုမိုလေ့လာရန်</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">အိုကေ</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2186,6 +2200,8 @@
     <string name="NotificationChannel_call_status">ကောလ် အခြေအနေ</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">အလွန်အရေးပါသော အက်ပ်သတိပေးချက်များ</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">ထပ်ဆောင်း မက်ဆေ့ချ် အသိပေးချက်များ</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2243,7 +2259,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ကောလ် ဖြေဆိုရန် Signal အား သင့်မိုက်ခရိုဖုန်းကို သုံးခွင့်ပေးပါ။</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$sမှ ဖုန်းကိုဖြေဆိုရန် Signal အား မိုက်ခရိုဖုန်းအသုံးပြုခွင့်ပေးပါ။</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">ဗီဒီယိုကောလ် ဖြေဆိုရန် Signal အား သင့်မိုက်ခရိုဖုန်းနှင့် ကင်မရာကို သုံးခွင့်ပေးပါ။</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">ဖုန်းခေါ်ဆိုမှုပြုနိုင်ရန် Signalမှ မိုက်ခရိုဖုန်း နှင့် ကင်မရာအား အသုံးပြုခွင့် ရရန်လိုအပ်သည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ မိုက်ခရိုဖုန်း နှင့် ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">ချိတ်ဆက်ထားသော စက်ပေါ်တွင် ဖြေဆိုခဲ့ပါသည်။</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">ချိတ်ဆက်ထားသော စက်ပေါ်တွင် ငြင်းဆိုခဲ့ပါသည်။</string>
@@ -2272,7 +2289,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ဘလူးတုသ်</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">ကြိုးတပ်နားကြပ်</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">ကြိုးတပ်နားကြပ်</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2615,12 +2632,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s ဖြင့် သင်၏ End-to-end ကုဒ်ပြောင်းဝှက်မှု လုံခြုံရေးကို အတည်ပြုရန် ၎င်းတို့၏ စက်ဖြင့် အထက်ပါ နံပါတ်များကို ယှဉ်ကြည့်ပါ။ ၎င်းတို့ ဖုန်းတွင်ရှိသော ကုဒ်ကိုလည်း သင် စကန်ဖတ်နိုင်ပါသည်။ <a href=\"https://signal.org/redirect/safety-numbers\">ပိုမိုလေ့လာရန်။</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s နှင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားခြင်းကို စိစစ်အတည်ပြုရန် အထက်ပါ အရောင်ကတ်ပြားကို ၎င်း၏စက်နှင့် ယှဉ်ကြည့်ပြီး နံပါတ်များကို နှိုင်းယှဉ်ပါ။ ထိုနံပါတ်များ မကိုက်ညီပါက ပွတ်ဆွဲပြီးနောက် လုံခြုံရေးနံပါတ် နောက်တစ်တွဲဖြင့် စမ်းကြည့်ပါ။ နံပါတ်အတွဲတစ်တွဲသာလျှင် ကိုက်ညီရန် လိုအပ်ပါသည်။</string>
     <string name="verify_display_fragment__tap_to_scan">စကင်ဖတ်ရန်နှိပ်ပါ</string>
     <string name="verify_display_fragment__successful_match">ကိုက်ညီမှု အောင်မြင်ပါသည်</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">လုံခြုံရေးနံပါတ်ကို အတည်ပြုရန် မအောင်မြင်ခဲ့ပါ</string>
     <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်…</string>
     <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
     <string name="verify_display_fragment__clear_verification">အတည်ပြုမှု ရှင်းလင်းရန်</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">လုံခြုံရေးနံပါတ်များကို အပ်ဒိတ်ပြုလုပ်နေပါသည်။</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">လုံခြုံရေးနံပါတ်များဆိုင်ရာ အပြောင်းအလဲများ</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Signal တွင် ပါဝင်လာမည့် ကိုယ်ပိုင်အချက်အလက်ဆိုင်ရာ အင်္ဂါရပ်များကို ဖွင့်နိုင်ရန်အတွက် လုံခြုံရေးနံပါတ်များကို အကူးအပြောင်းကာလတစ်ခုအတွင်း အပ်ဒိတ်ပြုလုပ်နေပါသည်။လုံခြုံရေးနံပါတ်များကို စိစစ်အတည်ပြုရန် အရောင်ကတ်ပြားကို သင့်အဆက်အသွယ်၏စက်နှင့် ယှဉ်ကြည့်ပါ။ ထိုနံပါတ်များ ကိုက်ညီခြင်းမရှိပါက ပွတ်ဆွဲပြီးနောက် လုံခြုံရေးနံပါတ် နောက်တစ်တွဲဖြင့် စမ်းကြည့်ပါ။ နံပါတ်အတွဲတစ်တွဲသာလျှင် ကိုက်ညီရန် လိုအပ်ပါသည်။</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">အကူအညီ လိုအပ်ပါသလား?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">ရပြီ</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">လုံခြုံရေးနံပါတ်ကို မျှဝေပါ</string>
@@ -3259,6 +3289,8 @@
     <string name="conversation__menu_conversation_settings">ချက်(တ်) ဆက်တင်</string>
     <string name="conversation__menu_add_shortcut">ပင်မစာမျက်နှာသို့ ထည့်ပါ</string>
     <string name="conversation__menu_create_bubble">ပူဖောင်းကို ဖန်တီးပါ</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">စာသားကို ပုံစံချရန်</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">popup ကို တိုးချဲ့ပါ</string>
@@ -3356,7 +3388,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">နောက်ထက်</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">အက္ခရာနံပါတ်ပါ ပင်နံပါတ် ကိုဖန်တီးပါ</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">နံပါတ်ပါ ပင်နံပါတ်ကိုဖန်တီးပါ</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3416,8 +3450,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">သင့်အကောင့်အတွက် ဖန်တီးထားသော ပင်နံပါတ် ထည့်ပါ၊ SMS စာတိုအနေဖြင့်ပေးပို့သည့် အတည်ပြုကုဒ်နှင့် မတူပါ။</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">သင့်အကောင့်အတွက် သင်ဖန်တီးထားသော PIN ကို ရိုက်ထည့်ပါ။</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">အက္ခရာနံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">နံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">ကီးဘုတ် ပြောင်းရန်</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ပင်နံပါတ်မှားနေသည်။ နောက်တစ်ကြိမ် ကြိုးစားပါ။</string>
     <string name="RegistrationLockFragment__forgot_pin">ပင်နံပါတ်ကို မေ့သွားပြီလား?</string>
     <string name="RegistrationLockFragment__incorrect_pin">ပင်နံပါတ်မှားနေသည်</string>
@@ -3455,17 +3489,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Signal အော်ဒီယိုကောလ် အဝင်</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Signal ဗီဒီယိုကောလ် အဝင်</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Signal အဖွဲ့ကောလ် အဝင်</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Signal အော်ဒီယိုကောလ် အထွက်</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Signal ဗီဒီယိုကောလ် အထွက်</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Signal အဖွဲ့ကောလ် အထွက်</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">ပုံသင်္ကေတကို ပို့ဆောင်ပါ။</string>
@@ -5762,7 +5796,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS ပံ့ပိုးမှုကို မကြာမီတွင် ရပ်နားတော့မည် ဖြစ်သည်</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal အက်ပ်တွင် SMS မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို %1$s မှစ၍ ဆက်လက်ပံ့ပိုးတော့မည် မဟုတ်ပါ။</string>
+    <string name="SmsRemoval_info_bullet_1">Signal အက်ပ်တွင် SMS မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို မကြာမီတွင် ဆက်လက်ပံ့ပိုးတော့မည် မဟုတ်ပါ။</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS မက်ဆေ့ချ်များသည် Signal မက်ဆေ့ချ်များနှင့် ကွဲပြားပါသည်။ <b>ဤသည်က ကုဒ်ပြောင်းဝှက်သည့် Signal မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို ထိခိုက်မည်မဟုတ်ဘဲ ၎င်းသည် ဆက်လက်အလုပ်လုပ်ပါမည်။</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5793,6 +5827,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">စာကို ဝါးထားရန်</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">ပုံစံချခြင်းကို ဖယ်ရှားရန်</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5860,12 +5896,12 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">ဖျက်နေဆဲ…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">ဖျက်ရန် မအောင်မြင်ပါ။</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">ကောလ်လင့်ခ်အားလုံးကို ဖျက်၍ မရနိုင်ခဲ့ပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">ကောလ်မှတ်တမ်းကို ရှင်းရန်</string>
@@ -5889,13 +5925,11 @@
     <string name="CallLogFragment__filtered_by_missed">လွတ်သွားသည်များကို စစ်ထုတ်ပြီး</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">အားလုံး ရွေးရန်</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">ဖျက်ရန်</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="other">ကောလ် %1$d ခုကို ဖျက်မည်လား။</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">ကျွန်ုပ်အတွက် ဖျက်မည်</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">ကောလ် %1$d ခုကို ဖျက်လိုက်ပါပြီ</item>
@@ -5987,13 +6021,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">တည်းဖြတ်မှု မှတ်တမ်း</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal Beta သီးသန့်</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">မက်ဆေ့ချ်များ တည်းဖြတ်ခြင်းကို Signal Beta သုံးစွဲသူများအတွက်သာ ရရှိနိုင်ပါသည်။ မက်ဆေ့ချ်တစ်စောင်ကို တည်းဖြတ်ပါက ၎င်းကို Signal Beta နောက်ဆုံးထွက်ဗားရှင်းရှိသူများသာ မြင်ရပါမည်။</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">မလုပ်တော့ပါ</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">ပို့ပါ</string>
 
 
     <!-- CallLinkDetailsFragment -->

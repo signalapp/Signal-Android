@@ -202,7 +202,7 @@ public class AvatarHelper {
     }
   }
 
-  private static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId) {
+  public static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId) {
     File    profileAvatar       = getAvatarFile(context, recipientId, false);
     boolean profileAvatarExists = profileAvatar.exists() && profileAvatar.length() > 0;
     File    syncAvatar          = getAvatarFile(context, recipientId, true);

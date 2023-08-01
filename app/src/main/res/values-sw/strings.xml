@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Inatafuta ujumbe…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Inawezekana una jumbe mpya</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Watumiaji waliozuiliwa</string>
     <string name="BlockedUsersActivity__add_blocked_user">Ongeza mtumiaji aliyezuiliwa</string>
@@ -317,7 +321,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Huwezi kupakua video. Utahitaji kuituma tena.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">imehaririwa %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Imehaririwa %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Jiunge na mazungumzo ya simu</string>
 
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">Hakuna hakiki la kiungo</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Kiungo hiki cha kikundi hakitumiki.</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Tumia kiungo kujiunga kwenye Simu ya Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ameanzisha mazungumzo ya simu ya kikundi · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">Umeanzisha simu ya kikundi · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yuko kwenye mazungumzo ya simu ya kikundi · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Uko kwenye mazungumzo ya simu ya kikundi · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s na %2$s wako kwenye mazungumzo ya simu ya kikundi · %3$s</string>
     <string name="MessageRecord_group_call_s">Mazungumzo ya simu ya kikundi · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ameanzisha mazungumzo ya simu ya kikundi</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">Umeanzisha mazungumzo ya simu ya kikundi</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s yuko kwenye mazungumzo ya simu ya kikundi</string>
     <string name="MessageRecord_you_are_in_the_group_call">Uko kwenye mazungumzo ya simu ya kikundi</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s na %2$s wako kwenye mazungumzo ya simu ya kikundi</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">Una majaribio %1$dyaliyosalia. Ukimaliza majaribio unaweza kuunda PINI mpya. Unaweza kujisajili na kutumia akaunti yako ila utapoteza mipangilio fulani iliyohifadhiwa kama vile taarifa za wasifu wako.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Usajili wa Signal - Nahitaji Usaidizi wa Nambari ya Usajili kwenye Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ingiza Nenosiri la herufi na nambari</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Ingiza Nenosiri lenye nambari</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">Badili kibodi</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Unda Nenosiri lako</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kamera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Imeshindwa kuskani msimbo wa QR bila ruhusa ya kamera</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Sharti kwanza mtumiane ujumbe ili uone nambari ya usalama ya %1$s.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Nambari ya usalama itaundwa na mtu huyu baada ya kubadilishana jumbe na wewe.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">Sawa</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Jifunze zaidi</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">Sawa</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">Hali ya Mazungumzo Simu</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Taarifa Muhimu za Programu</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Arifa za jumbe za ziada</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Kupokea simu, iwezeshe Signal kutumia maikrofoni yako.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Ili kujibu simu kutoka kwa %1$s, ruhusu Signal ifikie kipaza sauti chako.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Ili kupokea simu ya video, ipe Signal ruhusa ya kufikia maikrofoni na kamera yako.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal inahitaji ruhusa ya kipaza sauti na Kamera ili kufanya au kupokea simu, lakini zimekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kipaza sauti\" na \"Kamera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Umejibu kwenye kifaa kilichounganishwa.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Umekataa kwenye kifaa kilichounganishwa.</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Vipokea sauti vya kichwani Vyenye Waya</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Kisikilizishi cha Kichwani</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Ili kudhibitisha usalama wa mfumo wako wa end-to-end na %1$s, linganisha nambari hapo juu na kifaa chake. Pia unaweza kupitisha kwenye skana kodi ilio kwenye simu yao. <a href=\"https://signal.org/redirect/safety-numbers\"> Jifunze zaidi.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Ili kuthibitisha usimbaji fiche wa mwanzo hadi mwisho kwa %1$s, linganisha kadi ya rangi iliyo hapo juu na kifaa chake na ulinganishe nambari. Kama hivi visipolingana, telezesha na ujaribu jozi nyingine ya nambari ya usalama. Jozi moja tu inahitaji kulingana.</string>
     <string name="verify_display_fragment__tap_to_scan">Gusa kuskani</string>
     <string name="verify_display_fragment__successful_match">Match imeendana</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Imeshindwa kuthibitisha nambari ya usalama.</string>
     <string name="verify_display_fragment__loading">Inapakia</string>
     <string name="verify_display_fragment__mark_as_verified">Weka alama kuwa imedhibitishwa</string>
     <string name="verify_display_fragment__clear_verification">Futa uthibitishwaji</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Nambari za usalama zinasasishwa.</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Mabadiliko kwa nambari ya usalama</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Nambari za usalama zinasasishwa katika kipindi cha mpito ili kuwezesha vipengele vya faragha vijavyo katika Signal.\n\nIli kuthibitisha nambari za usalama, linganisha kadi ya rangi na kifaa cha muwasiliani wako. Kama hivi visipolingana, telezesha na ujaribu jozi nyingine ya nambari ya usalama. Jozi moja tu inahitaji kulingana.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Unahitaji usaidizi?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Nimeelewa</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Shiriki nambari salama</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">Mpangilio wa Gumzo</string>
     <string name="conversation__menu_add_shortcut">Ongeza kwenye skrini ya nyumbani</string>
     <string name="conversation__menu_create_bubble">Unda kiputo</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">Umbiza maandishi</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Panua kidukizo</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Ifuatayo</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Unda Nenosiri lenye herufi na nambari</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Unda Nenosiri lenye nambari</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ingiza Nenosiri ulilobuni kwa hii akaunti. Hii ni tofauti na nambari za kuthibitisha kupitia Ujumbe mfupi.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ingiza PIN uliyounda ya akaunti yako.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ingiza Nenosiri la herufi na nambari</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Ingiza Nenosiri lenye nambari</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Badili kibodi</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
     <string name="RegistrationLockFragment__forgot_pin">Umesahau Nenosiri?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Nenosiri sio sahihi</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Simu ya Kawaida ya Signal Inayopiga Sasa</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Simu ya Video ya Signal Inayopiga Sasa</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">Simu ya kikundi ya Signal inaingia</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Simu ya Kawaida ya Signal Inayoendelea</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">Simu ya Video ya Signal Inayoendelea</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">Simu ya Kikundi ya Signal Inayoendelea</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Ikoni ya usafiri</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Msaada wa SMS utaondolewa</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Utumaji wa SMS kwenye programu ya Signal muda si mrefu hautakuwepo kwenye %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">Utumaji wa SMS kwenye programu ya Signal muda si mrefu hautakuwepo.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Jumbe za SMS ni tofauti na jumbe za Signal. <b>Hii haiathiri utumaji jumbe kwa usimbwaji wa Signal ambao utaendelea kufanya kazi.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">Nafasi moja</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Muundo fiche</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">Futa umbizo</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">Inafuta…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">Imeshindwa kufuta.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">Haiwezi kufuta kiungo. Angalia muunganisho wako na ujaribu tena.</item>
+        <item quantity="other">Sio viungo vyote vya kupiga simu vinaweza kufutwa. Angalia muunganisho wako na ujaribu tena.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">Historia ya simu imefutwa</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">Imechujwa kwa simu fifi</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Chagua zote</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Futa</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Futa simu %1$d?</item>
         <item quantity="other">Futa simu %1$d?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Futa kwangu</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">Simu %1$d zimefutwa</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historia ya uhariri</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta pekee</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Kuhariri ujumbe kunapatikana kwa watumiaji wa beta wa Signal pekee. Ukihariri ujumbe, utaonekana kwa watu walio kwenye toleo jipya la beta la Signal pekee.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">Ghairi</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">Tuma</string>
 
 
     <!-- CallLinkDetailsFragment -->

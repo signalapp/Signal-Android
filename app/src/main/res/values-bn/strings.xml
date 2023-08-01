@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">মেসেজ খোঁজা হচ্ছে…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">আপনার কাছে নতুন বার্তা থাকতে পারে</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ব্লক করা ইউজার</string>
     <string name="BlockedUsersActivity__add_blocked_user">ব্লক করা ইউজার যোগ করুন</string>
@@ -883,6 +887,8 @@
     <string name="LinkPreviewView_no_link_preview_available">লিংকের প্রিভিউ উপলব্ধ নেই</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">এই গ্রুপ লিংকটি সচল নেই</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Signal কলে যোগ দিতে এই লিংকটি ব্যবহার করুন</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1481,14 +1487,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">আপনি একটি গ্ৰুপ কল শুরু করেছেন · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s গ্রুপ কল এ আছেন। %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">আপনি গ্রুপ কল এ আছেন। %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s এবং %2$s গ্রুপ কল এ আছেন। %3$s</string>
     <string name="MessageRecord_group_call_s">গ্রুপ কল। %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s একটি গ্রুপ কল শুরু করেছেন</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">আপনি একটি গ্রুপ কল শুরু করেছেন</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s একটি গ্রুপ কল এ আছেন</string>
     <string name="MessageRecord_you_are_in_the_group_call">আপনি গ্রুপ কল এ আছেন</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s এবং %2$s গ্রুপ কল এ আছেন</string>
@@ -1626,8 +1632,8 @@
         <item quantity="other">আপনার %1$d টি প্রচেষ্টা বাকী আছে। আপনার প্রচেষ্টার সীমা শেষ হয়ে গেলে, আপনি একটি নতুন পিন তৈরি করতে পারবেন। আপনি আপনার অ্যাকাউন্ট রেজিস্টার করে ব্যবহার করতে পারবেন কিন্তু আপনি আপনার প্রোফাইলের তথ্যের মতো কিছু সেভ করা সেটিংস হারাবেন।</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal নিবন্ধন - অ্যানড্রয়েড এর জন্য PIN এর ব্যাপারে সাহায্য প্রয়োজন</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">বর্ণানুক্রমিক পিন প্রবেশ করান</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">সংখ্যার পিন প্রবেশ করান</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">কীবোর্ড পাল্টান</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">আপনার পিন তৈরি করুন</string>
@@ -2134,6 +2140,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">কোনও কিউআর কোড স্ক্যান করার জন্য Signal এর ক্যামেরা অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"ক্যামেরা\" সক্ষম করুন।</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ক্যামেরা অনুমতি ছাড়া কিউআর কোড স্ক্যান করা সম্ভব নয়</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s-এর নিরাপত্তা নাম্বার দেখতে আপনাকে প্রথমে তার সাথে মেসেজ আদান-প্রদান করতে হবে।</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">এই ব্যক্তি আপনার সাথে মেসেজ আদান-প্রদান করার পর তার সাথে একটি নিরাপত্তা নম্বর তৈরি করা হবে।</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">ঠিক আছে</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">আরো জানুন</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">ঠিক আছে</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2255,6 +2269,8 @@
     <string name="NotificationChannel_call_status">কল স্ট্যাটাস</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">অ্যাপ সম্পর্কিত গুরুত্বপূর্ণ সতর্কবার্তা</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">অতিরিক্ত মেসেজ নোটিফিকেশন</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2313,7 +2329,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">কলের উত্তর দিতে, Signal-কে আপনার মাইক্রোফোন অ্যাক্সেস দিন।</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$sএর থেকে কল উত্তর দিতে, Signal কে আপনার মাইক্রোফোনে অ্যাক্সেস দিন।</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">ভিডিও কলের উত্তর দিতে, Signal-কে আপনার মাইক্রোফোন এবং ক্যামেরায় অ্যাক্সেস দিন।</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">কল সমূহ করতে বা গ্রহণের জন্য Signal এর মাইক্রোফোন এবং ক্যামেরা ব্যবহারের অনুমতি প্রয়োজন, তবে সেগুলি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" এবং \"ক্যামেরা\" সক্ষম করুন |</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">সংযুক্ত ডিভাইসে উত্তর দেওয়া হয়েছে।</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">সংযুক্ত ডিভাইসে অস্বীকার করা হয়েছে।</string>
@@ -2342,7 +2359,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ব্লুটুথ</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">তারযুক্ত হেডফোন</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">তারযুক্ত হেডসেট</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2695,12 +2712,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s এর সাথে আপনার সর্বশেষ সীমা এনক্রিপশনের নিরাপত্তা যাচাই করতে, তাদের ডিভাইসের সাথে উপরের নম্বরগুলি তুলনা করুন। আপনি তাদের ফোনে কোড স্ক্যান করতে পারেন। <a href=\"https://signal.org/redirect/safety-numbers\">আরও জানুন।</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s-এর সাথে এন্ড-টু-এন্ড এনক্রিপশন যাচাই করতে, তার ডিভাইসের উপরে থাকা রঙিন কার্ডটি মিলিয়ে দেখুন এবং নম্বরগুলো তুলনা করুন। এগুলো যদি না মিলে তবে সোয়াইপ করুন এবং অন্য এক জোড়া নিরাপত্তা নম্বর ব্যবহার করে দেখুন। শুধুমাত্র একটি জোড়া মিলতে হবে।</string>
     <string name="verify_display_fragment__tap_to_scan">স্ক্যান করতে আলতো চাপুন</string>
     <string name="verify_display_fragment__successful_match">সফল ম্যাচ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">নিরাপত্তা নম্বর যাচাই করতে ব্যর্থ হয়েছে</string>
     <string name="verify_display_fragment__loading">লোড হচ্ছে…</string>
     <string name="verify_display_fragment__mark_as_verified">যাচাইকৃত হিসাবে চিহ্নিত করুন</string>
     <string name="verify_display_fragment__clear_verification">যাচাইকরণ সম্পূর্ণ করুন</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">নিরাপত্তা নম্বরগুলো আপডেট করা হচ্ছে।</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">নিরাপত্তা নম্বর পরিবর্তন করুন</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Signal-এ আসন্ন গোপনীয়তা ফিচারগুলোকে সচল করার জন্য পরিবর্তনের সময় নিরাপত্তা নম্বরগুলো আপডেট করা হচ্ছে।\n\nনিরাপত্তা নম্বর যাচাই করতে, আপনার কন্টাক্টের ডিভাইসের সাথে থাকা রঙিন কার্ডটি মিলিয়ে দেখুন। এগুলো যদি না মিলে তবে সোয়াইপ করুন এবং অন্য এক জোড়া নিরাপত্তা নম্বর ব্যবহার করে দেখুন। শুধুমাত্র একটি জোড়া মিলতে হবে।</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">সাহায্য প্রয়োজন?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">বুঝতে পেরেছি</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">নিরাপত্তা নাম্বার শেয়ার করুন</string>
@@ -3342,6 +3372,8 @@
     <string name="conversation__menu_conversation_settings">চ্যাট সেটিংস</string>
     <string name="conversation__menu_add_shortcut">হোম পর্দায় যোগ করুন</string>
     <string name="conversation__menu_create_bubble">বাবল তৈরি করুন</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">টেক্সট ফরম্যাট করুন</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">পপআপ প্রসারিত করুন</string>
@@ -3440,7 +3472,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">পরবর্তী</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">বর্ণানুক্রমিক পিন তৈরি করুন</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">সংখ্যার পিন তৈরি করুন</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3502,8 +3536,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">আপনি নিজের অ্যাকাউন্ট এর জন্য তৈরি করা পিনটি প্রবেশ করুন। এটি আপনার এসএমএস যাচাইকরণ কোড থেকে ভিন্ন।</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">আপনার অ্যাকাউন্টের জন্য তৈরি করা পিনটি লিখুন।</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">বর্ণানুক্রমিক পিন প্রবেশ করান</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">সংখ্যার পিন প্রবেশ করান</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">কীবোর্ড পাল্টান</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
     <string name="RegistrationLockFragment__forgot_pin">পিন ভুলে গেছেন?</string>
     <string name="RegistrationLockFragment__incorrect_pin">ভুল পিন</string>
@@ -3546,17 +3580,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">Signal ভয়েস কল আসছে</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">Signal ভিডিও কল আসছে</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">ইনকামিং সিগন্যাল গ্রুপ কল</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">চলমান Signal ভয়েস কল</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">চলমান Signal ভিডিও কল</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">চলমান Signal গ্ৰুপ কল</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
@@ -5885,7 +5919,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">এসএমএস সুবিধা আর থাকছে না</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">Signal অ্যাপে এসএমএস ম্যাসেজিং সুবিধাটি শীঘ্রই %1$s-এ আর থাকবে না।</string>
+    <string name="SmsRemoval_info_bullet_1">শীঘ্রই Signal অ্যাপে এসএমএস ম্যাসেজিং সুবিধাটি আর থাকবে না।</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">এসএমএস ম্যাসেজ আর Signal ম্যাসেজের মধ্যে পার্থক্য রয়েছে। <b>এটি এনক্রিপ্ট করা Signal ম্যাসেজিংকে প্রভাবিত করবে না এবং এর কার্যক্রম অব্যাহত থাকবে।</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5916,6 +5950,8 @@
     <string name="TextFormatting_monospace">মনোস্পেস</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">স্পয়লার</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">ফরম্যাটিং পরিষ্কার করুন</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5983,13 +6019,13 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">মুছে ফেলা হচ্ছে…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">মুছে ফেলা সফল হয়নি।</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Can\'t delete link. Check your connection and try again.</item>
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="one">লিংক মুছে ফেলা যাচ্ছে না। আপনার ইন্টারনেট সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</item>
+        <item quantity="other">সকল কল লিংক মুছে ফেলা যায়নি। আপনার ইন্টারনেট সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">কলের ইতিহাস মুছে ফেলা হয়েছে</string>
@@ -6013,14 +6049,12 @@
     <string name="CallLogFragment__filtered_by_missed">\'মিসড কল\' অনুযায়ী ফিল্টার করা হয়েছে</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">সবগুলো নির্বাচন করুন</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">মুছে ফেলুন</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">%1$d কল মুছবেন?</item>
         <item quantity="other">%1$d কল মুছবেন?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">আমার জন্য মুছে ফেলুন</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$dটি কল মুছে ফেলা হয়েছে</item>
@@ -6113,13 +6147,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">এডিট করার ইতিহাস</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">শুধুমাত্র Signal বিটা</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">ম্যাসেজ এডিট করা শুধুমাত্র Signal বিটা ব্যবহারকারীদের ক্ষেত্রে প্রযোজ্য। আপনি যদি কোনো ম্যাসেজ এডিট করেন, তবে এটি শুধুমাত্র Signal বিটার সর্বশেষ সংস্করণ ব্যবহারকারীদের কাছে দৃশ্যমান হবে।</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">বাতিল করুন</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">পাঠান</string>
 
 
     <!-- CallLinkDetailsFragment -->

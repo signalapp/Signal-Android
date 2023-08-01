@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
  * A bad cherry-pick for a database change requires us to attempt to alter the table again
  * to fix it.
  */
+@Suppress("ClassName")
 object V162_ThreadUnreadSelfMentionCountFixup : SignalDatabaseMigration {
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

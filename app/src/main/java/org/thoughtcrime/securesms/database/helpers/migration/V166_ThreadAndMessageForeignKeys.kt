@@ -14,6 +14,7 @@ import org.signal.core.util.update
  * This one's a doozy. We want to add additional foreign key constraints between the thread, recipient, and message tables. This will let us know for sure
  * that there aren't threads with invalid recipients, or messages with invalid threads, or multiple threads for the same recipient.
  */
+@Suppress("ClassName")
 object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V166_ThreadAndMessageForeignKeys::class.java)

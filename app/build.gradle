@@ -42,12 +42,11 @@ wire {
 }
 
 ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version = "0.47.1"
+    version = "0.49.1"
 }
 
-def canonicalVersionCode = 1279
-def canonicalVersionName = "6.24.0"
+def canonicalVersionCode = 1303
+def canonicalVersionName = "6.27.9"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -159,7 +158,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = '1.3.2'
+        kotlinCompilerExtensionVersion = '1.4.4'
     }
 
     defaultConfig {
@@ -199,6 +198,8 @@ android {
         buildConfigField "String[]", "SIGNAL_KBS_IPS", kbs_ips
         buildConfigField "String[]", "SIGNAL_SFU_IPS", sfu_ips
         buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
+        buildConfigField "String[]", "SIGNAL_CDSI_IPS", cdsi_ips
+        buildConfigField "String[]", "SIGNAL_SVR2_IPS", svr2_ips
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\""
         buildConfigField "String", "SVR2_MRENCLAVE", "\"6ee1042f9e20f880326686dd4ba50c25359f01e9f733eeba4382bca001d45094\""
@@ -228,8 +229,8 @@ android {
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
+        resourceConfigurations += []
 
-        resConfigs autoResConfig()
 
         splits {
             abi {
@@ -447,6 +448,14 @@ android {
             variant.setIgnore(true)
         }
     }
+
+    android.buildTypes.each {
+        if (it.name != 'release') {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/debug/java"
+        } else {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/release/java"
+        }
+    }
 }
 
 dependencies {
@@ -579,9 +588,8 @@ dependencies {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
     testImplementation testLibs.robolectric.shadows.multidex
-    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) {
-        force = true
-    }
+    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 

@@ -131,14 +131,14 @@ object SignalServiceProtoUtil {
     }
 
   fun Sent.isUnidentified(serviceId: ServiceId?): Boolean {
-    return serviceId != null && unidentifiedStatusList.firstOrNull { ServiceId.parseOrNull(it.destinationUuid) == serviceId }?.unidentified ?: false
+    return serviceId != null && unidentifiedStatusList.firstOrNull { ServiceId.parseOrNull(it.destinationServiceId) == serviceId }?.unidentified ?: false
   }
 
   val Sent.serviceIdsToUnidentifiedStatus: Map<ServiceId, Boolean>
     get() {
       return unidentifiedStatusList
         .mapNotNull { status ->
-          val serviceId = ServiceId.parseOrNull(status.destinationUuid)
+          val serviceId = ServiceId.parseOrNull(status.destinationServiceId)
           if (serviceId != null) {
             serviceId to status.unidentified
           } else {

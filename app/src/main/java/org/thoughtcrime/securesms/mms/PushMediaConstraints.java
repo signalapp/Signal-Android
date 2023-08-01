@@ -40,7 +40,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize(Context context) {
-    return currentConfig.maxImageFileSize;
+    return (int) Math.min(currentConfig.maxImageFileSize, getMaxAttachmentSize());
   }
 
   @Override
@@ -49,35 +49,35 @@ public class PushMediaConstraints extends MediaConstraints {
   }
 
   @Override
-  public int getGifMaxSize(Context context) {
-    return 25 * MB;
+  public long getGifMaxSize(Context context) {
+    return Math.min(25 * MB, getMaxAttachmentSize());
   }
 
   @Override
-  public int getVideoMaxSize(Context context) {
-    return 100 * MB;
+  public long getVideoMaxSize(Context context) {
+    return getMaxAttachmentSize();
   }
 
   @Override
-  public int getUncompressedVideoMaxSize(Context context) {
+  public long getUncompressedVideoMaxSize(Context context) {
     return isVideoTranscodeAvailable() ? 500 * MB
                                        : getVideoMaxSize(context);
   }
 
   @Override
-  public int getCompressedVideoMaxSize(Context context) {
+  public long getCompressedVideoMaxSize(Context context) {
     return Util.isLowMemory(context) ? 30 * MB
                                      : 50 * MB;
   }
 
   @Override
-  public int getAudioMaxSize(Context context) {
-    return 100 * MB;
+  public long getAudioMaxSize(Context context) {
+    return getMaxAttachmentSize();
   }
 
   @Override
-  public int getDocumentMaxSize(Context context) {
-    return 100 * MB;
+  public long getDocumentMaxSize(Context context) {
+    return getMaxAttachmentSize();
   }
 
   @Override

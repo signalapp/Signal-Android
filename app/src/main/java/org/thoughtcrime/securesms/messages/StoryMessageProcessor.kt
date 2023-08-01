@@ -71,7 +71,7 @@ object StoryMessageProcessor {
           isStoryEmbed = true
         ),
         serverGuid = envelope.serverGuid,
-        messageRanges = storyMessage.bodyRangesList.filterNot { it.hasMentionUuid() }.toBodyRangeList()
+        messageRanges = storyMessage.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
       )
 
       insertResult = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()

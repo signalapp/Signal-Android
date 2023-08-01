@@ -106,6 +106,10 @@
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">កំពុងពិនិត្យសារ…</string>
 
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">អ្នកអាចមានសារថ្មី</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">អ្នកប្រើដែលបានទប់ស្កាត់</string>
     <string name="BlockedUsersActivity__add_blocked_user">បញ្ចូលអ្នកប្រើដែលបានទប់ស្កាត់</string>
@@ -855,6 +859,8 @@
     <string name="LinkPreviewView_no_link_preview_available">មិនមានតំណភ្ជាប់បង្ហាញទេ</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">តំណភ្ជាប់ក្រុមនេះមិនដំណើរការទេ</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">ប្រើតំណនេះដើម្បីចូលរួមការហៅតាម Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
@@ -1430,14 +1436,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s បានចាប់ផ្តើមការហៅជាក្រុម · %2$s</string>
-    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">អ្នកបានចាប់ផ្តើមការហៅជាក្រុម · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s នៅក្នុងការហៅជាក្រុម · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">អ្នកនៅក្នុងការហៅជាក្រុម · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s និង %2$s នៅក្នុងការហៅជាក្រុម · %3$s</string>
     <string name="MessageRecord_group_call_s">ការហៅជាក្រុម · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s បានចាប់ផ្តើមការហៅជាក្រុម</string>
-    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">អ្នកបានចាប់ផ្តើមការហៅជាក្រុម</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s នៅក្នុងការហៅជាក្រុម</string>
     <string name="MessageRecord_you_are_in_the_group_call">អ្នកនៅក្នុងការហៅជាក្រុម</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s និង %2$s នៅក្នុងការហៅជាក្រុម</string>
@@ -1567,8 +1573,8 @@
         <item quantity="other">អ្នកនៅមានការព្យាយាម %1$d ដង។ បើការព្យាយាមអស់ អ្នកអាចបង្កើតលេខកូដ PIN ថ្មី។ អ្នកអាចចុះឈ្មោះ និងប្រើប្រាស់គណនីរបស់អ្នក តែអ្នកនឹងត្រូវបាត់បង់ការកំណត់ដែលបានរក្សាទុក ដូចជាព័ត៌មានប្រវត្តិរូបរបស់អ្នក។</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">បញ្ចូលលេខ PIN អក្សរក្រមលេខ</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">បញ្ចូលលេខកូដ PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="PinRestoreEntryFragment_switch_keyboard">ប្តូរក្តារចុច</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
@@ -2067,6 +2073,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីស្កេនកូដ QR ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"កាមេរ៉ា\"។</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតសិទ្ធប្រើប្រាស់កាមេរ៉ា</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">ដំបូង អ្នកត្រូវផ្លាស់ប្តូរសារ ដើម្បីបង្ហាញលេខសុវត្ថិភាពរបស់ %1$s។</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">លេខសុវត្ថិភាពមួយនឹងត្រូវបានបង្កើតឡើងជាមួយបុគ្គលនេះ បន្ទាប់ពីគេផ្ញើសារទៅវិញទៅមកជាមួយអ្នក។</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">យល់ព្រម</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">ស្វែងយល់បន្ថែម</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">យល់ព្រម</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2186,6 +2200,8 @@
     <string name="NotificationChannel_call_status">ស្ថានភាពការហៅ</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">ការជូនដំណឹងសំខាន់ៗអំពីកម្មវិធី</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">ការជូនដំណឹងសារបន្ថែម</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2243,7 +2259,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ដើម្បីឆ្លើយតបការហៅ សូមឲ្យ Signal ប្រើប្រាស់ម៉ៃក្រូហ្វូនរបស់អ្នក។</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">ដើម្បីទទួលការហៅចូលពី %1$s សូមឲ្យ Signal ប្រើប្រាស់ម៉ៃក្រូហ្វូនរបស់អ្នក។</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">ដើម្បីលើកទទួលការហៅជាវីដេអូ សូមឲ្យ Signal ប្រើប្រាស់មីក្រូហ្វូន និងកាមេរ៉ារបស់អ្នក។</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signalត្រូវការសិទ្ធិប្រើប្រាស់ម៉ៃក្រូហ្វូន និងកាមេរ៉ា ដើម្បីហៅចេញ ឬទទួលការហៅចូល ប៉ុន្តែពួកវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"ម៉ៃក្រូហ្វូន\" និង \"កាមេរ៉ា\"។</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">បានឆ្លើយលើឧបករណ៍ដែលបានតភ្ជាប់។</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">បានបដិសេធលើឧបករណ៍ដែលបានតភ្ជាប់។</string>
@@ -2272,7 +2289,7 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <string name="WebRtcAudioOutputToggle__wired_headphones">កាសមានខ្សែ</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">កាសមានខ្សែ</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
@@ -2615,12 +2632,25 @@
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ដើម្បីផ្ទៀងផ្ទាត់សន្តិសុខនៃកូដនីយកម្មទាំងសងខាងរបស់អ្នកជាមួយ %1$s, ប្រៀបធៀបលេខខាងលើជាមួយឧបករណ៍របស់ពួកគេ។ អ្នកក៏អាចស្កេនលេខកូដនៅលើទូរស័ព្ទរបស់គេបានដែរ។ <a href=\"https://signal.org/redirect/safety-numbers\">សិក្សាបន្ថែម</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">ដើម្បីផ្ទៀងផ្ទាត់ការអ៊ីនគ្រីបទាំងសងខាងជាមួយ %1$s សូមផ្គូផ្គងកាតពណ៌ខាងលើជាមួយឧបករណ៍របស់ពួកគេ ហើយប្រៀបធៀបលេខ។ ប្រសិនបើលេខទាំងនេះមិនត្រូវគ្នាទេ សូមអូស ហើយសាកល្បងលេខសុវត្ថិភាពគូផ្សេងទៀត។ មានតែមួយគូប៉ុណ្ណោះដែលត្រូវផ្គូផ្គង។</string>
     <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
     <string name="verify_display_fragment__successful_match">ផ្គូរផ្គងដោយជោគជ័យ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">បរាជ័យក្នុងការផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
     <string name="verify_display_fragment__loading">កំពុងផ្ទុក…</string>
     <string name="verify_display_fragment__mark_as_verified">ដាក់ថាបានផ្ទៀងផ្ទាត់</string>
     <string name="verify_display_fragment__clear_verification">សំអាតការផ្ទៀងផ្ទាត់</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">លេខសុវត្ថិភាពកំពុងត្រូវបានធ្វើបច្ចុប្បន្នភាព។</string>
+
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">ការផ្លាស់ប្តូរចំពោះលេខសុវត្ថិភាព</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">លេខសុវត្ថិភាពកំពុងត្រូវបានធ្វើបច្ចុប្បន្នភាពក្នុងរយៈពេលផ្លាស់ប្តូរ ដើម្បីបើកមុខងារឯកជនភាពនាពេលខាងមុខនៅក្នុង Signal។\n\nដើម្បីផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព សូមផ្គូផ្គងកាតពណ៌ជាមួយឧបករណ៍នៃឈ្មោះទំនាក់ទំនងរបស់អ្នក។ ប្រសិនបើលេខទាំងនេះមិនត្រូវគ្នាទេ សូមអូស ហើយសាកល្បងលេខសុវត្ថិភាពគូផ្សេងទៀត។ មានតែមួយគូប៉ុណ្ណោះដែលត្រូវផ្គូផ្គង។</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">ត្រូវការជំនួយ?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">យល់ហើយ</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
@@ -3259,6 +3289,8 @@
     <string name="conversation__menu_conversation_settings">ការកំណត់ការជជែក</string>
     <string name="conversation__menu_add_shortcut">បន្ថែមទៅអេក្រង់ដើម</string>
     <string name="conversation__menu_create_bubble">បង្កើតពពុះ</string>
+    <!-- Overflow menu option that allows formatting of text -->
+    <string name="conversation__menu_format_text">កំណត់ទម្រង់អត្ថបទ</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">ពង្រីកការផុសឡើង</string>
@@ -3356,7 +3388,9 @@
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">បន្ទាប់</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">បង្កើតអក្សរក្រមលេខ PIN</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">បង្កើតលេខ PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3416,8 +3450,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">បញ្ចូលលេខ PIN ដែលអ្នកបានបង្កើតសម្រាប់ គណនីរបស់អ្នក។ នេះខុសពីលេខកូដផ្ទៀងផ្ទាត់ពីសារ SMS ។</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">បញ្ចូលលេខកូដសម្ងាត់ដែលអ្នកបានបង្កើតសម្រាប់គណនីរបស់អ្នក។</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">បញ្ចូលលេខ PIN អក្សរក្រមលេខ</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">បញ្ចូលលេខកូដ PIN</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">ប្តូរក្តារចុច</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">លេខកូដ PIN មិនត្រឹមត្រូវ។ សាកល្បងម្តងទៀត។</string>
     <string name="RegistrationLockFragment__forgot_pin">ភ្លេចលេខ PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">លេខកូដ PIN មិនត្រឹមត្រូវ</string>
@@ -3455,17 +3489,17 @@
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
+    <string name="CallNotificationBuilder__incoming_signal_voice_call">ការហៅចូលជាសំឡេងតាម Signal</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">Incoming Signal video call</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">ការហៅចូលជាវីដេអូតាម Signal</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">ការហៅចូល Signal ជាក្រុម</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_voice_call">Ongoing Signal voice call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_voice_call">កំពុងហៅជាសំឡេងតាម Signal</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">Ongoing Signal video call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">កំពុងហៅជាវីដេអូតាម Signal</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
+    <string name="CallNotificationBuilder__ongoing_signal_group_call">កំពុងហៅជាក្រុមតាម Signal</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
@@ -5762,7 +5796,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">សារជាអក្សរនឹងលែងប្រើបានទៀតហើយ</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">ការផ្ញើសារជាអក្សរក្នុងកម្មវិធី Signal នឹងលែងប្រើបានទៀតហើយនៅលើ %1$s ក្នុងពេលឆាប់ៗនេះ។</string>
+    <string name="SmsRemoval_info_bullet_1">ការផ្ញើសារជាអក្សរក្នុងកម្មវិធី Signal នឹងលែងប្រើបានទៀតហើយក្នុងពេលឆាប់ៗនេះ។</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">សារជាអក្សរគឺខុសពីសារ Signal។ <b>វាមិនប៉ះពាល់ដល់ការផ្ញើសារ Signal ដែលបានអ៊ីនគ្រីប ដែលនឹងបន្តដំណើរការទេ។</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5793,6 +5827,8 @@
     <string name="TextFormatting_monospace">Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">ព្រាល/បង្ហាញ</string>
+    <!-- Popup menu label for clearing applied formatting -->
+    <string name="TextFormatting_clear_formatting">លុបទម្រង់អត្ថបទ</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5860,12 +5896,12 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Deleting…</string>
+    <string name="CallLogFragment__deleting">កំពុងលុប…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Deletion failed.</string>
+    <string name="CallLogFragment__deletion_failed">មិនអាចលុបបានទេ។</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="other">Not all call links could be deleted. Check your connection and try again.</item>
+        <item quantity="other">មិនមែនតំណសម្រាប់ការហៅទាំងអស់សុទ្ធតែអាចលុបបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">បានលុបប្រវត្តិហៅទូរសព្ទ</string>
@@ -5889,13 +5925,11 @@
     <string name="CallLogFragment__filtered_by_missed">បានត្រងតាមការខកមិនបានទទួល</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">ជ្រើសរើសទាំងអស់</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">លុប</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="other">លុបការហៅ %1$d ឬ?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">លុបសម្រាប់ខ្ញុំ</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">បានលុបការហៅ %1$d</item>
@@ -5987,13 +6021,13 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ប្រវត្តិកែ</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal beta only</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">សម្រាប់តែ Signal បេតាប៉ុណ្ណោះ</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editing messages is available to Signal beta users only. If you edit a message, it will only be visible to people who are on the latest version of Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">ការកែសារមានសម្រាប់តែអ្នកប្រើ Signal បេតាប៉ុណ្ណោះ។ ប្រសិនបើអ្នកកែសារ មានតែអ្នកដែលមានកំណែចុងក្រោយបំផុតនៃ Signal បេតាប៉ុណ្ណោះទើបអាចមើលវាឃើញ។</string>
     <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancel</string>
+    <string name="SendingEditMessageBetaOnlyDialog_cancel">បោះបង់</string>
     <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Send</string>
+    <string name="SendingEditMessageBetaOnlyDialog_send">ផ្ញើ</string>
 
 
     <!-- CallLinkDetailsFragment -->

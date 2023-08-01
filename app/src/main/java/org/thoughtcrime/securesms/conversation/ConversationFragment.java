@@ -273,8 +273,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
 
-    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_text_only, parent, 25);
-    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_text_only, parent, 25);
+    if (FeatureFlags.useConversationFragmentV2() && SignalStore.internalValues().useConversationItemV2()) {
+      CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_incoming, parent, 25);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, parent, 25);
+    } else {
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_text_only, parent, 25);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_text_only, parent, 25);
+    }
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_multimedia, parent, 10);
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_multimedia, parent, 10);
     CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
@@ -286,8 +291,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     super.onCreate(icicle);
     this.locale = Locale.getDefault();
     startupStopwatch = new Stopwatch("conversation-open");
-    SignalLocalMetrics.ConversationOpen.start();
-    SignalTrace.beginSection("ConversationOpen");
   }
 
   @Override
@@ -400,7 +403,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
               startupStopwatch.stop(TAG);
               SignalLocalMetrics.ConversationOpen.onRenderFinished();
               listener.onFirstRender();
-              SignalTrace.endSection();
               return Unit.INSTANCE;
             });
           }
@@ -1570,9 +1572,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         return;
       }
 
-      if (messageRecord.isSecure()                                        &&
-          !messageRecord.isRemoteDelete()                                 &&
-          !messageRecord.isUpdate()                                       &&
+      if (MessageRecordUtil.isValidReactionTarget(messageRecord)          &&
           !recipient.get().isBlocked()                                    &&
           !messageRequestViewModel.shouldShowMessageRequest()             &&
           (!recipient.get().isGroup() || recipient.get().isActiveGroup()) &&
@@ -2049,7 +2049,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args) {
       if (listener.isInBubble()) {
-        Intent intent = ConversationIntents.createBuilder(requireActivity(), recipient.getId(), threadId)
+        Intent intent = ConversationIntents.createBuilderSync(requireActivity(), recipient.getId(), threadId)
                                            .withStartingPosition(list.getChildAdapterPosition(parent))
                                            .build();
 

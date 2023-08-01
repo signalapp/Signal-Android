@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
@@ -48,7 +48,7 @@ class StoryTextPostView @JvmOverloads constructor(
 
   init {
     TextStoryTextWatcher.install(textView)
-    textView.movementMethod = LongClickMovementMethod.getInstance(context)
+    disableCreationMode()
   }
 
   fun getLinkPreviewThumbnailWidth(useLargeThumbnail: Boolean): Int {
@@ -59,12 +59,14 @@ class StoryTextPostView @JvmOverloads constructor(
     return linkPreviewView.getThumbnailViewHeight(useLargeThumbnail)
   }
 
-  fun showCloseButton() {
+  fun enableCreationMode() {
     linkPreviewView.setCanClose(true)
+    textView.movementMethod = null
   }
 
-  fun hideCloseButton() {
+  fun disableCreationMode() {
     linkPreviewView.setCanClose(false)
+    textView.movementMethod = LongClickMovementMethod.getInstance(context)
   }
 
   fun setTypeface(typeface: Typeface) {
@@ -144,7 +146,7 @@ class StoryTextPostView @JvmOverloads constructor(
     setTextColor(storyTextPost.textForegroundColor, false)
     setTextBackgroundColor(storyTextPost.textBackgroundColor)
 
-    hideCloseButton()
+    disableCreationMode()
 
     postAdjustLinkPreviewTranslationY()
   }
@@ -157,7 +159,7 @@ class StoryTextPostView @JvmOverloads constructor(
     linkPreviewView.setThumbnailDrawable(drawable, useLargeThumbnail)
   }
 
-  fun bindLinkPreviewState(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int, useLargeThumbnail: Boolean) {
+  fun bindLinkPreviewState(linkPreviewState: LinkPreviewState, hiddenVisibility: Int, useLargeThumbnail: Boolean) {
     linkPreviewView.bind(linkPreviewState, hiddenVisibility, useLargeThumbnail)
   }
 

@@ -45,11 +45,13 @@ object NameColors {
   }
 
   private fun getSessionGroupRecipients(groupId: GroupId, sessionMemberCache: MutableMap<GroupId, Set<Recipient>>): LiveData<Set<Recipient>> {
-    val fullMembers = LiveGroup(groupId).fullMembers.map { members: List<FullMember>? ->
-      Stream.of(members)
-        .map { it.member }
-        .toList()
-    }
+    val fullMembers = LiveGroup(groupId)
+      .fullMembers
+      .map { members: List<FullMember>? ->
+        Stream.of(members)
+          .map { it.member }
+          .toList()
+      }
 
     return fullMembers.map { currentMembership: List<Recipient>? ->
       val cachedMembers: MutableSet<Recipient> = MapUtil.getOrDefault(sessionMemberCache, groupId, HashSet()).toMutableSet()
