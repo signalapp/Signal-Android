@@ -261,6 +261,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private boolean            hasWallpaper;
   private float              lastYDownRelativeToThis;
   private ProjectionList     colorizerProjections = new ProjectionList(3);
+  private boolean            isBound = false;
 
   private final Runnable shrinkBubble = new Runnable() {
     @Override
@@ -387,9 +388,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.displayMode           = displayMode;
     this.previousMessage       = previousMessageRecord;
 
-    this.author.observeForever(this);
-    this.conversationRecipient.observeForever(this);
-
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted, allowedToPlayInline);
@@ -412,6 +410,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (audioViewStub.resolved()) {
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
     }
+
+    isBound = true;
+    this.author.observeForever(this);
+    this.conversationRecipient.observeForever(this);
   }
 
   @Override
@@ -629,6 +631,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public void onRecipientChanged(@NonNull Recipient modified) {
+    if (!isBound) {
+      return;
+    }
+
     if (conversationRecipient.getId().equals(modified.getId())) {
       setBubbleState(messageRecord, modified, modified.hasWallpaper(), colorizer);
 
@@ -683,6 +689,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public void unbind() {
+    isBound = false;
+
     if (author != null) {
       author.removeForeverObserver(this);
     }
