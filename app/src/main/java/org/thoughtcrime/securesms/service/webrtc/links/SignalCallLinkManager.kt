@@ -41,7 +41,7 @@ class SignalCallLinkManager(
       .genericServerPublicParams
   )
 
-  private fun requestCreateCallLinkCredentailPresentation(
+  private fun requestCreateCallLinkCredentialPresentation(
     linkRootKey: ByteArray,
     roomId: ByteArray
   ): CreateCallLinkCredentialPresentation {
@@ -95,7 +95,7 @@ class SignalCallLinkManager(
 
       Log.d(TAG, "Generating credential.")
       val credentialPresentation = try {
-        requestCreateCallLinkCredentailPresentation(
+        requestCreateCallLinkCredentialPresentation(
           rootKey.keyBytes,
           roomId
         )
