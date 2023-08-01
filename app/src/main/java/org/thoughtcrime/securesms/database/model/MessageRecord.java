@@ -738,6 +738,13 @@ public abstract class MessageRecord extends DisplayRecord {
     return originalMessageId != null;
   }
 
+  public boolean isLatestRevision() {
+    if (this instanceof MediaMmsMessageRecord) {
+      return ((MediaMmsMessageRecord) this).getLatestRevisionId() == null;
+    }
+    return true;
+  }
+
   public @Nullable MessageId getOriginalMessageId() {
     return originalMessageId;
   }

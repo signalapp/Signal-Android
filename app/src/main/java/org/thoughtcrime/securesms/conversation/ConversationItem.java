@@ -1765,7 +1765,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean forceFooter(@NonNull MessageRecord messageRecord) {
-    return hasAudio(messageRecord) || MessageRecordUtil.isEditMessage(messageRecord);
+    return hasAudio(messageRecord) || MessageRecordUtil.isEditMessage(messageRecord) || displayMode == ConversationItemDisplayMode.EDIT_HISTORY;
+  }
+
+  private boolean forceGroupHeader(@NonNull MessageRecord messageRecord) {
+    return displayMode == ConversationItemDisplayMode.EDIT_HISTORY;
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
@@ -1811,7 +1815,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       contactPhotoHolder.setVisibility(VISIBLE);
 
       if (!previous.isPresent() || previous.get().isUpdate() || !current.getFromRecipient().equals(previous.get().getFromRecipient()) ||
-          !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()) || !isWithinClusteringTime(current, previous.get()))
+          !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()) || !isWithinClusteringTime(current, previous.get()) || forceGroupHeader(current))
       {
         groupSenderHolder.setVisibility(VISIBLE);
 
@@ -1825,7 +1829,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         groupSenderHolder.setVisibility(GONE);
       }
 
-      if (!next.isPresent() || next.get().isUpdate() || !current.getFromRecipient().equals(next.get().getFromRecipient()) || !isWithinClusteringTime(current, next.get())) {
+      if (!next.isPresent() || next.get().isUpdate() || !current.getFromRecipient().equals(next.get().getFromRecipient()) || !isWithinClusteringTime(current, next.get()) || forceGroupHeader(current)) {
         contactPhoto.setVisibility(VISIBLE);
         badgeImageView.setVisibility(VISIBLE);
       } else {
