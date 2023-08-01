@@ -743,6 +743,10 @@ public class SignalServiceMessageSender {
       urgent  = message.getRequest().get().isUrgent();
     } else if (message.getCallEvent().isPresent()) {
       content = createCallEventContent(message.getCallEvent().get());
+    } else if (message.getCallLinkUpdate().isPresent()) {
+      content = createCallLinkUpdateContent(message.getCallLinkUpdate().get());
+    } else if (message.getCallLogEvent().isPresent()) {
+      content = createCallLogEventContent(message.getCallLogEvent().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1697,6 +1701,20 @@ public class SignalServiceMessageSender {
   private Content createCallEventContent(SyncMessage.CallEvent proto) {
     Content.Builder     container = Content.newBuilder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().setCallEvent(proto);
+
+    return container.setSyncMessage(builder).build();
+  }
+
+  private Content createCallLinkUpdateContent(SyncMessage.CallLinkUpdate proto) {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallLinkUpdate(proto);
+
+    return container.setSyncMessage(builder).build();
+  }
+
+  private Content createCallLogEventContent(SyncMessage.CallLogEvent proto) {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallLogEvent(proto);
 
     return container.setSyncMessage(builder).build();
   }
