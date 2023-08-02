@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V197_DropAvatarColo
 import org.thoughtcrime.securesms.database.helpers.migration.V198_AddMacDigestColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V199_AddThreadActiveColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V200_ResetPniColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V201_RecipientTableValidations
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -64,7 +65,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 200
+  const val DATABASE_VERSION = 201
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -274,6 +275,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 200) {
       V200_ResetPniColumn.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 201) {
+      V201_RecipientTableValidations.migrate(context, db, oldVersion, newVersion)
     }
   }
 

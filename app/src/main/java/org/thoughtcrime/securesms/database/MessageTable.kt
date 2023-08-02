@@ -4421,7 +4421,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
               FROM ${RecipientTable.TABLE_NAME} 
               WHERE 
                 ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $TO_RECIPIENT_ID AND 
-                ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_TYPE} != ${RecipientTable.GroupType.NONE.id}
+                ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} != ${RecipientTable.RecipientType.INDIVIDUAL.id}
             )
           )
           $qualifierWhere

@@ -53,7 +53,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
         RecipientTable.TABLE_NAME,
         null,
         contentValuesOf(
-          RecipientTable.GROUP_TYPE to RecipientTable.GroupType.DISTRIBUTION_LIST.id,
+          RecipientTable.TYPE to RecipientTable.RecipientType.DISTRIBUTION_LIST.id,
           RecipientTable.DISTRIBUTION_LIST_ID to DistributionListId.MY_STORY_ID,
           RecipientTable.STORAGE_SERVICE_ID to Base64.encodeBytes(StorageSyncHelper.generateKey()),
           RecipientTable.PROFILE_SHARING to 1

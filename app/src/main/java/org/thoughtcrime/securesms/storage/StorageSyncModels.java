@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -56,10 +55,10 @@ public final class StorageSyncModels {
   }
 
   public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientRecord settings, @NonNull byte[] rawStorageId) {
-    switch (settings.getGroupType()) {
-      case NONE:              return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
-      case SIGNAL_V1:         return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
-      case SIGNAL_V2:         return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
+    switch (settings.getRecipientType()) {
+      case INDIVIDUAL:              return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
+      case GV1:         return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
+      case GV2:         return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
       case DISTRIBUTION_LIST: return SignalStorageRecord.forStoryDistributionList(localToRemoteStoryDistributionList(settings, rawStorageId));
       default:                throw new AssertionError("Unsupported type!");
     }
@@ -85,18 +84,18 @@ public final class StorageSyncModels {
 
   public static List<SignalAccountRecord.PinnedConversation> localToRemotePinnedConversations(@NonNull List<RecipientRecord> settings) {
     return Stream.of(settings)
-                 .filter(s -> s.getGroupType() == RecipientTable.GroupType.SIGNAL_V1 ||
-                              s.getGroupType() == RecipientTable.GroupType.SIGNAL_V2 ||
+                 .filter(s -> s.getRecipientType() == RecipientTable.RecipientType.GV1 ||
+                              s.getRecipientType() == RecipientTable.RecipientType.GV2 ||
                               s.getRegistered() == RecipientTable.RegisteredState.REGISTERED)
                  .map(StorageSyncModels::localToRemotePinnedConversation)
                  .toList();
   }
 
   private static @NonNull SignalAccountRecord.PinnedConversation localToRemotePinnedConversation(@NonNull RecipientRecord settings) {
-    switch (settings.getGroupType()) {
-      case NONE     : return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getAci(), settings.getE164()));
-      case SIGNAL_V1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
-      case SIGNAL_V2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
+    switch (settings.getRecipientType()) {
+      case INDIVIDUAL: return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getAci(), settings.getE164()));
+      case GV1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
+      case GV2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
       default       : throw new AssertionError("Unexpected group type!");
     }
   }

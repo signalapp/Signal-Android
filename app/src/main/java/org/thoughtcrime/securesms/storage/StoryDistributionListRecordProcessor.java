@@ -84,7 +84,7 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
         throw new IllegalStateException("Found matching recipient but couldn't generate record for sync.");
       }
 
-      if (recordForSync.getGroupType().getId() != RecipientTable.GroupType.DISTRIBUTION_LIST.getId()) {
+      if (recordForSync.getRecipientType().getId() != RecipientTable.RecipientType.DISTRIBUTION_LIST.getId()) {
         Log.d(TAG, "Record has an incorrect group type.");
         throw new InvalidGroupTypeException();
       }

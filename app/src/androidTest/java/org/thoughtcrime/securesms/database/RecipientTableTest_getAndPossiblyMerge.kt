@@ -1066,7 +1066,7 @@ class RecipientTableTest_getAndPossiblyMerge {
         RecipientTable.TABLE_NAME,
         null,
         contentValuesOf(
-          RecipientTable.PHONE to e164,
+          RecipientTable.E164 to e164,
           RecipientTable.ACI_COLUMN to aci?.toString(),
           RecipientTable.PNI_COLUMN to pni?.toString(),
           RecipientTable.REGISTERED to RecipientTable.RegisteredState.REGISTERED.id

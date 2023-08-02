@@ -39,7 +39,7 @@ object RecipientDatabaseTestUtils {
     e164: String? = null,
     email: String? = null,
     groupId: GroupId? = null,
-    groupType: RecipientTable.GroupType = RecipientTable.GroupType.NONE,
+    groupType: RecipientTable.RecipientType = RecipientTable.RecipientType.INDIVIDUAL,
     blocked: Boolean = false,
     muteUntil: Long = -1,
     messageVibrateState: RecipientTable.VibrateState = RecipientTable.VibrateState.DEFAULT,

@@ -134,113 +134,113 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val TABLE_NAME = "recipient"
 
     const val ID = "_id"
+    const val TYPE = "type"
+    const val E164 = "e164"
     const val ACI_COLUMN = "aci"
     const val PNI_COLUMN = "pni"
     const val USERNAME = "username"
-    const val PHONE = "phone"
     const val EMAIL = "email"
     const val GROUP_ID = "group_id"
     const val DISTRIBUTION_LIST_ID = "distribution_list_id"
-    private const val CALL_LINK_ROOM_ID = "call_link_room_id"
-    const val GROUP_TYPE = "group_type"
-    const val BLOCKED = "blocked"
-    private const val MESSAGE_RINGTONE = "message_ringtone"
-    private const val MESSAGE_VIBRATE = "message_vibrate"
-    private const val CALL_RINGTONE = "call_ringtone"
-    private const val CALL_VIBRATE = "call_vibrate"
-    private const val NOTIFICATION_CHANNEL = "notification_channel"
-    private const val MUTE_UNTIL = "mute_until"
-    private const val AVATAR_COLOR = "color"
-    private const val SEEN_INVITE_REMINDER = "seen_invite_reminder"
-    private const val DEFAULT_SUBSCRIPTION_ID = "default_subscription_id"
-    private const val MESSAGE_EXPIRATION_TIME = "message_expiration_time"
+    const val CALL_LINK_ROOM_ID = "call_link_room_id"
     const val REGISTERED = "registered"
-    const val SYSTEM_JOINED_NAME = "system_display_name"
-    const val SYSTEM_FAMILY_NAME = "system_family_name"
-    const val SYSTEM_GIVEN_NAME = "system_given_name"
-    const val SYSTEM_NICKNAME = "system_nickname"
-    private const val SYSTEM_PHOTO_URI = "system_photo_uri"
-    const val SYSTEM_PHONE_TYPE = "system_phone_type"
-    const val SYSTEM_PHONE_LABEL = "system_phone_label"
-    private const val SYSTEM_CONTACT_URI = "system_contact_uri"
-    private const val SYSTEM_INFO_PENDING = "system_info_pending"
-    private const val PROFILE_KEY = "profile_key"
+    const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
+    const val BLOCKED = "blocked"
+    const val HIDDEN = "hidden"
+    const val PROFILE_KEY = "profile_key"
     const val EXPIRING_PROFILE_KEY_CREDENTIAL = "profile_key_credential"
-    private const val SIGNAL_PROFILE_AVATAR = "signal_profile_avatar"
     const val PROFILE_SHARING = "profile_sharing"
-    private const val LAST_PROFILE_FETCH = "last_profile_fetch"
-    private const val UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode"
-    const val FORCE_SMS_SELECTION = "force_sms_selection"
-    private const val CAPABILITIES = "capabilities"
-    const val STORAGE_SERVICE_ID = "storage_service_key"
-    const val PROFILE_GIVEN_NAME = "signal_profile_name"
-    private const val PROFILE_FAMILY_NAME = "profile_family_name"
+    const val PROFILE_GIVEN_NAME = "profile_given_name"
+    const val PROFILE_FAMILY_NAME = "profile_family_name"
     const val PROFILE_JOINED_NAME = "profile_joined_name"
-    private const val MENTION_SETTING = "mention_setting"
-    private const val STORAGE_PROTO = "storage_proto"
-    private const val LAST_SESSION_RESET = "last_session_reset"
-    private const val WALLPAPER = "wallpaper"
-    private const val WALLPAPER_URI = "wallpaper_file"
+    const val PROFILE_AVATAR = "profile_avatar"
+    const val LAST_PROFILE_FETCH = "last_profile_fetch"
+    const val SYSTEM_GIVEN_NAME = "system_given_name"
+    const val SYSTEM_FAMILY_NAME = "system_family_name"
+    const val SYSTEM_JOINED_NAME = "system_joined_name"
+    const val SYSTEM_NICKNAME = "system_nickname"
+    const val SYSTEM_PHOTO_URI = "system_photo_uri"
+    const val SYSTEM_PHONE_LABEL = "system_phone_label"
+    const val SYSTEM_PHONE_TYPE = "system_phone_type"
+    const val SYSTEM_CONTACT_URI = "system_contact_uri"
+    const val SYSTEM_INFO_PENDING = "system_info_pending"
+    const val NOTIFICATION_CHANNEL = "notification_channel"
+    const val MESSAGE_RINGTONE = "message_ringtone"
+    const val MESSAGE_VIBRATE = "message_vibrate"
+    const val CALL_RINGTONE = "call_ringtone"
+    const val CALL_VIBRATE = "call_vibrate"
+    const val MUTE_UNTIL = "mute_until"
+    const val MESSAGE_EXPIRATION_TIME = "message_expiration_time"
+    const val SEALED_SENDER_MODE = "sealed_sender_mode"
+    const val STORAGE_SERVICE_ID = "storage_service_id"
+    const val STORAGE_SERVICE_PROTO = "storage_service_proto"
+    const val MENTION_SETTING = "mention_setting"
+    const val CAPABILITIES = "capabilities"
+    const val LAST_SESSION_RESET = "last_session_reset"
+    const val WALLPAPER = "wallpaper"
+    const val WALLPAPER_URI = "wallpaper_uri"
     const val ABOUT = "about"
     const val ABOUT_EMOJI = "about_emoji"
-    private const val EXTRAS = "extras"
-    private const val GROUPS_IN_COMMON = "groups_in_common"
-    private const val CHAT_COLORS = "chat_colors"
-    private const val CUSTOM_CHAT_COLORS_ID = "custom_chat_colors_id"
-    private const val BADGES = "badges"
+    const val EXTRAS = "extras"
+    const val GROUPS_IN_COMMON = "groups_in_common"
+    const val AVATAR_COLOR = "avatar_color"
+    const val CHAT_COLORS = "chat_colors"
+    const val CUSTOM_CHAT_COLORS_ID = "custom_chat_colors_id"
+    const val BADGES = "badges"
+    const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
+    const val REPORTING_TOKEN = "reporting_token"
+
     const val SEARCH_PROFILE_NAME = "search_signal_profile"
     const val SORT_NAME = "sort_name"
-    private const val IDENTITY_STATUS = "identity_status"
-    private const val IDENTITY_KEY = "identity_key"
-    private const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
-    private const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
-    const val HIDDEN = "hidden"
-    const val REPORTING_TOKEN = "reporting_token"
+    const val IDENTITY_STATUS = "identity_status"
+    const val IDENTITY_KEY = "identity_key"
 
     @JvmField
     val CREATE_TABLE =
       """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        $TYPE INTEGER DEFAULT ${RecipientType.INDIVIDUAL.id},
+        $E164 TEXT UNIQUE DEFAULT NULL,
         $ACI_COLUMN TEXT UNIQUE DEFAULT NULL,
+        $PNI_COLUMN TEXT UNIQUE DEFAULT NULL CHECK (pni LIKE 'PNI:%'),
         $USERNAME TEXT UNIQUE DEFAULT NULL,
-        $PHONE TEXT UNIQUE DEFAULT NULL,
         $EMAIL TEXT UNIQUE DEFAULT NULL,
         $GROUP_ID TEXT UNIQUE DEFAULT NULL,
-        $GROUP_TYPE INTEGER DEFAULT ${GroupType.NONE.id},
-        $BLOCKED INTEGER DEFAULT 0,
-        $MESSAGE_RINGTONE TEXT DEFAULT NULL, 
-        $MESSAGE_VIBRATE INTEGER DEFAULT ${VibrateState.DEFAULT.id}, 
-        $CALL_RINGTONE TEXT DEFAULT NULL, 
-        $CALL_VIBRATE INTEGER DEFAULT ${VibrateState.DEFAULT.id}, 
-        $NOTIFICATION_CHANNEL TEXT DEFAULT NULL, 
-        $MUTE_UNTIL INTEGER DEFAULT 0, 
-        $AVATAR_COLOR TEXT DEFAULT NULL, 
-        $SEEN_INVITE_REMINDER INTEGER DEFAULT ${InsightsBannerTier.NO_TIER.id},
-        $DEFAULT_SUBSCRIPTION_ID INTEGER DEFAULT -1,
-        $MESSAGE_EXPIRATION_TIME INTEGER DEFAULT 0,
+        $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL,
+        $CALL_LINK_ROOM_ID TEXT DEFAULT NULL,
         $REGISTERED INTEGER DEFAULT ${RegisteredState.UNKNOWN.id},
+        $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0,
+        $BLOCKED INTEGER DEFAULT 0,
+        $HIDDEN INTEGER DEFAULT 0,
+        $PROFILE_KEY TEXT DEFAULT NULL, 
+        $EXPIRING_PROFILE_KEY_CREDENTIAL TEXT DEFAULT NULL, 
+        $PROFILE_SHARING INTEGER DEFAULT 0, 
+        $PROFILE_GIVEN_NAME TEXT DEFAULT NULL, 
+        $PROFILE_FAMILY_NAME TEXT DEFAULT NULL, 
+        $PROFILE_JOINED_NAME TEXT DEFAULT NULL, 
+        $PROFILE_AVATAR TEXT DEFAULT NULL, 
+        $LAST_PROFILE_FETCH INTEGER DEFAULT 0, 
         $SYSTEM_GIVEN_NAME TEXT DEFAULT NULL, 
         $SYSTEM_FAMILY_NAME TEXT DEFAULT NULL, 
         $SYSTEM_JOINED_NAME TEXT DEFAULT NULL, 
+        $SYSTEM_NICKNAME TEXT DEFAULT NULL,
         $SYSTEM_PHOTO_URI TEXT DEFAULT NULL, 
         $SYSTEM_PHONE_LABEL TEXT DEFAULT NULL, 
         $SYSTEM_PHONE_TYPE INTEGER DEFAULT -1, 
         $SYSTEM_CONTACT_URI TEXT DEFAULT NULL, 
         $SYSTEM_INFO_PENDING INTEGER DEFAULT 0, 
-        $PROFILE_KEY TEXT DEFAULT NULL, 
-        $EXPIRING_PROFILE_KEY_CREDENTIAL TEXT DEFAULT NULL, 
-        $PROFILE_GIVEN_NAME TEXT DEFAULT NULL, 
-        $PROFILE_FAMILY_NAME TEXT DEFAULT NULL, 
-        $PROFILE_JOINED_NAME TEXT DEFAULT NULL, 
-        $SIGNAL_PROFILE_AVATAR TEXT DEFAULT NULL, 
-        $PROFILE_SHARING INTEGER DEFAULT 0, 
-        $LAST_PROFILE_FETCH INTEGER DEFAULT 0, 
-        $UNIDENTIFIED_ACCESS_MODE INTEGER DEFAULT 0, 
-        $FORCE_SMS_SELECTION INTEGER DEFAULT 0, 
+        $NOTIFICATION_CHANNEL TEXT DEFAULT NULL, 
+        $MESSAGE_RINGTONE TEXT DEFAULT NULL, 
+        $MESSAGE_VIBRATE INTEGER DEFAULT ${VibrateState.DEFAULT.id}, 
+        $CALL_RINGTONE TEXT DEFAULT NULL, 
+        $CALL_VIBRATE INTEGER DEFAULT ${VibrateState.DEFAULT.id}, 
+        $MUTE_UNTIL INTEGER DEFAULT 0, 
+        $MESSAGE_EXPIRATION_TIME INTEGER DEFAULT 0,
+        $SEALED_SENDER_MODE INTEGER DEFAULT 0, 
         $STORAGE_SERVICE_ID TEXT UNIQUE DEFAULT NULL, 
+        $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL,
         $MENTION_SETTING INTEGER DEFAULT ${MentionSetting.ALWAYS_NOTIFY.id}, 
-        $STORAGE_PROTO TEXT DEFAULT NULL,
         $CAPABILITIES INTEGER DEFAULT 0,
         $LAST_SESSION_RESET BLOB DEFAULT NULL,
         $WALLPAPER BLOB DEFAULT NULL,
@@ -249,78 +249,71 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $ABOUT_EMOJI TEXT DEFAULT NULL,
         $EXTRAS BLOB DEFAULT NULL,
         $GROUPS_IN_COMMON INTEGER DEFAULT 0,
+        $AVATAR_COLOR TEXT DEFAULT NULL, 
         $CHAT_COLORS BLOB DEFAULT NULL,
         $CUSTOM_CHAT_COLORS_ID INTEGER DEFAULT 0,
         $BADGES BLOB DEFAULT NULL,
-        $PNI_COLUMN TEXT DEFAULT NULL,
-        $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL,
         $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0,
-        $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0,
-        $HIDDEN INTEGER DEFAULT 0,
-        $REPORTING_TOKEN BLOB DEFAULT NULL,
-        $SYSTEM_NICKNAME TEXT DEFAULT NULL,
-        $CALL_LINK_ROOM_ID TEXT DEFAULT NULL
+        $REPORTING_TOKEN BLOB DEFAULT NULL
       )
       """
 
     val CREATE_INDEXS = arrayOf(
-      "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON $TABLE_NAME ($GROUP_TYPE);",
-      "CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON $TABLE_NAME ($PNI_COLUMN)",
-      "CREATE INDEX IF NOT EXISTS recipient_service_id_profile_key ON $TABLE_NAME ($ACI_COLUMN, $PROFILE_KEY) WHERE $ACI_COLUMN NOT NULL AND $PROFILE_KEY NOT NULL"
+      "CREATE INDEX IF NOT EXISTS recipient_type_index ON $TABLE_NAME ($TYPE);",
+      "CREATE INDEX IF NOT EXISTS recipient_aci_profile_key_index ON $TABLE_NAME ($ACI_COLUMN, $PROFILE_KEY) WHERE $ACI_COLUMN NOT NULL AND $PROFILE_KEY NOT NULL"
     )
 
     private val RECIPIENT_PROJECTION: Array<String> = arrayOf(
       ID,
+      TYPE,
+      E164,
       ACI_COLUMN,
       PNI_COLUMN,
       USERNAME,
-      PHONE,
       EMAIL,
       GROUP_ID,
-      GROUP_TYPE,
-      BLOCKED,
-      MESSAGE_RINGTONE,
-      CALL_RINGTONE,
-      MESSAGE_VIBRATE,
-      CALL_VIBRATE,
-      MUTE_UNTIL,
-      AVATAR_COLOR,
-      MESSAGE_EXPIRATION_TIME,
+      DISTRIBUTION_LIST_ID,
+      CALL_LINK_ROOM_ID,
       REGISTERED,
+      BLOCKED,
+      HIDDEN,
       PROFILE_KEY,
       EXPIRING_PROFILE_KEY_CREDENTIAL,
-      SYSTEM_JOINED_NAME,
+      PROFILE_SHARING,
+      PROFILE_GIVEN_NAME,
+      PROFILE_FAMILY_NAME,
+      PROFILE_AVATAR,
+      LAST_PROFILE_FETCH,
       SYSTEM_GIVEN_NAME,
       SYSTEM_FAMILY_NAME,
+      SYSTEM_JOINED_NAME,
       SYSTEM_PHOTO_URI,
       SYSTEM_PHONE_LABEL,
       SYSTEM_PHONE_TYPE,
       SYSTEM_CONTACT_URI,
-      PROFILE_GIVEN_NAME,
-      PROFILE_FAMILY_NAME,
-      SIGNAL_PROFILE_AVATAR,
-      PROFILE_SHARING,
-      LAST_PROFILE_FETCH,
       NOTIFICATION_CHANNEL,
-      UNIDENTIFIED_ACCESS_MODE,
-      CAPABILITIES,
+      MESSAGE_RINGTONE,
+      MESSAGE_VIBRATE,
+      CALL_RINGTONE,
+      CALL_VIBRATE,
+      MUTE_UNTIL,
+      MESSAGE_EXPIRATION_TIME,
+      SEALED_SENDER_MODE,
       STORAGE_SERVICE_ID,
       MENTION_SETTING,
+      CAPABILITIES,
       WALLPAPER,
       WALLPAPER_URI,
-      MENTION_SETTING,
       ABOUT,
       ABOUT_EMOJI,
       EXTRAS,
       GROUPS_IN_COMMON,
+      AVATAR_COLOR,
       CHAT_COLORS,
       CUSTOM_CHAT_COLORS_ID,
       BADGES,
-      DISTRIBUTION_LIST_ID,
       NEEDS_PNI_SIGNATURE,
-      HIDDEN,
-      REPORTING_TOKEN,
-      CALL_LINK_ROOM_ID
+      REPORTING_TOKEN
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -328,7 +321,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     private val SEARCH_PROJECTION = arrayOf(
       ID,
       SYSTEM_JOINED_NAME,
-      PHONE,
+      E164,
       EMAIL,
       SYSTEM_PHONE_LABEL,
       SYSTEM_PHONE_TYPE,
@@ -355,7 +348,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val SEARCH_PROJECTION_NAMES = arrayOf(
       ID,
       SYSTEM_JOINED_NAME,
-      PHONE,
+      E164,
       EMAIL,
       SYSTEM_PHONE_LABEL,
       SYSTEM_PHONE_TYPE,
@@ -385,7 +378,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           NULLIF($PROFILE_JOINED_NAME, ''), 
           NULLIF($PROFILE_GIVEN_NAME, ''),
           NULLIF($USERNAME, ''),
-          NULLIF($PHONE, '')
+          NULLIF($E164, '')
         ),
         ' ',
         ''
@@ -398,7 +391,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun getByE164(e164: String): Optional<RecipientId> {
-    return getByColumn(PHONE, e164)
+    return getByColumn(E164, e164)
   }
 
   fun getByGroupId(groupId: GroupId): Optional<RecipientId> {
@@ -538,7 +531,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       DISTRIBUTION_LIST_ID,
       distributionListId.serialize(),
       ContentValues().apply {
-        put(GROUP_TYPE, GroupType.DISTRIBUTION_LIST.id)
+        put(TYPE, RecipientType.DISTRIBUTION_LIST.id)
         put(DISTRIBUTION_LIST_ID, distributionListId.serialize())
         put(STORAGE_SERVICE_ID, Base64.encodeBytes(storageId ?: StorageSyncHelper.generateKey()))
         put(PROFILE_SHARING, 1)
@@ -551,7 +544,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       CALL_LINK_ROOM_ID,
       callLinkRoomId.serialize(),
       contentValuesOf(
-        GROUP_TYPE to GroupType.CALL_LINK.id,
+        TYPE to RecipientType.CALL_LINK.id,
         CALL_LINK_ROOM_ID to callLinkRoomId.serialize(),
         PROFILE_SHARING to 1
       )
@@ -599,12 +592,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       } else {
         val groupUpdates = ContentValues().apply {
           if (groupId.isMms) {
-            put(GROUP_TYPE, GroupType.MMS.id)
+            put(TYPE, RecipientType.MMS.id)
           } else {
             if (groupId.isV2) {
-              put(GROUP_TYPE, GroupType.SIGNAL_V2.id)
+              put(TYPE, RecipientType.GV2.id)
             } else {
-              put(GROUP_TYPE, GroupType.SIGNAL_V1.id)
+              put(TYPE, RecipientType.GV1.id)
             }
             put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
           }
@@ -984,9 +977,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(update.new.id.raw))
 
       if (update.new.hasUnknownFields()) {
-        put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(update.new.serializeUnknownFields())))
+        put(STORAGE_SERVICE_PROTO, Base64.encodeBytes(Objects.requireNonNull(update.new.serializeUnknownFields())))
       } else {
-        putNull(STORAGE_PROTO)
+        putNull(STORAGE_SERVICE_PROTO)
       }
     }
 
@@ -1052,8 +1045,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     writableDatabase.withinTransaction {
       for ((originalE164, updatedE164) in mapping) {
         writableDatabase.update(TABLE_NAME)
-          .values(PHONE to updatedE164)
-          .where("$PHONE = ?", originalE164)
+          .values(E164 to updatedE164)
+          .where("$E164 = ?", originalE164)
           .run(SQLiteDatabase.CONFLICT_IGNORE)
       }
     }
@@ -1092,7 +1085,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val out: MutableList<RecipientRecord> = ArrayList()
     val columns: Array<String> = TYPED_RECIPIENT_PROJECTION + arrayOf(
       SYSTEM_NICKNAME,
-      "$TABLE_NAME.$STORAGE_PROTO",
+      "$TABLE_NAME.$STORAGE_SERVICE_PROTO",
       "$TABLE_NAME.$UNREGISTERED_TIMESTAMP",
       "${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY}",
       "${ThreadTable.TABLE_NAME}.${ThreadTable.ARCHIVED}",
@@ -1124,14 +1117,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
     readableDatabase
-      .select(ID, STORAGE_SERVICE_ID, GROUP_TYPE)
+      .select(ID, STORAGE_SERVICE_ID, TYPE)
       .from(TABLE_NAME)
       .where(
         """
         $STORAGE_SERVICE_ID NOT NULL AND (
-            ($GROUP_TYPE = ? AND $ACI_COLUMN NOT NULL AND $ID != ?)
+            ($TYPE = ? AND $ACI_COLUMN NOT NULL AND $ID != ?)
             OR
-            $GROUP_TYPE = ?
+            $TYPE = ?
             OR
             $DISTRIBUTION_LIST_ID NOT NULL AND $DISTRIBUTION_LIST_ID IN (
               SELECT ${DistributionListTables.ListTable.ID}
@@ -1139,22 +1132,22 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             )
         )
         """,
-        GroupType.NONE.id,
+        RecipientType.INDIVIDUAL.id,
         Recipient.self().id,
-        GroupType.SIGNAL_V1.id
+        RecipientType.GV1.id
       )
       .run()
       .use { cursor ->
         while (cursor.moveToNext()) {
           val id = RecipientId.from(cursor.requireLong(ID))
           val encodedKey = cursor.requireNonNullString(STORAGE_SERVICE_ID)
-          val groupType = GroupType.fromId(cursor.requireInt(GROUP_TYPE))
+          val recipientType = RecipientType.fromId(cursor.requireInt(TYPE))
           val key = Base64.decodeOrThrow(encodedKey)
 
-          when (groupType) {
-            GroupType.NONE -> out[id] = StorageId.forContact(key)
-            GroupType.SIGNAL_V1 -> out[id] = StorageId.forGroupV1(key)
-            GroupType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
+          when (recipientType) {
+            RecipientType.INDIVIDUAL -> out[id] = StorageId.forContact(key)
+            RecipientType.GV1 -> out[id] = StorageId.forGroupV1(key)
+            RecipientType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
             else -> throw AssertionError()
           }
         }
@@ -1184,9 +1177,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val out: MutableSet<String> = mutableSetOf()
 
     for (query in queries) {
-      readableDatabase.query(TABLE_NAME, arrayOf(PHONE), query.where, query.whereArgs, null, null, null).use { cursor ->
+      readableDatabase.query(TABLE_NAME, arrayOf(E164), query.where, query.whereArgs, null, null, null).use { cursor ->
         while (cursor.moveToNext()) {
-          val e164: String? = cursor.requireString(PHONE)
+          val e164: String? = cursor.requireString(E164)
           if (e164 != null) {
             out.add(e164)
           }
@@ -1427,7 +1420,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setUnidentifiedAccessMode(id: RecipientId, unidentifiedAccessMode: UnidentifiedAccessMode) {
     val values = ContentValues(1).apply {
-      put(UNIDENTIFIED_ACCESS_MODE, unidentifiedAccessMode.mode)
+      put(SEALED_SENDER_MODE, unidentifiedAccessMode.mode)
     }
     if (update(id, values)) {
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
@@ -1523,7 +1516,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, encodedProfileKey)
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
+      put(SEALED_SENDER_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
     }
 
     val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare)
@@ -1555,7 +1548,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val valuesToSet = ContentValues(3).apply {
       put(PROFILE_KEY, Base64.encodeBytes(profileKey.serialize()))
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
+      put(SEALED_SENDER_MODE, UnidentifiedAccessMode.UNKNOWN.mode)
     }
 
     if (writableDatabase.update(TABLE_NAME, valuesToSet, selection, args) > 0) {
@@ -1725,7 +1718,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setProfileAvatar(id: RecipientId, profileAvatar: String?) {
     val contentValues = ContentValues(1).apply {
-      put(SIGNAL_PROFILE_AVATAR, profileAvatar)
+      put(PROFILE_AVATAR, profileAvatar)
     }
     if (update(id, contentValues)) {
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
@@ -1761,7 +1754,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    val updated = writableDatabase.update(TABLE_NAME, contentValues, "$ID_WHERE AND $GROUP_TYPE = ?", SqlUtil.buildArgs(id, GroupType.NONE.id)) > 0
+    val updated = writableDatabase.update(TABLE_NAME, contentValues, "$ID_WHERE AND $TYPE = ?", SqlUtil.buildArgs(id, RecipientType.INDIVIDUAL.id)) > 0
     if (updated) {
       rotateStorageId(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
@@ -1952,7 +1945,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   private fun removePhoneNumber(recipientId: RecipientId) {
     val values = ContentValues().apply {
-      putNull(PHONE)
+      putNull(E164)
       putNull(PNI_COLUMN)
     }
 
@@ -1967,7 +1960,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   @Throws(SQLiteConstraintException::class)
   fun setPhoneNumberOrThrow(id: RecipientId, e164: String) {
     val contentValues = ContentValues(1).apply {
-      put(PHONE, e164)
+      put(E164, e164)
     }
     if (update(id, contentValues)) {
       rotateStorageId(id)
@@ -1979,7 +1972,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   @Throws(SQLiteConstraintException::class)
   fun setPhoneNumberOrThrowSilent(id: RecipientId, e164: String) {
     val contentValues = ContentValues(1).apply {
-      put(PHONE, e164)
+      put(E164, e164)
     }
     if (update(id, contentValues)) {
       rotateStorageId(id)
@@ -2071,9 +2064,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun getAllE164s(): Set<String> {
     val results: MutableSet<String> = HashSet()
-    readableDatabase.query(TABLE_NAME, arrayOf(PHONE), null, null, null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, arrayOf(E164), null, null, null, null, null).use { cursor ->
       while (cursor != null && cursor.moveToNext()) {
-        val number = cursor.getString(cursor.getColumnIndexOrThrow(PHONE))
+        val number = cursor.getString(cursor.getColumnIndexOrThrow(E164))
         if (!TextUtils.isEmpty(number)) {
           results.add(number)
         }
@@ -2088,7 +2081,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    */
   fun getAllPossiblyRegisteredByE164(e164s: Set<String>): Set<RecipientId> {
     val results: MutableSet<RecipientId> = mutableSetOf()
-    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(PHONE, e164s)
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(E164, e164s)
 
     for (query in queries) {
       readableDatabase.query(TABLE_NAME, arrayOf(ID, REGISTERED), query.where, query.whereArgs, null, null, null).use { cursor ->
@@ -2182,7 +2175,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val contentValues = contentValuesOf(
       REGISTERED to RegisteredState.NOT_REGISTERED.id,
       UNREGISTERED_TIMESTAMP to System.currentTimeMillis(),
-      PHONE to null,
+      E164 to null,
       PNI_COLUMN to null
     )
 
@@ -2226,7 +2219,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .update(TABLE_NAME)
       .values(
         PNI_COLUMN to null,
-        PHONE to null
+        E164 to null
       )
       .where("$ID = ?", record.id)
       .run()
@@ -2423,7 +2416,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         is PnpOperation.RemoveE164 -> {
           writableDatabase
             .update(TABLE_NAME)
-            .values(PHONE to null)
+            .values(E164 to null)
             .where("$ID = ?", operation.recipientId)
             .run()
         }
@@ -2448,7 +2441,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         is PnpOperation.SetE164 -> {
           writableDatabase
             .update(TABLE_NAME)
-            .values(PHONE to operation.e164)
+            .values(E164 to operation.e164)
             .where("$ID = ?", operation.recipientId)
             .run()
         }
@@ -3083,12 +3076,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun getRegisteredE164s(): Set<String> {
     return readableDatabase
-      .select(PHONE)
+      .select(E164)
       .from(TABLE_NAME)
-      .where("$REGISTERED = ? and $HIDDEN = ? AND $PHONE NOT NULL", 1, 0)
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $E164 NOT NULL", 1, 0)
       .run()
       .readToSet { cursor ->
-        cursor.requireNonNullString(PHONE)
+        cursor.requireNonNullString(E164)
       }
   }
 
@@ -3164,7 +3157,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun getSignalContacts(includeSelf: Boolean): Cursor? {
-    return getSignalContacts(includeSelf, "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $USERNAME, $PHONE")
+    return getSignalContacts(includeSelf, "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $USERNAME, $E164")
   }
 
   fun getSignalContactsCount(includeSelf: Boolean): Int {
@@ -3193,7 +3186,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .build()
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $PHONE"
+    val orderBy = "$SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $E164"
 
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
@@ -3216,7 +3209,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           SELECT ${SEARCH_PROJECTION.joinToString(", ")}
           FROM recipient
           WHERE ${searchSelection.where}
-          ORDER BY $SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $PHONE
+          ORDER BY $SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $E164
         )
         GROUP BY letter_header
       """,
@@ -3243,7 +3236,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .build()
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = "$SYSTEM_JOINED_NAME, $PHONE"
+    val orderBy = "$SYSTEM_JOINED_NAME, $E164"
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 
@@ -3256,7 +3249,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .build()
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = "$SYSTEM_JOINED_NAME, $PHONE"
+    val orderBy = "$SYSTEM_JOINED_NAME, $E164"
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 
@@ -3267,7 +3260,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .withGroups(false)
       .excludeId(if (includeSelf) null else Recipient.self().id)
       .build()
-    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, searchSelection.where, searchSelection.args, null, null, orderBy)
   }
 
@@ -3283,7 +3276,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .build()
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
 
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
@@ -3294,7 +3287,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .excludeId(Recipient.self().id)
       .build()
 
-    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, searchSelection.where, searchSelection.args, null, null, orderBy)
   }
 
@@ -3308,7 +3301,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     val selection = searchSelection.where
     val args = searchSelection.args
-    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
 
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
@@ -3321,7 +3314,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
-          $PHONE GLOB ? OR 
+          $E164 GLOB ? OR 
           $EMAIL GLOB ?
         )
       """
@@ -3342,7 +3335,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
-          $PHONE GLOB ? OR 
+          $E164 GLOB ? OR 
           $EMAIL GLOB ?
       ))
     """
@@ -3363,7 +3356,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       AND (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
-          $PHONE GLOB ? OR 
+          $E164 GLOB ? OR 
           $EMAIL GLOB ?
       )
     """
@@ -3483,7 +3476,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       for (e164 in blockedE164) {
-        db.update(TABLE_NAME, setBlocked, "$PHONE = ?", arrayOf(e164))
+        db.update(TABLE_NAME, setBlocked, "$E164 = ?", arrayOf(e164))
       }
 
       for (uuid in blockedUuid) {
@@ -3671,8 +3664,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
     }
 
-    val query = "$ID = ? AND ($GROUP_TYPE IN (?, ?, ?) OR $REGISTERED = ?)"
-    val args = SqlUtil.buildArgs(recipientId, GroupType.SIGNAL_V1.id, GroupType.SIGNAL_V2.id, GroupType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id)
+    val query = "$ID = ? AND ($TYPE IN (?, ?, ?) OR $REGISTERED = ?)"
+    val args = SqlUtil.buildArgs(recipientId, RecipientType.GV1.id, RecipientType.GV2.id, RecipientType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id)
     writableDatabase.update(TABLE_NAME, values, query, args)
   }
 
@@ -3696,7 +3689,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   fun updateGroupId(v1Id: V1, v2Id: V2) {
     val values = ContentValues().apply {
       put(GROUP_ID, v2Id.toString())
-      put(GROUP_TYPE, GroupType.SIGNAL_V2.id)
+      put(TYPE, RecipientType.GV2.id)
     }
 
     val query = SqlUtil.buildTrueUpdateQuery("$GROUP_ID = ?", SqlUtil.buildArgs(v1Id), values)
@@ -3814,7 +3807,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     RemappedRecords.getInstance().addRecipient(secondaryId, primaryId)
 
     val uuidValues = contentValuesOf(
-      PHONE to (secondaryRecord.e164 ?: primaryRecord.e164),
+      E164 to (secondaryRecord.e164 ?: primaryRecord.e164),
       ACI_COLUMN to (primaryRecord.aci ?: secondaryRecord.aci)?.toString(),
       PNI_COLUMN to (newPni ?: secondaryRecord.pni ?: primaryRecord.pni)?.toString(),
       BLOCKED to (secondaryRecord.isBlocked || primaryRecord.isBlocked),
@@ -3866,7 +3859,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     check(e164 != null || pni != null || aci != null) { "Must provide some sort of identifier!" }
 
     val values = contentValuesOf(
-      PHONE to e164,
+      E164 to e164,
       ACI_COLUMN to aci?.toString(),
       PNI_COLUMN to pni?.toString(),
       STORAGE_SERVICE_ID to Base64.encodeBytes(StorageSyncHelper.generateKey()),
@@ -3895,7 +3888,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(PNI_COLUMN, contact.pni.orElse(null)?.toString())
       }
 
-      put(PHONE, contact.number.orElse(null))
+      put(E164, contact.number.orElse(null))
       put(PROFILE_GIVEN_NAME, profileName.givenName)
       put(PROFILE_FAMILY_NAME, profileName.familyName)
       put(PROFILE_JOINED_NAME, profileName.toString())
@@ -3912,9 +3905,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(HIDDEN, contact.isHidden)
 
       if (contact.hasUnknownFields()) {
-        put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(contact.serializeUnknownFields())))
+        put(STORAGE_SERVICE_PROTO, Base64.encodeBytes(Objects.requireNonNull(contact.serializeUnknownFields())))
       } else {
-        putNull(STORAGE_PROTO)
+        putNull(STORAGE_SERVICE_PROTO)
       }
 
       put(UNREGISTERED_TIMESTAMP, contact.unregisteredTimestamp)
@@ -3937,16 +3930,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val groupId = GroupId.v1orThrow(groupV1.groupId)
 
       put(GROUP_ID, groupId.toString())
-      put(GROUP_TYPE, GroupType.SIGNAL_V1.id)
+      put(TYPE, RecipientType.GV1.id)
       put(PROFILE_SHARING, if (groupV1.isProfileSharingEnabled) "1" else "0")
       put(BLOCKED, if (groupV1.isBlocked) "1" else "0")
       put(MUTE_UNTIL, groupV1.muteUntil)
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV1.id.raw))
 
       if (groupV1.hasUnknownFields()) {
-        put(STORAGE_PROTO, Base64.encodeBytes(groupV1.serializeUnknownFields()))
+        put(STORAGE_SERVICE_PROTO, Base64.encodeBytes(groupV1.serializeUnknownFields()))
       } else {
-        putNull(STORAGE_PROTO)
+        putNull(STORAGE_SERVICE_PROTO)
       }
 
       if (isInsert) {
@@ -3960,7 +3953,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val groupId = GroupId.v2(groupV2.masterKeyOrThrow)
 
       put(GROUP_ID, groupId.toString())
-      put(GROUP_TYPE, GroupType.SIGNAL_V2.id)
+      put(TYPE, RecipientType.GV2.id)
       put(PROFILE_SHARING, if (groupV2.isProfileSharingEnabled) "1" else "0")
       put(BLOCKED, if (groupV2.isBlocked) "1" else "0")
       put(MUTE_UNTIL, groupV2.muteUntil)
@@ -3968,9 +3961,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(MENTION_SETTING, if (groupV2.notifyForMentionsWhenMuted()) MentionSetting.ALWAYS_NOTIFY.id else MentionSetting.DO_NOT_NOTIFY.id)
 
       if (groupV2.hasUnknownFields()) {
-        put(STORAGE_PROTO, Base64.encodeBytes(groupV2.serializeUnknownFields()))
+        put(STORAGE_SERVICE_PROTO, Base64.encodeBytes(groupV2.serializeUnknownFields()))
       } else {
-        putNull(STORAGE_PROTO)
+        putNull(STORAGE_SERVICE_PROTO)
       }
 
       if (isInsert) {
@@ -4013,9 +4006,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
       .run {
         if (recipientId == null) {
-          where("$ID != ? AND $PHONE NOT NULL", Recipient.self().id)
+          where("$ID != ? AND $E164 NOT NULL", Recipient.self().id)
         } else {
-          where("$ID = ? AND $PHONE NOT NULL", recipientId)
+          where("$ID = ? AND $E164 NOT NULL", recipientId)
         }
       }
       .run()
@@ -4039,7 +4032,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         PROFILE_FAMILY_NAME to null,
         PROFILE_JOINED_NAME to null,
         LAST_PROFILE_FETCH to 0,
-        SIGNAL_PROFILE_AVATAR to null
+        PROFILE_AVATAR to null
       )
       .run {
         if (recipientId == null) {
@@ -4063,7 +4056,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     writableDatabase
       .update(TABLE_NAME)
       .values(
-        PHONE to null,
+        E164 to null,
         PNI_COLUMN to null
       )
       .where(ID_WHERE, recipientId)
@@ -4161,11 +4154,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       aci = ACI.parseOrNull(cursor.requireString(ACI_COLUMN)),
       pni = PNI.parseOrNull(cursor.requireString(PNI_COLUMN)),
       username = cursor.requireString(USERNAME),
-      e164 = cursor.requireString(PHONE),
+      e164 = cursor.requireString(E164),
       email = cursor.requireString(EMAIL),
       groupId = GroupId.parseNullableOrThrow(cursor.requireString(GROUP_ID)),
       distributionListId = distributionListId,
-      groupType = GroupType.fromId(cursor.requireInt(GROUP_TYPE)),
+      recipientType = RecipientType.fromId(cursor.requireInt(TYPE)),
       isBlocked = cursor.requireBoolean(BLOCKED),
       muteUntil = cursor.requireLong(MUTE_UNTIL),
       messageVibrateState = VibrateState.fromId(cursor.requireInt(MESSAGE_VIBRATE)),
@@ -4182,12 +4175,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       systemPhoneLabel = cursor.requireString(SYSTEM_PHONE_LABEL),
       systemContactUri = cursor.requireString(SYSTEM_CONTACT_URI),
       signalProfileName = ProfileName.fromParts(cursor.requireString(PROFILE_GIVEN_NAME), cursor.requireString(PROFILE_FAMILY_NAME)),
-      signalProfileAvatar = cursor.requireString(SIGNAL_PROFILE_AVATAR),
+      signalProfileAvatar = cursor.requireString(PROFILE_AVATAR),
       profileAvatarFileDetails = AvatarHelper.getAvatarFileDetails(context, recipientId),
       profileSharing = cursor.requireBoolean(PROFILE_SHARING),
       lastProfileFetch = cursor.requireLong(LAST_PROFILE_FETCH),
       notificationChannel = cursor.requireString(NOTIFICATION_CHANNEL),
-      unidentifiedAccessMode = UnidentifiedAccessMode.fromMode(cursor.requireInt(UNIDENTIFIED_ACCESS_MODE)),
+      unidentifiedAccessMode = UnidentifiedAccessMode.fromMode(cursor.requireInt(SEALED_SENDER_MODE)),
       capabilities = readCapabilities(cursor),
       storageId = Base64.decodeNullableOrThrow(cursor.requireString(STORAGE_SERVICE_ID)),
       mentionSetting = MentionSetting.fromId(cursor.requireInt(MENTION_SETTING)),
@@ -4246,7 +4239,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   private fun getSyncExtras(cursor: Cursor): RecipientRecord.SyncExtras {
-    val storageProtoRaw = cursor.optionalString(STORAGE_PROTO).orElse(null)
+    val storageProtoRaw = cursor.optionalString(STORAGE_SERVICE_PROTO).orElse(null)
     val storageProto = if (storageProtoRaw != null) Base64.decodeOrThrow(storageProtoRaw) else null
     val archived = cursor.optionalBoolean(ThreadTable.ARCHIVED).orElse(false)
     val forcedUnread = cursor.optionalInt(ThreadTable.READ).map { status: Int -> status == ThreadTable.ReadStatus.FORCED_UNREAD.serialize() }.orElse(false)
@@ -4287,7 +4280,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     values.apply {
       put(PROFILE_KEY, if (record.profileKey != null) Base64.encodeBytes(record.profileKey) else null)
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
-      put(SIGNAL_PROFILE_AVATAR, record.signalProfileAvatar)
+      put(PROFILE_AVATAR, record.signalProfileAvatar)
       put(PROFILE_GIVEN_NAME, record.signalProfileName.givenName)
       put(PROFILE_FAMILY_NAME, record.signalProfileName.familyName)
       put(PROFILE_JOINED_NAME, record.signalProfileName.toString())
@@ -4556,12 +4549,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
       const val FILTER_HIDDEN = " AND $HIDDEN = ?"
-      const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($PHONE NOT NULL OR $EMAIL NOT NULL)"
-      const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($PHONE GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
+      const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($E164 NOT NULL OR $EMAIL NOT NULL)"
+      const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($E164 GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
-      const val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      const val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($E164 GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
       val GROUP_MEMBER_CONTACT = "$REGISTERED = ? AND $HAS_GROUP_IN_COMMON AND NOT (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
-      val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($E164 GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
     }
   }
 
@@ -4631,11 +4624,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  enum class GroupType(val id: Int) {
-    NONE(0), MMS(1), SIGNAL_V1(2), SIGNAL_V2(3), DISTRIBUTION_LIST(4), CALL_LINK(5);
+  enum class RecipientType(val id: Int) {
+    INDIVIDUAL(0), MMS(1), GV1(2), GV2(3), DISTRIBUTION_LIST(4), CALL_LINK(5);
 
     companion object {
-      fun fromId(id: Int): GroupType {
+      fun fromId(id: Int): RecipientType {
         return values()[id]
       }
     }

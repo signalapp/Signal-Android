@@ -64,7 +64,11 @@ import org.thoughtcrime.securesms.database.MessageTypes.UNSUPPORTED_MESSAGE_TYPE
 object MessageBitmaskColumnTransformer : ColumnTransformer {
 
   override fun matches(tableName: String?, columnName: String): Boolean {
-    return columnName == "type" || columnName == "msg_box"
+    return if (tableName != null && tableName != MessageTable.TABLE_NAME) {
+      false
+    } else {
+      columnName == "type" || columnName == "msg_box"
+    }
   }
 
   @Suppress("FoldInitializerAndIfToElvis")

@@ -721,7 +721,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (hideV1Groups) {
-      where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_TYPE} != ${RecipientTable.GroupType.SIGNAL_V1.id}"
+      where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} != ${RecipientTable.RecipientType.GV1.id}"
     }
 
     if (hideSms) {
@@ -730,10 +730,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         OR 
         (
           ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_ID} NOT NULL 
-          AND ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_TYPE} != ${RecipientTable.GroupType.MMS.id}
+          AND ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} != ${RecipientTable.RecipientType.MMS.id}
         ) 
       )"""
-      where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.FORCE_SMS_SELECTION} = 0"
     }
 
     if (hideSelf) {

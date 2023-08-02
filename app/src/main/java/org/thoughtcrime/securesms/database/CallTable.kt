@@ -941,7 +941,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         (
           sort_name GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME} GLOB ? OR 
-          ${RecipientTable.TABLE_NAME}.${RecipientTable.PHONE} GLOB ? OR 
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.E164} GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.EMAIL} GLOB ?
         )
         """

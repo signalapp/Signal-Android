@@ -34,7 +34,7 @@ data class RecipientRecord(
   val email: String?,
   val groupId: GroupId?,
   val distributionListId: DistributionListId?,
-  val groupType: RecipientTable.GroupType,
+  val recipientType: RecipientTable.RecipientType,
   val isBlocked: Boolean,
   val muteUntil: Long,
   val messageVibrateState: VibrateState,
