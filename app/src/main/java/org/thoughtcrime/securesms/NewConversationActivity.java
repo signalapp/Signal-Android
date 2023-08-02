@@ -371,6 +371,7 @@ public class NewConversationActivity extends ContactSelectionActivity
         .setPositiveButton(R.string.NewConversationActivity__remove,
                            (dialog, which) -> {
                              disposables.add(viewModel.hideContact(recipient).subscribe(() -> {
+                               onRefresh();
                                displaySnackbar(R.string.NewConversationActivity__s_has_been_removed, recipient.getDisplayName(this));
                              }));
                            }
