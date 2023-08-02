@@ -343,6 +343,11 @@
         <item quantity="one">Uhariri unaweza kufanywa ndani ya saa %1$d kutoka muda uliotuma ujumbe huu.</item>
         <item quantity="other">Uhariri unaweza kufanywa ndani ya masaa %1$d kutoka muda uliotuma ujumbe huu.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Mpokeaji sio sahihi!</string>
     <string name="ConversationActivity_added_to_home_screen">Imeongezwa kwenye skrini ya mwanzo</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Fanyiza upya</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Ufahamu</string>
-    <string name="InsightsDashboardFragment__title">Ufahamu</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokali ya Signal imeilinda kiotomatiki %1$d%% ya jumbe zako zinazotoka katika siku %2$d zilizopita. Magumzo baina ya watumiaji wa Signal yanasimbwa kwa uficho.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Sambaza habari</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Data haitoshi</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Asilimia ya Ufahamu wako inahesabiwa kulingana na jumbe zilizotumwa kwa siku %1$d zilizopita ambazo hazijatoweka wala kufutwa.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Anzisha gumzo</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Anza kuwasiliana kwa usalama na uwezeshe vipengele vipya ambavyo vinazidi matarajio ya ujumbe mfupi usiosimbwa kwa kualika wawasiliani zaidi kujiunga na Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Takwimu hizi zimetolewa ndani ya kifaa chako na zinaonekana na wewe pekee. Kamwe hazisambazwi kokote.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Jumbe zilizosimbwa</string>
-    <string name="InsightsDashboardFragment__cancel">Ghairi</string>
-    <string name="InsightsDashboardFragment__send">Tuma</string>
-    <string name="InsightsModalFragment__title">Kuwasilisha Ufahamu</string>
-    <string name="InsightsModalFragment__description">Pata kujua ni jumbe ngapi ulizotuma zilitumwa salama, halafu alika wawasiliani wapya upesi ili kuongeza asilimia yako ya Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Tazama Ufahamu</string>
-
-    <string name="FirstInviteReminder__title">Alika kwenye Signal</string>
-    <string name="FirstInviteReminder__description">Unaweza kuongeza nambari ya jumbe zilizosimbwa unazotuma kwa %1$d %%</string>
-    <string name="SecondInviteReminder__title">Ongeza hadhi ya Signal yako</string>
-    <string name="SecondInviteReminder__description">Alika %1$s</string>
-    <string name="InsightsReminder__view_insights">Tazama Ufahamu</string>
-    <string name="InsightsReminder__invite">Alika</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Washa mic</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Zima mic</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Kitufe cha Kupiga Picha</string>

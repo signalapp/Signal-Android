@@ -343,6 +343,11 @@
         <item quantity="one">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
         <item quantity="other">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">گیرنده نامعتبر!</string>
     <string name="ConversationActivity_added_to_home_screen">به صفحهٔ اصلی افزوده شد</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">تازه‌سازی</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">٪</string>
-    <string name="Insights__title">بینش‌ها</string>
-    <string name="InsightsDashboardFragment__title">بینش‌ها</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل سیگنال به‌طور خودکار از %1$d درصد از پیام‌های خروجی شما ظرف %2$d روز گذشته محافظت کرده است. گفتگو بین کاربران سیگنال همواره به طور سرتاسری رمزگذاری‌شده است.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">خبر را انتشار دهید</string>
-    <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که پاک نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">شروع یک گفتگو</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبین بیشتر به سیگنال فعال کنید.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچ‌گاه به جایی ارسال نمی‌شوند.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">پیام‌های رمزگذاری شده</string>
-    <string name="InsightsDashboardFragment__cancel">لغو</string>
-    <string name="InsightsDashboardFragment__send">ارسال</string>
-    <string name="InsightsModalFragment__title">معرفی بینش‌‌ها</string>
-    <string name="InsightsModalFragment__description">ببینید چه تعداد از پیام‌های خروجی شما به صورت امن ارسال شده‌اند، سپس درصد سیگنال خود را با دعوت مخاطبین جدید تقویت کنید.</string>
-    <string name="InsightsModalFragment__view_insights">مشاهدهٔ بینش‌ها</string>
-
-    <string name="FirstInviteReminder__title">دعوت به سیگنال</string>
-    <string name="FirstInviteReminder__description">شما می‌توانید پیام‌های رمزگذاری‌ شدهٔ ارسالی‌ خود را به میزان %1$d%% افزایش دهید</string>
-    <string name="SecondInviteReminder__title">سیگنال خود را تقویت کنید</string>
-    <string name="SecondInviteReminder__description">دعوت %1$s</string>
-    <string name="InsightsReminder__view_insights">مشاهدهٔ بینش‌ها</string>
-    <string name="InsightsReminder__invite">دعوت</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">میکروفون روشن</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">میکروفون خاموش</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">دکمه ضبط</string>

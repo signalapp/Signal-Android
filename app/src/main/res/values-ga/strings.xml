@@ -349,6 +349,14 @@
         <item quantity="many">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d n-uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
         <item quantity="other">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="two">Only %1$d edits can be applied to this message.</item>
+        <item quantity="few">Only %1$d edits can be applied to this message.</item>
+        <item quantity="many">Only %1$d edits can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Faighteoir neamhbhailí!</string>
     <string name="ConversationActivity_added_to_home_screen">Cuireadh leis an scáileán baile é</string>
@@ -3693,33 +3701,6 @@
     <string name="new_conversation_activity__refresh">Athnuaigh</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Léargais</string>
-    <string name="InsightsDashboardFragment__title">Léargais</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Rinne Prótacal Signal %1$d%% de do chuid teachtaireachtaí amach a chosaint go huathoibríoch le %2$d lá anuas. Bíonn comhráite idir úsáideoirí Signal criptithe ó cheann ceann i gcónaí.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Scaip an scéal</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Níl dóthain sonraí ann</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ríomhtar do chéatadán Léargas bunaithe ar theachtaireachtaí amach le %1$d lá anuas nach bhfuil imithe as radharc ná scriosta.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Tosaigh ar chomhrá</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Tosaigh ar chumarsáid shlán agus cumasaigh gnéithe nua a théann thar theorainneacha na dteachtaireachtaí SMS gan chriptiú trí chuireadh a thabhairt do níos mó teagmhálaithe dul isteach in Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Gineadh na staitisticí seo go logánta ar do ghléas agus ní féidir ach leatsa iad a fheiceáil. Ní tharchuirtear áit ar bith riamh iad.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Teachtaireachtaí criptithe</string>
-    <string name="InsightsDashboardFragment__cancel">Cealaigh</string>
-    <string name="InsightsDashboardFragment__send">Seol</string>
-    <string name="InsightsModalFragment__title">Tús Eolais ar Léargais</string>
-    <string name="InsightsModalFragment__description">Faigh amach cé mhéad teachtaireachtaí amach a seoladh go slán, ansin tabhair cuireadh go tapa do theagmhálaithe nua chun do chéatadán Signal a threisiú.</string>
-    <string name="InsightsModalFragment__view_insights">Féach ar Léargais</string>
-
-    <string name="FirstInviteReminder__title">Tabhair cuireadh chuig Signal</string>
-    <string name="FirstInviteReminder__description">D\'fhéadfá líon na dteachtaireachtaí criptithe a sheolann tú a mhéadú faoi %1$d%%</string>
-    <string name="SecondInviteReminder__title">Spreag do Signal</string>
-    <string name="SecondInviteReminder__description">Tabhair cuireadh do %1$s</string>
-    <string name="InsightsReminder__view_insights">Féach ar Léargais</string>
-    <string name="InsightsReminder__invite">Tabhair cuireadh</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6460,6 +6441,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Micreafón air</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Micreafón as</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Cnaipe Gabhála</string>

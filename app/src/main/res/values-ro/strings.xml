@@ -345,6 +345,12 @@
         <item quantity="few">Modificările pot fi aplicate numai în termen de %1$d ore de la momentul în care ai trimis acest mesaj.</item>
         <item quantity="other">Modificările pot fi aplicate numai în termen de %1$d de ore de la momentul în care ai trimis acest mesaj.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="few">Only %1$d edits can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
     <string name="ConversationActivity_added_to_home_screen">Adăugat pe ecranul principal</string>
@@ -3525,33 +3531,6 @@
     <string name="new_conversation_activity__refresh">Reîmprospătare</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Statistici</string>
-    <string name="InsightsDashboardFragment__title">Statistici</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele tale expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Anunță-ți prietenii</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Începe o conversație</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Începe să comunici în siguranță și să activezi funcții noi care depășesc limitările mesajelor SMS necriptate, invitând mai multe persoane de contact să se alăture la Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aceste statistici au fost generate local pe dispozitivul tău și pot fi văzute doar de tine. Nu se transmit niciodată nicăieri.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Mesaje criptate</string>
-    <string name="InsightsDashboardFragment__cancel">Anulare</string>
-    <string name="InsightsDashboardFragment__send">Trimite</string>
-    <string name="InsightsModalFragment__title">Îți prezentăm \'Statistici\'</string>
-    <string name="InsightsModalFragment__description">Află cât de multe dintre mesajele tale expediate au fost trimise în siguranță, apoi invită rapid noi contacte pentru a crește procentul de Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Vezi Statistici</string>
-
-    <string name="FirstInviteReminder__title">Invită la Signal</string>
-    <string name="FirstInviteReminder__description">Poți crește numărul de mesaje criptate pe care le trimiți cu %1$d%%</string>
-    <string name="SecondInviteReminder__title">Îmbunătățește-ți Signal-ul</string>
-    <string name="SecondInviteReminder__description">Invită pe %1$s</string>
-    <string name="InsightsReminder__view_insights">Vezi Statistici</string>
-    <string name="InsightsReminder__invite">Invită</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6208,6 +6187,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Microfon activat</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Microfon dezactivat</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Buton realizează fotografie</string>

@@ -343,6 +343,11 @@
         <item quantity="one">Wysigings kan slegs aangebring word binne %1$d uur vanaf die tyd wat jy hierdie boodskap gestuur het.</item>
         <item quantity="other">Wysigings kan slegs aangebring word binne %1$d uur vanaf die tyd wat jy hierdie boodskap gestuur het.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
     <string name="ConversationActivity_added_to_home_screen">By die tuisskerm toegevoeg</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Verfris</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Insigte</string>
-    <string name="InsightsDashboardFragment__title">Insigte</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokol het outomaties %1$d%% van jou uitgaande boodskappe oor die afgelope %2$d dae beskerm. Kletse tussen Signal-gebruikers word altyd end-tot-end geënkripteer.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Versprei die boodskap</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nie genoeg data nie</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jou Insigte-persentasie word bereken op grond van uitgaande boodskappe in die afgelope %1$d dae wat nie verdwyn het of geskrap is nie.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Begin \'n klets</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Begin veilig kommunikeer en aktiveer nuwe kenmerke wat verder gaan as die beperkings van ongeënkripteerde SMS-boodskappe deur meer kontakte te nooi om by Signal aan te sluit.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Hierdie statistieke is lokaal op jou toestel gegenereer en kan net deur jou gesien word. Dit word nooit êrens heen oorgedra nie.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Geënkripteerde boodskappe</string>
-    <string name="InsightsDashboardFragment__cancel">Kanselleer</string>
-    <string name="InsightsDashboardFragment__send">Stuur</string>
-    <string name="InsightsModalFragment__title">Ons stel bekend: Insigte</string>
-    <string name="InsightsModalFragment__description">Vind uit hoeveel van jou uitgaande boodskappe veilig gestuur is, en nooi dan vinnig nuwe kontakte om jou Signal-persentasie \'n hupstoot te gee.</string>
-    <string name="InsightsModalFragment__view_insights">Bekyk Insigte</string>
-
-    <string name="FirstInviteReminder__title">Nooi na Signal</string>
-    <string name="FirstInviteReminder__description">Jy kan die getal geënkripteerde boodskappe wat jy stuur met %1$d%% verhoog.</string>
-    <string name="SecondInviteReminder__title">Gee jou Signal \'n hupstoot</string>
-    <string name="SecondInviteReminder__description">Nooi %1$s uit</string>
-    <string name="InsightsReminder__view_insights">Bekyk Insigte</string>
-    <string name="InsightsReminder__invite">Nooi uit</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofoon aangeskakel</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofoon afgeskakel</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Afneemknoppie</string>

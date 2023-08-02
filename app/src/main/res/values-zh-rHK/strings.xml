@@ -341,6 +341,10 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">編輯只能在你傳送此訊息後的 %1$d 小時內應用。</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">收件人無效！</string>
     <string name="ConversationActivity_added_to_home_screen">已新增到主畫面</string>
@@ -3357,33 +3361,6 @@
     <string name="new_conversation_activity__refresh">重新整理</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">省覧</string>
-    <string name="InsightsDashboardFragment__title">省覧</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 在過去 %2$d 天內，已自動保護你外寄訊息數目中的 %1$d%%。Signal 用戶之間的聊天一律經端對端加密。</string>
-    <string name="InsightsDashboardFragment__spread_the_word">這空間裡 從不只我一個</string>
-    <string name="InsightsDashboardFragment__not_enough_data">資料不足</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的「洞察」百分比，乃是基於過去 %1$d 天內未曾消失或刪除的外寄訊息而計算。</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">開始聊天</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">邀請更多聯絡人加入 Signal，以開始安全的溝通，並啟用嶄新的功能，超越未經加密短訊訊息的侷限。</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">統計數字是在您的裝置上本機產生，並僅供您查看，從不外透。</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">已加密的訊息</string>
-    <string name="InsightsDashboardFragment__cancel">取消</string>
-    <string name="InsightsDashboardFragment__send">傳送</string>
-    <string name="InsightsModalFragment__title">省覧登場</string>
-    <string name="InsightsModalFragment__description">查看您有多少則外寄訊息已以安全方式傳送，並從速邀請新的聯絡人以提升您的 Signal 百分比。</string>
-    <string name="InsightsModalFragment__view_insights">檢視省覧</string>
-
-    <string name="FirstInviteReminder__title">邀請加入 Signal</string>
-    <string name="FirstInviteReminder__description">您已傳送的加密訊息數目其實可提高多達 %1$d%%</string>
-    <string name="SecondInviteReminder__title">為你的 Signal 集氣</string>
-    <string name="SecondInviteReminder__description">邀請%1$s</string>
-    <string name="InsightsReminder__view_insights">檢視省覧</string>
-    <string name="InsightsReminder__invite">邀請</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -5956,6 +5933,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">開啟麥克風</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">關閉麥克風</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">「擷取」按鈕</string>

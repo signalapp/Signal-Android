@@ -343,6 +343,11 @@
         <item quantity="one">Redaktələr yalnız siz bu mesajı göndərdikdən sonra %1$d saat ərzində tətbiq oluna bilər.</item>
         <item quantity="other">Redaktələr yalnız siz bu mesajı göndərdikdən sonra %1$d saat ərzində tətbiq oluna bilər.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Etibarsız alıcı!</string>
     <string name="ConversationActivity_added_to_home_screen">Əsas ekrana əlavə edildi</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Təzələ</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Təhlillər</string>
-    <string name="InsightsDashboardFragment__title">Təhlillər</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolu, son %2$d gündə gedən mesajlarınızın %1$d%%-ni avtomatik olaraq qorudu. Signal istifadəçiləri arasındakı çatlar hər zaman ucdan-uca şifrələnir.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Sözü yayın</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Yetərli məlumat yoxdur</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Təhlil faiziniz, son %1$d gündə yox olmayan və ya silinmədən gedən mesajlar əsasında hesablanır.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Bir çata başla</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Daha çox əlaqəni Signal-a qoşulmağa dəvət edərək təhlükəsiz mesajlaşmağa başlayın və şifrələnməmiş SMS mesajlarının limitlərini aşan yeni özəllikləri fəallaşdırın.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Bu statistikalar cihazınızın yerli yaddaşında yaradılıb və yalnız sizin tərəfinizdən görülə bilər. Heç vaxt başqa bir yerə köçürülmür.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Şifrələnmiş mesajlar</string>
-    <string name="InsightsDashboardFragment__cancel">İmtina</string>
-    <string name="InsightsDashboardFragment__send">Göndər</string>
-    <string name="InsightsModalFragment__title">Budur, Təhlillər</string>
-    <string name="InsightsModalFragment__description">Gedən mesajlardan nə qədərinin güvənli göndərildiyini öyrənin, daha sonra Signal faizinizi artırmaq üçün yeni əlaqələri cəld dəvət edin.</string>
-    <string name="InsightsModalFragment__view_insights">Təhlillərə baxın</string>
-
-    <string name="FirstInviteReminder__title">Signal-a dəvət edin</string>
-    <string name="FirstInviteReminder__description">Göndərilən şifrəli mesajlarınızın sayını %1$d%% artıra bilərsiniz.</string>
-    <string name="SecondInviteReminder__title">Signal-ı gücləndirin</string>
-    <string name="SecondInviteReminder__description">%1$s əlaqəsini dəvət edin</string>
-    <string name="InsightsReminder__view_insights">Təhlillərə baxın</string>
-    <string name="InsightsReminder__invite">Dəvət et</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon açıqdır</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon bağlıdır</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Çək düyməsi</string>

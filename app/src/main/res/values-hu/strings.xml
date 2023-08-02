@@ -343,6 +343,11 @@
         <item quantity="one">A módosításokat csak az üzenet elküldésétől számított %1$d órán belül lehet alkalmazni.</item>
         <item quantity="other">A módosításokat csak az üzenet elküldésétől számított %1$d órán belül lehet alkalmazni.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
     <string name="ConversationActivity_added_to_home_screen">Hozzáadva a kezdőképernyőhöz</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Frissítés</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Statisztikák</string>
-    <string name="InsightsDashboardFragment__title">Statisztikák</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">A Signal-protokoll az elmúlt %2$d nap során küldött üzeneteid %1$d%%-át automatikusan védelem alá helyezte. A Signal-felhasználók közti csevegések minden esetben végpontok közti titkosítással vannak ellátva.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Terjeszd a hírt!</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nincs elegendő adat</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A százalékot az elmúlt %1$d nap során küldött nem törölt és nem eltűnő üzeneteid alapján kalkuláltuk.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Csevegés indítása</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Kezdj neki a biztonságos kommunikációnak, és hívj meg minél több kontaktot a Signalra annak érdekében, hogy hozzáférhess a legújabb funkciókhoz, amelyek túlmutatnak a titkosítatlan SMS üzeneteken!</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ezek a statisztikák a saját eszközödön készültek, és kizárólag számodra láthatóak. Soha nem lesznek elküldve sehova.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Titkosított üzenetek</string>
-    <string name="InsightsDashboardFragment__cancel">Mégse</string>
-    <string name="InsightsDashboardFragment__send">Küldés</string>
-    <string name="InsightsModalFragment__title">Bemutatkozik a Statisztikák</string>
-    <string name="InsightsModalFragment__description">Tudd meg, hogy hány kimenő üzeneted volt titkosítva, majd hívd meg minél több ismerősödet, hogy megnöveld Signal-százalékodat.</string>
-    <string name="InsightsModalFragment__view_insights">Statisztikák megtekintése</string>
-
-    <string name="FirstInviteReminder__title">Meghívás a Signalra</string>
-    <string name="FirstInviteReminder__description">A titkosítva küldött üzeneteid számát %1$d%%-al növelhetnéd</string>
-    <string name="SecondInviteReminder__title">Pörgesd fel a Signalodat!</string>
-    <string name="SecondInviteReminder__description">%1$s meghívása</string>
-    <string name="InsightsReminder__view_insights">Statisztikák megtekintése</string>
-    <string name="InsightsReminder__invite">Meghívás</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon be</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon ki</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Rögzítés gomb</string>

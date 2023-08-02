@@ -347,6 +347,13 @@
         <item quantity="many">Изменения могут быть внесены только в течение %1$d часов с момента отправки этого сообщения.</item>
         <item quantity="other">Изменения могут быть внесены только в течение %1$d часа с момента отправки этого сообщения.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="few">Only %1$d edits can be applied to this message.</item>
+        <item quantity="many">Only %1$d edits can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
     <string name="ConversationActivity_added_to_home_screen">Добавлено на главный экран</string>
@@ -3609,33 +3616,6 @@
     <string name="new_conversation_activity__refresh">Обновить</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Выводы</string>
-    <string name="InsightsDashboardFragment__title">Выводы</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматически защитил %1$d%% ваших исходящих сообщения(-ий) за последние %2$d дня(-ей). Чаты между пользователями Signal всегда защищены сквозным шифрованием.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Расскажите другим</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены за последние %1$d дней.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Начать чат</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Начните общаться безопасно и включите новые функции, которые выходят за пределы ограничений незащищённых SMS, приглашая больше контактов присоединиться к Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Эта статистика была сгенерирована локально на вашем устройстве и видна только вам. Она никогда никуда не передаётся.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Зашифрованных сообщений</string>
-    <string name="InsightsDashboardFragment__cancel">Отменить</string>
-    <string name="InsightsDashboardFragment__send">Отправить</string>
-    <string name="InsightsModalFragment__title">Представляем «Выводы»</string>
-    <string name="InsightsModalFragment__description">Узнайте, сколько из ваших исходящих сообщений было отправлено безопасно, а затем быстро пригласите новые контакты, чтобы увеличить ваш процент Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Просмотреть выводы</string>
-
-    <string name="FirstInviteReminder__title">Пригласить в Signal</string>
-    <string name="FirstInviteReminder__description">Вы могли бы увеличить количество отправляемых вами зашифрованных сообщений на %1$d%%</string>
-    <string name="SecondInviteReminder__title">Улучшите свой Signal</string>
-    <string name="SecondInviteReminder__description">Пригласить %1$s</string>
-    <string name="InsightsReminder__view_insights">Просмотреть выводы</string>
-    <string name="InsightsReminder__invite">Пригласить</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6334,6 +6314,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Микрофон включён</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Микрофон выключен</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Кнопка съёмки</string>

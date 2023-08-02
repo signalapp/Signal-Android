@@ -341,6 +341,10 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">Оңдоолор бул билдирүү жөнөтүлгөндөн кийин %1$d сааттын ичинде күчүнө кирет.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Жараксыз алуучу!</string>
     <string name="ConversationActivity_added_to_home_screen">Башкы экранга кошулду</string>
@@ -3357,33 +3361,6 @@
     <string name="new_conversation_activity__refresh">Жаңылоо</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Аналитикалык маалымат</string>
-    <string name="InsightsDashboardFragment__title">Аналитикалык маалымат</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Протоколу соңку %2$d күндө жөнөткөн билдирүүлөрүңүздүн %1$d%% автоматтык түрдө коргоду. Signal\'дагы колдонуучулардын маектешүүлөрү баштан аяк корголот.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Башкалар менен бөлүшүү</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Берилмелер жетишсиз</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Аналитикалык пайыздык чен акыркы %1$d күндө жоголбогон же жок кылынбаган чыгуучу каттардын негизинде эсептелет.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Маектешип баштоо</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Коопсуз байланышты баштаңыз жана сигналга кошулууга көбүрөөк байланыштарды чакыруу менен кооптуу SMS чектөөлөрүнүн чегинен чыккан жаңы функцияларды иштетиңиз.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Бул статистика түзмөгүңүздө жергиликтүү түрдө түзүлгөн жана аларды сиз гана көрө аласыз. Алар эч качан эч жакка берилбейт.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Шифрленген билдирүүлөр</string>
-    <string name="InsightsDashboardFragment__cancel">Жокко чыгаруу</string>
-    <string name="InsightsDashboardFragment__send">Жөнөтүү</string>
-    <string name="InsightsModalFragment__title">Аналитикалык маалымат менен таанышуу</string>
-    <string name="InsightsModalFragment__description">Канча билдирүүлөрүңүз коопсуз жөнөтүлгөнүн билип алыңыз жана Signal пайызыңызды жогорулатуу үчүн жаңы байланыштарды чакырыңыз.</string>
-    <string name="InsightsModalFragment__view_insights">Аналитикалык маалыматты көрүү</string>
-
-    <string name="FirstInviteReminder__title">Signal\'га чакыруу</string>
-    <string name="FirstInviteReminder__description">Сиз жөнөткөн шифрленген билдирүүлөрдүн санын %1$d%% көбөйтсөңүз болот</string>
-    <string name="SecondInviteReminder__title">Signal\'ыңызды өркүндөтүңүз</string>
-    <string name="SecondInviteReminder__description">%1$s чакыруу</string>
-    <string name="InsightsReminder__view_insights">Аналитикалык маалыматты көрүү</string>
-    <string name="InsightsReminder__invite">Чакыруу</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -5956,6 +5933,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Микрофон күйүк</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Микрофон өчүк</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Тартуу баскычы</string>

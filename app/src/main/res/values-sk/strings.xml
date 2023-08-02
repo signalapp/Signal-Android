@@ -347,6 +347,13 @@
         <item quantity="many">Úpravy je možné vykonať len do %1$d hodiny od odoslania tejto správy.</item>
         <item quantity="other">Úpravy je možné vykonať len do %1$d hodín od odoslania tejto správy.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="few">Only %1$d edits can be applied to this message.</item>
+        <item quantity="many">Only %1$d edits can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Neplatný príjemca</string>
     <string name="ConversationActivity_added_to_home_screen">Pridané na plochu</string>
@@ -3609,33 +3616,6 @@
     <string name="new_conversation_activity__refresh">Obnoviť</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Prehľady</string>
-    <string name="InsightsDashboardFragment__title">Prehľady</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol za posledné %2$d dni automaticky ochránil %1$d %% vašich odchádzajúcich správ. Čety medzi používateľmi Signal sú vždy vybavené end-to-end šifrovaním.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Šíriť slovo</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nedostatok údajov</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Percentuálna hodnota vašich Prehľadov sa vypočítava na základe odchádzajúcich správ za posledných %1$d dní, ktoré nezmizli, ani neboli odstránené.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Začať čet</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Začnite bezpečne komunikovať a povoľte nové funkcie, ktoré prekonávajú obmedzenia nešifrovaných SMS správ pozvaním ďalších ľudí z vášho okruhu, aby sa pripojili k Signalu.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tieto štatistiky boli generované lokálne na vašom zariadení a môžete ich vidieť iba vy. Nikdy sa nikam neprenášajú.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Šifrované správy</string>
-    <string name="InsightsDashboardFragment__cancel">Zrušiť</string>
-    <string name="InsightsDashboardFragment__send">Poslať</string>
-    <string name="InsightsModalFragment__title">Predstavujeme Prehľady</string>
-    <string name="InsightsModalFragment__description">Zistite, koľko vašich odchádzajúcich správ bolo bezpečne odoslaných a potom rýchlo pozvite nové kontakty pre vylepšenie vašej percentuálnej hodnoty Signalu.</string>
-    <string name="InsightsModalFragment__view_insights">Zobraziť prehľady</string>
-
-    <string name="FirstInviteReminder__title">Pozvať do Signalu</string>
-    <string name="FirstInviteReminder__description">Mohli ste zvýšiť počet šifrovaných správ, ktoré odosielate o %1$d%%</string>
-    <string name="SecondInviteReminder__title">Podporte svoj Signal</string>
-    <string name="SecondInviteReminder__description">Pozvať používateľa %1$s</string>
-    <string name="InsightsReminder__view_insights">Zobraziť prehľady</string>
-    <string name="InsightsReminder__invite">Pozvať</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6334,6 +6314,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofón zapnutý</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofón vypnutý</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Tlačidlo pre spúšť</string>

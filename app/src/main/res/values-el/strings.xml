@@ -343,6 +343,11 @@
         <item quantity="one">Οι τροποποιήσεις μπορούν να εφαρμοστούν μόνο εντός %1$d ώρας από τη στιγμή που στείλατε αυτό το μήνυμα.</item>
         <item quantity="other">Οι τροποποιήσεις μπορούν να εφαρμοστούν μόνο εντός %1$d ωρών από τη στιγμή που στείλατε αυτό το μήνυμα.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Μη έγκυρος/η παραλήπτης/τρια!</string>
     <string name="ConversationActivity_added_to_home_screen">Προστέθηκε στην αρχική οθόνη</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Ανανέωση</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Στατιστικά</string>
-    <string name="InsightsDashboardFragment__title">Στατιστικά</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το Signal Protocol προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Διαδώστε το</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Δεν υπάρχουν αρκετά δεδομένα</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφεί.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Έναρξη συνομιλίας</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Ξεκίνα να επικοινωνείς με ασφάλεια και ενεργοποίησε νέες δυνατότητες πέρα από τους περιορισμούς των μη κρυπτογραφημένων SMS, προσκαλώντας περισσότερες επαφές να έρθουν στο Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Αυτά τα στατιστικά υπολογίστηκαν τοπικά, στη συσκευή σου, και μόνο εσύ μπορείς να τα δεις. Δεν αποστέλλονται πουθενά ποτέ.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Κρυπτογραφημένα μηνύματα</string>
-    <string name="InsightsDashboardFragment__cancel">Ακύρωση</string>
-    <string name="InsightsDashboardFragment__send">Αποστολή</string>
-    <string name="InsightsModalFragment__title">Υποδέξου τα Στατιστικά</string>
-    <string name="InsightsModalFragment__description">Ανακάλυψε πόσα απ\' τα εξερχόμενα μηνύματά σου στάλθηκαν με ασφαλή τρόπο, και μετά προσκάλεσε γρήγορα νέες επαφές για να ενισχύσεις το ποσοστό του Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Προβολή στατιστικών</string>
-
-    <string name="FirstInviteReminder__title">Πρόσκληση στο Signal</string>
-    <string name="FirstInviteReminder__description">Μπορείς να αυξήσεις τον αριθμό κρυπτογραφημένων μηνυμάτων που στέλνεις κατά %1$d%%.</string>
-    <string name="SecondInviteReminder__title">Ενίσχυση του Signal</string>
-    <string name="SecondInviteReminder__description">Προσκάλεσε τον/την %1$s</string>
-    <string name="InsightsReminder__view_insights">Προβολή στατιστικών</string>
-    <string name="InsightsReminder__invite">Πρόσκληση</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Μικρόφωνο ενεργό</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Μικρόφωνο ανενεργό</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Κουμπί Λήψη</string>

@@ -343,6 +343,11 @@
         <item quantity="one">നിങ്ങൾ ഈ സന്ദേശം അയച്ച് %1$d മണിക്കൂറിനകം മാത്രമെ എഡിറ്റുകൾ ബാധകമാക്കാനാകൂ.</item>
         <item quantity="other">നിങ്ങൾ ഈ സന്ദേശം അയച്ച് %1$d മണിക്കൂറിനകം മാത്രമെ എഡിറ്റുകൾ ബാധകമാക്കാനാകൂ.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">അസാധുവായ സ്വീകർത്താവ്!</string>
     <string name="ConversationActivity_added_to_home_screen">ഹോം സ്‌ക്രീനിൽ ചേർത്തു</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">പുതുക്കുക</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">ഉള്‍ക്കാഴ്‌ച</string>
-    <string name="InsightsDashboardFragment__title">ഉള്‍ക്കാഴ്‌ച</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസത്തിനിടെ Signal Protocol സ്വയമേവ നിങ്ങളുടെ പുറത്തേക്ക് പോയ സന്ദേശങ്ങളിൽ %1$d%% എണ്ണത്തെ പരിരക്ഷിച്ചു. Signal ഉപയോക്താക്കൾ തമ്മിലുള്ള ചാറ്റുകൾ എപ്പോഴും ആദ്യാവസാനം എൻക്രിപ്റ്റ് ചെയ്‌തതായിരിക്കും.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">എല്ലാവരിലേക്കും എത്തിക്കൂ</string>
-    <string name="InsightsDashboardFragment__not_enough_data">മതിയായ ഡാറ്റയില്ല</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">അപ്രത്യക്ഷമാകാത്തതോ ഇല്ലാതാക്കാത്തതോ ആയ കഴിഞ്ഞ %1$d ദിവസങ്ങളിലെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളെ അടിസ്ഥാനമാക്കിയാണ് നിങ്ങളുടെ ഉള്‍ക്കാഴ്‌ച്ചാ ശതമാനം കണക്കാക്കുന്നത്.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">ചാറ്റ് തുടങ്ങുക</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">സുരക്ഷിതമായി ആശയവിനിമയം ആരംഭിക്കുക, എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS സന്ദേശങ്ങളുടെ പരിധിക്കപ്പുറത്തേക്ക് പോകുന്ന പുതിയ സവിശേഷതകൾ Signal-ൽ ചേരാൻ കൂടുതൽ കോൺ‌ടാക്റ്റുകളെ ക്ഷണിച്ചുകൊണ്ട് പ്രാപ്തമാക്കുക.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ഈ സ്ഥിതിവിവരക്കണക്കുകൾ നിങ്ങളുടെ ഉപകരണത്തിൽ പ്രാദേശികമായി ജനറേറ്റുചെയ്‌തതാണ്, നിങ്ങൾക്ക് മാത്രമേ ഇത് കാണാൻ കഴിയൂ. അവ ഒരിക്കലും എവിടെയും പകരില്ല.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങൾ</string>
-    <string name="InsightsDashboardFragment__cancel">റദ്ദാക്കുക</string>
-    <string name="InsightsDashboardFragment__send">അയയ്‌ക്കുക</string>
-    <string name="InsightsModalFragment__title">അവതരിപ്പിക്കുന്നു ഉള്‍ക്കാഴ്‌ചൽ</string>
-    <string name="InsightsModalFragment__description">നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ എത്രയെണ്ണം സുരക്ഷിതമായി അയച്ചുവെന്ന് കണ്ടെത്തുക, തുടർന്ന് നിങ്ങളുടെ Signal ശതമാനം വർദ്ധിപ്പിക്കുന്നതിന് പുതിയ കോൺടാക്റ്റുകളെ വേഗത്തിൽ ക്ഷണിക്കുക.</string>
-    <string name="InsightsModalFragment__view_insights">ഉള്‍ക്കാഴ്‌ചകൽ കാണുക</string>
-
-    <string name="FirstInviteReminder__title">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
-    <string name="FirstInviteReminder__description">നിങ്ങൾ അയച്ച എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങളുടെ എണ്ണം %1$d%% ആയി വർദ്ധിപ്പിക്കാം</string>
-    <string name="SecondInviteReminder__title">നിങ്ങളുടെ Signal ബൂസ്റ്റ് ചെയ്യുക</string>
-    <string name="SecondInviteReminder__description">%1$s ക്ഷണിക്കുക</string>
-    <string name="InsightsReminder__view_insights">ഉള്‍ക്കാഴ്‌ചകൽ കാണുക</string>
-    <string name="InsightsReminder__invite">ക്ഷണിക്കുക</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">മൈക്ക് ഓണാണ്</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">മൈക്ക് ഓഫാണ്</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">ക്യാപ്ച്ചർ ബട്ടൺ</string>

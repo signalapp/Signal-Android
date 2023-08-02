@@ -343,6 +343,11 @@
         <item quantity="one">ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਭੇਜੇ ਜਾਣ ਤੋਂ %1$d ਘੰਟੇ ਦੇ ਅੰਦਰ-ਅੰਦਰ ਹੀ ਸੋਧਿਆ ਜਾ ਸਕਦਾ ਹੈ।</item>
         <item quantity="other">ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਭੇਜੇ ਜਾਣ ਤੋਂ %1$d ਘੰਟਿਆਂ ਦੇ ਅੰਦਰ-ਅੰਦਰ ਹੀ ਸੋਧਿਆ ਜਾ ਸਕਦਾ ਹੈ।</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">ਅਵੈਧ ਪ੍ਰਾਪਤਕਰਤਾ!</string>
     <string name="ConversationActivity_added_to_home_screen">ਮੁੱਖ ਸਕਰੀਨ ਦੇ ਨਾਲ ਜੋੜ ਦਿੱਤਾ ਗਿਆ ਹੈ</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">ਤਾਜ਼ਾ ਕਰੋ</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">ਇਨਸਾਈਟਸ</string>
-    <string name="InsightsDashboardFragment__title">ਇਨਸਾਈਟਸ</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਵੱਲੋਂ ਭੇਜੇ ਗਏ %1$d%% ਸੁਨੇਹਿਆਂ ਦੀ ਆਪਣੇ-ਆਪ ਸੁਰੱਖਿਆ ਕੀਤੀ ਹੈ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਹੋਣ ਵਾਲੀ ਚੈਟ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਹੁੰਦੀ ਹੈ।</string>
-    <string name="InsightsDashboardFragment__spread_the_word">ਸੰਸਾਰ ਭਰ ਵਿੱਚ ਫੈਲਾਓ</string>
-    <string name="InsightsDashboardFragment__not_enough_data">ਲੋੜੀਂਦਾ ਡੇਟਾ ਨਹੀਂ</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ਤੁਹਾਡੀ ਇਨਸਾਈਟਸ ਪ੍ਰਤੀਸ਼ਤ ਦਾ ਹਿਸਾਬ ਬੀਤੇ %1$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦੇ ਅਧਾਰ ’ਤੇ ਲਾਇਆ ਜਾਂਦਾ ਹੈ ਜੋ ਗਾਇਬ ਨਹੀਂ ਹੋਏ ਹਨ ਜਾਂ ਮਿਟਾਏ ਨਹੀਂ ਗਏ ਹਨ।</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">ਚੈਟ ਸ਼ੁਰੂ ਕਰੋ</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">ਵਧੇਰੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦਾ ਸੱਦਾ ਦੇ ਕੇ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਸੰਚਾਰ ਕਰਨਾ ਅਰੰਭ ਕਰੋ ਅਤੇ ਅਜਿਹੀਆਂ ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ ਜੋ ਇਨਕ੍ਰਿਪਟ ਨਾ ਕੀਤੇ SMS ਸੁਨੇਹਿਆਂ ਦੀਆਂ ਸੀਮਾਵਾਂ ਤੋਂ ਪਾਰ ਜਾਂਦੀਆਂ ਹਨ।</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ਇਹ ਅੰਕੜੇ ਸਥਾਨਕ ਤੌਰ ’ਤੇ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ’ਤੇ ਤਿਆਰ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਦੁਆਰਾ ਹੀ ਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕਦੇ ਵੀ ਕਿਤੇ ਵੀ ਪ੍ਰਸਾਰਿਤ ਨਹੀਂ ਕੀਤੇ ਜਾਂਦੇ।</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">ਇਨਕ੍ਰਿਪਟ ਕੀਤੇ ਸੁਨੇਹੇ</string>
-    <string name="InsightsDashboardFragment__cancel">ਰੱਦ ਕਰੋ</string>
-    <string name="InsightsDashboardFragment__send">ਭੇਜੋ</string>
-    <string name="InsightsModalFragment__title">ਇਨਸਾਈਟਸ ਪੇਸ਼ ਕਰ ਰਿਹਾ ਹੈ</string>
-    <string name="InsightsModalFragment__description">ਇਹ ਪਤਾ ਲਗਾਓ ਕਿ ਤੁਹਾਡੇ ਕਿੰਨੇ ਬਾਹਰ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹੇ ਸੁਰੱਖਿਅਤ ਨਾਲ ਭੇਜੇ ਗਏ ਹਨ, ਫਿਰ ਆਪਣੀ Signal ਪ੍ਰਤੀਸ਼ਤਤਾ ਨੂੰ ਵਧਾਉਣ ਲਈ ਨਵੇਂ ਸੰਪਰਕਾਂ ਨੂੰ ਜਲਦੀ ਬੁਲਾਓ।</string>
-    <string name="InsightsModalFragment__view_insights">ਇਨਸਾਈਟਸ ਵੇਖੋ</string>
-
-    <string name="FirstInviteReminder__title">Signal ਲਈ ਸੱਦੋ</string>
-    <string name="FirstInviteReminder__description">ਤੁਸੀਂ ਇਨਕ੍ਰਿਪਟ ਕੀਤੇ ਸੁਨੇਹਿਆਂ ਦੀ ਗਿਣਤੀ ਵਧਾ ਸਕਦੇ ਹੋ, ਜੋ ਤੁਸੀਂ %1$d%%ਰਾਹੀਂ ਭੇਜਦੇ ਹੋ</string>
-    <string name="SecondInviteReminder__title">ਆਪਣੇ Signal ਨੂੰ ਬੂਸਟ ਕਰੋ</string>
-    <string name="SecondInviteReminder__description">%1$s ਨੂੰ ਸੱਦਾ</string>
-    <string name="InsightsReminder__view_insights">ਇਨਸਾਈਟਸ ਵੇਖੋ</string>
-    <string name="InsightsReminder__invite">ਸੱਦਾ</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">ਮਾਈਕ ਚਾਲੂ ਹੈ</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">ਮਾਈਕ ਬੰਦ ਹੈ</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">ਕੈਪਚਰ ਬਟਨ</string>

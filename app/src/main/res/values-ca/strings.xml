@@ -343,6 +343,11 @@
         <item quantity="one">Els canvis només es poden realitzar fins a %1$d hora després d\'enviar el missatge.</item>
         <item quantity="other">Els canvis només es poden realitzar fins a %1$d hores després d\'enviar el missatge.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinatari no vàlid.</string>
     <string name="ConversationActivity_added_to_home_screen">S\'ha afegit a la pantalla d\'inici.</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Actualitza</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Interior</string>
-    <string name="InsightsDashboardFragment__title">Interior</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Els xats entre usuaris de Signal sempre estan xifrats d\'extrem a extrem.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Escampeu-ho</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han esborrat.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Començar un xat</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Comenceu a comunicar-vos de manera segura i activeu funcions noves que vagin més enllà de les limitacions dels missatges d\'SMS no encriptats convidant més contactes a unir-se al Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aquestes estadístiques es van generar localment al dispositiu i només vosaltres les podreu veure. Mai es transmeten enlloc.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Missatges encriptats</string>
-    <string name="InsightsDashboardFragment__cancel">Cancel·la</string>
-    <string name="InsightsDashboardFragment__send">Envia</string>
-    <string name="InsightsModalFragment__title">S\'introdueix l\'Interior</string>
-    <string name="InsightsModalFragment__description">Informeu-vos de quants dels vostres missatges de sortida es van enviar de forma segura i, després, convideu ràpidament nous contactes per augmentar el percentatge del Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Mostra l\'Interior</string>
-
-    <string name="FirstInviteReminder__title">Convida al Signal</string>
-    <string name="FirstInviteReminder__description">Podeu augmentar el nombre de missatges encriptats que envieu gràcies a %1$d%%</string>
-    <string name="SecondInviteReminder__title">Dona una empenta a Signal</string>
-    <string name="SecondInviteReminder__description">Convida %1$s</string>
-    <string name="InsightsReminder__view_insights">Mostra l\'Interior</string>
-    <string name="InsightsReminder__invite">Convida</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Micròfon encès</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Micròfon apagat</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Botó de captura</string>

@@ -343,6 +343,11 @@
         <item quantity="one">Só é possível fazer edições no período de %1$d hora após enviar esta mensagem.</item>
         <item quantity="other">Só é possível fazer edições no período de %1$d horas após enviar esta mensagem.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
     <string name="ConversationActivity_added_to_home_screen">Adicionada à tela inicial</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Atualizar</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Insights</string>
-    <string name="InsightsDashboardFragment__title">Insights</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Signal Protocol protegeu automaticamente %1$d %% de suas mensagens enviadas nos últimos %2$d dias. Os chats entre usuários do Signal são sempre criptografados de ponta a ponta.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Espalhe a notícia</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Não há dados suficientes</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O seu percentual do Insights é calculado com base nas mensagens enviadas nos últimos %1$d dias que não desapareceram ou foram apagadas.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Iniciar um chat</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Comece a se comunicar com segurança e habilite novos recursos que vão além das mensagens SMS não criptografadas convidando mais contatos para participar do Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Essas estatísticas foram geradas localmente no seu aparelho e só podem ser vistas por você. Elas nunca são transmitidas a terceiros.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Mensagens criptografadas</string>
-    <string name="InsightsDashboardFragment__cancel">Cancelar</string>
-    <string name="InsightsDashboardFragment__send">Enviar</string>
-    <string name="InsightsModalFragment__title">Apresentando os Insights</string>
-    <string name="InsightsModalFragment__description">Descubra quantas mensagens foram enviadas por você com segurança e convide de maneira rápida novos contatos para o Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Visualizar Insights</string>
-
-    <string name="FirstInviteReminder__title">Convidar para o Signal</string>
-    <string name="FirstInviteReminder__description">Você pode aumentar o número de mensagens criptografadas enviadas por %1$d %%</string>
-    <string name="SecondInviteReminder__title">Turbine seu Signal</string>
-    <string name="SecondInviteReminder__description">Convidar %1$s</string>
-    <string name="InsightsReminder__view_insights">Visualizar Insights</string>
-    <string name="InsightsReminder__invite">Convidar</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Microfone ligado</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Microfone desligado</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Botão Capturar</string>

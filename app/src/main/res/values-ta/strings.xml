@@ -343,6 +343,11 @@
         <item quantity="one">நீங்கள் இந்த மெசேஜை அனுப்பியதிலிருந்து %1$d மணிநேரத்திற்குள் மட்டுமே திருத்தங்களைப் பயன்படுத்த முடியும்.</item>
         <item quantity="other">நீங்கள் இந்த மெசேஜை அனுப்பியதிலிருந்து %1$d மணிநேரத்திற்குள் மட்டுமே திருத்தங்களைப் பயன்படுத்த முடியும்.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
     <string name="ConversationActivity_added_to_home_screen">முகப்பு திரையில் சேர்க்கப்பட்டது</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">புதுப்பி.</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">நுண்ணறிவு</string>
-    <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">கடந்த %2$d நாட்களில் Signal நெறிமுறை தானாகவே உங்களின் %1$d%% வெளிச்செல்லும் செய்திகளை பாதுகாத்தது. Signal பயனர்கள் இடையேயான சாட்ஸ் எப்போதும் எண்ட்-டு-எண்ட் குறியாக்கம் செய்யப்படுகின்றன.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">மற்றவர்களுக்குத் தெரியப்படுத்துங்கள்</string>
-    <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">கடந்த %1$d நாட்களில் காணாமல் போகாத அல்லது நீக்கப்படாத வெளிச்செல்லும் செய்திகளின் அடிப்படையில் உங்கள் நுண்ணறிவு சதவீதம் கணக்கிடப்படுகிறது.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">புதிய சாட்டைத் தொடங்கவும்</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Signal-க்கு கூடுதல் தொடர்புகளை அழைப்பதன் மூலம் பாதுகாப்பாக தொடர்பு கொள்ளத் தொடங்குங்கள் மற்றும் மறையாக்கபடாத SMS செய்திகளின் வரம்புகளுக்கு அப்பாற்பட்ட புதிய அம்சங்களை இயலச் செய்யுங்கள்.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">இந்த புள்ளிவிவரங்கள் உங்கள் சாதனத்தில் உள்நாட்டில் உருவாக்கப்பட்டன, அவற்றை உங்களால் மட்டுமே காண முடியும். அவை ஒருபோதும் எங்கும் பரவுவதில்லை.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">மறையாக்கப்பட்ட செய்திகள்</string>
-    <string name="InsightsDashboardFragment__cancel">ரத்து</string>
-    <string name="InsightsDashboardFragment__send">அனுப்புக</string>
-    <string name="InsightsModalFragment__title">நுண்ணறிவுகளை அறிமுகப்படுத்துகிறது</string>
-    <string name="InsightsModalFragment__description">உங்கள் வெளிச்செல்லும் செய்திகளில் எத்தனை பாதுகாப்பாக அனுப்பப்பட்டன என்பதைக் கண்டுபிடி, பின்னர் உங்கள் Signal சதவீதத்தை அதிகரிக்க புதிய தொடர்புகளை விரைவாக அழைக்கவும்</string>
-    <string name="InsightsModalFragment__view_insights">நுண்ணறிவுகளைக் காண்க</string>
-
-    <string name="FirstInviteReminder__title">Signal க்கு அழைக்கவும்</string>
-    <string name="FirstInviteReminder__description">நீங்கள் அனுப்பும் மறையாக்கப்பட்ட செய்திகளின் எண்ணிக்கையை %1$d%% அதிகரிக்கலாம்</string>
-    <string name="SecondInviteReminder__title">Signalஐ பூஸ்ட் செய்யவும்</string>
-    <string name="SecondInviteReminder__description">அழைக்கவும் %1$s</string>
-    <string name="InsightsReminder__view_insights">நுண்ணறிவுகளைக் காண்க</string>
-    <string name="InsightsReminder__invite">அழை</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">மைக் ஆன்</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">மைக் ஆஃப்</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">பிடிப்பு பட்டன்</string>

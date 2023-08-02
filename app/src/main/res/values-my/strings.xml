@@ -341,6 +341,10 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">ထိုမက်ဆေ့ချ်ကို ပေးပို့ခဲ့ချိန်မှ %1$d နာရီအတွင်း၌သာ တည်းဖြတ်မှု လုပ်နိုင်ပါသည်။</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">လက်ခံမည့်သူမရှိပါ</string>
     <string name="ConversationActivity_added_to_home_screen">home screen သို့ ပေါင်းထည့်သည်။</string>
@@ -3357,33 +3361,6 @@
     <string name="new_conversation_activity__refresh">အသစ်ပြန်စတင်ပါ</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">ထင်မြင်ချက်များ</string>
-    <string name="InsightsDashboardFragment__title">ထင်မြင်ချက်များ</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ပရိုတိုကောလ်သည် လွန်ခဲ့သည့် %2$d ရက်အတွင်း သင့်အထွက်မက်ဆေ့ချ်များ၏ %1$d%% ကို အလိုအလျောက် ကာကွယ်ပေးခဲ့ပါသည်။ Signal သုံးစွဲသူများအကြား ချက်(တ်)များကို အမြဲ ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားပါသည်။</string>
-    <string name="InsightsDashboardFragment__spread_the_word">ဤစကားကို ဖြန့်ရန်</string>
-    <string name="InsightsDashboardFragment__not_enough_data">ဒေတာ မလုံလောက်ပါ</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">သင်၏ ထင်မြင်ချက် ရာခိုင်နှုန်းသည် လွန်ခဲ့သည့် %1$d ရက်အတွင်း မပျောက်သွားသေးသော သို့မဟုတ် မဖျက်ထားသော မက်ဆေ့ချ်များပေါ်မူ၍ တွက်ထားပါသည်။</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">ချက်(တ်)တစ်ခု စတင်ရန်</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">လုံခြုံစွာ ဆက်သွယ်မှုကို စတင်ပါ။ Signal နှင့်ဆက်သွယ်ရန် အဆက်အသွယ်များထပ်မံဖိတ်ခေါ်ခြင်းဖြင့် ကုဒ်ဖြင့်စာမဝှက်ထားသည့် SMS မက်ဆေ့ချ်များ ပေးပို့မှုများ၏ ကန့်သတ်ချက်များထက်ကျော်လွန်သော အင်္ဂါရပ်အသစ်များကို ဖွင့်သုံးစွဲပါ။</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">၎င်းကိန်းဂဏန်းများသည် သင်၏စက်ကိရိယာပေါ်တွင် ထုတ်လုပ်ပြီး သင်သာမြင်နိုင်သည်။ ဘယ်တော့မှ အခြားနေရာကို မကူးစက်ပါဘူး။</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">ကုဒ်ဖြင့် ဝှက်ထားသော မက်ဆေ့ချ်များ</string>
-    <string name="InsightsDashboardFragment__cancel">ပယ်ဖျက်မယ်</string>
-    <string name="InsightsDashboardFragment__send">ပေးပို့မယ်</string>
-    <string name="InsightsModalFragment__title">ထင်မြင်ချက်များနှင့် မိတ်ဆက်ပေးခြင်း</string>
-    <string name="InsightsModalFragment__description">သင်၏ အထွက်စာများ မည်မျှလုံလုံခြုံခြုံ ပေးပို့ခဲ့သည်ကို ရှာဖွေပါ။ သင်၏ Signal ရာခိုင်နှုန်းကို တိုးစေရန် အဆက်အသွယ်အသစ်များကို လျင်မြန်စွာဖိတ်ပါ။</string>
-    <string name="InsightsModalFragment__view_insights">ထင်မြင်ချက်များ ကိုကြည့်မယ်</string>
-
-    <string name="FirstInviteReminder__title">Signal သို့ ဖိတ်ခေါ်မည်</string>
-    <string name="FirstInviteReminder__description">သင်ပေးပို့သည့် ကုဒ်ဖြင့်ဝှက်ထားသော မက်ဆေ့ချ်အရေအတွက်ကို %1$d %% ထက်တိုးမြှင့်နိုင်ပါသည်</string>
-    <string name="SecondInviteReminder__title">သင်၏ Signal ကို Boost လုပ်ပါ</string>
-    <string name="SecondInviteReminder__description">%1$s ကို ဖိတ်ခေါ်မယ်</string>
-    <string name="InsightsReminder__view_insights">ထင်မြင်ချက်များ (Insights) ကိုကြည့်မယ်</string>
-    <string name="InsightsReminder__invite">ဖိတ်ခေါ်မယ်</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -5956,6 +5933,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">မိုက် ဖွင့်ထားသည်</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">မိုက် ပိတ်ထားသည်</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">ရိုက်ကူးမှု ခလုတ်</string>

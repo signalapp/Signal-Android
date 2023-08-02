@@ -343,6 +343,11 @@
         <item quantity="one">Mezu hau bidali eta %1$d orduko epean soilik aplika daitezke aldaketak.</item>
         <item quantity="other">Mezu hau bidali eta %1$d orduko epean soilik aplika daitezke aldaketak.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Hartzaile baliogabea!</string>
     <string name="ConversationActivity_added_to_home_screen">Hasiera pantailara gehituta</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Freskatu</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Estatistikak</string>
-    <string name="InsightsDashboardFragment__title">Estatistikak</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-en protokoloak automatikoki babestu ditu zure irteerako mezuen %% %1$d azken %2$d egunetan. Signal-eko erabiltzaileen arteko txatak beti enkriptatzen dira.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Zabaldu hitza</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Ez dago datu nahikorik</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Zure estatistiken ehunekoaren kalkulua azkenengo %1$d egunetan bidali diren mezuetan oinarritzen da; desagertu ez diren edo ezabatu ez diren mezuak bakarrik hartzen dira kontuan.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Hasi txat bat</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Modu seguruan komunikatzen hasi eta SMS mezuen mugak gainditzeko ahalbidetzen duten ezaugarriak gaitu. Horretarako, kontaktu gehiago gonbidatu Signal-era.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estatistika hauek zure gailuan sortu dira modu lokalean eta bakarrik zuk ikus ditzakezu. Ez dira inoiz inora bidaltzen.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Enkriptatutako mezuak</string>
-    <string name="InsightsDashboardFragment__cancel">Utzi</string>
-    <string name="InsightsDashboardFragment__send">Bidali</string>
-    <string name="InsightsModalFragment__title">Estatistiken Aurkezpena</string>
-    <string name="InsightsModalFragment__description">Ikusi bidali dituzun mezuetatik zenbat bidali diren modu seguruan eta, orduan, arin gonbidatu kontaktu berriak zure Signal ehunekoa handitzeko.</string>
-    <string name="InsightsModalFragment__view_insights">Estatistikak Ikusi</string>
-
-    <string name="FirstInviteReminder__title">Gonbidatu Signal erabiltzera</string>
-    <string name="FirstInviteReminder__description">Enkriptatuta bidaltzen dituzun mezu kopurua %% %1$d handitu zenezake</string>
-    <string name="SecondInviteReminder__title">Egin dohaintza bat Signal-i</string>
-    <string name="SecondInviteReminder__description">%1$s gonbidatu</string>
-    <string name="InsightsReminder__view_insights">Estatistikak Ikusi</string>
-    <string name="InsightsReminder__invite">Gonbidatu</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofonoa piztuta</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofonoa itzalita</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Pantaila-argazkia ateratzeko botoia</string>

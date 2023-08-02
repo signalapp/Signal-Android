@@ -343,6 +343,11 @@
         <item quantity="one">Muokkauksia voidaan tehdä vain %1$d tunnin kuluessa tämän viestin lähettämisestä.</item>
         <item quantity="other">Muokkauksia voidaan tehdä vain %1$d tunnin kuluessa tämän viestin lähettämisestä.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Virheellinen vastaanottaja!</string>
     <string name="ConversationActivity_added_to_home_screen">Lisätty kotinäytölle</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Päivitä</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Tilastot</string>
-    <string name="InsightsDashboardFragment__title">Tilastot</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokolla suojasi automaattisesti %1$d %% lähtevistä viesteistäsi viimeisten %2$d päivän aikana. Signalin käyttäjien väliset keskustelut ovat aina salattuja päästä päähän.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Levitä tietoisuutta</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Ei tarpeeksi tietoa</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tilastoprosentti lasketaan niiden lähetettyjen viestien perusteella, joita ei ole kadonnut tai poistettu viimeisten %1$d päivän aikana.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Aloita keskustelu</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Nyt voit viestiä turvallisesti käyttää toimintoja, jotka saavat salaamattomat tekstiviestit kalpenemaan. Kutsu lisää kavereitasi liittymään Signaliin.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Nämä tilastot on luotu paikallisesti laitteellasi, ja vain sinä näet ne. Niitä ei koskaan välitetä mihinkään.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Salatut viestit</string>
-    <string name="InsightsDashboardFragment__cancel">Peruuta</string>
-    <string name="InsightsDashboardFragment__send">Lähetä</string>
-    <string name="InsightsModalFragment__title">Esittelyssä tilastot</string>
-    <string name="InsightsModalFragment__description">Selvitä, kuinka suuri osa lähtevistä viesteistäsi lähetettiin turvallisesti. Voit kasvattaa Signalin prosenttia kutsumalla uusia käyttäjiä mukaan.</string>
-    <string name="InsightsModalFragment__view_insights">Näytä tilastot</string>
-
-    <string name="FirstInviteReminder__title">Kutsu Signaliin</string>
-    <string name="FirstInviteReminder__description">Voisit lisätä lähettämiesi salattujen viestien määrää %1$d %%</string>
-    <string name="SecondInviteReminder__title">Boostaa Signaliasi</string>
-    <string name="SecondInviteReminder__description">Kutsu %1$s</string>
-    <string name="InsightsReminder__view_insights">Näytä tilastot</string>
-    <string name="InsightsReminder__invite">Kutsu</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofoni päällä</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofoni pois päältä</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Ota kuva -painike</string>

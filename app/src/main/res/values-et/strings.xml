@@ -343,6 +343,11 @@
         <item quantity="one">Muutmine on võimalik vaid %1$d tunni jooksul alates sõnumi saatmisest.</item>
         <item quantity="other">Muutmine on võimalik vaid %1$d tunni jooksul alates sõnumi saatmisest.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Sobimatu saaja!</string>
     <string name="ConversationActivity_added_to_home_screen">Avakuvale lisatud</string>
@@ -3441,33 +3446,6 @@
     <string name="new_conversation_activity__refresh">Värskenda</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Pilguheit</string>
-    <string name="InsightsDashboardFragment__title">Pilguheit</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signali protokoll kaitses automaatselt %1$d%% väljuvat sõnumit viimase %2$d päeva jooksul. Vestlused Signali kasutajate vahel on alati otspunktkrüptitud.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Levita sõna</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Pole piisavalt andmeid</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud %1$d päeva väljuvate sõnumite põhjal, mis ei ole haihtunud ega kustutatud.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Aalusta vestlust</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Alusta turvalist suhtlemist ning luba uued funktsioonid, mis võimaldavad krüpteerimata SMS-sõnumitest rohkemat, kutsudes rohkem kontakte Signaliga liituma.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">See statistika on antud seadmes kohalikult genereeritud ning ainult sina näed seda. Seda ei saadeta mitte kunagi mitte kuhugi.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Krüpteeritud sõnumid</string>
-    <string name="InsightsDashboardFragment__cancel">Loobu</string>
-    <string name="InsightsDashboardFragment__send">Saada</string>
-    <string name="InsightsModalFragment__title">Tutvustame Pilguheitu</string>
-    <string name="InsightsModalFragment__description">Leia, mitu sinu väljuvat sõnumit saadeti turvaliselt, seejärel kutsu kiirelt uusi kontakte, et võimendada oma Signali-protsenti.</string>
-    <string name="InsightsModalFragment__view_insights">Vaata Pilguheitu</string>
-
-    <string name="FirstInviteReminder__title">Kutsu Signalisse</string>
-    <string name="FirstInviteReminder__description">Sa võiksid täiendada krüpteeritud sõnumite saatmise arvu %1$d%%</string>
-    <string name="SecondInviteReminder__title">Võimenda oma Signali</string>
-    <string name="SecondInviteReminder__description">Kutsu %1$s</string>
-    <string name="InsightsReminder__view_insights">Vaata Pilguheitu</string>
-    <string name="InsightsReminder__invite">Kutsu</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6082,6 +6060,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon sees</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon väljas</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Pildistamise nupp</string>

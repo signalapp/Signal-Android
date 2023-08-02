@@ -345,6 +345,12 @@
         <item quantity="one">Labojumi var tikt piemēroti tikai %1$d stundas laikā pēc šīs ziņas nosūtīšanas.</item>
         <item quantity="other">Labojumi var tikt piemēroti tikai %1$d stundu laikā pēc šīs ziņas nosūtīšanas.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="zero">Only %1$d edits can be applied to this message.</item>
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Nederīgs saņēmējs!</string>
     <string name="ConversationActivity_added_to_home_screen">Pievienots sākuma ekrānam</string>
@@ -3525,33 +3531,6 @@
     <string name="new_conversation_activity__refresh">Atsvaidzināt</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Ieskati</string>
-    <string name="InsightsDashboardFragment__title">Ieskati</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokols ir automātiski aizsargājis %1$d%% no no jūsu izejošajām ziņām pēdējo %2$d dienu laikā. Sarunas starp Signal lietotājiem vienmēr tiek šifrētas.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Izplati ziņu</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nav pietiekami datu</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsu Ieskatu procenti tiek aprēķināti balstoties uz izejošo ziņu skaita pēdējās %1$d dienās, kuras nav pagaisušas vai izdzēstas.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Sākt sarunu</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Sāciet droši sazināties un iedzīviniet jaunas iespējas, kas pārsniedz nešifrēto SMS ziņu pielietojuma robežas, uzaicinot Signal pievienoties vairāk kontaktus.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Šī statistika tika ģenerēta lokāli uz jūsu ierīces, un tikai jūs varat to redzēt. Šie dati nekur netiek sūtīti.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Šifrētas ziņas</string>
-    <string name="InsightsDashboardFragment__cancel">Atcelt</string>
-    <string name="InsightsDashboardFragment__send">Sūtīt</string>
-    <string name="InsightsModalFragment__title">Iepazīstinām ar ieskatu</string>
-    <string name="InsightsModalFragment__description">Uzzini, cik no Tavām izejošajām ziņām tika nosūtītas droši, tad ātri uzaicini jaunus kontaktus, lai uzlabotu Signal procentualitāti.</string>
-    <string name="InsightsModalFragment__view_insights">Skatīt ieskatus</string>
-
-    <string name="FirstInviteReminder__title">Uzaicināt uz Signal</string>
-    <string name="FirstInviteReminder__description">Varat palielināt nosūtīto šifrēto ziņojumu skaitu par %1$d%%</string>
-    <string name="SecondInviteReminder__title">Atbalstiet jūsu Signal</string>
-    <string name="SecondInviteReminder__description">Uzaicināt %1$s</string>
-    <string name="InsightsReminder__view_insights">Skatīt ieskatus</string>
-    <string name="InsightsReminder__invite">Uzaicināt</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6208,6 +6187,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofons ieslēgts</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofons izslēgts</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Poga Uzņemt</string>

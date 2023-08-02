@@ -347,6 +347,13 @@
         <item quantity="many">Poruke je moguće uređivati samo u roku od %1$d sati od trenutka slanja.</item>
         <item quantity="other">Poruke je moguće uređivati samo u roku od %1$d sati od trenutka slanja.</item>
     </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Only %1$d edit can be applied to this message.</item>
+        <item quantity="few">Only %1$d edits can be applied to this message.</item>
+        <item quantity="many">Only %1$d edits can be applied to this message.</item>
+        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Nevažeći primatelj!</string>
     <string name="ConversationActivity_added_to_home_screen">Dodano na početni zaslon</string>
@@ -3609,33 +3616,6 @@
     <string name="new_conversation_activity__refresh">Osvježi</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Uvidi</string>
-    <string name="InsightsDashboardFragment__title">Uvidi</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol je automatski zaštitio %1$d %% vaših odlaznih poruka tijekom zadnjih %2$d dana. Razgovori između korisnika Signala uvijek su zaštićeni sveobuhvatnim šifriranjem.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Proširite vijest</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nema dovoljno podataka</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Vaš postotak uvida izračunava se na temelju odlaznih poruka u proteklih %1$d dana koje nisu nestale ili bile izbrisane.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Započni novi razgovor</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Počnite sigurno komunicirati i omogućite nove značajke koje nadilaze ograničenja nešifriranih SMS poruka tako što da pozovete još kontakata da se pridruže Signalu.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ova statistika je stvorena lokalno na vašem uređaju i možete je vidjeti samo vi. Nikad i nigdje se ne prenosi.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Šifrirane poruke</string>
-    <string name="InsightsDashboardFragment__cancel">Poništi</string>
-    <string name="InsightsDashboardFragment__send">Šalji</string>
-    <string name="InsightsModalFragment__title">Predstavljamo Uvide</string>
-    <string name="InsightsModalFragment__description">Otkrijte koliko je vaših odlaznih poruka poslano sigurno, a zatim brzo pozovite nove kontakte kako biste povećali vaš Signal postotak.</string>
-    <string name="InsightsModalFragment__view_insights">Prikaži uvide</string>
-
-    <string name="FirstInviteReminder__title">Pozovi u Signal</string>
-    <string name="FirstInviteReminder__description">Možete povećati broj šifriranih poruka koje šaljete za %1$d%%</string>
-    <string name="SecondInviteReminder__title">Ojačajte svoj Signal</string>
-    <string name="SecondInviteReminder__description">Pozovi %1$s</string>
-    <string name="InsightsReminder__view_insights">Prikaži uvide</string>
-    <string name="InsightsReminder__invite">Pozivnica</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
@@ -6334,6 +6314,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon uključen</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon isključen</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Gumb za snimanje</string>
