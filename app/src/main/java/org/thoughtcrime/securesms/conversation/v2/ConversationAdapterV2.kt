@@ -262,7 +262,7 @@ class ConversationAdapterV2(
     }
   }
 
-  fun onMessageRequestStateChanged(isMessageRequestAccepted: Boolean) {
+  fun setMessageRequestIsAccepted(isMessageRequestAccepted: Boolean) {
     val oldState = this.isMessageRequestAccepted
     this.isMessageRequestAccepted = isMessageRequestAccepted
 

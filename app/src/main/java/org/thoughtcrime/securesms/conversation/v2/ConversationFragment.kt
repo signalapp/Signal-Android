@@ -769,6 +769,7 @@ class ConversationFragment :
       .conversationThreadState
       .subscribeOn(Schedulers.io())
       .doOnSuccess { state ->
+        adapter.setMessageRequestIsAccepted(state.meta.messageRequestData.isMessageRequestAccepted)
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
         conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
         colorizer.onGroupMembershipChanged(state.meta.groupMemberAcis)
@@ -1151,7 +1152,7 @@ class ConversationFragment :
     presentChatColors(recipient.chatColors)
     invalidateOptionsMenu()
 
-    adapter.onMessageRequestStateChanged(!viewModel.hasMessageRequestState)
+    adapter.setMessageRequestIsAccepted(!viewModel.hasMessageRequestState)
   }
 
   private fun invalidateOptionsMenu() {
