@@ -630,22 +630,11 @@
                 android:value="org.thoughtcrime.securesms.MainActivity" />
     </activity>
 
-    <activity android:name=".conversation.ConversationActivity"
-              android:windowSoftInputMode="stateUnchanged"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:parentActivityName=".MainActivity"
-              android:exported="false">
-        <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.MainActivity" />
-    </activity>
-
     <activity android:name=".conversation.BubbleConversationActivity"
-              android:theme="@style/Signal.DayNight"
-              android:allowEmbedded="true"
-              android:resizeableActivity="true"
-              android:exported="false"/>
+        android:theme="@style/Signal.DayNight"
+        android:allowEmbedded="true"
+        android:resizeableActivity="true"
+        android:exported="false"/>
 
     <activity android:name=".conversation.ConversationPopupActivity"
               android:windowSoftInputMode="stateVisible"

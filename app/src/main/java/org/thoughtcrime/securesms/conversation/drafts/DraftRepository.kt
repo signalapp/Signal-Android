@@ -5,7 +5,6 @@ import android.net.Uri
 import android.text.Spannable
 import android.text.SpannableString
 import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.concurrent.MaybeCompat
@@ -167,35 +166,22 @@ class DraftRepository(
     }
   }
 
-  fun saveDrafts(recipient: Recipient?, threadId: Long, distributionType: Int, drafts: Drafts) {
-    require(threadId != -1L || recipient != null)
+  fun saveDrafts(threadId: Long, drafts: Drafts) {
+    require(threadId != -1L)
 
     saveDraftsExecutor.execute {
       if (drafts.isNotEmpty()) {
-        val actualThreadId = if (threadId == -1L) {
-          threadTable.getOrCreateThreadIdFor(recipient!!, distributionType)
-        } else {
-          threadId
-        }
-
-        draftTable.replaceDrafts(actualThreadId, drafts)
+        draftTable.replaceDrafts(threadId, drafts)
         if (drafts.shouldUpdateSnippet()) {
-          threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MessageTypes.BASE_DRAFT_TYPE, true)
+          threadTable.updateSnippet(threadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MessageTypes.BASE_DRAFT_TYPE, true)
         } else {
-          threadTable.update(actualThreadId, unarchive = false, allowDeletion = false)
+          threadTable.update(threadId, unarchive = false, allowDeletion = false)
         }
       } else if (threadId > 0) {
         draftTable.clearDrafts(threadId)
         threadTable.update(threadId, unarchive = false, allowDeletion = false)
       }
     }
-  }
-
-  @Deprecated("Not needed for CFv2")
-  fun loadDrafts(threadId: Long): Single<DatabaseDraft> {
-    return Single.fromCallable {
-      loadDraftsInternal(threadId)
-    }.subscribeOn(Schedulers.io())
   }
 
   private fun loadDraftsInternal(threadId: Long): DatabaseDraft {
@@ -218,11 +204,6 @@ class DraftRepository(
     return DatabaseDraft(drafts, updatedText)
   }
 
-  @Deprecated("Not needed for CFv2")
-  fun loadDraftQuote(serialized: String): Maybe<ConversationMessage> {
-    return MaybeCompat.fromCallable { loadDraftQuoteInternal(serialized) }
-  }
-
   private fun loadDraftQuoteInternal(serialized: String): ConversationMessage? {
     val quoteId: QuoteId = QuoteId.deserialize(context, serialized) ?: return null
     val messageRecord: MessageRecord = SignalDatabase.messages.getMessageFor(quoteId.id, quoteId.author)?.let {
@@ -235,11 +216,6 @@ class DraftRepository(
 
     val threadRecipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId))
     return ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, threadRecipient)
-  }
-
-  @Deprecated("Not needed for CFv2")
-  fun loadDraftMessageEdit(serialized: String): Maybe<ConversationMessage> {
-    return MaybeCompat.fromCallable { loadDraftMessageEditInternal(serialized) }
   }
 
   private fun loadDraftMessageEditInternal(serialized: String): ConversationMessage? {

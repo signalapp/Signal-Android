@@ -14,8 +14,6 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ViewUtil
-import java.lang.AssertionError
-import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * The send button you see in a conversation.
@@ -27,7 +25,6 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
     private val TAG = Log.tag(SendButton::class.java)
   }
 
-  private val listeners: MutableList<SendTypeChangedListener> = CopyOnWriteArrayList()
   private var scheduledSendListener: ScheduledSendListener? = null
 
   private var availableSendTypes: List<MessageSendType> = MessageSendType.getAllAvailable(context, false)
@@ -44,15 +41,9 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
   }
 
   /**
-   * @return True if the [selectedSendType] was chosen manually by the user, otherwise false.
-   */
-  val isManualSelection: Boolean
-    get() = activeMessageSendType != null
-
-  /**
    * The actively-selected send type.
    */
-  val selectedSendType: MessageSendType
+  private val selectedSendType: MessageSendType
     get() {
       activeMessageSendType?.let {
         return it
@@ -78,65 +69,33 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
       if (signalType != null) {
         Log.w(TAG, "No options of default type, but Signal type is available. Switching. DefaultTransportType: $defaultTransportType, AllAvailable: ${availableSendTypes.map { it.transportType }}")
         defaultTransportType = MessageSendType.TransportType.SIGNAL
-        onSelectionChanged(signalType, false)
+        onSelectionChanged(signalType)
         return signalType
       } else if (availableSendTypes.isEmpty()) {
         Log.w(TAG, "No send types available at all! Enabling the Signal transport.")
         defaultTransportType = MessageSendType.TransportType.SIGNAL
         availableSendTypes = listOf(MessageSendType.SignalMessageSendType)
-        onSelectionChanged(MessageSendType.SignalMessageSendType, false)
+        onSelectionChanged(MessageSendType.SignalMessageSendType)
         return MessageSendType.SignalMessageSendType
       } else {
         throw AssertionError("No options of default type! DefaultTransportType: $defaultTransportType, AllAvailable: ${availableSendTypes.map { it.transportType }}")
       }
     }
 
-  fun addOnSelectionChangedListener(listener: SendTypeChangedListener) {
-    listeners.add(listener)
-  }
-
   fun triggerSelectedChangedEvent() {
-    onSelectionChanged(newType = selectedSendType, isManualSelection = false)
+    onSelectionChanged(newType = selectedSendType)
   }
 
   fun setScheduledSendListener(listener: ScheduledSendListener?) {
     this.scheduledSendListener = listener
   }
 
-  fun resetAvailableTransports(isMediaMessage: Boolean) {
-    availableSendTypes = MessageSendType.getAllAvailable(context, isMediaMessage)
-    activeMessageSendType = null
-    defaultTransportType = MessageSendType.TransportType.SIGNAL
-    defaultSubscriptionId = null
-    onSelectionChanged(newType = selectedSendType, isManualSelection = false)
-  }
-
-  fun disableTransportType(type: MessageSendType.TransportType) {
-    availableSendTypes = availableSendTypes.filterNot { it.transportType == type }
-  }
-
-  fun setDefaultTransport(type: MessageSendType.TransportType) {
-    if (defaultTransportType == type) {
-      return
-    }
-    defaultTransportType = type
-    onSelectionChanged(newType = selectedSendType, isManualSelection = false)
-  }
-
-  fun setSendType(sendType: MessageSendType?) {
+  private fun setSendType(sendType: MessageSendType?) {
     if (activeMessageSendType == sendType) {
       return
     }
     activeMessageSendType = sendType
-    onSelectionChanged(newType = selectedSendType, isManualSelection = true)
-  }
-
-  fun setDefaultSubscriptionId(subscriptionId: Int?) {
-    if (defaultSubscriptionId == subscriptionId) {
-      return
-    }
-    defaultSubscriptionId = subscriptionId
-    onSelectionChanged(newType = selectedSendType, isManualSelection = false)
+    onSelectionChanged(newType = selectedSendType)
   }
 
   /**
@@ -146,25 +105,9 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
     popupContainer = container
   }
 
-  private fun onSelectionChanged(newType: MessageSendType, isManualSelection: Boolean) {
+  private fun onSelectionChanged(newType: MessageSendType) {
     setImageResource(newType.buttonDrawableRes)
     contentDescription = context.getString(newType.titleRes)
-
-    for (listener in listeners) {
-      listener.onSendTypeChanged(newType, isManualSelection)
-    }
-  }
-
-  fun showSendTypeMenu(): Boolean {
-    return if (availableSendTypes.size == 1) {
-      if (scheduledSendListener == null && snackbarContainer != null && !SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
-        Snackbar.make(snackbarContainer!!, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
-      }
-      false
-    } else {
-      showSendTypeContextMenu(false)
-      true
-    }
   }
 
   override fun onLongClick(v: View): Boolean {
@@ -214,10 +157,6 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
       .preferredVerticalPosition(SignalContextMenu.VerticalPosition.ABOVE)
       .offsetY(ViewUtil.dpToPx(8))
       .show(items)
-  }
-
-  fun interface SendTypeChangedListener {
-    fun onSendTypeChanged(newType: MessageSendType, manuallySelected: Boolean)
   }
 
   interface ScheduledSendListener {

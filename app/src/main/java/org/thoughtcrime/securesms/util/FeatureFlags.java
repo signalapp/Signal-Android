@@ -107,7 +107,6 @@ public final class FeatureFlags {
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
-  private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2.2";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
 
@@ -169,7 +168,6 @@ public final class FeatureFlags {
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
-      CONVERSATION_FRAGMENT_V2,
       SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
   );
@@ -237,7 +235,6 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
-      CONVERSATION_FRAGMENT_V2,
       SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
   );
@@ -619,11 +616,6 @@ public final class FeatureFlags {
     } else {
       return !getBoolean(CDS_DISABLE_COMPAT_MODE, false);
     }
-  }
-
-  /** True if the new conversation fragment should be used. */
-  public static boolean useConversationFragmentV2() {
-    return getBoolean(CONVERSATION_FRAGMENT_V2, false);
   }
 
   /** Only for rendering debug info. */

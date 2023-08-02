@@ -16,14 +16,13 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,7 +64,6 @@ public class ConversationIntents {
    * @param context     Context for Intent creation
    * @param recipientId The RecipientId to query the thread ID for if the passed one is invalid.
    * @param threadId    The threadId, or -1L
-   *
    * @return A Single that will return a builder to create the conversation intent.
    */
   @MainThread
@@ -81,11 +79,11 @@ public class ConversationIntents {
   }
 
   public static @NonNull Builder createPopUpBuilder(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
-    return new Builder(context, ConversationPopupActivity.class, recipientId, threadId);
+    return new Builder(context, ConversationPopupActivity.class, recipientId, threadId, ConversationScreenType.POPUP);
   }
 
   public static @NonNull Intent createBubbleIntent(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
-    return new Builder(context, BubbleConversationActivity.class, recipientId, threadId).build();
+    return new Builder(context, BubbleConversationActivity.class, recipientId, threadId, ConversationScreenType.BUBBLE).build();
   }
 
   /**
@@ -95,20 +93,11 @@ public class ConversationIntents {
    * @param context     Context for Intent creation
    * @param recipientId The recipientId, only used if the threadId is not valid
    * @param threadId    The threadId, required for CFV2.
-   *
    * @return A builder that can be used to create a conversation intent.
    */
   public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
-    return new Builder(context, recipientId, threadId);
-  }
-
-  static boolean isInvalid(@NonNull Bundle arguments) {
-    Uri uri = getIntentData(arguments);
-    if (isBubbleIntentUri(uri)) {
-      return uri.getQueryParameter(EXTRA_RECIPIENT) == null;
-    } else {
-      return !arguments.containsKey(EXTRA_RECIPIENT);
-    }
+    Preconditions.checkArgument(threadId > 0, "threadId is invalid");
+    return new Builder(context, ConversationActivity.class, recipientId, threadId, ConversationScreenType.NORMAL);
   }
 
   static @Nullable Uri getIntentData(@NonNull Bundle bundle) {
@@ -119,7 +108,7 @@ public class ConversationIntents {
     return bundle.getString(INTENT_TYPE);
   }
 
-  static @NonNull Bundle createParentFragmentArguments(@NonNull Intent intent) {
+  public static @NonNull Bundle createParentFragmentArguments(@NonNull Intent intent) {
     Bundle bundle = new Bundle();
 
     if (intent.getExtras() != null) {
@@ -132,7 +121,7 @@ public class ConversationIntents {
     return bundle;
   }
 
-  static boolean isBubbleIntentUri(@Nullable Uri uri) {
+  public static boolean isBubbleIntentUri(@Nullable Uri uri) {
     return uri != null && Objects.equals(uri.getAuthority(), BUBBLE_AUTHORITY);
   }
 
@@ -311,6 +300,7 @@ public class ConversationIntents {
     private final Class<? extends Activity> conversationActivityClass;
     private final RecipientId               recipientId;
     private final long                      threadId;
+    private final ConversationScreenType    conversationScreenType;
 
     private String                 draftText;
     private List<Media>            media;
@@ -324,30 +314,18 @@ public class ConversationIntents {
     private boolean                withSearchOpen;
     private Badge                  giftBadge;
     private long                   shareDataTimestamp = -1L;
-    private ConversationScreenType conversationScreenType;
-
-    private Builder(@NonNull Context context,
-                    @NonNull RecipientId recipientId,
-                    long threadId)
-    {
-      this(
-          context,
-          getBaseConversationActivity(),
-          recipientId,
-          threadId
-      );
-    }
 
     private Builder(@NonNull Context context,
                     @NonNull Class<? extends Activity> conversationActivityClass,
                     @NonNull RecipientId recipientId,
-                    long threadId)
+                    long threadId,
+                    @NonNull ConversationScreenType conversationScreenType)
     {
       this.context                   = context;
       this.conversationActivityClass = conversationActivityClass;
       this.recipientId               = recipientId;
       this.threadId                  = checkThreadId(threadId);
-      this.conversationScreenType    = ConversationScreenType.fromActivityClass(conversationActivityClass);
+      this.conversationScreenType    = conversationScreenType;
     }
 
     public @NonNull Builder withDraftText(@Nullable String draftText) {
@@ -419,7 +397,7 @@ public class ConversationIntents {
 
       intent.setAction(Intent.ACTION_DEFAULT);
 
-      if (Objects.equals(conversationActivityClass, BubbleConversationActivity.class)) {
+      if (conversationScreenType.isInBubble()) {
         intent.setData(new Uri.Builder().authority(BUBBLE_AUTHORITY)
                                         .appendQueryParameter(EXTRA_RECIPIENT, recipientId.serialize())
                                         .appendQueryParameter(EXTRA_THREAD_ID, String.valueOf(threadId))
@@ -459,13 +437,9 @@ public class ConversationIntents {
         intent.setType(dataType);
       }
 
-      if (FeatureFlags.useConversationFragmentV2()) {
-        Bundle args = ConversationIntents.createParentFragmentArguments(intent);
+      Bundle args = ConversationIntents.createParentFragmentArguments(intent);
 
-        return intent.putExtras(args);
-      } else {
-        return intent;
-      }
+      return intent.putExtras(args);
     }
   }
 
@@ -501,31 +475,13 @@ public class ConversationIntents {
 
       return NORMAL;
     }
-
-    private static @NonNull ConversationScreenType fromActivityClass(Class<? extends Activity> activityClass) {
-      if (Objects.equals(activityClass, ConversationPopupActivity.class)) {
-        return POPUP;
-      } else if (Objects.equals(activityClass, BubbleConversationActivity.class)) {
-        return BUBBLE;
-      } else {
-        return NORMAL;
-      }
-    }
   }
 
   private static long checkThreadId(long threadId) {
-    if (threadId < 0 && FeatureFlags.useConversationFragmentV2()) {
+    if (threadId < 0) {
       throw new IllegalArgumentException("ThreadId is a required field in CFV2");
     } else {
       return threadId;
-    }
-  }
-
-  private static Class<? extends Activity> getBaseConversationActivity() {
-    if (FeatureFlags.useConversationFragmentV2()) {
-      return ConversationActivity.class;
-    } else {
-      return org.thoughtcrime.securesms.conversation.ConversationActivity.class;
     }
   }
 }

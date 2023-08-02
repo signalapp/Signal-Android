@@ -120,6 +120,7 @@ import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
@@ -331,7 +332,8 @@ class ConversationFragment :
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback,
   ConversationBottomSheetCallback,
-  SafetyNumberBottomSheet.Callbacks {
+  SafetyNumberBottomSheet.Callbacks,
+  EnableCallNotificationSettingsDialog.Callback {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -458,7 +460,6 @@ class ConversationFragment :
   private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
   private lateinit var conversationItemDecorations: ConversationItemDecorations
   private lateinit var optionsMenuCallback: ConversationOptionsMenuCallback
-  private lateinit var menuProvider: ConversationOptionsMenu.Provider
   private lateinit var typingIndicatorDecoration: TypingIndicatorDecoration
   private lateinit var backPressedCallback: BackPressedDelegate
 
@@ -471,6 +472,7 @@ class ConversationFragment :
   private var reShowScheduleMessagesBar: Boolean = false
   private var composeTextEventsListener: ComposeTextEventsListener? = null
   private var dataObserver: DataObserver? = null
+  private var menuProvider: ConversationOptionsMenu.Provider? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -558,6 +560,8 @@ class ConversationFragment :
     initializeMediaKeyboard()
 
     binding.conversationVideoContainer.setClipToOutline(true)
+
+    SpoilerAnnotation.resetRevealedSpoilers()
 
     registerForResults()
   }
@@ -761,6 +765,10 @@ class ConversationFragment :
 
   override fun onCanceled() = Unit
 
+  override fun onCallNotificationSettingsDialogDismissed() {
+    adapter.notifyDataSetChanged()
+  }
+
   //endregion
 
   private fun observeConversationThread() {
@@ -813,7 +821,7 @@ class ConversationFragment :
     backPressedCallback = BackPressedDelegate()
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
 
-    menuProvider.afterFirstRenderMode = true
+    menuProvider?.afterFirstRenderMode = true
 
     viewLifecycleOwner.lifecycle.addObserver(LastScrolledPositionUpdater(adapter, layoutManager, viewModel))
 
@@ -858,7 +866,7 @@ class ConversationFragment :
       setOnClickListener(sendButtonListener)
       setScheduledSendListener(sendButtonListener)
       isEnabled = true
-      post { sendButton.triggerSelectedChangedEvent() }
+      sendButton.triggerSelectedChangedEvent()
     }
 
     sendEditButton.setOnClickListener { handleSendEditMessage() }
@@ -981,6 +989,11 @@ class ConversationFragment :
 
     val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
+
+    if (args.conversationScreenType.isInPopup) {
+      composeText.requestFocus()
+      binding.conversationInputPanel.quickAttachmentToggle.disable()
+    }
   }
 
   private fun initializeInlineSearch() {
@@ -1162,15 +1175,17 @@ class ConversationFragment :
   }
 
   private fun presentActionBarMenu() {
-    optionsMenuCallback = ConversationOptionsMenuCallback()
-    menuProvider = ConversationOptionsMenu.Provider(optionsMenuCallback, disposables)
-    binding.toolbar.addMenuProvider(menuProvider)
-    invalidateOptionsMenu()
+    if (!args.conversationScreenType.isInPopup) {
+      optionsMenuCallback = ConversationOptionsMenuCallback()
+      menuProvider = ConversationOptionsMenu.Provider(optionsMenuCallback, disposables)
+      binding.toolbar.addMenuProvider(menuProvider!!)
+      invalidateOptionsMenu()
+    }
 
     when (args.conversationScreenType) {
       ConversationScreenType.NORMAL -> presentNavigationIconForNormal()
-      ConversationScreenType.BUBBLE -> presentNavigationIconForBubble()
-      ConversationScreenType.POPUP -> Unit
+      ConversationScreenType.BUBBLE,
+      ConversationScreenType.POPUP -> presentNavigationIconForBubble()
     }
   }
 
@@ -1209,8 +1224,10 @@ class ConversationFragment :
       titleView.clearExpiring()
     }
 
-    titleView.setOnClickListener {
-      optionsMenuCallback.handleConversationSettings()
+    if (!args.conversationScreenType.isInPopup) {
+      titleView.setOnClickListener {
+        optionsMenuCallback.handleConversationSettings()
+      }
     }
   }
 
@@ -1751,7 +1768,9 @@ class ConversationFragment :
     disposables += send
       .doOnSubscribe {
         if (clearCompose) {
+          composeTextEventsListener?.typingStatusEnabled = false
           composeText.setText("")
+          composeTextEventsListener?.typingStatusEnabled = true
           attachmentManager.clear(GlideApp.with(this@ConversationFragment), false)
           inputPanel.clearQuote()
         }
@@ -1767,9 +1786,6 @@ class ConversationFragment :
 
   private fun onSendComplete() {
     if (isDetached || activity?.isFinishing == true) {
-      if (args.conversationScreenType.isInPopup) {
-        activity?.finish()
-      }
       return
     }
 
@@ -1781,6 +1797,10 @@ class ConversationFragment :
     draftViewModel.onSendComplete()
 
     inputPanel.exitEditMessageMode()
+
+    if (args.conversationScreenType.isInPopup) {
+      activity?.finish()
+    }
   }
 
   private fun handleRecentSafetyNumberChange(changedRecords: List<IdentityRecord>) {
@@ -2004,6 +2024,7 @@ class ConversationFragment :
       } else if (isSearchRequested) {
         searchMenuItem?.collapseActionView()
       } else if (args.conversationScreenType.isInBubble) {
+        isEnabled = false
         requireActivity().onBackPressed()
       } else {
         requireActivity().finish()

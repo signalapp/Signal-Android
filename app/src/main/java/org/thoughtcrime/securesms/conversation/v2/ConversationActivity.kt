@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
+import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import java.util.concurrent.TimeUnit
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Wrapper activity for ConversationFragment.
  */
-class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, DonationPaymentComponent {
+open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, DonationPaymentComponent {
 
   companion object {
     private const val STATE_WATERMARK = "share_data_watermark"
@@ -88,7 +89,11 @@ class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
 
   private fun replaceFragment() {
     val fragment = ConversationFragment().apply {
-      arguments = intent.extras
+      arguments = if (ConversationIntents.isBubbleIntentUri(intent.data)) {
+        ConversationIntents.createParentFragmentArguments(intent)
+      } else {
+        intent.extras
+      }
     }
 
     supportFragmentManager

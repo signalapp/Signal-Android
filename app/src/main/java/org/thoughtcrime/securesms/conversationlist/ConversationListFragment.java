@@ -123,7 +123,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
 import org.thoughtcrime.securesms.contacts.sync.CdsPermanentErrorBottomSheet;
 import org.thoughtcrime.securesms.contacts.sync.CdsTemporaryErrorBottomSheet;
-import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
@@ -169,6 +168,7 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -979,8 +979,22 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       requireCallback().getSearchToolbar().get();
     }
 
-    if (getContext() != null) {
-      ConversationFragment.prepare(getContext());
+    Context context = getContext();
+    if (context != null) {
+      FrameLayout parent = new FrameLayout(context);
+      parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+
+      if (SignalStore.internalValues().useConversationItemV2()) {
+        CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_incoming, parent, 25);
+        CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, parent, 25);
+      } else {
+        CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_text_only, parent, 25);
+        CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_text_only, parent, 25);
+      }
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_multimedia, parent, 10);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_multimedia, parent, 10);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.cursor_adapter_header_footer_view, parent, 2);
     }
   }
 
