@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.webrtc.PeerConnection;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -340,6 +341,21 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull CallInfoStateBuilder participantLimit(@Nullable Long participantLimit) {
       toBuild.setParticipantLimit(participantLimit);
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder setPendingParticipants(@NonNull List<Recipient> pendingParticipants) {
+      toBuild.setPendingParticipants(toBuild.getPendingParticipants().withRecipients(pendingParticipants));
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder setPendingParticipantApproved(@NonNull Recipient participant) {
+      toBuild.setPendingParticipants(toBuild.getPendingParticipants().withApproval(participant));
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder setPendingParticipantRejected(@NonNull Recipient participant) {
+      toBuild.setPendingParticipants(toBuild.getPendingParticipants().withDenial(participant));
       return this;
     }
   }

@@ -50,6 +50,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -61,6 +62,8 @@ import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
+import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsBottomSheet;
+import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
@@ -79,6 +82,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
@@ -137,6 +141,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private WindowInfoTrackerCallbackAdapter windowInfoTrackerCallbackAdapter;
   private ThrottledDebouncer               requestNewSizesThrottle;
   private PictureInPictureParams.Builder   pipBuilderParams;
+  private LifecycleDisposable              lifecycleDisposable;
 
   private Disposable ephemeralStateDisposable = Disposable.empty();
 
@@ -150,6 +155,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   @Override
   public void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate(" + getIntent().getBooleanExtra(EXTRA_STARTED_FROM_FULLSCREEN, false) + ")");
+
+    lifecycleDisposable = new LifecycleDisposable();
+    lifecycleDisposable.bindTo(this);
+
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     super.onCreate(savedInstanceState);
@@ -398,6 +407,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       }
       viewModel.setIsLandscapeEnabled(info.isInPictureInPictureMode());
     });
+
+    callScreen.setPendingParticipantsViewListener(new PendingParticipantsViewListener());
+    Disposable disposable = viewModel.getPendingParticipants()
+                                     .subscribe(callScreen::updatePendingParticipantsList);
+
+    lifecycleDisposable.add(disposable);
   }
 
   private void initializePictureInPictureParams() {
@@ -946,6 +961,24 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       callStateUpdatePopupWindow.onCallStateUpdate(CallStateUpdatePopupWindow.CallStateUpdate.SPEAKER_OFF);
     } else if (currentOutput != WebRtcAudioOutput.SPEAKER && nextOutput == WebRtcAudioOutput.SPEAKER) {
       callStateUpdatePopupWindow.onCallStateUpdate(CallStateUpdatePopupWindow.CallStateUpdate.SPEAKER_ON);
+    }
+  }
+
+  private class PendingParticipantsViewListener implements PendingParticipantsView.Listener {
+
+    @Override
+    public void onAllowPendingRecipient(@NonNull Recipient pendingRecipient) {
+      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(pendingRecipient);
+    }
+
+    @Override
+    public void onRejectPendingRecipient(@NonNull Recipient pendingRecipient) {
+      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(pendingRecipient);
+    }
+
+    @Override
+    public void onLaunchPendingRequestsSheet() {
+      new PendingParticipantsBottomSheet().show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
     }
   }
 

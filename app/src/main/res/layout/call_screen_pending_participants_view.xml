@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<org.thoughtcrime.securesms.components.webrtc.PendingParticipantsView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginBottom="32dp"
+    android:minHeight="72dp"
+    app:cardBackgroundColor="@color/signal_colorSurface3"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp" />

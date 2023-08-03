@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp"
+    app:cardBackgroundColor="@color/signal_colorSurface3"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp"
+    tools:layout_marginHorizontal="24dp"
+    tools:parentTag="com.google.android.material.card.MaterialCardView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="72dp">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/pending_participants_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/red_100" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/pending_participants_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/Signal.Text.TitleSmall"
+            android:textColor="@color/signal_colorOnSurface"
+            app:layout_constraintBottom_toTopOf="@id/pending_participants_status"
+            app:layout_constraintStart_toEndOf="@id/pending_participants_avatar"
+            app:layout_constraintTop_toTopOf="@id/pending_participants_avatar"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Candice" />
+
+        <TextView
+            android:id="@+id/pending_participants_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/PendingParticipantsView__would_like_to_join"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            app:layout_constraintBottom_toBottomOf="@id/pending_participants_avatar"
+            app:layout_constraintStart_toEndOf="@id/pending_participants_avatar"
+            app:layout_constraintTop_toBottomOf="@id/pending_participants_name" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/pending_participants_reject"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/webrtc_hangup_background"
+            android:padding="6dp"
+            android:tint="@color/core_white"
+            app:contentPadding="8dp"
+            app:layout_constraintEnd_toStartOf="@id/pending_participants_allow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+            app:srcCompat="@drawable/symbol_x_24" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/pending_participants_allow"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="6dp"
+            android:background="@color/signal_accent_green"
+            android:padding="6dp"
+            android:tint="@color/core_white"
+            app:contentPadding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+            app:srcCompat="@drawable/symbol_check_24" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/pending_participants_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:barrierMargin="12dp"
+            app:constraint_referenced_ids="pending_participants_avatar,pending_participants_status,pending_participants_allow,pending_participants_reject" />
+
+        <View
+            android:id="@+id/pending_participants_requests_backdrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/signal_colorSurface5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pending_participants_barrier" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pending_participants_requests"
+            style="@style/Signal.Widget.Button.Small.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/signal_colorOnSecondaryContainer"
+            app:backgroundTint="@color/signal_colorSecondaryContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pending_participants_barrier"
+            tools:text="+5 requests" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/pending_participants_requests_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="pending_participants_requests,pending_participants_requests_backdrop"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

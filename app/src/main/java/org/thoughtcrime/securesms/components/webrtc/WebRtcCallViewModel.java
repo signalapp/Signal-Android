@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.NetworkUtil;
@@ -43,6 +44,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
 public class WebRtcCallViewModel extends ViewModel {
 
@@ -69,6 +74,8 @@ public class WebRtcCallViewModel extends ViewModel {
   private final LiveData<Integer>                             controlsRotation;
   private final Observer<List<GroupMemberEntry.FullMember>>   groupMemberStateUpdater   = m -> participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), m));
   private final MutableLiveData<WebRtcEphemeralState>         ephemeralState            = new MutableLiveData<>();
+
+  private final BehaviorSubject<PendingParticipantCollection> pendingParticipants = BehaviorSubject.create();
 
   private final Handler  elapsedTimeHandler      = new Handler(Looper.getMainLooper());
   private final Runnable elapsedTimeRunnable     = this::handleTick;
@@ -183,6 +190,10 @@ public class WebRtcCallViewModel extends ViewModel {
     return callStarting;
   }
 
+  public @NonNull Observable<PendingParticipantCollection> getPendingParticipants() {
+    return pendingParticipants.observeOn(AndroidSchedulers.mainThread());
+  }
+
   @MainThread
   public void setIsInPipMode(boolean isInPipMode) {
     this.isInPipMode.setValue(isInPipMode);
@@ -271,6 +282,8 @@ public class WebRtcCallViewModel extends ViewModel {
                          webRtcViewModel.getRemoteDevicesCount().orElse(0),
                          webRtcViewModel.getParticipantLimit(),
                          webRtcViewModel.getRecipient().isCallLink());
+
+    pendingParticipants.onNext(webRtcViewModel.getPendingParticipants());
 
     if (newState.isInOutgoingRingingMode()) {
       cancelTimer();

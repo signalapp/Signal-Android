@@ -354,6 +354,22 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleDropCall(s, callId));
   }
 
+  public void setCallLinkJoinRequestAccepted(@NonNull Recipient participant) {
+    process((s, p) -> p.handleSetCallLinkJoinRequestAccepted(s, participant));
+  }
+
+  public void setCallLinkJoinRequestRejected(@NonNull Recipient participant) {
+    process((s, p) -> p.handleSetCallLinkJoinRequestRejected(s, participant));
+  }
+
+  public void removeFromCallLink(@NonNull Recipient participant) {
+    process((s, p) -> p.handleRemoveFromCallLink(s, participant));
+  }
+
+  public void blockFromCallLink(@NonNull Recipient participant) {
+    process((s, p) -> p.handleBlockFromCallLink(s, participant));
+  }
+
   public void peekCallLinkCall(@NonNull RecipientId id) {
     if (callManager == null) {
       Log.i(TAG, "Unable to peekCallLinkCall, call manager is null");
