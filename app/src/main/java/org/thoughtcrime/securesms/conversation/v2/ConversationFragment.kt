@@ -913,7 +913,6 @@ class ConversationFragment :
       setOnClickListener(sendButtonListener)
       setScheduledSendListener(sendButtonListener)
       isEnabled = true
-      sendButton.triggerSelectedChangedEvent()
     }
 
     sendEditButton.setOnClickListener { handleSendEditMessage() }
