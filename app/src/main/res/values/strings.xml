@@ -5980,6 +5980,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Call link</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->

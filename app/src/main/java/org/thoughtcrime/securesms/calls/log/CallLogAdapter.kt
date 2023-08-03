@@ -223,6 +223,7 @@ class CallLogAdapter(
       )
 
       binding.callType.setImageResource(R.drawable.symbol_video_24)
+      binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
       binding.callType.setOnClickListener {
         onStartVideoCallClicked(model.callLink.recipient)
       }
@@ -313,6 +314,7 @@ class CallLogAdapter(
       when (model.call.record.type) {
         CallTable.Type.AUDIO_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_phone_24)
+          binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_voice_call)
           binding.callType.setOnClickListener { onStartAudioCallClicked(model.call.peer) }
           binding.callType.visible = true
           binding.groupCallButton.visible = false
@@ -320,6 +322,7 @@ class CallLogAdapter(
 
         CallTable.Type.VIDEO_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_video_24)
+          binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
           binding.callType.setOnClickListener { onStartVideoCallClicked(model.call.peer) }
           binding.callType.visible = true
           binding.groupCallButton.visible = false
@@ -327,6 +330,7 @@ class CallLogAdapter(
 
         CallTable.Type.GROUP_CALL, CallTable.Type.AD_HOC_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_video_24)
+          binding.callType.contentDescription = context.getString(R.string.CallLogAdapter__start_a_video_call)
           binding.callType.setOnClickListener { onStartVideoCallClicked(model.call.peer) }
           binding.groupCallButton.setOnClickListener { onStartVideoCallClicked(model.call.peer) }
 
