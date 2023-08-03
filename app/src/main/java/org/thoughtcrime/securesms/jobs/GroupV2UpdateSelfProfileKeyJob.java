@@ -119,10 +119,10 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
           continue;
         }
 
-        ByteString      selfUuidBytes = UuidUtil.toByteString(Recipient.self().requireAci().getRawUuid());
+        ByteString      selfUuidBytes = Recipient.self().requireAci().toByteString();
         DecryptedMember selfMember    = group.get().requireV2GroupProperties().getDecryptedGroup().getMembersList()
                                                                                                   .stream()
-                                                                                                  .filter(m -> m.getUuid().equals(selfUuidBytes))
+                                                                                                  .filter(m -> m.getAciBytes().equals(selfUuidBytes))
                                                                                                   .findFirst()
                                                                                                   .orElse(null);
 

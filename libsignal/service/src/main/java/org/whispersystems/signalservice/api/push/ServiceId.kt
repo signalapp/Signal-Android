@@ -111,10 +111,16 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
       fun from(uuid: UUID): ACI = ACI(LibSignalAci(uuid))
 
       @JvmStatic
+      fun fromLibSignal(aci: LibSignalAci): ACI = ACI(aci)
+
+      @JvmStatic
       fun parseOrNull(raw: String?): ACI? = ServiceId.parseOrNull(raw).let { if (it is ACI) it else null }
 
       @JvmStatic
       fun parseOrNull(raw: ByteArray?): ACI? = ServiceId.parseOrNull(raw).let { if (it is ACI) it else null }
+
+      @JvmStatic
+      fun parseOrNull(bytes: ByteString): ACI? = parseOrNull(bytes.toByteArray())
 
       @JvmStatic
       @Throws(IllegalArgumentException::class)

@@ -3668,7 +3668,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val latestMessage = reader.getNext()
 
         if (latestMessage != null && latestMessage.isGroupV2) {
-          val changeEditor = message.changeEditor
+          val changeEditor: Optional<ServiceId> = message.changeEditor
 
           if (changeEditor.isPresent && latestMessage.isGroupV2JoinRequest(changeEditor.get())) {
             val secondLatestMessage = reader.getNext()
@@ -3678,11 +3678,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
             if (secondLatestMessage != null && secondLatestMessage.isGroupV2JoinRequest(changeEditor.get())) {
               id = secondLatestMessage.id
-              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, message.changeRevision, changeEditor.get())
+              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, message.changeRevision, changeEditor.get().toByteString())
               deleteMessage(latestMessage.id)
             } else {
               id = latestMessage.id
-              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, message.changeRevision, changeEditor.get())
+              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, message.changeRevision, changeEditor.get().toByteString())
             }
 
             db.update(TABLE_NAME)

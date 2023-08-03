@@ -36,12 +36,12 @@ public final class GroupProtoUtil {
   {
     ByteString bytes = self.toByteString();
     for (DecryptedMember decryptedMember : partialDecryptedGroup.getMembersList()) {
-      if (decryptedMember.getUuid().equals(bytes)) {
+      if (decryptedMember.getAciBytes().equals(bytes)) {
         return decryptedMember.getJoinedAtRevision();
       }
     }
     for (DecryptedPendingMember decryptedMember : partialDecryptedGroup.getPendingMembersList()) {
-      if (decryptedMember.getServiceIdBinary().equals(bytes)) {
+      if (decryptedMember.getServiceIdBytes().equals(bytes)) {
         // Assume latest, we don't have any information about when pending members were invited
         return partialDecryptedGroup.getRevision();
       }
@@ -80,12 +80,12 @@ public final class GroupProtoUtil {
   }
 
   @WorkerThread
-  public static Recipient pendingMemberToRecipient(@NonNull Context context, @NonNull DecryptedPendingMember pendingMember) {
-    return pendingMemberServiceIdToRecipient(context, pendingMember.getServiceIdBinary());
+  public static Recipient pendingMemberToRecipient(@NonNull DecryptedPendingMember pendingMember) {
+    return pendingMemberServiceIdToRecipient(pendingMember.getServiceIdBytes());
   }
 
   @WorkerThread
-  public static Recipient pendingMemberServiceIdToRecipient(@NonNull Context context, @NonNull ByteString serviceIdBinary) {
+  public static Recipient pendingMemberServiceIdToRecipient(@NonNull ByteString serviceIdBinary) {
     ServiceId serviceId = ServiceId.parseOrThrow(serviceIdBinary);
 
     if (serviceId.isUnknown()) {
@@ -106,11 +106,11 @@ public final class GroupProtoUtil {
     return RecipientId.from(serviceId);
   }
 
-  public static boolean isMember(@NonNull UUID uuid, @NonNull List<DecryptedMember> membersList) {
-    ByteString uuidBytes = UuidUtil.toByteString(uuid);
+  public static boolean isMember(@NonNull ACI aci, @NonNull List<DecryptedMember> membersList) {
+    ByteString aciBytes = aci.toByteString();
 
     for (DecryptedMember member : membersList) {
-      if (uuidBytes.equals(member.getUuid())) {
+      if (aciBytes.equals(member.getAciBytes())) {
         return true;
       }
     }

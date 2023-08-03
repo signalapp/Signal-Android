@@ -428,7 +428,7 @@ class GroupsV2StateProcessorTest {
         }
         changeLog(101) {
           change {
-            addDeleteMembers(randomMembers[1].uuid)
+            addDeleteMembers(randomMembers[1].aciBytes)
             addModifiedProfileKeys(randomMembers[0])
           }
         }
@@ -449,7 +449,7 @@ class GroupsV2StateProcessorTest {
         }
         changeLog(101) {
           change {
-            addDeleteMembers(randomMembers[1].uuid)
+            addDeleteMembers(randomMembers[1].aciBytes)
             addModifiedProfileKeys(randomMembers[0])
           }
         }

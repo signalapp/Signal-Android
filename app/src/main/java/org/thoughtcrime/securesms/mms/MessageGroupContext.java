@@ -16,15 +16,13 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Represents either a GroupV1 or GroupV2 encoded context.
@@ -166,11 +164,11 @@ public final class MessageGroupContext {
       return decryptedGroupV2Context.getChange();
     }
 
-    public @NonNull List<ServiceId> getAllActivePendingAndRemovedMembers() {
+    public @NonNull List<? extends ServiceId> getAllActivePendingAndRemovedMembers() {
       DecryptedGroup        groupState  = decryptedGroupV2Context.getGroupState();
       DecryptedGroupChange  groupChange = decryptedGroupV2Context.getChange();
 
-      return Stream.of(DecryptedGroupUtil.membersToServiceIdList(groupState.getMembersList()),
+      return Stream.of(DecryptedGroupUtil.toAciList(groupState.getMembersList()),
                        DecryptedGroupUtil.pendingToServiceIdList(groupState.getPendingMembersList()),
                        DecryptedGroupUtil.removedMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange),
@@ -190,7 +188,7 @@ public final class MessageGroupContext {
       List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.getGroupState().getMembersCount());
 
       for (DecryptedMember member : decryptedGroupV2Context.getGroupState().getMembersList()) {
-        RecipientId recipient = RecipientId.from(ServiceId.parseOrThrow(member.getUuid()));
+        RecipientId recipient = RecipientId.from(ACI.parseOrThrow(member.getAciBytes()));
         if (!Recipient.self().getId().equals(recipient)) {
           members.add(recipient);
         }

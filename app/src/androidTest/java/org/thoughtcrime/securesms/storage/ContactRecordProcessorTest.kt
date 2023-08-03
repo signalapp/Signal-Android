@@ -44,7 +44,6 @@ class ContactRecordProcessorTest {
     }
 
     val remote2 = buildRecord(STORAGE_ID_C) {
-      setAci(PNI_A.toString())
       setPni(PNI_A.toString())
       setE164(E164_A)
     }

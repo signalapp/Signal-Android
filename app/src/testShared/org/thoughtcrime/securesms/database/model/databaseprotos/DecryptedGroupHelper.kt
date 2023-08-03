@@ -21,7 +21,7 @@ fun groupContext(masterKey: GroupMasterKey, init: DecryptedGroupV2Context.Builde
 
 fun groupChange(editor: ServiceId, init: DecryptedGroupChange.Builder.() -> Unit): DecryptedGroupChange {
   val builder = DecryptedGroupChange.newBuilder()
-  builder.editor = editor.toByteString()
+  builder.editorServiceIdBytes = editor.toByteString()
   builder.init()
   return builder.build()
 }
@@ -49,19 +49,19 @@ fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: I
 fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
   return DecryptedMember.newBuilder()
     .setRole(role)
-    .setUuid(aci.toByteString())
+    .setAciBytes(aci.toByteString())
     .setJoinedAtRevision(joinedAt)
     .build()
 }
 
 fun requestingMember(serviceId: ServiceId): DecryptedRequestingMember {
   return DecryptedRequestingMember.newBuilder()
-    .setUuid(serviceId.toByteString())
+    .setAciBytes(serviceId.toByteString())
     .build()
 }
 
 fun pendingMember(serviceId: ServiceId): DecryptedPendingMember {
   return DecryptedPendingMember.newBuilder()
-    .setServiceIdBinary(serviceId.toByteString())
+    .setServiceIdBytes(serviceId.toByteString())
     .build()
 }

@@ -113,19 +113,19 @@ public final class GroupChangeUtil {
     HashMap<ByteString, DecryptedBannedMember>     bannedMembersByServiceId  = new HashMap<>(groupState.getBannedMembersCount());
 
     for (DecryptedMember member : groupState.getMembersList()) {
-      fullMembersByUuid.put(member.getUuid(), member);
+      fullMembersByUuid.put(member.getAciBytes(), member);
     }
 
     for (DecryptedPendingMember member : groupState.getPendingMembersList()) {
-      pendingMembersByServiceId.put(member.getServiceIdBinary(), member);
+      pendingMembersByServiceId.put(member.getServiceIdBytes(), member);
     }
 
     for (DecryptedRequestingMember member : groupState.getRequestingMembersList()) {
-      requestingMembersByUuid.put(member.getUuid(), member);
+      requestingMembersByUuid.put(member.getAciBytes(), member);
     }
 
     for (DecryptedBannedMember member : groupState.getBannedMembersList()) {
-      bannedMembersByServiceId.put(member.getServiceIdBinary(), member);
+      bannedMembersByServiceId.put(member.getServiceIdBytes(), member);
     }
 
     resolveField3AddMembers                      (conflictingChange, changeSetModifier, fullMembersByUuid, pendingMembersByServiceId);
@@ -157,9 +157,9 @@ public final class GroupChangeUtil {
     for (int i = newMembersList.size() - 1; i >= 0; i--) {
       DecryptedMember member = newMembersList.get(i);
 
-      if (fullMembersByUuid.containsKey(member.getUuid())) {
+      if (fullMembersByUuid.containsKey(member.getAciBytes())) {
         result.removeAddMembers(i);
-      } else if (pendingMembersByServiceId.containsKey(member.getUuid())) {
+      } else if (pendingMembersByServiceId.containsKey(member.getAciBytes()) || pendingMembersByServiceId.containsKey(member.getPniBytes())) {
         result.moveAddToPromote(i);
       }
     }
@@ -182,7 +182,7 @@ public final class GroupChangeUtil {
 
     for (int i = modifyRolesList.size() - 1; i >= 0; i--) {
       DecryptedModifyMemberRole modifyRoleAction = modifyRolesList.get(i);
-      DecryptedMember           memberInGroup    = fullMembersByUuid.get(modifyRoleAction.getUuid());
+      DecryptedMember           memberInGroup    = fullMembersByUuid.get(modifyRoleAction.getAciBytes());
 
       if (memberInGroup == null || memberInGroup.getRole() == modifyRoleAction.getRole()) {
         result.removeModifyMemberRoles(i);
@@ -195,7 +195,7 @@ public final class GroupChangeUtil {
 
     for (int i = modifyProfileKeysList.size() - 1; i >= 0; i--) {
       DecryptedMember member        = modifyProfileKeysList.get(i);
-      DecryptedMember memberInGroup = fullMembersByUuid.get(member.getUuid());
+      DecryptedMember memberInGroup = fullMembersByUuid.get(member.getAciBytes());
 
       if (memberInGroup == null || member.getProfileKey().equals(memberInGroup.getProfileKey())) {
         result.removeModifyMemberProfileKeys(i);
@@ -209,7 +209,7 @@ public final class GroupChangeUtil {
     for (int i = newPendingMembersList.size() - 1; i >= 0; i--) {
       DecryptedPendingMember member = newPendingMembersList.get(i);
 
-      if (fullMembersByUuid.containsKey(member.getServiceIdBinary()) || pendingMembersByServiceId.containsKey(member.getServiceIdBinary())) {
+      if (fullMembersByUuid.containsKey(member.getServiceIdBytes()) || pendingMembersByServiceId.containsKey(member.getServiceIdBytes())) {
         result.removeAddPendingMembers(i);
       }
     }
@@ -221,7 +221,7 @@ public final class GroupChangeUtil {
     for (int i = deletePendingMembersList.size() - 1; i >= 0; i--) {
       DecryptedPendingMemberRemoval member = deletePendingMembersList.get(i);
 
-      if (!pendingMembersByServiceId.containsKey(member.getServiceIdBinary())) {
+      if (!pendingMembersByServiceId.containsKey(member.getServiceIdBytes())) {
         result.removeDeletePendingMembers(i);
       }
     }
@@ -233,7 +233,7 @@ public final class GroupChangeUtil {
     for (int i = promotePendingMembersList.size() - 1; i >= 0; i--) {
       DecryptedMember member = promotePendingMembersList.get(i);
       
-      if (!pendingMembersByServiceId.containsKey(member.getUuid())) {
+      if (!pendingMembersByServiceId.containsKey(member.getAciBytes()) && !pendingMembersByServiceId.containsKey(member.getPniBytes())) {
         result.removePromotePendingMembers(i);
       }
     }
@@ -281,9 +281,9 @@ public final class GroupChangeUtil {
     for (int i = newMembersList.size() - 1; i >= 0; i--) {
       DecryptedRequestingMember member = newMembersList.get(i);
 
-      if (fullMembersByUuid.containsKey(member.getUuid())) {
+      if (fullMembersByUuid.containsKey(member.getAciBytes())) {
         result.removeAddRequestingMembers(i);
-      } else if (pendingMembersByServiceId.containsKey(member.getUuid())) {
+      } else if (pendingMembersByServiceId.containsKey(member.getAciBytes())) {
         result.moveAddRequestingMembersToPromote(i);
       }
     }
@@ -313,7 +313,7 @@ public final class GroupChangeUtil {
     for (int i = promoteRequestingMembersList.size() - 1; i >= 0; i--) {
       DecryptedApproveMember member = promoteRequestingMembersList.get(i);
 
-      if (!requestingMembersByUuid.containsKey(member.getUuid())) {
+      if (!requestingMembersByUuid.containsKey(member.getAciBytes())) {
         result.removePromoteRequestingMembers(i);
       }
     }
@@ -337,7 +337,7 @@ public final class GroupChangeUtil {
     for (int i = newBannedMembersList.size() - 1; i >= 0; i--) {
       DecryptedBannedMember member = newBannedMembersList.get(i);
 
-      if (bannedMembersByServiceId.containsKey(member.getServiceIdBinary())) {
+      if (bannedMembersByServiceId.containsKey(member.getServiceIdBytes())) {
         result.removeAddBannedMembers(i);
       }
     }
@@ -349,19 +349,19 @@ public final class GroupChangeUtil {
     for (int i = deleteBannedMembersList.size() - 1; i >= 0; i--) {
       DecryptedBannedMember member = deleteBannedMembersList.get(i);
 
-      if (!bannedMembersByServiceId.containsKey(member.getServiceIdBinary())) {
+      if (!bannedMembersByServiceId.containsKey(member.getServiceIdBytes())) {
         result.removeDeleteBannedMembers(i);
       }
     }
   }
 
-  private static void resolveField24PromotePendingPniAciMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid) {
+  private static void resolveField24PromotePendingPniAciMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByAci) {
     List<DecryptedMember> promotePendingPniAciMembersList = conflictingChange.getPromotePendingPniAciMembersList();
 
     for (int i = promotePendingPniAciMembersList.size() - 1; i >= 0; i--) {
       DecryptedMember member = promotePendingPniAciMembersList.get(i);
 
-      if (fullMembersByUuid.containsKey(member.getUuid())) {
+      if (fullMembersByAci.containsKey(member.getAciBytes())) {
         result.removePromotePendingPniAciMembers(i);
       }
     }

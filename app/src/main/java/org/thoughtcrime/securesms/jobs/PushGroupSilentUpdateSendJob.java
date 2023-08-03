@@ -36,14 +36,12 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -73,13 +71,12 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                     @NonNull DecryptedGroup decryptedGroup,
                                     @NonNull OutgoingMessage groupMessage)
   {
-    List<UUID>      memberUuids       = DecryptedGroupUtil.toUuidList(decryptedGroup.getMembersList());
+    List<ACI>       memberAcis        = DecryptedGroupUtil.toAciList(decryptedGroup.getMembersList());
     List<ServiceId> pendingServiceIds = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.getPendingMembersList());
 
-    Stream<ServiceId> memberServiceIds          = Stream.of(memberUuids)
-                                                        .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
-                                                        .filter(uuid -> !SignalStore.account().requireAci().getRawUuid().equals(uuid))
-                                                        .map(ACI::from);
+    Stream<ACI>       memberServiceIds          = Stream.of(memberAcis)
+                                                        .filter(ACI::isValid)
+                                                        .filter(aci -> !SignalStore.account().requireAci().equals(aci));
     Stream<ServiceId> filteredPendingServiceIds = Stream.of(pendingServiceIds)
                                                         .filterNot(ServiceId::isUnknown);
 

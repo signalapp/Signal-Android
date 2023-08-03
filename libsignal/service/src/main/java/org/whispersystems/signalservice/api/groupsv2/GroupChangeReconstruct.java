@@ -57,37 +57,37 @@ public final class GroupChangeReconstruct {
       builder.setNewMemberAccess(toState.getAccessControl().getMembers());
     }
 
-    Set<ByteString> fromStateMemberUuids = membersToSetOfUuids(fromState.getMembersList());
-    Set<ByteString> toStateMemberUuids   = membersToSetOfUuids(toState.getMembersList());
+    Set<ByteString> fromStateMemberAcis = membersToSetOfAcis(fromState.getMembersList());
+    Set<ByteString> toStateMemberAcis   = membersToSetOfAcis(toState.getMembersList());
 
     Set<ByteString> pendingMembersListA = pendingMembersToSetOfServiceIds(fromState.getPendingMembersList());
     Set<ByteString> pendingMembersListB = pendingMembersToSetOfServiceIds(toState.getPendingMembersList());
     
-    Set<ByteString> requestingMembersListA = requestingMembersToSetOfUuids(fromState.getRequestingMembersList());
-    Set<ByteString> requestingMembersListB = requestingMembersToSetOfUuids(toState.getRequestingMembersList());
+    Set<ByteString> requestingMembersListA = requestingMembersToSetOfAcis(fromState.getRequestingMembersList());
+    Set<ByteString> requestingMembersListB = requestingMembersToSetOfAcis(toState.getRequestingMembersList());
 
     Set<ByteString> bannedMembersListA = bannedMembersToSetOfServiceIds(fromState.getBannedMembersList());
     Set<ByteString> bannedMembersListB = bannedMembersToSetOfServiceIds(toState.getBannedMembersList());
 
     Set<ByteString> removedPendingMemberServiceIds = subtract(pendingMembersListA, pendingMembersListB);
-    Set<ByteString> removedRequestingMemberUuids   = subtract(requestingMembersListA, requestingMembersListB);
+    Set<ByteString> removedRequestingMemberAcis    = subtract(requestingMembersListA, requestingMembersListB);
     Set<ByteString> newPendingMemberServiceIds     = subtract(pendingMembersListB, pendingMembersListA);
-    Set<ByteString> newRequestingMemberUuids       = subtract(requestingMembersListB, requestingMembersListA);
-    Set<ByteString> removedMemberUuids             = subtract(fromStateMemberUuids, toStateMemberUuids);
-    Set<ByteString> newMemberUuids                 = subtract(toStateMemberUuids, fromStateMemberUuids);
+    Set<ByteString> newRequestingMemberAcis        = subtract(requestingMembersListB, requestingMembersListA);
+    Set<ByteString> removedMemberAcis              = subtract(fromStateMemberAcis, toStateMemberAcis);
+    Set<ByteString> newMemberAcis                  = subtract(toStateMemberAcis, fromStateMemberAcis);
     Set<ByteString> removedBannedMemberServiceIds  = subtract(bannedMembersListA, bannedMembersListB);
     Set<ByteString> newBannedMemberServiceIds      = subtract(bannedMembersListB, bannedMembersListA);
 
-    Set<ByteString>                addedByInvitationUuids        = intersect(newMemberUuids, removedPendingMemberServiceIds);
-    Set<ByteString>                addedByRequestApprovalUuids   = intersect(newMemberUuids, removedRequestingMemberUuids);
-    Set<DecryptedMember>           addedMembersByInvitation      = intersectByUUID(toState.getMembersList(), addedByInvitationUuids);
-    Set<DecryptedMember>           addedMembersByRequestApproval = intersectByUUID(toState.getMembersList(), addedByRequestApprovalUuids);
-    Set<DecryptedMember>           addedMembers                  = intersectByUUID(toState.getMembersList(), subtract(newMemberUuids, addedByInvitationUuids, addedByRequestApprovalUuids));
-    Set<DecryptedPendingMember>    uninvitedMembers              = intersectPendingByServiceId(fromState.getPendingMembersList(), subtract(removedPendingMemberServiceIds, addedByInvitationUuids));
-    Set<DecryptedRequestingMember> rejectedRequestMembers        = intersectRequestingByUUID(fromState.getRequestingMembersList(), subtract(removedRequestingMemberUuids, addedByRequestApprovalUuids));
+    Set<ByteString>                addedByInvitationAcis         = intersect(newMemberAcis, removedPendingMemberServiceIds);
+    Set<ByteString>                addedByRequestApprovalAcis    = intersect(newMemberAcis, removedRequestingMemberAcis);
+    Set<DecryptedMember>           addedMembersByInvitation      = intersectByAci(toState.getMembersList(), addedByInvitationAcis);
+    Set<DecryptedMember>           addedMembersByRequestApproval = intersectByAci(toState.getMembersList(), addedByRequestApprovalAcis);
+    Set<DecryptedMember>           addedMembers                  = intersectByAci(toState.getMembersList(), subtract(newMemberAcis, addedByInvitationAcis, addedByRequestApprovalAcis));
+    Set<DecryptedPendingMember>    uninvitedMembers              = intersectPendingByServiceId(fromState.getPendingMembersList(), subtract(removedPendingMemberServiceIds, addedByInvitationAcis));
+    Set<DecryptedRequestingMember> rejectedRequestMembers        = intersectRequestingByAci(fromState.getRequestingMembersList(), subtract(removedRequestingMemberAcis, addedByRequestApprovalAcis));
 
-    for (DecryptedMember member : intersectByUUID(fromState.getMembersList(), removedMemberUuids)) {
-      builder.addDeleteMembers(member.getUuid());
+    for (DecryptedMember member : intersectByAci(fromState.getMembersList(), removedMemberAcis)) {
+      builder.addDeleteMembers(member.getAciBytes());
     }
 
     for (DecryptedMember member : addedMembers) {
@@ -100,24 +100,24 @@ public final class GroupChangeReconstruct {
 
     for (DecryptedPendingMember uninvitedMember : uninvitedMembers) {
       builder.addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                   .setServiceIdBinary(uninvitedMember.getServiceIdBinary())
-                                                                   .setUuidCipherText(uninvitedMember.getUuidCipherText()));
+                                                                   .setServiceIdBytes(uninvitedMember.getServiceIdBytes())
+                                                                   .setServiceIdCipherText(uninvitedMember.getServiceIdCipherText()));
     }
 
     for (DecryptedPendingMember invitedMember : intersectPendingByServiceId(toState.getPendingMembersList(), newPendingMemberServiceIds)) {
       builder.addNewPendingMembers(invitedMember);
     }
 
-    Set<ByteString>                        consistentMemberUuids     = intersect(fromStateMemberUuids, toStateMemberUuids);
-    Set<DecryptedMember>                   changedMembers            = intersectByUUID(subtract(toState.getMembersList(), fromState.getMembersList()), consistentMemberUuids);
-    Map<ByteString, DecryptedMember>       membersUuidMap            = uuidMap(fromState.getMembersList());
+    Set<ByteString>                        consistentMemberAcis      = intersect(fromStateMemberAcis, toStateMemberAcis);
+    Set<DecryptedMember>                   changedMembers            = intersectByAci(subtract(toState.getMembersList(), fromState.getMembersList()), consistentMemberAcis);
+    Map<ByteString, DecryptedMember>       membersAciMap             = mapByAci(fromState.getMembersList());
     Map<ByteString, DecryptedBannedMember> bannedMembersServiceIdMap = bannedServiceIdMap(toState.getBannedMembersList());
 
     for (DecryptedMember newState : changedMembers) {
-      DecryptedMember oldState = membersUuidMap.get(newState.getUuid());
+      DecryptedMember oldState = membersAciMap.get(newState.getAciBytes());
       if (oldState.getRole() != newState.getRole()) {
         builder.addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                              .setUuid(newState.getUuid())
+                                                              .setAciBytes(newState.getAciBytes())
                                                               .setRole(newState.getRole()));
       }
 
@@ -130,17 +130,17 @@ public final class GroupChangeReconstruct {
       builder.setNewInviteLinkAccess(toState.getAccessControl().getAddFromInviteLink());
     }
 
-    for (DecryptedRequestingMember requestingMember : intersectRequestingByUUID(toState.getRequestingMembersList(), newRequestingMemberUuids)) {
+    for (DecryptedRequestingMember requestingMember : intersectRequestingByAci(toState.getRequestingMembersList(), newRequestingMemberAcis)) {
       builder.addNewRequestingMembers(requestingMember);
     }
     
     for (DecryptedRequestingMember requestingMember : rejectedRequestMembers) {
-      builder.addDeleteRequestingMembers(requestingMember.getUuid());
+      builder.addDeleteRequestingMembers(requestingMember.getAciBytes());
     }
 
     for (DecryptedMember member : addedMembersByRequestApproval) {
       builder.addPromoteRequestingMembers(DecryptedApproveMember.newBuilder()
-                                                                .setUuid(member.getUuid())
+                                                                .setAciBytes(member.getAciBytes())
                                                                 .setRole(member.getRole()));
     }
 
@@ -149,11 +149,11 @@ public final class GroupChangeReconstruct {
     }
 
     for (ByteString serviceIdBinary : removedBannedMemberServiceIds) {
-      builder.addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setServiceIdBinary(serviceIdBinary).build());
+      builder.addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setServiceIdBytes(serviceIdBinary).build());
     }
 
     for (ByteString serviceIdBinary : newBannedMemberServiceIds) {
-      DecryptedBannedMember.Builder newBannedBuilder = DecryptedBannedMember.newBuilder().setServiceIdBinary(serviceIdBinary);
+      DecryptedBannedMember.Builder newBannedBuilder = DecryptedBannedMember.newBuilder().setServiceIdBytes(serviceIdBinary);
       DecryptedBannedMember         bannedMember     = bannedMembersServiceIdMap.get(serviceIdBinary);
       if (bannedMember != null) {
         newBannedBuilder.setTimestamp(bannedMember.getTimestamp());
@@ -165,10 +165,10 @@ public final class GroupChangeReconstruct {
     return builder.build();
   }
 
-  private static Map<ByteString, DecryptedMember> uuidMap(List<DecryptedMember> membersList) {
+  private static Map<ByteString, DecryptedMember> mapByAci(List<DecryptedMember> membersList) {
     Map<ByteString, DecryptedMember> map = new LinkedHashMap<>(membersList.size());
     for (DecryptedMember member : membersList) {
-      map.put(member.getUuid(), member);
+      map.put(member.getAciBytes(), member);
     }
     return map;
   }
@@ -176,15 +176,15 @@ public final class GroupChangeReconstruct {
   private static Map<ByteString, DecryptedBannedMember> bannedServiceIdMap(List<DecryptedBannedMember> membersList) {
     Map<ByteString, DecryptedBannedMember> map = new LinkedHashMap<>(membersList.size());
     for (DecryptedBannedMember member : membersList) {
-      map.put(member.getServiceIdBinary(), member);
+      map.put(member.getServiceIdBytes(), member);
     }
     return map;
   }
 
-  private static Set<DecryptedMember> intersectByUUID(Collection<DecryptedMember> members, Set<ByteString> uuids) {
+  private static Set<DecryptedMember> intersectByAci(Collection<DecryptedMember> members, Set<ByteString> acis) {
     Set<DecryptedMember> result = new LinkedHashSet<>(members.size());
     for (DecryptedMember member : members) {
-      if (uuids.contains(member.getUuid()))
+      if (acis.contains(member.getAciBytes()))
         result.add(member);
     }
     return result;
@@ -193,16 +193,16 @@ public final class GroupChangeReconstruct {
   private static Set<DecryptedPendingMember> intersectPendingByServiceId(Collection<DecryptedPendingMember> members, Set<ByteString> serviceIds) {
     Set<DecryptedPendingMember> result = new LinkedHashSet<>(members.size());
     for (DecryptedPendingMember member : members) {
-      if (serviceIds.contains(member.getServiceIdBinary()))
+      if (serviceIds.contains(member.getServiceIdBytes()))
         result.add(member);
     }
     return result;
   }
   
-  private static Set<DecryptedRequestingMember> intersectRequestingByUUID(Collection<DecryptedRequestingMember> members, Set<ByteString> uuids) {
+  private static Set<DecryptedRequestingMember> intersectRequestingByAci(Collection<DecryptedRequestingMember> members, Set<ByteString> acis) {
     Set<DecryptedRequestingMember> result = new LinkedHashSet<>(members.size());
     for (DecryptedRequestingMember member : members) {
-      if (uuids.contains(member.getUuid()))
+      if (acis.contains(member.getAciBytes()))
         result.add(member);
     }
     return result;
@@ -211,31 +211,31 @@ public final class GroupChangeReconstruct {
   private static Set<ByteString> pendingMembersToSetOfServiceIds(Collection<DecryptedPendingMember> pendingMembers) {
     Set<ByteString> serviceIds = new LinkedHashSet<>(pendingMembers.size());
     for (DecryptedPendingMember pendingMember : pendingMembers) {
-      serviceIds.add(pendingMember.getServiceIdBinary());
+      serviceIds.add(pendingMember.getServiceIdBytes());
     }
     return serviceIds;
   }
 
-  private static Set<ByteString> requestingMembersToSetOfUuids(Collection<DecryptedRequestingMember> requestingMembers) {
-    Set<ByteString> uuids = new LinkedHashSet<>(requestingMembers.size());
+  private static Set<ByteString> requestingMembersToSetOfAcis(Collection<DecryptedRequestingMember> requestingMembers) {
+    Set<ByteString> acis = new LinkedHashSet<>(requestingMembers.size());
     for (DecryptedRequestingMember requestingMember : requestingMembers) {
-      uuids.add(requestingMember.getUuid());
+      acis.add(requestingMember.getAciBytes());
     }
-    return uuids;
+    return acis;
   }
 
-  private static Set<ByteString> membersToSetOfUuids(Collection<DecryptedMember> members) {
-    Set<ByteString> uuids = new LinkedHashSet<>(members.size());
+  private static Set<ByteString> membersToSetOfAcis(Collection<DecryptedMember> members) {
+    Set<ByteString> acis = new LinkedHashSet<>(members.size());
     for (DecryptedMember member : members) {
-      uuids.add(member.getUuid());
+      acis.add(member.getAciBytes());
     }
-    return uuids;
+    return acis;
   }
 
   private static Set<ByteString> bannedMembersToSetOfServiceIds(Collection<DecryptedBannedMember> bannedMembers) {
     Set<ByteString> serviceIds = new LinkedHashSet<>(bannedMembers.size());
     for (DecryptedBannedMember bannedMember : bannedMembers) {
-      serviceIds.add(bannedMember.getServiceIdBinary());
+      serviceIds.add(bannedMember.getServiceIdBytes());
     }
     return serviceIds;
   }

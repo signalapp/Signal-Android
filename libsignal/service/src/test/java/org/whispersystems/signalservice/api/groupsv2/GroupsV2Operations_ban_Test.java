@@ -14,7 +14,6 @@ import org.signal.storageservice.protos.groups.GroupChange.Actions.DeleteBannedM
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
@@ -47,36 +46,36 @@ public final class GroupsV2Operations_ban_Test {
 
   @Test
   public void addBanToEmptyList() {
-    UUID ban = UUID.randomUUID();
+    ACI ban = ACI.from(UUID.randomUUID());
 
-    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanUuidsChange(Collections.singleton(ban),
-                                                                                      false,
-                                                                                      Collections.emptyList());
+    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanServiceIdsChange(Collections.singleton(ban),
+                                                                                           false,
+                                                                                           Collections.emptyList());
 
     assertThat(banUuidsChange.getAddBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ACI.from(ban))));
+    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ban)));
   }
 
   @Test
   public void addBanToPartialFullList() {
-    UUID                        toBan         = UUID.randomUUID();
+    ACI                         toBan         = ACI.from(UUID.randomUUID());
     List<DecryptedBannedMember> alreadyBanned = new ArrayList<>(5);
 
     for (int i = 0; i < 5; i++) {
       alreadyBanned.add(bannedMember(UUID.randomUUID()));
     }
 
-    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanUuidsChange(Collections.singleton(toBan),
-                                                                                      false,
-                                                                                      alreadyBanned);
+    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanServiceIdsChange(Collections.singleton(toBan),
+                                                                                           false,
+                                                                                           alreadyBanned);
 
     assertThat(banUuidsChange.getAddBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ACI.from(toBan))));
+    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(toBan)));
   }
 
   @Test
   public void addBanToFullList() {
-    UUID                        toBan         = UUID.randomUUID();
+    ACI                         toBan         = ACI.from(UUID.randomUUID());
     List<DecryptedBannedMember> alreadyBanned = new ArrayList<>(10);
     DecryptedBannedMember       oldest        = null;
 
@@ -90,23 +89,23 @@ public final class GroupsV2Operations_ban_Test {
 
     Collections.shuffle(alreadyBanned);
 
-    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanUuidsChange(Collections.singleton(toBan),
-                                                                                      false,
-                                                                                      alreadyBanned);
+    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanServiceIdsChange(Collections.singleton(toBan),
+                                                                                           false,
+                                                                                           alreadyBanned);
 
     assertThat(banUuidsChange.getDeleteBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getDeleteBannedMembers(0).getDeletedUserId(), is(groupOperations.encryptServiceId(ServiceId.parseOrThrow(oldest.getServiceIdBinary()))));
+    assertThat(banUuidsChange.getDeleteBannedMembers(0).getDeletedUserId(), is(groupOperations.encryptServiceId(ServiceId.parseOrThrow(oldest.getServiceIdBytes()))));
 
 
     assertThat(banUuidsChange.getAddBannedMembersCount(), is(1));
-    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(ACI.from(toBan))));
+    assertThat(banUuidsChange.getAddBannedMembers(0).getAdded().getUserId(), is(groupOperations.encryptServiceId(toBan)));
   }
 
   @Test
   public void addMultipleBanToFullList() {
-    List<UUID> toBan = new ArrayList<>();
-    toBan.add(UUID.randomUUID());
-    toBan.add(UUID.randomUUID());
+    List<ACI> toBan = new ArrayList<>();
+    toBan.add(ACI.from(UUID.randomUUID()));
+    toBan.add(ACI.from(UUID.randomUUID()));
 
     List<DecryptedBannedMember> alreadyBanned = new ArrayList<>(10);
     for (int i = 0; i < 10; i++) {
@@ -114,14 +113,14 @@ public final class GroupsV2Operations_ban_Test {
     }
 
     List<ByteString> oldest = new ArrayList<>(2);
-    oldest.add(groupOperations.encryptServiceId(ServiceId.parseOrThrow(alreadyBanned.get(0).getServiceIdBinary())));
-    oldest.add(groupOperations.encryptServiceId(ServiceId.parseOrThrow(alreadyBanned.get(1).getServiceIdBinary())));
+    oldest.add(groupOperations.encryptServiceId(ServiceId.parseOrThrow(alreadyBanned.get(0).getServiceIdBytes())));
+    oldest.add(groupOperations.encryptServiceId(ServiceId.parseOrThrow(alreadyBanned.get(1).getServiceIdBytes())));
 
     Collections.shuffle(alreadyBanned);
 
-    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanUuidsChange(new HashSet<>(toBan),
-                                                                                      false,
-                                                                                      alreadyBanned);
+    GroupChange.Actions.Builder banUuidsChange = groupOperations.createBanServiceIdsChange(new HashSet<>(toBan),
+                                                                                           false,
+                                                                                           alreadyBanned);
 
     assertThat(banUuidsChange.getDeleteBannedMembersCount(), is(2));
     assertThat(banUuidsChange.getDeleteBannedMembersList()
@@ -137,7 +136,7 @@ public final class GroupsV2Operations_ban_Test {
                              .map(AddBannedMemberAction::getAdded)
                              .map(BannedMember::getUserId)
                              .collect(Collectors.toList()),
-               hasItems(groupOperations.encryptServiceId(ACI.from(toBan.get(0))),
-                        groupOperations.encryptServiceId(ACI.from(toBan.get(1)))));
+               hasItems(groupOperations.encryptServiceId(toBan.get(0)),
+                        groupOperations.encryptServiceId(toBan.get(1))));
   }
 }

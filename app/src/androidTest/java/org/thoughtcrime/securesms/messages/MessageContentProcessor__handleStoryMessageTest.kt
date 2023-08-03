@@ -92,12 +92,12 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
       .addAllMembers(
         listOf(
           DecryptedMember.newBuilder()
-            .setUuid(harness.self.requireServiceId().toByteString())
+            .setAciBytes(harness.self.requireAci().toByteString())
             .setJoinedAtRevision(0)
             .setRole(Member.Role.DEFAULT)
             .build(),
           DecryptedMember.newBuilder()
-            .setUuid(sender.requireServiceId().toByteString())
+            .setAciBytes(sender.requireAci().toByteString())
             .setJoinedAtRevision(0)
             .setRole(Member.Role.DEFAULT)
             .build()

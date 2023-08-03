@@ -308,7 +308,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   private static boolean selfCreatedGroup(@NonNull DecryptedGroupChange change) {
     return change.getRevision() == 0 &&
-           change.getEditor().equals(UuidUtil.toByteString(SignalStore.account().requireAci().getRawUuid()));
+           change.getEditorServiceIdBytes().equals(SignalStore.account().requireAci().toByteString());
   }
 
   public static @NonNull UpdateDescription getGv2ChangeDescription(@NonNull Context context, @NonNull String body, @Nullable Consumer<RecipientId> recipientClickHandler) {
@@ -349,10 +349,15 @@ public abstract class MessageRecord extends DisplayRecord {
     boolean        invited    = DecryptedGroupUtil.findPendingByServiceId(groupState.getPendingMembersList(), SignalStore.account().requireAci()).isPresent();
 
     if (decryptedGroupV2Context.hasChange()) {
-      UUID changeEditor = UuidUtil.fromByteStringOrNull(decryptedGroupV2Context.getChange().getEditor());
+      ServiceId changeEditor = ServiceId.parseOrNull(decryptedGroupV2Context.getChange().getEditorServiceIdBytes());
 
       if (changeEditor != null) {
-        return new InviteAddState(invited, ACI.from(changeEditor));
+        if (changeEditor instanceof ACI) {
+          return new InviteAddState(invited, (ACI) changeEditor);
+        } else {
+          Log.w(TAG, "Adder was a PNI! This should not happen.");
+          return null;
+        }
       }
     }
 
@@ -468,14 +473,13 @@ public abstract class MessageRecord extends DisplayRecord {
       return false;
     }
 
-    return isGroupV2JoinRequest(UuidUtil.toByteString(serviceId.getRawUuid()));
-  }
-
-  public boolean isGroupV2JoinRequest(@NonNull ByteString uuid) {
     DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
+
     if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
-      DecryptedGroupChange change = decryptedGroupV2Context.getChange();
-      return change.getEditor().equals(uuid) && change.getNewRequestingMembersList().stream().anyMatch(r -> r.getUuid().equals(uuid));
+      DecryptedGroupChange change              = decryptedGroupV2Context.getChange();
+      ByteString           serviceIdByteString = serviceId.toByteString();
+
+      return change.getEditorServiceIdBytes().equals(serviceIdByteString) && change.getNewRequestingMembersList().stream().anyMatch(r -> r.getAciBytes().equals(serviceIdByteString));
     }
     return false;
   }
@@ -490,7 +494,7 @@ public abstract class MessageRecord extends DisplayRecord {
       DecryptedGroupChange change = decryptedGroupV2Context.getChange();
       return change.getNewRequestingMembersCount() > 0 &&
              change.getDeleteRequestingMembersCount() > 0 &&
-             (serviceId == null || change.getEditor().equals(UuidUtil.toByteString(serviceId.getRawUuid())));
+             (serviceId == null || change.getEditorServiceIdBytes().equals(serviceId.toByteString()));
     }
     return false;
   }

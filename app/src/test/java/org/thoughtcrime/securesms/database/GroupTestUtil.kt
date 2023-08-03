@@ -85,7 +85,7 @@ class GroupChangeData(private val revision: Int, private val groupOperations: Gr
     }
 
   fun source(serviceId: ServiceId) {
-    actionsBuilder.sourceUuid = groupOperations.encryptServiceId(serviceId)
+    actionsBuilder.sourceServiceId = groupOperations.encryptServiceId(serviceId)
   }
 
   fun deleteMember(serviceId: ServiceId) {

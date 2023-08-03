@@ -9,7 +9,7 @@ import org.mockito.kotlin.mock
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder
 import org.thoughtcrime.securesms.util.Base64
-import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import java.util.Random
 import java.util.UUID
@@ -48,8 +48,8 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
    */
   @Test
   fun appendDeleteToExistingContext() {
-    val alice = UUID.randomUUID()
-    val aliceByteString = UuidUtil.toByteString(alice)
+    val alice = ACI.from(UUID.randomUUID())
+    val aliceByteString = alice.toByteString()
     val change = ChangeBuilder.changeBy(alice)
       .requestJoin(alice)
       .build()
@@ -71,7 +71,7 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
     val newContext = DecryptedGroupV2Context.parseFrom(Base64.decode(newEncodedBody))
 
     assertThat("revision updated to 10", newContext.change.revision, `is`(10))
-    assertThat("change should retain join request", newContext.change.newRequestingMembersList[0].uuid, `is`(aliceByteString))
+    assertThat("change should retain join request", newContext.change.newRequestingMembersList[0].aciBytes, `is`(aliceByteString))
     assertThat("change should add delete request", newContext.change.deleteRequestingMembersList[0], `is`(aliceByteString))
   }
 

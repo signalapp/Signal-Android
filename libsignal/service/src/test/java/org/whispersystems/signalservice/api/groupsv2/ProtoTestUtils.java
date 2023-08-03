@@ -65,14 +65,14 @@ final class ProtoTestUtils {
 
   static DecryptedModifyMemberRole promoteAdmin(UUID member) {
     return DecryptedModifyMemberRole.newBuilder()
-                                    .setUuid(UuidUtil.toByteString(member))
+                                    .setAciBytes(UuidUtil.toByteString(member))
                                     .setRole(Member.Role.ADMINISTRATOR)
                                     .build();
   }
 
   static DecryptedModifyMemberRole demoteAdmin(UUID member) {
     return DecryptedModifyMemberRole.newBuilder()
-                                    .setUuid(UuidUtil.toByteString(member))
+                                    .setAciBytes(UuidUtil.toByteString(member))
                                     .setRole(Member.Role.DEFAULT)
                                     .build();
   }
@@ -91,14 +91,14 @@ final class ProtoTestUtils {
 
   static DecryptedMember member(UUID uuid) {
     return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
+                          .setAciBytes(UuidUtil.toByteString(uuid))
                           .setRole(Member.Role.DEFAULT)
                           .build();
   }
 
   static DecryptedMember member(UUID uuid, ByteString profileKey, int joinedAtRevision) {
     return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
+                          .setAciBytes(UuidUtil.toByteString(uuid))
                           .setRole(Member.Role.DEFAULT)
                           .setJoinedAtRevision(joinedAtRevision)
                           .setProfileKey(profileKey)
@@ -107,15 +107,15 @@ final class ProtoTestUtils {
 
   static DecryptedPendingMemberRemoval pendingMemberRemoval(UUID uuid) {
     return DecryptedPendingMemberRemoval.newBuilder()
-                                        .setServiceIdBinary(UuidUtil.toByteString(uuid))
-                                        .setUuidCipherText(encrypt(uuid))
+                                        .setServiceIdBytes(UuidUtil.toByteString(uuid))
+                                        .setServiceIdCipherText(encrypt(uuid))
                                         .build();
   }
 
   static DecryptedPendingMember pendingMember(UUID uuid) {
     return DecryptedPendingMember.newBuilder()
-                                 .setServiceIdBinary(UuidUtil.toByteString(uuid))
-                                 .setUuidCipherText(encrypt(uuid))
+                                 .setServiceIdBytes(UuidUtil.toByteString(uuid))
+                                 .setServiceIdCipherText(encrypt(uuid))
                                  .setRole(Member.Role.DEFAULT)
                                  .build();
   }
@@ -126,14 +126,14 @@ final class ProtoTestUtils {
 
   static DecryptedRequestingMember requestingMember(UUID uuid, ProfileKey profileKey) {
     return DecryptedRequestingMember.newBuilder()
-                                    .setUuid(UuidUtil.toByteString(uuid))
+                                    .setAciBytes(UuidUtil.toByteString(uuid))
                                     .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                     .build();
   }
 
   static DecryptedBannedMember bannedMember(UUID uuid) {
     return DecryptedBannedMember.newBuilder()
-                                .setServiceIdBinary(UuidUtil.toByteString(uuid))
+                                .setServiceIdBytes(UuidUtil.toByteString(uuid))
                                 .build();
   }
 
@@ -147,7 +147,7 @@ final class ProtoTestUtils {
 
   private static DecryptedApproveMember approve(UUID uuid, Member.Role role) {
     return DecryptedApproveMember.newBuilder()
-                                 .setUuid(UuidUtil.toByteString(uuid))
+                                 .setAciBytes(UuidUtil.toByteString(uuid))
                                  .setRole(role)
                                  .build();
   }
@@ -158,16 +158,16 @@ final class ProtoTestUtils {
 
   static DecryptedMember pendingPniAciMember(UUID uuid, UUID pni, ProfileKey profileKey) {
     return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
-                          .setPni(UuidUtil.toByteString(pni))
+                          .setAciBytes(UuidUtil.toByteString(uuid))
+                          .setPniBytes(UuidUtil.toByteString(pni))
                           .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                           .build();
   }
 
   static DecryptedMember pendingPniAciMember(ByteString uuid, ByteString pni, ByteString profileKey) {
     return DecryptedMember.newBuilder()
-                          .setUuid(uuid)
-                          .setPni(pni)
+                          .setAciBytes(uuid)
+                          .setPniBytes(pni)
                           .setProfileKey(profileKey)
                           .build();
   }
@@ -178,7 +178,7 @@ final class ProtoTestUtils {
 
   static DecryptedMember admin(UUID uuid) {
     return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
+                          .setAciBytes(UuidUtil.toByteString(uuid))
                           .setRole(Member.Role.ADMINISTRATOR)
                           .build();
   }
@@ -191,14 +191,14 @@ final class ProtoTestUtils {
 
   static DecryptedMember asAdmin(DecryptedMember member) {
     return DecryptedMember.newBuilder()
-                          .setUuid(member.getUuid())
+                          .setAciBytes(member.getAciBytes())
                           .setRole(Member.Role.ADMINISTRATOR)
                           .build();
   }
 
   static DecryptedMember asMember(DecryptedMember member) {
     return DecryptedMember.newBuilder()
-                          .setUuid(member.getUuid())
+                          .setAciBytes(member.getAciBytes())
                           .setRole(Member.Role.DEFAULT)
                           .build();
   }

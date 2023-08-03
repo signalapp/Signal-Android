@@ -59,17 +59,17 @@ final class PendingMemberInvitesRepository {
       boolean                                      selfIsAdmin        = v2GroupProperties.isAdmin(Recipient.self());
 
       Stream.of(pendingMembersList)
-            .groupBy(DecryptedPendingMember::getAddedByUuid)
+            .groupBy(DecryptedPendingMember::getAddedByAci)
             .forEach(g ->
               {
-                ByteString                   inviterUuid    = g.getKey();
+                ByteString                   inviterAci     = g.getKey();
                 List<DecryptedPendingMember> invitedMembers = g.getValue();
 
-                if (self.equals(inviterUuid)) {
+                if (self.equals(inviterAci)) {
                   for (DecryptedPendingMember pendingMember : invitedMembers) {
                     try {
-                      Recipient      invitee        = GroupProtoUtil.pendingMemberToRecipient(context, pendingMember);
-                      UuidCiphertext uuidCipherText = new UuidCiphertext(pendingMember.getUuidCipherText().toByteArray());
+                      Recipient      invitee        = GroupProtoUtil.pendingMemberToRecipient(pendingMember);
+                      UuidCiphertext uuidCipherText = new UuidCiphertext(pendingMember.getServiceIdCipherText().toByteArray());
 
                       byMe.add(new SinglePendingMemberInvitedByYou(invitee, uuidCipherText));
                     } catch (InvalidInputException e) {
@@ -77,12 +77,12 @@ final class PendingMemberInvitesRepository {
                     }
                   }
                 } else {
-                  Recipient                 inviter         = GroupProtoUtil.pendingMemberServiceIdToRecipient(context, inviterUuid);
+                  Recipient                 inviter         = GroupProtoUtil.pendingMemberServiceIdToRecipient(inviterAci);
                   ArrayList<UuidCiphertext> uuidCipherTexts = new ArrayList<>(invitedMembers.size());
 
                   for (DecryptedPendingMember pendingMember : invitedMembers) {
                     try {
-                      uuidCipherTexts.add(new UuidCiphertext(pendingMember.getUuidCipherText().toByteArray()));
+                      uuidCipherTexts.add(new UuidCiphertext(pendingMember.getServiceIdCipherText().toByteArray()));
                     } catch (InvalidInputException e) {
                       Log.w(TAG, e);
                     }

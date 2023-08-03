@@ -57,9 +57,9 @@ import static java.util.Collections.singletonList;
 @Config(manifest = Config.NONE, application = Application.class)
 public final class GroupsV2UpdateMessageProducerTest {
 
-  private UUID you;
-  private UUID alice;
-  private UUID bob;
+  private ACI you;
+  private ACI alice;
+  private ACI bob;
 
   private GroupsV2UpdateMessageProducer producer;
 
@@ -74,9 +74,9 @@ public final class GroupsV2UpdateMessageProducerTest {
 
   @Before
   public void setup() {
-    you   = UUID.randomUUID();
-    alice = UUID.randomUUID();
-    bob   = UUID.randomUUID();
+    you   = ACI.from(UUID.randomUUID());
+    alice = ACI.from(UUID.randomUUID());
+    bob   = ACI.from(UUID.randomUUID());
 
     recipientIdMockedStatic.when(() -> RecipientId.from(anyLong())).thenCallRealMethod();
 
@@ -86,10 +86,10 @@ public final class GroupsV2UpdateMessageProducerTest {
     Recipient aliceRecipient = recipientWithName(aliceId, "Alice");
     Recipient bobRecipient   = recipientWithName(bobId, "Bob");
 
-    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), new ServiceIds(ACI.from(you), PNI.from(UUID.randomUUID())), null);
+    producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), new ServiceIds(you, PNI.from(UUID.randomUUID())), null);
 
-    recipientIdMockedStatic.when(() -> RecipientId.from(ACI.from(alice))).thenReturn(aliceId);
-    recipientIdMockedStatic.when(() -> RecipientId.from(ACI.from(bob))).thenReturn(bobId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(alice)).thenReturn(aliceId);
+    recipientIdMockedStatic.when(() -> RecipientId.from(bob)).thenReturn(bobId);
     recipientMockedStatic.when(() -> Recipient.resolved(aliceId)).thenReturn(aliceRecipient);
     recipientMockedStatic.when(() -> Recipient.resolved(bobId)).thenReturn(bobRecipient);
   }
@@ -436,7 +436,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   public void member_invited_2_persons() {
     DecryptedGroupChange change = changeBy(alice)
                                     .invite(bob)
-                                    .invite(UUID.randomUUID())
+                                    .invite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(singletonList("Alice invited 2 people to the group.")));
@@ -447,8 +447,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     DecryptedGroupChange change = changeBy(bob)
                                     .invite(alice)
                                     .invite(you)
-                                    .invite(UUID.randomUUID())
-                                    .invite(UUID.randomUUID())
+                                    .invite(ACI.from(UUID.randomUUID()))
+                                    .invite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("Bob invited you to the group.", "Bob invited 3 people to the group.")));
@@ -496,8 +496,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     DecryptedGroupChange change = changeByUnknown()
                                     .invite(alice)
                                     .invite(you)
-                                    .invite(UUID.randomUUID())
-                                    .invite(UUID.randomUUID())
+                                    .invite(ACI.from(UUID.randomUUID()))
+                                    .invite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("You were invited to the group.", "3 people were invited to the group.")));
@@ -508,8 +508,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     DecryptedGroupChange change = changeByUnknown()
                                     .invite(alice)
                                     .inviteBy(you, bob)
-                                    .invite(UUID.randomUUID())
-                                    .invite(UUID.randomUUID())
+                                    .invite(ACI.from(UUID.randomUUID()))
+                                    .invite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("Bob invited you to the group.", "3 people were invited to the group.")));
@@ -520,8 +520,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     DecryptedGroupChange change = changeBy(bob)
                                     .addMember(alice)
                                     .invite(you)
-                                    .invite(UUID.randomUUID())
-                                    .invite(UUID.randomUUID())
+                                    .invite(ACI.from(UUID.randomUUID()))
+                                    .invite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("Bob invited you to the group.", "Bob added Alice.", "Bob invited 2 people to the group.")));
@@ -562,7 +562,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   public void member_uninvited_2_people() {
     DecryptedGroupChange change = changeBy(alice)
                                     .uninvite(bob)
-                                    .uninvite(UUID.randomUUID())
+                                    .uninvite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(singletonList("Alice revoked 2 invitations to the group.")));
@@ -581,7 +581,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   public void you_uninvited_2_people() {
     DecryptedGroupChange change = changeBy(you)
                                     .uninvite(bob)
-                                    .uninvite(UUID.randomUUID())
+                                    .uninvite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(singletonList("You revoked 2 invitations to the group.")));
@@ -627,7 +627,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   public void unknown_revokes_2_invites() {
     DecryptedGroupChange change = changeByUnknown()
                                     .uninvite(bob)
-                                    .uninvite(UUID.randomUUID())
+                                    .uninvite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(singletonList("2 invitations to the group were revoked.")));
@@ -638,8 +638,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     DecryptedGroupChange change = changeByUnknown()
                                     .uninvite(bob)
                                     .uninvite(you)
-                                    .uninvite(UUID.randomUUID())
-                                    .uninvite(UUID.randomUUID())
+                                    .uninvite(ACI.from(UUID.randomUUID()))
+                                    .uninvite(ACI.from(UUID.randomUUID()))
                                     .build();
 
     assertThat(describeChange(change), is(Arrays.asList("An admin revoked your invitation to the group.", "3 invitations to the group were revoked.")));
@@ -993,7 +993,7 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertEquals("The admin approval for the group link has been turned on.", describeGroupLinkChange(null, AccessControl.AccessRequired.ANY, AccessControl.AccessRequired.ADMINISTRATOR));
   }
 
-  private String describeGroupLinkChange(@Nullable UUID editor, @NonNull AccessControl.AccessRequired fromAccess, AccessControl.AccessRequired toAccess){
+  private String describeGroupLinkChange(@Nullable ACI editor, @NonNull AccessControl.AccessRequired fromAccess, AccessControl.AccessRequired toAccess){
     DecryptedGroup       previousGroupState = DecryptedGroup.newBuilder()
                                                             .setAccessControl(AccessControl.newBuilder()
                                                                                            .setAddFromInviteLink(fromAccess))
@@ -1441,12 +1441,12 @@ public final class GroupsV2UpdateMessageProducerTest {
     return producer.describeNewGroup(group, groupChange).getSpannable().toString();
   }
 
-  private static GroupStateBuilder newGroupBy(UUID foundingMember, int revision) {
+  private static GroupStateBuilder newGroupBy(ACI foundingMember, int revision) {
     return new GroupStateBuilder(foundingMember, revision);
   }
 
-  private void assertSingleChangeMentioning(DecryptedGroupChange change, List<UUID> expectedMentions) {
-    List<ServiceId> expectedMentionSids = expectedMentions.stream().map(ACI::from).collect(Collectors.toList());
+  private void assertSingleChangeMentioning(DecryptedGroupChange change, List<ACI> expectedMentions) {
+    List<ServiceId> expectedMentionSids = expectedMentions.stream().collect(Collectors.toList());
 
     List<UpdateDescription> changes = producer.describeChanges(null, change);
 
@@ -1466,23 +1466,23 @@ public final class GroupsV2UpdateMessageProducerTest {
 
     private final DecryptedGroup.Builder builder;
 
-    GroupStateBuilder(@NonNull UUID foundingMember, int revision) {
+    GroupStateBuilder(@NonNull ACI foundingMember, int revision) {
     builder = DecryptedGroup.newBuilder()
                             .setRevision(revision)
                             .addMembers(DecryptedMember.newBuilder()
-                                                       .setUuid(UuidUtil.toByteString(foundingMember)));
+                                                       .setAciBytes(foundingMember.toByteString()));
     }
 
-    GroupStateBuilder invite(@NonNull UUID inviter, @NonNull UUID invitee) {
+    GroupStateBuilder invite(@NonNull ACI inviter, @NonNull ServiceId invitee) {
        builder.addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                       .setServiceIdBinary(UuidUtil.toByteString(invitee))
-                                                       .setAddedByUuid(UuidUtil.toByteString(inviter)));
+                                                       .setServiceIdBytes(invitee.toByteString())
+                                                       .setAddedByAci(inviter.toByteString()));
        return this;
     }
 
-    GroupStateBuilder member(@NonNull UUID member) {
+    GroupStateBuilder member(@NonNull ACI member) {
        builder.addMembers(DecryptedMember.newBuilder()
-                                         .setUuid(UuidUtil.toByteString(member)));
+                                         .setAciBytes(member.toByteString()));
        return this;
     }
 

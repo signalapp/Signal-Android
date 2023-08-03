@@ -145,13 +145,13 @@ public final class GroupsV2Operations_decrypt_group_Test {
     assertEquals(DecryptedGroup.newBuilder()
                                .addMembers(DecryptedMember.newBuilder()
                                                           .setJoinedAtRevision(4)
-                                                          .setUuid(admin1.toByteString())
+                                                          .setAciBytes(admin1.toByteString())
                                                           .setRole(Member.Role.ADMINISTRATOR)
                                                           .setProfileKey(ByteString.copyFrom(adminProfileKey.serialize())))
                                .addMembers(DecryptedMember.newBuilder()
                                                           .setJoinedAtRevision(7)
                                                           .setRole(Member.Role.DEFAULT)
-                                                          .setUuid(member1.toByteString())
+                                                          .setAciBytes(member1.toByteString())
                                                           .setProfileKey(ByteString.copyFrom(memberProfileKey.serialize())))
                                .build().getMembersList(),
                  decryptedGroup.getMembersList());
@@ -189,22 +189,22 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
     assertEquals(DecryptedGroup.newBuilder()
                                .addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                        .setServiceIdBinary(admin1.toByteString())
-                                                                        .setUuidCipherText(groupOperations.encryptServiceId(admin1))
+                                                                        .setServiceIdBytes(admin1.toByteString())
+                                                                        .setServiceIdCipherText(groupOperations.encryptServiceId(admin1))
                                                                         .setTimestamp(100)
-                                                                        .setAddedByUuid(inviter1.toByteString())
+                                                                        .setAddedByAci(inviter1.toByteString())
                                                                         .setRole(Member.Role.ADMINISTRATOR))
                                .addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                        .setServiceIdBinary(member1.toByteString())
-                                                                        .setUuidCipherText(groupOperations.encryptServiceId(member1))
+                                                                        .setServiceIdBytes(member1.toByteString())
+                                                                        .setServiceIdCipherText(groupOperations.encryptServiceId(member1))
                                                                         .setTimestamp(200)
-                                                                        .setAddedByUuid(inviter1.toByteString())
+                                                                        .setAddedByAci(inviter1.toByteString())
                                                                         .setRole(Member.Role.DEFAULT))
                                .addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                                        .setServiceIdBinary(member2.toByteString())
-                                                                        .setUuidCipherText(groupOperations.encryptServiceId(member2))
+                                                                        .setServiceIdBytes(member2.toByteString())
+                                                                        .setServiceIdCipherText(groupOperations.encryptServiceId(member2))
                                                                         .setTimestamp(1500)
-                                                                        .setAddedByUuid(inviter2.toByteString())
+                                                                        .setAddedByAci(inviter2.toByteString())
                                                                         .setRole(Member.Role.DEFAULT))
                                .build().getPendingMembersList(),
                  decryptedGroup.getPendingMembersList());
@@ -232,11 +232,11 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
     assertEquals(DecryptedGroup.newBuilder()
                                .addRequestingMembers(DecryptedRequestingMember.newBuilder()
-                                                                              .setUuid(admin1.toByteString())
+                                                                              .setAciBytes(admin1.toByteString())
                                                                               .setProfileKey(ByteString.copyFrom(adminProfileKey.serialize()))
                                                                               .setTimestamp(5000))
                                .addRequestingMembers(DecryptedRequestingMember.newBuilder()
-                                                                              .setUuid(member1.toByteString())
+                                                                              .setAciBytes(member1.toByteString())
                                                                               .setProfileKey(ByteString.copyFrom(memberProfileKey.serialize()))
                                                                               .setTimestamp(15000))
                                .build().getRequestingMembersList(),
@@ -288,7 +288,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
 
     assertEquals(1, decryptedGroup.getBannedMembersCount());
-    assertEquals(DecryptedBannedMember.newBuilder().setServiceIdBinary(member1.toByteString()).build(), decryptedGroup.getBannedMembers(0));
+    assertEquals(DecryptedBannedMember.newBuilder().setServiceIdBytes(member1.toByteString()).build(), decryptedGroup.getBannedMembers(0));
   }
 
   private ByteString encryptProfileKey(ACI aci, ProfileKey profileKey) {

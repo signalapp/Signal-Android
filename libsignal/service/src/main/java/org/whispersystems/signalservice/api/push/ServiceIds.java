@@ -37,11 +37,11 @@ public final class ServiceIds {
     return Objects.requireNonNull(pni);
   }
 
-  public boolean matches(UUID uuid) {
-    return uuid.equals(aci.getRawUuid()) || (pni != null && uuid.equals(pni.getRawUuid()));
+  public boolean matches(ServiceId serviceId) {
+    return serviceId.equals(aci) || (pni != null && serviceId.equals(pni));
   }
 
-  public boolean matches(ByteString uuid) {
+  public boolean matches(ByteString serviceIdsBytes) {
     if (aciByteString == null) {
       aciByteString = aci.toByteString();
     }
@@ -50,6 +50,6 @@ public final class ServiceIds {
       pniByteString = pni.toByteString();
     }
 
-    return uuid.equals(aciByteString) || uuid.equals(pniByteString);
+    return serviceIdsBytes.equals(aciByteString) || serviceIdsBytes.equals(pniByteString);
   }
 }
