@@ -257,6 +257,7 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
+import org.thoughtcrime.securesms.ratelimit.RecaptchaRequiredEvent
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -613,6 +614,10 @@ class ConversationFragment :
     }
 
     ConversationUtil.refreshRecipientShortcuts()
+
+    if (SignalStore.rateLimit().needsRecaptcha()) {
+      RecaptchaProofBottomSheetFragment.show(childFragmentManager)
+    }
   }
 
   override fun onPause() {
@@ -3965,6 +3970,11 @@ class ConversationFragment :
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onReminderUpdateEvent(reminderUpdateEvent: ReminderUpdateEvent) {
     viewModel.refreshReminder()
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  fun onRecaptchaRequiredEvent(recaptchaRequiredEvent: RecaptchaRequiredEvent) {
+    RecaptchaProofBottomSheetFragment.show(childFragmentManager)
   }
 
   //endregion
