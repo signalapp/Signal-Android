@@ -235,20 +235,20 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   @JvmOverloads
   fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
     Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
-    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
-    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
-    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+    db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
 
     Log.w(TAG, "[fullyResetTables] Recreating table...")
-    CREATE_TABLE.forEach { writableDatabase.execSQL(it) }
+    CREATE_TABLE.forEach { db.execSQL(it) }
 
     Log.w(TAG, "[fullyResetTables] Recreating triggers...")
-    CREATE_TRIGGERS.forEach { writableDatabase.execSQL(it) }
+    CREATE_TRIGGERS.forEach { db.execSQL(it) }
 
     RebuildMessageSearchIndexJob.enqueue()
 
