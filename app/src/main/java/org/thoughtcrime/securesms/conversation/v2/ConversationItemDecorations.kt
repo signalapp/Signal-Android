@@ -94,15 +94,15 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
   }
 
   /** Must be called before first setting of [currentItems] */
-  fun setFirstUnreadCount(unreadCount: Int) {
-    if (unreadState == UnreadState.None && unreadCount > 0) {
-      unreadState = UnreadState.InitialUnreadState(unreadCount)
+  fun setFirstUnreadState(lastSeenTimestamp: Long) {
+    if (unreadState == UnreadState.None && lastSeenTimestamp > 0) {
+      unreadState = UnreadState.InitialUnreadState(lastSeenTimestamp = lastSeenTimestamp)
     }
   }
 
   /**
    * If [unreadState] is [UnreadState.InitialUnreadState] we need to determine the first unread timestamp based on
-   * initial unread count.
+   * last seen timestamp.
    *
    * Once in [UnreadState.CompleteUnreadState], need to update the unread count based on new incoming messages since
    * the first unread timestamp. If an outgoing message is found in this range the unread state is cleared completely,
@@ -112,10 +112,15 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     val state: UnreadState = unreadState
 
     if (state is UnreadState.InitialUnreadState) {
-      val firstUnread = items[(state.unreadCount - 1).coerceIn(items.indices)]
-      val timestamp = (firstUnread as? ConversationMessageElement)?.timestamp()
-      if (timestamp != null) {
-        unreadState = UnreadState.CompleteUnreadState(unreadCount = state.unreadCount, firstUnreadTimestamp = timestamp)
+      val firstUnread = items
+        .filterIsInstance<ConversationMessageElement>()
+        .lastOrNull { it.timestamp() > state.lastSeenTimestamp }
+
+      if (firstUnread != null) {
+        unreadState = UnreadState.CompleteUnreadState(
+          unreadCount = items.indexOf(firstUnread as ConversationElement?) + 1,
+          firstUnreadTimestamp = firstUnread.timestamp()
+        )
       }
     } else if (state is UnreadState.CompleteUnreadState) {
       var newUnreadCount = 0
@@ -270,7 +275,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     object None : UnreadState()
 
     /** On first load of data, there is at least 1 unread message but we don't know the 'position' in the list yet */
-    data class InitialUnreadState(val unreadCount: Int) : UnreadState()
+    data class InitialUnreadState(val lastSeenTimestamp: Long) : UnreadState()
 
     /** We have at least one unread and know the timestamp of the first unread message and thus 'position' for the header */
     data class CompleteUnreadState(val unreadCount: Int, val firstUnreadTimestamp: Long? = null) : UnreadState()
