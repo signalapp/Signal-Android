@@ -22,6 +22,12 @@ object RxDatabaseObserver {
     }
   }
 
+  fun conversation(threadId: Long): Flowable<Unit> {
+    return databaseFlowable { listener ->
+      ApplicationDependencies.getDatabaseObserver().registerVerboseConversationObserver(threadId, listener)
+    }
+  }
+
   @Suppress("RedundantUnitExpression")
   private fun notificationProfilesFlowable(): Flowable<Unit> {
     return Flowable.combineLatest(

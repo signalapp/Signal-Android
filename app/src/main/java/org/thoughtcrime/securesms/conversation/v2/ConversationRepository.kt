@@ -288,15 +288,14 @@ class ConversationRepository(
   }
 
   fun getMessageCounts(threadId: Long): Flowable<MessageCounts> {
-    return RxDatabaseObserver.conversationList
+    return RxDatabaseObserver.conversation(threadId)
       .map { getUnreadCount(threadId) }
       .distinctUntilChanged()
       .map { MessageCounts(it, getUnreadMentionsCount(threadId)) }
   }
 
   private fun getUnreadCount(threadId: Long): Int {
-    val threadRecord = SignalDatabase.threads.getThreadRecord(threadId)
-    return threadRecord?.unreadCount ?: 0
+    return SignalDatabase.messages.getUnreadCount(threadId)
   }
 
   private fun getUnreadMentionsCount(threadId: Long): Int {

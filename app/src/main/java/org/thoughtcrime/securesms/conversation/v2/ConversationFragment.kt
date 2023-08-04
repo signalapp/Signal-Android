@@ -373,6 +373,11 @@ class ConversationFragment :
       adapter.unregisterAdapterDataObserver(it)
     }
 
+    scrollListener?.let {
+      _binding.conversationItemRecycler.removeOnScrollListener(it)
+    }
+    scrollListener = null
+
     _binding.conversationItemRecycler.adapter = null
 
     textDraftSaveDebouncer.clear()
@@ -473,6 +478,7 @@ class ConversationFragment :
   private var composeTextEventsListener: ComposeTextEventsListener? = null
   private var dataObserver: DataObserver? = null
   private var menuProvider: ConversationOptionsMenu.Provider? = null
+  private var scrollListener: ScrollListener? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -829,10 +835,6 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .distinctUntilChanged { r1, r2 -> r1 === r2 || r1.hasSameContent(r2) }
       .subscribeBy(onNext = this::onRecipientChanged)
-
-    disposables += viewModel.markReadRequests
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onNext = markReadHelper::onViewsRevealed)
 
     disposables += viewModel.scrollButtonState
       .subscribeBy(onNext = this::presentScrollButtons)
@@ -1448,7 +1450,8 @@ class ConversationFragment :
     layoutManager = ConversationLayoutManager(requireContext())
     binding.conversationItemRecycler.setHasFixedSize(false)
     binding.conversationItemRecycler.layoutManager = layoutManager
-    binding.conversationItemRecycler.addOnScrollListener(ScrollListener())
+    scrollListener = ScrollListener()
+    binding.conversationItemRecycler.addOnScrollListener(scrollListener!!)
 
     adapter = ConversationAdapterV2(
       lifecycleOwner = viewLifecycleOwner,
@@ -2248,6 +2251,10 @@ class ConversationFragment :
     return layoutManager.findFirstCompletelyVisibleItemPosition() > 4
   }
 
+  private fun shouldScrollToBottom(): Boolean {
+    return isScrolledToBottom() || layoutManager.findFirstVisibleItemPosition() <= 0
+  }
+
   /**
    * Controls animation and visibility of the scrollDateHeader.
    */
@@ -2308,9 +2315,11 @@ class ConversationFragment :
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
       if (isScrolledToBottom()) {
-        viewModel.setShowScrollButtons(false)
+        viewModel.setShowScrollButtonsForScrollPosition(showScrollButtons = false, willScrollToBottomOnNewMessage = true)
       } else if (isScrolledPastButtonThreshold()) {
-        viewModel.setShowScrollButtons(true)
+        viewModel.setShowScrollButtonsForScrollPosition(showScrollButtons = true, willScrollToBottomOnNewMessage = false)
+      } else {
+        viewModel.setShowScrollButtonsForScrollPosition(showScrollButtons = false, willScrollToBottomOnNewMessage = shouldScrollToBottom())
       }
 
       presentComposeDivider()
@@ -2344,10 +2353,9 @@ class ConversationFragment :
 
   private inner class DataObserver : RecyclerView.AdapterDataObserver() {
     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-      Log.d(TAG, "onItemRangeInserted $positionStart $itemCount")
-      if (positionStart == 0 && itemCount == 1 && !binding.conversationItemRecycler.canScrollVertically(1)) {
-        Log.d(TAG, "Requesting scroll to bottom.")
+      if (positionStart == 0 && itemCount == 1 && shouldScrollToBottom()) {
         layoutManager.scrollToPositionWithOffset(0, 0)
+        scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
       }
     }
 
@@ -2368,6 +2376,10 @@ class ConversationFragment :
       } else {
         actionMode?.setTitle(calculateSelectedItemCount())
       }
+    }
+
+    override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
+      scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
     }
   }
 
@@ -2820,10 +2832,7 @@ class ConversationFragment :
 
           ViewUtil.hideKeyboard(requireContext(), itemView)
 
-          val showScrollButtons = viewModel.showScrollButtonsSnapshot
-          if (showScrollButtons) {
-            viewModel.setShowScrollButtons(false)
-          }
+          viewModel.setHideScrollButtonsForReactionOverlay(true)
 
           val targetViews: InteractiveConversationElement = target
           handleReaction(
@@ -2861,9 +2870,7 @@ class ConversationFragment :
                   ViewUtil.fadeIn(targetViews.quotedIndicatorView!!, 150)
                 }
 
-                if (showScrollButtons) {
-                  viewModel.setShowScrollButtons(true)
-                }
+                viewModel.setHideScrollButtonsForReactionOverlay(false)
               }
             }
           )
