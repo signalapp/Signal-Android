@@ -9,6 +9,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.app.PendingIntent
+import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -20,6 +21,7 @@ import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Browser
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
@@ -654,6 +656,22 @@ class ConversationFragment :
   @Suppress("OVERRIDE_DEPRECATION")
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
+  override fun startActivity(intent: Intent) {
+    if (intent.getStringArrayExtra(Browser.EXTRA_APPLICATION_ID) != null) {
+      intent.removeExtra(Browser.EXTRA_APPLICATION_ID)
+    }
+
+    try {
+      super.startActivity(intent)
+    } catch (e: ActivityNotFoundException) {
+      Log.w(TAG, e)
+      toast(
+        toastTextId = R.string.ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device,
+        toastDuration = Toast.LENGTH_LONG
+      )
+    }
   }
 
   //endregion
