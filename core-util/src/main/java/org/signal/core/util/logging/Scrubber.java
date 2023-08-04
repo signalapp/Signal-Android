@@ -77,6 +77,9 @@ public final class Scrubber {
                                                               "\\b");
   private static final String IPV4_CENSOR   = "...ipv4...";
 
+  private static final Pattern IPV6_PATTERN = Pattern.compile("([0-9a-fA-F]{0,4}:){3,7}([0-9a-fA-F]){0,4}");
+  private static final String IPV6_CENSOR   = "...ipv6...";
+
   /**
    * The domain name except for TLD will be censored.
    */
@@ -104,6 +107,7 @@ public final class Scrubber {
     in = scrubUuids(in);
     in = scrubDomains(in);
     in = scrubIpv4(in);
+    in = scrubIpv6(in);
     in = scrubCallLinkKeys(in);
 
     return in;
@@ -175,6 +179,12 @@ public final class Scrubber {
     return scrub(in,
                  IPV4_PATTERN,
                  (matcher, output) -> output.append(IPV4_CENSOR));
+  }
+
+  private static CharSequence scrubIpv6(@NonNull CharSequence in) {
+    return scrub(in,
+                 IPV6_PATTERN,
+                 (matcher, output) -> output.append(IPV6_CENSOR));
   }
 
   private static CharSequence scrubCallLinkKeys(@NonNull CharSequence in) {

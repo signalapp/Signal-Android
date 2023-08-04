@@ -125,7 +125,36 @@ public final class ScrubberTest {
 
     { "Not a Call Link Root Key (Missing Quartet) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-STXZ",
       "Not a Call Link Root Key (Missing Quartet) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-STXZ"
-    }
+    },
+
+    {
+      "2345:0425:2CA1:0000:0000:0567:5673:23b5",
+      "...ipv6..."
+    },
+
+    { "2345:425:2CA1:0000:0000:567:5673:23b5",
+      "...ipv6..." },
+
+    { "2345:0425:2CA1:0:0:0567:5673:23b5",
+      "...ipv6..." },
+
+    { "2345:0425:2CA1::0567:5673:23b5",
+      "...ipv6..." },
+
+    { "FF01:0:0:0:0:0:0:1",
+      "...ipv6..." },
+
+    { "2001:db8::a3",
+      "...ipv6..." },
+
+    { "text before 2345:0425:2CA1:0000:0000:0567:5673:23b5 text after",
+      "text before ...ipv6... text after" },
+
+    { "Recipient::1",
+      "Recipient::1" },
+
+    { "Recipient::123",
+      "Recipient::123" },
 
     });
   }
