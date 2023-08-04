@@ -351,11 +351,11 @@
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
-        <item quantity="one">Only %1$d edit can be applied to this message.</item>
-        <item quantity="two">Only %1$d edits can be applied to this message.</item>
-        <item quantity="few">Only %1$d edits can be applied to this message.</item>
-        <item quantity="many">Only %1$d edits can be applied to this message.</item>
-        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+        <item quantity="one">Ní féidir ach %1$d eagarthóireacht amháin a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="two">Ní féidir ach %1$d eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="few">Ní féidir ach %1$d eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="many">Ní féidir ach %1$d n-eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="other">Ní féidir ach %1$d eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Faighteoir neamhbhailí!</string>

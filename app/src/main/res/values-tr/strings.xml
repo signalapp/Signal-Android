@@ -345,8 +345,8 @@
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
-        <item quantity="one">Only %1$d edit can be applied to this message.</item>
-        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+        <item quantity="one">Bu mesaja yalnızca %1$d düzenleme uygulanabilir.</item>
+        <item quantity="other">Bu mesaja yalnızca %1$d düzenleme uygulanabilir.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Geçersiz alıcı!</string>
