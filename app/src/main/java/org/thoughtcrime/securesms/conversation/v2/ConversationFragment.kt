@@ -198,6 +198,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
@@ -3940,6 +3941,11 @@ class ConversationFragment :
   @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
   fun onGroupCallPeekEvent(groupCallPeekEvent: GroupCallPeekEvent) {
     groupCallViewModel.onGroupCallPeekEvent(groupCallPeekEvent)
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  fun onReminderUpdateEvent(reminderUpdateEvent: ReminderUpdateEvent) {
+    viewModel.refreshReminder()
   }
 
   //endregion

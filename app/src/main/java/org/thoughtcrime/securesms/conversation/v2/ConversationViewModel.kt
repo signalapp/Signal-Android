@@ -239,6 +239,10 @@ class ConversationViewModel(
     _searchQuery.onNext(query ?: "")
   }
 
+  fun refreshReminder() {
+    refreshReminder.onNext(Unit)
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
