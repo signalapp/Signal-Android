@@ -280,6 +280,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DeleteDialog
@@ -602,6 +603,16 @@ class ConversationFragment :
     }
 
     viewModel.updateIdentityRecordsInBackground()
+
+    if (args.isFirstTimeInSelfCreatedGroup) {
+      conversationGroupViewModel.checkJustSelfInGroup().subscribeBy(
+        onSuccess = {
+          GroupLinkInviteFriendsBottomSheetDialogFragment.show(childFragmentManager, it)
+        }
+      ).addTo(disposables)
+    }
+
+    ConversationUtil.refreshRecipientShortcuts()
   }
 
   override fun onPause() {
