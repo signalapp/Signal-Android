@@ -10,7 +10,6 @@ import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.database.RecipientTable.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
@@ -64,7 +63,7 @@ public class RecipientDetails {
   final String                       profileAvatar;
   final ProfileAvatarFileDetails     profileAvatarFileDetails;
   final boolean                      profileSharing;
-  final boolean                      isHidden;
+  final Recipient.HiddenState        hiddenState;
   final boolean                      isActiveGroup;
   final long                         lastProfileFetch;
   final boolean                      systemContact;
@@ -128,7 +127,7 @@ public class RecipientDetails {
     this.profileAvatar                = record.getProfileAvatar();
     this.profileAvatarFileDetails     = record.getProfileAvatarFileDetails();
     this.profileSharing               = record.isProfileSharing();
-    this.isHidden                     = record.isHidden();
+    this.hiddenState                  = record.getHiddenState();
     this.lastProfileFetch             = record.getLastProfileFetch();
     this.systemContact                = systemContact;
     this.isSelf                       = isSelf;
@@ -181,7 +180,7 @@ public class RecipientDetails {
     this.profileAvatar                = null;
     this.profileAvatarFileDetails     = ProfileAvatarFileDetails.NO_DETAILS;
     this.profileSharing               = false;
-    this.isHidden                     = false;
+    this.hiddenState                  = Recipient.HiddenState.NOT_HIDDEN;
     this.lastProfileFetch             = 0;
     this.systemContact                = true;
     this.isSelf                       = false;

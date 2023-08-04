@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage
@@ -167,6 +168,10 @@ object DataMessageProcessor {
 
     if (message.hasProfileKey()) {
       handleProfileKey(envelope.timestamp, message.profileKey.toByteArray(), senderRecipient)
+    }
+
+    if (groupId == null && senderRecipient.hiddenState == HiddenState.HIDDEN) {
+      SignalDatabase.recipients.markHidden(senderRecipient.id, clearProfileKey = false, showMessageRequest = true)
     }
 
     if (metadata.sealedSender && messageId != null) {

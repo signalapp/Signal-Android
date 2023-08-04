@@ -1708,6 +1708,65 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  /**
+   * Delete all the stories received from the recipient in 1:1 stories
+   */
+  fun deleteStoriesForRecipient(recipientId: RecipientId): Int {
+    return writableDatabase.withinTransaction { db ->
+      val threadId = threads.getThreadIdFor(recipientId)
+      val storesInRecipientThread = "$IS_STORY_CLAUSE AND $THREAD_ID = ?"
+      val sharedArgs = buildArgs(threadId)
+
+      val deleteStoryRepliesQuery = """
+        DELETE FROM $TABLE_NAME 
+        WHERE 
+          $PARENT_STORY_ID > 0 AND 
+          $PARENT_STORY_ID IN (
+            SELECT $ID 
+            FROM $TABLE_NAME 
+            WHERE $storesInRecipientThread
+          )
+        """
+
+      val disassociateQuoteQuery = """
+        UPDATE $TABLE_NAME 
+        SET 
+          $QUOTE_MISSING = 1, 
+          $QUOTE_BODY = '' 
+        WHERE 
+          $PARENT_STORY_ID < 0 AND 
+          ABS($PARENT_STORY_ID) IN (
+            SELECT $ID 
+            FROM $TABLE_NAME 
+            WHERE $storesInRecipientThread
+          )
+        """
+
+      db.execSQL(deleteStoryRepliesQuery, sharedArgs)
+      db.execSQL(disassociateQuoteQuery, sharedArgs)
+
+      ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(recipientId)
+
+      val deletedStoryCount = db.select(ID)
+        .from(TABLE_NAME)
+        .where(storesInRecipientThread, sharedArgs)
+        .run()
+        .use { cursor ->
+          while (cursor.moveToNext()) {
+            deleteMessage(cursor.requireLong(ID))
+          }
+
+          cursor.count
+        }
+
+      if (deletedStoryCount > 0) {
+        OptimizeMessageSearchIndexJob.enqueue()
+      }
+
+      deletedStoryCount
+    }
+  }
+
   private fun disassociateStoryQuotes(storyId: Long) {
     writableDatabase
       .update(TABLE_NAME)

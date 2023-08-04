@@ -491,6 +491,10 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       }
   }
 
+  fun removeMemberFromAllLists(member: RecipientId) {
+    writableDatabase.delete(MembershipTable.TABLE_NAME, "${MembershipTable.RECIPIENT_ID} = ?", SqlUtil.buildArgs(member))
+  }
+
   fun removeMemberFromList(listId: DistributionListId, privacyMode: DistributionListPrivacyMode, member: RecipientId) {
     writableDatabase.delete(MembershipTable.TABLE_NAME, "${MembershipTable.LIST_ID} = ? AND  ${MembershipTable.RECIPIENT_ID} = ? AND ${MembershipTable.PRIVACY_MODE} = ?", SqlUtil.buildArgs(listId, member, privacyMode.serialize()))
   }

@@ -150,7 +150,7 @@ object RecipientDatabaseTestUtils {
         hasGroupsInCommon,
         badges,
         needsPniSignature = false,
-        isHidden = false,
+        hiddenState = Recipient.HiddenState.NOT_HIDDEN,
         null
       ),
       participants,

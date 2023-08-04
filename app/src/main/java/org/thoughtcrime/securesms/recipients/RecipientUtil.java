@@ -199,6 +199,22 @@ public class RecipientUtil {
   }
 
   @WorkerThread
+  public static Recipient.HiddenState getRecipientHiddenState(long threadId) {
+    if (threadId < 0) {
+      return Recipient.HiddenState.NOT_HIDDEN;
+    }
+
+    ThreadTable threadTable     = SignalDatabase.threads();
+    Recipient   threadRecipient = threadTable.getRecipientForThreadId(threadId);
+
+    if (threadRecipient == null) {
+      return Recipient.HiddenState.NOT_HIDDEN;
+    }
+
+    return threadRecipient.getHiddenState();
+  }
+
+  @WorkerThread
   public static boolean isRecipientHidden(long threadId) {
     if (threadId < 0) {
       return false;
@@ -287,7 +303,7 @@ public class RecipientUtil {
 
     boolean firstMessage = SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) == 0;
 
-    if (firstMessage) {
+    if (firstMessage || recipient.isHidden()) {
       SignalDatabase.recipients().setProfileSharing(recipient.getId(), true);
     }
   }

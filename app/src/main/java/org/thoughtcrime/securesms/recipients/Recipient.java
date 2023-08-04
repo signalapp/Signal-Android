@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -57,6 +58,8 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -116,7 +119,7 @@ public class Recipient {
   private final String                       profileAvatar;
   private final ProfileAvatarFileDetails     profileAvatarFileDetails;
   private final boolean                      profileSharing;
-  private final boolean                      isHidden;
+  private final Recipient.HiddenState        hiddenState;
   private final long                         lastProfileFetch;
   private final String                       notificationChannel;
   private final UnidentifiedAccessMode       unidentifiedAccessMode;
@@ -401,7 +404,7 @@ public class Recipient {
     this.profileAvatar                = null;
     this.profileAvatarFileDetails     = ProfileAvatarFileDetails.NO_DETAILS;
     this.profileSharing               = false;
-    this.isHidden                     = false;
+    this.hiddenState                  = HiddenState.NOT_HIDDEN;
     this.lastProfileFetch             = 0;
     this.notificationChannel          = null;
     this.unidentifiedAccessMode       = UnidentifiedAccessMode.DISABLED;
@@ -456,7 +459,7 @@ public class Recipient {
     this.profileAvatar                = details.profileAvatar;
     this.profileAvatarFileDetails     = details.profileAvatarFileDetails;
     this.profileSharing               = details.profileSharing;
-    this.isHidden                     = details.isHidden;
+    this.hiddenState                  = details.hiddenState;
     this.lastProfileFetch             = details.lastProfileFetch;
     this.notificationChannel          = details.notificationChannel;
     this.unidentifiedAccessMode       = details.unidentifiedAccessMode;
@@ -852,7 +855,11 @@ public class Recipient {
   }
 
   public boolean isHidden() {
-    return isHidden;
+    return hiddenState != HiddenState.NOT_HIDDEN;
+  }
+
+  public Recipient.HiddenState getHiddenState() {
+    return hiddenState;
   }
 
   public long getLastProfileFetchTime() {
@@ -1244,6 +1251,31 @@ public class Recipient {
     return Objects.hash(id);
   }
 
+  public enum HiddenState {
+    NOT_HIDDEN(0),
+    HIDDEN(1),
+    HIDDEN_MESSAGE_REQUEST(2);
+
+    private final int value;
+
+    HiddenState(int value) {
+      this.value = value;
+    }
+
+    public int serialize() {
+      return value;
+    }
+
+    public static HiddenState deserialize(int value) {
+      switch (value) {
+        case 0: return NOT_HIDDEN;
+        case 1: return HIDDEN;
+        case 2: return HIDDEN_MESSAGE_REQUEST;
+        default: throw new IllegalArgumentException();
+      }
+    }
+  }
+
   public enum Capability {
     UNKNOWN(0),
     SUPPORTED(1),
@@ -1327,7 +1359,7 @@ public class Recipient {
            expireMessages == other.expireMessages &&
            Objects.equals(profileAvatarFileDetails, other.profileAvatarFileDetails) &&
            profileSharing == other.profileSharing &&
-           isHidden == other.isHidden &&
+           hiddenState == other.hiddenState &&
            Objects.equals(aci, other.aci) &&
            Objects.equals(username, other.username) &&
            Objects.equals(e164, other.e164) &&

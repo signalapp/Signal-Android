@@ -75,7 +75,7 @@ data class RecipientRecord(
   val badges: List<Badge>,
   @get:JvmName("needsPniSignature")
   val needsPniSignature: Boolean,
-  val isHidden: Boolean,
+  val hiddenState: Recipient.HiddenState,
   val callLinkRoomId: CallLinkRoomId?
 ) {
 

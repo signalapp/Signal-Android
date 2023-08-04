@@ -1740,22 +1740,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun markHidden(id: RecipientId, clearProfileKey: Boolean = false) {
+  fun markHidden(id: RecipientId, clearProfileKey: Boolean = false, showMessageRequest: Boolean = false) {
     val contentValues = if (clearProfileKey) {
       contentValuesOf(
-        HIDDEN to 1,
+        HIDDEN to if (showMessageRequest) Recipient.HiddenState.HIDDEN_MESSAGE_REQUEST.serialize() else Recipient.HiddenState.HIDDEN.serialize(),
         PROFILE_SHARING to 0,
         PROFILE_KEY to null
       )
     } else {
       contentValuesOf(
-        HIDDEN to 1,
+        HIDDEN to if (showMessageRequest) Recipient.HiddenState.HIDDEN_MESSAGE_REQUEST.serialize() else Recipient.HiddenState.HIDDEN.serialize(),
         PROFILE_SHARING to 0
       )
     }
 
     val updated = writableDatabase.update(TABLE_NAME, contentValues, "$ID_WHERE AND $TYPE = ?", SqlUtil.buildArgs(id, RecipientType.INDIVIDUAL.id)) > 0
     if (updated) {
+      SignalDatabase.distributionLists.removeMemberFromAllLists(id)
+      SignalDatabase.messages.deleteStoriesForRecipient(id)
       rotateStorageId(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -3033,7 +3035,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   fun getRegistered(): List<RecipientId> {
     val results: MutableList<RecipientId> = LinkedList()
 
-    readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$REGISTERED = ? and $HIDDEN = ?", arrayOf("1", "0"), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$REGISTERED = ? and $HIDDEN = ?", arrayOf("1", "${Recipient.HiddenState.NOT_HIDDEN.serialize()}"), null, null, null).use { cursor ->
       while (cursor != null && cursor.moveToNext()) {
         results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))))
       }
@@ -3045,7 +3047,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .select(ID)
       .from(TABLE_NAME)
-      .where("$REGISTERED = ? and $HIDDEN = ? AND $ACI_COLUMN NOT NULL", 1, 0)
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $ACI_COLUMN NOT NULL", 1, Recipient.HiddenState.NOT_HIDDEN.serialize())
       .run()
       .readToSet { cursor ->
         RecipientId.from(cursor.requireLong(ID))
@@ -3078,7 +3080,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .select(E164)
       .from(TABLE_NAME)
-      .where("$REGISTERED = ? and $HIDDEN = ? AND $E164 NOT NULL", 1, 0)
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $E164 NOT NULL", 1, Recipient.HiddenState.NOT_HIDDEN.serialize())
       .run()
       .readToSet { cursor ->
         cursor.requireNonNullString(E164)
@@ -4194,7 +4196,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       hasGroupsInCommon = cursor.requireBoolean(GROUPS_IN_COMMON),
       badges = parseBadgeList(cursor.requireBlob(BADGES)),
       needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE),
-      isHidden = cursor.requireBoolean(HIDDEN),
+      hiddenState = Recipient.HiddenState.deserialize(cursor.requireInt(HIDDEN)),
       callLinkRoomId = cursor.requireString(CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) }
     )
   }
