@@ -170,6 +170,7 @@ import org.thoughtcrime.securesms.conversation.drafts.DraftViewModel
 import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet
@@ -334,7 +335,8 @@ class ConversationFragment :
   ScheduleMessageDialogCallback,
   ConversationBottomSheetCallback,
   SafetyNumberBottomSheet.Callbacks,
-  EnableCallNotificationSettingsDialog.Callback {
+  EnableCallNotificationSettingsDialog.Callback,
+  MultiselectForwardBottomSheet.Callback {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -775,6 +777,12 @@ class ConversationFragment :
   override fun onCallNotificationSettingsDialogDismissed() {
     adapter.notifyDataSetChanged()
   }
+
+  override fun onFinishForwardAction() {
+    actionMode?.finish()
+  }
+
+  override fun onDismissForwardSheet() = Unit
 
   //endregion
 
