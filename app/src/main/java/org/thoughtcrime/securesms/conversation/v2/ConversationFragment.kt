@@ -577,6 +577,8 @@ class ConversationFragment :
     SpoilerAnnotation.resetRevealedSpoilers()
 
     registerForResults()
+
+    inputPanel.setMediaListener(InputPanelMediaListener())
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -1009,7 +1011,6 @@ class ConversationFragment :
     initializeInlineSearch()
 
     inputPanel.setListener(InputPanelListener())
-    inputPanel.setMediaListener(InputPanelMediaListener())
 
     viewModel
       .getScheduledMessagesCount()
