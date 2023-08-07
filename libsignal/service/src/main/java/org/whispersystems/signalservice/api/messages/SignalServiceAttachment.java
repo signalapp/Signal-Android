@@ -62,6 +62,7 @@ public abstract class SignalServiceAttachment {
     private String                  blurHash;
     private long                    uploadTimestamp;
     private ResumableUploadSpec     resumableUploadSpec;
+    private boolean                 isIncremental;
 
     private Builder() {}
 
@@ -140,6 +141,11 @@ public abstract class SignalServiceAttachment {
       return this;
     }
 
+    public Builder withIncremental(boolean isIncremental) {
+      this.isIncremental = isIncremental;
+      return this;
+    }
+
     public SignalServiceAttachmentStream build() {
       if (inputStream == null) throw new IllegalArgumentException("Must specify stream!");
       if (contentType == null) throw new IllegalArgumentException("No content type specified!");
@@ -160,7 +166,8 @@ public abstract class SignalServiceAttachment {
                                                Optional.ofNullable(blurHash),
                                                listener,
                                                cancelationSignal,
-                                               Optional.ofNullable(resumableUploadSpec));
+                                               Optional.ofNullable(resumableUploadSpec),
+                                               isIncremental);
     }
   }
 
