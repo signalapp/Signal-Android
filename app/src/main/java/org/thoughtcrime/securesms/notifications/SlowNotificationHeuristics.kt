@@ -73,17 +73,17 @@ object SlowNotificationHeuristics {
   }
 
   private fun hasLongMessageLatency(metrics: List<LocalMetricsDatabase.EventMetrics>, minimumEventAgeMs: Long, percentage: Int, messageThreshold: Int, durationThreshold: Long): Boolean {
-    if (!haveEnoughData(SignalLocalMetrics.MessageLatency.NAME, minimumEventAgeMs)) {
+    if (!haveEnoughData(SignalLocalMetrics.MessageLatency.NAME_HIGH, minimumEventAgeMs)) {
       Log.d(TAG, "insufficient data for message latency")
       return false
     }
-    val eventCount = metrics.count { it.name == SignalLocalMetrics.MessageLatency.NAME }
+    val eventCount = metrics.count { it.name == SignalLocalMetrics.MessageLatency.NAME_HIGH }
     if (eventCount < messageThreshold) {
       Log.d(TAG, "not enough messages for message latency")
       return false
     }
     val db = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication())
-    val averageLatency = db.eventPercent(SignalLocalMetrics.MessageLatency.NAME, percentage.coerceAtMost(100).coerceAtLeast(0))
+    val averageLatency = db.eventPercent(SignalLocalMetrics.MessageLatency.NAME_HIGH, percentage.coerceAtMost(100).coerceAtLeast(0))
 
     val longMessageLatency = averageLatency > durationThreshold
     if (longMessageLatency) {

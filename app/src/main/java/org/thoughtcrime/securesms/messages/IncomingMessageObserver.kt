@@ -299,7 +299,7 @@ class IncomingMessageObserver(private val context: Application) {
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
     localReceiveMetric.onEnvelopeDecrypted()
 
-    SignalLocalMetrics.MessageLatency.onMessageReceived(envelope.serverTimestamp, serverDeliveredTimestamp)
+    SignalLocalMetrics.MessageLatency.onMessageReceived(envelope.serverTimestamp, serverDeliveredTimestamp, envelope.urgent)
     when (result) {
       is MessageDecryptor.Result.Success -> {
         val job = PushProcessMessageJobV2.processOrDefer(messageContentProcessor, result, localReceiveMetric)

@@ -204,15 +204,17 @@ public final class SignalLocalMetrics {
   }
 
   public static final class MessageLatency {
-    public static final String NAME = "message-latency";
+    public static final String NAME_HIGH = "message-latency-high-priority";
+    public static final String NAME_LOW = "message-latency-low-priority";
 
     private static final String SPLIT_LATENCY = "latency";
 
-    public static void onMessageReceived(long serverReceiveTimestamp, long serverDeliverTimestamp) {
-      long latency = serverDeliverTimestamp - serverReceiveTimestamp;
+    public static void onMessageReceived(long serverReceiveTimestamp, long serverDeliverTimestamp, boolean highPriority) {
+      String name    = highPriority ? NAME_HIGH : NAME_LOW;
+      long   latency = serverDeliverTimestamp - serverReceiveTimestamp;
 
-      String id = NAME + System.currentTimeMillis();
-      LocalMetrics.getInstance().start(id, NAME);
+      String id = name + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, name);
       LocalMetrics.getInstance().splitWithDuration(id, SPLIT_LATENCY, latency);
       LocalMetrics.getInstance().end(id);
     }
