@@ -180,13 +180,15 @@ class StoryViewerPageFragment :
     val cardWrapper: TouchInterceptingFrameLayout = view.findViewById(R.id.story_content_card_touch_interceptor)
     val card: MaterialCardView = view.findViewById(R.id.story_content_card)
     val caption: EmojiTextView = view.findViewById(R.id.story_caption)
-    val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
+    val largeCaption: EmojiTextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
     val storyGradientTop: View = view.findViewById(R.id.story_gradient_top)
     val storyGradientBottom: View = view.findViewById(R.id.story_bottom_gradient_container)
     val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
     val addToGroupStoryButtonWrapper: View = view.findViewById(R.id.add_wrapper)
+
+    largeCaption.bindGestureListener()
 
     storyNormalBottomGradient = view.findViewById(R.id.story_gradient_bottom)
     storyCaptionBottomGradient = view.findViewById(R.id.story_caption_gradient)
@@ -819,7 +821,7 @@ class StoryViewerPageFragment :
   }
 
   @SuppressLint("SetTextI18n")
-  private fun presentCaption(caption: EmojiTextView, largeCaption: TextView, largeCaptionOverlay: View, storyPost: StoryPost) {
+  private fun presentCaption(caption: EmojiTextView, largeCaption: EmojiTextView, largeCaptionOverlay: View, storyPost: StoryPost) {
     val displayBody: CharSequence = if (storyPost.content is StoryPost.Content.AttachmentContent) {
       val displayBodySpan = SpannableString(storyPost.content.attachment.caption ?: "")
       val ranges: BodyRangeList? = storyPost.conversationMessage.messageRecord.messageRanges
@@ -843,6 +845,7 @@ class StoryViewerPageFragment :
     caption.setOverflowText(getString(R.string.StoryViewerPageFragment__see_more))
     caption.maxLines = 5
     caption.text = displayBody
+    caption.setMaxLength(280)
 
     if (caption.text.length == displayBody.length) {
       caption.setOnClickListener(null)
