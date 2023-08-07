@@ -140,7 +140,7 @@
         android:id="@+id/embedded_text_editor"
         style="@style/ComposeEditText"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:nextFocusRight="@+id/send_button"
         android:nextFocusForward="@+id/send_button"
