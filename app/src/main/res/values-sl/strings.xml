@@ -349,10 +349,10 @@
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
-        <item quantity="one">Only %1$d edit can be applied to this message.</item>
-        <item quantity="two">Only %1$d edits can be applied to this message.</item>
-        <item quantity="few">Only %1$d edits can be applied to this message.</item>
-        <item quantity="other">Only %1$d edits can be applied to this message.</item>
+        <item quantity="one">To sporočilo je mogoče urediti le %1$dx.</item>
+        <item quantity="two">To sporočilo je mogoče urediti le %1$dx.</item>
+        <item quantity="few">To sporočilo je mogoče urediti le %1$dx.</item>
+        <item quantity="other">To sporočilo je mogoče urediti le %1$dx.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
@@ -6315,9 +6315,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon je izključen</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">Zvočnik je vključen</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">Zvočnik je izključen</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Gumb za zajem</string>

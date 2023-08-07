@@ -1741,7 +1741,7 @@
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Встановлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play та спробуйте знову.</string>
 
     <!-- PinRestoreEntryFragment -->
-    <string name="PinRestoreEntryFragment_incorrect_pin">Неправельний PIN-код</string>
+    <string name="PinRestoreEntryFragment_incorrect_pin">Неправильний PIN-код</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">Пропустити введення PIN-коду?</string>
     <string name="PinRestoreEntryFragment_need_help">Потрібна допомога?</string>
     <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Ваш PIN-код – це %1$d + цифровий код, який Ви створили та який може бути цифровим або буквено-цифровим. Якщо Ви не пам’ятаєте свій PIN-код, Ви можете створити новий. Ви можете зареєструватись і використовувати свій обліковий запис, але Ви втратите деякі збережені налаштування, як-от інформацію профілю.</string>
@@ -3692,7 +3692,7 @@
     <string name="RegistrationLockFragment__switch_keyboard">Перемкнути клавіатуру</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Неправильний PIN-код. Будь ласка спробуйте ще раз.</string>
     <string name="RegistrationLockFragment__forgot_pin">Забули PIN?</string>
-    <string name="RegistrationLockFragment__incorrect_pin">Неправельний PIN-код</string>
+    <string name="RegistrationLockFragment__incorrect_pin">Неправильний PIN-код</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Забули свій PIN-код?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Залишилося не так багато спроб!</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Реєстрація в Signal - Потрібна допомога з PIN-кодом для Android (v2 PIN)</string>
@@ -6315,9 +6315,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Мікрофон вимкнено</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">Динамік увімкнено</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">Динамік вимкнено</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Кнопка «Сфотографувати»</string>

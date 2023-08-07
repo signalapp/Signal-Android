@@ -6061,9 +6061,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">میکروفون خاموش</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">بلندگو روشن شد</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">بلندگو خاموش شد</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">دکمه ضبط</string>
