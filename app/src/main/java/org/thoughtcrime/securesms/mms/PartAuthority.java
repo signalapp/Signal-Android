@@ -3,10 +3,14 @@ package org.thoughtcrime.securesms.mms;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
+import android.content.res.AssetFileDescriptor;
+import android.database.Cursor;
 import android.net.Uri;
+import android.provider.DocumentsContract;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.provider.DocumentsContractCompat;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -20,6 +24,7 @@ import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -78,7 +83,7 @@ public class PartAuthority {
       case WALLPAPER_ROW:     return WallpaperStorage.read(context, getWallpaperFilename(uri));
       case EMOJI_ROW:         return EmojiFiles.openForReading(context, getEmojiFilename(uri));
       case AVATAR_PICKER_ROW: return AvatarPickerStorage.read(context, getAvatarPickerFilename(uri));
-      default:                return context.getContentResolver().openInputStream(uri);
+      default:                return openExternalFileStream(context, uri);
       }
     } catch (SecurityException se) {
       throw new IOException(se);
@@ -222,5 +227,46 @@ public class PartAuthority {
 
   public static @NonNull AttachmentId requireAttachmentId(@NonNull Uri uri) {
     return new PartUriParser(uri).getPartId();
+  }
+
+  private static @Nullable InputStream openExternalFileStream(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    if (isVirtualFile(context, uri)) {
+      return getInputStreamForVirtualFile(context, uri);
+    } else {
+      return context.getContentResolver().openInputStream(uri);
+    }
+  }
+
+  private static boolean isVirtualFile(@NonNull Context context, @NonNull Uri uri) {
+    if (!DocumentsContractCompat.isDocumentUri(context, uri)) {
+      return false;
+    }
+
+    try (Cursor cursor = context.getContentResolver().query(uri, new String[]{DocumentsContract.Document.COLUMN_FLAGS}, null, null, null, null)) {
+      if (cursor == null) {
+        return false;
+      }
+
+      int flags = cursor.moveToFirst() ? cursor.getInt(0) : 0;
+      return (flags & DocumentsContractCompat.DocumentCompat.FLAG_VIRTUAL_DOCUMENT) != 0;
+    }
+  }
+
+  /** @noinspection resource*/
+  private static @Nullable InputStream getInputStreamForVirtualFile(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    String[] openableMimeTypes = context.getContentResolver().getStreamTypes(uri, "*/*");
+
+    if (openableMimeTypes == null || openableMimeTypes.length < 1) {
+      throw new FileNotFoundException("No openable mime-types for virtual file.");
+    }
+
+    AssetFileDescriptor fileDescriptor = context.getContentResolver()
+                                                .openTypedAssetFileDescriptor(uri, openableMimeTypes[0], null);
+
+    if (fileDescriptor == null) {
+      throw new FileNotFoundException("Couldn't open file descriptor for virtual file.");
+    }
+
+    return fileDescriptor.createInputStream();
   }
 }
