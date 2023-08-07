@@ -353,10 +353,6 @@ public final class PushGroupSendJob extends PushSendJob {
             MessageRecord storyRecord = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
             Recipient     storyAuthor = storyRecord.getFromRecipient();
 
-            destinations = destinations.stream()
-                                       .filter(r -> r.getStoriesCapability() == Recipient.Capability.SUPPORTED)
-                                       .collect(java.util.stream.Collectors.toList());
-
             SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyAuthor.requireServiceId(), storyRecord.getDateSent());
             groupMessageBuilder.withStoryContext(storyContext);
 

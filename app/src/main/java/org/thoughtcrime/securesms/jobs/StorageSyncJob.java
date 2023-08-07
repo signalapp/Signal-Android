@@ -489,7 +489,6 @@ public class StorageSyncJob extends BaseJob {
   private static List<Integer> getKnownTypes() {
     return Arrays.stream(ManifestRecord.Identifier.Type.values())
                  .filter(it -> !it.equals(ManifestRecord.Identifier.Type.UNKNOWN) && !it.equals(ManifestRecord.Identifier.Type.UNRECOGNIZED))
-                 .filter(it -> Recipient.self().getStoriesCapability() == Recipient.Capability.SUPPORTED || !it.equals(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST))
                  .map(it -> it.getNumber())
                  .collect(Collectors.toList());
   }

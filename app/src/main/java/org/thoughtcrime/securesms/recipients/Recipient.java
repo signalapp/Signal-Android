@@ -1049,10 +1049,6 @@ public class Recipient {
     return !NotificationChannels.supported() ? null : notificationChannel;
   }
 
-  public @NonNull Capability getStoriesCapability() {
-    return capabilities.getStoriesCapability();
-  }
-
   public @NonNull Capability getGiftBadgesCapability() {
     return capabilities.getGiftBadgesCapability();
   }
