@@ -21,12 +21,17 @@ data class PendingParticipantCollection(
   private val nowProvider: () -> Duration = { System.currentTimeMillis().milliseconds }
 ) {
 
+  companion object {
+    private val MAX_DENIALS = 2
+  }
+
   /**
    * Creates a new collection with the given recipients applied to it with the following rules:
    *
    * 1. If the recipient is already in the collection, ignore it
-   * 1. Otherwise, insert the recipient at the end of the colleciton in the pending state
+   * 1. Otherwise, insert the recipient at the end of the collection in the pending state
    * 1. Any recipients in the resulting collection that are [State.PENDING] and NOT in the passed recipient list are removed.
+   * 1. Any recipients in the resulting collection that are [State.DENIED] and have a denial count less than [MAX_DENIALS] is moved to [State.PENDING]
    */
   fun withRecipients(recipients: List<Recipient>): PendingParticipantCollection {
     val now = nowProvider()
@@ -38,25 +43,36 @@ data class PendingParticipantCollection(
       )
     }
 
-    val recipientIds = recipients.map { it.id }
-    val newEntryMap = (participantMap + newEntries).filterNot { it.value.state == State.PENDING && it.key !in recipientIds }
+    val submittedIdSet = recipients.map { it.id }.toSet()
+    val newEntryMap = (participantMap + newEntries)
+      .filterNot { it.value.state == State.PENDING && it.key !in submittedIdSet }
+      .mapValues {
+        if (it.value.state == State.DENIED && it.key in submittedIdSet && it.value.denialCount < MAX_DENIALS) {
+          it.value.copy(state = State.PENDING, stateChangeAt = now)
+        } else {
+          it.value
+        }
+      }
 
     return copy(participantMap = newEntryMap)
   }
 
   /**
-   * Creates a new collection with the given recipient marked as [State.APPROVED]
+   * Creates a new collection with the given recipient marked as [State.APPROVED].
+   * Resets the denial count for that recipient.
    */
   fun withApproval(recipient: Recipient): PendingParticipantCollection {
     val now = nowProvider()
-    val entry = Entry(
-      recipient = recipient,
-      state = State.APPROVED,
-      stateChangeAt = now
-    )
+    val entry = participantMap[recipient.id] ?: return this
 
     return copy(
-      participantMap = participantMap + (recipient.id to entry)
+      participantMap = participantMap + (
+        recipient.id to entry.copy(
+          denialCount = 0,
+          state = State.APPROVED,
+          stateChangeAt = now
+        )
+        )
     )
   }
 
@@ -65,14 +81,16 @@ data class PendingParticipantCollection(
    */
   fun withDenial(recipient: Recipient): PendingParticipantCollection {
     val now = nowProvider()
-    val entry = Entry(
-      recipient = recipient,
-      state = State.DENIED,
-      stateChangeAt = now
-    )
+    val entry = participantMap[recipient.id] ?: return this
 
     return copy(
-      participantMap = participantMap + (recipient.id to entry)
+      participantMap = participantMap + (
+        recipient.id to entry.copy(
+          denialCount = entry.denialCount + 1,
+          state = State.DENIED,
+          stateChangeAt = now
+        )
+        )
     )
   }
 
@@ -103,7 +121,8 @@ data class PendingParticipantCollection(
   data class Entry(
     val recipient: Recipient,
     val state: State,
-    val stateChangeAt: Duration
+    val stateChangeAt: Duration,
+    val denialCount: Int = 0
   )
 
   /**

@@ -58,7 +58,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private final LiveData<WebRtcControls>                      controlsWithFoldableState = LiveDataUtil.combineLatest(foldableState, webRtcControls, this::updateControlsFoldableState);
   private final LiveData<WebRtcControls>                      realWebRtcControls        = LiveDataUtil.combineLatest(isInPipMode, controlsWithFoldableState, this::getRealWebRtcControls);
   private final SingleLiveEvent<Event>                        events                    = new SingleLiveEvent<>();
-  private final MutableLiveData<Long>                         elapsed                   = new MutableLiveData<>(-1L);
+  private final BehaviorSubject<Long>                         elapsed                   = BehaviorSubject.createDefault(-1L);
   private final MutableLiveData<LiveRecipient>                liveRecipient             = new MutableLiveData<>(Recipient.UNKNOWN.live());
   private final DefaultValueLiveData<CallParticipantsState>   participantsState         = new DefaultValueLiveData<>(CallParticipantsState.STARTING_STATE);
   private final SingleLiveEvent<CallParticipantListUpdate>    callParticipantListUpdate = new SingleLiveEvent<>();
@@ -142,8 +142,22 @@ public class WebRtcCallViewModel extends ViewModel {
     return events;
   }
 
-  public LiveData<Long> getCallTime() {
-    return Transformations.map(elapsed, timeInCall -> callConnectedTime == -1 ? -1 : timeInCall);
+  public Observable<InCallStatus> getInCallstatus() {
+    Observable<Long> elapsedTime = elapsed.map(timeInCall -> callConnectedTime == -1 ? -1 : timeInCall);
+
+    return Observable.combineLatest(
+        elapsedTime,
+        pendingParticipants,
+        (time, participants) -> {
+          Set<PendingParticipantCollection.Entry> pending = participants.getUnresolvedPendingParticipants();
+
+          if (pending.isEmpty()) {
+            return new InCallStatus.ElapsedTime(time);
+          } else {
+            return new InCallStatus.PendingUsers(pending.size());
+          }
+        }
+    ).distinctUntilChanged();
   }
 
   public LiveData<CallParticipantsState> getCallParticipantsState() {
@@ -192,6 +206,10 @@ public class WebRtcCallViewModel extends ViewModel {
 
   public @NonNull Observable<PendingParticipantCollection> getPendingParticipants() {
     return pendingParticipants.observeOn(AndroidSchedulers.mainThread());
+  }
+
+  public @NonNull PendingParticipantCollection getPendingParticipantsSnapshot() {
+    return pendingParticipants.getValue();
   }
 
   @MainThread
@@ -466,7 +484,7 @@ public class WebRtcCallViewModel extends ViewModel {
 
     long newValue = (System.currentTimeMillis() - callConnectedTime) / 1000;
 
-    elapsed.postValue(newValue);
+    elapsed.onNext(newValue);
 
     elapsedTimeHandler.postDelayed(elapsedTimeRunnable, 1000);
   }

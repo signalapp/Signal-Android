@@ -164,7 +164,8 @@ class PendingParticipantCollectionTest {
     val expected = PendingParticipantCollection.Entry(
       recipient = recipients[0],
       state = PendingParticipantCollection.State.DENIED,
-      stateChangeAt = 1.milliseconds
+      stateChangeAt = 1.milliseconds,
+      denialCount = 1
     )
     val actual = subject.getAllPendingParticipants(0.milliseconds).first()
 
@@ -223,6 +224,45 @@ class PendingParticipantCollectionTest {
     val actual = subject.getAllPendingParticipants(0.milliseconds)
 
     assertEquals(expected, actual)
+  }
+
+  @Test
+  fun `Given a participant is denied once, when I withRecipients, then I expect the state to be changed to PENDING`() {
+    val recipients = createRecipients(1)
+    val expected = PendingParticipantCollection.Entry(
+      recipient = recipients[0],
+      state = PendingParticipantCollection.State.PENDING,
+      stateChangeAt = 2.milliseconds,
+      denialCount = 1
+    )
+
+    val actual = testSubject
+      .withRecipients(recipients)
+      .withDenial(recipients[0])
+      .withRecipients(recipients)
+      .getAllPendingParticipants(0.milliseconds)
+
+    assertEquals(expected, actual.first())
+  }
+
+  @Test
+  fun `Given a participant is denied twice, when I withRecipients, then I expect the state to be DENIED`() {
+    val recipients = createRecipients(1)
+    val expected = PendingParticipantCollection.Entry(
+      recipient = recipients[0],
+      state = PendingParticipantCollection.State.DENIED,
+      stateChangeAt = 2.milliseconds,
+      denialCount = 2
+    )
+
+    val actual = testSubject
+      .withRecipients(recipients)
+      .withDenial(recipients[0])
+      .withDenial(recipients[0])
+      .withRecipients(recipients)
+      .getAllPendingParticipants(0.milliseconds)
+
+    assertEquals(expected, actual.first())
   }
 
   private fun createRecipients(count: Int): List<Recipient> {

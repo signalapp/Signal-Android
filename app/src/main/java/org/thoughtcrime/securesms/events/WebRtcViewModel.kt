@@ -94,6 +94,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val remoteDevicesCount: OptionalLong = state.callInfoState.remoteDevicesCount
   val participantLimit: Long? = state.callInfoState.participantLimit
   val pendingParticipants: PendingParticipantCollection = state.callInfoState.pendingParticipants
+  val isCallLink: Boolean = state.callInfoState.callRecipient.isCallLink
 
   @get:JvmName("shouldRingGroup")
   val ringGroup: Boolean = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringGroup

@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -354,19 +355,19 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleDropCall(s, callId));
   }
 
-  public void setCallLinkJoinRequestAccepted(@NonNull Recipient participant) {
+  public void setCallLinkJoinRequestAccepted(@NonNull RecipientId participant) {
     process((s, p) -> p.handleSetCallLinkJoinRequestAccepted(s, participant));
   }
 
-  public void setCallLinkJoinRequestRejected(@NonNull Recipient participant) {
+  public void setCallLinkJoinRequestRejected(@NonNull RecipientId participant) {
     process((s, p) -> p.handleSetCallLinkJoinRequestRejected(s, participant));
   }
 
-  public void removeFromCallLink(@NonNull Recipient participant) {
+  public void removeFromCallLink(@NonNull CallParticipant participant) {
     process((s, p) -> p.handleRemoveFromCallLink(s, participant));
   }
 
-  public void blockFromCallLink(@NonNull Recipient participant) {
+  public void blockFromCallLink(@NonNull CallParticipant participant) {
     process((s, p) -> p.handleBlockFromCallLink(s, participant));
   }
 

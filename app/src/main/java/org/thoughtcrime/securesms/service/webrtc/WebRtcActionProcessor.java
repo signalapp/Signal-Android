@@ -877,25 +877,25 @@ public abstract class WebRtcActionProcessor {
 
   //region Call Links
 
-  protected @NonNull WebRtcServiceState handleSetCallLinkJoinRequestAccepted(@NonNull WebRtcServiceState currentState, @NonNull Recipient participant) {
+  protected @NonNull WebRtcServiceState handleSetCallLinkJoinRequestAccepted(@NonNull WebRtcServiceState currentState, @NonNull RecipientId participant) {
     Log.i(tag, "handleSetCallLinkJoinRequestAccepted not processed");
 
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSetCallLinkJoinRequestRejected(@NonNull WebRtcServiceState currentState, @NonNull Recipient participant) {
+  protected @NonNull WebRtcServiceState handleSetCallLinkJoinRequestRejected(@NonNull WebRtcServiceState currentState, @NonNull RecipientId participant) {
     Log.i(tag, "handleSetCallLinkJoinRequestRejected not processed");
 
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleRemoveFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull Recipient participant) {
+  protected @NonNull WebRtcServiceState handleRemoveFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
     Log.i(tag, "handleRemoveFromCallLink not processed");
 
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleBlockFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull Recipient participant) {
+  protected @NonNull WebRtcServiceState handleBlockFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
     Log.i(tag, "handleBlockFromCallLink not processed");
 
     return currentState;

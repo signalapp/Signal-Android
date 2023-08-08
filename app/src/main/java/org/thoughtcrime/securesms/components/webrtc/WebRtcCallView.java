@@ -129,6 +129,7 @@ public class WebRtcCallView extends ConstraintLayout {
   private Toolbar                       collapsedToolbar;
   private Toolbar                       headerToolbar;
   private Stub<PendingParticipantsView> pendingParticipantsViewStub;
+  private Stub<View>                    callLinkWarningCard;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -207,6 +208,7 @@ public class WebRtcCallView extends ConstraintLayout {
     collapsedToolbar              = findViewById(R.id.webrtc_call_view_toolbar_text);
     headerToolbar                 = findViewById(R.id.webrtc_call_view_toolbar_no_text);
     pendingParticipantsViewStub   = new Stub<>(findViewById(R.id.call_screen_pending_recipients));
+    callLinkWarningCard           = new Stub<>(findViewById(R.id.call_screen_call_link_warning));
 
     View      decline                = findViewById(R.id.call_screen_decline_call);
     View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
@@ -462,10 +464,13 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (state.getGroupCallState().isNotIdle()) {
       if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+        callLinkWarningCard.setVisibility(callParticipantsViewState.isStartedFromCallLink() ? View.VISIBLE : View.GONE);
         setStatus(state.getPreJoinGroupDescription(getContext()));
       } else if (state.getCallState() == WebRtcViewModel.State.CALL_CONNECTED && state.isInOutgoingRingingMode()) {
+        callLinkWarningCard.setVisibility(View.GONE);
         setStatus(state.getOutgoingRingingGroupDescription(getContext()));
       } else if (state.getGroupCallState().isRinging()) {
+        callLinkWarningCard.setVisibility(View.GONE);
         setStatus(state.getIncomingRingingGroupDescription(getContext()));
       }
     }

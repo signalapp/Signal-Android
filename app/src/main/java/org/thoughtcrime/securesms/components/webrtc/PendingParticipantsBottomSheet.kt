@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc
 
+import android.os.Bundle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -60,6 +61,13 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
     const val REQUEST_KEY = "PendingParticipantsBottomSheet_result"
+    private const val ACTION = "PendingParticipantsBottomSheet_action"
+
+    @JvmStatic
+    fun getAction(bundle: Bundle): Action {
+      val code = bundle.getInt(ACTION, 0)
+      return Action.values().first { it.code == code }
+    }
   }
 
   private val viewModel: WebRtcCallViewModel by activityViewModel {
@@ -88,21 +96,39 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun onApprove(recipient: Recipient) {
-    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(recipient)
+    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(recipient.id)
   }
 
   private fun onDeny(recipient: Recipient) {
-    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(recipient)
+    ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(recipient.id)
   }
 
   private fun onApproveAll() {
     dismiss()
-    setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to true))
+
+    setFragmentResult(
+      REQUEST_KEY,
+      bundleOf(
+        ACTION to Action.APPROVE_ALL.code
+      )
+    )
   }
 
   private fun onDenyAll() {
     dismiss()
-    setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to false))
+
+    setFragmentResult(
+      REQUEST_KEY,
+      bundleOf(
+        ACTION to Action.DENY_ALL.code
+      )
+    )
+  }
+
+  enum class Action(val code: Int) {
+    NONE(0),
+    APPROVE_ALL(1),
+    DENY_ALL(2)
   }
 }
 
@@ -112,8 +138,16 @@ private fun PendingParticipantsSheetPreview() {
   SignalTheme(isDarkMode = true) {
     Surface(shape = RoundedCornerShape(18.dp, 18.dp)) {
       PendingParticipantsSheet(
-        pendingParticipants = (1 until 7).map {
-          PendingParticipantCollection.Entry(Recipient.UNKNOWN, PendingParticipantCollection.State.PENDING, System.currentTimeMillis().milliseconds)
+        pendingParticipants = listOf(
+          PendingParticipantCollection.State.PENDING,
+          PendingParticipantCollection.State.APPROVED,
+          PendingParticipantCollection.State.DENIED
+        ).map {
+          PendingParticipantCollection.Entry(
+            recipient = Recipient.UNKNOWN,
+            state = it,
+            stateChangeAt = System.currentTimeMillis().milliseconds
+          )
         },
         onApproveAll = {},
         onDenyAll = {},
@@ -232,6 +266,11 @@ private fun PendingParticipantRow(
       symbol = ImageVector.vectorResource(id = R.drawable.symbol_x_compact_bold_16),
       contentDescription = stringResource(id = R.string.PendingParticipantsBottomSheet__reject),
       backgroundColor = colorResource(id = R.color.webrtc_hangup_background),
+      state = when (participant.state) {
+        PendingParticipantCollection.State.PENDING -> CircularIconButtonState.NORMAL
+        PendingParticipantCollection.State.APPROVED -> CircularIconButtonState.INVISIBLE
+        PendingParticipantCollection.State.DENIED -> CircularIconButtonState.DISABLED
+      },
       onClick = onDenyCallback
     )
 
@@ -241,6 +280,11 @@ private fun PendingParticipantRow(
       symbol = ImageVector.vectorResource(id = R.drawable.symbol_check_compact_bold_16),
       contentDescription = stringResource(id = R.string.PendingParticipantsBottomSheet__approve),
       backgroundColor = colorResource(id = R.color.signal_accent_green),
+      state = when (participant.state) {
+        PendingParticipantCollection.State.PENDING -> CircularIconButtonState.NORMAL
+        PendingParticipantCollection.State.APPROVED -> CircularIconButtonState.DISABLED
+        PendingParticipantCollection.State.DENIED -> CircularIconButtonState.INVISIBLE
+      },
       onClick = onApproveCallback
     )
   }
@@ -251,20 +295,27 @@ private fun CircularIconButton(
   symbol: ImageVector,
   contentDescription: String?,
   backgroundColor: Color,
+  state: CircularIconButtonState,
   onClick: () -> Unit
 ) {
-  Icon(
-    imageVector = symbol,
-    contentDescription = contentDescription,
-    modifier = Modifier
-      .size(28.dp)
-      .background(
-        color = backgroundColor,
-        shape = CircleShape
-      )
-      .clickable(onClick = onClick)
-      .padding(6.dp)
-  )
+  if (state == CircularIconButtonState.INVISIBLE) {
+    Spacer(modifier = Modifier.size(28.dp))
+  } else {
+    val enabled = state != CircularIconButtonState.DISABLED
+
+    Icon(
+      imageVector = symbol,
+      contentDescription = contentDescription,
+      modifier = Modifier
+        .size(28.dp)
+        .background(
+          color = if (enabled) backgroundColor else MaterialTheme.colorScheme.secondaryContainer,
+          shape = CircleShape
+        )
+        .clickable(enabled = enabled, onClick = onClick)
+        .padding(6.dp)
+    )
+  }
 }
 
 @Composable
@@ -288,4 +339,10 @@ private fun PendingParticipantAvatar(recipient: Recipient) {
       it.setAvatar(recipient)
     }
   }
+}
+
+private enum class CircularIconButtonState {
+  NORMAL,
+  DISABLED,
+  INVISIBLE
 }

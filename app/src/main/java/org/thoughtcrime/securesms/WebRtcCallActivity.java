@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
+import org.thoughtcrime.securesms.components.webrtc.InCallStatus;
 import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsBottomSheet;
 import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice;
@@ -98,6 +99,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -114,7 +116,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   /**
    * ANSWER the call via voice-only.
    */
-  public static final String ANSWER_ACTION       = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
+  public static final String ANSWER_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".ANSWER_ACTION";
 
   /**
    * ANSWER the call via video.
@@ -125,6 +127,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   public static final String EXTRA_ENABLE_VIDEO_IF_AVAILABLE = WebRtcCallActivity.class.getCanonicalName() + ".ENABLE_VIDEO_IF_AVAILABLE";
   public static final String EXTRA_STARTED_FROM_FULLSCREEN   = WebRtcCallActivity.class.getCanonicalName() + ".STARTED_FROM_FULLSCREEN";
+  public static final String EXTRA_STARTED_FROM_CALL_LINK    = WebRtcCallActivity.class.getCanonicalName() + ".STARTED_FROM_CALL_LINK";
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
   private CallStateUpdatePopupWindow            callStateUpdatePopupWindow;
@@ -198,6 +201,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     windowInfoTrackerCallbackAdapter.addWindowLayoutInfoListener(this, SignalExecutors.BOUNDED, windowLayoutInfoConsumer);
 
     requestNewSizesThrottle = new ThrottledDebouncer(TimeUnit.SECONDS.toMillis(1));
+
+    initializePendingParticipantFragmentListener();
   }
 
   @Override
@@ -344,6 +349,54 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
   }
 
+  private void initializePendingParticipantFragmentListener() {
+    if (!FeatureFlags.adHocCalling()) {
+      return;
+    }
+
+    getSupportFragmentManager().setFragmentResultListener(
+        PendingParticipantsBottomSheet.REQUEST_KEY,
+        this,
+        (requestKey, result) -> {
+          PendingParticipantsBottomSheet.Action action = PendingParticipantsBottomSheet.getAction(result);
+          List<RecipientId> recipientIds = viewModel.getPendingParticipantsSnapshot()
+                                                    .getUnresolvedPendingParticipants()
+                                                    .stream()
+                                                    .map(r -> r.getRecipient().getId())
+                                                    .collect(Collectors.toList());
+
+          switch (action) {
+            case NONE:
+              break;
+            case APPROVE_ALL:
+              new MaterialAlertDialogBuilder(this)
+                  .setTitle(getResources().getQuantityString(R.plurals.WebRtcCallActivity__approve_d_requests, recipientIds.size(), recipientIds.size()))
+                  .setMessage(getResources().getQuantityString(R.plurals.WebRtcCallActivity__d_people_will_be_added_to_the_call, recipientIds.size(), recipientIds.size()))
+                  .setNegativeButton(android.R.string.cancel, null)
+                  .setPositiveButton(R.string.WebRtcCallActivity__approve_all, (dialog, which) -> {
+                    for (RecipientId id : recipientIds) {
+                      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(id);
+                    }
+                  })
+                  .show();
+              break;
+            case DENY_ALL:
+              new MaterialAlertDialogBuilder(this)
+                  .setTitle(getResources().getQuantityString(R.plurals.WebRtcCallActivity__deny_d_requests, recipientIds.size(), recipientIds.size()))
+                  .setMessage(getResources().getQuantityString(R.plurals.WebRtcCallActivity__d_people_will_be_added_to_the_call, recipientIds.size(), recipientIds.size()))
+                  .setNegativeButton(android.R.string.cancel, null)
+                  .setPositiveButton(R.string.WebRtcCallActivity__deny_all, (dialog, which) -> {
+                    for (RecipientId id : recipientIds) {
+                      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(id);
+                    }
+                  })
+                  .show();
+              break;
+          }
+        }
+    );
+  }
+
   private void initializeScreenshotSecurity() {
     if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
       getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
@@ -373,12 +426,14 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
     viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
-    viewModel.getCallTime().observe(this, this::handleCallTime);
 
+    lifecycleDisposable.add(viewModel.getInCallstatus().subscribe(this::handleInCallStatus));
+
+    boolean isStartedFromCallLink = getIntent().getBooleanExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, false);
     LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(),
                                viewModel.getOrientationAndLandscapeEnabled(),
                                viewModel.getEphemeralState(),
-                               (s, o, e) -> new CallParticipantsViewState(s, e, o.first == PORTRAIT_BOTTOM_EDGE, o.second))
+                               (s, o, e) -> new CallParticipantsViewState(s, e, o.first == PORTRAIT_BOTTOM_EDGE, o.second, isStartedFromCallLink))
                 .observe(this, p -> callScreen.updateCallParticipants(p));
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
@@ -474,14 +529,27 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
   }
 
-  private void handleCallTime(long callTime) {
-    EllapsedTimeFormatter ellapsedTimeFormatter = EllapsedTimeFormatter.fromDurationMillis(callTime);
+  private void handleInCallStatus(@NonNull InCallStatus inCallStatus) {
+    if (inCallStatus instanceof InCallStatus.ElapsedTime) {
 
-    if (ellapsedTimeFormatter == null) {
-      return;
+      EllapsedTimeFormatter ellapsedTimeFormatter = EllapsedTimeFormatter.fromDurationMillis(((InCallStatus.ElapsedTime) inCallStatus).getElapsedTime());
+
+      if (ellapsedTimeFormatter == null) {
+        return;
+      }
+
+      callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
+    } else if (inCallStatus instanceof InCallStatus.PendingUsers) {
+      int waiting = ((InCallStatus.PendingUsers) inCallStatus).getPendingUserCount();
+
+      callScreen.setStatus(getResources().getQuantityString(
+          R.plurals.WebRtcCallActivity__d_people_waiting,
+          waiting,
+          waiting
+      ));
+    } else {
+      throw new AssertionError();
     }
-
-    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
   }
 
   private void handleSetAudioHandset() {
@@ -702,7 +770,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   @Override
-  public void onMessageResentAfterSafetyNumberChange() { }
+  public void onMessageResentAfterSafetyNumberChange() {}
 
   @Override
   public void onCanceled() {
@@ -968,12 +1036,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onAllowPendingRecipient(@NonNull Recipient pendingRecipient) {
-      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(pendingRecipient);
+      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestAccepted(pendingRecipient.getId());
     }
 
     @Override
     public void onRejectPendingRecipient(@NonNull Recipient pendingRecipient) {
-      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(pendingRecipient);
+      ApplicationDependencies.getSignalCallManager().setCallLinkJoinRequestRejected(pendingRecipient.getId());
     }
 
     @Override
