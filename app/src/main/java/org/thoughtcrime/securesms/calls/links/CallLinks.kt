@@ -68,7 +68,7 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
-    if (FeatureFlags.adHocCalling()) {
+    if (!FeatureFlags.adHocCalling()) {
       return null
     }
 
