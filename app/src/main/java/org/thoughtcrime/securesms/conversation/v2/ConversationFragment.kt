@@ -830,7 +830,7 @@ class ConversationFragment :
       .doOnSuccess { state ->
         adapter.setMessageRequestIsAccepted(state.meta.messageRequestData.isMessageRequestAccepted)
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
-        conversationItemDecorations.setFirstUnreadState(state.meta.lastSeen)
+        conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
         colorizer.onGroupMembershipChanged(state.meta.groupMemberAcis)
       }
       .observeOn(AndroidSchedulers.mainThread())
