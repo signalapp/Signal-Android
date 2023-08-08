@@ -335,9 +335,19 @@ public class CommunicationActions {
   }
 
   public static void handlePotentialCallLinkUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    if (!FeatureFlags.adHocCalling()) {
+      Toast.makeText(activity, R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
+      return;
+    }
+
     CallLinkRootKey rootKey = CallLinks.parseUrl(potentialUrl);
     if (rootKey == null) {
       Log.w(TAG, "Failed to parse root key from call link");
+      new MaterialAlertDialogBuilder(activity)
+          .setTitle(R.string.CommunicationActions_invalid_link)
+          .setMessage(R.string.CommunicationActions_this_is_not_a_valid_call_link)
+          .setPositiveButton(android.R.string.ok, null)
+          .show();
       return;
     }
 
