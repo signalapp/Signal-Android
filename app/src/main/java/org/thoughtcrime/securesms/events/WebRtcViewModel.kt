@@ -55,6 +55,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     CONNECTING,
     RECONNECTING,
     CONNECTED,
+    CONNECTED_AND_PENDING,
     CONNECTED_AND_JOINING,
     CONNECTED_AND_JOINED;
 
@@ -67,7 +68,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     val isConnected: Boolean
       get() {
         return when (this) {
-          CONNECTED, CONNECTED_AND_JOINING, CONNECTED_AND_JOINED -> true
+          CONNECTED, CONNECTED_AND_JOINING, CONNECTED_AND_JOINED, CONNECTED_AND_PENDING -> true
           else -> false
         }
       }

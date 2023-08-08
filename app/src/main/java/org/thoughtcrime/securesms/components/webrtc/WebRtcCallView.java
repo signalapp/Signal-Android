@@ -640,6 +640,9 @@ public class WebRtcCallView extends ConstraintLayout {
       case CONNECTED_AND_JOINING:
         setStatus(R.string.WebRtcCallView__joining);
         break;
+      case CONNECTED_AND_PENDING:
+        setStatus(R.string.WebRtcCallView__waiting_to_be_let_in);
+        break;
       case CONNECTING:
       case CONNECTED_AND_JOINED:
       case CONNECTED:

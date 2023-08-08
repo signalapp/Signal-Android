@@ -1774,6 +1774,8 @@
     <string name="WebRtcCallView__signal_call_link">Signal call link</string>
     <!-- Warning displayed when entering a call via a link -->
     <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal will ring %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal will ring %1$s and %2$s</string>

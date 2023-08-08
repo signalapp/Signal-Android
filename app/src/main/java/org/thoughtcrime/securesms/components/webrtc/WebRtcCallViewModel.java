@@ -426,6 +426,7 @@ public class WebRtcCallViewModel extends ViewModel {
         break;
       case CONNECTED:
       case CONNECTED_AND_JOINING:
+      case CONNECTED_AND_PENDING:
       case CONNECTED_AND_JOINED:
         groupCallState = WebRtcControls.GroupCallState.CONNECTED;
         break;
