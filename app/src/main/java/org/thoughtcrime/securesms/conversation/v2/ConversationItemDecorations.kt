@@ -94,9 +94,9 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
   }
 
   /** Must be called before first setting of [currentItems] */
-  fun setFirstUnreadState(unreadCount: Int, lastSeenTimestamp: Long) {
+  fun setFirstUnreadState(lastSeenTimestamp: Long) {
     if (unreadState == UnreadState.None && lastSeenTimestamp > 0) {
-      unreadState = UnreadState.InitialUnreadState(unreadCount = unreadCount, lastSeenTimestamp = lastSeenTimestamp)
+      unreadState = UnreadState.InitialUnreadState(lastSeenTimestamp = lastSeenTimestamp)
     }
   }
 
@@ -114,12 +114,11 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     if (state is UnreadState.InitialUnreadState) {
       val firstUnread = items
         .filterIsInstance<ConversationMessageElement>()
-        .takeWhile { it.timestamp() > state.lastSeenTimestamp }
-        .lastOrNull()
+        .lastOrNull { it.timestamp() > state.lastSeenTimestamp }
 
       if (firstUnread != null) {
         unreadState = UnreadState.CompleteUnreadState(
-          unreadCount = state.unreadCount,
+          unreadCount = items.indexOf(firstUnread as ConversationElement?) + 1,
           firstUnreadTimestamp = firstUnread.timestamp()
         )
       }
@@ -205,7 +204,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     return if (scheduleMessageMode) {
       (conversationMessage.messageRecord as MediaMmsMessageRecord).scheduledDate
     } else {
-      conversationMessage.messageRecord.dateReceived
+      conversationMessage.conversationTimestamp
     }
   }
 
@@ -276,7 +275,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     object None : UnreadState()
 
     /** On first load of data, there is at least 1 unread message but we don't know the 'position' in the list yet */
-    data class InitialUnreadState(val unreadCount: Int, val lastSeenTimestamp: Long) : UnreadState()
+    data class InitialUnreadState(val lastSeenTimestamp: Long) : UnreadState()
 
     /** We have at least one unread and know the timestamp of the first unread message and thus 'position' for the header */
     data class CompleteUnreadState(val unreadCount: Int, val firstUnreadTimestamp: Long? = null) : UnreadState()
