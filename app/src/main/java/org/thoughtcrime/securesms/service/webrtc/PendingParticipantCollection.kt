@@ -21,10 +21,6 @@ data class PendingParticipantCollection(
   private val nowProvider: () -> Duration = { System.currentTimeMillis().milliseconds }
 ) {
 
-  companion object {
-    private val MAX_DENIALS = 2
-  }
-
   /**
    * Creates a new collection with the given recipients applied to it with the following rules:
    *
@@ -47,7 +43,7 @@ data class PendingParticipantCollection(
     val newEntryMap = (participantMap + newEntries)
       .filterNot { it.value.state == State.PENDING && it.key !in submittedIdSet }
       .mapValues {
-        if (it.value.state == State.DENIED && it.key in submittedIdSet && it.value.denialCount < MAX_DENIALS) {
+        if (it.value.state == State.DENIED && it.key in submittedIdSet) {
           it.value.copy(state = State.PENDING, stateChangeAt = now)
         } else {
           it.value
