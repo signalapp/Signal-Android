@@ -5934,9 +5934,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">마이크 꺼짐</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker on</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">스피커 켜짐</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker off</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">스피커 꺼짐</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">캡처 버튼</string>
