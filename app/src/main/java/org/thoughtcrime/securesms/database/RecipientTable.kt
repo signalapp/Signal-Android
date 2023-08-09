@@ -460,7 +460,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       result = processPnpTuple(e164 = e164, pni = pni, aci = aci, pniVerified = pniVerified, changeSelf = changeSelf)
 
       if (result.operations.isNotEmpty() || result.requiredInsert) {
-        Log.i(TAG, "[getAndPossiblyMerge] ($aci, $pni, $e164) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}, RequiredInsert: ${result.requiredInsert}, FinalId: ${result.finalId}")
+        val pniString = if (pni == null) "null" else if (aci == null && e164 == null) pni.toString() else "<pni>"
+        val e164String = if (e164 == null) "null" else if (aci == null && pni == null) e164 else "<e164>"
+        Log.i(TAG, "[getAndPossiblyMerge] ($aci, $pniString, $e164String) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}, RequiredInsert: ${result.requiredInsert}, FinalId: ${result.finalId}")
       }
 
       db.setTransactionSuccessful()
