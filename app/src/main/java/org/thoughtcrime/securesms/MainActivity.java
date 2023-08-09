@@ -15,12 +15,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
+import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppStartup;
@@ -136,6 +138,10 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     }
 
     updateTabVisibility();
+
+    if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {
+      DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
+    }
   }
 
   @Override

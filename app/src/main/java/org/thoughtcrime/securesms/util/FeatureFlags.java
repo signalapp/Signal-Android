@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
+import org.thoughtcrime.securesms.notifications.Configuration;
 import org.whispersystems.signalservice.api.RemoteConfigResult;
 
 import java.io.IOException;
@@ -109,6 +110,8 @@ public final class FeatureFlags {
   private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
+  public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
+  private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -169,7 +172,9 @@ public final class FeatureFlags {
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
       SAFETY_NUMBER_ACI,
-      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
+      PROMPT_FOR_NOTIFICATION_LOGS,
+      PROMPT_FOR_NOTIFICATION_CONFIG
   );
 
   @VisibleForTesting
@@ -236,7 +241,9 @@ public final class FeatureFlags {
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
       SAFETY_NUMBER_ACI,
-      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
+      PROMPT_FOR_NOTIFICATION_LOGS,
+      PROMPT_FOR_NOTIFICATION_CONFIG
   );
 
   /**
@@ -618,6 +625,13 @@ public final class FeatureFlags {
     }
   }
 
+  public static String promptForDelayedNotificationLogs() {
+    return getString(PROMPT_FOR_NOTIFICATION_LOGS, "*");
+  }
+
+  public static String delayedNotificationsPromptConfig() {
+    return getString(PROMPT_FOR_NOTIFICATION_CONFIG, "");
+  }
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);

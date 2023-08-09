@@ -5,10 +5,18 @@
 
 package org.thoughtcrime.securesms.notifications
 
+import android.text.TextUtils
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.JsonUtils
+import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 /**
  * Heuristic for estimating if a user has been experiencing issues with delayed notifications.
@@ -21,6 +29,44 @@ import org.thoughtcrime.securesms.util.SignalLocalMetrics
 object SlowNotificationHeuristics {
 
   private val TAG = Log.tag(SlowNotificationHeuristics::class.java)
+
+  fun getConfiguration(): Configuration {
+    val json = FeatureFlags.delayedNotificationsPromptConfig()
+    return if (TextUtils.isEmpty(json)) {
+      getDefaultConfiguration()
+    } else {
+      try {
+        JsonUtils.fromJson(json, Configuration::class.java)
+      } catch (exception: Exception) {
+        getDefaultConfiguration()
+      }
+    }
+  }
+
+  private fun getDefaultConfiguration(): Configuration {
+    return Configuration(
+      minimumEventAgeMs = 3.days.inWholeMilliseconds,
+      minimumServiceEventCount = 10,
+      serviceStartFailurePercentage = 0.5f,
+      messageLatencyPercentage = 75,
+      messageLatencyThreshold = 6.hours.inWholeMilliseconds,
+      minimumMessageLatencyEvents = 50,
+      weeklyFailedQueueDrains = 5
+    )
+  }
+
+  @JvmStatic
+  fun shouldPromptUserForLogs(): Boolean {
+    if (!LocaleFeatureFlags.isDelayedNotificationPromptEnabled() || SignalStore.uiHints().hasDeclinedToShareNotificationLogs()) {
+      return false
+    }
+    if (System.currentTimeMillis() - SignalStore.uiHints().lastNotificationLogsPrompt < TimeUnit.DAYS.toMillis(7)) {
+      return false
+    }
+    val configuration = getConfiguration()
+
+    return isHavingDelayedNotifications(configuration)
+  }
 
   fun isHavingDelayedNotifications(configuration: Configuration): Boolean {
     val db = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication())
