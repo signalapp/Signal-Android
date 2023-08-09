@@ -43,7 +43,7 @@ public final class SignalContactRecord implements SignalRecord {
     this.proto             = proto;
     this.hasUnknownFields  = ProtoUtil.hasUnknownFields(proto);
     this.aci               = ACI.parseOrUnknown(proto.getAci());
-    this.pni               = OptionalUtil.absentIfEmpty(proto.getPni()).map(PNI::parseUnPrefixedOrNull);
+    this.pni               = OptionalUtil.absentIfEmpty(proto.getPni()).map(PNI::parseOrNull);
     this.e164              = OptionalUtil.absentIfEmpty(proto.getE164());
     this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.getGivenName());
     this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.getFamilyName());

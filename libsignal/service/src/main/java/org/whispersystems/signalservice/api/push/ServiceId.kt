@@ -54,7 +54,11 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
       }
 
       return try {
-        fromLibSignal(LibSignalServiceId.parseFromBinary(raw))
+        if (raw.size == 17) {
+          fromLibSignal(LibSignalServiceId.parseFromFixedWidthBinary(raw))
+        } else {
+          fromLibSignal(LibSignalServiceId.parseFromBinary(raw))
+        }
       } catch (e: IllegalArgumentException) {
         null
       } catch (e: InvalidServiceIdException) {
@@ -152,39 +156,57 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
       @JvmStatic
       fun from(uuid: UUID): PNI = PNI(LibSignalPni(uuid))
 
+      /** Parses a string as a PNI, regardless if the `PNI:` prefix is present or not. Only use this if you are certain that what you're reading is a PNI. */
       @JvmStatic
-      fun parseOrNull(raw: String?): PNI? = ServiceId.parseOrNull(raw).let { if (it is PNI) it else null }
-
-      /** Parses a plain UUID (without the `PNI:` prefix) as a PNI. Be certain that whatever you pass to this is for sure a PNI! */
-      @JvmStatic
-      fun parseUnPrefixedOrNull(raw: String?): PNI? {
-        val uuid = UuidUtil.parseOrNull(raw)
-        return if (uuid != null) {
-          PNI(LibSignalPni(uuid))
-        } else {
+      fun parseOrNull(raw: String?): PNI? {
+        return if (raw == null) {
           null
+        } else if (raw.startsWith("PNI:")) {
+          return parsePrefixedOrNull(raw)
+        } else {
+          val uuid = UuidUtil.parseOrNull(raw)
+          if (uuid != null) {
+            PNI(LibSignalPni(uuid))
+          } else {
+            null
+          }
         }
       }
 
+      /** Parse a byte array as a PNI, regardless if it has the type prefix byte present or not. Only use this if you are certain what you're reading is a PNI. */
       @JvmStatic
-      fun parseOrNull(raw: ByteArray?): PNI? = ServiceId.parseOrNull(raw).let { if (it is PNI) it else null }
+      fun parseOrNull(raw: ByteArray?): PNI? {
+        return if (raw == null) {
+          null
+        } else if (raw.size == 17) {
+          ServiceId.parseOrNull(raw).let { if (it is PNI) it else null }
+        } else {
+          val uuid = UuidUtil.parseOrNull(raw)
+          if (uuid != null) {
+            PNI(LibSignalPni(uuid))
+          } else {
+            null
+          }
+        }
+      }
 
+      /** Parses a string as a PNI, regardless if the `PNI:` prefix is present or not. Only use this if you are certain that what you're reading is a PNI. */
       @JvmStatic
       @Throws(IllegalArgumentException::class)
       fun parseOrThrow(raw: String?): PNI = parseOrNull(raw) ?: throw IllegalArgumentException("Invalid PNI!")
 
+      /** Parse a byte array as a PNI, regardless if it has the type prefix byte present or not. Only use this if you are certain what you're reading is a PNI. */
       @JvmStatic
       @Throws(IllegalArgumentException::class)
       fun parseOrThrow(raw: ByteArray?): PNI = parseOrNull(raw) ?: throw IllegalArgumentException("Invalid PNI!")
 
+      /** Parse a byte string as a PNI, regardless if it has the type prefix byte present or not. Only use this if you are certain what you're reading is a PNI. */
       @JvmStatic
       @Throws(IllegalArgumentException::class)
       fun parseOrThrow(bytes: ByteString): PNI = parseOrThrow(bytes.toByteArray())
 
-      /** Parses a plain UUID (without the `PNI:` prefix) as a PNI. Be certain that whatever you pass to this is for sure a PNI! */
-      @JvmStatic
-      @Throws(IllegalArgumentException::class)
-      fun parseUnPrefixedOrThrow(raw: String?): PNI = parseUnPrefixedOrNull(raw) ?: throw IllegalArgumentException("Invalid PNI!")
+      /** Parses a string as a PNI, expecting that the value has a `PNI:` prefix. If it does not have the prefix (or is otherwise invalid), this will return null. */
+      fun parsePrefixedOrNull(raw: String?): PNI? = ServiceId.parseOrNull(raw).let { if (it is PNI) it else null }
     }
 
     override fun toString(): String = super.toString()

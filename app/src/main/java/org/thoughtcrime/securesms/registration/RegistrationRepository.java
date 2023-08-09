@@ -129,7 +129,7 @@ public final class RegistrationRepository {
     Preconditions.checkNotNull(response.getPniPreKeyCollection(), "Missing PNI prekey collection!");
 
     ACI     aci    = ACI.parseOrThrow(response.getVerifyAccountResponse().getUuid());
-    PNI     pni    = PNI.parseUnPrefixedOrThrow(response.getVerifyAccountResponse().getPni());
+    PNI     pni    = PNI.parseOrThrow(response.getVerifyAccountResponse().getPni());
     boolean hasPin = response.getVerifyAccountResponse().isStorageCapable();
 
     SignalStore.account().setAci(aci);

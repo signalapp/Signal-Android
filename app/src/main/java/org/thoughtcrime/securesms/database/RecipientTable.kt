@@ -4154,7 +4154,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return RecipientRecord(
       id = recipientId,
       aci = ACI.parseOrNull(cursor.requireString(ACI_COLUMN)),
-      pni = PNI.parseOrNull(cursor.requireString(PNI_COLUMN)),
+      pni = PNI.parsePrefixedOrNull(cursor.requireString(PNI_COLUMN)),
       username = cursor.requireString(USERNAME),
       e164 = cursor.requireString(E164),
       email = cursor.requireString(EMAIL),
