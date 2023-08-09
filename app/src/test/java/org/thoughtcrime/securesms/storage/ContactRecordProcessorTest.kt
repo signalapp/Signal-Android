@@ -57,7 +57,7 @@ class ContactRecordProcessorTest {
 
     val record = buildRecord {
       setAci(ACI_B.toString())
-      setPni(PNI_B.toString())
+      setPni(PNI_B.toStringWithoutPrefix())
       setE164(E164_B)
     }
 
@@ -118,29 +118,13 @@ class ContactRecordProcessorTest {
   }
 
   @Test
-  fun `isInvalid, pni matches self as serviceId, true`() {
-    // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
-
-    val record = buildRecord {
-      setAci(PNI_A.toString())
-    }
-
-    // WHEN
-    val result = subject.isInvalid(record)
-
-    // THEN
-    assertTrue(result)
-  }
-
-  @Test
   fun `isInvalid, pni matches self as pni, true`() {
     // GIVEN
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setAci(ACI_B.toString())
-      setPni(PNI_A.toString())
+      setPni(PNI_A.toStringWithoutPrefix())
     }
 
     // WHEN
@@ -262,13 +246,13 @@ class ContactRecordProcessorTest {
     val local = buildRecord(STORAGE_ID_A) {
       setAci(ACI_A.toString())
       setE164(E164_A)
-      setPni(PNI_A.toString())
+      setPni(PNI_A.toStringWithoutPrefix())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
       setAci(ACI_A.toString())
       setE164(E164_A)
-      setPni(PNI_B.toString())
+      setPni(PNI_B.toStringWithoutPrefix())
     }
 
     // WHEN
@@ -290,13 +274,13 @@ class ContactRecordProcessorTest {
     val local = buildRecord(STORAGE_ID_A) {
       setAci(ACI_A.toString())
       setE164(E164_A)
-      setPni(PNI_A.toString())
+      setPni(PNI_A.toStringWithoutPrefix())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
       setAci(ACI_A.toString())
       setE164(E164_B)
-      setPni(PNI_A.toString())
+      setPni(PNI_A.toStringWithoutPrefix())
     }
 
     // WHEN
@@ -318,13 +302,13 @@ class ContactRecordProcessorTest {
     val local = buildRecord(STORAGE_ID_A) {
       setAci(ACI_A.toString())
       setE164(E164_A)
-      setPni(PNI_A.toString())
+      setPni(PNI_A.toStringWithoutPrefix())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
       setAci(ACI_A.toString())
       setE164(E164_B)
-      setPni(PNI_B.toString())
+      setPni(PNI_B.toStringWithoutPrefix())
     }
 
     // WHEN
@@ -346,13 +330,13 @@ class ContactRecordProcessorTest {
     val local = buildRecord(STORAGE_ID_A) {
       setAci(ACI_A.toString())
       setE164(E164_A)
-      setPni(PNI_A.toString())
+      setPni(PNI_A.toStringWithoutPrefix())
     }
 
     val remote = buildRecord(STORAGE_ID_B) {
       setAci(ACI_A.toString())
       setE164(E164_B)
-      setPni(PNI_B.toString())
+      setPni(PNI_B.toStringWithoutPrefix())
     }
 
     // WHEN

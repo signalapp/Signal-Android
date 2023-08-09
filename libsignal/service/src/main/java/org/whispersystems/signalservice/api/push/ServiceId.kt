@@ -182,5 +182,8 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
     }
 
     override fun toString(): String = super.toString()
+
+    /** String version without the PNI: prefix. This is only for specific proto fields. For application storage, prefer [toString]. */
+    fun toStringWithoutPrefix(): String = rawUuid.toString()
   }
 }

@@ -47,7 +47,7 @@ public class PniMigrationJob extends MigrationJob {
       return;
     }
 
-    PNI pni = PNI.parseOrNull(ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI().getPni());
+    PNI pni = PNI.parseUnPrefixedOrNull(ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI().getPni());
 
     if (pni == null) {
       throw new IOException("Invalid PNI!");

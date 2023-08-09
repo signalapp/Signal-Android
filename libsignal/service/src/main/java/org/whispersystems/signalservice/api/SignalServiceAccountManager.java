@@ -668,7 +668,7 @@ public class SignalServiceAccountManager {
                                                         .setPniIdentityKeyPublic(ByteString.copyFrom(pniIdentityKeyPair.getPublicKey().serialize()))
                                                         .setPniIdentityKeyPrivate(ByteString.copyFrom(pniIdentityKeyPair.getPrivateKey().serialize()))
                                                         .setAci(aci.toString())
-                                                        .setPni(pni.toString())
+                                                        .setPni(pni.toStringWithoutPrefix())
                                                         .setNumber(e164)
                                                         .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                         .setProvisioningCode(code)

@@ -134,7 +134,6 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       Log.w(TAG, "Found a ContactRecord without a UUID -- marking as invalid.");
       return true;
     } else if (remote.getAci().equals(selfAci) ||
-               remote.getAci().equals(selfPni) ||
                (selfPni != null && selfPni.equals(remote.getPni().orElse(null))) ||
                (selfE164 != null && remote.getNumber().isPresent() && remote.getNumber().get().equals(selfE164)))
     {
