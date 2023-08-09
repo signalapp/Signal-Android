@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
+import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
@@ -145,6 +146,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private ThrottledDebouncer               requestNewSizesThrottle;
   private PictureInPictureParams.Builder   pipBuilderParams;
   private LifecycleDisposable              lifecycleDisposable;
+  private long                             lastCallLinkDisconnectDialogShowTime;
 
   private Disposable ephemeralStateDisposable = Disposable.empty();
 
@@ -842,6 +844,18 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         handleUntrustedIdentity(event); break;
     }
 
+    if (event.getCallLinkDisconnectReason() != null && event.getCallLinkDisconnectReason().getPostedAt() > lastCallLinkDisconnectDialogShowTime) {
+      lastCallLinkDisconnectDialogShowTime = System.currentTimeMillis();
+
+      if (event.getCallLinkDisconnectReason() instanceof CallLinkDisconnectReason.RemovedFromCall) {
+        displayRemovedFromCallLinkDialog();
+      } else if (event.getCallLinkDisconnectReason() instanceof CallLinkDisconnectReason.DeniedRequestToJoinCall) {
+        displayDeniedRequestToJoinCallLinkDialog();
+      } else {
+        throw new AssertionError("Unexpected reason: " + event.getCallLinkDisconnectReason());
+      }
+    }
+
     boolean enableVideo = event.getLocalParticipant().getCameraState().getCameraCount() > 0 && enableVideoIfAvailable;
 
     viewModel.updateFromWebRtcViewModel(event, enableVideo);
@@ -861,6 +875,22 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
       hasWarnedAboutBluetooth = true;
     }
+  }
+
+  private void displayRemovedFromCallLinkDialog() {
+    new MaterialAlertDialogBuilder(this)
+        .setTitle(R.string.WebRtcCallActivity__removed_from_call)
+        .setMessage(R.string.WebRtcCallActivity__someone_has_removed_you_from_the_call)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
+  }
+
+  private void displayDeniedRequestToJoinCallLinkDialog() {
+    new MaterialAlertDialogBuilder(this)
+        .setTitle(R.string.WebRtcCallActivity__join_request_denied)
+        .setMessage(R.string.WebRtcCallActivity__your_request_to_join_this_call_has_been_denied)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
   }
 
   private void handleCallPreJoin(@NonNull WebRtcViewModel event) {

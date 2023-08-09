@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
+import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 
 /**
@@ -28,7 +29,8 @@ data class CallInfoState(
   var identityChangedRecipients: MutableSet<RecipientId> = mutableSetOf(),
   var remoteDevicesCount: OptionalLong = OptionalLong.empty(),
   var participantLimit: Long? = null,
-  var pendingParticipants: PendingParticipantCollection = PendingParticipantCollection()
+  var pendingParticipants: PendingParticipantCollection = PendingParticipantCollection(),
+  var callLinkDisconnectReason: CallLinkDisconnectReason? = null
 ) {
 
   val remoteCallParticipants: List<CallParticipant>
