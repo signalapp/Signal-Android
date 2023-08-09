@@ -54,7 +54,7 @@ class CallSyncEventJob private constructor(
             recipientId = it.peer.toLong(),
             callId = it.callId,
             direction = CallTable.Direction.serialize(it.direction),
-            event = CallTable.Event.serialize(it.event)
+            event = CallTable.Event.serialize(CallTable.Event.DELETE)
           )
         }
       )
