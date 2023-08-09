@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 @SuppressLint("BatteryLife")
@@ -25,9 +26,7 @@ public class DozeReminder extends Reminder {
 
     setOkListener(v -> {
       TextSecurePreferences.setPromptedOptimizeDoze(context, true);
-      Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                                 Uri.parse("package:" + context.getPackageName()));
-      context.startActivity(intent);
+      PowerManagerCompat.requestIgnoreBatteryOptimizations(context);
     });
 
     setDismissListener(v -> TextSecurePreferences.setPromptedOptimizeDoze(context, true));
