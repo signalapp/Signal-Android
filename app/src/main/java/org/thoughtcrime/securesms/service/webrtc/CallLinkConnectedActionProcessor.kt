@@ -56,7 +56,7 @@ class CallLinkConnectedActionProcessor(
 
     return superState.builder()
       .changeCallInfoState()
-      .setPendingParticipants(pendingParticipants)
+      .setCallLinkPendingParticipants(pendingParticipants)
       .build()
   }
 
@@ -72,7 +72,7 @@ class CallLinkConnectedActionProcessor(
       currentState
         .builder()
         .changeCallInfoState()
-        .setPendingParticipantApproved(recipient)
+        .setCallLinkPendingParticipantApproved(recipient)
         .build()
     } catch (e: CallException) {
       Log.w(tag, "Failed to approve user.", e)
@@ -93,7 +93,7 @@ class CallLinkConnectedActionProcessor(
       currentState
         .builder()
         .changeCallInfoState()
-        .setPendingParticipantRejected(recipient)
+        .setCallLinkPendingParticipantRejected(recipient)
         .build()
     } catch (e: CallException) {
       Log.w(tag, "Failed to deny user.", e)

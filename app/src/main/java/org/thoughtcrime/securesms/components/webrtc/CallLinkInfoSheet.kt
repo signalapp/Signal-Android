@@ -47,8 +47,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.toLiveData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -119,7 +121,11 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     val callLinkDetailsState by callLinkDetailsViewModel.state
-    val callParticipantsState by webRtcCallViewModel.callParticipantsState.observeAsState()
+    val callParticipantsState by webRtcCallViewModel.callParticipantsState
+      .toFlowable(BackpressureStrategy.LATEST)
+      .toLiveData()
+      .observeAsState()
+
     val participants: ImmutableList<CallParticipant> = if (callParticipantsState?.callState == WebRtcViewModel.State.CALL_CONNECTED) {
       listOf(CallParticipant(recipient = Recipient.self())) + (callParticipantsState?.allRemoteParticipants?.map { it } ?: emptyList())
     } else {

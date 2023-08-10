@@ -345,17 +345,17 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
-    public @NonNull CallInfoStateBuilder setPendingParticipants(@NonNull List<Recipient> pendingParticipants) {
+    public @NonNull CallInfoStateBuilder setCallLinkPendingParticipants(@NonNull List<Recipient> pendingParticipants) {
       toBuild.setPendingParticipants(toBuild.getPendingParticipants().withRecipients(pendingParticipants));
       return this;
     }
 
-    public @NonNull CallInfoStateBuilder setPendingParticipantApproved(@NonNull Recipient participant) {
+    public @NonNull CallInfoStateBuilder setCallLinkPendingParticipantApproved(@NonNull Recipient participant) {
       toBuild.setPendingParticipants(toBuild.getPendingParticipants().withApproval(participant));
       return this;
     }
 
-    public @NonNull CallInfoStateBuilder setPendingParticipantRejected(@NonNull Recipient participant) {
+    public @NonNull CallInfoStateBuilder setCallLinkPendingParticipantRejected(@NonNull Recipient participant) {
       toBuild.setPendingParticipants(toBuild.getPendingParticipants().withDenial(participant));
       return this;
     }

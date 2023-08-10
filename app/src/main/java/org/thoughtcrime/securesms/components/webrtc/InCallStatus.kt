@@ -16,7 +16,12 @@ sealed interface InCallStatus {
   data class ElapsedTime(val elapsedTime: Long) : InCallStatus
 
   /**
-   * The number of users requesting to join a call.
+   * The number of users requesting to join a call link.
    */
-  data class PendingUsers(val pendingUserCount: Int) : InCallStatus
+  data class PendingCallLinkUsers(val pendingUserCount: Int) : InCallStatus
+
+  /**
+   * The number of users in a call link.
+   */
+  data class JoinedCallLinkUsers(val joinedUserCount: Int) : InCallStatus
 }

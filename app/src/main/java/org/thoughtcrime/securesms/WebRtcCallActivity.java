@@ -37,6 +37,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
+import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.window.java.layout.WindowInfoTrackerCallbackAdapter;
 import androidx.window.layout.DisplayFeature;
@@ -103,6 +104,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
@@ -256,7 +258,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     super.onPause();
 
     if (!viewModel.isCallStarting()) {
-      CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+      CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
         finish();
       }
@@ -276,7 +278,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     if (!viewModel.isCallStarting()) {
-      CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+      CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
         ApplicationDependencies.getSignalCallManager().cancelPreJoin();
       }
@@ -432,7 +434,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     lifecycleDisposable.add(viewModel.getInCallstatus().subscribe(this::handleInCallStatus));
 
     boolean isStartedFromCallLink = getIntent().getBooleanExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, false);
-    LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(),
+    LiveDataUtil.combineLatest(LiveDataReactiveStreams.fromPublisher(viewModel.getCallParticipantsState().toFlowable(BackpressureStrategy.LATEST)),
                                viewModel.getOrientationAndLandscapeEnabled(),
                                viewModel.getEphemeralState(),
                                (s, o, e) -> new CallParticipantsViewState(s, e, o.first == PORTRAIT_BOTTOM_EDGE, o.second, isStartedFromCallLink))
@@ -441,10 +443,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
     viewModel.getGroupMembersChanged().observe(this, unused -> updateGroupMembersForGroupCall());
     viewModel.getGroupMemberCount().observe(this, this::handleGroupMemberCountChange);
-    viewModel.shouldShowSpeakerHint().observe(this, this::updateSpeakerHint);
+    lifecycleDisposable.add(viewModel.shouldShowSpeakerHint().subscribe(this::updateSpeakerHint));
 
     callScreen.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-      CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+      CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null) {
         if (state.needsNewRequestSizes()) {
           requestNewSizesThrottle.publish(() -> ApplicationDependencies.getSignalCallManager().updateRenderedResolutions());
@@ -541,15 +543,23 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       }
 
       callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
-    } else if (inCallStatus instanceof InCallStatus.PendingUsers) {
-      int waiting = ((InCallStatus.PendingUsers) inCallStatus).getPendingUserCount();
+    } else if (inCallStatus instanceof InCallStatus.PendingCallLinkUsers) {
+      int waiting = ((InCallStatus.PendingCallLinkUsers) inCallStatus).getPendingUserCount();
 
       callScreen.setStatus(getResources().getQuantityString(
           R.plurals.WebRtcCallActivity__d_people_waiting,
           waiting,
           waiting
       ));
-    } else {
+    } else if (inCallStatus instanceof InCallStatus.JoinedCallLinkUsers) {
+      int joined = ((InCallStatus.JoinedCallLinkUsers) inCallStatus).getJoinedUserCount();
+
+      callScreen.setStatus(getResources().getQuantityString(
+          R.plurals.WebRtcCallActivity__d_people,
+          joined,
+          joined
+      ));
+    }else {
       throw new AssertionError();
     }
   }
@@ -758,7 +768,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   @Override
   public void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients) {
-    CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+    CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
 
     if (state == null) {
       return;
@@ -776,7 +786,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   @Override
   public void onCanceled() {
-    CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+    CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
     if (state != null && state.getGroupCallState().isNotIdle()) {
       if (state.getCallState().isPreJoinOrNetworkUnavailable()) {
         ApplicationDependencies.getSignalCallManager().cancelPreJoin();

@@ -1766,6 +1766,11 @@
         <item quantity="one">%1$d person waiting</item>
         <item quantity="other">%1$d people waiting</item>
     </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d person</item>
+        <item quantity="other">%1$d people</item>
+    </plurals>
     <!-- Title of dialog displayed when a user's join request is denied for call link entry -->
     <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
     <!-- Message of dialog displayed when a user's join request is denied for call link entry -->
@@ -1774,7 +1779,6 @@
     <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
-
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal Call</string>
