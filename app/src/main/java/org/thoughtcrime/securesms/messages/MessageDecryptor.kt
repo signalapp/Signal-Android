@@ -261,6 +261,11 @@ object MessageDecryptor {
     followUpOperations: MutableList<FollowUpOperation>,
     protocolException: ProtocolException
   ): Result {
+    if (ServiceId.parseOrNull(envelope.destinationServiceId) == SignalStore.account().pni) {
+      Log.w(TAG, "${logPrefix(envelope)} Decryption error for message sent to our PNI! Ignoring.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+    }
+
     val contentHint: ContentHint = ContentHint.fromType(protocolException.contentHint)
     val senderDevice: Int = protocolException.senderDevice
     val receivedTimestamp: Long = System.currentTimeMillis()
