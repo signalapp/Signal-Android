@@ -24,14 +24,14 @@ class RecipientTableTest {
   val harness = SignalActivityRule()
 
   @Test
-  fun givenAHiddenRecipient_whenIQueryAllContacts_thenIDoNotExpectHiddenToBeReturned() {
+  fun givenAHiddenRecipient_whenIQueryAllContacts_thenIExpectHiddenToBeReturned() {
     val hiddenRecipient = harness.others[0]
     SignalDatabase.recipients.setProfileName(hiddenRecipient, ProfileName.fromParts("Hidden", "Person"))
     SignalDatabase.recipients.markHidden(hiddenRecipient)
 
     val results = SignalDatabase.recipients.queryAllContacts("Hidden")!!
 
-    assertEquals(0, results.count)
+    assertEquals(1, results.count)
   }
 
   @Test

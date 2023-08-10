@@ -1713,7 +1713,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    */
   fun deleteStoriesForRecipient(recipientId: RecipientId): Int {
     return writableDatabase.withinTransaction { db ->
-      val threadId = threads.getThreadIdFor(recipientId)
+      val threadId = threads.getThreadIdFor(recipientId) ?: return@withinTransaction 0
       val storesInRecipientThread = "$IS_STORY_CLAUSE AND $THREAD_ID = ?"
       val sharedArgs = buildArgs(threadId)
 
