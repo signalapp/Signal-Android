@@ -1092,6 +1092,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       return Optional.empty()
     }
 
+    threads.markAsActiveEarly(threadId)
+
     if (!silent) {
       ThreadUpdateJob.enqueue(threadId)
       TrimThreadJob.enqueueAsync(threadId)
