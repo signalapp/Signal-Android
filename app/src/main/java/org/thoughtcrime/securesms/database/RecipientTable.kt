@@ -440,10 +440,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * It is assumed that the tuple is verified. Do not give this method an untrusted association.
    */
   fun getAndPossiblyMergePnpVerified(aci: ACI?, pni: PNI?, e164: String?): RecipientId {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      throw AssertionError()
-    }
-
     return getAndPossiblyMerge(aci = aci, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
   }
 

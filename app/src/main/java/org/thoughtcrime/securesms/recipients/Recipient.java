@@ -227,15 +227,8 @@ public class Recipient {
 
     RecipientTable db = SignalDatabase.recipients();
 
-    RecipientId recipientId;
-
-    if (FeatureFlags.phoneNumberPrivacy()) {
-      recipientId = db.getAndPossiblyMergePnpVerified(aci, pni, e164);
-    } else {
-      recipientId = db.getAndPossiblyMerge(aci, e164);
-    }
-
-    Recipient resolved = resolved(recipientId);
+    RecipientId recipientId = db.getAndPossiblyMergePnpVerified(aci, pni, e164);
+    Recipient   resolved    = resolved(recipientId);
 
     if (!resolved.getId().equals(recipientId)) {
       Log.w(TAG, "Resolved " + recipientId + ", but got back a recipient with " + resolved.getId());
@@ -1219,7 +1212,7 @@ public class Recipient {
   }
 
   public boolean needsPniSignature() {
-    return FeatureFlags.phoneNumberPrivacy() && needsPniSignature;
+    return needsPniSignature;
   }
 
   public boolean isCallLink() {

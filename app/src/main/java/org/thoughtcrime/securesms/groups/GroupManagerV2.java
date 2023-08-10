@@ -568,7 +568,7 @@ final class GroupManagerV2 {
 
       if (aciInPending.isPresent()) {
         return commitChangeWithConflictResolution(selfAci, groupOperations.createAcceptInviteChange(groupCandidate.requireExpiringProfileKeyCredential()));
-      } else if (pniInPending.isPresent() && FeatureFlags.phoneNumberPrivacy()) {
+      } else if (pniInPending.isPresent()) {
         return commitChangeWithConflictResolution(selfPni, groupOperations.createAcceptPniInviteChange(groupCandidate.requireExpiringProfileKeyCredential()));
       }
 

@@ -88,7 +88,17 @@ object MessageDecryptor {
     val selfAci: ACI = SignalStore.account().requireAci()
     val selfPni: PNI = SignalStore.account().requirePni()
 
-    val destination: ServiceId = envelope.getDestination(selfAci, selfPni)
+    val destination: ServiceId? = ServiceId.parseOrNull(envelope.destinationServiceId)
+
+    if (destination == null) {
+      Log.w(TAG, "${logPrefix(envelope)} Missing destination address! Invalid message, ignoring.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
+    }
+
+    if (destination != selfAci && destination != selfPni) {
+      Log.w(TAG, "${logPrefix(envelope)} Destination address does not match our ACI or PNI! Invalid message, ignoring.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
+    }
 
     if (destination == selfPni && envelope.hasSourceServiceId()) {
       Log.i(TAG, "${logPrefix(envelope)} Received a message at our PNI. Marking as needing a PNI signature.")
@@ -158,7 +168,7 @@ object MessageDecryptor {
         )
       }
 
-      if (FeatureFlags.phoneNumberPrivacy() && cipherResult.content.hasPniSignatureMessage()) {
+      if (cipherResult.content.hasPniSignatureMessage()) {
         if (cipherResult.metadata.sourceServiceId is ACI) {
           handlePniSignatureMessage(
             envelope,
@@ -408,23 +418,6 @@ object MessageDecryptor {
       }
     } else {
       null
-    }
-  }
-
-  private fun Envelope.getDestination(selfAci: ServiceId, selfPni: ServiceId): ServiceId {
-    return if (!FeatureFlags.phoneNumberPrivacy()) {
-      selfAci
-    } else if (this.hasDestinationServiceId()) {
-      val serviceId = ServiceId.parseOrThrow(this.destinationServiceId)
-      if (serviceId == selfAci || serviceId == selfPni) {
-        serviceId
-      } else {
-        Log.w(TAG, "Destination of $serviceId does not match our ACI ($selfAci) or PNI ($selfPni)! Defaulting to ACI.")
-        selfAci
-      }
-    } else {
-      Log.w(TAG, "No destinationUuid set! Defaulting to ACI.")
-      selfAci
     }
   }
 
