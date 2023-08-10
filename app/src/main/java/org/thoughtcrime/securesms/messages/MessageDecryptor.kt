@@ -271,6 +271,16 @@ object MessageDecryptor {
     val receivedTimestamp: Long = System.currentTimeMillis()
     val sender: Recipient = Recipient.external(context, protocolException.sender)
 
+    if (sender.isSelf) {
+      Log.w(TAG, "${logPrefix(envelope)} Decryption error for a sync message! Enqueuing a session reset job.")
+
+      followUpOperations += FollowUpOperation {
+        AutomaticSessionResetJob(sender.id, senderDevice, envelope.timestamp)
+      }
+
+      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+    }
+
     followUpOperations += FollowUpOperation {
       buildSendRetryReceiptJob(envelope, protocolException, sender)
     }
