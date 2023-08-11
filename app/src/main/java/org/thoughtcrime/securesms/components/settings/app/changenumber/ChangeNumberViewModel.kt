@@ -184,7 +184,7 @@ class ChangeNumberViewModel(
 
   @WorkerThread
   override fun onVerifySuccess(processor: VerifyResponseProcessor): Single<VerifyResponseProcessor> {
-    return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseOrThrow(processor.result.verifyAccountResponse.pni))
+    return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseUnPrefixedOrThrow(processor.result.verifyAccountResponse.pni))
       .map { processor }
       .onErrorReturn { t ->
         Log.w(TAG, "Error attempting to change local number", t)
@@ -193,7 +193,7 @@ class ChangeNumberViewModel(
   }
 
   override fun onVerifySuccessWithRegistrationLock(processor: VerifyResponseWithRegistrationLockProcessor, pin: String): Single<VerifyResponseWithRegistrationLockProcessor> {
-    return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseOrThrow(processor.result.verifyAccountResponse.pni))
+    return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseUnPrefixedOrThrow(processor.result.verifyAccountResponse.pni))
       .map { processor }
       .onErrorReturn { t ->
         Log.w(TAG, "Error attempting to change local number", t)
