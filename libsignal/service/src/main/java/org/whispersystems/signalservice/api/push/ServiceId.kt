@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.push
 import com.google.protobuf.ByteString
 import org.signal.libsignal.protocol.ServiceId.InvalidServiceIdException
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.lang.IllegalArgumentException
 import java.util.UUID
@@ -21,6 +22,8 @@ import org.signal.libsignal.protocol.ServiceId.Pni as LibSignalPni
  */
 sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
   companion object {
+    private const val TAG = "ServiceId"
+
     @JvmStatic
     fun fromLibSignal(serviceId: LibSignalServiceId): ServiceId {
       return when (serviceId) {
@@ -40,8 +43,10 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
       return try {
         fromLibSignal(LibSignalServiceId.parseFromString(raw))
       } catch (e: IllegalArgumentException) {
+        Log.w(TAG, "[parseOrNull(String)] Illegal argument!", e)
         null
       } catch (e: InvalidServiceIdException) {
+        Log.w(TAG, "[parseOrNull(String)] Invalid ServiceId!", e)
         null
       }
     }
@@ -60,8 +65,10 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
           fromLibSignal(LibSignalServiceId.parseFromBinary(raw))
         }
       } catch (e: IllegalArgumentException) {
+        Log.w(TAG, "[parseOrNull(Bytes)] Illegal argument!", e)
         null
       } catch (e: InvalidServiceIdException) {
+        Log.w(TAG, "[parseOrNull(Bytes)] Invalid ServiceId!", e)
         null
       }
     }
