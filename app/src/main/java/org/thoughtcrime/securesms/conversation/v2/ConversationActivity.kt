@@ -77,8 +77,11 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
 
   override fun onNewIntent(intent: Intent?) {
     super.onNewIntent(intent)
-    setIntent(intent)
-    replaceFragment()
+
+    // Note: We utilize this instead of 'replaceFragment' because there seems to be a bug
+    // in constraint-layout which mixes up insets when replacing the fragment via onNewIntent.
+    finish()
+    startActivity(intent)
   }
 
   @Suppress("DEPRECATION")
