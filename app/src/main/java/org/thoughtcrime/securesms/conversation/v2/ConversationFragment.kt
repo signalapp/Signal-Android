@@ -2396,7 +2396,7 @@ class ConversationFragment :
 
   private inner class DataObserver : RecyclerView.AdapterDataObserver() {
     override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-      if (positionStart == 0 && itemCount == 1 && shouldScrollToBottom()) {
+      if (positionStart == 0 && shouldScrollToBottom()) {
         layoutManager.scrollToPositionWithOffset(0, 0)
         scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
       }
