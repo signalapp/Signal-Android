@@ -32,10 +32,10 @@ import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import java.lang.UnsupportedOperationException
 import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.locks.ReentrantLock
+import kotlin.UnsupportedOperationException
 
 /**
  * Welcome to Bob's Client.
@@ -144,7 +144,6 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun getSubDeviceSessions(name: String?): List<Int> = emptyList()
     override fun containsSession(address: SignalProtocolAddress?): Boolean = aliceSessionRecord != null
     override fun getIdentity(address: SignalProtocolAddress?): IdentityKey = SignalStore.account().aciIdentityKey.publicKey
-
     override fun loadPreKey(preKeyId: Int): PreKeyRecord = throw UnsupportedOperationException()
     override fun storePreKey(preKeyId: Int, record: PreKeyRecord?) = throw UnsupportedOperationException()
     override fun containsPreKey(preKeyId: Int): Boolean = throw UnsupportedOperationException()
@@ -162,6 +161,8 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun storeKyberPreKey(kyberPreKeyId: Int, record: KyberPreKeyRecord?) = throw UnsupportedOperationException()
     override fun containsKyberPreKey(kyberPreKeyId: Int): Boolean = throw UnsupportedOperationException()
     override fun markKyberPreKeyUsed(kyberPreKeyId: Int) = throw UnsupportedOperationException()
+    override fun deleteAllStaleOneTimeEcPreKeys(threshold: Long, minCount: Int) = throw UnsupportedOperationException()
+    override fun markAllOneTimeEcPreKeysStaleIfNecessary(staleTime: Long) = throw UnsupportedOperationException()
     override fun storeSenderKey(sender: SignalProtocolAddress?, distributionId: UUID?, record: SenderKeyRecord?) = throw UnsupportedOperationException()
     override fun loadSenderKey(sender: SignalProtocolAddress?, distributionId: UUID?): SenderKeyRecord = throw UnsupportedOperationException()
     override fun archiveSession(address: SignalProtocolAddress?) = throw UnsupportedOperationException()
@@ -171,8 +172,9 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun clearSenderKeySharedWith(addresses: MutableCollection<SignalProtocolAddress>?) = throw UnsupportedOperationException()
     override fun storeLastResortKyberPreKey(kyberPreKeyId: Int, kyberPreKeyRecord: KyberPreKeyRecord) = throw UnsupportedOperationException()
     override fun removeKyberPreKey(kyberPreKeyId: Int) = throw UnsupportedOperationException()
+    override fun markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime: Long) = throw UnsupportedOperationException()
+    override fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int) = throw UnsupportedOperationException()
     override fun loadLastResortKyberPreKeys(): List<KyberPreKeyRecord> = throw UnsupportedOperationException()
-
     override fun isMultiDevice(): Boolean = throw UnsupportedOperationException()
   }
 }

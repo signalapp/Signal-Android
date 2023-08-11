@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
@@ -70,9 +71,9 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       Log.w(TAG, "Already generated the PNI identity. Skipping this step.");
     }
 
-    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    SignalProtocolStore         protocolStore  = ApplicationDependencies.getProtocolStore().pni();
-    PreKeyMetadataStore         metadataStore  = SignalStore.account().pniPreKeys();
+    SignalServiceAccountManager   accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    SignalServiceAccountDataStore protocolStore  = ApplicationDependencies.getProtocolStore().pni();
+    PreKeyMetadataStore           metadataStore  = SignalStore.account().pniPreKeys();
 
     if (!metadataStore.isSignedPreKeyRegistered()) {
       Log.i(TAG, "Uploading signed prekey for PNI.");

@@ -3,8 +3,10 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.update
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
@@ -23,6 +25,8 @@ class OneTimePreKeyTable(context: Context, databaseHelper: SignalDatabase) : Dat
     const val KEY_ID = "key_id"
     const val PUBLIC_KEY = "public_key"
     const val PRIVATE_KEY = "private_key"
+    const val STALE_TIMESTAMP = "stale_timestamp"
+
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
@@ -30,6 +34,7 @@ class OneTimePreKeyTable(context: Context, databaseHelper: SignalDatabase) : Dat
         $KEY_ID INTEGER UNIQUE, 
         $PUBLIC_KEY TEXT NOT NULL, 
         $PRIVATE_KEY TEXT NOT NULL,
+        $STALE_TIMESTAMP INTEGER NOT NULL DEFAULT 0,
         UNIQUE($ACCOUNT_ID, $KEY_ID)
       )
     """
@@ -67,5 +72,44 @@ class OneTimePreKeyTable(context: Context, databaseHelper: SignalDatabase) : Dat
   fun delete(serviceId: ServiceId, keyId: Int) {
     val database = databaseHelper.signalWritableDatabase
     database.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId))
+  }
+
+  fun markAllStaleIfNecessary(serviceId: ServiceId, staleTime: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(STALE_TIMESTAMP to staleTime)
+      .where("$ACCOUNT_ID = ? AND $STALE_TIMESTAMP = 0", serviceId)
+      .run()
+  }
+
+  /**
+   * Deletes all keys that have been stale since before the specified threshold.
+   * We will always keep at least [minCount] items, preferring more recent ones.
+   */
+  fun deleteAllStaleBefore(serviceId: ServiceId, threshold: Long, minCount: Int) {
+    val count = writableDatabase
+      .delete(TABLE_NAME)
+      .where(
+        """
+          $ACCOUNT_ID = ? 
+            AND $STALE_TIMESTAMP > 0 
+            AND $STALE_TIMESTAMP < $threshold
+            AND $ID NOT IN (
+              SELECT $ID
+              FROM $TABLE_NAME
+              WHERE $ACCOUNT_ID = ?
+              ORDER BY 
+                CASE $STALE_TIMESTAMP WHEN 0 THEN 1 ELSE 0 END DESC,
+                $STALE_TIMESTAMP DESC,
+                $ID DESC
+              LIMIT $minCount
+            )
+        """,
+        serviceId,
+        serviceId
+      )
+      .run()
+
+    Log.i(TAG, "Deleted $count stale one-time EC prekeys.")
   }
 }

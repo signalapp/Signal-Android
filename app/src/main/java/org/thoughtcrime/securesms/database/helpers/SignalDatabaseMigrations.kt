@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V199_AddThreadActiv
 import org.thoughtcrime.securesms.database.helpers.migration.V200_ResetPniColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V201_RecipientTableValidations
 import org.thoughtcrime.securesms.database.helpers.migration.V202_DropMessageTableThreadDateIndex
+import org.thoughtcrime.securesms.database.helpers.migration.V203_PreKeyStaleTimestamp
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -66,7 +67,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 202
+  const val DATABASE_VERSION = 203
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -284,6 +285,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 202) {
       V202_DropMessageTableThreadDateIndex.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 203) {
+      V203_PreKeyStaleTimestamp.migrate(context, db, oldVersion, newVersion)
     }
   }
 
