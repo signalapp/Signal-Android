@@ -3317,12 +3317,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         prefix = "$IS_CALL_TYPE_CLAUSE AND ",
         collectionOperator = collectionOperator
       ).map { query ->
-        val threadSet = writableDatabase.select(ID)
+        val threadSet = writableDatabase.select(THREAD_ID)
           .from(TABLE_NAME)
           .where(query.where, query.whereArgs)
           .run()
           .readToSet { cursor ->
-            cursor.requireLong(ID)
+            cursor.requireLong(THREAD_ID)
           }
 
         val rows = writableDatabase
