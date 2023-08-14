@@ -15,7 +15,7 @@ object V175_FixFullTextSearchLink : SignalDatabaseMigration {
     db.execSQL("DROP TRIGGER IF EXISTS mms_ad")
     db.execSQL("DROP TRIGGER IF EXISTS mms_au")
 
-    db.execSQL("CREATE VIRTUAL TABLE message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id)")
+    db.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id)")
 
     db.execSQL(
       """

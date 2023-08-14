@@ -260,7 +260,7 @@ class DatabaseConsistencyTest {
       ),
       Statement(
         name = "message_fts",
-        sql = "CREATE VIRTUAL TABLE message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id)"
+        sql = "CREATE VIRTUAL TABLE IF NOT EXISTS message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id)"
       ),
       Statement(
         name = "remapped_recipients",

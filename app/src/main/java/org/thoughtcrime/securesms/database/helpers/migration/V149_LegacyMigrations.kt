@@ -272,7 +272,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
 
     if (oldVersion < FULL_TEXT_SEARCH) {
       // language=text
-      db.execSQL("CREATE VIRTUAL TABLE sms_fts USING fts5(body, content=sms, content_rowid=_id)")
+      db.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS sms_fts USING fts5(body, content=sms, content_rowid=_id)")
       db.execSQL(
         // language=sql
         """
@@ -299,7 +299,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         """.trimIndent()
       )
       // language=text
-      db.execSQL("CREATE VIRTUAL TABLE mms_fts USING fts5(body, content=mms, content_rowid=_id)")
+      db.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS mms_fts USING fts5(body, content=mms, content_rowid=_id)")
       db.execSQL(
         // language=sql
         """
@@ -441,7 +441,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
       db.execSQL("DROP TRIGGER mms_au")
       db.execSQL("DROP TRIGGER mms_ad")
       // language=text
-      db.execSQL("CREATE VIRTUAL TABLE sms_fts USING fts5(body, thread_id UNINDEXED, content=sms, content_rowid=_id)")
+      db.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS sms_fts USING fts5(body, thread_id UNINDEXED, content=sms, content_rowid=_id)")
       db.execSQL(
         // language=sql
         """
@@ -468,7 +468,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         """.trimIndent()
       )
       // language=text
-      db.execSQL("CREATE VIRTUAL TABLE mms_fts USING fts5(body, thread_id UNINDEXED, content=mms, content_rowid=_id)")
+      db.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS mms_fts USING fts5(body, thread_id UNINDEXED, content=mms, content_rowid=_id)")
       db.execSQL(
         // language=sql
         """
@@ -1509,7 +1509,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
 
     if (oldVersion < EMOJI_SEARCH) {
       // language=text
-      db.execSQL("CREATE VIRTUAL TABLE emoji_search USING fts5(label, emoji UNINDEXED)")
+      db.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS emoji_search USING fts5(label, emoji UNINDEXED)")
     }
 
     if (oldVersion < SENDER_KEY && !SqlUtil.tableExists(db, "sender_keys")) {
