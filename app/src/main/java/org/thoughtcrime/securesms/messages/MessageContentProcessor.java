@@ -1538,7 +1538,7 @@ public class MessageContentProcessor {
 
     if (Util.hasItems(markedMessages)) {
       Log.i(TAG, "Updating past messages: " + markedMessages.size());
-      MarkReadReceiver.process(context, markedMessages);
+      MarkReadReceiver.process(markedMessages);
     }
 
     for (SyncMessageId id : unhandled) {

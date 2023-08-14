@@ -121,7 +121,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId, true);
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(context, messageIds);
+        MarkReadReceiver.process(messageIds);
       });
     }
   }

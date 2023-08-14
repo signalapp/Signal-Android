@@ -199,7 +199,7 @@ public final class MessageRequestRepository {
 
         List<MessageTable.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(context, messageIds);
+        MarkReadReceiver.process(messageIds);
 
         List<MessageTable.MarkedMessageInfo> viewedInfos = SignalDatabase.messages().getViewedIncomingMessages(threadId);
 

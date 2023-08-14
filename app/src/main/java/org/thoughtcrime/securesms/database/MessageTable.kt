@@ -2241,11 +2241,32 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
   }
 
+  fun setAllEditMessageRevisionsRead(messageId: Long): List<MarkedMessageInfo> {
+    var query = """
+      (
+        $ORIGINAL_MESSAGE_ID = ? OR
+        $ID = ?
+      ) AND 
+      (
+        $READ = 0 OR 
+        (
+          $REACTIONS_UNREAD = 1 AND 
+          ($outgoingTypeClause)
+        )
+      )
+      """
+
+    val args = mutableListOf(messageId.toString(), messageId.toString())
+
+    return setMessagesRead(query, args.toTypedArray())
+  }
+
   fun setMessagesReadSince(threadId: Long, sinceTimestamp: Long): List<MarkedMessageInfo> {
     var query = """
       $THREAD_ID = ? AND 
       $STORY_TYPE = 0 AND 
       $PARENT_STORY_ID <= 0 AND 
+      $LATEST_REVISION_ID IS NULL AND
       (
         $READ = 0 OR 
         (

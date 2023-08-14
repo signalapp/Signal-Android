@@ -81,7 +81,7 @@ public class MarkReadReceiverTest {
     List<MessageTable.MarkedMessageInfo> duplicatedList = Util.concatenatedList(infoList, infoList);
 
     // WHEN
-    MarkReadReceiver.process(mockContext, duplicatedList);
+    MarkReadReceiver.process(duplicatedList);
 
     // THEN
     assertEquals("Should have 10 total jobs, including MultiDeviceReadUpdateJob", expected, jobs.size());

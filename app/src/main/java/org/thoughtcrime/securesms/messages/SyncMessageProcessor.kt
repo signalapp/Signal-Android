@@ -898,7 +898,7 @@ object SyncMessageProcessor {
 
     if (Util.hasItems(markedMessages)) {
       log("Updating past SignalDatabase.messages: " + markedMessages.size)
-      MarkReadReceiver.process(context, markedMessages)
+      MarkReadReceiver.process(markedMessages)
     }
 
     for (id in unhandled) {

@@ -57,6 +57,12 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
+  override fun onResume() {
+    super.onResume()
+
+    viewModel.markRevisionsRead()
+  }
+
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
     dialog.behavior.skipCollapsed = true
