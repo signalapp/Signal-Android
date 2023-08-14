@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
-import org.thoughtcrime.securesms.messages.WebSocketStrategy
+import org.thoughtcrime.securesms.messages.WebSocketDrainer
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -140,7 +140,7 @@ object FcmFetchManager {
 
   @JvmStatic
   fun retrieveMessages(context: Context): Boolean {
-    val success = WebSocketStrategy.execute(WEBSOCKET_DRAIN_TIMEOUT)
+    val success = WebSocketDrainer.blockUntilDrainedAndProcessed(WEBSOCKET_DRAIN_TIMEOUT)
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.")

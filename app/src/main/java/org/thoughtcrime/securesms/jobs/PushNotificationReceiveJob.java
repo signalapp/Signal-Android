@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.messages.WebSocketStrategy;
+import org.thoughtcrime.securesms.messages.WebSocketDrainer;
 import org.thoughtcrime.securesms.service.DelayedNotificationController;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -48,7 +48,7 @@ public final class PushNotificationReceiveJob extends BaseJob {
     boolean success;
 
     try (DelayedNotificationController unused = GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), 300, R.drawable.ic_signal_refresh)) {
-      success = WebSocketStrategy.execute();
+      success = WebSocketDrainer.blockUntilDrainedAndProcessed();
     }
 
     if (success) {
