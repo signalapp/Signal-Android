@@ -220,7 +220,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     type: Long,
     unarchive: Boolean,
     expiresIn: Long,
-    readReceiptCount: Int
+    readReceiptCount: Int,
+    unreadCount: Int,
+    unreadMentionCount: Int
   ) {
     var extraSerialized: String? = null
 
@@ -244,7 +246,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       DELIVERY_RECEIPT_COUNT to deliveryReceiptCount,
       READ_RECEIPT_COUNT to readReceiptCount,
       EXPIRES_IN to expiresIn,
-      ACTIVE to 1
+      ACTIVE to 1,
+      UNREAD_COUNT to unreadCount,
+      UNREAD_SELF_MENTION_COUNT to unreadMentionCount
     )
 
     writableDatabase
@@ -288,8 +292,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val contentValues = contentValuesOf(
       DATE to date - date % 1000,
       SNIPPET to snippet,
+      SNIPPET_URI to attachment?.toString(),
       SNIPPET_TYPE to type,
-      SNIPPET_URI to attachment?.toString()
+      SNIPPET_CONTENT_TYPE to null,
+      SNIPPET_EXTRAS to null
     )
 
     if (unarchive && allowedToUnarchive(threadId)) {
@@ -1247,14 +1253,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .run()
   }
 
-  fun setHasSentSilently(threadId: Long, hasSent: Boolean) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(HAS_SENT to if (hasSent) 1 else 0)
-      .where("$ID = ?", threadId)
-      .run()
-  }
-
   fun updateReadState(threadId: Long) {
     val previous = getThreadRecord(threadId)
     val unreadCount = messages.getUnreadCount(threadId)
@@ -1454,7 +1452,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             type = 0,
             unarchive = unarchive,
             expiresIn = 0,
-            readReceiptCount = 0
+            readReceiptCount = 0,
+            unreadCount = 0,
+            unreadMentionCount = 0
           )
         }
         return@withinTransaction true
@@ -1465,6 +1465,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
 
       val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
+      val unreadCount: Int = messages.getUnreadCount(threadId)
+      val unreadMentionCount: Int = messages.getUnreadMentionCount(threadId)
 
       updateThread(
         threadId = threadId,
@@ -1479,7 +1481,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         type = record.type,
         unarchive = unarchive,
         expiresIn = record.expiresIn,
-        readReceiptCount = record.readReceiptCount
+        readReceiptCount = record.readReceiptCount,
+        unreadCount = unreadCount,
+        unreadMentionCount = unreadMentionCount
       )
 
       if (notifyListeners) {
