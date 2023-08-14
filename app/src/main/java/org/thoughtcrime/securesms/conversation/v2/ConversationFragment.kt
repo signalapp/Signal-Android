@@ -3198,10 +3198,6 @@ class ConversationFragment :
     override fun showExpiring(recipient: Recipient) = Unit
     override fun clearExpiring() = Unit
 
-    override fun showGroupCallingTooltip() {
-      conversationTooltips.displayGroupCallingTooltip(requireView().findViewById(R.id.menu_video_secure))
-    }
-
     override fun handleFormatText(id: Int) {
       composeText.handleFormatText(id)
     }
