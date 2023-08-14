@@ -54,7 +54,7 @@ object CallLinks {
 
   @JvmStatic
   fun isCallLink(url: String): Boolean {
-    if (FeatureFlags.adHocCalling()) {
+    if (!FeatureFlags.adHocCalling()) {
       return false
     }
 

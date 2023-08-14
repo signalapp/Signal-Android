@@ -6158,6 +6158,8 @@
     <string name="CreateCallLink__create_a_call_link">Create a Call Link</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Share a link for a Signal call</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
