@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import org.signal.core.util.ByteSize;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 
@@ -107,6 +108,7 @@ public final class ImageCompressionUtil {
 
     byte[] data = output.toByteArray();
 
+    Log.d(TAG, "[Input] mimeType: " + mimeType + " [Output] format: " + format + ", maxDimension: " + maxDimension + ", quality: " + quality + ", size(KiB): " + new ByteSize(data.length).getInWholeKibiBytes());
     return new Result(data, compressFormatToMimeType(format), scaledBitmap.getWidth(), scaledBitmap.getHeight());
   }
 
