@@ -336,7 +336,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     setSelectedConversations(new ConversationSet());
     setBadgeFromRecipient(recipient.get());
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode, true);
+    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode, false);
   }
 
   public void bindGroupWithMembers(@NonNull LifecycleOwner lifecycleOwner,
@@ -565,7 +565,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else {
       fromView.setText(recipient, false);
     }
-    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode, thread != null);
+    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode, false);
     setBadgeFromRecipient(recipient);
   }
 
