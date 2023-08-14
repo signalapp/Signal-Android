@@ -243,9 +243,9 @@
     <string name="CommunicationActions_cant_join_call">کال میں شامل ہونے سے قاصر</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">کال کا یہ لنک اب درست نہیں ہے۔</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">غلط لنک</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">یہ کال لنک مؤثر نہیں ہے۔ شامل ہونے کی کوشش کرنے سے قبل یہ یقینی بنائیں کہ مکمل لنک محفوظ اور درست ہے۔</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -906,9 +906,9 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">We noticed notifications are delayed. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">ہم نے مشاہدہ کیا ہے کہ اطلاعات میں تاخیر ہوتی ہے۔ ڈی بَگ لاگ جمع کریں؟</string>
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">ڈی بَگ لاگز مسئلے کی نشاندہی کرنے اور اسے حل کرنے میں ہماری مدد کرتے ہیں، اور اس میں شناخت کرنے والی معلومات شامل نہیں ہوتی ہیں۔</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">زیر التواء گروپ دعوت نامے</string>
@@ -1738,46 +1738,46 @@
     <string name="WebRtcCallActivity__not_now">ابھی نہیں</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="one">Approve %1$d request?</item>
-        <item quantity="other">Approve %1$d requests?</item>
+        <item quantity="one">%1$d کی درخواست منظور کریں؟</item>
+        <item quantity="other">%1$d کی درخواستیں منظور کریں؟</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">Approve all</string>
+    <string name="WebRtcCallActivity__approve_all">سب منظور کریں</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="one">%1$d person will be added to the call.</item>
-        <item quantity="other">%1$d people will be added to the call.</item>
+        <item quantity="one">%1$d شخص کو کال میں شامل کیا جائے گا۔</item>
+        <item quantity="other">%1$d لوگوں کو کال میں شامل کیا جائے گا۔</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="one">Deny %1$d request?</item>
-        <item quantity="other">Deny %1$d requests?</item>
+        <item quantity="one">%1$d درخواست مسترد کریں؟</item>
+        <item quantity="other">%1$d درخواستیں مسترد کریں؟</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="one">%1$d person will not be added to the call.</item>
-        <item quantity="other">%1$d people will not be added to the call.</item>
+        <item quantity="one">%1$d شخص کو کال میں شامل نہیں کیا جائے گا۔</item>
+        <item quantity="other">%1$d لوگوں کو کال میں شامل نہیں کیا جائے گا۔</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Deny all</string>
+    <string name="WebRtcCallActivity__deny_all">سب مسترد کریں</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="one">%1$d شخص منتظر ہے</item>
+        <item quantity="other">%1$d لوگ منتظر ہیں</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="one">%1$d person</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="one">%1$d فرد</item>
+        <item quantity="other">%1$d افراد</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
+    <string name="WebRtcCallActivity__join_request_denied">شامل ہونے کی درخواست مسترد کر دی گئی ہے</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Your request to join this call has been denied.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">آپ کی اس کال میں شامل ہونے کی درخواست مسترد کر دی گئی ہے۔</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
+    <string name="WebRtcCallActivity__removed_from_call">کال سے ہٹا دیا گیا</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">کوئی شخص آپ کو کال سے ہٹا چکا ہے۔</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal کال</string>
@@ -1791,11 +1791,11 @@
     <string name="WebRtcCallView__joining">شمولیت…</string>
     <string name="WebRtcCallView__disconnected">منقطع ہوا</string>
     <!-- Utilized in the lobby before joining a call link -->
-    <string name="WebRtcCallView__signal_call_link">Signal call link</string>
+    <string name="WebRtcCallView__signal_call_link">Signal کا کال لنک</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins">جو کوئی بھی لنک کے ذریعے اس کال میں شامل ہوتا ہے وہ آپ کا نام، تصویر، اور فون نمبر دیکھ سکے گا۔</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">شامل ہونے کے منتظر…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s کو کال کرے گا</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s اور %2$s کو کال کرے گا</string>
@@ -2819,7 +2819,7 @@
     <string name="message_details_recipient_header__read_by">پڑھ کر</string>
     <string name="message_details_recipient_header__not_sent">نہیں بھیجا گیا</string>
     <string name="message_details_recipient_header__viewed">کے ذریعہ دیکھا گیا</string>
-    <string name="message_details_recipient_header__skipped">چھوڑ دیں</string>
+    <string name="message_details_recipient_header__skipped">نظر انداز ہو گیا</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">بھیجنے میں ناکام</string>
@@ -2872,13 +2872,13 @@
         <item>SMS برآمد</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android میں ڈی بَگ لاگ جمع کروانا</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">اطلاعات سُست روی کا شکار ہیں</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">جمع کرائیں</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">نہیں شکریہ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">یہ پیغام</string>
@@ -6042,9 +6042,9 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">کال کا لنک</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">ویڈیو کال شروع کریں</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <string name="CallLogAdapter__start_a_voice_call">ایک وائس کال شروع کریں</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6157,13 +6157,13 @@
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
-    <string name="CallLinkInfoSheet__call_info">Call info</string>
+    <string name="CallLinkInfoSheet__call_info">کال کی معلومات</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s کو کال سے ہٹا دیں؟</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">ہٹا دیں</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
+    <string name="CallLinkInfoSheet__block_from_call">کال سے بلاک کر دیں</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6266,25 +6266,25 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Would like to join…</string>
+    <string name="PendingParticipantsView__would_like_to_join">شامل ہونا چاہیں گے…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="one">+%1$d request</item>
-        <item quantity="other">+%1$d requests</item>
+        <item quantity="one">+%1$d درخواست</item>
+        <item quantity="other">+%1$d درخواستیں</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Requests to join this call</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">اس کال میں شامل ہونے کے لیے درخواستیں</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="one">%1$d شخص منتظر ہے</item>
+        <item quantity="other">%1$d لوگ منتظر ہیں</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">مسترد کریں</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">منظور کریں</string>
 
     <!-- EOF -->
 </resources>

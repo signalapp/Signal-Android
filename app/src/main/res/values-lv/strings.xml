@@ -244,7 +244,7 @@
     <string name="CommunicationActions_cant_join_call">Nevar pievienoties grupai</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Šī zvana saite vairs nav derīga.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">Nederīga saite</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
 
@@ -1832,9 +1832,9 @@
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="zero">%1$d people</item>
-        <item quantity="one">%1$d person</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="zero">%1$d cilvēki</item>
+        <item quantity="one">%1$d cilvēks</item>
+        <item quantity="other">%1$d cilvēki</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
     <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
@@ -2963,9 +2963,9 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">Iesniegt</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Nē, paldies</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
@@ -6172,7 +6172,7 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Zvana saite</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">Sākt videozvanu</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
 
@@ -6294,7 +6294,7 @@
     <!-- Dialog title for removing or blocking participants -->
     <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">Noņemt</string>
     <!-- Dialog action to block participant from the call -->
     <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
 
@@ -6417,9 +6417,9 @@
         <item quantity="other">%1$d people waiting</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">Noraidīt</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">Apstiprināt</string>
 
     <!-- EOF -->
 </resources>

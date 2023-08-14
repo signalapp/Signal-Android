@@ -242,7 +242,7 @@
     <string name="CommunicationActions_cant_join_call">چاقىرىققا قوشۇلالمىدى</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">بۇ چاقىرىق ئۇلانمىسى ئىناۋەتسىز.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">ئىناۋەتسىز ئۇلانما</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
 
@@ -1702,7 +1702,7 @@
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="other">%1$d people</item>
+        <item quantity="other">%1$d كىشى</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
     <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
@@ -2789,9 +2789,9 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">تاپشۇر</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">ياق، رەھمەت</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">بۇ ئۇچۇر</string>
@@ -5912,7 +5912,7 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">چاقىرىق ئۇلانمىسى</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">ۋىدېيولۇق چاقىرىق قىلىش</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
 
@@ -6028,7 +6028,7 @@
     <!-- Dialog title for removing or blocking participants -->
     <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">چىقىرىۋەت</string>
     <!-- Dialog action to block participant from the call -->
     <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
 
@@ -6147,9 +6147,9 @@
         <item quantity="other">%1$d people waiting</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">رەت قىل</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">تەستىقلا</string>
 
     <!-- EOF -->
 </resources>

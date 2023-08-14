@@ -242,9 +242,9 @@
     <string name="CommunicationActions_cant_join_call">無法加入通話</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">此通話連結已失效。</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">無效的連結</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">這不是有效的通話連結。在嘗試加入之前，請確保整個連結是完整且正確的。</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -876,9 +876,9 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">We noticed notifications are delayed. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">我們注意到通知延遲了。要提交除錯日誌嗎？</string>
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">除錯日誌可協助我們診斷並修正問題，而且不包含識別資料。</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">尚待處理的群組邀請</string>
@@ -1678,40 +1678,40 @@
     <string name="WebRtcCallActivity__not_now">現在不要</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="other">Approve %1$d requests?</item>
+        <item quantity="other">批准 %1$d 個請求？</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">Approve all</string>
+    <string name="WebRtcCallActivity__approve_all">全部批准</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="other">%1$d people will be added to the call.</item>
+        <item quantity="other">新增 %1$d 個人到通話中。</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="other">Deny %1$d requests?</item>
+        <item quantity="other">拒絕 %1$d 個請求？</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="other">%1$d people will not be added to the call.</item>
+        <item quantity="other">不會新增 %1$d 個人到通話中。</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Deny all</string>
+    <string name="WebRtcCallActivity__deny_all">全部拒絕</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="other">%1$d 個人正在等候</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="other">%1$d people</item>
+        <item quantity="other">%1$d 人</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
+    <string name="WebRtcCallActivity__join_request_denied">加入請求遭拒</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Your request to join this call has been denied.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">你加入通話的請求已被拒絕。</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
+    <string name="WebRtcCallActivity__removed_from_call">已從通話中移除</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">有人將你從通話中移除。</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 通話</string>
@@ -1725,11 +1725,11 @@
     <string name="WebRtcCallView__joining">正在加入…</string>
     <string name="WebRtcCallView__disconnected">已中斷連線</string>
     <!-- Utilized in the lobby before joining a call link -->
-    <string name="WebRtcCallView__signal_call_link">Signal call link</string>
+    <string name="WebRtcCallView__signal_call_link">Signal 通話連結</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins">透過連結加入此通話的人都會看到你的姓名、相片和電話號碼。</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">正在等待獲准加入…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal 將給 %1$s 響鈴</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal 將給 %1$s 和 %2$s 響鈴</string>
@@ -2785,13 +2785,13 @@
         <item>SMS 短訊匯出</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 除錯日誌提交</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">通知緩慢</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">提交</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">不必了</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此訊息</string>
@@ -5912,9 +5912,9 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">通話連結</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">開始視訊電話</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <string name="CallLogAdapter__start_a_voice_call">開始語音通話</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6024,13 +6024,13 @@
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
-    <string name="CallLinkInfoSheet__call_info">Call info</string>
+    <string name="CallLinkInfoSheet__call_info">通話資訊</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">要將%1$s從通話中移除嗎？</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">移除</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
+    <string name="CallLinkInfoSheet__block_from_call">從通話中封鎖</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6133,23 +6133,23 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Would like to join…</string>
+    <string name="PendingParticipantsView__would_like_to_join">想加入…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="other">+%1$d requests</item>
+        <item quantity="other">+%1$d 個請求</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Requests to join this call</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">請求加入此通話</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="other">%1$d 個人正在等候</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">拒絕</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">核准</string>
 
     <!-- EOF -->
 </resources>

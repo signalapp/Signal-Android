@@ -243,9 +243,9 @@
     <string name="CommunicationActions_cant_join_call">Не може да се приклучите на повикот</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Линкот за повикот повеќе не е валиден.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">Невалиден линк</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ова не е валиден линк за повик. Бидете сигурни дека линкот е целосен и точен пред да пробате да се вклучите.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -906,9 +906,9 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">We noticed notifications are delayed. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">Забележавме дека известувањата доцнат. Сакате да испратите запис за отстранување грешки?</string>
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">Записите за отстранување грешки ни помагаат при дијагностицирање и отстранување на грешката и не содржат лични податоци.</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Групни покани на чекање</string>
@@ -1738,46 +1738,46 @@
     <string name="WebRtcCallActivity__not_now">Не сега</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="one">Approve %1$d request?</item>
-        <item quantity="other">Approve %1$d requests?</item>
+        <item quantity="one">Сакате да одобрите %1$d барање?</item>
+        <item quantity="other">Сакате да одобрите %1$d барања?</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">Approve all</string>
+    <string name="WebRtcCallActivity__approve_all">Одобри ги сите</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="one">%1$d person will be added to the call.</item>
-        <item quantity="other">%1$d people will be added to the call.</item>
+        <item quantity="one">%1$d личност ќе биде додадена во повикот.</item>
+        <item quantity="other">%1$d лица ќе бидат додадени во повикот.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="one">Deny %1$d request?</item>
-        <item quantity="other">Deny %1$d requests?</item>
+        <item quantity="one">Сакате да одобрите %1$d барање?</item>
+        <item quantity="other">Сакате да се одобрат %1$d барања?</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="one">%1$d person will not be added to the call.</item>
-        <item quantity="other">%1$d people will not be added to the call.</item>
+        <item quantity="one">%1$d личност нема да биде додадена во повикот.</item>
+        <item quantity="other">%1$d лица нема да бидат додадени во повикот.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Deny all</string>
+    <string name="WebRtcCallActivity__deny_all">Одбиј ги сите</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="one">%1$d личност чека</item>
+        <item quantity="other">%1$d лица чекаат</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="one">%1$d person</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="one">%1$d личност</item>
+        <item quantity="other">%1$d луѓе</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
+    <string name="WebRtcCallActivity__join_request_denied">Барањето за придружување на повикот е одбиено</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Your request to join this call has been denied.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Вашето барање за придружување на повикот е одбиено.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
+    <string name="WebRtcCallActivity__removed_from_call">Отстранети сте од повикот</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Некој ве отстранил од повикот.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal повик</string>
@@ -1791,11 +1791,11 @@
     <string name="WebRtcCallView__joining">Се приклучувам…</string>
     <string name="WebRtcCallView__disconnected">Неповрзан</string>
     <!-- Utilized in the lobby before joining a call link -->
-    <string name="WebRtcCallView__signal_call_link">Signal call link</string>
+    <string name="WebRtcCallView__signal_call_link">Линк за Signal повик</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins">Сите кои ќе се придружат на повикот преку линкот ќе можат да ги видат вашите име, слика и телефонски број.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">Чекате да се вклучите…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal ќе ѕвони на %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ќе ѕвони на %1$s и %2$s</string>
@@ -2872,13 +2872,13 @@
         <item>Извезување на SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Поднесување запис за отстранување грешки на Signal за Android</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Прикажи известувања</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">Испрати</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Не, благодарам</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
@@ -6042,9 +6042,9 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Линк за повик</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">Започни видео повик</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <string name="CallLogAdapter__start_a_voice_call">Започнете гласовен повик</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6157,13 +6157,13 @@
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
-    <string name="CallLinkInfoSheet__call_info">Call info</string>
+    <string name="CallLinkInfoSheet__call_info">Податоци за повикот</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Сакате да се отстрани %1$s од повикот?</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">Отстрани</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
+    <string name="CallLinkInfoSheet__block_from_call">Блокирај од повикот</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6266,25 +6266,25 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Would like to join…</string>
+    <string name="PendingParticipantsView__would_like_to_join">Сака да се придружи…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="one">+%1$d request</item>
-        <item quantity="other">+%1$d requests</item>
+        <item quantity="one">+%1$d барање</item>
+        <item quantity="other">+%1$d барања</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Requests to join this call</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Барања за придружување на повикот</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="one">%1$d личност чека</item>
+        <item quantity="other">%1$d лица чекаат</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">Одбиј</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">Дозволи</string>
 
     <!-- EOF -->
 </resources>

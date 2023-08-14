@@ -247,9 +247,9 @@
     <string name="CommunicationActions_cant_join_call">تعذّر الانضمام إلى المكالمة</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">لم يعد رابط هذه المكالمة صالحًا.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">وصلة غير صالحة</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">إنَّ رابط المجموعة هذا غير صالح. تأكد من سلامة وصحة الرابط بأكمله قبل مُحاولة الانضمام.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -1026,9 +1026,9 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">We noticed notifications are delayed. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">لاحظنا تأخر الإشعارات. إرسال سِجل التصحيح؟</string>
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">تساعدنا سجلات التصحيح في تشخيص المشكلة وإصلاحها ولا تحتوي على معلومات تعريفية.</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">الدعوات المُعلَّقة</string>
@@ -1978,70 +1978,70 @@
     <string name="WebRtcCallActivity__not_now">ليس الآن</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="zero">Approve %1$d requests?</item>
-        <item quantity="one">Approve %1$d request?</item>
-        <item quantity="two">Approve %1$d requests?</item>
-        <item quantity="few">Approve %1$d requests?</item>
-        <item quantity="many">Approve %1$d requests?</item>
-        <item quantity="other">Approve %1$d requests?</item>
+        <item quantity="zero">الموافقة على %1$d طلب؟</item>
+        <item quantity="one">الموافقة على %1$d طلب؟</item>
+        <item quantity="two">الموافقة على %1$d طلبين؟</item>
+        <item quantity="few">الموافقة على %1$d طلبات؟</item>
+        <item quantity="many">الموافقة على %1$d طلبًا؟</item>
+        <item quantity="other">الموافقة على %1$d طلب؟</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">Approve all</string>
+    <string name="WebRtcCallActivity__approve_all">موافقة على الكل</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="zero">%1$d people will be added to the call.</item>
-        <item quantity="one">%1$d person will be added to the call.</item>
-        <item quantity="two">%1$d people will be added to the call.</item>
-        <item quantity="few">%1$d people will be added to the call.</item>
-        <item quantity="many">%1$d people will be added to the call.</item>
-        <item quantity="other">%1$d people will be added to the call.</item>
+        <item quantity="zero">سيُضاف %1$d شخص إلى المكالمة.</item>
+        <item quantity="one">سيُضاف %1$d شخص إلى المكالمة.</item>
+        <item quantity="two">سيُضاف %1$d شخصين إلى المكالمة.</item>
+        <item quantity="few">سيُضاف %1$d أشخاص إلى المكالمة.</item>
+        <item quantity="many">سيُضاف %1$d شخصًا إلى المكالمة.</item>
+        <item quantity="other">سيُضاف %1$d شخص إلى المكالمة.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="zero">Deny %1$d requests?</item>
-        <item quantity="one">Deny %1$d request?</item>
-        <item quantity="two">Deny %1$d requests?</item>
-        <item quantity="few">Deny %1$d requests?</item>
-        <item quantity="many">Deny %1$d requests?</item>
-        <item quantity="other">Deny %1$d requests?</item>
+        <item quantity="zero">رفض %1$d طلب؟</item>
+        <item quantity="one">رفض %1$d طلب؟</item>
+        <item quantity="two">رفض %1$d طلبين؟</item>
+        <item quantity="few">رفض %1$d طلبات؟</item>
+        <item quantity="many">رفض %1$d طلبًا؟</item>
+        <item quantity="other">رفض %1$d طلب؟</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="zero">%1$d people will not be added to the call.</item>
-        <item quantity="one">%1$d person will not be added to the call.</item>
-        <item quantity="two">%1$d people will not be added to the call.</item>
-        <item quantity="few">%1$d people will not be added to the call.</item>
-        <item quantity="many">%1$d people will not be added to the call.</item>
-        <item quantity="other">%1$d people will not be added to the call.</item>
+        <item quantity="zero">لن يتم إضافة %1$d شخص إلى المكالمة.</item>
+        <item quantity="one">لن يتم إضافة %1$d شخص إلى المكالمة.</item>
+        <item quantity="two">لن يتم إضافة %1$d شخصين إلى المكالمة.</item>
+        <item quantity="few">لن يتم إضافة %1$d أشخاص إلى المكالمة.</item>
+        <item quantity="many">لن يتم إضافة %1$d شخصًا إلى المكالمة.</item>
+        <item quantity="other">لن يتم إضافة %1$d شخص إلى المكالمة.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Deny all</string>
+    <string name="WebRtcCallActivity__deny_all">رفض الكل</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
-        <item quantity="zero">%1$d people waiting</item>
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="two">%1$d people waiting</item>
-        <item quantity="few">%1$d people waiting</item>
-        <item quantity="many">%1$d people waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="zero">%1$d شخص ينتظر</item>
+        <item quantity="one">%1$d شخص ينتظر</item>
+        <item quantity="two">%1$d شخصان ينتظران</item>
+        <item quantity="few">%1$d أشخاص ينتظرون</item>
+        <item quantity="many">%1$d شخصًا ينتظر</item>
+        <item quantity="other">%1$d شخص ينتظر</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="zero">%1$d people</item>
-        <item quantity="one">%1$d person</item>
-        <item quantity="two">%1$d people</item>
-        <item quantity="few">%1$d people</item>
-        <item quantity="many">%1$d people</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="zero">لا أحد (%1$d)</item>
+        <item quantity="one">شخص واحد (%1$d)</item>
+        <item quantity="two">شخصان (%1$d)</item>
+        <item quantity="few">%1$d أفراد</item>
+        <item quantity="many">%1$d فردا</item>
+        <item quantity="other">%1$d فرد</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
+    <string name="WebRtcCallActivity__join_request_denied">رُفض طلب الانضمام</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Your request to join this call has been denied.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">لقد رُفضَ طلب انضمامك إلى هذه المكالمة.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
+    <string name="WebRtcCallActivity__removed_from_call">إزالة من المكالمة</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">قام شخص ما بإزالتك من المكالمة.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">مكالمة سيجنال</string>
@@ -2055,11 +2055,11 @@
     <string name="WebRtcCallView__joining">قيد الانضمام…</string>
     <string name="WebRtcCallView__disconnected">غير متّصل</string>
     <!-- Utilized in the lobby before joining a call link -->
-    <string name="WebRtcCallView__signal_call_link">Signal call link</string>
+    <string name="WebRtcCallView__signal_call_link">رابط مكالمة سيجنال</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins">سيرى أي شخص انضم إلى هذه المكالمة عبر الرابط اسمك وصورتك ورقم هاتفك.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">في انتظار السماح بالانضمام…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">سَيتصل سيجنال بـ%1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">سَيتصل سيجنال بـ %1$s و%2$s</string>
@@ -3220,13 +3220,13 @@
         <item>تصدير SMS</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سِجل تصحيح أخطاء سيجنال للأندرويد</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">إشعارات بطيئة</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">تقديم</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">لا شكراً</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
@@ -6562,9 +6562,9 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">اتصال بالرابط</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">بدء مكالمة بالصورة ؟</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <string name="CallLogAdapter__start_a_voice_call">بدء مكالمة فيديو</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6689,13 +6689,13 @@
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
-    <string name="CallLinkInfoSheet__call_info">Call info</string>
+    <string name="CallLinkInfoSheet__call_info">معلومات المكالمة</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">إزالة %1$s من المكالمة؟</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">إزالة</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
+    <string name="CallLinkInfoSheet__block_from_call">حظر من المكالمة</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6798,33 +6798,33 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Would like to join…</string>
+    <string name="PendingParticipantsView__would_like_to_join">يرغب في الانضمام…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="zero">+%1$d requests</item>
-        <item quantity="one">+%1$d request</item>
-        <item quantity="two">+%1$d requests</item>
-        <item quantity="few">+%1$d requests</item>
-        <item quantity="many">+%1$d requests</item>
-        <item quantity="other">+%1$d requests</item>
+        <item quantity="zero">+ %1$d طلب</item>
+        <item quantity="one">+%1$d طلب</item>
+        <item quantity="two">+%1$d طلبين</item>
+        <item quantity="few">+%1$d طلبات</item>
+        <item quantity="many">+%1$d طلبًا</item>
+        <item quantity="other">+%1$d طلب</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Requests to join this call</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">طلبات للانضمام إلى المكالمة</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="zero">%1$d people waiting</item>
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="two">%1$d people waiting</item>
-        <item quantity="few">%1$d people waiting</item>
-        <item quantity="many">%1$d people waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="zero">%1$d شخص ينتظر</item>
+        <item quantity="one">%1$d شخص ينتظر</item>
+        <item quantity="two">%1$d شخصان ينتظران</item>
+        <item quantity="few">%1$d أشخاص ينتظرون</item>
+        <item quantity="many">%1$d شخصًا ينتظر</item>
+        <item quantity="other">%1$d شخص ينتظر</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">رفض</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">الموافقة</string>
 
     <!-- EOF -->
 </resources>

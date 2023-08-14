@@ -243,9 +243,9 @@
     <string name="CommunicationActions_cant_join_call">కాల్‌లో చేరలేరు</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">ఈ కాల్ లింక్ ఇకపై చెల్లుబాటు కాదు.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Invalid link</string>
+    <string name="CommunicationActions_invalid_link">చెల్లని లింక్</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">ఇది చెల్లుబాటు అయ్యే కాల్ లింక్ కాదు. చేరడానికి ప్రయత్నించే ముందు మొత్తం లింక్ సంపూర్ణంగా మరియు సరిగ్గా ఉందని నిర్ధారించుకోండి.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -906,9 +906,9 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">We noticed notifications are delayed. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">నోటిఫికేషన్‌లు ఆలస్యం అవుతున్నాయని మేము గమనించాము. డీబగ్ లాగ్‌ను సమర్పించేదా?</string>
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">సమస్యను గుర్తించడానికి మరియు పరిష్కరించడానికి డీబగ్ లాగ్‌లు మాకు సహాయపడతాయి, మరియు గుర్తించే సమాచారం కలిగి ఉండవు.</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">ఆమోదించవలసిన సమూహ ఆహ్వానములు</string>
@@ -1738,46 +1738,46 @@
     <string name="WebRtcCallActivity__not_now">ఇప్పుడు కాదు</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="one">Approve %1$d request?</item>
-        <item quantity="other">Approve %1$d requests?</item>
+        <item quantity="one">%1$d అభ్యర్థనను ఆమోదించేదా?</item>
+        <item quantity="other">%1$d అభ్యర్థనలను ఆమోదించేదా?</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">Approve all</string>
+    <string name="WebRtcCallActivity__approve_all">అన్నిటిని ఆమోదించండి</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="one">%1$d person will be added to the call.</item>
-        <item quantity="other">%1$d people will be added to the call.</item>
+        <item quantity="one">%1$d వ్యక్తి కాల్‌కు జోడించబడతారు.</item>
+        <item quantity="other">%1$d వ్యక్తులు కాల్‌కు జోడించబడతారు.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="one">Deny %1$d request?</item>
-        <item quantity="other">Deny %1$d requests?</item>
+        <item quantity="one">%1$d అభ్యర్థనను తిరస్కరించేదా?</item>
+        <item quantity="other">%1$d అభ్యర్థనలను తిరస్కరించేదా?</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="one">%1$d person will not be added to the call.</item>
-        <item quantity="other">%1$d people will not be added to the call.</item>
+        <item quantity="one">%1$d వ్యక్తి కాల్‌కు జోడించబడరు.</item>
+        <item quantity="other">%1$d వ్యక్తులు కాల్‌కు జోడించబడరు.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Deny all</string>
+    <string name="WebRtcCallActivity__deny_all">అన్నిటిని తిరస్కరించండి</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="one">%1$d వ్యక్తి వేచి ఉన్నారు</item>
+        <item quantity="other">%1$d వ్యక్తులు వేచి ఉన్నారు</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="one">%1$d person</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="one">%1$d వ్యక్తి</item>
+        <item quantity="other">%1$dవ్యక్తులు</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
+    <string name="WebRtcCallActivity__join_request_denied">చేరడానికి అభ్యర్థన తిరస్కరించబడింది</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Your request to join this call has been denied.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">ఈ కాల్‌లో చేరాలనే మీ అభ్యర్థన తిరస్కరించబడింది.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
+    <string name="WebRtcCallActivity__removed_from_call">కాల్ నుండి తొలగించబడ్డారు</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">కాల్ నుండి మిమ్మల్ని ఎవరో తొలగించారు.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal కాల్</string>
@@ -1791,11 +1791,11 @@
     <string name="WebRtcCallView__joining">చేరడం…</string>
     <string name="WebRtcCallView__disconnected">డిస్కనెక్ట్</string>
     <!-- Utilized in the lobby before joining a call link -->
-    <string name="WebRtcCallView__signal_call_link">Signal call link</string>
+    <string name="WebRtcCallView__signal_call_link">Signal కాల్ లింక్</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins">లింక్ ద్వారా ఈ కాల్‌లో చేరే ఎవరైనా మీ పేరు, ఫోటో మరియు ఫోన్ నంబర్‌ను చూస్తారు.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">అనుమతి కోసం వేచి ఉంది…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal %1$sని రింగ్ చేస్తుంది.</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s మరియు %2$s లను రింగ్ చేస్తుంది</string>
@@ -2872,13 +2872,13 @@
         <item>SMS ఎగుమతి</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android డీబగ్ లాగ్ సమర్పణ</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">నోటిఫికేషన్‌లు నిదానంగా ఉన్నాయి</string>
     <!-- Action to submit logs and take user to send an e-mail -->
-    <string name="DebugLogsPromptDialogFragment__submit">Submit</string>
+    <string name="DebugLogsPromptDialogFragment__submit">సమర్పించండి</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">వద్దు ధన్యవాదాలు</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ఈ సందేశం</string>
@@ -6042,9 +6042,9 @@
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">కాల్ లింక్</string>
     <!-- Accessibility description for the video call button -->
-    <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
+    <string name="CallLogAdapter__start_a_video_call">వీడియో కాల్ ప్రారంభించండి</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <string name="CallLogAdapter__start_a_voice_call">స్వర కాల్‌ను ప్రారంభించండి</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6157,13 +6157,13 @@
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
-    <string name="CallLinkInfoSheet__call_info">Call info</string>
+    <string name="CallLinkInfoSheet__call_info">కాల్ సమాచారం</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">కాల్ నుండి %1$s‌ను తొలగించేదా?</string>
     <!-- Dialog action to remove participant from the call -->
-    <string name="CallLinkInfoSheet__remove">Remove</string>
+    <string name="CallLinkInfoSheet__remove">తొలగించండి</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
+    <string name="CallLinkInfoSheet__block_from_call">కాల్ నుండి బ్లాక్ చేయండి</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6266,25 +6266,25 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Would like to join…</string>
+    <string name="PendingParticipantsView__would_like_to_join">చేరాలనుకుంటున్నారు…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="one">+%1$d request</item>
-        <item quantity="other">+%1$d requests</item>
+        <item quantity="one">+%1$d అభ్యర్థన</item>
+        <item quantity="other">+%1$d అభ్యర్థనలు</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Requests to join this call</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">ఈ కాల్‌లో చేరడానికి అభ్యర్థనలు</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="one">%1$d person waiting</item>
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="one">%1$d వ్యక్తి వేచి ఉన్నారు</item>
+        <item quantity="other">%1$d వ్యక్తులు వేచి ఉన్నారు</item>
     </plurals>
     <!-- Content description for rejecting a user -->
-    <string name="PendingParticipantsBottomSheet__reject">Reject</string>
+    <string name="PendingParticipantsBottomSheet__reject">తిరస్కరించు</string>
     <!-- Content desccription for confirming a user -->
-    <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <string name="PendingParticipantsBottomSheet__approve">ఆమోదించడానికి</string>
 
     <!-- EOF -->
 </resources>
