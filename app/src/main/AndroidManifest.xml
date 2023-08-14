@@ -1323,7 +1323,7 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".messageprocessingalarm.MessageProcessReceiver" android:exported="false">
+    <receiver android:name=".messageprocessingalarm.RoutineMessageFetchReceiver" android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
             <action android:name="org.thoughtcrime.securesms.action.PROCESS_MESSAGES" />

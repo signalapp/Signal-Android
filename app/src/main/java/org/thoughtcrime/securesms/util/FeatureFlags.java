@@ -17,8 +17,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
-import org.thoughtcrime.securesms.notifications.Configuration;
+import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver;
 import org.whispersystems.signalservice.api.RemoteConfigResult;
 
 import java.io.IOException;
@@ -268,7 +267,7 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
+    put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> RoutineMessageFetchReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();

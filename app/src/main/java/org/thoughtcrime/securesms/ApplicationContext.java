@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,7 +48,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.gcm.FcmFetchManager;
-import org.thoughtcrime.securesms.gcm.FcmJobService;
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob;
 import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
@@ -61,7 +59,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PnpInitializeDevicesJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshSvrCredentialsJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob;
@@ -71,7 +68,7 @@ import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
-import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
+import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.SignalGlideComponents;
@@ -405,7 +402,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
-    MessageProcessReceiver.startOrUpdateAlarm(this);
+    RoutineMessageFetchReceiver.startOrUpdateAlarm(this);
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);

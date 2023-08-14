@@ -24,11 +24,12 @@ import java.util.Locale;
 import java.util.Optional;
 
 /**
- * On received message, runs a job to poll for messages.
+ * A receiver that is scheduled via alarm to run at a remotely-configurable interval to fetch messages from the service.
+ * Basically an extra reliability thing that helps poke the system to fetch messages more often.
  */
-public final class MessageProcessReceiver extends BroadcastReceiver {
+public final class RoutineMessageFetchReceiver extends BroadcastReceiver {
 
-  private static final String TAG = Log.tag(MessageProcessReceiver.class);
+  private static final String TAG = Log.tag(RoutineMessageFetchReceiver.class);
 
   public static final String BROADCAST_ACTION = "org.thoughtcrime.securesms.action.PROCESS_MESSAGES";
 
@@ -68,9 +69,9 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
   }
 
   public static void startOrUpdateAlarm(@NonNull Context context) {
-    Intent alarmIntent = new Intent(context, MessageProcessReceiver.class);
+    Intent alarmIntent = new Intent(context, RoutineMessageFetchReceiver.class);
 
-    alarmIntent.setAction(MessageProcessReceiver.BROADCAST_ACTION);
+    alarmIntent.setAction(RoutineMessageFetchReceiver.BROADCAST_ACTION);
 
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123, alarmIntent, PendingIntentFlags.updateCurrent());
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
