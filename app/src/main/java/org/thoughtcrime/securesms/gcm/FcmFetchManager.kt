@@ -140,7 +140,7 @@ object FcmFetchManager {
 
   @JvmStatic
   fun retrieveMessages(context: Context): Boolean {
-    val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, WebSocketStrategy(WEBSOCKET_DRAIN_TIMEOUT))
+    val success = WebSocketStrategy.execute(WEBSOCKET_DRAIN_TIMEOUT)
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.")

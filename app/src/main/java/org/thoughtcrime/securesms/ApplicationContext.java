@@ -186,7 +186,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(PreKeysSyncJob::enqueueIfNeeded)
                             .addNonBlocking(this::initializePeriodicTasks)
                             .addNonBlocking(this::initializeCircumvention)
-                            .addNonBlocking(this::initializePendingMessages)
                             .addNonBlocking(this::initializeCleanup)
                             .addNonBlocking(this::initializeGlideCodecs)
                             .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
@@ -446,18 +445,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   private void executePendingContactSync() {
     if (TextSecurePreferences.needsFullContactSync(this)) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
-    }
-  }
-
-  private void initializePendingMessages() {
-    if (TextSecurePreferences.getNeedsMessagePull(this)) {
-      Log.i(TAG, "Scheduling a message fetch.");
-      if (Build.VERSION.SDK_INT >= 26) {
-        FcmJobService.schedule(this);
-      } else {
-        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
-      }
-      TextSecurePreferences.setNeedsMessagePull(this, false);
     }
   }
 

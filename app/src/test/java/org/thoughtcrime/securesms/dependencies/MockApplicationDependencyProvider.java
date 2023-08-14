@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
-import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.payments.Payments;
@@ -75,11 +74,6 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
 
   @Override
   public @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
-    return null;
-  }
-
-  @Override
-  public @NonNull BackgroundMessageRetriever provideBackgroundMessageRetriever() {
     return null;
   }
 

@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
-import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -158,11 +157,6 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
     return new SignalServiceNetworkAccess(context);
-  }
-
-  @Override
-  public @NonNull BackgroundMessageRetriever provideBackgroundMessageRetriever() {
-    return new BackgroundMessageRetriever();
   }
 
   @Override

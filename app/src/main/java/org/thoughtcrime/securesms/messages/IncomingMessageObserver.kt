@@ -192,7 +192,7 @@ class IncomingMessageObserver(private val context: Application) {
 
   private fun isConnectionNecessary(): Boolean {
     val timeIdle: Long
-    val keepAliveEntries: Set<Map.Entry<String, Long>>
+    val keepAliveEntries: Set<Pair<String, Long>>
     val appVisibleSnapshot: Boolean
 
     lock.withLock {
@@ -205,7 +205,7 @@ class IncomingMessageObserver(private val context: Application) {
         Log.d(TAG, "Removed old keep web socket open requests.")
       }
 
-      keepAliveEntries = keepAliveTokens.entries.toImmutableSet()
+      keepAliveEntries = keepAliveTokens.entries.map { it.key to it.value }.toImmutableSet()
     }
 
     val registered = SignalStore.account().isRegistered

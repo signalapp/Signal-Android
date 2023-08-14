@@ -81,15 +81,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   protected void onCreate(Bundle savedInstanceState, boolean ready) {}
 
   @Override
-  protected void onResume() {
-    super.onResume();
-
-    if (networkAccess.isCensored()) {
-      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
-    }
-  }
-
-  @Override
   protected void onDestroy() {
     super.onDestroy();
     removeClearKeyReceiver(this);

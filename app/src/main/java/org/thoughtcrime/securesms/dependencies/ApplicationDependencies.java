@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
-import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -98,7 +97,6 @@ public class ApplicationDependencies {
   private static volatile SignalServiceMessageSender   messageSender;
   private static volatile SignalServiceMessageReceiver messageReceiver;
   private static volatile IncomingMessageObserver      incomingMessageObserver;
-  private static volatile BackgroundMessageRetriever   backgroundMessageRetriever;
   private static volatile LiveRecipientCache           recipientCache;
   private static volatile JobManager                   jobManager;
   private static volatile FrameRateTracker             frameRateTracker;
@@ -274,18 +272,6 @@ public class ApplicationDependencies {
 
   public static @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
     return provider.provideSignalServiceNetworkAccess();
-  }
-
-  public static @NonNull BackgroundMessageRetriever getBackgroundMessageRetriever() {
-    if (backgroundMessageRetriever == null) {
-      synchronized (LOCK) {
-        if (backgroundMessageRetriever == null) {
-          backgroundMessageRetriever = provider.provideBackgroundMessageRetriever();
-        }
-      }
-    }
-
-    return backgroundMessageRetriever;
   }
 
   public static @NonNull LiveRecipientCache getRecipientCache() {
@@ -706,7 +692,6 @@ public class ApplicationDependencies {
     @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver(@NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
-    @NonNull BackgroundMessageRetriever provideBackgroundMessageRetriever();
     @NonNull LiveRecipientCache provideRecipientCache();
     @NonNull JobManager provideJobManager();
     @NonNull FrameRateTracker provideFrameRateTracker();

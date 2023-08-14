@@ -60,7 +60,7 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
         Log.i(TAG, "Running PushNotificationReceiveJob");
 
         Optional<JobTracker.JobState> jobState = ApplicationDependencies.getJobManager()
-                                                                        .runSynchronously(PushNotificationReceiveJob.withDelayedForegroundService(foregroundDelayMs), jobTimeout);
+                                                                        .runSynchronously(new PushNotificationReceiveJob(), jobTimeout);
 
         Log.i(TAG, "PushNotificationReceiveJob ended: " + (jobState.isPresent() ? jobState.get().toString() : "Job did not complete"));
       });
