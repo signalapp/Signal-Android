@@ -29,6 +29,7 @@ dependencyResolutionManagement {
             library('androidx-compose-material3', 'androidx.compose.material3', 'material3').withoutVersion()
             library('androidx-compose-ui-tooling-preview', 'androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             library('androidx-compose-ui-tooling-core', 'androidx.compose.ui', 'ui-tooling').withoutVersion()
+            library('androidx-compose-ui-test-manifest', 'androidx.compose.ui', 'ui-test-manifest').withoutVersion()
             library('androidx-compose-runtime-livedata', 'androidx.compose.runtime', 'runtime-livedata').withoutVersion()
             library('androidx-compose-rxjava3', 'androidx.compose.runtime:runtime-rxjava3:1.4.2')
             library('ktlint-twitter-compose', 'com.twitter.compose.rules:ktlint:0.0.26')
@@ -47,6 +48,7 @@ dependencyResolutionManagement {
 
             // Android X
             library('androidx-activity-ktx', 'androidx.activity', 'activity-ktx').versionRef('androidx-activity')
+            library('androidx-activity-compose', 'androidx.activity', 'activity-compose').versionRef('androidx-activity')
             library('androidx-appcompat', 'androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
             library('androidx-core-ktx', 'androidx.core:core-ktx:1.10.0')
             library('androidx-fragment-ktx', 'androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')

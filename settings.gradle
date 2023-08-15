@@ -55,6 +55,8 @@ include ':sticky-header-grid'
 include ':photoview'
 include ':core-ui'
 include ':benchmark'
+include ':microbenchmark'
+include ':video-app'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
@@ -86,4 +88,3 @@ project(':qr-app').projectDir = file('qr/app')
 rootProject.name='Signal'
 
 apply from: 'dependencies.gradle'
-include ':microbenchmark'
