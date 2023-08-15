@@ -17,7 +17,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.jobs.MessageFetchJob;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.Locale;
@@ -61,7 +61,7 @@ public final class RoutineMessageFetchReceiver extends BroadcastReceiver {
         Log.i(TAG, "Running PushNotificationReceiveJob");
 
         Optional<JobTracker.JobState> jobState = ApplicationDependencies.getJobManager()
-                                                                        .runSynchronously(new PushNotificationReceiveJob(), jobTimeout);
+                                                                        .runSynchronously(new MessageFetchJob(), jobTimeout);
 
         Log.i(TAG, "PushNotificationReceiveJob ended: " + (jobState.isPresent() ? jobState.get().toString() : "Job did not complete"));
       });

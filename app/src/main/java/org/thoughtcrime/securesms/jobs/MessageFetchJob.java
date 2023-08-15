@@ -18,13 +18,16 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 
-public final class PushNotificationReceiveJob extends BaseJob {
+/**
+ * Fetches messages from the service, posting a foreground service if possible.
+ */
+public final class MessageFetchJob extends BaseJob {
 
   public static final String KEY = "PushNotificationReceiveJob";
 
-  private static final String TAG = Log.tag(PushNotificationReceiveJob.class);
+  private static final String TAG = Log.tag(MessageFetchJob.class);
 
-  public PushNotificationReceiveJob() {
+  public MessageFetchJob() {
     this(new Job.Parameters.Builder()
              .addConstraint(NetworkConstraint.KEY)
              .setQueue("__notification_received")
@@ -33,7 +36,7 @@ public final class PushNotificationReceiveJob extends BaseJob {
              .build());
   }
 
-  private PushNotificationReceiveJob(Job.Parameters parameters) {
+  private MessageFetchJob(Job.Parameters parameters) {
     super(parameters);
   }
 
@@ -83,10 +86,10 @@ public final class PushNotificationReceiveJob extends BaseJob {
   public void onFailure() {
   }
 
-  public static final class Factory implements Job.Factory<PushNotificationReceiveJob> {
+  public static final class Factory implements Job.Factory<MessageFetchJob> {
     @Override
-    public @NonNull PushNotificationReceiveJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
-      return new PushNotificationReceiveJob(parameters);
+    public @NonNull MessageFetchJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      return new MessageFetchJob(parameters);
     }
   }
 }
