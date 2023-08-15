@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.media3.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,4 +19,4 @@
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview"
         tools:src="@drawable/test_gradient" />
 
-</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+</androidx.media3.ui.AspectRatioFrameLayout>

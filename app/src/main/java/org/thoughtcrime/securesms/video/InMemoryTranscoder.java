@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.google.android.exoplayer2.util.MimeTypes;
+import androidx.media3.common.MimeTypes;
 import com.google.common.io.ByteStreams;
 
 import org.signal.core.util.logging.Log;

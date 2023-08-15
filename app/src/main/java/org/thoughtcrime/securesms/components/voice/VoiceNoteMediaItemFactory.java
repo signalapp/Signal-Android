@@ -3,14 +3,12 @@ package org.thoughtcrime.securesms.components.voice;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.media.MediaDescriptionCompat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.MediaMetadata;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.MediaMetadata;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -144,22 +142,21 @@ class VoiceNoteMediaItemFactory {
     }
 
     return new MediaItem.Builder()
-                        .setUri(audioUri)
-                        .setMediaMetadata(
-                            new MediaMetadata.Builder()
-                                .setTitle(title)
-                                .setSubtitle(subtitle)
-                                .setExtras(extras)
-                                .build()
-                        )
-                        .setTag(
-                            new MediaDescriptionCompat.Builder()
-                                .setMediaUri(audioUri)
-                                .setTitle(title)
-                                .setSubtitle(subtitle)
-                                .setExtras(extras)
-                                .build())
-                        .build();
+        .setUri(audioUri)
+        .setMediaMetadata(
+            new MediaMetadata.Builder()
+                .setTitle(title)
+                .setSubtitle(subtitle)
+                .setExtras(extras)
+                .build()
+        )
+        .setRequestMetadata(
+            new MediaItem.RequestMetadata.Builder()
+                .setMediaUri(audioUri)
+                .setExtras(extras)
+                .build()
+        )
+        .build();
   }
 
   public static @NonNull String getTitle(@NonNull Context context, @NonNull Recipient sender, @NonNull Recipient threadRecipient, @Nullable NotificationPrivacyPreference notificationPrivacyPreference) {
@@ -191,18 +188,16 @@ class VoiceNoteMediaItemFactory {
   }
 
   private static MediaItem cloneMediaItem(MediaItem source, String mediaId, Uri uri) {
-    MediaDescriptionCompat description = source.playbackProperties != null ? (MediaDescriptionCompat) source.playbackProperties.tag : null;
+    Bundle requestExtras = source.requestMetadata.extras;
     return source.buildUpon()
                  .setMediaId(mediaId)
                  .setUri(uri)
-                 .setTag(
-                     description != null ?
-                     new MediaDescriptionCompat.Builder()
+                 .setMediaMetadata(source.mediaMetadata)
+                 .setRequestMetadata(
+                     new MediaItem.RequestMetadata.Builder()
                          .setMediaUri(uri)
-                         .setTitle(description.getTitle())
-                         .setSubtitle(description.getSubtitle())
-                         .setExtras(description.getExtras())
-                         .build() : null)
+                         .setExtras(requestExtras)
+                         .build())
                  .build();
   }
 }

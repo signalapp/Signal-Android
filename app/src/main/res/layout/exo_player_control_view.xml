@@ -30,7 +30,7 @@
             android:paddingRight="4dp"
             android:textColor="@color/signal_colorOnSurface" />
 
-        <com.google.android.exoplayer2.ui.DefaultTimeBar
+        <androidx.media3.ui.DefaultTimeBar
             android:id="@id/exo_progress"
             android:layout_width="0dp"
             android:layout_height="55dp"

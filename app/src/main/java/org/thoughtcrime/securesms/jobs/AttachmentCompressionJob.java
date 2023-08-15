@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.android.exoplayer2.util.MimeTypes;
+import androidx.media3.common.MimeTypes;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;

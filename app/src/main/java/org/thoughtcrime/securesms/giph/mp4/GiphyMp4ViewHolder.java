@@ -12,8 +12,11 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+
+import androidx.annotation.OptIn;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.ui.AspectRatioFrameLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
@@ -28,14 +31,15 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 /**
  * Holds a view which will either play back an MP4 gif or show its still.
  */
+@OptIn(markerClass = UnstableApi.class)
 final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements GiphyMp4Playable {
 
   private static final Projection.Corners CORNERS = new Projection.Corners(ViewUtil.dpToPx(8));
 
-  private final AspectRatioFrameLayout     container;
-  private final ImageView                  stillImage;
-  private final GiphyMp4Adapter.Callback   listener;
-  private final Drawable                   placeholder;
+  private final AspectRatioFrameLayout   container;
+  private final ImageView                stillImage;
+  private final GiphyMp4Adapter.Callback listener;
+  private final Drawable                 placeholder;
 
   private float     aspectRatio;
   private MediaItem mediaItem;

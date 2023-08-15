@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.IasKeyStore;
+import org.thoughtcrime.securesms.video.exo.ExoPlayerPool;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
@@ -607,7 +608,7 @@ public class ApplicationDependencies {
     return giphyMp4Cache;
   }
 
-  public static @NonNull SimpleExoPlayerPool getExoPlayerPool() {
+  public static @NonNull ExoPlayerPool getExoPlayerPool() {
     if (exoPlayerPool == null) {
       synchronized (LOCK) {
         if (exoPlayerPool == null) {

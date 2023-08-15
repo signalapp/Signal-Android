@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -111,7 +110,7 @@ public final class MediaOverviewPageFragment extends Fragment
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    voiceNoteMediaController = new VoiceNoteMediaController((AppCompatActivity) requireActivity());
+    voiceNoteMediaController = new VoiceNoteMediaController(requireActivity(), false);
   }
 
   @Override

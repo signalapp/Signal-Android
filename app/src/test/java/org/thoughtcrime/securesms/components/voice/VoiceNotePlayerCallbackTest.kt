@@ -1,46 +1,49 @@
 package org.thoughtcrime.securesms.components.voice
 
 import android.app.Application
+import android.content.Context
 import android.media.AudioManager
 import android.os.Bundle
-import android.support.v4.media.session.MediaSessionCompat
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.audio.AudioAttributes
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
+import androidx.media3.session.MediaSession
+import androidx.media3.session.SessionCommand
+import androidx.test.core.app.ApplicationProvider
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.Mockito.any
 import org.mockito.Mockito.anyBoolean
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-class VoiceNotePlaybackControllerTest {
+class VoiceNotePlayerCallbackTest {
 
-  private val mediaSessionCompat = mock(MediaSessionCompat::class.java)
-  private val playbackParameters = VoiceNotePlaybackParameters(mediaSessionCompat)
+  private val context: Context = ApplicationProvider.getApplicationContext()
   private val mediaAudioAttributes = AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
   private val callAudioAttributes = AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
-  private val player: SimpleExoPlayer = mock(SimpleExoPlayer::class.java)
-  private val testSubject = VoiceNotePlaybackController(player, playbackParameters)
+  private val session = mock(MediaSession::class.java)
+  private val controllerInfo = mock(MediaSession.ControllerInfo::class.java)
+  private val player: VoiceNotePlayer = mock(VoiceNotePlayer::class.java)
+  private val testSubject = VoiceNotePlayerCallback(context, player)
 
   @Test
   fun `Given stream is media, When I onCommand for voice, then I expect the stream to switch to voice and continue playback`() {
     // GIVEN
     `when`(player.audioAttributes).thenReturn(mediaAudioAttributes)
 
-    val command = VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM
+    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
     val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_VOICE_CALL) }
     val expected = callAudioAttributes
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCustomCommand(session, controllerInfo, command, extras)
 
     // THEN
     verify(player).playWhenReady = false
@@ -53,12 +56,12 @@ class VoiceNotePlaybackControllerTest {
     // GIVEN
     `when`(player.audioAttributes).thenReturn(callAudioAttributes)
 
-    val command = VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM
+    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
     val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC) }
     val expected = mediaAudioAttributes
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCustomCommand(session, controllerInfo, command, extras)
 
     // THEN
     verify(player).playWhenReady = false
@@ -71,11 +74,11 @@ class VoiceNotePlaybackControllerTest {
     // GIVEN
     `when`(player.audioAttributes).thenReturn(callAudioAttributes)
 
-    val command = VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM
+    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
     val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_VOICE_CALL) }
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCustomCommand(session, controllerInfo, command, extras)
 
     // THEN
     verify(player, Mockito.never()).playWhenReady = anyBoolean()
@@ -87,11 +90,11 @@ class VoiceNotePlaybackControllerTest {
     // GIVEN
     `when`(player.audioAttributes).thenReturn(mediaAudioAttributes)
 
-    val command = VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM
+    val command = SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY)
     val extras = Bundle().apply { putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, AudioManager.STREAM_MUSIC) }
 
     // WHEN
-    testSubject.onCommand(player, command, extras, null)
+    testSubject.onCustomCommand(session, controllerInfo, command, extras)
 
     // THEN
     verify(player, Mockito.never()).playWhenReady = anyBoolean()

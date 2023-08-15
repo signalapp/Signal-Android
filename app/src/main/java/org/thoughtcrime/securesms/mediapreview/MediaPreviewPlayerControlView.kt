@@ -10,13 +10,15 @@ import android.view.animation.PathInterpolator
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.OptIn
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.ui.PlayerControlView
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
-import com.google.android.exoplayer2.ui.PlayerControlView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.visible
@@ -27,6 +29,7 @@ import kotlin.time.toDuration
  * The bottom bar for the media preview. This includes the standard seek bar as well as playback controls,
  * but adds forward and share buttons as well as a recyclerview that can be populated with a rail of thumbnails.
  */
+@OptIn(UnstableApi::class)
 class MediaPreviewPlayerControlView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,

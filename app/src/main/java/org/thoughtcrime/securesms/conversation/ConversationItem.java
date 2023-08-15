@@ -57,9 +57,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.media3.common.MediaItem;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.exoplayer2.MediaItem;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.collect.Sets;
 
@@ -261,7 +261,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private boolean            hasWallpaper;
   private float              lastYDownRelativeToThis;
   private ProjectionList     colorizerProjections = new ProjectionList(3);
-  private boolean            isBound = false;
+  private boolean            isBound              = false;
 
   private final Runnable shrinkBubble = new Runnable() {
     @Override

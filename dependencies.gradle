@@ -9,6 +9,7 @@ dependencyResolutionManagement {
             version('androidx-camera', '1.2.3')
             version('androidx-fragment', '1.6.1')
             version('androidx-lifecycle', '2.6.1')
+            version('androidx-media3', '1.1.0')
             version('androidx-navigation', '2.6.0')
             version('androidx-window', '1.0.0')
             version('exoplayer', '2.19.0')
@@ -60,6 +61,9 @@ dependencyResolutionManagement {
             library('androidx-preference', 'androidx.preference:preference:1.0.0')
             library('androidx-gridlayout', 'androidx.gridlayout:gridlayout:1.0.0')
             library('androidx-exifinterface', 'androidx.exifinterface:exifinterface:1.3.3')
+            library('androidx-media3-exoplayer', 'androidx.media3', 'media3-exoplayer').versionRef('androidx-media3')
+            library('androidx-media3-session', 'androidx.media3', 'media3-session').versionRef('androidx-media3')
+            library('androidx-media3-ui', 'androidx.media3', 'media3-ui').versionRef('androidx-media3')
             library('androidx-multidex', 'androidx.multidex:multidex:2.0.1')
             library('androidx-navigation-fragment-ktx', 'androidx.navigation', 'navigation-fragment-ktx').versionRef('androidx-navigation')
             library('androidx-navigation-ui-ktx', 'androidx.navigation', 'navigation-ui-ktx').versionRef('androidx-navigation')
@@ -100,11 +104,7 @@ dependencyResolutionManagement {
             library('google-guava-android', 'com.google.guava:guava:30.0-android')
             library('google-flexbox', 'com.google.android.flexbox:flexbox:3.0.0')
 
-            // Exoplayer
-            library('exoplayer-core', 'com.google.android.exoplayer', 'exoplayer-core').versionRef('exoplayer')
-            library('exoplayer-ui', 'com.google.android.exoplayer', 'exoplayer-ui').versionRef('exoplayer')
-            library('exoplayer-extension-mediasession', 'com.google.android.exoplayer', 'extension-mediasession').versionRef('exoplayer')
-            bundle('exoplayer', ['exoplayer-core', 'exoplayer-ui', 'exoplayer-extension-mediasession'])
+            bundle('media3', ['androidx-media3-exoplayer', 'androidx-media3-session', 'androidx-media3-ui'])
 
             // Firebase
             library('firebase-messaging', 'com.google.firebase:firebase-messaging:23.1.2')
