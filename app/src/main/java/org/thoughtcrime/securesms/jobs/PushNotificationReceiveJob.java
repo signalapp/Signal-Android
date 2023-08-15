@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -8,8 +10,10 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.WebSocketDrainer;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.DelayedNotificationController;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
+import org.thoughtcrime.securesms.service.NotificationController;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -47,8 +51,19 @@ public final class PushNotificationReceiveJob extends BaseJob {
   public void onRun() throws IOException {
     boolean success;
 
-    try (DelayedNotificationController unused = GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), 300, R.drawable.ic_signal_refresh)) {
-      success = WebSocketDrainer.blockUntilDrainedAndProcessed();
+    if (Build.VERSION.SDK_INT < 31) {
+      try (DelayedNotificationController unused = GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), 300, R.drawable.ic_signal_refresh)) {
+        success = WebSocketDrainer.blockUntilDrainedAndProcessed();
+      }
+    } else {
+      try {
+        try (NotificationController unused = GenericForegroundService.startForegroundTask(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), NotificationChannels.getInstance().OTHER, R.drawable.ic_signal_refresh)) {
+          success = WebSocketDrainer.blockUntilDrainedAndProcessed();
+        }
+      } catch (UnableToStartException e) {
+        Log.w(TAG, "Failed to start foreground service. Running in the background.");
+        success = WebSocketDrainer.blockUntilDrainedAndProcessed();
+      }
     }
 
     if (success) {
