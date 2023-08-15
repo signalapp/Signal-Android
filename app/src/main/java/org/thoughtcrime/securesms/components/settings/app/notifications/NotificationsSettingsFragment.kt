@@ -22,6 +22,7 @@ import androidx.preference.PreferenceManager
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -183,6 +184,16 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
           viewModel.setMessageNotificationPrivacy(notificationPrivacyValues[it])
         }
       )
+
+      if (Build.VERSION.SDK_INT >= 23 && state.messageNotificationsState.troubleshootNotifications) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences_notifications__troubleshoot),
+          isEnabled = true,
+          onClick = {
+            PromptBatterySaverDialogFragment.show(requireContext(), childFragmentManager)
+          }
+        )
+      }
 
       if (Build.VERSION.SDK_INT < 30) {
         if (NotificationChannels.supported()) {

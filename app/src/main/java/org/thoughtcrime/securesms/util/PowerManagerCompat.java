@@ -19,6 +19,13 @@ public class PowerManagerCompat {
     return false;
   }
 
+  public static boolean isIgnoringBatteryOptimizations(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT < 23) {
+      return true;
+    }
+    return ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.getPackageName());
+  }
+
   @RequiresApi(api = 23)
   public static void requestIgnoreBatteryOptimizations(@NonNull Context context) {
     Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,

@@ -20,6 +20,8 @@ public class UiHints extends SignalStoreValues {
   private static final String HAS_SEEN_SAFETY_NUMBER_NUX             = "uihints.has_seen_safety_number_nux";
   private static final String DECLINED_NOTIFICATION_LOGS_PROMPT      = "uihints.declined_notification_logs";
   private static final String LAST_NOTIFICATION_LOGS_PROMPT_TIME     = "uihints.last_notification_logs_prompt";
+  private static final String DISMISSED_BATTERY_SAVER_PROMPT         = "uihints.declined_battery_saver_prompt";
+  private static final String LAST_BATTERY_SAVER_PROMPT              = "uihints.last_battery_saver_prompt";
 
   UiHints(@NonNull KeyValueStore store) {
     super(store);
@@ -135,5 +137,21 @@ public class UiHints extends SignalStoreValues {
 
   public boolean hasDeclinedToShareNotificationLogs() {
     return getBoolean(DECLINED_NOTIFICATION_LOGS_PROMPT, false);
+  }
+
+  public void markDismissedBatterySaverPrompt() {
+    putBoolean(DISMISSED_BATTERY_SAVER_PROMPT, true);
+  }
+
+  public boolean hasDismissedBatterySaverPrompt() {
+    return getBoolean(DISMISSED_BATTERY_SAVER_PROMPT, false);
+  }
+
+  public long getLastBatterySaverPrompt() {
+    return getLong(LAST_BATTERY_SAVER_PROMPT, 0);
+  }
+
+  public void setLastBatterySaverPrompt(long time) {
+    putLong(LAST_BATTERY_SAVER_PROMPT, time);
   }
 }

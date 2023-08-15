@@ -5,14 +5,17 @@
 
 package org.thoughtcrime.securesms.notifications
 
+import android.os.Build
 import android.text.TextUtils
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags
+import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
@@ -63,12 +66,34 @@ object SlowNotificationHeuristics {
     if (System.currentTimeMillis() - SignalStore.uiHints().lastNotificationLogsPrompt < TimeUnit.DAYS.toMillis(7)) {
       return false
     }
-    val configuration = getConfiguration()
 
-    return isHavingDelayedNotifications(configuration)
+    return true
   }
 
-  fun isHavingDelayedNotifications(configuration: Configuration): Boolean {
+  @JvmStatic
+  fun shouldPromptBatterySaver(): Boolean {
+    if (Build.VERSION.SDK_INT < 23) {
+      return false
+    }
+    if (!LocaleFeatureFlags.isBatterySaverPromptEnabled() || SignalStore.uiHints().hasDismissedBatterySaverPrompt()) {
+      return false
+    }
+    if (System.currentTimeMillis() - SignalStore.uiHints().lastBatterySaverPrompt < TimeUnit.DAYS.toMillis(7)) {
+      return false
+    }
+
+    return true
+  }
+
+  @JvmStatic
+  fun isHavingDelayedNotifications(): Boolean {
+    if (!SignalStore.settings().isMessageNotificationsEnabled ||
+      !NotificationChannels.getInstance().areNotificationsEnabled()
+    ) {
+      // If user does not have notifications enabled, we shouldn't bother them about delayed notifications
+      return false
+    }
+    val configuration = getConfiguration()
     val db = LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication())
 
     val metrics = db.getMetrics()
@@ -82,6 +107,32 @@ object SlowNotificationHeuristics {
       return true
     }
     return false
+  }
+
+  /**
+   * Returns whether or not the delayed notifications may be due to battery saver optimizations.
+   *
+   * Some OEMs over-optimize this battery restrictions and remove network even after receiving a
+   * high priority push.
+   *
+   * We consider a scenario where removing battery optimizations can fix delayed notifications:
+   *  - Data saver must be off (or white listed), otherwise it can be causing delayed notifications
+   *  - App must not already be exempted from battery optimizations
+   *
+   * We do not need to check if {ActivityManager#isBackgroundRestricted} is true, because if the app
+   * is set to "Optimized" this will be false (and can be culprit to delayed notifications) or if
+   * true can most definitely be at fault.
+   */
+  @JvmStatic
+  fun isPotentiallyCausedByBatteryOptimizations(): Boolean {
+    val applicationContext = ApplicationDependencies.getApplication()
+    if (DeviceProperties.getDataSaverState(applicationContext) == DeviceProperties.DataSaverState.ENABLED) {
+      return false
+    }
+    if (PowerManagerCompat.isIgnoringBatteryOptimizations(applicationContext)) {
+      return false
+    }
+    return true
   }
 
   private fun hasRepeatedFailedServiceStarts(metrics: List<LocalMetricsDatabase.EventMetrics>, minimumEventAgeMs: Long, minimumEventCount: Int, failurePercentage: Float): Boolean {

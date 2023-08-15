@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
+import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
@@ -88,7 +89,10 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Server Time Offset: ").append(SignalStore.misc().getLastKnownServerTimeOffset()).append(" ms (last updated: ").append(SignalStore.misc().getLastKnownServerTimeOffsetUpdateTime()).append(")").append("\n");
     builder.append("Telecom           : ").append(AndroidTelecomUtil.getTelecomSupported()).append("\n");
     builder.append("User-Agent        : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
+    builder.append("SlowNotifications : ").append(SlowNotificationHeuristics.isHavingDelayedNotifications()).append("\n");
+    builder.append("PotentiallyBattery: ").append(SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations()).append("\n");
     builder.append("App               : ");
+
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
              .append(" ")

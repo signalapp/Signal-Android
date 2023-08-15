@@ -111,6 +111,7 @@ public final class FeatureFlags {
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
   public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
+  public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -173,7 +174,8 @@ public final class FeatureFlags {
       SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
-      PROMPT_FOR_NOTIFICATION_CONFIG
+      PROMPT_FOR_NOTIFICATION_CONFIG,
+      PROMPT_BATTERY_SAVER
   );
 
   @VisibleForTesting
@@ -242,7 +244,8 @@ public final class FeatureFlags {
       SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
-      PROMPT_FOR_NOTIFICATION_CONFIG
+      PROMPT_FOR_NOTIFICATION_CONFIG,
+      PROMPT_BATTERY_SAVER
   );
 
   /**
@@ -631,6 +634,11 @@ public final class FeatureFlags {
   public static String delayedNotificationsPromptConfig() {
     return getString(PROMPT_FOR_NOTIFICATION_CONFIG, "");
   }
+
+  public static String promptBatterySaver() {
+    return getString(PROMPT_BATTERY_SAVER, "*");
+  }
+
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);

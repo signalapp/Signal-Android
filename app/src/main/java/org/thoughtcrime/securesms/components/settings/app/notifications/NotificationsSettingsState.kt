@@ -17,7 +17,8 @@ data class MessageNotificationsState(
   val inChatSoundsEnabled: Boolean,
   val repeatAlerts: Int,
   val messagePrivacy: String,
-  val priority: Int
+  val priority: Int,
+  val troubleshootNotifications: Boolean
 )
 
 data class CallNotificationsState(

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -16,12 +17,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
+import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
@@ -30,6 +33,7 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.SplashScreenUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
@@ -139,8 +143,14 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     updateTabVisibility();
 
-    if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {
-      DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
+    if (SlowNotificationHeuristics.isHavingDelayedNotifications()) {
+      if (SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && Build.VERSION.SDK_INT >= 23) {
+        if (SlowNotificationHeuristics.shouldPromptBatterySaver()) {
+          PromptBatterySaverDialogFragment.show(this, getSupportFragmentManager());
+        }
+      } else if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {
+        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
+      }
     }
   }
 
