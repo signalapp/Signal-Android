@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.concurrent.LatestPrioritizedSerialExecutor;
@@ -39,11 +37,11 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FtsUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -113,11 +111,10 @@ public class SearchRepository {
 
   @WorkerThread
   public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query) {
-    long   start      = System.currentTimeMillis();
-    String cleanQuery = FtsUtil.sanitize(query);
+    long start = System.currentTimeMillis();
 
-    List<MessageResult> messages        = queryMessages(cleanQuery);
-    List<MessageResult> mentionMessages = queryMentions(sanitizeQueryAsTokens(query));
+    List<MessageResult> messages        = queryMessages(query);
+    List<MessageResult> mentionMessages = queryMentions(convertMentionsQueryToTokens(query));
     List<MessageResult> combined        = mergeMessagesAndMentions(messages, mentionMessages);
 
     Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
@@ -133,8 +130,8 @@ public class SearchRepository {
 
     serialExecutor.execute(() -> {
       long                startTime       = System.currentTimeMillis();
-      List<MessageResult> messages        = queryMessages(FtsUtil.sanitize(query), threadId);
-      List<MessageResult> mentionMessages = queryMentions(sanitizeQueryAsTokens(query), threadId);
+      List<MessageResult> messages        = queryMessages(query, threadId);
+      List<MessageResult> mentionMessages = queryMentions(convertMentionsQueryToTokens(query), threadId);
 
       Log.d(TAG, "[ConversationQuery] " + (System.currentTimeMillis() - startTime) + " ms");
 
@@ -375,10 +372,10 @@ public class SearchRepository {
     return results;
   }
 
-  private @NonNull List<MessageResult> queryMentions(@NonNull List<String> cleanQueries, long threadId) {
+  private @NonNull List<MessageResult> queryMentions(@NonNull List<String> queries, long threadId) {
     Set<RecipientId> recipientIds = new HashSet<>();
-    for (String cleanQuery : cleanQueries) {
-      for (Recipient recipient : recipientTable.queryRecipientsForMentions(cleanQuery)) {
+    for (String query : queries) {
+      for (Recipient recipient : recipientTable.queryRecipientsForMentions(query)) {
         recipientIds.add(recipient.getId());
       }
     }
@@ -442,13 +439,13 @@ public class SearchRepository {
     return list;
   }
 
-  private @NonNull List<String> sanitizeQueryAsTokens(@NonNull String query) {
+  private @NonNull List<String> convertMentionsQueryToTokens(@NonNull String query) {
     String[] parts = query.split("\\s+");
     if (parts.length > 3) {
       return Collections.emptyList();
+    } else {
+      return Arrays.asList(parts);
     }
-
-    return Stream.of(parts).map(FtsUtil::sanitize).toList();
   }
 
   private static @NonNull List<MessageResult> mergeMessagesAndMentions(@NonNull List<MessageResult> messages, @NonNull List<MessageResult> mentionMessages) {

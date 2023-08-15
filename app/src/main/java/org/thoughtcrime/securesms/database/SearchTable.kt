@@ -255,6 +255,12 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
   }
 
+  /**
+   * We want to turn the user's query into something that works well in a MATCH query.
+   * Most users expect some amount of fuzzy search, so what we do is break the string
+   * into tokens, escape each token (to allow the user to search for punctuation), and
+   * then append a * to the end of each token to turn it into a prefix query.
+   */
   private fun createFullTextSearchQuery(query: String): String {
     return query
       .split(" ")
@@ -267,7 +273,12 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       )
   }
 
+  /**
+   * If you wrap a string in quotes, sqlite considers it a string literal when making a MATCH query.
+   * In order to distinguish normal quotes, you turn all " into "".
+   */
   private fun fullTextSearchEscape(s: String): String {
-    return "\"${s.replace("\"", "\"\"")}\""
+    val quotesEscaped = s.replace("\"", "\"\"")
+    return "\"$quotesEscaped\""
   }
 }
