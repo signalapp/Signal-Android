@@ -543,14 +543,16 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           }
         }
 
-        clickPref(
-          title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
-          icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
-          isEnabled = !state.isDeprecatedOrUnregistered,
-          onClick = {
-            VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), recipientState.identityRecord)
-          }
-        )
+        if (!state.recipient.isReleaseNotes) {
+          clickPref(
+            title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
+            icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
+            isEnabled = !state.isDeprecatedOrUnregistered,
+            onClick = {
+              VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), recipientState.identityRecord)
+            }
+          )
+        }
       }
 
       if (state.sharedMedia != null && state.sharedMedia.count > 0) {
