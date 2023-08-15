@@ -244,7 +244,7 @@
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">잘못된 링크</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">This is not a valid call link. Make sure the entire link is intact and correct before attempting to join.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">통화 링크가 올바르지 않습니다. 통화에 참여하기 전에 링크가 정확한지 확인하세요.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -876,9 +876,9 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">We noticed notifications are delayed. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">알림에 지연이 있는 것 같네요. 디버그 로그를 제출할까요?</string>
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Debug logs helps us diagnose and fix the issue, and do not contain identifying information.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">디버그 로그를 제출하면 문제를 진단하고 수정하는 데 도움이 됩니다. 디버그 로그에는 식별 정보가 포함되지 않습니다.</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">대기 중인 그룹 초대</string>
@@ -1678,40 +1678,40 @@
     <string name="WebRtcCallActivity__not_now">나중에</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="other">Approve %1$d requests?</item>
+        <item quantity="other">요청 %1$d개를 승인할까요?</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">Approve all</string>
+    <string name="WebRtcCallActivity__approve_all">모두 승인</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
-        <item quantity="other">%1$d people will be added to the call.</item>
+        <item quantity="other">통화에 %1$d명을 추가합니다.</item>
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="other">Deny %1$d requests?</item>
+        <item quantity="other">요청 %1$d개를 거부할까요?</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
-        <item quantity="other">%1$d people will not be added to the call.</item>
+        <item quantity="other">통화에 %1$d명을 추가하지 않습니다.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Deny all</string>
+    <string name="WebRtcCallActivity__deny_all">모두 거부</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="other">%1$d명이 대기 중입니다.</item>
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
         <item quantity="other">%1$d명</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__join_request_denied">Join request denied</string>
+    <string name="WebRtcCallActivity__join_request_denied">통화 요청 거부됨</string>
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
-    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Your request to join this call has been denied.</string>
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">통화 참여 요청이 거부되었습니다.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Removed from call</string>
+    <string name="WebRtcCallActivity__removed_from_call">통화에서 제거됨</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Someone has removed you from the call.</string>
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">통화에서 제거됐습니다.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 전화</string>
@@ -1725,11 +1725,11 @@
     <string name="WebRtcCallView__joining">참가하는 중…</string>
     <string name="WebRtcCallView__disconnected">연결 끊김</string>
     <!-- Utilized in the lobby before joining a call link -->
-    <string name="WebRtcCallView__signal_call_link">Signal call link</string>
+    <string name="WebRtcCallView__signal_call_link">Signal 통화 링크</string>
     <!-- Warning displayed when entering a call via a link -->
-    <string name="WebRtcCallView__anyone_who_joins">Anyone who joins this call via the link will see your name, photo, and phone number.</string>
+    <string name="WebRtcCallView__anyone_who_joins">링크를 통해 통화에 참여하는 모든 사용자에게 내 이름, 사진, 전화번호가 표시됩니다.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Waiting to be let in…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">승인을 기다리는 중…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal이 %1$s에게 알릴겁니다.</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal이 %1$s, 그리고 %2$s에게 알릴겁니다.</string>
@@ -2785,9 +2785,9 @@
         <item>SMS 내보내기</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 디버그 로그 제출</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Slow notifications</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">느린 알림</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">제출</string>
     <!-- Action to decline to submit logs -->
@@ -5914,7 +5914,7 @@
     <!-- Accessibility description for the video call button -->
     <string name="CallLogAdapter__start_a_video_call">영상 통화 시작하기</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <string name="CallLogAdapter__start_a_voice_call">음성 통화 시작</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6024,13 +6024,13 @@
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
-    <string name="CallLinkInfoSheet__call_info">Call info</string>
+    <string name="CallLinkInfoSheet__call_info">통화 정보</string>
     <!-- Dialog title for removing or blocking participants -->
-    <string name="CallLinkInfoSheet__remove_s_from_the_call">Remove %1$s from the call?</string>
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s 님을 통화에서 제거할까요?</string>
     <!-- Dialog action to remove participant from the call -->
     <string name="CallLinkInfoSheet__remove">제거</string>
     <!-- Dialog action to block participant from the call -->
-    <string name="CallLinkInfoSheet__block_from_call">Block from call</string>
+    <string name="CallLinkInfoSheet__block_from_call">통화에서 차단</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6133,18 +6133,18 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">Would like to join…</string>
+    <string name="PendingParticipantsView__would_like_to_join">전화 받기…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="other">+%1$d requests</item>
+        <item quantity="other">+요청 %1$d개</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Requests to join this call</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">이 통화에 대한 참여 요청</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
-        <item quantity="other">%1$d people waiting</item>
+        <item quantity="other">%1$d명이 대기 중입니다.</item>
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">거절</string>
