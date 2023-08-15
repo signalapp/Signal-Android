@@ -543,7 +543,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           }
         }
 
-        if (!state.recipient.isReleaseNotes) {
+        if (!state.recipient.isReleaseNotes && !state.recipient.isSelf) {
           clickPref(
             title = DSLSettingsText.from(R.string.ConversationSettingsFragment__view_safety_number),
             icon = DSLSettingsIcon.from(R.drawable.ic_safety_number_24),
@@ -586,7 +586,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       }
 
       state.withRecipientSettingsState { recipientSettingsState ->
-        if (state.recipient.badges.isNotEmpty()) {
+        if (state.recipient.badges.isNotEmpty() && !state.recipient.isSelf) {
           dividerPref()
 
           sectionHeaderPref(R.string.ManageProfileFragment_badges)
