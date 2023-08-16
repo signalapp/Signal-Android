@@ -112,6 +112,7 @@ public final class FeatureFlags {
   public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
+  public  static final String USERNAMES                         = "android.usernames";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -175,7 +176,8 @@ public final class FeatureFlags {
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
-      PROMPT_BATTERY_SAVER
+      PROMPT_BATTERY_SAVER,
+      USERNAMES
   );
 
   @VisibleForTesting
@@ -245,7 +247,8 @@ public final class FeatureFlags {
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
-      PROMPT_BATTERY_SAVER
+      PROMPT_BATTERY_SAVER,
+      USERNAMES
   );
 
   /**
@@ -326,8 +329,7 @@ public final class FeatureFlags {
 
   /** Creating usernames, sending messages by username. */
   public static synchronized boolean usernames() {
-    // For now these features are paired, but leaving the separate method in case we decide to separate in the future.
-    return phoneNumberPrivacy();
+    return getBoolean(USERNAMES, false) || phoneNumberPrivacy();
   }
 
   /**
