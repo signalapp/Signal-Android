@@ -62,16 +62,20 @@ class RecipientTableTest_getAndPossiblyMerge {
 
   @Test
   fun single() {
-    test("merge, e164 + pni reassigned, aci abandoned") {
-      given(E164_A, PNI_A, ACI_A)
-      given(E164_B, PNI_B, ACI_B)
+    test("local user, local e164+aci provided, changeSelf=false, leave pni alone") {
+      given(E164_SELF, PNI_SELF, ACI_SELF)
 
-      process(E164_A, PNI_A, ACI_B)
+      process(E164_SELF, PNI_A, ACI_A)
 
-      expect(null, null, ACI_A)
-      expect(E164_A, PNI_A, ACI_B)
+      expect(E164_SELF, PNI_SELF, ACI_SELF)
+    }
 
-      expectChangeNumberEvent()
+    test("local user, local e164+aci provided, changeSelf=false, leave pni alone") {
+      given(E164_SELF, PNI_A, ACI_SELF)
+
+      process(E164_SELF, PNI_SELF, ACI_A)
+
+      expect(E164_SELF, PNI_A, ACI_SELF)
     }
   }
 
@@ -102,18 +106,27 @@ class RecipientTableTest_getAndPossiblyMerge {
     }
 
     test("e164+pni insert") {
-      process(E164_A, PNI_A, null)
+      val id = process(E164_A, PNI_A, null)
       expect(E164_A, PNI_A, null)
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
     }
 
     test("e164+aci insert") {
-      process(E164_A, null, ACI_A)
+      val id = process(E164_A, null, ACI_A)
       expect(E164_A, null, ACI_A)
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
     }
 
     test("e164+pni+aci insert") {
-      process(E164_A, PNI_A, ACI_A)
+      val id = process(E164_A, PNI_A, ACI_A)
       expect(E164_A, PNI_A, ACI_A)
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
     }
   }
 
@@ -410,7 +423,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectChangeNumberEvent()
     }
 
-    test("steal, e164 & pni+e164, no aci provided") {
+    test("steal, e164 & pni+e164, no aci provided, pni session exists") {
       val id1 = given(E164_A, null, null)
       val id2 = given(E164_B, PNI_A, null, pniSession = true)
 
@@ -421,6 +434,16 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       expectSessionSwitchoverEvent(id1, E164_A)
       expectSessionSwitchoverEvent(id2, E164_B)
+    }
+
+    test("steal, e164 & pni+e164, no aci provided, no pni session") {
+      given(E164_A, null, null)
+      given(E164_B, PNI_A, null)
+
+      process(E164_A, PNI_A, null)
+
+      expect(E164_A, PNI_A, null)
+      expect(E164_B, null, null)
     }
 
     test("steal, e164+pni+aci & e164+aci, no pni provided, change number") {
