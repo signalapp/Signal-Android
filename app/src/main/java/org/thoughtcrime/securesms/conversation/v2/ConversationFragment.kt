@@ -2208,13 +2208,14 @@ class ConversationFragment :
     disposables += DeleteDialog.show(
       context = requireContext(),
       messageRecords = records
-    ).subscribe { (deleted: Boolean, _: Boolean) ->
-      if (!deleted) return@subscribe
-      val editMessageId = inputPanel.editMessageId?.id
-      if (editMessageId != null && records.any { it.id == editMessageId }) {
-        inputPanel.exitEditMessageMode()
+    ).observeOn(AndroidSchedulers.mainThread())
+      .subscribe { (deleted: Boolean, _: Boolean) ->
+        if (!deleted) return@subscribe
+        val editMessageId = inputPanel.editMessageId?.id
+        if (editMessageId != null && records.any { it.id == editMessageId }) {
+          inputPanel.exitEditMessageMode()
+        }
       }
-    }
   }
 
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
