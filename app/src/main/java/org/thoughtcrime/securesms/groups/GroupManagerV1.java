@@ -59,7 +59,7 @@ final class GroupManagerV1 {
     if (groupId.isV1()) {
       GroupId.V1 groupIdV1 = groupId.requireV1();
 
-      groupDatabase.create(groupIdV1, name, memberIds, null, null);
+      groupDatabase.create(groupIdV1, name, memberIds, null);
 
       try {
         AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);

@@ -51,7 +51,7 @@ class KyberPreKeyTableTest {
     insertTestRecord(aci, id = 4, staleTime = 15)
     insertTestRecord(aci, id = 5, staleTime = 0)
 
-    SignalDatabase.oneTimePreKeys.deleteAllStaleBefore(aci, threshold = 11, minCount = 0)
+    SignalDatabase.kyberPreKeys.deleteAllStaleBefore(aci, threshold = 11, minCount = 0)
 
     assertNull(getStaleTime(aci, 1))
     assertNull(getStaleTime(aci, 2))

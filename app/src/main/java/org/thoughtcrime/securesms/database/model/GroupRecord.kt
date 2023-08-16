@@ -24,7 +24,6 @@ class GroupRecord(
   val avatarId: Long,
   val avatarKey: ByteArray?,
   val avatarContentType: String?,
-  val relay: String?,
   val isActive: Boolean,
   val avatarDigest: ByteArray?,
   val isMms: Boolean,

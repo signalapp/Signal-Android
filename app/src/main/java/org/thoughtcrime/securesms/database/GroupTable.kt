@@ -83,15 +83,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     const val AVATAR_ID = "avatar_id"
     const val AVATAR_KEY = "avatar_key"
     const val AVATAR_CONTENT_TYPE = "avatar_content_type"
-    const val AVATAR_RELAY = "avatar_relay"
     const val AVATAR_DIGEST = "avatar_digest"
     const val TIMESTAMP = "timestamp"
     const val ACTIVE = "active"
     const val MMS = "mms"
     const val EXPECTED_V2_ID = "expected_v2_id"
-    const val UNMIGRATED_V1_MEMBERS = "former_v1_members"
+    const val UNMIGRATED_V1_MEMBERS = "unmigrated_v1_members"
     const val DISTRIBUTION_ID = "distribution_id"
-    const val SHOW_AS_STORY_STATE = "display_as_story"
+    const val SHOW_AS_STORY_STATE = "show_as_story_state"
     const val LAST_FORCE_UPDATE_TIMESTAMP = "last_force_update_timestamp"
 
     /** 32 bytes serialized [GroupMasterKey]  */
@@ -103,44 +102,33 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     /** Serialized [DecryptedGroup] protobuf  */
     const val V2_DECRYPTED_GROUP = "decrypted_group"
 
-    /** Was temporarily used for PNP accept by pni but is no longer needed/updated  */
-    @Deprecated("")
-    private val AUTH_SERVICE_ID = "auth_service_id"
-
     @JvmField
     val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY, 
-        $GROUP_ID TEXT, 
-        $RECIPIENT_ID INTEGER,
-        $TITLE TEXT,
-        $AVATAR_ID INTEGER, 
-        $AVATAR_KEY BLOB,
-        $AVATAR_CONTENT_TYPE TEXT, 
-        $AVATAR_RELAY TEXT,
-        $TIMESTAMP INTEGER,
+        $GROUP_ID TEXT NOT NULL UNIQUE, 
+        $RECIPIENT_ID INTEGER NOT NULL UNIQUE REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
+        $TITLE TEXT DEFAULT NULL,
+        $AVATAR_ID INTEGER DEFAULT 0, 
+        $AVATAR_KEY BLOB DEFAULT NULL,
+        $AVATAR_CONTENT_TYPE TEXT DEFAULT NULL, 
+        $AVATAR_DIGEST BLOB DEFAULT NULL, 
+        $TIMESTAMP INTEGER DEFAULT 0,
         $ACTIVE INTEGER DEFAULT 1,
-        $AVATAR_DIGEST BLOB, 
         $MMS INTEGER DEFAULT 0, 
-        $V2_MASTER_KEY BLOB, 
-        $V2_REVISION BLOB, 
-        $V2_DECRYPTED_GROUP BLOB, 
-        $EXPECTED_V2_ID TEXT DEFAULT NULL, 
+        $V2_MASTER_KEY BLOB DEFAULT NULL, 
+        $V2_REVISION BLOB DEFAULT NULL, 
+        $V2_DECRYPTED_GROUP BLOB DEFAULT NULL, 
+        $EXPECTED_V2_ID TEXT UNIQUE DEFAULT NULL, 
         $UNMIGRATED_V1_MEMBERS TEXT DEFAULT NULL, 
-        $DISTRIBUTION_ID TEXT DEFAULT NULL, 
-        $SHOW_AS_STORY_STATE INTEGER DEFAULT 0, 
-        $AUTH_SERVICE_ID TEXT DEFAULT NULL, 
+        $DISTRIBUTION_ID TEXT UNIQUE DEFAULT NULL, 
+        $SHOW_AS_STORY_STATE INTEGER DEFAULT ${ShowAsStoryState.IF_ACTIVE.code}, 
         $LAST_FORCE_UPDATE_TIMESTAMP INTEGER DEFAULT 0
       )
     """
 
     @JvmField
-    val CREATE_INDEXS = arrayOf(
-      "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON $TABLE_NAME ($GROUP_ID);",
-      "CREATE UNIQUE INDEX IF NOT EXISTS group_recipient_id_index ON $TABLE_NAME ($RECIPIENT_ID);",
-      "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON $TABLE_NAME ($EXPECTED_V2_ID);",
-      "CREATE UNIQUE INDEX IF NOT EXISTS group_distribution_id_index ON $TABLE_NAME($DISTRIBUTION_ID);"
-    ) + MembershipTable.CREATE_INDEXES
+    val CREATE_INDEXS = MembershipTable.CREATE_INDEXES
 
     private val GROUP_PROJECTION = arrayOf(
       GROUP_ID,
@@ -150,7 +138,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       AVATAR_ID,
       AVATAR_KEY,
       AVATAR_CONTENT_TYPE,
-      AVATAR_RELAY,
       AVATAR_DIGEST,
       TIMESTAMP,
       ACTIVE,
@@ -194,7 +181,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       val CREATE_TABLE = """
         CREATE TABLE $TABLE_NAME (
             $ID INTEGER PRIMARY KEY,
-            $GROUP_ID TEXT NOT NULL,
+            $GROUP_ID TEXT NOT NULL REFERENCES ${GroupTable.TABLE_NAME} (${GroupTable.GROUP_ID}) ON DELETE CASCADE,
             $RECIPIENT_ID INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
             UNIQUE($GROUP_ID, $RECIPIENT_ID)
         )
@@ -656,17 +643,17 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   @CheckReturnValue
-  fun create(groupId: GroupId.V1, title: String?, members: Collection<RecipientId>, avatar: SignalServiceAttachmentPointer?, relay: String?): Boolean {
+  fun create(groupId: GroupId.V1, title: String?, members: Collection<RecipientId>, avatar: SignalServiceAttachmentPointer?): Boolean {
     if (groupExists(groupId.deriveV2MigrationGroupId())) {
       throw LegacyGroupInsertException(groupId)
     }
 
-    return create(groupId, title, members, avatar, relay, null, null)
+    return create(groupId, title, members, avatar, null, null)
   }
 
   @CheckReturnValue
   fun create(groupId: GroupId.Mms, title: String?, members: Collection<RecipientId>): Boolean {
-    return create(groupId, if (title.isNullOrEmpty()) null else title, members, null, null, null, null)
+    return create(groupId, if (title.isNullOrEmpty()) null else title, members, null, null, null)
   }
 
   @JvmOverloads
@@ -680,7 +667,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       Log.w(TAG, "Forcing the creation of a group even though we already have a V1 ID!")
     }
 
-    return if (create(groupId = groupId, title = groupState.title, memberCollection = emptyList(), avatar = null, relay = null, groupMasterKey = groupMasterKey, groupState = groupState)) {
+    return if (create(groupId = groupId, title = groupState.title, memberCollection = emptyList(), avatar = null, groupMasterKey = groupMasterKey, groupState = groupState)) {
       groupId
     } else {
       null
@@ -731,7 +718,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     title: String?,
     memberCollection: Collection<RecipientId>,
     avatar: SignalServiceAttachmentPointer?,
-    relay: String?,
     groupMasterKey: GroupMasterKey?,
     groupState: DecryptedGroup?
   ): Boolean {
@@ -757,7 +743,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       values.put(AVATAR_ID, 0)
     }
 
-    values.put(AVATAR_RELAY, relay)
     values.put(TIMESTAMP, System.currentTimeMillis())
 
     if (groupId.isV2) {
@@ -1176,7 +1161,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           avatarId = cursor.requireLong(AVATAR_ID),
           avatarKey = cursor.requireBlob(AVATAR_KEY),
           avatarContentType = cursor.requireString(AVATAR_CONTENT_TYPE),
-          relay = cursor.requireString(AVATAR_RELAY),
           isActive = cursor.requireBoolean(ACTIVE),
           avatarDigest = cursor.requireBlob(AVATAR_DIGEST),
           isMms = cursor.requireBoolean(MMS),

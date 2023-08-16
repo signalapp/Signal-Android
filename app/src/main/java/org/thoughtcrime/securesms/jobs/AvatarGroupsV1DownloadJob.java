@@ -70,7 +70,6 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
         long             avatarId    = record.get().getAvatarId();
         String           contentType = record.get().getAvatarContentType();
         byte[]           key         = record.get().getAvatarKey();
-        String           relay       = record.get().getRelay();
         Optional<byte[]> digest      = Optional.ofNullable(record.get().getAvatarDigest());
         Optional<String> fileName    = Optional.empty();
 
