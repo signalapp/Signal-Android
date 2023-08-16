@@ -41,7 +41,7 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
   @WorkerThread
   RequestGroupV2InfoWorkerJob(@NonNull GroupId.V2 groupId, int toRevision) {
     this(new Parameters.Builder()
-                       .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).getId()))
+                       .setQueue(PushProcessMessageJobV2.getQueueName(Recipient.externalGroupExact(groupId).getId()))
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)

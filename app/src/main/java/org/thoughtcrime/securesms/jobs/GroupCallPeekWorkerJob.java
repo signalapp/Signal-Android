@@ -21,7 +21,7 @@ final class GroupCallPeekWorkerJob extends BaseJob {
 
   public GroupCallPeekWorkerJob(@NonNull RecipientId groupRecipientId) {
     this(new Parameters.Builder()
-                       .setQueue(PushProcessMessageJob.getQueueName(groupRecipientId))
+                       .setQueue(PushProcessMessageJobV2.getQueueName(groupRecipientId))
                        .setMaxInstancesForQueue(2)
                        .build(),
          groupRecipientId);

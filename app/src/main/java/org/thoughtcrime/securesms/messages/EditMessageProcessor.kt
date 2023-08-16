@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.util.hasSharedContact
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import java.util.Optional
 
 object EditMessageProcessor {
@@ -41,7 +42,7 @@ object EditMessageProcessor {
     context: Context,
     senderRecipient: Recipient,
     threadRecipient: Recipient,
-    envelope: SignalServiceProtos.Envelope,
+    envelope: Envelope,
     content: SignalServiceProtos.Content,
     metadata: EnvelopeMetadata,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
@@ -116,7 +117,7 @@ object EditMessageProcessor {
   private fun handleEditMediaMessage(
     senderRecipientId: RecipientId,
     groupId: GroupId.V2?,
-    envelope: SignalServiceProtos.Envelope,
+    envelope: Envelope,
     metadata: EnvelopeMetadata,
     message: DataMessage,
     targetMessage: MediaMmsMessageRecord
@@ -176,7 +177,7 @@ object EditMessageProcessor {
   private fun handleEditTextMessage(
     senderRecipientId: RecipientId,
     groupId: GroupId.V2?,
-    envelope: SignalServiceProtos.Envelope,
+    envelope: Envelope,
     metadata: EnvelopeMetadata,
     message: DataMessage,
     targetMessage: MediaMmsMessageRecord

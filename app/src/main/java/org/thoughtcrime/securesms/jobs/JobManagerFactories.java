@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushDecryptMessageJobEnvelopeMigration;
+import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageQueueJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.migrations.BlobStorageLocationMigrationJob;
 import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.ClearGlideCacheMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
-import org.thoughtcrime.securesms.migrations.DecryptionsDrainedMigrationJob;
 import org.thoughtcrime.securesms.migrations.DeleteDeprecatedLogsMigrationJob;
 import org.thoughtcrime.securesms.migrations.DirectoryRefreshMigrationJob;
 import org.thoughtcrime.securesms.migrations.EmojiDownloadMigrationJob;
@@ -165,14 +165,12 @@ public final class JobManagerFactories {
       put(PreKeysSyncJob.KEY,                        new PreKeysSyncJob.Factory());
       put(ProfileKeySendJob.KEY,                     new ProfileKeySendJob.Factory());
       put(ProfileUploadJob.KEY,                      new ProfileUploadJob.Factory());
-      put(PushDecryptMessageJob.KEY,                 new PushDecryptMessageJob.Factory());
-      put(PushDecryptDrainedJob.KEY,                 new PushDecryptDrainedJob.Factory());
       put(PushDistributionListSendJob.KEY,           new PushDistributionListSendJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
       put(PushGroupSilentUpdateSendJob.KEY,          new PushGroupSilentUpdateSendJob.Factory());
       put(MessageFetchJob.KEY,                       new MessageFetchJob.Factory());
       put(PushProcessEarlyMessagesJob.KEY,           new PushProcessEarlyMessagesJob.Factory());
-      put(PushProcessMessageJob.KEY,                 new PushProcessMessageJob.Factory());
+      put(PushProcessMessageErrorV2Job.KEY,          new PushProcessMessageErrorV2Job.Factory());
       put(PushProcessMessageJobV2.KEY,               new PushProcessMessageJobV2.Factory());
       put(ReactionSendJob.KEY,                       new ReactionSendJob.Factory());
       put(RebuildMessageSearchIndexJob.KEY,          new RebuildMessageSearchIndexJob.Factory());
@@ -234,7 +232,6 @@ public final class JobManagerFactories {
       put(CachedAttachmentsMigrationJob.KEY,         new CachedAttachmentsMigrationJob.Factory());
       put(ClearGlideCacheMigrationJob.KEY,           new ClearGlideCacheMigrationJob.Factory());
       put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
-      put(DecryptionsDrainedMigrationJob.KEY,        new DecryptionsDrainedMigrationJob.Factory());
       put(DeleteDeprecatedLogsMigrationJob.KEY,      new DeleteDeprecatedLogsMigrationJob.Factory());
       put(DirectoryRefreshMigrationJob.KEY,          new DirectoryRefreshMigrationJob.Factory());
       put(EmojiDownloadMigrationJob.KEY,             new EmojiDownloadMigrationJob.Factory());
@@ -295,6 +292,10 @@ public final class JobManagerFactories {
       put("KbsEnclaveMigrationWorkerJob",            new FailingJob.Factory());
       put("KbsEnclaveMigrationJob",                  new PassingMigrationJob.Factory());
       put("ClearFallbackKbsEnclaveJob",              new FailingJob.Factory());
+      put("PushDecryptJob",                          new FailingJob.Factory());
+      put("PushDecryptDrainedJob",                   new FailingJob.Factory());
+      put("PushProcessJob",                          new FailingJob.Factory());
+      put("DecryptionsDrainedMigrationJob",          new PassingMigrationJob.Factory());
     }};
   }
 
@@ -331,7 +332,8 @@ public final class JobManagerFactories {
                          new SendReadReceiptsJobMigration(SignalDatabase.messages()),
                          new PushProcessMessageQueueJobMigration(application),
                          new RetrieveProfileJobMigration(),
-                         new PushDecryptMessageJobEnvelopeMigration(application),
-                         new SenderKeyDistributionSendJobRecipientMigration());
+                         new PushDecryptMessageJobEnvelopeMigration(),
+                         new SenderKeyDistributionSendJobRecipientMigration(),
+                         new PushProcessMessageJobMigration());
   }
 }

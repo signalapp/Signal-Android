@@ -48,14 +48,13 @@ import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob
 import org.thoughtcrime.securesms.jobs.PaymentTransactionCheckJob
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
-import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJobV2
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
-import org.thoughtcrime.securesms.messages.MessageContentProcessor.StorageFailedException
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.debug
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.warn
@@ -613,7 +612,7 @@ object DataMessageProcessor {
 
     val paymentNotification = message.payment.notification
     val uuid = UUID.randomUUID()
-    val queue = "Payment_" + PushProcessMessageJob.getQueueName(senderRecipientId)
+    val queue = "Payment_" + PushProcessMessageJobV2.getQueueName(senderRecipientId)
 
     try {
       SignalDatabase.payments.createIncomingPayment(

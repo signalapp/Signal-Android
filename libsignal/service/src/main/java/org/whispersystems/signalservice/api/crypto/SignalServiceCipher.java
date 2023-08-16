@@ -44,28 +44,22 @@ import org.signal.libsignal.protocol.message.SignalMessage;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
-import org.whispersystems.signalservice.api.messages.SignalServiceContent;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceMetadata;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.PushTransportDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope;
-import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
-import org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer;
-import org.whispersystems.signalservice.internal.serialize.SignalServiceMetadataProtobufSerializer;
-import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * This is used to encrypt + decrypt received {@link SignalServiceEnvelope}s.
+ * This is used to encrypt + decrypt received envelopes.
  */
 public class SignalServiceCipher {
 
@@ -126,41 +120,6 @@ public class SignalServiceCipher {
       SignalSessionCipher sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
 
       return content.processUnsealedSender(sessionCipher, destination);
-    }
-  }
-
-  /**
-   * Decrypt a received {@link SignalServiceEnvelope}
-   *
-   * @param envelope The received SignalServiceEnvelope
-   *
-   * @return a decrypted SignalServiceContent
-   */
-  public SignalServiceContent decrypt(SignalServiceEnvelope envelope)
-      throws InvalidMetadataMessageException, InvalidMetadataVersionException,
-      ProtocolInvalidKeyIdException, ProtocolLegacyMessageException,
-      ProtocolUntrustedIdentityException, ProtocolNoSessionException,
-      ProtocolInvalidVersionException, ProtocolInvalidMessageException,
-      ProtocolInvalidKeyException, ProtocolDuplicateMessageException,
-      SelfSendException, UnsupportedDataMessageException, InvalidMessageStructureException
-  {
-    try {
-      if (envelope.hasContent()) {
-        Plaintext                   plaintext = decryptInternal(envelope.getProto(), envelope.getServerDeliveredTimestamp());
-        SignalServiceProtos.Content content   = SignalServiceProtos.Content.parseFrom(plaintext.getData());
-
-        SignalServiceContentProto contentProto = SignalServiceContentProto.newBuilder()
-                                                                          .setLocalAddress(SignalServiceAddressProtobufSerializer.toProtobuf(localAddress))
-                                                                          .setMetadata(SignalServiceMetadataProtobufSerializer.toProtobuf(plaintext.metadata))
-                                                                          .setContent(content)
-                                                                          .build();
-
-        return SignalServiceContent.createFromProto(contentProto);
-      }
-
-      return null;
-    } catch (InvalidProtocolBufferException e) {
-      throw new InvalidMetadataMessageException(e);
     }
   }
 

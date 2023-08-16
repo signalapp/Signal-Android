@@ -44,7 +44,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val threadTable: ThreadTable = ThreadTable(context, this)
   val identityTable: IdentityTable = IdentityTable(context, this)
   val draftTable: DraftTable = DraftTable(context, this)
-  val pushTable: PushTable = PushTable(context, this)
   val groupTable: GroupTable = GroupTable(context, this)
   val recipientTable: RecipientTable = RecipientTable(context, this)
   val groupReceiptTable: GroupReceiptTable = GroupReceiptTable(context, this)
@@ -86,7 +85,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(ThreadTable.CREATE_TABLE)
     db.execSQL(IdentityTable.CREATE_TABLE)
     db.execSQL(DraftTable.CREATE_TABLE)
-    db.execSQL(PushTable.CREATE_TABLE)
     executeStatements(db, GroupTable.CREATE_TABLES)
     db.execSQL(RecipientTable.CREATE_TABLE)
     db.execSQL(GroupReceiptTable.CREATE_TABLE)
@@ -466,12 +464,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("pendingPniSignatureMessages")
     val pendingPniSignatureMessages: PendingPniSignatureMessageTable
       get() = instance!!.pendingPniSignatureMessageTable
-
-    @get:Deprecated("This only exists to migrate from legacy storage. There shouldn't be any new usages.")
-    @get:JvmStatic
-    @get:JvmName("push")
-    val push: PushTable
-      get() = instance!!.pushTable
 
     @get:JvmStatic
     @get:JvmName("recipients")

@@ -37,7 +37,7 @@ internal class CallLinkPeekJob private constructor(
 
   constructor(callLinkRecipientId: RecipientId) : this(
     Parameters.Builder()
-      .setQueue(PushProcessMessageJob.getQueueName(callLinkRecipientId))
+      .setQueue(PushProcessMessageJobV2.getQueueName(callLinkRecipientId))
       .setMaxInstancesForQueue(1)
       .setLifespan(TimeUnit.MINUTES.toMillis(1))
       .addConstraint(NetworkConstraint.KEY)

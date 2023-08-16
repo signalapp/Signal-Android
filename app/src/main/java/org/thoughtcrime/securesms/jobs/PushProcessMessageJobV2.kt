@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import java.io.IOException
@@ -29,7 +30,7 @@ import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata as En
 
 class PushProcessMessageJobV2 private constructor(
   parameters: Parameters,
-  private val envelope: Envelope,
+  private val envelope: SignalServiceProtos.Envelope,
   private val content: Content,
   private val metadata: EnvelopeMetadata,
   private val serverDeliveredTimestamp: Long
@@ -108,7 +109,8 @@ class PushProcessMessageJobV2 private constructor(
      */
     private val empty1to1QueueCache = HashSet<String>()
 
-    private fun getQueueName(recipientId: RecipientId): String {
+    @JvmStatic
+    fun getQueueName(recipientId: RecipientId): String {
       return QUEUE_PREFIX + recipientId.toQueueKey()
     }
 

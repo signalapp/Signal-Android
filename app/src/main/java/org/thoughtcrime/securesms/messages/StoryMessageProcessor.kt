@@ -21,10 +21,11 @@ import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 
 object StoryMessageProcessor {
 
-  fun process(envelope: SignalServiceProtos.Envelope, content: SignalServiceProtos.Content, metadata: EnvelopeMetadata, senderRecipient: Recipient, threadRecipient: Recipient) {
+  fun process(envelope: Envelope, content: SignalServiceProtos.Content, metadata: EnvelopeMetadata, senderRecipient: Recipient, threadRecipient: Recipient) {
     val storyMessage = content.storyMessage
 
     log(envelope.timestamp, "Story message.")
@@ -79,7 +80,7 @@ object StoryMessageProcessor {
         SignalDatabase.messages.setTransactionSuccessful()
       }
     } catch (e: MmsException) {
-      throw MessageContentProcessor.StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
+      throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     } finally {
       SignalDatabase.messages.endTransaction()
     }

@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
-import org.thoughtcrime.securesms.messages.MessageContentProcessor.StorageFailedException
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.warn
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId

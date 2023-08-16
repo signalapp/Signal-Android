@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.messages
 import android.content.Context
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.core.util.toOptional
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
+import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob
 import org.thoughtcrime.securesms.jobs.ResendMessageJob
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob
@@ -38,6 +40,8 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toDecryptionEr
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage
+import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -284,6 +288,29 @@ open class MessageContentProcessorV2(private val context: Context) {
         null
       }
     }
+
+    private fun insertErrorMessage(context: Context, sender: Recipient, senderDevice: Int, timestamp: Long, groupId: Optional<GroupId>, marker: (Long) -> Unit) {
+      val textMessage = IncomingTextMessage(
+        sender.id,
+        senderDevice,
+        timestamp,
+        -1,
+        System.currentTimeMillis(),
+        "",
+        groupId,
+        0,
+        false,
+        null
+      )
+
+      SignalDatabase
+        .messages
+        .insertMessageInbox(IncomingEncryptedMessage(textMessage, ""))
+        .ifPresent {
+          marker(it.messageId)
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(it.threadId))
+        }
+    }
   }
 
   /**
@@ -304,7 +331,7 @@ open class MessageContentProcessorV2(private val context: Context) {
 
     val earlyCacheEntries: List<EarlyMessageCacheEntry>? = ApplicationDependencies
       .getEarlyMessageCache()
-      .retrieveV2(senderRecipient.id, envelope.timestamp)
+      .retrieve(senderRecipient.id, envelope.timestamp)
       .orNull()
 
     if (!processingEarlyContent && earlyCacheEntries != null) {
@@ -312,6 +339,63 @@ open class MessageContentProcessorV2(private val context: Context) {
       for (entry in earlyCacheEntries) {
         handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true, localMetric = null)
       }
+    }
+  }
+
+  fun processException(messageState: MessageState, exceptionMetadata: ExceptionMetadata, timestamp: Long) {
+    val sender = Recipient.external(context, exceptionMetadata.sender)
+
+    if (sender.isBlocked) {
+      warn("Ignoring exception content from blocked sender, message state: $messageState")
+      return
+    }
+
+    when (messageState) {
+      MessageState.DECRYPTION_ERROR -> {
+        warn(timestamp, "Handling encryption error.")
+
+        val threadRecipient = if (exceptionMetadata.groupId != null) Recipient.externalPossiblyMigratedGroup(exceptionMetadata.groupId) else sender
+        SignalDatabase
+          .messages
+          .insertBadDecryptMessage(
+            recipientId = sender.id,
+            senderDevice = exceptionMetadata.senderDevice,
+            sentTimestamp = timestamp,
+            receivedTimestamp = System.currentTimeMillis(),
+            threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
+          )
+      }
+
+      MessageState.INVALID_VERSION -> {
+        warn(timestamp, "Handling invalid version.")
+        insertErrorMessage(context, sender, exceptionMetadata.senderDevice, timestamp, exceptionMetadata.groupId.toOptional()) { messageId ->
+          SignalDatabase.messages.markAsInvalidVersionKeyExchange(messageId)
+        }
+      }
+
+      MessageState.LEGACY_MESSAGE -> {
+        warn(timestamp, "Handling legacy message.")
+        insertErrorMessage(context, sender, exceptionMetadata.senderDevice, timestamp, exceptionMetadata.groupId.toOptional()) { messageId ->
+          SignalDatabase.messages.markAsLegacyVersion(messageId)
+        }
+      }
+
+      MessageState.UNSUPPORTED_DATA_MESSAGE -> {
+        warn(timestamp, "Handling unsupported data message.")
+        insertErrorMessage(context, sender, exceptionMetadata.senderDevice, timestamp, exceptionMetadata.groupId.toOptional()) { messageId ->
+          SignalDatabase.messages.markAsUnsupportedProtocolVersion(messageId)
+        }
+      }
+
+      MessageState.CORRUPT_MESSAGE,
+      MessageState.NO_SESSION -> {
+        warn(timestamp, "Discovered old enqueued bad encrypted message. Scheduling reset.")
+        ApplicationDependencies.getJobManager().add(AutomaticSessionResetJob(sender.id, exceptionMetadata.senderDevice, timestamp))
+      }
+
+      MessageState.DUPLICATE_MESSAGE -> warn(timestamp, "Duplicate message. Dropping.")
+
+      else -> throw AssertionError("Not handled $messageState. ($timestamp)")
     }
   }
 
@@ -350,6 +434,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           localMetric
         )
       }
+
       content.hasSyncMessage() -> {
         TextSecurePreferences.setMultiDevice(context, true)
 
@@ -362,6 +447,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
       }
+
       content.hasCallMessage() -> {
         log(envelope.timestamp, "Got call message...")
 
@@ -375,6 +461,7 @@ open class MessageContentProcessorV2(private val context: Context) {
 
         CallMessageProcessor.process(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp)
       }
+
       content.hasReceiptMessage() -> {
         ReceiptMessageProcessor.process(
           context,
@@ -385,9 +472,11 @@ open class MessageContentProcessorV2(private val context: Context) {
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
       }
+
       content.hasTypingMessage() -> {
         handleTypingMessage(envelope, metadata, content.typingMessage, senderRecipient)
       }
+
       content.hasStoryMessage() -> {
         StoryMessageProcessor.process(
           envelope,
@@ -397,9 +486,11 @@ open class MessageContentProcessorV2(private val context: Context) {
           threadRecipient
         )
       }
+
       content.hasDecryptionErrorMessage() -> {
         handleRetryReceipt(envelope, metadata, content.decryptionErrorMessage!!.toDecryptionErrorMessage(metadata), senderRecipient)
       }
+
       content.hasEditMessage() -> {
         EditMessageProcessor.process(
           context,
@@ -411,9 +502,11 @@ open class MessageContentProcessorV2(private val context: Context) {
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
       }
+
       content.hasSenderKeyDistributionMessage() || content.hasPniSignatureMessage() -> {
         // Already handled, here in order to prevent unrecognized message log
       }
+
       else -> {
         warn(envelope.timestamp, "Got unrecognized message!")
       }

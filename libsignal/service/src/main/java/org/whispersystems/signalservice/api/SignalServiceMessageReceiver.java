@@ -15,11 +15,9 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
@@ -29,8 +27,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
 import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
-import org.whispersystems.signalservice.internal.push.SignalServiceEnvelopeEntity;
-import org.whispersystems.signalservice.internal.push.SignalServiceMessagesResult;
 import org.whispersystems.signalservice.internal.sticker.StickerProtos;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.util.concurrent.FutureTransformers;
@@ -43,7 +39,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -201,67 +196,4 @@ public class SignalServiceMessageReceiver {
 
     return new SignalServiceStickerManifest(pack.getTitle(), pack.getAuthor(), cover, stickers);
   }
-
-  public List<SignalServiceEnvelope> retrieveMessages(boolean allowStories, MessageReceivedCallback callback)
-      throws IOException
-  {
-    List<SignalServiceEnvelope> results       = new LinkedList<>();
-    SignalServiceMessagesResult messageResult = socket.getMessages(allowStories);
-
-    for (SignalServiceEnvelopeEntity entity : messageResult.getEnvelopes()) {
-      SignalServiceEnvelope envelope;
-
-      if (entity.hasSource() && entity.getSourceDevice() > 0) {
-        SignalServiceAddress address = new SignalServiceAddress(ServiceId.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
-        envelope = new SignalServiceEnvelope(entity.getType(),
-                                             Optional.of(address),
-                                             entity.getSourceDevice(),
-                                             entity.getTimestamp(),
-                                             entity.getContent(),
-                                             entity.getServerTimestamp(),
-                                             messageResult.getServerDeliveredTimestamp(),
-                                             entity.getServerUuid(),
-                                             entity.getDestinationUuid(),
-                                             entity.isUrgent(),
-                                             entity.isStory(),
-                                             entity.getReportSpamToken());
-      } else {
-        envelope = new SignalServiceEnvelope(entity.getType(),
-                                             entity.getTimestamp(),
-                                             entity.getContent(),
-                                             entity.getServerTimestamp(),
-                                             messageResult.getServerDeliveredTimestamp(),
-                                             entity.getServerUuid(),
-                                             entity.getDestinationUuid(),
-                                             entity.isUrgent(),
-                                             entity.isStory(),
-                                             entity.getReportSpamToken());
-      }
-
-      callback.onMessage(envelope);
-      results.add(envelope);
-
-      if (envelope.hasServerGuid()) {
-        socket.acknowledgeMessage(envelope.getServerGuid());
-      } else {
-        socket.acknowledgeMessage(entity.getSourceE164(), entity.getTimestamp());
-      }
-    }
-
-    return results;
-  }
-
-  public void setSoTimeoutMillis(long soTimeoutMillis) {
-    socket.setSoTimeoutMillis(soTimeoutMillis);
-  }
-
-  public interface MessageReceivedCallback {
-    public void onMessage(SignalServiceEnvelope envelope);
-  }
-
-  public static class NullMessageReceivedCallback implements MessageReceivedCallback {
-    @Override
-    public void onMessage(SignalServiceEnvelope envelope) {}
-  }
-
 }
