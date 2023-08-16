@@ -7,9 +7,9 @@ import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 
-class TimingMessageContentProcessorV2(context: Context) : MessageContentProcessorV2(context) {
+class TimingMessageContentProcessor(context: Context) : MessageContentProcessor(context) {
   companion object {
-    val TAG = Log.tag(TimingMessageContentProcessorV2::class.java)
+    val TAG = Log.tag(TimingMessageContentProcessor::class.java)
 
     fun endTagPredicate(timestamp: Long): LogPredicate = { entry ->
       entry.tag == TAG && entry.message == endTag(timestamp)

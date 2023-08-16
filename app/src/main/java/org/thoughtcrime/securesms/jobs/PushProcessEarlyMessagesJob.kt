@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.ServiceMessageId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.messages.MessageContentProcessorV2
+import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 
 /**
@@ -46,7 +46,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
         if (earlyEntries != null) {
           for (entry in earlyEntries) {
             Log.i(TAG, "[${id.sentTimestamp}] Processing early V2 content for $id")
-            MessageContentProcessorV2.create(context).process(entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true)
+            MessageContentProcessor.create(context).process(entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true)
           }
         } else {
           Log.w(TAG, "[${id.sentTimestamp}] Saw $id in the cache, but when we went to retrieve it, it was already gone.")
@@ -76,13 +76,13 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
     const val KEY = "PushProcessEarlyMessageJob"
 
     /**
-     * Enqueues a job to run after the most-recently-enqueued [PushProcessMessageJobV2].
+     * Enqueues a job to run after the most-recently-enqueued [PushProcessMessageJob].
      */
     @JvmStatic
     fun enqueue() {
       val jobManger = ApplicationDependencies.getJobManager()
 
-      val youngestProcessJobId: String? = jobManger.find { it.factoryKey == PushProcessMessageJobV2.KEY }
+      val youngestProcessJobId: String? = jobManger.find { it.factoryKey == PushProcessMessageJob.KEY }
         .maxByOrNull { it.createTime }
         ?.id
 

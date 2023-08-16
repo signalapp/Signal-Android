@@ -20,7 +20,7 @@ class LeaveGroupV2WorkerJob(parameters: Parameters, private val groupId: GroupId
 
   constructor(groupId: GroupId.V2) : this(
     parameters = Parameters.Builder()
-      .setQueue(PushProcessMessageJobV2.getQueueName(Recipient.externalGroupExact(groupId).id))
+      .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).id))
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)
       .setMaxInstancesForQueue(2)

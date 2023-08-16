@@ -37,7 +37,7 @@ final class ForceUpdateGroupV2WorkerJob extends BaseJob {
   private final GroupId.V2 groupId;
 
   ForceUpdateGroupV2WorkerJob(@NonNull GroupId.V2 groupId) {
-    this(new Parameters.Builder().setQueue(PushProcessMessageJobV2.getQueueName(Recipient.externalGroupExact(groupId).getId()))
+    this(new Parameters.Builder().setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).getId()))
                                  .addConstraint(NetworkConstraint.KEY)
                                  .setMaxAttempts(Parameters.UNLIMITED)
                                  .build(),

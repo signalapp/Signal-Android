@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobmanager.JobTracker.JobListener
 import org.thoughtcrime.securesms.jobs.MarkerJob
-import org.thoughtcrime.securesms.jobs.PushProcessMessageJobV2
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -81,7 +81,7 @@ object WebSocketDrainer {
     val queueListener = QueueFindingJobListener()
 
     jobManager.addListener(
-      { job: Job -> job.parameters.queue?.startsWith(PushProcessMessageJobV2.QUEUE_PREFIX) ?: false },
+      { job: Job -> job.parameters.queue?.startsWith(PushProcessMessageJob.QUEUE_PREFIX) ?: false },
       queueListener
     )
 

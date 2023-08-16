@@ -58,7 +58,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Typing
 import java.io.IOException
 import java.util.Optional
 
-open class MessageContentProcessorV2(private val context: Context) {
+open class MessageContentProcessor(private val context: Context) {
 
   enum class Gv2PreProcessResult {
     IGNORE,
@@ -71,8 +71,8 @@ open class MessageContentProcessorV2(private val context: Context) {
 
     @JvmStatic
     @JvmOverloads
-    fun create(context: Context = ApplicationDependencies.getApplication()): MessageContentProcessorV2 {
-      return MessageContentProcessorV2(context)
+    fun create(context: Context = ApplicationDependencies.getApplication()): MessageContentProcessor {
+      return MessageContentProcessor(context)
     }
 
     fun debug(message: String) {

@@ -50,7 +50,7 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   public AutomaticSessionResetJob(@NonNull RecipientId recipientId, int deviceId, long sentTimestamp) {
     this(new Parameters.Builder()
-                       .setQueue(PushProcessMessageJobV2.getQueueName(recipientId))
+                       .setQueue(PushProcessMessageJob.getQueueName(recipientId))
                        .addConstraint(DecryptionsDrainedConstraint.KEY)
                        .setMaxInstancesForQueue(1)
                        .build(),

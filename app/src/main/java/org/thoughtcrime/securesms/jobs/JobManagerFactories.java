@@ -170,8 +170,8 @@ public final class JobManagerFactories {
       put(PushGroupSilentUpdateSendJob.KEY,          new PushGroupSilentUpdateSendJob.Factory());
       put(MessageFetchJob.KEY,                       new MessageFetchJob.Factory());
       put(PushProcessEarlyMessagesJob.KEY,           new PushProcessEarlyMessagesJob.Factory());
-      put(PushProcessMessageErrorV2Job.KEY,          new PushProcessMessageErrorV2Job.Factory());
-      put(PushProcessMessageJobV2.KEY,               new PushProcessMessageJobV2.Factory());
+      put(PushProcessMessageErrorJob.KEY,            new PushProcessMessageErrorJob.Factory());
+      put(PushProcessMessageJob.KEY,                 new PushProcessMessageJob.Factory());
       put(ReactionSendJob.KEY,                       new ReactionSendJob.Factory());
       put(RebuildMessageSearchIndexJob.KEY,          new RebuildMessageSearchIndexJob.Factory());
       put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());

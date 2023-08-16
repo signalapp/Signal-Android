@@ -20,17 +20,17 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
-class MessageContentProcessorV2__recipientStatusTest {
+class MessageContentProcessor__recipientStatusTest {
 
   @get:Rule
   val harness = SignalActivityRule()
 
-  private lateinit var processorV2: MessageContentProcessorV2
+  private lateinit var processor: MessageContentProcessor
   private var envelopeTimestamp: Long = 0
 
   @Before
   fun setup() {
-    processorV2 = MessageContentProcessorV2(harness.context)
+    processor = MessageContentProcessor(harness.context)
     envelopeTimestamp = System.currentTimeMillis()
   }
 
@@ -49,7 +49,7 @@ class MessageContentProcessorV2__recipientStatusTest {
       timestamp = envelopeTimestamp
     }
 
-    processorV2.process(
+    processor.process(
       envelope = MessageContentFuzzer.envelope(envelopeTimestamp),
       content = MessageContentFuzzer.syncSentTextMessage(initialTextMessage, deliveredTo = listOf(harness.others[0])),
       metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, groupId),
@@ -61,7 +61,7 @@ class MessageContentProcessorV2__recipientStatusTest {
     val firstMessageId = firstSyncMessages[0].id
     val firstReceiptInfo = SignalDatabase.groupReceipts.getGroupReceiptInfo(firstMessageId)
 
-    processorV2.process(
+    processor.process(
       envelope = MessageContentFuzzer.envelope(envelopeTimestamp),
       content = MessageContentFuzzer.syncSentTextMessage(initialTextMessage, deliveredTo = listOf(harness.others[0], harness.others[1]), recipientUpdate = true),
       metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, groupId),

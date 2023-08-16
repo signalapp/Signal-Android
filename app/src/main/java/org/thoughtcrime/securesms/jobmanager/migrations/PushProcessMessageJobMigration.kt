@@ -5,7 +5,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobmanager.JobMigration
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.FailingJob
-import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorV2Job
+import org.thoughtcrime.securesms.jobs.PushProcessMessageErrorJob
 import org.thoughtcrime.securesms.messages.MessageState
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
@@ -48,7 +48,7 @@ class PushProcessMessageJobMigration : JobMigration(10) {
 
           else -> {
             Log.i(TAG, "Migrating push process error job for state: $state")
-            jobData.withFactoryKey(PushProcessMessageErrorV2Job.KEY)
+            jobData.withFactoryKey(PushProcessMessageErrorJob.KEY)
           }
         }
       } else {

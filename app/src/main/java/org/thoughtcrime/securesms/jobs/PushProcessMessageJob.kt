@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.messages.MessageContentProcessorV2
+import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -21,16 +21,15 @@ import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata as EnvelopeMetadataProto
 
-class PushProcessMessageJobV2 private constructor(
+class PushProcessMessageJob private constructor(
   parameters: Parameters,
-  private val envelope: SignalServiceProtos.Envelope,
+  private val envelope: Envelope,
   private val content: Content,
   private val metadata: EnvelopeMetadata,
   private val serverDeliveredTimestamp: Long
@@ -59,7 +58,7 @@ class PushProcessMessageJobV2 private constructor(
   }
 
   public override fun onRun() {
-    val processor = MessageContentProcessorV2.create(context)
+    val processor = MessageContentProcessor.create(context)
     processor.process(envelope, content, metadata, serverDeliveredTimestamp)
   }
 
@@ -71,11 +70,11 @@ class PushProcessMessageJobV2 private constructor(
 
   override fun onFailure() = Unit
 
-  class Factory : Job.Factory<PushProcessMessageJobV2?> {
-    override fun create(parameters: Parameters, data: ByteArray?): PushProcessMessageJobV2 {
+  class Factory : Job.Factory<PushProcessMessageJob?> {
+    override fun create(parameters: Parameters, data: ByteArray?): PushProcessMessageJob {
       return try {
         val completeMessage = CompleteMessage.ADAPTER.decode(data!!)
-        PushProcessMessageJobV2(
+        PushProcessMessageJob(
           parameters = parameters,
           envelope = Envelope.parseFrom(completeMessage.envelope.toByteArray()),
           content = Content.parseFrom(completeMessage.content.toByteArray()),
@@ -99,7 +98,7 @@ class PushProcessMessageJobV2 private constructor(
     const val KEY = "PushProcessMessageJobV2"
     const val QUEUE_PREFIX = "__PUSH_PROCESS_JOB__"
 
-    private val TAG = Log.tag(PushProcessMessageJobV2::class.java)
+    private val TAG = Log.tag(PushProcessMessageJob::class.java)
 
     /**
      * Cache to keep track of empty 1:1 processing queues. Once a 1:1 queue is empty
@@ -114,7 +113,7 @@ class PushProcessMessageJobV2 private constructor(
       return QUEUE_PREFIX + recipientId.toQueueKey()
     }
 
-    fun processOrDefer(messageProcessor: MessageContentProcessorV2, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive): PushProcessMessageJobV2? {
+    fun processOrDefer(messageProcessor: MessageContentProcessor, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive): PushProcessMessageJob? {
       val queueName: String
 
       val groupContext = GroupUtil.getGroupContextIfPresent(result.content)
@@ -146,7 +145,7 @@ class PushProcessMessageJobV2 private constructor(
         if (requireNetwork) {
           builder.addConstraint(NetworkConstraint.KEY).setLifespan(TimeUnit.DAYS.toMillis(30))
         }
-        PushProcessMessageJobV2(builder.build(), result.envelope.toBuilder().clearContent().build(), result.content, result.metadata, result.serverDeliveredTimestamp)
+        PushProcessMessageJob(builder.build(), result.envelope.toBuilder().clearContent().build(), result.content, result.metadata, result.serverDeliveredTimestamp)
       } else {
         try {
           messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp, localMetric = localReceiveMetric)
