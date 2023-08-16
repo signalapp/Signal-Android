@@ -7,11 +7,12 @@ plugins {
   id("signal-sample-app")
 }
 
-val signalBuildToolsVersion: String by extra
-val signalCompileSdkVersion: String by extra
-val signalTargetSdkVersion: Int by extra
-val signalMinSdkVersion: Int by extra
-val signalJavaVersion: JavaVersion by extra
+val signalBuildToolsVersion: String by rootProject.extra
+val signalCompileSdkVersion: String by rootProject.extra
+val signalTargetSdkVersion: Int by rootProject.extra
+val signalMinSdkVersion: Int by rootProject.extra
+val signalJavaVersion: JavaVersion by rootProject.extra
+val signalKotlinJvmTarget: String by rootProject.extra
 
 android {
   namespace = "org.thoughtcrime.video.app"
@@ -41,7 +42,7 @@ android {
     targetCompatibility = signalJavaVersion
   }
   kotlinOptions {
-    jvmTarget = "11"
+    jvmTarget = signalKotlinJvmTarget
   }
   buildFeatures {
     compose = true

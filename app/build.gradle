@@ -10,7 +10,6 @@ plugins {
     id 'app.cash.exhaustive'
     id 'kotlin-parcelize'
     id 'com.squareup.wire'
-    id 'android-constants'
     id 'translations'
 }
 
@@ -94,7 +93,7 @@ android {
     testBuildType 'instrumentation'
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = signalKotlinJvmTarget
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 

@@ -4,9 +4,11 @@ plugins {
   id("org.jlleitschuh.gradle.ktlint") version "11.4.2"
 }
 
+val signalJavaVersion: JavaVersion by rootProject.extra
+
 java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = signalJavaVersion
+  targetCompatibility = signalJavaVersion
 }
 
 // NOTE: For now, in order to run ktlint on this project, you have to manually run ./gradlew :build-logic:tools:ktlintFormat

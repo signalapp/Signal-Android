@@ -17,13 +17,13 @@ group            = lib_signal_service_group_info
 java {
     withJavadocJar()
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = signalJavaVersion
+    targetCompatibility = signalJavaVersion
 }
 
 tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = signalKotlinJvmTarget
     }
 }
 
