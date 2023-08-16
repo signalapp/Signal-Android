@@ -970,6 +970,16 @@
     <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__message">Derinimo žurnalai padeda mums diagnozuoti ir išspręsti problemą, juose nėra identifikavimo informacijos.</string>
 
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
     <string name="PendingMembersActivity_requests">Prašymai</string>
@@ -3279,6 +3289,8 @@
     <string name="preferences_notifications__ringtone">Skambučio melodija</string>
     <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
     <string name="preferences_notifications__priority">Pirmenybė</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Cenzūravimo apėjimas</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6420,6 +6432,8 @@
     <string name="CreateCallLink__create_a_call_link">Sukurti skambučio nuorodą</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Bendrinti „Signal“ skambučio nuorodą</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
