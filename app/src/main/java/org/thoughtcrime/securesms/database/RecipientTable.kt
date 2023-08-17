@@ -2413,6 +2413,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
               try {
                 SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
               } catch (e: Exception) {
+                // TODO do different stuff based on whether a PNI session exists
                 Log.e(TAG, "About to crash! Breadcrumbs: ${changeSet.breadCrumbs}, Operations: ${changeSet.operations}, ID: ${changeSet.id}")
                 throw e
               }
@@ -2534,7 +2535,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         aci = aci
       )
 
-      if (!pniVerified && postMergeData.pni != null && sessions.hasAnySessionFor(postMergeData.pni.toString())) {
+      if (needsSessionSwitchoverEvent(pniVerified, postMergeData.pni, aci)) {
+        breadCrumbs += "FinalUpdateAciSSE"
         operations += PnpOperation.SessionSwitchoverInsert(
           recipientId = primaryId,
           e164 = postMergeData.e164
@@ -2678,6 +2680,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     if (record.e164 != null && updatedNumber && notSelf(e164, pni, aci) && !record.isBlocked) {
+      breadCrumbs += "NonMergeChangeNumber"
       operations += PnpOperation.ChangeNumberInsert(
         recipientId = commonId,
         oldE164 = record.e164,
@@ -2688,7 +2691,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val oldServiceId: ServiceId? = record.aci ?: record.pni
     val newServiceId: ServiceId? = aci ?: pni ?: oldServiceId
 
-    if (!pniVerified && newServiceId != oldServiceId && oldServiceId != null && sessions.hasAnySessionFor(oldServiceId.toString())) {
+    if (needsSessionSwitchoverEvent(pniVerified, oldServiceId, newServiceId)) {
+      breadCrumbs += "NonMergeSSE"
       operations += PnpOperation.SessionSwitchoverInsert(recipientId = commonId, e164 = record.e164 ?: e164)
     }
 
@@ -2761,6 +2765,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       // By migrating the PNI to the e164 record, we may cause an SSE
       if (needsSessionSwitchoverEvent(pniVerified, data.e164Record.serviceId, data.e164Record.aci ?: data.pni)) {
+        breadCrumbs += "PniE164SSE"
         operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byE164, e164 = data.e164Record.e164)
       }
 
@@ -2769,9 +2774,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       // in the next function call, and each step on it's own would think that no SSE is necessary. Given that this scenario only
       // happens with an unstable PNI-E164 mapping, we get out ahead of it by putting an SSE in both preemptively.
       if (!pniVerified && data.pniRecord.aci == null && sessions.hasAnySessionFor(data.pni.toString())) {
+        breadCrumbs += "DefensiveSSEByPni"
         operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byPni, e164 = data.pniRecord.e164)
 
         if (data.e164Record.aci == null) {
+          breadCrumbs += "DefensiveSSEByE164"
           operations += PnpOperation.SessionSwitchoverInsert(recipientId = data.byE164, e164 = data.e164Record.e164)
         }
       }
@@ -2826,6 +2833,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
         // This also becomes a change number event
         if (notSelf(data) && !data.aciRecord.isBlocked) {
+          breadCrumbs += "PniMatchingE164NoAciChangeNumber"
           operations += PnpOperation.ChangeNumberInsert(
             recipientId = data.byAci,
             oldE164 = data.aciRecord.e164,
@@ -2869,6 +2877,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         )
 
         if (data.aciRecord.e164 != null && notSelf(data) && !data.aciRecord.isBlocked) {
+          breadCrumbs += "PniHasExtraFieldChangeNumber"
           operations += PnpOperation.ChangeNumberInsert(
             recipientId = data.byAci,
             oldE164 = data.aciRecord.e164,
@@ -2915,6 +2924,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
 
       if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164 && notSelf(data) && !data.aciRecord.isBlocked) {
+        breadCrumbs += "E164OnlyChangeNumber"
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAci,
           oldE164 = data.aciRecord.e164,
@@ -2940,6 +2950,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
 
       if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164 && notSelf(data) && !data.aciRecord.isBlocked) {
+        breadCrumbs += "E164MatchingPniChangeNumber"
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAci,
           oldE164 = data.aciRecord.e164,
@@ -2958,6 +2969,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
 
       if (data.aciRecord.e164 != null && data.aciRecord.e164 != data.e164 && notSelf(data) && !data.aciRecord.isBlocked) {
+        breadCrumbs += "E164NonMatchingPniChangeNumber"
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAci,
           oldE164 = data.aciRecord.e164,
