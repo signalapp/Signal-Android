@@ -189,10 +189,6 @@ internal object ConversationOptionsMenu {
         }
       })
 
-      if (threadId == -1L) {
-        hideMenuItem(menu, R.id.menu_view_media)
-      }
-
       menu.findItem(R.id.menu_format_text_submenu).subMenu?.clearHeader()
       menu.findItem(R.id.edittext_bold).applyTitleSpan(MessageStyler.boldStyle())
       menu.findItem(R.id.edittext_italic).applyTitleSpan(MessageStyler.italicStyle())
