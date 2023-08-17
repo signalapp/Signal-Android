@@ -69,11 +69,29 @@ class ContactRecordProcessorTest {
   }
 
   @Test
-  fun `isInvalid, missing serviceId, true`() {
+  fun `isInvalid, missing ACI and PNI, true`() {
     // GIVEN
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
+      setE164(E164_B)
+    }
+
+    // WHEN
+    val result = subject.isInvalid(record)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
+  fun `isInvalid, unknown ACI and PNI, true`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
+
+    val record = buildRecord {
+      setAci(ACI.UNKNOWN.toString())
+      setPni(PNI.UNKNOWN.toString())
       setE164(E164_B)
     }
 

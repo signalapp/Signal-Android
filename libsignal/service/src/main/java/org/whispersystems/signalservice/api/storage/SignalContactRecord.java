@@ -26,7 +26,7 @@ public final class SignalContactRecord implements SignalRecord {
   private final ContactRecord proto;
   private final boolean       hasUnknownFields;
 
-  private final ACI              aci;
+  private final Optional<ACI>    aci;
   private final Optional<PNI>    pni;
   private final Optional<String> e164;
   private final Optional<String> profileGivenName;
@@ -42,7 +42,7 @@ public final class SignalContactRecord implements SignalRecord {
     this.id                = id;
     this.proto             = proto;
     this.hasUnknownFields  = ProtoUtil.hasUnknownFields(proto);
-    this.aci               = ACI.parseOrUnknown(proto.getAci());
+    this.aci               = OptionalUtil.absentIfEmpty(proto.getAci()).map(ACI::parseOrNull);
     this.pni               = OptionalUtil.absentIfEmpty(proto.getPni()).map(PNI::parseOrNull);
     this.e164              = OptionalUtil.absentIfEmpty(proto.getE164());
     this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.getGivenName());
@@ -173,12 +173,22 @@ public final class SignalContactRecord implements SignalRecord {
     return hasUnknownFields ? proto.toByteArray() : null;
   }
 
-  public ACI getAci() {
+  public Optional<ACI> getAci() {
     return aci;
   }
 
   public Optional<PNI> getPni() {
     return pni;
+  }
+
+  public Optional<? extends ServiceId> getServiceId() {
+    if (aci.isPresent()) {
+      return aci;
+    } else if (pni.isPresent()) {
+      return pni;
+    } else {
+      return Optional.empty();
+    }
   }
 
   public Optional<String> getNumber() {

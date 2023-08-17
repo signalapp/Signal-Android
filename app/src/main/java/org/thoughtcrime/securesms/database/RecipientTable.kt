@@ -795,19 +795,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
       if (FeatureFlags.phoneNumberPrivacy()) {
-        recipientId = getAndPossiblyMergePnpVerified(if (insert.aci.isValid) insert.aci else null, insert.pni.orElse(null), insert.number.orElse(null))
+        recipientId = getAndPossiblyMergePnpVerified(insert.aci.orNull(), insert.pni.orNull(), insert.number.orNull())
       } else {
-        recipientId = getAndPossiblyMerge(if (insert.aci.isValid) insert.aci else null, insert.number.orElse(null))
+        recipientId = getAndPossiblyMerge(insert.aci.orNull(), insert.number.orNull())
       }
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
     }
 
-    if (insert.identityKey.isPresent && insert.aci.isValid) {
+    if (insert.identityKey.isPresent && insert.aci.isPresent) {
       try {
         val identityKey = IdentityKey(insert.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(insert.aci.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
+        identities.updateIdentityAfterSync(insert.aci.get().toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
       } catch (e: InvalidKeyException) {
         Log.w(TAG, "Failed to process identity key during insert! Skipping.", e)
       }
@@ -836,9 +836,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
       if (FeatureFlags.phoneNumberPrivacy()) {
-        recipientId = getAndPossiblyMergePnpVerified(if (update.new.aci.isValid) update.new.aci else null, update.new.pni.orElse(null), update.new.number.orElse(null))
+        recipientId = getAndPossiblyMergePnpVerified(update.new.aci.orElse(null), update.new.pni.orElse(null), update.new.number.orElse(null))
       } else {
-        recipientId = getAndPossiblyMerge(if (update.new.aci.isValid) update.new.aci else null, update.new.number.orElse(null))
+        recipientId = getAndPossiblyMerge(update.new.aci.orElse(null), update.new.number.orElse(null))
       }
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
@@ -855,9 +855,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     try {
       val oldIdentityRecord = identityStore.getIdentityRecord(recipientId)
-      if (update.new.identityKey.isPresent && update.new.aci.isValid) {
+      if (update.new.identityKey.isPresent && update.new.aci.isPresent) {
         val identityKey = IdentityKey(update.new.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(update.new.aci.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.identityState))
+        identities.updateIdentityAfterSync(update.new.aci.get().toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.identityState))
       }
 
       val newIdentityRecord = identityStore.getIdentityRecord(recipientId)
@@ -3872,9 +3872,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val systemName = ProfileName.fromParts(contact.systemGivenName.orElse(null), contact.systemFamilyName.orElse(null))
       val username = contact.username.orElse(null)
 
-      if (contact.aci.isValid) {
-        put(ACI_COLUMN, contact.aci.toString())
-      }
+      put(ACI_COLUMN, contact.aci.orElse(null)?.toString())
 
       if (FeatureFlags.phoneNumberPrivacy()) {
         put(PNI_COLUMN, contact.pni.orElse(null)?.toString())
@@ -3905,14 +3903,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(UNREGISTERED_TIMESTAMP, contact.unregisteredTimestamp)
       if (contact.unregisteredTimestamp > 0L) {
         put(REGISTERED, RegisteredState.NOT_REGISTERED.id)
-      } else if (contact.aci.isValid) {
+      } else if (contact.aci.isPresent) {
         put(REGISTERED, RegisteredState.REGISTERED.id)
       } else {
         Log.w(TAG, "Contact is marked as registered, but has no serviceId! Can't locally mark registered. (Phone: ${contact.number.orElse("null")}, Username: ${username?.isNotEmpty()})")
       }
 
       if (isInsert) {
-        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.aci.toString(), contact.number.orNull()).serialize())
+        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.aci.map { it.toString() }.or(contact.pni.map { it.toString() }).orNull(), contact.number.orNull()).serialize())
       }
     }
   }

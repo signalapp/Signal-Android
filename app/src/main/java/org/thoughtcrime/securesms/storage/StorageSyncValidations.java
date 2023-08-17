@@ -164,7 +164,7 @@ public final class StorageSyncValidations {
       if (insert.getContact().isPresent()) {
         SignalContactRecord contact = insert.getContact().get();
 
-        if (self.requireAci().equals(contact.getAci()) ||
+        if (self.requireAci().equals(contact.getAci().orElse(null)) ||
             self.requirePni().equals(contact.getPni().orElse(null)) ||
             self.requireE164().equals(contact.getNumber().orElse("")))
         {
