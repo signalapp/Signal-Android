@@ -2410,7 +2410,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
                 .newBuilder()
                 .setE164(operation.e164 ?: "")
                 .build()
-              SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
+              try {
+                SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
+              } catch (e: Exception) {
+                Log.e(TAG, "About to crash! Breadcrumbs: ${changeSet.breadCrumbs}, Operations: ${changeSet.operations}, ID: ${changeSet.id}")
+                throw e
+              }
             }
           }
         }
