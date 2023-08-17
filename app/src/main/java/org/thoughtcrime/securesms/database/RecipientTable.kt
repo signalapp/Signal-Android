@@ -2075,6 +2075,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return results
   }
 
+  /** A function that's just to help with some temporary bug investigation. */
+  private fun getAllPnis(): Set<PNI> {
+    return readableDatabase
+      .select(PNI_COLUMN)
+      .from(TABLE_NAME)
+      .where("$PNI NOT NULL")
+      .run()
+      .readToSet { PNI.parseOrThrow(it.requireString(PNI_COLUMN)) }
+  }
+
   /**
    * Gives you all of the recipientIds of possibly-registered users (i.e. REGISTERED or UNKNOWN) that can be found by the set of
    * provided E164s.
@@ -2413,9 +2423,50 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
               try {
                 SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
               } catch (e: Exception) {
-                // TODO do different stuff based on whether a PNI session exists
                 Log.e(TAG, "About to crash! Breadcrumbs: ${changeSet.breadCrumbs}, Operations: ${changeSet.operations}, ID: ${changeSet.id}")
-                throw e
+
+                val allPnis: Set<PNI> = getAllPnis()
+                val pnisWithSessions: Set<PNI> = sessions.findAllThatHaveAnySession(allPnis)
+                Log.e(TAG, "We know of ${allPnis.size} PNIs, and there are sessions with ${pnisWithSessions.size} of them.")
+
+                val record = getRecord(operation.recipientId)
+                Log.e(TAG, "ID: ${record.id}, E164: ${record.e164}, ACI: ${record.aci}, PNI: ${record.pni}, Registered: ${record.registered}")
+
+                if (record.aci != null && record.aci == SignalStore.account().aci) {
+                  if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
+                    throw SseWithSelfAci(e)
+                  } else {
+                    throw SseWithSelfAciNoSession(e)
+                  }
+                }
+
+                if (record.pni != null && record.pni == SignalStore.account().pni) {
+                  if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
+                    throw SseWithSelfPni(e)
+                  } else {
+                    throw SseWithSelfPniNoSession(e)
+                  }
+                }
+
+                if (record.e164 != null && record.e164 == SignalStore.account().e164) {
+                  if (pnisWithSessions.contains(SignalStore.account().pni!!)) {
+                    throw SseWithSelfE164(e)
+                  } else {
+                    throw SseWithSelfE164NoSession(e)
+                  }
+                }
+
+                if (pnisWithSessions.isEmpty()) {
+                  throw SseWithNoPniSessionsException(e)
+                } else if (pnisWithSessions.size == 1) {
+                  if (pnisWithSessions.first() == SignalStore.account().pni) {
+                    throw SseWithASinglePniSessionForSelfException(e)
+                  } else {
+                    throw SseWithASinglePniSessionException(e)
+                  }
+                } else {
+                  throw SseWithMultiplePniSessionsException(e)
+                }
               }
             }
           }
@@ -4599,4 +4650,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val operations: List<PnpOperation>,
     val breadCrumbs: List<String>
   )
+
+  class SseWithSelfAci(cause: Exception) : IllegalStateException(cause)
+  class SseWithSelfAciNoSession(cause: Exception) : IllegalStateException(cause)
+  class SseWithSelfPni(cause: Exception) : IllegalStateException(cause)
+  class SseWithSelfPniNoSession(cause: Exception) : IllegalStateException(cause)
+  class SseWithSelfE164(cause: Exception) : IllegalStateException(cause)
+  class SseWithSelfE164NoSession(cause: Exception) : IllegalStateException(cause)
+  class SseWithNoPniSessionsException(cause: Exception) : IllegalStateException(cause)
+  class SseWithASinglePniSessionForSelfException(cause: Exception) : IllegalStateException(cause)
+  class SseWithASinglePniSessionException(cause: Exception) : IllegalStateException(cause)
+  class SseWithMultiplePniSessionsException(cause: Exception) : IllegalStateException(cause)
 }
