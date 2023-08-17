@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +26,7 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
   companion object {
 
     @JvmStatic
-    fun show(context: Context, fragmentManager: FragmentManager) {
+    fun show(fragmentManager: FragmentManager) {
       if (fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
         PromptBatterySaverDialogFragment().apply {
           arguments = bundleOf()

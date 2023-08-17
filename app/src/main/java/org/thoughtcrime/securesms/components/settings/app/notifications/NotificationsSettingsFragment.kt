@@ -190,7 +190,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
           title = DSLSettingsText.from(R.string.preferences_notifications__troubleshoot),
           isEnabled = true,
           onClick = {
-            PromptBatterySaverDialogFragment.show(requireContext(), childFragmentManager)
+            PromptBatterySaverDialogFragment.show(childFragmentManager)
           }
         )
       }

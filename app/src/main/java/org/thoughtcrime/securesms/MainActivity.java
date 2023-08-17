@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
@@ -24,8 +25,7 @@ import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSh
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics;
+import org.thoughtcrime.securesms.notifications.SlowNotificationsViewModel;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppStartup;
@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.SplashScreenUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
@@ -46,6 +45,9 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
   private VoiceNoteMediaController      mediaController;
   private ConversationListTabsViewModel conversationListTabsViewModel;
+  private SlowNotificationsViewModel    slowNotificationsViewModel;
+
+  private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
   private boolean onFirstRender = false;
 
@@ -80,6 +82,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
           }
         });
 
+    lifecycleDisposable.bindTo(this);
 
     mediaController = new VoiceNoteMediaController(this, true);
 
@@ -95,6 +98,28 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     conversationListTabsViewModel = new ViewModelProvider(this, factory).get(ConversationListTabsViewModel.class);
     updateTabVisibility();
+
+    slowNotificationsViewModel = new ViewModelProvider(this).get(SlowNotificationsViewModel.class);
+
+    lifecycleDisposable.add(
+        slowNotificationsViewModel
+            .getSlowNotificationState()
+            .subscribe(this::presentSlowNotificationState)
+    );
+  }
+
+  @SuppressLint("NewApi")
+  private void presentSlowNotificationState(SlowNotificationsViewModel.State slowNotificationState) {
+    switch (slowNotificationState) {
+      case NONE:
+        break;
+      case PROMPT_BATTERY_SAVER_DIALOG:
+        PromptBatterySaverDialogFragment.show(getSupportFragmentManager());
+        break;
+      case PROMPT_DEBUGLOGS:
+        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
+        break;
+    }
   }
 
   @Override
@@ -143,15 +168,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     updateTabVisibility();
 
-    if (SlowNotificationHeuristics.isHavingDelayedNotifications()) {
-      if (SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && Build.VERSION.SDK_INT >= 23) {
-        if (SlowNotificationHeuristics.shouldPromptBatterySaver()) {
-          PromptBatterySaverDialogFragment.show(this, getSupportFragmentManager());
-        }
-      } else if (SlowNotificationHeuristics.shouldPromptUserForLogs()) {
-        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
-      }
-    }
+    slowNotificationsViewModel.checkSlowNotificationHeuristics();
   }
 
   @Override
