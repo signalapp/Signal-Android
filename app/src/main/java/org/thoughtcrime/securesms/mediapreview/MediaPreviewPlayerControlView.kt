@@ -14,7 +14,7 @@ import androidx.annotation.OptIn
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.ui.PlayerControlView
+import androidx.media3.ui.LegacyPlayerControlView
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
@@ -35,7 +35,7 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0,
   playbackAttrs: AttributeSet? = null
-) : PlayerControlView(context, attrs, defStyleAttr, playbackAttrs) {
+) : LegacyPlayerControlView(context, attrs, defStyleAttr, playbackAttrs) {
 
   val recyclerView: RecyclerView = findViewById(R.id.media_preview_album_rail)
   private val durationBar: LinearLayout = findViewById(R.id.exo_duration_viewgroup)

@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.OptIn;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.media3.common.util.UnstableApi;
-import androidx.media3.ui.PlayerControlView;
+import androidx.media3.ui.LegacyPlayerControlView;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
@@ -104,7 +104,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   }
 
   private void updateSkipButtonState() {
-    final PlayerControlView playbackControls = videoView.getControlView();
+    final LegacyPlayerControlView playbackControls = videoView.getControlView();
     if (playbackControls != null) {
       boolean shouldShowSkipButtons = videoView.getDuration() > MINIMUM_DURATION_FOR_SKIP_MS;
       playbackControls.setShowFastForwardButton(shouldShowSkipButtons);

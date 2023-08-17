@@ -38,6 +38,7 @@ import androidx.media3.exoplayer.source.ClippingMediaSource;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.ui.AspectRatioFrameLayout;
+import androidx.media3.ui.LegacyPlayerControlView;
 import androidx.media3.ui.PlayerControlView;
 import androidx.media3.ui.PlayerView;
 
@@ -60,7 +61,7 @@ public class VideoPlayer extends FrameLayout {
   private final DefaultMediaSourceFactory mediaSourceFactory;
 
   private ExoPlayer                           exoPlayer;
-  private PlayerControlView                   exoControls;
+  private LegacyPlayerControlView             exoControls;
   private Window                              window;
   private PlayerStateCallback                 playerStateCallback;
   private PlayerPositionDiscontinuityCallback playerPositionDiscontinuityCallback;
@@ -133,8 +134,8 @@ public class VideoPlayer extends FrameLayout {
     };
   }
 
-  private PlayerControlView createPlayerControls(Context context) {
-    final PlayerControlView playerControlView = new PlayerControlView(context);
+  private LegacyPlayerControlView createPlayerControls(Context context) {
+    final LegacyPlayerControlView playerControlView = new LegacyPlayerControlView(context);
     playerControlView.setShowTimeoutMs(-1);
     playerControlView.setShowNextButton(false);
     playerControlView.setShowPreviousButton(false);
@@ -234,7 +235,7 @@ public class VideoPlayer extends FrameLayout {
     super.setOnClickListener(l);
   }
 
-  public @Nullable PlayerControlView getControlView() {
+  public @Nullable LegacyPlayerControlView getControlView() {
     return this.exoControls;
   }
 
