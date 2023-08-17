@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import okio.ByteString.Companion.toByteString
+import org.signal.libsignal.protocol.logging.Log
 import org.signal.libsignal.svr2.PinHash
 import org.signal.svr2.proto.BackupRequest
 import org.signal.svr2.proto.DeleteRequest
@@ -39,6 +40,10 @@ class SecureValueRecoveryV2(
   private val pushServiceSocket: PushServiceSocket
 ) : SecureValueRecovery {
 
+  companion object {
+    private val TAG = SecureValueRecoveryV2::class.java.simpleName
+  }
+
   override fun setPin(userPin: String, masterKey: MasterKey): PinChangeSession {
     return Svr2PinChangeSession(userPin, masterKey)
   }
@@ -72,10 +77,13 @@ class SecureValueRecoveryV2(
 
       DeleteResponse.Success
     } catch (e: NonSuccessfulResponseCodeException) {
+      Log.w(TAG, "[Delete] Failed with a non-successful response code exception!", e)
       DeleteResponse.ApplicationError(e)
     } catch (e: IOException) {
+      Log.w(TAG, "[Delete] Failed with a network exception!", e)
       DeleteResponse.NetworkError(e)
     } catch (e: Exception) {
+      Log.w(TAG, "[Delete] Failed with a generic exception!", e)
       DeleteResponse.ApplicationError(e)
     }
   }
@@ -112,6 +120,7 @@ class SecureValueRecoveryV2(
             val masterKey: MasterKey = PinHashUtil.decryptSvrDataIVCipherText(pinHash, ciphertext).masterKey
             RestoreResponse.Success(masterKey, authorization)
           } catch (e: InvalidCiphertextException) {
+            Log.w(TAG, "[Restore] Failed with an invalid cipher text exception!", e)
             RestoreResponse.ApplicationError(e)
           }
         }
@@ -133,10 +142,13 @@ class SecureValueRecoveryV2(
         }
       }
     } catch (e: NonSuccessfulResponseCodeException) {
+      Log.w(TAG, "[Restore] Failed with a non-successful response code exception!", e)
       RestoreResponse.ApplicationError(e)
     } catch (e: IOException) {
+      Log.w(TAG, "[Restore] Failed with a network exception!", e)
       RestoreResponse.NetworkError(e)
     } catch (e: Exception) {
+      Log.w(TAG, "[Restore] Failed with a generic exception!", e)
       RestoreResponse.ApplicationError(e)
     }
   }
@@ -193,10 +205,13 @@ class SecureValueRecoveryV2(
           }
         }
       } catch (e: NonSuccessfulResponseCodeException) {
+        Log.w(TAG, "[Set] Failed with a non-successful response code exception!", e)
         BackupResponse.ApplicationError(e)
       } catch (e: IOException) {
+        Log.w(TAG, "[Set] Failed with a network exception!", e)
         BackupResponse.NetworkError(e)
       } catch (e: Exception) {
+        Log.w(TAG, "[Set] Failed with a generic exception!", e)
         BackupResponse.ApplicationError(e)
       }
     }
