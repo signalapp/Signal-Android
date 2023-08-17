@@ -17,9 +17,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -32,7 +34,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class AvatarUtil {
 
@@ -135,8 +140,14 @@ public final class AvatarUtil {
   @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
     try {
-      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).submit().get();
-    } catch (ExecutionException | InterruptedException e) {
+      AvatarTarget avatarTarget = new AvatarTarget(size);
+
+      SignalExecutors.BOUNDED_IO.submit(() -> {
+        requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).into(avatarTarget);
+      });
+
+      return avatarTarget.await();
+    } catch (InterruptedException e) {
       return null;
     }
   }
@@ -183,5 +194,51 @@ public final class AvatarUtil {
     String name = Optional.ofNullable(recipient.getDisplayName(context)).orElse("");
 
     return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize).asDrawable(context, recipient.getAvatarColor());
+  }
+
+  /**
+   * Allows caller to synchronously await for a bitmap of an avatar.
+   */
+  private static class AvatarTarget extends CustomTarget<Bitmap> {
+
+    private final CountDownLatch          countDownLatch = new CountDownLatch(1);
+    private final AtomicReference<Bitmap> bitmap         = new AtomicReference<>();
+
+    private final int size;
+
+    private AvatarTarget(int size) {
+      this.size = size;
+    }
+
+    public @Nullable Bitmap await() throws InterruptedException {
+      if (countDownLatch.await(10, TimeUnit.SECONDS)) {
+        return bitmap.get();
+      } else {
+        return null;
+      }
+    }
+
+    @Override
+    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+      Log.d(TAG, "onResourceReady");
+      bitmap.set(resource);
+      countDownLatch.countDown();
+    }
+
+    @Override
+    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+      if (errorDrawable == null) {
+        throw new AssertionError("Expected an error drawable.");
+      }
+
+      Bitmap errorBitmap = DrawableUtil.toBitmap(errorDrawable, size, size);
+      bitmap.set(errorBitmap);
+      countDownLatch.countDown();
+    }
+
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+    }
   }
 }
