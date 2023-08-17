@@ -12,11 +12,11 @@ RUN apt install -oAcquire::https::Verify-Peer=false -y ca-certificates
 
 # Back to normal, verification back on
 RUN apt update
-RUN apt install -y git openjdk-11-jdk openjdk-17-jdk unzip wget
+RUN apt install -y git openjdk-17-jdk unzip wget
 
-ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-7583922_latest.zip
-ENV ANDROID_API_LEVELS                  android-33
-ENV ANDROID_BUILD_TOOLS_VERSION         32.0.0
+ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-10406996_latest.zip
+ENV ANDROID_API_LEVELS                  android-34
+ENV ANDROID_BUILD_TOOLS_VERSION         34.0.0
 
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV PATH         ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdline-tools/bin
