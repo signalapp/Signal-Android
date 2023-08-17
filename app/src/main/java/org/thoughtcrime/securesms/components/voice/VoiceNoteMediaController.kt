@@ -117,8 +117,10 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
   }
 
   override fun onDestroy(owner: LifecycleOwner) {
-    voiceNoteProximityWakeLockManager.unregisterCallbacksAndRelease()
-    voiceNoteProximityWakeLockManager.unregisterFromLifecycle()
+    if (this::voiceNoteProximityWakeLockManager.isInitialized) {
+      voiceNoteProximityWakeLockManager.unregisterCallbacksAndRelease()
+      voiceNoteProximityWakeLockManager.unregisterFromLifecycle()
+    }
     activity.lifecycle.removeObserver(this)
     super.onDestroy(owner)
   }
