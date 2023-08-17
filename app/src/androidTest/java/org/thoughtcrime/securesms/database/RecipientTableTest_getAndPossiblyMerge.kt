@@ -61,25 +61,6 @@ class RecipientTableTest_getAndPossiblyMerge {
   }
 
   @Test
-  fun single() {
-    test("local user, local e164+aci provided, changeSelf=false, leave pni alone") {
-      given(E164_SELF, PNI_SELF, ACI_SELF)
-
-      process(E164_SELF, PNI_A, ACI_A)
-
-      expect(E164_SELF, PNI_SELF, ACI_SELF)
-    }
-
-    test("local user, local e164+aci provided, changeSelf=false, leave pni alone") {
-      given(E164_SELF, PNI_A, ACI_SELF)
-
-      process(E164_SELF, PNI_SELF, ACI_A)
-
-      expect(E164_SELF, PNI_A, ACI_SELF)
-    }
-  }
-
-  @Test
   fun allNonMergeTests() {
     test("e164-only insert") {
       val id = process(E164_A, null, null)
@@ -89,7 +70,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       assertEquals(RecipientTable.RegisteredState.UNKNOWN, record.registered)
     }
 
-    test("pni-only insert", exception = IllegalArgumentException::class.java) {
+    test("pni-only insert") {
       val id = process(null, PNI_A, null)
       expect(null, PNI_A, null)
 
@@ -137,14 +118,19 @@ class RecipientTableTest_getAndPossiblyMerge {
       expect(E164_A, null, null)
     }
 
-    test("no match, e164 and pni") {
-      process(E164_A, PNI_A, null)
-      expect(E164_A, PNI_A, null)
+    test("no match, pni-only") {
+      process(null, PNI_A, null)
+      expect(null, PNI_A, null)
     }
 
     test("no match, aci-only") {
       process(null, null, ACI_A)
       expect(null, null, ACI_A)
+    }
+
+    test("no match, e164 and pni") {
+      process(E164_A, PNI_A, null)
+      expect(E164_A, PNI_A, null)
     }
 
     test("no match, e164 and aci") {
@@ -712,6 +698,22 @@ class RecipientTableTest_getAndPossiblyMerge {
       given(E164_SELF, null, ACI_SELF)
       process(E164_A, null, ACI_SELF, changeSelf = true)
       expect(E164_A, null, ACI_SELF)
+    }
+
+    test("local user, local e164+aci provided, changeSelf=false, leave pni alone") {
+      given(E164_SELF, PNI_SELF, ACI_SELF)
+
+      process(E164_SELF, PNI_A, ACI_A)
+
+      expect(E164_SELF, PNI_SELF, ACI_SELF)
+    }
+
+    test("local user, local e164+aci provided, changeSelf=false, leave pni alone") {
+      given(E164_SELF, PNI_A, ACI_SELF)
+
+      process(E164_SELF, PNI_SELF, ACI_A)
+
+      expect(E164_SELF, PNI_A, ACI_SELF)
     }
   }
 

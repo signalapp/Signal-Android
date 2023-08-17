@@ -445,7 +445,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   @VisibleForTesting
   fun getAndPossiblyMerge(aci: ACI?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
-    require(aci != null || e164 != null) { "Must provide an ACI or E164!" }
+    require(aci != null || pni != null || e164 != null) { "Must provide an ACI, PNI, or E164!" }
 
     val db = writableDatabase
     var transactionSuccessful = false
