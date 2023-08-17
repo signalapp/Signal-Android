@@ -1162,13 +1162,14 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun getOrCreateThreadIdFor(recipient: Recipient, distributionType: Int): Long {
-    val threadId = getThreadIdFor(recipient.id)
-    return threadId ?: createThreadForRecipient(recipient.id, recipient.isGroup, distributionType)
+    return getOrCreateThreadIdFor(recipient.id, recipient.isGroup, distributionType)
   }
 
   fun getOrCreateThreadIdFor(recipientId: RecipientId, isGroup: Boolean, distributionType: Int = DistributionTypes.DEFAULT): Long {
-    val threadId = getThreadIdFor(recipientId)
-    return threadId ?: createThreadForRecipient(recipientId, isGroup, distributionType)
+    return writableDatabase.withinTransaction {
+      val threadId = getThreadIdFor(recipientId)
+      threadId ?: createThreadForRecipient(recipientId, isGroup, distributionType)
+    }
   }
 
   fun areThreadIdAndRecipientAssociated(threadId: Long, recipient: Recipient): Boolean {
