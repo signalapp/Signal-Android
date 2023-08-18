@@ -135,8 +135,9 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
   }
 
   private fun createMediaControllerAsync() {
-    val voiceNotePlaybackServiceSessionToken = SessionToken(activity, ComponentName(activity, VoiceNotePlaybackService::class.java))
-    val mediaControllerBuilder = MediaController.Builder(activity, voiceNotePlaybackServiceSessionToken)
+    val applicationContext = activity.applicationContext
+    val voiceNotePlaybackServiceSessionToken = SessionToken(applicationContext, ComponentName(applicationContext, VoiceNotePlaybackService::class.java))
+    val mediaControllerBuilder = MediaController.Builder(applicationContext, voiceNotePlaybackServiceSessionToken)
     Observable.fromFuture(mediaControllerBuilder.buildAsync())
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
