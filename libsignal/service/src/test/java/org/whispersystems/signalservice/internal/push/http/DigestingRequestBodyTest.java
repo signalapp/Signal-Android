@@ -20,7 +20,7 @@ public class DigestingRequestBodyTest {
   private final byte[] attachmentIV  = Util.getSecretBytes(16);
   private final byte[] input         = Util.getSecretBytes(CONTENT_LENGTH);
 
-  private final OutputStreamFactory outputStreamFactory = new LegacyAttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV);
+  private final OutputStreamFactory outputStreamFactory = new AttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV);
 
   @Test
   public void givenSameKeyAndIV_whenIWriteToBuffer_thenIExpectSameDigests() throws Exception {

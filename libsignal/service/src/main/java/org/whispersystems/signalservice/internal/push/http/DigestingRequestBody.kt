@@ -41,9 +41,9 @@ class DigestingRequestBody(
   override fun writeTo(sink: BufferedSink) {
     val digestStream = ByteArrayOutputStream()
     val inner = SkippingOutputStream(contentStart, sink.outputStream())
-    val isIncremental = outputStreamFactory is IncrementalOutputStreamFactory
+    val isIncremental = outputStreamFactory is AttachmentCipherOutputStreamFactory
     val outputStream: DigestingOutputStream = if (isIncremental) {
-      (outputStreamFactory as IncrementalOutputStreamFactory).createIncrementalFor(inner, contentLength, digestStream)
+      (outputStreamFactory as AttachmentCipherOutputStreamFactory).createIncrementalFor(inner, contentLength, digestStream)
     } else {
       outputStreamFactory.createFor(inner)
     }

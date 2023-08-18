@@ -65,8 +65,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
@@ -123,10 +123,8 @@ import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevic
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
+import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
-import org.whispersystems.signalservice.internal.push.http.IncrementalAttachmentCipherOutputStreamFactory;
-import org.whispersystems.signalservice.internal.push.http.LegacyAttachmentCipherOutputStreamFactory;
-import org.whispersystems.signalservice.internal.push.http.OutputStreamFactory;
 import org.whispersystems.signalservice.internal.push.http.PartialSendBatchCompleteListener;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
@@ -784,20 +782,18 @@ public class SignalServiceMessageSender {
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment) throws IOException {
-    byte[]              attachmentKey       = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getSecretKey).orElseGet(() -> Util.getSecretBytes(64));
-    byte[]              attachmentIV        = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getIV).orElseGet(() -> Util.getSecretBytes(16));
-    long                paddedLength        = PaddingInputStream.getPaddedSize(attachment.getLength());
-    InputStream         dataStream          = new PaddingInputStream(attachment.getInputStream(), attachment.getLength());
-    long                ciphertextLength    = AttachmentCipherOutputStream.getCiphertextLength(paddedLength);
-    OutputStreamFactory outputStreamFactory = attachment.isIncremental() ? new IncrementalAttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV)
-                                                                         : new LegacyAttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV);
-    PushAttachmentData  attachmentData      = new PushAttachmentData(attachment.getContentType(),
-                                                                     dataStream,
-                                                                     ciphertextLength,
-                                                                     outputStreamFactory,
-                                                                     attachment.getListener(),
-                                                                     attachment.getCancelationSignal(),
-                                                                     attachment.getResumableUploadSpec().orElse(null));
+    byte[]             attachmentKey    = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getSecretKey).orElseGet(() -> Util.getSecretBytes(64));
+    byte[]             attachmentIV     = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getIV).orElseGet(() -> Util.getSecretBytes(16));
+    long               paddedLength     = PaddingInputStream.getPaddedSize(attachment.getLength());
+    InputStream        dataStream       = new PaddingInputStream(attachment.getInputStream(), attachment.getLength());
+    long               ciphertextLength = AttachmentCipherOutputStream.getCiphertextLength(paddedLength);
+    PushAttachmentData attachmentData   = new PushAttachmentData(attachment.getContentType(),
+                                                                 dataStream,
+                                                                 ciphertextLength,
+                                                                 new AttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV),
+                                                                 attachment.getListener(),
+                                                                 attachment.getCancelationSignal(),
+                                                                 attachment.getResumableUploadSpec().orElse(null));
 
     if (attachment.getResumableUploadSpec().isPresent()) {
       return uploadAttachmentV3(attachment, attachmentKey, attachmentData);
@@ -835,7 +831,7 @@ public class SignalServiceMessageSender {
                                               attachment.getPreview(),
                                               attachment.getWidth(), attachment.getHeight(),
                                               Optional.of(attachmentIdAndDigest.second().getDigest()),
-                                              Optional.ofNullable(attachmentIdAndDigest.second().getIncrementalDigest()),
+                                              Optional.of(attachmentIdAndDigest.second().getIncrementalDigest()),
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.isBorderless(),

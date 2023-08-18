@@ -35,7 +35,6 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
   private final Optional<String>              caption;
   private final Optional<String>              blurHash;
   private final Optional<ResumableUploadSpec> resumableUploadSpec;
-  private final boolean                       isIncremental;
 
   public SignalServiceAttachmentStream(InputStream inputStream,
                                        String contentType,
@@ -47,7 +46,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
                                        ProgressListener listener,
                                        CancelationSignal cancelationSignal)
   {
-    this(inputStream, contentType, length, fileName, voiceNote, borderless, gif, Optional.empty(), 0, 0, System.currentTimeMillis(), Optional.empty(), Optional.empty(), listener, cancelationSignal, Optional.empty(), false);
+    this(inputStream, contentType, length, fileName, voiceNote, borderless, gif, Optional.empty(), 0, 0, System.currentTimeMillis(), Optional.empty(), Optional.empty(), listener, cancelationSignal, Optional.empty());
   }
 
   public SignalServiceAttachmentStream(InputStream inputStream,
@@ -65,8 +64,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
                                        Optional<String> blurHash,
                                        ProgressListener listener,
                                        CancelationSignal cancelationSignal,
-                                       Optional<ResumableUploadSpec> resumableUploadSpec,
-                                       boolean isIncremental)
+                                       Optional<ResumableUploadSpec> resumableUploadSpec)
   {
     super(contentType);
     this.inputStream             = inputStream;
@@ -84,7 +82,6 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
     this.blurHash                = blurHash;
     this.cancelationSignal       = cancelationSignal;
     this.resumableUploadSpec     = resumableUploadSpec;
-    this.isIncremental           = isIncremental;
   }
 
   @Override
@@ -155,10 +152,6 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment imple
 
   public Optional<ResumableUploadSpec> getResumableUploadSpec() {
     return resumableUploadSpec;
-  }
-
-  public boolean isIncremental() {
-    return isIncremental;
   }
 
   @Override

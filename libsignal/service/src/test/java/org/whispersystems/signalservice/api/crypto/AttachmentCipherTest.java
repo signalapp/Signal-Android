@@ -6,8 +6,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
-import org.whispersystems.signalservice.internal.push.http.IncrementalAttachmentCipherOutputStreamFactory;
-import org.whispersystems.signalservice.internal.push.http.LegacyAttachmentCipherOutputStreamFactory;
+import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -160,7 +159,7 @@ public final class AttachmentCipherTest {
       InputStream           paddedInputStream             = new PaddingInputStream(inputStream, length);
       ByteArrayOutputStream destinationOutputStream       = new ByteArrayOutputStream();
       ByteArrayOutputStream incrementalDigestOutputStream = new ByteArrayOutputStream();
-      DigestingOutputStream encryptingOutputStream        = new IncrementalAttachmentCipherOutputStreamFactory(key, iv).createIncrementalFor(destinationOutputStream, length, incrementalDigestOutputStream);
+      DigestingOutputStream encryptingOutputStream        = new AttachmentCipherOutputStreamFactory(key, iv).createIncrementalFor(destinationOutputStream, length, incrementalDigestOutputStream);
 
       Util.copy(paddedInputStream, encryptingOutputStream);
 
@@ -302,15 +301,16 @@ public final class AttachmentCipherTest {
   }
 
   private static EncryptResult encryptData(byte[] data, byte[] keyMaterial, boolean withIncremental) throws IOException {
-    ByteArrayOutputStream outputStream         = new ByteArrayOutputStream();
-    ByteArrayOutputStream incrementalDigestOut = new ByteArrayOutputStream();
-    byte[]                iv                   = Util.getSecretBytes(16);
+    ByteArrayOutputStream               outputStream         = new ByteArrayOutputStream();
+    ByteArrayOutputStream               incrementalDigestOut = new ByteArrayOutputStream();
+    byte[]                              iv                   = Util.getSecretBytes(16);
+    AttachmentCipherOutputStreamFactory factory              = new AttachmentCipherOutputStreamFactory(keyMaterial, iv);
 
     DigestingOutputStream encryptStream;
     if (withIncremental) {
-      encryptStream = new IncrementalAttachmentCipherOutputStreamFactory(keyMaterial, iv).createIncrementalFor(outputStream, data.length, incrementalDigestOut);
+      encryptStream = factory.createIncrementalFor(outputStream, data.length, incrementalDigestOut);
     } else {
-      encryptStream = new LegacyAttachmentCipherOutputStreamFactory(keyMaterial, iv).createFor(outputStream);
+      encryptStream = factory.createFor(outputStream);
     }
 
 
