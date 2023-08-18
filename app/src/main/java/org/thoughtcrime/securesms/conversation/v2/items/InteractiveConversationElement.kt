@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.util.ProjectionList
 /**
  * A conversation element that a user can either swipe or snapshot
  */
-interface InteractiveConversationElement {
+interface InteractiveConversationElement : ChatColorsDrawable.ChatColorsDrawableInvalidator {
   val conversationMessage: ConversationMessage
 
   val root: ViewGroup

@@ -185,6 +185,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResults
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModelV2
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.DraftTable
@@ -579,6 +580,8 @@ class ConversationFragment :
     registerForResults()
 
     inputPanel.setMediaListener(InputPanelMediaListener())
+
+    ChatColorsDrawable.attach(binding.conversationItemRecycler)
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {

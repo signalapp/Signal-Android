@@ -23,8 +23,6 @@ import android.view.ViewGroup.MarginLayoutParams
 import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.ShapeAppearanceModel
 import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
@@ -32,6 +30,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.BodyBubbleLayoutTransition
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable
@@ -55,7 +54,6 @@ import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.hasExtraText
-import org.thoughtcrime.securesms.util.hasNoBubble
 import org.thoughtcrime.securesms.util.isScheduled
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -82,19 +80,15 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   companion object {
     private val STYLE_FACTORY = StyleFactory { arrayOf<CharacterStyle>(BackgroundColorSpan(Color.YELLOW), ForegroundColorSpan(Color.BLACK)) }
     private const val CONDENSED_MODE_MAX_LINES = 3
+
+    private val footerCorners = Projection.Corners(18f.dp)
+    private val transparentChatColors = ChatColors.forColor(ChatColors.Id.NotSet, Color.TRANSPARENT)
   }
 
   private var messageId: Long = Long.MAX_VALUE
 
   private val projections = ProjectionList()
   private val footerDelegate = V2FooterPositionDelegate(binding)
-
-  private val conversationItemFooterBackgroundCorners = Projection.Corners(18f.dp)
-  private val conversationItemFooterBackground = MaterialShapeDrawable(
-    ShapeAppearanceModel.Builder()
-      .setAllCornerSizes(18f.dp)
-      .build()
-  )
 
   override lateinit var conversationMessage: ConversationMessage
 
@@ -116,6 +110,9 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   override val badgeImageView: View? = binding.senderBadge
 
   private var reactionMeasureListener: ReactionMeasureListener = ReactionMeasureListener()
+
+  private val bodyBubbleDrawable = ChatColorsDrawable()
+  private val footerDrawable = ChatColorsDrawable()
 
   init {
     binding.root.addOnMeasureListener(footerDelegate)
@@ -150,7 +147,15 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.conversationItemBody.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
     }
 
+    binding.conversationItemBodyWrapper.background = bodyBubbleDrawable
     binding.conversationItemBodyWrapper.layoutTransition = BodyBubbleLayoutTransition()
+
+    binding.conversationItemFooterBackground.background = footerDrawable
+  }
+
+  override fun invalidateChatColorsDrawable(coordinateRoot: ViewGroup) {
+    invalidateBodyBubbleDrawable(coordinateRoot)
+    invalidateFooterDrawable(coordinateRoot)
   }
 
   override fun bind(model: Model) {
@@ -164,11 +169,6 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
       adapterPosition = bindingAdapterPosition
     )
 
-    shapeDelegate.bodyBubble.fillColor = themeDelegate.getBodyBubbleColor(conversationMessage)
-
-    binding.conversationItemBodyWrapper.background = shapeDelegate.bodyBubble
-    binding.conversationItemReply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
-
     presentBody()
     presentDate(shape)
     presentDeliveryStatus(shape)
@@ -177,6 +177,19 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     presentAlert()
     presentSender()
     presentReactions()
+
+    bodyBubbleDrawable.setChatColors(
+      if (binding.conversationItemBody.isJumbomoji) {
+        transparentChatColors
+      } else if (binding.isIncoming) {
+        ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getBodyBubbleColor(conversationMessage))
+      } else {
+        conversationMessage.threadRecipient.chatColors
+      },
+      shapeDelegate.corners
+    )
+
+    binding.conversationItemReply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
 
     itemView.updateLayoutParams<MarginLayoutParams> {
       topMargin = shape.topPadding.toInt()
@@ -208,28 +221,12 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     return projections
   }
 
+  /**
+   * Note: This is not necessary for CFV2 Text-Only items because the background is rendered by
+   * [ChatColorsDrawable]
+   */
   override fun getColorizerProjections(coordinateRoot: ViewGroup): ProjectionList {
     projections.clear()
-
-    if (conversationMessage.messageRecord.isOutgoing) {
-      if (!conversationMessage.messageRecord.hasNoBubble(context)) {
-        projections.add(
-          Projection.relativeToParent(
-            coordinateRoot,
-            binding.conversationItemBodyWrapper,
-            shapeDelegate.corners
-          ).translateX(binding.conversationItemBodyWrapper.translationX).translateY(root.translationY)
-        )
-      } else if (conversationContext.hasWallpaper()) {
-        projections.add(
-          Projection.relativeToParent(
-            coordinateRoot,
-            binding.conversationItemFooterBackground,
-            conversationItemFooterBackgroundCorners
-          ).translateX(binding.conversationItemFooterBackground.translationX).translateY(root.translationY)
-        )
-      }
-    }
 
     return projections
   }
@@ -276,6 +273,36 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   override fun canPlayContent(): Boolean = false
 
   override fun shouldProjectContent(): Boolean = false
+
+  private fun invalidateFooterDrawable(coordinateRoot: ViewGroup) {
+    if (footerDrawable.isSolidColor()) {
+      return
+    }
+
+    val projection = Projection.relativeToParent(
+      coordinateRoot,
+      binding.conversationItemFooterBackground,
+      shapeDelegate.corners
+    )
+
+    footerDrawable.applyMaskProjection(projection)
+    projection.release()
+  }
+
+  private fun invalidateBodyBubbleDrawable(coordinateRoot: ViewGroup) {
+    if (bodyBubbleDrawable.isSolidColor()) {
+      return
+    }
+
+    val projection = Projection.relativeToParent(
+      coordinateRoot,
+      binding.conversationItemBodyWrapper,
+      shapeDelegate.corners
+    )
+
+    bodyBubbleDrawable.applyMaskProjection(projection)
+    projection.release()
+  }
 
   private fun MessageRecord.buildMessageId(): Long {
     return if (isMms) -id else id
@@ -472,8 +499,14 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     binding.conversationItemFooterBackground.visible = true
-    binding.conversationItemFooterBackground.background = conversationItemFooterBackground
-    conversationItemFooterBackground.fillColor = themeDelegate.getFooterBubbleColor(conversationMessage)
+    footerDrawable.setChatColors(
+      if (binding.isIncoming) {
+        ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getFooterBubbleColor(conversationMessage))
+      } else {
+        conversationMessage.threadRecipient.chatColors
+      },
+      footerCorners
+    )
   }
 
   private fun presentDate(shape: V2ConversationItemShape.MessageShape) {

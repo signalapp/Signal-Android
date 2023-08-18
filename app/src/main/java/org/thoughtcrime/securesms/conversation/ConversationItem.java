@@ -2303,6 +2303,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return bodyBubble;
   }
 
+  @Override
+  public void invalidateChatColorsDrawable(@NonNull ViewGroup coordinateRoot) {
+    // Intentionally left blank.
+  }
+
   private class SharedContactEventListener implements SharedContactView.EventListener {
     @Override
     public void onAddToContactsClicked(@NonNull Contact contact) {

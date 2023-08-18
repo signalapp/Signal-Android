@@ -5,8 +5,6 @@
 
 package org.thoughtcrime.securesms.conversation.v2.items
 
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.ShapeAppearanceModel
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
@@ -34,11 +32,6 @@ class V2ConversationItemShape(
   }
 
   var corners: Projection.Corners = Projection.Corners(bigRadius)
-    private set
-
-  var bodyBubble: MaterialShapeDrawable = MaterialShapeDrawable(
-    ShapeAppearanceModel.Builder().setAllCornerSizes(bigRadius).build()
-  )
     private set
 
   /**
@@ -93,12 +86,6 @@ class V2ConversationItemShape(
     }
 
     corners = newCorners
-    bodyBubble.shapeAppearanceModel = ShapeAppearanceModel.builder()
-      .setTopLeftCornerSize(corners.topLeft)
-      .setTopRightCornerSize(corners.topRight)
-      .setBottomLeftCornerSize(corners.bottomLeft)
-      .setBottomRightCornerSize(corners.bottomRight)
-      .build()
   }
 
   private fun isSingularMessage(
