@@ -2080,7 +2080,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .select(PNI_COLUMN)
       .from(TABLE_NAME)
-      .where("$PNI NOT NULL")
+      .where("$PNI_COLUMN NOT NULL")
       .run()
       .readToSet { PNI.parseOrThrow(it.requireString(PNI_COLUMN)) }
   }
