@@ -911,14 +911,14 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Докладите за грешка ни помагат да диагностицираме и коригираме проблема и не съдържат идентифицираща информация.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">Известията може да се забавят поради оптимизации на батерията</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Можете да деактивирате оптимизирането на батерията за Signal, за да сте сигурни, че известията за съобщения няма да се забавят.</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <string name="PromptBatterySaverBottomSheet__continue">Продължете</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+    <string name="PromptBatterySaverBottomSheet__dismiss">Отказ</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Изчакващи покани за група</string>
@@ -3112,7 +3112,7 @@
     <string name="preferences_chats__message_text_size">Размер на текста</string>
     <string name="preferences_notifications__priority">Приоритет</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Известия за отстраняване на неизправности</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Заобикаляне на цензурата</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6167,7 +6167,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Споделяне на линк за Signal обаждане</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Използвайте този линк, за да се присъедините към повикване в Signal: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

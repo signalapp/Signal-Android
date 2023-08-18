@@ -881,14 +881,14 @@
     <string name="PromptLogsSlowNotificationsDialog__message">บันทึกดีบักจะช่วยให้เราสามารถตรวจสอบและแก้ไขปัญหาได้ โดยที่ในบันทึกจะไม่มีข้อมูลที่ใช้ระบุตัวตน</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">การแจ้งเตือนอาจล่าช้าเนื่องจากการเพิ่มประสิทธิภาพแบตเตอรี่</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">คุณสามารถปิดใช้งานการเพิ่มประสิทธิภาพแบตเตอรี่สำหรับแอป Signal เพื่อป้องกันไม่ให้การแจ้งเตือนข้อความความล่าช้าได้</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <string name="PromptBatterySaverBottomSheet__continue">ดำเนินการต่อ</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+    <string name="PromptBatterySaverBottomSheet__dismiss">ปิด</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">คำเชิญเข้ากลุ่มที่รอตอบกลับ</string>
@@ -3023,7 +3023,7 @@
     <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
     <string name="preferences_notifications__priority">ความสำคัญ</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">แก้ไขปัญหาเกี่ยวกับการแจ้งเตือน</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6034,7 +6034,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">แชร์ลิงก์สำหรับการโทร Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">ใช้ลิงก์นี้เพื่อเข้าร่วมการโทรของ Signal: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

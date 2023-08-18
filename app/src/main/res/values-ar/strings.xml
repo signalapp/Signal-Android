@@ -1031,14 +1031,14 @@
     <string name="PromptLogsSlowNotificationsDialog__message">تساعدنا سجلات التصحيح في تشخيص المشكلة وإصلاحها ولا تحتوي على معلومات تعريفية.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">قد تتأخر الإشعارات في الوصول بسبب بعض التحسينات في البطارية</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">يُمكنك إيقاف تحسينات البطارية لسيجنال لضمان وصول إشعارات الرسائل في مواعيدها.</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <string name="PromptBatterySaverBottomSheet__continue">مواصلة</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+    <string name="PromptBatterySaverBottomSheet__dismiss">تجاهُل</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">الدعوات المُعلَّقة</string>
@@ -3468,7 +3468,7 @@
     <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
     <string name="preferences_notifications__priority">الأولوية</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">استكشاف أخطاء الإشعارات</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">تجاوز الرقابة</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6699,7 +6699,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">مشاركة رابط لمكالمة سيجنال</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">اِستخدم هذا الرابط للانضمام إلى مكالمة سيجنال: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

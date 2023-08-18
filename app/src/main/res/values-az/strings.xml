@@ -916,9 +916,9 @@
     <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <string name="PromptBatterySaverBottomSheet__continue">Davam et</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+    <string name="PromptBatterySaverBottomSheet__dismiss">Rədd et</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Gözləyən qrup dəvətləri</string>

@@ -916,9 +916,9 @@
     <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <string name="PromptBatterySaverBottomSheet__continue">Doorgaan</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+    <string name="PromptBatterySaverBottomSheet__dismiss">Sluiten</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Uitnodigingen in afwachting</string>
@@ -5686,7 +5686,7 @@
     <!-- Preference summary to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Als je verhalen uitschakelt, kun je niet langer verhalen delen of bekijken.</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Zet verhalen aan</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Verhalen aanzetten</string>
     <!-- Preference summary to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__share_and_view">Deel en bekijk verhalen van anderen. Verhalen verdwijnen automatisch na 24 uur.</string>
     <!-- Dialog title to turn off stories -->

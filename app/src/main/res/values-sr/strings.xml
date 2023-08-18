@@ -911,14 +911,14 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Евиденције за отклањање грешака нам помажу да откријемо и решимо проблем и оне не садрже информације на основу којих можете бити идентификовани.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">Обавештења могу каснити због оптимизације батерије</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Можете да искључите оптимизацију батерије код апликације Signal да бисте били сигурни да обавештења о порукама неће каснити.</string>
 
     <!-- Button to continue to try and disable battery saver -->
-    <string name="PromptBatterySaverBottomSheet__continue">Continue</string>
+    <string name="PromptBatterySaverBottomSheet__continue">Настави</string>
     <!-- Button to dismiss battery saver dialog prompt-->
-    <string name="PromptBatterySaverBottomSheet__dismiss">Dismiss</string>
+    <string name="PromptBatterySaverBottomSheet__dismiss">Одбаци</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Позивнице од групе на чекању</string>
@@ -3112,7 +3112,7 @@
     <string name="preferences_chats__message_text_size">Величина фонта поруке</string>
     <string name="preferences_notifications__priority">Приоритет</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Решавање проблема у вези са обавештењима</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Заобилазак цензуре</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6167,7 +6167,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Поделите линк за позив преко Signal-а</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Користите овај линк да се придружите позиву преко Signal-а: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
