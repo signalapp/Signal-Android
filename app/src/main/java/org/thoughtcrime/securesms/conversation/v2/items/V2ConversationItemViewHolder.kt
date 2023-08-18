@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan
@@ -532,9 +531,9 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     } else if (record.isRateLimited) {
       binding.conversationItemFooterDate.setText(R.string.ConversationItem_send_paused)
     } else if (record.isScheduled()) {
-      binding.conversationItemFooterDate.text = (DateUtils.getOnlyTimeString(getContext(), Locale.getDefault(), (record as MediaMmsMessageRecord).scheduledDate))
+      binding.conversationItemFooterDate.text = conversationMessage.formattedDate
     } else {
-      var date = DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), record.timestamp)
+      var date = conversationMessage.formattedDate
       if (conversationContext.displayMode != ConversationItemDisplayMode.DETAILED && record is MediaMmsMessageRecord && record.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
       }

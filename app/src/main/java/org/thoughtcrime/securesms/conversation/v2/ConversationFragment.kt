@@ -395,7 +395,7 @@ class ConversationFragment :
     ConversationViewModel(
       threadId = args.threadId,
       requestedStartingPosition = args.startingPosition,
-      repository = ConversationRepository(context = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
+      repository = ConversationRepository(localContext = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
       recipientRepository = conversationRecipientRepository,
       messageRequestRepository = messageRequestRepository,
       scheduledMessagesRepository = ScheduledMessagesRepository()
@@ -1035,7 +1035,7 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
+    val conversationUpdateTick = ConversationUpdateTick { viewModel.pagingController.onDataInvalidated() }
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {

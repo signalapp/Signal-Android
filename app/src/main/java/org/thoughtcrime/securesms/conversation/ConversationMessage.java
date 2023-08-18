@@ -16,15 +16,18 @@ import org.thoughtcrime.securesms.database.BodyRangeUtil;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 
 import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -43,6 +46,7 @@ public class ConversationMessage {
   @NonNull  private final Recipient              threadRecipient;
             private final boolean                hasBeenQuoted;
   @Nullable private final MessageRecord          originalMessage;
+  @NonNull  private final String                 formattedDate;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -50,7 +54,8 @@ public class ConversationMessage {
                               boolean hasBeenQuoted,
                               @Nullable MessageStyler.Result styleResult,
                               @NonNull Recipient threadRecipient,
-                              @Nullable MessageRecord originalMessage)
+                              @Nullable MessageRecord originalMessage,
+                              @NonNull String formattedDate)
   {
     this.messageRecord   = messageRecord;
     this.hasBeenQuoted   = hasBeenQuoted;
@@ -58,6 +63,7 @@ public class ConversationMessage {
     this.styleResult     = styleResult != null ? styleResult : MessageStyler.Result.none();
     this.threadRecipient = threadRecipient;
     this.originalMessage = originalMessage;
+    this.formattedDate   = formattedDate;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -88,6 +94,11 @@ public class ConversationMessage {
 
   public boolean hasBeenQuoted() {
     return hasBeenQuoted;
+  }
+
+  @NonNull
+  public String getFormattedDate() {
+    return formattedDate;
   }
 
   @Override
@@ -194,13 +205,18 @@ public class ConversationMessage {
         }
       }
 
+      String formattedDate = MessageRecordUtil.isScheduled(messageRecord) ? DateUtils.getOnlyTimeString(context, Locale.getDefault(), ((MediaMmsMessageRecord) messageRecord).getScheduledDate())
+                                                                          : DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), messageRecord.getTimestamp());
+
+
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
                                      hasBeenQuoted,
                                      styleResult,
                                      threadRecipient,
-                                     originalMessage);
+                                     originalMessage,
+                                     formattedDate);
     }
 
     /**
