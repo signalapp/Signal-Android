@@ -2611,14 +2611,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       )
     }
 
-    val preSseOperationCount = operations.size
+    sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.pniRecord, postMergeData.pniRecord)?.let {
+      breadCrumbs += "FinalUpdateSSEPniRecord"
+      operations += it
+    }
 
-    operations += sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.e164Record, postMergeData.e164Record)
-    operations += sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.pniRecord, postMergeData.pniRecord)
-    operations += sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.aciRecord, postMergeData.aciRecord)
-
-    if (operations.size > preSseOperationCount) {
-      breadCrumbs += "FinalUpdateSSE"
+    sessionSwitchoverEventIfNeeded(pniVerified, preMergeData.aciRecord, postMergeData.aciRecord)?.let {
+      breadCrumbs += "FinalUpdateSSEPniAciRecord"
+      operations += it
     }
 
     return PnpChangeSet(
@@ -2646,16 +2646,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * For details on SSE's, see [needsSessionSwitchoverEvent]. This method is just a helper around comparing service ID's from two
    * records and turning it into a possible event.
    */
-  private fun sessionSwitchoverEventIfNeeded(pniVerified: Boolean, oldRecord: RecipientRecord?, newRecord: RecipientRecord?): List<PnpOperation> {
+  private fun sessionSwitchoverEventIfNeeded(pniVerified: Boolean, oldRecord: RecipientRecord?, newRecord: RecipientRecord?): PnpOperation? {
     return if (oldRecord != null && newRecord != null && needsSessionSwitchoverEvent(pniVerified, oldRecord.serviceId, newRecord.serviceId)) {
-      listOf(
-        PnpOperation.SessionSwitchoverInsert(
-          recipientId = newRecord.id,
-          e164 = newRecord.e164
-        )
+      PnpOperation.SessionSwitchoverInsert(
+        recipientId = newRecord.id,
+        e164 = newRecord.e164
       )
     } else {
-      emptyList()
+      null
     }
   }
 

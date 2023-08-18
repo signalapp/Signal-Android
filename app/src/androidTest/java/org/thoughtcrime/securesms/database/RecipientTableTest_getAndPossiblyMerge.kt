@@ -444,6 +444,64 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectChangeNumberEvent()
     }
 
+    test("steal, e164+aci & aci, no pni provided, existing aci session") {
+      given(E164_A, null, ACI_A, aciSession = true)
+      given(null, null, ACI_B)
+
+      process(E164_A, null, ACI_B)
+
+      expect(null, null, ACI_A)
+      expect(E164_A, null, ACI_B)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
+    test("steal, e164+pni+aci & aci, no pni provided, existing aci session") {
+      given(E164_A, PNI_A, ACI_A, aciSession = true)
+      given(null, null, ACI_B)
+
+      process(E164_A, null, ACI_B)
+
+      expect(null, PNI_A, ACI_A)
+      expect(E164_A, null, ACI_B)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
+    test("steal, e164+pni+aci & aci, no pni provided, existing pni session") {
+      given(E164_A, PNI_A, ACI_A, pniSession = true)
+      given(null, null, ACI_B)
+
+      process(E164_A, null, ACI_B)
+
+      expect(null, PNI_A, ACI_A)
+      expect(E164_A, null, ACI_B)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
+    test("steal, e164+pni & aci, no pni provided, no pni session") {
+      given(E164_A, PNI_A, null)
+      given(null, null, ACI_A)
+
+      process(E164_A, null, ACI_A)
+
+      expect(null, PNI_A, null)
+      expect(E164_A, null, ACI_A)
+    }
+
+    test("steal, e164+pni & aci, no pni provided, pni session") {
+      given(E164_A, PNI_A, null, pniSession = true)
+      given(null, null, ACI_A)
+
+      process(E164_A, null, ACI_A)
+
+      expect(null, PNI_A, null)
+      expect(E164_A, null, ACI_A)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
     test("merge, e164 & pni & aci, all provided") {
       given(E164_A, null, null)
       given(null, PNI_A, null)
@@ -967,7 +1025,8 @@ class RecipientTableTest_getAndPossiblyMerge {
       pni: PNI?,
       aci: ACI?,
       createThread: Boolean = true,
-      pniSession: Boolean = false
+      pniSession: Boolean = false,
+      aciSession: Boolean = false
     ): RecipientId {
       val id = insert(e164, pni, aci)
       generatedIds += id
@@ -983,6 +1042,14 @@ class RecipientTableTest_getAndPossiblyMerge {
         }
 
         SignalDatabase.sessions.store(pni, SignalProtocolAddress(pni.toString(), 1), SessionRecord())
+      }
+
+      if (aciSession) {
+        if (aci == null) {
+          throw IllegalArgumentException("aciSession = true but aci is null!")
+        }
+
+        SignalDatabase.sessions.store(aci, SignalProtocolAddress(aci.toString(), 1), SessionRecord())
       }
 
       if (aci != null) {

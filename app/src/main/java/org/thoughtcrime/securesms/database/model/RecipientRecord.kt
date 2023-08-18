@@ -80,7 +80,7 @@ data class RecipientRecord(
 ) {
 
   fun e164Only(): Boolean {
-    return this.e164 != null && this.aci == null
+    return this.e164 != null && this.aci == null && this.pni == null
   }
 
   fun pniOnly(): Boolean {
