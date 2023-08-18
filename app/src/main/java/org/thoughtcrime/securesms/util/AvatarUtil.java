@@ -207,7 +207,7 @@ public final class AvatarUtil {
     private final int size;
 
     private AvatarTarget(int size) {
-      this.size = size;
+      this.size = size == UNDEFINED_SIZE ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : size;
     }
 
     public @Nullable Bitmap await() throws InterruptedException {
