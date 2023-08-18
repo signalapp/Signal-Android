@@ -63,6 +63,15 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
     wasKeyboardVisibleBeforeToggle = false
   }
 
+  fun hideKeyboard(imeTarget: EditText, keepHeightOverride: Boolean = false) {
+    if (isKeyboardShowing) {
+      if (keepHeightOverride) {
+        overrideKeyboardGuidelineWithPreviousHeight()
+      }
+      ViewUtil.hideKeyboard(context, imeTarget)
+    }
+  }
+
   private fun showInput(fragmentCreator: FragmentCreator, imeTarget: EditText) {
     inputId = fragmentCreator.id
     input = fragmentCreator.create()

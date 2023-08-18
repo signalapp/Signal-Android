@@ -444,11 +444,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     animatorSet.start();
 
     if (onHideListener != null) {
-      onHideListener.startHide();
-    }
-
-    if (selectedConversationModel.getFocusedView() != null) {
-      ViewUtil.focusAndShowKeyboard(selectedConversationModel.getFocusedView());
+      onHideListener.startHide(selectedConversationModel.getFocusedView());
     }
 
     animatorSet.addListener(new AnimationCompleteListener() {
@@ -760,13 +756,15 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
   private void handleActionItemClicked(@NonNull Action action) {
     hideInternal(new OnHideListener() {
-      @Override public void startHide() {
+      @Override
+      public void startHide(@Nullable View focusedView) {
         if (onHideListener != null) {
-          onHideListener.startHide();
+          onHideListener.startHide(focusedView);
         }
       }
 
-      @Override public void onHide() {
+      @Override
+      public void onHide() {
         if (onHideListener != null) {
           onHideListener.onHide();
         }
@@ -893,7 +891,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
   }
 
   public interface OnHideListener {
-    void startHide();
+    void startHide(@Nullable View focusedView);
     void onHide();
   }
 
