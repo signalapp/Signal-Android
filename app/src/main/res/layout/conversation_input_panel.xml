@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/symbol_x_24"
         app:tint="@color/signal_colorOnPrimary"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <View
         android:id="@id/compose_bubble"
@@ -142,6 +142,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:minHeight="@dimen/conversation_compose_height"
         android:nextFocusRight="@+id/send_button"
         android:nextFocusForward="@+id/send_button"
         android:paddingVertical="8dp"
@@ -232,7 +233,8 @@
         app:layout_constraintBottom_toBottomOf="@id/compose_bubble"
         app:layout_constraintEnd_toEndOf="@id/compose_bubble"
         app:layout_constraintStart_toStartOf="@id/compose_bubble"
-        app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements" />
+        app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
+        tools:visibility="gone" />
 
     <org.thoughtcrime.securesms.conversation.VoiceNoteDraftView
         android:id="@+id/voice_note_draft_view"
@@ -243,7 +245,7 @@
         app:layout_constraintEnd_toEndOf="@id/compose_bubble"
         app:layout_constraintStart_toStartOf="@id/compose_bubble"
         app:layout_constraintTop_toBottomOf="@id/compose_bubble_top_elements"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <org.thoughtcrime.securesms.components.AnimatingToggle
         android:id="@+id/button_toggle"
