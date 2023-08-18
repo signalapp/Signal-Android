@@ -59,7 +59,7 @@ import java.util.Optional
 
 class ConversationAdapterV2(
   private val lifecycleOwner: LifecycleOwner,
-  private val glideRequests: GlideRequests,
+  override val glideRequests: GlideRequests,
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
   private val colorizer: Colorizer,

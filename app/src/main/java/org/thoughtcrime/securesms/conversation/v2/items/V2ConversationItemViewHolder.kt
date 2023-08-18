@@ -417,8 +417,8 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
       binding.senderName.text = sender.getDisplayName(context)
       binding.senderName.setTextColor(conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender))
-      binding.senderPhoto.setAvatar(sender)
-      binding.senderBadge.setBadgeFromRecipient(sender)
+      binding.senderPhoto.setAvatar(conversationContext.glideRequests, sender, false)
+      binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.glideRequests)
     } else {
       binding.senderName.visible = false
       binding.senderPhoto.visible = false
