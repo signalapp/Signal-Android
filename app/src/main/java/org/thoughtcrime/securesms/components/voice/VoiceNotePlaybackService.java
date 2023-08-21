@@ -29,6 +29,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import org.checkerframework.checker.units.qual.A;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -249,29 +250,30 @@ public class VoiceNotePlaybackService extends MediaSessionService {
       Log.d(TAG, "Creating media controller…");
       controllerFuture = new MediaController.Builder(context, token).buildAsync();
       Futures.addCallback(controllerFuture, new FutureCallback<>() {
-        @Override public void onSuccess(@Nullable MediaController result) {
-          Log.e(TAG, "Successfully created media controller.");
+        @Override
+        public void onSuccess(@Nullable MediaController result) {
+          Log.d(TAG, "Successfully created media controller.");
           controller = result;
           register();
         }
 
-        @Override public void onFailure(@NonNull Throwable t) {
+        @Override
+        public void onFailure(@NonNull Throwable t) {
+          Log.w(TAG, "KeyClearedReceiver.onFailure", t);
         }
       }, ContextCompat.getMainExecutor(context));
     }
 
     void register() {
       if (controller == null) {
-        Log.e(TAG, "Failed to register KeyClearedReceiver because MediaController was null.");
+        Log.w(TAG, "Failed to register KeyClearedReceiver because MediaController was null.");
+        return;
       }
+      
       if (!registered) {
-        if (Build.VERSION.SDK_INT >= 33) {
-          context.registerReceiver(this, KEY_CLEARED_FILTER, RECEIVER_NOT_EXPORTED);
-        } else {
-          context.registerReceiver(this, KEY_CLEARED_FILTER);
-        }
+        ContextCompat.registerReceiver(context, this, KEY_CLEARED_FILTER, ContextCompat.RECEIVER_NOT_EXPORTED);
         registered = true;
-        Log.e(TAG, "Successfully registered.");
+        Log.d(TAG, "Successfully registered.");
       }
     }
 
@@ -286,7 +288,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     @Override
     public void onReceive(Context context, Intent intent) {
       if (controller == null) {
-        Log.e(TAG, "Received broadcast but could not stop playback because MediaController was null.");
+        Log.w(TAG, "Received broadcast but could not stop playback because MediaController was null.");
       } else {
         Log.i(TAG, "Received broadcast, stopping playback.");
         controller.stop();
