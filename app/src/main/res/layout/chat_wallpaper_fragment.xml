@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <include layout="@layout/dsl_settings_toolbar" />
 
@@ -30,7 +30,6 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/chat_wallpaper_preview_background"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview.ChatContainer"
                 android:layout_width="156dp"
                 android:layout_height="288dp"
                 android:layout_marginTop="16dp"
@@ -41,6 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview.ChatContainer"
                 tools:src="@drawable/test_gradient" />
 
             <View
@@ -220,9 +220,9 @@
                 android:id="@+id/chat_wallpaper_set_chat_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:background="?selectableItemBackground"
                 android:gravity="center_vertical"
+                android:minHeight="56dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/ChatWallpaperFragment__chat_color"
@@ -236,9 +236,9 @@
                 android:id="@+id/chat_wallpaper_reset_chat_colors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:background="?selectableItemBackground"
                 android:gravity="center_vertical"
+                android:minHeight="56dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/ChatWallpaperFragment__reset_chat_colors"
@@ -263,10 +263,10 @@
                 android:id="@+id/chat_wallpaper_set_wallpaper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:layout_marginTop="8dp"
                 android:background="?selectableItemBackground"
                 android:gravity="center_vertical"
+                android:minHeight="56dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/ChatWallpaperFragment__set_wallpaper"
@@ -276,12 +276,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_divider" />
 
-            <androidx.appcompat.widget.SwitchCompat
+            <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/chat_wallpaper_dark_theme_dims_wallpaper"
+                style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:gravity="center_vertical"
+                android:minHeight="56dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/ChatWallpaperFragment__dark_mode_dims_wallpaper"
@@ -295,9 +296,9 @@
                 android:id="@+id/chat_wallpaper_reset_all_wallpapers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="56dp"
                 android:background="?selectableItemBackground"
                 android:gravity="center_vertical"
+                android:minHeight="56dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/ChatWallpaperFragment__reset_wallpapers"
