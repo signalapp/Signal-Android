@@ -29,13 +29,14 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
 
-  <androidx.appcompat.widget.SwitchCompat
+  <com.google.android.material.materialswitch.MaterialSwitch
+      style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
       android:id="@+id/edit_proxy_switch"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@id/edit_proxy_switch_title"
-      app:layout_constraintBottom_toBottomOf="@id/edit_proxy_switch_title"/>
+      app:layout_constraintBottom_toBottomOf="@id/edit_proxy_switch_title_description"/>
 
   <TextView
       android:id="@+id/edit_proxy_address_title"
