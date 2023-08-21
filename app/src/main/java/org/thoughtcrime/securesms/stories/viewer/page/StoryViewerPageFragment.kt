@@ -451,7 +451,10 @@ class StoryViewerPageFragment :
         if (storyViewerPageArgs.source == StoryViewerPageArgs.Source.NOTIFICATION) {
           startReply(isFromNotification = true, groupReplyStartPosition = storyViewerPageArgs.groupReplyStartPosition)
         } else if (storyViewerPageArgs.source == StoryViewerPageArgs.Source.INFO_CONTEXT && state.selectedPostIndex in state.posts.indices) {
-          showInfo(state.posts[state.selectedPostIndex])
+          viewModel.setIsDisplayingInfoDialog(true)
+          lifecycleDisposable += sharedViewModel.postAfterLoadStateReady {
+            showInfo(state.posts[state.selectedPostIndex])
+          }
         }
       }
     }
