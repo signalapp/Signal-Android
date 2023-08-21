@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.internal.push.http
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -62,7 +63,13 @@ class DigestingRequestBody(
     }
 
     outputStream.flush()
+
     if (isIncremental) {
+      if (contentLength != total) {
+        Log.w(TAG, "Content uploaded ${logMessage(total, contentLength)} bytes compared to expected!")
+      } else {
+        Log.d(TAG, "Wrote the expected number of bytes.")
+      }
       outputStream.close()
       digestStream.close()
       incrementalDigest = digestStream.toByteArray()
@@ -75,6 +82,15 @@ class DigestingRequestBody(
   }
 
   fun getAttachmentDigest() = AttachmentDigest(transmittedDigest, incrementalDigest)
+
+  private fun logMessage(actual: Long, expected: Long): String {
+    val difference = actual - expected
+    return if (difference > 0) {
+      "+$difference"
+    } else {
+      difference.toString()
+    }
+  }
 
   companion object {
     const val TAG = "DigestingRequestBody"
