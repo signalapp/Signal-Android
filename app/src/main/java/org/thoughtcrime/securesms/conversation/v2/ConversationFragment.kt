@@ -1686,7 +1686,7 @@ class ConversationFragment :
         inlineAttachment.hide()
       }
 
-      composeText.text?.isEmpty() == true && !attachmentManager.isAttachmentPresent -> {
+      composeText.text.isNullOrBlank() && !attachmentManager.isAttachmentPresent -> {
         buttonToggle.display(binding.conversationInputPanel.attachButton)
         quickAttachment.show()
         inlineAttachment.hide()
