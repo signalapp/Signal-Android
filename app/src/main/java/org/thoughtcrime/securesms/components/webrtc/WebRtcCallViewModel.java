@@ -162,7 +162,7 @@ public class WebRtcCallViewModel extends ViewModel {
             return new InCallStatus.JoinedCallLinkUsers((int) participantsState.getParticipantCount().orElse(0));
           }
         }
-    ).distinctUntilChanged();
+    ).distinctUntilChanged().observeOn(AndroidSchedulers.mainThread());
   }
 
   public Observable<CallParticipantsState> getCallParticipantsState() {
@@ -190,7 +190,7 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   public Observable<Boolean> shouldShowSpeakerHint() {
-    return shouldShowSpeakerHint;
+    return shouldShowSpeakerHint.observeOn(AndroidSchedulers.mainThread());
   }
 
   public WebRtcAudioOutput getCurrentAudioOutput() {
