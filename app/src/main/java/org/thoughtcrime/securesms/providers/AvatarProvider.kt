@@ -59,11 +59,8 @@ class AvatarProvider : BaseContentProvider() {
     }
 
     @JvmStatic
-    fun getContentUri(context: Context, recipientId: RecipientId): Uri {
-      val uri = ContentUris.withAppendedId(CONTENT_URI, recipientId.toLong())
-      context.applicationContext.grantUriPermission("com.android.systemui", uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-      return uri
+    fun getContentUri(recipientId: RecipientId): Uri {
+      return ContentUris.withAppendedId(CONTENT_URI, recipientId.toLong())
     }
   }
 

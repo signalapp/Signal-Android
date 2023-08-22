@@ -80,8 +80,10 @@ public class CallNotificationBuilder {
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
       builder.setFullScreenIntent(pendingIntent, true);
 
+      Person person = ConversationUtil.buildPerson(context, recipient);
+      builder.addPerson(person);
+
       if (deviceVersionSupportsIncomingCallStyle()) {
-        Person person = ConversationUtil.buildPerson(context, recipient);
         builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
             person,
             getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
@@ -100,8 +102,10 @@ public class CallNotificationBuilder {
       builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
+      Person person = ConversationUtil.buildPerson(context, recipient);
+      builder.addPerson(person);
+
       if (deviceVersionSupportsIncomingCallStyle()) {
-        Person person = ConversationUtil.buildPerson(context, recipient);
         builder.setStyle(NotificationCompat.CallStyle.forOngoingCall(
             person,
             getServicePendingIntent(context, WebRtcCallService.hangupIntent(context))

@@ -109,8 +109,8 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static IconCompat getIconWithUriForNotification(@NonNull Context context, @NonNull RecipientId recipientId) {
-    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(context, recipientId));
+  public static IconCompat getIconWithUriForNotification(@NonNull RecipientId recipientId) {
+    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipientId));
   }
 
   @WorkerThread

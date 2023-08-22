@@ -290,7 +290,7 @@ public final class ConversationUtil {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
-                     .setIcon(AvatarUtil.getIconWithUriForNotification(context, recipient.getId()))
+                     .setIcon(AvatarUtil.getIconWithUriForNotification(recipient.getId()))
                      .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
                      .build();
   }
