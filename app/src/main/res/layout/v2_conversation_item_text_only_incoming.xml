@@ -99,6 +99,8 @@
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             android:textSize="16sp"
             app:emoji_maxLength="1000"
+            app:emoji_renderMentions="true"
+            app:emoji_renderSpoilers="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Testy test test test" />

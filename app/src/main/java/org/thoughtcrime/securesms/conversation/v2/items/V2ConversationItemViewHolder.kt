@@ -88,6 +88,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private val projections = ProjectionList()
   private val footerDelegate = V2FooterPositionDelegate(binding)
+  private val dispatchTouchEventListener = V2OnDispatchTouchEventListener(conversationContext, binding)
 
   override lateinit var conversationMessage: ConversationMessage
 
@@ -115,6 +116,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
   init {
     binding.root.addOnMeasureListener(footerDelegate)
+    binding.root.onDispatchTouchEventListener = dispatchTouchEventListener
 
     binding.conversationItemReactions.setOnClickListener {
       conversationContext.clickListener
@@ -135,7 +137,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
       true
     }
 
-    binding.conversationItemBody.isClickable = false
+    val passthroughClickListener = PassthroughClickListener()
+    binding.conversationItemBody.setOnClickListener(passthroughClickListener)
+    binding.conversationItemBody.setOnLongClickListener(passthroughClickListener)
+
     binding.conversationItemBody.isFocusable = false
     binding.conversationItemBody.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().messageFontSize.toFloat())
     binding.conversationItemBody.movementMethod = LongClickMovementMethod.getInstance(context)
@@ -218,6 +223,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
     )
 
     return projections
+  }
+
+  override fun getSnapshotStrategy(): InteractiveConversationElement.SnapshotStrategy {
+    return V2TextOnlySnapshotStrategy(binding)
   }
 
   /**
@@ -601,6 +610,21 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
 
     override fun onPostMeasure(): Boolean {
       return binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions, binding.conversationItemBodyWrapper.width)
+    }
+  }
+
+  private inner class PassthroughClickListener : View.OnClickListener, View.OnLongClickListener {
+    override fun onClick(v: View?) {
+      binding.root.performClick()
+    }
+
+    override fun onLongClick(v: View?): Boolean {
+      if (binding.conversationItemBody.hasSelection()) {
+        return false
+      }
+
+      binding.root.performLongClick()
+      return true
     }
   }
 }

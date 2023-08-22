@@ -2308,6 +2308,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     // Intentionally left blank.
   }
 
+  @Override public @Nullable SnapshotStrategy getSnapshotStrategy() {
+    return null;
+  }
+
   private class SharedContactEventListener implements SharedContactView.EventListener {
     @Override
     public void onAddToContactsClicked(@NonNull Contact contact) {

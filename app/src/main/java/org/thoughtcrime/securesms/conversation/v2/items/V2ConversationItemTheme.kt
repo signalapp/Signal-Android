@@ -82,9 +82,9 @@ class V2ConversationItemTheme(
       Color.TRANSPARENT
     } else {
       if (conversationContext.hasWallpaper()) {
-        ContextCompat.getColor(context, R.color.signal_colorSurface)
+        ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_wallpaper)
       } else {
-        ContextCompat.getColor(context, R.color.signal_colorSurface2)
+        ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_normal)
       }
     }
   }

@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 
 /**
@@ -19,6 +21,25 @@ class V2ConversationItemLayout @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs) {
 
   private var onMeasureListeners: Set<OnMeasureListener> = emptySet()
+  var onDispatchTouchEventListener: OnDispatchTouchEventListener? = null
+
+  override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+    if (ev != null) {
+      onDispatchTouchEventListener?.onDispatchTouchEvent(this, ev)
+    }
+
+    return super.dispatchTouchEvent(ev)
+  }
+
+  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    onMeasureListeners.forEach { it.onPreMeasure() }
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+    val remeasure = onMeasureListeners.map { it.onPostMeasure() }.any { it }
+    if (remeasure) {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+  }
 
   /**
    * Set the onMeasureListener to be invoked by this view whenever onMeasure is called.
@@ -31,14 +52,8 @@ class V2ConversationItemLayout @JvmOverloads constructor(
     this.onMeasureListeners -= onMeasureListener
   }
 
-  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-    onMeasureListeners.forEach { it.onPreMeasure() }
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
-    val remeasure = onMeasureListeners.map { it.onPostMeasure() }.any { it }
-    if (remeasure) {
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
+  interface OnDispatchTouchEventListener {
+    fun onDispatchTouchEvent(view: View, motionEvent: MotionEvent)
   }
 
   interface OnMeasureListener {

@@ -2871,7 +2871,7 @@ class ConversationFragment :
             snapshot,
             itemView.x,
             itemView.y + binding.conversationItemRecycler.translationY,
-            bodyBubble.x,
+            if (target.getSnapshotStrategy() != null) itemView.x else bodyBubble.x,
             bodyBubble.y,
             bodyBubble.width,
             audioUri,

@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.conversation.v2.items
 
+import android.graphics.Canvas
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -44,4 +45,10 @@ interface InteractiveConversationElement : ChatColorsDrawable.ChatColorsDrawable
   fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean): ProjectionList
 
   fun getSnapshotProjections(coordinateRoot: ViewGroup, clipOutMedia: Boolean, outgoingOnly: Boolean): ProjectionList
+
+  fun getSnapshotStrategy(): SnapshotStrategy?
+
+  interface SnapshotStrategy {
+    fun snapshot(canvas: Canvas)
+  }
 }
