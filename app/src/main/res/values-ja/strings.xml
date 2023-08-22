@@ -881,9 +881,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">デバッグログは、問題の診断と修正に役立てられます。個人を特定する情報は含まれません。</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">バッテリーの最適化のために通知が遅れることがあります</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Signal のアプリ情報でバッテリーの最適化を無効にすると、メッセージ通知がすみやかに表示されます。</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">続行</string>
@@ -3023,7 +3023,7 @@
     <string name="preferences_chats__message_text_size">メッセージのフォントサイズ</string>
     <string name="preferences_notifications__priority">優先度</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">さまざまな通知のトラブルシューティング</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">閲覧回避</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6034,7 +6034,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal 通話のリンクを共有する</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">リンクを使用して Signal 通話に参加する　%1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

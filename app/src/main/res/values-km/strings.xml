@@ -881,9 +881,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">កំណត់ហេតុបញ្ហាជួយឲ្យយើងវិភាគ និងដោះស្រាយបញ្ហានេះ ហើយមិនមានព័ត៌មានកំណត់អត្តសញ្ញាណទេ។</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">ការជូនដំណឹងអាចនឹងពន្យារពេល ដោយសារការបង្កើនប្រសិទ្ធភាពថ្ម</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">អ្នកអាចបិទការបង្កើនប្រសិទ្ធភាពថ្មសម្រាប់ Signal ដើម្បីធានាថាការជូនដំណឹងអំពីសារនឹងមិនត្រូវបានពន្យារពេលឡើយ។</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">បន្ត</string>
@@ -3023,7 +3023,7 @@
     <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
     <string name="preferences_notifications__priority">អទិភាព</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">ដោះស្រាយបញ្ហាការជូនដំណឹង</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">ការចៀសវាងការឃ្លាំមើល</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6034,7 +6034,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">ចែករំលែកតំណសម្រាប់ការហៅតាម Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">ប្រើតំណនេះដើម្បីចូលរួមការហៅតាម Signal៖ %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

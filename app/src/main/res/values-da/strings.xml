@@ -911,9 +911,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Fejlretningslogs hjælper os med at diagnosticere og fikse problemet, og de indeholder ikke identificerende oplysninger.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">Notifikationer kan være forsinkede på grund af batterioptimering</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Du kan slå batterioptimering i Signal fra for at sikre, at beskednotifikationer ikke bliver forsinkede.</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Fortsæt</string>
@@ -3112,7 +3112,7 @@
     <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Fejlfinding af notifikationer</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Omgåelse af censur</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6167,7 +6167,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Del et link til et Signal-opkald</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Brug dette link til at deltage i et Signal-opkald: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

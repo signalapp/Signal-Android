@@ -881,9 +881,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Nhật ký gỡ lỗi giúp chúng tôi xác định và khắc phục vấn đề, và không chứa thông tin nhận dạng.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">Các thông báo giờ đây có thể bị hoãn vì thiết lập tối ưu hóa pin</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Bạn có thể bỏ các thiết lập tối ưu hóa pin cho Signal để đảm bảo các thông báo tin nhắn không bị hoãn.</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Tiếp tục</string>
@@ -3023,7 +3023,7 @@
     <string name="preferences_chats__message_text_size">Cỡ chữ tin nhắn</string>
     <string name="preferences_notifications__priority">Mức ưu tiên</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Khắc phục sự cố thông báo</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Tránh kiểm duyệt</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6034,7 +6034,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Chia sẻ một đường dẫn cho cuộc gọi Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Sử dụng đường dẫn này để tham gia cuộc gọi Signal: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

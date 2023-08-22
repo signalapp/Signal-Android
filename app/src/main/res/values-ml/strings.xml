@@ -911,9 +911,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">പ്രശ്‌നം നിർണ്ണയിക്കാനും പരിഹരിക്കാനും ഡീബഗ് ലോഗുകൾ ഞങ്ങളെ സഹായിക്കുന്നു, അവയിൽ തിരിച്ചറിയാനാകുന്ന വിവരങ്ങൾ ഉൾപ്പെടുന്നുമില്ല.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ കൊണ്ടാകാം അറിയിപ്പുകൾ വൈകുന്നത്</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">സന്ദേശ അറിയിപ്പുകൾ വൈകുന്നില്ലെന്ന് ഉറപ്പാക്കാൻ നിങ്ങൾക്ക് Signal-നായുള്ള ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാം.</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">തുടരുക</string>
@@ -3112,7 +3112,7 @@
     <string name="preferences_chats__message_text_size">സന്ദേശ ഫോണ്ട് വലുപ്പം</string>
     <string name="preferences_notifications__priority">മുൻഗണന</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">അറിയിപ്പുകൾ ട്രബിൾഷൂട്ട് ചെയ്യുക</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">സെൻസർഷിപ്പ് ഒഴിവാക്കൽ</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6167,7 +6167,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal കോളിനുള്ള ലിങ്ക് പങ്കിടൂ</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Signal കോളിൽ ചേരാൻ ഈ ലിങ്ക് ഉപയോഗിക്കുക: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

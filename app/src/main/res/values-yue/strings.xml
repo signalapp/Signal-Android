@@ -881,9 +881,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">除錯紀錄可以幫我哋診斷同修正問題，當中唔會包含任何識別資料。</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">由於電池最佳化，通知可能會延遲</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">你可以停用 Signal 嘅電池最佳化設定，確保訊息通知唔會延遲。</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">繼續</string>
@@ -3023,7 +3023,7 @@
     <string name="preferences_chats__message_text_size">訊息字體大細</string>
     <string name="preferences_notifications__priority">優次</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">通知疑難排解</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">封網迴避</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6034,7 +6034,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">分享 Signal 通話連結</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">用呢條連結加入 Signal 通話：%1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

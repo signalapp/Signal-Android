@@ -911,9 +911,9 @@
     <string name="PromptLogsSlowNotificationsDialog__message">Τα αρχεία συμβάντων αποσφαλμάτωσης βοηθούν να διαγνώσουμε και να διορθώσουμε το πρόβλημα και δεν περιλαμβάνουν πληροφορίες ταυτοποίησης.</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptBatterySaverBottomSheet__title">Notifications may be delayed due to battery optimizations</string>
+    <string name="PromptBatterySaverBottomSheet__title">Οι ειδοποιήσεις ενδέχεται να καθυστερήσουν λόγω βελτιστοποιήσεων της μπαταρίας</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">You can disable battery optimizations for Signal to ensure that message notifications will not be delayed.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Μπορείς να απενεργοποιήσεις τις βελτιστοποιήσεις μπαταρίας για το Signal για να διασφαλίσεις ότι οι ειδοποιήσεις μηνυμάτων δεν θα καθυστερούν.</string>
 
     <!-- Button to continue to try and disable battery saver -->
     <string name="PromptBatterySaverBottomSheet__continue">Συνέχεια</string>
@@ -3112,7 +3112,7 @@
     <string name="preferences_chats__message_text_size">Μέγεθος γραμματοσειράς μηνύματος</string>
     <string name="preferences_notifications__priority">Προτεραιότητα</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Ειδοποιήσεις αντιμετώπισης προβλημάτων</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Παράκαμψη λογοκρισίας</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -6167,7 +6167,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Κοινοποίηση συνδέσμου για κλήση Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Use this link to join a Signal call: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Χρησιμοποίησε αυτόν τον σύνδεσμο για να μπεις σε μια κλήση Signal: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->
