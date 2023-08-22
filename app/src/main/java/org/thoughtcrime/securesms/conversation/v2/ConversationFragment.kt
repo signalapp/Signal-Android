@@ -2868,15 +2868,18 @@ class ConversationFragment :
           val focusedView = if (container.isInputShowing || !container.isKeyboardShowing) null else itemView.rootView.findFocus()
           val bodyBubble = target.bubbleView
           val selectedConversationModel = SelectedConversationModel(
-            snapshot,
-            itemView.x,
-            itemView.y + binding.conversationItemRecycler.translationY,
-            if (target.getSnapshotStrategy() != null) itemView.x else bodyBubble.x,
-            bodyBubble.y,
-            bodyBubble.width,
-            audioUri,
-            messageRecord.isOutgoing,
-            focusedView
+            bitmap = snapshot,
+            itemX = itemView.x,
+            itemY = itemView.y + binding.conversationItemRecycler.translationY,
+            bubbleY = bodyBubble.y,
+            bubbleWidth = bodyBubble.width,
+            audioUri = audioUri,
+            isOutgoing = messageRecord.isOutgoing,
+            focusedView = focusedView,
+            snapshotMetrics = target.getSnapshotStrategy()?.snapshotMetrics ?: InteractiveConversationElement.SnapshotMetrics(
+              snapshotOffset = bodyBubble.x,
+              contextMenuPadding = bodyBubble.x
+            )
           )
 
           bodyBubble.visibility = View.INVISIBLE

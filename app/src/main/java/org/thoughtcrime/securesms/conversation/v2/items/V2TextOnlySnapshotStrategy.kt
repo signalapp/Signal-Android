@@ -31,6 +31,11 @@ class V2TextOnlySnapshotStrategy(
     binding.senderBadge
   )
 
+  override val snapshotMetrics = InteractiveConversationElement.SnapshotMetrics(
+    snapshotOffset = 0f,
+    contextMenuPadding = binding.conversationItemBodyWrapper.x
+  )
+
   override fun snapshot(canvas: Canvas) {
     val originalScales = viewsToRestoreScale.associateWith { Pair(it.scaleX, it.scaleY) }
     viewsToRestoreScale.forEach {
