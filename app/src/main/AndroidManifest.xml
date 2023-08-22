@@ -622,7 +622,7 @@
     <activity android:name=".conversation.v2.ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|screenLayout|screenSize"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:parentActivityName=".MainActivity"
               android:exported="false">
         <meta-data
