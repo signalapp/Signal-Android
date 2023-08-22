@@ -97,8 +97,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   private var latestUri = Uri.EMPTY
 
   override fun onConnect(session: MediaSession, controller: MediaSession.ControllerInfo): MediaSession.ConnectionResult {
-    session.setAvailableCommands(controller, CUSTOM_COMMANDS, SUPPORTED_ACTIONS)
-    return super.onConnect(session, controller)
+    return MediaSession.ConnectionResult.accept(CUSTOM_COMMANDS, SUPPORTED_ACTIONS)
   }
 
   override fun onPostConnect(session: MediaSession, controller: MediaSession.ControllerInfo) {
@@ -306,7 +305,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   @WorkerThread
   private fun loadMediaItemsForConsecutivePlayback(messageId: Long): List<MediaItem> {
     return try {
-      val recordsAfter = messages.getMessagesAfterVoiceNoteInclusive(messageId, Companion.LIMIT)
+      val recordsAfter = messages.getMessagesAfterVoiceNoteInclusive(messageId, LIMIT)
       recordsAfter.filter { it.hasAudio() }.stream()
         .map<MediaItem?> { record: MessageRecord? ->
           VoiceNoteMediaItemFactory
