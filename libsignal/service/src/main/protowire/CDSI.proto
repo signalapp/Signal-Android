@@ -8,12 +8,12 @@ package org.signal.cdsi;
 message ClientRequest {
   // Each ACI/UAK pair is a 32-byte buffer, containing the 16-byte ACI followed
   // by its 16-byte UAK.
-  bytes aci_uak_pairs = 1;
+  bytes aciUakPairs = 1;
 
   // Each E164 is an 8-byte big-endian number, as 8 bytes.
-  bytes prev_e164s = 2;
-  bytes new_e164s = 3;
-  bytes discard_e164s = 4;
+  bytes prevE164s = 2;
+  bytes newE164s = 3;
+  bytes discardE164s = 4;
 
   // If true, the client has more pairs or e164s to send.  If false or unset,
   // this is the client's last request, and processing should commence.
@@ -27,11 +27,11 @@ message ClientRequest {
 
   // After receiving a new token from the server, send back a message just
   // containing a token_ack.
-  bool token_ack = 7;
+  bool tokenAck = 7;
 
   // Request that, if the server allows, both ACI and PNI be returned even
   // if the aci_uak_pairs don't match.
-  bool return_acis_without_uaks = 8;
+  bool returnAcisWithoutUaks = 8;
 }
 
 message ClientResponse {
@@ -47,14 +47,14 @@ message ClientResponse {
   // where the additional 2 bytes are the id/type/length additions of the
   // protobuf marshaling added to each byte array.  This avoids any data
   // leakage based on the size of the encrypted output.
-  bytes e164_pni_aci_triples = 1;
+  bytes e164PniAciTriples = 1;
 
   // If the user has run out of quota for lookups, they will receive
   // a response with just the following field set, followed by a websocket
   // closure of type 4008 (RESOURCE_EXHAUSTED).  Should they retry exactly
   // the same request after the provided number of seconds has passed,
   // we expect it should work.
-  int32 retry_after_secs = 2;
+  int32 retryAfterSecs = 2;
 
   // A token which allows subsequent calls' rate limiting to discount the
   // e164s sent up in this request, only counting those in the next
@@ -64,28 +64,28 @@ message ClientResponse {
   // On a successful response to a token_ack request, the number of permits
   // that were deducted from the user's rate-limit in order to process the
   // request
-  int32 debug_permits_used = 4;
+  int32 debugPermitsUsed = 4;
 }
 
 message EnclaveLoad {
   // If set, before loading any tuples entirely clear the current map,
   // zero'ing out all current data.
-  bool clear_all = 1;
+  bool clearAll = 1;
 
   // Each tuple is an 8-byte e164, a 16-byte PNI, a 16-byte ACI, and a
   // 16-byte UAK.  These should be loaded as a 48-byte value (PNI,ACI,UAK)
   // associated with an 8-byte key (e164).
   // ACI/PNI/UAK may all be zeros, in which case this is a delete of the e164.
-  bytes e164_aci_pni_uak_tuples = 2;
+  bytes e164AciPniUakTuples = 2;
 
   // If non-empty, overwrite the shared token secret with this value.
-  bytes shared_token_secret = 3;
+  bytes sharedTokenSecret = 3;
 }
 
 message ClientHandshakeStart {
   // Public key associated with this server's enclave. For use in test-only
   // contexts where attestation is not available
-  bytes test_only_pubkey = 1;
+  bytes testonlyPubkey = 1;
 
   // Remote-attestation evidence associated with the public key
   bytes evidence = 2;

@@ -1,20 +1,19 @@
 package org.whispersystems.signalservice.api.services;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.cdsi.proto.ClientRequest;
 import org.signal.cdsi.proto.ClientResponse;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Collection;
@@ -29,6 +28,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
+import okio.ByteString;
 
 /**
  * Handles network interactions with CDSI, the SGX-backed version of the CDSv2 API.
@@ -75,7 +75,7 @@ public final class CdsiV2Service {
 
   private static Response parseEntries(ClientResponse clientResponse) {
     Map<String, ResponseItem> results = new HashMap<>();
-    ByteBuffer                parser  = clientResponse.getE164PniAciTriples().asReadOnlyByteBuffer();
+    ByteBuffer                parser  = clientResponse.e164PniAciTriples.asByteBuffer();
 
     while (parser.remaining() >= RESPONSE_ITEM_SIZE) {
       String e164    = "+" + parser.getLong();
@@ -89,7 +89,7 @@ public final class CdsiV2Service {
       }
     }
 
-    return new Response(results, clientResponse.getDebugPermitsUsed());
+    return new Response(results, clientResponse.debugPermitsUsed);
   }
 
   private static ClientRequest buildClientRequest(Request request) {
@@ -97,22 +97,22 @@ public final class CdsiV2Service {
     List<Long> newE164s      = parseAndSortE164Strings(request.newE164s);
     List<Long> removedE164s  = parseAndSortE164Strings(request.removedE164s);
 
-    ClientRequest.Builder builder = ClientRequest.newBuilder()
-                                                 .setPrevE164S(toByteString(previousE164s))
-                                                 .setNewE164S(toByteString(newE164s))
-                                                 .setDiscardE164S(toByteString(removedE164s))
-                                                 .setAciUakPairs(toByteString(request.serviceIds))
-                                                 .setReturnAcisWithoutUaks(request.requireAcis);
+    ClientRequest.Builder builder = new ClientRequest.Builder()
+                                                     .prevE164s(toByteString(previousE164s))
+                                                     .newE164s(toByteString(newE164s))
+                                                     .discardE164s(toByteString(removedE164s))
+                                                     .aciUakPairs(toByteString(request.serviceIds))
+                                                     .returnAcisWithoutUaks(request.requireAcis);
 
     if (request.token != null) {
-      builder.setToken(ByteString.copyFrom(request.token));
+      builder.token(ByteString.of(request.token));
     }
 
     return builder.build();
   }
 
   private static ByteString toByteString(List<Long> numbers) {
-    ByteString.Output os = ByteString.newOutput();
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
 
     for (long number : numbers) {
       try {
@@ -122,11 +122,11 @@ public final class CdsiV2Service {
       }
     }
 
-    return os.toByteString();
+    return ByteString.of(os.toByteArray());
   }
 
   private static ByteString toByteString(Map<ServiceId, ProfileKey> serviceIds) {
-    ByteString.Output os = ByteString.newOutput();
+    ByteArrayOutputStream os = new ByteArrayOutputStream();
 
     for (Map.Entry<ServiceId, ProfileKey> entry : serviceIds.entrySet()) {
       try {
@@ -137,7 +137,7 @@ public final class CdsiV2Service {
       }
     }
 
-    return os.toByteString();
+    return ByteString.of(os.toByteArray());
   }
 
   private static List<Long> parseAndSortE164Strings(Collection<String> e164s) {

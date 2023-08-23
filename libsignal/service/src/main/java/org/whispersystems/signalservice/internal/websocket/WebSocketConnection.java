@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.internal.websocket;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -51,10 +49,6 @@ import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 import okio.ByteString;
-
-import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketMessage;
-import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
-import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketResponseMessage;
 
 public class WebSocketConnection extends WebSocketListener {
 
@@ -228,16 +222,16 @@ public class WebSocketConnection extends WebSocketListener {
       throw new IOException("No connection!");
     }
 
-    WebSocketMessage message = WebSocketMessage.newBuilder()
-                                               .setType(WebSocketMessage.Type.REQUEST)
-                                               .setRequest(request)
-                                               .build();
+    WebSocketMessage message = new WebSocketMessage.Builder()
+                                                   .type(WebSocketMessage.Type.REQUEST)
+                                                   .request(request)
+                                                   .build();
 
     SingleSubject<WebsocketResponse> single = SingleSubject.create();
 
-    outgoingRequests.put(request.getId(), new OutgoingRequest(single));
+    outgoingRequests.put(request.id, new OutgoingRequest(single));
 
-    if (!client.send(ByteString.of(message.toByteArray()))) {
+    if (!client.send(ByteString.of(message.encode()))) {
       throw new IOException("Write failed!");
     }
 
@@ -251,12 +245,12 @@ public class WebSocketConnection extends WebSocketListener {
       throw new IOException("Connection closed!");
     }
 
-    WebSocketMessage message = WebSocketMessage.newBuilder()
-                                               .setType(WebSocketMessage.Type.RESPONSE)
-                                               .setResponse(response)
-                                               .build();
+    WebSocketMessage message = new WebSocketMessage.Builder()
+                                                   .type(WebSocketMessage.Type.RESPONSE)
+                                                   .response(response)
+                                                   .build();
 
-    if (!client.send(ByteString.of(message.toByteArray()))) {
+    if (!client.send(ByteString.of(message.encode()))) {
       throw new IOException("Write failed!");
     }
   }
@@ -265,15 +259,15 @@ public class WebSocketConnection extends WebSocketListener {
     if (client != null) {
       log( "Sending keep alive...");
       long id = System.currentTimeMillis();
-      byte[] message = WebSocketMessage.newBuilder()
-                                       .setType(WebSocketMessage.Type.REQUEST)
-                                       .setRequest(WebSocketRequestMessage.newBuilder()
-                                                                          .setId(id)
-                                                                          .setPath("/v1/keepalive")
-                                                                          .setVerb("GET")
-                                                                          .build())
-                                       .build()
-                                       .toByteArray();
+      byte[] message = new WebSocketMessage.Builder()
+                                           .type(WebSocketMessage.Type.REQUEST)
+                                           .request(new WebSocketRequestMessage.Builder()
+                                                                               .id(id)
+                                                                               .path("/v1/keepalive")
+                                                                               .verb("GET")
+                                                                               .build())
+                                           .build()
+                                           .encode();
       keepAlives.add(id);
       if (!client.send(ByteString.of(message))) {
         throw new IOException("Write failed!");
@@ -292,27 +286,27 @@ public class WebSocketConnection extends WebSocketListener {
   @Override
   public synchronized void onMessage(WebSocket webSocket, ByteString payload) {
     try {
-      WebSocketMessage message = WebSocketMessage.parseFrom(payload.toByteArray());
+      WebSocketMessage message = WebSocketMessage.ADAPTER.decode(payload.toByteArray());
 
-      if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE) {
-        incomingRequests.add(message.getRequest());
-      } else if (message.getType().getNumber() == WebSocketMessage.Type.RESPONSE_VALUE) {
-        OutgoingRequest listener = outgoingRequests.remove(message.getResponse().getId());
+      if (message.type == WebSocketMessage.Type.REQUEST) {
+        incomingRequests.add(message.request);
+      } else if (message.type == WebSocketMessage.Type.RESPONSE) {
+        OutgoingRequest listener = outgoingRequests.remove(message.response.id);
         if (listener != null) {
-          listener.onSuccess(new WebsocketResponse(message.getResponse().getStatus(),
-                                                   new String(message.getResponse().getBody().toByteArray()),
-                                                   message.getResponse().getHeadersList(),
+          listener.onSuccess(new WebsocketResponse(message.response.status,
+                                                   new String(message.response.body.toByteArray()),
+                                                   message.response.headers,
                                                    !credentialsProvider.isPresent()));
-          if (message.getResponse().getStatus() >= 400) {
-            healthMonitor.onMessageError(message.getResponse().getStatus(), credentialsProvider.isPresent());
+          if (message.response.status >= 400) {
+            healthMonitor.onMessageError(message.response.status, credentialsProvider.isPresent());
           }
-        } else if (keepAlives.remove(message.getResponse().getId())) {
-          healthMonitor.onKeepAliveResponse(message.getResponse().getId(), credentialsProvider.isPresent());
+        } else if (keepAlives.remove(message.response.id)) {
+          healthMonitor.onKeepAliveResponse(message.response.id, credentialsProvider.isPresent());
         }
       }
 
       notifyAll();
-    } catch (InvalidProtocolBufferException e) {
+    } catch (IOException e) {
       warn(e);
     }
   }

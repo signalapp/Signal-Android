@@ -15,6 +15,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okio.ByteString
+import okio.ByteString.Companion.encodeUtf8
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -263,7 +264,7 @@ class StripeApi(
   private fun getRequestBuilder(endpoint: String): Request.Builder {
     return Request.Builder()
       .url("${configuration.baseUrl}/$endpoint")
-      .addHeader("Authorization", "Basic ${ByteString.encodeUtf8("${configuration.publishableKey}:").base64()}")
+      .addHeader("Authorization", "Basic ${"${configuration.publishableKey}:".encodeUtf8().base64()}")
   }
 
   private fun checkResponseForErrors(response: Response): Response {

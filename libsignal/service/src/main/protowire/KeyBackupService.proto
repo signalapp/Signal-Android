@@ -23,13 +23,13 @@ message Response {
 }
 
 message BackupRequest {
-  optional bytes  service_id = 1;
-  optional bytes  backup_id  = 2;
-  optional bytes  token      = 3;
-  optional uint64 valid_from = 4;
-  optional bytes  data       = 5;
-  optional bytes  pin        = 6;
-  optional uint32 tries      = 7;
+  optional bytes  serviceId = 1;
+  optional bytes  backupId  = 2;
+  optional bytes  token     = 3;
+  optional uint64 validFrom = 4;
+  optional bytes  data      = 5;
+  optional bytes  pin       = 6;
+  optional uint32 tries     = 7;
 }
 
 message BackupResponse {
@@ -44,11 +44,11 @@ message BackupResponse {
 }
 
 message RestoreRequest {
-  optional bytes  service_id = 1;
-  optional bytes  backup_id  = 2;
-  optional bytes  token      = 3;
-  optional uint64 valid_from = 4;
-  optional bytes  pin        = 5;
+  optional bytes  serviceId = 1;
+  optional bytes  backupId  = 2;
+  optional bytes  token     = 3;
+  optional uint64 validFrom = 4;
+  optional bytes  pin       = 5;
 }
 
 message RestoreResponse {
@@ -67,8 +67,8 @@ message RestoreResponse {
 }
 
 message DeleteRequest {
-  optional bytes service_id = 1;
-  optional bytes backup_id  = 2;
+  optional bytes serviceId = 1;
+  optional bytes backupId  = 2;
 }
 
 message DeleteResponse {

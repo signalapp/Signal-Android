@@ -29,7 +29,7 @@ import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 
 import java.security.SecureRandom;
 import java.util.Collections;
@@ -78,9 +78,9 @@ public final class ProfileService {
     SecureRandom                       random         = new SecureRandom();
     ProfileKeyCredentialRequestContext requestContext = null;
 
-    WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
-                                                                     .setId(random.nextLong())
-                                                                     .setVerb("GET");
+    WebSocketRequestMessage.Builder builder = new WebSocketRequestMessage.Builder()
+                                                                         .id(random.nextLong())
+                                                                         .verb("GET");
 
     if (profileKey.isPresent()) {
       if (!(serviceId instanceof ACI)) {
@@ -98,15 +98,15 @@ public final class ProfileService {
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());
 
-        builder.setPath(String.format("/v1/profile/%s/%s/%s?credentialType=expiringProfileKey", serviceId, version, credentialRequest));
+        builder.path(String.format("/v1/profile/%s/%s/%s?credentialType=expiringProfileKey", serviceId, version, credentialRequest));
       } else {
-        builder.setPath(String.format("/v1/profile/%s/%s", serviceId, version));
+        builder.path(String.format("/v1/profile/%s/%s", serviceId, version));
       }
     } else {
-      builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
+      builder.path(String.format("/v1/profile/%s", address.getIdentifier()));
     }
 
-    builder.addHeaders(AcceptLanguagesUtil.getAcceptLanguageHeader(locale));
+    builder.headers(Collections.singletonList(AcceptLanguagesUtil.getAcceptLanguageHeader(locale)));
 
     WebSocketRequestMessage requestMessage = builder.build();
 
@@ -128,12 +128,12 @@ public final class ProfileService {
 
     IdentityCheckRequest request = new IdentityCheckRequest(serviceIdKeyPairs);
 
-    WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
-                                                                     .setId(new SecureRandom().nextLong())
-                                                                     .setVerb("POST")
-                                                                     .setPath("/v1/profile/identity_check/batch")
-                                                                     .addAllHeaders(Collections.singleton("content-type:application/json"))
-                                                                     .setBody(JsonUtil.toJsonByteString(request));
+    WebSocketRequestMessage.Builder builder = new WebSocketRequestMessage.Builder()
+                                                                         .id(new SecureRandom().nextLong())
+                                                                         .verb("POST")
+                                                                         .path("/v1/profile/identity_check/batch")
+                                                                         .headers(Collections.singletonList("content-type:application/json"))
+                                                                         .body(JsonUtil.toJsonByteString(request));
 
     ResponseMapper<IdentityCheckResponse> responseMapper = DefaultResponseMapper.getDefault(IdentityCheckResponse.class);
 

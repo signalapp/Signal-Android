@@ -38,6 +38,10 @@ wire {
     sourcePath {
         srcDir 'src/main/protowire'
     }
+
+    protoPath {
+        srcDir "${project.rootDir}/libsignal/service/src/main/protowire"
+    }
 }
 
 ktlint {

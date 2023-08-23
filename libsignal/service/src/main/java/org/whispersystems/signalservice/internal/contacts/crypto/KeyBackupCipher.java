@@ -1,8 +1,5 @@
 package org.whispersystems.signalservice.internal.contacts.crypto;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
@@ -16,7 +13,10 @@ import org.whispersystems.signalservice.internal.keybackup.protos.Response;
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreRequest;
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import okio.ByteString;
 
 public final class KeyBackupCipher {
 
@@ -34,17 +34,17 @@ public final class KeyBackupCipher {
   {
     long now = System.currentTimeMillis();
 
-    BackupRequest backupRequest = BackupRequest.newBuilder()
-                                               .setServiceId(ByteString.copyFrom(serviceId))
-                                               .setBackupId(ByteString.copyFrom(token.getBackupId()))
-                                               .setToken(ByteString.copyFrom(token.getToken()))
-                                               .setValidFrom(getValidFromSeconds(now))
-                                               .setData(ByteString.copyFrom(kbsData))
-                                               .setPin(ByteString.copyFrom(kbsAccessKey))
-                                               .setTries(tries)
-                                               .build();
+    BackupRequest backupRequest = new BackupRequest.Builder()
+                                                   .serviceId(ByteString.of(serviceId))
+                                                   .backupId(ByteString.of(token.getBackupId()))
+                                                   .token(ByteString.of(token.getToken()))
+                                                   .validFrom(getValidFromSeconds(now))
+                                                   .data_(ByteString.of(kbsData))
+                                                   .pin(ByteString.of(kbsAccessKey))
+                                                   .tries(tries)
+                                                   .build();
 
-    Request requestData = Request.newBuilder().setBackup(backupRequest).build();
+    Request requestData = new Request.Builder().backup(backupRequest).build();
 
     return createKeyBackupRequest(requestData, remoteAttestation, "backup");
   }
@@ -56,15 +56,15 @@ public final class KeyBackupCipher {
   {
     long now = System.currentTimeMillis();
 
-    RestoreRequest restoreRequest = RestoreRequest.newBuilder()
-                                                  .setServiceId(ByteString.copyFrom(serviceId))
-                                                  .setBackupId(ByteString.copyFrom(token.getBackupId()))
-                                                  .setToken(ByteString.copyFrom(token.getToken()))
-                                                  .setValidFrom(getValidFromSeconds(now))
-                                                  .setPin(ByteString.copyFrom(kbsAccessKey))
-                                                  .build();
+    RestoreRequest restoreRequest = new RestoreRequest.Builder()
+                                                      .serviceId(ByteString.of(serviceId))
+                                                      .backupId(ByteString.of(token.getBackupId()))
+                                                      .token(ByteString.of(token.getToken()))
+                                                      .validFrom(getValidFromSeconds(now))
+                                                      .pin(ByteString.of(kbsAccessKey))
+                                                      .build();
 
-    Request request = Request.newBuilder().setRestore(restoreRequest).build();
+    Request request = new Request.Builder().restore(restoreRequest).build();
 
     return createKeyBackupRequest(request, remoteAttestation, "restore");
   }
@@ -73,47 +73,47 @@ public final class KeyBackupCipher {
                                                         RemoteAttestation remoteAttestation,
                                                         byte[] serviceId)
   {
-    DeleteRequest deleteRequest = DeleteRequest.newBuilder()
-                                               .setServiceId(ByteString.copyFrom(serviceId))
-                                               .setBackupId(ByteString.copyFrom(token.getBackupId()))
-                                               .build();
+    DeleteRequest deleteRequest = new DeleteRequest.Builder()
+                                                   .serviceId(ByteString.of(serviceId))
+                                                   .backupId(ByteString.of(token.getBackupId()))
+                                                   .build();
 
-    Request request = Request.newBuilder().setDelete(deleteRequest).build();
+    Request request = new Request.Builder().delete(deleteRequest).build();
 
     return createKeyBackupRequest(request, remoteAttestation, "delete");
   }
 
   public static BackupResponse getKeyBackupResponse(KeyBackupResponse response, RemoteAttestation remoteAttestation)
-    throws InvalidCiphertextException, InvalidProtocolBufferException
+    throws InvalidCiphertextException, IOException
   {
     byte[] data = decryptData(response, remoteAttestation);
 
-    Response backupResponse = Response.parseFrom(data);
+    Response backupResponse = Response.ADAPTER.decode(data);
 
-    return backupResponse.getBackup();
+    return backupResponse.backup;
   }
 
   public static RestoreResponse getKeyRestoreResponse(KeyBackupResponse response, RemoteAttestation remoteAttestation)
-    throws InvalidCiphertextException, InvalidProtocolBufferException
+    throws InvalidCiphertextException, IOException
   {
     byte[] data = decryptData(response, remoteAttestation);
 
-    return Response.parseFrom(data).getRestore();
+    return Response.ADAPTER.decode(data).restore;
   }
 
   public static DeleteResponse getKeyDeleteResponseStatus(KeyBackupResponse response, RemoteAttestation remoteAttestation)
-    throws InvalidCiphertextException, InvalidProtocolBufferException
+    throws InvalidCiphertextException, IOException
   {
     byte[] data = decryptData(response, remoteAttestation);
 
-    return DeleteResponse.parseFrom(data);
+    return DeleteResponse.ADAPTER.decode(data);
   }
 
   private static KeyBackupRequest createKeyBackupRequest(Request requestData, RemoteAttestation remoteAttestation, String type) {
     byte[] clientKey   = remoteAttestation.getKeys().getClientKey();
     byte[] aad         = remoteAttestation.getRequestId();
 
-    AESCipher.AESEncryptedResult aesEncryptedResult = AESCipher.encrypt(clientKey, aad, requestData.toByteArray());
+    AESCipher.AESEncryptedResult aesEncryptedResult = AESCipher.encrypt(clientKey, aad, requestData.encode());
 
     return new KeyBackupRequest(aesEncryptedResult.aad, aesEncryptedResult.iv, aesEncryptedResult.data, aesEncryptedResult.mac, type);
   }
