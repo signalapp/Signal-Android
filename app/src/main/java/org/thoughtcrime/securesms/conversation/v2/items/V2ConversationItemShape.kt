@@ -102,17 +102,21 @@ class V2ConversationItemShape(
     previousMessage: MessageRecord?,
     isGroupThread: Boolean
   ): Boolean {
-    if (previousMessage == null ||
-      previousMessage.isUpdate ||
+    if (previousMessage == null) {
+      return true
+    }
+
+    val sharedChecks = previousMessage.isUpdate ||
       !DateUtils.isSameDay(currentMessage.timestamp, previousMessage.timestamp) ||
       !isWithinClusteringTime(currentMessage, previousMessage) ||
       currentMessage.isScheduled() ||
       currentMessage.fromRecipient != previousMessage.fromRecipient
-    ) {
-      return true
-    }
 
-    return isGroupThread || currentMessage.isSecure != previousMessage.isSecure
+    return if (isGroupThread) {
+      sharedChecks
+    } else {
+      sharedChecks || currentMessage.isSecure != previousMessage.isSecure
+    }
   }
 
   private fun isEndOfMessageCluster(
