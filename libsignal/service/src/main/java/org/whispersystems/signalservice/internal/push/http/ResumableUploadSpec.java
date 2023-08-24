@@ -1,12 +1,12 @@
 package org.whispersystems.signalservice.internal.push.http;
 
-import com.google.protobuf.ByteString;
-
-import org.signal.protos.resumableuploads.ResumableUploads;
+import org.signal.protos.resumableuploads.ResumableUpload;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+
+import okio.ByteString;
 
 public final class ResumableUploadSpec {
 
@@ -58,31 +58,31 @@ public final class ResumableUploadSpec {
   }
 
   public String serialize() {
-    ResumableUploads.ResumableUpload.Builder builder = ResumableUploads.ResumableUpload.newBuilder()
-                                                                                       .setSecretKey(ByteString.copyFrom(getSecretKey()))
-                                                                                       .setIv(ByteString.copyFrom(getIV()))
-                                                                                       .setTimeout(getExpirationTimestamp())
-                                                                                       .setCdnNumber(getCdnNumber())
-                                                                                       .setCdnKey(getCdnKey())
-                                                                                       .setLocation(getResumeLocation())
-                                                                                       .setTimeout(getExpirationTimestamp());
+    ResumableUpload.Builder builder = new ResumableUpload.Builder()
+                                                         .secretKey(ByteString.of(getSecretKey()))
+                                                         .iv(ByteString.of(getIV()))
+                                                         .timeout(getExpirationTimestamp())
+                                                         .cdnNumber(getCdnNumber())
+                                                         .cdnKey(getCdnKey())
+                                                         .location(getResumeLocation())
+                                                         .timeout(getExpirationTimestamp());
 
-    return Base64.encodeBytes(builder.build().toByteArray());
+    return Base64.encodeBytes(builder.build().encode());
   }
 
   public static ResumableUploadSpec deserialize(String serializedSpec) throws ResumeLocationInvalidException {
     if (serializedSpec == null) return null;
 
     try {
-      ResumableUploads.ResumableUpload resumableUpload = ResumableUploads.ResumableUpload.parseFrom(ByteString.copyFrom(Base64.decode(serializedSpec)));
+      ResumableUpload resumableUpload = ResumableUpload.ADAPTER.decode(Base64.decode(serializedSpec));
 
       return new ResumableUploadSpec(
-          resumableUpload.getSecretKey().toByteArray(),
-          resumableUpload.getIv().toByteArray(),
-          resumableUpload.getCdnKey(),
-          resumableUpload.getCdnNumber(),
-          resumableUpload.getLocation(),
-          resumableUpload.getTimeout()
+          resumableUpload.secretKey.toByteArray(),
+          resumableUpload.iv.toByteArray(),
+          resumableUpload.cdnKey,
+          resumableUpload.cdnNumber,
+          resumableUpload.location,
+          resumableUpload.timeout
       );
     } catch (IOException e) {
       throw new ResumeLocationInvalidException();

@@ -96,7 +96,7 @@ import org.whispersystems.signalservice.internal.push.GroupStaleDevices;
 import org.whispersystems.signalservice.internal.push.MismatchedDevices;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
-import org.whispersystems.signalservice.internal.push.ProvisioningProtos;
+import org.whispersystems.signalservice.internal.push.ProvisioningVersion;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse;
@@ -1522,7 +1522,7 @@ public class SignalServiceMessageSender {
       configurationMessage.setLinkPreviews(configuration.getLinkPreviews().get());
     }
 
-    configurationMessage.setProvisioningVersion(ProvisioningProtos.ProvisioningVersion.CURRENT_VALUE);
+    configurationMessage.setProvisioningVersion(ProvisioningVersion.CURRENT.getValue());
 
     return container.setSyncMessage(syncMessage.setConfiguration(configurationMessage)).build();
   }

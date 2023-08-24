@@ -27,7 +27,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
 import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
-import org.whispersystems.signalservice.internal.sticker.StickerProtos;
+import org.whispersystems.signalservice.internal.sticker.Pack;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.util.concurrent.FutureTransformers;
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
@@ -185,15 +185,15 @@ public class SignalServiceMessageReceiver {
 
     InputStream           cipherStream = AttachmentCipherInputStream.createForStickerData(manifestBytes, packKey);
 
-    StickerProtos.Pack                             pack     = StickerProtos.Pack.parseFrom(Util.readFullyAsBytes(cipherStream));
-    List<SignalServiceStickerManifest.StickerInfo> stickers = new ArrayList<>(pack.getStickersCount());
-    SignalServiceStickerManifest.StickerInfo       cover    = pack.hasCover() ? new SignalServiceStickerManifest.StickerInfo(pack.getCover().getId(), pack.getCover().getEmoji(), pack.getCover().getContentType())
-                                                                          : null;
+    Pack                                           pack     = Pack.ADAPTER.decode(Util.readFullyAsBytes(cipherStream));
+    List<SignalServiceStickerManifest.StickerInfo> stickers = new ArrayList<>(pack.stickers.size());
+    SignalServiceStickerManifest.StickerInfo       cover    = pack.cover != null ? new SignalServiceStickerManifest.StickerInfo(pack.cover.id, pack.cover.emoji, pack.cover.contentType)
+                                                                                 : null;
 
-    for (StickerProtos.Pack.Sticker sticker : pack.getStickersList()) {
-      stickers.add(new SignalServiceStickerManifest.StickerInfo(sticker.getId(), sticker.getEmoji(), sticker.getContentType()));
+    for (Pack.Sticker sticker : pack.stickers) {
+      stickers.add(new SignalServiceStickerManifest.StickerInfo(sticker.id, sticker.emoji, sticker.contentType));
     }
 
-    return new SignalServiceStickerManifest(pack.getTitle(), pack.getAuthor(), cover, stickers);
+    return new SignalServiceStickerManifest(pack.title, pack.author, cover, stickers);
   }
 }
