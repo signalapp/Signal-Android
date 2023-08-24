@@ -134,6 +134,40 @@ class AttachmentTableTest {
     highInfo.file.exists() assertIs true
   }
 
+  /**
+   * Given: Three pre-upload attachments with the same data but different transform properties (1x standard and 2x high).
+   *
+   * When inserting content of high pre-upload attachment.
+   *
+   * Then do not deduplicate with standard pre-upload attachment, but do deduplicate second high insert.
+   */
+  @Test
+  fun doNotDedupedFileIfUsedByAnotherAttachmentWithADifferentTransformProperties() {
+    // GIVEN
+    val uncompressData = byteArrayOf(1, 2, 3, 4, 5)
+    val blobUncompressed = BlobProvider.getInstance().forData(uncompressData).createForSingleSessionInMemory()
+
+    val standardQualityPreUpload = createAttachment(1, blobUncompressed, AttachmentTable.TransformProperties.empty())
+    val standardDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(standardQualityPreUpload)
+
+    // WHEN
+    val highQualityPreUpload = createAttachment(1, blobUncompressed, AttachmentTable.TransformProperties.forSentMediaQuality(Optional.empty(), SentMediaQuality.HIGH))
+    val highDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(highQualityPreUpload)
+
+    val secondHighQualityPreUpload = createAttachment(1, blobUncompressed, AttachmentTable.TransformProperties.forSentMediaQuality(Optional.empty(), SentMediaQuality.HIGH))
+    val secondHighDatabaseAttachment = SignalDatabase.attachments.insertAttachmentForPreUpload(secondHighQualityPreUpload)
+
+    // THEN
+    val standardInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(standardDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
+    val highInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(highDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
+    val secondHighInfo = SignalDatabase.attachments.getAttachmentDataFileInfo(secondHighDatabaseAttachment.attachmentId, AttachmentTable.DATA)!!
+
+    highInfo.file assertIsNot standardInfo.file
+    secondHighInfo.file assertIs highInfo.file
+    standardInfo.file.exists() assertIs true
+    highInfo.file.exists() assertIs true
+  }
+
   private fun createAttachment(id: Long, uri: Uri, transformProperties: AttachmentTable.TransformProperties): UriAttachment {
     return UriAttachmentBuilder.build(
       id,

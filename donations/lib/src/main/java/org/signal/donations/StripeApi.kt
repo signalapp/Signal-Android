@@ -14,7 +14,6 @@ import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import okio.ByteString
 import okio.ByteString.Companion.encodeUtf8
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
