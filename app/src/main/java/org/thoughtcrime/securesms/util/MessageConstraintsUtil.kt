@@ -12,9 +12,9 @@ import kotlin.time.Duration.Companion.milliseconds
  * have strict time limits.
  */
 object MessageConstraintsUtil {
-  private val RECEIVE_THRESHOLD = TimeUnit.DAYS.toMillis(2)
+  private val RECEIVE_THRESHOLD = TimeUnit.DAYS.toMillis(0)
 
-  private val REMOTE_DELETE_SEND_THRESHOLD = TimeUnit.HOURS.toMillis(3)
+  private val REMOTE_DELETE_SEND_THRESHOLD = TimeUnit.DAYS.toMillis(1)
   private val EDIT_SEND_THRESHOLD = TimeUnit.DAYS.toMillis(1)
 
   const val MAX_EDIT_COUNT = 10
