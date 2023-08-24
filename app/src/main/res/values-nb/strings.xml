@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -218,11 +217,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">Nei takk</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Fjern</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Vil du fjerne profilbildet?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Vil du fjerne gruppebildet?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Oppdater Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne versjonen av appen støttes ikke lenger. For å fortsette å sende og motta meldinger, oppdater til den nyeste versjonen.</string>
@@ -235,7 +229,7 @@
     <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>
     <string name="CommunicationActions_send_email">Send e-post</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">En mobilanrop er allerede i gang.</string>
-    <string name="CommunicationActions_start_voice_call">Vil du starte taleanrop?</string>
+    <string name="CommunicationActions_start_voice_call">Vil du foreta et taleanrop?</string>
     <string name="CommunicationActions_cancel">Avbryt</string>
     <string name="CommunicationActions_call">Ring</string>
     <string name="CommunicationActions_insecure_call">Usikker samtale</string>
@@ -255,9 +249,6 @@
     <string name="ContactsCursorLoader_groups">Grupper</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">Gruppemedlemmer</string>
-    <string name="ContactsCursorLoader_phone_number_search">Telefonnummer søk</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">Søk på brukernavn</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Mine storyer</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -296,7 +287,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Ikke sendt, trykk for detaljer</string>
     <string name="ConversationItem_error_partially_not_delivered">Delvis sendt, trykk for detaljer</string>
     <string name="ConversationItem_error_network_not_delivered">Sending feilet</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling mottatt. Trykk for å behandle.</string>
     <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
     <string name="ConversationItem_send_paused">Satt på pause</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Sending mislyktes, trykk for usikret reserveløsning</string>
@@ -333,15 +323,11 @@
     <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Send redigering</string>
-    <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
     <string name="ConversationActivity_compose_message">Skriv melding</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, det oppstod en feil under vedlegging av filen.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottaker er ikke et gyldig nummer eller e-post-adresse.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
     <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">Trykk her for å gjøre et gruppeanrop</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Det er ikke mulig å redigere SMS-meldinger</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Meldinger kan kun redigeres innen %1$d time etter at de ble sendt.</item>
@@ -365,7 +351,6 @@
     <string name="ConversationActivity_transport_signal">Signal-melding</string>
     <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Velg en kontakt</string>
-    <string name="ConversationActivity_unblock">Fjern blokkering</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrider maksimal størrelsesgrense for gjeldende meldingstype.</string>
     <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende meldinger til denne gruppen fordi du ikke lenger er medlem av den.</string>
@@ -389,8 +374,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-meldinger fordi det ikke er din standard SMS-app. Vil du endre dette i Android-innstillingene dine?</string>
-    <string name="ConversationActivity_yes">Ja</string>
     <string name="ConversationActivity_no">Nei</string>
     <string name="ConversationActivity_search_position">%1$d av %2$d</string>
     <string name="ConversationActivity_no_results">Ingen treff</string>
@@ -413,16 +396,6 @@
 
     <string name="ConversationActivity_error_sending_media">Kunne ikke sende media</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Rapportert som søppelpost og blokkért.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS-meldinger er for øyeblikket deaktivert. Du kan eksportere meldingene dine til en annen app.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMS-meldinger støttes ikke lenger i Signal. Du kan eksportere meldingene dine til en annen app.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Overfør SMS-meldingene</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS-meldinger er for øyeblikket deaktivert. Inviter %1$s til Signal for å fortsette samtalen her.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS-meldinger støttes ikke lenger i Signal. Inviter %1$s til Signal for å fortsette samtalen her.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -500,8 +473,6 @@
     <string name="ConversationFragment_not_now">Ikke nå</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Sikkerhetsnummeret for %1$s har endret seg</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Sikkerhetsnummeret for %1$s har endret seg, sannsynligvis fordi de har installert Signal på nytt eller byttet enhet. Trykk Bekreft for å bekrefte det nye sikkerhetsnummeret. Dette er valgfritt.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$s på</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Vil du blokkere forespørselen?</string>
     <!-- Dialog message for block group link join requests -->
@@ -600,12 +571,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Velg medlemmer</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Trykk og dra ned for å filtrere</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Slipp for å filtrere</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved lagring av profilbilde</string>
@@ -703,8 +668,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Pass på at enheten din er på og koblet til Internett på det tidspunktet meldingen er planlagt å sendes. Hvis ikke vil meldingen din sendes automatisk når enheten kobles til Internett.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Greit</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Slik aktiverer du planlagte meldinger:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Slik aktiverer du planlagte meldinger på nytt:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -1142,8 +1105,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å spille inn, slipp for å sende.</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS-meldinger støttes ikke lenger i Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Rediger melding</string>
 
@@ -1177,9 +1138,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkobling slått på</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Medier</string>
@@ -1239,7 +1197,6 @@
     <string name="Megaphones_get_started">Kom i gang</string>
     <string name="Megaphones_new_group">Ny gruppe</string>
     <string name="Megaphones_invite_friends">Inviter venner</string>
-    <string name="Megaphones_use_sms">Bruk SMS</string>
     <string name="Megaphones_chat_colors">Samtalefarger</string>
     <string name="Megaphones_add_a_profile_photo">Legg til et profilbilde</string>
 
@@ -1251,11 +1208,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Starter anropstjenesten Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Stopper Signal-tjenesten</string>
-    <string name="NotificationBarManager__decline_call">Avslå anropet</string>
-    <string name="NotificationBarManager__answer_call">Svar på anrop</string>
-    <string name="NotificationBarManager__end_call">Avslutt samtale</string>
     <string name="NotificationBarManager__cancel_call">Avbryt samtale</string>
-    <string name="NotificationBarManager__join_call">Bli med i samtale</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">Skru på Varsler?</string>
@@ -1656,8 +1609,6 @@
         <item quantity="other">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registrering - Hjelp ønskes til PIN for Android</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Bytt tastatur</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Opprett PIN-koden</string>
@@ -1735,7 +1686,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For å ringe %1$s, trenger Signal tilgang til kameraet</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Ringer…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppen er for stor til å ringe deltakerne.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Kobler til på nytt…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1854,8 +1804,6 @@
     <string name="WebRtcCallView__toggle_camera">Slå på/av kamera</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Slå på/av lyd</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Slå på/av anrop</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Avslutt samtale</string>
 
@@ -1916,7 +1864,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">En bekreftelseskode sendes til dette nummeret. Teleoperatøren kan belaste deg for dette.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du vil motta et taleanrop for å bekrefte dette nummeret.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">Er telefonnummeret ditt ovenfor korrekt?</string>
     <string name="RegistrationActivity_edit_number">Rediger nummer</string>
     <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play tjenester</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play-tjenester. Du kan fremdeles bruke Signal, men det kan oppføre seg ustabilit eller gi dårlig ytelse.\n\nHvis du ikke er en avansert bruker, ikke kjører en egeninstallert Android-fastvare, eller du mener at du har Google Play-tjenester installert, ber vi deg om å kontakte support@signal.org så vi kan hjelpe deg med feilsøking.</string>
@@ -1930,8 +1877,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen om %1$s minutter.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">En ukjent feil oppsto.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunne ikke sende deg bekreftelseskoden via SMS. Motta koden via et taleanrop i stedet.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1950,8 +1895,6 @@
         <item quantity="other">Du er nå %1$d steg unna fra å sende inn en feilsøkingslogg.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi må verifisere at du er et menneske.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal kunne ikke sende SMS-koden på grunn av en ekstern feil.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">Taleanrop</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1964,11 +1907,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komme i gang.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bruk koden som ble sendt til %1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pass på at din telefon har dekning for å kunne motta SMS eller samtaler.</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
     <string name="RegistrationActivity_country_code_description">Landskode</string>
-    <string name="RegistrationActivity_country_code_hint">Land</string>
     <string name="RegistrationActivity_call">Ring</string>
     <string name="RegistrationActivity_verification_code">Bekreftelseskode</string>
     <string name="RegistrationActivity_resend_code">Send koden på nytt</string>
@@ -1998,9 +1939,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Ingen resultater funnet for \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">Samtaler</string>
-    <string name="SearchFragment_header_contacts">Kontakter</string>
-    <string name="SearchFragment_header_messages">Meldinger</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2039,17 +1977,9 @@
     <string name="Slide_video">Video</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mottok ødelagt nøkkelutvekslingsmelding.
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mottatt melding med ny sikkerhetsnummer. Trykk for å behandle og vise.</string>
     <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s tilbakestilte sikker økt.</string>
     <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Denne meldingen kunne ikke behandles fordi den ble sendt fra en nyere versjon av Signal. Du kan spørre kontakten din om å sende denne meldingen igjen etter at du har oppdatert.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">Feil ved håndtering av innkommende melding.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Klistremerker</string>
@@ -2202,7 +2132,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopier eller del en brukerprofillenke</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">QR-koden du skannet er feilformatert. Prøv å skanne på nytt.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhetsnummer via…</string>
@@ -2236,12 +2165,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">Importering pågår</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Importerer tekstmeldinger</string>
-    <string name="ApplicationMigrationService_import_complete">Importering utført</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">Importering av systemdatabase er utført.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Trykk for å åpne.</string>
@@ -2286,7 +2209,6 @@
         <item quantity="one">%1$d samtale</item>
         <item quantity="other">%1$d samtaler</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
     <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
     <string name="MessageNotifier_locked_message">Låst melding</string>
     <string name="MessageNotifier_message_delivery_failed">Levering av melding mislyktes.</string>
@@ -2305,7 +2227,6 @@
     <string name="MessageNotifier_view_once_video">Vis en gang video</string>
     <string name="MessageNotifier_reply">Svar</string>
     <string name="MessageNotifier_signal_message">Signal-melding</string>
-    <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
     <string name="MessageNotifier_reacted_s_to_s">Reagerte med %1$s på «%2$s».</string>
@@ -2385,7 +2306,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">Enheten er ikke lenger registrert</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Denne enheten er ikke lenger registrert. Dette skyldes sannsynligvis at du registrerte telefonnummeret ditt på Signal med en annen enhet.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2502,8 +2422,6 @@
     <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Planlegg melding</string>
-    <string name="conversation_activity__from_sim_name">Fra %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__compose_description">Meldingsskriving</string>
@@ -2512,7 +2430,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå av/på hurtig kamera-vedleggsfunksjon</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og sende lyd vedlegg</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås opptak av lydmelding</string>
-    <string name="conversation_activity__enable_signal_for_sms">Bruk Signal for SMS</string>
     <string name="conversation_activity__message_could_not_be_sent">Meldingen kunne ikke sendes. Kontroller nettverksforbindelsen din og prøv igjen.</string>
 
     <!-- conversation_input_panel -->
@@ -2577,16 +2494,6 @@
     <string name="QuoteView_no_longer_available">Ikke lenger tilgjengelig</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">Pengegave for en venn</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth-tillatelse avslått</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Skru på tillatelsen for «Enheter i nærheten» for å bruke Bluetooth til å ta opp talemeldinger.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Åpne innstillingene</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Ikke nå</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
@@ -2701,17 +2608,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Ingenting funnet</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere tekstmeldinger som ligger på enheten til Signals krypterte database?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Forvalgt systemdatabase blir ikke endret på noen måte.</string>
-    <string name="database_migration_activity__skip">Hopp over</string>
-    <string name="database_migration_activity__import">Importer</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dette kan ta litt tid. Vær tålmodig. Vi varsler deg når importering er fullført.</string>
-    <string name="database_migration_activity__importing">IMPORTERER</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">Vis hele samtalen</string>
     <string name="load_more_header__loading">Laster inn</string>
 
     <!-- media_overview_activity -->
@@ -2783,7 +2680,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har sikker ende til ende-kryptering med %1$s, bør du sammenligne tallene ovenfor med tallene på vedkommendes enhet. Du kan også skanne koden på personens telefon. <a href=\"https://signal.org/redirect/safety-numbers\">Les mer.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">For å sikre ende-til-ende-kryptering med %1$s må dere sjekke om fargekortet og koden ovenfor matcher det som kommer opp på deres enhet. Sveip og prøv med en annen kombinasjon hvis de ikke matcher. Kun ett sett med fargekort og kode trenger å matche.</string>
     <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
@@ -2803,9 +2699,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">Ønsker du hjelp?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">Skjønner</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">Del sikkerhetsnummer</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skann QR-koden på kontaktens enhet.</string>
@@ -2847,7 +2740,6 @@
     <string name="AndroidManifest__linked_devices">Koblede enheter</string>
     <string name="AndroidManifest__invite_friends">Inviter venner</string>
     <string name="AndroidManifest_archived_conversations">Arkiverte samtaler</string>
-    <string name="AndroidManifest_remove_photo">Fjern bilde</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">Har du lest våre vanlige spørsmål ennå?</string>
@@ -3038,8 +2930,6 @@
     <string name="preferences__app_icon_notification_warning">Varslene vil fremdeles vise standardikonet og navnet til Signal.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Les mer</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Ikon for %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Bilde som viser hvor det nye appikonet blir vist.</string>
     <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
@@ -3096,7 +2986,6 @@
     <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
     <string name="preferences_advanced__always_relay_calls">Omdiriger alle samtaler</string>
-    <string name="preferences_app_protection__who_can">Hvem kan…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalinger</string>
     <string name="preferences_chats__chats">Samtaler</string>
@@ -3129,8 +3018,6 @@
     <string name="preferences_communication__category_sealed_sender">Forseglet Avsender</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat fra hvem som helst</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver forseglet avsender for innkommende meldinger fra avsendere og personer du ikke har delt profilen din med.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">Lær mer</string>
-    <string name="preferences_setup_a_username">Sette upp brukernavn</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Bruk proxy</string>
     <string name="preferences_off">Av</string>
@@ -3458,7 +3345,6 @@
     <string name="conversation__menu_format_text">Formater tekst</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">Utvid forgrunnsvindu</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Legg til i kontakter</string>
@@ -3496,8 +3382,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">Importer system-SMS</string>
-    <string name="reminder_header_sms_import_text">Trykk for å kopiere telefonens SMS-meldinger til Signals krypterte database.</string>
     <string name="reminder_header_push_title">Slå på Signal-meldinger og -samtaler</string>
     <string name="reminder_header_push_text">Oppgrader kommunikasjonsopplevelsen.</string>
     <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi jobber med å få tjenesten i gang igjen så fort som mulig.</string>
@@ -3648,17 +3532,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Pågående gruppesamtale i Signal</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
     <string name="ConversationListFragment_loading">Laster…</string>
     <string name="CallNotificationBuilder_connecting">Kobler til…</string>
     <string name="Permissions_permission_required">Tillatelse kreves</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal krever tillatelse fra systemet for å kunne sende SMS-meldinger, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «SMS».</string>
     <string name="Permissions_continue">Fortsett</string>
     <string name="Permissions_not_now">Ikke nå</string>
-    <string name="conversation_activity__enable_signal_messages">SLÅ PÅ SIGNAL-MELDINGER</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Flytter Signal-database</string>
-    <string name="PushDecryptJob_new_locked_message">Ny låst melding</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å vise ventende meldinger</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase for sikkerhetskopi</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sikkerhetskopier blir lagret på eksterne enheter og kryptert med passordfrasen nedenfor. Du må skrive inn denne passordfrasen for å kunne gjennopprette fra en sikkerhetskopi.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Du må ha denne passfrasen for å hente inn igjen en sikkerhetskopi.</string>
@@ -3719,8 +3598,6 @@
     <string name="RegistrationActivity_incorrect_code">Feil kode</string>
     <string name="BackupUtil_never">Aldri</string>
     <string name="BackupUtil_unknown">Ukjent</string>
-    <string name="preferences_app_protection__see_my_phone_number">Se mitt telefonnummer</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">Finn meg via telefonnummer</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefonnummer</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3734,10 +3611,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Telefonnummeret ditt vil være synlig for personer og grupper du sender meldinger til. Personer som har nummeret ditt i kontaktlisten på telefonen sin, vil også kunne se det på Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Alle</string>
-    <string name="PhoneNumberPrivacy_my_contacts">Mine kontakter</string>
     <string name="PhoneNumberPrivacy_nobody">Ingen</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">Telefonnummeret ditt vil være synlig for alle personer og grupper du sender meldinger til.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">Alle som har telefonnummeret ditt i kontaktene sine, vil se deg som en kontakt på Signal. Andre vil kunne finne deg i Søk.</string>
     <string name="preferences_app_protection__screen_lock">Skjermlås</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Signal tilgang med Android-skjermlås eller fingeravtrykk</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
@@ -4205,11 +4079,6 @@
     <string name="PaymentsRecoveryEntryFragment__next">Neste</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Ugyldig ord</string>
 
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">Vis</string>
-
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s sendte deg %2$s</string>
     <string name="UnreadPayments__d_new_payment_notifications">%1$d nye betalingsvarsler</string>
@@ -4544,7 +4413,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Kunne ikke finne kontakter-appen.</string>
     <string name="ConversationSettingsFragment__start_video_call">Start videosamtale</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start taleanrop</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Foreta et taleanrop</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Story</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4678,7 +4547,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Del</string>
@@ -4831,7 +4699,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">Gi penger for en venn</string>
 
     <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
-    <string name="Boost__one_time_contribution">Engangsbeløp</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Minimumsbeløpet du kan gi, er %1$s</string>
 
@@ -5276,8 +5143,6 @@
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">Reager på denne storyen</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">Svarer i privat melding til %1$s</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">Svar til %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
@@ -5525,8 +5390,6 @@
     <string name="ViewReceivedGiftSheet__not_now">Ikke nå</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Løser inn merket …</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Du kan løse inn merket ditt senere.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Du har gitt en pengegave til Signal på vegne av %1$s. Vedkommende vil få muligheten til å vise frem støtten på profilen sin.</string>
     <!-- Expired gift sheet title -->
@@ -5831,23 +5694,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal kommer ikke lenger til å støtte SMS</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal støtter ikke lenger SMS</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Det vil snart ikke være mulig å sende SMS-meldinger i Signal, fordi Signal-meldinger har ende-til-ende-kryptering som gir mer sikkerhet og personvern enn SMS-meldinger. Dette vil også gi oss muligheten til å gjøre Signals meldingsopplevelse enda bedre.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Det er ikke lenger mulig å sende SMS-meldinger i Signal, fordi Signal-meldinger har ende-til-ende-kryptering som gir mer sikkerhet og personvern enn SMS-meldinger. Dette vil også gi oss muligheten til å gjøre Signals meldingsopplevelse enda bedre.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Eksporter SMS-meldinger</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Minn meg på det senere</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Lær mer</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">SMS-støtten avvikles</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Ta det med ro, de krypterte meldingene på Signal vil fremdeles fungere.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Fortsett</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Eksporten er fullført</string>
     <!-- Button to continue to next screen -->
@@ -6056,15 +5906,11 @@
     <!-- Accessibility description for the video call button -->
     <string name="CallLogAdapter__start_a_video_call">Start videosamtale</string>
     <!-- Accessibility description for the voice call button -->
-    <string name="CallLogAdapter__start_a_voice_call">Start et taleanrop</string>
+    <string name="CallLogAdapter__start_a_voice_call">Foreta et taleanrop</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Videosamtale</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Bli med i samtalen</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Gå tilbake til samtalen</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Taleanrop</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6119,8 +5965,6 @@
         <item quantity="one">%1$d anrop slettet</item>
         <item quantity="other">%1$d anrop slettet</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Angre</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">Ingen anrop.</string>
     <!-- Shown during empty state -->

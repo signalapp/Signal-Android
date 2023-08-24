@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -218,11 +217,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">Не, благодаря</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Премахване</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Премахване на профилната снимка?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Премахване на груповата снимка?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Обновяване на Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Тази версия на приложението вече не е поддъражана. За да продължите да изпращате и получавате съобщения, обновете приложението до най-новата версия.</string>
@@ -255,9 +249,6 @@
     <string name="ContactsCursorLoader_groups">Групи</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">Членове на групата</string>
-    <string name="ContactsCursorLoader_phone_number_search">Търсене по телефонен номер</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">Намиране по потребителско име</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Моите истории</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -296,7 +287,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Не е изпратено, натиснете за повече информация</string>
     <string name="ConversationItem_error_partially_not_delivered">Частично изпратено, натиснете за повече информация</string>
     <string name="ConversationItem_error_network_not_delivered">Изпращането неуспешно</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получи се съобщение за обмяна на ключове, натисни, за да продължиш.</string>
     <string name="ConversationItem_group_action_left">%1$s напусна групата.</string>
     <string name="ConversationItem_send_paused">Изпращането задържано</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Неуспешно изпращане, натиснете за изпращане по несигурен начин</string>
@@ -333,15 +323,11 @@
     <string name="ConversationActivity_add_attachment">Прикачване на файл</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Изпращане на редакция</string>
-    <string name="ConversationActivity_select_contact_info">Посочи информация за контакта</string>
     <string name="ConversationActivity_compose_message">Ново съобщение</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">За съжаление, настъпи грешка при прикачването.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Получателят не е с валиден SMS или имейл!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Съобщението е празно!</string>
     <string name="ConversationActivity_group_members">Членове на групата</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">Натиснете тук, за да започнете групов разговор</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">SMS съобщенията не могат да се редактират</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Редакциите могат да се прилагат само в рамките на %1$d час от момента на изпращане на това съобщение.</item>
@@ -365,7 +351,6 @@
     <string name="ConversationActivity_transport_signal">Съобщение в Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Моля, избери контакт</string>
-    <string name="ConversationActivity_unblock">Отблокиране</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Размерът на прикачения файл надминава допустимия лимит за типа съобщение, който изпращате.</string>
     <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не може да изпращате съобщения на тази група, защото вече не сте неин член.</string>
@@ -389,8 +374,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal се нуждае от достъп до микрофона за записване на видеа.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да изпраща SMS/MMS съобщения, защото не е първо предназначена апликация за SMS. Желаете ли да се промени това във вашите Android настройки ?</string>
-    <string name="ConversationActivity_yes">Да</string>
     <string name="ConversationActivity_no">Не</string>
     <string name="ConversationActivity_search_position">%1$d от %2$d</string>
     <string name="ConversationActivity_no_results">Няма резултати</string>
@@ -413,16 +396,6 @@
 
     <string name="ConversationActivity_error_sending_media">Грешка при изпращане на медиен файл</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Потребителят е докладван за спам и блокиран.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS съобщенията в момента са деактивирани. Можете да експортирате съобщенията си в друго приложение на вашия телефон.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Signal вече не поддържа SMS съобщения. Можете да експортирате съобщенията си в друго приложение на вашия телефон.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Експорт на SMS съобщения</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS съобщенията в момента са деактивирани. Поканете %1$s в Signal, за да продължите разговора тук.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal вече не поддържа SMS съобщения. Поканете %1$s в Signal, за да продължите разговора тук.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -500,8 +473,6 @@
     <string name="ConversationFragment_not_now">Не сега</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Вашият номер за сигурност се промени с %1$s</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Вашият номер за сигурност се промени с%1$s, защото Signal е преинсталиран или устройството е сменено. Щракнете на Проверка, за да потвърдите новия номер за сигурност. Това не е задължително.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$s включ.</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Блокиране на заявката?</string>
     <!-- Dialog message for block group link join requests -->
@@ -600,12 +571,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Избери членове</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Дръпнете надолу за филтриране</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Отпуснете за филтриране</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профил</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Грешка при задаване на профилна снимка</string>
@@ -703,8 +668,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Когато изпращате насрочено съобщение, уверете се, че вашето устройство ще бъде включено и свързано с интернет по време на изпращането. Ако не, вашето съобщение ще бъде изпратено, когато устройството ви се свърже отново.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Добре</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">За да активирате насрочване на съобщения:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">За да активирате отново насрочване на съобщения:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -1142,8 +1105,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Задръжте за запис на глас, отпуснете за изпращане</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal вече не поддържа SMS съобщения.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Редактиране на съобщение</string>
 
@@ -1177,9 +1138,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">Връзката във фонов режим е активирана</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Медия</string>
@@ -1239,7 +1197,6 @@
     <string name="Megaphones_get_started">Да започваме</string>
     <string name="Megaphones_new_group">Нова група</string>
     <string name="Megaphones_invite_friends">Покани приятели</string>
-    <string name="Megaphones_use_sms">Ползвай SMS</string>
     <string name="Megaphones_chat_colors">Цветове на чата</string>
     <string name="Megaphones_add_a_profile_photo">Добавяне на профилна снимка</string>
 
@@ -1251,11 +1208,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Стартиране на услугата за разговори на Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Спиране на услугата за разговори на Signal</string>
-    <string name="NotificationBarManager__decline_call">Отхвърляне на обаждането</string>
-    <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
-    <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
     <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>
-    <string name="NotificationBarManager__join_call">Присъединете се към разговор</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">Включи известия?</string>
@@ -1656,8 +1609,6 @@
         <item quantity="other">Остават %1$d опити. Ако свършите опитите си, можете да създадете нов ПИН. Можете да се регистрирате и да използвате акаунта си, но ще загубите някои запазени настройки, като информация за вашия профил.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Регистрация за Signal - Необходима помощ за ПИН за Android</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Превключване на клавиатурата</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Създаване на ПИН</string>
@@ -1735,7 +1686,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да се обадите на %1$s, Signal се нуждае от достъп до вашата камера</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Обаждане</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е твърде голяма, за да звъннем на присъстващите.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Повторно свързване…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1854,8 +1804,6 @@
     <string name="WebRtcCallView__toggle_camera">Превключване на камера</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Превключване на тих режим</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Превключване на звънене</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Прекрати обаждането</string>
 
@@ -1916,7 +1864,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Ще бъде изпратен код за потвърждение до този номер. Възможно е да се прилагат тарифи на оператора.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Ще получите обаждане, за да потвърдите този номер.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">Телефонният ви номер по-горе правилен ли е?</string>
     <string name="RegistrationActivity_edit_number">Редакция на номер</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play Services не са налични</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">На това устройство няма Google Play Services. Пак можете да използвате Signal, но тази конфигурация може да доведе до влошена надеждност или производителност.\n\nАко не сте напреднали потребители, не използвате модифицирана версия на Android или смятате, че виждате това съобщение по погрешка, моля, свържете се със support@signal.org за помощ.</string>
@@ -1930,8 +1877,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Направихте прекалено много опити за регистриране на този номер. Моля, опитайте отново след %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Неуспешно свързване с услугата. Моля, проверете мрежовата връзка и опитайте отново.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">Възникна неочаквана грешка.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Не можахме да ви изпратим код за потвърждаване чрез SMS. Опитайте вместо това да получите кода чрез гласово повикване.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1950,8 +1895,6 @@
         <item quantity="other">Сега сте на %1$d стъпки от изпращането на дебъг лог.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Трябва да проверим дали сте човек.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal не можа да изпрати SMS с код поради външна грешка.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">Гласово обаждане</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1964,11 +1907,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Въведете телефонния си номер, за да започнете.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Въведете кода, който изпратихме на %1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Уверете се, че телефонът ви има обхват, за да можете да получите SMS или обаждане</string>
 
     <string name="RegistrationActivity_phone_number_description">Телефонен номер</string>
     <string name="RegistrationActivity_country_code_description">Код на държавата</string>
-    <string name="RegistrationActivity_country_code_hint">Държава</string>
     <string name="RegistrationActivity_call">Обаждане</string>
     <string name="RegistrationActivity_verification_code">Код за потвърждение</string>
     <string name="RegistrationActivity_resend_code">Изпращане на нов код</string>
@@ -1998,9 +1939,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Не са открити резултати за \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">Чатове</string>
-    <string name="SearchFragment_header_contacts">Контакти</string>
-    <string name="SearchFragment_header_messages">Съобщения</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2039,17 +1977,9 @@
     <string name="Slide_video">Видео</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Съобщението за обмяна на ключ е объркано!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Съобщението за обмяна на ключа е с грешна версия на протокола.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Получихте съобщение с нови числа за сигурност. Натиснете, за да ги видите и обработите.</string>
     <string name="SmsMessageRecord_secure_session_reset">Вие рестартирахте сигурната сесия.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s рестартира сигурната сесия.</string>
     <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Това съобщение не можа да бъде обработено, защото бе изпратено от по-нова версиа на Signal. Може да помолите Вашия контакт да изпрати съобщението отново след като актуализирате.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">Грешка при обработката на входящо съобщение.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Стикери</string>
@@ -2202,7 +2132,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копирайте или споделете линк към потребителско име</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal. Помолете го да я обнови, преди да сравните числата за сигурност.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашият контакт използва по-нова версия на Signal с несъвместим QR формат. Моля, обновете версията си, за да можете да сравните.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Сканираният QR код не представлява правилно форматирани числа за сигурност. Моля, опитайте да сканирате отново.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Споделяне на числа за сигурност през…</string>
@@ -2236,12 +2165,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">Извършва се внасяне</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Внасяне на текстови съобщения</string>
-    <string name="ApplicationMigrationService_import_complete">Внасянето завършено</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">Внасянето на системната база данни е завършено.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Натиснете за отворяне.</string>
@@ -2286,7 +2209,6 @@
         <item quantity="one">%1$d чат</item>
         <item quantity="other">%1$d чата</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
     <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
     <string name="MessageNotifier_locked_message">Заключено съобщение</string>
     <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението неуспешно.</string>
@@ -2305,7 +2227,6 @@
     <string name="MessageNotifier_view_once_video">Видео за еднократно гледане</string>
     <string name="MessageNotifier_reply">Отговори</string>
     <string name="MessageNotifier_signal_message">Съобщение в Signal</string>
-    <string name="MessageNotifier_unsecured_sms">Некриптиран SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Контакт</string>
     <string name="MessageNotifier_reacted_s_to_s">Реагира с %1$s на: \"%2$s\".</string>
@@ -2385,7 +2306,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">Устройството вече не е регистрирано.</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Това устройство вече не е регистрирано. Вероятно е така, защото сте регистрирали телефонния си номер за Signal на друго устройство.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2502,8 +2422,6 @@
     <string name="conversation_activity__type_message_sms_insecure">Некриптиран SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Некриптиран MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Насрочване на съобщение</string>
-    <string name="conversation_activity__from_sim_name">От %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Изпращане</string>
     <string name="conversation_activity__compose_description">Създаване на съобщение</string>
@@ -2512,7 +2430,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Затваряне/отваряне на чекмеджето за прикачване на файл от камера</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записване и изпращане на прикачено аудио</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Заключване на запис на прикачен файл с аудио</string>
-    <string name="conversation_activity__enable_signal_for_sms">Активиране на Signal за SMS-и</string>
     <string name="conversation_activity__message_could_not_be_sent">Съобщението не можа да бъде изпратено. Проверете връзката си и опитайте отново.</string>
 
     <!-- conversation_input_panel -->
@@ -2577,16 +2494,6 @@
     <string name="QuoteView_no_longer_available">Вече не е налично</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">Дарение за приятел</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Разрешението за Bluetooth е отказано</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Моля, активирайте разрешението за „Близки устройства“, за да използвате Bluetooth за записване на гласови съобщения.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Отваряне на настройките</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Не сега</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Превъртане надолу</string>
@@ -2701,17 +2608,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Няма нищо открито</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече съществуващите текстови съобщения в криптираната база данни на Signal?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системната база данни няма да бъде променена по никакъв начин.</string>
-    <string name="database_migration_activity__skip">Пропусни</string>
-    <string name="database_migration_activity__import">Внасяне</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Това може да отнеме малко време. Моля, за търпение, ще те уведомим, когато вносът е завършен.</string>
-    <string name="database_migration_activity__importing">ВНАСЯНЕ</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">Вижте целия чат</string>
     <string name="load_more_header__loading">Зареждане</string>
 
     <!-- media_overview_activity -->
@@ -2783,7 +2680,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да проверите сигурността на вашето криптиране от край до край с %1$s, сравнете числата по-горе с тяхното устройство. Можете също така да сканирате кода на другия телефон. <a href=\"https://signal.org/redirect/safety-numbers\">Научете повече.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">За да проверите сигурността на криптирането от край до край между вас и %1$s, напаснете цветната карта по-горе с устройството на другия потребител и сравнете цифрите. Ако не съвпадат, плъзнете и пробвайте другата двойка номера за сигурност. Достатъчно е една двойка да съвпадне.</string>
     <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
@@ -2803,9 +2699,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">Нужда от помощ?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">Ясно</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">Споделяне на числа за сигурност</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Сканирайте QR кода на устройството за контакт.</string>
@@ -2847,7 +2740,6 @@
     <string name="AndroidManifest__linked_devices">Свързани устройства</string>
     <string name="AndroidManifest__invite_friends">Поканване на приятели</string>
     <string name="AndroidManifest_archived_conversations">Архивирани чатове</string>
-    <string name="AndroidManifest_remove_photo">Премахване на снимката</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">Прочетохте ли вече нашите ЧЗВ?</string>
@@ -3038,8 +2930,6 @@
     <string name="preferences__app_icon_notification_warning">Известията винаги ще показват иконата и името на Signal по подразбиране.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Научете повече</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Икона за %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Графика, илюстрираща къде ще се вижда заместващата икона на приложението.</string>
     <string name="preferences__disable_pin">Деактивиране на ПИН</string>
@@ -3096,7 +2986,6 @@
     <string name="preferences_advanced__use_system_emoji">Използване на вградените emoji-та</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контакта Ви. Активирането ще намали качеството на връзката.</string>
     <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
-    <string name="preferences_app_protection__who_can">Кой може да…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Плащания</string>
     <string name="preferences_chats__chats">Чатове</string>
@@ -3129,8 +3018,6 @@
     <string name="preferences_communication__category_sealed_sender">Скрит изпращач</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Разреши от всеки</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Активиране на скрит изпращач за входящи съобщения от хора, които не са Ваши контакти, и хора, с които не сте споделяли своят профил.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">Научете повече</string>
-    <string name="preferences_setup_a_username">Настройте потребителско име</string>
     <string name="preferences_proxy">Прокси</string>
     <string name="preferences_use_proxy">Използвай прокси</string>
     <string name="preferences_off">Деактивирано</string>
@@ -3458,7 +3345,6 @@
     <string name="conversation__menu_format_text">Форматиране на текст</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">Разшири диалога</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавяне в контакти</string>
@@ -3496,8 +3382,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравняване с копирани</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">Внасяне на системните SMS-и</string>
-    <string name="reminder_header_sms_import_text">Натиснете, за да копирате SMS съобщенията от Вашия телефон в криптираната база данни на Signal.</string>
     <string name="reminder_header_push_title">Активирай Signal съобщения и обаждания</string>
     <string name="reminder_header_push_text">Обнови комуникацията си.</string>
     <string name="reminder_header_service_outage_text">Signal изпитва технически проблеми. Работим здраво, за да възстановим нормална операция възможно най-бързо.</string>
@@ -3648,17 +3532,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Текущо групово повикване в Signal</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
     <string name="ConversationListFragment_loading">Зареждане…</string>
     <string name="CallNotificationBuilder_connecting">Свързване…</string>
     <string name="Permissions_permission_required">Нужда от разрешение за достъп</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal се нуждае от достъп до SMS-те Ви, за да може да изпраща нови, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"SMS\".</string>
     <string name="Permissions_continue">Продължи</string>
     <string name="Permissions_not_now">Не сега</string>
-    <string name="conversation_activity__enable_signal_messages">АКТИВИРАНЕ НА SIGNAL СЪОБЩЕНИЯ</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Мигриране на базата данни на Signal</string>
-    <string name="PushDecryptJob_new_locked_message">Ново заключено съобщение</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">Отключете, за да прегледате новите съобщения</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Парола на архива</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Архивите ще бъдат запазени на външно хранилище и криптирани с паролата задена по-долу. Трябва да използвате същата парола за въстановяване от архива.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Трябва да имате тази парола, за да възстановите резервно копие.</string>
@@ -3719,8 +3598,6 @@
     <string name="RegistrationActivity_incorrect_code">Некоректен код</string>
     <string name="BackupUtil_never">Никога</string>
     <string name="BackupUtil_unknown">Непознат</string>
-    <string name="preferences_app_protection__see_my_phone_number">Виж телефонния номер</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">Намери ме по Телефонен номер</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Телефонен номер</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3734,10 +3611,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Вашият телефонен номер ще се вижда от хората и групите, на които пращате съобщения. Хората, които имат вашия номер в контактите на телефона си, ще го виждат и в Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Всички</string>
-    <string name="PhoneNumberPrivacy_my_contacts">Моите контакти</string>
     <string name="PhoneNumberPrivacy_nobody">Никой</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">Вашият телефонен номер ще бъде видим за всички хора и групи, на които изпращате съобщения.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">Всеки, който има вашия телефонен номер в контактите си, ще ви види като контакт в Signal. Другите ще могат да ви намерят в търсенето.</string>
     <string name="preferences_app_protection__screen_lock">Заключен екран</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Заключване на достъпа до Signal с вградените в Андроид заключен екран или отпечатък</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Време за активиране при неактивност</string>
@@ -4204,11 +4078,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">Дума %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">Напред</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Грешна дума</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">Преглед</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s ви изпрати %2$s</string>
@@ -4678,7 +4547,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">. %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Споделяне</string>
@@ -4831,7 +4699,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">Дарете за приятел</string>
 
     <string name="Boost__enter_custom_amount">Въведете индивидуална сума</string>
-    <string name="Boost__one_time_contribution">Еднократно дарение</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Минималната сума, която можете да дарите, е %1$s</string>
 
@@ -5276,8 +5143,6 @@
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">Реагирайте на тази история</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">Личен отговор до %1$s</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">Отговор до %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
@@ -5525,8 +5390,6 @@
     <string name="ViewReceivedGiftSheet__not_now">Не сега</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Осребряване на значка…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Можете да осребрите значката си по-късно.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Направихте дарение за Signal от името на %1$s. Ще им бъде дадена опцията да покажат своята подкрепа в профила си.</string>
     <!-- Expired gift sheet title -->
@@ -5831,23 +5694,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal вече няма да поддържа SMS</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal вече не поддържа SMS</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal скоро ще прекрати поддръжката за изпращане на SMS съобщения, тъй като съобщенията в Signal осигуряват криптиране от край до край и солидна поверителност, а с SMS съобщенията това не е възможно. Това също така ще ни позволи да подобрим потребителския опит със съобщения в Signal.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal прекрати поддръжката за изпращане на SMS съобщения, тъй като съобщенията в Signal осигуряват криптиране от край до край и солидна поверителност, а с SMS съобщенията това не е възможно. Това също така ще ни позволи да подобрим потребителския опит със съобщения в Signal.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Експорт на SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Напомнете ми по-късно</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Научете повече</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">Поддръжката на SMS отпада</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Не се притеснявайте, криптираните съобщения от Signal ще продължат да работят.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Продължете</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Експортът завърши</string>
     <!-- Button to continue to next screen -->
@@ -6061,10 +5911,6 @@
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Видео обаждане</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Присъединете се към разговор</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Връщане към разговора</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Гласово обаждане</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6119,8 +5965,6 @@
         <item quantity="one">%1$d изтрито повикване</item>
         <item quantity="other">%1$d изтрити повиквания</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Върни</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">Няма повиквания.</string>
     <!-- Shown during empty state -->

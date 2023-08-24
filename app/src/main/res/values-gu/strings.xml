@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -218,11 +217,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">ના આભાર</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">દૂર કરો</string>
-    <string name="ClearProfileActivity_remove_profile_photo">પ્રોફાઇલ ફોટો દૂર કરવો છે?</string>
-    <string name="ClearProfileActivity_remove_group_photo">ગ્રુપ ફોટો દૂર કરવો છે?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">સિગ્નલ ને અપડેટ કરો</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">એપ્લિકેશનનું આ વર્ઝન હવે સમર્થિત નથી. મેસેજ મોકલવા અને પ્રાપ્ત કરવાનું ચાલુ રાખવા માટે, નવીનતમ વર્ઝન પર અપડેટ કરો.</string>
@@ -255,9 +249,6 @@
     <string name="ContactsCursorLoader_groups">ગ્રુપ</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">ગ્રુપના સભ્યો</string>
-    <string name="ContactsCursorLoader_phone_number_search">ફોન નંબર શોધો</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">ઉપયોગકર્તા નામ દ્વારા શોધો</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">મારી સ્ટોરીઝ</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -296,7 +287,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">મોકલ્યો નથી, વિગતો માટે ટેપ કરો</string>
     <string name="ConversationItem_error_partially_not_delivered">આંશિક રીતે મોકલેલ, વિગતો માટે ટેપ કરો</string>
     <string name="ConversationItem_error_network_not_delivered">મોકલવામાં નિષ્ફળ</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">કી વિનિમય મેસેજ મળ્યો, પ્રક્રિયા કરવા માટે ટેપ કરો.</string>
     <string name="ConversationItem_group_action_left">%1$s એ ગ્રુપ છોડયુ.</string>
     <string name="ConversationItem_send_paused">મેસેજ મોકવાનુ અટકાવવામાં આવ્યુ છે</string>
     <string name="ConversationItem_click_to_approve_unencrypted">મોકલવામાં નિષ્ફળ, અસુરક્ષિત ફૉલબેક માટે ટેપ કરો</string>
@@ -333,15 +323,11 @@
     <string name="ConversationActivity_add_attachment">જોડાણ ઉમેરો</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">ફેરફાર કરેલો મેસેજ મોકલો</string>
-    <string name="ConversationActivity_select_contact_info">સંપર્ક માહિતી પસંદ કરો</string>
     <string name="ConversationActivity_compose_message">મેસેજ લખો</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">માફ કરશો, તમારું જોડાણ સેટ કરવામાં ભૂલ આવી હતી.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">પ્રાપ્તકર્તા માન્ય SMS અથવા ઇમેઇલ સરનામું નથી!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">મેસેજ ખાલી છે!</string>
     <string name="ConversationActivity_group_members">ગ્રુપ ના સભ્યો</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">ગ્રુપ કૉલ પ્રારંભ કરવા માટે અહીં ટેપ કરો</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">SMS મેસેજ ફેરફાર કરવામાં અસમર્થ</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">તમે આ મેસેજ મોકલ્યો ત્યારથી માત્ર %1$d કલાકની અંદર ફેરફારો લાગુ કરી શકાય છે.</item>
@@ -365,7 +351,6 @@
     <string name="ConversationActivity_transport_signal">Signal મેસેજ</string>
     <string name="ConversationActivity_lets_switch_to_signal">ચાલો સિગ્નલ પર સ્વિચ કરીએ %1$s</string>
     <string name="ConversationActivity_specify_recipient">કૃપા કરીને સંપર્ક પસંદ કરો</string>
-    <string name="ConversationActivity_unblock">અનબ્લૉક કરો</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">તમે મોકલો છો તે મેસેજ ના પ્રકાર માટે જોડાણ કદની મર્યાદાથી વધુ છે.</string>
     <string name="ConversationActivity_unable_to_record_audio">ઓડિયો રેકોર્ડ કરવામાં અસમર્થ</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">તમે આ જૂથને મેસેજ મોકલી શકતા નથી કારણ કે તમે હવે સભ્ય નથી.</string>
@@ -389,8 +374,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">વિડિયો રેકોર્ડ કરવા માટે Signal ને માઇક્રોફોન પરવાનગીની જરૂર છે.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal SMS/MMS મેસેજ મોકલી શકતું નથી કારણ કે તે તમારી ડિફોલ્ટ SMS એપ્લિકેશન નથી. શું તમે તેને તમારા Android સેટિંગ્સ માં બદલવા માંગો છો?</string>
-    <string name="ConversationActivity_yes">હા</string>
     <string name="ConversationActivity_no">ના</string>
     <string name="ConversationActivity_search_position">%1$dની%2$d</string>
     <string name="ConversationActivity_no_results">કોઈ પરિણામ નથી</string>
@@ -413,16 +396,6 @@
 
     <string name="ConversationActivity_error_sending_media">મીડિયા મોકલવામાં ભૂલ</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">સ્પામ તરીકે રિપોર્ટ કર્યું અને બ્લૉક કર્યા.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS મેસેજિંગ હાલમાં બંધ છે. તમે તમારા મેસેજને તમારા ફોન પરની અન્ય ઍપમાં એક્સપોર્ટ કરી શકો છો.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Signalમાં હવે SMS મેસેજિંગ સમર્થિત નથી. તમે તમારા મેસેજને તમારા ફોન પરની અન્ય ઍપમાં એક્સપોર્ટ કરી શકો છો.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">SMS મેસેજ એક્સપોર્ટ કરો</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS મેસેજિંગ હાલમાં બંધ છે. વાતચીત અહીં રાખવા માટે %1$s ને Signal પર આમંત્રિત કરો.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signalમાં હવે SMS મેસેજિંગ સમર્થિત નથી. વાતચીત અહીં રાખવા માટે %1$s ને Signal પર આમંત્રિત કરો.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -500,8 +473,6 @@
     <string name="ConversationFragment_not_now">અત્યારે નહીં</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s સાથેનો તમારો સલામતી નંબર બદલાયો છે</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%1$s સાથેનો તમારો સલામતી નંબર બદલાયો છે, સંભવિત કારણ કે તેઓએ સિગ્નલ ફરીથી ઇન્સ્ટોલ કર્યું અથવા ડિવાઇસ બદલ્યુ છે.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$s ચાલુ</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">વિનંતી બ્લૉક કરવી છે?</string>
     <!-- Dialog message for block group link join requests -->
@@ -600,12 +571,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">સભ્યો પસંદ કરો</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">ફિલ્ટર કરવા માટે નીચે ખેંચો</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">ફિલ્ટર કરવા માટે છોડો</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">પ્રોફાઇલ</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">પ્રોફાઇલ ફોટો સેટ કરવામાં ભૂલ</string>
@@ -703,8 +668,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">જ્યારે તમે શેડ્યૂલ કરેલો મેસેજ મોકલો છો, ત્યારે ખાતરી કરો કે મોકલવાના સમયે તમારું ડિવાઇસ ચાલુ હશે અને ઇન્ટરનેટ સાથે જોડાયેલ હશે. જો ન હોય, તો તમારું ડિવાઇસ ફરીથી કનેક્ટ થશે ત્યારે તમારો મેસેજ મોકલવામાં આવશે.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">બરાબર</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">મેસેજ શેડ્યૂલિંગને સક્ષમ કરવા માટે:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">મેસેજ શેડ્યૂલિંગને ફરીથી સક્ષમ કરવા માટે:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -1142,8 +1105,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">વૉઈસ મેસેજ રેકોર્ડ કરવા દબાવી રાખો, મોકલવા માટે છોડો</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signalમાં હવે SMS મેસેજિંગ સમર્થિત નથી.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">મેસેજમાં ફેરફાર કરો</string>
 
@@ -1177,9 +1138,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">બેકગ્રાઉંડ કનેક્શન સક્ષમ કર્યું</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">વાયરલેસ પ્રોવાઈડર MMS સેટિંગ્સ વાંચવામાં ભૂલ</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">મીડિયા</string>
@@ -1239,7 +1197,6 @@
     <string name="Megaphones_get_started">શરૂ કરો</string>
     <string name="Megaphones_new_group">નવું ગ્રુપ</string>
     <string name="Megaphones_invite_friends">મિત્રોને આમંત્રિત કરો</string>
-    <string name="Megaphones_use_sms">SMS નો ઉપયોગ કરો</string>
     <string name="Megaphones_chat_colors">ચેટ કલર</string>
     <string name="Megaphones_add_a_profile_photo">કોઈ પ્રોફાઇલ ફોટો ઉમેરો</string>
 
@@ -1251,11 +1208,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Signal કૉલ સર્વિસ શરૂ કરીએ છીએ</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal કોલ સેવા બંધ કરી રહ્યા છીએ</string>
-    <string name="NotificationBarManager__decline_call">કૉલ નકારો</string>
-    <string name="NotificationBarManager__answer_call">કૉલનો જવાબ આપો</string>
-    <string name="NotificationBarManager__end_call">કૉલ નો અંત કરો</string>
     <string name="NotificationBarManager__cancel_call">કૉલ ને રદ કરો</string>
-    <string name="NotificationBarManager__join_call">કૉલમાં જોડાઓ</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">સૂચનાઓ ચાલુ કરવી છે?</string>
@@ -1656,8 +1609,6 @@
         <item quantity="other">તમારી પાસે %1$d પ્રયાસ બાકી છે. જો તમે પ્રયત્નોનો અંત લાવો છો, તો તમે નવો PIN બનાવી શકો છો. તમે તમારા એકાઉન્ટ રજીસ્ટર અને ઉપયોગ કરી શકો છો પરંતુ તમે તમારી પ્રોફાઇલ માહિતી જેવી કેટલીક સાચવેલી સેટિંગ્સ ગુમાવશો.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal  રજીસ્ટ્રેશન- Android માટે પિન સાથે સહાયની જરૂર છે</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">કીબોર્ડ સ્વિચ કરો</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">તમારો PIN બનાવો</string>
@@ -1735,7 +1686,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">કૉલ કરવા માટે %1$s, Signal ને તમારા માઇક્રોફોન અને કૅમેરાની ઍક્સેસની જરૂર છે.</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">કોલિંગ…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">સહભાગીઓને રિંગ કરવા માટે ગ્રુપ બહુ મોટું છે.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">ફરીથી કનેક્ટ કરી રહ્યાં છીએ…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1854,8 +1804,6 @@
     <string name="WebRtcCallView__toggle_camera">કૅમેરા ચાલુ-બંધ કરો</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">મ્યૂટ ચાલુ-બંધ કરો</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">રિંગ ચાલુ-બંધ કરો</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">કૉલ પૂરો કરો</string>
 
@@ -1916,7 +1864,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">આ નંબર પર એક વેરિફિકેશન કોડ મોકલવામાં આવશે. કેરિયર ચાર્જ લાગી શકે છે.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">આ નંબરની ચકાસણી કરવા માટે તમને એક કૉલ આવશે.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">શું તમારો ઉપર જણાવેલો ફોન નંબર બરાબર છે?</string>
     <string name="RegistrationActivity_edit_number">નંબરમાં ફેરફાર કરો</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play Services ખૂટે છે</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">આ ડિવાઇસ માં Google Play Services ખૂટે છે. તમે હજી પણ Signal નો ઉપયોગ કરી શકો છો, પરંતુ આ પદ્ધતિનું પરિણામ વિશ્વસનીયતા અથવા પ્રભાવમાં ઘટાડો થઈ શકે છે.\n\nજો તમે અદ્યતન વપરાશકર્તા નથી, તો પછીની Android ROM ચલાવી રહ્યાં નથી, અથવા માનો છો કે તમે આ ત્રુટિથી જોયા છો, કૃપા કરીને સહાય મુશ્કેલીનિવારણ માટે support@signal.org નો સંપર્ક કરો.</string>
@@ -1930,8 +1877,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">આ નંબરને રજિસ્ટર કરવા માટે તમે ઘણા બધા પ્રયત્નો કરી લીધા છે. કૃપા કરીને %1$sમાં ફરી પ્રયાસ કરો.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">સેવાથી કનેક્ટ કરવામાં અસમર્થ. કૃપા કરીને નેટવર્ક કનેક્શન તપાસો અને ફરીથી પ્રયાસ કરો.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">એક અનપેક્ષિત ભૂલ આવી.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">અમે તમને SMS દ્વારા ચકાસણી કોડ મોકલી શક્યાં નથી. તેના બદલે વૉઇસ કૉલ દ્વારા તમારો કોડ મેળવવાનો પ્રયાસ કરો.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1950,8 +1895,6 @@
         <item quantity="other">તમે હવે ડિબગ લૉગ સબમિટ કરવાથી %1$d પગથિયા દૂર છો.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">તમારે પુષ્ટિ કરવાની જરૂર છે કે તમે માનવ છો.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">એક બાહ્ય નિષ્ફળતાને કારણે Signal SMS કોડ ન મોકલી શક્યું.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">વૉઈસ કૉલ</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1964,11 +1907,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">શરુ કરવા માટે તમારો ફોન નંબર દાખલ કરો.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s અમે મોકલ્યો કોડ દાખલ કરો</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ખાતરી કરો કે તમારા ફોન પર તમારા SMS અથવા કૉલ પ્રાપ્ત કરવા માટે સેલ્યુલર Signal છે</string>
 
     <string name="RegistrationActivity_phone_number_description">ફોન નંબર</string>
     <string name="RegistrationActivity_country_code_description">દેશનો કોડ</string>
-    <string name="RegistrationActivity_country_code_hint">દેશ</string>
     <string name="RegistrationActivity_call">કૉલ</string>
     <string name="RegistrationActivity_verification_code">ચકાસણી કોડ</string>
     <string name="RegistrationActivity_resend_code">કોડ ફરીથી મોકલો</string>
@@ -1998,9 +1939,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' માટે કોઈ પરિણામ મળ્યું નથી</string>
-    <string name="SearchFragment_header_conversations">ચેટ</string>
-    <string name="SearchFragment_header_contacts">સંપર્કો</string>
-    <string name="SearchFragment_header_messages">મેસેજ</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2039,17 +1977,9 @@
     <string name="Slide_video">વિડિયો</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">કરપ્ટ થયેલ કી મેસેજ અદલાબદલી!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        અમાન્ય પ્રોટોકોલ વર્ઝન માટે કી વિનિમય મેસેજ મળ્યો.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">નવા સલામતી નંબર સાથે મેસેજ મળ્યો. પ્રક્રિયા કરવા અને જોવા માટે ટેપ કરો.</string>
     <string name="SmsMessageRecord_secure_session_reset">તમે સુરક્ષિત સત્ર ફરીથી સેટ કરો.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s સુરક્ષિત સત્ર ફરીથી સેટ કરો.</string>
     <string name="SmsMessageRecord_duplicate_message">નકલી મેસેજ.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">આ મેસેજ ની પ્રક્રિયા કરી શકાઈ નથી કારણ કે તે Signal ના નવા વર્ઝન થી મોકલવામાં આવ્યો છે. તમે અપડેટ કર્યા પછી આ મેસેજ ફરીથી મોકલવા માટે તમારા સંપર્કને કહી શકો છો.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">આવતા મેસેજને સંભાળવામાં ભૂલ.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">સ્ટીકરો</string>
@@ -2202,7 +2132,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">યુઝરનેમ લિંક કૉપી કરો અથવા શેર કરો</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">તમારો સંપર્ક Signal નું જૂનું વર્ઝન ચલાવી રહ્યું છે. કૃપા કરીને તમારો સલામતી નંબર ચકાસતા પહેલા અપડેટ કરવા માટે કહો.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">તમારો સંપર્ક અસંગત QR કોડ ફોર્મેટ સાથે Signalનું નવું વર્ઝન ચલાવી રહ્યું છે. કૃપા કરીને તુલના કરવા માટે અપડેટ કરો.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">સ્કેન કરેલો QR કોડ યોગ્ય રીતે ફોર્મેટ થયેલ સલામતી નંબર ચકાસણી કોડ નથી. કૃપા કરીને ફરીથી સ્કેન કરવાનો પ્રયાસ કરો.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">સલામતી નંબર શેર કરો દ્વારા…</string>
@@ -2236,12 +2165,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">નોટિફિકેશન મ્યૂટ કરો</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">ઇમ્પોર્ટ ચાલુ છે</string>
-    <string name="ApplicationMigrationService_importing_text_messages">ટેક્સ્ટ મેસેજ ઇમ્પોર્ટ કરી રહ્યું છે</string>
-    <string name="ApplicationMigrationService_import_complete">ઇમ્પોર્ટ પૂર્ણ</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">સિસ્ટમ ડેટાબેઝ ઇમ્પોર્ટ પૂર્ણ.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">ખોલવા માટે ટચ કરો.</string>
@@ -2286,7 +2209,6 @@
         <item quantity="one">%1$d ચેટ</item>
         <item quantity="other">%1$d ચેટ</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d ચેટમાં %1$d નવા મેસેજ</string>
     <string name="MessageNotifier_most_recent_from_s">%1$s: થી તાજેતરનાં</string>
     <string name="MessageNotifier_locked_message">લૉક કરેલો મેસેજ</string>
     <string name="MessageNotifier_message_delivery_failed">મેસેજ ડિલિવરી નિષ્ફળ થયું.</string>
@@ -2305,7 +2227,6 @@
     <string name="MessageNotifier_view_once_video">એકવાર વિડિયો જુઓ</string>
     <string name="MessageNotifier_reply">જવાબ</string>
     <string name="MessageNotifier_signal_message">Signal મેસેજ</string>
-    <string name="MessageNotifier_unsecured_sms">અસુરક્ષિત SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">સંપર્ક</string>
     <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" પર %1$s પ્રતિક્રિયા આપી.</string>
@@ -2385,7 +2306,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">ડિવાઇસ હવે રજીસ્ટર નથી</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">આ ડિવાઇસ હવે રજિસ્ટર્ડ નથી. આ સંભવ છે કારણ કે તમે તમારા ફોન નંબરને Signal સાથે કોઈ બીજા ડિવાઇસ પર રજિસ્ટર કરાવ્યો છે.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2502,8 +2422,6 @@
     <string name="conversation_activity__type_message_sms_insecure">અસુરક્ષિત SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">અસુરક્ષિત MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">મેસેજ શેડ્યૂલ કરો</string>
-    <string name="conversation_activity__from_sim_name">%1$sમાંથી</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">મોકલો</string>
     <string name="conversation_activity__compose_description">મેસેજ બનાવો</string>
@@ -2512,7 +2430,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">ક્વિક કેમેરા જોડાણ ડ્રોઅરને ટોગલ કરો</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">રેકોર્ડ કરો અને ઓડિયો જોડાણ મોકલો</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ઓડિયો જોડાણનું લૉક રેકોર્ડિંગ</string>
-    <string name="conversation_activity__enable_signal_for_sms">SMS માટે Signal સક્ષમ કરો</string>
     <string name="conversation_activity__message_could_not_be_sent">મેસેજ મોકલી શકાયો નથી. તમારું કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
 
     <!-- conversation_input_panel -->
@@ -2577,16 +2494,6 @@
     <string name="QuoteView_no_longer_available">હવે ઉપલબ્ધ નથી</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">મિત્ર માટે દાન</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">બ્લુટુથ પરવાનગી નકારવામાં આવી</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">કૃપા કરીને વૉઇસ મેસેજ રેકોર્ડ કરવા માટે બ્લૂટૂથનો ઉપયોગ કરવા માટે \"નજીકના ડિવાઇસ\" પરવાનગીને સક્ષમ કરો.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">સેટિંગ્સ ખોલો</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">અત્યારે નહીં</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">નીચે સ્ક્રોલ કરો</string>
@@ -2701,17 +2608,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">કાંઈ મળ્યું નહીં</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">શું તમે તમારા હાલના ટેક્સ્ટ મેસેજ ને Signal ના એન્ક્રિપ્ટેડ ડેટાબેઝમાં આયાત કરવા માંગો છો?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ડિફોલ્ટ સિસ્ટમ ડેટાબેઝ કોઈપણ રીતે ફેરફાર અથવા બદલાશે નહીં.</string>
-    <string name="database_migration_activity__skip">અવગણો</string>
-    <string name="database_migration_activity__import">ઇમ્પોર્ટ</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">આમાં થોડો સમય લાગી શકે. કૃપા કરીને ધૈર્ય રાખો, જ્યારે ઇમ્પોર્ટ પૂર્ણ થાય ત્યારે અમે તમને સૂચિત કરીશું.</string>
-    <string name="database_migration_activity__importing">ઇમ્પોર્ટ થાય છે</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">સંપૂર્ણ ચેટ જુઓ</string>
     <string name="load_more_header__loading">લોડ કરી રહ્યું છે</string>
 
     <!-- media_overview_activity -->
@@ -2783,7 +2680,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s સાથે તમારા એન્ડ-ટુ-એન્ડ એન્ક્રિપ્શનની સુરક્ષાની ખાતરી કરવા માટે, ઉપર દર્શાવેલ નંબર તેમના ડિવાઇસ સાથે સરખાવો. તમે તેમના ફોન પર કોડ સ્કેન પણ કરી શકો છો. <a href=\"https://signal.org/redirect/safety-numbers\">વધુ જાણો.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s સાથે તમારા એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્શનની સુરક્ષાની ખાતરી કરવા માટે, ઉપર દર્શાવેલ કલર કાર્ડને તેમના ડિવાઇસ સાથે મેચ કરો અને નંબરની સાથે સરખાવો. જો આ મેચ ન થતાં હોય, તો સ્વાઇપ કરો અને સેફ્ટી નંબરોની બીજી જોડી અજમાવી જુઓ. ફક્ત એક જ જોડી મેચ કરવાની જરૂર છે.</string>
     <string name="verify_display_fragment__tap_to_scan">સ્કેન કરવા માટે ટેપ કરો</string>
@@ -2803,9 +2699,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">મદદ જોઈએ છે?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">સમજાઈ ગયું</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">સલામતી નંબર શેર કરો</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">તમારા સંપર્કના ડિવાઇસ પર QR કોડ સ્કેન કરો.</string>
@@ -2847,7 +2740,6 @@
     <string name="AndroidManifest__linked_devices">લિંક થયેલ ડિવાઇસ</string>
     <string name="AndroidManifest__invite_friends">મિત્રોને આમંત્રિત કરો</string>
     <string name="AndroidManifest_archived_conversations">આર્કાઇવ કરેલી ચેટ</string>
-    <string name="AndroidManifest_remove_photo">ફોટો દૂર કરો</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">શું તમે હજી સુધી અમારા FAQ વાંચ્યા છે?</string>
@@ -3038,8 +2930,6 @@
     <string name="preferences__app_icon_notification_warning">નોટિફિકેશન હંમેશા ડિફોલ્ટ Signal આઇકન અને નામ પ્રદર્શિત કરશે.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">વધુ જાણો</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">%1$s માટે આઇકન</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">રિપ્લેસમેન્ટ ઍપ આઇકન ક્યાં દેખાશે તે દર્શાવતું ગ્રાફિક.</string>
     <string name="preferences__disable_pin">PIN અક્ષમ કરો</string>
@@ -3096,7 +2986,6 @@
     <string name="preferences_advanced__use_system_emoji">સિસ્ટમ ઇમોજીનો ઉપયોગ કરો</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">તમારા સંપર્કમાં તમારું IP સરનામું જણાવવાનું ટાળવા માટે Signal સર્વર દ્વારા બધા કૉલ્સ રિલે કરો. સક્ષમ કરવાથી કૉલની ગુણવત્તામાં ઘટાડો થશે.</string>
     <string name="preferences_advanced__always_relay_calls">હંમેશા રિલે કૉલ્સ</string>
-    <string name="preferences_app_protection__who_can">કોણ કરી શકે…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">પેમેન્ટ્સ</string>
     <string name="preferences_chats__chats">ચેટ</string>
@@ -3129,8 +3018,6 @@
     <string name="preferences_communication__category_sealed_sender">સીલ કરી મોકલનાર</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">કોઈની પાસેથી મંજૂરી આપો</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">બિન-સંપર્કો અને જેની સાથે તમે તમારી પ્રોફાઇલ શેર કરી નથી તેવા લોકો તરફથી આવતા મેસેજ માટે સીલ કરેલા મોકલનાર સક્ષમ કરો.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">વધુ શીખો</string>
-    <string name="preferences_setup_a_username">વપરાશકર્તા નામ સેટઅપ કરો</string>
     <string name="preferences_proxy">પ્રોક્સી</string>
     <string name="preferences_use_proxy">પ્રોક્સીનો ઉપયોગ કરો</string>
     <string name="preferences_off">બંધ</string>
@@ -3458,7 +3345,6 @@
     <string name="conversation__menu_format_text">ટેક્સ્ટ ફોર્મેટ કરો</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">પોપઅપ વિસ્તૃત કરો</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">સંપર્કોમાં ઉમેરો</string>
@@ -3496,8 +3382,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">ક્લિપબોર્ડ સાથે તુલના કરો</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">સિસ્ટમ SMS ઇમ્પોર્ટ કરો</string>
-    <string name="reminder_header_sms_import_text">તમારા ફોનના SMS મેસેજ ને Signal ના એન્ક્રિપ્ટેડ ડેટાબેસમાં નકલ કરવા માટે ટેપ કરો.</string>
     <string name="reminder_header_push_title">Signal મેસેજ અને કૉલ્સ સક્ષમ કરો</string>
     <string name="reminder_header_push_text">તમારા સંદેશાવ્યવહારનો અનુભવ અપગ્રેડ કરો.</string>
     <string name="reminder_header_service_outage_text">Signal તકનીકી મુશ્કેલીઓ અનુભવી રહ્યું છે. અમે શક્ય તેટલી ઝડપથી સેવાને રિસ્ટોર કરવા માટે સખત મહેનત કરી રહ્યા છીએ.</string>
@@ -3648,17 +3532,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">ચાલુ Signal ગ્રૂપ કૉલ</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">પરિવહન ચિહ્ન</string>
     <string name="ConversationListFragment_loading">લોડ કરી રહ્યું છે</string>
     <string name="CallNotificationBuilder_connecting">કનેક્ટ કરી રહ્યું છે…</string>
     <string name="Permissions_permission_required">પરવાનગી જરૂરી છે</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS મોકલવા માટે Signal ને SMS ની પરવાનગીની જરૂર હોય છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"SMS\" સક્ષમ કરો.</string>
     <string name="Permissions_continue">ચાલુ રાખો</string>
     <string name="Permissions_not_now">અત્યારે નહીં</string>
-    <string name="conversation_activity__enable_signal_messages">Signal મેસેજ ને સક્ષમ કરો</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">માઈગે્ટ Signal ડેટાબેસ</string>
-    <string name="PushDecryptJob_new_locked_message">નવો લૉક મેસેજ</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">બાકી મેસેજ જોવા માટે અનલૉક કરો</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">બેકઅપ પાસફ્રેઝ</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">બૅકઅપ બાહ્ય સ્ટોરેજ માં સાચવવામાં આવશે અને નીચે પાસફ્રેઝ થી એન્ક્રિપ્ટ થશે. બેકઅપને રિસ્ટોર કરવા માટે તમારી પાસે આ પાસફ્રેઝ હોવો આવશ્યક છે.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">બૅકઅપને રિસ્ટોર કરવા માટે તમારી પાસે આ પાસફ્રેઝ હોવો આવશ્યક છે.</string>
@@ -3719,8 +3598,6 @@
     <string name="RegistrationActivity_incorrect_code">ખોટો કોડ</string>
     <string name="BackupUtil_never">ક્યારેય નહિ</string>
     <string name="BackupUtil_unknown">અજાણ્યું</string>
-    <string name="preferences_app_protection__see_my_phone_number">મારો ફોન નંબર જુઓ</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">ફોન નંબર દ્વારા મને શોધો</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ફોન નંબર</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3734,10 +3611,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">તમારો ફોન નંબર એ લોકો અને ગ્રૂપને દેખાશે જેમને તમે મેસેજ કરો છો. જે લોકોના ફોન સંપર્કોમાં તમારો નંબર હશે તેઓ પણ તેને Signal પર જોશે.</string>
     <string name="PhoneNumberPrivacy_everyone">બધા</string>
-    <string name="PhoneNumberPrivacy_my_contacts">મારા સંપર્કો</string>
     <string name="PhoneNumberPrivacy_nobody">કોઈ નથી</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">તમારો ફોન નંબર તે બધા લોકો અને ગ્રુપને દેખાશે જે તમે મેસેજ કરે છે.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">કોઈપણ કે જેમના સંપર્કમાં તમારો ફોન નંબર છે તેઓ તમને Signal પર સંપર્ક તરીકે જોશે. અન્ય લોકો તમને સર્ચમાં શોધી શકશે.</string>
     <string name="preferences_app_protection__screen_lock">સ્ક્રીન લૉક</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android સ્ક્રીન લૉક અથવા ફિંગરપ્રિન્ટથી Signal ઍક્સેસને લૉક કરો</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">સ્ક્રીન લૉક નિષ્ક્રિયતાનો સમય સમાપ્ત</string>
@@ -4204,11 +4078,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">શબ્દ %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">આગળ</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">અમાન્ય શબ્દ</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">વ્યૂ</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s એ તમને %2$s મોકલ્યું</string>
@@ -4678,7 +4547,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">શેર કરો</string>
@@ -4831,7 +4699,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">મિત્ર માટે દાન આપો</string>
 
     <string name="Boost__enter_custom_amount">કસ્ટમ રકમ દાખલ કરો</string>
-    <string name="Boost__one_time_contribution">એક-વખતનું યોગદાન</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">તમે જે ઓછામાં ઓછી રકમ દાન કરી શકો છો તે છે %1$s</string>
 
@@ -5276,8 +5143,6 @@
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">આ સ્ટોરી પર પ્રતિક્રિયા આપો</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">%1$sને ખાનગી રીતે જવાબ અપાશે</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">%1$sને જવાબ આપો</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
@@ -5525,8 +5390,6 @@
     <string name="ViewReceivedGiftSheet__not_now">અત્યારે નહીં</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">બૅજ રિડિમ થઈ રહ્યું છે…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">તમે તમારું બૅજ પછી રિડિમ કરી શકો છો.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">તમે %1$s વતી Signalને દાન આપ્યું છે. તેમને તેમની પ્રોફાઇલ પર તેમનો સપોર્ટ બતાવવાનો વિકલ્પ આપવામાં આવશે.</string>
     <!-- Expired gift sheet title -->
@@ -5831,23 +5694,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal હવે SMSને સપોર્ટ કરશે નહીં</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal હવે SMSને સપોર્ટ કરતું નથી</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal ટૂંક સમયમાં SMS મેસેજ મોકલવા માટેના સમર્થનને દૂર કરશે કારણ કે Signal મેસેજ એન્ડ-ટુ-એન્ડ એન્ક્રિપ્શન અને મજબૂત ગોપનીયતા પ્રદાન કરે છે જે SMS મેસેજ પ્રદાન કરતા નથી. આ અમને Signal મેસેજિંગ અનુભવને સુધારવા માટે પણ અનુકૂળતા આપશે.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signalએ SMS મેસેજ મોકલવા માટેના સમર્થનને દૂર કર્યું છે કારણ કે Signal મેસેજ એન્ડ-ટુ-એન્ડ એન્ક્રિપ્શન અને મજબૂત ગોપનીયતા પ્રદાન કરે છે જે SMS મેસેજ પ્રદાન કરતા નથી. આ અમને Signal મેસેજિંગ અનુભવને સુધારવા માટે પણ અનુકૂળતા આપશે.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">SMS એક્સપોર્ટ કરો</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">મને પછી યાદ કરાવો</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">વધુ જાણો</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">SMS સપોર્ટ બંધ થઈ રહ્યો છે</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">ચિંતા કરશો નહીં, એન્ક્રિપ્ટેડ Signal મેસેજ તો પણ કામ કરતા રહેશે.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">ચાલુ રાખો</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">એક્સપોર્ટ પૂર્ણ</string>
     <!-- Button to continue to next screen -->
@@ -6061,10 +5911,6 @@
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">વીડિયો કૉલ</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">કૉલમાં જોડાઓ</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">કૉલ પર પાછા જાઓ</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">વૉઈસ કૉલ</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6119,8 +5965,6 @@
         <item quantity="one">%1$d કૉલ ડિલીટ કર્યો</item>
         <item quantity="other">%1$d કૉલ્સ ડિલીટ કર્યા</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">પૂર્વવત્ કરો</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">કોઈ કૉલ નથી.</string>
     <!-- Shown during empty state -->
