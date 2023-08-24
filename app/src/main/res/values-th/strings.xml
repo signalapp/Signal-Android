@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">อาจมีค่าบริการจากผู้ให้บริการโทรศัพท์ หมายเลขที่คุณกำลังโทรหาไม่ได้ลงทะเบียนกับ Signal การโทรนี้จะทำผ่านผู้ให้บริการโทรศัพท์ของคุณ ไม่ใช่ผ่านอินเทอร์เน็ต</string>
     <string name="CommunicationActions_cant_join_call">ไม่สามารถเข้าร่วมการโทรได้</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">ลิงก์การโทรนี้ไม่สามารถใช้งานได้แล้ว</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">ลิงก์ไม่ถูกรูปแบบ</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">นี่ไม่ใช่ลิงก์การโทรที่ถูกต้อง ตรวจสอบให้แน่ใจว่าลิงก์ทั้งหมดครบถ้วนและถูกต้องก่อนที่จะพยายามเข้าร่วม</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">สามารถแก้ไขข้อความนี้ได้ภายใน %1$d ชั่วโมงนับจากเวลาที่คุณส่ง</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">สามารถแก้ไขข้อความนี้ได้ %1$d ครั้งเท่านั้น</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">ผู้รับไม่ถูกต้อง</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d สมาชิก</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">เราสังเกตว่าการแจ้งเตือนดูล่าช้ากว่าปกติ คุณต้องการส่งบันทึกดีบักหรือไม่</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">บันทึกดีบักจะช่วยให้เราสามารถตรวจสอบและแก้ไขปัญหาได้ โดยที่ในบันทึกจะไม่มีข้อมูลที่ใช้ระบุตัวตน</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">การแจ้งเตือนอาจล่าช้าเนื่องจากการเพิ่มประสิทธิภาพแบตเตอรี่</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">คุณสามารถปิดใช้งานการเพิ่มประสิทธิภาพแบตเตอรี่สำหรับแอป Signal เพื่อป้องกันไม่ให้การแจ้งเตือนข้อความความล่าช้าได้</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">ดำเนินการต่อ</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">ปิด</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">คำเชิญเข้ากลุ่มที่รอตอบกลับ</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">เปิดการตั้งค่า</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ไม่ใช่ตอนนี้</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">อนุมัติคำขอ %1$d รายการใช่หรือไม่</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">อนุมัติทั้งหมด</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">ผู้ใช้ %1$d คนจะถูกเพิ่มให้เข้าร่วมการโทรนี้</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">ปฏิเสธคำขอ %1$d รายการใช่หรือไม่</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">ผู้ใช้ %1$d คนจะไม่ถูกเพิ่มให้เข้าร่วมการโทรนี้</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">ปฏิเสธทั้งหมด</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">ผู้ใช้รออยู่ %1$d คน</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d คน</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">คำขอเข้าร่วมถูกปฏิเสธ</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">คำขอเข้าร่วมการโทรของคุณถูกปฏิเสธ</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">ถูกลบออกจากการโทร</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">มีผู้ใช้ลบคุณออกจากการโทรนี้</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">โทร Signal</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
     <string name="WebRtcCallView__joining">กำลังเข้าร่วม…</string>
     <string name="WebRtcCallView__disconnected">เลิกเชื่อมต่อแล้ว</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">ลิงก์การโทร Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">ผู้ใช้ที่เข้าร่วมการโทรนี้ผ่านลิงก์จะเห็นชื่อ รูปภาพ และหมายเลขโทรศัพท์ของคุณ</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">กำลังรออนุมัติให้เข้าร่วม…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal จะส่งเสียงเรียก %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal จะส่งเสียงเรียก %1$s และ %2$s</string>
@@ -2677,7 +2742,7 @@
     <string name="message_details_recipient_header__read_by">อ่านโดย</string>
     <string name="message_details_recipient_header__not_sent">ไม่ได้ส่ง</string>
     <string name="message_details_recipient_header__viewed">เห็นโดย</string>
-    <string name="message_details_recipient_header__skipped">ข้ามแล้ว</string>
+    <string name="message_details_recipient_header__skipped">ส่งไม่สำเร็จ</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">การส่งล้มเหลว</string>
@@ -2729,6 +2794,14 @@
         <item>การบริจาคและโล่</item>
         <item>ส่งออก SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">การส่งรายงานบันทึกดีบักสำหรับ Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">การแจ้งเตือนล่าช้า</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">ส่ง</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">ไม่ ขอบคุณ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">เสียงเรียกเข้า</string>
     <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
     <string name="preferences_notifications__priority">ความสำคัญ</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">แก้ไขปัญหาเกี่ยวกับการแจ้งเตือน</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">รีเฟรช</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Insights</string>
-    <string name="InsightsDashboardFragment__title">Insights</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">โปรโตคอลของ Signal ปกป้อง %1$d%% ของข้อความส่งออกของคุณโดยอัตโนมัติมาอย่างต่อเนื่องเป็นเวลา %2$d วัน แชทระหว่างผู้ใช้ Signal จะถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทางเสมอ</string>
-    <string name="InsightsDashboardFragment__spread_the_word">กระจ่ายข่าว</string>
-    <string name="InsightsDashboardFragment__not_enough_data">ข้อมูลไม่พอ</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">เปอร์เซ็นต์ข้อมูล insights ของคุณถูกคำนวณจากข้อความส่งออกที่ไม่ได้ลบตัวเองหรือถูกลบภายใน %1$d วันที่ผ่านมา</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">เริ่มต้นแชท</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">เริ่มต้นสื่อสารอย่างปลอดภัยและเปิดใช้งานคุณสมบัติใหม่ ๆ ที่มีความสามารถเหนือกว่าข้อความ SMS ที่ไม่ได้เข้ารหัส ด้วยการชวนผู้ติดต่อให้มาใช้ Signal กันมากขึ้น</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">สถิติเหล่านี้ถูกรวบรวมบนอุปกรณ์ของคุณ และมีแต่คุณที่เห็นข้อมูลเหล่านี้ ข้อมูลเหล่านี้จะไม่ถูกส่งไปที่ไหน</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">ข้อความเข้ารหัส</string>
-    <string name="InsightsDashboardFragment__cancel">ยกเลิก</string>
-    <string name="InsightsDashboardFragment__send">ส่ง</string>
-    <string name="InsightsModalFragment__title">แนะนำ Insights</string>
-    <string name="InsightsModalFragment__description">ค้นพบว่ามีกี่ข้อความที่คุณส่งออกอย่างปลอดภัย และเชิญให้ผู้ติดต่อรายใหม่เข้าร่วม Signal อย่างรวดเร็วเพื่อเพิ่มเปอร์เซ็นต์การใช้ Signal ของคุณ</string>
-    <string name="InsightsModalFragment__view_insights">ดู Insights</string>
-
-    <string name="FirstInviteReminder__title">เชิญมาใช้ Signal</string>
-    <string name="FirstInviteReminder__description">คุณสามารถเพิ่มจำนวนของข้อความเข้ารหัสที่คุณส่งโดย %1$d%%</string>
-    <string name="SecondInviteReminder__title">Boost เพื่อเติมพลังให้ Signal</string>
-    <string name="SecondInviteReminder__description">เชิญ %1$s</string>
-    <string name="InsightsReminder__view_insights">ดู Insights</string>
-    <string name="InsightsReminder__invite">เชิญ</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">ลิงก์การโทร</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">เริ่มโทรวิดีโอ</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">เริ่มการโทรด้วยเสียง</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">ไมค์เปิดอยู่</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">ไมค์ปิดอยู่</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">ลำโพงเปิดอยู่</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">ลำโพงปิดอยู่</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">ปุ่มถ่ายภาพ</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">สร้างลิงก์การโทร</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">แชร์ลิงก์สำหรับการโทร Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">ใช้ลิงก์นี้เพื่อเข้าร่วมการโทรของ Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">ข้อมูลการโทร</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">ลบ %1$s ออกจากการโทรใช่หรือไม่</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">ลบ</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">บล็อกจากการโทร</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">พบข้อผิดพลาดของเครือข่าย โปรดลองอีกครั้ง</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">ต้องการเข้าร่วม…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">+%1$d คำขอ</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">คำขอเข้าร่วมการโทรนี้</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">ผู้ใช้รออยู่ %1$d คน</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">ปฏิเสธ</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">อนุมัติ</string>
 
     <!-- EOF -->
 </resources>

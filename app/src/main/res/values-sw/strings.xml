@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Huenda utatozwa gharama za mtoa huduma. Nambari unayopiga haijasajiliwa katika Signal. Simu hii itapigwa kupitia mtoa huduma wako wa simu wala si mtandaoni.</string>
     <string name="CommunicationActions_cant_join_call">Huwezi kujiunga kwenye simu</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Kiungo cha simu hii hakitumiki tena.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Kiungo Si Sahihi</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Hiki si kiungo sahihi cha simu. Hakikisha kiungo chote kimekamilika na ni sahihi kabla hujajaribu kujiunga.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Uhariri unaweza kufanywa ndani ya saa %1$d kutoka muda uliotuma ujumbe huu.</item>
         <item quantity="other">Uhariri unaweza kufanywa ndani ya masaa %1$d kutoka muda uliotuma ujumbe huu.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Badiliko %1$d tu linaweza kufanywa kwenye ujumbe huu.</item>
+        <item quantity="other">Mabadiliko %1$d tu yanaweza kufanywa kwenye ujumbe huu.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Mpokeaji sio sahihi!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">Mwanachama %1$d</item>
         <item quantity="other">Wanachama %1$d</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Tumegundua kuwa arifa zinacheleweshwa. Wasilisha kumbukumbu za utatuzi?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Kumbukumbu za utatuzi zinatusaidia kutambua na kurekebisha tatizo, na hazina maelezo ya utambulisho.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Arifa zinaweza kuchelewesha kutokana na uboreshaji wa betri</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Unaweza kuzima kipengele cha uboreshaji wa betri kwa Signal ili kuhakikisha kuwa arifa za ujumbe hazichelewi.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Endelea</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Tupilia mbali</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Mialiko ya kikundi inasubiri</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">Fungua mipangilio</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Sio sasa</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Umeidhinisha ombi %1$d?</item>
+        <item quantity="other">Umeidhinisha maombi %1$d?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Wakubalie wote</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">Mtu %1$d ataongezwa kwenye simu.</item>
+        <item quantity="other">Watu %1$d wataongezwa kwenye simu.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Kataa ombi %1$d?</item>
+        <item quantity="other">Kataa maombi %1$d?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">Mtu %1$d hataongezwa kwenye simu.</item>
+        <item quantity="other">Watu %1$d hawataongezwa kwenye simu.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Wakatalie wote</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">Mtu %1$d anasubiri</item>
+        <item quantity="other">Watu %1$d wanasubiri</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">mtu %1$d</item>
+        <item quantity="other">watu %1$d</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Ombi la kujiunga limekataliwa</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Ombi lako la kujiunga na simu hii limekataliwa.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Ameondolewa kwenye simu</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Mtu amekuondoa kwenye simu.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Simu ya Signal</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">Inaunganisha upya…</string>
     <string name="WebRtcCallView__joining">Inajiunga…</string>
     <string name="WebRtcCallView__disconnected">Tenganisha</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Kiungo cha simu ya Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Yeyote atakayejiunga kwenye simu hii kupitia kiungo ataona jina, picha na nambari yako ya simu.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Unasubiri kuruhusiwa…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal itampigia %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal itawapigia %1$s na %2$s</string>
@@ -2757,7 +2829,7 @@
     <string name="message_details_recipient_header__read_by">Umesomwa na</string>
     <string name="message_details_recipient_header__not_sent">Haujatumwa</string>
     <string name="message_details_recipient_header__viewed">Umetazamwa na</string>
-    <string name="message_details_recipient_header__skipped">Imerukwa</string>
+    <string name="message_details_recipient_header__skipped">Haijasomwa</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Imeshindwa kutuma</string>
@@ -2809,6 +2881,14 @@
         <item>Michango &amp; Beji</item>
         <item>Kuhamisha SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Kutuma Ombi la Kumbukumbu za Utatuzi za Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Arifa zinazochelewa</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Wasilisha</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Hapana nashukuru</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ujumbe huu</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">Mlio wa simu</string>
     <string name="preferences_chats__message_text_size">ukubwa wa maandishi ya ujumbe</string>
     <string name="preferences_notifications__priority">Kipaumbele</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Arifa za utatuzi</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Kukwepa udhibiti</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Fanyiza upya</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Ufahamu</string>
-    <string name="InsightsDashboardFragment__title">Ufahamu</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokali ya Signal imeilinda kiotomatiki %1$d%% ya jumbe zako zinazotoka katika siku %2$d zilizopita. Magumzo baina ya watumiaji wa Signal yanasimbwa kwa uficho.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Sambaza habari</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Data haitoshi</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Asilimia ya Ufahamu wako inahesabiwa kulingana na jumbe zilizotumwa kwa siku %1$d zilizopita ambazo hazijatoweka wala kufutwa.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Anzisha gumzo</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Anza kuwasiliana kwa usalama na uwezeshe vipengele vipya ambavyo vinazidi matarajio ya ujumbe mfupi usiosimbwa kwa kualika wawasiliani zaidi kujiunga na Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Takwimu hizi zimetolewa ndani ya kifaa chako na zinaonekana na wewe pekee. Kamwe hazisambazwi kokote.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Jumbe zilizosimbwa</string>
-    <string name="InsightsDashboardFragment__cancel">Ghairi</string>
-    <string name="InsightsDashboardFragment__send">Tuma</string>
-    <string name="InsightsModalFragment__title">Kuwasilisha Ufahamu</string>
-    <string name="InsightsModalFragment__description">Pata kujua ni jumbe ngapi ulizotuma zilitumwa salama, halafu alika wawasiliani wapya upesi ili kuongeza asilimia yako ya Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Tazama Ufahamu</string>
-
-    <string name="FirstInviteReminder__title">Alika kwenye Signal</string>
-    <string name="FirstInviteReminder__description">Unaweza kuongeza nambari ya jumbe zilizosimbwa unazotuma kwa %1$d %%</string>
-    <string name="SecondInviteReminder__title">Ongeza hadhi ya Signal yako</string>
-    <string name="SecondInviteReminder__description">Alika %1$s</string>
-    <string name="InsightsReminder__view_insights">Tazama Ufahamu</string>
-    <string name="InsightsReminder__invite">Alika</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Kiungo cha simu</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Piga simu ya video</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Anzisha simu ya sauti</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Washa mic</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Zima mic</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Kipaza sauti kimewashwa</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Kipaza sauti kimezimwa</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Kitufe cha Kupiga Picha</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">Unda Kiungo cha Simu</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Shiriki kiungo cha simu ya Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Tumia kiungo hiki ili kujiunga na simu ya Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Maelezo ya simu</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Muondoe %1$s kutoka kwenye simu?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Ondoa</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Zuia kutoka kwenye simu</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Hitilafu ya mtandao imetokea. Tafadhali jaribu tena.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Angependa kujiunga…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">Ombi %1$d+</item>
+        <item quantity="other">Maombi %1$d+</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Maombi ya kujiunga na simu hii</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">Mtu %1$d anasubiri</item>
+        <item quantity="other">Watu %1$d wanasubiri</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Ghairi</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Idhinisha</string>
 
     <!-- EOF -->
 </resources>

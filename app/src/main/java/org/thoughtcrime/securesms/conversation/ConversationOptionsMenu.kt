@@ -117,7 +117,6 @@ internal object ConversationOptionsMenu {
           if (hasActiveGroupCall) {
             hideMenuItem(menu, R.id.menu_video_secure)
           }
-          callback.showGroupCallingTooltip()
         }
         menuInflater.inflate(R.menu.conversation_group_options, menu)
         if (!recipient.isPushGroup) {
@@ -189,10 +188,6 @@ internal object ConversationOptionsMenu {
           item.isVisible = yes && !isInBubble
         }
       })
-
-      if (threadId == -1L) {
-        hideMenuItem(menu, R.id.menu_view_media)
-      }
 
       menu.findItem(R.id.menu_format_text_submenu).subMenu?.clearHeader()
       menu.findItem(R.id.edittext_bold).applyTitleSpan(MessageStyler.boldStyle())
@@ -301,7 +296,6 @@ internal object ConversationOptionsMenu {
     fun handleGoHome()
     fun showExpiring(recipient: Recipient)
     fun clearExpiring()
-    fun showGroupCallingTooltip()
     fun handleFormatText(@IdRes id: Int)
   }
 }

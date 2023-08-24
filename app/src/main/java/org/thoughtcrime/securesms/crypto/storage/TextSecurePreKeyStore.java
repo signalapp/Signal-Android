@@ -10,12 +10,13 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyStore;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.whispersystems.signalservice.api.SignalServicePreKeyStore;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.List;
 
-public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
+public class TextSecurePreKeyStore implements SignalServicePreKeyStore, SignedPreKeyStore {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(TextSecurePreKeyStore.class);
@@ -86,5 +87,15 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
   @Override
   public void removeSignedPreKey(int signedPreKeyId) {
     SignalDatabase.signedPreKeys().delete(accountId, signedPreKeyId);
+  }
+
+  @Override
+  public void markAllOneTimeEcPreKeysStaleIfNecessary(long staleTime) {
+    SignalDatabase.oneTimePreKeys().markAllStaleIfNecessary(accountId, staleTime);
+  }
+
+  @Override
+  public void deleteAllStaleOneTimeEcPreKeys(long threshold, int minCount) {
+    SignalDatabase.oneTimePreKeys().deleteAllStaleBefore(accountId, threshold, minCount);
   }
 }

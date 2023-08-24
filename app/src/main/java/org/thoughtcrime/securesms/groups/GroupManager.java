@@ -169,7 +169,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
   {
     try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      edit.ejectMember(recipient.requireServiceId(), false, true, true);
+      edit.ejectMember(recipient.requireAci(), false, true, true);
       Log.i(TAG, "Member removed from group " + groupId);
     }
   }
@@ -319,13 +319,13 @@ public final class GroupManager {
     GroupTable.V2GroupProperties groupProperties = SignalDatabase.groups().requireGroup(groupId).requireV2GroupProperties();
     Recipient                    recipient       = Recipient.resolved(recipientId);
 
-    if (groupProperties.getBannedMembers().contains(recipient.requireServiceId().uuid())) {
+    if (groupProperties.getBannedMembers().contains(recipient.requireServiceId())) {
       Log.i(TAG, "Attempt to ban already banned recipient: " + recipientId);
       return;
     }
 
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.ban(recipient.requireServiceId().uuid());
+      editor.ban(recipient.requireServiceId());
     }
   }
 
@@ -336,7 +336,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, IOException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.unban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId().uuid()));
+      editor.unban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId()));
     }
   }
 

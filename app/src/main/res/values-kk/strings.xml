@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Оператор ақы алуы мүмкін. Сіз қоңырау шалып жатқан нөмір Signal-да тіркелмеген. Бұл қоңырау интернет арқылы емес, мобильдік операторыңыз арқылы жасалады.</string>
     <string name="CommunicationActions_cant_join_call">Қоңырауға қосылу мүмкін емес</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Бұл қоңырау сілтемесі енді жарамды емес.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Сілтеме жарамсыз</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Бұл жарамсыз қоңырау сілтемесі. Қоңырауға қосылмас бұрын, сілтеменің дұрыс екеніне көз жеткізіңіз.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Бұл хатты жіберген соң, %1$d сағат ішінде өзгерістерді қолдануға болады.</item>
         <item quantity="other">Бұл хатты жіберген соң, %1$d сағат ішінде өзгерістерді қолдануға болады.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Бұл хатқа тек %1$d өзгеріс енгізуге болады.</item>
+        <item quantity="other">Бұл хатқа тек %1$d өзгеріс енгізуге болады.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Алушы дұрыс емес!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">%1$d топ мүшесі</item>
         <item quantity="other">%1$d топ мүшесі</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Хабарландырулар кешіктіріліп жатқанын байқадық. Ақауларды түзету журналын жіберу керек пе?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Ақауларды түзету журналдары диагностика жасап, ақауларды түзетуге мүмкіндік береді және онда жеке басты анықтайтын ақпарат болмайды.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Батареяны оңтайландыру процестеріне байланысты хабарландырулар аздап кешігуі мүмкін</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Хабарландырулар кешікпеуі үшін, Signal үшін батареяны оңтайландыру процестерін өшіріп қоюыңызға болады.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Жалғастыру</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Жабу</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Әлі қабылданбаған шақырулар</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">Параметрлерді ашу</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Кейін</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">%1$d өтінішті мақұлдау керек пе?</item>
+        <item quantity="other">%1$d өтінішті мақұлдау керек пе?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Барлығын мақұлдау</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">Қоңырауға %1$d адам қосылады.</item>
+        <item quantity="other">Қоңырауға %1$d адам қосылады.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">%1$d өтінішті қабылдамау керек пе?</item>
+        <item quantity="other">%1$d өтінішті қабылдамау керек пе?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">Қоңырауға %1$d адам қосылмайды.</item>
+        <item quantity="other">Қоңырауға %1$d адам қосылмайды.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Ешбірін қабылдамау</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d адам күтіп тұр</item>
+        <item quantity="other">%1$d адам күтіп тұр</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d адам</item>
+        <item quantity="other">%1$d адам</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Қосылуға өтініш қабылданбады</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Бұл қоңырауға қосылуға өтінішіңіз қабылданбады.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Қоңыраудан шығарылды</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Біреу сізді қоңыраудан шығарып тастады.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal қоңырауы</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">Қайта жалғануда…</string>
     <string name="WebRtcCallView__joining">Қосылуда…</string>
     <string name="WebRtcCallView__disconnected">Disconnected</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal қоңырау сілтемесі</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Осы қоңырауға сілтеме арқылы қосылған кез келген адам сіздің аты-жөніңізді, фотосуретіңізді және телефон нөміріңізді көретін болады.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Рұқсат берілгені күтілуде…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s контактісіне қоңырау шалады</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s және %2$s деген кісіге қоңырау шалады</string>
@@ -2809,6 +2881,14 @@
         <item>Демеушіліктер және Таңбалар</item>
         <item>SMS экспорты</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ақауларды түзету журналын жіберу</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Баяу хабарландырулар</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Жіберу</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Жоқ, рақмет</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Осы хат</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">Рингтон</string>
     <string name="preferences_chats__message_text_size">Хатта қолданылған қаріп өлшемі</string>
     <string name="preferences_notifications__priority">Басымдық</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Ақауларды түзету хабарландырулары</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Цензураны айналып өту</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Жаңарту</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Аналитикалық ақпарат</string>
-    <string name="InsightsDashboardFragment__title">Аналитикалық ақпарат</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протоколы соңғы %2$d күнде сіз жіберген хаттардың ішінен %1$d%% хатты автоматты түрде қорғады. Signal пайдаланушылары арасындағы чаттар үнемі өтпелі шифрлаумен қорғалады.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Ақпарат тарату</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Деректер жеткіліксіз</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Аналитикалық пайыздық мөлшерлеме соңғы %1$d күнде жоғалмаған немесе жойылмаған шығыс хаттар негізінде есептеледі.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Чатты бастау</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Хаттарыңыздың қауіпсіздігіне алаңдамай, Signal-ға көп контакт шақыру арқылы шифрланбаған SMS хаттардың шектеулерінен тыс жаңа функцияларды қосыңыз.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Бұл статистика сіздің құрылғыңызда жергілікті түрде жасалған және оны тек сіз көре аласыз. Олар басқа ешбір жерге жіберілмейді.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Шифрланған хаттар</string>
-    <string name="InsightsDashboardFragment__cancel">Болдырмау</string>
-    <string name="InsightsDashboardFragment__send">Жіберу</string>
-    <string name="InsightsModalFragment__title">Аналитикалық ақпаратпен таныстыру</string>
-    <string name="InsightsModalFragment__description">Жіберген хаттарыңыздың қаншасы қауіпсіз жіберілгенін біліңіз, содан кейін Signal пайдаланушыларының санын көбейту үшін жаңа контактілерді шақырыңыз.</string>
-    <string name="InsightsModalFragment__view_insights">Аналитикалық ақпаратты көру</string>
-
-    <string name="FirstInviteReminder__title">Signal қолданбасына шақыру</string>
-    <string name="FirstInviteReminder__description">Жіберетін шифрланған хаттардың санын %1$d%% шамасына көбейте аласыз</string>
-    <string name="SecondInviteReminder__title">Signal-дың танымалдығын арттырыңыз</string>
-    <string name="SecondInviteReminder__description">%1$s деген контактіні шақыру</string>
-    <string name="InsightsReminder__view_insights">Аналитикалық ақпаратты көру</string>
-    <string name="InsightsReminder__invite">Шақыру</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Қоңырау сілтемесі</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Видеоқоңырауды бастау</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Дауыстық қоңырауды бастау</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Микрофон қосулы</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Микрофон өшірулі</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Динамик қосулы</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Динамик өшірулі</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Түсіру түймесі</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">Қоңырау сілтемесін жасау</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal қоңырауының сілтемесін бөлісу</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Signal қоңырауына қосылу үшін осы сілтемені пайдаланыңыз: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Қоңырау туралы ақпарат</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s қоңыраудан шығарылсын ба?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Өшіру</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Қоңыраудан блоктау</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Желі қатесі пайда болды. Қайталап көріңіз.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Қосылғысы келеді…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d өтініш</item>
+        <item quantity="other">+%1$d өтініш</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Осы қоңырауға қосылуға берілген өтініштер</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d адам күтіп тұр</item>
+        <item quantity="other">%1$d адам күтіп тұр</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Бас тарту</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Мақұлдау</string>
 
     <!-- EOF -->
 </resources>

@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Ενδέχεται να ισχύουν χρεώσεις παρόχου. Ο αριθμός που καλείς δεν έχει εγγραφεί στο Signal. Η κλήση θα πραγματοποιηθεί μέσω του παρόχου κινητής τηλεφωνίας, όχι μέσω διαδικτύου.</string>
     <string name="CommunicationActions_cant_join_call">Δεν είναι δυνατή η συμμετοχή στην κλήση</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ο σύνδεσμος δεν ισχύει πλέον.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Μη έγκυρος σύνδεσμος</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ο σύνδεσμος κλήσης δεν είναι έγκυρος. Επιβεβαίωσε ότι ο σύνδεσμος είναι ακέραιος και σωστός πριν δοκιμάσεις να μπεις.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Οι τροποποιήσεις μπορούν να εφαρμοστούν μόνο εντός %1$d ώρας από τη στιγμή που στείλατε αυτό το μήνυμα.</item>
         <item quantity="other">Οι τροποποιήσεις μπορούν να εφαρμοστούν μόνο εντός %1$d ωρών από τη στιγμή που στείλατε αυτό το μήνυμα.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Μόνο ο/η %1$d μπορεί να επεξεργαστεί αυτό το μήνυμα.</item>
+        <item quantity="other">Μόνο οι %1$d μπορούν να επεξεργαστούν αυτό το μήνυμα.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Μη έγκυρος/η παραλήπτης/τρια!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">%1$d μέλος</item>
         <item quantity="other">%1$d μέλη</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Παρατηρήσαμε ότι οι ειδοποιήσεις καθυστερούν. Αποστολή αρχείου συμβάντων αποσφαλμάτωσης;</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Τα αρχεία συμβάντων αποσφαλμάτωσης βοηθούν να διαγνώσουμε και να διορθώσουμε το πρόβλημα και δεν περιλαμβάνουν πληροφορίες ταυτοποίησης.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Οι ειδοποιήσεις ενδέχεται να καθυστερήσουν λόγω βελτιστοποιήσεων της μπαταρίας</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Μπορείς να απενεργοποιήσεις τις βελτιστοποιήσεις μπαταρίας για το Signal για να διασφαλίσεις ότι οι ειδοποιήσεις μηνυμάτων δεν θα καθυστερούν.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Συνέχεια</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Απόρριψη</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">Άνοιγμα ρυθμίσεων</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Όχι τώρα</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Έγκριση %1$d αιτήματος;</item>
+        <item quantity="other">Έγκριση %1$d αιτημάτων;</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Έγκριση όλων</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d άτομο θα προστεθεί στην κλήση.</item>
+        <item quantity="other">%1$d άτομα θα προστεθούν στην κλήση.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Απόρριψη %1$d αιτήματος;</item>
+        <item quantity="other">Απόρριψη %1$d αιτημάτων;</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d άτομο δεν θα προστεθεί στην κλήση.</item>
+        <item quantity="other">%1$d άτομα δεν θα προστεθούν στην κλήση.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Απόρριψη όλων</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d άτομο σε αναμονή</item>
+        <item quantity="other">%1$d άτομα σε αναμονή</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d άτομο</item>
+        <item quantity="other">%1$d άτομα</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Το αίτημα συμμετοχής απορρίφθηκε</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Το αίτημα συμμετοχής σου στην κλήση απορρίφθηκε.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Αφαιρέθηκε από την κλήση</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Κάποιος σε αφαίρεσε από την κλήση.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
     <string name="WebRtcCallView__joining">Εισέρχεσαι…</string>
     <string name="WebRtcCallView__disconnected">Αποσυνδέθηκε</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Σύνδεσμος κλήσης Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Όποιος συμμετέχει στην κλήση μέσω του συνδέσμου θα μπορεί να δει το όνομα, τη φωτογραφία και τον τηλεφωνικό αριθμό σου.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Σε αναμονή για προσθήκη…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Το Signal θα καλέσει με κουδόυνισμα τον/την %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Το Signal θα καλέσει με κουδόυνισμα τους %1$s και %2$s</string>
@@ -2809,6 +2881,14 @@
         <item>Δωρεές και Σήματα</item>
         <item>Εξαγωγή SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Καθυστερημένες ειδοποιήσεις</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Αποστολή</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Όχι, ευχαριστώ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">Ήχος κλήσης</string>
     <string name="preferences_chats__message_text_size">Μέγεθος γραμματοσειράς μηνύματος</string>
     <string name="preferences_notifications__priority">Προτεραιότητα</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Ειδοποιήσεις αντιμετώπισης προβλημάτων</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Παράκαμψη λογοκρισίας</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Ανανέωση</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Στατιστικά</string>
-    <string name="InsightsDashboardFragment__title">Στατιστικά</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το Signal Protocol προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Διαδώστε το</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Δεν υπάρχουν αρκετά δεδομένα</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφεί.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Έναρξη συνομιλίας</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Ξεκίνα να επικοινωνείς με ασφάλεια και ενεργοποίησε νέες δυνατότητες πέρα από τους περιορισμούς των μη κρυπτογραφημένων SMS, προσκαλώντας περισσότερες επαφές να έρθουν στο Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Αυτά τα στατιστικά υπολογίστηκαν τοπικά, στη συσκευή σου, και μόνο εσύ μπορείς να τα δεις. Δεν αποστέλλονται πουθενά ποτέ.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Κρυπτογραφημένα μηνύματα</string>
-    <string name="InsightsDashboardFragment__cancel">Ακύρωση</string>
-    <string name="InsightsDashboardFragment__send">Αποστολή</string>
-    <string name="InsightsModalFragment__title">Υποδέξου τα Στατιστικά</string>
-    <string name="InsightsModalFragment__description">Ανακάλυψε πόσα απ\' τα εξερχόμενα μηνύματά σου στάλθηκαν με ασφαλή τρόπο, και μετά προσκάλεσε γρήγορα νέες επαφές για να ενισχύσεις το ποσοστό του Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Προβολή στατιστικών</string>
-
-    <string name="FirstInviteReminder__title">Πρόσκληση στο Signal</string>
-    <string name="FirstInviteReminder__description">Μπορείς να αυξήσεις τον αριθμό κρυπτογραφημένων μηνυμάτων που στέλνεις κατά %1$d%%.</string>
-    <string name="SecondInviteReminder__title">Ενίσχυση του Signal</string>
-    <string name="SecondInviteReminder__description">Προσκάλεσε τον/την %1$s</string>
-    <string name="InsightsReminder__view_insights">Προβολή στατιστικών</string>
-    <string name="InsightsReminder__invite">Πρόσκληση</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Σύνδεσμος κλήσης</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Έναρξη βιντεοκλήσης</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Έναρξη κλήσης</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Μικρόφωνο ενεργό</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Μικρόφωνο ανενεργό</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Ηχείο ενεργό</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Ηχείο ανενεργό</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Κουμπί Λήψη</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">Δημιουργήστε σύνδεσμο κλήσης</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Κοινοποίηση συνδέσμου για κλήση Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Χρησιμοποίησε αυτόν τον σύνδεσμο για να μπεις σε μια κλήση Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Πληροφορίες κλήσης</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Αφαίρεση του χρήστη %1$s από την κλήση;</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Αφαίρεση</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Αποκλεισμός από την κλήση</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Υπήρξε σφάλμα δικτύου. Δοκίμασε ξανά.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Θα ήθελε να συμμετάσχει…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d αίτημα</item>
+        <item quantity="other">+%1$d αιτήματα</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Αιτήματα συμμετοχής στην κλήση</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d άτομο σε αναμονή</item>
+        <item quantity="other">%1$d άτομα σε αναμονή</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Απόρριψη</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Έγκριση</string>
 
     <!-- EOF -->
 </resources>

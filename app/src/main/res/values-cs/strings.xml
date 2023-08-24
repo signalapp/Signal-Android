@@ -244,6 +244,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Mohou vám být účtovány telefonní poplatky. Číslo, které voláte, není registrováno u Signal a hovor tak bude uskutečněn prostřednictvím mobilního operátora, nikoli přes internet.</string>
     <string name="CommunicationActions_cant_join_call">K hovoru se nelze připojit</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Tento odkaz na hovor již není platný.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Neplatný odkaz</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Toto není platný odkaz na hovor. Než se pokusíte připojit, ujistěte se, že je odkaz neporušený a správný.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -346,6 +350,13 @@
         <item quantity="few">Úpravy lze provádět pouze během %1$d hodin od odeslání zprávy.</item>
         <item quantity="many">Úpravy lze provádět pouze během %1$d hodin od odeslání zprávy.</item>
         <item quantity="other">Úpravy lze provádět pouze během %1$d hodin od odeslání zprávy.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Na tuto zprávu lze použít pouze %1$d úpravu.</item>
+        <item quantity="few">Na tuto zprávu lze použít pouze %1$d úpravy.</item>
+        <item quantity="many">Na tuto zprávu lze použít pouze %1$d úprav.</item>
+        <item quantity="other">Na tuto zprávu lze použít pouze %1$d úprav.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Chybný příjemce!</string>
@@ -953,6 +964,21 @@
         <item quantity="many">%1$d členů</item>
         <item quantity="other">%1$d členů</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Všimli jsme si, že oznámení se zpožďují. Odeslat protokol ladění?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Protokoly ladění nám pomáhají diagnostikovat a opravit problém a neobsahují identifikační informace.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Oznámení se mohou zpožďovat kvůli optimalizaci baterie</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Optimalizaci baterie pro službu Signal můžete vypnout, abyste zajistili, že se oznámení zpráv nebudou zpožďovat.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Pokračovat</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Zavřít</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string>
@@ -1840,6 +1866,60 @@
     <string name="WebRtcCallActivity__open_settings">Otevřít nastavení</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Teď ne</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Schválit %1$d žádost?</item>
+        <item quantity="few">Schválit %1$d žádosti?</item>
+        <item quantity="many">Schválit %1$d žádostí?</item>
+        <item quantity="other">Schválit %1$d žádostí?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Schválit všechny</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">K hovoru bude přidána %1$d osoba.</item>
+        <item quantity="few">K hovoru budou přidány %1$d osoby.</item>
+        <item quantity="many">K hovoru bude přidáno %1$d osob.</item>
+        <item quantity="other">K hovoru bude přidáno %1$d osob.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Zamítnout %1$d požadavek?</item>
+        <item quantity="few">Zamítnout %1$d požadavky?</item>
+        <item quantity="many">Zamítnout %1$d požadavků?</item>
+        <item quantity="other">Zamítnout %1$d požadavků?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">K hovoru nebude přidána %1$d osoba.</item>
+        <item quantity="few">K hovoru nebudou přidány %1$d osoby.</item>
+        <item quantity="many">K hovoru nebude přidáno %1$d osob.</item>
+        <item quantity="other">K hovoru nebude přidáno %1$d osob.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Zamítnout všechny</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">Čeká %1$d osob</item>
+        <item quantity="few">Čekají %1$d osoby</item>
+        <item quantity="many">Čeká %1$d osob</item>
+        <item quantity="other">Čeká %1$d osob</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d člověk</item>
+        <item quantity="few">%1$d lidé</item>
+        <item quantity="many">%1$d lidí</item>
+        <item quantity="other">%1$d lidí</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Žádost o připojení zamítnuta</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Vaše žádost o připojení k tomuto hovoru byla zamítnuta.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Byl/a jste odebrán/a z hovoru</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Někdo vás odebral z hovoru.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal hovor</string>
@@ -1852,6 +1932,12 @@
     <string name="WebRtcCallView__reconnecting">Opětovné připojování…</string>
     <string name="WebRtcCallView__joining">Připojování…</string>
     <string name="WebRtcCallView__disconnected">Odpojen</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Odkaz na hovor Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Každý, kdo se k tomuto hovoru připojí prostřednictvím odkazu, uvidí vaše jméno, fotografii a telefonní číslo.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Čeká se na vpuštění…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal zavolá %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zavolá %1$s a %2$s</string>
@@ -2917,7 +3003,7 @@
     <string name="message_details_recipient_header__read_by">Přečteno</string>
     <string name="message_details_recipient_header__not_sent">Neodesláno</string>
     <string name="message_details_recipient_header__viewed">Zobrazil(a)</string>
-    <string name="message_details_recipient_header__skipped">Přeskočeno</string>
+    <string name="message_details_recipient_header__skipped">Nedoručeno</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Nepodařilo se odeslat</string>
@@ -2969,6 +3055,14 @@
         <item>Příspěvky a odznaky</item>
         <item>Export SMS zpráv</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Odeslání protokolu ladění aplikace Signal pro Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Pomalá oznámení</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Odeslat</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Ne, díky</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
@@ -3195,6 +3289,8 @@
     <string name="preferences_notifications__ringtone">Vyzvánění</string>
     <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
     <string name="preferences_notifications__priority">Priorita</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Řešení problémů s oznámeními</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Obcházení cenzury</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3608,33 +3704,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Obnovit</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Postřehy</string>
-    <string name="InsightsDashboardFragment__title">Postřehy</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol aplikace Signal automaticky ochránil %1$d %% vašich odchozích zpráv za posledních %2$d dny. Chaty mezi uživateli aplikace Signal jsou vždy koncově šifrovány.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Šiřte informace</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Váš procentuální přehled se počítá na základě odchozích zpráv za posledních %1$d dní, které nezmizely nebo nebyly smazány.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Zahájit chat</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Pozvěte více kontaktů, aby se připojily k Signal, a začněte komunikovat bezpečně s využitím nových funkcí, které překonávají omezení nezašifrovaných SMS zpráv.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tyto statistiky jsou vytvořeny lokálně na vašem zařízení a pouze vy je můžete vidět. Nejsou nikdy nikam odesílány.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Zašifrované zprávy</string>
-    <string name="InsightsDashboardFragment__cancel">Storno</string>
-    <string name="InsightsDashboardFragment__send">Odeslat</string>
-    <string name="InsightsModalFragment__title">Představujeme postřehy</string>
-    <string name="InsightsModalFragment__description">Zjistěte, kolik vašich odchozích zpráv bylo odesláno zabezpečeně, a pak rychle pozvěte další kontakty, abyste procento Signal zvýšili.</string>
-    <string name="InsightsModalFragment__view_insights">Prohlédnout postřehy</string>
-
-    <string name="FirstInviteReminder__title">Pozvat do Signal</string>
-    <string name="FirstInviteReminder__description">Můžete zvýšit počet odesílaných zašifrovaných zpráv o %1$d %%</string>
-    <string name="SecondInviteReminder__title">Podpořte svůj Signal</string>
-    <string name="SecondInviteReminder__description">Pozvat %1$s</string>
-    <string name="InsightsReminder__view_insights">Prohlédnout postřehy</string>
-    <string name="InsightsReminder__invite">Pozvánka</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6244,6 +6313,10 @@
     <string name="CallLogAdapter__d_s">%2$s (%1$d)</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Odkaz na hovor</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Zahájit videohovor</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Zahájit hlasový hovor</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6334,6 +6407,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon zapnutý</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon vypnutý</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Reproduktor zapnutý</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Reproduktor vypnutý</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Tlačítko spouště</string>
@@ -6355,6 +6432,18 @@
     <string name="CreateCallLink__create_a_call_link">Vytvořit odkaz na hovor</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Sdílejte odkaz na hovor přes Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">K hovoru Signal se můžete připojit pomocí tohoto odkazu: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Informace o hovoru</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Odebrat uživatele %1$s z hovoru?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Odstranit</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Blokovat z hovoru</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6455,6 +6544,31 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Došlo k chybě sítě. Zkuste to prosím znovu.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Se chce připojit…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d žádost</item>
+        <item quantity="few">+%1$d žádosti</item>
+        <item quantity="many">+%1$d žádostí</item>
+        <item quantity="other">+%1$d žádostí</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Žádosti o připojení k tomuto hovoru</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">Čeká %1$d osoba</item>
+        <item quantity="few">Čekají %1$d osoby</item>
+        <item quantity="many">Čeká %1$d osob</item>
+        <item quantity="other">Čeká %1$d osob</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Odmítnout</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Schválit</string>
 
     <!-- EOF -->
 </resources>

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Collection;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Contains a list of people mentioned in an update message and a function to create the update message.
@@ -28,14 +30,14 @@ public final class UpdateDescription {
     Spannable create();
   }
 
-  private final Collection<ServiceId> mentioned;
-  private final SpannableFactory      stringFactory;
-  private final Spannable             staticString;
-  private final int                   lightIconResource;
-  private final int                   lightTint;
-  private final int                   darkTint;
+  private final Collection<ACI>  mentioned;
+  private final SpannableFactory stringFactory;
+  private final Spannable        staticString;
+  private final int              lightIconResource;
+  private final int              lightTint;
+  private final int              darkTint;
 
-  private UpdateDescription(@NonNull Collection<ServiceId> mentioned,
+  private UpdateDescription(@NonNull Collection<ACI> mentioned,
                             @Nullable SpannableFactory stringFactory,
                             @Nullable Spannable staticString,
                             @DrawableRes int iconResource,
@@ -60,11 +62,11 @@ public final class UpdateDescription {
    * @param mentioned     UUIDs of recipients that are mentioned in the string.
    * @param stringFactory The background method for generating the string.
    */
-  public static UpdateDescription mentioning(@NonNull Collection<ServiceId> mentioned,
+  public static UpdateDescription mentioning(@NonNull Collection<ACI> mentioned,
                                              @NonNull SpannableFactory stringFactory,
                                              @DrawableRes int iconResource)
   {
-    return new UpdateDescription(ServiceId.filterKnown(mentioned),
+    return new UpdateDescription(mentioned.stream().filter(ACI::isValid).collect(Collectors.toList()),
                                  stringFactory,
                                  null,
                                  iconResource,
@@ -125,7 +127,7 @@ public final class UpdateDescription {
   }
 
   @AnyThread
-  public @NonNull Collection<ServiceId> getMentioned() {
+  public @NonNull Collection<ACI> getMentioned() {
     return mentioned;
   }
 
@@ -156,7 +158,7 @@ public final class UpdateDescription {
       );
     }
 
-    Set<ServiceId> allMentioned = new HashSet<>();
+    Set<ACI> allMentioned = new HashSet<>();
 
     for (UpdateDescription updateDescription : updateDescriptions) {
       allMentioned.addAll(updateDescription.getMentioned());

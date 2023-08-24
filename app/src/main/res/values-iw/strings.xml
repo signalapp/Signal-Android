@@ -244,6 +244,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">חיובי מפעיל עשויים לחול. המספר שאתה מתקשר אליו אינו רשום ב־Signal. שיחה זו תתבצע באמצעות המפעיל הסלולרי שלך, לא על גבי האינטרנט.</string>
     <string name="CommunicationActions_cant_join_call">אי אפשר להצטרף לשיחה</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">לינק השיחה הזה לא תקף יותר.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">קישור בלתי תקף</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">זה לא לינק שיחה תקף. יש לוודא שהלינק שלם ונכון לפני שמנסים להצטרף.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -346,6 +350,13 @@
         <item quantity="two">ניתן לערוך רק עד שעתיים מזמן שליחת ההודעה.</item>
         <item quantity="many">ניתן לערוך רק עד %1$d שעות מזמן שליחת ההודעה.</item>
         <item quantity="other">ניתן לערוך רק עד %1$d שעות מזמן שליחת ההודעה.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">אפשר לבצע רק עריכה %1$d בהודעה זו.</item>
+        <item quantity="two">אפשר לבצע רק %1$d עריכות בהודעה זו.</item>
+        <item quantity="many">אפשר לבצע רק %1$d עריכות בהודעה זו.</item>
+        <item quantity="other">אפשר לבצע רק %1$d עריכות בהודעה זו.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">מקבל בלתי תקף!</string>
@@ -953,6 +964,21 @@
         <item quantity="many">%1$d חברי קבוצה</item>
         <item quantity="other">%1$d חברי קבוצה</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">שמנו לב שההתראות מתעכבות. רוצה להגיש יומן ניפוי באגים?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">יומני ניפוי באגים עוזרים לנו לאבחן ולתקן את הבעיה ולא מכילים מידע מזהה.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">התראות עשויות להתעכב בגלל אופטימיזציה של הסוללה</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">אפשר להשבית אופטימיזציה של הסוללה כדי ש‑Signal תוכל לוודא שהתראות על הודעות לא יעוכבו.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">המשך</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">ביטול</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
@@ -1840,6 +1866,60 @@
     <string name="WebRtcCallActivity__open_settings">פתח הגדרות</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">לא עכשיו</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">לאשר בקשה %1$d?</item>
+        <item quantity="two">לאשר %1$d בקשות?</item>
+        <item quantity="many">לאשר %1$d בקשות?</item>
+        <item quantity="other">לאשר %1$d בקשות?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">אישור הכל</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d אחד יתווסף לשיחה.</item>
+        <item quantity="two">%1$d אנשים יתווספו לשיחה.</item>
+        <item quantity="many">%1$d אנשים יתווספו לשיחה.</item>
+        <item quantity="other">%1$d אנשים יתווספו לשיחה.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">לדחות בקשה %1$d?</item>
+        <item quantity="two">לדחות %1$d בקשות?</item>
+        <item quantity="many">לדחות %1$d בקשות?</item>
+        <item quantity="other">לדחות %1$d בקשות?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d אחד לא יתווסף לשיחה.</item>
+        <item quantity="two">%1$d אנשים לא יתווספו לשיחה.</item>
+        <item quantity="many">%1$d אנשים לא יתווספו לשיחה.</item>
+        <item quantity="other">%1$d אנשים לא יתווספו לשיחה.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">דחיית הכל</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">אדם %1$d ממתין</item>
+        <item quantity="two">%1$d אנשים ממתינים</item>
+        <item quantity="many">%1$d אנשים ממתינים</item>
+        <item quantity="other">%1$d אנשים ממתינים</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">איש %1$d</item>
+        <item quantity="two">%1$d אנשים</item>
+        <item quantity="many">%1$d אנשים</item>
+        <item quantity="other">%1$d אנשים</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">בקשת הצטרפות נדחתה</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">הבקשה שלך להצטרף לשיחה הזו נדחתה.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">הסרה מהשיחה</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">מישהו הסיר אותך מהשיחה.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">שיחת Signal</string>
@@ -1852,6 +1932,12 @@
     <string name="WebRtcCallView__reconnecting">מתחבר מחדש…</string>
     <string name="WebRtcCallView__joining">מצטרף…</string>
     <string name="WebRtcCallView__disconnected">מנותק</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">לינק שיחת Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">כל מי שיצטרף לשיחה הזו דרך הלינק יראה את השם, התמונה ומספר הטלפון שלך.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">מחכה שיכניסו אותך…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal יצלצל אל %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal יצלצל אל %1$s ואל %2$s</string>
@@ -2917,7 +3003,7 @@
     <string name="message_details_recipient_header__read_by">נקראה ע״י</string>
     <string name="message_details_recipient_header__not_sent">לא נשלחה</string>
     <string name="message_details_recipient_header__viewed">נצפה ע״י</string>
-    <string name="message_details_recipient_header__skipped">מדולג</string>
+    <string name="message_details_recipient_header__skipped">לא נשלח</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">נכשל בשליחה</string>
@@ -2969,6 +3055,14 @@
         <item>תרומות ותגים</item>
         <item>ייצוא SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">הגשת יומן ניפוי באגים של Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">התראות איטיות</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">הגש</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">לא תודה</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
@@ -3195,6 +3289,8 @@
     <string name="preferences_notifications__ringtone">צלצול</string>
     <string name="preferences_chats__message_text_size">גודל גופן הודעה</string>
     <string name="preferences_notifications__priority">עדיפות</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">פתרון תקלות של התראות</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">עקיפת צנזורה</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3608,33 +3704,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">רענן</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">תובנות</string>
-    <string name="InsightsDashboardFragment__title">תובנות</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">פרוטקול Signal הגן באופן אוטומטי על %1$d%% מההודעות היוצאות שלך במשך %2$d הימים האחרונים. צ׳אטים בין משתמשי Signal תמיד מוצפנים מקצה לקצה.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">הפץ את המילה</string>
-    <string name="InsightsDashboardFragment__not_enough_data">אין מספיק נתונים</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">אחוז התובנות שלך מחושב על סמך הודעות יוצאות בטווח %1$d הימים האחרונים שלא נעלמו או לא נמחקו.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">התחלת צ׳אט</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">התחל לתקשר באופן מאובטח ולאפשר מאפיינים חדשים שעוברים מעבר לגבולות של מסרונים בלתי מוצפנים על ידי הזמנת אנשי קשר נוספים להצטרף אל Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">סטטיסטיקה זו נוצרה באופן מקומי על המכשיר שלך ויכולה להיראות רק על ידך. היא אף פעם לא מועברת אל מקום כלשהו.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">הודעות מוצפנות</string>
-    <string name="InsightsDashboardFragment__cancel">בטל</string>
-    <string name="InsightsDashboardFragment__send">שלח</string>
-    <string name="InsightsModalFragment__title">היכרות עם תובנות</string>
-    <string name="InsightsModalFragment__description">גלה כמה מההודעות היוצאות שלך נשלחו באופן מאובטח, לאחר מכן הזמן בזריזות אנשי קשר חדשים כדי להמריץ את אחוז Signal שלך.</string>
-    <string name="InsightsModalFragment__view_insights">הצג תובנות</string>
-
-    <string name="FirstInviteReminder__title">הזמן אל Signal</string>
-    <string name="FirstInviteReminder__description">אתה יכול להגדיל את מספר ההודעות המוצפנות שאתה שולח ב־%1$d%%</string>
-    <string name="SecondInviteReminder__title">מתן בוסט ל–Signal שלך</string>
-    <string name="SecondInviteReminder__description">הזמן את %1$s</string>
-    <string name="InsightsReminder__view_insights">הצג תובנות</string>
-    <string name="InsightsReminder__invite">הזמן</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6244,6 +6313,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">לינק לשיחה</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">התחל שיחת וידאו</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">התחלת שיחה קולית</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6334,6 +6407,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">מיקרופון מופעל</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">מיקרופון מושבת</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">רמקול פועל</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">רמקול כבוי</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">כפתור צילום</string>
@@ -6355,6 +6432,18 @@
     <string name="CreateCallLink__create_a_call_link">יצירת לינק לשיחה</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">שיתוף לינק לשיחת Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">אפשר להשתמש בלינק הזה כדי להצטרף לשיחת Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">פרטי שיחה</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">להסיר את %1$s מהשיחה?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">הסרה</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">חסימה מהשיחה</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6455,6 +6544,31 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">הייתה שגיאת רשת. יש לנסות שוב.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">רוצה להצטרף…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+בקשה %1$d</item>
+        <item quantity="two">+%1$d בקשות</item>
+        <item quantity="many">+%1$d בקשות</item>
+        <item quantity="other">+%1$d בקשות</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">בקשות להצטרף לשיחה זו</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">אדם %1$d ממתין</item>
+        <item quantity="two">%1$d אנשים ממתינים</item>
+        <item quantity="many">%1$d אנשים ממתינים</item>
+        <item quantity="other">%1$d אנשים ממתינים</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">דחה</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">אשר</string>
 
     <!-- EOF -->
 </resources>

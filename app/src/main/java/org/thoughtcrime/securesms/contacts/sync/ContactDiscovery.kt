@@ -140,7 +140,7 @@ object ContactDiscovery {
   ): RefreshResult {
     val stopwatch = Stopwatch(descriptor)
 
-    val preExistingRegisteredIds: Set<RecipientId> = SignalDatabase.recipients.getRegistered().toSet()
+    val preExistingRegisteredIds: Set<RecipientId> = SignalDatabase.recipients.getRegistered()
     stopwatch.split("pre-existing")
 
     val result: RefreshResult = refresh()

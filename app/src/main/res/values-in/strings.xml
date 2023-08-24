@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Panggilan akan menggunakan pulsa seluler. Karena nomor yang Anda hubungi belum menggunakan Signal, panggilan ini akan melalui jaringan seluler, bukan melalui Internet.</string>
     <string name="CommunicationActions_cant_join_call">Tidak dapat bergabung ke panggilan</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Tautan panggilan ini sudah tidak berlaku.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Tautan Tidak Valid</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Tautan panggilan ini tidak valid. Pastikan seluruh tautan utuh dan benar sebelum mencoba untuk bergabung.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">Pengeditan hanya dapat diterapkan dalam %1$d jam sejak Anda mengirimkan pesan ini.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">Hanya %1$d editan yang bisa diterapkan pada pesan ini.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Penerima tidak valid!</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d anggota</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Kami melihat notifikasi tertunda. Kirim catatan debug?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Catatan debug membantu kami mendiagnosis dan memperbaiki masalah, dan tidak berisi informasi identifikasi.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Notifikasi dapat tertunda karena pengoptimalan baterai</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Anda dapat menonaktifkan pengoptimalan baterai untuk Signal guna memastikan pesan notifikasi tidak tertunda.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Lanjutkan</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Tutup</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Undangan grup yang tertunda</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">Buka pengaturan</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Nanti saja</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">Setujui %1$d permintaan?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Setujui semua</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">%1$d orang akan ditambahkan ke panggilan.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">Tolak %1$d permintaan?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">%1$d orang tidak akan ditambahkan ke panggilan.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Tolak semua</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">%1$d orang menunggu</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d orang</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Permintaan gabung ditolak</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Permintaan gabung ke panggilan ini ditolak.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Dihapus dari panggilan</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Seseorang menghapus Anda dari panggilan.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">Menyambungkan ulang…</string>
     <string name="WebRtcCallView__joining">Bergabung…</string>
     <string name="WebRtcCallView__disconnected">Terputus</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Tautan panggilan Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Siapa pun yang gabung dengan panggilan ini via tautan akan melihat nama, foto, dan nomor telepon Anda.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Menunggu diizinkan masuk…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal akan memanggil %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal akan memanggil %1$s dan %2$s</string>
@@ -2677,7 +2742,7 @@
     <string name="message_details_recipient_header__read_by">Dibaca oleh</string>
     <string name="message_details_recipient_header__not_sent">Tidak terkirim</string>
     <string name="message_details_recipient_header__viewed">Dilihat oleh</string>
-    <string name="message_details_recipient_header__skipped">Terlompati</string>
+    <string name="message_details_recipient_header__skipped">Tidak terkirim</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Gagal mengirim</string>
@@ -2729,6 +2794,14 @@
         <item>Donasi &amp; Lencana</item>
         <item>Ekspor SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Pengiriman Catatan Debug Android Signal</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Notifikasi lambat</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Kirimkan</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Tidak, terima kasih</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Pesan Ini</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">Nada dering</string>
     <string name="preferences_chats__message_text_size">Ukuran huruf pesan</string>
     <string name="preferences_notifications__priority">Prioritas</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Pemecahan masalah terkait notifikasi</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Hindari penyensoran</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Segarkan</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Insight</string>
-    <string name="InsightsDashboardFragment__title">Insight</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal secara otomatis melindungi %1$d%% pesan keluar Anda selama %2$d hari terakhir. Obrolan antara pengguna Signal selalu dienkripsi secara end-to-end.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Kabarkan</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Data tidak cukup</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Persentase Insight Anda dihitung berdasarkan pesan terkirim dalam %1$d hari terakhir yang masih dapat dilihat dan belum terhapus.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Mulai obrolan</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Mari berkomunikasi secara aman dan aktifkan fitur terbaru yang melampaui batasan dari pesan SMS yang tidak terenkripsi dengan mendungan kontak Anda untuk menggunakan Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Statistik ini hanya dapat diakses dari perangkat ini dan dibaca oleh Anda sendiri. Informasi ini tidak dikirimkan ke manapun.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Pesan terenkripsi</string>
-    <string name="InsightsDashboardFragment__cancel">Batal</string>
-    <string name="InsightsDashboardFragment__send">Kirim</string>
-    <string name="InsightsModalFragment__title">Memperkenalkan Insight</string>
-    <string name="InsightsModalFragment__description">Cari tahu berapa pesan yang berhasil terkirim secara aman, kemudian undang kontak baru untuk mengamankan lebih banyak percakapan di Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Lihat Insight</string>
-
-    <string name="FirstInviteReminder__title">Undang ke Signal</string>
-    <string name="FirstInviteReminder__description">Anda dapat meningkatkan jumlah pesan terenkripsi sebanyak %1$d%%.</string>
-    <string name="SecondInviteReminder__title">Beri Boost untuk Signal Anda</string>
-    <string name="SecondInviteReminder__description">Undang %1$s</string>
-    <string name="InsightsReminder__view_insights">Lihat Insight</string>
-    <string name="InsightsReminder__invite">Undang</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Tautan panggilan</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Mulai panggilan video</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Mulai panggilan suara</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mik nyala</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mik mati</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Speaker aktif</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Speaker nonaktif</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Tombol Ambil Gambar</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">Buat Tautan Panggilan</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Bagikan tautan untuk panggilan Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Gunakan tautan ini untuk gabung di panggilan Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Info panggilan</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Hapus %1$s dari panggilan?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Hapus</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Blokir dari panggilan</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Terjadi kesalahan jaringan. Silakan coba lagi.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Ingin bergabung…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">+%1$d permintaan</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Permintaan gabung ke panggilan</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">%1$d orang menunggu</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Tolak</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Terima</string>
 
     <!-- EOF -->
 </resources>

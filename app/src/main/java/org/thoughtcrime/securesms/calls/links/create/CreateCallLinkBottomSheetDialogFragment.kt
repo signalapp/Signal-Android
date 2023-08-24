@@ -46,12 +46,10 @@ import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.service.webrtc.links.CreateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
-import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
 
@@ -212,15 +210,10 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     lifecycleDisposable += viewModel.commitCallLink().subscribeBy(onSuccess = {
       when (it) {
         is EnsureCallLinkCreatedResult.Success -> {
-          MultiselectForwardFragment.showFullScreen(
-            childFragmentManager,
-            MultiselectForwardFragmentArgs(
-              canSendToNonPush = false,
-              multiShareArgs = listOf(
-                MultiShareArgs.Builder()
-                  .withDraftText(CallLinks.url(viewModel.linkKeyBytes))
-                  .build()
-              )
+          startActivity(
+            ShareActivity.sendSimpleText(
+              requireContext(),
+              getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.linkKeyBytes))
             )
           )
         }

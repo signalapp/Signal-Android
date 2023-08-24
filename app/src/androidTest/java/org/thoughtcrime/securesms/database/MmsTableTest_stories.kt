@@ -16,9 +16,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
@@ -45,7 +44,7 @@ class MmsTableTest_stories {
     SignalStore.account().setPni(localPni)
 
     myStory = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY))
-    recipients = (0 until 5).map { SignalDatabase.recipients.getOrInsertFromServiceId(ServiceId.from(UUID.randomUUID())) }
+    recipients = (0 until 5).map { SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())) }
     releaseChannelRecipient = Recipient.resolved(SignalDatabase.recipients.insertReleaseChannelRecipient())
 
     SignalStore.releaseChannelValues().setReleaseChannelRecipientId(releaseChannelRecipient.id)

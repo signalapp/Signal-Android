@@ -244,6 +244,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai. Numeris, kuriuo skambinate, nėra registruotas Signal. Šis skambutis bus inicijuotas per jūsų mobiliojo ryšio tinklo operatorių, o ne per internetą.</string>
     <string name="CommunicationActions_cant_join_call">Negalima prisijungti prie skambučio</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ši skambučio nuoroda nebegalioja.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Neteisinga nuoroda</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Neteisinga skambučio nuoroda. Įsitikink, kad nuoroda pilna ir teisinga, tuomet bandyk prisijungti.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -346,6 +350,13 @@
         <item quantity="few">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
         <item quantity="many">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
         <item quantity="other">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Šiai žinutei galima atlikti tik %1$d pakeitimą.</item>
+        <item quantity="few">Šiai žinutei galima atlikti tik %1$d pakeitimus.</item>
+        <item quantity="many">Šiai žinutei galima atlikti tik %1$d pakeitimo.</item>
+        <item quantity="other">Šiai žinutei galima atlikti tik %1$d pakeitimų.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Neteisingas gavėjas!</string>
@@ -953,6 +964,21 @@
         <item quantity="many">%1$d narių</item>
         <item quantity="other">%1$d narys</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Pastebėjome, kad pranešimai vėluoja. Pateikti derinimo žurnalą?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Derinimo žurnalai padeda mums diagnozuoti ir išspręsti problemą, juose nėra identifikavimo informacijos.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Pranešimai gali vėluoti dėl baterijos optimizavimo</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Gali išjungti baterijos optimizavimą programėlei „Signal“ ir taip užtikrinti, kad žinučių pranešimai nevėluotų.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Tęsti</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Atmesti</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Laukiantys pakvietimai į grupę</string>
@@ -1840,6 +1866,60 @@
     <string name="WebRtcCallActivity__open_settings">Atverti nustatymus</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ne dabar</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Patvirtinti %1$d prašymą?</item>
+        <item quantity="few">Patvirtinti %1$d prašymus?</item>
+        <item quantity="many">Patvirtinti %1$d prašymo?</item>
+        <item quantity="other">Patvirtinti %1$d prašymų?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Visus patvirtinti</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d asmuo bus pridėtas prie skambučio.</item>
+        <item quantity="few">%1$d asmenys bus pridėti prie skambučio.</item>
+        <item quantity="many">%1$d asmens bus pridėta prie skambučio.</item>
+        <item quantity="other">%1$d asmenų bus pridėta prie skambučio.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Atmesti %1$d prašymą?</item>
+        <item quantity="few">Atmesti %1$d prašymus?</item>
+        <item quantity="many">Atmesti %1$d prašymo?</item>
+        <item quantity="other">Atmesti %1$d prašymų?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d asmuo nebus pridėtas prie skambučio.</item>
+        <item quantity="few">%1$d asmenys nebus pridėti prie skambučio.</item>
+        <item quantity="many">%1$d asmens nebus pridėta prie skambučio.</item>
+        <item quantity="other">%1$d asmenų nebus pridėta prie skambučio.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Visus atmesti</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">Laukia %1$d asmuo</item>
+        <item quantity="few">Laukia %1$d asmenys</item>
+        <item quantity="many">Laukia %1$d asmens</item>
+        <item quantity="other">Laukia %1$d asmenų</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d žmogus</item>
+        <item quantity="few">%1$d žmonės</item>
+        <item quantity="many">%1$d žmonių</item>
+        <item quantity="other">%1$d žmogus</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Prašymas prisijungti atmestas</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Tavo prašymas prisijungti prie šio skambučio atmestas.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Pašalinimas iš skambučio</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Kažkas tave pašalino iš skambučio.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
@@ -1852,6 +1932,12 @@
     <string name="WebRtcCallView__reconnecting">Jungiamasi iš naujo…</string>
     <string name="WebRtcCallView__joining">Prisijungiama…</string>
     <string name="WebRtcCallView__disconnected">Atsijungta</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">„Signal“ skambučio nuoroda</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Visi, kas prisijungs prie šio skambučio per nuorodą, matys tavo vardą, nuotrauką ir telefono numerį.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Laukiama, kol įleis…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal skambins naudotojui %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal skambins naudotojams %1$s ir %2$s</string>
@@ -2917,7 +3003,7 @@
     <string name="message_details_recipient_header__read_by">Perskaitė</string>
     <string name="message_details_recipient_header__not_sent">Neišsiųsta</string>
     <string name="message_details_recipient_header__viewed">Peržiūrėjo</string>
-    <string name="message_details_recipient_header__skipped">Praleista</string>
+    <string name="message_details_recipient_header__skipped">Nepristatyta</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Nepavyko išsiųsti</string>
@@ -2969,6 +3055,14 @@
         <item>Parama ir ženkleliai</item>
         <item>SMS eksportavimas</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">„Signal“ „Android“ derinimo žurnalo pateikimas</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Vėluojantys pranešimai</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Pateikti</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Ne, ačiū</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
@@ -3195,6 +3289,8 @@
     <string name="preferences_notifications__ringtone">Skambučio melodija</string>
     <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
     <string name="preferences_notifications__priority">Pirmenybė</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Šalinti pranešimų nesklandumus</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Cenzūravimo apėjimas</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3608,33 +3704,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Įkelti iš naujo</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Įžvalgos</string>
-    <string name="InsightsDashboardFragment__title">Įžvalgos</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">„Signal“ protokolas automatiškai apsaugojo %1$d %% tavo siunčiamų žinučių per pastarąsias %2$d d. Pokalbiai tarp „Signal“ naudotojų visada yra visiškai užšifruoti.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Skleiskite žinią</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tavo įžvalgų procentinė dalis yra apskaičiuojama remiantis per pastarąsias %1$d d. išsiunčiamų žinučių, kurios neišnyko ir nebuvo ištrintos, skaičiumi.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Nuo šiol, pakvietę daugiau adresatų naudotis Signal, bendraukite saugiai ir įjunkite naujas ypatybes, kurios viršija nešifruotų SMS žinučių apribojimus.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ši statistika buvo sugeneruota jūsų įrenginyje ir ją galite matyti tik jūs. Ji niekada nėra niekur persiunčiama.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Šifruotos žinutės</string>
-    <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
-    <string name="InsightsDashboardFragment__send">Siųsti</string>
-    <string name="InsightsModalFragment__title">Pristatome įžvalgas</string>
-    <string name="InsightsModalFragment__description">Sužinokite kiek iš jūsų išsiunčiamų žinučių buvo išsiųsta saugiai, o tuomet greitai pakvieskite naujus adresatus, kad padidintumėte savo Signal procentinę dalį.</string>
-    <string name="InsightsModalFragment__view_insights">Rodyti įžvalgas</string>
-
-    <string name="FirstInviteReminder__title">Pakviesti į Signal</string>
-    <string name="FirstInviteReminder__description">Jūs galėtumėte %1$d%% padidinti siunčiamų šifruotų žinučių skaičių</string>
-    <string name="SecondInviteReminder__title">Paremk savo naudojamą „Signal“</string>
-    <string name="SecondInviteReminder__description">Pakviesti %1$s</string>
-    <string name="InsightsReminder__view_insights">Rodyti įžvalgas</string>
-    <string name="InsightsReminder__invite">Pakviesti</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6244,6 +6313,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Skambučio nuoroda</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Pradėti vaizdo skambutį</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Pradėti balso skambutį</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6334,6 +6407,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofonas įjungtas</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofonas išjungtas</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Garsiakalbis įjungtas</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Garsiakalbis išjungtas</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Fotografavimo mygtukas</string>
@@ -6355,6 +6432,18 @@
     <string name="CreateCallLink__create_a_call_link">Sukurti skambučio nuorodą</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Bendrinti „Signal“ skambučio nuorodą</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Naudok šią nuorodą prisijungti prie „Signal“ skambučio: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Skambučio informacija</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Pašalinti %1$s iš skambučio?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Šalinti</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Blokuoti nuo skambučio</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6455,6 +6544,31 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Įvyko tinklo klaida. Bandyk dar kartą.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Norėtų prisijungti…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d prašymas</item>
+        <item quantity="few">+%1$d prašymai</item>
+        <item quantity="many">+%1$d prašymo</item>
+        <item quantity="other">+%1$d prašymų</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Prašymai prisijungti prie šio skambučio</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">Laukia %1$d asmuo</item>
+        <item quantity="few">Laukia %1$d asmenys</item>
+        <item quantity="many">Laukia %1$d asmens</item>
+        <item quantity="other">Laukia %1$d asmenų</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Atmesti</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Patvirtinti</string>
 
     <!-- EOF -->
 </resources>

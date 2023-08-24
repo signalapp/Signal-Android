@@ -9,10 +9,10 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKeyCommitment;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.libsignal.zkgroup.profiles.ServerZkProfileOperations;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.time.Instant;
-import java.util.UUID;
 
 /**
  * Provides Zk group operations that the server would provide.
@@ -35,8 +35,8 @@ final class TestZkGroupServer {
     return serverPublicParams;
   }
 
-  public ExpiringProfileKeyCredentialResponse getExpiringProfileKeyCredentialResponse(ProfileKeyCredentialRequest request, UUID uuid, ProfileKeyCommitment commitment, Instant expiration) throws VerificationFailedException {
-    return serverZkProfileOperations.issueExpiringProfileKeyCredential(request, uuid, commitment, expiration);
+  public ExpiringProfileKeyCredentialResponse getExpiringProfileKeyCredentialResponse(ProfileKeyCredentialRequest request, ACI aci, ProfileKeyCommitment commitment, Instant expiration) throws VerificationFailedException {
+    return serverZkProfileOperations.issueExpiringProfileKeyCredential(request, aci.getLibSignalAci(), commitment, expiration);
   }
 
   public void assertProfileKeyCredentialPresentation(GroupPublicParams publicParams, ProfileKeyCredentialPresentation profileKeyCredentialPresentation, Instant now) {

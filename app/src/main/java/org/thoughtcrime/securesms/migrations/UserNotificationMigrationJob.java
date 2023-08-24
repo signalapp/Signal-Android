@@ -85,7 +85,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
       return;
     }
 
-    List<RecipientId> registered               = SignalDatabase.recipients().getRegistered();
+    Set<RecipientId>  registered               = SignalDatabase.recipients().getRegistered();
     List<RecipientId> systemContacts           = SignalDatabase.recipients().getSystemContacts();
     Set<RecipientId>  registeredSystemContacts = SetUtil.intersection(registered, systemContacts);
     Set<RecipientId>  threadRecipients         = threadTable.getAllThreadRecipients();

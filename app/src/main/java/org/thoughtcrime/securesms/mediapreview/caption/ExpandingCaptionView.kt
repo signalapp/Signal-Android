@@ -34,6 +34,7 @@ class ExpandingCaptionView @JvmOverloads constructor(
     val overflow = SpannableString(context.getString(R.string.MediaPreviewFragment_read_more_overflow_text))
     overflow.setSpan(StyleSpan(Typeface.BOLD), 0, overflow.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     setOverflowText(overflow)
+    bindGestureListener()
   }
 
   private fun toggleExpansion() {

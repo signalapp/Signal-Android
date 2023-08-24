@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.messages;
 
 
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 
 /**
  * When someone sends a message to your PNI, you need to attach one of these PNI signature messages,

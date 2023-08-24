@@ -34,8 +34,7 @@ import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.kbs.MasterKey
-import org.whispersystems.signalservice.api.push.PNI
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
@@ -243,7 +242,7 @@ class ChangeNumberRepository(
       throw AssertionError("No change number metadata")
     }
 
-    val originalPni = ServiceId.fromByteString(metadata.previousPni)
+    val originalPni = PNI.parseOrThrow(metadata.previousPni)
 
     if (originalPni == pni) {
       Log.i(TAG, "No change has occurred, PNI is unchanged: $pni")

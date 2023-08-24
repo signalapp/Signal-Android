@@ -32,8 +32,10 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,7 +47,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.toLiveData
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -66,6 +71,8 @@ import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.database.CallLinkTable
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -114,9 +121,13 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
   @Composable
   override fun SheetContent() {
     val callLinkDetailsState by callLinkDetailsViewModel.state
-    val callParticipantsState by webRtcCallViewModel.callParticipantsState.observeAsState()
-    val participants = if (callParticipantsState?.callState == WebRtcViewModel.State.CALL_CONNECTED) {
-      listOf(Recipient.self()) + (callParticipantsState?.allRemoteParticipants?.map { it.recipient } ?: emptyList())
+    val callParticipantsState by webRtcCallViewModel.callParticipantsState
+      .toFlowable(BackpressureStrategy.LATEST)
+      .toLiveData()
+      .observeAsState()
+
+    val participants: ImmutableList<CallParticipant> = if (callParticipantsState?.callState == WebRtcViewModel.State.CALL_CONNECTED) {
+      listOf(CallParticipant(recipient = Recipient.self())) + (callParticipantsState?.allRemoteParticipants?.map { it } ?: emptyList())
     } else {
       emptyList()
     }.toImmutableList()
@@ -137,9 +148,22 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
         onShareLinkClicked = this::shareLink,
         onEditNameClicked = onEditNameClicked,
         onToggleAdminApprovalClicked = this::onApproveAllMembersChanged,
-        onBlock = {} // TODO [alex] -- Blocking
+        onBlock = this::onBlockParticipant
       )
     }
+  }
+
+  private fun onBlockParticipant(callParticipant: CallParticipant) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setNegativeButton(android.R.string.cancel, null)
+      .setMessage(getString(R.string.CallLinkInfoSheet__remove_s_from_the_call, callParticipant.recipient.getShortDisplayName(requireContext())))
+      .setPositiveButton(R.string.CallLinkInfoSheet__remove) { _, _ ->
+        ApplicationDependencies.getSignalCallManager().removeFromCallLink(callParticipant)
+      }
+      .setNeutralButton(R.string.CallLinkInfoSheet__block_from_call) { _, _ ->
+        ApplicationDependencies.getSignalCallManager().blockFromCallLink(callParticipant)
+      }
+      .show()
   }
 
   private fun onApproveAllMembersChanged(checked: Boolean) {
@@ -210,7 +234,7 @@ private fun SheetPreview() {
           ),
           state = SignalCallLinkState()
         ),
-        participants = listOf(Recipient.UNKNOWN).toImmutableList(),
+        participants = listOf(CallParticipant(recipient = Recipient.UNKNOWN)).toImmutableList(),
         onShareLinkClicked = {},
         onEditNameClicked = {},
         onToggleAdminApprovalClicked = {},
@@ -223,17 +247,24 @@ private fun SheetPreview() {
 @Composable
 private fun Sheet(
   callLink: CallLinkTable.CallLink,
-  participants: ImmutableList<Recipient>,
+  participants: ImmutableList<CallParticipant>,
   onShareLinkClicked: () -> Unit,
   onEditNameClicked: () -> Unit,
   onToggleAdminApprovalClicked: (Boolean) -> Unit,
-  onBlock: (Recipient) -> Unit
+  onBlock: (CallParticipant) -> Unit
 ) {
   LazyColumn(
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
     item {
       BottomSheets.Handle()
+
+      Text(
+        text = stringResource(id = R.string.CallLinkInfoSheet__call_info),
+        style = MaterialTheme.typography.titleLarge,
+        modifier = Modifier.padding(vertical = 24.dp)
+      )
+
       SignalCallRow(callLink = callLink, onJoinClicked = null)
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
@@ -251,9 +282,9 @@ private fun Sheet(
       )
     }
 
-    items(participants, { it.id }, { null }) {
+    items(participants, { it.callParticipantId }, { null }) {
       CallLinkMemberRow(
-        recipient = it,
+        callParticipant = it,
         isSelfAdmin = callLink.credentials?.adminPassBytes != null,
         onBlockClicked = onBlock
       )
@@ -282,7 +313,7 @@ private fun CallLinkMemberRowPreview() {
   SignalTheme(isDarkMode = true) {
     Surface {
       CallLinkMemberRow(
-        Recipient.UNKNOWN,
+        CallParticipant(recipient = Recipient.UNKNOWN),
         isSelfAdmin = true,
         {}
       )
@@ -292,37 +323,45 @@ private fun CallLinkMemberRowPreview() {
 
 @Composable
 private fun CallLinkMemberRow(
-  recipient: Recipient,
+  callParticipant: CallParticipant,
   isSelfAdmin: Boolean,
-  onBlockClicked: (Recipient) -> Unit
+  onBlockClicked: (CallParticipant) -> Unit
 ) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
       .padding(Rows.defaultPadding())
   ) {
-    AndroidView(
-      factory = ::AvatarImageView,
-      modifier = Modifier.size(40.dp)
-    ) {
-      it.setAvatarUsingProfile(recipient)
+    if (LocalInspectionMode.current) {
+      Spacer(
+        modifier = Modifier
+          .size(40.dp)
+          .background(color = Color.Red, shape = CircleShape)
+      )
+    } else {
+      AndroidView(
+        factory = ::AvatarImageView,
+        modifier = Modifier.size(40.dp)
+      ) {
+        it.setAvatarUsingProfile(callParticipant.recipient)
+      }
     }
 
     Spacer(modifier = Modifier.width(24.dp))
 
     Text(
-      text = recipient.getShortDisplayName(LocalContext.current),
+      text = callParticipant.recipient.getShortDisplayName(LocalContext.current),
       modifier = Modifier
         .weight(1f)
         .align(Alignment.CenterVertically)
     )
 
-    if (isSelfAdmin) {
+    if (isSelfAdmin && !callParticipant.recipient.isSelf) {
       Icon(
         imageVector = ImageVector.vectorResource(id = R.drawable.symbol_minus_circle_24),
         contentDescription = null,
         modifier = Modifier
-          .clickable(onClick = { onBlockClicked(recipient) })
+          .clickable(onClick = { onBlockClicked(callParticipant) })
           .align(Alignment.CenterVertically)
       )
     }

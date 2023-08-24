@@ -79,6 +79,14 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalSer
     error("Not expected in this flow")
   }
 
+  override fun markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime: Long) {
+    error("Not expected in this flow")
+  }
+
+  override fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int) {
+    error("Not expected in this flow")
+  }
+
   fun flushToDisk(persistentStore: SignalServiceAccountDataStore) {
     for (id in removedIfNotLastResort) {
       persistentStore.markKyberPreKeyUsed(id)

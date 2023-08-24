@@ -79,9 +79,9 @@ message ContactRecord {
     UNVERIFIED = 2;
   }
 
-  string        serviceId               = 1;
-  string        serviceE164             = 2;
-  string        servicePni              = 15;
+  string        aci                     = 1;
+  string        e164                    = 2;
+  string        pni                     = 15;
   bytes         profileKey              = 3;
   bytes         identityKey             = 4;
   IdentityState identityState           = 5;
@@ -145,8 +145,8 @@ message AccountRecord {
 
   message PinnedConversation {
     message Contact {
-      string uuid = 1;
-      string e164 = 2;
+      string serviceId = 1;
+      string e164      = 2;
     }
 
     oneof identifier {
@@ -192,10 +192,10 @@ message AccountRecord {
 }
 
 message StoryDistributionListRecord {
-           bytes  identifier         = 1;
-           string name               = 2;
-  repeated string recipientUuids     = 3;
-           uint64 deletedAtTimestamp = 4;
-           bool   allowsReplies      = 5;
-           bool   isBlockList        = 6;
+           bytes  identifier          = 1;
+           string name                = 2;
+  repeated string recipientServiceIds = 3;
+           uint64 deletedAtTimestamp  = 4;
+           bool   allowsReplies       = 5;
+           bool   isBlockList         = 6;
 }

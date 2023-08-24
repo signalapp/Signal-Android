@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">電信商可能會收取額外的費用。你撥出的號碼未在Signal中註冊。 該電話將通過你的電信商撥出，而不是通過網際網路撥出。</string>
     <string name="CommunicationActions_cant_join_call">無法加入通話</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">此通話連結已失效。</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">無效的連結</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">這不是有效的通話連結。在嘗試加入之前，請確保整個連結是完整且正確的。</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">編輯只能在你傳送此訊息後的 %1$d 小時內應用。</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">只有 %1$d 項編輯能套用到此訊息。</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">無效的收件人！</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d 個成員</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">我們注意到通知延遲了。要提交除錯日誌嗎？</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">除錯日誌可協助我們診斷並修正問題，而且不包含識別資料。</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">由於電池效能最佳化，通知可能會延遲</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">你可以停用 Signal 的電池效能最佳化設定，以確保訊息通知不會延遲。</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">繼續</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">忽略</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">待處理的群組邀請</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">開啟設定</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">稍後</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">批准 %1$d 個請求？</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">全部批准</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">新增 %1$d 個人到通話中。</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">拒絕 %1$d 個請求？</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">不會新增 %1$d 個人到通話中。</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">全部拒絕</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">%1$d 個人正在等候</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d 人</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">加入請求遭拒</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">你加入通話的請求已被拒絕。</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">已從通話中移除</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">有人將你從通話中移除。</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">重新連接中…</string>
     <string name="WebRtcCallView__joining">加入中…</string>
     <string name="WebRtcCallView__disconnected">已斷線</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal 通話連結</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">透過連結加入此通話的人都會看到你的姓名、相片和電話號碼。</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">正在等待獲准加入…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal 將去電給 %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal 將去電給 %1$s 及 %2$s</string>
@@ -2729,6 +2794,14 @@
         <item>捐款及徽章</item>
         <item>SMS 短訊匯出</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 除錯日誌提交</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">通知緩慢</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">提交</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">不必了</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">鈴聲</string>
     <string name="preferences_chats__message_text_size">訊息字體大小</string>
     <string name="preferences_notifications__priority">優先順序</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">疑難排解通知</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">審查規避</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">重新整理</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">統計</string>
-    <string name="InsightsDashboardFragment__title">統計</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 在過去 %2$d 天內，已自動保護你外寄訊息數目中的 %1$d%%。Signal 用戶之間的聊天一律經端對端加密。</string>
-    <string name="InsightsDashboardFragment__spread_the_word">把這些訊息散播出去</string>
-    <string name="InsightsDashboardFragment__not_enough_data">沒有足夠的資料</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">你的統計百分比是根據過去%1$d天內尚未銷毀或刪除的出訊息計算得出的。</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">開始聊天</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">透過邀請更多聯絡人加入Signal，開始安全地通訊並啟用超越未加密 SMS 訊息限制的新功能。</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">這些統計資料是在你的裝置上本機產生的，只能由你查看，並不會傳輸到任何地方。</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">已加密的訊息</string>
-    <string name="InsightsDashboardFragment__cancel">取消</string>
-    <string name="InsightsDashboardFragment__send">傳送</string>
-    <string name="InsightsModalFragment__title">介紹 統計</string>
-    <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高單次贊助 Signal 的比例。</string>
-    <string name="InsightsModalFragment__view_insights">檢視 統計</string>
-
-    <string name="FirstInviteReminder__title">邀請至 Signal</string>
-    <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
-    <string name="SecondInviteReminder__title">單次贊助你的 Signal</string>
-    <string name="SecondInviteReminder__description">邀請 %1$s</string>
-    <string name="InsightsReminder__view_insights">檢視 統計</string>
-    <string name="InsightsReminder__invite">邀請</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">通話連結</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">開始視訊電話</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">開始語音通話</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">開啟麥克風</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">關閉麥克風</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">揚聲器開啟</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">揚聲器關閉</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">「擷取」按鈕</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">建立通話連結</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">分享 Signal 通話的連結</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">使用此連結加入 Signal 通話：%1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">通話資訊</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">要將%1$s從通話中移除嗎？</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">移除</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">從通話中封鎖</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">遇到網路問題。請重試。</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">想加入…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">+%1$d 個請求</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">請求加入此通話</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">%1$d 個人正在等候</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">拒絕</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">核准</string>
 
     <!-- EOF -->
 </resources>

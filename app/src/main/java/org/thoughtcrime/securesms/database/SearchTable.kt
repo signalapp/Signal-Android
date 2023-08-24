@@ -235,26 +235,32 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   @JvmOverloads
   fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
     Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
-    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
-    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
-    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
-    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+    db.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
+    db.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+    db.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
 
     Log.w(TAG, "[fullyResetTables] Recreating table...")
-    CREATE_TABLE.forEach { writableDatabase.execSQL(it) }
+    CREATE_TABLE.forEach { db.execSQL(it) }
 
     Log.w(TAG, "[fullyResetTables] Recreating triggers...")
-    CREATE_TRIGGERS.forEach { writableDatabase.execSQL(it) }
+    CREATE_TRIGGERS.forEach { db.execSQL(it) }
 
     RebuildMessageSearchIndexJob.enqueue()
 
     Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
   }
 
+  /**
+   * We want to turn the user's query into something that works well in a MATCH query.
+   * Most users expect some amount of fuzzy search, so what we do is break the string
+   * into tokens, escape each token (to allow the user to search for punctuation), and
+   * then append a * to the end of each token to turn it into a prefix query.
+   */
   private fun createFullTextSearchQuery(query: String): String {
     return query
       .split(" ")
@@ -267,7 +273,12 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       )
   }
 
+  /**
+   * If you wrap a string in quotes, sqlite considers it a string literal when making a MATCH query.
+   * In order to distinguish normal quotes, you turn all " into "".
+   */
   private fun fullTextSearchEscape(s: String): String {
-    return "\"${s.replace("\"", "\"\"")}\""
+    val quotesEscaped = s.replace("\"", "\"\"")
+    return "\"$quotesEscaped\""
   }
 }

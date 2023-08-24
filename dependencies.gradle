@@ -7,14 +7,15 @@ dependencyResolutionManagement {
             version('androidx-appcompat', '1.6.1')
             version('androidx-activity', '1.7.2')
             version('androidx-camera', '1.2.3')
-            version('androidx-fragment', '1.6.0')
+            version('androidx-fragment', '1.6.1')
             version('androidx-lifecycle', '2.6.1')
+            version('androidx-media3', '1.1.0')
             version('androidx-navigation', '2.6.0')
             version('androidx-window', '1.0.0')
             version('exoplayer', '2.19.0')
-            version('glide', '4.13.2')
+            version('glide', '4.15.1')
             version('kotlin', '1.8.10')
-            version('libsignal-client', '0.26.0')
+            version('libsignal-client', '0.31.0')
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '8.0.2')
             version('accompanist', '0.28.0')
@@ -28,6 +29,7 @@ dependencyResolutionManagement {
             library('androidx-compose-material3', 'androidx.compose.material3', 'material3').withoutVersion()
             library('androidx-compose-ui-tooling-preview', 'androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             library('androidx-compose-ui-tooling-core', 'androidx.compose.ui', 'ui-tooling').withoutVersion()
+            library('androidx-compose-ui-test-manifest', 'androidx.compose.ui', 'ui-test-manifest').withoutVersion()
             library('androidx-compose-runtime-livedata', 'androidx.compose.runtime', 'runtime-livedata').withoutVersion()
             library('androidx-compose-rxjava3', 'androidx.compose.runtime:runtime-rxjava3:1.4.2')
             library('ktlint-twitter-compose', 'com.twitter.compose.rules:ktlint:0.0.26')
@@ -46,6 +48,7 @@ dependencyResolutionManagement {
 
             // Android X
             library('androidx-activity-ktx', 'androidx.activity', 'activity-ktx').versionRef('androidx-activity')
+            library('androidx-activity-compose', 'androidx.activity', 'activity-compose').versionRef('androidx-activity')
             library('androidx-appcompat', 'androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
             library('androidx-core-ktx', 'androidx.core:core-ktx:1.10.0')
             library('androidx-fragment-ktx', 'androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
@@ -54,12 +57,15 @@ dependencyResolutionManagement {
             library('androidx-constraintlayout', 'androidx.constraintlayout:constraintlayout:2.1.4')
             library('androidx-window-window', 'androidx.window', 'window').versionRef('androidx-window')
             library('androidx-window-java', 'androidx.window', 'window-java').versionRef('androidx-window')
-            library('androidx-recyclerview', 'androidx.recyclerview:recyclerview:1.3.0')
+            library('androidx-recyclerview', 'androidx.recyclerview:recyclerview:1.3.1')
             library('androidx-legacy-support', 'androidx.legacy:legacy-support-v13:1.0.0')
             library('androidx-legacy-preference', 'androidx.legacy:legacy-preference-v14:1.0.0')
             library('androidx-preference', 'androidx.preference:preference:1.0.0')
             library('androidx-gridlayout', 'androidx.gridlayout:gridlayout:1.0.0')
             library('androidx-exifinterface', 'androidx.exifinterface:exifinterface:1.3.3')
+            library('androidx-media3-exoplayer', 'androidx.media3', 'media3-exoplayer').versionRef('androidx-media3')
+            library('androidx-media3-session', 'androidx.media3', 'media3-session').versionRef('androidx-media3')
+            library('androidx-media3-ui', 'androidx.media3', 'media3-ui').versionRef('androidx-media3')
             library('androidx-multidex', 'androidx.multidex:multidex:2.0.1')
             library('androidx-navigation-fragment-ktx', 'androidx.navigation', 'navigation-fragment-ktx').versionRef('androidx-navigation')
             library('androidx-navigation-ui-ktx', 'androidx.navigation', 'navigation-ui-ktx').versionRef('androidx-navigation')
@@ -100,11 +106,7 @@ dependencyResolutionManagement {
             library('google-guava-android', 'com.google.guava:guava:30.0-android')
             library('google-flexbox', 'com.google.android.flexbox:flexbox:3.0.0')
 
-            // Exoplayer
-            library('exoplayer-core', 'com.google.android.exoplayer', 'exoplayer-core').versionRef('exoplayer')
-            library('exoplayer-ui', 'com.google.android.exoplayer', 'exoplayer-ui').versionRef('exoplayer')
-            library('exoplayer-extension-mediasession', 'com.google.android.exoplayer', 'extension-mediasession').versionRef('exoplayer')
-            bundle('exoplayer', ['exoplayer-core', 'exoplayer-ui', 'exoplayer-extension-mediasession'])
+            bundle('media3', ['androidx-media3-exoplayer', 'androidx-media3-session', 'androidx-media3-ui'])
 
             // Firebase
             library('firebase-messaging', 'com.google.firebase:firebase-messaging:23.1.2')
@@ -113,7 +115,7 @@ dependencyResolutionManagement {
             library('libsignal-client', 'org.signal', 'libsignal-client').versionRef('libsignal-client')
             library('libsignal-android', 'org.signal', 'libsignal-android').versionRef('libsignal-client')
             library('signal-aesgcmprovider', 'org.signal:aesgcmprovider:0.0.3')
-            library('signal-ringrtc', 'org.signal:ringrtc-android:2.29.0')
+            library('signal-ringrtc', 'org.signal:ringrtc-android:2.30.0')
             library('signal-android-database-sqlcipher', 'org.signal:sqlcipher-android:4.5.4-S2')
 
             // Third Party

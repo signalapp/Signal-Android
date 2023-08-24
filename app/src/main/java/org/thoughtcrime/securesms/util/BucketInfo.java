@@ -8,6 +8,8 @@ import androidx.annotation.RequiresApi;
 
 import java.util.Date;
 
+import static android.app.usage.UsageStatsManager.STANDBY_BUCKET_RESTRICTED;
+
 @RequiresApi(28)
 public final class BucketInfo {
 
@@ -73,6 +75,7 @@ public final class BucketInfo {
       case UsageStatsManager.STANDBY_BUCKET_WORKING_SET: return "Working Set";
       case UsageStatsManager.STANDBY_BUCKET_RARE:        return "Rare";
       case                   STANDBY_BUCKET_EXEMPTED:    return "Exempted";
+      case                   STANDBY_BUCKET_RESTRICTED:  return "Restricted";
       default:                                           return "Unknown " + bucket;
     }
   }

@@ -65,7 +65,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
@@ -639,6 +639,58 @@ public class SignalServiceMessageSender {
     return results;
   }
 
+  /**
+   * Sends an edit message to a group using client-side fanout.
+   *
+   * @param partialListener A listener that will be called when an individual send is completed. Will be invoked on an arbitrary background thread, *not*
+   *                        the calling thread.
+   */
+  public List<SendMessageResult> sendEditMessage(List<SignalServiceAddress>             recipients,
+                                                 List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
+                                                 boolean                                isRecipientUpdate,
+                                                 ContentHint                            contentHint,
+                                                 SignalServiceDataMessage               message,
+                                                 LegacyGroupEvents                      sendEvents,
+                                                 PartialSendCompleteListener            partialListener,
+                                                 CancelationSignal                      cancelationSignal,
+                                                 boolean                                urgent,
+                                                 long                                   targetSentTimestamp)
+      throws IOException, UntrustedIdentityException
+  {
+    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a edit message to " + recipients.size() + " recipients.");
+
+    Content                 content            = createEditMessageContent(new SignalServiceEditMessage(targetSentTimestamp, message));
+    EnvelopeContent         envelopeContent    = EnvelopeContent.encrypted(content, contentHint, message.getGroupId());
+    long                    timestamp          = message.getTimestamp();
+    List<SendMessageResult> results            = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, partialListener, cancelationSignal, urgent, false);
+    boolean                 needsSyncInResults = false;
+
+    sendEvents.onMessageSent();
+
+    for (SendMessageResult result : results) {
+      if (result.getSuccess() != null && result.getSuccess().isNeedsSync()) {
+        needsSyncInResults = true;
+        break;
+      }
+    }
+
+    if (needsSyncInResults || aciStore.isMultiDevice()) {
+      Optional<SignalServiceAddress> recipient = Optional.empty();
+      if (!message.getGroupContext().isPresent() && recipients.size() == 1) {
+        recipient = Optional.of(recipients.get(0));
+      }
+
+      Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, recipient, timestamp, results, isRecipientUpdate, Collections.emptySet());
+      EnvelopeContent syncMessageContent = EnvelopeContent.encrypted(syncMessage, ContentHint.IMPLICIT, Optional.empty());
+
+      sendMessage(localAddress, Optional.empty(), timestamp, syncMessageContent, false, null, false, false);
+    }
+
+    sendEvents.onSyncMessageSent();
+
+    return results;
+  }
+
   public SendMessageResult sendSyncMessage(SignalServiceDataMessage dataMessage)
       throws IOException, UntrustedIdentityException
   {
@@ -691,6 +743,10 @@ public class SignalServiceMessageSender {
       urgent  = message.getRequest().get().isUrgent();
     } else if (message.getCallEvent().isPresent()) {
       content = createCallEventContent(message.getCallEvent().get());
+    } else if (message.getCallLinkUpdate().isPresent()) {
+      content = createCallLinkUpdateContent(message.getCallLinkUpdate().get());
+    } else if (message.getCallLogEvent().isPresent()) {
+      content = createCallLogEventContent(message.getCallLogEvent().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -890,7 +946,7 @@ public class SignalServiceMessageSender {
     byte[] signature = localPniIdentity.signAlternateIdentity(aciStore.getIdentityKeyPair().getPublicKey());
 
     return SignalServiceProtos.PniSignatureMessage.newBuilder()
-        .setPni(UuidUtil.toByteString(localPni.uuid()))
+        .setPni(UuidUtil.toByteString(localPni.getRawUuid()))
         .setSignature(ByteString.copyFrom(signature))
         .build();
   }
@@ -1645,6 +1701,20 @@ public class SignalServiceMessageSender {
   private Content createCallEventContent(SyncMessage.CallEvent proto) {
     Content.Builder     container = Content.newBuilder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().setCallEvent(proto);
+
+    return container.setSyncMessage(builder).build();
+  }
+
+  private Content createCallLinkUpdateContent(SyncMessage.CallLinkUpdate proto) {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallLinkUpdate(proto);
+
+    return container.setSyncMessage(builder).build();
+  }
+
+  private Content createCallLogEventContent(SyncMessage.CallLogEvent proto) {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallLogEvent(proto);
 
     return container.setSyncMessage(builder).build();
   }

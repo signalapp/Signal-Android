@@ -295,7 +295,7 @@ public final class ProfileUtil {
       Log.i(TAG, String.format("Updating profile key credential on recipient %s, fetching", recipient.getId()));
 
       Optional<ExpiringProfileKeyCredential> profileKeyCredentialOptional = ApplicationDependencies.getSignalServiceAccountManager()
-                                                                                                   .resolveProfileKeyCredential(recipient.requireServiceId(), profileKey, Locale.getDefault());
+                                                                                                   .resolveProfileKeyCredential(recipient.requireAci(), profileKey, Locale.getDefault());
 
       if (profileKeyCredentialOptional.isPresent()) {
         boolean updatedProfileKey = SignalDatabase.recipients().setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());

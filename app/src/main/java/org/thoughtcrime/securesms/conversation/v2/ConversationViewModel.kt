@@ -20,7 +20,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -97,11 +96,6 @@ class ConversationViewModel(
 
   private val _conversationThreadState: Subject<ConversationThreadState> = BehaviorSubject.create()
   val conversationThreadState: Single<ConversationThreadState> = _conversationThreadState.firstOrError()
-
-  private val _markReadProcessor: PublishProcessor<Long> = PublishProcessor.create()
-  val markReadRequests: Flowable<Long> = _markReadProcessor
-    .onBackpressureBuffer()
-    .distinct()
 
   val pagingController = ProxyPagingController<ConversationElementKey>()
 
@@ -245,13 +239,26 @@ class ConversationViewModel(
     _searchQuery.onNext(query ?: "")
   }
 
+  fun refreshReminder() {
+    refreshReminder.onNext(Unit)
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
 
-  fun setShowScrollButtons(showScrollButtons: Boolean) {
+  fun setShowScrollButtonsForScrollPosition(showScrollButtons: Boolean, willScrollToBottomOnNewMessage: Boolean) {
     scrollButtonStateStore.update {
-      it.copy(showScrollButtons = showScrollButtons)
+      it.copy(
+        showScrollButtonsForScrollPosition = showScrollButtons,
+        willScrollToBottomOnNewMessage = willScrollToBottomOnNewMessage
+      )
+    }
+  }
+
+  fun setHideScrollButtonsForReactionOverlay(hide: Boolean) {
+    scrollButtonStateStore.update {
+      it.copy(hideScrollButtonsForReactionOverlay = hide)
     }
   }
 

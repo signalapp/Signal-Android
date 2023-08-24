@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge.PulseRequest
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -402,12 +401,6 @@ class MultiselectItemDecoration(
           }
         }
       }
-
-      if (!FeatureFlags.useConversationFragmentV2()) {
-        canvas.clipPath(path)
-        canvas.drawShade()
-        canvas.restore()
-      }
     }
   }
 
@@ -421,12 +414,6 @@ class MultiselectItemDecoration(
         if (child is Multiselectable && child.conversationMessage == inFocus.conversationMessage) {
           path.addRect(child.left.toFloat(), child.top.toFloat(), child.right.toFloat(), child.bottom.toFloat(), Path.Direction.CW)
         }
-      }
-
-      if (!FeatureFlags.useConversationFragmentV2()) {
-        canvas.clipPath(path, Region.Op.DIFFERENCE)
-        canvas.drawShade()
-        canvas.restore()
       }
     }
   }

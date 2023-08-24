@@ -6,6 +6,7 @@ import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -24,8 +25,8 @@ public class DeviceContactsInputStreamTest {
   public void read() throws IOException, InvalidInputException {
     ByteArrayOutputStream      byteArrayOut  = new ByteArrayOutputStream();
     DeviceContactsOutputStream output        = new DeviceContactsOutputStream(byteArrayOut);
-    SignalServiceAddress       addressFirst  = new SignalServiceAddress(ServiceId.from(UUID.randomUUID()), "+1404555555");
-    SignalServiceAddress       addressSecond = new SignalServiceAddress(ServiceId.from(UUID.randomUUID()), "+1444555555");
+    SignalServiceAddress       addressFirst  = new SignalServiceAddress(ACI.from(UUID.randomUUID()), "+1404555555");
+    SignalServiceAddress       addressSecond = new SignalServiceAddress(ACI.from(UUID.randomUUID()), "+1444555555");
 
     DeviceContact first = new DeviceContact(
         addressFirst,

@@ -165,8 +165,11 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               .setTitle("Are you sure?")
               .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
               .setPositiveButton(android.R.string.ok) { _, _ ->
-                if (recipient.hasServiceId()) {
-                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireServiceId().toString())
+                if (recipient.hasAci()) {
+                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireAci().toString())
+                }
+                if (recipient.hasPni()) {
+                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requirePni().toString())
                 }
               }
               .show()
@@ -182,14 +185,25 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
             .setTitle("Are you sure?")
             .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
             .setPositiveButton(android.R.string.ok) { _, _ ->
+              SignalDatabase.threads.deleteConversation(SignalDatabase.threads.getThreadIdIfExistsFor(recipient.id))
+
               if (recipient.hasServiceId()) {
                 SignalDatabase.recipients.debugClearServiceIds(recipient.id)
                 SignalDatabase.recipients.debugClearProfileData(recipient.id)
-                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireServiceId().toString())
-                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requireServiceId().toString())
-                ApplicationDependencies.getProtocolStore().pni().identities().delete(recipient.requireServiceId().toString())
-                SignalDatabase.threads.deleteConversation(SignalDatabase.threads.getThreadIdIfExistsFor(recipient.id))
               }
+
+              if (recipient.hasAci()) {
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireAci().toString())
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requirePni(), addressName = recipient.requireAci().toString())
+                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requireAci().toString())
+              }
+
+              if (recipient.hasPni()) {
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requirePni().toString())
+                SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requirePni(), addressName = recipient.requirePni().toString())
+                ApplicationDependencies.getProtocolStore().aci().identities().delete(recipient.requirePni().toString())
+              }
+
               startActivity(MainActivity.clearTop(requireContext()))
             }
             .show()
@@ -237,7 +251,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               SignalDatabase.recipients.debugClearE164AndPni(recipient.id)
 
               val splitRecipientId: RecipientId = if (FeatureFlags.phoneNumberPrivacy()) {
-                SignalDatabase.recipients.getAndPossiblyMergePnpVerified(recipient.pni.orElse(null), recipient.pni.orElse(null), recipient.requireE164())
+                SignalDatabase.recipients.getAndPossiblyMergePnpVerified(null, recipient.pni.orElse(null), recipient.requireE164())
               } else {
                 SignalDatabase.recipients.getAndPossiblyMerge(recipient.pni.orElse(null), recipient.requireE164())
               }
@@ -281,7 +295,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
               SignalDatabase.recipients.debugRemoveAci(recipient.id)
 
-              val aciRecipientId: RecipientId = SignalDatabase.recipients.getAndPossiblyMergePnpVerified(recipient.requireServiceId(), null, null)
+              val aciRecipientId: RecipientId = SignalDatabase.recipients.getAndPossiblyMergePnpVerified(recipient.requireAci(), null, null)
 
               recipient.profileKey?.let { profileKey ->
                 SignalDatabase.recipients.setProfileKey(aciRecipientId, ProfileKey(profileKey))

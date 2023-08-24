@@ -46,13 +46,13 @@ class EditMessageSyncProcessorTest {
   @get:Rule
   val harness = SignalActivityRule()
 
-  private lateinit var processorV2: MessageContentProcessorV2
+  private lateinit var processorV2: MessageContentProcessor
   private lateinit var testResult: TestResults
   private var envelopeTimestamp: Long = 0
 
   @Before
   fun setup() {
-    processorV2 = MessageContentProcessorV2(harness.context)
+    processorV2 = MessageContentProcessor(harness.context)
     envelopeTimestamp = System.currentTimeMillis()
     testResult = TestResults()
   }

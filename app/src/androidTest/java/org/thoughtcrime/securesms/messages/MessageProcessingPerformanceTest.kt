@@ -59,14 +59,14 @@ class MessageProcessingPerformanceTest {
     mockkStatic(UnidentifiedAccessUtil::class)
     every { UnidentifiedAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
 
-    mockkObject(MessageContentProcessorV2)
-    every { MessageContentProcessorV2.create(harness.application) } returns TimingMessageContentProcessorV2(harness.application)
+    mockkObject(MessageContentProcessor)
+    every { MessageContentProcessor.create(harness.application) } returns TimingMessageContentProcessor(harness.application)
   }
 
   @After
   fun after() {
     unmockkStatic(UnidentifiedAccessUtil::class)
-    unmockkStatic(MessageContentProcessorV2::class)
+    unmockkStatic(MessageContentProcessor::class)
   }
 
   @Test
@@ -107,7 +107,7 @@ class MessageProcessingPerformanceTest {
     // Wait until they've all been fully decrypted + processed
     harness
       .inMemoryLogger
-      .getLockForUntil(TimingMessageContentProcessorV2.endTagPredicate(lastTimestamp))
+      .getLockForUntil(TimingMessageContentProcessor.endTagPredicate(lastTimestamp))
       .awaitFor(1.minutes)
 
     harness.inMemoryLogger.flush()
@@ -126,7 +126,7 @@ class MessageProcessingPerformanceTest {
 
     // Calculate MessageContentProcessor
 
-    val takeLast: List<Entry> = entries.filter { it.tag == TimingMessageContentProcessorV2.TAG }.drop(2)
+    val takeLast: List<Entry> = entries.filter { it.tag == TimingMessageContentProcessor.TAG }.drop(2)
     val iterator = takeLast.iterator()
     var processCount = 0L
     var processDuration = 0L
@@ -142,7 +142,7 @@ class MessageProcessingPerformanceTest {
     // Calculate messages per second from "retrieving" first message post session initialization to processing last message
 
     val start = entries.first { it.message == "Retrieved envelope! $firstTimestamp" }
-    val end = entries.first { it.message == TimingMessageContentProcessorV2.endTag(lastTimestamp) }
+    val end = entries.first { it.message == TimingMessageContentProcessor.endTag(lastTimestamp) }
 
     val duration = (end.timestamp - start.timestamp).toFloat() / 1000f
     val messagePerSecond = messageCount.toFloat() / duration
@@ -157,7 +157,7 @@ class MessageProcessingPerformanceTest {
 
     val aliceProcessFirstMessageLatch = harness
       .inMemoryLogger
-      .getLockForUntil(TimingMessageContentProcessorV2.endTagPredicate(firstPreKeyMessageTimestamp))
+      .getLockForUntil(TimingMessageContentProcessor.endTagPredicate(firstPreKeyMessageTimestamp))
 
     Thread { aliceClient.process(encryptedEnvelope, System.currentTimeMillis()) }.start()
     aliceProcessFirstMessageLatch.awaitFor(15.seconds)

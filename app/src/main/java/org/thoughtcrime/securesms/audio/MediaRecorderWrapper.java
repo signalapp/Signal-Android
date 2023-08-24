@@ -41,7 +41,7 @@ public class MediaRecorderWrapper implements Recorder {
       recorder.setAudioChannels(CHANNELS);
       recorder.prepare();
       recorder.start();
-    } catch (IllegalStateException e) {
+    } catch (RuntimeException e) {
       Log.w(TAG, "Unable to start recording", e);
       recorder.release();
       recorder = null;

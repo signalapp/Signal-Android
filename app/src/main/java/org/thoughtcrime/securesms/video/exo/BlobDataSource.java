@@ -6,10 +6,13 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.datasource.DataSource;
 
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.TransferListener;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.DataSpec;
+import androidx.media3.datasource.TransferListener;
 
 import org.thoughtcrime.securesms.providers.BlobProvider;
 
@@ -20,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+@OptIn(markerClass = UnstableApi.class)
 class BlobDataSource implements DataSource {
 
   private final @NonNull  Context          context;

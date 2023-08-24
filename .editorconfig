@@ -6,3 +6,4 @@ ij_kotlin_allow_trailing_comma_on_call_site = false
 ij_kotlin_allow_trailing_comma = false
 ktlint_code_style = intellij_idea
 twitter_compose_allowed_composition_locals=LocalExtendedColors
+ktlint_standard_class-naming = disabled

@@ -23,7 +23,8 @@ object DeleteDialog {
    * @param message           The dialog message, or null
    * @param forceRemoteDelete Allow remote deletion, even if it would normally be disallowed
    *
-   * @return a Single, who's value notes whether or not a thread deletion occurred.
+   * @return a Single, who's value is a pair that notes whether or not a deletion attempt
+   * happened at all, as well as if a thread deletion occurred.
    */
   fun show(
     context: Context,
@@ -31,7 +32,7 @@ object DeleteDialog {
     title: CharSequence = context.resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageRecords.size, messageRecords.size),
     message: CharSequence? = null,
     forceRemoteDelete: Boolean = false
-  ): Single<Boolean> = Single.create { emitter ->
+  ): Single<Pair<Boolean, Boolean>> = Single.create { emitter ->
     val builder = MaterialAlertDialogBuilder(context)
 
     builder.setTitle(title)
@@ -44,7 +45,9 @@ object DeleteDialog {
       builder.setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> deleteForEveryone(messageRecords, emitter) }
     } else {
       builder.setPositiveButton(if (isNoteToSelfDelete) R.string.ConversationFragment_delete_on_this_device else R.string.ConversationFragment_delete_for_me) { _, _ ->
-        DeleteProgressDialogAsyncTask(context, messageRecords, emitter::onSuccess).executeOnExecutor(SignalExecutors.BOUNDED)
+        DeleteProgressDialogAsyncTask(context, messageRecords) {
+          emitter.onSuccess(Pair(true, it))
+        }.executeOnExecutor(SignalExecutors.BOUNDED)
       }
 
       if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(context))) {
@@ -52,8 +55,8 @@ object DeleteDialog {
       }
     }
 
-    builder.setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(false) }
-    builder.setOnCancelListener { emitter.onSuccess(false) }
+    builder.setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(Pair(false, false)) }
+    builder.setOnCancelListener { emitter.onSuccess(Pair(false, false)) }
     builder.show()
   }
 
@@ -61,8 +64,8 @@ object DeleteDialog {
     return messageRecords.all { messageRecord: MessageRecord -> messageRecord.isOutgoing && messageRecord.toRecipient.isSelf }
   }
 
-  private fun handleDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Boolean>) {
-    if (SignalStore.uiHints().hasConfirmedDeleteForEveryoneOnce() || isNoteToSelfDelete(messageRecords)) {
+  private fun handleDeleteForEveryone(context: Context, messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
+    if (SignalStore.uiHints().hasConfirmedDeleteForEveryoneOnce()) {
       deleteForEveryone(messageRecords, emitter)
     } else {
       MaterialAlertDialogBuilder(context)
@@ -71,19 +74,19 @@ object DeleteDialog {
           SignalStore.uiHints().markHasConfirmedDeleteForEveryoneOnce()
           deleteForEveryone(messageRecords, emitter)
         }
-        .setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(false) }
-        .setOnCancelListener { emitter.onSuccess(false) }
+        .setNegativeButton(android.R.string.cancel) { _, _ -> emitter.onSuccess(Pair(false, false)) }
+        .setOnCancelListener { emitter.onSuccess(Pair(false, false)) }
         .show()
     }
   }
 
-  private fun deleteForEveryone(messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Boolean>) {
+  private fun deleteForEveryone(messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Pair<Boolean, Boolean>>) {
     SignalExecutors.BOUNDED.execute {
       messageRecords.forEach { message ->
         MessageSender.sendRemoteDelete(message.id)
       }
 
-      emitter.onSuccess(false)
+      emitter.onSuccess(Pair(true, false))
     }
   }
 

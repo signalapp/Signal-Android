@@ -111,7 +111,7 @@ public final class LiveGroup {
 
                                    return Stream.of(requestingMembersList)
                                                 .map(requestingMember -> {
-                                                  Recipient recipient = Recipient.externalPush(ServiceId.fromByteString(requestingMember.getUuid()));
+                                                  Recipient recipient = Recipient.externalPush(ServiceId.parseOrThrow(requestingMember.getAciBytes()));
                                                   return new GroupMemberEntry.RequestingMember(recipient, selfAdmin);
                                                 })
                                                 .toList();
@@ -144,7 +144,7 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
   }
 
-  public LiveData<Set<UUID>> getBannedMembers() {
+  public LiveData<Set<ServiceId>> getBannedMembers() {
     return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
   }
 

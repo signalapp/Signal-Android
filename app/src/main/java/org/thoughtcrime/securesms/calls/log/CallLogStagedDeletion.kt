@@ -35,14 +35,21 @@ class CallLogStagedDeletion(
       .map { it.roomId }
       .toSet()
 
-    return if (stateSnapshot.isExclusionary()) {
-      repository.deleteAllCallLogsExcept(callRowIds, filter == CallLogFilter.MISSED).andThen(
-        repository.deleteAllCallLinksExcept(callRowIds, callLinkIds)
-      )
-    } else {
-      repository.deleteSelectedCallLogs(callRowIds).andThen(
-        repository.deleteSelectedCallLinks(callRowIds, callLinkIds)
-      )
+    return when {
+      stateSnapshot is CallLogSelectionState.All && filter == CallLogFilter.ALL -> {
+        repository.deleteAllCallLogsOnOrBeforeNow()
+      }
+      stateSnapshot is CallLogSelectionState.Excludes || stateSnapshot is CallLogSelectionState.All -> {
+        repository.deleteAllCallLogsExcept(callRowIds, filter == CallLogFilter.MISSED).andThen(
+          repository.deleteAllCallLinksExcept(callRowIds, callLinkIds)
+        )
+      }
+      stateSnapshot is CallLogSelectionState.Includes -> {
+        repository.deleteSelectedCallLogs(callRowIds).andThen(
+          repository.deleteSelectedCallLinks(callRowIds, callLinkIds)
+        )
+      }
+      else -> error("Unhandled state $stateSnapshot $filter")
     }
   }
 }

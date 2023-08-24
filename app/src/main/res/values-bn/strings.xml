@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">আপনার টেলিফোন কেরিয়ার টাকা কাটতে পারে। যে নম্বরটিতে কল করছেন সেটি Signal-এর সাথে রেজিস্টার করা নেই। তাই কলটি টেলিফোন কেরিয়ারের মাধ্যমে করা হবে, ইন্টারনেটের মাধ্যমে না।</string>
     <string name="CommunicationActions_cant_join_call">কলে যোগ দেওয়া যাচ্ছে না</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">এই কল লিংকটি আর কার্যকর নয়।</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">অবৈধ লিঙ্ক</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">কলের এই লিংকটি কার্যকর নয়। যোগ দিতে চেষ্টা করার আগে নিশ্চিত করুন যে পুরো লিংকটি অক্ষত ও সঠিক আছে।</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">আপনি এই ম্যাসেজটি পাঠানোর সময় থেকে শুরু করে শুধুমাত্র %1$d ঘন্টার মধ্যে এডিট করা যাবে।</item>
         <item quantity="other">আপনি এই ম্যাসেজটি পাঠানোর সময় থেকে শুরু করে শুধুমাত্র %1$d ঘন্টার মধ্যে এডিট করা যাবে।</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">এই মেসেজটি শুধুমাত্র %1$d বার এডিট করা যাবে।</item>
+        <item quantity="other">এই মেসেজটি শুধুমাত্র %1$d বার এডিট করা যাবে।</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">অকার্যকর প্রাপক!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">%1$d জন সদস্য</item>
         <item quantity="other">%1$d জন সদস্য</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">আমরা লক্ষ্য করেছি যে নোটিফিকেশনে বিলম্ব হয়েছে। ডিবাগ লগ জমা দেবেন?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">ডিবাগ লগ আমাদের সমস্যা নির্ণয় ও সমাধান করতে সাহায্য করে এবং শনাক্তকরণের তথ্য ধারণ করে না।</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">ব্যাটারি অপ্টিমাইজেশনের কারণে বিজ্ঞপ্তি আসতে দেরি হতে পারে</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">মেসেজের বিজ্ঞপ্তি যেন বিলম্বিত না হয় তা নিশ্চিত করতে আপনি Signal-এর জন্য ব্যাটারি অপ্টিমাইজেশন নিষ্ক্রিয় করতে পারেন।</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">চালিয়ে যান</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">বাতিল করুন</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">অনিষ্পন্ন গ্রুপ নিমন্ত্রণসমূহ</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">সেটিংস খুলুন</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">এখন না</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">%1$dটি অনুরোধ অনুমোদন করবেন?</item>
+        <item quantity="other">%1$dটি অনুরোধ অনুমোদন করবেন?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">সবগুলো অনুমোদন করুন</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d জন লোক কলে যোগ হবেন।</item>
+        <item quantity="other">%1$d জন লোক কলে যোগ হবেন।</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">%1$dটি অনুরোধ প্রত্যাখ্যান করবেন?</item>
+        <item quantity="other">%1$dটি অনুরোধ প্রত্যাখ্যান করবেন?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d জন লোক কলে যোগ হবেন না।</item>
+        <item quantity="other">%1$d জন লোক কলে যোগ হবেন না।</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">সবগুলো প্রত্যাখ্যান করুন</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d জন লোক অপেক্ষা করছেন</item>
+        <item quantity="other">%1$d জন লোক অপেক্ষা করছেন</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d মানুষ</item>
+        <item quantity="other">%1$d মানুষ</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">যোগ দেওয়ার অনুরোধ প্রত্যাখ্যান করা হয়েছে</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">এই কলে যোগ দেওয়ার জন্য আপনার অনুরোধ প্রত্যাখ্যান করা হয়েছে।</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">কল থেকে সরানো হয়েছে</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">কেউ আপনাকে কল থেকে সরিয়ে দিয়েছেন।</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal কল</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">পুনঃসংযোগ হচ্ছে …</string>
     <string name="WebRtcCallView__joining">যোগ দিচ্ছে…</string>
     <string name="WebRtcCallView__disconnected">বিচ্ছিন্ন হয়েছে</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal কল লিংক</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">যিনি এই লিংকের মাধ্যমে এই কলে যোগ দেবেন তিনিই আপনার নাম, ছবি ও ফোন নম্বর দেখতে পাবেন।</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">প্রবেশ করার জন্য অপেক্ষা চলছে…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">সিগন্যাল %1$s কে রিং করবে</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">সিগন্যাল %1$s এবং %2$s কল করবে৷</string>
@@ -2757,7 +2829,7 @@
     <string name="message_details_recipient_header__read_by">যিনি পড়েছেন</string>
     <string name="message_details_recipient_header__not_sent">পাঠানো হয়নি</string>
     <string name="message_details_recipient_header__viewed">যারা দেখেছেন</string>
-    <string name="message_details_recipient_header__skipped">বাদ দেওয়া হয়েছে</string>
+    <string name="message_details_recipient_header__skipped">এড়িয়ে যাওয়া হয়েছে</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">পাঠাতে ব্যার্থ</string>
@@ -2809,6 +2881,14 @@
         <item>ডোনেশন এবং ব্যাজ</item>
         <item>এসএমএস স্থানান্তর</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android বাগ সংক্রান্ত সংশোধন লগ জমা</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">বিলম্বিত নোটিফিকেশন</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">সাবমিট</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">না ধন্যবাদ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">এই মেসেজ</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">রিংটোন</string>
     <string name="preferences_chats__message_text_size">বার্তার হরফের আকার</string>
     <string name="preferences_notifications__priority">অগ্রাধিকার</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">বিজ্ঞপ্তিজনিত সমস্যার সমাধান</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">সেন্সরশিপ উপেক্ষা</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">সতেজ করন</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">অন্তর্দৃষ্টি</string>
-    <string name="InsightsDashboardFragment__title">অন্তর্দৃষ্টি</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal প্রোটোকল বিগত %2$d দিন যাবত আপনার প্রেরিত ম্যাসেজের %1$d%% স্বয়ংক্রিয়ভাবে সুরক্ষিত করেছে। Signal ব্যবহারকারীদের মধ্যকার চ্যাট সবসময় এন্ড-টু-এন্ড এনক্রিপ্ট করা থাকে।</string>
-    <string name="InsightsDashboardFragment__spread_the_word">শব্দটি ছড়িয়ে দিন</string>
-    <string name="InsightsDashboardFragment__not_enough_data">পর্যাপ্ত তথ্য নেই</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">আপনার ইনসাইটের শতকরা হার বিগত %1$d দিনের মধ্যে বহির্গামী বার্তাগুলোর মধ্যে অদৃশ্য হয়নি বা মোছা হয়নি, এমন বার্তাগুলোর উপর ভিত্তি করে হিসেব করা হয় যা ।</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">চ্যাট শুরু করুন</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">সুরক্ষিতভাবে যোগাযোগ শুরু করুন এবং Signal যোগ দেওয়ার জন্য আরও পরিচিতিগুলিকে আমন্ত্রণ জানিয়ে এনক্রিপ্ট করা এসএমএস বার্তাগুলির সীমা ছাড়িয়ে যাওয়ার মতো নতুন বৈশিষ্ট্য সক্ষম করুন|</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">এই পরিসংখ্যানগুলি স্থানীয়ভাবে আপনার ডিভাইসে তৈরি হয়েছিল এবং কেবলমাত্র আপনার দ্বারা দেখা যেতে পারে। এগুলি কখনই কোথাও সঞ্চারিত হয় না।</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">এনক্রিপ্ট করা বার্তা</string>
-    <string name="InsightsDashboardFragment__cancel">বাতিল</string>
-    <string name="InsightsDashboardFragment__send">পাঠান</string>
-    <string name="InsightsModalFragment__title">অন্তর্দৃষ্টি উপস্থাপন করছি</string>
-    <string name="InsightsModalFragment__description">আপনার কতগুলি বহির্গামী বার্তাগুলি সুরক্ষিতভাবে প্রেরণ করা হয়েছে তা সন্ধান করুন, তারপরে আপনার Signal শতাংশকে বাড়িয়ে তুলতে দ্রুত নতুন পরিচিতিকে আমন্ত্রণ জানান।</string>
-    <string name="InsightsModalFragment__view_insights">অন্তর্দৃষ্টি দেখুন</string>
-
-    <string name="FirstInviteReminder__title">Signal এ আমন্ত্রন জানান</string>
-    <string name="FirstInviteReminder__description">আপনি %1$d%% দ্বারা প্রেরিত এনক্রিপ্ট হওয়া বার্তাগুলির সংখ্যা বাড়িয়ে দিতে পারেন</string>
-    <string name="SecondInviteReminder__title">আপনার Signal বুস্ট করুন</string>
-    <string name="SecondInviteReminder__description">%1$s কে আমন্ত্রণ জানান</string>
-    <string name="InsightsReminder__view_insights">অন্তর্দৃষ্টি দেখুন</string>
-    <string name="InsightsReminder__invite">আমন্ত্রণ</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">কলের লিংক</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">একটি ভিডিও কল শুরু করুন</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">ভয়েস কল শুরু করুন</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">মাইক চালু করুন</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">মাইক বন্ধ করুন</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">স্পিকার চালু</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">স্পিকার বন্ধ</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">\'ক্যাপচার\' বোতাম</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">কলের একটি লিংক তৈরি করুন</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal কলের জন্য একটি লিংক শেয়ার করুন</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Signal কলে যোগ দিতে এই লিংকটি ব্যবহার করুন: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">কলের তথ্য</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s-কে কল থেকে সরাতে চান?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">সরিয়ে ফেলুন</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">কল থেকে ব্লক করুন</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">একটি নেটওয়ার্ক ত্রুটির সম্মুখীন হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">যোগ দিতে আগ্রহী…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$dটি অনুরোধ</item>
+        <item quantity="other">+%1$dটি অনুরোধ</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">এই কলে যোগ দেওয়ার জন্য অনুরোধ করছেন</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d জন লোক অপেক্ষা করছেন</item>
+        <item quantity="other">%1$d জন লোক অপেক্ষা করছেন</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">বাতিল</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">অনুমোদন</string>
 
     <!-- EOF -->
 </resources>

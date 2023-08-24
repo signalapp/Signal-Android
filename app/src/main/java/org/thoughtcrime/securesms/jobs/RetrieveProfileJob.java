@@ -49,7 +49,6 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -60,7 +59,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -286,11 +284,11 @@ public class RetrieveProfileJob extends BaseJob {
 
     Set<RecipientId> success = SetUtil.difference(recipientIds, operationState.retries);
 
-    Map<RecipientId, ServiceId> newlyRegistered = Stream.of(operationState.profiles)
-                                                        .map(Pair::first)
-                                                        .filterNot(Recipient::isRegistered)
-                                                        .collect(Collectors.toMap(Recipient::getId,
-                                                                                  r -> r.getServiceId().orElse(null)));
+    Set<RecipientId> newlyRegistered = Stream.of(operationState.profiles)
+                                             .map(Pair::first)
+                                             .filterNot(Recipient::isRegistered)
+                                             .map(Recipient::getId)
+                                             .collect(Collectors.toSet());
 
 
     //noinspection SimplifyStreamApiCallChains
@@ -303,8 +301,8 @@ public class RetrieveProfileJob extends BaseJob {
     });
 
     recipientTable.markProfilesFetched(success, System.currentTimeMillis());
-    // XXX The service hasn't implemented profiles for PNIs yet, so if using PNP CDS we don't want to mark users without profiles as unregistered.
-    if ((operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) && !FeatureFlags.phoneNumberPrivacy()) {
+
+    if (operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) {
       Log.i(TAG, "Marking " + newlyRegistered.size() + " users as registered and " + operationState.unregistered.size() + " users as unregistered.");
       recipientTable.bulkUpdatedRegisteredStatus(newlyRegistered, operationState.unregistered);
     }

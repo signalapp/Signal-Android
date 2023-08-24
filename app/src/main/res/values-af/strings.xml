@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Telefoonkoste kan van toepassing wees. Die nommer wat jy skakel is nie by Signal geregistreer nie. Hierdie oproep sal deur jou sellulêre diensverskaffer geplaas word, nie oor die Internet nie.</string>
     <string name="CommunicationActions_cant_join_call">Kan nie by oproep aansluit nie</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Hierdie oproepskakel is nie meer geldig nie.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Ongeldige skakel</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Hierdie is nie ’n geldige oproepskakel nie. Maak seker die volledige skakel is heel en korrek voor jy probeer aansluit.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Wysigings kan slegs aangebring word binne %1$d uur vanaf die tyd wat jy hierdie boodskap gestuur het.</item>
         <item quantity="other">Wysigings kan slegs aangebring word binne %1$d uur vanaf die tyd wat jy hierdie boodskap gestuur het.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Slegs %1$d wysiging kan aan hierdie boodskap aangebring word.</item>
+        <item quantity="other">Slegs %1$d wysigings kan aan hierdie boodskap aangebring word.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">%1$d lid</item>
         <item quantity="other">%1$d lede</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Ons het opgemerk dat kennisgewings vertraag word. Dien ontfoutlog in?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Ontfoutlogs help ons om die probleem te diagnoseer en reg te stel, en bevat nie identifiserende inligting nie.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Kennisgewings kan vertraag word as gevolg van batteryoptimalisering</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Jy kan batteryoptimalisering vir Signal deaktiveer om te verseker dat boodskapkennisgewings nie vertraag word nie.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Gaan voort</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Wys weg</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Hangende groepuitnodigings</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">Maak instellings oop</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Nie nou nie</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Keur %1$d versoek goed?</item>
+        <item quantity="other">Keur %1$d versoeke goed?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Keur almal goed</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d persoon sal by die oproep gevoeg word.</item>
+        <item quantity="other">%1$d persone sal by die oproep gevoeg word.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Weier %1$d versoek?</item>
+        <item quantity="other">Weier %1$d versoeke?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d persoon sal nie by die oproep gevoeg word nie.</item>
+        <item quantity="other">%1$d persone sal nie by die oproep gevoeg word nie.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Weier almal</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d persoon wag</item>
+        <item quantity="other">%1$d persone wag</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d mens</item>
+        <item quantity="other">%1$d mense</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Aansluitingsversoek geweier</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Jou versoek om by hierdie oproep aan te sluit is geweier.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Uit oproep verwyder</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Iemand het jou uit die oproep verwyder.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal-oproep</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">Herkoppel tans…</string>
     <string name="WebRtcCallView__joining">Besig om aan te sluit…</string>
     <string name="WebRtcCallView__disconnected">Ontkoppel</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Sein oproepskakel</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Enigiemand wat via die skakel by hierdie oproep aansluit, sal jou naam, foto en telefoonnommer sien.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Wag om ingelaat te word…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal sal %1$s skakel</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sal %1$s en %2$s skakel</string>
@@ -2757,7 +2829,7 @@
     <string name="message_details_recipient_header__read_by">Gelees deur</string>
     <string name="message_details_recipient_header__not_sent">Nie gestuur nie</string>
     <string name="message_details_recipient_header__viewed">Gesien deur</string>
-    <string name="message_details_recipient_header__skipped">Oorgeslaan</string>
+    <string name="message_details_recipient_header__skipped">Onafgelewer</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Kon nie stuur nie</string>
@@ -2809,6 +2881,14 @@
         <item>Skenkings &amp; Wapens</item>
         <item>SMS-uitvoer</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Indiening van Signal Android-ontfoutlog</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Stadige kennisgewings</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Dien in</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Nee dankie</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Hierdie boodskap</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">Luitoon</string>
     <string name="preferences_chats__message_text_size">Boodskaplettergrootte</string>
     <string name="preferences_notifications__priority">Prioriteit</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Kennisgewingfoutopsporing</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Sensuuromseiling</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Verfris</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Insigte</string>
-    <string name="InsightsDashboardFragment__title">Insigte</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokol het outomaties %1$d%% van jou uitgaande boodskappe oor die afgelope %2$d dae beskerm. Kletse tussen Signal-gebruikers word altyd end-tot-end geënkripteer.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Versprei die boodskap</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nie genoeg data nie</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jou Insigte-persentasie word bereken op grond van uitgaande boodskappe in die afgelope %1$d dae wat nie verdwyn het of geskrap is nie.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Begin \'n klets</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Begin veilig kommunikeer en aktiveer nuwe kenmerke wat verder gaan as die beperkings van ongeënkripteerde SMS-boodskappe deur meer kontakte te nooi om by Signal aan te sluit.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Hierdie statistieke is lokaal op jou toestel gegenereer en kan net deur jou gesien word. Dit word nooit êrens heen oorgedra nie.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Geënkripteerde boodskappe</string>
-    <string name="InsightsDashboardFragment__cancel">Kanselleer</string>
-    <string name="InsightsDashboardFragment__send">Stuur</string>
-    <string name="InsightsModalFragment__title">Ons stel bekend: Insigte</string>
-    <string name="InsightsModalFragment__description">Vind uit hoeveel van jou uitgaande boodskappe veilig gestuur is, en nooi dan vinnig nuwe kontakte om jou Signal-persentasie \'n hupstoot te gee.</string>
-    <string name="InsightsModalFragment__view_insights">Bekyk Insigte</string>
-
-    <string name="FirstInviteReminder__title">Nooi na Signal</string>
-    <string name="FirstInviteReminder__description">Jy kan die getal geënkripteerde boodskappe wat jy stuur met %1$d%% verhoog.</string>
-    <string name="SecondInviteReminder__title">Gee jou Signal \'n hupstoot</string>
-    <string name="SecondInviteReminder__description">Nooi %1$s uit</string>
-    <string name="InsightsReminder__view_insights">Bekyk Insigte</string>
-    <string name="InsightsReminder__invite">Nooi uit</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Oproepskakel</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Begin \'n video-oproep</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Begin \'n stemoproep</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofoon aangeskakel</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofoon afgeskakel</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Luidspreker aan</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Luidspreker af</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Afneemknoppie</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">Skep \'n Oproepskakel</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Deel \'n skakel vir \'n Signal-oproep</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Gebruik hierdie skakel om by \'n Signal-oproep aan te sluit: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Oproepinligting</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Verwyder %1$s uit die oproep?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Verwyder</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Blokkeer toegang tot oproep</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Daar was \'n netwerkfout. Probeer weer.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Wil graag aansluit…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d versoek</item>
+        <item quantity="other">+%1$d versoeke</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Versoeke om by hierdie oproep aan te sluit</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d persoon wag</item>
+        <item quantity="other">%1$d persone wag</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Verwerp</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Keur goed</string>
 
     <!-- EOF -->
 </resources>

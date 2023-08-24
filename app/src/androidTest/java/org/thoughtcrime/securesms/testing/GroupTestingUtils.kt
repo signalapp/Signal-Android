@@ -8,16 +8,16 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import kotlin.random.Random
 
 /**
  * Helper methods for creating groups for message processing tests et al.
  */
 object GroupTestingUtils {
-  fun member(serviceId: ServiceId, revision: Int = 0, role: Member.Role = Member.Role.ADMINISTRATOR): DecryptedMember {
+  fun member(aci: ACI, revision: Int = 0, role: Member.Role = Member.Role.ADMINISTRATOR): DecryptedMember {
     return DecryptedMember.newBuilder()
-      .setUuid(serviceId.toByteString())
+      .setAciBytes(aci.toByteString())
       .setJoinedAtRevision(revision)
       .setRole(role)
       .build()
@@ -43,7 +43,7 @@ object GroupTestingUtils {
   }
 
   fun Recipient.asMember(): DecryptedMember {
-    return member(serviceId = requireServiceId())
+    return member(aci = requireAci())
   }
 
   data class TestGroupInfo(val groupId: GroupId.V2, val masterKey: GroupMasterKey, val recipientId: RecipientId)

@@ -182,7 +182,7 @@ message GroupChange {
       bool announcementsOnly = 1;
     }
 
-             bytes                                      sourceUuid                      = 1;
+             bytes                                      sourceServiceId                 = 1;
              uint32                                     revision                        = 2;
     repeated AddMemberAction                            addMembers                      = 3;
     repeated DeleteMemberAction                         deleteMembers                   = 4;

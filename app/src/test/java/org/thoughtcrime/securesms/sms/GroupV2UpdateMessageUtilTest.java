@@ -9,6 +9,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.util.Random;
@@ -22,7 +24,7 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJustAGroupLeave_whenEditorIsRemoved_shouldReturnTrue() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(alice)
                                                .build();
@@ -45,8 +47,8 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJustAGroupLeave_whenOtherIsRemoved_shouldReturnFalse() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
-    UUID bob   = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(bob)
                                                .build();
@@ -69,8 +71,8 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJustAGroupLeave_whenEditorIsRemovedAndOtherChanges_shouldReturnFalse() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
-    UUID bob   = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(alice)
                                                .addMember(bob)
@@ -94,7 +96,7 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJoinRequestCancel_whenChangeRemovesRequestingMembers_shouldReturnTrue() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .denyRequest(alice)
                                                .build();
@@ -117,8 +119,8 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJoinRequestCancel_whenChangeContainsNoRemoveRequestingMembers_shouldReturnFalse() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
-    UUID bob   = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(alice)
                                                .addMember(bob)

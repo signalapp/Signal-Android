@@ -46,11 +46,10 @@ public class QuickResponseService extends IntentService {
         number = URLDecoder.decode(number);
       }
 
-      Recipient recipient      = Recipient.external(this, number);
-      int       subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
+      Recipient recipient = Recipient.external(this, number);
 
       if (!TextUtils.isEmpty(content)) {
-        MessageSender.send(this, OutgoingMessage.sms(recipient, content, subscriptionId), -1, MessageSender.SendType.SIGNAL, null, null);
+        MessageSender.send(this, OutgoingMessage.sms(recipient, content), -1, MessageSender.SendType.SIGNAL, null, null);
       }
     } catch (URISyntaxException e) {
       Toast.makeText(this, R.string.QuickResponseService_problem_sending_message, Toast.LENGTH_LONG).show();

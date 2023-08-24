@@ -63,7 +63,7 @@ public class ContactRepository {
     }));
 
     add(new Pair<>(NUMBER_COLUMN, cursor -> {
-      String phone = CursorUtil.requireString(cursor, RecipientTable.PHONE);
+      String phone = CursorUtil.requireString(cursor, RecipientTable.E164);
       String email = CursorUtil.requireString(cursor, RecipientTable.EMAIL);
 
       if (phone != null) {

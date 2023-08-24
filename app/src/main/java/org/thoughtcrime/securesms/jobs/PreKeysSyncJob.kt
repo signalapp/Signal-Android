@@ -181,6 +181,7 @@ class PreKeysSyncJob private constructor(parameters: Parameters) : BaseJob(param
     log(serviceIdType, "Cleaning prekeys...")
     PreKeyUtil.cleanSignedPreKeys(protocolStore, metadataStore)
     PreKeyUtil.cleanLastResortKyberPreKeys(protocolStore, metadataStore)
+    PreKeyUtil.cleanOneTimePreKeys(protocolStore)
   }
 
   private fun signedPreKeyUploadIfNeeded(serviceIdType: ServiceIdType, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore): SignedPreKeyRecord? {

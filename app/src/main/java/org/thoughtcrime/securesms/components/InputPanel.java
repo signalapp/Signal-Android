@@ -27,6 +27,7 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -78,7 +79,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-public class InputPanel extends LinearLayout
+public class InputPanel extends ConstraintLayout
     implements AudioRecordingHandler,
                KeyboardAwareLinearLayout.OnKeyboardShownListener,
                EmojiEventListener,
@@ -101,10 +102,10 @@ public class InputPanel extends LinearLayout
   private SendButton      sendButton;
   private View            recordingContainer;
   private View            recordLockCancel;
-  private ViewGroup       composeContainer;
+  private View            composeContainer;
   private View            editMessageCancel;
   private ImageView       editMessageThumbnail;
-  private View            editMessageHeader;
+  private View            editMessageTitle;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
@@ -163,7 +164,7 @@ public class InputPanel extends LinearLayout
                                                  TimeUnit.HOURS.toSeconds(1),
                                                  () -> microphoneRecorderView.cancelAction(false));
     this.editMessageCancel      = findViewById(R.id.input_panel_exit_edit_mode);
-    this.editMessageHeader      = findViewById(R.id.edit_message_compose_header);
+    this.editMessageTitle       = findViewById(R.id.edit_message_title);
     this.editMessageThumbnail   = findViewById(R.id.edit_message_thumbnail);
 
     this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction(true));
@@ -454,13 +455,15 @@ public class InputPanel extends LinearLayout
   private void updateEditModeUi() {
     if (inEditMessageMode()) {
       ViewUtil.focusAndShowKeyboard(composeText);
-      editMessageHeader.setVisibility(View.VISIBLE);
+      editMessageTitle.setVisibility(View.VISIBLE);
+      editMessageThumbnail.setVisibility(View.VISIBLE);
       editMessageCancel.setVisibility(View.VISIBLE);
       if (listener != null) {
         listener.onEnterEditMode();
       }
     } else {
-      editMessageHeader.setVisibility(View.GONE);
+      editMessageTitle.setVisibility(View.GONE);
+      editMessageThumbnail.setVisibility(View.GONE);
       editMessageCancel.setVisibility(View.GONE);
       if (listener != null) {
         listener.onExitEditMode();

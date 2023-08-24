@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.messages
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.log
+import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
@@ -42,7 +42,7 @@ object CallMessageProcessor {
         handleCallHangupMessage(envelope, metadata, hangup, senderRecipient.id, callMessage.hasLegacyHangup())
       }
       callMessage.hasBusy() -> handleCallBusyMessage(envelope, metadata, callMessage.busy, senderRecipient.id)
-      callMessage.hasOpaque() -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque, senderRecipient.requireServiceId(), serverDeliveredTimestamp)
+      callMessage.hasOpaque() -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque, senderRecipient.requireAci(), serverDeliveredTimestamp)
     }
   }
 
@@ -146,7 +146,7 @@ object CallMessageProcessor {
     ApplicationDependencies.getSignalCallManager()
       .receivedOpaqueMessage(
         OpaqueMessageMetadata(
-          senderServiceId.uuid(),
+          senderServiceId.rawUuid,
           opaque.data.toByteArray(),
           metadata.sourceDeviceId,
           messageAgeSeconds

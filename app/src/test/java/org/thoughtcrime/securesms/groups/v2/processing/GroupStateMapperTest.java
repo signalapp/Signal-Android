@@ -8,6 +8,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.UUID;
@@ -261,7 +263,7 @@ public final class GroupStateMapperTest {
     DecryptedGroup      currentState = state(6);
     ServerGroupLogEntry log7         = serverLogEntry(7);
     DecryptedMember     newMember    = DecryptedMember.newBuilder()
-                                                      .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                      .setAciBytes(ACI.from(UUID.randomUUID()).toByteString())
                                                       .build();
     DecryptedGroup      state7b      = DecryptedGroup.newBuilder()
                                                      .setRevision(8)
@@ -323,12 +325,12 @@ public final class GroupStateMapperTest {
 
   @Test
   public void clears_changes_duplicated_in_the_placeholder() {
-    UUID                newMemberUuid  = UUID.randomUUID();
-    DecryptedMember     newMember      = DecryptedMember.newBuilder()
-                                                        .setUuid(UuidUtil.toByteString(newMemberUuid))
+    ACI                 newMemberAci  = ACI.from(UUID.randomUUID());
+    DecryptedMember     newMember     = DecryptedMember.newBuilder()
+                                                        .setAciBytes(newMemberAci.toByteString())
                                                         .build();
     DecryptedMember     existingMember = DecryptedMember.newBuilder()
-                                                        .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                        .setAciBytes(ACI.from(UUID.randomUUID()).toByteString())
                                                         .build();
     DecryptedGroup      currentState   = DecryptedGroup.newBuilder()
                                                        .setRevision(GroupStateMapper.PLACEHOLDER_REVISION)
@@ -343,7 +345,7 @@ public final class GroupStateMapperTest {
                                                                                .build(),
                                                                  DecryptedGroupChange.newBuilder()
                                                                                      .setRevision(8)
-                                                                                     .setEditor(UuidUtil.toByteString(newMemberUuid))
+                                                                                     .setEditorServiceIdBytes(newMemberAci.toByteString())
                                                                                      .addNewMembers(newMember)
                                                                                      .build());
 
@@ -357,13 +359,13 @@ public final class GroupStateMapperTest {
 
   @Test
   public void clears_changes_duplicated_in_a_non_placeholder() {
-    UUID                editorUuid     = UUID.randomUUID();
-    UUID                newMemberUuid  = UUID.randomUUID();
+    ACI                 editorAci      = ACI.from(UUID.randomUUID());
+    ACI                 newMemberAci   = ACI.from(UUID.randomUUID());
     DecryptedMember     newMember      = DecryptedMember.newBuilder()
-                                                        .setUuid(UuidUtil.toByteString(newMemberUuid))
+                                                        .setAciBytes(newMemberAci.toByteString())
                                                         .build();
     DecryptedMember     existingMember = DecryptedMember.newBuilder()
-                                                        .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                        .setAciBytes(ACI.from(UUID.randomUUID()).toByteString())
                                                         .build();
     DecryptedGroup      currentState   = DecryptedGroup.newBuilder()
                                                        .setRevision(8)
@@ -378,14 +380,14 @@ public final class GroupStateMapperTest {
                                                                                .build(),
                                                                  DecryptedGroupChange.newBuilder()
                                                                                      .setRevision(8)
-                                                                                     .setEditor(UuidUtil.toByteString(editorUuid))
+                                                                                     .setEditorServiceIdBytes(editorAci.toByteString())
                                                                                      .addNewMembers(existingMember)
                                                                                      .addNewMembers(newMember)
                                                                                      .build());
 
     DecryptedGroupChange expectedChange = DecryptedGroupChange.newBuilder()
                                                               .setRevision(8)
-                                                              .setEditor(UuidUtil.toByteString(editorUuid))
+                                                              .setEditorServiceIdBytes(editorAci.toByteString())
                                                               .addNewMembers(newMember)
                                                               .build();
 
@@ -399,12 +401,12 @@ public final class GroupStateMapperTest {
 
   @Test
   public void notices_changes_in_avatar_and_title_but_not_members_in_placeholder() {
-    UUID                newMemberUuid  = UUID.randomUUID();
+    ACI                 newMemberAci   = ACI.from(UUID.randomUUID());
     DecryptedMember     newMember      = DecryptedMember.newBuilder()
-                                                        .setUuid(UuidUtil.toByteString(newMemberUuid))
+                                                        .setAciBytes(newMemberAci.toByteString())
                                                         .build();
     DecryptedMember     existingMember = DecryptedMember.newBuilder()
-                                                        .setUuid(UuidUtil.toByteString(UUID.randomUUID()))
+                                                        .setAciBytes(ACI.from(UUID.randomUUID()).toByteString())
                                                         .build();
     DecryptedGroup      currentState   = DecryptedGroup.newBuilder()
                                                        .setRevision(GroupStateMapper.PLACEHOLDER_REVISION)
@@ -421,7 +423,7 @@ public final class GroupStateMapperTest {
                                                                                .build(),
                                                                  DecryptedGroupChange.newBuilder()
                                                                                      .setRevision(8)
-                                                                                     .setEditor(UuidUtil.toByteString(newMemberUuid))
+                                                                                     .setEditorServiceIdBytes(newMemberAci.toByteString())
                                                                                      .addNewMembers(newMember)
                                                                                      .build());
 
@@ -448,7 +450,7 @@ public final class GroupStateMapperTest {
                                                                              .build(),
                                                                DecryptedGroupChange.newBuilder()
                                                                                    .setRevision(2)
-                                                                                   .setEditor(UuidUtil.toByteString(KNOWN_EDITOR))
+                                                                                   .setEditorServiceIdBytes(UuidUtil.toByteString(KNOWN_EDITOR))
                                                                                    .setNewTitle(DecryptedString.newBuilder().setValue(log1.getGroup().getTitle()))
                                                                                    .build());
 
@@ -457,7 +459,7 @@ public final class GroupStateMapperTest {
     assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1),
                                                                            new LocalGroupLogEntry(log2.getGroup(), DecryptedGroupChange.newBuilder()
                                                                                                                                        .setRevision(2)
-                                                                                                                                       .setEditor(UuidUtil.toByteString(KNOWN_EDITOR))
+                                                                                                                                       .setEditorServiceIdBytes(UuidUtil.toByteString(KNOWN_EDITOR))
                                                                                                                                        .build()))));
     assertTrue(advanceGroupStateResult.getNewGlobalGroupState().getServerHistory().isEmpty());
     assertEquals(log2.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
@@ -494,7 +496,7 @@ public final class GroupStateMapperTest {
   private static DecryptedGroupChange change(int revision) {
     return DecryptedGroupChange.newBuilder()
                                .setRevision(revision)
-                               .setEditor(UuidUtil.toByteString(KNOWN_EDITOR))
+                               .setEditorServiceIdBytes(UuidUtil.toByteString(KNOWN_EDITOR))
                                .setNewTitle(DecryptedString.newBuilder().setValue("Group Revision " + revision))
                                .build();
   }

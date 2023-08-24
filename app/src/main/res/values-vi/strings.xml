@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Có thể tốn cước phí. Số điện thoại bạn đang gọi chưa được đăng kí với Signal. Cuộc gọi này sẽ được thực hiện qua nhà cung cấp dịch vụ viễn thông, không qua internet.</string>
     <string name="CommunicationActions_cant_join_call">Không thể tham gia cuộc gọi</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Đường dẫn cuộc gọi không còn hiệu lực.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Đường dẫn Vô hiệu lực</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Đường dẫn cuộc gọi này không hợp lệ. Đảm bảo rằng đường dẫn đầy đủ và chuẩn xác trước khi ấn để tham gia.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">Các chỉnh sửa chỉ có thể được thực hiện trong vòng %1$d giờ kể từ lúc bạn gửi tin nhắn này.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">Chỉ %1$d chỉnh sửa có thể được áp dụng cho tin nhắn này.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Người nhận không hợp lệ!</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d thành viên</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Chúng tôi nhận thấy rằng các thông báo bị trễ. Gửi nhật ký gỡ lỗi?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Nhật ký gỡ lỗi giúp chúng tôi xác định và khắc phục vấn đề, và không chứa thông tin nhận dạng.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Các thông báo giờ đây có thể bị hoãn vì thiết lập tối ưu hóa pin</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Bạn có thể bỏ các thiết lập tối ưu hóa pin cho Signal để đảm bảo các thông báo tin nhắn không bị hoãn.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Tiếp tục</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Bỏ qua</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">Mở cài đặt</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Để sau</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">Chấp nhận %1$d yêu cầu?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Chấp nhận tất cả</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">%1$d người sẽ được thêm vào cuộc gọi.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">Từ chối %1$d yêu cầu?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">%1$d người sẽ không được thêm vào cuộc gọi.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Từ chối tất cả</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">%1$d người đang chờ</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d người</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Yêu cầu tham gia đã bị từ chối</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Yêu cầu tham gia cuộc gọi này của bạn đã bị từ chối.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Đã bị gỡ khỏi cuộc gọi</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Có người đã gỡ bạn khỏi cuộc gọi.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Cuộc gọi Signal</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">Đang kết nối lại…</string>
     <string name="WebRtcCallView__joining">Đang tham gia…</string>
     <string name="WebRtcCallView__disconnected">Đã ngắt kết nối</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Đường dẫn cuộc gọi Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Bất kỳ ai tham gia cuộc gọi này qua đường dẫn sẽ thấy tên, ảnh, và số điện thoại của bạn.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Đang chờ để được tham gia…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal sẽ rung chuông %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sẽ đổ chuông %1$svà %2$s</string>
@@ -2729,6 +2794,14 @@
         <item>Khoản ủng hộ &amp; Huy hiệu</item>
         <item>Xuất SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Gửi Nhật Ký Gỡ Lỗi Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Thông báo chậm</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Gửi</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Không, cảm ơn</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tin nhắn này</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">Nhạc chuông</string>
     <string name="preferences_chats__message_text_size">Cỡ chữ tin nhắn</string>
     <string name="preferences_notifications__priority">Mức ưu tiên</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Khắc phục sự cố thông báo</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Tránh kiểm duyệt</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Làm mới</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Phân tích</string>
-    <string name="InsightsDashboardFragment__title">Phân tích</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Giao thức Signal đã tự động bảo vệ %1$d%% số tin nhắn bạn gửi đi trong %2$d ngày qua. Cuộc trò chuyện giữa những người dùng Signal luôn được mã hóa đầu cuối.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Dàng trải từ</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Không đủ dữ liệu</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Số phần trăm Dữ liệu Phân tích của bạn được tính dựa vào số tin nhắn gửi đi trong %1$d ngày trước mà không bị xóa hay tự hủy.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Bắt đầu cuộc trò chuyện</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Hãy trò chuyện riêng tư và kích hoạt những tính năng mới vượt trên giới hạn của SMS không được bảo mật bằng cách mời liên hệ của bạn sử dụng Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Những số liệu này được tạo cục bộ trên thiết bị của bạn và chỉ được truy cập bởi bạn. Nó không được gửi đi bất cứ đâu.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Tin nhắn mã hóa</string>
-    <string name="InsightsDashboardFragment__cancel">Hủy</string>
-    <string name="InsightsDashboardFragment__send">Gửi</string>
-    <string name="InsightsModalFragment__title">Giới thiệu tính năng Phân tích</string>
-    <string name="InsightsModalFragment__description">Tìm hiểu xem bao nhiêu tin nhắn của bạn được gửi đi một cách bảo mật và mời liên hệ để tăng tỉ lệ sử dụng Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Xem Phân tích</string>
-
-    <string name="FirstInviteReminder__title">Mời dùng Signal</string>
-    <string name="FirstInviteReminder__description">Bạn có thể tăng %1$d%% số lượng tin nhắn mã hóa gửi đi.</string>
-    <string name="SecondInviteReminder__title">Ủng hộ cho Signal</string>
-    <string name="SecondInviteReminder__description">Mời %1$s</string>
-    <string name="InsightsReminder__view_insights">Xem Phân tích</string>
-    <string name="InsightsReminder__invite">Mời</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Đường dẫn cuộc gọi</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Bắt đầu cuộc gọi video</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Bắt đầu cuộc gọi thoại</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Bật micro</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Tắt micro</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Bật loa</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Tắt loa</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Nút Chụp</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">Tạo Đường dẫn Cuộc gọi</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Chia sẻ một đường dẫn cho cuộc gọi Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Sử dụng đường dẫn này để tham gia cuộc gọi Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Thông tin cuộc gọi</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Gỡ %1$s khỏi cuộc gọi?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Xóa</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Chặn khỏi cuộc gọi</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Lỗi mạng. Xin hãy thử lại.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Muốn tham gia…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">+%1$d yêu cầu</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Yêu cầu tham gia cuộc gọi này</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">%1$d người đang chờ</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Từ chối</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Đồng ý</string>
 
     <!-- EOF -->
 </resources>

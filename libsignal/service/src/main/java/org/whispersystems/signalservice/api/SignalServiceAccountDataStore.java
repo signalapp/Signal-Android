@@ -7,6 +7,7 @@ import org.signal.libsignal.protocol.state.SignalProtocolStore;
  * in the service layer, but not the protocol layer.
  */
 public interface SignalServiceAccountDataStore extends SignalProtocolStore,
+                                                       SignalServicePreKeyStore,
                                                        SignalServiceSessionStore,
                                                        SignalServiceSenderKeyStore,
                                                        SignalServiceKyberPreKeyStore {

@@ -66,7 +66,7 @@ public class MarkReadHelper {
         Log.d(TAG, "Marking " + infos.size() + " messages as read.");
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(context, infos);
+        MarkReadReceiver.process(infos);
       });
     });
   }

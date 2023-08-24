@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.view.children
 import androidx.lifecycle.LifecycleOwner
+import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.exoplayer2.MediaItem
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
@@ -262,7 +262,7 @@ class ConversationAdapterV2(
     }
   }
 
-  fun onMessageRequestStateChanged(isMessageRequestAccepted: Boolean) {
+  fun setMessageRequestIsAccepted(isMessageRequestAccepted: Boolean) {
     val oldState = this.isMessageRequestAccepted
     this.isMessageRequestAccepted = isMessageRequestAccepted
 

@@ -5,6 +5,8 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
+import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.webrtc.PeerConnection
@@ -54,6 +56,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     CONNECTING,
     RECONNECTING,
     CONNECTED,
+    CONNECTED_AND_PENDING,
     CONNECTED_AND_JOINING,
     CONNECTED_AND_JOINED;
 
@@ -66,7 +69,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     val isConnected: Boolean
       get() {
         return when (this) {
-          CONNECTED, CONNECTED_AND_JOINING, CONNECTED_AND_JOINED -> true
+          CONNECTED, CONNECTED_AND_JOINING, CONNECTED_AND_JOINED, CONNECTED_AND_PENDING -> true
           else -> false
         }
       }
@@ -92,6 +95,9 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val identityChangedParticipants: Set<RecipientId> = state.callInfoState.identityChangedRecipients
   val remoteDevicesCount: OptionalLong = state.callInfoState.remoteDevicesCount
   val participantLimit: Long? = state.callInfoState.participantLimit
+  val pendingParticipants: PendingParticipantCollection = state.callInfoState.pendingParticipants
+  val isCallLink: Boolean = state.callInfoState.callRecipient.isCallLink
+  val callLinkDisconnectReason: CallLinkDisconnectReason? = state.callInfoState.callLinkDisconnectReason
 
   @get:JvmName("shouldRingGroup")
   val ringGroup: Boolean = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringGroup

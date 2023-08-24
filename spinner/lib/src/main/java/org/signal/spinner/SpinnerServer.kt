@@ -61,8 +61,8 @@ internal class SpinnerServer(
 
     try {
       return when {
-        session.method == Method.GET && session.uri == "/css/main.css" -> newFileResponse("css/main.css", "text/css")
-        session.method == Method.GET && session.uri == "/js/main.js" -> newFileResponse("js/main.js", "text/javascript")
+        session.method == Method.GET && session.uri.startsWith("/css/") -> newFileResponse(session.uri.substring(1), "text/css")
+        session.method == Method.GET && session.uri.startsWith("/js/") -> newFileResponse(session.uri.substring(1), "text/javascript")
         session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, dbConfig.db())
         session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, dbConfig.db())
         session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, dbConfig, session)

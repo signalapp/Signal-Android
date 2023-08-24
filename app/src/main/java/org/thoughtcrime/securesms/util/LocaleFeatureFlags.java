@@ -8,15 +8,11 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Provide access to locale specific values within feature flags following the locale CSV-Colon format.
@@ -69,6 +65,14 @@ public final class LocaleFeatureFlags {
     return isEnabled(FeatureFlags.PAYPAL_DISABLED_REGIONS, FeatureFlags.paypalDisabledRegions());
   }
 
+  public static boolean isDelayedNotificationPromptEnabled() {
+    return isEnabled(FeatureFlags.PROMPT_FOR_NOTIFICATION_LOGS, FeatureFlags.promptForDelayedNotificationLogs());
+  }
+
+  public static boolean isBatterySaverPromptEnabled() {
+    return isEnabled(FeatureFlags.PROMPT_BATTERY_SAVER, FeatureFlags.PROMPT_BATTERY_SAVER);
+  }
+
   /**
    * Parses a comma-separated list of country codes colon-separated from how many buckets out of 1 million
    * should be enabled to see this megaphone in that country code. At the end of the list, an optional
@@ -85,7 +89,7 @@ public final class LocaleFeatureFlags {
     }
 
     long countEnabled      = getCountryValue(countryCodeValues, self.getE164().orElse(""), 0);
-    long currentUserBucket = BucketingUtil.bucket(flag, self.requireServiceId().uuid(), 1_000_000);
+    long currentUserBucket = BucketingUtil.bucket(flag, self.requireAci().getRawUuid(), 1_000_000);
 
     return countEnabled > currentUserBucket;
   }

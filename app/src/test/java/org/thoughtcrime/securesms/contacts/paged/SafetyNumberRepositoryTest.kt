@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.IdentityUtil
-import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -125,13 +124,13 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_batchOf1_oneChange() {
     val other = recipientPool[1]
-    val otherAci = ACI.from(other.requireServiceId())
+    val otherAci = other.requireAci()
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.AciIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
+      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
@@ -146,13 +145,13 @@ class SafetyNumberRepositoryTest {
   fun batchSafetyNumberCheckSync_batchOf2_oneChange() {
     val other = recipientPool[1]
     val secondOther = recipientPool[2]
-    val otherAci = ACI.from(other.requireServiceId())
+    val otherAci = other.requireAci()
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false), ContactSearchKey.RecipientSearchKey(secondOther.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other, secondOther))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey, secondOther.requireServiceId() to identityPool[secondOther]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.AciIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
+      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
 
     repository.batchSafetyNumberCheckSync(keys, now)
 

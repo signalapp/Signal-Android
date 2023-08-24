@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.testing.success
 import org.thoughtcrime.securesms.testing.timeout
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.internal.push.MismatchedDevices
 import org.whispersystems.signalservice.internal.push.PreKeyState
 import java.util.UUID
@@ -73,7 +74,7 @@ class ChangeNumberViewModelTest {
   fun testChangeNumber_givenOnlyPrimaryAndNoRegLock() {
     // GIVEN
     val aci = Recipient.self().requireServiceId()
-    val newPni = ServiceId.from(UUID.randomUUID())
+    val newPni = PNI.from(UUID.randomUUID())
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState
 
@@ -180,7 +181,7 @@ class ChangeNumberViewModelTest {
     val aci = Recipient.self().requireServiceId()
     val oldPni = Recipient.self().requirePni()
     val oldE164 = Recipient.self().requireE164()
-    val newPni = ServiceId.from(UUID.randomUUID())
+    val newPni = PNI.from(UUID.randomUUID())
 
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState
@@ -225,7 +226,7 @@ class ChangeNumberViewModelTest {
   fun testChangeNumber_givenOnlyPrimaryAndRegistrationLock() {
     // GIVEN
     val aci = Recipient.self().requireServiceId()
-    val newPni = ServiceId.from(UUID.randomUUID())
+    val newPni = PNI.from(UUID.randomUUID())
 
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState
@@ -269,7 +270,7 @@ class ChangeNumberViewModelTest {
   fun testChangeNumber_givenMismatchedDevicesOnFirstCall() {
     // GIVEN
     val aci = Recipient.self().requireServiceId()
-    val newPni = ServiceId.from(UUID.randomUUID())
+    val newPni = PNI.from(UUID.randomUUID())
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState
 
@@ -313,7 +314,7 @@ class ChangeNumberViewModelTest {
   fun testChangeNumber_givenRegLockAndMismatchedDevicesOnFirstTwoCalls() {
     // GIVEN
     val aci = Recipient.self().requireServiceId()
-    val newPni = ServiceId.from(UUID.randomUUID())
+    val newPni = PNI.from(UUID.randomUUID())
 
     lateinit var changeNumberRequest: ChangePhoneNumberRequest
     lateinit var setPreKeysRequest: PreKeyState

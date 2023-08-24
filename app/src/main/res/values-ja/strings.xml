@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">携帯キャリアの通話料が発生する場合があります。発信先の電話番号はSignalに登録されていません。この通話はインターネットではなく携帯電話回線を使用します。</string>
     <string name="CommunicationActions_cant_join_call">通話に参加できません</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">この通話リンクは無効になっています。</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">無効なリンク</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">この通話リンクは有効ではありません。リンクに間違いがないことを確認してから、参加してください。</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">編集はこのメッセージを送信後 %1$d 時間以内のみ可能です。</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">%1$d だけがこのメッセージを編集できます。</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">無効な宛先です！</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">メンバー %1$d人</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">通知が遅れているいるようです。デバッグログを提供しますか？</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">デバッグログは、問題の診断と修正に役立てられます。個人を特定する情報は含まれません。</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">バッテリーの最適化のために通知が遅れることがあります</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Signal のアプリ情報でバッテリーの最適化を無効にすると、メッセージ通知がすみやかに表示されます。</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">続行</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">キャンセル</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">保留中のグループ招待</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">設定を開く</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">今はしない</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">%1$d 人のリクエストを承認しますか？</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">全員承認する</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">%1$d 人のユーザーが通話に追加されます。</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">%1$d 人のリクエストを拒否しますか？</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">%1$d 人のユーザーは通話に追加されません。</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">全員拒否する</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">%1$d 人が待機中です</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d人</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">参加リクエストが拒否されました</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">この通話への参加リクエストは拒否されました。</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">通話から退出しました</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">メンバーがあなたを通話から退出させました。</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal通話</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">再接続しています…</string>
     <string name="WebRtcCallView__joining">参加しています…</string>
     <string name="WebRtcCallView__disconnected">接続していません</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal通話リンク</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">リンク経由でこの通話に参加する人には、あなたの名前、写真、電話番号が表示されます。</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">承認待ちです…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signalは %1$s を呼び出します</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signalは %1$s と %2$s を呼び出します</string>
@@ -2729,6 +2794,14 @@
         <item>寄付 &amp; バッジ</item>
         <item>SMSエクスポート</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidデバッグログの提供</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">通知が遅い</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">送信する</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">今はしない</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">着信音</string>
     <string name="preferences_chats__message_text_size">メッセージのフォントサイズ</string>
     <string name="preferences_notifications__priority">優先度</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">さまざまな通知のトラブルシューティング</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">閲覧回避</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">更新</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">統計</string>
-    <string name="InsightsDashboardFragment__title">統計</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal プロトコルは過去 %2$d 日間の送信メッセージの %1$d %%を自動的に保護しました。Signal ユーザー間のチャットは常にエンドツーエンドで暗号化されます。</string>
-    <string name="InsightsDashboardFragment__spread_the_word">普及活動</string>
-    <string name="InsightsDashboardFragment__not_enough_data">データ不足</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは、過去%1$d日間に消えたり消去されたりしていない送信メッセージに基づいて算出されます。</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">チャットを開始する</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">より多くの連絡先をSignalに招待することで、暗号化されていないSMSメッセージの制限を超える、安全な通信と新機能を手に入れます。</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">これらの統計は、あなたの端末上でローカルに生成されたもので、見ることができるのはあなただけです。どこにも送信されません。</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">暗号化されたメッセージ</string>
-    <string name="InsightsDashboardFragment__cancel">キャンセル</string>
-    <string name="InsightsDashboardFragment__send">送信</string>
-    <string name="InsightsModalFragment__title">統計のご紹介</string>
-    <string name="InsightsModalFragment__description">どれだけのあなたのメッセージが安全に送信されたかご理解いただき、今すぐ連絡先を招待してあなたのSignal度をブーストしましょう。</string>
-    <string name="InsightsModalFragment__view_insights">統計を見る</string>
-
-    <string name="FirstInviteReminder__title">Signalへの招待</string>
-    <string name="FirstInviteReminder__description">暗号化された送信メッセージの数を%1$d%%増やすことができます</string>
-    <string name="SecondInviteReminder__title">Signalをブーストしてください</string>
-    <string name="SecondInviteReminder__description">%1$s を招待しましょう</string>
-    <string name="InsightsReminder__view_insights">統計を見る</string>
-    <string name="InsightsReminder__invite">招待する</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">通話リンク</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">ビデオ通話を開始</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">音声通話を開始する</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">マイクオン</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">マイクオフ</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">スピーカーはオンになっています</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">スピーカーはオフになっています</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">キャプチャーボタン</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">通話リンクを作成する</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal 通話のリンクを共有する</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">リンクを使用して Signal 通話に参加する　%1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">通話情報</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s を通話から削除しますか？</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">削除する</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">通話をブロックする</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">ネットワークエラーが発生しました。あとで再度試してください。</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">待機中…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">%1$d 人以上のリクエスト</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">この通話への参加リクエスト</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">%1$d 人が待機中です</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">拒否する</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">承認する</string>
 
     <!-- EOF -->
 </resources>

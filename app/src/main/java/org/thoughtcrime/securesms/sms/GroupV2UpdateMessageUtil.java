@@ -7,6 +7,8 @@ import com.google.protobuf.ByteString;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Optional;
 
@@ -37,7 +39,7 @@ public final class GroupV2UpdateMessageUtil {
 
   private static boolean changeEditorOnlyWasRemoved(@NonNull DecryptedGroupChange decryptedGroupChange) {
     return decryptedGroupChange.getDeleteMembersCount() == 1 &&
-           decryptedGroupChange.getDeleteMembers(0).equals(decryptedGroupChange.getEditor());
+           decryptedGroupChange.getDeleteMembers(0).equals(decryptedGroupChange.getEditorServiceIdBytes());
   }
 
   private static boolean noChangesOtherThanDeletes(@NonNull DecryptedGroupChange decryptedGroupChange) {
@@ -65,9 +67,9 @@ public final class GroupV2UpdateMessageUtil {
     return -1;
   }
 
-  public static Optional<ByteString> getChangeEditor(MessageGroupContext groupContext) {
+  public static Optional<ServiceId> getChangeEditor(MessageGroupContext groupContext) {
     if (isGroupV2(groupContext) && isUpdate(groupContext)) {
-      return Optional.ofNullable(groupContext.requireGroupV2Properties().getChange().getEditor());
+      return Optional.ofNullable(groupContext.requireGroupV2Properties().getChange().getEditorServiceIdBytes()).map(ServiceId::parseOrNull);
     }
     return Optional.empty();
   }

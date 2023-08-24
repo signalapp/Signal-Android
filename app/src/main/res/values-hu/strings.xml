@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Szolgáltatói díjak felmerülhetnek. A hívott szám nincs regisztrálva a Signalon, ezért az összeköttetés a mobilszolgáltatódón, nem pedig interneten keresztül lesz megvalósítva.</string>
     <string name="CommunicationActions_cant_join_call">Nem lehet csatlakozni a híváshoz</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ez a híváshivatkozás már nem érvényes.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Érvénytelen hivatkozás</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ez a híváshivatkozás nem érvényes. A csatlakozás megkísérlése előtt győződj meg róla, hogy a teljes hivatkozás sértetlen és helyes.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">A módosításokat csak az üzenet elküldésétől számított %1$d órán belül lehet alkalmazni.</item>
         <item quantity="other">A módosításokat csak az üzenet elküldésétől számított %1$d órán belül lehet alkalmazni.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Csak %1$d szerkesztés alkalmazható erre az üzenetre.</item>
+        <item quantity="other">Csak %1$d szerkesztés alkalmazható erre az üzenetre.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">%1$d tag</item>
         <item quantity="other">%1$d tag</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Észrevettük, hogy késnek az értesítések. Hibakeresési napló küldése?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">A hibakeresési naplók segítenek diagnosztizálni és kijavítani a problémát, és nem tartalmaznak azonosító információkat.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Az akkumulátor optimalizálása miatt az értesítések késhetnek</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Letilthatod a Signalban az akkumulátoroptimalizálást, hogy az üzenetértesítések ne késsenek.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Tovább</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Elvetés</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">Beállítok megnyitása</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Később</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Jóváhagysz %1$d kérést?</item>
+        <item quantity="other">Jóváhagysz %1$d kérést?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Összes jóváhagyása</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d személy hozzáadásra kerül a híváshoz.</item>
+        <item quantity="other">%1$d személy hozzáadásra kerül a híváshoz.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Elutasítasz %1$d kérést?</item>
+        <item quantity="other">Elutasítasz %1$d kérést?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d személy nem kerül hozzáadásra a híváshoz.</item>
+        <item quantity="other">%1$d személy nem kerül hozzáadásra a híváshoz.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Összes elutasítása</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d személy várakozik</item>
+        <item quantity="other">%1$d személy várakozik</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d személy</item>
+        <item quantity="other">%1$d személy</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Csatlakozási kérelem elutasítva</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">A híváshoz való csatlakozási kérelmedet elutasították.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Eltávolítva a hívásból</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Valaki eltávolított téged a hívásból.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal hívás</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">Újracsatlakozás…</string>
     <string name="WebRtcCallView__joining">Csatlakozás…</string>
     <string name="WebRtcCallView__disconnected">Lecsatlakozva</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal-híváshivatkozás</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Bárki, aki a hivatkozáson keresztül csatlakozik a híváshoz, látni fogja a nevedet, a fényképedet és a telefonszámodat.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Beengedésre vár…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">A Signal megcsörgeti őt: %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">A Signal megcsörgeti őket: %1$s és %2$s</string>
@@ -2809,6 +2881,14 @@
         <item>Adományok és jelvények</item>
         <item>SMS-exportálás</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">A Signal Android hibajavítási naplójának benyújtása</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Lassú értesítések</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Küldés</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Nem, köszönöm</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Jelenlegi üzenet</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">Csengőhang</string>
     <string name="preferences_chats__message_text_size">Üzenetek betűmérete</string>
     <string name="preferences_notifications__priority">Prioritás</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Értesítések hibaelhárítása</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Cenzúramegkerülés</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Frissítés</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Statisztikák</string>
-    <string name="InsightsDashboardFragment__title">Statisztikák</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">A Signal-protokoll az elmúlt %2$d nap során küldött üzeneteid %1$d%%-át automatikusan védelem alá helyezte. A Signal-felhasználók közti csevegések minden esetben végpontok közti titkosítással vannak ellátva.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Terjeszd a hírt!</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nincs elegendő adat</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A százalékot az elmúlt %1$d nap során küldött nem törölt és nem eltűnő üzeneteid alapján kalkuláltuk.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Csevegés indítása</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Kezdj neki a biztonságos kommunikációnak, és hívj meg minél több kontaktot a Signalra annak érdekében, hogy hozzáférhess a legújabb funkciókhoz, amelyek túlmutatnak a titkosítatlan SMS üzeneteken!</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ezek a statisztikák a saját eszközödön készültek, és kizárólag számodra láthatóak. Soha nem lesznek elküldve sehova.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Titkosított üzenetek</string>
-    <string name="InsightsDashboardFragment__cancel">Mégse</string>
-    <string name="InsightsDashboardFragment__send">Küldés</string>
-    <string name="InsightsModalFragment__title">Bemutatkozik a Statisztikák</string>
-    <string name="InsightsModalFragment__description">Tudd meg, hogy hány kimenő üzeneted volt titkosítva, majd hívd meg minél több ismerősödet, hogy megnöveld Signal-százalékodat.</string>
-    <string name="InsightsModalFragment__view_insights">Statisztikák megtekintése</string>
-
-    <string name="FirstInviteReminder__title">Meghívás a Signalra</string>
-    <string name="FirstInviteReminder__description">A titkosítva küldött üzeneteid számát %1$d%%-al növelhetnéd</string>
-    <string name="SecondInviteReminder__title">Pörgesd fel a Signalodat!</string>
-    <string name="SecondInviteReminder__description">%1$s meghívása</string>
-    <string name="InsightsReminder__view_insights">Statisztikák megtekintése</string>
-    <string name="InsightsReminder__invite">Meghívás</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Híváshivatkozás</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Videóhívás indítása</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Hanghívás indítása</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon be</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon ki</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Hangszóró bekapcsolva</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Hangszóró kikapcsolva</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Rögzítés gomb</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">Híváshivatkozás létrehozása</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Hivatkozás megosztása Signal-híváshoz</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Ezzel a hivatkozással csatlakozhatsz egy Signal-híváshoz: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Hívásinformáció</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s eltávolítása a hívásból?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Eltávolítás</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Letiltás a hívásból</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Hálózati hiba történt. Próbáld újra!</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Szeretne csatlakozni…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d kérés</item>
+        <item quantity="other">+%1$d kérés</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Csatlakozni szeretne a híváshoz</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d személy várakozik</item>
+        <item quantity="other">%1$d személy várakozik</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Elutasít</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Jóváhagyás</string>
 
     <!-- EOF -->
 </resources>

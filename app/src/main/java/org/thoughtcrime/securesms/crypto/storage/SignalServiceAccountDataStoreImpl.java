@@ -101,6 +101,16 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
+  public void markAllOneTimeEcPreKeysStaleIfNecessary(long staleTime) {
+    preKeyStore.markAllOneTimeEcPreKeysStaleIfNecessary(staleTime);
+  }
+
+  @Override
+  public void deleteAllStaleOneTimeEcPreKeys(long threshold, int minCount) {
+    preKeyStore.deleteAllStaleOneTimeEcPreKeys(threshold, minCount);
+  }
+
+  @Override
   public SessionRecord loadSession(SignalProtocolAddress axolotlAddress) {
     return sessionStore.loadSession(axolotlAddress);
   }
@@ -212,6 +222,16 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
+  public void markAllOneTimeKyberPreKeysStaleIfNecessary(long staleTime) {
+    kyberPreKeyStore.markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime);
+  }
+
+  @Override
+  public void deleteAllStaleOneTimeKyberPreKeys(long threshold, int minCount) {
+    kyberPreKeyStore.deleteAllStaleOneTimeKyberPreKeys(threshold, minCount);
+  }
+
+  @Override
   public void storeSenderKey(SignalProtocolAddress sender, UUID distributionId, SenderKeyRecord record) {
     senderKeyStore.storeSenderKey(sender, distributionId, record);
   }
@@ -251,5 +271,4 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   public @NonNull SignalSenderKeyStore senderKeys() {
     return senderKeyStore;
   }
-
 }

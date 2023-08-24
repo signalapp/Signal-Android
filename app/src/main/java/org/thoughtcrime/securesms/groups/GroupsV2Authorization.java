@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.GenericServerPublicParams;
-import org.signal.libsignal.zkgroup.GenericServerSecretParams;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.auth.AuthCredentialWithPniResponse;
 import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredential;
@@ -12,9 +11,6 @@ import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialPresentation
 import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialResponse;
 import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -130,13 +126,13 @@ public class GroupsV2Authorization {
     }
 
     CallLinkAuthCredential credential     = authCredentialResponse.receive(
-        Recipient.self().requireServiceId().uuid(),
+        Recipient.self().requireAci().getLibSignalAci(),
         Instant.ofEpochSecond(todaySeconds),
         genericServerPublicParams
     );
 
     return credential.present(
-        Recipient.self().requireServiceId().uuid(),
+        Recipient.self().requireAci().getLibSignalAci(),
         Instant.ofEpochSecond(todaySeconds),
         genericServerPublicParams,
         callLinkSecretParams

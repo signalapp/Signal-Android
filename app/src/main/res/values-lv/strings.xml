@@ -243,6 +243,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Var tikt piemēroti mobilā tīkla operatora maksas. Numuram, uz kuru zvanāt, nav instalēta Signal aplikācija. Tādēļ šis zvans tiks veikts izmantojot jūsu mobilo sakaru operatoru, nevis internetu.</string>
     <string name="CommunicationActions_cant_join_call">Nevar pievienoties grupai</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Šī zvana saite vairs nav derīga.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Nederīga saite</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Šī nav derīga zvana saite. Pirms mēģināt pievienoties, pārliecinieties, ka saite nav bojāta un ir pareiza.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -344,6 +348,12 @@
         <item quantity="zero">Labojumi var tikt piemēroti tikai %1$d stundu laikā pēc šīs ziņas nosūtīšanas.</item>
         <item quantity="one">Labojumi var tikt piemēroti tikai %1$d stundas laikā pēc šīs ziņas nosūtīšanas.</item>
         <item quantity="other">Labojumi var tikt piemēroti tikai %1$d stundu laikā pēc šīs ziņas nosūtīšanas.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="zero">Šo ziņu var rediģēt tikai %1$d reizes.</item>
+        <item quantity="one">Šo ziņu var rediģēt tikai %1$d reizi.</item>
+        <item quantity="other">Šo ziņu var rediģēt tikai %1$d reizes.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Nederīgs saņēmējs!</string>
@@ -924,6 +934,21 @@
         <item quantity="one">%1$d dalībnieks</item>
         <item quantity="other">%1$d dalībnieki</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Mēs pamanījām, ka paziņojumu parādīšana ir aizkavēta. Vai nosūtīt atkļūdošanas žurnālu?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Atkļūdošanas žurnāli palīdz mums diagnosticēt un novērst problēmu, un tie nesatur identificējošu informāciju.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Paziņojumi var aizkavēties akumulatora optimizācijas dēļ</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Varat atspējot akumulatora optimizāciju lietotnei Signal, lai nodrošinātu, ka netiks aizkavēti paziņojumi par ziņām.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Turpināt</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Nerādīt</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
@@ -1781,6 +1806,54 @@
     <string name="WebRtcCallActivity__open_settings">Atvērt iestatījumus</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ne tagad</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="zero">Vai apstiprināt %1$d pieprasījumus?</item>
+        <item quantity="one">Vai apstiprināt %1$d pieprasījumu?</item>
+        <item quantity="other">Vai apstiprināt %1$d pieprasījumus?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Apstiprināt visus</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="zero">%1$d personas tiks pievienotas zvanam.</item>
+        <item quantity="one">%1$d persona tiks pievienota zvanam.</item>
+        <item quantity="other">%1$d personas tiks pievienotas zvanam.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="zero">Vai noraidīt %1$d pieprasījumus?</item>
+        <item quantity="one">Vai noraidīt %1$d pieprasījumu?</item>
+        <item quantity="other">Vai noraidīt %1$d pieprasījumus?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="zero">%1$d personas netiks pievienotas zvanam.</item>
+        <item quantity="one">%1$d persona netiks pievienota zvanam.</item>
+        <item quantity="other">%1$d personas netiks pievienotas zvanam.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Noraidīt visus</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="zero">%1$d personas gaida</item>
+        <item quantity="one">%1$d persona gaida</item>
+        <item quantity="other">%1$d personas gaida</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="zero">%1$d personu</item>
+        <item quantity="one">%1$d persona</item>
+        <item quantity="other">%1$d personas</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Pievienošanās pieprasījums noraidīts</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Jūsu pieprasījums pievienoties šim zvanam tika noraidīts.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Noņemts no zvana</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Kāds jūs noņēma no zvana.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal zvans</string>
@@ -1793,6 +1866,12 @@
     <string name="WebRtcCallView__reconnecting">Savienojas vēlreiz…</string>
     <string name="WebRtcCallView__joining">Pievienojos…</string>
     <string name="WebRtcCallView__disconnected">Atvienots</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal zvana saite</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Ikviens, kurš pievienosies šim zvanam, izmantojot saiti, redzēs jūsu vārdu, attēlu un tālruņa numuru.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Gaida pievienošanu…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal zvanīs %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zvanīs %1$s un %2$s</string>
@@ -2837,7 +2916,7 @@
     <string name="message_details_recipient_header__read_by">Izlasījis</string>
     <string name="message_details_recipient_header__not_sent">Nav nosūtīts</string>
     <string name="message_details_recipient_header__viewed">Skatīja</string>
-    <string name="message_details_recipient_header__skipped">Izlaista</string>
+    <string name="message_details_recipient_header__skipped">Nav piegādāta</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Neizdevās nosūtīt</string>
@@ -2889,6 +2968,14 @@
         <item>Ziedojumi un nozīmītes</item>
         <item>SMS eksportēšana</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android atkļūdošanas žurnāla nosūtīšana</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Lēna paziņojumu piegāde</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Iesniegt</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Nē, paldies</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
@@ -3113,6 +3200,8 @@
     <string name="preferences_notifications__ringtone">Zvana signāls</string>
     <string name="preferences_chats__message_text_size">Ziņu fonta lielums</string>
     <string name="preferences_notifications__priority">Prioritāte</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Paziņojumu problēmu novēršana</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Cenzūras apiešana</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3524,33 +3613,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Atsvaidzināt</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Ieskati</string>
-    <string name="InsightsDashboardFragment__title">Ieskati</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokols ir automātiski aizsargājis %1$d%% no no jūsu izejošajām ziņām pēdējo %2$d dienu laikā. Sarunas starp Signal lietotājiem vienmēr tiek šifrētas.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Izplati ziņu</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nav pietiekami datu</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsu Ieskatu procenti tiek aprēķināti balstoties uz izejošo ziņu skaita pēdējās %1$d dienās, kuras nav pagaisušas vai izdzēstas.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Sākt sarunu</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Sāciet droši sazināties un iedzīviniet jaunas iespējas, kas pārsniedz nešifrēto SMS ziņu pielietojuma robežas, uzaicinot Signal pievienoties vairāk kontaktus.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Šī statistika tika ģenerēta lokāli uz jūsu ierīces, un tikai jūs varat to redzēt. Šie dati nekur netiek sūtīti.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Šifrētas ziņas</string>
-    <string name="InsightsDashboardFragment__cancel">Atcelt</string>
-    <string name="InsightsDashboardFragment__send">Sūtīt</string>
-    <string name="InsightsModalFragment__title">Iepazīstinām ar ieskatu</string>
-    <string name="InsightsModalFragment__description">Uzzini, cik no Tavām izejošajām ziņām tika nosūtītas droši, tad ātri uzaicini jaunus kontaktus, lai uzlabotu Signal procentualitāti.</string>
-    <string name="InsightsModalFragment__view_insights">Skatīt ieskatus</string>
-
-    <string name="FirstInviteReminder__title">Uzaicināt uz Signal</string>
-    <string name="FirstInviteReminder__description">Varat palielināt nosūtīto šifrēto ziņojumu skaitu par %1$d%%</string>
-    <string name="SecondInviteReminder__title">Atbalstiet jūsu Signal</string>
-    <string name="SecondInviteReminder__description">Uzaicināt %1$s</string>
-    <string name="InsightsReminder__view_insights">Skatīt ieskatus</string>
-    <string name="InsightsReminder__invite">Uzaicināt</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6121,6 +6183,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Zvana saite</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Sākt videozvanu</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Sākt balss zvanu</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6208,6 +6274,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofons ieslēgts</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofons izslēgts</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Skaļrunis ieslēgts</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Skaļrunis izslēgts</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Poga Uzņemt</string>
@@ -6229,6 +6299,18 @@
     <string name="CreateCallLink__create_a_call_link">Izveidot audiozvana saiti</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Kopīgot Signal audiozvana saiti</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Izmantojiet šo saiti, lai pievienotos Signal zvanam: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Zvana informācija</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s — vai noņemt no šī zvana?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Noņemt</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Bloķēt piekļuvi zvanam</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6329,6 +6411,29 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Radās tīkla kļūda. Lūdzu, mēģiniet vēlreiz.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Vēlas pievienoties…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="zero">+%1$d pieprasījumu</item>
+        <item quantity="one">+%1$d pieprasījums</item>
+        <item quantity="other">+%1$d pieprasījumi</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Pieprasījumi pievienoties šim zvanam</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="zero">%1$d personas gaida</item>
+        <item quantity="one">%1$d persona gaida</item>
+        <item quantity="other">%1$d personas gaida</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Noraidīt</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Apstiprināt</string>
 
     <!-- EOF -->
 </resources>

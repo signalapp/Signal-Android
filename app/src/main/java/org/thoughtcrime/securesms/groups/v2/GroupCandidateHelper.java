@@ -51,7 +51,7 @@ public class GroupCandidateHelper {
     }
 
     Optional<ExpiringProfileKeyCredential> expiringProfileKeyCredential = Optional.ofNullable(recipient.getExpiringProfileKeyCredential());
-    GroupCandidate                         candidate                    = new GroupCandidate(serviceId.uuid(), expiringProfileKeyCredential);
+    GroupCandidate                         candidate                    = new GroupCandidate(serviceId, expiringProfileKeyCredential);
 
     if (!candidate.hasValidProfileKeyCredential()) {
       recipientTable.clearProfileKeyCredential(recipient.getId());

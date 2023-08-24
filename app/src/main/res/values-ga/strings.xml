@@ -245,6 +245,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">D\'fhéadfadh táillí iompróra a bheith i gceist. Níl an uimhir ar a bhfuil tú ag glaoch cláraithe le Signal. Cuirfear an glao seo trí d\'iompróir móibíleach, ní ar an idirlíon.</string>
     <string name="CommunicationActions_cant_join_call">Ní féidir dul isteach sa ghlao</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Níl an nasc glao seo bailí a thuilleadh.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Invalid Link</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ní nasc glao bailí é seo. Cinntigh go bhfuil an nasc iomlán slán ceart roimh dhul isteach ann a iarraidh.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -348,6 +352,14 @@
         <item quantity="few">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
         <item quantity="many">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d n-uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
         <item quantity="other">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Ní féidir ach %1$d eagarthóireacht amháin a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="two">Ní féidir ach %1$d eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="few">Ní féidir ach %1$d eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="many">Ní féidir ach %1$d n-eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
+        <item quantity="other">Ní féidir ach %1$d eagarthóireacht a dhéanamh ar an teachtaireacht seo.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Faighteoir neamhbhailí!</string>
@@ -982,6 +994,21 @@
         <item quantity="many">%1$d mball</item>
         <item quantity="other">%1$d ball</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Thugamar faoi deara go bhfuil moill ar fhógraí. Cuir isteach loga dífhabhtaithe?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Cabhraíonn logaí dífhabhtaithe linn an fhadhb a dhiagnóisiú agus a réiteach, agus ní bhíonn faisnéis aitheantais iontu.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">D\'fhéadfaí go mbeadh moill ar fhógraí mar gheall ar bharrfheabhsú ceallra</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Is féidir leat barrfheabhsú ceallra a dhíchumasú le haghaidh Signal chun a chinntiú nach gcuirfear moill ar fhógraí teachtaireachtaí.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Ar aghaidh</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Ruaig</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Cuirí ar Feitheamh</string>
@@ -1899,6 +1926,66 @@
     <string name="WebRtcCallActivity__open_settings">Oscail socruithe</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ní anois</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Faomh %1$d iarratas?</item>
+        <item quantity="two">Faomh %1$d iarratas?</item>
+        <item quantity="few">Faomh %1$d iarratas?</item>
+        <item quantity="many">Faomh %1$d n-iarratas?</item>
+        <item quantity="other">Faomh %1$d iarratas?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Faomh gach ceann</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">Cuirfear %1$d duine leis an nglao.</item>
+        <item quantity="two">Cuirfear %1$d dhuine leis an nglao.</item>
+        <item quantity="few">Cuirfear %1$d dhuine leis an nglao.</item>
+        <item quantity="many">Cuirfear %1$d nduine leis an nglao.</item>
+        <item quantity="other">Cuirfear %1$d duine leis an nglao.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Diúltaigh do %1$d iarratas?</item>
+        <item quantity="two">Diúltaigh do %1$d iarratas?</item>
+        <item quantity="few">Diúltaigh do %1$d iarratas?</item>
+        <item quantity="many">Diúltaigh do %1$d n-iarratas?</item>
+        <item quantity="other">Diúltaigh do %1$d iarratas?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">Ní chuirfear %1$d duine leis an nglao.</item>
+        <item quantity="two">Ní chuirfear %1$d dhuine leis an nglao.</item>
+        <item quantity="few">Ní chuirfear %1$d dhuine leis an nglao.</item>
+        <item quantity="many">Ní chuirfear %1$d nduine leis an nglao.</item>
+        <item quantity="other">Ní chuirfear %1$d duine leis an nglao.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Diúltaigh do gach ceann</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d duine ar feitheamh</item>
+        <item quantity="two">%1$d dhuine ar feitheamh</item>
+        <item quantity="few">%1$d dhuine ar feitheamh</item>
+        <item quantity="many">%1$d nduine ar feitheamh</item>
+        <item quantity="other">%1$d duine ar feitheamh</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d duine</item>
+        <item quantity="two">%1$d dhuine</item>
+        <item quantity="few">%1$d dhuine</item>
+        <item quantity="many">%1$d nduine</item>
+        <item quantity="other">%1$d duine</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Diúltaíodh don iarratas ar dhul isteach ann</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Diúltaíodh do d\'iarratas ar dhul isteach sa ghlao seo.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Bainte den ghlao</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Bhain duine éigin tusa den ghlao.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Glao Signal</string>
@@ -1911,6 +1998,12 @@
     <string name="WebRtcCallView__reconnecting">Athnascadh…</string>
     <string name="WebRtcCallView__joining">Dul isteach…</string>
     <string name="WebRtcCallView__disconnected">Dícheangailte</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Nasc glao Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Aon duine a théann isteach sa ghlao seo tríd an nasc, feicfidh an duine sin d\'ainm, do ghrianghraf agus d\'uimhir ghutháin.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Ag fanacht le go ligfear isteach…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Cuirfidh Signal glao ar %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Cuirfidh Signal glao ar %1$s agus ar %2$s</string>
@@ -2997,7 +3090,7 @@
     <string name="message_details_recipient_header__read_by">Léite ag</string>
     <string name="message_details_recipient_header__not_sent">Nár seoladh</string>
     <string name="message_details_recipient_header__viewed">Viewed by</string>
-    <string name="message_details_recipient_header__skipped">Léimeadh thairis</string>
+    <string name="message_details_recipient_header__skipped">Scipeáilte</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Theip air seoladh</string>
@@ -3049,6 +3142,14 @@
         <item>Tabhartais &amp; Suaitheantais</item>
         <item>Easpórtáil SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Cur Isteach Loga Dífhabhtaithe Android Signal</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Fógraí malla</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Seol isteach é</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Ní raibh maith agaibh</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">An Teachtaireacht Seo</string>
@@ -3277,6 +3378,8 @@
     <string name="preferences_notifications__ringtone">Glaofhuaim</string>
     <string name="preferences_chats__message_text_size">Méid chlófhoirne na teachtaireachta</string>
     <string name="preferences_notifications__priority">Tosaíocht</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Fabhtcheartaigh fógraí</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Sárú na Cinsireachta</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3692,33 +3795,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Athnuaigh</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Léargais</string>
-    <string name="InsightsDashboardFragment__title">Léargais</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Rinne Prótacal Signal %1$d%% de do chuid teachtaireachtaí amach a chosaint go huathoibríoch le %2$d lá anuas. Bíonn comhráite idir úsáideoirí Signal criptithe ó cheann ceann i gcónaí.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Scaip an scéal</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Níl dóthain sonraí ann</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ríomhtar do chéatadán Léargas bunaithe ar theachtaireachtaí amach le %1$d lá anuas nach bhfuil imithe as radharc ná scriosta.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Tosaigh ar chomhrá</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Tosaigh ar chumarsáid shlán agus cumasaigh gnéithe nua a théann thar theorainneacha na dteachtaireachtaí SMS gan chriptiú trí chuireadh a thabhairt do níos mó teagmhálaithe dul isteach in Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Gineadh na staitisticí seo go logánta ar do ghléas agus ní féidir ach leatsa iad a fheiceáil. Ní tharchuirtear áit ar bith riamh iad.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Teachtaireachtaí criptithe</string>
-    <string name="InsightsDashboardFragment__cancel">Cealaigh</string>
-    <string name="InsightsDashboardFragment__send">Seol</string>
-    <string name="InsightsModalFragment__title">Tús Eolais ar Léargais</string>
-    <string name="InsightsModalFragment__description">Faigh amach cé mhéad teachtaireachtaí amach a seoladh go slán, ansin tabhair cuireadh go tapa do theagmhálaithe nua chun do chéatadán Signal a threisiú.</string>
-    <string name="InsightsModalFragment__view_insights">Féach ar Léargais</string>
-
-    <string name="FirstInviteReminder__title">Tabhair cuireadh chuig Signal</string>
-    <string name="FirstInviteReminder__description">D\'fhéadfá líon na dteachtaireachtaí criptithe a sheolann tú a mhéadú faoi %1$d%%</string>
-    <string name="SecondInviteReminder__title">Spreag do Signal</string>
-    <string name="SecondInviteReminder__description">Tabhair cuireadh do %1$s</string>
-    <string name="InsightsReminder__view_insights">Féach ar Léargais</string>
-    <string name="InsightsReminder__invite">Tabhair cuireadh</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6367,6 +6443,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Nasc glao</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Tosaigh ar fhísghlao</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Tosaigh ar ghuthghlao</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6460,6 +6540,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Micreafón air</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Micreafón as</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Callaire air</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Callaire as</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Cnaipe Gabhála</string>
@@ -6481,6 +6565,18 @@
     <string name="CreateCallLink__create_a_call_link">Cruthaigh Nasc Glao</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Comhroinn nasc le haghaidh glao Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Úsáid an nasc seo le dul isteach i nglao Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Faisnéis faoin nglao</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Bain %1$s den ghlao?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Bain</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Cuir bac ón ghlao</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6581,6 +6677,33 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Tharla earráid líonra. Triail arís.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Ag iarraidh dul isteach ann…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d iarratas</item>
+        <item quantity="two">+%1$d iarratas</item>
+        <item quantity="few">+%1$d iarratas</item>
+        <item quantity="many">+%1$d n-iarratas</item>
+        <item quantity="other">+%1$d iarratas</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Iarratais ar dhul isteach sa ghlao seo</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d duine ar feitheamh</item>
+        <item quantity="two">%1$d dhuine ar feitheamh</item>
+        <item quantity="few">%1$d dhuine ar feitheamh</item>
+        <item quantity="many">%1$d nduine ar feitheamh</item>
+        <item quantity="other">%1$d duine ar feitheamh</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Diúltaigh</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Ceadaigh í</string>
 
     <!-- EOF -->
 </resources>

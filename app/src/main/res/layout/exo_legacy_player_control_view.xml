@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@color/transparent"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    tools:targetApi="28">
+
+    <LinearLayout
+        android:id="@+id/exo_duration_viewgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/media_preview_video_timestamp_inset"
+        android:layout_marginEnd="@dimen/media_preview_video_timestamp_inset"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@id/exo_position"
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textColor="@color/signal_colorOnSurface" />
+
+        <androidx.media3.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            app:touch_target_height="55dp" />
+
+        <TextView
+            android:id="@id/exo_duration"
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textColor="@color/signal_colorOnSurface" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="11dp"
+        android:animateLayoutChanges="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/media_preview_album_rail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:layout_height="64dp" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_outer_margin"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/exo_share"
+            android:layout_width="@dimen/exo_media_preview_button_width"
+            android:layout_height="@dimen/exo_media_preview_button_height"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/circle_touch_highlight_background_material3"
+            app:srcCompat="@drawable/symbol_share_android_24"
+            app:tint="@color/signal_colorOnCustom" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+
+        <LinearLayout
+            android:id="@+id/exo_button_viewgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageButton
+                android:id="@id/exo_prev"
+                style="@style/ExoMediaButton.Previous"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <org.thoughtcrime.securesms.mediapreview.LottieAnimatedButton
+                android:id="@id/exo_rew"
+                style="@style/MediaPreviewButton"
+                android:layout_width="@dimen/media_preview_lottie_button_dimen"
+                android:layout_height="@dimen/media_preview_lottie_button_dimen"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/circle_touch_highlight_background_material3"
+                android:contentDescription="@string/exo_controls_rewind_description"
+                app:lottie_rawRes="@raw/lottie_15s_skip_back"
+                app:tint="@color/signal_colorOnSurface"
+                tools:visibility="visible" />
+
+            <ImageButton
+                android:id="@id/exo_shuffle"
+                style="@style/ExoMediaButton"
+                android:layout_marginStart="@dimen/media_preview_button_horizontal_margin"
+                android:layout_marginEnd="@dimen/media_preview_button_horizontal_margin" />
+
+            <ImageButton
+                android:id="@id/exo_repeat_toggle"
+                style="@style/ExoMediaButton"
+                android:layout_marginStart="@dimen/media_preview_button_horizontal_margin"
+                android:layout_marginEnd="@dimen/media_preview_button_horizontal_margin" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <org.thoughtcrime.securesms.mediapreview.AnimatedInOutImageButton
+                    android:id="@id/exo_play"
+                    style="@style/MediaPreviewButton"
+                    android:background="@drawable/circle_touch_highlight_background_material3"
+                    android:backgroundTint="@color/signal_colorOnSurface"
+                    app:rotationWhenHidden="90"
+                    app:srcCompat="@drawable/play_button_solid_24" />
+
+                <org.thoughtcrime.securesms.mediapreview.AnimatedInOutImageButton
+                    android:id="@id/exo_pause"
+                    style="@style/MediaPreviewButton"
+                    android:background="@drawable/circle_touch_highlight_background_material3"
+                    android:backgroundTint="@color/signal_colorOnSurface"
+                    app:rotationWhenHidden="-90"
+                    app:srcCompat="@drawable/pause_solid_24" />
+            </FrameLayout>
+
+            <org.thoughtcrime.securesms.mediapreview.LottieAnimatedButton
+                android:id="@id/exo_ffwd"
+                style="@style/MediaPreviewButton"
+                android:layout_width="@dimen/media_preview_lottie_button_dimen"
+                android:layout_height="@dimen/media_preview_lottie_button_dimen"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/circle_touch_highlight_background_material3"
+                android:backgroundTint="@color/signal_colorOnSurface"
+                android:contentDescription="@string/exo_controls_fastforward_description"
+                app:lottie_rawRes="@raw/lottie_15s_skip_forward"
+                app:tint="@color/signal_colorOnSurface"
+                tools:visibility="visible" />
+
+            <ImageButton
+                android:id="@id/exo_next"
+                style="@style/ExoMediaButton.Next"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <ImageButton
+                android:id="@id/exo_vr"
+                style="@style/ExoMediaButton.VR"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+
+        <ImageButton
+            android:id="@+id/exo_forward"
+            android:layout_width="@dimen/exo_media_preview_button_width"
+            android:layout_height="@dimen/exo_media_preview_button_height"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/circle_touch_highlight_background_material3"
+            app:srcCompat="@drawable/symbol_forward_24"
+            app:tint="@color/signal_colorOnCustom" />
+    </LinearLayout>
+
+
+</LinearLayout>

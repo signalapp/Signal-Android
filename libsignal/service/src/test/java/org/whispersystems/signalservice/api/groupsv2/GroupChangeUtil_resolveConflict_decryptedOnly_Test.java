@@ -661,18 +661,18 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
     DecryptedMember member2 = pendingPniAciMember(UUID.randomUUID(), UUID.randomUUID(), randomProfileKey());
 
     DecryptedGroup groupState = DecryptedGroup.newBuilder()
-                                              .addMembers(member(UuidUtil.fromByteString(member1.getUuid())))
+                                              .addMembers(member(UuidUtil.fromByteString(member1.getAciBytes())))
                                               .build();
 
     DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
-                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member1.getUuid(), member1.getPni(), member1.getProfileKey()))
-                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member2.getUuid(), member2.getPni(), member2.getProfileKey()))
+                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member1.getAciBytes(), member1.getPniBytes(), member1.getProfileKey()))
+                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member2.getAciBytes(), member2.getPniBytes(), member2.getProfileKey()))
                                                                .build();
 
     DecryptedGroupChange resolvedChanges = GroupChangeUtil.resolveConflict(groupState, decryptedChange).build();
 
     DecryptedGroupChange expected = DecryptedGroupChange.newBuilder()
-                                                        .addPromotePendingPniAciMembers(pendingPniAciMember(member2.getUuid(), member2.getPni(), member2.getProfileKey()))
+                                                        .addPromotePendingPniAciMembers(pendingPniAciMember(member2.getAciBytes(), member2.getPniBytes(), member2.getProfileKey()))
                                                         .build();
 
     assertEquals(expected, resolvedChanges);

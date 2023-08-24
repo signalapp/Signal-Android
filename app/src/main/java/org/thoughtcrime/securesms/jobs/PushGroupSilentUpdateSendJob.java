@@ -34,15 +34,14 @@ import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -72,13 +71,17 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                     @NonNull DecryptedGroup decryptedGroup,
                                     @NonNull OutgoingMessage groupMessage)
   {
-    List<UUID> memberUuids  = DecryptedGroupUtil.toUuidList(decryptedGroup.getMembersList());
-    List<UUID> pendingUuids = DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList());
+    List<ACI>       memberAcis        = DecryptedGroupUtil.toAciList(decryptedGroup.getMembersList());
+    List<ServiceId> pendingServiceIds = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.getPendingMembersList());
 
-    Set<RecipientId> recipients = Stream.concat(Stream.of(memberUuids), Stream.of(pendingUuids))
-                                        .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
-                                        .filter(uuid -> !SignalStore.account().requireAci().uuid().equals(uuid))
-                                        .map(uuid -> Recipient.externalPush(ServiceId.from(uuid)))
+    Stream<ACI>       memberServiceIds          = Stream.of(memberAcis)
+                                                        .filter(ACI::isValid)
+                                                        .filter(aci -> !SignalStore.account().requireAci().equals(aci));
+    Stream<ServiceId> filteredPendingServiceIds = Stream.of(pendingServiceIds)
+                                                        .filterNot(ServiceId::isUnknown);
+
+    Set<RecipientId> recipients = Stream.concat(memberServiceIds, filteredPendingServiceIds)
+                                        .map(serviceId -> Recipient.externalPush(serviceId))
                                         .filter(recipient -> recipient.getRegistered() != RecipientTable.RegisteredState.NOT_REGISTERED)
                                         .map(Recipient::getId)
                                         .collect(Collectors.toSet());

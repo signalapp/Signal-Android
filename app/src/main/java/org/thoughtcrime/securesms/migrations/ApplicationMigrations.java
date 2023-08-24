@@ -121,7 +121,7 @@ public class ApplicationMigrations {
     static final int GLIDE_CACHE_CLEAR             = 77;
     static final int SYSTEM_NAME_RESYNC            = 78;
     static final int RECOVERY_PASSWORD_SYNC        = 79;
-    static final int DECRYPTIONS_DRAINED           = 80;
+//    static final int DECRYPTIONS_DRAINED           = 80;
     static final int REBUILD_MESSAGE_FTS_INDEX_3   = 81;
     static final int TO_FROM_RECIPIENTS            = 82;
     static final int REBUILD_MESSAGE_FTS_INDEX_4   = 83;
@@ -556,9 +556,10 @@ public class ApplicationMigrations {
       jobs.put(Version.RECOVERY_PASSWORD_SYNC, new AttributesMigrationJob());
     }
 
-    if (lastSeenVersion < Version.DECRYPTIONS_DRAINED) {
-      jobs.put(Version.DECRYPTIONS_DRAINED, new DecryptionsDrainedMigrationJob());
-    }
+    // Needed for the conversion to inline decryptions and is no longer necessary
+    // if (lastSeenVersion < Version.DECRYPTIONS_DRAINED) {
+    //   jobs.put(Version.DECRYPTIONS_DRAINED, new DecryptionsDrainedMigrationJob());
+    // }
 
     if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX_3) {
       jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX_3, new RebuildMessageSearchIndexMigrationJob());

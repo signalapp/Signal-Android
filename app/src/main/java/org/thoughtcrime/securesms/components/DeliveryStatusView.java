@@ -12,6 +12,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import org.signal.core.util.DimensionUnit;
@@ -133,6 +134,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     state = State.NONE;
     clearAnimation();
     setVisibility(View.GONE);
+    updateContentDescription();
   }
 
   public boolean isPending() {
@@ -145,6 +147,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingStart(this, 0);
     ViewUtil.setPaddingEnd(this, horizontalPadding);
     setImageResource(R.drawable.ic_delivery_status_sending);
+    updateContentDescription();
   }
 
   public void setSent() {
@@ -154,6 +157,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
     setImageResource(R.drawable.ic_delivery_status_sent);
+    updateContentDescription();
   }
 
   public void setDelivered() {
@@ -163,6 +167,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
     setImageResource(R.drawable.ic_delivery_status_delivered);
+    updateContentDescription();
   }
 
   public void setRead() {
@@ -172,23 +177,36 @@ public class DeliveryStatusView extends AppCompatImageView {
     ViewUtil.setPaddingEnd(this, 0);
     clearAnimation();
     setImageResource(R.drawable.ic_delivery_status_read);
+    updateContentDescription();
   }
 
   public void setTint(int color) {
     setColorFilter(color);
   }
 
+  private void updateContentDescription() {
+    if (state.contentDescription == -1) {
+      setContentDescription(null);
+    } else {
+      setContentDescription(getContext().getString(state.contentDescription));
+    }
+  }
+
   private enum State {
-    NONE(0),
-    PENDING(1),
-    SENT(2),
-    DELIVERED(3),
-    READ(4);
+    NONE(0, -1),
+    PENDING(1, R.string.message_details_recipient_header__pending_send),
+    SENT(2, R.string.message_details_header_sent),
+    DELIVERED(3, R.string.conversation_item_sent__delivered_description),
+    READ(4, R.string.conversation_item_sent__message_read);
 
     final int code;
 
-    State(int code) {
-      this.code = code;
+    @StringRes
+    final int contentDescription;
+
+    State(int code, @StringRes int contentDescription) {
+      this.code               = code;
+      this.contentDescription = contentDescription;
     }
 
     static State fromCode(int code) {

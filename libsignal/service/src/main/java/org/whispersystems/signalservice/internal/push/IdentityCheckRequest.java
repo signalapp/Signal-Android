@@ -16,27 +16,27 @@ import javax.annotation.Nonnull;
 
 public class IdentityCheckRequest {
   @JsonProperty("elements")
-  private final List<AciFingerprintPair> aciFingerprintPairs;
+  private final List<ServiceIdFingerprintPair> serviceIdFingerprintPairs;
 
-  public IdentityCheckRequest(@Nonnull List<AciFingerprintPair> aciKeyPairs) {
-    this.aciFingerprintPairs = aciKeyPairs;
+  public IdentityCheckRequest(@Nonnull List<ServiceIdFingerprintPair> serviceIdKeyPairs) {
+    this.serviceIdFingerprintPairs = serviceIdKeyPairs;
   }
 
-  public List<AciFingerprintPair> getAciFingerprintPairs() {
-    return aciFingerprintPairs;
+  public List<ServiceIdFingerprintPair> getServiceIdFingerprintPairs() {
+    return serviceIdFingerprintPairs;
   }
 
-  public static final class AciFingerprintPair {
+  public static final class ServiceIdFingerprintPair {
 
-    @JsonProperty
+    @JsonProperty("uuid")
     @JsonSerialize(using = JsonUtil.ServiceIdSerializer.class)
-    private final ServiceId aci;
+    private final ServiceId serviceId;
 
     @JsonProperty
     private final String fingerprint;
 
-    public AciFingerprintPair(@Nonnull ServiceId aci, @Nonnull IdentityKey identityKey) {
-      this.aci = aci;
+    public ServiceIdFingerprintPair(@Nonnull ServiceId serviceId, @Nonnull IdentityKey identityKey) {
+      this.serviceId = serviceId;
 
       try {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -46,8 +46,8 @@ public class IdentityCheckRequest {
       }
     }
 
-    public ServiceId getAci() {
-      return aci;
+    public ServiceId getServiceId() {
+      return serviceId;
     }
 
     public String getFingerprint() {

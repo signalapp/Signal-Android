@@ -87,14 +87,15 @@ object LocalMetrics {
    *
    * If an event with the provided ID does not exist, this is effectively a no-op.
    */
-  fun splitWithDuration(id: String, split: String, duration: Long) {
-    val time = System.currentTimeMillis()
+  @JvmOverloads
+  fun splitWithDuration(id: String, split: String, duration: Long, timeunit: TimeUnit = TimeUnit.MILLISECONDS) {
+    val time = SystemClock.elapsedRealtimeNanos()
 
     executor.execute {
       val lastTime: Long? = lastSplitTimeById[id]
       val splitDoesNotExist: Boolean = eventsById[id]?.splits?.none { it.name == split } ?: true
       if (lastTime != null && splitDoesNotExist) {
-        eventsById[id]?.splits?.add(LocalMetricsSplit(split, duration))
+        eventsById[id]?.splits?.add(LocalMetricsSplit(split, TimeUnit.NANOSECONDS.convert(duration, timeunit)))
         lastSplitTimeById[id] = time
       }
     }

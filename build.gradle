@@ -40,11 +40,13 @@ wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
+apply from: "${rootDir}/constants.gradle.kts"
+
 allprojects {
     // Needed because otherwise the kapt task defaults to jvmTarget 17, which "poisons the well" and requires us to bump up too
     tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = signalKotlinJvmTarget
         }
     }
 }

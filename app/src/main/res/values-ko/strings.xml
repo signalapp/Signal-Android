@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하려는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사를 통해 연결될 겁니다.</string>
     <string name="CommunicationActions_cant_join_call">통화에 참여할 수 없습니다.</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">이 통화 링크는 더 이상 유효하지 않습니다.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">잘못된 링크</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">통화 링크가 올바르지 않습니다. 통화에 참여하기 전에 링크가 정확한지 확인하세요.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">메시지 수정은 발송 시간으로부터 %1$d시간 이내로 제한됩니다.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">이 메시지는 오직 %1$d 님만 수정할 수 있습니다.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">잘못된 수신자입니다!</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d명의 멤버</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">알림에 지연이 있는 것 같네요. 디버그 로그를 제출할까요?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">디버그 로그를 제출하면 문제를 진단하고 수정하는 데 도움이 됩니다. 디버그 로그에는 식별 정보가 포함되지 않습니다.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">배터리 최적화로 인해 알림이 지연될 수 있습니다.</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Signal 배터리 최적화를 비활성화하여 메시지 알림이 지연되지 않도록 할 수 있습니다.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">계속</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">취소</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">대기 중인 그룹 초대</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">설정 열기</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">나중에</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">요청 %1$d개를 승인할까요?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">모두 승인</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">통화에 %1$d명을 추가합니다.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">요청 %1$d개를 거부할까요?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">통화에 %1$d명을 추가하지 않습니다.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">모두 거부</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">%1$d명이 대기 중입니다.</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d명</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">통화 요청 거부됨</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">통화 참여 요청이 거부되었습니다.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">통화에서 제거됨</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">통화에서 제거됐습니다.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal 전화</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">재연결 중…</string>
     <string name="WebRtcCallView__joining">참가하는 중…</string>
     <string name="WebRtcCallView__disconnected">연결 끊김</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal 통화 링크</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">링크를 통해 통화에 참여하는 모든 사용자에게 내 이름, 사진, 전화번호가 표시됩니다.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">승인을 기다리는 중…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal이 %1$s에게 알릴겁니다.</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal이 %1$s, 그리고 %2$s에게 알릴겁니다.</string>
@@ -2729,6 +2794,14 @@
         <item>기부 및 배지</item>
         <item>SMS 내보내기</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 디버그 로그 제출</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">느린 알림</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">제출</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">아니요</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">이 메시지</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">알림 벨소리</string>
     <string name="preferences_chats__message_text_size">메시지 글꼴 사이즈</string>
     <string name="preferences_notifications__priority">우선순위</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">알림 문제 해결</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">검열 우회</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">새로 고침</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">인사이트</string>
-    <string name="InsightsDashboardFragment__title">인사이트</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 프로토콜이 지난 %2$d일 동안 발신된 메시지 중 %1$d%%를 자동으로 보호합니다. Signal 사용자 간 대화는 항상 엔드투엔드로 암호화됩니다.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">널리 알려주세요.</string>
-    <string name="InsightsDashboardFragment__not_enough_data">데이터가 충분하지 않음</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">인사이트 백분율은 최근 %1$d일 동안 사라지지 않았거나 삭제되지 않은 발신 메시지에 대해 산정됩니다.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">대화 시작</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">안전하게 대화하고 더 많은 연락처를 Signal에 초대하여 등록하게 함으로써, 비보안 SMS 메시지의 한계를 뛰어넘는 새 기능을 활성화할 수 있습니다.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">통계는 해당 기기에서 직접 생성되었으며 나만 볼 수 있습니다. 절대 다른 곳으로 유출되지 않습니다.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">암호화 메시지</string>
-    <string name="InsightsDashboardFragment__cancel">취소</string>
-    <string name="InsightsDashboardFragment__send">전송</string>
-    <string name="InsightsModalFragment__title">인사이트를 소개합니다.</string>
-    <string name="InsightsModalFragment__description">내 발신 메시지 중 얼마나 많은 메시지가 안전하게 전송되었는지 알아보고, 새 연락처를 손쉽게 초대하여 내 Signal 백분율을 부스트해 보세요.</string>
-    <string name="InsightsModalFragment__view_insights">인사이트 보기</string>
-
-    <string name="FirstInviteReminder__title">Signal로 초대</string>
-    <string name="FirstInviteReminder__description">내가 보낸 암호화 메시지 수를 %1$d%%나 올릴 수 있습니다.</string>
-    <string name="SecondInviteReminder__title">Signal에 부스트를 추가하세요.</string>
-    <string name="SecondInviteReminder__description">%1$s 초대</string>
-    <string name="InsightsReminder__view_insights">인사이트 보기</string>
-    <string name="InsightsReminder__invite">초대</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">%2$s(%1$d통)</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">통화 링크</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">영상 통화 시작하기</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">음성 통화 시작</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">마이크 켜짐</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">마이크 꺼짐</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">스피커 켜짐</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">스피커 꺼짐</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">캡처 버튼</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">통화 링크 만들기</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal 통화 링크 공유</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Signal 통화에 참여할 때 사용할 링크: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">통화 정보</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s 님을 통화에서 제거할까요?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">제거</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">통화에서 차단</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">네트워크 오류가 발생했습니다. 다시 시도해 주세요.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">전화 받기…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">+요청 %1$d개</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">이 통화에 대한 참여 요청</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">%1$d명이 대기 중입니다.</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">거절</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">승인</string>
 
     <!-- EOF -->
 </resources>

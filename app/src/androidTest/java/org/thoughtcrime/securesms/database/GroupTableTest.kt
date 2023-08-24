@@ -294,12 +294,12 @@ class GroupTableTest {
   private fun insertPushGroup(
     members: List<DecryptedMember> = listOf(
       DecryptedMember.newBuilder()
-        .setUuid(harness.self.requireServiceId().toByteString())
+        .setAciBytes(harness.self.requireAci().toByteString())
         .setJoinedAtRevision(0)
         .setRole(Member.Role.DEFAULT)
         .build(),
       DecryptedMember.newBuilder()
-        .setUuid(Recipient.resolved(harness.others[0]).requireServiceId().toByteString())
+        .setAciBytes(Recipient.resolved(harness.others[0]).requireAci().toByteString())
         .setJoinedAtRevision(0)
         .setRole(Member.Role.DEFAULT)
         .build()
@@ -318,14 +318,14 @@ class GroupTableTest {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
 
     val selfMember: DecryptedMember = DecryptedMember.newBuilder()
-      .setUuid(harness.self.requireServiceId().toByteString())
+      .setAciBytes(harness.self.requireAci().toByteString())
       .setJoinedAtRevision(0)
       .setRole(Member.Role.DEFAULT)
       .build()
 
     val otherMembers: List<DecryptedMember> = others.map { id ->
       DecryptedMember.newBuilder()
-        .setUuid(Recipient.resolved(id).requireServiceId().toByteString())
+        .setAciBytes(Recipient.resolved(id).requireAci().toByteString())
         .setJoinedAtRevision(0)
         .setRole(Member.Role.DEFAULT)
         .build()

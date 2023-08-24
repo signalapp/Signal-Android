@@ -242,6 +242,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">هزینه‌های اپراتور ممکن است اعمال شود. شماره‌ای که می‌خواهید با آن تماس بگیرید در سیگنال ثبت‌نام نشده است. این تماس از طریق اپراتور تلفن همراه شما گرفته خواهد شد، نه از طریق اینترنت.</string>
     <string name="CommunicationActions_cant_join_call">امکان پیوستن به تماس وجود ندارد</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">این پیوند تماس دیگر معتبر نیست.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">پیوند نامعتبر</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">این پیوند تماس معتبری نیست. قبل از تلاش برای پیوستن، مطمئن شوید که پیوند کامل و درست است.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -342,6 +346,11 @@
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
         <item quantity="other">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">فقط %1$d ویرایش قابل اعمال به این پیام است.</item>
+        <item quantity="other">فقط %1$d ویرایش قابل اعمال به این پیام است.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">گیرنده نامعتبر!</string>
@@ -895,6 +904,21 @@
         <item quantity="one">%1$d عضو</item>
         <item quantity="other">%1$d عضو</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">متوجه شدیم که اعلان‌ها تأخیر دارند. گزارش عیب‌یابی ارسال شود؟</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">گزارش‌های عیب‌یابی به ما کمک می‌کنند که مشکل را شناسایی و رفع کنیم و حاوی اطلاعاتی که منجر به شناسایی افراد شود نیستند.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">اعلان‌ها ممکن است به‌دلیل بهینه‌سازی باتری تأخیر داشته باشند</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">می‌توانید برای اطمینان از عدم تأخیر اعلان‌های پیام، بهینه‌سازی باتری را برای سیگنال غیرفعال کنید.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">ادامه</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">رد کردن</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
@@ -1722,6 +1746,48 @@
     <string name="WebRtcCallActivity__open_settings">بازکردن تنظیمات</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">حالا نه</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">%1$d درخواست تأیید شود؟</item>
+        <item quantity="other">%1$d درخواست تأیید شود؟</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">تأیید همه</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d نفر به این تماس اضافه خواهد شد.</item>
+        <item quantity="other">%1$d نفر به تماس اضافه خواهند شد.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">%1$d درخواست رد شود؟</item>
+        <item quantity="other">%1$d درخواست رد شود؟</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d نفر به این تماس اضافه نخواهد شد.</item>
+        <item quantity="other">%1$d نفر به این تماس اضافه نخواهند شد.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">رد کردن همه</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d نفر در انتظار</item>
+        <item quantity="other">%1$d نفر در انتظار</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d نفر</item>
+        <item quantity="other">%1$d نفر</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">درخواست پیوستن رد شد</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">درخواست شما برای پیوستن به این تماس رد شده است.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">از تماس حذف شد</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">کسی شما را از تماس حذف کرده است.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">تماس سیگنال</string>
@@ -1734,6 +1800,12 @@
     <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
     <string name="WebRtcCallView__joining">در حال پیوستن…</string>
     <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">پیوند تماس سیگنال</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">هر کسی که از طریق پیوند به این تماس بپیوندد، قادر به دیدن نام، عکس و شماره تلفن شما خواهد بود.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">در انتظار اجازه ورود…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">سیگنال به %1$s زنگ خواهد زد</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">سیگنال به %1$s و %2$s زنگ خواهد زد</string>
@@ -2757,7 +2829,7 @@
     <string name="message_details_recipient_header__read_by">خوانده شد توسط</string>
     <string name="message_details_recipient_header__not_sent">ارسال نشد</string>
     <string name="message_details_recipient_header__viewed">مشاهده شده توسط</string>
-    <string name="message_details_recipient_header__skipped">رد شده</string>
+    <string name="message_details_recipient_header__skipped">ارسال نشد</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">ارسال ناموفق بود</string>
@@ -2809,6 +2881,14 @@
         <item>کمک‌های مالی و نشان‌ها</item>
         <item>صادر کردن پیامک</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">گزارش ارسالی رفع عیب سیگنال اندروید</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">کندی اعلان‌ها</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">ارسال</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">نه ممنون</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
@@ -3031,6 +3111,8 @@
     <string name="preferences_notifications__ringtone">صدای زنگ</string>
     <string name="preferences_chats__message_text_size">اندازهٔ قلم پیام</string>
     <string name="preferences_notifications__priority">اولویت</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">اعلان‌های عیب‌یابی</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">عبور از فیلترینگ</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3440,33 +3522,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">تازه‌سازی</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">٪</string>
-    <string name="Insights__title">بینش‌ها</string>
-    <string name="InsightsDashboardFragment__title">بینش‌ها</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل سیگنال به‌طور خودکار از %1$d درصد از پیام‌های خروجی شما ظرف %2$d روز گذشته محافظت کرده است. گفتگو بین کاربران سیگنال همواره به طور سرتاسری رمزگذاری‌شده است.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">خبر را انتشار دهید</string>
-    <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که پاک نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">شروع یک گفتگو</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبین بیشتر به سیگنال فعال کنید.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچ‌گاه به جایی ارسال نمی‌شوند.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">پیام‌های رمزگذاری شده</string>
-    <string name="InsightsDashboardFragment__cancel">لغو</string>
-    <string name="InsightsDashboardFragment__send">ارسال</string>
-    <string name="InsightsModalFragment__title">معرفی بینش‌‌ها</string>
-    <string name="InsightsModalFragment__description">ببینید چه تعداد از پیام‌های خروجی شما به صورت امن ارسال شده‌اند، سپس درصد سیگنال خود را با دعوت مخاطبین جدید تقویت کنید.</string>
-    <string name="InsightsModalFragment__view_insights">مشاهدهٔ بینش‌ها</string>
-
-    <string name="FirstInviteReminder__title">دعوت به سیگنال</string>
-    <string name="FirstInviteReminder__description">شما می‌توانید پیام‌های رمزگذاری‌ شدهٔ ارسالی‌ خود را به میزان %1$d%% افزایش دهید</string>
-    <string name="SecondInviteReminder__title">سیگنال خود را تقویت کنید</string>
-    <string name="SecondInviteReminder__description">دعوت %1$s</string>
-    <string name="InsightsReminder__view_insights">مشاهدهٔ بینش‌ها</string>
-    <string name="InsightsReminder__invite">دعوت</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5998,6 +6053,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">پیوند تماس</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">شروع تماس تصویری</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">شروع یک تماس صوتی</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6082,6 +6141,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">میکروفون روشن</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">میکروفون خاموش</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">بلندگو روشن شد</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">بلندگو خاموش شد</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">دکمه ضبط</string>
@@ -6103,6 +6166,18 @@
     <string name="CreateCallLink__create_a_call_link">ایجاد یک پیوند تماس</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">اشتراک‌گذاری یک پیوند برای تماس سیگنال</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">با استفاده از این پیوند به تماس سیگنال بپیوندید: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">اطلاعات تماس</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s از تماس حذف شود؟</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">حذف</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">مسدود کردن امکان تماس</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6203,6 +6278,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">یک خطای شبکه رخ داد. لطفاً دوباره امتحان کنید.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">می‌خواهد بپیوندد…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">و %1$d درخواست دیگر</item>
+        <item quantity="other">و %1$d درخواست دیگر</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">درخواست‌های پیوستن به این تماس</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d نفر در انتظار</item>
+        <item quantity="other">%1$d نفر در انتظار</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">رد کردن</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">موافقت</string>
 
     <!-- EOF -->
 </resources>

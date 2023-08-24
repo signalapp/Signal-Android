@@ -5,18 +5,23 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.zkgroup.InvalidInputException;
+import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.signalservice.api.messages.SignalServiceContent;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
- * We changed the format of the queue key for {@link org.thoughtcrime.securesms.jobs.PushProcessMessageJob}
+ * We changed the format of the queue key for legacy PushProcessMessageJob
  * to have the recipient ID in it, so this migrates existing jobs to be in that format.
  */
 public class PushProcessMessageQueueJobMigration extends JobMigration {
@@ -36,7 +41,7 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
       Log.i(TAG, "Found a PushProcessMessageJob to migrate.");
       try {
         return migratePushProcessMessageJob(context, jobData);
-      } catch (IOException e) {
+      } catch (IOException | InvalidInputException e) {
         Log.w(TAG, "Failed to migrate message job.", e);
         return jobData;
       }
@@ -44,24 +49,28 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
     return jobData;
   }
 
-  private static @NonNull JobData migratePushProcessMessageJob(@NonNull Context context, @NonNull JobData jobData) throws IOException {
+  private static @NonNull JobData migratePushProcessMessageJob(@NonNull Context context, @NonNull JobData jobData) throws IOException, InvalidInputException {
     JsonJobData data = JsonJobData.deserialize(jobData.getData());
 
     String suffix = "";
 
     if (data.getInt("message_state") == 0) {
-      SignalServiceContent content = SignalServiceContent.deserialize(Base64.decode(data.getString("message_content")));
+      SignalServiceContentProto proto = SignalServiceContentProto.parseFrom(Base64.decode(data.getString("message_content")));
 
-      if (content != null && content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
+      if (proto != null && proto.hasContent() && proto.getContent().hasDataMessage() && proto.getContent().getDataMessage().hasGroupV2()) {
         Log.i(TAG, "Migrating a group message.");
 
-        GroupId   groupId   = GroupId.v2(content.getDataMessage().get().getGroupContext().get().getMasterKey());
+        GroupId   groupId   = GroupId.v2(new GroupMasterKey(proto.getContent().getDataMessage().getGroupV2().getMasterKey().toByteArray()));
         Recipient recipient = Recipient.externalGroupExact(groupId);
 
         suffix = recipient.getId().toQueueKey();
-      } else if (content != null) {
+      } else if (proto != null && proto.hasMetadata() && proto.getMetadata().hasAddress()) {
         Log.i(TAG, "Migrating an individual message.");
-        suffix = RecipientId.from(content.getSender()).toQueueKey();
+        ServiceId            senderServiceId = ServiceId.parseOrThrow(proto.getMetadata().getAddress().getUuid());
+        String               senderE164      = proto.getMetadata().getAddress().getE164();
+        SignalServiceAddress sender          = new SignalServiceAddress(senderServiceId, Optional.ofNullable(senderE164));
+
+        suffix = RecipientId.from(sender).toQueueKey();
       }
     } else {
       Log.i(TAG, "Migrating an exception message.");

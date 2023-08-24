@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
@@ -465,7 +465,7 @@ class StorySendTableTest {
 
   private fun makeRecipients(count: Int): List<RecipientId> {
     return (1..count).map {
-      SignalDatabase.recipients.getOrInsertFromServiceId(ServiceId.from(UUID.randomUUID()))
+      SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID()))
     }
   }
 }

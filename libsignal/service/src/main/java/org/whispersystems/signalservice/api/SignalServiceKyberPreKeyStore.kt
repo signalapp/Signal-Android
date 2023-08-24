@@ -23,4 +23,14 @@ interface SignalServiceKyberPreKeyStore : KyberPreKeyStore {
    * Unconditionally remove the specified key from the store.
    */
   fun removeKyberPreKey(kyberPreKeyId: Int)
+
+  /**
+   * Marks all prekeys stale if they haven't been marked already. "Stale" means the time that the keys have been replaced.
+   */
+  fun markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime: Long)
+
+  /**
+   * Deletes all prekeys that have been stale since before the threshold. "Stale" means the time that the keys have been replaced.
+   */
+  fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int)
 }

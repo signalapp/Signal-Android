@@ -36,4 +36,8 @@ class EditMessageHistoryViewModel(private val originalMessageId: Long, private v
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
   }
+
+  fun markRevisionsRead() {
+    EditMessageHistoryRepository.markRevisionsRead(originalMessageId)
+  }
 }

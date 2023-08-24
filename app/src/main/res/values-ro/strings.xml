@@ -243,6 +243,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Se pot percepe taxe de operator. Numărul apelat nu este înregistrat la Signal. Acest apel va fi plasat prin intermediul operatorului tău de telefonie mobilă, nu prin internet.</string>
     <string name="CommunicationActions_cant_join_call">Nu se poate realiza alăturarea la apel</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Acest link de apel nu mai este valid.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Link invalid</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Link-ul de apel nu este valid. Asigură-te că întregul link este intact și corect înainte de a te alătura grupului.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -344,6 +348,12 @@
         <item quantity="one">Modificările pot fi aplicate numai în termen de %1$d oră de la momentul în care ați trimis acest mesaj.</item>
         <item quantity="few">Modificările pot fi aplicate numai în termen de %1$d ore de la momentul în care ai trimis acest mesaj.</item>
         <item quantity="other">Modificările pot fi aplicate numai în termen de %1$d de ore de la momentul în care ai trimis acest mesaj.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Numai %1$d modificare poate fi aplicată acestui mesaj.</item>
+        <item quantity="few">Numai %1$d modificări pot fi aplicate acestui mesaj.</item>
+        <item quantity="other">Numai %1$d de modificări pot fi aplicate acestui mesaj.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
@@ -924,6 +934,21 @@
         <item quantity="few">%1$d membri</item>
         <item quantity="other">%1$d de membri</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Am observat că notificările sunt întârziate. Trimiți jurnalul de depanare?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Jurnalele de depanare ne ajută să diagnosticăm și să remediam problema și nu conțin informații de identificare.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Este posibil ca notificările să întârzie din cauza optimizării bateriei</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Poți să dezactivezi optimizarea bateriei pentru Signal ca să te asiguri că notificările mesajelor să nu fie întârziate.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Continuă</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Revocare</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Invitații la grup în așteptare</string>
@@ -1781,6 +1806,54 @@
     <string name="WebRtcCallActivity__open_settings">Deschide setările</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Nu acum</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Aprobi solicitarea lui %1$d ?</item>
+        <item quantity="few">Aprobi solicitarile %1$d?</item>
+        <item quantity="other">Aprobi solicitarile %1$d?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Aprob</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d persoană va fi adăugată la apel.</item>
+        <item quantity="few">%1$d persoane vor fi adăugate la apel.</item>
+        <item quantity="other">%1$d de persoane vor fi adăugate la apel.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Respingi solicitarea lui %1$d?</item>
+        <item quantity="few">Respingi solicitările %1$d?</item>
+        <item quantity="other">Respingi solicitările %1$d?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d persoană nu va fi adăugată la apel.</item>
+        <item quantity="few">%1$d persoane nu vor fi adăugate la apel.</item>
+        <item quantity="other">%1$d de persoane nu vor fi adăugate la apel.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Nu aprob</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d persoană în așteptare</item>
+        <item quantity="few">%1$d persoane în așteptare</item>
+        <item quantity="other">%1$d de persoane în așteptare</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d persoană</item>
+        <item quantity="few">%1$d persoane</item>
+        <item quantity="other">%1$d persoane</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Solicitarea de alăturare a fost respinsă</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Solicitarea ta de a participa la acest apel a fost respinsă.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Eliminat din apel</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Cineva te-a exclus din apel.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Apel Signal</string>
@@ -1793,6 +1866,12 @@
     <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
     <string name="WebRtcCallView__joining">Se alătură…</string>
     <string name="WebRtcCallView__disconnected">Deconectat</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Link de apel Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Oricine se alătură acestui apel prin intermediul linkului îți va vedea numele, fotografia și numărul de telefon.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Așteaptă să fie lăsat să intre…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal va suna pe %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va suna pe %1$s și %2$s</string>
@@ -2889,6 +2968,14 @@
         <item>Donații și Insigne</item>
         <item>Export SMS-uri</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Trimiterea jurnalului de depanare Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Notificări lente</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Trimite</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Nu, mulțumesc</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
@@ -3113,6 +3200,8 @@
     <string name="preferences_notifications__ringtone">Ton de apel</string>
     <string name="preferences_chats__message_text_size">Mărimea textului</string>
     <string name="preferences_notifications__priority">Prioritate</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Rezolvă notificările</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Ocolire cenzură</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3524,33 +3613,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Reîmprospătare</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Statistici</string>
-    <string name="InsightsDashboardFragment__title">Statistici</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele tale expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Anunță-ți prietenii</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Începe o conversație</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Începe să comunici în siguranță și să activezi funcții noi care depășesc limitările mesajelor SMS necriptate, invitând mai multe persoane de contact să se alăture la Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aceste statistici au fost generate local pe dispozitivul tău și pot fi văzute doar de tine. Nu se transmit niciodată nicăieri.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Mesaje criptate</string>
-    <string name="InsightsDashboardFragment__cancel">Anulare</string>
-    <string name="InsightsDashboardFragment__send">Trimite</string>
-    <string name="InsightsModalFragment__title">Îți prezentăm \'Statistici\'</string>
-    <string name="InsightsModalFragment__description">Află cât de multe dintre mesajele tale expediate au fost trimise în siguranță, apoi invită rapid noi contacte pentru a crește procentul de Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Vezi Statistici</string>
-
-    <string name="FirstInviteReminder__title">Invită la Signal</string>
-    <string name="FirstInviteReminder__description">Poți crește numărul de mesaje criptate pe care le trimiți cu %1$d%%</string>
-    <string name="SecondInviteReminder__title">Îmbunătățește-ți Signal-ul</string>
-    <string name="SecondInviteReminder__description">Invită pe %1$s</string>
-    <string name="InsightsReminder__view_insights">Vezi Statistici</string>
-    <string name="InsightsReminder__invite">Invită</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6121,6 +6183,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Link de apel</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Începe un apel video</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Începe apel vocal</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6208,6 +6274,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Microfon activat</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Microfon dezactivat</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Difuzor pornit</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Difuzor oprit</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Buton realizează fotografie</string>
@@ -6229,6 +6299,18 @@
     <string name="CreateCallLink__create_a_call_link">Creează un Link de Apel</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Trimite un link pentru un apel Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Folosește acest link pentru a te alătura unui apel Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Informații despre apel</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Elimini pe %1$s din apel?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Elimină</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Blochează din apel</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6329,6 +6411,29 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Am experimentat o eroare de rețea. Te rugăm încearcă din nou.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Ar dori să se alăture…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d solicitare</item>
+        <item quantity="few">+%1$d solicitări</item>
+        <item quantity="other">+%1$d de solicitări</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Solicitări de participare la apel</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d persoană în așteptare</item>
+        <item quantity="few">%1$d persoane în așteptare</item>
+        <item quantity="other">%1$d de persoane în așteptare</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Respinge</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Aprobă</string>
 
     <!-- EOF -->
 </resources>

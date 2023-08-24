@@ -9,13 +9,11 @@ import android.text.Annotation;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
-import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -49,7 +47,6 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
@@ -65,7 +62,6 @@ public class ComposeText extends EmojiEditText {
   private static final Pattern TIME_PATTERN = Pattern.compile("^[0-9]{1,2}:[0-9]{1,2}$");
 
   private CharSequence            hint;
-  private SpannableString         subHint;
   private MentionRendererDelegate mentionRendererDelegate;
   private SpoilerRendererDelegate spoilerRendererDelegate;
   private MentionValidatorWatcher mentionValidatorWatcher;
@@ -106,13 +102,7 @@ public class ComposeText extends EmojiEditText {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
     if (getLayout() != null && !TextUtils.isEmpty(hint)) {
-      if (!TextUtils.isEmpty(subHint)) {
-        setHintWithChecks(new SpannableStringBuilder().append(ellipsizeToWidth(hint))
-                                                      .append("\n")
-                                                      .append(ellipsizeToWidth(subHint)));
-      } else {
-        setHintWithChecks(ellipsizeToWidth(hint));
-      }
+      setHintWithChecks(ellipsizeToWidth(hint));
       super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
   }
@@ -173,25 +163,9 @@ public class ComposeText extends EmojiEditText {
                                TruncateAt.END);
   }
 
-  public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
+  public void setHint(@NonNull String hint) {
     this.hint = hint;
-
-    if (subHint != null) {
-      this.subHint = new SpannableString(subHint);
-      this.subHint.setSpan(new RelativeSizeSpan(0.5f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-    } else {
-      this.subHint = null;
-    }
-
-    if (this.subHint != null) {
-      setHintWithChecks(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
-                                                    .append("\n")
-                                                    .append(ellipsizeToWidth(this.subHint)));
-    } else {
-      setHintWithChecks(ellipsizeToWidth(this.hint));
-    }
-
-    setHintWithChecks(hint);
+    setHintWithChecks(ellipsizeToWidth(this.hint));
   }
 
   public void setDraftText(@Nullable CharSequence draftText) {
@@ -249,10 +223,7 @@ public class ComposeText extends EmojiEditText {
     }
 
     setImeOptions(imeOptions);
-    setHint(getContext().getString(messageSendType.getComposeHintRes()),
-            messageSendType.getSimName() != null
-                ? getContext().getString(R.string.conversation_activity__from_sim_name, messageSendType.getSimName())
-                : null);
+    setHint(getContext().getString(messageSendType.getComposeHintRes()));
     setInputType(inputType);
   }
 

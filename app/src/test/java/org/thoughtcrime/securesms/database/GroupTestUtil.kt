@@ -85,15 +85,15 @@ class GroupChangeData(private val revision: Int, private val groupOperations: Gr
     }
 
   fun source(serviceId: ServiceId) {
-    actionsBuilder.sourceUuid = groupOperations.encryptUuid(serviceId.uuid())
+    actionsBuilder.sourceServiceId = groupOperations.encryptServiceId(serviceId)
   }
 
   fun deleteMember(serviceId: ServiceId) {
-    actionsBuilder.addDeleteMembers(GroupChange.Actions.DeleteMemberAction.newBuilder().setDeletedUserId(groupOperations.encryptUuid(serviceId.uuid())))
+    actionsBuilder.addDeleteMembers(GroupChange.Actions.DeleteMemberAction.newBuilder().setDeletedUserId(groupOperations.encryptServiceId(serviceId)))
   }
 
   fun modifyRole(serviceId: ServiceId, role: Member.Role) {
-    actionsBuilder.addModifyMemberRoles(GroupChange.Actions.ModifyMemberRoleAction.newBuilder().setUserId(groupOperations.encryptUuid(serviceId.uuid())).setRole(role))
+    actionsBuilder.addModifyMemberRoles(GroupChange.Actions.ModifyMemberRoleAction.newBuilder().setUserId(groupOperations.encryptServiceId(serviceId)).setRole(role))
   }
 }
 
@@ -168,7 +168,6 @@ fun groupRecord(
   avatarId: Long = 1,
   avatarKey: ByteArray = ByteArray(0),
   avatarContentType: String = "",
-  relay: String = "",
   active: Boolean = true,
   avatarDigest: ByteArray = ByteArray(0),
   mms: Boolean = false,
@@ -184,7 +183,6 @@ fun groupRecord(
       avatarId,
       avatarKey,
       avatarContentType,
-      relay,
       active,
       avatarDigest,
       mms,

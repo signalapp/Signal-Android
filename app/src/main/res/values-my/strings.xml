@@ -241,6 +241,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">ခေါ်ဆိုခ ယူနိုင်ပါသည်။ သင်ခေါ်ဆိုသောနံပါတ်သည် Signal တွင်မှတ်ပုံတင်ထားခြင်းမရှိပါ။ ဤခေါ်ဆိုမှုကို အင်တာနက်မှ မဟုတ်ဘဲ သင်၏မိုဘိုင်းအော်ပရေတာမှ တစ်ဆင့်ခေါ်ဆိုနိုင်သည်။</string>
     <string name="CommunicationActions_cant_join_call">ကောလ်တွင် ပါဝင်၍ မရနိုင်ပါ</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">ဤအဖွဲ့လင့်ခ်သည် အကျုံးမဝင်တော့ပါ။</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">အကြုံးမဝင်သော လင့်ခ်</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">ဤသည်မှာ မှန်ကန်သော ကောလ်လင့်ခ်တစ်ခု မဟုတ်ပါ။ ပါဝင်ရန် မကြိုးစားမီ လင့်ခ်တစ်ခုလုံးမှာ နဂိုအတိုင်းဖြစ်ကြောင်းနှင့် မှန်ကန်ကြောင်း သေချာအောင်လုပ်ပါ။</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -340,6 +344,10 @@
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">ထိုမက်ဆေ့ချ်ကို ပေးပို့ခဲ့ချိန်မှ %1$d နာရီအတွင်း၌သာ တည်းဖြတ်မှု လုပ်နိုင်ပါသည်။</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="other">ဤမက်ဆေ့ချ်ကို %1$d ကြိမ်သာ တည်းဖြတ်၍ရပါသည်။</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">လက်ခံမည့်သူမရှိပါ</string>
@@ -866,6 +874,21 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d အဖွဲ့ဝင်များ</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">အသိပေးချက်များမှာ နှောင့်နှေးနေကြောင်း ကျွန်ုပ်တို့ သတိပြုမိပါသည်။ ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">ပြစ်ချက်မှတ်တမ်းများသည် ပြဿနာကို စစ်ဆေးရှာဖွေရန်နှင့် ဖြေရှင်းရန် ကျွန်ုပ်တို့ကို အကူအညီပေးပြီး မည်သူဖြစ်ကြောင်း ခွဲခြားနိုင်သည့် အချက်အလက်များ မပါရှိပါ။</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">ဘက်ထရီ အကောင်းဆုံးချိန်ညှိမှုများကြောင့် အသိပေးချက်များ နှောင့်နှေးနိုင်ပါသည်</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">မက်ဆေ့ချ် အသိပေးချက်များ မနှောင့်နှေးကြောင်း သေချာစေရန် Signal အတွက် ဘက်ထရီ အကောင်းဆုံးချိန်ညှိမှုများကို ပိတ်ထားနိုင်ပါသည်။</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">ဆက်လုပ်ရန်</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">ပယ်ရန်</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">ဆိုင်းငံ့ထားအုပ်စု ဖိတ်ကြားချက်များ</string>
@@ -1663,6 +1686,42 @@
     <string name="WebRtcCallActivity__open_settings">ဆက်တင် ဖွင့်ရန်</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="other">တောင်းဆိုမှု %1$d ခုကို ခွင့်ပြုမည်လား။</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">အားလုံးကို ခွင့်ပြုမည်</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="other">လူ %1$d ဦးကို ကောလ်တွင် ထည့်လိုက်ပါမည်။</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="other">တောင်းဆိုမှု %1$d ခုကို ငြင်းပယ်မည်လား။</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="other">လူ %1$d ဦးကို ဤကောလ်တွင် ထည့်မည်မဟုတ်ပါ။</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">အားလုံးကို ငြင်းပယ်မည်</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="other">လူ %1$d ဦး စောင့်ဆိုင်းနေသည်</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="other">%1$d ဦး</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">ပါဝင်ရန် တောင်းဆိုမှု ပယ်ချခံရခြင်း</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">ဤကောလ်တွင် ပါဝင်ရန် သင့်တောင်းဆိုမှုကို ပယ်ချလိုက်ပါသည်။</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">ကောလ်မှ ဖယ်ရှားခံရခြင်း</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">တစ်စုံတစ်ဦးက သင့်ကို ကောလ်မှ ဖယ်ရှားလိုက်ပါသည်။</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal ခေါ်ဆိုမှု</string>
@@ -1675,6 +1734,12 @@
     <string name="WebRtcCallView__reconnecting">ပြန်လည်ချိတ်ဆက်နေသည် …</string>
     <string name="WebRtcCallView__joining">ပူးပေါင်းမည်</string>
     <string name="WebRtcCallView__disconnected">ချိတ်ဆက်ပြတ်သည်</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Signal ကောလ် လင့်ခ်</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">လင့်ခ်မှတစ်ဆင့် ဤကောလ်တွင် ပါဝင်လာသူမှန်သမျှသည် သင့်အမည်၊ ဓာတ်ပုံနှင့် ဖုန်းနံပါတ်တို့ကို မြင်တွေ့ရပါမည်။</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">ပါဝင်ခွင့်ရရန် စောင့်ဆိုင်းနေဆဲ…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal က %1$s ထံ ဖုန်းခေါ်ပါမည်</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal က %1$s နှင့် %2$s ထံ ဖုန်းခေါ်ပါမည်</string>
@@ -2677,7 +2742,7 @@
     <string name="message_details_recipient_header__read_by">မှဖတ်ပြီး</string>
     <string name="message_details_recipient_header__not_sent">မပို့ရသေးပါ</string>
     <string name="message_details_recipient_header__viewed">ကြည့်ရှုပြီး</string>
-    <string name="message_details_recipient_header__skipped">မဖတ်ဘဲ ကျော်သွားသော</string>
+    <string name="message_details_recipient_header__skipped">မရောက်ရှိခဲ့</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">ပို့၍ မရပါ</string>
@@ -2729,6 +2794,14 @@
         <item>လှူဒါန်းမှုများနှင့် ဘဲ့ဂျ်များ</item>
         <item>SMS ထုတ်သိမ်းခြင်း</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ပြစ်ချက်မှတ်တမ်း ပေးပို့ခြင်း</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">အသိပေးချက်များ နှောင့်နှေးခြင်း</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">တင်မယ်</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">မလုပ်လိုပါ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">၎င်းမက်ဆေ့ချ်</string>
@@ -2949,6 +3022,8 @@
     <string name="preferences_notifications__ringtone">ဖုန်းသံစဉ်များ</string>
     <string name="preferences_chats__message_text_size">စာလုံးအရွယ်အစား</string>
     <string name="preferences_notifications__priority">ဦးစားပေး</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">အသိပေးချက်များအား ပြဿနာဖြေရှင်းရန်</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">ဆင်ဆာရှောင်တိမ်းမှု</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3356,33 +3431,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">အသစ်ပြန်စတင်ပါ</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">ထင်မြင်ချက်များ</string>
-    <string name="InsightsDashboardFragment__title">ထင်မြင်ချက်များ</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ပရိုတိုကောလ်သည် လွန်ခဲ့သည့် %2$d ရက်အတွင်း သင့်အထွက်မက်ဆေ့ချ်များ၏ %1$d%% ကို အလိုအလျောက် ကာကွယ်ပေးခဲ့ပါသည်။ Signal သုံးစွဲသူများအကြား ချက်(တ်)များကို အမြဲ ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားပါသည်။</string>
-    <string name="InsightsDashboardFragment__spread_the_word">ဤစကားကို ဖြန့်ရန်</string>
-    <string name="InsightsDashboardFragment__not_enough_data">ဒေတာ မလုံလောက်ပါ</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">သင်၏ ထင်မြင်ချက် ရာခိုင်နှုန်းသည် လွန်ခဲ့သည့် %1$d ရက်အတွင်း မပျောက်သွားသေးသော သို့မဟုတ် မဖျက်ထားသော မက်ဆေ့ချ်များပေါ်မူ၍ တွက်ထားပါသည်။</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">ချက်(တ်)တစ်ခု စတင်ရန်</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">လုံခြုံစွာ ဆက်သွယ်မှုကို စတင်ပါ။ Signal နှင့်ဆက်သွယ်ရန် အဆက်အသွယ်များထပ်မံဖိတ်ခေါ်ခြင်းဖြင့် ကုဒ်ဖြင့်စာမဝှက်ထားသည့် SMS မက်ဆေ့ချ်များ ပေးပို့မှုများ၏ ကန့်သတ်ချက်များထက်ကျော်လွန်သော အင်္ဂါရပ်အသစ်များကို ဖွင့်သုံးစွဲပါ။</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">၎င်းကိန်းဂဏန်းများသည် သင်၏စက်ကိရိယာပေါ်တွင် ထုတ်လုပ်ပြီး သင်သာမြင်နိုင်သည်။ ဘယ်တော့မှ အခြားနေရာကို မကူးစက်ပါဘူး။</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">ကုဒ်ဖြင့် ဝှက်ထားသော မက်ဆေ့ချ်များ</string>
-    <string name="InsightsDashboardFragment__cancel">ပယ်ဖျက်မယ်</string>
-    <string name="InsightsDashboardFragment__send">ပေးပို့မယ်</string>
-    <string name="InsightsModalFragment__title">ထင်မြင်ချက်များနှင့် မိတ်ဆက်ပေးခြင်း</string>
-    <string name="InsightsModalFragment__description">သင်၏ အထွက်စာများ မည်မျှလုံလုံခြုံခြုံ ပေးပို့ခဲ့သည်ကို ရှာဖွေပါ။ သင်၏ Signal ရာခိုင်နှုန်းကို တိုးစေရန် အဆက်အသွယ်အသစ်များကို လျင်မြန်စွာဖိတ်ပါ။</string>
-    <string name="InsightsModalFragment__view_insights">ထင်မြင်ချက်များ ကိုကြည့်မယ်</string>
-
-    <string name="FirstInviteReminder__title">Signal သို့ ဖိတ်ခေါ်မည်</string>
-    <string name="FirstInviteReminder__description">သင်ပေးပို့သည့် ကုဒ်ဖြင့်ဝှက်ထားသော မက်ဆေ့ချ်အရေအတွက်ကို %1$d %% ထက်တိုးမြှင့်နိုင်ပါသည်</string>
-    <string name="SecondInviteReminder__title">သင်၏ Signal ကို Boost လုပ်ပါ</string>
-    <string name="SecondInviteReminder__description">%1$s ကို ဖိတ်ခေါ်မယ်</string>
-    <string name="InsightsReminder__view_insights">ထင်မြင်ချက်များ (Insights) ကိုကြည့်မယ်</string>
-    <string name="InsightsReminder__invite">ဖိတ်ခေါ်မယ်</string>
 
     <!-- Edit KBS Pin -->
 
@@ -5875,6 +5923,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) ကောလ် %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">ကောလ်လင့်ခ်</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">ဗီဒီယိုကောလ် စတင်ရန်</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">အော်ဒီယိုကောလ် စတင်မည်</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5956,6 +6008,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">မိုက် ဖွင့်ထားသည်</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">မိုက် ပိတ်ထားသည်</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">စပီကာ ဖွင့်ထားသည်</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">စပီကာ ပိတ်ထားသည်</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">ရိုက်ကူးမှု ခလုတ်</string>
@@ -5977,6 +6033,18 @@
     <string name="CreateCallLink__create_a_call_link">ကောလ်လင့်ခ်တစ်ခု ဖန်တီးရန်</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Signal ကောလ်အတွက် လင့်ခ် မျှဝေခြင်း</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Signal ကောလ်တွင် ပါဝင်ရန် ဤလင့်ခ်ကို သုံးပါ- %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">ကောလ် အချက်အလက်</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">%1$s ကို ကောလ်မှ ဖယ်ရှားမည်လား။</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">ဖယ်ရှားရန်</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">ကောလ်မှ ပိတ်ပင်မည်</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6077,6 +6145,25 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">ကွန်ရက် အမှားအယွင်းတစ်ခု ကြုံတွေ့ခဲ့ရပါသည်။ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">ပါဝင်လိုသည်…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="other">တောင်းဆိုမှု +%1$d ခု</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">ဤကောလ်တွင် ပါဝင်ရန် တောင်းဆိုမှုများ</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="other">လူ %1$d ဦး စောင့်ဆိုင်းနေသည်</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">ငြင်းပယ်သည်</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">ခွင့်ပြုမယ်</string>
 
     <!-- EOF -->
 </resources>

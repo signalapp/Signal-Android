@@ -141,8 +141,8 @@ class TypingIndicatorDecoration(
       layout(
         0,
         0,
-        typingView.measuredWidth,
-        typingView.measuredHeight
+        measuredWidth,
+        measuredHeight
       )
     }
   }

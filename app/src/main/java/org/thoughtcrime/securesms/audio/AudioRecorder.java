@@ -64,11 +64,21 @@ public class AudioRecorder {
   }
 
   public @NonNull Single<VoiceNoteDraft> startRecording() {
-    Log.i(TAG, "startRecording()");
+    return startRecording(Build.VERSION.SDK_INT >= 26);
+  }
+
+  public @NonNull Single<VoiceNoteDraft> startRecording(final boolean useMediaCodecWrapper) {
+    Log.i(TAG, "startRecording(" + useMediaCodecWrapper + ")");
 
     final SingleSubject<VoiceNoteDraft> recordingSingle = SingleSubject.create();
+    startRecordingInternal(useMediaCodecWrapper, recordingSingle);
+
+    return recordingSingle;
+  }
+
+  private void startRecordingInternal(boolean useMediaRecorderWrapper, SingleSubject<VoiceNoteDraft> recordingSingle) {
     executor.execute(() -> {
-      Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
+      Log.i(TAG, "Running startRecording(" + useMediaRecorderWrapper + ") + " + Thread.currentThread().getId());
       try {
         if (recorder != null) {
           recordingSingle.onError(new IllegalStateException("We can only do one recording at a time!"));
@@ -82,7 +92,7 @@ public class AudioRecorder {
                                        .withMimeType(MediaUtil.AUDIO_AAC)
                                        .createForDraftAttachmentAsync(context);
 
-        recorder = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
+        recorder = useMediaRecorderWrapper ? new MediaRecorderWrapper() : new AudioCodec();
         int focusResult = audioFocusManager.requestAudioFocus();
         if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
           Log.w(TAG, "Could not gain audio focus. Received result code " + focusResult);
@@ -90,13 +100,17 @@ public class AudioRecorder {
         recorder.start(fds[1]);
         this.recordingSubject = recordingSingle;
       } catch (IOException | RuntimeException e) {
-        recordingSingle.onError(e);
-        recorder = null;
         Log.w(TAG, e);
+        recordingUriFuture = null;
+        recorder = null;
+        audioFocusManager.abandonAudioFocus();
+        if (useMediaRecorderWrapper) {
+          startRecordingInternal(false, recordingSingle);
+        } else {
+          recordingSingle.onError(e);
+        }
       }
     });
-
-    return recordingSingle;
   }
 
   public void stopRecording() {

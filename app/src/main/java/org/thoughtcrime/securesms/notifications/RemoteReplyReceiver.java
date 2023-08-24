@@ -76,7 +76,6 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         long threadId;
 
         Recipient     recipient      = Recipient.resolved(recipientId);
-        int           subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
         long          expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
         ParentStoryId parentStoryId  = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
 
@@ -86,7 +85,6 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                         responseText.toString(),
                                                         new LinkedList<>(),
                                                         System.currentTimeMillis(),
-                                                        subscriptionId,
                                                         expiresIn,
                                                         false,
                                                         0,
@@ -112,11 +110,6 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
             threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }
-          case UnsecuredSmsMessage: {
-            OutgoingMessage reply = OutgoingMessage.sms(recipient, responseText.toString(), subscriptionId);
-            threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SMS, null, null);
-            break;
-          }
           default:
             throw new AssertionError("Unknown Reply method");
         }
@@ -128,7 +121,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId, true);
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(context, messageIds);
+        MarkReadReceiver.process(messageIds);
       });
     }
   }

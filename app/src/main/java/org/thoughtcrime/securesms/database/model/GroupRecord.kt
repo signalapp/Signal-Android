@@ -24,7 +24,6 @@ class GroupRecord(
   val avatarId: Long,
   val avatarKey: ByteArray?,
   val avatarContentType: String?,
-  val relay: String?,
   val isActive: Boolean,
   val avatarDigest: ByteArray?,
   val isMms: Boolean,
@@ -176,7 +175,7 @@ class GroupRecord(
     if (isV2Group) {
       val serviceId = recipient.serviceId
       if (serviceId.isPresent) {
-        return DecryptedGroupUtil.findPendingByUuid(requireV2GroupProperties().decryptedGroup.pendingMembersList, serviceId.get().uuid())
+        return DecryptedGroupUtil.findPendingByServiceId(requireV2GroupProperties().decryptedGroup.pendingMembersList, serviceId.get())
           .isPresent
       }
     }

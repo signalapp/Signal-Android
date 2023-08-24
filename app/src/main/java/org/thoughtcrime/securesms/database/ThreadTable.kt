@@ -63,7 +63,6 @@ import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
-import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord.PinnedConversation
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -221,7 +220,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     type: Long,
     unarchive: Boolean,
     expiresIn: Long,
-    readReceiptCount: Int
+    readReceiptCount: Int,
+    unreadCount: Int,
+    unreadMentionCount: Int
   ) {
     var extraSerialized: String? = null
 
@@ -245,7 +246,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       DELIVERY_RECEIPT_COUNT to deliveryReceiptCount,
       READ_RECEIPT_COUNT to readReceiptCount,
       EXPIRES_IN to expiresIn,
-      ACTIVE to 1
+      ACTIVE to 1,
+      UNREAD_COUNT to unreadCount,
+      UNREAD_SELF_MENTION_COUNT to unreadMentionCount
     )
 
     writableDatabase
@@ -289,8 +292,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val contentValues = contentValuesOf(
       DATE to date - date % 1000,
       SNIPPET to snippet,
+      SNIPPET_URI to attachment?.toString(),
       SNIPPET_TYPE to type,
-      SNIPPET_URI to attachment?.toString()
+      SNIPPET_CONTENT_TYPE to null,
+      SNIPPET_EXTRAS to null
     )
 
     if (unarchive && allowedToUnarchive(threadId)) {
@@ -722,7 +727,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (hideV1Groups) {
-      where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_TYPE} != ${RecipientTable.GroupType.SIGNAL_V1.id}"
+      where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} != ${RecipientTable.RecipientType.GV1.id}"
     }
 
     if (hideSms) {
@@ -731,10 +736,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         OR 
         (
           ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_ID} NOT NULL 
-          AND ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_TYPE} != ${RecipientTable.GroupType.MMS.id}
+          AND ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} != ${RecipientTable.RecipientType.MMS.id}
         ) 
       )"""
-      where += " AND ${RecipientTable.TABLE_NAME}.${RecipientTable.FORCE_SMS_SELECTION} = 0"
     }
 
     if (hideSelf) {
@@ -1158,13 +1162,14 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun getOrCreateThreadIdFor(recipient: Recipient, distributionType: Int): Long {
-    val threadId = getThreadIdFor(recipient.id)
-    return threadId ?: createThreadForRecipient(recipient.id, recipient.isGroup, distributionType)
+    return getOrCreateThreadIdFor(recipient.id, recipient.isGroup, distributionType)
   }
 
   fun getOrCreateThreadIdFor(recipientId: RecipientId, isGroup: Boolean, distributionType: Int = DistributionTypes.DEFAULT): Long {
-    val threadId = getThreadIdFor(recipientId)
-    return threadId ?: createThreadForRecipient(recipientId, isGroup, distributionType)
+    return writableDatabase.withinTransaction {
+      val threadId = getThreadIdFor(recipientId)
+      threadId ?: createThreadForRecipient(recipientId, isGroup, distributionType)
+    }
   }
 
   fun areThreadIdAndRecipientAssociated(threadId: Long, recipient: Recipient): Boolean {
@@ -1245,14 +1250,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         HAS_SENT to 1,
         LAST_SCROLLED to 0
       )
-      .where("$ID = ?", threadId)
-      .run()
-  }
-
-  fun setHasSentSilently(threadId: Long, hasSent: Boolean) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(HAS_SENT to if (hasSent) 1 else 0)
       .where("$ID = ?", threadId)
       .run()
   }
@@ -1456,7 +1453,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             type = 0,
             unarchive = unarchive,
             expiresIn = 0,
-            readReceiptCount = 0
+            readReceiptCount = 0,
+            unreadCount = 0,
+            unreadMentionCount = 0
           )
         }
         return@withinTransaction true
@@ -1467,6 +1466,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
 
       val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
+      val unreadCount: Int = messages.getUnreadCount(threadId)
+      val unreadMentionCount: Int = messages.getUnreadMentionCount(threadId)
 
       updateThread(
         threadId = threadId,
@@ -1481,7 +1482,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         type = record.type,
         unarchive = unarchive,
         expiresIn = record.expiresIn,
-        readReceiptCount = record.readReceiptCount
+        readReceiptCount = record.readReceiptCount,
+        unreadCount = unreadCount,
+        unreadMentionCount = unreadMentionCount
       )
 
       if (notifyListeners) {
@@ -1700,7 +1703,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         if (threadRecipient.isPushV2Group) {
           val inviteAddState = record.gv2AddInviteState
           if (inviteAddState != null) {
-            val from = RecipientId.from(ServiceId.from(inviteAddState.addedOrInvitedBy))
+            val from = RecipientId.from(inviteAddState.addedOrInvitedBy)
             return if (inviteAddState.isInvited) {
               Log.i(TAG, "GV2 invite message request from $from")
               Extra.forGroupV2invite(from, authorId)
@@ -1848,19 +1851,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       val recipient: Recipient = if (recipientSettings.groupId != null) {
         GroupTable.Reader(cursor).getCurrent()?.let { group ->
-          val details = RecipientDetails(
-            group.title,
-            null,
-            if (group.hasAvatar()) Optional.of(group.avatarId) else Optional.empty(),
-            false,
-            false,
-            recipientSettings.registered,
-            recipientSettings,
-            null,
-            false,
-            group.isActive,
-            null,
-            Optional.of(group)
+          val details = RecipientDetails.forGroup(
+            groupRecord = group,
+            recipientRecord = recipientSettings
           )
           Recipient(recipientId, details, false)
         } ?: Recipient.live(recipientId).get()

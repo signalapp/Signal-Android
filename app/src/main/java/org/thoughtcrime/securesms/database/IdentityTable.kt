@@ -70,6 +70,14 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
     """
   }
 
+  fun getIdentityStoreRecord(serviceId: ServiceId?): IdentityStoreRecord? {
+    return if (serviceId != null) {
+      getIdentityStoreRecord(serviceId.toString())
+    } else {
+      null
+    }
+  }
+
   fun getIdentityStoreRecord(addressName: String): IdentityStoreRecord? {
     readableDatabase
       .select()

@@ -244,6 +244,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Оператор может взимать плату. Номер, по которому вы звоните, не зарегистрирован в Signal. Этот звонок будет сделан через вашего оператора мобильной связи, а не через интернет.</string>
     <string name="CommunicationActions_cant_join_call">Невозможно присоединиться к звонку</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Эта ссылка на звонок уже недействительна.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Недействительная ссылка</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Это недействительная ссылка на звонок. Убедитесь, что ссылка не повреждена и корректна, перед тем как попробовать присоединиться.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -346,6 +350,13 @@
         <item quantity="few">Изменения могут быть внесены только в течение %1$d часов с момента отправки этого сообщения.</item>
         <item quantity="many">Изменения могут быть внесены только в течение %1$d часов с момента отправки этого сообщения.</item>
         <item quantity="other">Изменения могут быть внесены только в течение %1$d часа с момента отправки этого сообщения.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Только %1$d изменение может быть внесено в это сообщение.</item>
+        <item quantity="few">Только %1$d изменения могут быть внесены в это сообщение.</item>
+        <item quantity="many">Только %1$d изменений могут быть внесены в это сообщение.</item>
+        <item quantity="other">Только %1$d изменения могут быть внесены в это сообщение.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
@@ -953,6 +964,21 @@
         <item quantity="many">%1$d участников</item>
         <item quantity="other">%1$d участников</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Мы заметили, что уведомления приходят с задержкой. Отправить журналы отладки?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Журналы отладки помогают нам диагностировать и устранять проблему и не содержат идентифицирующей информации.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Уведомления могут приходить с задержкой в связи с оптимизацией работы батареи</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Чтобы уведомления о сообщениях не задерживались, вы можете отключить оптимизацию батареи для Signal.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Продолжить</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Закрыть</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу</string>
@@ -1840,6 +1866,60 @@
     <string name="WebRtcCallActivity__open_settings">Открыть настройки</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Не сейчас</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Одобрить %1$d запрос?</item>
+        <item quantity="few">Одобрить %1$d запроса?</item>
+        <item quantity="many">Одобрить %1$d запросов?</item>
+        <item quantity="other">Одобрить %1$d запроса?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Одобрить все</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d человек будет добавлен к звонку.</item>
+        <item quantity="few">%1$d человека будут добавлены к звонку.</item>
+        <item quantity="many">%1$d человек будут добавлены к звонку.</item>
+        <item quantity="other">%1$d человека будут добавлены к звонку.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Отклонить %1$d запрос?</item>
+        <item quantity="few">Отклонить %1$d запроса?</item>
+        <item quantity="many">Отклонить %1$d запросов?</item>
+        <item quantity="other">Отклонить %1$d запроса?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d человек не будет добавлен к звонку.</item>
+        <item quantity="few">%1$d человека не будут добавлены к звонку.</item>
+        <item quantity="many">%1$d человек не будут добавлены к звонку.</item>
+        <item quantity="other">%1$d человека не будут добавлены к звонку.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Отклонить все</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d человек ждёт</item>
+        <item quantity="few">%1$d человека ждут</item>
+        <item quantity="many">%1$d человек ждут</item>
+        <item quantity="other">%1$d человека ждут</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d человека</item>
+        <item quantity="few">%1$d человек</item>
+        <item quantity="many">%1$d людей</item>
+        <item quantity="other">%1$d людей</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Запрос на присоединение отклонён</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Ваш запрос на присоединение к этому звонку был отклонён.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Удалён(-на) из звонка</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Кто-то удалил вас из звонка.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Звонок Signal</string>
@@ -1852,6 +1932,12 @@
     <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
     <string name="WebRtcCallView__joining">Присоединяемся…</string>
     <string name="WebRtcCallView__disconnected">Отключено</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Ссылка на звонок Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Все, кто присоединится к этому звонку по ссылке, будут видеть ваше имя, фото и номер телефона.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Ожидание добавления…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal будет звонить у %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal будет звонить у %1$s и %2$s</string>
@@ -2969,6 +3055,14 @@
         <item>Пожертвования; Значки</item>
         <item>Экспорт SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Отправка журнала отладки Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Уведомления приходят с задержкой</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Отправить</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Нет, спасибо</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
@@ -3195,6 +3289,8 @@
     <string name="preferences_notifications__ringtone">Мелодия</string>
     <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
     <string name="preferences_notifications__priority">Приоритет</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Устранение неполадок с уведомлениями</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Обход цензуры</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3608,33 +3704,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Обновить</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Выводы</string>
-    <string name="InsightsDashboardFragment__title">Выводы</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматически защитил %1$d%% ваших исходящих сообщения(-ий) за последние %2$d дня(-ей). Чаты между пользователями Signal всегда защищены сквозным шифрованием.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Расскажите другим</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены за последние %1$d дней.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Начать чат</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Начните общаться безопасно и включите новые функции, которые выходят за пределы ограничений незащищённых SMS, приглашая больше контактов присоединиться к Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Эта статистика была сгенерирована локально на вашем устройстве и видна только вам. Она никогда никуда не передаётся.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Зашифрованных сообщений</string>
-    <string name="InsightsDashboardFragment__cancel">Отменить</string>
-    <string name="InsightsDashboardFragment__send">Отправить</string>
-    <string name="InsightsModalFragment__title">Представляем «Выводы»</string>
-    <string name="InsightsModalFragment__description">Узнайте, сколько из ваших исходящих сообщений было отправлено безопасно, а затем быстро пригласите новые контакты, чтобы увеличить ваш процент Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Просмотреть выводы</string>
-
-    <string name="FirstInviteReminder__title">Пригласить в Signal</string>
-    <string name="FirstInviteReminder__description">Вы могли бы увеличить количество отправляемых вами зашифрованных сообщений на %1$d%%</string>
-    <string name="SecondInviteReminder__title">Улучшите свой Signal</string>
-    <string name="SecondInviteReminder__description">Пригласить %1$s</string>
-    <string name="InsightsReminder__view_insights">Просмотреть выводы</string>
-    <string name="InsightsReminder__invite">Пригласить</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6244,6 +6313,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Ссылка на звонок</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Начать видеозвонок</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Начать аудиозвонок</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6334,6 +6407,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Микрофон включён</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Микрофон выключен</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Звук включён</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Звук выключен</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Кнопка съёмки</string>
@@ -6355,6 +6432,18 @@
     <string name="CreateCallLink__create_a_call_link">Создать ссылку для звонка</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Поделиться ссылкой для звонка Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Используйте эту ссылку, чтобы присоединиться к звонку Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Информация о звонке</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Удалить %1$s из звонка?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Удалить</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Заблокировать от звонка</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6455,6 +6544,31 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Произошла ошибка сети. Пожалуйста, попробуйте ещё раз.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Хотел(-а) бы присоединиться…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d запрос</item>
+        <item quantity="few">+%1$d запроса</item>
+        <item quantity="many">+%1$d запросов</item>
+        <item quantity="other">+%1$d запроса</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Запросы на участие в этом звонке</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d человек ждёт</item>
+        <item quantity="few">%1$d человека ждут</item>
+        <item quantity="many">%1$d человек ждут</item>
+        <item quantity="other">%1$d человека ждут</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Отклонить</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Принять</string>
 
     <!-- EOF -->
 </resources>

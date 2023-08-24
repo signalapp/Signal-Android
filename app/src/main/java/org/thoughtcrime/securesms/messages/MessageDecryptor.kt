@@ -55,8 +55,9 @@ import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipherResult
 import org.whispersystems.signalservice.api.messages.EnvelopeContentValidator
-import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
@@ -84,10 +85,20 @@ object MessageDecryptor {
     envelope: Envelope,
     serverDeliveredTimestamp: Long
   ): Result {
-    val selfAci: ServiceId = SignalStore.account().requireAci()
-    val selfPni: ServiceId = SignalStore.account().requirePni()
+    val selfAci: ACI = SignalStore.account().requireAci()
+    val selfPni: PNI = SignalStore.account().requirePni()
 
-    val destination: ServiceId = envelope.getDestination(selfAci, selfPni)
+    val destination: ServiceId? = ServiceId.parseOrNull(envelope.destinationServiceId)
+
+    if (destination == null) {
+      Log.w(TAG, "${logPrefix(envelope)} Missing destination address! Invalid message, ignoring.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
+    }
+
+    if (destination != selfAci && destination != selfPni) {
+      Log.w(TAG, "${logPrefix(envelope)} Destination address does not match our ACI or PNI! Invalid message, ignoring.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
+    }
 
     if (destination == selfPni && envelope.hasSourceServiceId()) {
       Log.i(TAG, "${logPrefix(envelope)} Received a message at our PNI. Marking as needing a PNI signature.")
@@ -127,7 +138,7 @@ object MessageDecryptor {
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 
-      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope (GUID ${envelope.serverGuid}).")
+      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope (GUID ${envelope.serverGuid}). Delivery latency: ${serverDeliveredTimestamp - envelope.serverTimestamp} ms, Urgent: ${envelope.urgent}")
 
       val validationResult: EnvelopeContentValidator.Result = EnvelopeContentValidator.validate(envelope, cipherResult.content)
 
@@ -157,14 +168,18 @@ object MessageDecryptor {
         )
       }
 
-      if (FeatureFlags.phoneNumberPrivacy() && cipherResult.content.hasPniSignatureMessage()) {
-        handlePniSignatureMessage(
-          envelope,
-          cipherResult.metadata.sourceServiceId,
-          cipherResult.metadata.sourceE164,
-          cipherResult.metadata.sourceDeviceId,
-          cipherResult.content.pniSignatureMessage
-        )
+      if (cipherResult.content.hasPniSignatureMessage()) {
+        if (cipherResult.metadata.sourceServiceId is ACI) {
+          handlePniSignatureMessage(
+            envelope,
+            cipherResult.metadata.sourceServiceId as ACI,
+            cipherResult.metadata.sourceE164,
+            cipherResult.metadata.sourceDeviceId,
+            cipherResult.content.pniSignatureMessage
+          )
+        } else {
+          Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the sourceServiceId isn't an ACI!")
+        }
       } else if (cipherResult.content.hasPniSignatureMessage()) {
         Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the feature flag is disabled!")
       }
@@ -246,10 +261,25 @@ object MessageDecryptor {
     followUpOperations: MutableList<FollowUpOperation>,
     protocolException: ProtocolException
   ): Result {
+    if (ServiceId.parseOrNull(envelope.destinationServiceId) == SignalStore.account().pni) {
+      Log.w(TAG, "${logPrefix(envelope)} Decryption error for message sent to our PNI! Ignoring.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+    }
+
     val contentHint: ContentHint = ContentHint.fromType(protocolException.contentHint)
     val senderDevice: Int = protocolException.senderDevice
     val receivedTimestamp: Long = System.currentTimeMillis()
     val sender: Recipient = Recipient.external(context, protocolException.sender)
+
+    if (sender.isSelf) {
+      Log.w(TAG, "${logPrefix(envelope)} Decryption error for a sync message! Enqueuing a session reset job.")
+
+      followUpOperations += FollowUpOperation {
+        AutomaticSessionResetJob(sender.id, senderDevice, envelope.timestamp)
+      }
+
+      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+    }
 
     followUpOperations += FollowUpOperation {
       buildSendRetryReceiptJob(envelope, protocolException, sender)
@@ -295,37 +325,37 @@ object MessageDecryptor {
     SignalGroupSessionBuilder(ReentrantSessionLock.INSTANCE, GroupSessionBuilder(senderKeyStore)).process(sender, message)
   }
 
-  private fun handlePniSignatureMessage(envelope: Envelope, serviceId: ServiceId, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
-    Log.i(TAG, "${logPrefix(envelope, serviceId)} Processing PniSignatureMessage")
+  private fun handlePniSignatureMessage(envelope: Envelope, aci: ACI, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
+    Log.i(TAG, "${logPrefix(envelope, aci)} Processing PniSignatureMessage")
 
     val pni: PNI = PNI.parseOrThrow(pniSignatureMessage.pni.toByteArray())
 
-    if (SignalDatabase.recipients.isAssociated(serviceId, pni)) {
-      Log.i(TAG, "${logPrefix(envelope, serviceId)}[handlePniSignatureMessage] ACI ($serviceId) and PNI ($pni) are already associated.")
+    if (SignalDatabase.recipients.isAssociated(aci, pni)) {
+      Log.i(TAG, "${logPrefix(envelope, aci)}[handlePniSignatureMessage] ACI ($aci) and PNI ($pni) are already associated.")
       return
     }
 
     val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
-    val aciAddress = SignalProtocolAddress(serviceId.toString(), deviceId)
+    val aciAddress = SignalProtocolAddress(aci.toString(), deviceId)
     val pniAddress = SignalProtocolAddress(pni.toString(), deviceId)
     val aciIdentity = identityStore.getIdentity(aciAddress)
     val pniIdentity = identityStore.getIdentity(pniAddress)
 
     if (aciIdentity == null) {
-      Log.w(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] No identity found for ACI address $aciAddress")
+      Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for ACI address $aciAddress")
       return
     }
 
     if (pniIdentity == null) {
-      Log.w(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] No identity found for PNI address $pniAddress")
+      Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for PNI address $pniAddress")
       return
     }
 
     if (pniIdentity.verifyAlternateIdentity(aciIdentity, pniSignatureMessage.signature.toByteArray())) {
-      Log.i(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] PNI signature is valid. Associating ACI ($serviceId) with PNI ($pni)")
-      SignalDatabase.recipients.getAndPossiblyMergePnpVerified(serviceId, pni, e164)
+      Log.i(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] PNI signature is valid. Associating ACI ($aci) with PNI ($pni)")
+      SignalDatabase.recipients.getAndPossiblyMergePnpVerified(aci, pni, e164)
     } else {
-      Log.w(TAG, "${logPrefix(envelope, serviceId)}[validatePniSignature] Invalid PNI signature! Cannot associate ACI ($serviceId) with PNI ($pni)")
+      Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] Invalid PNI signature! Cannot associate ACI ($aci) with PNI ($pni)")
     }
   }
 
@@ -403,23 +433,6 @@ object MessageDecryptor {
       }
     } else {
       null
-    }
-  }
-
-  private fun Envelope.getDestination(selfAci: ServiceId, selfPni: ServiceId): ServiceId {
-    return if (!FeatureFlags.phoneNumberPrivacy()) {
-      selfAci
-    } else if (this.hasDestinationServiceId()) {
-      val serviceId = ServiceId.parseOrThrow(this.destinationServiceId)
-      if (serviceId == selfAci || serviceId == selfPni) {
-        serviceId
-      } else {
-        Log.w(TAG, "Destination of $serviceId does not match our ACI ($selfAci) or PNI ($selfPni)! Defaulting to ACI.")
-        selfAci
-      }
-    } else {
-      Log.w(TAG, "No destinationUuid set! Defaulting to ACI.")
-      selfAci
     }
   }
 

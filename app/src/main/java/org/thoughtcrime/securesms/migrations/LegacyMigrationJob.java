@@ -12,16 +12,13 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.MmsReader;
-import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -30,7 +27,6 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.File;
 import java.util.List;
@@ -131,20 +127,20 @@ public class LegacyMigrationJob extends MigrationJob {
       PreKeysSyncJob.enqueueIfNeeded();
     }
 
-    if (lastSeenVersion < NO_DECRYPT_QUEUE_VERSION) {
-      scheduleMessagesInPushDatabase(context);
-    }
+//    if (lastSeenVersion < NO_DECRYPT_QUEUE_VERSION) {
+//      scheduleMessagesInPushDatabase(context);
+//    }
 
-    if (lastSeenVersion < PUSH_DECRYPT_SERIAL_ID_VERSION) {
-      scheduleMessagesInPushDatabase(context);
-    }
+//    if (lastSeenVersion < PUSH_DECRYPT_SERIAL_ID_VERSION) {
+//      scheduleMessagesInPushDatabase(context);
+//    }
 
-    if (lastSeenVersion < MIGRATE_SESSION_PLAINTEXT) {
-//        new TextSecureSessionStore(context, masterSecret).migrateSessions();
-//        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
-
-      scheduleMessagesInPushDatabase(context);;
-    }
+//    if (lastSeenVersion < MIGRATE_SESSION_PLAINTEXT) {
+////        new TextSecureSessionStore(context, masterSecret).migrateSessions();
+////        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
+//
+//      scheduleMessagesInPushDatabase(context);;
+//    }
 
     if (lastSeenVersion < CONTACTS_ACCOUNT_VERSION) {
       ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
@@ -184,9 +180,9 @@ public class LegacyMigrationJob extends MigrationJob {
       }
     }
 
-    if (lastSeenVersion < SQLCIPHER) {
-      scheduleMessagesInPushDatabase(context);
-    }
+//    if (lastSeenVersion < SQLCIPHER) {
+//      scheduleMessagesInPushDatabase(context);
+//    }
 
     if (lastSeenVersion < SQLCIPHER_COMPLETE) {
       File file = context.getDatabasePath("messages.db");
@@ -264,17 +260,17 @@ public class LegacyMigrationJob extends MigrationJob {
     }
   }
 
-  private static void scheduleMessagesInPushDatabase(@NonNull Context context) {
-    PushTable  pushDatabase = SignalDatabase.push();
-    JobManager jobManager   = ApplicationDependencies.getJobManager();
-
-    try (PushTable.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
-      SignalServiceEnvelope envelope;
-      while ((envelope = pushReader.getNext()) != null) {
-        jobManager.add(new PushDecryptMessageJob(envelope));
-      }
-    }
-  }
+//  private static void scheduleMessagesInPushDatabase(@NonNull Context context) {
+//    PushTable  pushDatabase = SignalDatabase.push();
+//    JobManager jobManager   = ApplicationDependencies.getJobManager();
+//
+//    try (PushTable.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
+//      SignalServiceEnvelope envelope;
+//      while ((envelope = pushReader.getNext()) != null) {
+//        jobManager.add(new PushDecryptMessageJob(envelope));
+//      }
+//    }
+//  }
 
   public interface DatabaseUpgradeListener {
     void setProgress(int progress, int total);

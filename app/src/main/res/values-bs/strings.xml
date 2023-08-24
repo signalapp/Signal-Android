@@ -244,6 +244,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Može doći do troškova. Broj koji pozivate nije registrovan na Signalu. Poziv će biti usmjeren preko Vašeg mobilnog operatera, ne preko interneta.</string>
     <string name="CommunicationActions_cant_join_call">Nije se moguće pridružiti pozivu</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ovaj link za poziv više nije važeći.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Nevažeći link</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Ovo nije važeća poveznica za poziv. Prije nego se pokušate pridružiti provjerite je li cijela poveznica netaknuta i ispravna.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -346,6 +350,13 @@
         <item quantity="few">Izmjene se mogu primijeniti samo u roku od %1$d sata od trenutka kada ste poslali ovu poruku.</item>
         <item quantity="many">Izmjene se mogu primijeniti samo u roku od %1$d sati od trenutka kada ste poslali ovu poruku.</item>
         <item quantity="other">Izmjene se mogu primijeniti samo u roku od %1$d sati od trenutka kada ste poslali ovu poruku.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Samo %1$d uređivanje se može primijeniti na ovu poruku.</item>
+        <item quantity="few">Samo %1$d uređivanja se mogu primijeniti na ovu poruku.</item>
+        <item quantity="many">Samo %1$d uređivanja se može primijeniti na ovu poruku.</item>
+        <item quantity="other">Samo %1$d uređivanja se može primijeniti na ovu poruku.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Nevaljan primalac!</string>
@@ -953,6 +964,21 @@
         <item quantity="many">%1$d članova</item>
         <item quantity="other">%1$d članova</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Primijetili smo da obavijesti kasne. Pošalji evidenciju o otklanjanju grešaka</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Evidencije o otklanjanju grešaka nam pomažu da utvrdimo i riješimo problem, te ne sadrže informacije za identifikaciju.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Obavijesti mogu kasniti zbog optimizacije baterije</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Možete onemogućiti optimizaciju baterije kako bi Signal osigurao da obavijesti o porukama neće kasniti.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Nastavi</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Odbaci</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
@@ -1840,6 +1866,60 @@
     <string name="WebRtcCallActivity__open_settings">Otvori podešavanja</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ne sada</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Odobriti %1$d zahtjev?</item>
+        <item quantity="few">Odobriti %1$d zahtjeva?</item>
+        <item quantity="many">Odobriti %1$d zahtjeva?</item>
+        <item quantity="other">Odobriti %1$d zahtjeva?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Odobri sve</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d osoba će biti dodana u poziv.</item>
+        <item quantity="few">%1$d osobe će biti dodane u poziv.</item>
+        <item quantity="many">%1$d osoba će biti dodano u poziv.</item>
+        <item quantity="other">%1$d osoba će biti dodano u poziv.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Odbiti %1$d zahtjev?</item>
+        <item quantity="few">Odbiti %1$d zahtjeva?</item>
+        <item quantity="many">Odbiti %1$d zahtjeva?</item>
+        <item quantity="other">Odbiti %1$d zahtjeva?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d osoba neće biti dodana u poziv.</item>
+        <item quantity="few">%1$d osobe neće biti dodane u poziv.</item>
+        <item quantity="many">%1$d osoba neće biti dodano u poziv.</item>
+        <item quantity="other">%1$d osoba neće biti dodano u poziv.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Odbij sve</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d osoba čeka</item>
+        <item quantity="few">%1$d osobe čekaju</item>
+        <item quantity="many">%1$d osoba čeka</item>
+        <item quantity="other">%1$d osoba čeka</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d osoba</item>
+        <item quantity="few">%1$d osobe</item>
+        <item quantity="many">%1$d osoba</item>
+        <item quantity="other">%1$d osoba</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Zahtjev za pridruživanje je odbijen</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Vaš zahtjev za pridruživanje ovom pozivu je odbijen.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Korisnik je uklonjen iz poziva</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Neko vas je uklonio iz poziva.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Signal poziv</string>
@@ -1852,6 +1932,12 @@
     <string name="WebRtcCallView__reconnecting">Povezujem iznova…</string>
     <string name="WebRtcCallView__joining">Pristupam…</string>
     <string name="WebRtcCallView__disconnected">Prekinuta veza</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Poveznica Signal poziva</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Svako ko se pridruži ovom pozivu putem poveznice vidjet će vaše ime, fotografiju i broj telefona.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Čeka se ulazak…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal će zazvoniti %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal će zazvoniti %1$s i %2$s</string>
@@ -2969,6 +3055,14 @@
         <item>Donacije i značke</item>
         <item>Izvoz SMS poruka</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android evidencija o otklanjanju grešaka</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Spora obavještenja</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Šalji</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Ne, hvala</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
@@ -3195,6 +3289,8 @@
     <string name="preferences_notifications__ringtone">Zvono</string>
     <string name="preferences_chats__message_text_size">Veličina slova u poruci</string>
     <string name="preferences_notifications__priority">Prioritet</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Rješavanje problema s obavijestima</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Zaobilazak cenzure</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3608,33 +3704,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Osvježi</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Statistika</string>
-    <string name="InsightsDashboardFragment__title">Statistika</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol je automatski zaštitio %1$d %% vaših odlaznih poruka u proteklih %2$d dan/a. Chatovi između korisnika Signala uvijek su sveobuhvatno šifrirani.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Razglasi</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Nedovoljno podataka</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procenat prikazan ovdje izračunava se na temelju poslatih poruka u zadnjih %1$d dana, a koje nisu istekle ili izbrisane.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Započni chat</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Započnite sigurnu komunikaciju i imajte na raspolaganju mogućnosti koje su izvan ograničenja nezaštićenih SMS-poruka tako što ćete pozvati druge da koriste Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Prikazani statistički podaci kreirani su na Vašem uređaju i dostupni su samo Vama. Ovi se podaci nikada nigdje ne šalju.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Šifrirane poruke</string>
-    <string name="InsightsDashboardFragment__cancel">Otkaži</string>
-    <string name="InsightsDashboardFragment__send">Šalji</string>
-    <string name="InsightsModalFragment__title">Novo: statistika</string>
-    <string name="InsightsModalFragment__description">Saznajte koliko je poruka koje ste poslali zaštićeno, a potom pozovite druge da koriste Signal i tako povećate učešće Signal-poruka.</string>
-    <string name="InsightsModalFragment__view_insights">Pogledajte statistiku</string>
-
-    <string name="FirstInviteReminder__title">Pozovite na Signal</string>
-    <string name="FirstInviteReminder__description">Broj šifriranih poruka koje šaljete možete povećati za %1$d%%</string>
-    <string name="SecondInviteReminder__title">Osnažite svoj Signal</string>
-    <string name="SecondInviteReminder__description">Pozovite %1$s</string>
-    <string name="InsightsReminder__view_insights">Pogledajte statistiku</string>
-    <string name="InsightsReminder__invite">Pozovi</string>
 
     <!-- Edit KBS Pin -->
 
@@ -6244,6 +6313,10 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Link za poziv</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Započnite video poziv</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Započni glasovni poziv</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6334,6 +6407,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon je uključen</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon je isključen</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Zvučnik je uključen</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Zvučnik je isključen</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Gumb za snimanje</string>
@@ -6355,6 +6432,18 @@
     <string name="CreateCallLink__create_a_call_link">Kreiranje poveznice za poziv</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Podijelite poveznicu za Signal poziv</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Koristite ovu poveznicu da se pridružite Signal pozivu: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Informacije o pozivu</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Ukloni %1$s iz poziva?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Ukloni</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Blokiraj pristup pozivu</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6455,6 +6544,31 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Došlo je do greške na mreži. Molimo pokušajte ponovno.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Želim se pridružiti…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">Više od %1$d zahtjeva</item>
+        <item quantity="few">Više od %1$d zahtjeva</item>
+        <item quantity="many">Više od %1$d zahtjeva</item>
+        <item quantity="other">Više od %1$d zahtjeva</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Zahtjevi za pridruživanje ovom pozivu</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d osoba čeka</item>
+        <item quantity="few">%1$d osobe čekaju</item>
+        <item quantity="many">%1$d osoba čeka</item>
+        <item quantity="other">%1$d osoba čeka</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Odbaci</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Odobri</string>
 
     <!-- EOF -->
 </resources>

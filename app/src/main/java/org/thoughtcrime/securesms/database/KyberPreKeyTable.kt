@@ -4,12 +4,14 @@ import android.content.Context
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.insertInto
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.select
 import org.signal.core.util.toInt
+import org.signal.core.util.update
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 
@@ -18,6 +20,8 @@ import org.whispersystems.signalservice.api.push.ServiceId
  */
 class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
   companion object {
+    private val TAG = Log.tag(KyberPreKeyTable::class.java)
+
     const val TABLE_NAME = "kyber_prekey"
     const val ID = "_id"
     const val ACCOUNT_ID = "account_id"
@@ -25,6 +29,8 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
     const val TIMESTAMP = "timestamp"
     const val LAST_RESORT = "last_resort"
     const val SERIALIZED = "serialized"
+    const val STALE_TIMESTAMP = "stale_timestamp"
+
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
@@ -33,6 +39,7 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
         $TIMESTAMP INTEGER NOT NULL,
         $LAST_RESORT INTEGER NOT NULL,
         $SERIALIZED BLOB NOT NULL,
+        $STALE_TIMESTAMP INTEGER NOT NULL DEFAULT 0,
         UNIQUE($ACCOUNT_ID, $KEY_ID)
     )
     """
@@ -118,6 +125,48 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
       .delete("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
       .where("$ACCOUNT_ID = ? AND $KEY_ID = ?", serviceId, keyId)
       .run()
+  }
+
+  fun markAllStaleIfNecessary(serviceId: ServiceId, staleTime: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(STALE_TIMESTAMP to staleTime)
+      .where("$ACCOUNT_ID = ? AND $STALE_TIMESTAMP = 0 AND $LAST_RESORT = 0", serviceId)
+      .run()
+  }
+
+  /**
+   * Deletes all keys that have been stale since before the specified threshold.
+   * We will always keep at least [minCount] items, preferring more recent ones.
+   */
+  fun deleteAllStaleBefore(serviceId: ServiceId, threshold: Long, minCount: Int) {
+    val count = writableDatabase
+      .delete(TABLE_NAME)
+      .where(
+        """
+          $ACCOUNT_ID = ? 
+            AND $LAST_RESORT = 0
+            AND $STALE_TIMESTAMP > 0 
+            AND $STALE_TIMESTAMP < $threshold
+            AND $ID NOT IN (
+              SELECT $ID
+              FROM $TABLE_NAME
+              WHERE 
+                $ACCOUNT_ID = ?
+                AND $LAST_RESORT = 0
+              ORDER BY 
+                CASE $STALE_TIMESTAMP WHEN 0 THEN 1 ELSE 0 END DESC,
+                $STALE_TIMESTAMP DESC,
+                $ID DESC
+              LIMIT $minCount
+            )
+        """,
+        serviceId,
+        serviceId
+      )
+      .run()
+
+    Log.i(TAG, "Deleted $count stale one-time EC prekeys.")
   }
 
   data class KyberPreKey(

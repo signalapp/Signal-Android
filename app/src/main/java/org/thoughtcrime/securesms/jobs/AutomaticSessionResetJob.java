@@ -85,7 +85,7 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(recipientId, deviceId);
+    ApplicationDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, deviceId);
     SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
     insertLocalMessage();
 

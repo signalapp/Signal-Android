@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
 import java.util.UUID
 import java.util.concurrent.TimeUnit
@@ -605,11 +605,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   fun insertOrUpdateGroupCallFromRingState(
     ringId: Long,
     groupRecipientId: RecipientId,
-    ringerUUID: UUID,
+    ringerAci: ACI,
     dateReceived: Long,
     ringState: RingUpdate
   ) {
-    val ringerRecipient = Recipient.externalPush(ServiceId.from(ringerUUID))
+    val ringerRecipient = Recipient.externalPush(ringerAci)
     handleGroupRingState(ringId, groupRecipientId, ringerRecipient.id, dateReceived, ringState)
   }
 
@@ -941,7 +941,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         (
           sort_name GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME} GLOB ? OR 
-          ${RecipientTable.TABLE_NAME}.${RecipientTable.PHONE} GLOB ? OR 
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.E164} GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.EMAIL} GLOB ?
         )
         """
