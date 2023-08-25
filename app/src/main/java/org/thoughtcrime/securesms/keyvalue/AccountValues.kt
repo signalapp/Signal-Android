@@ -362,7 +362,14 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     get() = !isPrimaryDevice
 
   /** The local user's full username (nickname.discriminator), if set. */
-  var username: String? by stringValue(KEY_USERNAME, null)
+  var username: String?
+    get() {
+      val value = getString(KEY_USERNAME, null)
+      return if (value.isNullOrBlank()) null else value
+    }
+    set(value) {
+      putString(KEY_USERNAME, value)
+    }
 
   /** The local user's username link components, if set. */
   var usernameLink: UsernameLinkComponents?

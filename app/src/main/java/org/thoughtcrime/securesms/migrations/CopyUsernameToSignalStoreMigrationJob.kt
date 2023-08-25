@@ -32,7 +32,7 @@ internal class CopyUsernameToSignalStoreMigrationJob(
 
     val self = Recipient.self()
 
-    if (self.username.isEmpty) {
+    if (self.username.isEmpty || self.username.get().isBlank()) {
       Log.i(TAG, "No username set, skipping.")
       return
     }
