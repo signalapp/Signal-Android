@@ -166,11 +166,11 @@ public class UsernameEditFragment extends LoggingFragment {
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {
     TextInputLayout usernameInputWrapper = binding.usernameTextWrapper;
 
-    presentSuffix(state.getUsername());
-    presentButtonState(state.getButtonState());
-    presentSummary(state.getUsername());
+    presentSuffix(state.username);
+    presentButtonState(state.buttonState);
+    presentSummary(state.username);
 
-    switch (state.getUsernameStatus()) {
+    switch (state.usernameStatus) {
       case NONE:
         usernameInputWrapper.setError(null);
         break;
@@ -216,7 +216,7 @@ public class UsernameEditFragment extends LoggingFragment {
   }
 
   private void presentSummary(@NonNull UsernameState usernameState) {
-    if (usernameState.getUsername() != null) {
+    if (usernameState.getUsername() != null || usernameState instanceof UsernameState.Loading) {
       binding.summary.setText(usernameState.getUsername());
     } else {
       binding.summary.setText(R.string.UsernameEditFragment__choose_your_username);

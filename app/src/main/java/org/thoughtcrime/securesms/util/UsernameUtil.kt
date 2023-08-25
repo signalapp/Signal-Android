@@ -33,19 +33,26 @@ object UsernameUtil {
   }
 
   @JvmStatic
-  fun checkUsername(value: String?): Optional<InvalidReason> {
-    return if (value == null) {
-      Optional.of(InvalidReason.TOO_SHORT)
-    } else if (value.length < MIN_LENGTH) {
-      Optional.of(InvalidReason.TOO_SHORT)
-    } else if (value.length > MAX_LENGTH) {
-      Optional.of(InvalidReason.TOO_LONG)
-    } else if (DIGIT_START_PATTERN.matcher(value).matches()) {
-      Optional.of(InvalidReason.STARTS_WITH_NUMBER)
-    } else if (!FULL_PATTERN.matcher(value).matches()) {
-      Optional.of(InvalidReason.INVALID_CHARACTERS)
-    } else {
-      Optional.empty()
+  fun checkUsername(value: String?): InvalidReason? {
+    return when {
+      value == null -> {
+        InvalidReason.TOO_SHORT
+      }
+      value.length < MIN_LENGTH -> {
+        InvalidReason.TOO_SHORT
+      }
+      value.length > MAX_LENGTH -> {
+        InvalidReason.TOO_LONG
+      }
+      DIGIT_START_PATTERN.matcher(value).matches() -> {
+        InvalidReason.STARTS_WITH_NUMBER
+      }
+      !FULL_PATTERN.matcher(value).matches() -> {
+        InvalidReason.INVALID_CHARACTERS
+      }
+      else -> {
+        null
+      }
     }
   }
 
