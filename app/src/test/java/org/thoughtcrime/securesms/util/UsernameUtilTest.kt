@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util
 
 import org.junit.Test
 import org.thoughtcrime.securesms.assertIs
-import org.thoughtcrime.securesms.assertIsNotNull
 import org.thoughtcrime.securesms.assertIsNull
 import org.thoughtcrime.securesms.util.UsernameUtil.checkUsername
 
