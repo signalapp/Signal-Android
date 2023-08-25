@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 import android.net.Uri
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.test.platform.app.InstrumentationRegistry
+import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -217,7 +216,7 @@ class V2ConversationItemShapeTest {
     override val selectedItems: Set<MultiselectPart> = emptySet()
     override val isMessageRequestAccepted: Boolean = true
     override val searchQuery: String? = null
-    override val glideRequests: GlideRequests = GlideApp.with(InstrumentationRegistry.getInstrumentation().context)
+    override val glideRequests: GlideRequests = mockk()
 
     override fun onStartExpirationTimeout(messageRecord: MessageRecord) = Unit
 
