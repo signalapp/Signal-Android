@@ -131,7 +131,7 @@ class AppSettingsFragment : DSLSettingsFragment(
             findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
           },
           onQrButtonClicked = {
-            if (Recipient.self().username.isPresent && Recipient.self().username.get().isNotEmpty()) {
+            if (SignalStore.account().username != null) {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
             } else {
               findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameEducationFragment)

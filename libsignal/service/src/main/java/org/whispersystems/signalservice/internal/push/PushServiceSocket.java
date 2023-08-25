@@ -216,6 +216,8 @@ public class PushServiceSocket {
   private static final String MODIFY_USERNAME_PATH       = "/v1/accounts/username_hash";
   private static final String RESERVE_USERNAME_PATH      = "/v1/accounts/username_hash/reserve";
   private static final String CONFIRM_USERNAME_PATH      = "/v1/accounts/username_hash/confirm";
+  private static final String USERNAME_LINK_PATH         = "/v1/accounts/username_link";
+  private static final String USERNAME_FROM_LINK_PATH    = "/v1/accounts/username_link/%s";
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
   private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
@@ -1088,6 +1090,31 @@ public class PushServiceSocket {
    */
   public void deleteUsername() throws IOException {
     makeServiceRequest(MODIFY_USERNAME_PATH, "DELETE", null);
+  }
+
+  /**
+   * Creates a new username link for a given username.
+   * @param encryptedUsername URL-safe base64-encoded encrypted username
+   * @return The serverId for the generated link.
+   */
+  public UUID createUsernameLink(String encryptedUsername) throws IOException {
+    String                      response = makeServiceRequest(USERNAME_LINK_PATH, "PUT", JsonUtil.toJson(new SetUsernameLinkRequestBody(encryptedUsername)));
+    SetUsernameLinkResponseBody parsed   = JsonUtil.fromJson(response, SetUsernameLinkResponseBody.class);
+
+    return parsed.getUsernameLinkHandle();
+  }
+
+  /** Deletes your active username link. */
+  public void deleteUsernameLink() throws IOException {
+    makeServiceRequest(USERNAME_LINK_PATH, "DELETE", null);
+  }
+
+  /** Given a link serverId (see {@link #createUsernameLink(String)}), this will return the encrypted username associate with the link. */
+  public byte[] getEncryptedUsernameFromLinkServerId(UUID serverId) throws IOException {
+    String                          response = makeServiceRequestWithoutAuthentication(String.format(USERNAME_FROM_LINK_PATH, serverId.toString()), "GET", null);
+    GetUsernameFromLinkResponseBody parsed   = JsonUtil.fromJson(response, GetUsernameFromLinkResponseBody.class);
+
+    return Base64UrlSafe.decodePaddingAgnostic(parsed.getUsernameLinkEncryptedValue());
   }
 
   public void deleteAccount() throws IOException {

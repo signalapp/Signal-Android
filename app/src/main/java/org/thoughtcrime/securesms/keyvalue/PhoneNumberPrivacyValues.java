@@ -11,10 +11,9 @@ import java.util.List;
 
 public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
-  public static final String SHARING_MODE         = "phoneNumberPrivacy.sharingMode";
-  public static final String LISTING_MODE         = "phoneNumberPrivacy.listingMode";
-  public static final String LISTING_TIMESTAMP    = "phoneNumberPrivacy.listingMode.timestamp";
-  public static final String USERNAME_OUT_OF_SYNC = "phoneNumberPrivacy.usernameOutOfSync";
+  public static final String SHARING_MODE      = "phoneNumberPrivacy.sharingMode";
+  public static final String LISTING_MODE      = "phoneNumberPrivacy.listingMode";
+  public static final String LISTING_TIMESTAMP = "phoneNumberPrivacy.listingMode.timestamp";
 
   private static final Collection<CertificateType> REGULAR_CERTIFICATE = Collections.singletonList(CertificateType.UUID_AND_E164);
   private static final Collection<CertificateType> PRIVACY_CERTIFICATE = Collections.singletonList(CertificateType.UUID_ONLY);
@@ -67,18 +66,6 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
   public long getPhoneNumberListingModeTimestamp() {
     return getLong(LISTING_TIMESTAMP, 0);
-  }
-
-  public void markUsernameOutOfSync() {
-    putBoolean(USERNAME_OUT_OF_SYNC, true);
-  }
-
-  public void clearUsernameOutOfSync() {
-    putBoolean(USERNAME_OUT_OF_SYNC, false);
-  }
-
-  public boolean isUsernameOutOfSync() {
-    return getBoolean(USERNAME_OUT_OF_SYNC, false);
   }
 
   /**

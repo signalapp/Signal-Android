@@ -156,6 +156,24 @@ message AccountRecord {
     }
   }
 
+  message UsernameLink {
+    enum Color {
+      UNKNOWN = 0;
+      BLUE = 1;
+      WHITE = 2;
+      GREY = 3;
+      OLIVE = 4;
+      GREEN = 5;
+      ORANGE = 6;
+      PINK = 7;
+      PURPLE = 8;
+    }
+
+    bytes entropy  = 1; // 32 bytes of entropy used for encryption
+    bytes serverId = 2; // 16 bytes of encoded UUID provided by the server
+    Color color    = 3;
+  }
+
            bytes                  profileKey                      = 1;
            string                 givenName                       = 2;
            string                 familyName                      = 3;
@@ -189,6 +207,8 @@ message AccountRecord {
            bool                   hasReadOnboardingStory          = 31;
            bool                   hasSeenGroupStoryEducationSheet = 32;
            string                 username                        = 33;
+           bool                   hasCompletedUsernameOnboarding  = 34;
+           UsernameLink           usernameLink                    = 35;
 }
 
 message StoryDistributionListRecord {

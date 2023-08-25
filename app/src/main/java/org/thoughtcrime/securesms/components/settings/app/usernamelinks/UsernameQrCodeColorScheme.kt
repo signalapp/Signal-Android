@@ -17,7 +17,7 @@ enum class UsernameQrCodeColorScheme(
   ),
   White(
     borderColor = Color(0xFFFFFFFF),
-    foregroundColor = Color(0xFF464852),
+    foregroundColor = Color(0xFF000000),
     key = "white"
   ),
   Grey(

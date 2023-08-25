@@ -335,6 +335,10 @@ public final class SignalAccountRecord implements SignalRecord {
     return proto.getUsername();
   }
 
+  public @Nullable AccountRecord.UsernameLink getUsernameLink() {
+    return proto.getUsernameLink();
+  }
+
   public AccountRecord toProto() {
     return proto;
   }
@@ -712,6 +716,16 @@ public final class SignalAccountRecord implements SignalRecord {
         builder.clearUsername();
       } else {
         builder.setUsername(username);
+      }
+
+      return this;
+    }
+
+    public Builder setUsernameLink(@Nullable AccountRecord.UsernameLink link) {
+      if (link == null) {
+        builder.clearUsernameLink();
+      } else {
+        builder.setUsernameLink(link);
       }
 
       return this;

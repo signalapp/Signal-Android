@@ -40,15 +40,15 @@ class UsernameEditViewModel extends ViewModel {
 
   private static final long NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS = 500;
 
-  private final PublishSubject<Event>    events;
-  private final UsernameEditRepository   repo;
-  private final RxStore<State>           uiState;
+  private final PublishSubject<Event> events;
+  private final UsernameRepository    repo;
+  private final RxStore<State>        uiState;
   private final PublishProcessor<String> nicknamePublisher;
   private final CompositeDisposable      disposables;
   private final boolean                  isInRegistration;
 
   private UsernameEditViewModel(boolean isInRegistration) {
-    this.repo              = new UsernameEditRepository();
+    this.repo              = new UsernameRepository();
     this.uiState           = new RxStore<>(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, Recipient.self().getUsername().<UsernameState>map(UsernameState.Set::new)
                                                                                                                 .orElse(UsernameState.NoUsername.INSTANCE)), Schedulers.computation());
     this.events            = PublishSubject.create();

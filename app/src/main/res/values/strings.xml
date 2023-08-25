@@ -6106,6 +6106,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Reset</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6122,8 +6132,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6144,7 +6160,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">Reject</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Approve</string>
 
     <!-- EOF -->

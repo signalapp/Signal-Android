@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -97,6 +98,34 @@ public final class StorageSyncModels {
       case GV1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
       case GV2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
       default       : throw new AssertionError("Unexpected group type!");
+    }
+  }
+
+  public static @NonNull AccountRecord.UsernameLink.Color localToRemoteUsernameColor(UsernameQrCodeColorScheme local) {
+    switch (local) {
+      case Blue:   return AccountRecord.UsernameLink.Color.BLUE;
+      case White:  return AccountRecord.UsernameLink.Color.WHITE;
+      case Grey:   return AccountRecord.UsernameLink.Color.GREY;
+      case Tan:    return AccountRecord.UsernameLink.Color.OLIVE;
+      case Green:  return AccountRecord.UsernameLink.Color.GREEN;
+      case Orange: return AccountRecord.UsernameLink.Color.ORANGE;
+      case Pink:   return AccountRecord.UsernameLink.Color.PINK;
+      case Purple: return AccountRecord.UsernameLink.Color.PURPLE;
+      default:     return AccountRecord.UsernameLink.Color.BLUE;
+    }
+  }
+
+  public static @NonNull UsernameQrCodeColorScheme remoteToLocalUsernameColor(AccountRecord.UsernameLink.Color remote) {
+    switch (remote) {
+      case BLUE:   return UsernameQrCodeColorScheme.Blue;
+      case WHITE:  return UsernameQrCodeColorScheme.White;
+      case GREY:   return UsernameQrCodeColorScheme.Grey;
+      case OLIVE:  return UsernameQrCodeColorScheme.Tan;
+      case GREEN:  return UsernameQrCodeColorScheme.Green;
+      case ORANGE: return UsernameQrCodeColorScheme.Orange;
+      case PINK:   return UsernameQrCodeColorScheme.Pink;
+      case PURPLE: return UsernameQrCodeColorScheme.Purple;
+      default:     return UsernameQrCodeColorScheme.Blue;
     }
   }
 

@@ -136,9 +136,10 @@ public class ApplicationMigrations {
     static final int ATTACHMENT_CLEANUP_3          = 92;
     static final int EMOJI_SEARCH_INDEX_CHECK      = 93;
     static final int IDENTITY_FIX                  = 94;
+    static final int COPY_USERNAME_TO_SIGNAL_STORE = 95;
   }
 
-  public static final int CURRENT_VERSION = 94;
+  public static final int CURRENT_VERSION = 95;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -615,6 +616,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.IDENTITY_FIX) {
       jobs.put(Version.IDENTITY_FIX, new IdentityTableCleanupMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.COPY_USERNAME_TO_SIGNAL_STORE) {
+      jobs.put(Version.COPY_USERNAME_TO_SIGNAL_STORE, new CopyUsernameToSignalStoreMigrationJob());
     }
 
     return jobs;

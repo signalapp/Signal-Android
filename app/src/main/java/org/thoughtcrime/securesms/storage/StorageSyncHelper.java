@@ -8,9 +8,11 @@ import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.google.protobuf.ByteString;
 
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
@@ -26,12 +28,16 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
+import org.whispersystems.signalservice.api.storage.SignalRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
 import java.util.Collection;
@@ -159,6 +165,17 @@ public final class StorageSyncHelper {
       account.setE164(self.requireE164());
     }
 
+    UsernameLinkComponents linkComponents = SignalStore.account().getUsernameLink();
+    if (linkComponents != null) {
+      account.setUsernameLink(AccountRecord.UsernameLink.newBuilder()
+                                                        .setEntropy(ByteString.copyFrom(linkComponents.getEntropy()))
+                                  .setServerId(UuidUtil.toByteString(linkComponents.getServerId()))
+                                  .setColor(StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc().getUsernameQrCodeColorScheme()))
+                                  .build());
+    } else {
+      account.setUsernameLink(null);
+    }
+
     return SignalStorageRecord.forAccount(account.build());
   }
 
@@ -213,6 +230,16 @@ public final class StorageSyncHelper {
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getNew().getAvatarUrlPath().get()));
+    }
+
+    if (update.getNew().getUsernameLink() != null) {
+      SignalStore.account().setUsernameLink(
+        new UsernameLinkComponents(
+          update.getNew().getUsernameLink().getEntropy().toByteArray(),
+          UuidUtil.parseOrThrow(update.getNew().getUsernameLink().getServerId().toByteArray())
+        )
+      );
+      SignalStore.misc().setUsernameQrCodeColorScheme(StorageSyncModels.remoteToLocalUsernameColor(update.getNew().getUsernameLink().getColor()));
     }
   }
 

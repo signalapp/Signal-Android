@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 
 /**
@@ -9,10 +9,11 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.Username
 data class UsernameLinkSettingsState(
   val activeTab: ActiveTab,
   val username: String,
-  val usernameLink: String,
-  val qrCodeData: QrCodeData?,
+  val usernameLinkState: UsernameLinkState,
+  val qrCodeState: QrCodeState,
   val qrCodeColorScheme: UsernameQrCodeColorScheme,
   val qrScanResult: QrScanResult? = null,
+  val usernameLinkResetResult: UsernameLinkResetResult? = null,
   val indeterminateProgress: Boolean = false
 ) {
   enum class ActiveTab {

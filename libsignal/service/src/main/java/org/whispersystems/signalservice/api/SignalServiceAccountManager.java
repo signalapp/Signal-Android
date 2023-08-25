@@ -14,6 +14,9 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
+import org.signal.libsignal.usernames.BaseUsernameException;
+import org.signal.libsignal.usernames.Username;
+import org.signal.libsignal.usernames.Username.UsernameLink;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
@@ -37,6 +40,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
@@ -81,6 +85,7 @@ import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.util.Base64;
+import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
 import java.security.KeyStore;
@@ -96,6 +101,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -784,6 +790,25 @@ public class SignalServiceAccountManager {
 
   public void deleteUsername() throws IOException {
     this.pushServiceSocket.deleteUsername();
+  }
+
+  public UsernameLinkComponents createUsernameLink(Username username) throws IOException {
+    try {
+      UsernameLink link     = username.generateLink();
+      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64UrlSafe.encodeBytes(link.getEncryptedUsername()));
+
+      return new UsernameLinkComponents(link.getEntropy(), serverId);
+    } catch (BaseUsernameException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public void deleteUsernameLink() throws IOException {
+    this.pushServiceSocket.deleteUsernameLink();
+  }
+
+  public byte[] getEncryptedUsernameFromLinkServerId(UUID serverId) throws IOException {
+    return this.pushServiceSocket.getEncryptedUsernameFromLinkServerId(serverId);
   }
 
   public void deleteAccount() throws IOException {
