@@ -19,7 +19,6 @@ import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -141,7 +140,7 @@ public class InputPanel extends ConstraintLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    View quoteDismiss = findViewById(R.id.quote_dismiss);
+    View quoteDismiss = findViewById(R.id.quote_dismiss_stub);
 
     this.composeContainer       = findViewById(R.id.compose_bubble);
     this.stickerSuggestion      = findViewById(R.id.input_panel_sticker_suggestion);
