@@ -36,7 +36,7 @@
         android:cropToPadding="true"
         android:visibility="gone"
         app:fallbackImageSize="small"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
