@@ -66,11 +66,11 @@ public final class LocaleFeatureFlags {
   }
 
   public static boolean isDelayedNotificationPromptEnabled() {
-    return isEnabled(FeatureFlags.PROMPT_FOR_NOTIFICATION_LOGS, FeatureFlags.promptForDelayedNotificationLogs());
+    return FeatureFlags.internalUser() || isEnabled(FeatureFlags.PROMPT_FOR_NOTIFICATION_LOGS, FeatureFlags.promptForDelayedNotificationLogs());
   }
 
   public static boolean isBatterySaverPromptEnabled() {
-    return isEnabled(FeatureFlags.PROMPT_BATTERY_SAVER, FeatureFlags.PROMPT_BATTERY_SAVER);
+    return FeatureFlags.internalUser() || isEnabled(FeatureFlags.PROMPT_BATTERY_SAVER, FeatureFlags.promptForDelayedNotificationLogs());
   }
 
   /**
