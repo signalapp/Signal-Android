@@ -48,8 +48,8 @@ ktlint {
     version = "0.49.1"
 }
 
-def canonicalVersionCode = 1320
-def canonicalVersionName = "6.31.0"
+def canonicalVersionCode = 1321
+def canonicalVersionName = "6.31.1"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
