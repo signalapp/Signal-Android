@@ -174,7 +174,8 @@ public final class AvatarUtil {
 
     final GlideRequest<T> request = glideRequest.load(photo)
                                                 .error(getFallback(context, recipient, targetSize))
-                                                .diskCacheStrategy(DiskCacheStrategy.ALL);
+                                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                .override(targetSize);
 
     if (recipient.shouldBlurAvatar()) {
       BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
@@ -191,7 +192,7 @@ public final class AvatarUtil {
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    String name = Optional.ofNullable(recipient.getDisplayName(context)).orElse("");
+    String name = Optional.of(recipient.getDisplayName(context)).orElse("");
 
     return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize).asDrawable(context, recipient.getAvatarColor());
   }
@@ -211,22 +212,26 @@ public final class AvatarUtil {
     }
 
     public @Nullable Bitmap await() throws InterruptedException {
-      if (countDownLatch.await(10, TimeUnit.SECONDS)) {
+      Log.d(TAG, "AvatarTarget#await:");
+      if (countDownLatch.await(1, TimeUnit.SECONDS)) {
         return bitmap.get();
       } else {
+        Log.w(TAG, "AvatarTarget#await: Failed to load avatar in time! Returning null");
         return null;
       }
     }
 
     @Override
     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-      Log.d(TAG, "onResourceReady");
+      Log.d(TAG, "AvatarTarget#onResourceReady:");
       bitmap.set(resource);
       countDownLatch.countDown();
     }
 
     @Override
     public void onLoadFailed(@Nullable Drawable errorDrawable) {
+      Log.d(TAG, "AvatarTarget#onLoadFailed:");
+
       if (errorDrawable == null) {
         throw new AssertionError("Expected an error drawable.");
       }
@@ -238,7 +243,10 @@ public final class AvatarUtil {
 
     @Override
     public void onLoadCleared(@Nullable Drawable placeholder) {
+      Log.d(TAG, "AvatarTarget#onLoadCleared:");
 
+      bitmap.set(null);
+      countDownLatch.countDown();
     }
   }
 }
