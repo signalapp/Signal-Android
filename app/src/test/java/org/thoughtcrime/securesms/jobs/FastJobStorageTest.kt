@@ -530,17 +530,17 @@ class FastJobStorageTest {
 
   private fun noopDatabase(): JobDatabase {
     val database = Mockito.mock(JobDatabase::class.java)
-    Mockito.`when`(database.allJobSpecs).thenReturn(emptyList())
-    Mockito.`when`(database.allConstraintSpecs).thenReturn(emptyList())
-    Mockito.`when`(database.allDependencySpecs).thenReturn(emptyList())
+    Mockito.`when`(database.getAllJobSpecs()).thenReturn(emptyList())
+    Mockito.`when`(database.getAllConstraintSpecs()).thenReturn(emptyList())
+    Mockito.`when`(database.getAllDependencySpecs()).thenReturn(emptyList())
     return database
   }
 
   private fun fixedDataDatabase(fullSpecs: List<FullSpec>): JobDatabase {
     val database = Mockito.mock(JobDatabase::class.java)
-    Mockito.`when`(database.allJobSpecs).thenReturn(fullSpecs.map { it.jobSpec })
-    Mockito.`when`(database.allConstraintSpecs).thenReturn(fullSpecs.map { it.constraintSpecs }.flatten())
-    Mockito.`when`(database.allDependencySpecs).thenReturn(fullSpecs.map { it.dependencySpecs }.flatten())
+    Mockito.`when`(database.getAllJobSpecs()).thenReturn(fullSpecs.map { it.jobSpec })
+    Mockito.`when`(database.getAllConstraintSpecs()).thenReturn(fullSpecs.map { it.constraintSpecs }.flatten())
+    Mockito.`when`(database.getAllDependencySpecs()).thenReturn(fullSpecs.map { it.dependencySpecs }.flatten())
     return database
   }
 

@@ -16,14 +16,14 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun init() {
-    jobs += jobDatabase.allJobSpecs
+    jobs += jobDatabase.getAllJobSpecs()
 
-    for (constraintSpec in jobDatabase.allConstraintSpecs) {
+    for (constraintSpec in jobDatabase.getAllConstraintSpecs()) {
       val jobConstraints: MutableList<ConstraintSpec> = constraintsByJobId.getOrPut(constraintSpec.jobSpecId) { mutableListOf() }
       jobConstraints += constraintSpec
     }
 
-    for (dependencySpec in jobDatabase.allDependencySpecs.filterNot { it.hasCircularDependency() }) {
+    for (dependencySpec in jobDatabase.getAllDependencySpecs().filterNot { it.hasCircularDependency() }) {
       val jobDependencies: MutableList<DependencySpec> = dependenciesByJobId.getOrPut(dependencySpec.jobId) { mutableListOf() }
       jobDependencies += dependencySpec
     }
