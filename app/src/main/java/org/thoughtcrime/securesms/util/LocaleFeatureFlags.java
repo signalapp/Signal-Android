@@ -70,7 +70,7 @@ public final class LocaleFeatureFlags {
   }
 
   public static boolean isBatterySaverPromptEnabled() {
-    return FeatureFlags.internalUser() || isEnabled(FeatureFlags.PROMPT_BATTERY_SAVER, FeatureFlags.promptForDelayedNotificationLogs());
+    return FeatureFlags.internalUser() || isEnabled(FeatureFlags.PROMPT_BATTERY_SAVER, FeatureFlags.promptBatterySaver());
   }
 
   /**
