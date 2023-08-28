@@ -39,8 +39,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
     for (fullSpec in fullSpecs) {
       jobs += fullSpec.jobSpec
-      constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs
-      dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs
+      constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
+      dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
     }
   }
 
