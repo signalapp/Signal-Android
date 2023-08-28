@@ -678,8 +678,8 @@
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Для перегляду галереї потрібен дозвіл на доступ до сховища.</string>
 
     <!-- DateUtils -->
-    <string name="DateUtils_just_now">Зараз</string>
-    <string name="DateUtils_minutes_ago">%1$dхв</string>
+    <string name="DateUtils_just_now">Щойно</string>
+    <string name="DateUtils_minutes_ago">%1$d хв</string>
     <string name="DateUtils_today">Сьогодні</string>
     <string name="DateUtils_yesterday">Вчора</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1085,7 +1085,7 @@
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
-    <string name="CustomNotificationsDialogFragment__custom_notifications">Власні повідомлення</string>
+    <string name="CustomNotificationsDialogFragment__custom_notifications">Настроювані сповіщення</string>
     <string name="CustomNotificationsDialogFragment__messages">Повідомлення</string>
     <string name="CustomNotificationsDialogFragment__use_custom_notifications">Використовувати власні сповіщення</string>
     <string name="CustomNotificationsDialogFragment__notification_sound">Звук сповіщення</string>
@@ -1316,7 +1316,7 @@
     <string name="MediaSendActivity_camera_unavailable">Камера не доступна</string>
 
     <!-- MediaRepository -->
-    <string name="MediaRepository_all_media">Всі медіа-файли Всі зображення</string>
+    <string name="MediaRepository_all_media">Усі медіафайли</string>
     <string name="MediaRepository__camera">Камера</string>
 
     <!-- MessageRecord -->
@@ -1628,9 +1628,9 @@
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Розблокувати цю групу та ділитися своїм ім’ям і фото з її учасниками? Ви не отримаєте повідомлень, поки не розблокуєте групу.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Детальніше</string>
-    <string name="MessageRequestProfileView_member_of_one_group">Полягає в %1$s</string>
-    <string name="MessageRequestProfileView_member_of_two_groups">Полягає в %1$s і %2$s</string>
-    <string name="MessageRequestProfileView_member_of_many_groups">Полягає в %1$s, %2$s, і %3$s</string>
+    <string name="MessageRequestProfileView_member_of_one_group">Є учасником «%1$s»</string>
+    <string name="MessageRequestProfileView_member_of_two_groups">Є учасником «%1$s» і «%2$s»</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">Є учасником «%1$s», «%2$s» і «%3$s»</string>
     <plurals name="MessageRequestProfileView_members">
         <item quantity="one">%1$d учасник</item>
         <item quantity="few">%1$d учасник</item>
@@ -2727,13 +2727,13 @@
     <string name="expiration_minutes_abbreviated">%1$dхв</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d година</item>
-        <item quantity="few">%1$d годин</item>
-        <item quantity="many">%1$d годин</item>
-        <item quantity="other">%1$d годин</item>
+        <item quantity="one">%1$d год</item>
+        <item quantity="few">%1$d год</item>
+        <item quantity="many">%1$d год</item>
+        <item quantity="other">%1$d год</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dг</string>
+    <string name="expiration_hours_abbreviated">%1$d год</string>
 
     <plurals name="expiration_days">
         <item quantity="one">%1$d день</item>
@@ -2861,7 +2861,7 @@
     <string name="verify_display_fragment__failed_to_verify_safety_number">Не вдалось підтвердити код безпеки</string>
     <string name="verify_display_fragment__loading">Завантаження…</string>
     <string name="verify_display_fragment__mark_as_verified">Позначити перевіреним</string>
-    <string name="verify_display_fragment__clear_verification">Чітка верифікація</string>
+    <string name="verify_display_fragment__clear_verification">Очистити верифікацію</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
     <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Коди безпеки оновлюються.</string>
 
@@ -3004,10 +3004,10 @@
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
-        <item quantity="one">%1$dгодину</item>
-        <item quantity="few">%1$dгодину</item>
-        <item quantity="many">%1$dгодин</item>
-        <item quantity="other">%1$dгодин</item>
+        <item quantity="one">%1$d год</item>
+        <item quantity="few">%1$d год</item>
+        <item quantity="many">%1$d год</item>
+        <item quantity="other">%1$d год</item>
     </plurals>
 
     <!-- preferences.xml -->
@@ -3241,7 +3241,7 @@
     <string name="PaymentsHomeFragment__restore_payments_account">Відновити платіжний обліковий запис</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Жодної активності останнім часом</string>
     <string name="PaymentsHomeFragment__recent_activity">Недавня активність</string>
-    <string name="PaymentsHomeFragment__see_all">Побачити все</string>
+    <string name="PaymentsHomeFragment__see_all">Усі</string>
     <string name="PaymentsHomeFragment__add_funds">Додати кошти</string>
     <string name="PaymentsHomeFragment__send">Відправити</string>
     <string name="PaymentsHomeFragment__sent_s">Відправлено %1$s</string>
@@ -3517,7 +3517,7 @@
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Налаштування групи</string>
     <string name="conversation__menu_leave_group">Вийти з групи</string>
-    <string name="conversation__menu_view_all_media">Всі медіа-файли Всі зображення</string>
+    <string name="conversation__menu_view_all_media">Усі медіафайли</string>
     <string name="conversation__menu_conversation_settings">Налаштування чату</string>
     <string name="conversation__menu_add_shortcut">Додати до домашнього екрану</string>
     <string name="conversation__menu_create_bubble">Створити бульбашку</string>
@@ -4651,8 +4651,8 @@
     <string name="ConversationSettingsFragment__see_all">Побачити все</string>
     <string name="ConversationSettingsFragment__add_members">Додати учасників</string>
     <string name="ConversationSettingsFragment__permissions">Дозволи</string>
-    <string name="ConversationSettingsFragment__requests_and_invites">Запити на прийняття; запрошення</string>
-    <string name="ConversationSettingsFragment__group_link">Групове посилання</string>
+    <string name="ConversationSettingsFragment__requests_and_invites">Запити і запрошення</string>
+    <string name="ConversationSettingsFragment__group_link">Посилання групи</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додати як контакт</string>
     <string name="ConversationSettingsFragment__unmute">Сповіщати</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -4675,7 +4675,7 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Вимкнути сповіщення</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Сповіщення увімкнені</string>
-    <string name="SoundsAndNotificationsSettingsFragment__mentions">Згадати</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions">Згадки</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Завжди повідомляти</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не повідомляти</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Власні повідомлення</string>

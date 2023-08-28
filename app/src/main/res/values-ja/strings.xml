@@ -2622,8 +2622,8 @@
 
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">問題が発生しました</string>
-    <string name="message_details_header_sent">送金済み</string>
-    <string name="message_details_header_received">着金</string>
+    <string name="message_details_header_sent">送信</string>
+    <string name="message_details_header_received">受信</string>
     <string name="message_details_header_disappears">消えるまで</string>
     <string name="message_details_header_via">経由</string>
 
@@ -2965,7 +2965,7 @@
     <string name="PaymentsActivityFragment__all_activity">すべてのアクティビティ</string>
     <string name="PaymentsAllActivityFragment__all">すべて</string>
     <string name="PaymentsAllActivityFragment__sent">送金</string>
-    <string name="PaymentsAllActivityFragment__received">着金</string>
+    <string name="PaymentsAllActivityFragment__received">受信</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">決済機能 (ベータ) のご紹介</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalを使って、プライバシーを重視した新しいデジタル通貨であるMobileCoinを送受信できます。利用するには機能を有効化してください。</string>
@@ -5405,9 +5405,9 @@
     <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">共有するのは…</string>
 
     <!-- Story info header sent heading -->
-    <string name="StoryInfoHeader__sent">送金済み</string>
+    <string name="StoryInfoHeader__sent">送信</string>
     <!-- Story info header received heading -->
-    <string name="StoryInfoHeader__received">着金</string>
+    <string name="StoryInfoHeader__received">受信</string>
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">ファイルサイズ</string>
     <!-- Story info "Sent to" header -->
