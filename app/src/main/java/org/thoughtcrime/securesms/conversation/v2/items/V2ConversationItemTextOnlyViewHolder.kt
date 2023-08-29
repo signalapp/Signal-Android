@@ -57,9 +57,10 @@ import java.util.Locale
 /**
  * Represents a text-only conversation item.
  */
-class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
+open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private val binding: V2ConversationItemTextOnlyBindingBridge,
-  private val conversationContext: V2ConversationContext
+  private val conversationContext: V2ConversationContext,
+  footerDelegate: V2FooterPositionDelegate = V2FooterPositionDelegate(binding)
 ) : V2ConversationItemViewHolder<Model>(binding.root, conversationContext), Multiselectable, InteractiveConversationElement {
 
   companion object {
@@ -73,7 +74,6 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   private var messageId: Long = Long.MAX_VALUE
 
   private val projections = ProjectionList()
-  private val footerDelegate = V2FooterPositionDelegate(binding)
   private val dispatchTouchEventListener = V2OnDispatchTouchEventListener(conversationContext, binding)
 
   override lateinit var conversationMessage: ConversationMessage
@@ -212,7 +212,7 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   override fun getSnapshotStrategy(): InteractiveConversationElement.SnapshotStrategy {
-    return V2TextOnlySnapshotStrategy(binding)
+    return V2ConversationItemSnapshotStrategy(binding)
   }
 
   /**
@@ -324,7 +324,10 @@ class V2TextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.conversationItemBody.maxLines = Integer.MAX_VALUE
     }
 
-    binding.conversationItemBody.text = StringUtil.trim(styledText)
+    val bodyText = StringUtil.trim(styledText)
+
+    binding.conversationItemBody.visible = bodyText.isNotEmpty()
+    binding.conversationItemBody.text = bodyText
   }
 
   private fun linkifyMessageBody(messageBody: Spannable) {

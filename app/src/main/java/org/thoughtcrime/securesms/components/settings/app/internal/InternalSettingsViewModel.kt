@@ -109,6 +109,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setUseConversationItemV2Media(enabled: Boolean) {
+    SignalStore.internalValues().setUseConversationItemV2Media(enabled)
+    refresh()
+  }
+
   fun addSampleReleaseNote() {
     repository.addSampleReleaseNote()
   }
@@ -136,7 +141,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
     canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc().hasPniInitializedDevices(),
-    useConversationItemV2 = SignalStore.internalValues().useConversationItemV2()
+    useConversationItemV2 = SignalStore.internalValues().useConversationItemV2(),
+    useConversationItemV2ForMedia = SignalStore.internalValues().useConversationItemV2Media()
   )
 
   fun onClearOnboardingState() {

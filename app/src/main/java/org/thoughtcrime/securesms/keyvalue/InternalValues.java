@@ -30,6 +30,7 @@ public final class InternalValues extends SignalStoreValues {
   public static final String FORCE_WEBSOCKET_MODE                 = "internal.force_websocket_mode";
   public static final String LAST_SCROLL_POSITION                 = "internal.last_scroll_position";
   public static final String CONVERSATION_ITEM_V2                 = "internal.conversation_item_v2";
+  public static final String CONVERSATION_ITEM_V2_MEDIA           = "internal.conversation_item_v2_media";
 
   InternalValues(KeyValueStore store) {
     super(store);
@@ -197,5 +198,13 @@ public final class InternalValues extends SignalStoreValues {
 
   public boolean useConversationItemV2() {
     return FeatureFlags.internalUser() && getBoolean(CONVERSATION_ITEM_V2, false);
+  }
+
+  public void setUseConversationItemV2Media(boolean useConversationFragmentV2Media) {
+    putBoolean(CONVERSATION_ITEM_V2_MEDIA, useConversationFragmentV2Media);
+  }
+
+  public boolean useConversationItemV2Media() {
+    return FeatureFlags.internalUser() && getBoolean(CONVERSATION_ITEM_V2_MEDIA, false);
   }
 }

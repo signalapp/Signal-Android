@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.util.visible
  * Responsible for drawing the conversation bubble when a user long-presses it and the reaction
  * overlay appears.
  */
-class V2TextOnlySnapshotStrategy(
+class V2ConversationItemSnapshotStrategy(
   private val binding: V2ConversationItemTextOnlyBindingBridge
 ) : InteractiveConversationElement.SnapshotStrategy {
 

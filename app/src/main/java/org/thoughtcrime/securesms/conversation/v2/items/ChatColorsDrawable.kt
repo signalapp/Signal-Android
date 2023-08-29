@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.graphics.Canvas
 import android.graphics.ColorFilter
+import android.graphics.Outline
 import android.graphics.Path
 import android.graphics.PixelFormat
 import android.graphics.PointF
@@ -14,6 +15,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.view.ViewGroup
+import androidx.core.graphics.toRectF
 import androidx.core.graphics.withClip
 import androidx.core.graphics.withTranslation
 import androidx.core.view.children
@@ -31,6 +33,7 @@ class ChatColorsDrawable : Drawable() {
 
   companion object {
     private var maskDrawable: Drawable? = null
+    private var latestBounds: Rect? = null
 
     /**
      * Binds the ChatColorsDrawable static cache to the lifecycle of the given recycler-view
@@ -47,6 +50,7 @@ class ChatColorsDrawable : Drawable() {
     }
 
     private fun applyBounds(bounds: Rect) {
+      latestBounds = bounds
       maskDrawable?.bounds = bounds
     }
   }
@@ -65,7 +69,7 @@ class ChatColorsDrawable : Drawable() {
   private val rect = RectF()
 
   private var gradientColors: ChatColors? = null
-  private var corners: FloatArray = floatArrayOf()
+  private var corners: FloatArray = floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
   private var fillColor: Int = 0
 
   override fun draw(canvas: Canvas) {
@@ -96,6 +100,21 @@ class ChatColorsDrawable : Drawable() {
 
   override fun getOpacity(): Int {
     return PixelFormat.TRANSLUCENT
+  }
+
+  /**
+   * Note: APIs had the wrong name for setPath here, so we have to use the deprecated method.
+   */
+  @Suppress("DEPRECATION")
+  override fun getOutline(outline: Outline) {
+    val path = Path()
+    path.addRoundRect(
+      bounds.toRectF(),
+      corners,
+      Path.Direction.CW
+    )
+
+    outline.setConvexPath(path)
   }
 
   /**
@@ -134,15 +153,20 @@ class ChatColorsDrawable : Drawable() {
     chatColors: ChatColors,
     corners: Corners
   ) {
-    this.gradientColors = chatColors
     this.corners = corners.toRadii()
 
     if (chatColors.isGradient()) {
       if (maskDrawable == null) {
         maskDrawable = chatColors.chatBubbleMask
+
+        val maskBounds = latestBounds
+        if (maskBounds != null) {
+          maskDrawable?.bounds = maskBounds
+        }
       }
 
       this.fillColor = 0
+      this.gradientColors = chatColors
     } else {
       this.fillColor = chatColors.asSingleColor()
       this.gradientColors = null

@@ -36,9 +36,12 @@ import org.thoughtcrime.securesms.conversation.v2.data.OutgoingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationContext
-import org.thoughtcrime.securesms.conversation.v2.items.V2TextOnlyViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemMediaViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemTextOnlyViewHolder
 import org.thoughtcrime.securesms.conversation.v2.items.bridge
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
+import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaOutgoingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
@@ -93,25 +96,37 @@ class ConversationAdapterV2(
       ConversationUpdateViewHolder(view)
     }
 
-    registerFactory(OutgoingMedia::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_multimedia, parent, false)
-      OutgoingMediaViewHolder(view)
-    }
+    if (SignalStore.internalValues().useConversationItemV2Media()) {
+      registerFactory(OutgoingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_media_outgoing, parent, false)
+        V2ConversationItemMediaViewHolder(V2ConversationItemMediaOutgoingBinding.bind(view).bridge(), this)
+      }
 
-    registerFactory(IncomingMedia::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
-      IncomingMediaViewHolder(view)
+      registerFactory(IncomingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_media_incoming, parent, false)
+        V2ConversationItemMediaViewHolder(V2ConversationItemMediaIncomingBinding.bind(view).bridge(), this)
+      }
+    } else {
+      registerFactory(OutgoingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_multimedia, parent, false)
+        OutgoingMediaViewHolder(view)
+      }
+
+      registerFactory(IncomingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
+        IncomingMediaViewHolder(view)
+      }
     }
 
     if (SignalStore.internalValues().useConversationItemV2()) {
       registerFactory(OutgoingTextOnly::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_outgoing, parent, false)
-        V2TextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
+        V2ConversationItemTextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
       }
 
       registerFactory(IncomingTextOnly::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_incoming, parent, false)
-        V2TextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
+        V2ConversationItemTextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
       }
     } else {
       registerFactory(OutgoingTextOnly::class.java) { parent ->
