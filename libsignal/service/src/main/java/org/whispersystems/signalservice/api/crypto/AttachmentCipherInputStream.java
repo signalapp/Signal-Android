@@ -69,22 +69,22 @@ public class AttachmentCipherInputStream extends FilterInputStream {
         throw new InvalidMacException("Missing digest!");
       }
 
-      try (FileInputStream fin = new FileInputStream(file)) {
-        verifyMac(fin, file.length(), mac, digest);
-      }
 
-      final FileInputStream innerStream = new FileInputStream(file);
-
+      final InputStream wrappedStream;
       boolean hasIncrementalMac = incrementalDigest != null && incrementalDigest.length > 0;
-
-      InputStream wrap = !hasIncrementalMac ? innerStream
-                                            : new IncrementalMacInputStream(
-                                                innerStream,
-                                                parts[1],
-                                                ChunkSizeChoice.inferChunkSize(Math.max(Math.toIntExact(file.length()), 1)),
-                                                incrementalDigest);
-
-      InputStream inputStream = new AttachmentCipherInputStream(wrap, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
+      if (!hasIncrementalMac) {
+        try (FileInputStream macVerificationStream = new FileInputStream(file)) {
+          verifyMac(macVerificationStream, file.length(), mac, digest);
+        }
+        wrappedStream = new FileInputStream(file);
+      } else {
+        wrappedStream = new IncrementalMacInputStream(
+            new FileInputStream(file),
+            parts[1],
+            ChunkSizeChoice.inferChunkSize(Math.toIntExact(plaintextLength)),
+            incrementalDigest);
+      }
+      InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
 
       if (plaintextLength != 0) {
         inputStream = new ContentLengthInputStream(inputStream, plaintextLength);

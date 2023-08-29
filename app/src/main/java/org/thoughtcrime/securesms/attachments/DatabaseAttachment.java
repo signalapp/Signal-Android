@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.Comparator;
 
@@ -60,7 +61,7 @@ public class DatabaseAttachment extends Attachment {
   @Override
   @Nullable
   public Uri getUri() {
-    if (hasData) {
+    if (hasData || (FeatureFlags.instantVideoPlayback() && getIncrementalDigest() != null)) {
       return PartAuthority.getAttachmentDataUri(attachmentId);
     } else {
       return null;

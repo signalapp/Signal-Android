@@ -135,6 +135,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
 import org.thoughtcrime.securesms.util.Projection;
@@ -240,6 +241,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final PassthroughClickListener        passthroughClickListener        = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener           = new AttachmentDownloadClickListener();
+  private final ProgressWheelClickListener      progressWheelClickListener      = new ProgressWheelClickListener();
   private final SlideClickPassthroughListener   singleDownloadClickListener     = new SlideClickPassthroughListener(downloadClickListener);
   private final SharedContactEventListener      sharedContactEventListener      = new SharedContactEventListener();
   private final SharedContactClickListener      sharedContactClickListener      = new SharedContactClickListener();
@@ -1162,6 +1164,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         mediaThumbnailStub.require().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(linkPreview.getThumbnail().get())), showControls, false);
         mediaThumbnailStub.require().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
         mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
+        mediaThumbnailStub.require().setProgressWheelClickListener(progressWheelClickListener);
         mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
 
         linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, false);
@@ -1301,6 +1304,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                                     false);
       mediaThumbnailStub.require().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
+      mediaThumbnailStub.require().setProgressWheelClickListener(progressWheelClickListener);
       mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.require().setOnClickListener(passthroughClickListener);
       mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord));
@@ -1545,6 +1549,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
   }
+
   private void setStatusIcons(MessageRecord messageRecord, boolean hasWallpaper) {
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
 
@@ -2429,6 +2434,20 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  private class ProgressWheelClickListener implements SlideClickListener {
+
+    @Override
+    public void onClick(View v, Slide slide) {
+      final boolean isIncremental        = slide.asAttachment().getIncrementalDigest() != null;
+      final boolean contentTypeSupported = MediaUtil.isVideoType(slide.getContentType());
+      if (FeatureFlags.instantVideoPlayback() && isIncremental && contentTypeSupported) {
+        launchMediaPreview(v, slide);
+      } else {
+        Log.d(TAG, "Non-eligible slide clicked: " + "\tisIncremental: " + isIncremental + "\tcontentTypeSupported: " + contentTypeSupported);
+      }
+    }
+  }
+
   private class SlideClickPassthroughListener implements SlideClickListener {
 
     private final SlidesClickedListener original;
@@ -2462,34 +2481,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       } else if (!canPlayContent && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
       } else if (MediaPreviewV2Fragment.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
-        if (eventListener == null) {
-          return;
-        }
-
-        MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
-            messageRecord.getThreadId(),
-            messageRecord.getTimestamp(),
-            slide.getUri(),
-            slide.getContentType(),
-            slide.asAttachment().getSize(),
-            slide.getCaption().orElse(null),
-            false,
-            false,
-            false,
-            false,
-            MediaTable.Sorting.Newest,
-            slide.isVideoGif(),
-            new MediaIntentFactory.SharedElementArgs(
-                slide.asAttachment().getWidth(),
-                slide.asAttachment().getHeight(),
-                mediaThumbnailStub.require().getCorners().getTopLeft(),
-                mediaThumbnailStub.require().getCorners().getTopRight(),
-                mediaThumbnailStub.require().getCorners().getBottomRight(),
-                mediaThumbnailStub.require().getCorners().getBottomLeft()
-            ),
-            false);
-        MediaPreviewCache.INSTANCE.setDrawable(((ThumbnailView) v).getImageDrawable());
-        eventListener.goToMediaPreview(ConversationItem.this, v, args);
+        launchMediaPreview(v, slide);
       } else if (slide.getUri() != null) {
         Log.i(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
         Uri publicUri = PartAuthority.getAttachmentPublicUri(slide.getUri());
@@ -2524,6 +2516,47 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             .show();
       }
     }
+  }
+
+  private void launchMediaPreview(View v, Slide slide) {
+    if (eventListener == null) {
+      Log.w(TAG, "Could not launch media preview for item: eventListener was null");
+      return;
+    }
+
+    Uri mediaUri = slide.getUri();
+
+    if (mediaUri == null) {
+      Log.w(TAG, "Could not launch media preview for item: uri was null");
+      return;
+    }
+
+    MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
+        messageRecord.getThreadId(),
+        messageRecord.getTimestamp(),
+        mediaUri,
+        slide.getContentType(),
+        slide.asAttachment().getSize(),
+        slide.getCaption().orElse(null),
+        false,
+        false,
+        false,
+        false,
+        MediaTable.Sorting.Newest,
+        slide.isVideoGif(),
+        new MediaIntentFactory.SharedElementArgs(
+            slide.asAttachment().getWidth(),
+            slide.asAttachment().getHeight(),
+            mediaThumbnailStub.require().getCorners().getTopLeft(),
+            mediaThumbnailStub.require().getCorners().getTopRight(),
+            mediaThumbnailStub.require().getCorners().getBottomRight(),
+            mediaThumbnailStub.require().getCorners().getBottomLeft()
+        ),
+        false);
+    if (v instanceof ThumbnailView) {
+      MediaPreviewCache.INSTANCE.setDrawable(((ThumbnailView) v).getImageDrawable());
+    }
+    eventListener.goToMediaPreview(ConversationItem.this, v, args);
   }
 
   private class PassthroughClickListener implements View.OnLongClickListener, View.OnClickListener {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,12 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     View    itemView    = inflater.inflate(R.layout.media_preview_video_fragment, container, false);
     Bundle  arguments   = requireArguments();
     Uri     uri         = arguments.getParcelable(DATA_URI);
+    if (uri == null) {
+      Log.w(TAG, "Media URI was null.");
+      Toast.makeText(requireContext(), R.string.MediaPreviewActivity_media_no_longer_available, Toast.LENGTH_LONG).show();
+      requireActivity().finish();
+      return itemView;
+    }
     String  contentType = arguments.getString(DATA_CONTENT_TYPE);
     long    size        = arguments.getLong(DATA_SIZE);
     boolean autoPlay    = arguments.getBoolean(AUTO_PLAY);

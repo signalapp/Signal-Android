@@ -446,7 +446,7 @@ public class MediaUtil {
     {
       try {
         AttachmentId    attachmentId = PartAuthority.requireAttachmentId(uri);
-        MediaDataSource source       = SignalDatabase.attachments().mediaDataSourceFor(attachmentId);
+        MediaDataSource source       = SignalDatabase.attachments().mediaDataSourceFor(attachmentId, false);
         return extractFrame(source, timeUs);
       } catch (IOException e) {
         Log.w(TAG, "Failed to extract frame for URI: " + uri, e);

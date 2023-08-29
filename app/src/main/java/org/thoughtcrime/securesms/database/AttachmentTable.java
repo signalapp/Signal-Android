@@ -1343,39 +1343,39 @@ public class AttachmentTable extends DatabaseTable {
   private @NonNull DatabaseAttachment getAttachment(@NonNull Cursor cursor) {
     String contentType = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE));
     return new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
-                                                                  cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
-                                                  cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
-                                                  !cursor.isNull(cursor.getColumnIndexOrThrow(DATA)),
-                                                  MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
-                                                  contentType,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
-                                                  cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(CDN_NUMBER)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
-                                                  cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
-                                                  cursor.getBlob(cursor.getColumnIndexOrThrow(MAC_DIGEST)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(VIDEO_GIF)) == 1,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(CAPTION)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)) >= 0
-                                                  ? new StickerLocator(CursorUtil.requireString(cursor, STICKER_PACK_ID),
-                                                                       CursorUtil.requireString(cursor, STICKER_PACK_KEY),
-                                                                       CursorUtil.requireInt(cursor, STICKER_ID),
-                                                                       CursorUtil.requireString(cursor, STICKER_EMOJI))
-                                                  : null,
-                                                  MediaUtil.isAudioType(contentType) ? null : BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))),
-                                                  MediaUtil.isAudioType(contentType) ? AudioHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))) : null,
-                                                  TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES))),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(DISPLAY_ORDER)),
-                                                  cursor.getLong(cursor.getColumnIndexOrThrow(UPLOAD_TIMESTAMP)));
+                                                   cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
+                                  !cursor.isNull(cursor.getColumnIndexOrThrow(DATA)),
+                                  MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
+                                  contentType,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(CDN_NUMBER)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
+                                  cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
+                                  cursor.getBlob(cursor.getColumnIndexOrThrow(MAC_DIGEST)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(VIDEO_GIF)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CAPTION)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)) >= 0
+                                  ? new StickerLocator(CursorUtil.requireString(cursor, STICKER_PACK_ID),
+                                                       CursorUtil.requireString(cursor, STICKER_PACK_KEY),
+                                                       CursorUtil.requireInt(cursor, STICKER_ID),
+                                                       CursorUtil.requireString(cursor, STICKER_EMOJI))
+                                  : null,
+                                  MediaUtil.isAudioType(contentType) ? null : BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))),
+                                  MediaUtil.isAudioType(contentType) ? AudioHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))) : null,
+                                  TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES))),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(DISPLAY_ORDER)),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(UPLOAD_TIMESTAMP)));
   }
 
   private AttachmentId insertAttachment(long mmsId, Attachment attachment, boolean quote)
@@ -1514,15 +1514,28 @@ public class AttachmentTable extends DatabaseTable {
 
 
   @RequiresApi(23)
-  public @Nullable MediaDataSource mediaDataSourceFor(@NonNull AttachmentId attachmentId) {
+  public @Nullable MediaDataSource mediaDataSourceFor(@NonNull AttachmentId attachmentId, Boolean allowReadingFromTempFile) {
     DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, DATA);
 
-    if (dataInfo == null) {
-      Log.w(TAG, "No data file found for video attachment...");
-      return null;
+    if (dataInfo != null) {
+      return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
     }
 
-    return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
+    if (allowReadingFromTempFile) {
+      Log.d(TAG, "Completed data file not found for video attachment, checking for in-progress files.");
+
+      SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
+
+      File transferFile = getTransferFile(database, attachmentId);
+
+      if (transferFile != null) {
+        return EncryptedMediaDataSource.createForDiskBlob(attachmentSecret, transferFile);
+      }
+    }
+
+    Log.w(TAG, "No data file found for video attachment!");
+
+    return null;
   }
 
   public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId, Collection<Long> excludedIds) {

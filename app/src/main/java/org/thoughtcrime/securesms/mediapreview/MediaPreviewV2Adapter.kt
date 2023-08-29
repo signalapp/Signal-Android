@@ -3,12 +3,14 @@ package org.thoughtcrime.securesms.mediapreview
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator
 
 class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+  private val TAG = Log.tag(MediaPreviewV2Adapter::class.java)
   private var items: List<Attachment> = listOf()
   private val stableIdGenerator = StableIdGenerator<Attachment>()
   private val currentIdSet: HashSet<Long> = HashSet()

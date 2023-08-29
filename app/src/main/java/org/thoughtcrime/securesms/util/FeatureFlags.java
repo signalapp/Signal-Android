@@ -113,6 +113,7 @@ public final class FeatureFlags {
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
+  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -177,7 +178,8 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES
+      USERNAMES,
+      INSTANT_VIDEO_PLAYBACK
   );
 
   @VisibleForTesting
@@ -629,6 +631,14 @@ public final class FeatureFlags {
     }
   }
 
+  /**
+   * Allow the video players to read from the temporary download files for attachments.
+   * @return whether this functionality is enabled.
+   */
+  public static boolean instantVideoPlayback() {
+    return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
+  }
+
   public static String promptForDelayedNotificationLogs() {
     return getString(PROMPT_FOR_NOTIFICATION_LOGS, "*");
   }
@@ -640,6 +650,7 @@ public final class FeatureFlags {
   public static String promptBatterySaver() {
     return getString(PROMPT_BATTERY_SAVER, "*");
   }
+
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

@@ -81,7 +81,7 @@ class DigestingRequestBody(
     return if (contentLength > 0) contentLength - contentStart else -1
   }
 
-  fun getAttachmentDigest() = AttachmentDigest(transmittedDigest, incrementalDigest)
+  fun getAttachmentDigest(): AttachmentDigest = AttachmentDigest(transmittedDigest, incrementalDigest)
 
   private fun logMessage(actual: Long, expected: Long): String {
     val difference = actual - expected
