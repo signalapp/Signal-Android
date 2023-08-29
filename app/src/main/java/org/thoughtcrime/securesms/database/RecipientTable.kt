@@ -1069,7 +1069,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       GroupV2Record.StorySendMode.DEFAULT -> ShowAsStoryState.IF_ACTIVE
       GroupV2Record.StorySendMode.DISABLED -> ShowAsStoryState.NEVER
       GroupV2Record.StorySendMode.ENABLED -> ShowAsStoryState.ALWAYS
-      GroupV2Record.StorySendMode.UNRECOGNIZED -> ShowAsStoryState.IF_ACTIVE
+      else -> ShowAsStoryState.IF_ACTIVE
     }
   }
 

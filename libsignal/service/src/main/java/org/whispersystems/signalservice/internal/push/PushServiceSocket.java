@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageLite;
+import com.squareup.wire.Message;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -1309,19 +1310,19 @@ public class PushServiceSocket {
 
   public StorageManifest getStorageManifest(String authToken) throws IOException {
     try (Response response = makeStorageRequest(authToken, "/v1/storage/manifest", "GET", null, NO_HANDLER)) {
-      return StorageManifest.parseFrom(readBodyBytes(response));
+      return StorageManifest.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
   public StorageManifest getStorageManifestIfDifferentVersion(String authToken, long version) throws IOException {
     try (Response response = makeStorageRequest(authToken, "/v1/storage/manifest/version/" + version, "GET", null, NO_HANDLER)) {
-      return StorageManifest.parseFrom(readBodyBytes(response));
+      return StorageManifest.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
   public StorageItems readStorageItems(String authToken, ReadOperation operation) throws IOException {
     try (Response response = makeStorageRequest(authToken, "/v1/storage/read", "PUT", protobufRequestBody(operation), NO_HANDLER)) {
-      return StorageItems.parseFrom(readBodyBytes(response));
+      return StorageItems.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
@@ -1329,7 +1330,7 @@ public class PushServiceSocket {
     try (Response response = makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation), NO_HANDLER)) {
       return Optional.empty();
     } catch (ContactManifestMismatchException e) {
-      return Optional.of(StorageManifest.parseFrom(e.getResponseBody()));
+      return Optional.of(StorageManifest.ADAPTER.decode(e.getResponseBody()));
     }
   }
 
@@ -1775,6 +1776,10 @@ public class PushServiceSocket {
                                 : null;
   }
 
+  private static RequestBody protobufRequestBody(Message<?, ?> protobufBody) {
+    return protobufBody != null ? RequestBody.create(MediaType.parse("application/x-protobuf"), protobufBody.encode())
+                                : null;
+  }
 
   private ListenableFuture<String> submitServiceRequest(String urlFragment,
                                                         String method,

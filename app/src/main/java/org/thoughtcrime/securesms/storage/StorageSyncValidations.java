@@ -104,7 +104,7 @@ public final class StorageSyncValidations {
   private static void validateManifestAndInserts(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts, @NonNull Recipient self) {
     int accountCount = 0;
     for (StorageId id : manifest.getStorageIds()) {
-      accountCount += id.getType() == ManifestRecord.Identifier.Type.ACCOUNT_VALUE ? 1 : 0;
+      accountCount += id.getType() == ManifestRecord.Identifier.Type.ACCOUNT.getValue() ? 1 : 0;
     }
 
     if (accountCount > 1) {
@@ -124,22 +124,22 @@ public final class StorageSyncValidations {
     }
 
     if (rawIdSet.size() != allSet.size()) {
-      List<StorageId> ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.CONTACT_VALUE);
+      List<StorageId> ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.CONTACT.getValue());
       if (ids.size() != new HashSet<>(ids).size()) {
         throw new DuplicateContactIdError();
       }
 
-      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.GROUPV1_VALUE);
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.GROUPV1.getValue());
       if (ids.size() != new HashSet<>(ids).size()) {
         throw new DuplicateGroupV1IdError();
       }
 
-      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.GROUPV2_VALUE);
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.GROUPV2.getValue());
       if (ids.size() != new HashSet<>(ids).size()) {
         throw new DuplicateGroupV2IdError();
       }
 
-      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST_VALUE);
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST.getValue());
       if (ids.size() != new HashSet<>(ids).size()) {
         throw new DuplicateDistributionListIdError();
       }

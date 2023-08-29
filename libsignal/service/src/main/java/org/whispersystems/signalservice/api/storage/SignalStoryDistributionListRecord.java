@@ -1,19 +1,19 @@
 package org.whispersystems.signalservice.api.storage;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import okio.ByteString;
 
 public class SignalStoryDistributionListRecord implements SignalRecord {
 
@@ -28,7 +28,7 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
     this.id               = id;
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
-    this.recipients       = proto.getRecipientServiceIdsList()
+    this.recipients       = proto.recipientServiceIds
                                  .stream()
                                  .map(ServiceId::parseOrNull)
                                  .filter(Objects::nonNull)
@@ -51,15 +51,15 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
   }
 
   public byte[] serializeUnknownFields() {
-    return hasUnknownFields ? proto.toByteArray() : null;
+    return hasUnknownFields ? proto.encode() : null;
   }
 
   public byte[] getIdentifier() {
-    return proto.getIdentifier().toByteArray();
+    return proto.identifier.toByteArray();
   }
 
   public String getName() {
-    return proto.getName();
+    return proto.name;
   }
 
   public List<SignalServiceAddress> getRecipients() {
@@ -67,15 +67,15 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
   }
 
   public long getDeletedAtTimestamp() {
-    return proto.getDeletedAtTimestamp();
+    return proto.deletedAtTimestamp;
   }
 
   public boolean allowsReplies() {
-    return proto.getAllowsReplies();
+    return proto.allowsReplies;
   }
 
   public boolean isBlockList() {
-    return proto.getIsBlockList();
+    return proto.isBlockList;
   }
 
   @Override
@@ -142,40 +142,39 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
       if (serializedUnknowns != null) {
         this.builder = parseUnknowns(serializedUnknowns);
       } else {
-        this.builder = StoryDistributionListRecord.newBuilder();
+        this.builder = new StoryDistributionListRecord.Builder();
       }
     }
 
     public Builder setIdentifier(byte[] identifier) {
-      builder.setIdentifier(ByteString.copyFrom(identifier));
+      builder.identifier(ByteString.of(identifier));
       return this;
     }
 
     public Builder setName(String name) {
-      builder.setName(name);
+      builder.name(name);
       return this;
     }
 
     public Builder setRecipients(List<SignalServiceAddress> recipients) {
-      builder.clearRecipientServiceIds();
-      builder.addAllRecipientServiceIds(recipients.stream()
-                                                  .map(SignalServiceAddress::getIdentifier)
-                                                  .collect(Collectors.toList()));
+      builder.recipientServiceIds = recipients.stream()
+                                              .map(SignalServiceAddress::getIdentifier)
+                                              .collect(Collectors.toList());
       return this;
     }
 
     public Builder setDeletedAtTimestamp(long deletedAtTimestamp) {
-      builder.setDeletedAtTimestamp(deletedAtTimestamp);
+      builder.deletedAtTimestamp(deletedAtTimestamp);
       return this;
     }
 
     public Builder setAllowsReplies(boolean allowsReplies) {
-      builder.setAllowsReplies(allowsReplies);
+      builder.allowsReplies(allowsReplies);
       return this;
     }
 
     public Builder setIsBlockList(boolean isBlockList) {
-      builder.setIsBlockList(isBlockList);
+      builder.isBlockList(isBlockList);
       return this;
     }
 
@@ -185,10 +184,10 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
 
     private static StoryDistributionListRecord.Builder parseUnknowns(byte[] serializedUnknowns) {
       try {
-        return StoryDistributionListRecord.parseFrom(serializedUnknowns).toBuilder();
-      } catch (InvalidProtocolBufferException e) {
+        return StoryDistributionListRecord.ADAPTER.decode(serializedUnknowns).newBuilder();
+      } catch (IOException e) {
         Log.w(TAG, "Failed to combine unknown fields!", e);
-        return StoryDistributionListRecord.newBuilder();
+        return new StoryDistributionListRecord.Builder();
       }
     }
   }

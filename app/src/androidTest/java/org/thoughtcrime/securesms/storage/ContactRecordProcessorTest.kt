@@ -38,15 +38,21 @@ class ContactRecordProcessorTest {
     val originalId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     setStorageId(originalId, STORAGE_ID_A)
 
-    val remote1 = buildRecord(STORAGE_ID_B) {
-      setAci(ACI_A.toString())
-      setUnregisteredAtTimestamp(100)
-    }
+    val remote1 = buildRecord(
+      STORAGE_ID_B,
+      ContactRecord(
+        aci = ACI_A.toString(),
+        unregisteredAtTimestamp = 100
+      )
+    )
 
-    val remote2 = buildRecord(STORAGE_ID_C) {
-      setPni(PNI_A.toString())
-      setE164(E164_A)
-    }
+    val remote2 = buildRecord(
+      STORAGE_ID_C,
+      ContactRecord(
+        pni = PNI_A.toString(),
+        e164 = E164_A
+      )
+    )
 
     // WHEN
     val subject = ContactRecordProcessor()
@@ -69,16 +75,22 @@ class ContactRecordProcessorTest {
     val originalId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     setStorageId(originalId, STORAGE_ID_A)
 
-    val remote1 = buildRecord(STORAGE_ID_B) {
-      setAci(ACI_A.toString())
-      setUnregisteredAtTimestamp(0)
-    }
+    val remote1 = buildRecord(
+      STORAGE_ID_B,
+      ContactRecord(
+        aci = ACI_A.toString(),
+        unregisteredAtTimestamp = 0
+      )
+    )
 
-    val remote2 = buildRecord(STORAGE_ID_C) {
-      setAci(PNI_A.toString())
-      setPni(PNI_A.toString())
-      setE164(E164_A)
-    }
+    val remote2 = buildRecord(
+      STORAGE_ID_C,
+      ContactRecord(
+        aci = PNI_A.toString(),
+        pni = PNI_A.toString(),
+        e164 = E164_A
+      )
+    )
 
     // WHEN
     val subject = ContactRecordProcessor()
@@ -94,8 +106,8 @@ class ContactRecordProcessorTest {
     assertEquals(byAci, byE164)
   }
 
-  private fun buildRecord(id: StorageId, applyParams: ContactRecord.Builder.() -> ContactRecord.Builder): SignalContactRecord {
-    return SignalContactRecord(id, ContactRecord.getDefaultInstance().toBuilder().applyParams().build())
+  private fun buildRecord(id: StorageId, record: ContactRecord): SignalContactRecord {
+    return SignalContactRecord(id, record)
   }
 
   private fun setStorageId(recipientId: RecipientId, storageId: StorageId) {

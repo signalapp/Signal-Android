@@ -1,22 +1,22 @@
 package org.whispersystems.signalservice.api.storage;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.libsignal.protocol.logging.Log;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import okio.ByteString;
 
 public final class SignalContactRecord implements SignalRecord {
 
@@ -42,17 +42,17 @@ public final class SignalContactRecord implements SignalRecord {
     this.id                = id;
     this.proto             = proto;
     this.hasUnknownFields  = ProtoUtil.hasUnknownFields(proto);
-    this.aci               = OptionalUtil.absentIfEmpty(proto.getAci()).map(ACI::parseOrNull).map(it -> it.isUnknown() ? null : it);
-    this.pni               = OptionalUtil.absentIfEmpty(proto.getPni()).map(PNI::parseOrNull).map(it -> it.isUnknown() ? null : it);
-    this.e164              = OptionalUtil.absentIfEmpty(proto.getE164());
-    this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.getGivenName());
-    this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.getFamilyName());
-    this.systemGivenName   = OptionalUtil.absentIfEmpty(proto.getSystemGivenName());
-    this.systemFamilyName  = OptionalUtil.absentIfEmpty(proto.getSystemFamilyName());
-    this.systemNickname    = OptionalUtil.absentIfEmpty(proto.getSystemNickname());
-    this.profileKey        = OptionalUtil.absentIfEmpty(proto.getProfileKey());
-    this.username          = OptionalUtil.absentIfEmpty(proto.getUsername());
-    this.identityKey       = OptionalUtil.absentIfEmpty(proto.getIdentityKey());
+    this.aci               = OptionalUtil.absentIfEmpty(proto.aci).map(ACI::parseOrNull).map(it -> it.isUnknown() ? null : it);
+    this.pni               = OptionalUtil.absentIfEmpty(proto.pni).map(PNI::parseOrNull).map(it -> it.isUnknown() ? null : it);
+    this.e164              = OptionalUtil.absentIfEmpty(proto.e164);
+    this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.givenName);
+    this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.familyName);
+    this.systemGivenName   = OptionalUtil.absentIfEmpty(proto.systemGivenName);
+    this.systemFamilyName  = OptionalUtil.absentIfEmpty(proto.systemFamilyName);
+    this.systemNickname    = OptionalUtil.absentIfEmpty(proto.systemNickname);
+    this.profileKey        = OptionalUtil.absentIfEmpty(proto.profileKey);
+    this.username          = OptionalUtil.absentIfEmpty(proto.username);
+    this.identityKey       = OptionalUtil.absentIfEmpty(proto.identityKey);
   }
 
   @Override
@@ -170,7 +170,7 @@ public final class SignalContactRecord implements SignalRecord {
   }
 
   public byte[] serializeUnknownFields() {
-    return hasUnknownFields ? proto.toByteArray() : null;
+    return hasUnknownFields ? proto.encode() : null;
   }
 
   public Optional<ACI> getAci() {
@@ -228,46 +228,46 @@ public final class SignalContactRecord implements SignalRecord {
   }
 
   public IdentityState getIdentityState() {
-    return proto.getIdentityState();
+    return proto.identityState;
   }
 
   public boolean isBlocked() {
-    return proto.getBlocked();
+    return proto.blocked;
   }
 
   public boolean isProfileSharingEnabled() {
-    return proto.getWhitelisted();
+    return proto.whitelisted;
   }
 
   public boolean isArchived() {
-    return proto.getArchived();
+    return proto.archived;
   }
 
   public boolean isForcedUnread() {
-    return proto.getMarkedUnread();
+    return proto.markedUnread;
   }
 
   public long getMuteUntil() {
-    return proto.getMutedUntilTimestamp();
+    return proto.mutedUntilTimestamp;
   }
 
   public boolean shouldHideStory() {
-    return proto.getHideStory();
+    return proto.hideStory;
   }
 
   public long getUnregisteredTimestamp() {
-    return proto.getUnregisteredAtTimestamp();
+    return proto.unregisteredAtTimestamp;
   }
 
   public boolean isHidden() {
-    return proto.getHidden();
+    return proto.hidden;
   }
 
   /**
    * Returns the same record, but stripped of the PNI field. Only used while PNP is in development.
    */
   public SignalContactRecord withoutPni() {
-    return new SignalContactRecord(id, proto.toBuilder().clearPni().build());
+    return new SignalContactRecord(id, proto.newBuilder().pni("").build());
   }
 
   public ContactRecord toProto() {
@@ -298,113 +298,113 @@ public final class SignalContactRecord implements SignalRecord {
       if (serializedUnknowns != null) {
         this.builder = parseUnknowns(serializedUnknowns);
       } else {
-        this.builder = ContactRecord.newBuilder();
+        this.builder = new ContactRecord.Builder();
       }
 
-      builder.setAci(aci.toString());
+      builder.aci(aci.toString());
     }
 
     public Builder setE164(String e164) {
-      builder.setE164(e164 == null ? "" : e164);
+      builder.e164(e164 == null ? "" : e164);
       return this;
     }
 
     public Builder setPni(PNI pni) {
-      builder.setPni(pni == null ? "" : pni.toStringWithoutPrefix());
+      builder.pni(pni == null ? "" : pni.toStringWithoutPrefix());
       return this;
     }
 
     public Builder setProfileGivenName(String givenName) {
-      builder.setGivenName(givenName == null ? "" : givenName);
+      builder.givenName(givenName == null ? "" : givenName);
       return this;
     }
 
     public Builder setProfileFamilyName(String familyName) {
-      builder.setFamilyName(familyName == null ? "" : familyName);
+      builder.familyName(familyName == null ? "" : familyName);
       return this;
     }
 
     public Builder setSystemGivenName(String givenName) {
-      builder.setSystemGivenName(givenName == null ? "" : givenName);
+      builder.systemGivenName(givenName == null ? "" : givenName);
       return this;
     }
 
     public Builder setSystemFamilyName(String familyName) {
-      builder.setSystemFamilyName(familyName == null ? "" : familyName);
+      builder.systemFamilyName(familyName == null ? "" : familyName);
       return this;
     }
 
     public Builder setSystemNickname(String nickname) {
-      builder.setSystemNickname(nickname == null ? "" : nickname);
+      builder.systemNickname(nickname == null ? "" : nickname);
       return this;
     }
 
     public Builder setProfileKey(byte[] profileKey) {
-      builder.setProfileKey(profileKey == null ? ByteString.EMPTY : ByteString.copyFrom(profileKey));
+      builder.profileKey(profileKey == null ? ByteString.EMPTY : ByteString.of(profileKey));
       return this;
     }
 
     public Builder setUsername(String username) {
-      builder.setUsername(username == null ? "" : username);
+      builder.username(username == null ? "" : username);
       return this;
     }
 
     public Builder setIdentityKey(byte[] identityKey) {
-      builder.setIdentityKey(identityKey == null ? ByteString.EMPTY : ByteString.copyFrom(identityKey));
+      builder.identityKey(identityKey == null ? ByteString.EMPTY : ByteString.of(identityKey));
       return this;
     }
 
     public Builder setIdentityState(IdentityState identityState) {
-      builder.setIdentityState(identityState == null ? IdentityState.DEFAULT : identityState);
+      builder.identityState(identityState == null ? IdentityState.DEFAULT : identityState);
       return this;
     }
 
     public Builder setBlocked(boolean blocked) {
-      builder.setBlocked(blocked);
+      builder.blocked(blocked);
       return this;
     }
 
     public Builder setProfileSharingEnabled(boolean profileSharingEnabled) {
-      builder.setWhitelisted(profileSharingEnabled);
+      builder.whitelisted(profileSharingEnabled);
       return this;
     }
 
     public Builder setArchived(boolean archived) {
-      builder.setArchived(archived);
+      builder.archived(archived);
       return this;
     }
 
     public Builder setForcedUnread(boolean forcedUnread) {
-      builder.setMarkedUnread(forcedUnread);
+      builder.markedUnread(forcedUnread);
       return this;
     }
 
     public Builder setMuteUntil(long muteUntil) {
-      builder.setMutedUntilTimestamp(muteUntil);
+      builder.mutedUntilTimestamp(muteUntil);
       return this;
     }
 
     public Builder setHideStory(boolean hideStory) {
-      builder.setHideStory(hideStory);
+      builder.hideStory(hideStory);
       return this;
     }
 
     public Builder setUnregisteredTimestamp(long timestamp) {
-      builder.setUnregisteredAtTimestamp(timestamp);
+      builder.unregisteredAtTimestamp(timestamp);
       return this;
     }
 
     public Builder setHidden(boolean hidden) {
-      builder.setHidden(hidden);
+      builder.hidden(hidden);
       return this;
     }
 
     private static ContactRecord.Builder parseUnknowns(byte[] serializedUnknowns) {
       try {
-        return ContactRecord.parseFrom(serializedUnknowns).toBuilder();
-      } catch (InvalidProtocolBufferException e) {
+        return ContactRecord.ADAPTER.decode(serializedUnknowns).newBuilder();
+      } catch (IOException e) {
         Log.w(TAG, "Failed to combine unknown fields!", e);
-        return ContactRecord.newBuilder();
+        return new ContactRecord.Builder();
       }
     }
 
