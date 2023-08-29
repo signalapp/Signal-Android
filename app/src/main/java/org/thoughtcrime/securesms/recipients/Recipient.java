@@ -58,8 +58,6 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -75,7 +73,6 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static org.thoughtcrime.securesms.database.RecipientTable.InsightsBannerTier;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class Recipient {
@@ -343,8 +340,9 @@ public class Recipient {
     RecipientTable db = SignalDatabase.recipients();
     RecipientId    id = null;
 
-    if (UuidUtil.isUuid(identifier)) {
-      ServiceId serviceId = ServiceId.parseOrThrow(identifier);
+    ServiceId serviceId = ServiceId.parseOrNull(identifier);
+
+    if (serviceId != null) {
       id = db.getOrInsertFromServiceId(serviceId);
     } else if (GroupId.isEncodedGroup(identifier)) {
       id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));

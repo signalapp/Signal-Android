@@ -87,8 +87,9 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
    */
   @AnyThread
   public static @NonNull RecipientId fromSidOrE164(@NonNull String identifier) {
-    if (UuidUtil.isUuid(identifier)) {
-      return from(ServiceId.parseOrThrow(identifier));
+    ServiceId serviceId = ServiceId.parseOrNull(identifier);
+    if (serviceId != null) {
+      return from(serviceId);
     } else {
       return from(null, identifier);
     }
