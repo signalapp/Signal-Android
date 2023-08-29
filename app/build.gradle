@@ -596,6 +596,7 @@ dependencies {
     testImplementation testLibs.robolectric.shadows.multidex
     testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation testLibs.conscrypt.openjdk.uber // Used by robolectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 
