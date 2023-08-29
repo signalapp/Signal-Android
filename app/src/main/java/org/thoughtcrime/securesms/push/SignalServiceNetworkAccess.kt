@@ -297,7 +297,7 @@ open class SignalServiceNetworkAccess(context: Context) {
       signalKeyBackupServiceUrls = kbsUrls,
       signalStorageUrls = storageUrls,
       signalCdsiUrls = cdsiUrls,
-      signalSvr2Urls = arrayOf(),
+      signalSvr2Urls = svr2Urls,
       networkInterceptors = interceptors,
       dns = Optional.of(DNS),
       signalProxy = Optional.empty(),
