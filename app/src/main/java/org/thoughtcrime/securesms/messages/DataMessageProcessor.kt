@@ -652,10 +652,12 @@ object DataMessageProcessor {
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     } finally {
-      ApplicationDependencies.getJobManager()
-        .startChain(PaymentTransactionCheckJob(uuid, queue))
-        .then(PaymentLedgerUpdateJob.updateLedger())
-        .enqueue()
+      SignalDatabase.runPostSuccessfulTransaction {
+        ApplicationDependencies.getJobManager()
+          .startChain(PaymentTransactionCheckJob(uuid, queue))
+          .then(PaymentLedgerUpdateJob.updateLedger())
+          .enqueue()
+      }
     }
 
     return null

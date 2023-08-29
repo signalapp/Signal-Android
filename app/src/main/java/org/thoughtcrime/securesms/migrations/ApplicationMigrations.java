@@ -137,9 +137,10 @@ public class ApplicationMigrations {
     static final int EMOJI_SEARCH_INDEX_CHECK      = 93;
     static final int IDENTITY_FIX                  = 94;
     static final int COPY_USERNAME_TO_SIGNAL_STORE = 95;
+    static final int RECHECK_PAYMENTS              = 96;
   }
 
-  public static final int CURRENT_VERSION = 95;
+  public static final int CURRENT_VERSION = 96;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -620,6 +621,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.COPY_USERNAME_TO_SIGNAL_STORE) {
       jobs.put(Version.COPY_USERNAME_TO_SIGNAL_STORE, new CopyUsernameToSignalStoreMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RECHECK_PAYMENTS) {
+      jobs.put(Version.RECHECK_PAYMENTS, new RecheckPaymentsMigrationJob());
     }
 
     return jobs;
