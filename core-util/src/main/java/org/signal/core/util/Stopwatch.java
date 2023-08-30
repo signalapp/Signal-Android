@@ -24,6 +24,10 @@ public class Stopwatch {
   }
 
   public void stop(@NonNull String tag) {
+    Log.d(tag, stopAndGetLogString(tag));
+  }
+
+  public String stopAndGetLogString(String tag) {
     StringBuilder out = new StringBuilder();
     out.append("[").append(title).append("] ");
 
@@ -43,8 +47,9 @@ public class Stopwatch {
       out.append("total: ").append(splits.get(splits.size() - 1).time - startTime);
     }
 
-    Log.d(tag, out.toString());
+    return out.toString();
   }
+
 
   private static class Split {
     final long   time;

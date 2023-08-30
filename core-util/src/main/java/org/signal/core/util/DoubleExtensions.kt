@@ -14,7 +14,7 @@ import kotlin.math.round
  * 1.123456f.roundedString(2) = 1.12
  * 1.123456f.roundedString(5) = 1.12346
  */
-fun Float.roundedString(places: Int): String {
+fun Double.roundedString(places: Int): String {
   val powerMultiplier = 10f.pow(places)
   return (round(this * powerMultiplier) / powerMultiplier).toString()
 }

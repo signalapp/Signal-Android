@@ -1047,7 +1047,7 @@ object DataMessageProcessor {
       val attachments: MutableList<Attachment> = mutableListOf()
       val mentions: MutableList<Mention> = mutableListOf()
 
-      quotedMessage = quotedMessage.withAttachments(context, SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id))
+      quotedMessage = quotedMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id))
 
       mentions.addAll(SignalDatabase.mentions.getMentionsForMessage(quotedMessage.id))
 

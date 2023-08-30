@@ -5285,7 +5285,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val previews = getLinkPreviews(cursor, attachments)
       val previewAttachments = previews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
 
-      val slideDeck = buildSlideDeck(context, attachments.filterNot { contactAttachments.contains(it) }.filterNot { previewAttachments.contains(it) })
+      val slideDeck = buildSlideDeck(attachments.filterNot { contactAttachments.contains(it) }.filterNot { previewAttachments.contains(it) })
 
       val quote = getQuote(cursor)
 
@@ -5437,7 +5437,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     companion object {
 
       @JvmStatic
-      fun buildSlideDeck(context: Context, attachments: List<DatabaseAttachment>): SlideDeck {
+      fun buildSlideDeck(attachments: List<DatabaseAttachment>): SlideDeck {
         val messageAttachments = attachments
           .filterNot { it.isQuote }
           .sortedWith(DisplayOrderComparator())

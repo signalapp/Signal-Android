@@ -45,7 +45,7 @@ public class AttachmentHelper {
                       List<DatabaseAttachment> attachments = messageIdToAttachments.get(record.getId());
 
                       if (Util.hasItems(attachments)) {
-                        return ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
+                        return ((MediaMmsMessageRecord) record).withAttachments(attachments);
                       }
                     }
 

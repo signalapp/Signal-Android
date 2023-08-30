@@ -87,7 +87,7 @@ object EditMessageProcessor {
 
     DataMessageProcessor.notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
-    targetMessage = targetMessage.withAttachments(context, SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
+    targetMessage = targetMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
 
     val insertResult: InsertResult? = if (isMediaMessage || targetMessage.quote != null || targetMessage.slideDeck.slides.isNotEmpty()) {
       handleEditMediaMessage(senderRecipient.id, groupId, envelope, metadata, message, targetMessage)

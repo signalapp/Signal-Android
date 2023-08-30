@@ -208,7 +208,7 @@ class DraftRepository(
     val quoteId: QuoteId = QuoteId.deserialize(context, serialized) ?: return null
     val messageRecord: MessageRecord = SignalDatabase.messages.getMessageFor(quoteId.id, quoteId.author)?.let {
       if (it is MediaMmsMessageRecord) {
-        it.withAttachments(context, SignalDatabase.attachments.getAttachmentsForMessage(it.id))
+        it.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(it.id))
       } else {
         it
       }

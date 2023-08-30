@@ -207,8 +207,6 @@ public class ConversationMessage {
 
       String formattedDate = MessageRecordUtil.isScheduled(messageRecord) ? DateUtils.getOnlyTimeString(context, Locale.getDefault(), ((MediaMmsMessageRecord) messageRecord).getScheduledDate())
                                                                           : DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), messageRecord.getTimestamp());
-
-
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
