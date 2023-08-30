@@ -119,7 +119,7 @@ object MessageDataFetcher {
       attachments = attachmentsResult.result,
       payments = paymentsResult.result,
       calls = callsResult.result,
-      timeLog = "mentions: ${mentionsResult.duration} is-quoted: ${hasBeenQuotedResult.duration} reactions: ${reactionsResult.duration} attachments: ${attachmentsResult.duration} payments: ${paymentsResult.duration} calls: ${callsResult.duration} >> cpuTime: ${cpuTimeMs.roundedString(2)} wallTime: ${wallTimeMs.roundedString(2)}"
+      timeLog = "mentions: ${mentionsResult.duration}, is-quoted: ${hasBeenQuotedResult.duration}, reactions: ${reactionsResult.duration}, attachments: ${attachmentsResult.duration}, payments: ${paymentsResult.duration}, calls: ${callsResult.duration} >> cpuTime: ${cpuTimeMs.roundedString(2)}, wallTime: ${wallTimeMs.roundedString(2)}"
     )
   }
 

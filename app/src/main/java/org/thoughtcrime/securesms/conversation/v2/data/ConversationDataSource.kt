@@ -94,7 +94,7 @@ class ConversationDataSource(
   }
 
   override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<ConversationElement> {
-    val stopwatch = Stopwatch("load($start, $length), thread $threadId")
+    val stopwatch = Stopwatch(title = "load($start, $length), thread $threadId", decimalPlaces = 2)
     var records: MutableList<MessageRecord> = ArrayList(length)
 
     MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong()))
@@ -150,7 +150,7 @@ class ConversationDataSource(
     }
 
     stopwatch.split("header")
-    val log = stopwatch.stopAndGetLogString(TAG)
+    val log = stopwatch.stopAndGetLogString()
     Log.d(TAG, "$log || ${extraData.timeLog}")
 
     return if (threadHeaders.isNotEmpty()) messages + threadHeaders else messages
@@ -166,7 +166,7 @@ class ConversationDataSource(
       return null
     }
 
-    val stopwatch = Stopwatch("load($key), thread $threadId")
+    val stopwatch = Stopwatch(title = "load($key), thread $threadId", decimalPlaces = 2)
     var record = SignalDatabase.messages.getMessageRecordOrNull(key.id)
 
     if ((record as? MediaMmsMessageRecord)?.parentStoryId?.isGroupReply() == true) {
@@ -201,7 +201,7 @@ class ConversationDataSource(
         ).toMappingModel()
       }
     } finally {
-      val log = stopwatch.stopAndGetLogString(TAG)
+      val log = stopwatch.stopAndGetLogString()
       Log.d(TAG, "$log || ${extraData?.timeLog}")
     }
   }
