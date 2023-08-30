@@ -124,6 +124,9 @@ public class VoiceNotePlaybackService extends MediaSessionService {
             sendViewedReceiptForCurrentWindowIndex();
           }
           break;
+        case Player.STATE_ENDED:
+          player.clearMediaItems();
+          break;
         default:
       }
     }
