@@ -11,11 +11,10 @@ import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.testutil.TestHelpers
 import java.nio.charset.Charset
-import java.util.Arrays
 
 class FastJobStorageTest {
   @Test
-  fun init_allStoredDataAvailable() {
+  fun `init - all stored data available`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -25,7 +24,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun init_removesCircularDependencies() {
+  fun `init - removes circular dependencies`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSetCircularDependency.FULL_SPECS))
     subject.init()
 
@@ -35,7 +34,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun insertJobs_writesToDatabase() {
+  fun `insertJobs - writes to database`() {
     val database = noopDatabase()
     val subject = FastJobStorage(database)
 
@@ -45,7 +44,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun insertJobs_memoryOnlyJob_doesNotWriteToDatabase() {
+  fun `insertJobs - memory-only job does not write to database`() {
     val database = noopDatabase()
     val subject = FastJobStorage(database)
 
@@ -55,7 +54,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun insertJobs_dataCanBeFound() {
+  fun `insertJobs - data can be found`() {
     val subject = FastJobStorage(noopDatabase())
     subject.insertJobs(DataSet1.FULL_SPECS)
     DataSet1.assertJobsMatch(subject.allJobSpecs)
@@ -64,7 +63,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun insertJobs_individualJobCanBeFound() {
+  fun `insertJobs - individual job can be found`() {
     val subject = FastJobStorage(noopDatabase())
     subject.insertJobs(DataSet1.FULL_SPECS)
 
@@ -73,7 +72,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun updateAllJobsToBePending_writesToDatabase() {
+  fun `updateAllJobsToBePending - writes to database`() {
     val database = noopDatabase()
     val subject = FastJobStorage(database)
     subject.updateAllJobsToBePending()
@@ -81,11 +80,11 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun updateAllJobsToBePending_allArePending() {
+  fun `updateAllJobsToBePending - all are pending`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", isRunning = true), emptyList(), emptyList())
 
-    val subject = FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)))
+    val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
     subject.updateAllJobsToBePending()
 
@@ -94,7 +93,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun updateJobs_writesToDatabase() {
+  fun `updateJobs - writes to database`() {
     val database = fixedDataDatabase(DataSet1.FULL_SPECS)
     val jobs = listOf(jobSpec(id = "id1", factoryKey = "f1"))
 
@@ -106,7 +105,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun updateJobs_memoryOnly_doesNotWriteToDatabase() {
+  fun `updateJobs - memory-only job does not write to database`() {
     val database = fixedDataDatabase(DataSetMemory.FULL_SPECS)
     val jobs = listOf(jobSpec(id = "id1", factoryKey = "f1"))
 
@@ -118,7 +117,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun updateJobs_updatesAllFields() {
+  fun `updateJobs - updates all fields`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1"), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), emptyList())
     val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f3"), emptyList(), emptyList())
@@ -128,7 +127,8 @@ class FastJobStorageTest {
       factoryKey = "g1",
       queueKey = "q1",
       createTime = 2,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 2,
       runAttempt = 2,
       maxAttempts = 2,
       lifespan = 2,
@@ -142,7 +142,8 @@ class FastJobStorageTest {
       factoryKey = "g2",
       queueKey = "q2",
       createTime = 3,
-      nextRunAttemptTime = 3,
+      lastRunAttemptTime = 3,
+      nextBackoffInterval = 3,
       runAttempt = 3,
       maxAttempts = 3,
       lifespan = 3,
@@ -162,31 +163,30 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun updateJobRunningState_writesToDatabase() {
+  fun `markJobAsRunning - writes to database`() {
     val database = fixedDataDatabase(DataSet1.FULL_SPECS)
 
     val subject = FastJobStorage(database)
     subject.init()
 
-    subject.updateJobRunningState(id = "id1", isRunning = true)
+    subject.markJobAsRunning(id = "id1", currentTime = 42)
 
-    Mockito.verify(database).updateJobRunningState("id1", true)
+    Mockito.verify(database).markJobAsRunning(id = "id1", currentTime = 42)
   }
 
   @Test
-  fun updateJobRunningState_stateUpdated() {
+  fun `markJobAsRunning - state updated`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.updateJobRunningState(id = DataSet1.JOB_1.id, isRunning = true)
-    subject.getJobSpec(DataSet1.JOB_1.id)!!.isRunning assertIs true
+    subject.markJobAsRunning(id = DataSet1.JOB_1.id, currentTime = 42)
 
-    subject.updateJobRunningState(id = DataSet1.JOB_1.id, isRunning = false)
-    subject.getJobSpec(DataSet1.JOB_1.id)!!.isRunning assertIs false
+    subject.getJobSpec(DataSet1.JOB_1.id)!!.isRunning assertIs true
+    subject.getJobSpec(DataSet1.JOB_1.id)!!.lastRunAttemptTime assertIs 42
   }
 
   @Test
-  fun updateJobAfterRetry_writesToDatabase() {
+  fun `updateJobAfterRetry - writes to database`() {
     val database = fixedDataDatabase(DataSet1.FULL_SPECS)
 
     val subject = FastJobStorage(database)
@@ -196,15 +196,15 @@ class FastJobStorageTest {
       id = "id1",
       isRunning = true,
       runAttempt = 1,
-      nextRunAttemptTime = 10,
+      nextBackoffInterval = 10,
       serializedData = "a".toByteArray()
     )
 
-    Mockito.verify(database).updateJobAfterRetry("id1", true, 1, 10, "a".toByteArray())
+    Mockito.verify(database).updateJobAfterRetry(id = "id1", isRunning = true, runAttempt = 1, nextBackoffInterval = 10, serializedData = "a".toByteArray())
   }
 
   @Test
-  fun updateJobAfterRetry_memoryOnly_doesNotWriteToDatabase() {
+  fun `updateJobAfterRetry - memory-only job does not write to database`() {
     val database = fixedDataDatabase(DataSetMemory.FULL_SPECS)
 
     val subject = FastJobStorage(database)
@@ -214,32 +214,38 @@ class FastJobStorageTest {
       id = "id1",
       isRunning = true,
       runAttempt = 1,
-      nextRunAttemptTime = 10,
+      nextBackoffInterval = 10,
       serializedData = "a".toByteArray()
     )
 
-    Mockito.verify(database, Mockito.times(0)).updateJobAfterRetry("id1", true, 1, 10, "a".toByteArray())
+    Mockito.verify(database, Mockito.times(0)).updateJobAfterRetry(id = "id1", isRunning = true, runAttempt = 1, nextBackoffInterval = 10, serializedData = "a".toByteArray())
   }
 
   @Test
-  fun updateJobAfterRetry_stateUpdated() {
+  fun `updateJobAfterRetry - state updated`() {
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
 
     val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.updateJobAfterRetry("1", false, 1, 10, "a".toByteArray())
+    subject.updateJobAfterRetry(
+      id = "1",
+      isRunning = false,
+      runAttempt = 1,
+      nextBackoffInterval = 10,
+      serializedData = "a".toByteArray()
+    )
 
     val job = subject.getJobSpec("1")
     check(job != null)
     job.isRunning assertIs false
     job.runAttempt assertIs 1
-    job.nextRunAttemptTime assertIs 10
+    job.nextBackoffInterval assertIs 10
     job.serializedData!!.toString(Charset.defaultCharset()) assertIs "a"
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenEarlierItemInQueueInRunning() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when earlier item in queue is running`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q"), emptyList(), emptyList())
 
@@ -250,7 +256,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenAllJobsAreRunning() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when all jobs are running`() {
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", isRunning = true), emptyList(), emptyList())
 
     val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec)))
@@ -260,17 +266,18 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenNextRunTimeIsAfterCurrentTime() {
-    val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", nextRunAttemptTime = 10), emptyList(), emptyList())
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when next run time is after current time`() {
+    val currentTime = 0L
+    val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", lastRunAttemptTime = 0, nextBackoffInterval = 10), emptyList(), emptyList())
 
     val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getPendingJobsWithNoDependenciesInCreatedOrder(0).size assertIs 0
+    subject.getPendingJobsWithNoDependenciesInCreatedOrder(currentTime).size assertIs 0
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenDependentOnAnotherJob() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - none when dependent on another job`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), listOf(DependencySpec("2", "1", false)))
 
@@ -281,7 +288,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_singleEligibleJob() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - single eligible job`() {
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q"), emptyList(), emptyList())
 
     val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec)))
@@ -291,7 +298,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_multipleEligibleJobs() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - multiple eligible jobs`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1"), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), emptyList())
 
@@ -302,7 +309,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_singleEligibleJobInMixedList() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - single eligible job in mixed list`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", isRunning = true), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2"), emptyList(), emptyList())
 
@@ -315,7 +322,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_firstItemInQueue() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - first item in queue`() {
     val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q"), emptyList(), emptyList())
     val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q"), emptyList(), emptyList())
 
@@ -328,7 +335,21 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_migrationJobTakesPrecedence() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - lastRunAttemptTime in the future runs right away`() {
+    val currentTime = 10L
+
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", lastRunAttemptTime = 100, nextBackoffInterval = 5), emptyList(), emptyList())
+
+    val subject = FastJobStorage(fixedDataDatabase(listOf(fullSpec1)))
+    subject.init()
+
+    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(currentTime)
+    jobs.size assertIs 1
+    jobs[0].id assertIs "1"
+  }
+
+  @Test
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - migration job takes precedence`() {
     val plainSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", createTime = 0), emptyList(), emptyList())
     val migrationSpec = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5), emptyList(), emptyList())
 
@@ -341,7 +362,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_runningMigrationBlocksNormalJobs() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - running migration blocks normal jobs`() {
     val plainSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", createTime = 0), emptyList(), emptyList())
     val migrationSpec = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5, isRunning = true), emptyList(), emptyList())
 
@@ -353,7 +374,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_runningMigrationBlocksLaterMigrationJobs() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - running migration blocks later migration jobs`() {
     val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0, isRunning = true), emptyList(), emptyList())
     val migrationSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5), emptyList(), emptyList())
 
@@ -365,7 +386,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_onlyReturnFirstEligibleMigrationJob() {
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - only return first eligible migration job`() {
     val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0), emptyList(), emptyList())
     val migrationSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5), emptyList(), emptyList())
 
@@ -378,19 +399,21 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getPendingJobsWithNoDependenciesInCreatedOrder_onlyMigrationJobWithAppropriateNextRunTime() {
-    val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0, nextRunAttemptTime = 999), emptyList(), emptyList())
-    val migrationSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5, nextRunAttemptTime = 0), emptyList(), emptyList())
+  fun `getPendingJobsWithNoDependenciesInCreatedOrder - migration job that isn't scheduled to run yet blocks later migration jobs`() {
+    val currentTime = 10L
+
+    val migrationSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 0, lastRunAttemptTime = 0, nextBackoffInterval = 999), emptyList(), emptyList())
+    val migrationSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY, createTime = 5, lastRunAttemptTime = 0, nextBackoffInterval = 0), emptyList(), emptyList())
 
     val subject = FastJobStorage(fixedDataDatabase(listOf(migrationSpec1, migrationSpec2)))
     subject.init()
 
-    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10)
+    val jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(currentTime)
     jobs.size assertIs 0
   }
 
   @Test
-  fun deleteJobs_writesToDatabase() {
+  fun `deleteJobs - writes to database`() {
     val database = fixedDataDatabase(DataSet1.FULL_SPECS)
     val ids: List<String> = listOf("id1", "id2")
 
@@ -403,7 +426,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun deleteJobs_memoryOnly_doesNotWriteToDatabase() {
+  fun `deleteJobs - memory-only job does not write to database`() {
     val database = fixedDataDatabase(DataSetMemory.FULL_SPECS)
     val ids = listOf("id1")
 
@@ -416,7 +439,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun deleteJobs_deletesAllRelevantPieces() {
+  fun `deleteJobs - deletes all relevant pieces`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -435,7 +458,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getDependencySpecsThatDependOnJob_startOfChain() {
+  fun `getDependencySpecsThatDependOnJob - start of chain`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -446,7 +469,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getDependencySpecsThatDependOnJob_midChain() {
+  fun `getDependencySpecsThatDependOnJob - mid-chain`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -456,7 +479,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getDependencySpecsThatDependOnJob_endOfChain() {
+  fun `getDependencySpecsThatDependOnJob - end of chain`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -465,7 +488,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getJobsInQueue_empty() {
+  fun `getJobsInQueue - empty`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -474,7 +497,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getJobsInQueue_singleJob() {
+  fun `getJobsInQueue - single job`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -484,7 +507,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getJobCountForFactory_general() {
+  fun `getJobCountForFactory - general`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -493,7 +516,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun getJobCountForFactoryAndQueue_general() {
+  fun `getJobCountForFactoryAndQueue - general`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -503,7 +526,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun areQueuesEmpty_allNonEmpty() {
+  fun `areQueuesEmpty - all non-empty`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -512,7 +535,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun areQueuesEmpty_mixedEmpty() {
+  fun `areQueuesEmpty - mixed empty`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -520,7 +543,7 @@ class FastJobStorageTest {
   }
 
   @Test
-  fun areQueuesEmpty_queueDoesNotExist() {
+  fun `areQueuesEmpty - queue does not exist`() {
     val subject = FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
@@ -549,7 +572,8 @@ class FastJobStorageTest {
     factoryKey: String,
     queueKey: String? = null,
     createTime: Long = 1,
-    nextRunAttemptTime: Long = 1,
+    lastRunAttemptTime: Long = 1,
+    nextBackoffInterval: Long = 0,
     runAttempt: Int = 1,
     maxAttempts: Int = 1,
     lifespan: Long = 1,
@@ -563,7 +587,8 @@ class FastJobStorageTest {
       factoryKey = factoryKey,
       queueKey = queueKey,
       createTime = createTime,
-      nextRunAttemptTime = nextRunAttemptTime,
+      lastRunAttemptTime = lastRunAttemptTime,
+      nextBackoffInterval = nextBackoffInterval,
       runAttempt = runAttempt,
       maxAttempts = maxAttempts,
       lifespan = lifespan,
@@ -580,7 +605,8 @@ class FastJobStorageTest {
       factoryKey = "f1",
       queueKey = "q1",
       createTime = 1,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,
@@ -594,7 +620,8 @@ class FastJobStorageTest {
       factoryKey = "f2",
       queueKey = "q2",
       createTime = 1,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,
@@ -608,7 +635,8 @@ class FastJobStorageTest {
       factoryKey = "f3",
       queueKey = "q3",
       createTime = 1,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,
@@ -654,7 +682,8 @@ class FastJobStorageTest {
       factoryKey = "f1",
       queueKey = "q1",
       createTime = 1,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,
@@ -674,7 +703,8 @@ class FastJobStorageTest {
       factoryKey = "f1",
       queueKey = "q1",
       createTime = 1,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,
@@ -688,7 +718,8 @@ class FastJobStorageTest {
       factoryKey = "f2",
       queueKey = "q1",
       createTime = 2,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,
@@ -702,7 +733,8 @@ class FastJobStorageTest {
       factoryKey = "f3",
       queueKey = "q3",
       createTime = 3,
-      nextRunAttemptTime = 2,
+      lastRunAttemptTime = 2,
+      nextBackoffInterval = 0,
       runAttempt = 3,
       maxAttempts = 4,
       lifespan = 5,

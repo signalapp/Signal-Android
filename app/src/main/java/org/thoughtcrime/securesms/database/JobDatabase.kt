@@ -53,7 +53,8 @@ class JobDatabase(
     const val FACTORY_KEY = "factory_key"
     const val QUEUE_KEY = "queue_key"
     const val CREATE_TIME = "create_time"
-    const val NEXT_RUN_ATTEMPT_TIME = "next_run_attempt_time"
+    const val LAST_RUN_ATTEMPT_TIME = "last_run_attempt_time"
+    const val NEXT_BACKOFF_INTERVAL = "next_backoff_interval"
     const val RUN_ATTEMPT = "run_attempt"
     const val MAX_ATTEMPTS = "max_attempts"
     const val LIFESPAN = "lifespan"
@@ -69,13 +70,14 @@ class JobDatabase(
           $FACTORY_KEY TEXT,
           $QUEUE_KEY TEXT,
           $CREATE_TIME INTEGER, 
-          $NEXT_RUN_ATTEMPT_TIME INTEGER, 
+          $LAST_RUN_ATTEMPT_TIME INTEGER, 
           $RUN_ATTEMPT INTEGER, 
           $MAX_ATTEMPTS INTEGER, 
           $LIFESPAN INTEGER, 
           $SERIALIZED_DATA TEXT, 
           $SERIALIZED_INPUT_DATA TEXT DEFAULT NULL, 
-          $IS_RUNNING INTEGER
+          $IS_RUNNING INTEGER,
+          $NEXT_BACKOFF_INTERVAL INTEGER
         )
       """.trimIndent()
   }
@@ -139,6 +141,12 @@ class JobDatabase(
 
   override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     Log.i(TAG, "onUpgrade($oldVersion, $newVersion)")
+
+    if (oldVersion < 2) {
+      db.execSQL("ALTER TABLE job_spec RENAME COLUMN next_run_attempt_time TO last_run_attempt_time")
+      db.execSQL("ALTER TABLE job_spec ADD COLUMN next_backoff_interval INTEGER")
+      db.execSQL("UPDATE job_spec SET last_run_attempt_time = 0")
+    }
   }
 
   override fun onOpen(db: SQLiteDatabase) {
@@ -178,22 +186,25 @@ class JobDatabase(
   }
 
   @Synchronized
-  fun updateJobRunningState(id: String, isRunning: Boolean) {
+  fun markJobAsRunning(id: String, currentTime: Long) {
     writableDatabase
       .update(Jobs.TABLE_NAME)
-      .values(Jobs.IS_RUNNING to if (isRunning) 1 else 0)
+      .values(
+        Jobs.IS_RUNNING to 1,
+        Jobs.LAST_RUN_ATTEMPT_TIME to currentTime
+      )
       .where("${Jobs.JOB_SPEC_ID} = ?", id)
       .run()
   }
 
   @Synchronized
-  fun updateJobAfterRetry(id: String, isRunning: Boolean, runAttempt: Int, nextRunAttemptTime: Long, serializedData: ByteArray?) {
+  fun updateJobAfterRetry(id: String, isRunning: Boolean, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
     writableDatabase
       .update(Jobs.TABLE_NAME)
       .values(
         Jobs.IS_RUNNING to if (isRunning) 1 else 0,
         Jobs.RUN_ATTEMPT to runAttempt,
-        Jobs.NEXT_RUN_ATTEMPT_TIME to nextRunAttemptTime,
+        Jobs.NEXT_BACKOFF_INTERVAL to nextBackoffInterval,
         Jobs.SERIALIZED_DATA to serializedData
       )
       .where("${Jobs.JOB_SPEC_ID} = ?", id)
@@ -224,7 +235,8 @@ class JobDatabase(
               Jobs.FACTORY_KEY to job.factoryKey,
               Jobs.QUEUE_KEY to job.queueKey,
               Jobs.CREATE_TIME to job.createTime,
-              Jobs.NEXT_RUN_ATTEMPT_TIME to job.nextRunAttemptTime,
+              Jobs.LAST_RUN_ATTEMPT_TIME to job.lastRunAttemptTime,
+              Jobs.NEXT_BACKOFF_INTERVAL to job.nextBackoffInterval,
               Jobs.RUN_ATTEMPT to job.runAttempt,
               Jobs.MAX_ATTEMPTS to job.maxAttempts,
               Jobs.LIFESPAN to job.lifespan,
@@ -296,7 +308,8 @@ class JobDatabase(
         Jobs.FACTORY_KEY to job.factoryKey,
         Jobs.QUEUE_KEY to job.queueKey,
         Jobs.CREATE_TIME to job.createTime,
-        Jobs.NEXT_RUN_ATTEMPT_TIME to job.nextRunAttemptTime,
+        Jobs.LAST_RUN_ATTEMPT_TIME to job.lastRunAttemptTime,
+        Jobs.NEXT_BACKOFF_INTERVAL to job.nextBackoffInterval,
         Jobs.RUN_ATTEMPT to job.runAttempt,
         Jobs.MAX_ATTEMPTS to job.maxAttempts,
         Jobs.LIFESPAN to job.lifespan,
@@ -343,7 +356,8 @@ class JobDatabase(
       factoryKey = cursor.requireNonNullString(Jobs.FACTORY_KEY),
       queueKey = cursor.requireString(Jobs.QUEUE_KEY),
       createTime = cursor.requireLong(Jobs.CREATE_TIME),
-      nextRunAttemptTime = cursor.requireLong(Jobs.NEXT_RUN_ATTEMPT_TIME),
+      lastRunAttemptTime = cursor.requireLong(Jobs.LAST_RUN_ATTEMPT_TIME),
+      nextBackoffInterval = cursor.requireLong(Jobs.NEXT_BACKOFF_INTERVAL),
       runAttempt = cursor.requireInt(Jobs.RUN_ATTEMPT),
       maxAttempts = cursor.requireInt(Jobs.MAX_ATTEMPTS),
       lifespan = cursor.requireLong(Jobs.LIFESPAN),
@@ -383,7 +397,7 @@ class JobDatabase(
 
   companion object {
     private val TAG = Log.tag(JobDatabase::class.java)
-    private const val DATABASE_VERSION = 1
+    private const val DATABASE_VERSION = 2
     private const val DATABASE_NAME = "signal-jobmanager.db"
 
     @SuppressLint("StaticFieldLeak")
@@ -411,7 +425,8 @@ class JobDatabase(
           values.put(Jobs.FACTORY_KEY, CursorUtil.requireString(cursor, "factory_key"))
           values.put(Jobs.QUEUE_KEY, CursorUtil.requireString(cursor, "queue_key"))
           values.put(Jobs.CREATE_TIME, CursorUtil.requireLong(cursor, "create_time"))
-          values.put(Jobs.NEXT_RUN_ATTEMPT_TIME, CursorUtil.requireLong(cursor, "next_run_attempt_time"))
+          values.put(Jobs.LAST_RUN_ATTEMPT_TIME, 0)
+          values.put(Jobs.NEXT_BACKOFF_INTERVAL, 0)
           values.put(Jobs.RUN_ATTEMPT, CursorUtil.requireInt(cursor, "run_attempt"))
           values.put(Jobs.MAX_ATTEMPTS, CursorUtil.requireInt(cursor, "max_attempts"))
           values.put(Jobs.LIFESPAN, CursorUtil.requireLong(cursor, "lifespan"))
