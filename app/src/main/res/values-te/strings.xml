@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">సందేశాన్ని తెరవడంలో విఫలమైంది</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో కుడివైపు స్వైప్ చేయవచ్చు</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో ఎడమ వైపుకు స్వైప్ చేయవచ్చు</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">అవుట్‌గోయింగ్ ఒకసారి-వీక్షించండి మీడియా ఫైల్స్ పంపబడిన తర్వాత అవి స్వయంచాలకంగా తొలగించబడతాయి</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">అవుట్‌గోయింగ్ ఒకసారి-వీక్షించండి మీడియా ఫైల్స్ పంపబడిన తర్వాత అవి స్వయంచాలకంగా తొలగించబడతాయి</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ఈ సందేశాన్ని మీరు ఇదివరకే వీక్షించారు</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ఈ చాట్‌లో మీరు మీ కోసం గమనికలను జోడించవచ్చు. ఒకవేళ మీ ఖాతాలో ఏదైనా లింక్ చేయబడిన పరికరాలు ఉంటే, కొత్త గమనికలు సమకాలీకరించబడతాయి.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d సమూహ సభ్యులకు అదే పేరు ఉంది.</string>

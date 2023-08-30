@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">Gagal untuk membuka mesej</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Anda boleh meleret ke kanan pada mana-mana mesej untuk balas pantas</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Anda boleh meleret ke kiri pada mana-mana mesej untuk balas pantas</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fail media sekali tontonan akan terhapus secara automatik setelah ia dihantar</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Fail media sekali tontonan akan terhapus secara automatik setelah ia dihantar</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Anda telah melihat mesej ini</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda boleh menambah nota untuk diri sendiri dalam sembang ini. Sekiranya akaun anda mempunyai peranti yang dipautkan, nota baharu akan disegerakkan.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Ahli kumpulan %1$d mempunyai nama yang sama.</string>

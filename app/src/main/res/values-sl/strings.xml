@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Za hiter odgovor na sporočilo podrsajte na desno</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Za hiter odgovor na sporočilo podrsajte na levo</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Poslane medijske datoteke za enkraten ogled so avtomatično odstranjene s seznama</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Poslane medijske datoteke za enkraten ogled so avtomatično odstranjene s seznama</string>
     <string name="ConversationFragment_you_already_viewed_this_message">To sporočilo ste že videli</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Klepetu je mogoče dodajati opombe, ki so vidne samo vam.\nČe je vaš račun povezan z drugimi napravami, se bodo te opombe sinhronizirale.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d članov_ic skupine ima enako ime.</string>

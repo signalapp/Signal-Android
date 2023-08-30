@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">ئۇچۇرنى ئاچالمىدى</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا ئوڭ تەرەپكە سىيرىسىڭىز بولىدۇ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا سول تەرەپكە سىيرىسىڭىز بولىدۇ</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">بىر قېتىملا كۆرۈنىدىغان ۋاسىتە ھۆججەتلىرى ئەۋەتىلگەندىن كېيىن ئاپتوماتىك ئۆچۈرۈلىدۇ</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">بىر قېتىملا كۆرۈنىدىغان ۋاسىتە ھۆججەتلىرى ئەۋەتىلگەندىن كېيىن ئاپتوماتىك ئۆچۈرۈلىدۇ</string>
     <string name="ConversationFragment_you_already_viewed_this_message">سىز بۇ ئۇچۇرنى كۆرۈپ بولغان</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">بۇ پاراڭدا ئۆزىڭىزگە خاتىرە قوشالايسىز\n. ئەگەر ھېساباتىڭىزدا ئۇلانغان ئۈسكۈنىلەر بولسا، يېڭى خاتىرىلەر ماسقەدەملىنىدۇ.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گۇرۇپپا ئەزالىرىنىڭمۇ ئوخشاش نامى بار.</string>

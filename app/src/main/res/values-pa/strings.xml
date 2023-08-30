@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">ਸੁਨੇਹਾ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">ਤੁਰੰਤ ਜਵਾਬ ਦੇਣ ਲਈ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ ’ਤੇ ਸੱਜੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰ ਸਕਦੇ ਹੋ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ਤੁਰੰਤ ਜਵਾਬ ਦੇਣ ਲਈ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ ’ਤੇ ਖੱਬੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰ ਸਕਦੇ ਹੋ</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ਇੱਕ-ਵਾਰ ਦੇਖੀਆਂ ਜਾ ਸਕਣ ਵਾਲੀਆਂ ਮੀਡੀਆ ਫ਼ਾਈਲਾਂ ਨੂੰ ਭੇਜੇ ਜਾਣ ਤੋਂ ਬਾਅਦ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ਇੱਕ-ਵਾਰ ਦੇਖੀਆਂ ਜਾ ਸਕਣ ਵਾਲੀਆਂ ਮੀਡੀਆ ਫ਼ਾਈਲਾਂ ਨੂੰ ਭੇਜੇ ਜਾਣ ਤੋਂ ਬਾਅਦ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਇਹ ਸੁਨੇਹਾ ਦੇਖ ਲਿਆ ਹੈ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ਤੁਸੀਂ ਇਸ ਚੈਟ ਵਿੱਚ ਖੁਦ ਲਈ ਨੋਟ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਦੇ ਨਾਲ ਹੋਰ ਡਿਵਾਈਸਾਂ ਨੂੰ ਲਿੰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ, ਤਾਂ ਨਵੇਂ ਨੋਟਸ ਉਹਨਾਂ ਨਾਲ ਵੀ ਸਿੰਕ ਕੀਤੇ ਜਾਣਗੇ।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">ਗਰੁੱਪ ਦੇ %1$d ਮੈਂਬਰਾਂ ਦਾ ਇੱਕੋ ਨਾਮ ਹੈ।</string>

@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Не вдалося відкрити повідомлення</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Ви можете потягнути будь-яке повідомлення праворуч для швидкої відповіді</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Ви можете потягнути будь-яке повідомлення ліворуч для швидкої відповіді</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Вихідні одноразові медіа-файли автоматично видаляються після того, як були відправлені</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Вихідні одноразові медіа-файли автоматично видаляються після того, як були відправлені</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ви вже переглянули це повідомлення</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">У цьому чаті ви можете додавати нотатки для себе. Якщо ваш акаунт має зв\'язані пристрої, нові нотатки буде синхронізовано.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d учасників групи мають однакові імена.</string>

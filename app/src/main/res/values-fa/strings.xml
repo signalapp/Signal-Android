@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت راست بکشید</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت چپ بکشید</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ٔ یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">فایل‌های رسانه‌ٔ یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
     <string name="ConversationFragment_you_already_viewed_this_message">قبلاً این پیام را مشاهده کرده‌اید</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">می‌توانید برای خودتان در این گفتگو یادداشت اضافه کنید. اگر حساب شما هرگونه دستگاه پیوندداده‌شده داشته باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسانی دارند.</string>

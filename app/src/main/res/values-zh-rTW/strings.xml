@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">開啟訊息失敗</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">你可以在任何訊息上向右滑動以快速回覆</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">你可以在任何訊息上向左滑動以快速回覆</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">傳送出去的一次性多媒體檔案被傳送出去之後會自動消除</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">傳送出去的一次性多媒體檔案被傳送出去之後會自動消除</string>
     <string name="ConversationFragment_you_already_viewed_this_message">你已經看過這個訊息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">你可以在此聊天中為自己新增註釋。 如果你的帳戶有任何已連結的裝置，則新的筆記將被同步。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d個群組成員有相同的名稱。</string>

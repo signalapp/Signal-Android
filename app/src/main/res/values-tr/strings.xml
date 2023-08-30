@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sağa kaydırabilirsiniz</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sola kaydırabilirsiniz</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Gönderilen bir kez görüntülenebilir içerik dosyaları gönderim tamamlandıktan sonra kendiliğinden silinir</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Gönderilen bir kez görüntülenebilir içerik dosyaları gönderim tamamlandıktan sonra kendiliğinden silinir</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Bu mesajı zaten görüntüledin</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu sohbette kendine notlar ekleyebilirsin. Eğer hesabına bağlı cihaz bulunuyorsa yeni notlar senkronize edilir.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grup üyesi aynı ada sahip.</string>

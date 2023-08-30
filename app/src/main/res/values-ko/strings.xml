@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">메시지 열기 실패</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">메시지를 오른쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">메시지를 왼쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">한 번 볼 수 있는 미디어 파일은 전송 후 자동으로 됩니다.</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">한 번 볼 수 있는 미디어 파일은 전송 후 자동으로 됩니다.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">이 메시지를 이미 읽었습니다.</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">이 대화에는 나를 위한 메모를 남길 수 있습니다.\n내 계정에 연결된 기기 또한 새 메모가 같이 동기화됩니다.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 이름이 같습니다.</string>

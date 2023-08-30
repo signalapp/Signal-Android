@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Порука није успешно учитана</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Повуците поруку ка десно за брз одговор</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Повуците поруку ка лево за брз одговор</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Одлазни једнократни медијски садржаји се аутоматски уклањају након слања.</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Одлазни једнократни медијски садржаји се аутоматски уклањају након слања.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Већ сте видели ову поруку</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете додати личне белешке у ово ћаскање. Ако на налогу имате повезане уређаје, нове белешке ће бити синхронизоване.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d чланова групе имају исти назив.</string>

@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">Gagal membuka pesan</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Anda dapat geser ke kanan pada pesan manapun untuk membalasnya dengan cepat</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Anda dapat geser ke kiri pada pesan manapun untuk membalasnya dengan cepat</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">File media sekali lihat akan langsung terhapus setelah terkirim</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">File media sekali lihat akan langsung terhapus setelah terkirim</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Anda telah melihat pesan ini</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda dapat menambahkan catatan untuk diri sendiri dalam obrolan ini.\nJika akun Anda terhubung ke perangkat lain, catatan baru akan disinkronkan.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d anggota grup memiliki nama yang sama.</string>

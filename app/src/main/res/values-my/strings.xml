@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">စာတိုကိုဖွင့်လို့မရပါ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">သင်သည်လျှင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ညာဘက်ပွတ်ဆွဲနိုင်ပါတယ်</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">သင်သည်လျင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ဘယ်ဘက်အပေါ်ကိုပွတ်ဆွဲနိုင်ပါတယ်</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">အထွက်ကြည့်ရှုခြင်း - မီဒီယာဖိုင်များကို ပေးပို့ပြီးသည်နှင့်တစ်ပြိုင်နက် အလိုအလျောက် ဖယ်ရှားသွားမည်</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">အထွက်ကြည့်ရှုခြင်း - မီဒီယာဖိုင်များကို ပေးပို့ပြီးသည်နှင့်တစ်ပြိုင်နက် အလိုအလျောက် ဖယ်ရှားသွားမည်</string>
     <string name="ConversationFragment_you_already_viewed_this_message">သင် ဤမက်ဆေ့ခ်ျကို ကြည့်ပြီးပါပြီ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤချက်(တ်)တွင် သင်ကိုယ်တိုင်အတွက် မှတ်စုများ ထည့်နိုင်ပါသည်။\nသင့်အကောင့်နှင့် ချိတ်ထားသည့် စက်များရှိပါက မှတ်စုအသစ်များကို ချိန်ကိုက်ပါမည်။</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>

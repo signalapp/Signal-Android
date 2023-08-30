@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nachricht konnte nicht geöffnet werden</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach rechts wischen</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach links wischen</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Ausgehende, einmalig anzeigbare Mediendateien werden nach dem Senden automatisch entfernt</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Ausgehende, einmalig anzeigbare Mediendateien werden nach dem Senden automatisch entfernt</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du hast diese Nachricht schon angezeigt</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kannst in diesem Chat an dich selbst gerichtete Notizen hinzufügen. Falls dein Nutzerkonto gekoppelte Geräte besitzt, werden neue Notizen synchronisiert.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen.</string>

@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">संदेश उघडण्यात अयशस्वी</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर उजवीकडे स्वाइप करू शकता</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या व्हीव-वन्स मिडिया फाईल स्वयंचलितपणे काढून टाकल्या जातील</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">पाठविल्यानंतर बाहेर जाणाऱ्या व्हीव-वन्स मिडिया फाईल स्वयंचलितपणे काढून टाकल्या जातील</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">या चॅटमध्ये आपण स्वतःसाठी टिपा जोडू शकता.\n जर आपल्या खात्यामध्ये लिंक केलेली डिव्हाइसेस असतील, तर नवीन टिपा संकलित केल्या जातील.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dगट सदस्यांचे समान नाव आहे.</string>

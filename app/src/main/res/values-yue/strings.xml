@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">開唔到訊息</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">您可以將任何訊息滑向右去快速回覆</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">您可以將任何訊息滑向左去快速回覆</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">自動銷毀媒體檔案會喺送出之後自動移除</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">自動銷毀媒體檔案會喺送出之後自動移除</string>
     <string name="ConversationFragment_you_already_viewed_this_message">你已經睇咗呢個訊息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">你可以喺聊天入面新增一啲俾自己嘅筆記。如果你嘅帳戶連結咗其他裝置，新嘅筆記會自動同步。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 位成員撞名。</string>

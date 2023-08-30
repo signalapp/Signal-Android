@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">אתה יכול להחליק ימינה על הודעה כלשהי כדי להשיב בזריזות</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">אתה יכול להחליק שמאלה על הודעה כלשהי כדי להשיב בזריזות</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">קבצי מדיה יוצאים לצפייה חד־פעמית יוסרו באופן אוטומטי לאחר השליחה</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">קבצי מדיה יוצאים לצפייה חד־פעמית יוסרו באופן אוטומטי לאחר השליחה</string>
     <string name="ConversationFragment_you_already_viewed_this_message">צפית כבר בהודעה זו</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">אפשר להוסיף הערות לעצמך בצ\'אט זה.\nאם מקושרים לחשבון שלך מכשירים כלשהם, הערות חדשות יסונכרנו.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">אל %1$d חברי קבוצה יש אותו שם.</string>

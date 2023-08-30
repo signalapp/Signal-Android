@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į dešinę</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Išsiunčiami vienkartinės peržiūros medijos failai, juos išsiuntus, yra automatiškai pašalinami</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Išsiunčiami vienkartinės peržiūros medijos failai, juos išsiuntus, yra automatiškai pašalinami</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Tu jau peržiūrėjai šią žinutę</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje gali pridėti sau priminimų. Jei yra su paskyra susietų įrenginių, nauji priminimai bus sinchronizuoti.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>

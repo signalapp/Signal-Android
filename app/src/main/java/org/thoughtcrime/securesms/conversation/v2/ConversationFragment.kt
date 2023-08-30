@@ -2517,7 +2517,7 @@ class ConversationFragment :
 
       if (!ViewOnceUtil.isViewable(messageRecord)) {
         val toastText = if (messageRecord.isOutgoing) {
-          R.string.ConversationFragment_outgoing_view_once_media_files_are_automatically_removed
+          R.string.ConversationFragment_view_once_media_is_deleted_after_sending
         } else {
           R.string.ConversationFragment_you_already_viewed_this_message
         }

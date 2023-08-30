@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">Билдирүү ачылган жок</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Тез жооп берүү үчүн билдирүүнү оңго сүрүп коюңуз</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Тез жооп берүү үчүн билдирүүнү солго сүрүп коюңуз</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Бир жолу көрүлүүчү чыгуучу медиафайлдар жөнөтүлөрү менен дароо өчүп калат</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Бир жолу көрүлүүчү чыгуучу медиафайлдар жөнөтүлөрү менен дароо өчүп калат</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Бул билдирүүнү карагансыз</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>

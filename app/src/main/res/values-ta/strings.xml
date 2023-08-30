@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">விரைவாக பதிலளிக்க எந்த செய்தியிலும் வலதுபுறமாக ஸ்வைப் செய்யலாம்</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ஏற்கனவே இந்த மெசேஜைப் பார்த்தீர்கள்</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த சாட்டில் உங்களுக்கான குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட டிவைஸ்கள் ஏதேனும் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உண்டு.</string>

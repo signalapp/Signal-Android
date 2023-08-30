@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Otvaranje poruke nije uspjelo</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Za brzi odgovor, prijeđite prstom udesno po bilo kojoj poruci</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Za brzi odgovor, prijeđite prstom ulijevo po bilo kojoj poruci</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odlazni medijski zapisi koji su vidljivi samo jednom automatski se uklanjaju nakon što su poslani</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Odlazni medijski zapisi koji su vidljivi samo jednom automatski se uklanjaju nakon što su poslani</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Već ste pregledali ovu poruku</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">U ovom razgovoru možete dodati osobne bilješke. Ako vaš račun ima povezane uređaje, nove će se bilješke sinkronizirati.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d člana/ova grupe imaju isto ime.</string>

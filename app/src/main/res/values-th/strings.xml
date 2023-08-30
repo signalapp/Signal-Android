@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">การเปิดข้อความล้มเหลว</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">คุณสามารถปัดด้านขวาเพื่อตอบข้อความอย่างรวดเร็ว</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวขาออกจะถูกลบอัตโนมัติหลังจากส่งแล้ว</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวขาออกจะถูกลบอัตโนมัติหลังจากส่งแล้ว</string>
     <string name="ConversationFragment_you_already_viewed_this_message">คุณเปิดดูข้อความนี้แล้ว</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกถึงตัวเองได้ในแชทนี้\nและหากบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ก็จะถูกซิงค์ด้วยเช่นกัน</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>

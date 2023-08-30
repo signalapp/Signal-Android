@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Neuspjelo otvaranje poruke</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Na svaku poruku možete brzo odgovoriti tako što ćete je povući udesno</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Na svaku poruku možete brzo odgovoriti tako što ćete je povući ulijevo</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Jednokratne multimedijske datoteke automatski će se izbrisati nakon što su poslane</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Jednokratne multimedijske datoteke automatski će se izbrisati nakon što su poslane</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Već ste vidjeli ovu poruku</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">U ovom chatu možete dodati bilješke za sebe. Ako Signal koristite na više uređaja, ove će bilješke biti sinhronizovane na njima.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d člana grupe imaju isto ime.</string>

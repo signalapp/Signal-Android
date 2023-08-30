@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Możesz przesunąć wiadomość w prawo, by szybko odpowiedzieć.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Możesz przesunąć wiadomość w lewo, by szybko odpowiedzieć.</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Wychodzące wiadomości jednorazowe są automatycznie usuwane po wysłaniu</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Wychodzące wiadomości jednorazowe są automatycznie usuwane po wysłaniu</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Już widziałeś(-aś) tę wiadomość</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tym czacie możesz dodawać swoje notatki. Jeśli z Twoim kontem są połączone jakieś urządzenia, nowe notatki zostaną zsynchronizowane.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d członków grupy ma to samo imię.</string>

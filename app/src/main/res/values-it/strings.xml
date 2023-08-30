@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Apertura messaggio fallita</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puoi scorrere verso destra su qualsiasi messaggio per rispondere rapidamente</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puoi scorrere verso sinistra su qualsiasi messaggio per rispondere rapidamente</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">I file multimediali in uscita visualizzabili una volta sono automaticamente rimossi dopo l\'invio</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">I file multimediali in uscita visualizzabili una volta sono automaticamente rimossi dopo l\'invio</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Hai già visualizzato questo messaggio</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">In questa chat, puoi aggiungere delle note per te. Se il tuo account ha dei dispositivi collegati, le nuove note verranno sincronizzate.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membri del gruppo hanno lo stesso nome.</string>

@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Неуспешно отваряне на съобщение</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Може да приплъзнете надясно, за да отговорите бързо</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Може да приплъзнете наляво, на което и да е съобщение, за да отговорите бързо</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Изпратените еднократни медийни файлове биват автоматично изтрити след изпращане</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Изпратените еднократни медийни файлове биват автоматично изтрити след изпращане</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Вече сте прегледали това съобщение</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">В този чат можете да добавяте бележки за себе си.\nАко акаунтът ви има свързани устройства, новите бележки ще бъдат синхронизирани.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d члена на групата имат същото име.</string>

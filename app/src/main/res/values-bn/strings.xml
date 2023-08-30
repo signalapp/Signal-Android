@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">বার্তা দেখাতে ব্যর্থ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">দ্রুত উত্তর দেওয়ার জন্য আপনি যে কোনও বার্তায় ডানদিকে সোয়াইপ করতে পারেন</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">দ্রুত উত্তর দেওয়ার জন্য আপনি কোনও বার্তায় বাম দিকে সোয়াইপ করতে পারেন</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">শুধু-একবার-দেখার-যোগ্য বহির্গামী মিডিয়া ফাইলগুলো প্রেরণের পরে সেগুলো স্বয়ংক্রিয়ভাবে সরিয়ে ফেলা হবে</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">শুধু-একবার-দেখার-যোগ্য বহির্গামী মিডিয়া ফাইলগুলো প্রেরণের পরে সেগুলো স্বয়ংক্রিয়ভাবে সরিয়ে ফেলা হবে</string>
     <string name="ConversationFragment_you_already_viewed_this_message">আপনি ইতোমধ্যে এই ম্যাসেজটি দেখেছেন</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">আপনি এই চ্যাটটিতে আপনার নিজের জন্য টীকা যোগ করতে পারবেন।\nআপনার অ্যাকাউন্টের সাথে সংযুক্ত কোনো ডিভাইস থাকলে, নতুন টীকাগুলো সিঙ্ক করা হবে।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">গ্রুপের %1$d জনের একই নাম আছে।</string>

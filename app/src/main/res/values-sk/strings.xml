@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nepodarilo sa otvoriť správu</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Pre rýchlu odpoveď môžete na akejkoľvek správe prejsť prstom doprava</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pre rýchlu odpoveď môžete na akejkoľvek správe prejsť prstom doľava</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchádzajúce mediálne súbory na jedno zobrazenie sa po odoslaní automaticky odstránia</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Odchádzajúce mediálne súbory na jedno zobrazenie sa po odoslaní automaticky odstránia</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Túto správu ste si už prečítali</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">V tomto čete si môžete pridávať poznámky.\nAk máte vo svojom účte nejaké prepojené zariadenia, nové poznámky sa budú synchronizovať.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d členovia skupiny majú rovnaké meno.</string>

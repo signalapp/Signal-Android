@@ -470,7 +470,7 @@
     <string name="ConversationFragment_failed_to_open_message">Neizdevās atvērt ziņu</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Variet vilkt pa labi, lai ātri atbildētu uz jebkuru ziņu</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Variet vilkt pa kreisi, lai ātri atbildētu uz jebkuru ziņu</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Izejošie vienreiz-skatāmie multivides faili pēc nosūtīšanas tiek automātiski dzēsti</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Izejošie vienreiz-skatāmie multivides faili pēc nosūtīšanas tiek automātiski dzēsti</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau skatījāt šo ziņu</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šajā sarunā varat pievienot personiskās piezīmes. Ja jūsu kontam ir saistītas ierīces, jaunās piezīmes tiks sinhronizētas.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupas dalībniekiem ir vienāds vārds.</string>

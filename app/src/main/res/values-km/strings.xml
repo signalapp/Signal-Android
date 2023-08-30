@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">បរាជ័យក្នុងការបើកសារ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">អ្នកអាចអូសទៅស្តាំលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">អ្នកអាចអូសទៅឆ្វេងលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ឯកសារមេឌៀមើលបានតែម្តងដែលផ្ញើចេញទៅ នឹងត្រូវលុបចោលដោយស្វ័យប្រវត្តិបន្ទាប់ពីបានផ្ញើចេញ</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ឯកសារមេឌៀមើលបានតែម្តងដែលផ្ញើចេញទៅ នឹងត្រូវលុបចោលដោយស្វ័យប្រវត្តិបន្ទាប់ពីបានផ្ញើចេញ</string>
     <string name="ConversationFragment_you_already_viewed_this_message">អ្នកបានបើកមើលសារនេះរួចហើយ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">អ្នកអាចកត់ត្រាសម្រាប់ខ្លួនឯងនៅក្នុងការជជែកនេះ។ បើគណនីរបស់អ្នកបានភ្ជាប់ទៅឧបករណ៍ណាមួយ កំណត់សម្គាល់ថ្មីៗនឹងត្រូវបានធ្វើសមកាលកម្ម។</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d សមាជិកក្រុមមានឈ្មោះដូចគ្នា។</string>

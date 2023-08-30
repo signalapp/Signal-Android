@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">打开消息失败</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">右滑任何消息可快速回复</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">左滑任何消息可快速回复</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">一次性媒体文件在发送之后将自动删除</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">一次性媒体文件在发送之后将自动删除</string>
     <string name="ConversationFragment_you_already_viewed_this_message">您已查看该消息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">您可以在此聊天中添加备忘。如果您的账户关联了其他设备，新的备忘将会同步到其他设备上。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d 位群组成员的名字相同。</string>
