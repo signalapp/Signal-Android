@@ -5194,7 +5194,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         readReceiptCount = 0
       }
 
-      val slideDeck = SlideDeck(context, MmsNotificationAttachment(status, messageSize))
+      val slideDeck = SlideDeck(MmsNotificationAttachment(status, messageSize))
       val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(mailbox)) {
         try {
           GiftBadge.parseFrom(Base64.decode(body))
@@ -5389,7 +5389,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
       val attachments = attachments.getAttachments(cursor)
       val quoteAttachments: List<Attachment> = attachments.filter { it.isQuote }
-      val quoteDeck = SlideDeck(context, quoteAttachments)
+      val quoteDeck = SlideDeck(quoteAttachments)
 
       return if (quoteId > 0 && quoteAuthor > 0) {
         if (quoteText != null && (quoteMentions.isNotEmpty() || bodyRanges != null)) {
@@ -5442,7 +5442,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           .filterNot { it.isQuote }
           .sortedWith(DisplayOrderComparator())
 
-        return SlideDeck(context, messageAttachments)
+        return SlideDeck(messageAttachments)
       }
     }
   }

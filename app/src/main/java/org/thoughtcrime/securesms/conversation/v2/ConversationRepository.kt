@@ -508,7 +508,7 @@ class ConversationRepository(
       val slideDeck = SlideDeck()
 
       if (contact.avatarAttachment != null) {
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, contact.avatarAttachment))
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(contact.avatarAttachment))
       }
 
       slideDeck to body
@@ -517,7 +517,7 @@ class ConversationRepository(
       val slideDeck = SlideDeck()
 
       linkPreview.thumbnail.ifPresent {
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, it))
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(it))
       }
 
       slideDeck to conversationMessage.getDisplayBody(context)
@@ -531,7 +531,7 @@ class ConversationRepository(
       if (messageRecord.isViewOnceMessage()) {
         val attachment = TombstoneAttachment(MediaUtil.VIEW_ONCE, true)
         slideDeck = SlideDeck()
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, attachment))
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(attachment))
       }
 
       slideDeck to conversationMessage.getDisplayBody(context)

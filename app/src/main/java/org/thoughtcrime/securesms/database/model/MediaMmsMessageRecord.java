@@ -309,6 +309,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
     List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(Attachment::isQuote).collect(Collectors.toList());
 
-    return quote.withAttachment(new SlideDeck(context, quoteAttachments));
+    return quote.withAttachment(new SlideDeck(quoteAttachments));
   }
 }
