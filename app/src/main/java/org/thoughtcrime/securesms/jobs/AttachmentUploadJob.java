@@ -125,8 +125,8 @@ public final class AttachmentUploadJob extends BaseJob {
       Log.d(TAG, "Forcing utilization of V2");
       resumableUploadSpec = null;
     } else if (inputData.hasString(ResumableUploadSpecJob.KEY_RESUME_SPEC)) {
-      Log.d(TAG, "Using attachments V3");
       resumableUploadSpec = ResumableUploadSpec.deserialize(inputData.getString(ResumableUploadSpecJob.KEY_RESUME_SPEC));
+      Log.d(TAG, "Using attachments V4 and CDN" + resumableUploadSpec.getCdnNumber());
     } else {
       Log.d(TAG, "Using attachments V2");
       resumableUploadSpec = null;

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
-public final class AttachmentV3UploadAttributes {
+public final class AttachmentV4UploadAttributes {
     @JsonProperty
     private int cdn;
 
@@ -17,7 +17,7 @@ public final class AttachmentV3UploadAttributes {
     @JsonProperty
     private String signedUploadLocation;
 
-    public AttachmentV3UploadAttributes() {
+    public AttachmentV4UploadAttributes() {
     }
 
     public int getCdn() {

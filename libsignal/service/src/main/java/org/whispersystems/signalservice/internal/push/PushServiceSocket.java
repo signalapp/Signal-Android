@@ -56,8 +56,8 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
@@ -240,7 +240,7 @@ public class PushServiceSocket {
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
   private static final String ATTACHMENT_V2_PATH        = "/v2/attachments/form/upload";
-  private static final String ATTACHMENT_V3_PATH        = "/v3/attachments/form/upload";
+  private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
 
   private static final String PAYMENTS_AUTH_PATH        = "/v1/payments/auth";
 
@@ -1371,12 +1371,12 @@ public class PushServiceSocket {
     }
   }
 
-  public AttachmentV3UploadAttributes getAttachmentV3UploadAttributes()
+  public AttachmentV4UploadAttributes getAttachmentV4UploadAttributes()
       throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
   {
-    String response = makeServiceRequest(ATTACHMENT_V3_PATH, "GET", null);
+    String response = makeServiceRequest(ATTACHMENT_V4_PATH, "GET", null);
     try {
-      return JsonUtil.fromJson(response, AttachmentV3UploadAttributes.class);
+      return JsonUtil.fromJson(response, AttachmentV4UploadAttributes.class);
     } catch (IOException e) {
       Log.w(TAG, e);
       throw new MalformedResponseException("Unable to parse entity", e);
@@ -1411,13 +1411,14 @@ public class PushServiceSocket {
     return new Pair<>(id, digest);
   }
 
-  public ResumableUploadSpec getResumableUploadSpec(AttachmentV3UploadAttributes uploadAttributes) throws IOException {
+  public ResumableUploadSpec getResumableUploadSpec(AttachmentV4UploadAttributes uploadAttributes) throws IOException {
     return new ResumableUploadSpec(Util.getSecretBytes(64),
                                    Util.getSecretBytes(16),
                                    uploadAttributes.getKey(),
                                    uploadAttributes.getCdn(),
-                                   getResumableUploadUrl(uploadAttributes.getSignedUploadLocation(), uploadAttributes.getHeaders()),
-                                   System.currentTimeMillis() + CDN2_RESUMABLE_LINK_LIFETIME_MILLIS);
+                                   getResumableUploadUrl(uploadAttributes.getCdn(), uploadAttributes.getSignedUploadLocation(), uploadAttributes.getHeaders()),
+                                   System.currentTimeMillis() + CDN2_RESUMABLE_LINK_LIFETIME_MILLIS,
+                                   uploadAttributes.getHeaders());
   }
 
   public AttachmentDigest uploadAttachment(PushAttachmentData attachment) throws IOException {
@@ -1426,13 +1427,24 @@ public class PushServiceSocket {
       throw new ResumeLocationInvalidException();
     }
 
-    return uploadToCdn2(attachment.getResumableUploadSpec().getResumeLocation(),
-                        attachment.getData(),
-                        "application/octet-stream",
-                        attachment.getDataSize(),
-                        attachment.getOutputStreamFactory(),
-                        attachment.getListener(),
-                        attachment.getCancelationSignal());
+    if (attachment.getResumableUploadSpec().getCdnNumber() == 2) {
+      return uploadToCdn2(attachment.getResumableUploadSpec().getResumeLocation(),
+                          attachment.getData(),
+                          "application/octet-stream",
+                          attachment.getDataSize(),
+                          attachment.getOutputStreamFactory(),
+                          attachment.getListener(),
+                          attachment.getCancelationSignal());
+    } else {
+      return uploadToCdn3(attachment.getResumableUploadSpec().getResumeLocation(),
+                          attachment.getData(),
+                          "application/offset+octet-stream",
+                          attachment.getDataSize(),
+                          attachment.getOutputStreamFactory(),
+                          attachment.getListener(),
+                          attachment.getCancelationSignal(),
+                          attachment.getResumableUploadSpec().getHeaders());
+    }
   }
 
   private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
@@ -1567,13 +1579,12 @@ public class PushServiceSocket {
     }
   }
 
-  private String getResumableUploadUrl(String signedUrl, Map<String, String> headers) throws IOException {
-    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(2), random);
+  private String getResumableUploadUrl(int cdn, String signedUrl, Map<String, String> headers) throws IOException {
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(cdn), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
-                                                        .eventListener(new LoggingOkhttpEventListener())
                                                         .build();
 
     Request.Builder request = new Request.Builder().url(buildConfiguredUrl(connectionHolder, signedUrl))
@@ -1590,7 +1601,15 @@ public class PushServiceSocket {
     }
 
     request.addHeader("Content-Length", "0");
-    request.addHeader("Content-Type", "application/octet-stream");
+
+    if (cdn == 2) {
+      request.addHeader("Content-Type", "application/octet-stream");
+    } else if (cdn == 3) {
+      request.addHeader("Upload-Defer-Length", "1")
+             .addHeader("Tus-Resumable", "1.0.0");
+    } else {
+      throw new AssertionError("Unknown CDN version: " + cdn);
+    }
 
     Call call = okHttpClient.newCall(request.build());
 
@@ -1623,7 +1642,7 @@ public class PushServiceSocket {
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
 
-    ResumeInfo           resumeInfo = getResumeInfo(resumableUrl, length);
+    ResumeInfo           resumeInfo = getResumeInfoCdn2(resumableUrl, length);
     DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, resumeInfo.contentStart);
 
     if (resumeInfo.contentStart == length) {
@@ -1662,7 +1681,74 @@ public class PushServiceSocket {
     }
   }
 
-  private ResumeInfo getResumeInfo(String resumableUrl, long contentLength) throws IOException {
+  private AttachmentDigest uploadToCdn3(String resumableUrl,
+                                        InputStream data,
+                                        String contentType,
+                                        long length,
+                                        OutputStreamFactory outputStreamFactory,
+                                        ProgressListener progressListener,
+                                        CancelationSignal cancelationSignal,
+                                        Map<String, String> headers)
+      throws IOException
+  {
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(3), random);
+    OkHttpClient     okHttpClient     = connectionHolder.getClient()
+                                                        .newBuilder()
+                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .build();
+
+    ResumeInfo           resumeInfo = getResumeInfoCdn3(resumableUrl, headers);
+    DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, resumeInfo.contentStart);
+
+    if (resumeInfo.contentStart == length) {
+      Log.w(TAG, "Resume start point == content length");
+      try (NowhereBufferedSink buffer = new NowhereBufferedSink()) {
+        file.writeTo(buffer);
+      }
+      return file.getAttachmentDigest();
+    } else if (resumeInfo.contentStart != 0) {
+      Log.w(TAG, "Resuming previous attachment upload");
+    }
+
+    Request.Builder request = new Request.Builder().url(buildConfiguredUrl(connectionHolder, resumableUrl))
+                                                   .patch(file)
+                                                   .addHeader("Upload-Offset", String.valueOf(resumeInfo.contentStart))
+                                                   .addHeader("Upload-Length", String.valueOf(length))
+                                                   .addHeader("Tus-Resumable", "1.0.0");
+
+    for (Map.Entry<String, String> entry : headers.entrySet()) {
+      request.addHeader(entry.getKey(), entry.getValue());
+    }
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.header("host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try (Response response = call.execute()) {
+      if (response.isSuccessful()) {
+        return file.getAttachmentDigest();
+      } else {
+        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+      }
+    } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
+      throw e;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+  }
+
+  private ResumeInfo getResumeInfoCdn2(String resumableUrl, long contentLength) throws IOException {
     ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(2), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
@@ -1717,6 +1803,55 @@ public class PushServiceSocket {
     }
 
     return new ResumeInfo(contentRange, offset);
+  }
+
+  private ResumeInfo getResumeInfoCdn3(String resumableUrl, Map<String, String> headers) throws IOException {
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(3), random);
+    OkHttpClient     okHttpClient     = connectionHolder.getClient()
+                                                        .newBuilder()
+                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .build();
+
+    final long   offset;
+
+    Request.Builder request = new Request.Builder().url(buildConfiguredUrl(connectionHolder, resumableUrl))
+                                                   .head()
+                                                   .addHeader("Tus-Resumable", "1.0.0");
+
+    for (Map.Entry<String, String> entry : headers.entrySet()) {
+      request.addHeader(entry.getKey(), entry.getValue());
+    }
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.header("host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try (Response response = call.execute()) {
+      if (response.isSuccessful()) {
+        offset = Long.parseLong(response.header("Upload-Offset"));
+      } else if (response.code() >= 400 || response.code() < 500) {
+        throw new ResumeLocationInvalidException("Response: " + response);
+      } else {
+        throw new NonSuccessfulResumableUploadResponseCodeException(response.code(), "Response: " + response);
+      }
+    } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
+      throw e;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+
+    return new ResumeInfo(null, offset);
   }
 
   private static HttpUrl buildConfiguredUrl(ConnectionHolder connectionHolder, String url) throws IOException {
