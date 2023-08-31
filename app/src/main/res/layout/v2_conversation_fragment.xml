@@ -223,13 +223,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub,attachment_editor,conversation_disabled_input,scheduled_messages_stub,scheduled_messages,conversation_search_bottom_bar" />
+        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub,conversation_disabled_input,scheduled_messages_stub,scheduled_messages,conversation_search_bottom_bar" />
 
     <ViewStub
         android:id="@+id/attachment_editor_stub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inflatedId="@+id/attachment_editor"
+        android:inflatedId="@+id/attachment_editor_stub"
         android:layout="@layout/conversation_activity_attachment_editor_stub"
         app:layout_constraintBottom_toTopOf="@+id/conversation_input_panel"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
@@ -239,11 +239,13 @@
         android:id="@+id/scheduled_messages_stub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:inflatedId="@+id/scheduled_messages"
         android:layout="@layout/conversation_activity_scheduled_messages_stub"
-        app:layout_constraintBottom_toTopOf="@+id/conversation_input_panel"
+        app:layout_constraintBottom_toTopOf="@+id/attachment_editor_stub"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
-        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_goneMarginBottom="0dp" />
 
     <include
         android:id="@+id/conversation_input_panel"
