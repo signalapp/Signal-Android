@@ -189,6 +189,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     presentFooterExpiry()
     presentAlert()
     presentSender()
+    presentSenderNameColor()
     presentReactions()
 
     bodyBubbleDrawable.setChatColors(
