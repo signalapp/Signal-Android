@@ -164,7 +164,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     var hasProcessedSupportedPayload = false
     if (ConversationAdapterBridge.PAYLOAD_TIMESTAMP in payload) {
-      presentDate(shape)
+      presentDate()
       hasProcessedSupportedPayload = true
     }
 

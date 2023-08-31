@@ -114,6 +114,7 @@ public final class FeatureFlags {
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
+  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -179,7 +180,8 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
       USERNAMES,
-      INSTANT_VIDEO_PLAYBACK
+      INSTANT_VIDEO_PLAYBACK,
+      CONVERSATION_ITEM_V2_TEXT
   );
 
   @VisibleForTesting
@@ -637,6 +639,15 @@ public final class FeatureFlags {
    */
   public static boolean instantVideoPlayback() {
     return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
+  }
+
+  /**
+   * Note: this setting is currently
+   *
+   * @return Whether to use TextOnly V2 Conversation Items.
+   */
+  public static boolean useTextOnlyConversationItemV2() {
+    return getBoolean(CONVERSATION_ITEM_V2_TEXT, false);
   }
 
   public static String promptForDelayedNotificationLogs() {

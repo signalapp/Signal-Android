@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.HtmlUtil
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
@@ -119,7 +120,7 @@ class ConversationAdapterV2(
       }
     }
 
-    if (SignalStore.internalValues().useConversationItemV2()) {
+    if (FeatureFlags.useTextOnlyConversationItemV2()) {
       registerFactory(OutgoingTextOnly::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_outgoing, parent, false)
         V2ConversationItemTextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
