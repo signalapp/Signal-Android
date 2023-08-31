@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 
@@ -87,10 +89,16 @@ public class SignalStorageManifest {
     List<ManifestRecord.Identifier> ids = new ArrayList<>(storageIds.size());
 
     for (StorageId id : storageIds) {
-      ids.add(new ManifestRecord.Identifier.Builder()
-                                           .type(ManifestRecord.Identifier.Type.Companion.fromValue(id.getType()))
-                                           .raw(ByteString.of(id.getRaw()))
-                                           .build());
+      ManifestRecord.Identifier.Type type = ManifestRecord.Identifier.Type.Companion.fromValue(id.getType());
+      if (type != null) {
+        ids.add(new ManifestRecord.Identifier.Builder()
+                                             .type(type)
+                                             .raw(ByteString.of(id.getRaw()))
+                                             .build());
+      } else {
+        ByteString unknownEnum = ProtoUtil.writeUnknownEnumValue(StorageRecordProtoUtil.STORAGE_ID_TYPE_TAG, id.getType());
+        ids.add(new ManifestRecord.Identifier(ByteString.of(id.getRaw()), ManifestRecord.Identifier.Type.UNKNOWN, unknownEnum));
+      }
     }
 
     ManifestRecord manifestRecord = new ManifestRecord.Builder()

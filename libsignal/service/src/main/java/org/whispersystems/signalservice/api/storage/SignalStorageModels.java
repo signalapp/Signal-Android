@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.storage;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageItem;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
@@ -24,7 +25,10 @@ public final class SignalStorageModels {
     List<StorageId> ids            = new ArrayList<>(manifestRecord.identifiers.size());
 
     for (ManifestRecord.Identifier id : manifestRecord.identifiers) {
-      ids.add(StorageId.forType(id.raw.toByteArray(), id.type.getValue()));
+      int typeValue = (id.type != ManifestRecord.Identifier.Type.UNKNOWN) ? id.type.getValue()
+                                                                          : ProtoUtil.getUnknownEnumValue(id, StorageRecordProtoUtil.STORAGE_ID_TYPE_TAG);
+
+      ids.add(StorageId.forType(id.raw.toByteArray(), typeValue));
     }
 
     return new SignalStorageManifest(manifestRecord.version, manifestRecord.sourceDevice, ids);
