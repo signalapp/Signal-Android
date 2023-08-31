@@ -21,7 +21,7 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/quote_author"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -30,6 +30,7 @@
         android:maxLines="1"
         android:textAppearance="@style/Signal.Text.LabelLarge"
         android:textColor="@color/core_black"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/quote_attachment_name_stub"
         app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
         app:layout_constraintHorizontal_bias="0"
@@ -37,7 +38,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintWidth_default="wrap"
         tools:text="Peter Parker" />
 
     <ViewStub
@@ -57,7 +57,7 @@
 
     <TextView
         android:id="@+id/media_type"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -70,7 +70,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toBottomOf="@id/quote_attachment_name_stub"
-        app:layout_constraintWidth_default="wrap"
         tools:text="Photo"
         tools:visibility="visible" />
 
@@ -92,7 +91,6 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toBottomOf="@id/media_type"
-        app:layout_constraintWidth_default="wrap"
         tools:text="With great power comes great responsibility."
         tools:visibility="visible" />
 

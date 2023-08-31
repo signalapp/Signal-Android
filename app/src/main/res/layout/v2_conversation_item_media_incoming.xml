@@ -55,7 +55,7 @@
     <!-- Body -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/conversation_item_body_wrapper"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="48dp"
@@ -66,14 +66,13 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/contact_photo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="wrap"
         app:layout_goneMarginStart="16dp"
         tools:background="@color/black">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/group_message_sender"
             style="@style/TextAppearance.Signal.Subtitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="4sp"
@@ -84,30 +83,50 @@
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:textColor="@color/signal_text_primary"
             android:textStyle="bold"
-            app:layout_constraintBaseline_toTopOf="@id/conversation_item_thumbnail_stub"
+            app:layout_constraintBottom_toTopOf="@id/conversation_item_content_spacer"
             app:layout_constraintEnd_toEndOf="@id/conversation_item_body"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="+14152222222"
             tools:visibility="visible" />
+
+        <Space
+            android:id="@+id/conversation_item_content_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/message_bubble_top_padding"
+            app:layout_constraintBottom_toTopOf="@id/conversation_item_quote_stub"
+            app:layout_constraintTop_toBottomOf="@id/group_message_sender" />
+
+        <ViewStub
+            android:id="@+id/conversation_item_quote_stub"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:inflatedId="@id/conversation_item_quote_stub"
+            android:layout="@layout/v2_conversation_item_quote_stub"
+            app:layout_constraintBottom_toTopOf="@id/conversation_item_thumbnail_stub"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/conversation_item_content_spacer"
+            app:layout_constraintWidth_default="spread"
+            app:layout_goneMarginTop="0dp" />
 
         <!-- Media content goes here -->
         <ViewStub
             android:id="@+id/conversation_item_thumbnail_stub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:inflatedId="@id/conversation_item_thumbnail_stub"
             android:layout="@layout/v2_conversation_item_thumbnail_stub"
             app:layout_constraintBottom_toTopOf="@id/conversation_item_body"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/group_message_sender"
-            app:layout_goneMarginTop="0dp" />
+            app:layout_constraintTop_toBottomOf="@id/conversation_item_quote_stub" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="@dimen/message_bubble_top_padding"
@@ -126,7 +145,6 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/conversation_item_thumbnail_stub"
-            app:layout_constraintWidth_default="wrap"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Testy test test test" />

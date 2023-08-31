@@ -30,7 +30,7 @@
     <!-- Body -->
     <FrameLayout
         android:id="@+id/conversation_item_body_wrapper"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         app:cardElevation="0dp"
@@ -39,7 +39,6 @@
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="wrap"
         app:layout_goneMarginEnd="16dp"
         tools:background="@color/black">
 

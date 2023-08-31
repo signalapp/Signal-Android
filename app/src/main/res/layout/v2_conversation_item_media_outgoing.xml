@@ -30,7 +30,7 @@
     <!-- Body -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/conversation_item_body_wrapper"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         app:layout_constrainedWidth="true"
@@ -38,25 +38,46 @@
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="wrap"
         app:layout_goneMarginEnd="16dp"
         tools:background="@color/black">
+
+        <android.widget.Space
+            android:id="@+id/conversation_item_content_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/message_bubble_top_padding"
+            app:layout_constraintBottom_toTopOf="@id/conversation_item_quote_stub"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ViewStub
+            android:id="@+id/conversation_item_quote_stub"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:inflatedId="@id/conversation_item_quote_stub"
+            android:layout="@layout/v2_conversation_item_quote_stub"
+            app:layout_constraintBottom_toTopOf="@id/conversation_item_thumbnail_stub"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/conversation_item_content_spacer"
+            app:layout_constraintWidth_default="spread" />
 
         <!-- Media content goes here -->
         <ViewStub
             android:id="@+id/conversation_item_thumbnail_stub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inflatedId="@id/conversation_item_thumbnail_stub"
             android:layout="@layout/v2_conversation_item_thumbnail_stub"
             app:layout_constraintBottom_toTopOf="@id/conversation_item_body"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/conversation_item_quote_stub"
             app:layout_goneMarginTop="0dp" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="@dimen/message_bubble_top_padding"
@@ -75,7 +96,6 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/conversation_item_thumbnail_stub"
-            app:layout_constraintWidth_default="wrap"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Testy test test test" />

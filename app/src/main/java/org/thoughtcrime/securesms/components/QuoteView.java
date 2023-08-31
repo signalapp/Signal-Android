@@ -246,11 +246,6 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
   public void onRecipientChanged(@NonNull Recipient recipient) {
     setQuoteAuthor(recipient);
   }
-
-  public @NonNull Projection getProjection(@NonNull ViewGroup parent) {
-    return Projection.relativeToParent(parent, this, getCorners());
-  }
-
   public @NonNull Projection.Corners getCorners() {
     return new Projection.Corners(cornerMask.getRadii());
   }

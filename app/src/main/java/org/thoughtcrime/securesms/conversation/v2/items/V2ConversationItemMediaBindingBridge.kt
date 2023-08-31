@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.widget.ImageView
+import android.widget.Space
+import org.thoughtcrime.securesms.components.QuoteView
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaOutgoingBinding
 import org.thoughtcrime.securesms.util.views.Stub
@@ -18,7 +20,9 @@ import org.thoughtcrime.securesms.util.views.Stub
  */
 data class V2ConversationItemMediaBindingBridge(
   val textBridge: V2ConversationItemTextOnlyBindingBridge,
-  val thumbnailStub: Stub<ImageView>
+  val thumbnailStub: Stub<ImageView>,
+  val quoteStub: Stub<QuoteView>,
+  val bodyContentSpacer: Space
 )
 
 /**
@@ -45,7 +49,9 @@ fun V2ConversationItemMediaIncomingBinding.bridge(): V2ConversationItemMediaBind
 
   return V2ConversationItemMediaBindingBridge(
     textBridge = textBridge,
-    thumbnailStub = Stub(conversationItemThumbnailStub)
+    thumbnailStub = Stub(conversationItemThumbnailStub),
+    quoteStub = Stub(conversationItemQuoteStub),
+    bodyContentSpacer = conversationItemContentSpacer
   )
 }
 
@@ -73,6 +79,8 @@ fun V2ConversationItemMediaOutgoingBinding.bridge(): V2ConversationItemMediaBind
 
   return V2ConversationItemMediaBindingBridge(
     textBridge = textBridge,
-    thumbnailStub = Stub(conversationItemThumbnailStub)
+    thumbnailStub = Stub(conversationItemThumbnailStub),
+    quoteStub = Stub(conversationItemQuoteStub),
+    bodyContentSpacer = conversationItemContentSpacer
   )
 }

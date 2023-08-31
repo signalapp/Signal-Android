@@ -100,6 +100,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private val bodyBubbleDrawable = ChatColorsDrawable()
   private val footerDrawable = ChatColorsDrawable()
 
+  protected lateinit var shape: V2ConversationItemShape.MessageShape
+
   init {
     binding.root.addOnMeasureListener(footerDelegate)
     binding.root.onDispatchTouchEventListener = dispatchTouchEventListener
@@ -152,7 +154,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     check(model is ConversationMessageElement)
     conversationMessage = model.conversationMessage
 
-    val shape = shapeDelegate.setMessageShape(
+    shape = shapeDelegate.setMessageShape(
       isLtr = itemView.layoutDirection == View.LAYOUT_DIRECTION_LTR,
       currentMessage = conversationMessage.messageRecord,
       isGroupThread = conversationMessage.threadRecipient.isGroup,
@@ -160,10 +162,10 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     )
 
     presentBody()
-    presentDate(shape)
-    presentDeliveryStatus(shape)
-    presentFooterBackground(shape)
-    presentFooterExpiry(shape)
+    presentDate()
+    presentDeliveryStatus()
+    presentFooterBackground()
+    presentFooterExpiry()
     presentAlert()
     presentSender()
     presentReactions()
@@ -204,7 +206,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       Projection.relativeToParent(
         coordinateRoot,
         binding.conversationItemBodyWrapper,
-        Projection.Corners.NONE
+        shapeDelegate.corners
       ).translateX(binding.conversationItemBodyWrapper.translationX).translateY(root.translationY)
     )
 
@@ -397,7 +399,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     return conversationContext.displayMode == ConversationItemDisplayMode.CONDENSED && conversationContext.getPreviousMessage(bindingAdapterPosition) == null
   }
 
-  private fun presentFooterExpiry(shape: V2ConversationItemShape.MessageShape) {
+  private fun presentFooterExpiry() {
     if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
       binding.conversationItemFooterExpiry.stopAnimation()
       binding.conversationItemFooterExpiry.visible = false
@@ -434,14 +436,27 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     if (conversationMessage.threadRecipient.isGroup) {
       val sender = conversationMessage.messageRecord.fromRecipient
-      binding.senderName.visible = true
-      binding.senderPhoto.visible = true
-      binding.senderBadge.visible = true
+      binding.senderName.visible = shape.isStartingShape
+
+      val photoVisibility = if (shape.isEndingShape) {
+        View.VISIBLE
+      } else {
+        View.INVISIBLE
+      }
+
+      binding.senderPhoto.visibility = photoVisibility
+      binding.senderBadge.visibility = photoVisibility
 
       binding.senderName.text = sender.getDisplayName(context)
       binding.senderName.setTextColor(conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender))
       binding.senderPhoto.setAvatar(conversationContext.glideRequests, sender, false)
       binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.glideRequests)
+      binding.senderPhoto.setOnClickListener {
+        conversationContext.clickListener.onGroupMemberClicked(
+          conversationMessage.messageRecord.fromRecipient.id,
+          conversationMessage.threadRecipient.requireGroupId()
+        )
+      }
     } else {
       binding.senderName.visible = false
       binding.senderPhoto.visible = false
@@ -484,7 +499,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
   }
 
-  private fun presentFooterBackground(shape: V2ConversationItemShape.MessageShape) {
+  private fun presentFooterBackground() {
     if (!binding.conversationItemBody.isJumbomoji ||
       !conversationContext.hasWallpaper() ||
       shape == V2ConversationItemShape.MessageShape.MIDDLE ||
@@ -505,7 +520,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     )
   }
 
-  private fun presentDate(shape: V2ConversationItemShape.MessageShape) {
+  private fun presentDate() {
     if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
       binding.conversationItemFooterDate.visible = false
       return
@@ -539,7 +554,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
   }
 
-  private fun presentDeliveryStatus(shape: V2ConversationItemShape.MessageShape) {
+  private fun presentDeliveryStatus() {
     val deliveryStatus = binding.conversationItemDeliveryStatus ?: return
 
     if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
