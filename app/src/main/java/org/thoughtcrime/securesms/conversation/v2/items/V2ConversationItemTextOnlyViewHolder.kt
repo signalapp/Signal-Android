@@ -27,6 +27,7 @@ import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.BodyBubbleLayoutTransition
+import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -160,6 +161,26 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       isGroupThread = conversationMessage.threadRecipient.isGroup,
       adapterPosition = bindingAdapterPosition
     )
+
+    var hasProcessedSupportedPayload = false
+    if (ConversationAdapterBridge.PAYLOAD_TIMESTAMP in payload) {
+      presentDate(shape)
+      hasProcessedSupportedPayload = true
+    }
+
+    if (ConversationAdapterBridge.PAYLOAD_NAME_COLORS in payload) {
+      presentSenderNameColor()
+      hasProcessedSupportedPayload = true
+    }
+
+    if (V2Payload.SEARCH_QUERY_UPDATED in payload) {
+      presentBody()
+      hasProcessedSupportedPayload = true
+    }
+
+    if (hasProcessedSupportedPayload) {
+      return
+    }
 
     presentBody()
     presentDate()
@@ -448,7 +469,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.senderBadge.visibility = photoVisibility
 
       binding.senderName.text = sender.getDisplayName(context)
-      binding.senderName.setTextColor(conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender))
       binding.senderPhoto.setAvatar(conversationContext.glideRequests, sender, false)
       binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.glideRequests)
       binding.senderPhoto.setOnClickListener {
@@ -462,6 +482,15 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.senderPhoto.visible = false
       binding.senderBadge.visible = false
     }
+  }
+
+  private fun presentSenderNameColor() {
+    if (binding.senderName == null || !conversationMessage.threadRecipient.isGroup) {
+      return
+    }
+
+    val sender = conversationMessage.messageRecord.fromRecipient
+    binding.senderName.setTextColor(conversationContext.getColorizer().getIncomingGroupSenderColor(context, sender))
   }
 
   private fun presentAlert() {

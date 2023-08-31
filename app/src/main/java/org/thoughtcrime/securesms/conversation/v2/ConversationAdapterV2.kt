@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationContext
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemMediaViewHolder
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemTextOnlyViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.V2Payload
 import org.thoughtcrime.securesms.conversation.v2.items.bridge
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
@@ -78,7 +79,7 @@ class ConversationAdapterV2(
   override val selectedItems: Set<MultiselectPart>
     get() = _selected.toSet()
 
-  override var searchQuery: String? = null
+  override var searchQuery: String = ""
   private var inlineContent: ConversationMessage? = null
 
   private var recordToPulse: ConversationMessage? = null
@@ -195,9 +196,13 @@ class ConversationAdapterV2(
     return getConversationMessage(adapterPosition + 1)?.messageRecord
   }
 
-  fun updateSearchQuery(searchQuery: String?) {
+  fun updateSearchQuery(searchQuery: String) {
+    val oldQuery = this.searchQuery
     this.searchQuery = searchQuery
-    notifyItemRangeChanged(0, itemCount)
+
+    if (oldQuery != this.searchQuery) {
+      notifyItemRangeChanged(0, itemCount, V2Payload.SEARCH_QUERY_UPDATED)
+    }
   }
 
   fun getLastVisibleConversationMessage(position: Int): ConversationMessage? {
@@ -230,7 +235,7 @@ class ConversationAdapterV2(
   fun playInlineContent(conversationMessage: ConversationMessage?) {
     if (this.inlineContent !== conversationMessage) {
       this.inlineContent = conversationMessage
-      notifyItemRangeChanged(0, itemCount)
+      notifyItemRangeChanged(0, itemCount, V2Payload.PLAY_INLINE_CONTENT)
     }
   }
 
@@ -270,7 +275,7 @@ class ConversationAdapterV2(
     return if (this.hasWallpaper != hasWallpaper) {
       Log.d(TAG, "Resetting adapter due to wallpaper change.")
       this.hasWallpaper = hasWallpaper
-      notifyItemRangeChanged(0, itemCount)
+      notifyItemRangeChanged(0, itemCount, V2Payload.WALLPAPER)
       true
     } else {
       false
@@ -282,7 +287,7 @@ class ConversationAdapterV2(
     this.isMessageRequestAccepted = isMessageRequestAccepted
 
     if (oldState != isMessageRequestAccepted) {
-      notifyItemRangeChanged(0, itemCount)
+      notifyItemRangeChanged(0, itemCount, V2Payload.MESSAGE_REQUEST_STATE)
     }
   }
 

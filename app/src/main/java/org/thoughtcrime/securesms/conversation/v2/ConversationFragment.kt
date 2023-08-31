@@ -1035,7 +1035,7 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick { viewModel.pagingController.onDataInvalidated() }
+    val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {

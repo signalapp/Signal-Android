@@ -47,6 +47,12 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
 
   override fun bind(model: Model) {
     conversationMessage = (model as ConversationMessageElement).conversationMessage
+
+    if (payload.isNotEmpty()) {
+      super.bind(model)
+      return
+    }
+
     presentThumbnail()
     super.bind(model)
     presentQuote()
