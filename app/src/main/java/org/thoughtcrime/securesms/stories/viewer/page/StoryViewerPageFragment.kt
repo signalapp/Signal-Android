@@ -908,7 +908,7 @@ class StoryViewerPageFragment :
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
-    val formattedDate = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
+    val formattedDate = DateUtils.getBriefRelativeTimeSpanString(requireContext(), Locale.getDefault(), storyPost.dateInMilliseconds)
     if (date.text != formattedDate) {
       date.text = formattedDate
     }

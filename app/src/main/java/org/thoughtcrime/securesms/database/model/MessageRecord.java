@@ -74,7 +74,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -366,7 +365,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   protected @NonNull String getCallDateString(@NonNull Context context) {
-    return DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), getDateSent());
+    return DateUtils.getDatelessRelativeTimeSpanString(context, Locale.getDefault(), getDateSent());
   }
 
   protected static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient,

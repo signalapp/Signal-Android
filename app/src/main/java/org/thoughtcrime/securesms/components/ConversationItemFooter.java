@@ -326,7 +326,7 @@ public class ConversationItemFooter extends ConstraintLayout {
           timestamp = messageRecord.getDateSent();
         }
       }
-      String date = DateUtils.getSimpleRelativeTimeSpanString(getContext(), locale, timestamp);
+      String date = DateUtils.getDatelessRelativeTimeSpanString(getContext(), locale, timestamp);
       if (displayMode != ConversationItemDisplayMode.DETAILED && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date);
       }
