@@ -522,7 +522,14 @@ class ConversationFragment :
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
-  private lateinit var reactionDelegate: ConversationReactionDelegate
+  private val reactionDelegate: ConversationReactionDelegate by lazy(LazyThreadSafetyMode.NONE) {
+    val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
+    val delegate = ConversationReactionDelegate(conversationReactionStub)
+    delegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
+
+    delegate
+  }
+
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
 
   //region Android Lifecycle
@@ -952,10 +959,6 @@ class ConversationFragment :
       )
 
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
-
-    val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
-    reactionDelegate = ConversationReactionDelegate(conversationReactionStub)
-    reactionDelegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
 
     voiceMessageRecordingDelegate = VoiceMessageRecordingDelegate(
