@@ -138,9 +138,10 @@ public class ApplicationMigrations {
     static final int IDENTITY_FIX                  = 94;
     static final int COPY_USERNAME_TO_SIGNAL_STORE = 95;
     static final int RECHECK_PAYMENTS              = 96;
+    static final int THREAD_COUNT_DB_MIGRATION     = 97;
   }
 
-  public static final int CURRENT_VERSION = 96;
+  public static final int CURRENT_VERSION = 97;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -625,6 +626,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.RECHECK_PAYMENTS) {
       jobs.put(Version.RECHECK_PAYMENTS, new RecheckPaymentsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.THREAD_COUNT_DB_MIGRATION) {
+      jobs.put(Version.THREAD_COUNT_DB_MIGRATION, new DatabaseMigrationJob());
     }
 
     return jobs;

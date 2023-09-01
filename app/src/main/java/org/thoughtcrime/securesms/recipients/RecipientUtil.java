@@ -280,27 +280,13 @@ public class RecipientUtil {
     return isCallRequestAccepted(threadId, threadRecipient);
   }
 
-  /**
-   * @return True if a conversation existed before we enabled message requests, otherwise false.
-   */
-  @WorkerThread
-  public static boolean isPreMessageRequestThread(@Nullable Long threadId) {
-    long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
-    return threadId != null && SignalDatabase.messages().getMessageCountForThread(threadId, beforeTime) > 0;
-  }
-
   @WorkerThread
   public static void shareProfileIfFirstSecureMessage(@NonNull Recipient recipient) {
     if (recipient.isProfileSharing()) {
       return;
     }
 
-    long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
-
-    if (isPreMessageRequestThread(threadId)) {
-      return;
-    }
-
+    long    threadId     = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
     boolean firstMessage = SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) == 0;
 
     if (firstMessage || recipient.isHidden()) {
@@ -364,8 +350,7 @@ public class RecipientUtil {
            !threadRecipient.isRegistered() ||
            (!threadRecipient.isHidden() && (
                hasSentMessageInThread(threadId) ||
-               noSecureMessagesAndNoCallsInThread(threadId) ||
-               isPreMessageRequestThread(threadId))
+               noSecureMessagesAndNoCallsInThread(threadId))
            );
   }
 
@@ -373,8 +358,7 @@ public class RecipientUtil {
   private static boolean isCallRequestAccepted(@Nullable Long threadId, @NonNull Recipient threadRecipient) {
     return threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact() ||
-           hasSentMessageInThread(threadId) ||
-           isPreMessageRequestThread(threadId);
+           hasSentMessageInThread(threadId);
   }
 
   @WorkerThread
