@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.notifications.v2
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.net.Uri
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import androidx.annotation.StringRes
+import androidx.core.graphics.drawable.IconCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.KeyCachingService
+import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
@@ -122,9 +123,9 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
     }
   }
 
-  fun getPersonIcon(context: Context): Bitmap? {
+  fun getPersonIcon(): IconCompat? {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      authorRecipient.getContactDrawable(context).toLargeBitmap(context)
+      AvatarUtil.getIconWithUriForNotification(authorRecipient.id)
     } else {
       null
     }

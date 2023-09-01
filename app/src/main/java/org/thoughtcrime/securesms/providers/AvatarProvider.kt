@@ -60,6 +60,7 @@ class AvatarProvider : BaseContentProvider() {
 
     @JvmStatic
     fun getContentUri(recipientId: RecipientId): Uri {
+      Log.d(TAG, "getContentUri: $recipientId")
       return ContentUris.withAppendedId(CONTENT_URI, recipientId.toLong())
     }
   }
