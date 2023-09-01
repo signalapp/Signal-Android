@@ -2917,7 +2917,6 @@
     <string name="preferences__payments">Payments</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Payment lock</string>
-    <string name="preferences__payments_beta">Payments (Beta)</string>
     <string name="preferences__conversation_length_limit">Chat length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
     <string name="preferences__clear_message_history">Clear message history</string>
@@ -3071,7 +3070,8 @@
     <string name="PaymentsAllActivityFragment__sent">Sent</string>
     <string name="PaymentsAllActivityFragment__received">Received</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Introducing payments (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Use Signal to send and receive MobileCoin, a new privacy focused digital currency. Activate to get started.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activate Payments</string>
     <string name="PaymentsHomeFragment__activating_payments">Activating payments…</string>
@@ -3106,7 +3106,8 @@
     <string name="PaymentsHomeFragment__payment_failed">Payment failed</string>
     <string name="PaymentsHomeFragment__details">Details</string>
     <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. This is a beta feature so you may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Activate</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin terms</string>
     <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
