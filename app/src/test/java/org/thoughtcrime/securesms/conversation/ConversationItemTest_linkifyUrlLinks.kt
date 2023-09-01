@@ -8,7 +8,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationBodyUtil
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils
 import org.thoughtcrime.securesms.util.UrlClickHandler
 
 @Suppress("ClassName")
@@ -20,7 +20,7 @@ class ConversationItemTest_linkifyUrlLinks(private val input: String, private va
   fun test1() {
     val spannableStringBuilder = SpannableStringBuilder(input)
 
-    V2ConversationBodyUtil.linkifyUrlLinks(spannableStringBuilder, true, UrlHandler)
+    V2ConversationItemUtils.linkifyUrlLinks(spannableStringBuilder, true, UrlHandler)
 
     val spans = spannableStringBuilder.getSpans(0, expectedUrl.length, URLSpan::class.java)
     assertEquals(1, spans.size)

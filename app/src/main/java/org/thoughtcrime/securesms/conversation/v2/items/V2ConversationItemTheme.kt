@@ -11,6 +11,7 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils.isThumbnailAtBottomOfBubble
 import org.thoughtcrime.securesms.util.hasNoBubble
 
 /**
@@ -34,6 +35,10 @@ class V2ConversationItemTheme(
   fun getFooterIconColor(
     conversationMessage: ConversationMessage
   ): Int {
+    if (conversationMessage.messageRecord.isThumbnailAtBottomOfBubble(context)) {
+      return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
+    }
+
     return getColor(
       conversationMessage,
       conversationContext.getColorizer()::getOutgoingFooterIconColor,
@@ -45,6 +50,10 @@ class V2ConversationItemTheme(
   fun getFooterTextColor(
     conversationMessage: ConversationMessage
   ): Int {
+    if (conversationMessage.messageRecord.isThumbnailAtBottomOfBubble(context)) {
+      return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
+    }
+
     return getColor(
       conversationMessage,
       conversationContext.getColorizer()::getOutgoingFooterTextColor,

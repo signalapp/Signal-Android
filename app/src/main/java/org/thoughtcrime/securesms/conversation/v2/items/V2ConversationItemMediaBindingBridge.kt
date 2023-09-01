@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.conversation.v2.items
 
-import android.widget.ImageView
 import android.widget.Space
 import org.thoughtcrime.securesms.components.QuoteView
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
@@ -20,7 +19,7 @@ import org.thoughtcrime.securesms.util.views.Stub
  */
 data class V2ConversationItemMediaBindingBridge(
   val textBridge: V2ConversationItemTextOnlyBindingBridge,
-  val thumbnailStub: Stub<ImageView>,
+  val thumbnailStub: Stub<V2ConversationItemThumbnail>,
   val quoteStub: Stub<QuoteView>,
   val bodyContentSpacer: Space
 )

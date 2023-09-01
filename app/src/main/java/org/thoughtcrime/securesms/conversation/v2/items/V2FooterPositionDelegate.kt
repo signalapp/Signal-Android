@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
-import android.widget.ImageView
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -24,7 +23,7 @@ class V2FooterPositionDelegate private constructor(
   private val footerViews: List<View>,
   private val bodyContainer: View,
   private val body: EmojiTextView,
-  private val thumbnailView: Stub<ImageView>?
+  private val thumbnailView: Stub<V2ConversationItemThumbnail>?
 ) : V2ConversationItemLayout.OnMeasureListener {
 
   constructor(binding: V2ConversationItemTextOnlyBindingBridge) : this(
