@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.components.voice;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,7 +32,6 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
-import org.checkerframework.checker.units.qual.A;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -42,6 +44,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Android Service responsible for playback of voice notes.
@@ -54,7 +57,6 @@ public class VoiceNotePlaybackService extends MediaSessionService {
 
   private static final String TAG                 = Log.tag(VoiceNotePlaybackService.class);
   private static final String SESSION_ID          = "VoiceNotePlayback";
-  private static final String EMPTY_ROOT_ID       = "empty-root-id";
   private static final int    LOAD_MORE_THRESHOLD = 2;
 
   private MediaSession                         mediaSession;
@@ -69,8 +71,15 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     player.addListener(new VoiceNotePlayerEventListener());
 
     voiceNotePlayerCallback = new VoiceNotePlayerCallback(this, player);
-    mediaSession            = new MediaSession.Builder(this, player).setCallback(voiceNotePlayerCallback).setId(SESSION_ID).build();
-    keyClearedReceiver      = new KeyClearedReceiver(this, mediaSession.getToken());
+    mediaSession            = buildMediaSession(false);
+
+    if (mediaSession == null) {
+      Log.e(TAG, "Unable to create media session at all, stopping service to avoid crash.");
+      stopSelf();
+      return;
+    }
+
+    keyClearedReceiver = new KeyClearedReceiver(this, mediaSession.getToken());
 
     setMediaNotificationProvider(new VoiceNoteMediaNotificationProvider(this));
     setListener(new MediaSessionServiceListener());
@@ -181,6 +190,54 @@ public class VoiceNotePlaybackService extends MediaSessionService {
       }
 
       Log.i(TAG, "onAudioAttributesChanged: Setting audio stream to " + stream);
+    }
+  }
+
+  /**
+   * Some devices, such as the ASUS Zenfone 8, erroneously report multiple broadcast receivers for {@value Intent#ACTION_MEDIA_BUTTON} in the package manager.
+   * This triggers a failure within the {@link MediaSession} initialization and throws an {@link IllegalStateException}.
+   * This method will catch that exception and attempt to disable the duplicated broadcast receiver in the hopes of getting the package manager to
+   * report only 1, avoiding the error.
+   * If that doesn't work, it returns null, signaling the {@link MediaSession} cannot be built on this device.
+   *
+   * @return the built MediaSession, or null if the session cannot be built.
+   */
+  private @Nullable MediaSession buildMediaSession(boolean isRetry) {
+    try {
+      return new MediaSession.Builder(this, player).setCallback(voiceNotePlayerCallback).setId(SESSION_ID).build();
+    } catch (IllegalStateException e) {
+
+      if (isRetry) {
+        Log.e(TAG, "Unable to create media session, even after retry.", e);
+        return null;
+      }
+
+      Log.w(TAG, "Unable to create media session with default parameters.", e);
+      PackageManager pm          = this.getPackageManager();
+      Intent         queryIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+      queryIntent.setPackage(this.getPackageName());
+      final List<ResolveInfo> mediaButtonReceivers = pm.queryBroadcastReceivers(queryIntent, /* flags= */ 0);
+
+      Log.d(TAG, "Found " + mediaButtonReceivers.size() + " BroadcastReceivers for " + Intent.ACTION_MEDIA_BUTTON);
+
+      boolean found = false;
+
+      if (mediaButtonReceivers.size() > 1) {
+        for (ResolveInfo receiverInfo : mediaButtonReceivers) {
+
+          final ActivityInfo activityInfo = receiverInfo.activityInfo;
+
+          if (!found && activityInfo.packageName.contains("androidx.media.session")) {
+            found = true;
+          } else {
+            pm.setComponentEnabledSetting(new ComponentName(activityInfo.packageName, activityInfo.name), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+          }
+        }
+
+        return buildMediaSession(true);
+      } else {
+        return null;
+      }
     }
   }
 
