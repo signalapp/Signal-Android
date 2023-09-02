@@ -185,6 +185,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResults
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModelV2
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
+import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.DraftTable
@@ -394,7 +395,7 @@ class ConversationFragment :
     ConversationViewModel(
       threadId = args.threadId,
       requestedStartingPosition = args.startingPosition,
-      repository = ConversationRepository(context = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
+      repository = ConversationRepository(localContext = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
       recipientRepository = conversationRecipientRepository,
       messageRequestRepository = messageRequestRepository,
       scheduledMessagesRepository = ScheduledMessagesRepository()
@@ -579,6 +580,8 @@ class ConversationFragment :
     registerForResults()
 
     inputPanel.setMediaListener(InputPanelMediaListener())
+
+    ChatColorsDrawable.attach(binding.conversationItemRecycler)
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -1032,7 +1035,7 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
+    val conversationUpdateTick = ConversationUpdateTick { viewModel.pagingController.onDataInvalidated() }
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {
@@ -1791,7 +1794,7 @@ class ConversationFragment :
       }
     }
 
-    if (body.isEmpty() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
+    if (body.isNullOrBlank() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
       Log.i(TAG, "Unable to send due to empty message")
       toast(R.string.ConversationActivity_message_is_empty_exclamation)
       return
@@ -2865,15 +2868,18 @@ class ConversationFragment :
           val focusedView = if (container.isInputShowing || !container.isKeyboardShowing) null else itemView.rootView.findFocus()
           val bodyBubble = target.bubbleView
           val selectedConversationModel = SelectedConversationModel(
-            snapshot,
-            itemView.x,
-            itemView.y + binding.conversationItemRecycler.translationY,
-            bodyBubble.x,
-            bodyBubble.y,
-            bodyBubble.width,
-            audioUri,
-            messageRecord.isOutgoing,
-            focusedView
+            bitmap = snapshot,
+            itemX = itemView.x,
+            itemY = itemView.y + binding.conversationItemRecycler.translationY,
+            bubbleY = bodyBubble.y,
+            bubbleWidth = bodyBubble.width,
+            audioUri = audioUri,
+            isOutgoing = messageRecord.isOutgoing,
+            focusedView = focusedView,
+            snapshotMetrics = target.getSnapshotStrategy()?.snapshotMetrics ?: InteractiveConversationElement.SnapshotMetrics(
+              snapshotOffset = bodyBubble.x,
+              contextMenuPadding = bodyBubble.x
+            )
           )
 
           bodyBubble.visibility = View.INVISIBLE

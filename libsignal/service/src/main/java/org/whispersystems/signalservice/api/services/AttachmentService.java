@@ -6,7 +6,7 @@ import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes;
 import org.whispersystems.signalservice.internal.push.AttachmentV3UploadAttributes;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 
 import java.security.SecureRandom;
 
@@ -25,11 +25,11 @@ public final class AttachmentService {
   }
 
   public Single<ServiceResponse<AttachmentV2UploadAttributes>> getAttachmentV2UploadAttributes() {
-    WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
-                                                                    .setId(new SecureRandom().nextLong())
-                                                                    .setVerb("GET")
-                                                                    .setPath("/v2/attachments/form/upload")
-                                                                    .build();
+    WebSocketRequestMessage requestMessage = new WebSocketRequestMessage.Builder()
+                                                                        .id(new SecureRandom().nextLong())
+                                                                        .verb("GET")
+                                                                        .path("/v2/attachments/form/upload")
+                                                                        .build();
 
     return signalWebSocket.request(requestMessage)
                           .map(DefaultResponseMapper.getDefault(AttachmentV2UploadAttributes.class)::map)
@@ -37,11 +37,11 @@ public final class AttachmentService {
   }
 
   public Single<ServiceResponse<AttachmentV3UploadAttributes>> getAttachmentV3UploadAttributes() {
-    WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
-                                                                    .setId(new SecureRandom().nextLong())
-                                                                    .setVerb("GET")
-                                                                    .setPath("/v3/attachments/form/upload")
-                                                                    .build();
+    WebSocketRequestMessage requestMessage = new WebSocketRequestMessage.Builder()
+                                                                        .id(new SecureRandom().nextLong())
+                                                                        .verb("GET")
+                                                                        .path("/v3/attachments/form/upload")
+                                                                        .build();
 
     return signalWebSocket.request(requestMessage)
                           .map(DefaultResponseMapper.getDefault(AttachmentV3UploadAttributes.class)::map)

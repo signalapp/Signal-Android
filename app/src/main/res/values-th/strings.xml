@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -217,11 +216,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">ไม่ ขอบคุณ</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">ลบ</string>
-    <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
-    <string name="ClearProfileActivity_remove_group_photo">ลบภาพกลุ่มหรือไม่</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">ปรับรุ่น Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">แอปรุ่นนี้ไม่ได้รับการสนับสนุนอีกต่อไปแล้ว หากต้องการรับและส่งข้อความต่อ ให้ปรับรุ่นเป็นรุ่นล่าสุด</string>
@@ -254,9 +248,6 @@
     <string name="ContactsCursorLoader_groups">กลุ่ม</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">สมาชิกกลุ่ม</string>
-    <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">ค้นหาด้วยชื่อผู้ใช้</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">สตอรี่ของฉัน</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -295,7 +286,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">ไม่ถูกส่ง แตะเพื่อดูรายละเอียด</string>
     <string name="ConversationItem_error_partially_not_delivered">ส่งแล้วบางส่วน แตะเพื่อดูรายละเอียด</string>
     <string name="ConversationItem_error_network_not_delivered">การส่งล้มเหลว</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนกุญแจ แตะเพื่อประมวลผล</string>
     <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
     <string name="ConversationItem_send_paused">การส่งถูกหยุดชั่วคราว</string>
     <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
@@ -332,15 +322,11 @@
     <string name="ConversationActivity_add_attachment">เพิ่มแฟ้มแนบ</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">ส่งที่แก้ไขแล้ว</string>
-    <string name="ConversationActivity_select_contact_info">เลือกข้อมูลผู้ติดต่อ</string>
     <string name="ConversationActivity_compose_message">เขียนข้อความ</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ขออภัย พบปัญหาในการตั้งค่าแฟ้มแนบของคุณ</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">SMS หรืออีเมลของผู้รับไม่ถูกต้อง</string>
     <string name="ConversationActivity_message_is_empty_exclamation">ข้อความว่างเปล่า!</string>
     <string name="ConversationActivity_group_members">สมาชิกกลุ่ม</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">แตะที่นี่เพื่อเริ่มโทรแบบกลุ่ม</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">ไม่สามารถแก้ไขข้อความ SMS ได้</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">สามารถแก้ไขข้อความนี้ได้ภายใน %1$d ชั่วโมงนับจากเวลาที่คุณส่ง</item>
@@ -362,7 +348,6 @@
     <string name="ConversationActivity_transport_signal">ข้อความ Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
     <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
-    <string name="ConversationActivity_unblock">เลิกบล็อก</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">แฟ้มแนบมีขนาดใหญ่เกินกำหนดสำหรับชนิดของข้อความที่คุณกำลังจะส่ง</string>
     <string name="ConversationActivity_unable_to_record_audio">ไม่สามารถอัดเสียงได้!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">คุณไม่สามารถส่งข้อความเข้ากลุ่มนี้ได้ เพราะคุณไม่ได้เป็นสมาชิกแล้ว</string>
@@ -386,8 +371,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนเพื่ออัดภาพวิดีโอ</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ไม่สามารถส่งข้อความ SMS/MMS ได้ เนื่องจาก Signal ไม่ได้เป็นแอปหลักในการส่ง SMS ของคุณ คุณต้องการเปลี่ยนการตั้งค่าแอนดรอยด์ของคุณหรือไม่?</string>
-    <string name="ConversationActivity_yes">ใช่</string>
     <string name="ConversationActivity_no">ไม่</string>
     <string name="ConversationActivity_search_position">%1$d ของ %2$d</string>
     <string name="ConversationActivity_no_results">ไม่พบข้อมูล</string>
@@ -410,16 +393,6 @@
 
     <string name="ConversationActivity_error_sending_media">เกิดข้อผิดพลาดในการส่งสื่อ</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">รายงานว่าเป็นสแปมและบล็อกแล้ว</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">ระงับการให้บริการส่งข้อความ SMS แล้ว คุณสามารถส่งออกข้อความของคุณไปยังแอปอื่นบนโทรศัพท์ได้</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป คุณสามารถส่งออกข้อความของคุณไปยังแอปอื่นบนโทรศัพท์ได้</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">ส่งออกข้อความ SMS</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">ระงับการให้บริการส่งข้อความ SMS แล้ว ชวน %1$s มาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป ชวน %1$s มาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -491,8 +464,6 @@
     <string name="ConversationFragment_not_now">ไม่ใช่ตอนนี้</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">หมายเลขความปลอดภัยของคุณกับ %1$s ได้เปลี่ยนไป</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %1$s ได้เปลี่ยนไป น่าจะเพราะเขาได้ติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะ ตรวจยืนยัน เพื่อยืนยันหมายเลขความปลอดภัยใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">เปิด %1$s</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">บล็อกคำขอหรือไม่</string>
     <!-- Dialog message for block group link join requests -->
@@ -583,12 +554,6 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">เลือกสมาชิก</string>
-
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">ลากลงเพื่อกรอง</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">ปล่อยเพื่อกรอง</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">โปรไฟล์</string>
@@ -687,8 +652,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">เมื่อตั้งเวลาส่งข้อความไว้ ตรวจสอบให้แน่ใจว่าอุปกรณ์ของคุณจะเปิดเครื่องและเชื่อมต่อกับอินเทอร์เน็ต ณ เวลาส่งข้อความ ไม่เช่นนั้น ข้อความจะถูกส่งเมื่ออุปกรณ์เปิดใช้งานตามปกติ</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">ตกลง</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">วิธีเปิดใช้งานการตั้งเวลาส่งข้อความ</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">วิธีเปิดใช้งานการตั้งเวลาส่งข้อความอีกครั้ง</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -1104,8 +1067,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่อบันทึกข้อความเสียง แล้วปล่อยเพื่อส่ง</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">แก้ไขข้อความ</string>
 
@@ -1138,9 +1099,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">เปิดใช้งานให้การเชื่อมต่อทำงานเบื้องหลัง</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">เกิดข้อผิดพลาดระหว่างอ่านการตั้งค่า MMS ของผู้ให้บริการไร้สาย</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">สื่อ</string>
@@ -1195,7 +1153,6 @@
     <string name="Megaphones_get_started">เริ่มต้น</string>
     <string name="Megaphones_new_group">กลุ่มใหม่</string>
     <string name="Megaphones_invite_friends">เชิญเพื่อน</string>
-    <string name="Megaphones_use_sms">ใช้ SMS</string>
     <string name="Megaphones_chat_colors">สีแชท</string>
     <string name="Megaphones_add_a_profile_photo">เพิ่มรูปโปรไฟล์</string>
 
@@ -1207,11 +1164,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">เริ่มบริการโทร Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">หยุดบริการโทร Signal</string>
-    <string name="NotificationBarManager__decline_call">ปฏิเสธการโทร</string>
-    <string name="NotificationBarManager__answer_call">รับสาย</string>
-    <string name="NotificationBarManager__end_call">วางสาย</string>
     <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
-    <string name="NotificationBarManager__join_call">เข้าร่วมสาย</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">เปิดการแจ้งเตือนหรือไม่?</string>
@@ -1596,8 +1549,6 @@
         <item quantity="other">คุณสามารถลองได้อีก %1$d ครั้ง ถ้าคุณลองจนครบจำนวนครั้งแล้วคุณสามารถสร้างรหัส PIN ใหม่ คุณสามารถลงทะเบียนและใช้บัญชีของคุณได้ แต่คุณจะสูญเสียการตั้งค่าเดิมเช่นข้อมูลโปรไฟล์ของคุณ</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">สลับแป้นพิมพ์</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">สร้างรหัส PIN ของคุณ</string>
@@ -1675,7 +1626,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">เพื่อจะโทรหา %1$s Signal จำเป็นต้องเข้าถึงกล้องของคุณ</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">กลุ่มใหญ่เกินไปที่จะจับกลุ่มผู้เข้าร่วม</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">กำลังเชื่อมต่อใหม่…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1783,8 +1733,6 @@
     <string name="WebRtcCallView__toggle_camera">เปิดปิดกล้อง</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">เปิดปิดการแจ้งเตือน</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">เปิดปิดการส่งเสียงเรียก</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">วางสาย</string>
 
@@ -1844,7 +1792,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">รหัสยืนยันจะถูกส่งไปยังหมายเลขโทรศัพท์นี้ อาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">คุณจะได้รับสายโทรเข้าเพื่อยืนยันหมายเลขนี้</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">หมายเลขโทรศัพท์ข้างบนของท่านถูกต้องหรือไม่?</string>
     <string name="RegistrationActivity_edit_number">แก้ไขหมายเลข</string>
     <string name="RegistrationActivity_missing_google_play_services">ไม่พบ Google Play Services</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">อุปกรณ์นี้ไม่มี Google Play Services คุณยังสามารถใช้งาน Signal ได้ แต่ในการติดตั้งแบบนี้อาจมีเสถียรภาพหรือประสิทธิภาพที่ลดลง\n\nหากคุณไม่ได้เป็นผู้ใช้งานขั้นสูง หรือไม่ได้ใช้รอมแอนดรอยด์จากผู้ผลิตอื่น หรือเชื่อว่าคุณได้เห็นข้อความนี้เนื่องจากความผิดพลาด โปรดติดต่อ support@signal.org สำหรับความช่วยเหลือในการแก้ปัญหา</string>
@@ -1858,8 +1805,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">คุณพยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">มีข้อผิดพลาดที่ไม่คาดคิดเกิดขึ้น</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">เราไม่สามารถส่งรหัสยืนยันผ่านทาง SMS ให้คุณได้ ลองเปลี่ยนไปรับรหัสผ่านทางการโทรแทน</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1877,8 +1822,6 @@
         <item quantity="other">เหลืออีก %1$d ขั้นตอนในการส่งปูมดีบัก</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">เราจำเป็นต้องตรวจยืนยันว่าคุณเป็นมนุษย์</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal ไม่สามารถส่งรหัสทาง SMS ได้เนื่องจากมีความผิดพลาดจากภายนอกแอป</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">โทรเสียง</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1891,11 +1834,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ใส่หมายเลขโทรศัพท์ของคุณเพื่อเริ่มต้นใช้งาน</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ใส่รหัสที่เราส่งไปให้ %1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ตรวจสอบให้แน่ใจว่าโทรศัพท์ของคุณมีสัญญาณเซลลูลาร์เพื่อรับ SMS หรือการโทร</string>
 
     <string name="RegistrationActivity_phone_number_description">หมายเลขโทรศัพท์</string>
     <string name="RegistrationActivity_country_code_description">รหัสประเทศ</string>
-    <string name="RegistrationActivity_country_code_hint">ประเทศ</string>
     <string name="RegistrationActivity_call">โทร</string>
     <string name="RegistrationActivity_verification_code">รหัสยืนยัน</string>
     <string name="RegistrationActivity_resend_code">ส่งรหัสอีกครั้ง</string>
@@ -1925,9 +1866,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">ไม่พบข้อมูลเกี่ยวกับ \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">แชท</string>
-    <string name="SearchFragment_header_contacts">ผู้ติดต่อ</string>
-    <string name="SearchFragment_header_messages">ข้อความ</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -1966,17 +1904,9 @@
     <string name="Slide_video">วิดีโอ</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">ได้รับข้อความแลกเปลี่ยน คีย์ที่เสียหาย
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        ได้รับข้อความแลกเปลี่ยนกุญแจซึ่งใช้โปรโทคอลรุ่นที่ไม่ถูกต้อง
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">ได้รับข้อความที่มีหมายเลขความปลอดภัยชุดใหม่ แตะเพื่อประมวลผลและแสดง</string>
     <string name="SmsMessageRecord_secure_session_reset">คุณได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s ได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
     <string name="SmsMessageRecord_duplicate_message">ข้อความซ้ำ</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">ข้อความนี้ประมวลผลไม่ได้เพราะถูกส่งมาจาก Signal รุ่นที่ใหม่กว่า คุณสามารถขอให้ผู้ติดต่อของคุณส่งข้อความนี้อีกครั้งหลังจากที่คุณได้ปรับรุ่นแอป</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">เกิดข้อผิดพลาดในการจัดการข้อความขาเข้า</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">สติกเกอร์</string>
@@ -2128,7 +2058,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">คัดลอกหรือแชร์ลิงก์ชื่อผู้ใช้</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Signal รุ่นเก่า กรุณาขอให้เธอปรับรุ่นก่อนจะตรวจยืนยันหมายเลขความปลอดภัยของคุณ</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Signal รุ่นใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาปรับรุ่นเพื่อให้ใช้งานด้วยกันได้</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">รหัส QR ที่สแกนมาไม่ใช่รหัสตรวจยืนยันสำหรับหมายเลขความปลอดภัยที่มีรูปแบบถูกต้อง กรุณาสแกนใหม่อีกครั้ง</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">แบ่งปันหมายเลขความปลอดภัยผ่าน…</string>
@@ -2162,12 +2091,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">ปิดเสียงการแจ้งเตือน</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">อยู่ระหว่างการนำเข้า</string>
-    <string name="ApplicationMigrationService_importing_text_messages">กำลังนำเข้าข้อความ</string>
-    <string name="ApplicationMigrationService_import_complete">การนำเข้าเสร็จสมบูรณ์</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">การนำเข้าฐานข้อมูลของระบบเสร็จสมบูรณ์</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">แตะเพื่อเปิด</string>
@@ -2210,7 +2133,6 @@
     <plurals name="MessageNotifier_d_chats">
         <item quantity="other">%1$d แชท</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d แชท</string>
     <string name="MessageNotifier_most_recent_from_s">ล่าสุดจาก: %1$s</string>
     <string name="MessageNotifier_locked_message">ข้อความที่ถูกล็อก</string>
     <string name="MessageNotifier_message_delivery_failed">การส่งข้อความล้มเหลว</string>
@@ -2229,7 +2151,6 @@
     <string name="MessageNotifier_view_once_video">วิดีโอที่ดูได้ครั้งเดียว</string>
     <string name="MessageNotifier_reply">ตอบกลับ</string>
     <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
-    <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
     <string name="MessageNotifier_reacted_s_to_s">แสดงความรู้สึก %1$s ต่อ: \"%2$s\"</string>
@@ -2308,7 +2229,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">อุปกรณ์นี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">อุปกรณ์เครื่องนี้ไม่ได้ลงทะเบียนอีกต่อไป นี่น่าจะเป็นเพราะคุณลงทะเบียนหมายเลขโทรศัพท์นี้กับ Signal ไว้บนอุปกรณ์เครื่องอื่น</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2422,8 +2342,6 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS ที่ไม่ปลอดภัย</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS ที่ไม่ปลอดภัย</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">ตั้งเวลาส่งข้อความ</string>
-    <string name="conversation_activity__from_sim_name">จาก %1$s</string>
     <string name="conversation_activity__sim_n">ซิม %1$d</string>
     <string name="conversation_activity__send">ส่ง</string>
     <string name="conversation_activity__compose_description">การสร้างข้อความ</string>
@@ -2432,7 +2350,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">สลับเมนูถ่ายภาพและแนบรูปแบบเร็ว</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">อัดและส่งแฟ้มแนบแบบเสียง</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ล็อกการอัดแฟ้มแนบแบบเสียง</string>
-    <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Signal สำหรับ SMS</string>
     <string name="conversation_activity__message_could_not_be_sent">ข้อความไม่สามารถส่งได้ โปรดตรวจสอบการเชื่อมต่อของคุณและลองอีกครั้ง</string>
 
     <!-- conversation_input_panel -->
@@ -2497,16 +2414,6 @@
     <string name="QuoteView_no_longer_available">ไม่มีอีกต่อไปแล้ว</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">การบริจาคในนามของเพื่อน</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">การอนุญาตบลูทูธถูกปฏิเสธ</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">โปรดอนุญาตสิทธิ์การเข้าถึง \"อุปกรณ์ใกล้เคียง\" เพื่อใช้บลูทูธในการบันทึกข้อความเสียง</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">เปิดการตั้งค่า</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">ไว้ทีหลัง</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงล่างสุด</string>
@@ -2615,17 +2522,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">คุณต้องการนำข้อความของคุณเข้าไปเก็บไว้ในฐานข้อมูลที่เข้ารหัสลับของ Signal หรือไม่?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ฐานข้อมูลมาตรฐานของระบบจะไม่ถูกแก้ไขหรือเปลี่ยนแปลงใดๆ</string>
-    <string name="database_migration_activity__skip">ข้าม</string>
-    <string name="database_migration_activity__import">นำเข้า</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">นี่อาจใช้เวลาสักพัก กรุณารอ เราจะแจ้งคุณเมื่อการนำเข้าเสร็จสมบูรณ์</string>
-    <string name="database_migration_activity__importing">กำลังนำเข้า</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">ดูแชทแบบเต็ม</string>
     <string name="load_more_header__loading">กำลังโหลด</string>
 
     <!-- media_overview_activity -->
@@ -2696,7 +2593,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[หากต้องการตรวจยืนยันความปลอดภัยของการเข้ารหัสจากต้นทางถึงปลายทางด้วย%1$s ให้เปรียบเทียบหมายเลขข้างบนกับอุปกรณ์ของพวกเขา นอกจากนี้คุณยังสามารถสแกนรหัสบนโทรศัพท์ของพวกเขาได้ด้วย <a href=\"https://signal.org/redirect/safety-numbers\">เรียนรู้เพิ่มเติม</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">เพื่อยืนยันว่าการติดต่อสื่อสารกับ %1$s ถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ให้ตรวจสอบแถบสีด้านบนนี้กับแถบสีบนอุปกรณ์ของคนคนนั้น พร้อมเปรียบเทียบหมายเลขที่แสดงว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
     <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
@@ -2716,9 +2612,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">ต้องการความช่วยเหลือหรือไม่?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">เข้าใจแล้ว</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">แบ่งปันหมายเลขความปลอดภัย</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">สแกนรหัส QR บนอุปกรณ์ของผู้ติดต่อของคุณ</string>
@@ -2760,7 +2653,6 @@
     <string name="AndroidManifest__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
     <string name="AndroidManifest__invite_friends">เชิญเพื่อน</string>
     <string name="AndroidManifest_archived_conversations">แชทที่ถูกเก็บในที่เก็บถาวร</string>
-    <string name="AndroidManifest_remove_photo">ลบรูป</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">คุณได้อ่านคำถามพบบ่อยของเราหรือยัง?</string>
@@ -2950,8 +2842,6 @@
     <string name="preferences__app_icon_notification_warning">โดยระบบจะแสดงชื่อและไอคอนเริ่มต้นของแอป Signal ในการแจ้งเตือนเสมอ</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">เรียนรู้เพิ่มเติม</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">ไอคอนสำหรับ %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">ภาพกราฟิกแสดงตำแหน่งของไอคอนใหม่ของแอป</string>
     <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
@@ -3007,7 +2897,6 @@
     <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพการโทรลง</string>
     <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
-    <string name="preferences_app_protection__who_can">ใครสามารถ…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">การจ่ายเงิน</string>
     <string name="preferences_chats__chats">แชท</string>
@@ -3040,8 +2929,6 @@
     <string name="preferences_communication__category_sealed_sender">ผู้ส่งที่ปกปิดตัวตน</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
-    <string name="preferences_communication__sealed_sender_learn_more">เรียนรู้เพิ่มเติม</string>
-    <string name="preferences_setup_a_username">ตั้งชื่อผู้ใช้</string>
     <string name="preferences_proxy">พร็อกซี</string>
     <string name="preferences_use_proxy">ใช้พร็อกซี</string>
     <string name="preferences_off">ปิด</string>
@@ -3368,7 +3255,6 @@
     <string name="conversation__menu_format_text">ปรับแต่งตัวอักษร</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">ขยายป๊อปอัป</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
@@ -3405,8 +3291,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">เปรียบเทียบกับคลิปบอร์ด</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">นำเข้า SMS ของระบบ</string>
-    <string name="reminder_header_sms_import_text">แตะเพื่อคัดลอกข้อความ SMS ในโทรศัพท์ของคุณมาเก็บไว้ในฐานข้อมูลที่เข้ารหัสของ Signal</string>
     <string name="reminder_header_push_title">เปิดใช้งานข้อความและการโทร Signal</string>
     <string name="reminder_header_push_text">ยกระดับประสบการณ์การสื่อสารของคุณ</string>
     <string name="reminder_header_service_outage_text">Signal กำลังพบกับอุปสรรคทางเทคนิค เรากำลังทำงานอย่างหนักเพื่อให้สามารถกลับมาให้บริการได้โดยเร็วที่สุดเท่าที่จะเป็นไปได้</string>
@@ -3550,17 +3434,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">สายโทรกลุ่ม Signal ที่ใช้งานอยู่</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
     <string name="ConversationListFragment_loading">กำลังโหลด…</string>
     <string name="CallNotificationBuilder_connecting">กำลังเชื่อมต่อ…</string>
     <string name="Permissions_permission_required">ต้องได้รับอนุญาตก่อน</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">เพื่อที่จะส่ง SMS ได้ Signal ต้องได้รับอนุญาตให้เข้าถึง SMS แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"SMS\"</string>
     <string name="Permissions_continue">ดำเนินการต่อ</string>
     <string name="Permissions_not_now">ไม่ใช่ตอนนี้</string>
-    <string name="conversation_activity__enable_signal_messages">เปิดใช้งานข้อความ SIGNAL</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">ย้ายฐานข้อมูล Signal</string>
-    <string name="PushDecryptJob_new_locked_message">ข้อความที่ถูกล็อกใหม่</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">ปลดล็อกเพื่อดูข้อความที่รออยู่</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ข้อมูลสำรองจะถูกบันทึกไว้ในที่เก็บข้อมูลภายนอก และถูกเข้ารหัสลับด้วยวลีรหัสผ่านด้านล่างนี้ คุณจะต้องใช้วลีรหัสผ่านนี้เพื่อกู้คืนข้อมูลสำรอง</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">คุณจะต้องมีวลีรหัสผ่านในการกู้คืนข้อมูลสำรอง</string>
@@ -3621,8 +3500,6 @@
     <string name="RegistrationActivity_incorrect_code">รหัสไม่ถูกต้อง</string>
     <string name="BackupUtil_never">ไม่เลย</string>
     <string name="BackupUtil_unknown">ไม่ทราบ</string>
-    <string name="preferences_app_protection__see_my_phone_number">ดูหมายเลขโทรศัพท์ของฉัน</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">ค้นหาฉันด้วยหมายเลขโทรศัพท์</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">หมายเลขโทรศัพท์</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3636,10 +3513,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">ผู้ใช้และกลุ่มที่คุณส่งข้อความหาจะเห็นหมายเลขโทรศัพท์ของคุณ และคนที่มีหมายเลขโทรศัพท์ของคุณอยู่ในรายชื่อผู้ติดต่อบนโทรศัพท์ก็จะสามารถดูหมายเลขของคุณบน Signal ได้ด้วยเช่นกัน</string>
     <string name="PhoneNumberPrivacy_everyone">ทุกคน</string>
-    <string name="PhoneNumberPrivacy_my_contacts">ผู้ติดต่อของฉัน</string>
     <string name="PhoneNumberPrivacy_nobody">คนที่คุณไม่รู้จัก</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">หมายเลขโทรศัพท์ของคุณจะสามารถเห็นได้โดยกลุ่มและผู้คนที่คุณได้ส่งข้อความไป</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">ใครก็ตามที่มีหมายเลขโทรศัพท์ของคุณในรายชื่อผู้ติดต่อของพวกเขา จะเห็นคุณเป็นผู้ติดต่อบน Signal ส่วนคนอื่นๆ จะสามารถค้นหาคุณได้จากเมนูค้นหา</string>
     <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Signal ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">ล็อกหน้าจอเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
@@ -4102,11 +3976,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">คำ %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">ถัดไป</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">คำไม่ถูกรูปแบบ</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">ดู</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s ได้ส่ง %2$s หาคุณ</string>
@@ -4574,7 +4443,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">แบ่งปัน</string>
@@ -4723,7 +4591,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">บริจาคในนามของเพื่อน</string>
 
     <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
-    <string name="Boost__one_time_contribution">การบริจาคครั้งเดียว</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">ยอดขั้นต่ำที่บริจาคได้คือ %1$s</string>
 
@@ -5165,8 +5032,6 @@
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">แสดงความรู้สึกต่อสตอรี่นี้</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">ตอบกลับเป็นการส่วนตัวกับ %1$s</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">ตอบกลับหา %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
@@ -5408,8 +5273,6 @@
     <string name="ViewReceivedGiftSheet__not_now">ไม่ใช่ตอนนี้</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">กำลังแลกรับโล่…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">คุณสามารถแลกโล่ได้ภายหลัง</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">คุณบริจาคให้ Signal ในนามของ %1$s ผู้ใช้คนดังกล่าวสามารถเลือกได้ว่าจะแสดงการสนับสนุนครั้งนี้บนโปรไฟล์หรือไม่</string>
     <!-- Expired gift sheet title -->
@@ -5704,23 +5567,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal จะไม่รองรับข้อความ SMS อีกต่อไป</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal ไม่รองรับข้อความ SMS อีกต่อไป</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal จะยกเลิกการรองรับการส่งข้อความ SMS ในอีกไม่ช้า เนื่องจากการส่งข้อความของ Signal นั้นมีการเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ทั้งยังมีความเป็นส่วนตัวสูง ต่างจากการส่งข้อความแบบ SMS นี่ยังเป็นการเปิดโอกาสให้เราได้พัฒนาประสบการณ์การส่งข้อความแบบ Signal ให้ดียิ่งขึ้นไปอีกด้วย</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal ยกเลิกการรองรับการส่งข้อความ SMS แล้ว เนื่องจากการส่งข้อความของ Signal นั้นมีการเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ทั้งยังมีความเป็นส่วนตัวสูง ต่างจากการส่งข้อความแบบ SMS นี่ยังเป็นการเปิดโอกาสให้เราได้พัฒนาประสบการณ์การส่งข้อความแบบ Signal ให้ดียิ่งขึ้นไปอีกด้วย</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">ส่งออก SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">เตือนฉันทีหลัง</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">เรียนรู้เพิ่มเติม</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">เราจะไม่รองรับข้อความ SMS แล้ว</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">ไม่ต้องห่วง ข้อความเข้ารหัสของ Signal จะยังใช้งานได้ตามปกติ</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">ดำเนินการต่อ</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">ส่งออกเรียบร้อยแล้ว</string>
     <!-- Button to continue to next screen -->
@@ -5931,10 +5781,6 @@
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">วิดีโอคอล</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">เข้าร่วมการโทร</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">กลับไปยังสายที่โทรอยู่</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">โทรเสียง</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -5986,8 +5832,6 @@
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">ลบการโทร %1$d รายการแล้ว</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">เลิกทำ</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">ไม่มีการโทร</string>
     <!-- Shown during empty state -->

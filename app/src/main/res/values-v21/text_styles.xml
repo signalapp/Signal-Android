@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Signal.Text.Title.SettingsBio">
-        <item name="android:letterSpacing">0.013</item>
-    </style>
-
     <style name="Signal.Text.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="android:lineSpacingExtra">8sp</item>
         <item name="android:letterSpacing">0</item>

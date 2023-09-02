@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
@@ -612,7 +613,7 @@ public class AttachmentTable extends DatabaseTable {
   }
 
   /**
-   * Check if data file is in use by another attachment row with a different hash. Rows with the same data and has
+   * Check if data file is in use by another attachment row with a different hash. Rows with the same data and hash
    * will be fixed in a later call to {@link #updateAttachmentAndMatchingHashes(SQLiteDatabase, AttachmentId, String, ContentValues)}.
    */
   private boolean isAttachmentFileUsedByOtherAttachments(@Nullable AttachmentId attachmentId, @NonNull DataInfo dataInfo) {
@@ -638,7 +639,7 @@ public class AttachmentTable extends DatabaseTable {
 
     database.beginTransaction();
     try {
-      dataInfo = deduplicateAttachment(dataInfo, attachmentId);
+      dataInfo = deduplicateAttachment(dataInfo, attachmentId, placeholder != null ? placeholder.getTransformProperties() : TransformProperties.empty());
       if (oldInfo != null) {
         updateAttachmentDataHash(database, oldInfo.hash, dataInfo);
       }
@@ -891,7 +892,7 @@ public class AttachmentTable extends DatabaseTable {
 
     database.beginTransaction();
     try {
-      dataInfo = deduplicateAttachment(dataInfo, databaseAttachment.getAttachmentId());
+      dataInfo = deduplicateAttachment(dataInfo, databaseAttachment.getAttachmentId(), databaseAttachment.getTransformProperties());
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(SIZE, dataInfo.length);
@@ -1131,7 +1132,7 @@ public class AttachmentTable extends DatabaseTable {
   {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] { dataType, SIZE, DATA_RANDOM, DATA_HASH }, PART_ID_WHERE, attachmentId.toStrings(), null, null, null)) {
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] { dataType, SIZE, DATA_RANDOM, DATA_HASH, TRANSFORM_PROPERTIES }, PART_ID_WHERE, attachmentId.toStrings(), null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         if (cursor.isNull(cursor.getColumnIndexOrThrow(dataType))) {
           return null;
@@ -1140,7 +1141,8 @@ public class AttachmentTable extends DatabaseTable {
         return new DataInfo(new File(cursor.getString(cursor.getColumnIndexOrThrow(dataType))),
                             cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
                             cursor.getBlob(cursor.getColumnIndexOrThrow(DATA_RANDOM)),
-                            cursor.getString(cursor.getColumnIndexOrThrow(DATA_HASH)));
+                            cursor.getString(cursor.getColumnIndexOrThrow(DATA_HASH)),
+                            TransformProperties.parse(CursorUtil.requireString(cursor, TRANSFORM_PROPERTIES)));
       } else {
         return null;
       }
@@ -1171,7 +1173,7 @@ public class AttachmentTable extends DatabaseTable {
   }
 
   /**
-   * Reads the entire stream and saves to disk. If you need to deduplicate attachments, call {@link #deduplicateAttachment(DataInfo, AttachmentId)}
+   * Reads the entire stream and saves to disk. If you need to deduplicate attachments, call {@link #deduplicateAttachment(DataInfo, AttachmentId, TransformProperties)}
    * afterwards and use the {@link DataInfo} returned by it instead.
    */
   private @NonNull DataInfo storeAttachmentStream(@NonNull File destination, @NonNull InputStream in) throws MmsException {
@@ -1189,69 +1191,74 @@ public class AttachmentTable extends DatabaseTable {
         throw new IllegalStateException("Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
       }
 
-      return new DataInfo(destination, length, out.first, hash);
+      return new DataInfo(destination, length, out.first, hash, null);
     } catch (IOException | NoSuchAlgorithmException e) {
       throw new MmsException(e);
     }
   }
 
-  private @NonNull DataInfo deduplicateAttachment(@NonNull DataInfo dataInfo, @Nullable AttachmentId attachmentId) throws MmsException {
+  private @NonNull DataInfo deduplicateAttachment(@NonNull DataInfo dataInfo,
+                                                  @Nullable AttachmentId attachmentId,
+                                                  @NonNull TransformProperties transformProperties)
+  {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     if (!db.inTransaction()) {
       throw new IllegalStateException("Must be in a transaction!");
     }
 
-    Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(db, dataInfo.hash, attachmentId);
-    if (sharedDataInfo.isPresent()) {
-      Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
-      if (!dataInfo.file.equals(sharedDataInfo.get().file)) {
-        if (isAttachmentFileUsedByOtherAttachments(attachmentId, dataInfo)) {
-          Log.i(TAG, "[setAttachmentData] Original file still in use by another attachment with a different hash.");
-        } else if (dataInfo.file.delete()) {
-          Log.i(TAG, "[setAttachmentData] Deleted original file. " + dataInfo.file);
+    List<DataInfo> sharedDataInfos = findDuplicateDataFileInfos(db, dataInfo.hash, attachmentId);
+    for (DataInfo sharedDataInfo : sharedDataInfos) {
+      if (dataInfo.file.equals(sharedDataInfo.file)) {
+        continue;
+      }
+
+      boolean isUsedElsewhere = isAttachmentFileUsedByOtherAttachments(attachmentId, dataInfo);
+      boolean isSameQuality   = transformProperties.sentMediaQuality == sharedDataInfo.transformProperties.sentMediaQuality;
+
+      Log.i(TAG, "[deduplicateAttachment] Potential duplicate data file found. usedElsewhere: " + isUsedElsewhere + " sameQuality: " + isSameQuality + " otherFile: " + sharedDataInfo.file.getAbsolutePath());
+
+      if (!isSameQuality) {
+        continue;
+      }
+
+      if (!isUsedElsewhere) {
+        if (dataInfo.file.delete()) {
+          Log.i(TAG, "[deduplicateAttachment] Deleted original file. " + dataInfo.file);
         } else {
-          Log.w(TAG, "[setAttachmentData] Original file could not be deleted.");
+          Log.w(TAG, "[deduplicateAttachment] Original file could not be deleted.");
         }
       }
-      return sharedDataInfo.get();
-    } else {
-      Log.i(TAG, "[setAttachmentData] No matching attachment data found. " + dataInfo.file.getAbsolutePath());
+
+      return sharedDataInfo;
     }
 
+    Log.i(TAG, "[deduplicateAttachment] No acceptable matching attachment data found. " + dataInfo.file.getAbsolutePath());
     return dataInfo;
   }
 
-  private static @NonNull Optional<DataInfo> findDuplicateDataFileInfo(@NonNull SQLiteDatabase database,
-                                                                       @NonNull String hash,
-                                                                       @Nullable AttachmentId excludedAttachmentId)
+  private static @NonNull List<DataInfo> findDuplicateDataFileInfos(@NonNull SQLiteDatabase database,
+                                                                    @NonNull String hash,
+                                                                    @Nullable AttachmentId excludedAttachmentId)
   {
     if (!database.inTransaction()) {
       throw new IllegalArgumentException("Must be in a transaction!");
     }
 
     Pair<String, String[]> selectorArgs = buildSharedFileSelectorArgs(hash, excludedAttachmentId);
-    try (Cursor cursor = database.query(TABLE_NAME,
-                                        new String[]{DATA, DATA_RANDOM, SIZE, TRANSFORM_PROPERTIES},
-                                        selectorArgs.first,
-                                        selectorArgs.second,
-                                        null,
-                                        null,
-                                        null,
-                                        "1"))
-    {
-      if (cursor == null || !cursor.moveToFirst()) return Optional.empty();
-
-      if (cursor.getCount() > 0) {
-        DataInfo dataInfo = new DataInfo(new File(CursorUtil.requireString(cursor, DATA)),
-                                         CursorUtil.requireLong(cursor, SIZE),
-                                         CursorUtil.requireBlob(cursor, DATA_RANDOM),
-                                         hash);
-        return Optional.of(dataInfo);
-      } else {
-        return Optional.empty();
-      }
-    }
+    return CursorExtensionsKt.readToList(database.query(TABLE_NAME,
+                                                        new String[] { DATA, DATA_RANDOM, SIZE, TRANSFORM_PROPERTIES },
+                                                        selectorArgs.first,
+                                                        selectorArgs.second,
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null),
+                                         cursor -> new DataInfo(new File(CursorUtil.requireString(cursor, DATA)),
+                                                                CursorUtil.requireLong(cursor, SIZE),
+                                                                CursorUtil.requireBlob(cursor, DATA_RANDOM),
+                                                                hash,
+                                                                TransformProperties.parse(CursorUtil.requireString(cursor, TRANSFORM_PROPERTIES))));
   }
 
   private static Pair<String, String[]> buildSharedFileSelectorArgs(@NonNull String newHash,
@@ -1388,26 +1395,30 @@ public class AttachmentTable extends DatabaseTable {
       if (attachment.getUri() != null) {
         DataInfo storeDataInfo = storeAttachmentStream(PartAuthority.getAttachmentStream(context, attachment.getUri()));
         Log.d(TAG, "Wrote part to file: " + storeDataInfo.file.getAbsolutePath());
-        dataInfo = deduplicateAttachment(storeDataInfo, attachmentId);
+        dataInfo = deduplicateAttachment(storeDataInfo, attachmentId, attachment.getTransformProperties());
       }
 
       Attachment template = attachment;
+      boolean useTemplateUpload = false;
 
       if (dataInfo != null && dataInfo.hash != null) {
-        Attachment possibleTemplate = findTemplateAttachment(dataInfo.hash);
+        List<DatabaseAttachment> possibleTemplates = findTemplateAttachments(dataInfo.hash);
 
-        if (possibleTemplate != null) {
-          Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
-          template = possibleTemplate;
+        for (Attachment possibleTemplate : possibleTemplates) {
+          useTemplateUpload = possibleTemplate.getUploadTimestamp() > attachment.getUploadTimestamp() &&
+                              possibleTemplate.getTransferState() == TRANSFER_PROGRESS_DONE &&
+                              possibleTemplate.getTransformProperties().shouldSkipTransform() &&
+                              possibleTemplate.getDigest() != null &&
+                              !attachment.getTransformProperties().isVideoEdited() &&
+                              possibleTemplate.getTransformProperties().sentMediaQuality == attachment.getTransformProperties().getSentMediaQuality();
+
+          if (useTemplateUpload) {
+            Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
+            template = possibleTemplate;
+            break;
+          }
         }
       }
-
-      boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() &&
-                                  template.getTransferState() == TRANSFER_PROGRESS_DONE           &&
-                                  template.getTransformProperties().shouldSkipTransform()         &&
-                                  template.getDigest() != null                                    &&
-                                  !attachment.getTransformProperties().isVideoEdited()            &&
-                                  template.getTransformProperties().sentMediaQuality == attachment.getTransformProperties().getSentMediaQuality();
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(MMS_ID, mmsId);
@@ -1450,7 +1461,7 @@ public class AttachmentTable extends DatabaseTable {
         contentValues.put(DATA, dataInfo.file.getAbsolutePath());
         contentValues.put(SIZE, dataInfo.length);
         contentValues.put(DATA_RANDOM, dataInfo.random);
-        if (attachment.getTransformProperties().isVideoEdited() || attachment.getTransformProperties().sentMediaQuality != template.getTransformProperties().getSentMediaQuality()) {
+        if (attachment.getTransformProperties().isVideoEdited()) {
           contentValues.putNull(DATA_HASH);
         } else {
           contentValues.put(DATA_HASH, dataInfo.hash);
@@ -1478,17 +1489,11 @@ public class AttachmentTable extends DatabaseTable {
     return attachmentId;
   }
 
-  private @Nullable DatabaseAttachment findTemplateAttachment(@NonNull String dataHash) {
+  private @NonNull List<DatabaseAttachment> findTemplateAttachments(@NonNull String dataHash) {
     String   selection = DATA_HASH + " = ?";
     String[] args      = new String[] { dataHash };
 
-    try (Cursor cursor = databaseHelper.getSignalWritableDatabase().query(TABLE_NAME, null, selection, args, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return getAttachments(cursor).get(0);
-      }
-    }
-
-    return null;
+    return CursorExtensionsKt.readToList(databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null), this::getAttachment);
   }
 
   @WorkerThread
@@ -1536,16 +1541,18 @@ public class AttachmentTable extends DatabaseTable {
 
   @VisibleForTesting
   static class DataInfo {
-    final File   file;
-    final long   length;
-    final byte[] random;
-    final String hash;
+    final File                file;
+    final long                length;
+    final byte[]              random;
+    final String              hash;
+    final TransformProperties transformProperties;
 
-    private DataInfo(File file, long length, byte[] random, String hash) {
-      this.file   = file;
-      this.length = length;
-      this.random = random;
-      this.hash   = hash;
+    private DataInfo(File file, long length, byte[] random, String hash, TransformProperties transformProperties) {
+      this.file                = file;
+      this.length              = length;
+      this.random              = random;
+      this.hash                = hash;
+      this.transformProperties = transformProperties;
     }
 
     @Override
@@ -1556,12 +1563,13 @@ public class AttachmentTable extends DatabaseTable {
       return length == dataInfo.length &&
              Objects.equals(file, dataInfo.file) &&
              Arrays.equals(random, dataInfo.random) &&
-             Objects.equals(hash, dataInfo.hash);
+             Objects.equals(hash, dataInfo.hash) &&
+             Objects.equals(transformProperties, dataInfo.transformProperties);
     }
 
     @Override
     public int hashCode() {
-      int result = Objects.hash(file, length, hash);
+      int result = Objects.hash(file, length, hash, transformProperties);
       result = 31 * result + Arrays.hashCode(random);
       return result;
     }

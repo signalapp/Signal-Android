@@ -55,6 +55,8 @@
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             android:textSize="16sp"
             app:emoji_maxLength="1000"
+            app:emoji_renderMentions="true"
+            app:emoji_renderSpoilers="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
@@ -149,8 +151,8 @@
         android:id="@+id/conversation_item_reactions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="-4dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="@id/conversation_item_body_wrapper"
         app:layout_constraintTop_toBottomOf="@id/conversation_item_body_wrapper"

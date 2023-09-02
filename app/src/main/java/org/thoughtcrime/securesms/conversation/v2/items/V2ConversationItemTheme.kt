@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -64,30 +63,30 @@ class V2ConversationItemTheme(
     )
   }
 
+  @ColorInt
   fun getBodyBubbleColor(
     conversationMessage: ConversationMessage
-  ): ColorStateList {
+  ): Int {
     if (conversationMessage.messageRecord.hasNoBubble(context)) {
-      return ColorStateList.valueOf(Color.TRANSPARENT)
+      return Color.TRANSPARENT
     }
 
     return getFooterBubbleColor(conversationMessage)
   }
 
+  @ColorInt
   fun getFooterBubbleColor(
     conversationMessage: ConversationMessage
-  ): ColorStateList {
-    return ColorStateList.valueOf(
-      if (conversationMessage.messageRecord.isOutgoing) {
-        Color.TRANSPARENT
+  ): Int {
+    return if (conversationMessage.messageRecord.isOutgoing) {
+      Color.TRANSPARENT
+    } else {
+      if (conversationContext.hasWallpaper()) {
+        ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_wallpaper)
       } else {
-        if (conversationContext.hasWallpaper()) {
-          ContextCompat.getColor(context, R.color.signal_colorSurface)
-        } else {
-          ContextCompat.getColor(context, R.color.signal_colorSurface2)
-        }
+        ContextCompat.getColor(context, R.color.conversation_item_recv_bubble_color_normal)
       }
-    )
+    }
   }
 
   @ColorInt

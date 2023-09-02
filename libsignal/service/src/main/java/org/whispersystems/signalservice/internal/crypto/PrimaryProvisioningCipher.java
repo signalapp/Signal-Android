@@ -6,13 +6,13 @@
 
 package org.whispersystems.signalservice.internal.crypto;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.kdf.HKDF;
+import org.whispersystems.signalservice.internal.push.ProvisionEnvelope;
+import org.whispersystems.signalservice.internal.push.ProvisionMessage;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.NoSuchAlgorithmException;
@@ -24,9 +24,7 @@ import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionEnvelope;
-import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage;
-
+import okio.ByteString;
 
 public class PrimaryProvisioningCipher {
 
@@ -45,15 +43,15 @@ public class PrimaryProvisioningCipher {
     byte[][]  parts         = Util.split(derivedSecret, 32, 32);
 
     byte[] version    = {0x01};
-    byte[] ciphertext = getCiphertext(parts[0], message.toByteArray());
+    byte[] ciphertext = getCiphertext(parts[0], message.encode());
     byte[] mac        = getMac(parts[1], Util.join(version, ciphertext));
     byte[] body       = Util.join(version, ciphertext, mac);
 
-    return ProvisionEnvelope.newBuilder()
-                            .setPublicKey(ByteString.copyFrom(ourKeyPair.getPublicKey().serialize()))
-                            .setBody(ByteString.copyFrom(body))
-                            .build()
-                            .toByteArray();
+    return new ProvisionEnvelope.Builder()
+                                .publicKey(ByteString.of(ourKeyPair.getPublicKey().serialize()))
+                                .body(ByteString.of(body))
+                                .build()
+                                .encode();
   }
 
   private byte[] getCiphertext(byte[] key, byte[] message) {

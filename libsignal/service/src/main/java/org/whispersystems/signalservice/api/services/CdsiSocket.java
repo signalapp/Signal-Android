@@ -128,7 +128,7 @@ final class CdsiSocket {
                 Log.d(TAG, "[onMessage] Handshake read success.");
 
                 Log.d(TAG, "[onMessage] Sending data...");
-                byte[] ciphertextBytes = client.establishedSend(clientRequest.toByteArray());
+                byte[] ciphertextBytes = client.establishedSend(clientRequest.encode());
                 webSocket.send(okio.ByteString.of(ciphertextBytes));
                 Log.d(TAG, "[onMessage] Data sent.");
 
@@ -136,24 +136,24 @@ final class CdsiSocket {
                 break;
 
               case WAITING_FOR_TOKEN:
-                ClientResponse tokenResponse = ClientResponse.parseFrom(client.establishedRecv(bytes.toByteArray()));
+                ClientResponse tokenResponse = ClientResponse.ADAPTER.decode(client.establishedRecv(bytes.toByteArray()));
 
-                if (tokenResponse.getToken().isEmpty()) {
+                if (tokenResponse.token.size() == 0) {
                   throw new IOException("No token! Cannot continue!");
                 }
 
-                tokenSaver.accept(tokenResponse.getToken().toByteArray());
+                tokenSaver.accept(tokenResponse.token.toByteArray());
 
                 Log.d(TAG, "[onMessage] Sending token ack...");
-                webSocket.send(okio.ByteString.of(client.establishedSend(ClientRequest.newBuilder()
-                                                                                      .setTokenAck(true)
-                                                                                      .build()
-                                                                                      .toByteArray())));
+                webSocket.send(okio.ByteString.of(client.establishedSend(new ClientRequest.Builder()
+                                                                                          .tokenAck(true)
+                                                                                          .build()
+                                                                                          .encode())));
                 stage.set(Stage.WAITING_FOR_RESPONSE);
                 break;
 
               case WAITING_FOR_RESPONSE:
-                emitter.onNext(ClientResponse.parseFrom(client.establishedRecv(bytes.toByteArray())));
+                emitter.onNext(ClientResponse.ADAPTER.decode(client.establishedRecv(bytes.toByteArray())));
                 break;
 
               case CLOSED:

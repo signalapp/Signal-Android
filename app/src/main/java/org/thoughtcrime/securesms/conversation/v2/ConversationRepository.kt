@@ -106,7 +106,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class ConversationRepository(
-  context: Context,
+  private val localContext: Context,
   private val isInBubble: Boolean
 ) {
 
@@ -114,7 +114,7 @@ class ConversationRepository(
     private val TAG = Log.tag(ConversationRepository::class.java)
   }
 
-  private val applicationContext = context.applicationContext
+  private val applicationContext = localContext.applicationContext
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
 
   /**
@@ -139,7 +139,7 @@ class ConversationRepository(
 
       val messageRequestData = metadata.messageRequestData
       val dataSource = ConversationDataSource(
-        applicationContext,
+        localContext,
         threadId,
         messageRequestData,
         metadata.showUniversalExpireTimerMessage,

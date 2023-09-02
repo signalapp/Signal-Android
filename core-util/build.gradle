@@ -2,6 +2,7 @@ plugins {
     id 'signal-library'
     id 'com.google.protobuf'
     id 'kotlin-kapt'
+    id 'com.squareup.wire'
 }
 
 android {
@@ -31,5 +32,15 @@ dependencies {
     testImplementation testLibs.mockito.core
     testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
+}
+
+wire {
+    kotlin {
+        javaInterop = true
+    }
+
+    sourcePath {
+        srcDir 'src/main/protowire'
     }
 }

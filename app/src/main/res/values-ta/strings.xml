@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -218,11 +217,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">தேவையில்லை,நன்றி</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">அகற்று</string>
-    <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை அகற்ற வேண்டுமா?</string>
-    <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்ற வேண்டுமா?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">பயன்பாட்டின் இந்த பதிப்பு இனி ஆதரிக்கப்படாது. செய்திகளை அனுப்புவதையும் பெறுவதையும் தொடர, சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
@@ -255,9 +249,6 @@
     <string name="ContactsCursorLoader_groups">குழுக்கள்</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">குழு உறுப்பினர்கள்</string>
-    <string name="ContactsCursorLoader_phone_number_search">தொலைபேசி எண் தேடல்</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">பயனர் பெயர் மூலம் கண்டறியவும்</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">எனது ஸ்டோரீஸ்</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -296,7 +287,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">அனுப்பப்படவில்லை, மேலும் விவரங்களுக்கு இங்கே தட்டவும்</string>
     <string name="ConversationItem_error_partially_not_delivered">சிலருக்கு இது அனுப்பப்படுகிறது, விவரங்களுக்கு இங்கே தட்டவும்</string>
     <string name="ConversationItem_error_network_not_delivered">அனுப்புவது தோல்வியுற்றது</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">முக்கிய பரிமாற்ற செய்தி பெறப்பட்டது, செயலாக்க தட்டவும்.</string>
     <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
     <string name="ConversationItem_send_paused">அனுப்பு இடைநிறுத்தப்பட்டது</string>
     <string name="ConversationItem_click_to_approve_unencrypted">அனுப்புதல் தோல்வியுற்றது, பாதுகாப்பற்ற மாற்று செய்ய தட்டவும்</string>
@@ -333,15 +323,11 @@
     <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">அனுப்பியதை திருத்து</string>
-    <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
     <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">மன்னிக்கவும், உங்கள் இணைப்பை அமைப்பதில் பிழை ஏற்ப்பட்டது.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
     <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">குழு அழைப்பை தொடங்க இங்கே தட்டவும்</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">SMS மெசேஜ்களைத் திருத்த முடியவில்லை</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">நீங்கள் இந்த மெசேஜை அனுப்பியதிலிருந்து %1$d மணிநேரத்திற்குள் மட்டுமே திருத்தங்களைப் பயன்படுத்த முடியும்.</item>
@@ -365,7 +351,6 @@
     <string name="ConversationActivity_transport_signal">Signal செய்தி</string>
     <string name="ConversationActivity_lets_switch_to_signal">%1$s நாம் Signalக்கு மாறுவோம்</string>
     <string name="ConversationActivity_specify_recipient">தயவு செய்து ஒரு தொடர்பை தேர்ந்தெடு</string>
-    <string name="ConversationActivity_unblock">தடைநீக்கு</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">நீங்கள் அனுப்பும் இணைப்பு செய்தி அளவு வரம்பை மீறுகிறது .</string>
     <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய இயலவில்லை!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">நீங்கள் இனி உறுப்பினராக இல்லாததால் இந்த குழுவிற்கு செய்திகளை அனுப்ப முடியாது.</string>
@@ -389,8 +374,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">காணொளிகளைப் பதிவு செய்ய Signal-க்கு மைக்ரோஃபோன் அனுமதி தேவை.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal SMS/MMS செய்திகளை அனுப்ப முடியாது, ஏனெனில் இது உங்கள் இயல்புநிலை SMS பயன்பாடு அல்ல. உங்கள் ஆண்ட்ராய்டு அமைப்புகளில் இதை மாற்ற விரும்புகிறீர்களா?</string>
-    <string name="ConversationActivity_yes">ஆம்</string>
     <string name="ConversationActivity_no">இல்லை</string>
     <string name="ConversationActivity_search_position">%2$d இன் %1$d</string>
     <string name="ConversationActivity_no_results">முடிவுகள் இல்லை</string>
@@ -413,16 +396,6 @@
 
     <string name="ConversationActivity_error_sending_media">மீடியா அனுப்புவதில் பிழை</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">ஸ்பேம் எனப் புகாரளிக்கப்பட்டு தடுக்கப்பட்டது.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS மெசேஜிங் தற்போது முடக்கப்பட்டுள்ளது. உங்கள் மொபைலில் உள்ள மற்றொரு செயலிக்கு உங்கள் மெசேஜ்களை நீங்கள் ஏற்றுமதி செய்யலாம்.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது. உங்கள் தொலைபேசியில் உள்ள மற்றொரு ஆப்பிற்கு உங்கள் செய்திகளை ஏற்றுமதி செய்யலாம்.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS மெசேஜிங் தற்போது முடக்கப்பட்டுள்ளது. உரையாடலை இங்கே தொடர, %1$sஐ Signalக்கு அழைக்கவும்.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது. உரையாடலை இங்கே தொடர %1$s ஐ சிக்னலுக்கு அழைக்கவும்.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -500,8 +473,6 @@
     <string name="ConversationFragment_not_now">இப்போது இல்லை</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s உடனான உங்கள் பாதுகாப்பு எண் மாறிவிட்டது.</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Signal மீண்டும் நிறுவியிருப்பதாலோ அல்லது சாதனங்கள் மாற்றப்பட்டதாலோ, உங்கள் பாதுகாப்பு எண் %1$s உடன் மாற்றப்பட்டது. சரிபார்க்க என்பதை தட்டி புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்தவும். இது விருப்பத்தேர்வு.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$s உள்ளது</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">கோரிக்கையைத் தடை செய்யலாமா?</string>
     <!-- Dialog message for block group link join requests -->
@@ -600,12 +571,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">தேர்ந்தெடு உறுப்பினர்கள்</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">வடிகட்ட கீழே இழுக்கவும்</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">வடிகட்ட விடுவிக்கவும்</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">விவரம்</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">சுயவிவர புகைப்படத்தை அமைப்பதில் பிழை</string>
@@ -703,8 +668,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">திட்டமிடப்பட்ட மெசேஜை நீங்கள் அனுப்பும்போது, அனுப்பும் நேரத்தில் உங்கள் டிவைஸ் ஆன் செய்யப்பட்டு இணையத்துடன் இணைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக்கொள்ளவும். இல்லையெனில், உங்கள் டிவைஸ் மீண்டும் இணைக்கப்படும்போது உங்கள் செய்தி அனுப்பப்படும்.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">சரி</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">மெசேஜ் திட்டமிடலை இயக்க:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">மெசேஜ் திட்டமிடலை மீண்டும் இயக்க:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -1142,8 +1105,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">குரல் செய்தியை பதிய தட்டிப் பிடி, அனுப்புவதற்கு விடுவி</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">மெசேஜைத் திருத்தவும்</string>
 
@@ -1177,9 +1138,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">பின்னணி இணைப்பு இயக்கப்பட்டது</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">வயர்லெஸ் வழங்குநர் எம்எம்எஸ் அமைப்புகளைப் படிப்பதில் பிழை</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">ஊடகம்</string>
@@ -1239,7 +1197,6 @@
     <string name="Megaphones_get_started">தொடங்குகள்</string>
     <string name="Megaphones_new_group">புதிய குழு</string>
     <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
-    <string name="Megaphones_use_sms">எஸ்எம்எஸ் பயன்படுத்தவும்</string>
     <string name="Megaphones_chat_colors">சாட் கலர்ஸ்</string>
     <string name="Megaphones_add_a_profile_photo">சுயவிவரப் புகைப்படத்தைச் சேர்க்கவும்</string>
 
@@ -1251,11 +1208,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">சிக்னல் அழைப்பு சேவை தொடங்குகிறது</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal அழைப்பு சேவையை நிறுத்துதல்</string>
-    <string name="NotificationBarManager__decline_call">அழைப்பை நிராகரி</string>
-    <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
-    <string name="NotificationBarManager__end_call">அழைப்பைத் துண்டி</string>
     <string name="NotificationBarManager__cancel_call">அழைப்பு ரத்து</string>
-    <string name="NotificationBarManager__join_call">அழைப்பில் சேரவும்</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">அறிவிப்புகளை இயக்கவா?</string>
@@ -1656,8 +1609,6 @@
         <item quantity="other">உங்களிடம் %1$d முயற்சிகள் உள்ளன. நீங்கள் வரையறுக்கப்பட்ட முயற்சிகள் முடிந்தால், நீங்கள் ஒரு புதிய பின்னை உருவாக்கலாம். புதிய PIN மூலம் உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal பதிவு - Android க்கான PIN உடன் உதவி தேவை</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">கீபோர்டை மாற்றுக</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
@@ -1735,7 +1686,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ஐ அழைக்க, சிக்னலுக்கு உங்கள் கேமரா அனுமதி தேவை Signal Camera permission</string>
     <string name="WebRtcCallActivity__signal_s">சிக்னல் Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">எண்ணிக்கை கூடியதால் குழுவில் உள்ள அனைவரையும் அழைக்க இயலாது</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">மீண்டும் இணைக்கிறது …</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1854,8 +1804,6 @@
     <string name="WebRtcCallView__toggle_camera">கேமராவை நிலைமாற்று</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">ஒலியடக்கியை நிலைமாற்று</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">ரிங்கை நிலைமாற்று</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">அழைப்பை முடி</string>
 
@@ -1916,7 +1864,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">இந்த எண்ணுக்கு சரிபார்ப்புக் குறியீடு அனுப்பப்படும். கேரியர் கட்டணங்கள் விதிக்கப்படலாம்.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">இந்த எண்ணை சரிபார்க்க உங்களுக்கு அழைப்பு வரும்.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">மேலே உங்கள் தொலைபேசி எண் சரியானதா?</string>
     <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play சேவைகளைக் காணவில்லை</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">இந்த சாதனத்தில் Google Play சேவைகள் இல்லை . இருந்தும் நீங்கள் Signal ஐ பயன்படுத்தலாம் , ஆனால் இந்த உள்ளமைவு நம்பகத்தன்மை அல்லது செயல்திறனைக் குறைக்கலாம். \n\n நீங்கள் ஒரு மேம்பட்ட பயனராக இல்லாவிட்டால், சந்தைக்குப்பிறகான அண்ட்ராய்டு ROM ஐ இயக்கவில்லை அல்லது இதை பிழையாகப் பார்க்கிறீர்கள் என்று நம்பினால், தயவுசெய்து ஆதரவைத் தொடர்பு கொள்ளவும் @ சிக்கல் support@signal.org.</string>
@@ -1930,8 +1877,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். %1$s இல் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">எதிர்பாராத பிழை ஏற்பட்டது.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS மூலம் சரிபார்ப்புக் குறியீட்டை உங்களுக்கு அனுப்ப முடியவில்லை. அதற்குப் பதிலாக குரல் அழைப்பு மூலம் உங்கள் குறியீட்டைப் பெற முயலவும்.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1950,8 +1895,6 @@
         <item quantity="other">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d படிகள் தொலைவில் உள்ளீர்கள்.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">நீங்கள் மனிதர் என்பதை நாங்கள் சரிபார்க்க வேண்டும்.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">வெளிப்புற செயலிழப்பு காரணமாக Signal செயலியால் SMS குறியீட்டை அனுப்ப முடியவில்லை.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">குரல் அழைப்பு</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1964,11 +1907,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்குவதற்கு உங்கள் மொபைல் எண்ணை உள்ளிடவும்.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
 
     <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
     <string name="RegistrationActivity_country_code_description">நாட்டின் குறியீடு</string>
-    <string name="RegistrationActivity_country_code_hint">நாடு</string>
     <string name="RegistrationActivity_call">அழை</string>
     <string name="RegistrationActivity_verification_code">சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_resend_code">குறியீட்டை மீண்டும் அனுப்பு</string>
@@ -1998,9 +1939,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' க்கான முடிவுகள் எதுவும் கிடைக்கவில்லை</string>
-    <string name="SearchFragment_header_conversations">சாட்ஸ்</string>
-    <string name="SearchFragment_header_contacts">தொடர்புகள்</string>
-    <string name="SearchFragment_header_messages">செய்திகள்</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2039,17 +1977,9 @@
     <string name="Slide_video">காணொளி</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">சிதைந்த சாவிபரிமாற்ற செய்தி பெறப்பட்டது!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        செல்லுபடியாகாத நெறிமுறைக்கு சாவிபரிமாற்ற செய்தி பெறப்பட்டது.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">புதிய பாதுகாப்பு எண்ணுடன் செய்தி பெறப்பட்டது. செயலாக்க மற்றும் காண்பிக்க தட்டவும்.</string>
     <string name="SmsMessageRecord_secure_session_reset">பாதுகாப்பான அமர்வை மீட்டமைக்கிறீர்கள்.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s பாதுகாப்பான அமர்வை மீட்டமைக்கவும்.</string>
     <string name="SmsMessageRecord_duplicate_message">நகல் செய்தி.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">இந்தச் செய்தியை செயலாக்க முடியவில்லை, ஏனெனில் இது Signal புதிய பதிப்பிலிருந்து அனுப்பப்பட்டது. நீங்கள் புதுப்பித்த பிறகு இந்த செய்தியை மீண்டும் அனுப்ப உங்கள் தொடர்பைக் கேட்கலாம்.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">உள்வரும் செய்தியைக் கையாளுவதில் பிழை.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">ஒட்டிப்படங்கள்</string>
@@ -2202,7 +2132,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ஒரு பயனர்பெயர் இணைப்பை நகலெடுக்கவும் அல்லது பகிரவும்</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறார். உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய புதுப்பிக்கவும்.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">ஸ்கேன் செய்யப்பட்ட QR குறியீடு சரியாக வடிவமைக்கப்பட்ட பாதுகாப்பு எண் சரிபார்ப்புக் குறியீடு அல்ல. மீண்டும் ஸ்கேன் செய்ய முயற்சிக்கவும்.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">வழியாக பாதுகாப்பு எண்ணைப் பகிரவும் …</string>
@@ -2236,12 +2165,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">அறிவிப்புகளை ஒலியடக்கு</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">இறக்குமதி முன்னேறுகிறது</string>
-    <string name="ApplicationMigrationService_importing_text_messages">குறுஞ்செய்திகளை இறக்குமதி செய்யப்படுகிறது.</string>
-    <string name="ApplicationMigrationService_import_complete">இறக்குமதி முடிந்தது</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">கணினி தரவுத்தள இறக்குமதி முடிந்தது.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">திறக்க தொடு.</string>
@@ -2286,7 +2209,6 @@
         <item quantity="one">%1$d சாட்ஸ்</item>
         <item quantity="other">%1$d சாட்ஸ்</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d சாட்களில் %1$d புதிய செய்திகள்</string>
     <string name="MessageNotifier_most_recent_from_s">இதிலிருந்து மிக சமீபத்தியது: %1$s</string>
     <string name="MessageNotifier_locked_message">பூட்டிய செய்தி</string>
     <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
@@ -2305,7 +2227,6 @@
     <string name="MessageNotifier_view_once_video">காண்க-ஒருமுறை காணொளி</string>
     <string name="MessageNotifier_reply">மறுமொழி கூறு</string>
     <string name="MessageNotifier_signal_message">Signal செய்தி</string>
-    <string name="MessageNotifier_unsecured_sms">பாதுகாப்பற்ற SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">தொடர்பு</string>
     <string name="MessageNotifier_reacted_s_to_s">%1$s என எதிர்வினையாற்றினார்: \"%2$s\" மெசேஜில்.</string>
@@ -2385,7 +2306,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">சாதனம் இனி பதிவு செய்யப்படவில்லை</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">இந்த டிவைஸ் இனி பதிவுசெய்யப்பட்டிருக்காது. உங்கள் மொபைல் எண்ணை Signal இல் வேறு டிவைஸில் பதிவு செய்ததால் இது நிகழலாம்.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2502,8 +2422,6 @@
     <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பற்ற SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">பாதுகாப்பற்ற எம்.எம்.எஸ்</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">மெசேஜைத் திட்டமிடுக</string>
-    <string name="conversation_activity__from_sim_name">%1$s இலிருந்து</string>
     <string name="conversation_activity__sim_n">சிம் 1%1$d</string>
     <string name="conversation_activity__send">அனுப்பு</string>
     <string name="conversation_activity__compose_description">செய்தி தொகுப்பு</string>
@@ -2512,7 +2430,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">விரைவான கேமரா இணைப்பு டிராயரை நிலைமாற்று</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ஆடியோ இணைப்பு பதிவு செய்து அனுப்பவும்</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ஆடியோ இணைப்பு பதிவை பூட்டு</string>
-    <string name="conversation_activity__enable_signal_for_sms">SMS-க்கு Signal-ஐ செயல்படுத்து</string>
     <string name="conversation_activity__message_could_not_be_sent">செய்தி அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
 
     <!-- conversation_input_panel -->
@@ -2577,16 +2494,6 @@
     <string name="QuoteView_no_longer_available">இனி கிடைக்காது</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">நண்பருக்கு நன்கொடை</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">புளூடூத் அனுமதி மறுக்கப்பட்டது</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">குரல் மெசேஜ்களைப் பதிவுசெய்ய புளூடூத்தைப் பயன்படுத்த \"அருகிலுள்ள டிவைஸ்கள்\" அனுமதியை இயக்கவும்.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">அமைப்புகளைத் திற</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">இப்போது வேண்டாம்</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
@@ -2701,17 +2608,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">எதுவும் கிடைக்கவில்லை</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">உங்களிடம் இருக்கும் உரை செய்திகளை Signal-இன் மறையாக்கப்பட்ட தரவுத்தளத்தில் இறக்குமதி செய்ய விரும்புகிறீர்களா?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">இயல்புநிலை சாதனக் கோப்பு இதனால் எந்தவிதத்திலும் மாற்றமோ அல்லது திறுத்தமோ பெறாது.</string>
-    <string name="database_migration_activity__skip">தவிர்</string>
-    <string name="database_migration_activity__import">இறக்குமதி செய்</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">இதற்கு சில நொடிநேரம் ஆகலாம். தயவுசெய்து பொறுமையாக இருங்கள், இறக்குமதி முடிந்ததும் உங்களுக்கு தெரியப்படுத்துவோம்.</string>
-    <string name="database_migration_activity__importing">இறக்குமதி செய்யப்படுகிறது</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">முழு சாட்டையும் பார்க்கவும்</string>
     <string name="load_more_header__loading">ஏற்றுதல்</string>
 
     <!-- media_overview_activity -->
@@ -2783,7 +2680,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %1$s உடன் உங்கள் முடிவிலிருந்து-முடிவுவரை குறியாக்கத்தின் பாதுகாப்பை சரிபார்க்க, அவர்களின் சாதனத்துடன் மேலிருக்கும் எண்களோடு ஒப்பிடுக. நீங்கள் அவர்களின் தொலைபேசியில் உள்ள குறியீட்டை ஸ்கேன் செய்யலாம். <a href=\"https://signal.org/redirect/safety-numbers\"> மேலும் அறிக.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s இன் எண்ட்-டு-எண்ட் என்க்ரிப்ஷனைச் சரிபார்க்க, மேலே உள்ள வண்ண அட்டையை அவற்றின் டிவைஸ் உடன் பொருத்தி எண்களை ஒப்பிடவும். இவை பொருந்தவில்லை என்றால், ஸ்வைப் செய்து மற்ற பாதுகாப்பு எண்கள் ஜோடியை முயற்சிக்கவும். ஒரு ஜோடி மட்டுமே பொருந்த வேண்டும்.</string>
     <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
@@ -2803,9 +2699,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">உங்களுக்கு உதவி வேண்டுமா?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">அறிந்துகொண்டேன்</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">பாதுகாப்பு எண்ணைப் பகிரவும்</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">உங்கள் தொடர்பு சாதனத்தில் QR குறியீட்டை ஸ்கேன் செய்யுங்கள்.</string>
@@ -2847,7 +2740,6 @@
     <string name="AndroidManifest__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
     <string name="AndroidManifest__invite_friends">நண்பர்களை அழை</string>
     <string name="AndroidManifest_archived_conversations">காப்பகப்படுத்தப்பட்ட சாட்ஸ்</string>
-    <string name="AndroidManifest_remove_photo">புகைப்படத்தை அகற்று</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">எங்களிடம் இதுவரை அடிக்கடி கேட்கப்படும் கேள்விகளை நீங்கள் படித்தீர்களா?</string>
@@ -3038,8 +2930,6 @@
     <string name="preferences__app_icon_notification_warning">அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும்.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">மேலும் அறிக</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">%1$sக்கான ஐகான்</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">மாற்று செயலி ஐகான் எங்கு தெரியும் என்பதை கிராஃபிக் விளக்குகிறது.</string>
     <string name="preferences__disable_pin">PIN-ஐ முடக்கு</string>
@@ -3096,7 +2986,6 @@
     <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">உங்கள் ஐபி முகவரியை உங்கள் தொடர்புக்கு வெளிப்படுத்தாமல் இருக்க Signal சேவையகம் மூலம் அனைத்து அழைப்புகளையும் ரிலே செய்யவும். இயக்குவது அழைப்பு தரத்தை குறைக்கும்.</string>
     <string name="preferences_advanced__always_relay_calls">எப்போதும் அழைப்புகளை ரிலே செய்யவும் </string>
-    <string name="preferences_app_protection__who_can">யாரால் முடியும்…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">பணம் செலுத்தல்</string>
     <string name="preferences_chats__chats">சாட்ஸ்</string>
@@ -3129,8 +3018,6 @@
     <string name="preferences_communication__category_sealed_sender">சீல் அனுப்பியவர்</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">யாரிடமிருந்தும் அனுமதிக்கவும்</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">தொடர்புகள் அல்லாதவர்களிடமிருந்தும், உங்கள் சுயவிவரத்தைப் பகிராத நபர்களிடமிருந்தும் உள்வரும் செய்திகளுக்கு சீல் அனுப்பியவரை இயக்கவும்.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">மேலும் அறிக</string>
-    <string name="preferences_setup_a_username">பயனர்பெயரை அமைக்கவும்</string>
     <string name="preferences_proxy">பதிலி</string>
     <string name="preferences_use_proxy">பதிலியைப் பயன்படுத்து.</string>
     <string name="preferences_off">அணை</string>
@@ -3458,7 +3345,6 @@
     <string name="conversation__menu_format_text">உரையை வடிவமைக்கவும்</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">பாப்அப்பை விரிவாக்கு</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
@@ -3496,8 +3382,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">கிளிப்போர்டுடன் ஒப்பிடுக</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">தொலைபேசியிலுள்ள SMS-களை இறக்குமதி</string>
-    <string name="reminder_header_sms_import_text">உங்கள் தொலைபேசியின் SMS செய்திகளை Signal-இன் மறைகுறியாக்கப்பட்ட தரவுத்தளக்கு நகலெடுக்க தட்டவும்.</string>
     <string name="reminder_header_push_title">Signal செய்திகளையும் அழைப்புகளையும் இயக்கு</string>
     <string name="reminder_header_push_text">உங்கள் தொடர்பு அனுபவத்தை மேம்படுத்தவும்.</string>
     <string name="reminder_header_service_outage_text">Signal தொழில்நுட்ப சிக்கல்களை எதிர்கொள்கிறது. சேவையை விரைவாக மீட்டெடுக்க நாங்கள் விரைவாக வேலை செய்து வருகிறோம்.</string>
@@ -3648,17 +3532,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">தற்போதைய Signal குழு அழைப்பு</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
     <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
     <string name="CallNotificationBuilder_connecting">இணைக்கிறது …</string>
     <string name="Permissions_permission_required">அனுமதி தேவை</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">ஒர் SMS அனுப்ப Signal-க்கு SMS அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாட்டின் அமைப்புகளுக்கு தொடரந்து, \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"SMS\" ஐ இயக்கவும்.</string>
     <string name="Permissions_continue">தொடர்</string>
     <string name="Permissions_not_now">இப்போது இல்லை</string>
-    <string name="conversation_activity__enable_signal_messages">Signal செய்திகளை இயக்கவும்</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal தரவுத்தளத்தை மாற்றுதல்</string>
-    <string name="PushDecryptJob_new_locked_message">பூட்டப்பட்ட புதிய செய்தி</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">நிலுவையிலுள்ள செய்திகளைக் காண திறக்கவும்</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">கடவுச்சொல்லை காப்புப்பிரதி செய்க</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">காப்புப்பதிவு கோப்புகள் வெளிப்புற சேமிப்பகத்தில் சேமிக்கப்பட்டு கீழே உள்ள கடவுச்சொற்றொடருடன் மறையாக்கப்படும். காப்புப்பதிவு கோப்பை மீட்டமைக்க இந்த கடவுச்சொற்றொடரை நீங்கள் கொண்டிருக்க வேண்டும்.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">மறுபிரதியை மீட்டமைக்க இந்த கடவுத்தொடர் உங்களுக்குத் தேவைப்படும்.</string>
@@ -3719,8 +3598,6 @@
     <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>
     <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
     <string name="BackupUtil_unknown">முன் தெரிந்திராத</string>
-    <string name="preferences_app_protection__see_my_phone_number">எனது தொலைபேசி எண்ணைக் காண்க</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">தொலைபேசி எண் மூலம் என்னைக் கண்டுபிடிக்க</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ஃபோன் எண்</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3734,10 +3611,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">நீங்கள் மெசேஜ் அனுப்பும் நபர்களுக்கும் குழுக்களுக்கும் உங்கள் ஃபோன் எண் தெரியும். ஃபோன் தொடர்புகளில் உங்கள் எண்ணை வைத்திருப்பவர்கள் அதை Signal இலும் பார்ப்பார்கள்.</string>
     <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
-    <string name="PhoneNumberPrivacy_my_contacts">எனது தொடர்புகள்</string>
     <string name="PhoneNumberPrivacy_nobody">ஒருவருமில்லை</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">நீங்கள் செய்தி அனுப்பும் அனைத்து நபர்களுக்கும் குழுக்களுக்கும் உங்கள் தொலைபேசி எண் தெரியும்.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">உங்கள் தொலைபேசி எண்ணை தங்கள் தொடர்புகளில் வைத்திருக்கும் எவரும் உங்களை Signal சிக்னலில் ஒரு தொடர்பாகப் பார்ப்பார்கள். மற்றவர்கள் உங்களை தேடலில் கண்டுபிடிக்க முடியும்.</string>
     <string name="preferences_app_protection__screen_lock">திரை பூட்டு</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">அண்ட்ராய்டு திரை பூட்டு அல்லது கைரேகையுடன் Signal அணுகலைப் பூட்டு</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">திரை பூட்டு செயலற்ற நேரம் முடிந்தது</string>
@@ -4204,11 +4078,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">சொல் %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">அடுத்தது</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">தவறானது சொல்</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">காண்க</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s உங்களை அனுப்பியுள்ளார் %2$s</string>
@@ -4678,7 +4547,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">பகிர்</string>
@@ -4831,7 +4699,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">நண்பருக்காக நன்கொடை அளிக்கவும்</string>
 
     <string name="Boost__enter_custom_amount">விருப்பத் தொகையை உள்ளிடவும்</string>
-    <string name="Boost__one_time_contribution">ஒரு முறைக்கான பங்களிப்பு</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">நீங்கள் குறைந்தபட்ச நன்கொடையாக %1$s வழங்கலாம்</string>
 
@@ -5276,8 +5143,6 @@
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு எதிர்வினையாற்றவும்</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">%1$s-க்கு தனிப்பட்ட முறையில் பதிலளிக்கிறது</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">%1$s க்கு பதிலளிக்கவும்</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
@@ -5525,8 +5390,6 @@
     <string name="ViewReceivedGiftSheet__not_now">இப்போது இல்லை</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">பேட்ஜை ரிடீம் செய்கிறது…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">உங்கள் பேட்ஜை பின்னர் நீங்கள் மீட்டெடுக்கலாம்.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">%1$s சார்பாக Signalக்கு நன்கொடை அளித்துள்ளீர்கள். அவர்களின் ப்ரொஃபைலில் தங்கள் ஆதரவைக் காட்ட அவர்களுக்கு விருப்பம் வழங்கப்படும்.</string>
     <!-- Expired gift sheet title -->
@@ -5831,23 +5694,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">சிக்னல் இனி எஸ்.எம்.எஸ்-ஐ ஆதரிக்காது</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">சிக்னல் இனி எஸ்.எம்.எஸ்-ஐ ஆதரிக்காது</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">SMS மெசேஜ்களை அனுப்புவதற்கான ஆதரவை Signal விரைவில் அகற்றும், ஏனெனில் SMS மெசேஜ்கள் அளிக்காத என்ட்-டு-எண்ட் என்க்ரிப்ஷன் மற்றும் வலுவான தனியுரிமையை Signal மெசேஜ்கள் வழங்குகின்றன. இது Signal மெசேஜ் அனுபவத்தை மேம்படுத்தவும் அனுமதிக்கும்.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">SMS மெசேஜ்களை அனுப்புவதற்கான ஆதரவை Signal அகற்றியுள்ளது, ஏனெனில் SMS மெசேஜ்கள் அளிக்காத என்ட்-டு-எண்ட் என்க்ரிப்ஷன் மற்றும் வலுவான தனியுரிமையை Signal மெசேஜ்கள் வழங்குகின்றன. இது Signal மெசேஜ் அனுபவத்தை மேம்படுத்தவும் அனுமதிக்கும்.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">எஸ்எம்எஸ்-ஐ ஏற்றுமதி செய்</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">பிறகு என்னிடம் ஞாபகபடுத்து</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">மேலும் அறிக</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">எஸ்.எம்.எஸ் ஆதரவு நிறுத்தப்படுகிறது</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">கவலை வேண்டாம், குறியாக்கம் செய்யப்பட்ட Signal மெசேஜ்கள் தொடர்ந்து வேலை செய்யும்.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">தொடர்க</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">ஏற்றுமதி முடிந்தது</string>
     <!-- Button to continue to next screen -->
@@ -6061,10 +5911,6 @@
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">காணொளி அழைப்பு</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">அழைப்பில் சேரவும்</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">அழைப்புக்குத் திரும்பு</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">குரல் அழைப்பு</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6119,8 +5965,6 @@
         <item quantity="one">%1$d அழைப்பு நீக்கப்பட்டது</item>
         <item quantity="other">%1$d அழைப்புகள் நீக்கப்பட்டது</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">செயல்தவிர்</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">அழைப்புகள் இல்லை.</string>
     <!-- Shown during empty state -->

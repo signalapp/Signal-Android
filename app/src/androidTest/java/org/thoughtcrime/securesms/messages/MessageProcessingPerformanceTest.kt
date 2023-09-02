@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage
+import org.whispersystems.signalservice.internal.websocket.WebSocketMessage
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.util.regex.Pattern
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.minutes
@@ -179,32 +179,19 @@ class MessageProcessingPerformanceTest {
   }
 
   private fun webSocketTombstone(): ByteString {
-    return WebSocketMessage
-      .newBuilder()
-      .setRequest(
-        WebSocketRequestMessage.newBuilder()
-          .setVerb("PUT")
-          .setPath("/api/v1/queue/empty")
-      )
-      .build()
-      .toByteArray()
-      .toByteString()
+    return WebSocketMessage(request = WebSocketRequestMessage(verb = "PUT", path = "/api/v1/queue/empty")).encodeByteString()
   }
 
   private fun Envelope.toWebSocketPayload(): ByteString {
-    return WebSocketMessage
-      .newBuilder()
-      .setType(WebSocketMessage.Type.REQUEST)
-      .setRequest(
-        WebSocketRequestMessage.newBuilder()
-          .setVerb("PUT")
-          .setPath("/api/v1/message")
-          .setId(Random(System.currentTimeMillis()).nextLong())
-          .addHeaders("X-Signal-Timestamp: ${this.timestamp}")
-          .setBody(this.toByteString())
+    return WebSocketMessage(
+      type = WebSocketMessage.Type.REQUEST,
+      request = WebSocketRequestMessage(
+        verb = "PUT",
+        path = "/api/v1/message",
+        id = Random(System.currentTimeMillis()).nextLong(),
+        headers = listOf("X-Signal-Timestamp: ${this.timestamp}"),
+        body = this.toByteArray().toByteString()
       )
-      .build()
-      .toByteArray()
-      .toByteString()
+    ).encodeByteString()
   }
 }
