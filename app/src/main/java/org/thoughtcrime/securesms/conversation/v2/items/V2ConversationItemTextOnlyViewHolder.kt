@@ -655,7 +655,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     override fun onPreMeasure() = Unit
 
     override fun onPostMeasure(): Boolean {
-      return binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions, binding.conversationItemBodyWrapper.width)
+      if (binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions, binding.conversationItemBodyWrapper.width)) {
+        binding.conversationItemReactions.post(binding.conversationItemReactions::requestLayout)
+      }
+
+      return false
     }
   }
 
