@@ -1676,7 +1676,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setReactionsWithWidth(@NonNull MessageRecord current, int width) {
-    reactionsView.setReactions(current.getReactions(), width);
+    reactionsView.setReactions(current.getReactions());
+    reactionsView.setBubbleWidth(width);
     reactionsView.setOnClickListener(v -> {
       if (eventListener == null) return;
 

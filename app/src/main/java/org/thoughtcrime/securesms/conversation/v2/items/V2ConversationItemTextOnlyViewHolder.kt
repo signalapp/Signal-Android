@@ -537,7 +537,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.conversationItemReactions.clear()
       binding.root.removeOnMeasureListener(reactionMeasureListener)
     } else {
-      reactionMeasureListener.onPostMeasure()
+      binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions)
       binding.root.addOnMeasureListener(reactionMeasureListener)
     }
   }
@@ -655,11 +655,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     override fun onPreMeasure() = Unit
 
     override fun onPostMeasure(): Boolean {
-      if (binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions, binding.conversationItemBodyWrapper.width)) {
-        binding.conversationItemReactions.post(binding.conversationItemReactions::requestLayout)
-      }
-
-      return false
+      return binding.conversationItemReactions.setBubbleWidth(binding.conversationItemBodyWrapper.measuredWidth)
     }
   }
 
