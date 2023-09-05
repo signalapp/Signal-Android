@@ -2308,7 +2308,7 @@ class ConversationFragment :
   }
 
   private fun isScrolledPastButtonThreshold(): Boolean {
-    return layoutManager.findFirstCompletelyVisibleItemPosition() > 4
+    return layoutManager.findFirstVisibleItemPosition() > 4
   }
 
   private fun shouldScrollToBottom(): Boolean {
