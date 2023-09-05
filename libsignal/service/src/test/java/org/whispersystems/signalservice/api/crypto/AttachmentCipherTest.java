@@ -67,12 +67,12 @@ public final class AttachmentCipherTest {
     try {
       byte[]        key            = Util.getSecretBytes(64);
       byte[]        plaintextInput = "Gwen Stacy".getBytes();
-      EncryptResult encryptResult  = encryptData(plaintextInput, key, false);
+      EncryptResult encryptResult  = encryptData(plaintextInput, key, true);
       byte[]        badKey         = new byte[64];
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, null);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -92,12 +92,12 @@ public final class AttachmentCipherTest {
     try {
       byte[]        key            = Util.getSecretBytes(64);
       byte[]        plaintextInput = "Mary Jane Watson".getBytes();
-      EncryptResult encryptResult  = encryptData(plaintextInput, key, false);
+      EncryptResult encryptResult  = encryptData(plaintextInput, key, true);
       byte[]        badDigest      = new byte[32];
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, badDigest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, badDigest, null);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -213,14 +213,14 @@ public final class AttachmentCipherTest {
     try {
       byte[]        key              = Util.getSecretBytes(64);
       byte[]        plaintextInput   = "Uncle Ben".getBytes();
-      EncryptResult encryptResult    = encryptData(plaintextInput, key, false);
+      EncryptResult encryptResult    = encryptData(plaintextInput, key, true);
       byte[]        badMacCiphertext = Arrays.copyOf(encryptResult.ciphertext, encryptResult.ciphertext.length);
 
       badMacCiphertext[badMacCiphertext.length - 1] += 1;
 
       cipherFile = writeToFile(badMacCiphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, null);
       fail();
     } catch (InvalidMessageException e) {
       hitCorrectException = true;

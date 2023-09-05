@@ -33,7 +33,7 @@ class AttachmentCipherOutputStreamFactory(private val key: ByteArray, private va
     }
 
     val privateKey = key.sliceArray(AES_KEY_LENGTH until key.size)
-    val chunkSizeChoice = ChunkSizeChoice.inferChunkSize(length.toInt().coerceAtLeast(1))
+    val chunkSizeChoice = ChunkSizeChoice.inferChunkSize(length.toInt())
     val incrementalStream = IncrementalMacOutputStream(wrap, privateKey, chunkSizeChoice, incrementalDigestOut)
     return createFor(incrementalStream)
   }
