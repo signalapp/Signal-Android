@@ -103,8 +103,22 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   protected lateinit var shape: V2ConversationItemShape.MessageShape
 
+  private val replyDelegate = object : V2ConversationItemLayout.OnMeasureListener {
+    override fun onPreMeasure() = Unit
+
+    override fun onPostMeasure(): Boolean {
+      val wrapperHeight = binding.conversationItemBodyWrapper.measuredHeight
+      val yTranslation = (wrapperHeight - 38.dp) / 2f
+      binding.conversationItemReply.translationY = -yTranslation
+
+      return false
+    }
+  }
+
   init {
     binding.root.addOnMeasureListener(footerDelegate)
+    binding.root.addOnMeasureListener(replyDelegate)
+
     binding.root.onDispatchTouchEventListener = dispatchTouchEventListener
 
     binding.conversationItemReactions.setOnClickListener {
@@ -458,16 +472,15 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     if (conversationMessage.threadRecipient.isGroup) {
       val sender = conversationMessage.messageRecord.fromRecipient
-      binding.senderName.visible = shape.isStartingShape
 
-      val photoVisibility = if (shape.isEndingShape) {
+      binding.senderPhoto.visibility = if (shape.isEndingShape) {
         View.VISIBLE
       } else {
         View.INVISIBLE
       }
 
-      binding.senderPhoto.visibility = photoVisibility
-      binding.senderBadge.visibility = photoVisibility
+      binding.senderName.visible = shape.isStartingShape
+      binding.senderBadge.visible = shape.isEndingShape
 
       binding.senderName.text = sender.getDisplayName(context)
       binding.senderPhoto.setAvatar(conversationContext.glideRequests, sender, false)
