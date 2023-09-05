@@ -29,7 +29,7 @@ public final class PinOptOutDialog {
                                           AlertDialog progress = SimpleProgressDialog.show(context);
 
                                           SimpleTask.run(() -> {
-                                            PinState.onPinOptOut();
+                                            SvrRepository.optOutOfPin();
                                             return null;
                                           }, success -> {
                                             Log.i(TAG, "Disable operation finished.");

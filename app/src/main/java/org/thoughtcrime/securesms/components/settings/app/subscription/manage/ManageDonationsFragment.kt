@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadin
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -84,7 +83,7 @@ class ManageDonationsFragment :
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
-    return object : Material3OnScrollHelper(requireActivity(), toolbar!!) {
+    return object : Material3OnScrollHelper(requireActivity(), toolbar!!, viewLifecycleOwner) {
       override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
       override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
     }
@@ -245,15 +244,13 @@ class ManageDonationsFragment :
 
     sectionHeaderPref(R.string.ManageDonationsFragment__other_ways_to_give)
 
-    if (Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
-      clickPref(
-        title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
-        icon = DSLSettingsIcon.from(R.drawable.symbol_gift_24),
-        onClick = {
-          startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
-        }
-      )
-    }
+    clickPref(
+      title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
+      icon = DSLSettingsIcon.from(R.drawable.symbol_gift_24),
+      onClick = {
+        startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
+      }
+    )
   }
 
   private fun DSLConfiguration.presentBadges() {

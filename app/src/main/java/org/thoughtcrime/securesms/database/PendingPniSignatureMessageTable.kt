@@ -8,7 +8,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 
 /**
@@ -43,8 +42,6 @@ class PendingPniSignatureMessageTable(context: Context, databaseHelper: SignalDa
   }
 
   fun insertIfNecessary(recipientId: RecipientId, sentTimestamp: Long, result: SendMessageResult) {
-    if (!FeatureFlags.phoneNumberPrivacy()) return
-
     if (!result.isSuccess) {
       return
     }
@@ -63,8 +60,6 @@ class PendingPniSignatureMessageTable(context: Context, databaseHelper: SignalDa
   }
 
   fun acknowledgeReceipts(recipientId: RecipientId, sentTimestamps: Collection<Long>, deviceId: Int) {
-    if (!FeatureFlags.phoneNumberPrivacy()) return
-
     writableDatabase.withinTransaction { db ->
       val count = db
         .delete(TABLE_NAME)
@@ -93,7 +88,6 @@ class PendingPniSignatureMessageTable(context: Context, databaseHelper: SignalDa
    * Deletes all record of pending PNI verification messages. Should only be called after the user changes their number.
    */
   fun deleteAll() {
-    if (!FeatureFlags.phoneNumberPrivacy()) return
     writableDatabase.delete(TABLE_NAME).run()
   }
 

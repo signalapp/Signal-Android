@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
@@ -114,7 +115,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private LiveRecipient       recipient;
   private long                threadId;
   private GlideRequests       glideRequests;
-  private SimpleEmojiTextView subjectView;
+  private EmojiTextView       subjectView;
   private TypingIndicatorView typingView;
   private FromTextView        fromView;
   private TextView            dateView;
@@ -172,6 +173,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
 
     getLayoutTransition().setDuration(150);
+
+    this.subjectView.setOverflowText(" ");
   }
 
   /**
@@ -322,7 +325,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     joinMembersDisposable.dispose();
     setSubjectViewText(null);
 
-    fromView.setText(recipient.get(), false);
+    fromView.setText(recipient.get(), recipient.get().getDisplayNameOrUsername(getContext()), false, null, false);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, messageResult.getBodySnippet(), highlightSubstring, SearchUtil.MATCH_ALL));
     dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
     archivedView.setVisibility(GONE);
@@ -333,7 +336,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     setSelectedConversations(new ConversationSet());
     setBadgeFromRecipient(recipient.get());
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode, false);
   }
 
   public void bindGroupWithMembers(@NonNull LifecycleOwner lifecycleOwner,
@@ -552,12 +555,17 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     }
 
     if (highlightSubstring != null) {
-      String name = recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayName(getContext());
-      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), true, null);
+      String name;
+      if (thread != null && recipient.isSelf()) {
+        name = getContext().getString(R.string.note_to_self);
+      } else {
+        name = recipient.getDisplayName(getContext());
+      }
+      fromView.setText(recipient, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(name), highlightSubstring, SearchUtil.MATCH_ALL), true, null, thread != null);
     } else {
       fromView.setText(recipient, false);
     }
-    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
+    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode, false);
     setBadgeFromRecipient(recipient);
   }
 

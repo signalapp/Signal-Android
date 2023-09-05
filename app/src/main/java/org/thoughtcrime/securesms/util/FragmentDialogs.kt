@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
  * Helper functions to display custom views in AlertDialogs anchored to the top of the specified view.
@@ -34,6 +35,7 @@ object FragmentDialogs {
     return displayInDialogAboveAnchor(anchorView, contentView, windowDim, onShow)
   }
 
+  @SuppressLint("AlertDialogBuilderUsage")
   fun Fragment.displayInDialogAboveAnchor(
     anchorView: View,
     contentView: View,
@@ -41,7 +43,8 @@ object FragmentDialogs {
     onShow: (DialogInterface, View) -> Unit = { _, _ -> },
     onDismiss: (DialogInterface) -> Unit = { }
   ): DialogInterface {
-    val alertDialog = MaterialAlertDialogBuilder(requireContext())
+    // MaterialAlertDialogBuilder adds an extra backdrop behind our view, so we use AlertDialog.Builder instead.
+    val alertDialog = AlertDialog.Builder(requireContext())
       .setView(contentView)
       .create()
 

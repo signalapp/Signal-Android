@@ -16,7 +16,7 @@ import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 
 /**
  * This is a fix for a bad situation that could happen during [V185_MessageRecipientsAndEditMessageMigration].
@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.api.push.ACI
  * the concept of a self. To do that, we're going to create a placeholder for self with a special ID (-2), and then
  * we're going to replace that ID with the true self after it's been created.
  */
+@Suppress("ClassName")
 object V188_FixMessageRecipientsAndEditMessageMigration : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V188_FixMessageRecipientsAndEditMessageMigration::class.java)

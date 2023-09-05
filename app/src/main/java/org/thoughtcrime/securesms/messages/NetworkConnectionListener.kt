@@ -38,6 +38,12 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
       onNetworkLost { true }
     }
 
+    override fun onBlockedStatusChanged(network: Network, blocked: Boolean) {
+      super.onBlockedStatusChanged(network, blocked)
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onBlockedStatusChanged()")
+      onNetworkLost { blocked }
+    }
+
     override fun onAvailable(network: Network) {
       super.onAvailable(network)
       Log.d(TAG, "ConnectivityManager.NetworkCallback onAvailable()")

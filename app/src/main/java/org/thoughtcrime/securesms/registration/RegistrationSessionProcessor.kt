@@ -88,6 +88,12 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
     return 0 == result.body.nextVerificationAttempt
   }
 
+  fun mustWaitToSubmitProof(): Boolean {
+    Preconditions.checkState(hasResult(), "This can only be called when result is present!")
+    val nextVerificationAttempt = result.body.nextVerificationAttempt
+    return nextVerificationAttempt != null && nextVerificationAttempt > 0
+  }
+
   /**
    * The soonest time at which the server will accept a submission of proof of ownership.
    * @return a unix timestamp in milliseconds, or 0 to represent null
@@ -149,7 +155,17 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
   }
 
   fun cannotSubmitVerificationAttempt(): Boolean {
-    return !hasResult() || result.body.nextVerificationAttempt == null
+    if (!hasResult()) {
+      return true
+    }
+
+    val body = result.body
+
+    if (body.requestedInformation.isNotEmpty()) {
+      return false
+    }
+
+    return body.nextVerificationAttempt == null
   }
 
   /**

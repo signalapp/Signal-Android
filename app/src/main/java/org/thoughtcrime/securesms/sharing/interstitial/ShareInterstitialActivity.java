@@ -93,7 +93,7 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
                                return false;
                              }
 
-                             return !recipient.isRegistered() || recipient.isForceSmsSelection();
+                             return !recipient.isRegistered();
                            });
 
     if (hasSms) {

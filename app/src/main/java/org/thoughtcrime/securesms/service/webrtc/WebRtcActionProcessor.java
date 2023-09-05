@@ -54,6 +54,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Collection;
 import java.util.List;
@@ -789,7 +790,7 @@ public abstract class WebRtcActionProcessor {
                                                                   @NonNull RemotePeer remotePeerGroup,
                                                                   @NonNull GroupId.V2 groupId,
                                                                   long ringId,
-                                                                  @NonNull UUID sender,
+                                                                  @NonNull ACI sender,
                                                                   @NonNull RingUpdate ringUpdate)
   {
     Log.i(tag, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
@@ -870,6 +871,34 @@ public abstract class WebRtcActionProcessor {
     GroupCallSafetyNumberChangeNotificationUtil.cancelNotification(context, currentState.getCallInfoState().getCallRecipient());
 
     return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
+  }
+
+  //endregion
+
+  //region Call Links
+
+  protected @NonNull WebRtcServiceState handleSetCallLinkJoinRequestAccepted(@NonNull WebRtcServiceState currentState, @NonNull RecipientId participant) {
+    Log.i(tag, "handleSetCallLinkJoinRequestAccepted not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleSetCallLinkJoinRequestRejected(@NonNull WebRtcServiceState currentState, @NonNull RecipientId participant) {
+    Log.i(tag, "handleSetCallLinkJoinRequestRejected not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleRemoveFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
+    Log.i(tag, "handleRemoveFromCallLink not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleBlockFromCallLink(@NonNull WebRtcServiceState currentState, @NonNull CallParticipant participant) {
+    Log.i(tag, "handleBlockFromCallLink not processed");
+
+    return currentState;
   }
 
   //endregion

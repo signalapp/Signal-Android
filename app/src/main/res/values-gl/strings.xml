@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -105,6 +104,10 @@
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Comprobando se hai mensaxes…</string>
+
+    <!-- Fcm notifications -->
+    <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
+    <string name="FcmFetchManager__you_may_have_messages">Pode que teñas mensaxes novas</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Usuarios bloqueados</string>
@@ -214,11 +217,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">Non, grazas</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Eliminar</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Eliminar a foto do perfil?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Eliminar foto do grupo?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Actualizar Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versión da aplicación non é compatible. Para continuares a enviar e recibir mensaxes, actualiza á última versión.</string>
@@ -238,6 +236,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Posibles custos da operadora. O número ao que chamas non está rexistrado en Signal. Esta chamada farase a través da rede móbil, non por Internet.</string>
     <string name="CommunicationActions_cant_join_call">Non podes unirte á chamada</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Esta ligazón de chamada caducou.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Ligazón incorrecta</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Non é unha ligazón de chamada válida. Asegúrate de que a ligazón está enteira e non ten ningún erro antes de unirte.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -247,9 +249,6 @@
     <string name="ContactsCursorLoader_groups">Grupos</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">Membros do grupo</string>
-    <string name="ContactsCursorLoader_phone_number_search">Buscar número de teléfono</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">Buscar por usuario</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">As miñas historias</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -288,7 +287,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Non enviado, toca para máis detalles</string>
     <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toca para máis detalles</string>
     <string name="ConversationItem_error_network_not_delivered">Erro ao enviar</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Recibida a mensaxe de intercambio de chaves; toca para continuar.</string>
     <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
     <string name="ConversationItem_send_paused">Envío en pausa</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Erro ao enviar, toca para volver a un modo non seguro</string>
@@ -317,7 +315,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Non se pode descargar o vídeo. Terás que reenvialo.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">editada hai %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">Editada hai %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Unirse á chamada</string>
 
@@ -325,19 +323,20 @@
     <string name="ConversationActivity_add_attachment">Engadir anexo</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Enviar edición</string>
-    <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
     <string name="ConversationActivity_compose_message">Redactar mensaxe</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sentímolo, hai un erro na configuración do teu anexo.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">O destinatario non é un enderezo electrónico ou SMS válido!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">A mensaxe está baleira!</string>
     <string name="ConversationActivity_group_members">Membros do grupo</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">Toca aquí para iniciar unha chamada de grupo</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Non se puido editar as mensaxes de texto</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">As edicións só poden facerse no termo de %1$d hora dende que se enviou a mensaxe.</item>
         <item quantity="other">As edicións só poden facerse no termo de %1$d horas dende que se enviou a mensaxe.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Só se pode editar esta mensaxe %1$d vez.</item>
+        <item quantity="other">Só se pode editar esta mensaxe %1$d veces.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinatario non válido!</string>
@@ -352,7 +351,6 @@
     <string name="ConversationActivity_transport_signal">Mensaxe de Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Conversa comigo en Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
-    <string name="ConversationActivity_unblock">Desbloquear</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede o límite para o tipo de mensaxe que estás a enviar.</string>
     <string name="ConversationActivity_unable_to_record_audio">Non é posible gravar son!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Non podes enviar mensaxes ao grupo porque xa non formas parte del.</string>
@@ -376,8 +374,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal necesita acceder ao micrófono para gravar vídeos.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal non pode enviar SMS nin MMS porque non é a túa aplicación predefinida de SMS. Gustaríache cambiar isto nos axustes de Android?</string>
-    <string name="ConversationActivity_yes">Si</string>
     <string name="ConversationActivity_no">Non</string>
     <string name="ConversationActivity_search_position">%1$d de %2$d</string>
     <string name="ConversationActivity_no_results">Sen resultados</string>
@@ -400,16 +396,6 @@
 
     <string name="ConversationActivity_error_sending_media">Erro ao enviar o multimedia</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como correo lixo e bloqueado.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">As mensaxes SMS non están activas. Podes exportar as túas mensaxes noutra aplicación do teu dispositivo.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Xa non se poden mandar mensaxes SMS en Signal. Podes exportar as túas mensaxes noutra aplicación do teu dispositivo.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Exportar mensaxes SMS</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">As mensaxes SMS non están activas. Convida a %1$s a Signal para seguir falando.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Xa non se poden mandar mensaxes SMS en Signal. Convida a %1$s a Signal para seguir falando.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -487,8 +473,6 @@
     <string name="ConversationFragment_not_now">Agora non</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">O teu número de seguranza con %1$s cambiou</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">O teu número de seguranza con %1$s cambiou probablemente porque reinstalou Signal ou mudou de dispositivo. Toca Verificar para confirmar o novo número. Isto é opcional.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$sactivo</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Bloquear solicitude?</string>
     <!-- Dialog message for block group link join requests -->
@@ -587,12 +571,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Elexir membros</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Arrastrar para filtrar</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Soltar para filtrar</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Perfil</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao establecer a fotografía do perfil</string>
@@ -690,8 +668,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Cando envíes unha mensaxe programada, asegúrate de que o teu dispositivo estea acendido e conectado a Internet no momento do envío. Se non é así, a túa mensaxe enviarase cando o teu dispositivo se volva conectar.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">De acordo</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Para activar a programación de mensaxes:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Para reactivar a programación de mensaxes:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -883,12 +859,29 @@
     <string name="LinkPreviewView_no_link_preview_available">Vista previa non dispoñible</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">A ligazón deste grupo non está activa</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
+    <!-- Description for Call Link url previews -->
+    <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Emprega esta ligazón para unirte a unha chamada de Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="one">%1$d membro</item>
         <item quantity="other">%1$d membros</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Observamos que as notificacións están demoradas. Enviar rexistro de depuración?</string>
+    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Os rexistros de depuración axúdannos a diagnosticar e solucionar os erros e non conteñen ningunha información identificadora.</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">As notificacións poden atrasarse debido ás optimizacións da batería</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Podes desactivar as optimizacións da batería de Signal para asegurarte de que as notificacións das mensaxes non se atrasen.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Continuar</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Rexeitar</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Invitacións de grupo pendentes</string>
@@ -1112,8 +1105,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Preme para gravar unha mensaxe e solta para enviar</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Xa non se poden mandar mensaxes SMS en Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Editar mensaxe</string>
 
@@ -1147,9 +1138,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">Activada conexión en segundo plano</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler os axustes do provedor sen fíos de MMS</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Ficheiros multimedia</string>
@@ -1209,7 +1197,6 @@
     <string name="Megaphones_get_started">Comezar</string>
     <string name="Megaphones_new_group">Novo grupo</string>
     <string name="Megaphones_invite_friends">Convidar amizades</string>
-    <string name="Megaphones_use_sms">Utilizar SMS</string>
     <string name="Megaphones_chat_colors">Cor da conversa</string>
     <string name="Megaphones_add_a_profile_photo">Engadir unha foto de perfil</string>
 
@@ -1221,11 +1208,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Iniciando chamada</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Colgar chamada</string>
-    <string name="NotificationBarManager__decline_call">Rexeitar chamada</string>
-    <string name="NotificationBarManager__answer_call">Responder chamada</string>
-    <string name="NotificationBarManager__end_call">Finalizar chamada</string>
     <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
-    <string name="NotificationBarManager__join_call">Unirse á chamada</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">Activar notificacións?</string>
@@ -1626,8 +1609,6 @@
         <item quantity="other">Quédache %1$d intentos. Se os esgotas, podes crear un novo PIN. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información do perfil.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Rexistro en Signal - Preciso Axuda co PIN para Android</string>
-    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Escribe PIN alfanumérico</string>
-    <string name="PinRestoreEntryFragment_enter_numeric_pin">Escribe PIN numérico</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Crea o teu PIN</string>
@@ -1705,7 +1686,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para chamar a %1$s, Signal necesita acceder á túa cámara</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Chamando…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">O grupo é demasiado grande para chamar a todos os membros.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Volvendo conectar…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1716,6 +1696,48 @@
     <string name="WebRtcCallActivity__open_settings">Abrir configuración</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Agora non</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Aprobar %1$d solicitude?</item>
+        <item quantity="other">Aprobar %1$d solicitudes?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Aprobar todas</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">Engadirase %1$d persoa á chamada.</item>
+        <item quantity="other">Engadiranse %1$d persoas á chamada.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Rexeitar %1$d solicitude?</item>
+        <item quantity="other">Rexeitar %1$d solicitudes?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">Non se engadirá %1$d persoa á chamada.</item>
+        <item quantity="other">Non se engadirán %1$d persoa á chamada.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Rexeitar todas</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d persoa agardando</item>
+        <item quantity="other">%1$d persoas agardando</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$dpersoa</item>
+        <item quantity="other">%1$d persoas</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Solicitude de unión rexeitada</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Rexeitouse a túa solicitude para unirte á chamada.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Eliminar da chamada</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Alguén te eliminou da chamada.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Chamada Signal</string>
@@ -1728,6 +1750,12 @@
     <string name="WebRtcCallView__reconnecting">Volvendo conectar…</string>
     <string name="WebRtcCallView__joining">Uníndose…</string>
     <string name="WebRtcCallView__disconnected">Desconectado</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Ligazón de chamada de Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Calquera que se una á chamada pola ligazón poderá ver o teu nome, foto e número de teléfono.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Agardando o acceso…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal chamará a %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal chamará a %1$s e %2$s</string>
@@ -1776,8 +1804,6 @@
     <string name="WebRtcCallView__toggle_camera">Activar cámara</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Activar modo sen son</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Activar son da chamada</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Finalizar chamada</string>
 
@@ -1838,7 +1864,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Enviarase un código de verificación a este número. O seu provedor pode aplicar cargos.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Recibirás unha chamada para verificar este número.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">É correcto o teu número de teléfono?</string>
     <string name="RegistrationActivity_edit_number">Editar número</string>
     <string name="RegistrationActivity_missing_google_play_services">Falta Servizos de Google Play</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo non dispón de Servizos de Google Play. Podes continuar a usar Signal, mais é posible que o seu rendemento ou fiabilidade se vexan reducidos.\n\nSe non es un usuario avanzado, se non estás a executar unha ROM de Android modificada ou pensas que isto é un erro, contacta con support@signal.org para che axudar a solucionalo.</string>
@@ -1852,8 +1877,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Levas demasiados intentos para rexistrar este número. Téntao de novo en %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Non é posible contactar co servizo. Comproba a túa conexión de rede e téntao de novo.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">Algo saíu mal!</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Non puidemos enviarche un código de verificación por SMS. Intenta recibir o código por chamada de voz.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1872,8 +1895,6 @@
         <item quantity="other">Estás a %1$d pasos de enviar un informe de depuración.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Necesitamos comprobar que es unha persoa.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal non puido enviar un código SMS debido a un erro externo.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">Chamada de voz</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1886,11 +1907,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insire o teu número de teléfono para comezar.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insire o código que che enviamos a %1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Comproba que tes cobertura da rede móbil para recibir o SMS ou chamada</string>
 
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <string name="RegistrationActivity_country_code_description">Código de país</string>
-    <string name="RegistrationActivity_country_code_hint">País</string>
     <string name="RegistrationActivity_call">Chamar</string>
     <string name="RegistrationActivity_verification_code">Código de verificación</string>
     <string name="RegistrationActivity_resend_code">Volver enviar código</string>
@@ -1920,9 +1939,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Ningún resultado atopado para \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">Conversas</string>
-    <string name="SearchFragment_header_contacts">Contactos</string>
-    <string name="SearchFragment_header_messages">Mensaxes</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -1961,17 +1977,9 @@
     <string name="Slide_video">Vídeo</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Recibida unha mensaxe de intercambio de chaves danada!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Recibida unha mensaxe de intercambio de chaves para unha versión de protocolo non válida.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mensaxe recibida co novo número de seguranza. Toca para continuar e mostrar.</string>
     <string name="SmsMessageRecord_secure_session_reset">Restableciches a sesión segura.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s restableceu a conexión segura.</string>
     <string name="SmsMessageRecord_duplicate_message">Mensaxe duplicada.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Esta mensaxe non se puido procesar porque foi enviada desde unha versión máis recente de Signal. Logo de te actualizares, pídelle ao teu contacto que cha volva enviar.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">Erro ao xestionar a mensaxe recibida.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Adhesivos</string>
@@ -2124,7 +2132,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copia ou comparte unha ligazón de nome de usuario</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">O teu contacto ten unha versión antiga de Signal. Pídelle que a actualice antes de verificar o número de seguranza.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">O teu contacto ten unha versión recente de Signal cun formato de código QR incompatible. Actualízate para poder comparalo.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">O código QR escaneado non ten un código de verificación correctamente formatado. Volve escanealo de novo.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Compartir número de seguranza vía…</string>
@@ -2134,6 +2141,14 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita permiso para acceder á cámara e poder escanear un código QR, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Non é posible escanear o código QR sen permiso para acceder á cámara</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiramente debes intercambiar mensaxes para ver o número de seguranza de %1$s.</string>
+    <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Crearase un número de seguranza con esta persoa despois de que intercambie mensaxes contigo.</string>
+    <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">Aceptar</string>
+    <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Máis información</string>
+    <!-- Confirmation button on scan result dialogs -->
+    <string name="VerifyDisplayFragment__scan_result_dialog_ok">Aceptar</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2150,12 +2165,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Silenciar notificacións</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">Importación en marcha</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Importando mensaxes de texto</string>
-    <string name="ApplicationMigrationService_import_complete">Importación completada</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">A importación da base de datos do sistema está completada.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Toca para abrir</string>
@@ -2200,7 +2209,6 @@
         <item quantity="one">%1$d conversa</item>
         <item quantity="other">%1$d conversas</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensaxes en %2$d conversas</string>
     <string name="MessageNotifier_most_recent_from_s">Máis recente de: %1$s</string>
     <string name="MessageNotifier_locked_message">Mensaxe bloqueada</string>
     <string name="MessageNotifier_message_delivery_failed">Erro na entrega da mensaxe.</string>
@@ -2219,7 +2227,6 @@
     <string name="MessageNotifier_view_once_video">Vídeo dunha soa visualización</string>
     <string name="MessageNotifier_reply">Responder</string>
     <string name="MessageNotifier_signal_message">Mensaxe de Signal</string>
-    <string name="MessageNotifier_unsecured_sms">SMS insegura</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contacto</string>
     <string name="MessageNotifier_reacted_s_to_s">Reaccionou con %1$s a: «%2$s».</string>
@@ -2255,6 +2262,8 @@
     <string name="NotificationChannel_call_status">Estado da chamada</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Alertas críticas da aplicación</string>
+    <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_additional_message_notifications">Notificacións de mensaxes adicionais</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2297,7 +2306,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo xa non rexistrado</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Este dispositivo xa non está rexistrado. Probablemente porque rexistraches o teu número de teléfono en Signal nun dispositivo diferente.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2313,7 +2321,8 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para responder a chamada, permite que Signal acceda ao teu micrófono.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para responder a chamada de %1$s, dálle permiso a Signal ao teu micrófono.</string>
+    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Para responder a videochamada, permite que Signal acceda ao teu micrófono e cámara.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal require permiso para poder facer e recibir chamadas, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\" e \"Cámara\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Respondido nun dispositivo ligado.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Rexeitado nun dispositivo ligado.</string>
@@ -2413,8 +2422,6 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS insegura</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS insegura</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Programar mensaxe</string>
-    <string name="conversation_activity__from_sim_name">De %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Enviar</string>
     <string name="conversation_activity__compose_description">Redacción da mensaxe</string>
@@ -2423,7 +2430,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Activar panel rápido de ficheiros da cámara</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar un anexo de audio</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Bloquear a gravación dun ficheiro anexo de audio</string>
-    <string name="conversation_activity__enable_signal_for_sms">Activar Signal para SMS</string>
     <string name="conversation_activity__message_could_not_be_sent">Non se puido enviar a mensaxe. Comproba a túa conexión á rede e vólveo tentar.</string>
 
     <!-- conversation_input_panel -->
@@ -2488,16 +2494,6 @@
     <string name="QuoteView_no_longer_available">Non dispoñible</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">Doazón en nome dun amigo</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Permiso de Bluetooth denegado</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Activa o permiso «Dispositivos próximos» para empregar o Bluetooth e gravar mensaxes de voz.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Abrir configuración</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Agora non</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desprazarse ata o final</string>
@@ -2612,17 +2608,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Non se atopou nada</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gustaríache importar ás túas mensaxes de texto á base de datos cifrada de Signal?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de datos predefinida do sistema non se modificará nin alterará de modo ningún.</string>
-    <string name="database_migration_activity__skip">Omitir</string>
-    <string name="database_migration_activity__import">Importar</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isto pode levar un pouco. Ten paciencia, por favor; avisarémoste cando remate a importación.</string>
-    <string name="database_migration_activity__importing">IMPORTANDO</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">Ver conversa completa</string>
     <string name="load_more_header__loading">Cargando</string>
 
     <!-- media_overview_activity -->
@@ -2694,16 +2680,25 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Para verificar a seguridade da túa encriptación de extremo a extremo con %1$s, compara os números de arriba co seu dispositivo. Tamén podes escanear o código no seu teléfono. <a href=\"https://signal.org/redirect/safety-numbers\">Máis información.</a>]]></string>
+    <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Para verificar a encriptación de extremo a extremo con %1$s, emparella a cor da tarxeta que se amosa co seu dispositivo e compara os números. Se os números non son iguais, proba outra vez con outros números de seguranza. Só é necesario que unha parella de números coincida.</string>
     <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
     <string name="verify_display_fragment__successful_match">Emparellamento realizado con éxito</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Erro na verificación do número de seguranza</string>
     <string name="verify_display_fragment__loading">Cargando…</string>
     <string name="verify_display_fragment__mark_as_verified">Marcar como verificado</string>
     <string name="verify_display_fragment__clear_verification">Borrar verificación</string>
+    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
+    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Imos actualizar os número de seguranza.</string>
 
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">Compartir número de seguranza</string>
+    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__title">Cambios nos números de seguranza</string>
+    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
+    <string name="PnpSafetyNumberEducationDialog__body">Durante unha fase de transición, actualizaremos os números de seguranza para permitir a configuración da futura función de seguridade en Signal.\n\nPara verificar os números de seguranza, tes que emparellar a cor da tarxeta co dispositivo do teu contacto. Se os números non son iguais, proba outra vez con outros números de seguranza. Só é necesario que unha parella de números coincida.</string>
+    <!-- Button for more information about the safety number changes. Takes user to support article -->
+    <string name="PnpSafetyNumberEducationDialog__help">Necesitas axuda?</string>
+    <!-- Confirmation button for educating users about new safety number changes -->
+    <string name="PnpSafetyNumberEducationDialog__confirm">Entendo</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanear o código QR no dispositivo do teu contacto.</string>
@@ -2745,7 +2740,6 @@
     <string name="AndroidManifest__linked_devices">Dispositivos vinculados</string>
     <string name="AndroidManifest__invite_friends">Convidar amizades</string>
     <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
-    <string name="AndroidManifest_remove_photo">Eliminar fotografía</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">Xa comprobaches as PMF?</string>
@@ -2779,6 +2773,14 @@
         <item>Donativos e insignias</item>
         <item>Exportar mensaxes SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Envío de rexistro de depuración de Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Notificacións lentas</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Enviar</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Non, grazas</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensaxe</string>
@@ -2928,8 +2930,6 @@
     <string name="preferences__app_icon_notification_warning">As notificacións sempre mostrarán o nome e a icona por defecto de Signal.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Máis información</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icona para %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Gráfico que ilustra onde será visible a icona substituta da aplicación.</string>
     <string name="preferences__disable_pin">Desactivar PIN</string>
@@ -2986,7 +2986,6 @@
     <string name="preferences_advanced__use_system_emoji">Utilizar sistema emoji</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecciona todas as chamadas a través do servidor de Signal para evitar revelar o teu enderezo IP aos teus contactos. Ao activar esta opción, reducirase a calidade da chamada.</string>
     <string name="preferences_advanced__always_relay_calls">Redireccionar chamadas sempre</string>
-    <string name="preferences_app_protection__who_can">Quen pode…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pagamentos</string>
     <string name="preferences_chats__chats">Conversas</string>
@@ -3001,6 +3000,8 @@
     <string name="preferences_notifications__ringtone">Ton de chamada</string>
     <string name="preferences_chats__message_text_size">Tamaño da fonte</string>
     <string name="preferences_notifications__priority">Prioridade</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Solucionar problemas coas notificacións</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Eludir censura</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3017,8 +3018,6 @@
     <string name="preferences_communication__category_sealed_sender">Remitente selado</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de calquera</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa o remitente selado para as mensaxes entrantes de persoas que non estean nos teus contactos ou con aquelas coas que non compartiras o teu perfil.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">Saber máis</string>
-    <string name="preferences_setup_a_username">Establecer un nome de usuario</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Usar proxy</string>
     <string name="preferences_off">Off</string>
@@ -3343,10 +3342,9 @@
     <string name="conversation__menu_add_shortcut">Engadir á pantalla de inicio</string>
     <string name="conversation__menu_create_bubble">Crear burbulla</string>
     <!-- Overflow menu option that allows formatting of text -->
-    <string name="conversation__menu_format_text">Format text</string>
+    <string name="conversation__menu_format_text">Aplicar formato no texto</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">Expandir xanela emerxente</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Engadir a contactos</string>
@@ -3384,8 +3382,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar co portapapeis</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">Importar SMS do sistema</string>
-    <string name="reminder_header_sms_import_text">Toca para copiar as mensaxes SMS do teu teléfono na base de datos cifrada de Signal.</string>
     <string name="reminder_header_push_title">Activar as mensaxes e chamadas de Signal</string>
     <string name="reminder_header_push_text">Mellora a túa experiencia comunicativa.</string>
     <string name="reminder_header_service_outage_text">Signal está experimentando problemas técnicos. Estamos a traballar arreo para restaurar o servizo o máis axiña posible.</string>
@@ -3411,38 +3407,13 @@
     <string name="new_conversation_activity__refresh">Actualizar</string>
     <!-- redphone_audio_popup_menu -->
 
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Estatísticas</string>
-    <string name="InsightsDashboardFragment__title">Estatísticas</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Protocolo Signal protexeu de xeito automático o %1$d%% das túas mensaxes enviadas nos últimos %2$d días. As conversas entre usuarios de Signal encriptaranse sempre de extremo a extremo.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Compárteo con alguén</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A túa porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminadas.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Comezar unha conversa</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Comunícate de xeito seguro e activa novas características que van máis alá das limitacións das mensaxes SMS sen cifrar. Convida ós teus contactos a que utilicen Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estas estatísticas créanse localmente no teu dispositivo e só as ves ti. Non son transmitidas a ningún lugar.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Mensaxes cifradas</string>
-    <string name="InsightsDashboardFragment__cancel">Cancelar</string>
-    <string name="InsightsDashboardFragment__send">Enviar</string>
-    <string name="InsightsModalFragment__title">Introdución ás Estatísticas</string>
-    <string name="InsightsModalFragment__description">Descubre cantas das túas mensaxes saíntes se enviaron de forma segura. Despois, convida dun xeito rápido a novos contactos para aumentar a túa porcentaxe en Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Ver Estatísticas</string>
-
-    <string name="FirstInviteReminder__title">Convidar a Signal</string>
-    <string name="FirstInviteReminder__description">Podes aumentar o número de mensaxes cifradas que envías por %1$d %%</string>
-    <string name="SecondInviteReminder__title">Dálle un empurrón ao teu Signal</string>
-    <string name="SecondInviteReminder__description">Convidar a %1$s</string>
-    <string name="InsightsReminder__view_insights">Ver Estatísticas</string>
-    <string name="InsightsReminder__invite">Convidar</string>
-
     <!-- Edit KBS Pin -->
 
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">Seguinte</string>
+    <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Crear PIN alfanumérico</string>
+    <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Crear PIN numérico</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -3504,8 +3475,8 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Escribe o PIN creado para a túa conta. Non é o mesmo que o código de verificación por SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introduce o PIN que creaches para a túa conta.</string>
-    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Escribe PIN alfanumérico</string>
-    <string name="RegistrationLockFragment__enter_numeric_pin">Escribe PIN numérico</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Cambiar teclado</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorrecto. Inténtao outra vez.</string>
     <string name="RegistrationLockFragment__forgot_pin">Esqueciches o PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecto</string>
@@ -3561,17 +3532,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Chamada de grupo de Signal en curso</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
     <string name="ConversationListFragment_loading">Cargando…</string>
     <string name="CallNotificationBuilder_connecting">Conectando…</string>
     <string name="Permissions_permission_required">Permiso obrigatorio</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita permiso para acceder ás mensaxes SMS e poder enviar unha, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"SMS\".</string>
     <string name="Permissions_continue">Continuar</string>
     <string name="Permissions_not_now">Agora non</string>
-    <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAXES DE SIGNAL</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de datos de Signal</string>
-    <string name="PushDecryptJob_new_locked_message">Nova mensaxe bloqueada</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver as mensaxes pendentes</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase de acceso da copia de seguranza</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">As copias de seguranza gardaranse no almacenamento externo e cifraranse cunha frase de acceso. A devandita frase é necesaria para restaurar unha copia de seguranza.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Debes ter esta frase de acceso para restaurar unha copia de seguranza.</string>
@@ -3632,8 +3598,6 @@
     <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>
     <string name="BackupUtil_never">Nunca</string>
     <string name="BackupUtil_unknown">Descoñecido</string>
-    <string name="preferences_app_protection__see_my_phone_number">Ver o meu número de teléfono</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">Atoparme polo número de teléfono</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Número de teléfono</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3647,10 +3611,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Poderán ver o teu número de teléfono as persoas ou grupos aos que envíes mensaxes. As persoas que teñan o teu número na súa lista de contactos tamén o poderán ver en Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Todos</string>
-    <string name="PhoneNumberPrivacy_my_contacts">Os meus contactos</string>
     <string name="PhoneNumberPrivacy_nobody">Ninguén</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">O teu número de teléfono será visible para todas as persoas e grupos a quen envias mensaxes.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">Calquera que teña o teu número de teléfono nos seus contactos te verá como un contacto en Signal. O resto poderá atoparte buscando.</string>
     <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea o acceso a Signal co bloqueo de pantalla de Android ou coa impresión dixital</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo de inactividade para o bloqueo de pantalla</string>
@@ -4117,11 +4078,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">Palabra: %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">Seguinte</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Palabra incorrecta</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">Ver</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s enviouche %2$s</string>
@@ -4591,7 +4547,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Compartir</string>
@@ -4744,7 +4699,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">Doar en nome dun amigo</string>
 
     <string name="Boost__enter_custom_amount">Inserir cantidade personalizada</string>
-    <string name="Boost__one_time_contribution">Doazón puntual</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">A cantidade mínima que podes doar é %1$s</string>
 
@@ -5189,8 +5143,6 @@
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">Reaccionar á historia</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">Responder por privado a %1$s</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">Responder a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
@@ -5438,8 +5390,6 @@
     <string name="ViewReceivedGiftSheet__not_now">Agora non</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Trocando insignia…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Podes trocar a túa insignia de regalo máis tarde.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Doaches a Signal en nome de %1$s. Recibirán a opción de mostrar o seu apoio no seu perfil.</string>
     <!-- Expired gift sheet title -->
@@ -5744,23 +5694,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal non admitirá mensaxes SMS</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal xa non admite mensaxes SMS</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal eliminará moi pronto a función de mensaxes SMS porque o foco central desta aplicación é unha mensaxería encriptada de extremo a extremo e unha alta privacidade, cousa que non é posible coas mensaxes SMS. Isto permitiranos mellorar a experiencia xeral de Signal.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal eliminou a función de mensaxes SMS porque o foco central desta aplicación é unha mensaxería encriptada de extremo a extremo e unha alta privacidade, cousa que non é posible coas mensaxes SMS. Isto permitiranos mellorar a experiencia xeral de Signal.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Exportar mensaxes SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Lembrarmo máis tarde</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Máis información</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">Rematará a compatibilidade coas mensaxes SMS</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Non te preocupes, as mensaxes encriptadas de Signal seguen funcionando.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Continuar</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Exportación completa</string>
     <!-- Button to continue to next screen -->
@@ -5887,7 +5824,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Rematará a compatibilidade coas mensaxes SMS</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">As mensaxes SMS desaparecerán pronto da aplicación de Signal e deixarán de ser compatibles o %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1">As mensaxes SMS desaparecerán pronto da app de Signal e deixarán de ser compatibles.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">As mensaxes de SMS son diferentes das mensaxes de Signal. <b>Isto non afectará as mensaxes encriptadas de Signal, que seguirán a funcionar.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5919,7 +5856,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Revelación</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">Clear formatting</string>
+    <string name="TextFormatting_clear_formatting">Borrar formato</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5966,14 +5903,14 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Ligazón de chamada</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Iniciar unha chamada de vídeo</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Comezar unha chamada de voz</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Videochamada</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Unirse á chamada</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Volver á chamada</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Chamada de voz</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6017,21 +5954,17 @@
     <string name="CallLogFragment__filtered_by_missed">Filtro por perdidas</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Seleccionar todo</string>
-    <!-- Bottom bar option to delete all selected call entries -->
+    <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
     <string name="CallLogFragment__delete">Eliminar</string>
     <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Borrar %1$d chamada?</item>
         <item quantity="other">Borrar %1$d chamadas?</item>
     </plurals>
-    <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Eliminar para min</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d chamada eliminada</item>
         <item quantity="other">%1$d chamadas eliminadas</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Desfacer</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">Sen chamadas.</string>
     <!-- Shown during empty state -->
@@ -6052,6 +5985,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Micro activado</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Micro desactivado</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Altofalante activado</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Altofalante desactivado</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Botón de captura</string>
@@ -6073,6 +6010,18 @@
     <string name="CreateCallLink__create_a_call_link">Crear unha ligazón de chamada</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Compartir ligazón para unha chamada de Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Emprega esta ligazón para unirte a unha chamada de Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Información da chamada</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Eliminar a %1$s da chamada?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Eliminar</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Bloquear da chamada</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6173,6 +6122,27 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Houbo un erro de rede. Inténtao de novo.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Quere unirse…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d solicitude</item>
+        <item quantity="other">+%1$d solicitudes</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Solicitudes para unirse a esta chamada</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d persoa agardando</item>
+        <item quantity="other">%1$d persoas agardando</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Rexeitar</string>
+    <!-- Content desccription for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Aprobar</string>
 
     <!-- EOF -->
 </resources>

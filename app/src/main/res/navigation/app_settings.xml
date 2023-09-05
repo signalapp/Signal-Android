@@ -26,9 +26,8 @@
             app:popExitAnim="@anim/fragment_close_exit">
             <argument
                 android:name="start_at_username"
-                app:argType="boolean"
                 android:defaultValue="true"
-            />
+                app:argType="boolean" />
         </action>
         <action
             android:id="@+id/action_appSettingsFragment_to_accountSettingsFragment"
@@ -587,6 +586,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalSvrPlaygroundFragment"
             app:destination="@id/internalSvrPlaygroundFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalConversationSpringboardFragment"
+            app:destination="@id/internalConversationSpringboardFragment" />
     </fragment>
 
     <fragment
@@ -608,6 +610,21 @@
         android:id="@+id/internalSvrPlaygroundFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.svr.InternalSvrPlaygroundFragment"
         android:label="internal_svr_playground_fragment" />
+
+    <fragment
+        android:id="@+id/internalConversationSpringboardFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.conversation.springboard.InternalConversationSpringboardFragment"
+        android:label="internal_conversation_springboard_fragment">
+
+        <action
+            android:id="@+id/action_internalConversationSpringboardFragment_to_internalConversationTestFragment"
+            app:destination="@id/internalConversationTestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/internalConversationTestFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.conversation.test.InternalConversationTestFragment"
+        android:label="internal_conversation_test_fragment" />
 
     <!-- endregion -->
 
@@ -858,7 +875,7 @@
 
     <fragment
         android:id="@+id/usernameLinkSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsFragment" >
+        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsFragment">
 
         <action
             android:id="@+id/action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment"

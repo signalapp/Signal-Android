@@ -14,9 +14,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -24,10 +29,15 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class AvatarUtil {
 
@@ -55,7 +65,7 @@ public final class AvatarUtil {
 
     GlideApp.with(target)
             .load(photo)
-            .transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
+            .transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS), new CenterCrop())
             .into(new CustomViewTarget<View, Drawable>(target) {
               @Override
               public void onLoadFailed(@Nullable Drawable errorDrawable) {
@@ -99,12 +109,8 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static IconCompat getIconForNotification(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      return IconCompat.createWithBitmap(requestCircle(GlideApp.with(context).asBitmap(), context, recipient, UNDEFINED_SIZE).submit().get());
-    } catch (ExecutionException | InterruptedException e) {
-      return null;
-    }
+  public static IconCompat getIconWithUriForNotification(@NonNull RecipientId recipientId) {
+    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipientId));
   }
 
   @WorkerThread
@@ -128,26 +134,37 @@ public final class AvatarUtil {
 
   @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
+    return getBitmapForNotification(context, recipient, UNDEFINED_SIZE);
+  }
+
+  @WorkerThread
+  public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
     try {
-      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, UNDEFINED_SIZE).submit().get();
-    } catch (ExecutionException | InterruptedException e) {
+      AvatarTarget avatarTarget = new AvatarTarget(size);
+
+      SignalExecutors.BOUNDED_IO.submit(() -> {
+        requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).into(avatarTarget);
+      });
+
+      return avatarTarget.await();
+    } catch (InterruptedException e) {
       return null;
     }
   }
 
   private static <T> GlideRequest<T> requestCircle(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    return request(glideRequest, context, recipient, targetSize).circleCrop();
+    return request(glideRequest, context, recipient, targetSize, new CircleCrop());
   }
 
   private static <T> GlideRequest<T> requestSquare(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
-    return request(glideRequest, context, recipient, UNDEFINED_SIZE).centerCrop();
+    return request(glideRequest, context, recipient, UNDEFINED_SIZE, new CenterCrop());
   }
 
-  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    return request(glideRequest, context, recipient, true, targetSize);
+  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, int targetSize, @Nullable BitmapTransformation transformation) {
+    return request(glideRequest, context, recipient, true, targetSize, transformation);
   }
 
-  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize) {
+  private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize, @Nullable BitmapTransformation transformation) {
     final ContactPhoto photo;
     if (Recipient.self().equals(recipient) && loadSelf) {
       photo = new ProfileContactPhoto(recipient);
@@ -157,18 +174,79 @@ public final class AvatarUtil {
 
     final GlideRequest<T> request = glideRequest.load(photo)
                                                 .error(getFallback(context, recipient, targetSize))
-                                                .diskCacheStrategy(DiskCacheStrategy.ALL);
+                                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                .override(targetSize);
 
     if (recipient.shouldBlurAvatar()) {
-      return request.transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS));
+      BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
+      if (transformation != null) {
+        return request.transform(blur, transformation);
+      } else {
+        return request.transform(blur);
+      }
+    } else if (transformation != null) {
+      return request.transform(transformation);
     } else {
       return request;
     }
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    String name = Optional.ofNullable(recipient.getDisplayName(context)).orElse("");
+    String name = Optional.of(recipient.getDisplayName(context)).orElse("");
 
     return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize).asDrawable(context, recipient.getAvatarColor());
+  }
+
+  /**
+   * Allows caller to synchronously await for a bitmap of an avatar.
+   */
+  private static class AvatarTarget extends CustomTarget<Bitmap> {
+
+    private final CountDownLatch          countDownLatch = new CountDownLatch(1);
+    private final AtomicReference<Bitmap> bitmap         = new AtomicReference<>();
+
+    private final int size;
+
+    private AvatarTarget(int size) {
+      this.size = size == UNDEFINED_SIZE ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : size;
+    }
+
+    public @Nullable Bitmap await() throws InterruptedException {
+      Log.d(TAG, "AvatarTarget#await:");
+      if (countDownLatch.await(1, TimeUnit.SECONDS)) {
+        return bitmap.get();
+      } else {
+        Log.w(TAG, "AvatarTarget#await: Failed to load avatar in time! Returning null");
+        return null;
+      }
+    }
+
+    @Override
+    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+      Log.d(TAG, "AvatarTarget#onResourceReady:");
+      bitmap.set(resource);
+      countDownLatch.countDown();
+    }
+
+    @Override
+    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+      Log.d(TAG, "AvatarTarget#onLoadFailed:");
+
+      if (errorDrawable == null) {
+        throw new AssertionError("Expected an error drawable.");
+      }
+
+      Bitmap errorBitmap = DrawableUtil.toBitmap(errorDrawable, size, size);
+      bitmap.set(errorBitmap);
+      countDownLatch.countDown();
+    }
+
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+      Log.d(TAG, "AvatarTarget#onLoadCleared:");
+
+      bitmap.set(null);
+      countDownLatch.countDown();
+    }
   }
 }

@@ -23,15 +23,14 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDona
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.SmsExportPhase;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
-import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
-import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
+import org.thoughtcrime.securesms.lock.v2.SvrMigrationActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -164,7 +163,7 @@ public final class Megaphones {
           .enableSnooze(null)
           .setOnVisibleListener((megaphone, listener) -> {
             if (new NetworkConstraint.Factory(ApplicationDependencies.getApplication()).create().isMet()) {
-              listener.onMegaphoneNavigationRequested(KbsMigrationActivity.createIntent(), KbsMigrationActivity.REQUEST_NEW_PIN);
+              listener.onMegaphoneNavigationRequested(SvrMigrationActivity.createIntent(), SvrMigrationActivity.REQUEST_NEW_PIN);
             }
           })
           .build();
@@ -174,9 +173,9 @@ public final class Megaphones {
           .setTitle(R.string.KbsMegaphone__create_a_pin)
           .setBody(R.string.KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped)
           .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
-            Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
+            Intent intent = CreateSvrPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
 
-            listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
+            listener.onMegaphoneNavigationRequested(intent, CreateSvrPinActivity.REQUEST_NEW_PIN);
           })
           .build();
     }
@@ -368,33 +367,19 @@ public final class Megaphones {
   private static @NonNull Megaphone buildSmsExportMegaphone(@NonNull Context context) {
     SmsExportPhase phase = SignalStore.misc().getSmsExportPhase();
 
-    if (phase == SmsExportPhase.PHASE_1) {
-      return new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.BASIC)
-          .setTitle(R.string.SmsExportMegaphone__sms_support_going_away)
-          .setImage(R.drawable.sms_megaphone)
-          .setBody(R.string.SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work)
-          .setActionButton(R.string.SmsExportMegaphone__continue, (megaphone, controller) -> {
-            controller.onMegaphoneSnooze(Event.SMS_EXPORT);
-            controller.onMegaphoneNavigationRequested(SmsExportActivity.createIntent(context, true), SmsExportMegaphoneActivity.REQUEST_CODE);
-          })
-          .setSecondaryButton(R.string.Megaphones_remind_me_later, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.SMS_EXPORT))
-          .setOnVisibleListener((megaphone, controller) -> SignalStore.misc().startSmsPhase1())
-          .build();
-    } else {
-      Megaphone.Builder builder = new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.FULLSCREEN)
-          .setOnVisibleListener((megaphone, controller) -> {
-            if (phase.isBlockingUi()) {
-              SmsExportReminderSchedule.setShowPhase3Megaphone(false);
-            }
-            controller.onMegaphoneNavigationRequested(new Intent(context, SmsExportMegaphoneActivity.class), SmsExportMegaphoneActivity.REQUEST_CODE);
-          });
+    Megaphone.Builder builder = new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.FULLSCREEN)
+        .setOnVisibleListener((megaphone, controller) -> {
+          if (phase.isBlockingUi()) {
+            SmsExportReminderSchedule.setShowPhase3Megaphone(false);
+          }
+          controller.onMegaphoneNavigationRequested(new Intent(context, SmsExportMegaphoneActivity.class), SmsExportMegaphoneActivity.REQUEST_CODE);
+        });
 
-      if (phase.isBlockingUi()) {
-        builder.disableSnooze();
-      }
-
-      return builder.build();
+    if (phase.isBlockingUi()) {
+      builder.disableSnooze();
     }
+
+    return builder.build();
   }
 
   public static @NonNull Megaphone buildSetUpYourUsernameMegaphone(@NonNull Context context) {

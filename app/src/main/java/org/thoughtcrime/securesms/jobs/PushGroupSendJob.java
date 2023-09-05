@@ -231,6 +231,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
       List<SendMessageResult> results = deliver(message, originalEditedMessage, groupRecipient, target);
       processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, skipped, existingNetworkFailures, existingIdentityMismatches);
+      ConversationShortcutRankingUpdateJob.enqueueForOutgoingIfNecessary(groupRecipient);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
@@ -351,10 +352,6 @@ public final class PushGroupSendJob extends PushSendJob {
           try {
             MessageRecord storyRecord = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
             Recipient     storyAuthor = storyRecord.getFromRecipient();
-
-            destinations = destinations.stream()
-                                       .filter(r -> r.getStoriesCapability() == Recipient.Capability.SUPPORTED)
-                                       .collect(java.util.stream.Collectors.toList());
 
             SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyAuthor.requireServiceId(), storyRecord.getDateSent());
             groupMessageBuilder.withStoryContext(storyContext);

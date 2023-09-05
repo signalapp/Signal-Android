@@ -16,3 +16,15 @@ message CallSyncEventJobRecord {
 message CallSyncEventJobData {
   repeated CallSyncEventJobRecord records = 1;
 }
+
+message CallLinkRefreshSinceTimestampJobData {
+  uint64 timestamp = 1;
+}
+
+message CallLogEventSendJobData {
+  bytes callLogEvent = 1;
+}
+
+message CallLinkUpdateSendJobData {
+  string callLinkRoomId = 1;
+}

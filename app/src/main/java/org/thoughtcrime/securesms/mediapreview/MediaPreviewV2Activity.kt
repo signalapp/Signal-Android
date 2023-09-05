@@ -122,7 +122,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
       viewModel.setIsInSharedAnimation(false)
     }
 
-    voiceNoteMediaController = VoiceNoteMediaController(this)
+    voiceNoteMediaController = VoiceNoteMediaController(this, false)
 
     val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
     window.statusBarColor = systemBarColor

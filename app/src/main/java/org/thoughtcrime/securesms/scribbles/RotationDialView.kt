@@ -187,7 +187,7 @@ class RotationDialView @JvmOverloads constructor(
       return true
     }
 
-    override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
       val degreeIncrement: Float = distanceX / dimensions.spaceBetweenAngleIndicators
       val prevDialDegrees = getDialDegrees(degrees)
       val newDialDegrees = getDialDegrees(degrees + degreeIncrement)

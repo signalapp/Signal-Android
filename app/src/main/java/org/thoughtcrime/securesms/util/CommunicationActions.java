@@ -48,7 +48,9 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class CommunicationActions {
 
@@ -82,11 +84,11 @@ public class CommunicationActions {
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
           if (resultCode == 1) {
-            startCallInternal(callContext, recipient, false);
+            startCallInternal(callContext, recipient, false, false);
           } else {
             new MaterialAlertDialogBuilder(callContext.getContext())
                 .setMessage(R.string.CommunicationActions_start_voice_call)
-                .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(callContext, recipient, false))
+                .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(callContext, recipient, false, false))
                 .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
                 .setCancelable(true)
                 .show();
@@ -102,17 +104,17 @@ public class CommunicationActions {
    * Start a video call. Assumes that permission request results will be routed to a handler on the Fragment.
    */
   public static void startVideoCall(@NonNull Fragment fragment, @NonNull Recipient recipient) {
-    startVideoCall(new FragmentCallContext(fragment), recipient);
+    startVideoCall(new FragmentCallContext(fragment), recipient, false);
   }
 
   /**
    * Start a video call. Assumes that permission request results will be routed to a handler on the Activity.
    */
   public static void startVideoCall(@NonNull Activity activity, @NonNull Recipient recipient) {
-    startVideoCall(new ActivityCallContext(activity), recipient);
+    startVideoCall(new ActivityCallContext(activity), recipient, false);
   }
 
-  private static void startVideoCall(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+  private static void startVideoCall(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink) {
     if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
       Toast.makeText(callContext.getContext(),
                      R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
@@ -124,7 +126,7 @@ public class CommunicationActions {
     ApplicationDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
       @Override
       protected void onReceiveResult(int resultCode, Bundle resultData) {
-        startCallInternal(callContext, recipient, resultCode != 1);
+        startCallInternal(callContext, recipient, resultCode != 1, fromCallLink);
       }
     });
   }
@@ -141,13 +143,12 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return SignalDatabase.threads().getThreadIdFor(recipient.getId());
+        return SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
       }
 
       @Override
-      protected void onPostExecute(@Nullable Long threadId) {
-        // TODO [alex] -- ThreadID should *always* exist
-        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId != null ? threadId : -1);
+      protected void onPostExecute(@NonNull Long threadId) {
+        ConversationIntents.Builder builder = ConversationIntents.createBuilderSync(context, recipient.getId(), Objects.requireNonNull(threadId));
         if (!TextUtils.isEmpty(text)) {
           builder.withDraftText(text);
         }
@@ -303,7 +304,7 @@ public class CommunicationActions {
 
           if (!recipient.isRegistered() || !recipient.hasServiceId()) {
             try {
-              ContactDiscovery.refresh(activity, recipient, false);
+              ContactDiscovery.refresh(activity, recipient, false, TimeUnit.SECONDS.toMillis(10));
               recipient = Recipient.resolved(recipient.getId());
             } catch (IOException e) {
               Log.w(TAG, "[handlePotentialSignalMeUrl] Failed to refresh directory for new contact.");
@@ -334,9 +335,19 @@ public class CommunicationActions {
   }
 
   public static void handlePotentialCallLinkUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    if (!FeatureFlags.adHocCalling()) {
+      Toast.makeText(activity, R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
+      return;
+    }
+
     CallLinkRootKey rootKey = CallLinks.parseUrl(potentialUrl);
     if (rootKey == null) {
       Log.w(TAG, "Failed to parse root key from call link");
+      new MaterialAlertDialogBuilder(activity)
+          .setTitle(R.string.CommunicationActions_invalid_link)
+          .setMessage(R.string.CommunicationActions_this_is_not_a_valid_call_link)
+          .setPositiveButton(android.R.string.ok, null)
+          .show();
       return;
     }
 
@@ -376,7 +387,7 @@ public class CommunicationActions {
             .setPositiveButton(android.R.string.ok, null)
             .show();
       } else {
-        startVideoCall(callContext, callLinkRecipient.get());
+        startVideoCall(callContext, callLinkRecipient.get(), true);
       }
     });
   }
@@ -393,8 +404,8 @@ public class CommunicationActions {
     }
   }
 
-  private static void startCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean isVideo) {
-    if (isVideo) startVideoCallInternal(callContext, recipient);
+  private static void startCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean isVideo, boolean fromCallLink) {
+    if (isVideo) startVideoCallInternal(callContext, recipient, fromCallLink);
     else         startAudioCallInternal(callContext, recipient);
   }
 
@@ -419,7 +430,7 @@ public class CommunicationActions {
                .execute();
   }
 
-  private static void startVideoCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+  private static void startVideoCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink) {
     callContext.getPermissionsBuilder()
                .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
                .ifNecessary()
@@ -433,7 +444,8 @@ public class CommunicationActions {
                  Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
 
                  activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                     .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
+                     .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true)
+                     .putExtra(WebRtcCallActivity.EXTRA_STARTED_FROM_CALL_LINK, fromCallLink);
 
                  callContext.startActivity(activityIntent);
                })

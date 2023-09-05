@@ -6,6 +6,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.util.Consumer;
+import androidx.core.util.Preconditions;
 import androidx.core.view.ViewKt;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -43,6 +45,7 @@ import com.google.common.collect.Sets;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.SetUtil;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
@@ -57,6 +60,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
+import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection;
 import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -69,6 +73,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import kotlin.concurrent.ThreadsKt;
 
 public class WebRtcCallView extends ConstraintLayout {
 
@@ -127,10 +133,13 @@ public class WebRtcCallView extends ConstraintLayout {
   private View                          fullScreenShade;
   private Toolbar                       collapsedToolbar;
   private Toolbar                       headerToolbar;
+  private Stub<PendingParticipantsView> pendingParticipantsViewStub;
+  private Stub<View>                    callLinkWarningCard;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
   private PictureInPictureExpansionHelper       pictureInPictureExpansionHelper;
+  private PendingParticipantsView.Listener      pendingParticipantsViewListener;
 
   private final Set<View> incomingCallViews    = new HashSet<>();
   private final Set<View> topViews             = new HashSet<>();
@@ -203,6 +212,8 @@ public class WebRtcCallView extends ConstraintLayout {
     fullScreenShade               = findViewById(R.id.call_screen_full_shade);
     collapsedToolbar              = findViewById(R.id.webrtc_call_view_toolbar_text);
     headerToolbar                 = findViewById(R.id.webrtc_call_view_toolbar_no_text);
+    pendingParticipantsViewStub   = new Stub<>(findViewById(R.id.call_screen_pending_recipients));
+    callLinkWarningCard           = new Stub<>(findViewById(R.id.call_screen_call_link_warning));
 
     View      decline                = findViewById(R.id.call_screen_decline_call);
     View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
@@ -248,9 +259,8 @@ public class WebRtcCallView extends ConstraintLayout {
       runIfNonNull(controlsListener, listener ->
       {
         if (Build.VERSION.SDK_INT >= 31) {
-          final Integer deviceId = webRtcAudioDevice.getDeviceId();
-          if (deviceId != null) {
-            listener.onAudioOutputChanged31(deviceId);
+          if (webRtcAudioDevice.getDeviceId() != null) {
+            listener.onAudioOutputChanged31(webRtcAudioDevice);
           } else {
             Log.e(TAG, "Attempted to change audio output to null device ID.");
           }
@@ -425,6 +435,22 @@ public class WebRtcCallView extends ConstraintLayout {
     micToggle.setChecked(isMicEnabled, false);
   }
 
+  public void setPendingParticipantsViewListener(@Nullable PendingParticipantsView.Listener listener) {
+    pendingParticipantsViewListener = listener;
+  }
+
+  public void updatePendingParticipantsList(@NonNull PendingParticipantCollection pendingParticipantCollection) {
+    if (pendingParticipantCollection.getUnresolvedPendingParticipants().isEmpty()) {
+      if (pendingParticipantsViewStub.resolved()) {
+        pendingParticipantsViewStub.get().setListener(pendingParticipantsViewListener);
+        pendingParticipantsViewStub.get().applyState(pendingParticipantCollection);
+      }
+    } else {
+      pendingParticipantsViewStub.get().setListener(pendingParticipantsViewListener);
+      pendingParticipantsViewStub.get().applyState(pendingParticipantCollection);
+    }
+  }
+
   public void updateCallParticipants(@NonNull CallParticipantsViewState callParticipantsViewState) {
     lastState = callParticipantsViewState;
 
@@ -443,10 +469,13 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (state.getGroupCallState().isNotIdle()) {
       if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+        callLinkWarningCard.setVisibility(callParticipantsViewState.isStartedFromCallLink() ? View.VISIBLE : View.GONE);
         setStatus(state.getPreJoinGroupDescription(getContext()));
       } else if (state.getCallState() == WebRtcViewModel.State.CALL_CONNECTED && state.isInOutgoingRingingMode()) {
+        callLinkWarningCard.setVisibility(View.GONE);
         setStatus(state.getOutgoingRingingGroupDescription(getContext()));
       } else if (state.getGroupCallState().isRinging()) {
+        callLinkWarningCard.setVisibility(View.GONE);
         setStatus(state.getIncomingRingingGroupDescription(getContext()));
       }
     }
@@ -569,6 +598,7 @@ public class WebRtcCallView extends ConstraintLayout {
   }
 
   public void setStatus(@Nullable String status) {
+    ThreadUtil.assertMainThread();
     this.status.setText(status);
     collapsedToolbar.setSubtitle(status);
   }
@@ -615,6 +645,9 @@ public class WebRtcCallView extends ConstraintLayout {
         break;
       case CONNECTED_AND_JOINING:
         setStatus(R.string.WebRtcCallView__joining);
+        break;
+      case CONNECTED_AND_PENDING:
+        setStatus(R.string.WebRtcCallView__waiting_to_be_let_in);
         break;
       case CONNECTING:
       case CONNECTED_AND_JOINED:
@@ -1102,7 +1135,7 @@ public class WebRtcCallView extends ConstraintLayout {
     void hideSystemUI();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
     @RequiresApi(31)
-    void onAudioOutputChanged31(@NonNull Integer audioOutputAddress);
+    void onAudioOutputChanged31(@NonNull WebRtcAudioDevice audioOutput);
     void onVideoChanged(boolean isVideoEnabled);
     void onMicChanged(boolean isMicEnabled);
     void onCameraDirectionChanged();

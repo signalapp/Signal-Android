@@ -9,6 +9,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,8 +27,8 @@ import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage
+import org.whispersystems.signalservice.internal.websocket.WebSocketMessage
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.util.regex.Pattern
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.minutes
@@ -37,7 +38,7 @@ import android.util.Log as AndroidLog
 /**
  * Sends N messages from Bob to Alice to track performance of Alice's processing of messages.
  */
-// @Ignore("Ignore test in normal testing as it's a performance test with no assertions")
+@Ignore("Ignore test in normal testing as it's a performance test with no assertions")
 @RunWith(AndroidJUnit4::class)
 class MessageProcessingPerformanceTest {
 
@@ -58,14 +59,14 @@ class MessageProcessingPerformanceTest {
     mockkStatic(UnidentifiedAccessUtil::class)
     every { UnidentifiedAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
 
-    mockkObject(MessageContentProcessorV2)
-    every { MessageContentProcessorV2.create(harness.application) } returns TimingMessageContentProcessorV2(harness.application)
+    mockkObject(MessageContentProcessor)
+    every { MessageContentProcessor.create(harness.application) } returns TimingMessageContentProcessor(harness.application)
   }
 
   @After
   fun after() {
     unmockkStatic(UnidentifiedAccessUtil::class)
-    unmockkStatic(MessageContentProcessorV2::class)
+    unmockkStatic(MessageContentProcessor::class)
   }
 
   @Test
@@ -106,7 +107,7 @@ class MessageProcessingPerformanceTest {
     // Wait until they've all been fully decrypted + processed
     harness
       .inMemoryLogger
-      .getLockForUntil(TimingMessageContentProcessorV2.endTagPredicate(lastTimestamp))
+      .getLockForUntil(TimingMessageContentProcessor.endTagPredicate(lastTimestamp))
       .awaitFor(1.minutes)
 
     harness.inMemoryLogger.flush()
@@ -125,7 +126,7 @@ class MessageProcessingPerformanceTest {
 
     // Calculate MessageContentProcessor
 
-    val takeLast: List<Entry> = entries.filter { it.tag == TimingMessageContentProcessorV2.TAG }.drop(2)
+    val takeLast: List<Entry> = entries.filter { it.tag == TimingMessageContentProcessor.TAG }.drop(2)
     val iterator = takeLast.iterator()
     var processCount = 0L
     var processDuration = 0L
@@ -141,7 +142,7 @@ class MessageProcessingPerformanceTest {
     // Calculate messages per second from "retrieving" first message post session initialization to processing last message
 
     val start = entries.first { it.message == "Retrieved envelope! $firstTimestamp" }
-    val end = entries.first { it.message == TimingMessageContentProcessorV2.endTag(lastTimestamp) }
+    val end = entries.first { it.message == TimingMessageContentProcessor.endTag(lastTimestamp) }
 
     val duration = (end.timestamp - start.timestamp).toFloat() / 1000f
     val messagePerSecond = messageCount.toFloat() / duration
@@ -156,7 +157,7 @@ class MessageProcessingPerformanceTest {
 
     val aliceProcessFirstMessageLatch = harness
       .inMemoryLogger
-      .getLockForUntil(TimingMessageContentProcessorV2.endTagPredicate(firstPreKeyMessageTimestamp))
+      .getLockForUntil(TimingMessageContentProcessor.endTagPredicate(firstPreKeyMessageTimestamp))
 
     Thread { aliceClient.process(encryptedEnvelope, System.currentTimeMillis()) }.start()
     aliceProcessFirstMessageLatch.awaitFor(15.seconds)
@@ -178,32 +179,19 @@ class MessageProcessingPerformanceTest {
   }
 
   private fun webSocketTombstone(): ByteString {
-    return WebSocketMessage
-      .newBuilder()
-      .setRequest(
-        WebSocketRequestMessage.newBuilder()
-          .setVerb("PUT")
-          .setPath("/api/v1/queue/empty")
-      )
-      .build()
-      .toByteArray()
-      .toByteString()
+    return WebSocketMessage(request = WebSocketRequestMessage(verb = "PUT", path = "/api/v1/queue/empty")).encodeByteString()
   }
 
   private fun Envelope.toWebSocketPayload(): ByteString {
-    return WebSocketMessage
-      .newBuilder()
-      .setType(WebSocketMessage.Type.REQUEST)
-      .setRequest(
-        WebSocketRequestMessage.newBuilder()
-          .setVerb("PUT")
-          .setPath("/api/v1/message")
-          .setId(Random(System.currentTimeMillis()).nextLong())
-          .addHeaders("X-Signal-Timestamp: ${this.timestamp}")
-          .setBody(this.toByteString())
+    return WebSocketMessage(
+      type = WebSocketMessage.Type.REQUEST,
+      request = WebSocketRequestMessage(
+        verb = "PUT",
+        path = "/api/v1/message",
+        id = Random(System.currentTimeMillis()).nextLong(),
+        headers = listOf("X-Signal-Timestamp: ${this.timestamp}"),
+        body = this.toByteArray().toByteString()
       )
-      .build()
-      .toByteArray()
-      .toByteString()
+    ).encodeByteString()
   }
 }

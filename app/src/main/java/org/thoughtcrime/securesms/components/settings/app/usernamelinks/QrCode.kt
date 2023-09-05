@@ -1,19 +1,19 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.imageResource
@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import org.thoughtcrime.securesms.R
+import kotlin.math.ceil
+import kotlin.math.floor
 
 /**
  * Shows a QRCode that represents the provided data. Includes a Signal logo in the middle.
@@ -32,7 +34,7 @@ fun QrCode(
   modifier: Modifier = Modifier,
   foregroundColor: Color = Color.Black,
   backgroundColor: Color = Color.White,
-  deadzonePercent: Float = 0.4f
+  deadzonePercent: Float = 0.35f
 ) {
   val logo = ImageBitmap.imageResource(R.drawable.qrcode_logo)
 
@@ -58,53 +60,65 @@ private fun DrawScope.drawQr(
   deadzonePercent: Float,
   logo: ImageBitmap
 ) {
+  val deadzonePaddingPercent = 0.07f
+
   // We want an even number of dots on either side of the deadzone
-  val candidateDeadzoneWidth: Int = (data.width * deadzonePercent).toInt()
-  val deadzoneWidth: Int = if ((data.width - candidateDeadzoneWidth) % 2 == 0) {
-    candidateDeadzoneWidth
-  } else {
-    candidateDeadzoneWidth + 1
-  }
-
-  val candidateDeadzoneHeight: Int = (data.height * deadzonePercent).toInt()
-  val deadzoneHeight: Int = if ((data.height - candidateDeadzoneHeight) % 2 == 0) {
-    candidateDeadzoneHeight
-  } else {
-    candidateDeadzoneHeight + 1
-  }
-
-  val deadzoneStartX: Int = (data.width - deadzoneWidth) / 2
-  val deadzoneEndX: Int = deadzoneStartX + deadzoneWidth
-  val deadzoneStartY: Int = (data.height - deadzoneHeight) / 2
-  val deadzoneEndY: Int = deadzoneStartY + deadzoneHeight
+  val deadzoneRadius: Int = (data.height * (deadzonePercent + deadzonePaddingPercent)).toInt().let { candidateDeadzoneHeight ->
+    if ((data.height - candidateDeadzoneHeight) % 2 == 0) {
+      candidateDeadzoneHeight
+    } else {
+      candidateDeadzoneHeight + 1
+    }
+  } / 2
 
   val cellWidthPx: Float = size.width / data.width
-  val cellRadiusPx = cellWidthPx / 2
+  val cornerRadius = CornerRadius(7f, 7f)
+  val deadzone = Circle(center = IntOffset(data.width / 2, data.height / 2), radius = deadzoneRadius)
 
   for (x in 0 until data.width) {
     for (y in 0 until data.height) {
-      if (x < deadzoneStartX || x >= deadzoneEndX || y < deadzoneStartY || y >= deadzoneEndY) {
-        drawCircle(
-          color = if (data.get(x, y)) foregroundColor else backgroundColor,
-          radius = cellRadiusPx,
-          center = Offset(x * cellWidthPx + cellRadiusPx, y * cellWidthPx + cellRadiusPx)
+      val position = IntOffset(x, y)
+
+      if (data.get(position) && !deadzone.contains(position)) {
+        val filledAbove = IntOffset(x, y - 1).let { data.get(it) && !deadzone.contains(it) }
+        val filledBelow = IntOffset(x, y + 1).let { data.get(it) && !deadzone.contains(it) }
+        val filledLeft = IntOffset(x - 1, y).let { data.get(it) && !deadzone.contains(it) }
+        val filledRight = IntOffset(x + 1, y).let { data.get(it) && !deadzone.contains(it) }
+
+        val path = Path().apply {
+          addRoundRect(
+            RoundRect(
+              rect = Rect(
+                topLeft = Offset(floor(x * cellWidthPx), floor(y * cellWidthPx - 1)),
+                bottomRight = Offset(ceil((x + 1) * cellWidthPx), ceil((y + 1) * cellWidthPx + 1))
+              ),
+              topLeft = if (filledAbove || filledLeft) CornerRadius.Zero else cornerRadius,
+              topRight = if (filledAbove || filledRight) CornerRadius.Zero else cornerRadius,
+              bottomLeft = if (filledBelow || filledLeft) CornerRadius.Zero else cornerRadius,
+              bottomRight = if (filledBelow || filledRight) CornerRadius.Zero else cornerRadius
+            )
+          )
+        }
+
+        drawPath(
+          path = path,
+          color = if (data.get(position)) foregroundColor else backgroundColor
         )
       }
     }
   }
 
   // Logo border
-  val deadzonePaddingPercent = 0.03f
   val logoBorderRadiusPx = ((deadzonePercent - deadzonePaddingPercent) * size.width) / 2
   drawCircle(
     color = foregroundColor,
     radius = logoBorderRadiusPx,
-    style = Stroke(width = 4.dp.toPx()),
+    style = Stroke(width = cellWidthPx * 0.75f),
     center = this.center
   )
 
   // Logo
-  val logoWidthPx = ((deadzonePercent / 2) * size.width).toInt()
+  val logoWidthPx = (((deadzonePercent - deadzonePaddingPercent) * 0.6f) * size.width).toInt()
   val logoOffsetPx = ((size.width - logoWidthPx) / 2).toInt()
   drawImage(
     image = logo,
@@ -112,43 +126,6 @@ private fun DrawScope.drawQr(
     dstSize = IntSize(logoWidthPx, logoWidthPx),
     colorFilter = ColorFilter.tint(foregroundColor)
   )
-
-  for (eye in data.eyes()) {
-    val strokeWidth = cellWidthPx
-
-    // Clear the already-drawn dots
-    drawRect(
-      color = backgroundColor,
-      topLeft = Offset(
-        x = eye.position.first * cellWidthPx,
-        y = eye.position.second * cellWidthPx
-      ),
-      size = Size(eye.size * cellWidthPx + cellRadiusPx, eye.size * cellWidthPx)
-    )
-
-    // Outer square
-    drawRoundRect(
-      color = foregroundColor,
-      topLeft = Offset(
-        x = eye.position.first * cellWidthPx + strokeWidth / 2,
-        y = eye.position.second * cellWidthPx + strokeWidth / 2
-      ),
-      size = Size((eye.size - 1) * cellWidthPx, (eye.size - 1) * cellWidthPx),
-      cornerRadius = CornerRadius(cellRadiusPx * 2, cellRadiusPx * 2),
-      style = Stroke(width = strokeWidth)
-    )
-
-    // Inner square
-    drawRoundRect(
-      color = foregroundColor,
-      topLeft = Offset(
-        x = (eye.position.first + 2) * cellWidthPx,
-        y = (eye.position.second + 2) * cellWidthPx
-      ),
-      size = Size((eye.size - 4) * cellWidthPx, (eye.size - 4) * cellWidthPx),
-      cornerRadius = CornerRadius(cellRadiusPx, cellRadiusPx)
-    )
-  }
 }
 
 @Preview
@@ -157,8 +134,17 @@ private fun Preview() {
   Surface {
     QrCode(
       data = QrCodeData.forData("https://signal.org", 64),
-      modifier = Modifier.size(200.dp),
-      deadzonePercent = 0.3f
+      modifier = Modifier.size(350.dp)
     )
+  }
+}
+
+private data class Circle(
+  val center: IntOffset,
+  val radius: Int
+) {
+  fun contains(position: IntOffset): Boolean {
+    val diff = center - position
+    return diff.x * diff.x + diff.y * diff.y < radius * radius
   }
 }

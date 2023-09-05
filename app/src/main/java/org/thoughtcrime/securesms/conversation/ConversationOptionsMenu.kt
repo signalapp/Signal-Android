@@ -32,10 +32,17 @@ internal object ConversationOptionsMenu {
    */
   class Provider(
     private val callback: Callback,
-    private val lifecycleDisposable: LifecycleDisposable
+    private val lifecycleDisposable: LifecycleDisposable,
+    var afterFirstRenderMode: Boolean = false
   ) : MenuProvider {
 
+    private var createdPreRenderMenu = false
+
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+      if (createdPreRenderMenu && !afterFirstRenderMode) {
+        return
+      }
+
       menu.clear()
 
       val (
@@ -54,6 +61,27 @@ internal object ConversationOptionsMenu {
 
       if (recipient == null) {
         Log.w(TAG, "Recipient is null, no menu")
+        return
+      }
+
+      if (!afterFirstRenderMode) {
+        createdPreRenderMenu = true
+        if (recipient.isSelf) {
+          return
+        }
+
+        menuInflater.inflate(R.menu.conversation_first_render, menu)
+
+        if (recipient.isGroup) {
+          hideMenuItem(menu, R.id.menu_call_secure)
+          if (!isActiveV2Group) {
+            hideMenuItem(menu, R.id.menu_video_secure)
+          }
+        } else if (!isPushAvailable) {
+          hideMenuItem(menu, R.id.menu_call_secure)
+          hideMenuItem(menu, R.id.menu_video_secure)
+        }
+
         return
       }
 
@@ -89,7 +117,6 @@ internal object ConversationOptionsMenu {
           if (hasActiveGroupCall) {
             hideMenuItem(menu, R.id.menu_video_secure)
           }
-          callback.showGroupCallingTooltip()
         }
         menuInflater.inflate(R.menu.conversation_group_options, menu)
         if (!recipient.isPushGroup) {
@@ -161,10 +188,6 @@ internal object ConversationOptionsMenu {
           item.isVisible = yes && !isInBubble
         }
       })
-
-      if (threadId == -1L) {
-        hideMenuItem(menu, R.id.menu_view_media)
-      }
 
       menu.findItem(R.id.menu_format_text_submenu).subMenu?.clearHeader()
       menu.findItem(R.id.edittext_bold).applyTitleSpan(MessageStyler.boldStyle())
@@ -273,7 +296,6 @@ internal object ConversationOptionsMenu {
     fun handleGoHome()
     fun showExpiring(recipient: Recipient)
     fun clearExpiring()
-    fun showGroupCallingTooltip()
     fun handleFormatText(@IdRes id: Int)
   }
 }

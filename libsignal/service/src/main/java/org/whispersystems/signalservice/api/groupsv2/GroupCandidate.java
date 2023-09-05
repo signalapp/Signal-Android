@@ -1,12 +1,12 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Represents a potential new member of a group.
@@ -15,20 +15,20 @@ import java.util.UUID;
  * <p>
  * If it does not, then this user can only be invited.
  * <p>
- * Equality by UUID only used to makes sure Sets only contain one copy.
+ * Equality by ServiceId only used to makes sure Sets only contain one copy.
  */
 public final class GroupCandidate {
 
-  private final UUID                                   uuid;
+  private final ServiceId                              serviceId;
   private final Optional<ExpiringProfileKeyCredential> expiringProfileKeyCredential;
 
-  public GroupCandidate(UUID uuid, Optional<ExpiringProfileKeyCredential> expiringProfileKeyCredential) {
-    this.uuid                         = uuid;
+  public GroupCandidate(ServiceId serviceId, Optional<ExpiringProfileKeyCredential> expiringProfileKeyCredential) {
+    this.serviceId                    = serviceId;
     this.expiringProfileKeyCredential = expiringProfileKeyCredential;
   }
 
-  public UUID getUuid() {
-    return uuid;
+  public ServiceId getServiceId() {
+    return serviceId;
   }
 
   public Optional<ExpiringProfileKeyCredential> getExpiringProfileKeyCredential() {
@@ -57,12 +57,12 @@ public final class GroupCandidate {
   }
 
   public GroupCandidate withoutExpiringProfileKeyCredential() {
-    return expiringProfileKeyCredential.isPresent() ? new GroupCandidate(uuid, Optional.empty())
+    return expiringProfileKeyCredential.isPresent() ? new GroupCandidate(serviceId, Optional.empty())
                                                     : this;
   }
 
   public GroupCandidate withExpiringProfileKeyCredential(ExpiringProfileKeyCredential expiringProfileKeyCredential) {
-    return new GroupCandidate(uuid, Optional.of(expiringProfileKeyCredential));
+    return new GroupCandidate(serviceId, Optional.of(expiringProfileKeyCredential));
   }
 
   @Override
@@ -72,11 +72,11 @@ public final class GroupCandidate {
     }
 
     GroupCandidate other = (GroupCandidate) obj;
-    return other.uuid == uuid;
+    return other.serviceId.equals(serviceId);
   }
 
   @Override
   public int hashCode() {
-    return uuid.hashCode();
+    return serviceId.hashCode();
   }
 }

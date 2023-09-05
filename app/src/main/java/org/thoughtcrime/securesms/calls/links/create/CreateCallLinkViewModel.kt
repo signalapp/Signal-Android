@@ -9,6 +9,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -61,6 +62,7 @@ class CreateCallLinkViewModel(
 
   fun commitCallLink(): Single<EnsureCallLinkCreatedResult> {
     return repository.ensureCallLinkCreated(credentials)
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun setApproveAllMembers(approveAllMembers: Boolean): Single<UpdateCallLinkResult> {
@@ -74,10 +76,12 @@ class CreateCallLinkViewModel(
           is EnsureCallLinkCreatedResult.Failure -> Single.just(UpdateCallLinkResult.Failure(it.failure.status))
         }
       }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun toggleApproveAllMembers(): Single<UpdateCallLinkResult> {
     return setApproveAllMembers(_callLink.value.state.restrictions != Restrictions.ADMIN_APPROVAL)
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun setCallName(callName: String): Single<UpdateCallLinkResult> {
@@ -91,5 +95,6 @@ class CreateCallLinkViewModel(
           is EnsureCallLinkCreatedResult.Failure -> Single.just(UpdateCallLinkResult.Failure(it.failure.status))
         }
       }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 }

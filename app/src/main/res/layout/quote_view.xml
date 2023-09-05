@@ -103,6 +103,7 @@
                         android:maxLines="2"
                         android:textAppearance="@style/Signal.Text.BodyMedium"
                         app:emoji_renderMentions="false"
+                        app:emoji_renderSpoilers="true"
                         tools:text="With great power comes great responsibility."
                         tools:visibility="visible" />
 

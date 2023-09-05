@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
 import java.util.UUID
 import java.util.concurrent.TimeUnit
@@ -56,7 +56,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     const val TYPE = "type"
     private const val DIRECTION = "direction"
     const val EVENT = "event"
-    private const val TIMESTAMP = "timestamp"
+    const val TIMESTAMP = "timestamp"
     private const val RINGER = "ringer"
     private const val DELETION_TIMESTAMP = "deletion_timestamp"
 
@@ -227,7 +227,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
    * If a call link has been revoked, or if we do not have a CallLink table entry for an AD_HOC_CALL type
    * event, we mark it deleted.
    */
-  fun updateAdHocCallEventDeletionTimestamps() {
+  fun updateAdHocCallEventDeletionTimestamps(skipSync: Boolean = false) {
     //language=sql
     val statement = """
       UPDATE $TABLE_NAME
@@ -245,7 +245,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       Call.deserialize(it)
     }.toSet()
 
-    CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    if (!skipSync) {
+      CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    }
+
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
@@ -254,7 +257,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
    * If a non-ad-hoc call has been deleted from the message database, then we need to
    * set its deletion_timestamp to now.
    */
-  fun updateCallEventDeletionTimestamps() {
+  fun updateCallEventDeletionTimestamps(skipSync: Boolean = false) {
     val where = "$TYPE != ? AND $DELETION_TIMESTAMP = 0 AND $MESSAGE_ID IS NULL"
     val type = Type.serialize(Type.AD_HOC_CALL)
 
@@ -281,7 +284,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       result
     }
 
-    CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    if (!skipSync) {
+      CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    }
+
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
@@ -599,11 +605,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   fun insertOrUpdateGroupCallFromRingState(
     ringId: Long,
     groupRecipientId: RecipientId,
-    ringerUUID: UUID,
+    ringerAci: ACI,
     dateReceived: Long,
     ringState: RingUpdate
   ) {
-    val ringerRecipient = Recipient.externalPush(ServiceId.from(ringerUUID))
+    val ringerRecipient = Recipient.externalPush(ringerAci)
     handleGroupRingState(ringId, groupRecipientId, ringerRecipient.id, dateReceived, ringState)
   }
 
@@ -800,6 +806,20 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
   }
 
+  fun deleteNonAdHocCallEventsOnOrBefore(timestamp: Long) {
+    val messageIdsOnOrBeforeTimestamp = """
+      SELECT $MESSAGE_ID FROM $TABLE_NAME WHERE $TIMESTAMP <= $timestamp AND $MESSAGE_ID IS NOT NULL
+    """.trimIndent()
+
+    writableDatabase.withinTransaction { db ->
+      db.delete(MessageTable.TABLE_NAME)
+        .where("${MessageTable.ID} IN ($messageIdsOnOrBeforeTimestamp)")
+        .run()
+
+      updateCallEventDeletionTimestamps(skipSync = true)
+    }
+  }
+
   fun deleteNonAdHocCallEvents(callRowIds: Set<Long>) {
     val messageIds = getMessageIds(callRowIds)
     SignalDatabase.messages.deleteCallUpdates(messageIds)
@@ -921,7 +941,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         (
           sort_name GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME} GLOB ? OR 
-          ${RecipientTable.TABLE_NAME}.${RecipientTable.PHONE} GLOB ? OR 
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.E164} GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.EMAIL} GLOB ?
         )
         """

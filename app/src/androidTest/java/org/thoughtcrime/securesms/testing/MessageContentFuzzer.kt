@@ -105,7 +105,7 @@ object MessageContentFuzzer {
             addAllUnidentifiedStatus(
               deliveredTo.map {
                 SyncMessage.Sent.UnidentifiedDeliveryStatus.newBuilder().buildWith {
-                  destinationUuid = Recipient.resolved(it).requireServiceId().toString()
+                  destinationServiceId = Recipient.resolved(it).requireServiceId().toString()
                   unidentified = true
                 }
               }
@@ -135,7 +135,7 @@ object MessageContentFuzzer {
             val quoted = quoteAble.random(random)
             quote = DataMessage.Quote.newBuilder().buildWith {
               id = quoted.envelope.timestamp
-              authorUuid = quoted.metadata.sourceServiceId.toString()
+              authorAci = quoted.metadata.sourceServiceId.toString()
               text = quoted.content.dataMessage.body
               addAllAttachments(quoted.content.dataMessage.attachmentsList)
               addAllBodyRanges(quoted.content.dataMessage.bodyRangesList)
@@ -147,7 +147,7 @@ object MessageContentFuzzer {
             val quoted = quoteAble.random(random)
             quote = DataMessage.Quote.newBuilder().buildWith {
               id = random.nextLong(quoted.envelope.timestamp - 1000000, quoted.envelope.timestamp)
-              authorUuid = quoted.metadata.sourceServiceId.toString()
+              authorAci = quoted.metadata.sourceServiceId.toString()
               text = quoted.content.dataMessage.body
             }
           }
@@ -174,7 +174,7 @@ object MessageContentFuzzer {
             reaction = DataMessage.Reaction.newBuilder().buildWith {
               emoji = emojis.random(random)
               remove = false
-              targetAuthorUuid = reactTo.metadata.sourceServiceId.toString()
+              targetAuthorAci = reactTo.metadata.sourceServiceId.toString()
               targetSentTimestamp = reactTo.envelope.timestamp
             }
           }

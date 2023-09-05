@@ -77,7 +77,11 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
       onBack()
     }
 
-    Material3OnScrollHelper(requireActivity(), listOf(binding.mediaGalleryToolbar, binding.mediaGalleryStatusBarBackground)).attach(binding.mediaGalleryGrid)
+    Material3OnScrollHelper(
+      activity = requireActivity(),
+      views = listOf(binding.mediaGalleryToolbar, binding.mediaGalleryStatusBarBackground),
+      lifecycleOwner = viewLifecycleOwner
+    ).attach(binding.mediaGalleryGrid)
 
     if (callbacks.isCameraEnabled()) {
       binding.mediaGalleryToolbar.setOnMenuItemClickListener { item ->

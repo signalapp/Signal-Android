@@ -84,7 +84,7 @@ object Multiselect {
       return false
     }
 
-    val sendType: MessageSendType = MessageSendType.getFirstForTransport(context, true, MessageSendType.TransportType.SMS)
+    val sendType: MessageSendType = MessageSendType.getFirstForTransport(MessageSendType.TransportType.SMS)
 
     val mmsConstraints = MediaConstraints.getMmsMediaConstraints(sendType.simSubscriptionId ?: -1)
     return mmsConstraints.isSatisfied(context, mediaUri, mediaType, mediaSize) || mmsConstraints.canResize(mediaType)
@@ -107,7 +107,7 @@ object Multiselect {
       return false
     }
 
-    val sendType: MessageSendType = MessageSendType.getFirstForTransport(context, true, MessageSendType.TransportType.SMS)
+    val sendType: MessageSendType = MessageSendType.getFirstForTransport(MessageSendType.TransportType.SMS)
 
     val mmsConstraints = MediaConstraints.getMmsMediaConstraints(sendType.simSubscriptionId ?: -1)
     return mmsConstraints.isSatisfied(context, attachment) || mmsConstraints.canResize(attachment)

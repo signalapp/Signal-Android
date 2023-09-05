@@ -22,8 +22,8 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.security.SecureRandom
@@ -84,6 +84,12 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
     if (!store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
       migrateFromSharedPrefsV2(ApplicationDependencies.getApplication())
+    }
+
+    store.getString(KEY_PNI, null)?.let { pni ->
+      if (!pni.startsWith("PNI:")) {
+        store.beginWrite().putString(KEY_PNI, "PNI:$pni").commit()
+      }
     }
   }
 

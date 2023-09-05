@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
@@ -30,17 +31,17 @@ public final class GroupProtoUtil {
   private GroupProtoUtil() {
   }
 
-  public static int findRevisionWeWereAdded(@NonNull PartialDecryptedGroup partialDecryptedGroup, @NonNull UUID uuid)
+  public static int findRevisionWeWereAdded(@NonNull PartialDecryptedGroup partialDecryptedGroup, @NonNull ACI self)
       throws GroupNotAMemberException
   {
-    ByteString bytes = UuidUtil.toByteString(uuid);
+    ByteString bytes = self.toByteString();
     for (DecryptedMember decryptedMember : partialDecryptedGroup.getMembersList()) {
-      if (decryptedMember.getUuid().equals(bytes)) {
+      if (decryptedMember.getAciBytes().equals(bytes)) {
         return decryptedMember.getJoinedAtRevision();
       }
     }
     for (DecryptedPendingMember decryptedMember : partialDecryptedGroup.getPendingMembersList()) {
-      if (decryptedMember.getUuid().equals(bytes)) {
+      if (decryptedMember.getServiceIdBytes().equals(bytes)) {
         // Assume latest, we don't have any information about when pending members were invited
         return partialDecryptedGroup.getRevision();
       }
@@ -79,13 +80,13 @@ public final class GroupProtoUtil {
   }
 
   @WorkerThread
-  public static Recipient pendingMemberToRecipient(@NonNull Context context, @NonNull DecryptedPendingMember pendingMember) {
-    return uuidByteStringToRecipient(context, pendingMember.getUuid());
+  public static Recipient pendingMemberToRecipient(@NonNull DecryptedPendingMember pendingMember) {
+    return pendingMemberServiceIdToRecipient(pendingMember.getServiceIdBytes());
   }
 
   @WorkerThread
-  public static Recipient uuidByteStringToRecipient(@NonNull Context context, @NonNull ByteString uuidByteString) {
-    ServiceId serviceId = ServiceId.fromByteString(uuidByteString);
+  public static Recipient pendingMemberServiceIdToRecipient(@NonNull ByteString serviceIdBinary) {
+    ServiceId serviceId = ServiceId.parseOrThrow(serviceIdBinary);
 
     if (serviceId.isUnknown()) {
       return Recipient.UNKNOWN;
@@ -95,8 +96,8 @@ public final class GroupProtoUtil {
   }
 
   @WorkerThread
-  public static @NonNull RecipientId uuidByteStringToRecipientId(@NonNull ByteString uuidByteString) {
-    ServiceId serviceId = ServiceId.fromByteString(uuidByteString);
+  public static @NonNull RecipientId serviceIdBinaryToRecipientId(@NonNull ByteString serviceIdBinary) {
+    ServiceId serviceId = ServiceId.parseOrThrow(serviceIdBinary);
 
     if (serviceId.isUnknown()) {
       return RecipientId.UNKNOWN;
@@ -105,11 +106,11 @@ public final class GroupProtoUtil {
     return RecipientId.from(serviceId);
   }
 
-  public static boolean isMember(@NonNull UUID uuid, @NonNull List<DecryptedMember> membersList) {
-    ByteString uuidBytes = UuidUtil.toByteString(uuid);
+  public static boolean isMember(@NonNull ACI aci, @NonNull List<DecryptedMember> membersList) {
+    ByteString aciBytes = aci.toByteString();
 
     for (DecryptedMember member : membersList) {
-      if (uuidBytes.equals(member.getUuid())) {
+      if (aciBytes.equals(member.getAciBytes())) {
         return true;
       }
     }

@@ -492,6 +492,8 @@ open class ContactSearchAdapter(
       if (isEnabled(model)) {
         itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
         bindLongPress(model)
+      } else {
+        itemView.setOnClickListener(null)
       }
 
       bindCheckbox(model)
@@ -571,7 +573,7 @@ open class ContactSearchAdapter(
     }
 
     private fun isSmsContact(model: T): Boolean {
-      return (getRecipient(model).isForceSmsSelection || getRecipient(model).isUnregistered) && !getRecipient(model).isDistributionList
+      return getRecipient(model).isUnregistered && !getRecipient(model).isDistributionList
     }
 
     private fun isNotRegistered(model: T): Boolean {

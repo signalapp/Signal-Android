@@ -4,7 +4,6 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import org.signal.core.util.ThreadUtil
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
@@ -22,7 +21,7 @@ class KeyboardPagerViewModel : ViewModel() {
     pages = DefaultValueLiveData(startingPages)
     page = DefaultValueLiveData(startingPages.first())
 
-    StickerSearchRepository(ApplicationDependencies.getApplication()).getStickerFeatureAvailability { available ->
+    StickerSearchRepository().getStickerFeatureAvailability { available ->
       if (!available) {
         val updatedPages = pages.value.toMutableSet().apply { remove(KeyboardPage.STICKER) }
         pages.postValue(updatedPages)

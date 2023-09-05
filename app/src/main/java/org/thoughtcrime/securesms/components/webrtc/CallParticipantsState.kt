@@ -36,7 +36,8 @@ data class CallParticipantsState(
   val isInOutgoingRingingMode: Boolean = false,
   val ringGroup: Boolean = false,
   val ringerRecipient: Recipient = Recipient.UNKNOWN,
-  val groupMembers: List<GroupMemberEntry.FullMember> = emptyList()
+  val groupMembers: List<GroupMemberEntry.FullMember> = emptyList(),
+  val isCallLink: Boolean = false
 ) {
 
   val allRemoteParticipants: List<CallParticipant> = remoteParticipants.allParticipants
@@ -80,6 +81,7 @@ data class CallParticipantsState(
     return if (remoteParticipants.isEmpty) {
       describeGroupMembers(
         context = context,
+        noParticipants = if (isCallLink) R.string.WebRtcCallView__signal_call_link else null,
         oneParticipant = if (ringGroup) R.string.WebRtcCallView__signal_will_ring_s else R.string.WebRtcCallView__s_will_be_notified,
         twoParticipants = if (ringGroup) R.string.WebRtcCallView__signal_will_ring_s_and_s else R.string.WebRtcCallView__s_and_s_will_be_notified,
         multipleParticipants = if (ringGroup) R.plurals.WebRtcCallView__signal_will_ring_s_s_and_d_others else R.plurals.WebRtcCallView__s_s_and_d_others_will_be_notified,
@@ -115,6 +117,7 @@ data class CallParticipantsState(
     ) {
       return describeGroupMembers(
         context = context,
+        noParticipants = null,
         oneParticipant = R.string.WebRtcCallView__ringing_s,
         twoParticipants = R.string.WebRtcCallView__ringing_s_and_s,
         multipleParticipants = R.plurals.WebRtcCallView__ringing_s_s_and_d_others,
@@ -223,7 +226,8 @@ data class CallParticipantsState(
         remoteDevicesCount = webRtcViewModel.remoteDevicesCount,
         ringGroup = webRtcViewModel.ringGroup,
         isInOutgoingRingingMode = isInOutgoingRingingMode,
-        ringerRecipient = webRtcViewModel.ringerRecipient
+        ringerRecipient = webRtcViewModel.ringerRecipient,
+        isCallLink = webRtcViewModel.isCallLink
       )
     }
 
@@ -315,6 +319,7 @@ data class CallParticipantsState(
 
     private fun describeGroupMembers(
       context: Context,
+      @StringRes noParticipants: Int?,
       @StringRes oneParticipant: Int,
       @StringRes twoParticipants: Int,
       @PluralsRes multipleParticipants: Int,
@@ -323,7 +328,7 @@ data class CallParticipantsState(
       val eligibleMembers: List<GroupMemberEntry.FullMember> = members.filterNot { it.member.isSelf || it.member.isBlocked }
 
       return when (eligibleMembers.size) {
-        0 -> ""
+        0 -> noParticipants?.let { context.getString(noParticipants) } ?: ""
         1 -> context.getString(
           oneParticipant,
           eligibleMembers[0].member.getShortDisplayName(context)

@@ -150,7 +150,13 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         }
       }
 
-      VerifyResponse.from(distributionResponse, null, null)
+      VerifyResponse.from(
+        response = distributionResponse,
+        masterKey = null,
+        pin = null,
+        aciPreKeyCollection = null,
+        pniPreKeyCollection = null
+      )
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -188,7 +194,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
           pniProtocolStore.loadKyberPreKey(SignalStore.account().pniPreKeys.lastResortKyberPreKeyId)
         } else {
-          PreKeyUtil.generateKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
+          PreKeyUtil.generateLastRestortKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
         devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
 

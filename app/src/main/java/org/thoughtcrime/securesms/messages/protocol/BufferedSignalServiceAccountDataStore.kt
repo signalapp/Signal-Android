@@ -141,8 +141,24 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
     return kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId)
   }
 
+  override fun deleteAllStaleOneTimeEcPreKeys(threshold: Long, minCount: Int) {
+    error("Should not happen during the intended usage pattern of this class")
+  }
+
+  override fun markAllOneTimeEcPreKeysStaleIfNecessary(staleTime: Long) {
+    error("Should not happen during the intended usage pattern of this class")
+  }
+
   override fun removeKyberPreKey(kyberPreKeyId: Int) {
     kyberPreKeyStore.removeKyberPreKey(kyberPreKeyId)
+  }
+
+  override fun markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime: Long) {
+    kyberPreKeyStore.markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime)
+  }
+
+  override fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int) {
+    kyberPreKeyStore.deleteAllStaleOneTimeKyberPreKeys(threshold, minCount)
   }
 
   override fun loadLastResortKyberPreKeys(): List<KyberPreKeyRecord> {

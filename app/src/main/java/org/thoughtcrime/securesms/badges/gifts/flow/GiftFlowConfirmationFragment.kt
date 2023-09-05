@@ -264,12 +264,14 @@ class GiftFlowConfirmationFragment :
 
   override fun onPaymentComplete(gatewayRequest: GatewayRequest) {
     val mainActivityIntent = MainActivity.clearTop(requireContext())
-    val conversationIntent = ConversationIntents
-      .createBuilder(requireContext(), viewModel.snapshot.recipient!!.id, -1L)
-      .withGiftBadge(viewModel.snapshot.giftBadge!!)
-      .build()
 
-    requireActivity().startActivities(arrayOf(mainActivityIntent, conversationIntent))
+    lifecycleDisposable += ConversationIntents
+      .createBuilder(requireContext(), viewModel.snapshot.recipient!!.id, -1L)
+      .subscribe { conversationIntent ->
+        requireActivity().startActivities(
+          arrayOf(mainActivityIntent, conversationIntent.withGiftBadge(viewModel.snapshot.giftBadge!!).build())
+        )
+      }
   }
 
   override fun onProcessorActionProcessed() = Unit

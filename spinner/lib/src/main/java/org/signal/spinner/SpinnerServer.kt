@@ -61,8 +61,8 @@ internal class SpinnerServer(
 
     try {
       return when {
-        session.method == Method.GET && session.uri == "/css/main.css" -> newFileResponse("css/main.css", "text/css")
-        session.method == Method.GET && session.uri == "/js/main.js" -> newFileResponse("js/main.js", "text/javascript")
+        session.method == Method.GET && session.uri.startsWith("/css/") -> newFileResponse(session.uri.substring(1), "text/css")
+        session.method == Method.GET && session.uri.startsWith("/js/") -> newFileResponse(session.uri.substring(1), "text/javascript")
         session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, dbConfig.db())
         session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, dbConfig.db())
         session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, dbConfig, session)
@@ -144,7 +144,7 @@ internal class SpinnerServer(
     }
 
     val query = "select * from $table limit $pageSize offset ${pageSize * pageIndex}"
-    val queryResult = dbConfig.db().query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers) }
+    val queryResult = dbConfig.db().query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers, table = table) }
 
     return renderTemplate(
       "browse",
@@ -264,14 +264,14 @@ internal class SpinnerServer(
     )
   }
 
-  private fun Cursor.toQueryResult(queryStartTimeNanos: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
+  private fun Cursor.toQueryResult(queryStartTimeNanos: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList(), table: String? = null): QueryResult {
     val numColumns = this.columnCount
     val columns = mutableListOf<String>()
     val transformers = mutableListOf<ColumnTransformer>()
 
     for (i in 0 until numColumns) {
       val columnName = getColumnName(i)
-      val customTransformer: ColumnTransformer? = columnTransformers.find { it.matches(null, columnName) }
+      val customTransformer: ColumnTransformer? = columnTransformers.find { it.matches(table, columnName) }
 
       columns += if (customTransformer != null) {
         "$columnName *"

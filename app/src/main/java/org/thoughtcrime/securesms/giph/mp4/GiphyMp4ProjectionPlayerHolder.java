@@ -9,14 +9,17 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.AspectRatioFrameLayout;
+
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -30,6 +33,7 @@ import java.util.List;
 /**
  * Object which holds on to an injected video player.
  */
+@OptIn(markerClass = UnstableApi.class)
 public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, DefaultLifecycleObserver {
   private static final String TAG = Log.tag(GiphyMp4ProjectionPlayerHolder.class);
 

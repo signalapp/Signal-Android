@@ -19,14 +19,6 @@
         <!-- leave empty to allow overriding -->
     </style>
 
-    <style name="TextSecure.LightNoActionBar.TransparentNavigationBar">
-        <!-- leave empty to allow overriding -->
-    </style>
-
-    <style name="TextSecure.DarkNoActionBar.TransparentNavigationBar">
-        <!-- leave empty to allow overriding -->
-    </style>
-
     <style name="TextSecure.BaseLightNoActionBar" parent="@style/TextSecure.LightTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -334,21 +326,6 @@
         <item name="android:windowBackground">@drawable/dialog_corners</item>
     </style>
 
-    <style name="Theme.Signal.AlertDialog.Light.Cornered.ColoredAccent">
-        <item name="colorAccent">@color/core_ultramarine</item>
-    </style>
-
-    <style name="Theme.Signal.AlertDialog.Dark.Cornered.ColoredAccent">
-        <item name="colorAccent">@color/core_ultramarine_light</item>
-    </style>
-
-
-    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth"></style>
-
-    <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:background">@color/core_grey_95</item>
-    </style>
-
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar"></style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar"></style>
@@ -420,10 +397,6 @@
     <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog"></style>
 
     <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Material3.Dark.BottomSheetDialog"></style>
-
-    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
-        <item name="android:windowIsFloating">false</item>
-    </style>
 
     <style name="Theme.Signal.BottomSheetDialog.Fixed" parent="Theme.Design.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
@@ -504,14 +477,6 @@
         <item name="cornerSizeTopLeft">10dp</item>
         <item name="cornerSizeBottomLeft">10dp</item>
         <item name="cornerSizeBottomRight">10dp</item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.Signal.Story.Text" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">18dp</item>
-        <item name="cornerSizeTopLeft">18dp</item>
-        <item name="cornerSizeBottomLeft">18dp</item>
-        <item name="cornerSizeBottomRight">18dp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.WallpaperPreview" parent="">

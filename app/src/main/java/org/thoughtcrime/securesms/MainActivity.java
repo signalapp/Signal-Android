@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +14,18 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import org.signal.core.util.concurrent.LifecycleDisposable;
+import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
+import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment;
-import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferLockedDialog;
+import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
+import org.thoughtcrime.securesms.notifications.SlowNotificationsViewModel;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppStartup;
@@ -37,6 +45,9 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
   private VoiceNoteMediaController      mediaController;
   private ConversationListTabsViewModel conversationListTabsViewModel;
+  private SlowNotificationsViewModel    slowNotificationsViewModel;
+
+  private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
   private boolean onFirstRender = false;
 
@@ -71,6 +82,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
           }
         });
 
+    lifecycleDisposable.bindTo(this);
 
     mediaController = new VoiceNoteMediaController(this, true);
 
@@ -86,6 +98,28 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     conversationListTabsViewModel = new ViewModelProvider(this, factory).get(ConversationListTabsViewModel.class);
     updateTabVisibility();
+
+    slowNotificationsViewModel = new ViewModelProvider(this).get(SlowNotificationsViewModel.class);
+
+    lifecycleDisposable.add(
+        slowNotificationsViewModel
+            .getSlowNotificationState()
+            .subscribe(this::presentSlowNotificationState)
+    );
+  }
+
+  @SuppressLint("NewApi")
+  private void presentSlowNotificationState(SlowNotificationsViewModel.State slowNotificationState) {
+    switch (slowNotificationState) {
+      case NONE:
+        break;
+      case PROMPT_BATTERY_SAVER_DIALOG:
+        PromptBatterySaverDialogFragment.show(getSupportFragmentManager());
+        break;
+      case PROMPT_DEBUGLOGS:
+        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
+        break;
+    }
   }
 
   @Override
@@ -115,7 +149,16 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     super.onResume();
     dynamicTheme.onResume(this);
     if (SignalStore.misc().isOldDeviceTransferLocked()) {
-      OldDeviceTransferLockedDialog.show(getSupportFragmentManager());
+      new MaterialAlertDialogBuilder(this)
+          .setTitle(R.string.OldDeviceTransferLockedDialog__complete_registration_on_your_new_device)
+          .setMessage(R.string.OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device)
+          .setPositiveButton(R.string.OldDeviceTransferLockedDialog__done, (d, w) -> OldDeviceExitActivity.exit(this))
+          .setNegativeButton(R.string.OldDeviceTransferLockedDialog__cancel_and_activate_this_device, (d, w) -> {
+            SignalStore.misc().clearOldDeviceTransferLocked();
+            DeviceTransferBlockingInterceptor.getInstance().unblockNetwork();
+          })
+          .setCancelable(false)
+          .show();
     }
 
     if (SignalStore.misc().getShouldShowLinkedDevicesReminder()) {
@@ -124,6 +167,8 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     }
 
     updateTabVisibility();
+
+    slowNotificationsViewModel.checkSlowNotificationHeuristics();
   }
 
   @Override

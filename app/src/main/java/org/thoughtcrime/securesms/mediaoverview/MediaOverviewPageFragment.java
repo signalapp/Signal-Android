@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -111,7 +110,7 @@ public final class MediaOverviewPageFragment extends Fragment
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    voiceNoteMediaController = new VoiceNoteMediaController((AppCompatActivity) requireActivity());
+    voiceNoteMediaController = new VoiceNoteMediaController(requireActivity(), false);
   }
 
   @Override
@@ -211,9 +210,11 @@ public final class MediaOverviewPageFragment extends Fragment
   @Override
   public void onDestroy() {
     super.onDestroy();
-    int childCount = recyclerView.getChildCount();
-    for (int i = 0; i < childCount; i++) {
-      adapter.detach(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)));
+    if (recyclerView != null) {
+      int childCount = recyclerView.getChildCount();
+      for (int i = 0; i < childCount; i++) {
+        adapter.detach(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)));
+      }
     }
   }
 

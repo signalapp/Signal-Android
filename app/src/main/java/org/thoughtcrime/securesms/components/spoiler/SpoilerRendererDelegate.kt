@@ -38,7 +38,7 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
 
   private val animator = TimeAnimator().apply {
     setTimeListener { _, _, _ ->
-      SpoilerPaint.update(systemAnimationsEnabled)
+      SpoilerPaint.update()
       view.invalidate()
     }
   }
@@ -114,7 +114,7 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
       hasSpoilersToRender = true
     }
 
-    if (hasSpoilersToRender) {
+    if (hasSpoilersToRender && systemAnimationsEnabled) {
       if (!animatorRunning) {
         animator.start()
         animatorRunning = true

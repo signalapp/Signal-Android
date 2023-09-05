@@ -6,6 +6,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Adds the CallLinkTable and modifies the CallTable to include an FK into it.
  */
+@Suppress("ClassName")
 object V183_CallLinkTableMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL("CREATE TABLE call_link (_id INTEGER PRIMARY KEY)")

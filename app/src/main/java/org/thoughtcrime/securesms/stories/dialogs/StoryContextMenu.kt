@@ -45,7 +45,7 @@ object StoryContextMenu {
       title = context.getString(R.string.MyStories__delete_story),
       message = context.getString(R.string.MyStories__this_story_will_be_deleted),
       forceRemoteDelete = true
-    )
+    ).map { (_, deletedThread) -> deletedThread }
   }
 
   fun save(context: Context, messageRecord: MessageRecord) {

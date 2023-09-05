@@ -37,6 +37,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class RemoteDeleteSendJob extends BaseJob {
 
@@ -223,6 +224,10 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    true,
                                                                                    isForStory,
                                                                                    null);
+
+    if (conversationRecipient.isSelf()) {
+      ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage);
+    }
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }

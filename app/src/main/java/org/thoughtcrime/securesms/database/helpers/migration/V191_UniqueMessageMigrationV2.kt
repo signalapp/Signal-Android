@@ -15,6 +15,7 @@ import org.signal.core.util.requireLong
  *
  * This migration safely removes those dupes, and then adds the desired unique constraint.
  */
+@Suppress("ClassName")
 object V191_UniqueMessageMigrationV2 : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V191_UniqueMessageMigrationV2::class.java)

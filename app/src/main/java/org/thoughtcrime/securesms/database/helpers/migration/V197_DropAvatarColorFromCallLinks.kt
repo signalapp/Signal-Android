@@ -11,6 +11,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Because getting the color is a simple modulo operation, there is no need to store it in the database.
  */
+@Suppress("ClassName")
 object V197_DropAvatarColorFromCallLinks : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL("ALTER TABLE call_link DROP COLUMN avatar_color")

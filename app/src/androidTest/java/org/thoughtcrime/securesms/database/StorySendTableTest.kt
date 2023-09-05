@@ -12,18 +12,23 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
 class StorySendTableTest {
+
+  @get:Rule
+  val harness = SignalActivityRule(othersCount = 0, createGroup = false)
 
   private val distributionId1 = DistributionId.from(UUID.randomUUID())
   private val distributionId2 = DistributionId.from(UUID.randomUUID())
@@ -460,7 +465,7 @@ class StorySendTableTest {
 
   private fun makeRecipients(count: Int): List<RecipientId> {
     return (1..count).map {
-      SignalDatabase.recipients.getOrInsertFromServiceId(ServiceId.from(UUID.randomUUID()))
+      SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID()))
     }
   }
 }

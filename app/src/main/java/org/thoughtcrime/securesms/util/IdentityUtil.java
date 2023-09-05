@@ -178,7 +178,7 @@ public final class IdentityUtil {
   }
 
   public static void processVerifiedMessage(Context context, SignalServiceProtos.Verified verified) throws InvalidKeyException {
-    SignalServiceAddress          destination = new SignalServiceAddress(ServiceId.parseOrThrow(verified.getDestinationUuid()));
+    SignalServiceAddress          destination = new SignalServiceAddress(ServiceId.parseOrThrow(verified.getDestinationAci()));
     IdentityKey                   identityKey = new IdentityKey(verified.getIdentityKey().toByteArray(), 0);
     VerifiedMessage.VerifiedState state;
 

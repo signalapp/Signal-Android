@@ -104,8 +104,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setUseConversationFragmentV2(enabled: Boolean) {
-    SignalStore.internalValues().setUseConversationFragmentV2(enabled)
+  fun setUseConversationItemV2(enabled: Boolean) {
+    SignalStore.internalValues().setUseConversationItemV2(enabled)
     refresh()
   }
 
@@ -136,7 +136,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
     canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc().hasPniInitializedDevices(),
-    useConversationFragmentV2 = SignalStore.internalValues().useConversationFragmentV2()
+    useConversationItemV2 = SignalStore.internalValues().useConversationItemV2()
   )
 
   fun onClearOnboardingState() {

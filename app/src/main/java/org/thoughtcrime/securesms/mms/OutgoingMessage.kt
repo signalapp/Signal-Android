@@ -23,7 +23,6 @@ data class OutgoingMessage(
   val sentTimeMillis: Long,
   val body: String = "",
   val distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
-  val subscriptionId: Int = -1,
   val expiresIn: Long = 0L,
   val isViewOnce: Boolean = false,
   val outgoingQuote: QuoteModel? = null,
@@ -66,7 +65,6 @@ data class OutgoingMessage(
     body: String? = "",
     attachments: List<Attachment> = emptyList(),
     timestamp: Long,
-    subscriptionId: Int = -1,
     expiresIn: Long = 0L,
     viewOnce: Boolean = false,
     distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
@@ -89,7 +87,6 @@ data class OutgoingMessage(
     body = body ?: "",
     attachments = attachments,
     sentTimeMillis = timestamp,
-    subscriptionId = subscriptionId,
     expiresIn = expiresIn,
     isViewOnce = viewOnce,
     distributionType = distributionType,
@@ -117,7 +114,6 @@ data class OutgoingMessage(
     slideDeck: SlideDeck,
     body: String? = "",
     timestamp: Long,
-    subscriptionId: Int = -1,
     expiresIn: Long = 0L,
     viewOnce: Boolean = false,
     storyType: StoryType = StoryType.NONE,
@@ -131,7 +127,6 @@ data class OutgoingMessage(
     body = buildMessage(slideDeck, body ?: ""),
     attachments = slideDeck.asAttachments(),
     sentTimeMillis = timestamp,
-    subscriptionId = subscriptionId,
     expiresIn = expiresIn,
     isViewOnce = viewOnce,
     storyType = storyType,
@@ -141,6 +136,8 @@ data class OutgoingMessage(
     bodyRanges = bodyRanges,
     sharedContacts = contacts
   )
+
+  val subscriptionId = -1
 
   fun withExpiry(expiresIn: Long): OutgoingMessage {
     return copy(expiresIn = expiresIn)
@@ -172,12 +169,11 @@ data class OutgoingMessage(
      * A literal, insecure SMS message.
      */
     @JvmStatic
-    fun sms(threadRecipient: Recipient, body: String, subscriptionId: Int): OutgoingMessage {
+    fun sms(threadRecipient: Recipient, body: String): OutgoingMessage {
       return OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
         body = body,
-        subscriptionId = subscriptionId,
         isSecure = false
       )
     }

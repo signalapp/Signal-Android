@@ -3,11 +3,13 @@ package org.thoughtcrime.securesms.conversation.v2.groups
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.Result
@@ -15,6 +17,7 @@ import org.signal.core.util.concurrent.subscribeWithSubject
 import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.GroupRecord
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
@@ -36,6 +39,8 @@ class ConversationGroupViewModel(
 
   private val _groupActiveState: Subject<ConversationGroupActiveState> = BehaviorSubject.create()
   private val _memberLevel: BehaviorSubject<ConversationGroupMemberLevel> = BehaviorSubject.create()
+
+  private var firstTimeInviteFriendsTriggered: Boolean = false
 
   val groupRecordSnapshot: GroupRecord?
     get() = _groupRecord.value
@@ -104,6 +109,27 @@ class ConversationGroupViewModel(
       }
       .subscribe()
       .addTo(disposables)
+  }
+
+  /**
+   * Emits the group id if we are the only member of the group.
+   */
+  fun checkJustSelfInGroup(): Maybe<GroupId.V2> {
+    if (firstTimeInviteFriendsTriggered) {
+      return Maybe.empty()
+    }
+
+    firstTimeInviteFriendsTriggered = true
+
+    return _groupRecord
+      .firstOrError()
+      .flatMapMaybe { groupRecord ->
+        groupManagementRepository.isJustSelf(groupRecord.id).flatMapMaybe {
+          if (it && groupRecord.id.isV2) Maybe.just(groupRecord.id.requireV2()) else Maybe.empty()
+        }
+      }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   class Factory(private val threadId: Long, private val recipientRepository: ConversationRecipientRepository) : ViewModelProvider.Factory {

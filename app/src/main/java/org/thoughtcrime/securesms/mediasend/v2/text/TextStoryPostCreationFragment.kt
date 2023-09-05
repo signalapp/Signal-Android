@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.databinding.StoriesTextPostCreationFragmentBinding
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewState
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.mediasend.CameraDisplay
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
@@ -71,7 +71,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
 
     _binding = StoriesTextPostCreationFragmentBinding.bind(view)
 
-    binding.storyTextPost.showCloseButton()
+    binding.storyTextPost.enableCreationMode()
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += sharedViewModel.hudCommands.subscribe {
@@ -137,7 +137,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       binding.send.isClickable = false
       binding.sendInProgressIndicator.visible = true
 
-      binding.storyTextPost.hideCloseButton()
+      binding.storyTextPost.disableCreationMode()
 
       val contacts = (sharedViewModel.destination.getRecipientSearchKeyList() + sharedViewModel.destination.getRecipientSearchKey())
         .filterIsInstance(ContactSearchKey::class.java)
@@ -174,7 +174,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
 
   override fun onResume() {
     super.onResume()
-    binding.storyTextPost.showCloseButton()
+    binding.storyTextPost.enableCreationMode()
     requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
   }
 

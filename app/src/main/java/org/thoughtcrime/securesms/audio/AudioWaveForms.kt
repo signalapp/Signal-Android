@@ -7,6 +7,7 @@ import androidx.annotation.AnyThread
 import androidx.annotation.RequiresApi
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.SingleSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -29,6 +30,7 @@ object AudioWaveForms {
   private val TAG = Log.tag(AudioWaveForms::class.java)
 
   private val cache = ThreadSafeLruCache(200)
+  private val pending = hashMapOf<String, SingleSubject<AudioFileInfo>>()
 
   @AnyThread
   @JvmStatic
@@ -43,39 +45,47 @@ object AudioWaveForms {
     val cachedInfo = cache.get(cacheKey)
     if (cachedInfo != null) {
       Log.i(TAG, "Loaded wave form from cache $cacheKey")
+      synchronized(pending) {
+        pending.remove(cacheKey)
+      }
       return Single.just(cachedInfo)
     }
 
-    val databaseCache = Single.fromCallable {
-      val audioHash = attachment.audioHash
-      return@fromCallable if (audioHash != null) {
-        checkDatabaseCache(cacheKey, audioHash.audioWaveForm)
+    val pendingSubject = synchronized(pending) {
+      if (pending.containsKey(cacheKey)) {
+        Log.i(TAG, "Wave currently generating, returning existing subject")
+        return pending[cacheKey]!!
       } else {
-        Miss
+        pending[cacheKey] = SingleSubject.create()
       }
-    }.subscribeOn(Schedulers.io())
 
-    val generateWaveForm: Single<CacheCheckResult> = if (attachment is DatabaseAttachment) {
-      Single.fromCallable { generateWaveForm(context, uri, cacheKey, attachment.attachmentId) }
-    } else {
-      Single.fromCallable { generateWaveForm(context, uri, cacheKey) }
-    }.subscribeOn(Schedulers.io())
+      pending[cacheKey]!!
+    }
 
-    return databaseCache
-      .flatMap { r ->
-        if (r is Miss) {
-          generateWaveForm
+    Single.fromCallable { attachment.audioHash?.let { checkDatabaseCache(cacheKey, it.audioWaveForm) } ?: Miss }
+      .flatMap { result ->
+        if (result !is Success) {
+          if (attachment is DatabaseAttachment) {
+            Single.fromCallable { generateWaveForm(context, uri, cacheKey, attachment.attachmentId) }
+          } else {
+            Single.fromCallable { generateWaveForm(context, uri, cacheKey) }
+          }
         } else {
-          Single.just(r)
+          Single.just(result)
         }
       }
-      .map { r ->
-        if (r is Success) {
-          r.audioFileInfo
+      .map { result ->
+        if (result is Success) {
+          result.audioFileInfo
         } else {
           throw IOException("Unable to generate wave form")
         }
       }
+      .subscribeOn(Schedulers.io())
+      .observeOn(Schedulers.io())
+      .subscribe(pendingSubject)
+
+    return pendingSubject
   }
 
   private fun checkDatabaseCache(cacheKey: String, audioWaveForm: AudioWaveFormData): CacheCheckResult {

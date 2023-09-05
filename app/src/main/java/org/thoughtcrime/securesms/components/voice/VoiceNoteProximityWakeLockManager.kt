@@ -7,12 +7,13 @@ import android.hardware.SensorManager
 import android.media.AudioManager
 import android.os.Bundle
 import android.os.PowerManager
-import android.support.v4.media.session.MediaControllerCompat
-import android.support.v4.media.session.PlaybackStateCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.media3.common.Player
+import androidx.media3.session.MediaController
+import androidx.media3.session.SessionCommand
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.util.ServiceUtil
 import java.util.concurrent.TimeUnit
@@ -25,7 +26,7 @@ private const val PROXIMITY_THRESHOLD = 5f
  */
 class VoiceNoteProximityWakeLockManager(
   private val activity: FragmentActivity,
-  private val mediaController: MediaControllerCompat
+  private val mediaController: MediaController
 ) : DefaultLifecycleObserver {
 
   private val wakeLock: PowerManager.WakeLock? = ServiceUtil.getPowerManager(activity.applicationContext).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG)
@@ -33,7 +34,7 @@ class VoiceNoteProximityWakeLockManager(
   private val sensorManager: SensorManager = ServiceUtil.getSensorManager(activity)
   private val proximitySensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
 
-  private val mediaControllerCallback = MediaControllerCallback()
+  private val mediaControllerCallback = ProximityListener()
   private val hardwareSensorEventListener = HardwareSensorEventListener()
 
   private var startTime: Long = -1
@@ -46,7 +47,7 @@ class VoiceNoteProximityWakeLockManager(
 
   override fun onResume(owner: LifecycleOwner) {
     if (proximitySensor != null) {
-      mediaController.registerCallback(mediaControllerCallback)
+      mediaController.addListener(mediaControllerCallback)
     }
   }
 
@@ -57,7 +58,7 @@ class VoiceNoteProximityWakeLockManager(
   }
 
   fun unregisterCallbacksAndRelease() {
-    mediaController.unregisterCallback(mediaControllerCallback)
+    mediaController.addListener(mediaControllerCallback)
     cleanUpWakeLock()
   }
 
@@ -68,9 +69,6 @@ class VoiceNoteProximityWakeLockManager(
   }
 
   private fun isActivityResumed() = activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
-
-  private fun isPlayerActive() = mediaController.playbackState.state == PlaybackStateCompat.STATE_BUFFERING ||
-    mediaController.playbackState.state == PlaybackStateCompat.STATE_PLAYING
 
   private fun cleanUpWakeLock() {
     startTime = -1L
@@ -87,26 +85,29 @@ class VoiceNoteProximityWakeLockManager(
   private fun sendNewStreamTypeToPlayer(newStreamType: Int) {
     val params = Bundle()
     params.putInt(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, newStreamType)
-    mediaController.sendCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, params, null)
+    mediaController.sendCustomCommand(SessionCommand(VoiceNotePlaybackService.ACTION_SET_AUDIO_STREAM, Bundle.EMPTY), params)
   }
 
-  inner class MediaControllerCallback : MediaControllerCompat.Callback() {
-    override fun onPlaybackStateChanged(state: PlaybackStateCompat) {
-      if (!isActivityResumed()) {
-        return
-      }
-
-      if (isPlayerActive()) {
-        if (startTime == -1L) {
-          Log.d(TAG, "[onPlaybackStateChanged] Player became active with start time $startTime, registering sensor listener.")
-          startTime = System.currentTimeMillis()
-          sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
-        } else {
-          Log.d(TAG, "[onPlaybackStateChanged] Player became active without start time, skipping sensor registration")
+  inner class ProximityListener : Player.Listener {
+    override fun onEvents(player: Player, events: Player.Events) {
+      super.onEvents(player, events)
+      if (events.contains(Player.EVENT_PLAYBACK_STATE_CHANGED)) {
+        if (!isActivityResumed()) {
+          return
         }
-      } else {
-        Log.d(TAG, "[onPlaybackStateChanged] Player became inactive. Cleaning up wake lock.")
-        cleanUpWakeLock()
+
+        if (player.isPlaying) {
+          if (startTime == -1L) {
+            Log.d(TAG, "[onPlaybackStateChanged] Player became active with start time $startTime, registering sensor listener.")
+            startTime = System.currentTimeMillis()
+            sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
+          } else {
+            Log.d(TAG, "[onPlaybackStateChanged] Player became active without start time, skipping sensor registration")
+          }
+        } else {
+          Log.d(TAG, "[onPlaybackStateChanged] Player became inactive. Cleaning up wake lock.")
+          cleanUpWakeLock()
+        }
       }
     }
   }
@@ -116,7 +117,7 @@ class VoiceNoteProximityWakeLockManager(
       if (startTime == -1L ||
         System.currentTimeMillis() - startTime <= 500 ||
         !isActivityResumed() ||
-        !isPlayerActive() ||
+        !mediaController.isPlaying ||
         event.sensor.type != Sensor.TYPE_PROXIMITY
       ) {
         return

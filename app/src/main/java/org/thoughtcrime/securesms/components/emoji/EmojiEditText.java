@@ -90,6 +90,12 @@ public class EmojiEditText extends AppCompatEditText {
     onFocusChangeListeners.add(listener);
   }
 
+  public void removeOnFocusChangeListener(@Nullable OnFocusChangeListener listener) {
+    if (listener != null) {
+      onFocusChangeListeners.remove(listener);
+    }
+  }
+
   private InputFilter[] appendEmojiFilter(@Nullable InputFilter[] originalFilters, boolean jumboEmoji) {
     InputFilter[] result;
 

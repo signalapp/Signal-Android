@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
@@ -17,29 +18,32 @@ import org.thoughtcrime.securesms.util.ViewUtil
 /**
  * Serves as the separator between the original message and other messages. Used in [MessageQuotesBottomSheet] and [EditMessageHistoryDialog]
  */
-class OriginalMessageSeparatorDecoration(context: Context, val titleRes: Int) : RecyclerView.ItemDecoration() {
+class OriginalMessageSeparatorDecoration(
+  context: Context,
+  private val titleRes: Int,
+  private val getOriginalMessagePosition: (RecyclerView.State) -> Int = { it.itemCount - 1 }
+) : RecyclerView.ItemDecoration() {
 
   private val dividerMargin = ViewUtil.dpToPx(context, 32)
   private val dividerHeight = ViewUtil.dpToPx(context, 2)
   private val dividerRect = Rect()
   private val dividerPaint: Paint = Paint().apply {
     style = Paint.Style.FILL
-    color = context.resources.getColor(R.color.signal_colorSurfaceVariant)
+    color = ContextCompat.getColor(context, R.color.signal_colorSurfaceVariant)
   }
 
   private var cachedHeader: View? = null
-  private val headerMargin = ViewUtil.dpToPx(24)
 
   override fun onDrawOver(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-    val lastItem: View = parent.children.firstOrNull { child ->
-      parent.getChildAdapterPosition(child) == state.itemCount - 1
+    val originalItem: View = parent.children.firstOrNull { child ->
+      parent.getChildAdapterPosition(child) == getOriginalMessagePosition(state)
     } ?: return
 
     dividerRect.apply {
       left = parent.left
-      top = lastItem.bottom + dividerMargin
+      top = originalItem.bottom + dividerMargin
       right = parent.right
-      bottom = lastItem.bottom + dividerMargin + dividerHeight
+      bottom = originalItem.bottom + dividerMargin + dividerHeight
     }
 
     canvas.drawRect(dividerRect, dividerPaint)
@@ -86,9 +90,9 @@ class OriginalMessageSeparatorDecoration(context: Context, val titleRes: Int) : 
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     val currentPosition = parent.getChildAdapterPosition(view)
-    val lastPosition = state.itemCount - 1
+    val originalMessagePosition = getOriginalMessagePosition(state)
 
-    if (currentPosition == lastPosition) {
+    if (currentPosition == originalMessagePosition) {
       outRect.bottom = ViewUtil.dpToPx(view.context, 110)
     }
   }

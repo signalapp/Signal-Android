@@ -97,10 +97,13 @@
             style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/RegistrationLockFragment__switch_keyboard"
+            app:icon="@drawable/ic_keyboard_24"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_forgot_pin"
             app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="32dp"
-            tools:text="Create Alphanumeric Pin" />
+            tools:layout_editor_absoluteX="32dp" />
 
         <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/pin_restore_pin_confirm"

@@ -27,7 +27,7 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
 
   private val aliceSenderCertificate = FakeClientHelpers.createCertificateFor(
     trustRoot = trustRoot,
-    uuid = serviceId.uuid(),
+    uuid = serviceId.rawUuid,
     e164 = e164,
     deviceId = 1,
     identityKey = SignalStore.account().aciIdentityKey.publicKey.publicKey,

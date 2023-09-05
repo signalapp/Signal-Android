@@ -7,6 +7,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 /**
  * Add columns needed to track remote megaphone specific snooze rates.
  */
+@Suppress("ClassName")
 object V163_RemoteMegaphoneSnoozeSupportMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     if (columnMissing(db, "primary_action_data")) {

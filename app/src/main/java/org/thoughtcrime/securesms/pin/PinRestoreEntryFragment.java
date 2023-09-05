@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.autofill.HintConstants;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.KbsConstants;
+import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
@@ -52,7 +52,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private View                           skipButton;
   private CircularProgressMaterialButton pinButton;
   private TextView                       errorLabel;
-  private TextView                       keyboardToggle;
+  private MaterialButton                 keyboardToggle;
   private PinRestoreViewModel            viewModel;
 
   @Override
@@ -102,18 +102,18 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     keyboardToggle.setOnClickListener((v) -> {
       PinKeyboardType keyboardType = getPinEntryKeyboardType();
 
+      keyboardToggle.setIconResource(keyboardType.getIconResource());
+
       updateKeyboard(keyboardType.getOther());
-      keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
     });
 
-    PinKeyboardType keyboardType = getPinEntryKeyboardType().getOther();
-    keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+    keyboardToggle.setIconResource(getPinEntryKeyboardType().getOther().getIconResource());
   }
 
   private void initViewModel() {
     viewModel = new ViewModelProvider(this).get(PinRestoreViewModel.class);
 
-    viewModel.getTriesRemaining().observe(getViewLifecycleOwner(), this::presentTriesRemaining);
+    viewModel.triesRemaining.observe(getViewLifecycleOwner(), this::presentTriesRemaining);
     viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
   }
 
@@ -194,9 +194,9 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void onNeedHelpClicked() {
     new MaterialAlertDialogBuilder(requireContext())
                    .setTitle(R.string.PinRestoreEntryFragment_need_help)
-                   .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, KbsConstants.MINIMUM_PIN_LENGTH))
+                   .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, SvrConstants.MINIMUM_PIN_LENGTH))
                    .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, ((dialog, which) -> {
-                     PinState.onPinRestoreForgottenOrSkipped();
+                     SvrRepository.onPinRestoreForgottenOrSkipped();
                      ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
                    }))
                    .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> {
@@ -218,7 +218,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
                    .setTitle(R.string.PinRestoreEntryFragment_skip_pin_entry)
                    .setMessage(R.string.PinRestoreEntryFragment_if_you_cant_remember_your_pin)
                    .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, (dialog, which) -> {
-                     PinState.onPinRestoreForgottenOrSkipped();
+                     SvrRepository.onPinRestoreForgottenOrSkipped();
                      ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
                    })
                    .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
@@ -226,7 +226,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void onAccountLocked() {
-    PinState.onPinRestoreForgottenOrSkipped();
+    SvrRepository.onPinRestoreForgottenOrSkipped();
     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), PinRestoreEntryFragmentDirections.actionAccountLocked());
   }
 
@@ -258,14 +258,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
                                          : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
     pinEntry.getText().clear();
-  }
-
-  private @StringRes static int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {
-    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
-      return R.string.PinRestoreEntryFragment_enter_alphanumeric_pin;
-    } else {
-      return R.string.PinRestoreEntryFragment_enter_numeric_pin;
-    }
   }
 
   private void enableAndFocusPinEntry() {

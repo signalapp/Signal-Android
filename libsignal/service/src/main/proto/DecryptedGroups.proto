@@ -13,45 +13,45 @@ import "Groups.proto";
 // Decrypted version of Member
 // Keep field numbers in step
 message DecryptedMember {
-  bytes       uuid             = 1;
+  bytes       aciBytes         = 1;
   Member.Role role             = 2;
   bytes       profileKey       = 3;
   uint32      joinedAtRevision = 5;
-  bytes       pni              = 6;
+  bytes       pniBytes         = 6;
 }
 
 message DecryptedPendingMember {
-  bytes       uuid           = 1;
-  Member.Role role           = 2;
-  bytes       addedByUuid    = 3;
-  uint64      timestamp      = 4;
-  bytes       uuidCipherText = 5;
+  bytes       serviceIdBytes      = 1;
+  Member.Role role                = 2;
+  bytes       addedByAci          = 3;
+  uint64      timestamp           = 4;
+  bytes       serviceIdCipherText = 5;
 }
 
 message DecryptedRequestingMember {
-  bytes  uuid       = 1;
+  bytes  aciBytes   = 1;
   bytes  profileKey = 2;
   uint64 timestamp  = 4;
 }
 
 message DecryptedBannedMember {
-  bytes  uuid      = 1;
-  uint64 timestamp = 2;
+  bytes  serviceIdBytes = 1;
+  uint64 timestamp      = 2;
 }
 
 message DecryptedPendingMemberRemoval {
-  bytes uuid           = 1;
-  bytes uuidCipherText = 2;
+  bytes serviceIdBytes = 1;
+  bytes serviceIdCipherText  = 2;
 }
 
 message DecryptedApproveMember {
-  bytes       uuid = 1;
-  Member.Role role = 2;
+  bytes       aciBytes = 1;
+  Member.Role role     = 2;
 }
 
 message DecryptedModifyMemberRole {
-  bytes       uuid = 1;
-  Member.Role role = 2;
+  bytes       aciBytes = 1;
+  Member.Role role     = 2;
 }
 
 // Decrypted version of message Group
@@ -74,7 +74,7 @@ message DecryptedGroup {
 // Decrypted version of message GroupChange.Actions
 // Keep field numbers in step
 message DecryptedGroupChange {
-           bytes                         editor                      = 1;
+           bytes                         editorServiceIdBytes        = 1;
            uint32                        revision                    = 2;
   repeated DecryptedMember               newMembers                  = 3;
   repeated bytes                         deleteMembers               = 4;

@@ -4,8 +4,8 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.UUID
 
 /**
@@ -34,7 +34,7 @@ class SignalDatabaseRule(
 
   private fun deleteAllThreads() {
     if (deleteAllThreadsOnEachRun) {
-      SignalDatabase.messages.deleteAllThreads()
+      SignalDatabase.threads.clearForTests()
     }
   }
 }

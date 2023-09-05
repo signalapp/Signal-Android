@@ -17,7 +17,7 @@
         android:id="@+id/avatar_story_ring"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/avatar_story_ring"
+        android:background="@drawable/avatar_story_ring_inactive"
         android:importantForAccessibility="no"
         android:visibility="gone"
         tools:visibility="visible" />

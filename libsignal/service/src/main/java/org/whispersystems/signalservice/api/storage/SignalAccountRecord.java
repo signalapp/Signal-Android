@@ -382,11 +382,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     static PinnedConversation fromRemote(AccountRecord.PinnedConversation remote) {
       if (remote.hasContact()) {
-        ServiceId serviceId = ServiceId.parseOrNull(remote.getContact().getUuid());
+        ServiceId serviceId = ServiceId.parseOrNull(remote.getContact().getServiceId());
         if (serviceId != null) {
           return forContact(new SignalServiceAddress(serviceId, remote.getContact().getE164()));
         } else {
-          Log.w(TAG, "Bad serviceId on pinned contact! Length: " + remote.getContact().getUuid());
+          Log.w(TAG, "Bad serviceId on pinned contact! Length: " + remote.getContact().getServiceId());
           return PinnedConversation.forEmpty();
         }
       } else if (!remote.getLegacyGroupId().isEmpty()) {
@@ -418,7 +418,7 @@ public final class SignalAccountRecord implements SignalRecord {
       if (contact.isPresent()) {
         AccountRecord.PinnedConversation.Contact.Builder contactBuilder = AccountRecord.PinnedConversation.Contact.newBuilder();
 
-        contactBuilder.setUuid(contact.get().getServiceId().toString());
+        contactBuilder.setServiceId(contact.get().getServiceId().toString());
 
         if (contact.get().getNumber().isPresent()) {
           contactBuilder.setE164(contact.get().getNumber().get());

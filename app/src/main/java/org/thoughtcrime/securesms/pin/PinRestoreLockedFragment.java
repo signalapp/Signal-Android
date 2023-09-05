@@ -25,7 +25,7 @@ public class PinRestoreLockedFragment extends LoggingFragment {
     View learnMoreButton = view.findViewById(R.id.pin_locked_learn_more);
 
     createPinButton.setOnClickListener(v -> {
-      PinState.onPinRestoreForgottenOrSkipped();
+      SvrRepository.onPinRestoreForgottenOrSkipped();
       ((PinRestoreActivity) requireActivity()).navigateToPinCreation();
     });
 

@@ -176,7 +176,6 @@ public final class AudioView extends FrameLayout {
                        final boolean showControls,
                        final boolean forceHideDuration)
   {
-    this.disposable.dispose();
     this.callbacks = callbacks;
 
     if (duration != null) {
@@ -213,25 +212,26 @@ public final class AudioView extends FrameLayout {
       showPlayButton();
     }
 
-    this.audioSlide = audio;
-
     if (seekBar instanceof WaveFormSeekBarView) {
       WaveFormSeekBarView waveFormView = (WaveFormSeekBarView) seekBar;
       waveFormView.setColors(waveFormPlayedBarsColor, waveFormUnplayedBarsColor, waveFormThumbTint);
       if (android.os.Build.VERSION.SDK_INT >= 23) {
-        disposable = AudioWaveForms.getWaveForm(getContext(), audioSlide.asAttachment())
-                                   .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(
-                                        data -> {
-                                          durationMillis = data.getDuration(TimeUnit.MILLISECONDS);
-                                          updateProgress(0, 0);
-                                          if (!forceHideDuration && duration != null) {
-                                            duration.setVisibility(VISIBLE);
-                                          }
-                                          waveFormView.setWaveData(data.getWaveForm());
-                                        },
-                                        t -> waveFormView.setWaveMode(false)
-                                    );
+        if (audioSlide == null || !Objects.equals(audioSlide.getUri(), audio.getUri())) {
+          disposable.dispose();
+          disposable = AudioWaveForms.getWaveForm(getContext(), audio.asAttachment())
+                                     .observeOn(AndroidSchedulers.mainThread())
+                                     .subscribe(
+                                         data -> {
+                                           durationMillis = data.getDuration(TimeUnit.MILLISECONDS);
+                                           updateProgress(0, 0);
+                                           if (!forceHideDuration && duration != null) {
+                                             duration.setVisibility(VISIBLE);
+                                           }
+                                           waveFormView.setWaveData(data.getWaveForm());
+                                         },
+                                         t -> waveFormView.setWaveMode(false)
+                                     );
+        }
       } else {
         waveFormView.setWaveMode(false);
         if (duration != null) {
@@ -243,6 +243,8 @@ public final class AudioView extends FrameLayout {
     if (forceHideDuration && duration != null) {
       duration.setVisibility(View.GONE);
     }
+
+    this.audioSlide = audio;
   }
 
   public void setDownloadClickListener(@Nullable SlideClickListener listener) {

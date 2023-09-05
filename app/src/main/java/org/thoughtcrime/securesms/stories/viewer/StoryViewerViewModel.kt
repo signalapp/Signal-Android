@@ -9,7 +9,9 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -17,7 +19,10 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.rx.RxStore
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 class StoryViewerViewModel(
   private val storyViewerArgs: StoryViewerArgs,
@@ -61,6 +66,25 @@ class StoryViewerViewModel(
 
   val isChildScrolling: Observable<Boolean> = childScrollStatePublisher.distinctUntilChanged()
   val isFirstTimeNavigationShowing: Observable<Boolean> = firstTimeNavigationPublisher.distinctUntilChanged()
+
+  /**
+   * Post an action *after* the story load state is ready.
+   * A slight delay is applied here to ensure that animations settle
+   * before the action takes place. Otherwise, some strange windowing
+   * problems can occur.
+   */
+  fun postAfterLoadStateReady(
+    delay: Duration = 100.milliseconds,
+    action: () -> Unit
+  ): Disposable {
+    return loadState
+      .filter { it.isReady() }
+      .delay(delay.inWholeMilliseconds, TimeUnit.MILLISECONDS)
+      .firstOrError()
+      .ignoreElement()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { action() }
+  }
 
   fun addHiddenAndRefresh(hidden: Set<RecipientId>) {
     this.hidden.addAll(hidden)

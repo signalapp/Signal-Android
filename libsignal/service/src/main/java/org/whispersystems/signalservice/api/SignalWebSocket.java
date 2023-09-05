@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse;
@@ -10,8 +8,8 @@ import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketResponseMessage;
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
+import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage;
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
 import org.whispersystems.util.Base64;
 
@@ -202,9 +200,11 @@ public final class SignalWebSocket {
 
   public Single<WebsocketResponse> request(WebSocketRequestMessage requestMessage, Optional<UnidentifiedAccess> unidentifiedAccess) {
     if (unidentifiedAccess.isPresent()) {
-      WebSocketRequestMessage message = WebSocketRequestMessage.newBuilder(requestMessage)
-                                                               .addHeaders("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()))
-                                                               .build();
+      List<String> headers = new ArrayList<>(requestMessage.headers);
+      headers.add("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()));
+      WebSocketRequestMessage message = requestMessage.newBuilder()
+                                                      .headers(headers)
+                                                      .build();
       try {
         return getUnidentifiedWebSocket().sendRequest(message)
                                          .flatMap(r -> {
@@ -299,7 +299,7 @@ public final class SignalWebSocket {
   }
 
   private static EnvelopeResponse requestToEnvelopeResponse(WebSocketRequestMessage request)
-      throws InvalidProtocolBufferException
+      throws IOException
   {
     Optional<String> timestampHeader = findHeader(request);
     long             timestamp       = 0;
@@ -312,41 +312,41 @@ public final class SignalWebSocket {
       }
     }
 
-    SignalServiceProtos.Envelope envelope = SignalServiceProtos.Envelope.parseFrom(request.getBody().toByteArray());
+    SignalServiceProtos.Envelope envelope = SignalServiceProtos.Envelope.parseFrom(request.body.toByteArray());
 
     return new EnvelopeResponse(envelope, timestamp, request);
   }
 
   private static boolean isSignalServiceEnvelope(WebSocketRequestMessage message) {
-    return "PUT".equals(message.getVerb()) && "/api/v1/message".equals(message.getPath());
+    return "PUT".equals(message.verb) && "/api/v1/message".equals(message.path);
   }
 
   private static boolean isSocketEmptyRequest(WebSocketRequestMessage message) {
-    return "PUT".equals(message.getVerb()) && "/api/v1/queue/empty".equals(message.getPath());
+    return "PUT".equals(message.verb) && "/api/v1/queue/empty".equals(message.path);
   }
 
   private static WebSocketResponseMessage createWebSocketResponse(WebSocketRequestMessage request) {
     if (isSignalServiceEnvelope(request)) {
-      return WebSocketResponseMessage.newBuilder()
-                                     .setId(request.getId())
-                                     .setStatus(200)
-                                     .setMessage("OK")
-                                     .build();
+      return new WebSocketResponseMessage.Builder()
+                                         .id(request.id)
+                                         .status(200)
+                                         .message("OK")
+                                         .build();
     } else {
-      return WebSocketResponseMessage.newBuilder()
-                                     .setId(request.getId())
-                                     .setStatus(400)
-                                     .setMessage("Unknown")
-                                     .build();
+      return new WebSocketResponseMessage.Builder()
+                                         .id(request.id)
+                                         .status(400)
+                                         .message("Unknown")
+                                         .build();
     }
   }
 
   private static Optional<String> findHeader(WebSocketRequestMessage message) {
-    if (message.getHeadersCount() == 0) {
+    if (message.headers.isEmpty()) {
       return Optional.empty();
     }
 
-    for (String header : message.getHeadersList()) {
+    for (String header : message.headers) {
       if (header.startsWith(SERVER_DELIVERED_TIMESTAMP_HEADER)) {
         String[] split = header.split(":");
         if (split.length == 2 && split[0].trim().toLowerCase().equals(SERVER_DELIVERED_TIMESTAMP_HEADER.toLowerCase())) {

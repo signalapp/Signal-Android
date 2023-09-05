@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 public class TombstoneAttachment extends Attachment {
 
   public TombstoneAttachment(@NonNull String contentType, boolean quote) {
-    super(contentType, AttachmentTable.TRANSFER_PROGRESS_DONE, 0, null, 0, null, null, null, null, null, false, false, false, 0, 0, quote, 0, null, null, null, null, null);
+    super(contentType, AttachmentTable.TRANSFER_PROGRESS_DONE, 0, null, 0, null, null, null, null, null, null, false, false, false, 0, 0, quote, 0, null, null, null, null, null);
   }
 
   @Override

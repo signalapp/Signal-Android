@@ -55,7 +55,7 @@ object ConversationDialogs {
           { ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.id) },
           { identityRecord ->
             identityRecord.ifPresent {
-              fragment.startActivity(VerifyIdentityActivity.newIntent(fragment.requireContext(), identityRecord.get()))
+              VerifyIdentityActivity.startOrShowExchangeMessagesDialog(fragment.requireContext(), identityRecord.get())
             }
             d.dismiss()
           }

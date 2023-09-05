@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Registry;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.UnitModelLoader;
+import com.bumptech.glide.load.resource.bitmap.BitmapDrawableEncoder;
 import com.bumptech.glide.load.resource.bitmap.Downsampler;
 import com.bumptech.glide.load.resource.bitmap.StreamBitmapDecoder;
 import com.bumptech.glide.load.resource.gif.ByteBufferGifDecoder;
@@ -64,11 +66,14 @@ public class SignalGlideComponents implements RegisterGlideComponents {
 
     registry.prepend(InputStream.class, new EncryptedCacheEncoder(secret, glide.getArrayPool()));
 
-    registry.prepend(Bitmap.class, new EncryptedBitmapResourceEncoder(secret));
     registry.prepend(File.class, Bitmap.class, new EncryptedCacheDecoder<>(secret, new StreamBitmapDecoder(new Downsampler(registry.getImageHeaderParsers(), context.getResources().getDisplayMetrics(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
 
     registry.prepend(GifDrawable.class, new EncryptedGifDrawableResourceEncoder(secret));
     registry.prepend(File.class, GifDrawable.class, new EncryptedCacheDecoder<>(secret, new StreamGifDecoder(registry.getImageHeaderParsers(), new ByteBufferGifDecoder(context, registry.getImageHeaderParsers(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
+
+    EncryptedBitmapResourceEncoder encryptedBitmapResourceEncoder = new EncryptedBitmapResourceEncoder(secret);
+    registry.prepend(Bitmap.class, new EncryptedBitmapResourceEncoder(secret));
+    registry.prepend(BitmapDrawable.class, new BitmapDrawableEncoder(glide.getBitmapPool(), encryptedBitmapResourceEncoder));
 
     ApngBufferCacheDecoder apngBufferCacheDecoder = new ApngBufferCacheDecoder();
     ApngStreamCacheDecoder apngStreamCacheDecoder = new ApngStreamCacheDecoder(apngBufferCacheDecoder);

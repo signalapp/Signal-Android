@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.drafts
 
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.DraftTable.Drafts
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * State object responsible for holding Voice Note draft state. The intention is to allow
@@ -10,11 +9,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * management pattern going forward for drafts.
  */
 data class DraftState(
-  @Deprecated("Not needed for CFv2")
-  val recipientId: RecipientId? = null,
   val threadId: Long = -1,
-  @Deprecated("Not needed for CFv2")
-  val distributionType: Int = 0,
   val textDraft: DraftTable.Draft? = null,
   val bodyRangesDraft: DraftTable.Draft? = null,
   val quoteDraft: DraftTable.Draft? = null,
@@ -24,7 +19,7 @@ data class DraftState(
 ) {
 
   fun copyAndClearDrafts(threadId: Long = this.threadId): DraftState {
-    return DraftState(recipientId = recipientId, threadId = threadId, distributionType = distributionType)
+    return DraftState(threadId = threadId)
   }
 
   fun toDrafts(): Drafts {

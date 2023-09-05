@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:background="#EBEAE8"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:parentTag="org.thoughtcrime.securesms.components.verify.SafetyNumberQrView">
+
+    <LinearLayout
+        android:id="@+id/qr_code_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/qr_code_background"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/verify_display_fragment__loading"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/qr_code"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:visibility="invisible"
+                tools:src="@drawable/ic_about_mc_80"
+                tools:visibility="visible" />
+
+            <org.thoughtcrime.securesms.components.SquareImageView
+                android:id="@+id/qr_verified"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/green_500"
+                android:src="@drawable/ic_check_white_48dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <TextSwitcher
+            android:id="@+id/tap_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="17dp"
+            android:layout_gravity="center_horizontal"
+            android:inAnimation="@android:anim/fade_in"
+            android:outAnimation="@android:anim/fade_out">
+
+            <TextView
+                style="@style/Signal.Text.BodyMedium"
+                android:layout_width="156dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/verify_display_fragment__tap_to_scan"
+                android:textColor="@color/qr_card_text_color" />
+
+            <TextView
+                style="@style/Signal.Text.BodyMedium"
+                android:layout_width="156dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/verify_display_fragment__successful_match"
+                android:textColor="@color/qr_card_text_color" />
+
+        </TextSwitcher>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/number_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/verify_identity_vertical_margin"
+        android:layout_marginBottom="49dp"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintTop_toBottomOf="@id/qr_code_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TableRow
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/code_first"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="22934" />
+
+            <TextView
+                android:id="@+id/code_second"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="56944" />
+
+            <TextView
+                android:id="@+id/code_third"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="42738" />
+
+            <TextView
+                android:id="@+id/code_fourth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="20038" />
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/code_fifth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="34431" />
+
+            <TextView
+                android:id="@+id/code_sixth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="24922" />
+
+            <TextView
+                android:id="@+id/code_seventh"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="58594" />
+
+            <TextView
+                android:id="@+id/code_eighth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="24109" />
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/code_ninth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="00257" />
+
+            <TextView
+                android:id="@+id/code_tenth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="34956" />
+
+            <TextView
+                android:id="@+id/code_eleventh"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="32440" />
+
+            <TextView
+                android:id="@+id/code_twelth"
+                style="@style/IdentityKey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="15774" />
+        </TableRow>
+    </TableLayout>
+
+    <ImageView
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/symbol_share_android_24"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:layout_margin="24dp"
+        />
+
+</merge>

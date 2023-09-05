@@ -5,11 +5,14 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
+import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.CallLinkPeekJob
+import org.thoughtcrime.securesms.jobs.CallLogEventSendJob
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 
@@ -68,7 +71,7 @@ class CallLogRepository(
   ): Completable {
     return Completable.fromAction {
       SignalDatabase.calls.deleteNonAdHocCallEvents(selectedCallRowIds)
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 
   fun deleteAllCallLogsExcept(
@@ -77,7 +80,24 @@ class CallLogRepository(
   ): Completable {
     return Completable.fromAction {
       SignalDatabase.calls.deleteAllNonAdHocCallEventsExcept(selectedCallRowIds, missedOnly)
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Delete all call events / unowned links and enqueue clear history job, and then
+   * emit a clear history message.
+   */
+  fun deleteAllCallLogsOnOrBeforeNow(): Single<Int> {
+    return Single.fromCallable {
+      SignalDatabase.rawDatabase.withinTransaction {
+        val now = System.currentTimeMillis()
+        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(now)
+        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(now)
+        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(now))
+      }
+
+      SignalDatabase.callLinks.getAllAdminCallLinksExcept(emptySet())
+    }.flatMap(this::revokeAndCollectResults).map { -1 }.subscribeOn(Schedulers.io())
   }
 
   /**
@@ -93,19 +113,7 @@ class CallLogRepository(
       val allCallLinkIds = SignalDatabase.calls.getCallLinkRoomIdsFromCallRowIds(selectedCallRowIds) + selectedRoomIds
       SignalDatabase.callLinks.deleteNonAdminCallLinks(allCallLinkIds)
       SignalDatabase.callLinks.getAdminCallLinks(allCallLinkIds)
-    }.flatMap { callLinksToRevoke ->
-      Single.merge(
-        callLinksToRevoke.map {
-          updateCallLinkRepository.revokeCallLink(it.credentials!!)
-        }
-      ).reduce(0) { acc, current ->
-        acc + (if (current is UpdateCallLinkResult.Success) 0 else 1)
-      }
-    }.doOnTerminate {
-      SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
-    }.doOnDispose {
-      SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
-    }.observeOn(Schedulers.io())
+    }.flatMap(this::revokeAndCollectResults).subscribeOn(Schedulers.io())
   }
 
   /**
@@ -121,19 +129,21 @@ class CallLogRepository(
       val allCallLinkIds = SignalDatabase.calls.getCallLinkRoomIdsFromCallRowIds(selectedCallRowIds) + selectedRoomIds
       SignalDatabase.callLinks.deleteAllNonAdminCallLinksExcept(allCallLinkIds)
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(allCallLinkIds)
-    }.flatMap { callLinksToRevoke ->
-      Single.merge(
-        callLinksToRevoke.map {
-          updateCallLinkRepository.revokeCallLink(it.credentials!!)
-        }
-      ).reduce(0) { acc, current ->
-        acc + (if (current is UpdateCallLinkResult.Success) 0 else 1)
+    }.flatMap(this::revokeAndCollectResults).subscribeOn(Schedulers.io())
+  }
+
+  private fun revokeAndCollectResults(callLinksToRevoke: Set<CallLinkTable.CallLink>): Single<Int> {
+    return Single.merge(
+      callLinksToRevoke.map {
+        updateCallLinkRepository.revokeCallLink(it.credentials!!)
       }
+    ).reduce(0) { acc, current ->
+      acc + (if (current is UpdateCallLinkResult.Success) 0 else 1)
     }.doOnTerminate {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }.doOnDispose {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
-    }.observeOn(Schedulers.io())
+    }
   }
 
   fun peekCallLinks(): Completable {
@@ -158,6 +168,6 @@ class CallLogRepository(
       }
 
       ApplicationDependencies.getJobManager().addAll(jobs)
-    }.observeOn(Schedulers.io())
+    }.subscribeOn(Schedulers.io())
   }
 }

@@ -1,9 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.common.collect.Lists;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -11,13 +8,11 @@ import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
- * Specifically handles just the UI/UX state around PINs. For actual keys, see {@link KbsValues}.
+ * Specifically handles just the UI/UX state around PINs. For actual keys, see {@link SvrValues}.
  */
 public final class PinValues extends SignalStoreValues {
 
@@ -50,7 +45,7 @@ public final class PinValues extends SignalStoreValues {
               .putLong(NEXT_INTERVAL, nextInterval)
               .apply();
 
-    SignalStore.kbsValues().setPinIfNotPresent(pin);
+    SignalStore.svr().setPinIfNotPresent(pin);
   }
 
   public void onEntrySuccessWithWrongGuess(@NonNull String pin) {
@@ -62,7 +57,7 @@ public final class PinValues extends SignalStoreValues {
               .putLong(NEXT_INTERVAL, nextInterval)
               .apply();
 
-    SignalStore.kbsValues().setPinIfNotPresent(pin);
+    SignalStore.svr().setPinIfNotPresent(pin);
   }
 
   public void onEntrySkipWithWrongGuess() {

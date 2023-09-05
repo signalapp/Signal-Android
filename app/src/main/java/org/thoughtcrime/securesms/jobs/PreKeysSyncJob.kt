@@ -181,6 +181,7 @@ class PreKeysSyncJob private constructor(parameters: Parameters) : BaseJob(param
     log(serviceIdType, "Cleaning prekeys...")
     PreKeyUtil.cleanSignedPreKeys(protocolStore, metadataStore)
     PreKeyUtil.cleanLastResortKyberPreKeys(protocolStore, metadataStore)
+    PreKeyUtil.cleanOneTimePreKeys(protocolStore)
   }
 
   private fun signedPreKeyUploadIfNeeded(serviceIdType: ServiceIdType, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore): SignedPreKeyRecord? {
@@ -204,7 +205,7 @@ class PreKeysSyncJob private constructor(parameters: Parameters) : BaseJob(param
       log(serviceIdType, "Rotating last-resort kyber prekey. TimeSinceLastRotation: $timeSinceLastSignedPreKeyRotation ms (${timeSinceLastSignedPreKeyRotation.milliseconds.toDouble(DurationUnit.DAYS)} days)")
       PreKeyUtil.generateAndStoreLastResortKyberPreKey(protocolStore, metadataStore)
     } else {
-      log(serviceIdType, "No need to rotate signed prekey. TimeSinceLastRotation: $timeSinceLastSignedPreKeyRotation ms (${timeSinceLastSignedPreKeyRotation.milliseconds.toDouble(DurationUnit.DAYS)} days)")
+      log(serviceIdType, "No need to rotate last-resort kyber prekey. TimeSinceLastRotation: $timeSinceLastSignedPreKeyRotation ms (${timeSinceLastSignedPreKeyRotation.milliseconds.toDouble(DurationUnit.DAYS)} days)")
       null
     }
   }

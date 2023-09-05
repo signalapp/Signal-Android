@@ -1,19 +1,24 @@
 package org.thoughtcrime.securesms.conversation.ui.edit
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
@@ -35,6 +40,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.ViewModelFactory
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import java.util.Locale
@@ -44,8 +50,6 @@ import java.util.Locale
  */
 class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
-  override val peekHeightPercentage: Float = 0.4f
-
   private val binding: MessageEditHistoryBottomSheetBinding by ViewBinderDelegate(MessageEditHistoryBottomSheetBinding::bind)
   private val originalMessageId: Long by lazy { requireArguments().getLong(ARGUMENT_ORIGINAL_MESSAGE_ID) }
   private val conversationRecipient: Recipient by lazy { Recipient.resolved(requireArguments().getParcelable(ARGUMENT_CONVERSATION_RECIPIENT_ID)!!) }
@@ -53,10 +57,23 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
+  override fun onResume() {
+    super.onResume()
+
+    viewModel.markRevisionsRead()
+  }
+
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+    dialog.behavior.skipCollapsed = true
+    dialog.setOnShowListener {
+      dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+    return dialog
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    val view = MessageEditHistoryBottomSheetBinding.inflate(inflater, container, false).root
-    view.minimumHeight = (resources.displayMetrics.heightPixels * peekHeightPercentage).toInt()
-    return view
+    return MessageEditHistoryBottomSheetBinding.inflate(inflater, container, false).root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,14 +91,18 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
       conversationRecipient.hasWallpaper(),
       colorizer
     ).apply {
-      setCondensedMode(ConversationItemDisplayMode.EXTRA_CONDENSED)
+      setCondensedMode(ConversationItemDisplayMode.EDIT_HISTORY)
     }
 
     binding.editHistoryList.apply {
-      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
       adapter = messageAdapter
       itemAnimator = null
-      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.EditMessageHistoryDialog_title))
+      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.EditMessageHistoryDialog_title) { 0 })
+      doOnNextLayout {
+        // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
+        addItemDecoration(StickyHeaderDecoration(messageAdapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE))
+      }
     }
 
     val recyclerViewColorizer = RecyclerViewColorizer(binding.editHistoryList)
@@ -99,7 +120,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
     disposables += viewModel.getNameColorsMap().subscribe { map ->
       colorizer.onNameColorsChanged(map)
-      messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapter.PAYLOAD_NAME_COLORS)
+      messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapterBridge.PAYLOAD_NAME_COLORS)
     }
 
     initializeGiphyMp4()

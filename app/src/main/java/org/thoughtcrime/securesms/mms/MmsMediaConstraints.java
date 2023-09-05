@@ -43,27 +43,27 @@ final class MmsMediaConstraints extends MediaConstraints {
   }
 
   @Override
-  public int getGifMaxSize(Context context) {
+  public long getGifMaxSize(Context context) {
     return getMaxMessageSize(context);
   }
 
   @Override
-  public int getVideoMaxSize(Context context) {
+  public long getVideoMaxSize(Context context) {
     return getMaxMessageSize(context);
   }
 
   @Override
-  public int getUncompressedVideoMaxSize(Context context) {
+  public long getUncompressedVideoMaxSize(Context context) {
     return Math.max(getVideoMaxSize(context), 15 * 1024 * 1024);
   }
 
   @Override
-  public int getAudioMaxSize(Context context) {
+  public long getAudioMaxSize(Context context) {
     return getMaxMessageSize(context);
   }
 
   @Override
-  public int getDocumentMaxSize(Context context) {
+  public long getDocumentMaxSize(Context context) {
     return getMaxMessageSize(context);
   }
 

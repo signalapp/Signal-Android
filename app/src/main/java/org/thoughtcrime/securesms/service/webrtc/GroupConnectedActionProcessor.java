@@ -68,7 +68,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     if (connectionState == GroupCall.ConnectionState.CONNECTED || connectionState == GroupCall.ConnectionState.CONNECTING) {
       if (joinState == GroupCall.JoinState.JOINED) {
         groupCallState = WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
-      } else if (joinState == GroupCall.JoinState.JOINING) {
+      } else if (joinState == GroupCall.JoinState.JOINING || joinState == GroupCall.JoinState.PENDING) {
         groupCallState = WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING;
       }
     }
@@ -158,8 +158,8 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId, remoteUserRangTheCall, true);
 
     List<UUID> members = new ArrayList<>(peekInfo.getJoinedMembers());
-    if (!members.contains(SignalStore.account().requireAci().uuid())) {
-      members.add(SignalStore.account().requireAci().uuid());
+    if (!members.contains(SignalStore.account().requireAci().getRawUuid())) {
+      members.add(SignalStore.account().requireAci().getRawUuid());
     }
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, WebRtcUtil.isCallFull(peekInfo));
 
@@ -184,7 +184,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId, false, false);
 
-    List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants()).map(p -> p.getRecipient().requireServiceId().uuid()).toList();
+    List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants()).map(p -> p.getRecipient().requireServiceId().getRawUuid()).toList();
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, false);
 
     currentState = currentState.builder()

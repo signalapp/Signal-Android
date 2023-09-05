@@ -10,7 +10,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -245,30 +244,32 @@ private fun CallLinkDetails(
         modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
       )
 
-      Rows.TextRow(
-        text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
-        modifier = Modifier.clickable(onClick = callback::onEditNameClicked)
-      )
+      if (state.callLink.credentials?.adminPassBytes != null) {
+        Rows.TextRow(
+          text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
+          onClick = callback::onEditNameClicked
+        )
 
-      Rows.ToggleRow(
-        checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
-        text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
-        onCheckChanged = callback::onApproveAllMembersChanged
-      )
+        Rows.ToggleRow(
+          checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
+          text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
+          onCheckChanged = callback::onApproveAllMembersChanged
+        )
 
-      Dividers.Default()
+        Dividers.Default()
+      }
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
-        modifier = Modifier.clickable(onClick = callback::onShareClicked)
+        onClick = callback::onShareClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
         foregroundTint = MaterialTheme.colorScheme.error,
-        modifier = Modifier.clickable(onClick = callback::onDeleteClicked)
+        onClick = callback::onDeleteClicked
       )
     }
 

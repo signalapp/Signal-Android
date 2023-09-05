@@ -7,6 +7,9 @@ public enum MessageRequestState {
   /** No message request necessary */
   NONE,
 
+  /** No message request necessary as the user was hidden after accepting*/
+  NONE_HIDDEN,
+
   /** A user is blocked */
   BLOCKED_INDIVIDUAL,
 

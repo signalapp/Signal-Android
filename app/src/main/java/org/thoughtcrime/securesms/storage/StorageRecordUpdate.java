@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.storage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import org.whispersystems.signalservice.api.storage.SignalRecord;
 
@@ -13,7 +14,8 @@ public class StorageRecordUpdate<E extends SignalRecord> {
   private final E oldRecord;
   private final E newRecord;
 
-  StorageRecordUpdate(@NonNull E oldRecord, @NonNull E newRecord) {
+  @VisibleForTesting
+  public StorageRecordUpdate(@NonNull E oldRecord, @NonNull E newRecord) {
     this.oldRecord = oldRecord;
     this.newRecord = newRecord;
   }

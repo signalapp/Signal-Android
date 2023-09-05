@@ -29,9 +29,10 @@ import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationRepository
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.VerifyResponse
+import org.thoughtcrime.securesms.testing.GroupTestingUtils.asMember
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
-import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
@@ -44,7 +45,7 @@ import java.util.UUID
  *
  * To use: `@get:Rule val harness = SignalActivityRule()`
  */
-class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() {
+class SignalActivityRule(private val othersCount: Int = 4, private val createGroup: Boolean = false) : ExternalResource() {
 
   val application: Application = ApplicationDependencies.getApplication()
 
@@ -55,6 +56,9 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
   lateinit var others: List<RecipientId>
     private set
   lateinit var othersKeys: List<IdentityKeyPair>
+
+  var group: GroupTestingUtils.TestGroupInfo? = null
+    private set
 
   val inMemoryLogger: InMemoryLogger
     get() = (application as SignalInstrumentationApplicationContext).inMemoryLogger
@@ -67,6 +71,15 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     others = setupOthers.first
     othersKeys = setupOthers.second
 
+    if (createGroup && others.size >= 2) {
+      group = GroupTestingUtils.insertGroup(
+        revision = 0,
+        self.asMember(),
+        others[0].asMember(),
+        others[1].asMember()
+      )
+    }
+
     InstrumentationApplicationDependencyProvider.clearHandlers()
   }
 
@@ -76,6 +89,9 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     MasterSecretUtil.generateAsymmetricMasterSecret(application, masterSecret)
     val preferences: SharedPreferences = application.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0)
     preferences.edit().putBoolean("passphrase_initialized", true).commit()
+
+    SignalStore.account().generateAciIdentityKeyIfNecessary()
+    SignalStore.account().generatePniIdentityKeyIfNecessary()
 
     val registrationRepository = RegistrationRepository(application)
 
@@ -87,18 +103,23 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
         password = Util.getSecret(18),
         registrationId = registrationRepository.registrationId,
         profileKey = registrationRepository.getProfileKey("+15555550101"),
-        preKeyCollections = RegistrationRepository.generatePreKeys()!!,
         fcmToken = null,
         pniRegistrationId = registrationRepository.pniRegistrationId,
         recoveryPassword = "asdfasdfasdfasdf"
       ),
-      VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null),
+      VerifyResponse(
+        verifyAccountResponse = VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false),
+        masterKey = null,
+        pin = null,
+        aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().aciPreKeys),
+        pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account().aciIdentityKey, SignalStore.account().pniPreKeys)
+      ),
       false
     ).blockingGet()
 
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
 
-    SignalStore.kbsValues().optOut()
+    SignalStore.svr().optOut()
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 

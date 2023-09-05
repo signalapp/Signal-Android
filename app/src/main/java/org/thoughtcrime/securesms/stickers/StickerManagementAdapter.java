@@ -273,6 +273,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
 
       glideRequests.load(new DecryptableUri(stickerPack.getCover().getUri()))
                    .transition(DrawableTransitionOptions.withCrossFade())
+                   .fitCenter()
                    .set(ApngOptions.ANIMATE, allowApngAnimation)
                    .into(cover);
 

@@ -112,8 +112,8 @@ object Rows {
       Row(
         modifier = modifier
           .fillMaxWidth()
-          .padding(defaultPadding())
           .clickable(enabled = onClick != null, onClick = onClick ?: {})
+          .padding(defaultPadding())
       ) {
         Icon(
           imageVector = icon,
@@ -133,10 +133,11 @@ object Rows {
     } else {
       Text(
         text = text,
+        color = foregroundTint,
         modifier = modifier
           .fillMaxWidth()
-          .padding(defaultPadding())
           .clickable(enabled = onClick != null, onClick = onClick ?: {})
+          .padding(defaultPadding())
       )
     }
   }

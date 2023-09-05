@@ -16,9 +16,8 @@ import org.thoughtcrime.securesms.jobs.NewRegistrationUsernameSyncJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.pin.KbsRepository;
-import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException;
-import org.thoughtcrime.securesms.pin.TokenData;
+import org.thoughtcrime.securesms.pin.SvrWrongPinException;
+import org.thoughtcrime.securesms.pin.SvrRepository;
 import org.thoughtcrime.securesms.registration.RegistrationData;
 import org.thoughtcrime.securesms.registration.RegistrationRepository;
 import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor;
@@ -29,13 +28,12 @@ import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLoc
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.KbsPinData;
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
+import org.whispersystems.signalservice.api.SvrNoDataException;
+import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.kbs.PinHashUtil;
-import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
 import org.whispersystems.util.Base64;
 
@@ -67,10 +65,9 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   public RegistrationViewModel(@NonNull SavedStateHandle savedStateHandle,
                                boolean isReregister,
                                @NonNull VerifyAccountRepository verifyAccountRepository,
-                               @NonNull KbsRepository kbsRepository,
                                @NonNull RegistrationRepository registrationRepository)
   {
-    super(savedStateHandle, verifyAccountRepository, kbsRepository, Util.getSecret(18));
+    super(savedStateHandle, verifyAccountRepository, Util.getSecret(18));
 
     this.registrationRepository = registrationRepository;
 
@@ -174,14 +171,12 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                   })
                                   .flatMap(verifyAccountWithoutKbsResponse -> {
                                     VerifyResponseProcessor processor = new VerifyResponseWithoutKbs(verifyAccountWithoutKbsResponse);
-                                    String                  pin       = SignalStore.kbsValues().getPin();
+                                    String                  pin       = SignalStore.svr().getPin();
 
-                                    if ((processor.isKbsLocked() || processor.registrationLock()) && SignalStore.kbsValues().getRegistrationLockToken() != null && pin != null) {
-                                      KbsPinData pinData = new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse());
-
-                                      return verifyAccountRepository.registerAccount(sessionId, getRegistrationData(), pin, () -> pinData)
+                                    if ((processor.isRegistrationLockPresentAndSvrExhausted() || processor.registrationLock()) && SignalStore.svr().getRegistrationLockToken() != null && pin != null) {
+                                      return verifyAccountRepository.registerAccount(sessionId, getRegistrationData(), pin, () -> SignalStore.svr().getOrCreateMasterKey())
                                                                     .map(verifyAccountWithPinResponse -> {
-                                                                      if (verifyAccountWithPinResponse.getResult().isPresent() && verifyAccountWithPinResponse.getResult().get().getKbsData() != null) {
+                                                                      if (verifyAccountWithPinResponse.getResult().isPresent() && verifyAccountWithPinResponse.getResult().get().getMasterKey() != null) {
                                                                         return verifyAccountWithPinResponse;
                                                                       } else {
                                                                         return verifyAccountWithoutKbsResponse;
@@ -195,7 +190,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   }
 
   @Override
-  protected Single<ServiceResponse<VerifyResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull TokenData kbsTokenData) {
+  protected Single<ServiceResponse<VerifyResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull SvrAuthCredentialSet svrAuthCredentials) {
     final String sessionId = getSessionId();
     if (sessionId == null) {
       throw new IllegalStateException("No valid registration session");
@@ -210,7 +205,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                   })
                                   .<ServiceResponse<VerifyResponse>>flatMap(processor -> {
                                     if (processor.isAlreadyVerified() || (processor.hasResult() && processor.isVerified())) {
-                                      return verifyAccountRepository.registerAccount(sessionId, getRegistrationData(), pin, () -> Objects.requireNonNull(KbsRepository.restoreMasterKey(pin, kbsTokenData.getEnclave(), kbsTokenData.getBasicAuth(), kbsTokenData.getTokenResponse())));
+                                      return verifyAccountRepository.registerAccount(sessionId, getRegistrationData(), pin, () -> SvrRepository.restoreMasterKeyPreRegistration(svrAuthCredentials, pin));
                                     } else {
                                       return Single.just(ServiceResponse.coerceError(processor.getResponse()));
                                     }
@@ -236,8 +231,6 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                 getRegistrationSecret(),
                                 registrationRepository.getRegistrationId(),
                                 registrationRepository.getProfileKey(getNumber().getE164Number()),
-                                RegistrationRepository.generatePreKeysForType(ServiceIdType.ACI),
-                                RegistrationRepository.generatePreKeysForType(ServiceIdType.PNI),
                                 getFcmToken(),
                                 registrationRepository.getPniRegistrationId(),
                                 getSessionId() != null ? null : getRecoveryPassword());
@@ -252,18 +245,17 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                      return updateFcmTokenValue().subscribeOn(Schedulers.io())
                                                  .observeOn(Schedulers.io())
                                                  .onErrorReturnItem("")
-                                                 .flatMap(s -> verifyReRegisterWithRecoveryPassword(pin, data.pinData));
+                                                 .flatMap(s -> verifyReRegisterWithRecoveryPassword(pin, data.masterKey));
                    } else {
-                     throw new IllegalStateException("Unable to get token or master key");
+                     throw new IncorrectRegistrationRecoveryPasswordException();
                    }
                  })
-                 .onErrorReturn(t -> new VerifyResponseWithRegistrationLockProcessor(ServiceResponse.forUnknownError(t), getKeyBackupCurrentToken()))
+                 .onErrorReturn(t -> new VerifyResponseWithRegistrationLockProcessor(ServiceResponse.forUnknownError(t), getSvrAuthCredentials()))
                  .map(p -> {
                    if (p instanceof VerifyResponseWithRegistrationLockProcessor) {
                      VerifyResponseWithRegistrationLockProcessor lockProcessor = (VerifyResponseWithRegistrationLockProcessor) p;
-                     if (lockProcessor.wrongPin() && lockProcessor.getTokenData() != null) {
-                       TokenData newToken = TokenData.withResponse(lockProcessor.getTokenData(), lockProcessor.getTokenResponse());
-                       return new VerifyResponseWithRegistrationLockProcessor(lockProcessor.getResponse(), newToken);
+                     if (lockProcessor.wrongPin() && lockProcessor.getSvrTriesRemaining() != null) {
+                       return new VerifyResponseWithRegistrationLockProcessor(lockProcessor.getResponse(), lockProcessor.getSvrAuthCredentials());
                      }
                    }
 
@@ -279,37 +271,33 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
 
   @WorkerThread
   private @NonNull ReRegistrationData verifyReRegisterWithPinInternal(@NonNull String pin)
-      throws KeyBackupSystemWrongPinException, IOException, KeyBackupSystemNoDataException
+      throws SvrWrongPinException, IOException, SvrNoDataException
   {
-    String localPinHash = SignalStore.kbsValues().getLocalPinHash();
+    String localPinHash = SignalStore.svr().getLocalPinHash();
 
     if (hasRecoveryPassword() && localPinHash != null) {
       if (PinHashUtil.verifyLocalPinHash(localPinHash, pin)) {
         Log.i(TAG, "Local pin matches input, attempting registration");
-        return ReRegistrationData.canProceed(new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse()));
+        return ReRegistrationData.canProceed(SignalStore.svr().getOrCreateMasterKey());
       } else {
-        throw new KeyBackupSystemWrongPinException(new TokenResponse(null, null, 0));
+        throw new SvrWrongPinException(0);
       }
     } else {
-      TokenData data = getKeyBackupCurrentToken();
-      if (data == null) {
-        Log.w(TAG, "No token data, abort skip flow");
+      SvrAuthCredentialSet authCredentials = getSvrAuthCredentials();
+      if (authCredentials == null) {
+        Log.w(TAG, "No SVR auth credentials, abort skip flow");
         return ReRegistrationData.cannotProceed();
       }
 
-      KbsPinData kbsPinData = KbsRepository.restoreMasterKey(pin, data.getEnclave(), data.getBasicAuth(), data.getTokenResponse());
-      if (kbsPinData == null || kbsPinData.getMasterKey() == null) {
-        Log.w(TAG, "No kbs data, abort skip flow");
-        return ReRegistrationData.cannotProceed();
-      }
+      MasterKey masterKey = SvrRepository.restoreMasterKeyPreRegistration(authCredentials, pin);
 
-      setRecoveryPassword(kbsPinData.getMasterKey().deriveRegistrationRecoveryPassword());
-      setKeyBackupTokenData(data);
-      return ReRegistrationData.canProceed(kbsPinData);
+      setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword());
+      setSvrTriesRemaining(10);
+      return ReRegistrationData.canProceed(masterKey);
     }
   }
 
-  private Single<VerifyResponseProcessor> verifyReRegisterWithRecoveryPassword(@NonNull String pin, @NonNull KbsPinData pinData) {
+  private Single<VerifyResponseProcessor> verifyReRegisterWithRecoveryPassword(@NonNull String pin, @NonNull MasterKey masterKey) {
     RegistrationData registrationData = getRegistrationData();
     if (registrationData.getRecoveryPassword() == null) {
       throw new IllegalStateException("No valid recovery password");
@@ -321,9 +309,10 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                   .map(VerifyResponseWithoutKbs::new)
                                   .flatMap(processor -> {
                                     if (processor.registrationLock()) {
-                                      return verifyAccountRepository.registerAccount(null, registrationData, pin, () -> pinData)
+                                      setSvrAuthCredentials(processor.getSvrAuthCredentials());
+                                      return verifyAccountRepository.registerAccount(null, registrationData, pin, () -> masterKey)
                                                                     .onErrorReturn(ServiceResponse::forUnknownError)
-                                                                    .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, getKeyBackupCurrentToken()));
+                                                                    .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, processor.getSvrAuthCredentials()));
                                     } else {
                                       return Single.just(processor);
                                     }
@@ -331,14 +320,14 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                   .flatMap(processor -> {
                                     if (processor.hasResult()) {
                                       VerifyResponse verifyResponse             = processor.getResult();
-                                      boolean        setRegistrationLockEnabled = verifyResponse.getKbsData() != null;
+                                      boolean        setRegistrationLockEnabled = verifyResponse.getMasterKey() != null;
 
                                       if (!setRegistrationLockEnabled) {
-                                        verifyResponse = new VerifyResponse(processor.getResult().getVerifyAccountResponse(), pinData, pin);
+                                        verifyResponse = new VerifyResponse(processor.getResult().getVerifyAccountResponse(), masterKey, pin, verifyResponse.getAciPreKeyCollection(), verifyResponse.getPniPreKeyCollection());
                                       }
 
                                       return registrationRepository.registerAccount(registrationData, verifyResponse, setRegistrationLockEnabled)
-                                                                   .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, getKeyBackupCurrentToken()));
+                                                                   .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, getSvrAuthCredentials()));
                                     } else {
                                       return Single.just(processor);
                                     }
@@ -356,14 +345,14 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                    if (hasRecoveryPassword) {
                      return Single.just(true);
                    } else {
-                     return checkForValidKbsAuthCredentials();
+                     return checkForValidSvrAuthCredentials();
                    }
                  });
   }
 
-  private Single<Boolean> checkForValidKbsAuthCredentials() {
-    final List<String> kbsAuthTokenList = SignalStore.kbsValues().getKbsAuthTokenList();
-    List<String> usernamePasswords = kbsAuthTokenList
+  private Single<Boolean> checkForValidSvrAuthCredentials() {
+    final List<String> svrAuthTokenList = SignalStore.svr().getAuthTokenList();
+    List<String> usernamePasswords = svrAuthTokenList
         .stream()
         .limit(10)
         .map(t -> {
@@ -379,19 +368,11 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
       return Single.just(false);
     }
 
-    return registrationRepository.getKbsAuthCredential(getRegistrationData(), usernamePasswords)
+    return registrationRepository.getSvrAuthCredential(getRegistrationData(), usernamePasswords)
                                  .flatMap(p -> {
-                                   if (p.getValid() != null) {
-                                     return kbsRepository.getToken(p.getValid())
-                                                         .flatMap(r -> {
-                                                           if (r.getResult().isPresent()) {
-                                                             TokenData tokenData = r.getResult().get();
-                                                             setKeyBackupTokenData(tokenData);
-                                                             return Single.just(tokenData.getTriesRemaining() > 0);
-                                                           } else {
-                                                             return Single.just(false);
-                                                           }
-                                                         });
+                                   if (p.hasValidSvr2AuthCredential()) {
+                                     setSvrAuthCredentials(new SvrAuthCredentialSet(null, p.requireSvr2AuthCredential()));
+                                     return Single.just(true);
                                    } else {
                                      return Single.just(false);
                                    }
@@ -434,20 +415,20 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   }
 
   private static class ReRegistrationData {
-    public boolean    canProceed;
-    public KbsPinData pinData;
+    public boolean   canProceed;
+    public MasterKey masterKey;
 
-    private ReRegistrationData(boolean canProceed, @Nullable KbsPinData pinData) {
+    private ReRegistrationData(boolean canProceed, @Nullable MasterKey masterKey) {
       this.canProceed = canProceed;
-      this.pinData    = pinData;
+      this.masterKey  = masterKey;
     }
 
     public static ReRegistrationData cannotProceed() {
       return new ReRegistrationData(false, null);
     }
 
-    public static ReRegistrationData canProceed(@NonNull KbsPinData pinData) {
-      return new ReRegistrationData(true, pinData);
+    public static ReRegistrationData canProceed(@NonNull MasterKey masterKey) {
+      return new ReRegistrationData(true, masterKey);
     }
   }
 
@@ -465,7 +446,6 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
       return modelClass.cast(new RegistrationViewModel(handle,
                                                        isReregister,
                                                        new VerifyAccountRepository(ApplicationDependencies.getApplication()),
-                                                       new KbsRepository(),
                                                        new RegistrationRepository(ApplicationDependencies.getApplication())));
     }
   }

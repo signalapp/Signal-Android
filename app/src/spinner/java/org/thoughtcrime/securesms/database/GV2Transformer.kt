@@ -28,10 +28,10 @@ object GV2Transformer : ColumnTransformer {
 }
 
 private fun DecryptedGroup.formatAsHtml(): String {
-  val members: String = describeList(membersList, DecryptedMember::getUuid)
-  val pending: String = describeList(pendingMembersList, DecryptedPendingMember::getUuid)
-  val requesting: String = describeList(requestingMembersList, DecryptedRequestingMember::getUuid)
-  val banned: String = describeList(bannedMembersList, DecryptedBannedMember::getUuid)
+  val members: String = describeList(membersList, DecryptedMember::getAciBytes)
+  val pending: String = describeList(pendingMembersList, DecryptedPendingMember::getServiceIdBytes)
+  val requesting: String = describeList(requestingMembersList, DecryptedRequestingMember::getAciBytes)
+  val banned: String = describeList(bannedMembersList, DecryptedBannedMember::getServiceIdBytes)
 
   return """
     Revision:     $revision

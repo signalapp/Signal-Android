@@ -46,12 +46,10 @@ import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.service.webrtc.links.CreateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
-import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
 
@@ -109,7 +107,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__add_call_name),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onAddACallNameClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onAddACallNameClicked
       )
 
       Rows.ToggleRow(
@@ -124,19 +122,19 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareViaSignalClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareViaSignalClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onCopyLinkClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onCopyLinkClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link),
         icon = ImageVector.vectorResource(id = R.drawable.symbol_share_android_24),
-        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareLinkClicked)
+        onClick = this@CreateCallLinkBottomSheetDialogFragment::onShareLinkClicked
       )
 
       Buttons.MediumTonal(
@@ -212,15 +210,10 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     lifecycleDisposable += viewModel.commitCallLink().subscribeBy(onSuccess = {
       when (it) {
         is EnsureCallLinkCreatedResult.Success -> {
-          MultiselectForwardFragment.showFullScreen(
-            childFragmentManager,
-            MultiselectForwardFragmentArgs(
-              canSendToNonPush = false,
-              multiShareArgs = listOf(
-                MultiShareArgs.Builder()
-                  .withDraftText(CallLinks.url(viewModel.linkKeyBytes))
-                  .build()
-              )
+          startActivity(
+            ShareActivity.sendSimpleText(
+              requireContext(),
+              getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.linkKeyBytes))
             )
           )
         }

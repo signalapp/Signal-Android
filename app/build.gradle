@@ -10,7 +10,6 @@ plugins {
     id 'app.cash.exhaustive'
     id 'kotlin-parcelize'
     id 'com.squareup.wire'
-    id 'android-constants'
     id 'translations'
 }
 
@@ -39,15 +38,18 @@ wire {
     sourcePath {
         srcDir 'src/main/protowire'
     }
+
+    protoPath {
+        srcDir "${project.rootDir}/libsignal/service/src/main/protowire"
+    }
 }
 
 ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version = "0.47.1"
+    version = "0.49.1"
 }
 
-def canonicalVersionCode = 1282
-def canonicalVersionName = "6.24.3"
+def canonicalVersionCode = 1322
+def canonicalVersionName = "6.31.2"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -95,7 +97,7 @@ android {
     testBuildType 'instrumentation'
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = signalKotlinJvmTarget
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
@@ -159,7 +161,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = '1.3.2'
+        kotlinCompilerExtensionVersion = '1.4.4'
     }
 
     defaultConfig {
@@ -199,6 +201,8 @@ android {
         buildConfigField "String[]", "SIGNAL_KBS_IPS", kbs_ips
         buildConfigField "String[]", "SIGNAL_SFU_IPS", sfu_ips
         buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
+        buildConfigField "String[]", "SIGNAL_CDSI_IPS", cdsi_ips
+        buildConfigField "String[]", "SIGNAL_SVR2_IPS", svr2_ips
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\""
         buildConfigField "String", "SVR2_MRENCLAVE", "\"6ee1042f9e20f880326686dd4ba50c25359f01e9f733eeba4382bca001d45094\""
@@ -228,8 +232,8 @@ android {
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
+        resourceConfigurations += []
 
-        resConfigs autoResConfig()
 
         splits {
             abi {
@@ -381,7 +385,7 @@ android {
             buildConfigField "String", "SIGNAL_SVR2_URL", "\"https://svr2.staging.signal.org\""
             buildConfigField "String", "SVR2_MRENCLAVE", "\"a8a261420a6bb9b61aa25bf8a79e8bd20d7652531feb3381cbffd446d270be95\""
             buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"39963b736823d5780be96ab174869a9499d56d66497aa8f9b2244f777ebc366b\", " +
-                                                                                                                               "\"9dbc6855c198e04f21b5cc35df839fdcd51b53658454dfa3f817afefaffc95ef\", " +
+                                                                                                                               "\"ee1d0d972b7ea903615670de43ab1b6e7a825e811c70a29bb5fe0f819e0975fa\", " +
                                                                                                                                "\"45627094b2ea4a66f4cf0b182858a8dcf4b8479122c3820fe7fd0551a6d4cf5c\")"
             buildConfigField "org.thoughtcrime.securesms.KbsEnclave[]", "KBS_FALLBACKS", "new org.thoughtcrime.securesms.KbsEnclave[] { new org.thoughtcrime.securesms.KbsEnclave(\"dd6f66d397d9e8cf6ec6db238e59a7be078dd50e9715427b9c89b409ffe53f99\", " +
                                                                                                                                                                                  "\"4200003414528c151e2dccafbc87aa6d3d66a5eb8f8c05979a6e97cb33cd493a\", " +
@@ -447,6 +451,14 @@ android {
             variant.setIgnore(true)
         }
     }
+
+    android.buildTypes.each {
+        if (it.name != 'release') {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/debug/java"
+        } else {
+            sourceSets.findByName(it.name).java.srcDirs += "$projectDir/src/release/java"
+        }
+    }
 }
 
 dependencies {
@@ -502,7 +514,7 @@ dependencies {
     implementation libs.google.play.services.maps
     implementation libs.google.play.services.auth
 
-    implementation libs.bundles.exoplayer
+    implementation libs.bundles.media3
 
     implementation libs.conscrypt.android
     implementation libs.signal.aesgcmprovider
@@ -579,9 +591,8 @@ dependencies {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
     testImplementation testLibs.robolectric.shadows.multidex
-    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) {
-        force = true
-    }
+    testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 

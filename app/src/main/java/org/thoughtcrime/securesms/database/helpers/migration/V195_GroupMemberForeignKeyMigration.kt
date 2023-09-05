@@ -17,6 +17,7 @@ import org.signal.core.util.requireLong
  * Back CallLinks with a Recipient to ease integration and ensure we can support
  * different features which would require that relation in the future.
  */
+@Suppress("ClassName")
 object V195_GroupMemberForeignKeyMigration : SignalDatabaseMigration {
 
   private val TAG = Log.tag(V195_GroupMemberForeignKeyMigration::class.java)

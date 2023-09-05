@@ -2,7 +2,8 @@ package org.whispersystems.signalservice.api.push;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -36,11 +37,11 @@ public final class ServiceIds {
     return Objects.requireNonNull(pni);
   }
 
-  public boolean matches(UUID uuid) {
-    return uuid.equals(aci.uuid()) || (pni != null && uuid.equals(pni.uuid()));
+  public boolean matches(ServiceId serviceId) {
+    return serviceId.equals(aci) || (pni != null && serviceId.equals(pni));
   }
 
-  public boolean matches(ByteString uuid) {
+  public boolean matches(ByteString serviceIdsBytes) {
     if (aciByteString == null) {
       aciByteString = aci.toByteString();
     }
@@ -49,6 +50,6 @@ public final class ServiceIds {
       pniByteString = pni.toByteString();
     }
 
-    return uuid.equals(aciByteString) || uuid.equals(pniByteString);
+    return serviceIdsBytes.equals(aciByteString) || serviceIdsBytes.equals(pniByteString);
   }
 }

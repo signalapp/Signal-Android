@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+    <androidx.media3.ui.AspectRatioFrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -19,5 +19,5 @@
             android:scaleType="fitXY"
             app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded" />
 
-    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+    </androidx.media3.ui.AspectRatioFrameLayout>
 </FrameLayout>

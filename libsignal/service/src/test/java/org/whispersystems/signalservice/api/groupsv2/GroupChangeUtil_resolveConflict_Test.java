@@ -811,23 +811,23 @@ public final class GroupChangeUtil_resolveConflict_Test {
     DecryptedMember member2 = pendingPniAciMember(UUID.randomUUID(), UUID.randomUUID(), randomProfileKey());
 
     DecryptedGroup groupState = DecryptedGroup.newBuilder()
-                                              .addMembers(member(UuidUtil.fromByteString(member1.getUuid())))
+                                              .addMembers(member(UuidUtil.fromByteString(member1.getAciBytes())))
                                               .build();
 
     DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
-                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member1.getUuid(), member1.getPni(), member1.getProfileKey()))
-                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member2.getUuid(), member2.getPni(), member2.getProfileKey()))
+                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member1.getAciBytes(), member1.getPniBytes(), member1.getProfileKey()))
+                                                               .addPromotePendingPniAciMembers(pendingPniAciMember(member2.getAciBytes(), member2.getPniBytes(), member2.getProfileKey()))
                                                                .build();
 
     GroupChange.Actions change = GroupChange.Actions.newBuilder()
-                                                    .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder().setPresentation(presentation(member1.getPni(), member1.getProfileKey())))
-                                                    .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder().setPresentation(presentation(member2.getPni(), member2.getProfileKey())))
+                                                    .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder().setPresentation(presentation(member1.getPniBytes(), member1.getProfileKey())))
+                                                    .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder().setPresentation(presentation(member2.getPniBytes(), member2.getProfileKey())))
                                                     .build();
 
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     GroupChange.Actions expected = GroupChange.Actions.newBuilder()
-                                                      .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder().setPresentation(presentation(member2.getPni(), member2.getProfileKey())))
+                                                      .addPromotePendingPniAciMembers(GroupChange.Actions.PromotePendingPniAciMemberProfileKeyAction.newBuilder().setPresentation(presentation(member2.getPniBytes(), member2.getProfileKey())))
                                                       .build();
     assertEquals(expected, resolvedActions);
   }

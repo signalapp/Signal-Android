@@ -12,6 +12,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -41,7 +42,7 @@ public final class ProfileKeySet {
    * authoritative.
    */
   public void addKeysFromGroupChange(@NonNull DecryptedGroupChange change) {
-    UUID editor = UuidUtil.fromByteStringOrNull(change.getEditor());
+    ServiceId editor = ServiceId.parseOrNull(change.getEditorServiceIdBytes());
 
     for (DecryptedMember member : change.getNewMembersList()) {
       addMemberKey(member, editor);
@@ -56,7 +57,7 @@ public final class ProfileKeySet {
     }
 
     for (DecryptedRequestingMember member : change.getNewRequestingMembersList()) {
-      addMemberKey(editor, member.getUuid(), member.getProfileKey());
+      addMemberKey(editor, member.getAciBytes(), member.getProfileKey());
     }
   }
 
@@ -73,17 +74,17 @@ public final class ProfileKeySet {
     }
   }
 
-  private void addMemberKey(@NonNull DecryptedMember member, @Nullable UUID changeSource) {
-    addMemberKey(changeSource, member.getUuid(), member.getProfileKey());
+  private void addMemberKey(@NonNull DecryptedMember member, @Nullable ServiceId changeSource) {
+    addMemberKey(changeSource, member.getAciBytes(), member.getProfileKey());
   }
 
-  private void addMemberKey(@Nullable UUID changeSource,
-                            @NonNull ByteString memberUuidBytes,
+  private void addMemberKey(@Nullable ServiceId changeSource,
+                            @NonNull ByteString memberAciBytes,
                             @NonNull ByteString profileKeyBytes)
   {
-    UUID memberUuid = UuidUtil.fromByteString(memberUuidBytes);
+    ACI memberUuid = ACI.parseOrThrow(memberAciBytes);
 
-    if (UuidUtil.UNKNOWN_UUID.equals(memberUuid)) {
+    if (memberUuid.isUnknown()) {
       Log.w(TAG, "Seen unknown member UUID");
       return;
     }
@@ -97,11 +98,11 @@ public final class ProfileKeySet {
     }
 
     if (memberUuid.equals(changeSource)) {
-      authoritativeProfileKeys.put(ServiceId.from(memberUuid), profileKey);
-      profileKeys.remove(ServiceId.from(memberUuid));
+      authoritativeProfileKeys.put(memberUuid, profileKey);
+      profileKeys.remove(memberUuid);
     } else {
-      if (!authoritativeProfileKeys.containsKey(ServiceId.from(memberUuid))) {
-        profileKeys.put(ServiceId.from(memberUuid), profileKey);
+      if (!authoritativeProfileKeys.containsKey(memberUuid)) {
+        profileKeys.put(memberUuid, profileKey);
       }
     }
   }

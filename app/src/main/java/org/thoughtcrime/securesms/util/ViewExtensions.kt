@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util
 
+import android.graphics.Canvas
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -70,4 +72,22 @@ fun View.getLifecycle(): Lifecycle? {
   } catch (e: IllegalStateException) {
     ViewUtil.getActivityLifecycle(this)
   }
+}
+
+fun View.layoutIn(parent: View) {
+  val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY)
+  val heightSpec = View.MeasureSpec.makeMeasureSpec(parent.height, View.MeasureSpec.UNSPECIFIED)
+  val childWidth = ViewGroup.getChildMeasureSpec(widthSpec, parent.paddingLeft + parent.paddingRight, layoutParams.width)
+  val childHeight = ViewGroup.getChildMeasureSpec(heightSpec, parent.paddingTop + parent.paddingBottom, layoutParams.height)
+  measure(childWidth, childHeight)
+  layout(0, 0, measuredWidth, measuredHeight)
+}
+
+fun View.drawAsTopItemDecoration(canvas: Canvas, parent: View, child: View, offset: Int = 0) {
+  canvas.save()
+  val left = parent.left
+  val top = child.y.toInt() - height - offset
+  canvas.translate(left.toFloat(), top.toFloat())
+  draw(canvas)
+  canvas.restore()
 }

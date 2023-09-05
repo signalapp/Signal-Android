@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 
 public class NetworkConstraint implements Constraint {
 
@@ -44,10 +45,7 @@ public class NetworkConstraint implements Constraint {
   }
 
   public static boolean isMet(@NonNull Context context) {
-    ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
-
-    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    return NetworkUtil.isConnected(context);
   }
 
   public static final class Factory implements Constraint.Factory<NetworkConstraint> {

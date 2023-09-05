@@ -12,6 +12,7 @@ public class SendGroupMessageResponse {
 
   private static final String TAG = SendGroupMessageResponse.class.getSimpleName();
 
+  // Contains serialized ServiceIds
   @JsonProperty
   private String[] uuids404;
 

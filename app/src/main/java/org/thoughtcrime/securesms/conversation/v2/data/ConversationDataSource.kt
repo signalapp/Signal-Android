@@ -11,7 +11,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.conversation.ConversationData
-import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
 import org.thoughtcrime.securesms.database.MessageTable
@@ -32,13 +31,19 @@ import org.whispersystems.signalservice.api.push.ServiceId
 private typealias ConversationElement = MappingModel<*>
 
 sealed interface ConversationElementKey {
+
+  fun requireMessageId(): Long = error("Not implemented for this key")
+
   companion object {
     fun forMessage(id: Long): ConversationElementKey = MessageBackedKey(id)
     val threadHeader: ConversationElementKey = ThreadHeaderKey
   }
 }
 
-private data class MessageBackedKey(val id: Long) : ConversationElementKey
+private data class MessageBackedKey(val id: Long) : ConversationElementKey {
+  override fun requireMessageId(): Long = id
+}
+
 private object ThreadHeaderKey : ConversationElementKey
 
 /**
@@ -102,24 +107,27 @@ class ConversationDataSource(
     val callHelper = CallHelper()
     val referencedIds = hashSetOf<ServiceId>()
 
-    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong())).forEach { record ->
-      if (cancellationSignal.isCanceled) {
-        return@forEach
-      }
+    MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong()))
+      .use { reader ->
+        reader.forEach { record ->
+          if (cancellationSignal.isCanceled) {
+            return@forEach
+          }
 
-      records.add(record)
-      mentionHelper.add(record)
-      quotedHelper.add(record)
-      reactionHelper.add(record)
-      attachmentHelper.add(record)
-      paymentHelper.add(record)
-      callHelper.add(record)
+          records.add(record)
+          mentionHelper.add(record)
+          quotedHelper.add(record)
+          reactionHelper.add(record)
+          attachmentHelper.add(record)
+          paymentHelper.add(record)
+          callHelper.add(record)
 
-      val updateDescription = record.getUpdateDisplayBody(context, null)
-      if (updateDescription != null) {
-        referencedIds.addAll(updateDescription.mentioned)
+          val updateDescription = record.getUpdateDisplayBody(context, null)
+          if (updateDescription != null) {
+            referencedIds.addAll(updateDescription.mentioned)
+          }
+        }
       }
-    }
 
     if (messageRequestData.includeWarningUpdateMessage() && (start + length >= totalSize)) {
       records.add(NoGroupsInCommon(threadId, messageRequestData.isGroup))

@@ -21,7 +21,7 @@ import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -160,7 +160,7 @@ public final class LiveRecipientCache {
       }
 
       if (localAci != null) {
-        selfId = recipientTable.getByServiceId(localAci).orElse(null);
+        selfId = recipientTable.getByAci(localAci).orElse(null);
       }
 
       if (selfId == null && localE164 != null) {

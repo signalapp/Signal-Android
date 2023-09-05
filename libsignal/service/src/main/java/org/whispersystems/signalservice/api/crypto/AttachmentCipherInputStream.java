@@ -8,6 +8,8 @@ package org.whispersystems.signalservice.api.crypto;
 
 import org.signal.libsignal.protocol.InvalidMacException;
 import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
+import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
 import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -51,7 +53,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   private long    totalRead;
   private byte[]  overflowBuffer;
 
-  public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest)
+  public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest)
       throws InvalidMessageException, IOException
   {
     try {
@@ -71,7 +73,18 @@ public class AttachmentCipherInputStream extends FilterInputStream {
         verifyMac(fin, file.length(), mac, digest);
       }
 
-      InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
+      final FileInputStream innerStream = new FileInputStream(file);
+
+      boolean hasIncrementalMac = incrementalDigest != null && incrementalDigest.length > 0;
+
+      InputStream wrap = !hasIncrementalMac ? innerStream
+                                            : new IncrementalMacInputStream(
+                                                innerStream,
+                                                parts[1],
+                                                ChunkSizeChoice.inferChunkSize(Math.max(Math.toIntExact(file.length()), 1)),
+                                                incrementalDigest);
+
+      InputStream inputStream = new AttachmentCipherInputStream(wrap, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
 
       if (plaintextLength != 0) {
         inputStream = new ContentLengthInputStream(inputStream, plaintextLength);

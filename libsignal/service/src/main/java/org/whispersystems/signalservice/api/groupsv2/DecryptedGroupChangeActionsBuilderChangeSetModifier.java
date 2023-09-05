@@ -103,7 +103,7 @@ final class DecryptedGroupChangeActionsBuilderChangeSetModifier implements Chang
     result.removeNewRequestingMembers(i);
 
     DecryptedMember build = DecryptedMember.newBuilder()
-                                           .setUuid(addMemberAction.getUuid())
+                                           .setAciBytes(addMemberAction.getAciBytes())
                                            .setProfileKey(addMemberAction.getProfileKey())
                                            .setRole(Member.Role.DEFAULT).build();
 

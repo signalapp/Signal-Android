@@ -69,8 +69,8 @@ public class SignalBaseIdentityKeyStore {
 
   public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      IdentityStoreRecord identityRecord = cache.get(address.getName());
-      RecipientId         recipientId    = RecipientId.fromSidOrE164(address.getName());
+      IdentityStoreRecord identityRecord   = cache.get(address.getName());
+      RecipientId         recipientId      = RecipientId.fromSidOrE164(address.getName());
 
       if (identityRecord == null) {
         Log.i(TAG, "Saving new identity for " + address);
@@ -112,18 +112,14 @@ public class SignalBaseIdentityKeyStore {
   }
 
   public void saveIdentityWithoutSideEffects(@NonNull RecipientId recipientId,
+                                             @NonNull ServiceId serviceId,
                                              IdentityKey identityKey,
                                              VerifiedStatus verifiedStatus,
                                              boolean firstUse,
                                              long timestamp,
                                              boolean nonBlockingApproval)
   {
-    Recipient recipient = Recipient.resolved(recipientId);
-    if (recipient.hasServiceId()) {
-      cache.save(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
-    } else {
-      Log.w(TAG, "[saveIdentity] No serviceId for " + recipient.getId(), new Throwable());
-    }
+    cache.save(serviceId.toString(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
   }
 
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, IdentityKeyStore.Direction direction) {
