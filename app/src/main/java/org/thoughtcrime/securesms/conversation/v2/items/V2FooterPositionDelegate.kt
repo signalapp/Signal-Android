@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
-import kotlin.math.max
 
 /**
  * Logical delegate for determining the footer position for a particular conversation item.
@@ -109,12 +108,10 @@ class V2FooterPositionDelegate private constructor(
       return
     }
 
-    val targetWidth = body.measuredWidth + 24.dp + getFooterWidth()
-    val end = max(0, targetWidth - bodyContainer.measuredWidth) - 8.dp
     val (left, right) = if (bodyContainer.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
-      0 to end
+      0 to (getFooterWidth() - 8.dp)
     } else {
-      end to 0
+      (getFooterWidth() - 8.dp) to 0
     }
 
     body.padding(right = right, left = left, bottom = 0)
