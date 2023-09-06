@@ -30,10 +30,12 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.video.FallbackStrategy;
+import androidx.camera.video.Quality;
+import androidx.camera.video.QualitySelector;
 import androidx.camera.view.CameraController;
 import androidx.camera.view.LifecycleCameraController;
 import androidx.camera.view.PreviewView;
-import androidx.camera.view.video.ExperimentalVideo;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
@@ -71,7 +73,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
  * Camera captured implemented using the CameraX SDK, which uses Camera2 under the hood. Should be
  * preferred whenever possible.
  */
-@ExperimentalVideo
 public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
   private static final String TAG              = Log.tag(CameraXFragment.class);
@@ -239,7 +240,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     CameraController.OutputSize outputSize = new CameraController.OutputSize(size);
 
     cameraController.setImageCaptureTargetSize(outputSize);
-    cameraController.setVideoCaptureTargetSize(new CameraController.OutputSize(VideoUtil.getVideoRecordingSize()));
+    cameraController.setVideoCaptureQualitySelector(QualitySelector.from(Quality.HD, FallbackStrategy.lowerQualityThan(Quality.HD)));
 
     controlsContainer.removeAllViews();
     controlsContainer.addView(LayoutInflater.from(getContext()).inflate(layout, controlsContainer, false));
