@@ -54,7 +54,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
       this.staticLines.addAll(staticLines);
 
       Log.blockUntilAllWritesFinished();
-      LogDatabase.getInstance(ApplicationDependencies.getApplication()).trimToSize();
+      LogDatabase.getInstance(ApplicationDependencies.getApplication()).logs().trimToSize();
 
       LogDataSource dataSource = new LogDataSource(ApplicationDependencies.getApplication(), staticLines, firstViewTime);
       PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)

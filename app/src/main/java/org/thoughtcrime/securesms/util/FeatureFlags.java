@@ -115,6 +115,7 @@ public final class FeatureFlags {
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
   private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.2";
+  public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -181,7 +182,8 @@ public final class FeatureFlags {
       PROMPT_BATTERY_SAVER,
       USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
-      CONVERSATION_ITEM_V2_TEXT
+      CONVERSATION_ITEM_V2_TEXT,
+      CRASH_PROMPT_CONFIG
   );
 
   @VisibleForTesting
@@ -252,7 +254,8 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES
+      USERNAMES,
+      CRASH_PROMPT_CONFIG
   );
 
   /**
@@ -660,6 +663,11 @@ public final class FeatureFlags {
 
   public static String promptBatterySaver() {
     return getString(PROMPT_BATTERY_SAVER, "*");
+  }
+
+  /** Config object for what crashes to prompt about. */
+  public static String crashPromptConfig() {
+    return getString(CRASH_PROMPT_CONFIG, "");
   }
 
 

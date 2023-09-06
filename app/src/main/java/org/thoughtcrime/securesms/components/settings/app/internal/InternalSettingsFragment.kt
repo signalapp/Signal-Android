@@ -768,7 +768,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun clearKeepLongerLogs() {
     SimpleTask.run({
-      LogDatabase.getInstance(requireActivity().application).clearKeepLonger()
+      LogDatabase.getInstance(requireActivity().application).logs.clearKeepLonger()
     }) {
       Toast.makeText(requireContext(), "Cleared keep longer logs", Toast.LENGTH_SHORT).show()
     }
