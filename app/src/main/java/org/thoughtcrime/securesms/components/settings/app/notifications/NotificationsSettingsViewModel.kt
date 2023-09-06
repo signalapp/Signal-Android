@@ -16,19 +16,21 @@ import org.thoughtcrime.securesms.util.livedata.Store
 
 class NotificationsSettingsViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
 
+  private val store = Store(getState())
+
+  val state: LiveData<NotificationsSettingsState> = store.stateLiveData
+
   init {
     if (NotificationChannels.supported()) {
       SignalStore.settings().messageNotificationSound = NotificationChannels.getInstance().messageRingtone
       SignalStore.settings().isMessageVibrateEnabled = NotificationChannels.getInstance().messageVibrate
     }
+
+    store.update { getState(calculateSlowNotifications = true) }
   }
 
-  private val store = Store(getState())
-
-  val state: LiveData<NotificationsSettingsState> = store.stateLiveData
-
   fun refresh() {
-    store.update { getState() }
+    store.update { getState(currentState = it) }
   }
 
   fun setMessageNotificationsEnabled(enabled: Boolean) {
@@ -100,7 +102,12 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
     refresh()
   }
 
-  private fun getState(): NotificationsSettingsState = NotificationsSettingsState(
+  /**
+   * @param currentState If provided and [calculateSlowNotifications] = false, then we will copy the slow notification state from it
+   * @param calculateSlowNotifications If true, calculate the true slow notification state (this is not main-thread safe). Otherwise, it will copy from
+   * [currentState] or default to false.
+   */
+  private fun getState(currentState: NotificationsSettingsState? = null, calculateSlowNotifications: Boolean = false): NotificationsSettingsState = NotificationsSettingsState(
     messageNotificationsState = MessageNotificationsState(
       notificationsEnabled = SignalStore.settings().isMessageNotificationsEnabled && canEnableNotifications(),
       canEnableNotifications = canEnableNotifications(),
@@ -112,7 +119,13 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
       repeatAlerts = SignalStore.settings().messageNotificationsRepeatAlerts,
       messagePrivacy = SignalStore.settings().messageNotificationsPrivacy.toString(),
       priority = TextSecurePreferences.getNotificationPriority(ApplicationDependencies.getApplication()),
-      troubleshootNotifications = SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.isHavingDelayedNotifications()
+      troubleshootNotifications = if (calculateSlowNotifications) {
+        SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && SlowNotificationHeuristics.isHavingDelayedNotifications()
+      } else if (currentState != null) {
+        currentState.messageNotificationsState.troubleshootNotifications
+      } else {
+        false
+      }
     ),
     callNotificationsState = CallNotificationsState(
       notificationsEnabled = SignalStore.settings().isCallNotificationsEnabled && canEnableNotifications(),
