@@ -4067,7 +4067,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Your recovery phrase is a %1$d-word phrase unique to you. Use this phrase to restore your balance.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
