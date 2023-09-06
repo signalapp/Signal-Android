@@ -111,6 +111,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   }
 
   private class VoiceNotePlayerEventListener implements Player.Listener {
+    private int previousPlaybackState = player.getPlaybackState();
 
     @Override
     public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
@@ -123,6 +124,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     }
 
     private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
+     Log.d(TAG, "playWhenReady: " + playWhenReady + "\nplaybackState: " + playbackState);
       switch (playbackState) {
         case Player.STATE_BUFFERING:
         case Player.STATE_READY:
@@ -134,10 +136,13 @@ public class VoiceNotePlaybackService extends MediaSessionService {
           }
           break;
         case Player.STATE_ENDED:
-          player.clearMediaItems();
+          if (previousPlaybackState == Player.STATE_READY) {
+            player.clearMediaItems();
+          }
           break;
         default:
       }
+      previousPlaybackState = playbackState;
     }
 
     @Override
