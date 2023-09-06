@@ -49,9 +49,9 @@
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Je pincode wordt gebruikt voor registratievergrendeling. Om je pincode uit te schakelen moet je eerst de registratievergrendeling uitzetten.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Pincode aangemaakt.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">Pincode uitgeschakeld.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Herstel-zin voor overschrijvingen vastleggen</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Herstelzin voor betalingen vastleggen</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Zin vastleggen</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Je moet een herstel-zin vastleggen voordat je overschrijvingen kan uitschakelen, zodat het mogelijk wordt om je overschrijvingen-account te herstellen.</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Voordat je je pincode kunt uitschakelen, moet je je herstelzin voor betalingen vastleggen zodat je je betalingsaccount kunt herstellen.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -82,7 +82,7 @@
     <string name="AttachmentKeyboard_location">Locatie</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen en video\'s weer te kunnen geven.</string>
     <string name="AttachmentKeyboard_give_access">Toestemming geven</string>
-    <string name="AttachmentKeyboard_payment">Overschrijving</string>
+    <string name="AttachmentKeyboard_payment">Betaling</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Er is geen app gevonden waarmee je media zou kunnen selecteren.</string>
@@ -115,7 +115,7 @@
     <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
     <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
-    <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan je niet bellen of je berichten sturen.</string>
     <string name="BlockedUsersActivity__block">Blokkeren</string>
 
     <!-- CreditCardFragment -->
@@ -202,7 +202,7 @@
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Selecteer Signal-ontvangers</string>
     <string name="CameraContacts_no_signal_contacts">Geen Signal-gebruikers</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers. </string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te versturen naar Signal-gebruikers. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
     <string name="CameraContacts__menu_search">Zoeken</string>
@@ -244,7 +244,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">Recente chat</string>
+    <string name="ContactsCursorLoader_recent_chats">Recente chats</string>
     <string name="ContactsCursorLoader_contacts">Contacten</string>
     <string name="ContactsCursorLoader_groups">Groepen</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -288,7 +288,7 @@
     <string name="ConversationItem_error_partially_not_delivered">Deels verzonden, tik voor details</string>
     <string name="ConversationItem_error_network_not_delivered">Verzenden is mislukt</string>
     <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
-    <string name="ConversationItem_send_paused">Verzending is gepauzeerd</string>
+    <string name="ConversationItem_send_paused">Verzenden is gepauzeerd</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde sms?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde mms?</string>
@@ -461,9 +461,9 @@
     <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al bekeken</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in deze chat notities voor jezelf achterlaten. Voeg teksten toe en lees ze terug vanaf al je gekoppelde apparaten. Alle nieuwe notities worden gesynchroniseerd met de apparaten die gekoppeld zijn met je account.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in deze chat notities voor jezelf achterlaten. Alle nieuwe notities worden gesynchroniseerd met apparaten die gekoppeld zijn met je account.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
     <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
     <string name="ConversationFragment__review_requests_carefully">Overweeg dit gespreksverzoek zorgvuldig:</string>
@@ -698,7 +698,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsessie vernieuwd</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je chatsessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je chat, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je chatsessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je chat, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te verzenden.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">‘%1$s’ ontkoppelen?</string>
@@ -926,7 +926,7 @@
     <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
     <string name="AddGroupDetailsFragment__create">Aanmaken</string>
     <string name="AddGroupDetailsFragment__members">Leden</string>
-    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Je kunt na het maken van deze groep kennissen ervoor uitnodigen of eraan toevoegen.</string>
+    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Je kunt na het maken van deze groep vrienden ervoor uitnodigen of eraan toevoegen.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Groepsnaam (vereist)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Groepsnaam (optioneel)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
@@ -1072,14 +1072,14 @@
     </plurals>
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepsverwijzingen te kunnen gebruiken</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepslinks te kunnen gebruiken</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt deze groepslink niet. Werk Signal bij naar de meest recente versie om via een link lid te kunnen worden van een groep.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepslink</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kennissen uitnodigen</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Je kunt een groepslink delen met kennissen zodat ze zelf gemakkelijk lid kunnen worden van deze groep.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Vrienden uitnodigen</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Je kunt een groepslink delen met vrienden zodat ze zelf gemakkelijk lid kunnen worden van deze groep.</string>
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Groepslink inschakelen en delen</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Groepslink delen</string>
@@ -1196,7 +1196,7 @@
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
     <string name="Megaphones_get_started">Maak een begin</string>
     <string name="Megaphones_new_group">Nieuwe-stijl groep</string>
-    <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
+    <string name="Megaphones_invite_friends">Vrienden uitnodigen</string>
     <string name="Megaphones_chat_colors">Chatkleur</string>
     <string name="Megaphones_add_a_profile_photo">Voeg een profielfoto toe</string>
 
@@ -1287,7 +1287,7 @@
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
     <string name="MessageRecord_group_updated">Groep aangepast.</string>
-    <string name="MessageRecord_invite_friends_to_this_group">Je kunt vrienden en kennissen voor deze groep uitnodigen via een groepslink</string>
+    <string name="MessageRecord_invite_friends_to_this_group">Je kunt vrienden voor deze groep uitnodigen via een groepslink</string>
 
     <!-- GV2 member additions -->
     <string name="MessageRecord_you_added_s">Je hebt %1$s aan de groep toegevoegd.</string>
@@ -1494,7 +1494,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Je kunt geen sms-berichten meer versturen in Signal. Nodig %1$s uit voor Signal om het gesprek hier te houden.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Overschrijving: %1$s</string>
+    <string name="MessageRecord__payment_s">Betaling: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Aanvaarden</string>
@@ -1598,21 +1598,21 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">Foutieve pincode</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
     <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel opnieuw registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam, -foto en -omschrijving zullen dan niet bewaard blijven.</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt je opnieuw registreren en je account gebruiken maar je verliest wel een aantal opgeslagen instellingen, zoals je profielinformatie.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt je opnieuw registreren en je account gebruiken maar je verliest wel een aantal opgeslagen instellingen, zoals je profielinformatie.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
     <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
     <string name="PinRestoreEntryFragment_cancel">Annuleren</string>
     <string name="PinRestoreEntryFragment_skip">Overslaan</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">Je hebt nog %1$d poging resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
-        <item quantity="other">Je hebt nog %1$d pogingen resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
+        <item quantity="one">Je hebt nog %1$d poging resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt je opnieuw registreren en je account gebruiken maar je verliest wel een aantal opgeslagen instellingen, zoals je profielinformatie.</item>
+        <item quantity="other">Je hebt nog %1$d pogingen resterend. Wanneer je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt je opnieuw registreren en je account gebruiken maar je verliest wel een aantal opgeslagen instellingen, zoals je profielinformatie.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op een Android apparaat</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam, -foto en -omschrijving niet worden herstelt.</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van je Signal-account door een nieuwe pincode aan te maken. Voor je privacy en veiligheid wordt je account hersteld zonder opgeslagen profielinformatie of instellingen.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -1651,7 +1651,7 @@
     <!-- RecaptchaRequiredBottomSheetFragment -->
     <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Je moet verifiëren dat je geen robot bent om door te kunnen gaan met het verzenden van berichten</string>
     <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Om Signal te helpen spam te voorkomen is het nodig dat je verifieert dat je geen robot bent.</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Je kunt doorgaan met het verzenden van berichten nadat je hebt geverifieerd dat je geen robot bent. Enig bericht waarvan verzending is gepauzeerd zal dan automatisch verzonden worden.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Je kunt doorgaan met het verzenden van berichten nadat je hebt geverifieerd dat je geen robot bent. Enig bericht waarvan verzenden is gepauzeerd zal dan automatisch verzonden worden.</string>
 
     <!-- Recipient -->
     <string name="Recipient_you">Jij</string>
@@ -1830,8 +1830,8 @@
     <string name="CallParticipantView__s_is_blocked">%1$s is geblokkeerd</string>
     <string name="CallParticipantView__more_info">Meer informatie</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Je zult hen niet kunnen zien of horen en zij zullen jou niet kunnen zien of horen.</string>
-    <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen beeld &amp; geluid van %1$s ontvangen</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen beeld en geluid van %1$s ontvangen</string>
+    <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen audio &amp; video van %1$s ontvangen</string>
+    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen audio en video van %1$s ontvangen</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan zijn omdat diegene de wijziging van het veiligheidsnummer niet heeft geverifieerd, er een probleem is met hun apparaat, of als ze jou hebben geblokkeerd.</string>
 
     <!-- CallToastPopupWindow -->
@@ -2015,9 +2015,9 @@
     <string name="SubmitDebugLogActivity_submit">Uploaden</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutopsporingslogs is mislukt</string>
     <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze verwijzing (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Delen via andere app</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden klikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde verwijzing. Die verwijzing kun je zelf naar de ontwikkelaars sturen.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden klikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde URL. Die URL kun je zelf naar de ontwikkelaars sturen.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2078,7 +2078,7 @@
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Reageerde met %1$s op een verhaal</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
-    <string name="ThreadRecord_payment">Overschrijving</string>
+    <string name="ThreadRecord_payment">Betaling</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Gepland bericht</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
@@ -2243,6 +2243,18 @@
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Signal. Je kunt ze opnieuw aanzetten in Signal &gt; Instellingen &gt; Meldingen.</string>
 
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Berichten</string>
     <string name="NotificationChannel_calls">Oproepen</string>
@@ -2316,7 +2328,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Om overschrijvingen te kunnen blijven doen moet je Signal bijwerken. Jouw saldo is misschien niet up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Om betalingen te kunnen blijven gebruiken moet je Signal bijwerken. Je krediet is misschien niet up-to-date.</string>
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
@@ -2428,7 +2440,7 @@
     <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>
     <string name="conversation_activity__attachment_thumbnail">Bijlagevoorbeeld</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Camera overzicht weergeven/verbergen</string>
-    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluid opnemen en verzenden</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audio opnemen en verzenden</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Vergrendel opnemen van audio</string>
     <string name="conversation_activity__message_could_not_be_sent">Het bericht kon niet worden verzonden. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
 
@@ -2455,7 +2467,7 @@
     <string name="ConversationUpdateItem_join_call">Aan oproep deelnemen</string>
     <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
     <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
-    <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
+    <string name="ConversationUpdateItem_invite_friends">Vrienden uitnodigen</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
     <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
@@ -2467,9 +2479,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Doneren</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Overschrijving verzenden</string>
+    <string name="ConversationUpdateItem_send_payment">Betaling verzenden</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Overschrijvingen inschakelen</string>
+    <string name="ConversationUpdateItem_activate_payments">Betalingen inschakelen</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Je hebt deze persoon verwijderd. Als je hen opnieuw een bericht stuurt, wordt diegene weer aan je lijst toegevoegd.</string>
 
@@ -2647,7 +2659,7 @@
     <string name="CreateProfileActivity_last_name_optional">Achternaam (optioneel)</string>
     <string name="CreateProfileActivity_next">Volgende</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
-    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">De groepsnaam, -afbeelding en -omschrijving zijn zichtbaar voor alle leden van deze groep, voor alle personen die zijn uitgenodigd om lid te worden en voor alle personen die een werkende groepsverwijzing hebben, zelfs als ze nog niet hebben verzocht om lid te worden.</string>
+    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">De groepsnaam, -afbeelding en -omschrijving zijn zichtbaar voor alle leden van deze groep, voor alle personen die zijn uitgenodigd om lid te worden en voor alle personen die een werkende groepslink hebben, zelfs als ze nog niet hebben verzocht om lid te worden.</string>
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">Over mij</string>
@@ -2738,7 +2750,7 @@
     <string name="AndroidManifest__media_preview">Mediavoorbeeld</string>
     <string name="AndroidManifest__message_details">Bericht­details</string>
     <string name="AndroidManifest__linked_devices">Gekoppelde apparaten</string>
-    <string name="AndroidManifest__invite_friends">Kennissen uitnodigen</string>
+    <string name="AndroidManifest__invite_friends">Vrienden uitnodigen</string>
     <string name="AndroidManifest_archived_conversations">Gearchiveerde chats</string>
 
     <!-- HelpFragment -->
@@ -2815,7 +2827,7 @@
     <string name="arrays__no_name_or_message">Geen naam en geen berichtinhoud</string>
 
     <string name="arrays__images">Afbeeldingen</string>
-    <string name="arrays__audio">Geluid</string>
+    <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
     <string name="arrays__documents">Docu­ment­en</string>
 
@@ -2890,7 +2902,7 @@
     <string name="preferences__stories">Verhalen</string>
     <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
     <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
-    <string name="preferences__mmsc_url">MMSC-verwijzing</string>
+    <string name="preferences__mmsc_url">MMSC-URL</string>
     <string name="preferences__mms_proxy_host">Mms-proxyserver</string>
     <string name="preferences__mms_proxy_port">Mms-proxypoort</string>
     <string name="preferences__mmsc_username">MMSC-gebruikersnaam</string>
@@ -2899,10 +2911,10 @@
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
     <string name="preferences__data_and_storage">Dataoverdracht en -opslag</string>
     <string name="preferences__storage">Opslag</string>
-    <string name="preferences__payments">Overschrijvingen</string>
+    <string name="preferences__payments">Betalingen</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Betalingsslot</string>
-    <string name="preferences__payments_beta">Overschrijvingen (Bèta)</string>
+    <string name="preferences__payment_lock">Betalingsvergrendeling</string>
+    <string name="preferences__payments_beta">Betalingen (Bèta)</string>
     <string name="preferences__conversation_length_limit">Limiet voor chatlengte</string>
     <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
     <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
@@ -2987,7 +2999,7 @@
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd al omgeleid via de Signal-servers. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten die wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
     <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Overschrijvingen</string>
+    <string name="preferences_app_protection__payments">Betalingen</string>
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Minder dataoverdracht bij oproepen</string>
@@ -3056,11 +3068,11 @@
     <string name="PaymentsAllActivityFragment__sent">Verzonden</string>
     <string name="PaymentsAllActivityFragment__received">Ontvangen</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Signal introduceert overschrijvingen (Bèta)</string>
+    <string name="PaymentsHomeFragment__introducing_payments">Signal introduceert betalingen (Bèta)</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Je kunt Signal ook gebruiken om een nieuwe privacygerichte valuta genaamd MobileCoin te versturen en ontvangen. Activeer om te beginnen.</string>
-    <string name="PaymentsHomeFragment__activate_payments">Overschrijvingen inschakelen</string>
-    <string name="PaymentsHomeFragment__activating_payments">Overschrijvingen aan het inschakelen …</string>
-    <string name="PaymentsHomeFragment__restore_payments_account">Overschrijvingen-account herstellen</string>
+    <string name="PaymentsHomeFragment__activate_payments">Betalingen inschakelen</string>
+    <string name="PaymentsHomeFragment__activating_payments">Betalingen aan het inschakelen …</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">Betalingsaccount herstellen</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Er zijn nog geen recente gebeurtenissen</string>
     <string name="PaymentsHomeFragment__recent_activity">Recente gebeurtenissen</string>
     <string name="PaymentsHomeFragment__see_all">Alles weergeven</string>
@@ -3070,35 +3082,35 @@
     <string name="PaymentsHomeFragment__received_s">Ontvangen %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Overschrijven naar een beurs</string>
     <string name="PaymentsHomeFragment__currency_conversion">Valuta omrekenen</string>
-    <string name="PaymentsHomeFragment__deactivate_payments">Overschrijvingen uitschakelen</string>
-    <string name="PaymentsHomeFragment__recovery_phrase">Herstel-zin</string>
+    <string name="PaymentsHomeFragment__deactivate_payments">Betalingen uitschakelen</string>
+    <string name="PaymentsHomeFragment__recovery_phrase">Herstelzin</string>
     <string name="PaymentsHomeFragment__help">Hulp</string>
     <string name="PaymentsHomeFragment__coin_cleanup_fee">Samenvoegingskosten</string>
-    <string name="PaymentsHomeFragment__sent_payment">Verzonden overschrijving</string>
-    <string name="PaymentsHomeFragment__received_payment">Ontvangen overschrijving</string>
-    <string name="PaymentsHomeFragment__processing_payment">Overschrijving aan het verwerken</string>
+    <string name="PaymentsHomeFragment__sent_payment">Verzonden betaling</string>
+    <string name="PaymentsHomeFragment__received_payment">Ontvangen betaling</string>
+    <string name="PaymentsHomeFragment__processing_payment">Betaling aan het verwerken</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Omrekenen van valuta is niet beschikbaar</string>
     <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan de omrekening van valuta niet weergeven. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
-    <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Overschrijving zijn niet beschikbaar in jouw regio.</string>
-    <string name="PaymentsHomeFragment__could_not_enable_payments">Kan overschrijvingen niet inschakelen. Probeer het later opnieuw.</string>
-    <string name="PaymentsHomeFragment__deactivate_payments_question">Overschrijvingen uitschakelen?</string>
-    <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Je kunt niet langer MobileCoin ontvangen of verzenden als je overschrijvingen uitschakelt.</string>
+    <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalingen zijn niet beschikbaar in jouw regio.</string>
+    <string name="PaymentsHomeFragment__could_not_enable_payments">Kan betalingen niet inschakelen. Probeer het later opnieuw.</string>
+    <string name="PaymentsHomeFragment__deactivate_payments_question">Betalingen uitschakelen?</string>
+    <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Je kunt niet langer MobileCoin ontvangen of verzenden als je betalingen uitschakelt.</string>
     <string name="PaymentsHomeFragment__deactivate">Uitschakelen</string>
     <string name="PaymentsHomeFragment__continue">Doorgaan</string>
     <string name="PaymentsHomeFragment__balance_is_not_currently_available">Je krediet is op dit moment niet beschikbaar.</string>
-    <string name="PaymentsHomeFragment__payments_deactivated">Overschrijvingen uitgeschakeld.</string>
-    <string name="PaymentsHomeFragment__payment_failed">Overschrijving is mislukt</string>
+    <string name="PaymentsHomeFragment__payments_deactivated">Betalingen uitgeschakeld.</string>
+    <string name="PaymentsHomeFragment__payment_failed">Betaling is mislukt</string>
     <string name="PaymentsHomeFragment__details">Details</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Je kunt Signal gebruiken om MobileCoin te verzenden en ontvangen. De gebruiksvoorwaarden van MobileCoin en van de MobileCoin-portemonnee zijn op alle overschrijvingen van toepassing. Dit is een bèta-functionaliteit, dat betekent dat er fouten kunnen voorkomen en het kan voorkomen dat overschrijvingen en krediet verloren gaan en niet hersteld kunnen worden. </string> -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Je kunt Signal gebruiken om MobileCoin te verzenden en ontvangen. De gebruiksvoorwaarden van MobileCoin en van de MobileCoin-portemonnee zijn op alle betalingen van toepassing. Dit is een bèta-functionaliteit, dat betekent dat er fouten kunnen voorkomen en het kan voorkomen dat betalingen en krediet verloren gaan en niet hersteld kunnen worden. </string> -->
     <string name="PaymentsHomeFragment__activate">Inschakelen</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">De gebruiksvoorwaarden van MobileCoin weergeven</string>
-    <string name="PaymentsHomeFragment__payments_not_available">Overschrijvingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet omzetten naar een andere valuta maar je kunt niet langer overschrijvingen verzenden of ontvangen of krediet toevoegen.</string>
+    <string name="PaymentsHomeFragment__payments_not_available">Betalingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet overschrijven naar een andere beurs maar je kunt niet langer betalingen verzenden of ontvangen of krediet toevoegen.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
-    <string name="PaymentsHomeFragment__turn_on">Wil je Betalingsslot aanzetten voor toekomstige betalingen?</string>
+    <string name="PaymentsHomeFragment__turn_on">Wil je Betalingsvergrendeling aanzetten voor toekomstige betalingen?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
     <string name="PaymentsHomeFragment__add_an_additional_layer">Creëer extra beveiliging en vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
     <!-- Alert dialog button to enable payment lock -->
@@ -3108,11 +3120,37 @@
     <!-- Alert dialog title which shows up to update app to send payments -->
     <string name="PaymentsHomeFragment__update_required">Update vereist</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">Een update is nodig om betalingen te blijven verzenden en ontvangen, en om jouw actuele betalingssaldo te bekijken.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Een update is nodig om betalingen te blijven verzenden en ontvangen, en om je actuele krediet te bekijken.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Annuleren</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Nu bijwerken</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Next</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3145,10 +3183,10 @@
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Details</string>
     <string name="PaymentsDetailsFragment__status">Status</string>
-    <string name="PaymentsDetailsFragment__submitting_payment">Overschrijving aan het indienen …</string>
-    <string name="PaymentsDetailsFragment__processing_payment">Overschrijving aan het verwerken …</string>
-    <string name="PaymentsDetailsFragment__payment_complete">Overschrijving succesvol afgerond</string>
-    <string name="PaymentsDetailsFragment__payment_failed">Overschrijving is mislukt</string>
+    <string name="PaymentsDetailsFragment__submitting_payment">Betaling aan het indienen …</string>
+    <string name="PaymentsDetailsFragment__processing_payment">Betaling aan het verwerken …</string>
+    <string name="PaymentsDetailsFragment__payment_complete">Betaling succesvol afgerond</string>
+    <string name="PaymentsDetailsFragment__payment_failed">Betaling is mislukt</string>
     <string name="PaymentsDetailsFragment__network_fee">Netwerkkosten</string>
     <string name="PaymentsDetailsFragment__sent_by">Verzonden door</string>
     <string name="PaymentsDetailsFragment__sent_to_s">Verzonden aan %1$s</string>
@@ -3156,15 +3194,15 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s op %2$s om %3$s</string>
     <string name="PaymentsDetailsFragment__to">Naar</string>
     <string name="PaymentsDetailsFragment__from">Van</string>
-    <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails, waaronder de hoeveelheid en het tijdstip van de betaling, zijn onderdeel van het kasboek van MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__information">Transactiegegevens, waaronder het bedrag en het tijdstip van de transactie, zijn onderdeel van het kasboek van MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Samenvoegingskosten</string>
-    <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd to de nieuwe gewenste overschrijving. Door deze samenvoegingskosten kunnen je toch een nieuwe overschrijvingen maken.</string>
-    <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze overschrijving</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd tot de nieuwe gewenste betaling. Door deze samenvoeging kun je toch betalingen blijven verzenden.</string>
+    <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze transactie</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
-    <string name="PaymentsDetailsFragment__sent_payment">Overschrijving verzenden</string>
-    <string name="PaymentsDetailsFragment__received_payment">Ontvangen overschrijving</string>
-    <string name="PaymentsDeatilsFragment__payment_completed_s">Overschrijving voltooid %1$s</string>
+    <string name="PaymentsDetailsFragment__sent_payment">Verzonden betaling</string>
+    <string name="PaymentsDetailsFragment__received_payment">Ontvangen betaling</string>
+    <string name="PaymentsDeatilsFragment__payment_completed_s">Betaling voltooid %1$s</string>
     <string name="PaymentsDetailsFragment__block_number">Nummer blokkeren</string>
 
     <!-- PaymentsTransferFragment -->
@@ -3187,7 +3225,7 @@
 
     <!-- CreatePaymentFragment -->
     <string name="CreatePaymentFragment__request">Verzoek</string>
-    <string name="CreatePaymentFragment__pay">Overschrijven</string>
+    <string name="CreatePaymentFragment__pay">Betalen</string>
     <string name="CreatePaymentFragment__available_balance_s">Beschikbaar krediet: %1$s</string>
     <string name="CreatePaymentFragment__toggle_content_description">Schuifschakelaar</string>
     <string name="CreatePaymentFragment__1">1</string>
@@ -3213,25 +3251,25 @@
     <string name="EditNoteFragment__content_description_save_note">Notitie opslaan</string>
 
     <!-- ConfirmPaymentFragment -->
-    <string name="ConfirmPayment__confirm_payment">Overschrijving bevestigen</string>
+    <string name="ConfirmPayment__confirm_payment">Betaling bevestigen</string>
     <string name="ConfirmPayment__network_fee">Netwerkkosten</string>
     <string name="ConfirmPayment__estimated_s">Naar schatting %1$s</string>
     <string name="ConfirmPayment__to">Naar</string>
     <string name="ConfirmPayment__total_amount">Totaalbedrag</string>
-    <string name="ConfirmPayment__balance_s">Krediet: %1$s</string>
-    <string name="ConfirmPayment__submitting_payment">Overschrijving aan het indienen …</string>
-    <string name="ConfirmPayment__processing_payment">Overschrijving aan het verwerken …</string>
-    <string name="ConfirmPayment__payment_complete">Overschrijving succesvol afgerond</string>
-    <string name="ConfirmPayment__payment_failed">Overschrijving is mislukt</string>
-    <string name="ConfirmPayment__payment_will_continue_processing">De overschrijving wordt nog verwerkt</string>
+    <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
+    <string name="ConfirmPayment__submitting_payment">Betaling aan het indienen …</string>
+    <string name="ConfirmPayment__processing_payment">Betaling aan het verwerken …</string>
+    <string name="ConfirmPayment__payment_complete">Betaling succesvol afgerond</string>
+    <string name="ConfirmPayment__payment_failed">Betaling is mislukt</string>
+    <string name="ConfirmPayment__payment_will_continue_processing">De betaling wordt nog verwerkt</string>
     <string name="ConfirmPaymentFragment__invalid_recipient">Ontvanger ongeldig</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
-    <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Betalingsslot niet weergegeven</string>
+    <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Betalingsvergrendeling niet weergegeven</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
-    <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Je hebt het betalingsslot aangezet in je instellingen, maar het is niet zichtbaar.</string>
+    <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Je hebt betalingsvergrendeling aangezet in je instellingen, maar het is niet zichtbaar.</string>
     <!-- Button in a dialog that will take the user to the privacy settings -->
     <string name="ConfirmPaymentFragment__go_to_settings">Ga naar instellingen</string>
-    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Deze persoon heeft overschrijvingen niet ingeschakeld.</string>
+    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Deze persoon heeft betalingen niet ingeschakeld.</string>
     <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Kan de netwerkkosten niet ophalen. Tik op ‘Ok’ om het nog een keer te proberen.</string>
 
     <!-- BiometricDeviceAuthentication -->
@@ -3298,7 +3336,7 @@
     <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Selecteren</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_payment_details">Overschrijvingsdetails</string>
+    <string name="conversation_selection__menu_payment_details">Betalingsdetails</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3371,7 +3409,7 @@
     <string name="text_secure_normal__menu_settings">Instellingen</string>
     <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
     <string name="text_secure_normal__mark_all_as_read">Alles markeren als gelezen</string>
-    <string name="text_secure_normal__invite_friends">Kennissen uitnodigen</string>
+    <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Ongelezen chats filteren</string>
     <!-- Overflow menu entry to disable unread chats filter -->
@@ -3457,22 +3495,22 @@
 
     <!-- KBS Reminder Dialog -->
     <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
-    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om te bewijzen dat je je pincode nog weet. Als je je pincode een aantal keer juist invoert, dan zal Signal je minder vaak deze vraag stellen. Je kunt deze herinneringen uitschakelen via Instellingen &gt; Jouw registratie.</string>
+    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden, vragen we je regelmatig om je pincode in te voeren. We zullen dit na verloop van tijd minder vaak vragen. Je kunt deze herinneringen uitschakelen via Instellingen &gt; Account.</string>
     <string name="KbsReminderDialog__skip">Overslaan</string>
     <string name="KbsReminderDialog__submit">Bevestigen</string>
     <string name="KbsReminderDialog__forgot_pin">Tik hier als je je pincode bent vergeten</string>
     <string name="KbsReminderDialog__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
 
     <!-- AccountLockedFragment -->
-    <string name="AccountLockedFragment__account_locked">Vergrendeld voor dit telefoonnummer</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Je account is vergrendeld om je privacy en beveiliging te beschermen. Na %1$d dagen waarin Signal niet is gebruikt met jouw account, zul je je telefoonnummer opnieuw zonder je pincode kunnen registreren. Alle inhoud zal worden gewist.</string>
+    <string name="AccountLockedFragment__account_locked">Account vergrendeld</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Je account is vergrendeld om je privacy en veiligheid te beschermen. Na %1$d dagen inactiviteit kun je je telefoonnummer opnieuw registreren zonder je pincode. In dat geval zal alle inhoud worden gewist.</string>
     <string name="AccountLockedFragment__next">Volgende</string>
     <string name="AccountLockedFragment__learn_more">Meer lezen</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signals servers. Dit is niet dezelfde code als de telefoonnummerverificatie-code die je per sms of telefoonoproep hebt ontvangen.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt voor je account. Dit is niet dezelfde code als de verificatiecode die je per sms of telefoonoproep hebt ontvangen.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Voer de pincode in die je voor je account hebt gemaakt.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -3485,8 +3523,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registratie - Hulp nodig met de pincode voor Signal-Android (pincode versie 2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
-        <item quantity="other">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
+        <item quantity="one">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dag inactivitieit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
+        <item quantity="other">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dagen inactivitieit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3495,8 +3533,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer voor %1$d dag worden vergrendeld. Na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren. Als je er dan voor kiest om zonder pincode opnieuw te registreren, dan wordt de Signal-app gereset en alle inhoud wordt gewist.</item>
-        <item quantity="other">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer voor %1$d dagen worden vergrendeld. Na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren. Als je er dan voor kiest om zonder pincode opnieuw te registreren, dan wordt de Signal-app gereset en alle inhoud wordt gewist.</item>
+        <item quantity="one">Als je geen pogingen meer over hebt dan wordt je account voor %1$d dag vergrendeld. Na %1$d dag inactiviteit kun je je telefoonnummer opnieuw registreren zonder je pincode. In dat geval zal alle inhoud worden gewist.</item>
+        <item quantity="other">Als je geen pogingen meer over hebt dan wordt je account voor %1$d dagen vergrendeld. Na %1$d dagen inactiviteit kun je je telefoonnummer opnieuw registreren zonder je pincode. In dat geval zal alle inhoud worden gewist.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3544,12 +3582,12 @@
     <string name="backup_enable_dialog__folder">Opslaglocatie</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-upbestanden niet gebruiken om gegevens terug te zetten.</string>
     <string name="registration_activity__restore_backup">Back-upgegevens terugzetten</string>
-    <string name="registration_activity__transfer_or_restore_account">Signalgegevens herstellen of overzetten</string>
-    <string name="registration_activity__transfer_account">Alle Signalgegevens overzetten</string>
+    <string name="registration_activity__transfer_or_restore_account">Account overzetten of herstellen</string>
+    <string name="registration_activity__transfer_account">Account overzetten</string>
     <string name="registration_activity__skip">Overslaan</string>
     <string name="preferences_chats__chat_backups">Back-upbestanden maken</string>
-    <string name="preferences_chats__transfer_account">Alle Signalgegevens overzetten</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Alle Signalgegevens overzetten naar een nieuw Android-apparaat</string>
+    <string name="preferences_chats__transfer_account">Account overzetten</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Account overzetten naar een nieuw Android-apparaat</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Voer het back-upwachtwoord in</string>
     <string name="RegistrationActivity_restore">Herstellen</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-ups van nieuwere versies importeren</string>
@@ -3622,7 +3660,7 @@
     <string name="preferences_app_protection__turn_off">Uitschakelen</string>
     <string name="preferences_app_protection__confirm_pin">Bevestig je pincode</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Je Signal-pincode bevestigen</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt je pincode niet langer veranderen of teruglezen als je telefoonnummer gederegistreerd raakt. Als je je pincode toch bent vergeten wanneer je je telefoonnummer opnieuw moet registreren, dan verlies je mogelijk je instellingen en contactpersonen.</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligde manier opslaat, want je kunt je pincode niet herstellen. Als je je pincode toch vergeet, dan verlies je mogelijk gegevens bij het opnieuw registrereren van je Signal-account.</string>
     <string name="preferences_app_protection__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt om registratievergrendeling in te schakelen.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
@@ -3648,7 +3686,7 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">Alle gegevens wissen?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Hiermee wordt de app gereset en worden alle berichten verwijderd. De app wordt gesloten nadat dit proces is voltooid.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Hiermee wordt de app gereset en worden alle berichten gewist. De app wordt gesloten nadat dit proces is voltooid.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">Doorgaan</string>
     <!-- Confirmation action to cancel application data deletion -->
@@ -3657,10 +3695,10 @@
     <string name="preferences_account_delete_all_data_failed">Kan gegevens niet verwijderen</string>
 
     <!-- TransferOrRestoreFragment -->
-    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Signalgegevens herstellen of overzetten</string>
-    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Als je dit al op een ander apparaat hebt geregistreerd voor Signal met hetzelfde telefoonnummer, dan kun je al je Signal-gegevens en berichten overzetten</string>
+    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Account overzetten of herstellen</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Als je al eerder een Signal-account hebt geregistreerd, kun je je account en berichten overzetten of herstellen</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Overzetten vanaf een Android-apparaat</string>
-    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Hiermee zet je al je instellingen, profielinformatie en berichten over vanuit je oude Android-apparaat. Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Zet je account en berichten over van je oude Android-apparaat. Hiervoor heb je toegang nodig tot je oude apparaat.</string>
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-upbestand terugzetten</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Je hebt nu de gelegenheid om berichten uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
@@ -3671,9 +3709,9 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Tik op “Jouw registratie”"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"Tik op “Account”"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tik op beide apparaten op ‘Signal-gegevens overzetten’ en dan op ‘Doorgaan’"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tik op beide apparaten op ‘Account overzetten’ en dan op ‘Doorgaan’"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Aan het voorbereiden om verbinding te maken met je oude Android-apparaat …</string>
@@ -3744,18 +3782,18 @@
     <string name="DeviceTransfer__unable_to_transfer">Kan gegevens niet overzetten</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
-    <string name="OldDeviceTransferInstructions__transfer_account">Gegevens overzetten</string>
+    <string name="OldDeviceTransferInstructions__transfer_account">Account overzetten</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Download en open Signal op je nieuwe Android-apparaat</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Tik op ‘Signalgegevens herstellen of overzetten’"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Tik op ‘Account overzetten of herstellen’"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Kies wanneer de optie wordt weergegeven ‘Overzetten vanaf een Android-apparaat’. Tik dan op ‘Doorgaan’. Houd de apparaten bij elkaar in de buurt."</string>
     <string name="OldDeviceTransferInstructions__continue">Doorgaan</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Ga verder op je nieuwe apparaat</string>
-    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Je Signalgegevens zijn overgezet naar je nieuwe apparaat. Om het overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
+    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Je Signal-gegevens zijn overgezet naar je nieuwe apparaat. Om het overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
     <string name="OldDeviceTransferComplete__close">Sluiten</string>
 
     <!-- NewDeviceTransferComplete -->
@@ -3765,17 +3803,17 @@
     <string name="NewDeviceTransferComplete__continue_registration">Doorgaan met registratie</string>
 
     <!-- DeviceToDeviceTransferService -->
-    <string name="DeviceToDeviceTransferService_content_title">Signalgegevens overzetten</string>
+    <string name="DeviceToDeviceTransferService_content_title">Account overzetten</string>
     <string name="DeviceToDeviceTransferService_status_ready">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat …</string>
     <string name="DeviceToDeviceTransferService_status_starting_up">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat …</string>
     <string name="DeviceToDeviceTransferService_status_discovery">Er wordt gezocht naar je andere Android-apparaat …</string>
     <string name="DeviceToDeviceTransferService_status_network_connected">Verbinding aan het maken met je andere Android-apparaat …</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Verificatie vereist</string>
-    <string name="DeviceToDeviceTransferService_status_service_connected">Alle Signalgegevens aan het overzetten …</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">Account aan het overzetten …</string>
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Rond op je nieuwe Android-apparaat de stappen voor registratie af.</string>
-    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Je Signal-gegevens zijn overgezet naar je nieuwe apparaat, maar om het overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Je Signal-account is overgezet naar je nieuwe apparaat, maar om het overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
     <string name="OldDeviceTransferLockedDialog__done">Klaar</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuleren en dit apparaat activeren</string>
 
@@ -3887,23 +3925,23 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wifi niet optimaal. Overgeschakeld naar mobiele data.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Het verwijderen van je account zal:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
     <string name="DeleteAccountFragment__delete_account">Account verwijderen</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Verwijder je je accountinformatie en profielfoto</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Wis al je berichten</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wissen van je overschrijvingsaccount</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Je accountinformatie en profielfoto verwijderen</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Al je berichten wissen</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wissen van je betalingsaccount</string>
     <string name="DeleteAccountFragment__no_country_code">Er is geen landcode gespecificeerd</string>
     <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
-    <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
+    <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer van je Signal-account.</string>
     <string name="DeleteAccountFragment__are_you_sure">Weet je zeker dat je je account wilt verwijderen?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee verwijder je je Signal-account en reset je de app. De app wordt vanzelf afgesloten.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee verwijder je je Signal-account en reset je de app. De app wordt gesloten nadat dit proces is voltooid.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten …</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Registratie aan het opzeggen en alle gegevens aan het wissen …</string>
+    <string name="DeleteAccountFragment__deleting_account">Account aan het verwijderen...</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
     <string name="DeleteAccountFragment__canceling_your_subscription">Maandelijkse donaties aan het stopzetten…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
@@ -3911,7 +3949,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Gebruikersgegevens worden gewist</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Je gegevens zijn niet gewist</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Account is niet verwijderd</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Er is een probleem met het wissen van je gegevens. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
 
@@ -3990,11 +4028,11 @@
     <string name="payment_info_card_hide">Verbergen</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">Herstelzin opslaan</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">Je herstel-zin geeft je een extra manier om je overschrijvingen-account te herstellen.</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">Je herstelzin geeft je een extra manier om je betalingsaccount te herstellen.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Sla je herstelzin op</string>
     <string name="payment_info_card_update_your_pin">Nieuwe pincode aanmaken</string>
-    <string name="payment_info_card_with_a_high_balance">Als je veel krediet hebt is het misschien verstandig om je numerieke pincode te vervangen door een alfanumerieke pincode, omdat een alfanumerieke pincode meer bescherming biedt.</string>
+    <string name="payment_info_card_with_a_high_balance">Als je veel krediet hebt, is het misschien verstandig om je numerieke pincode te vervangen door een alfanumerieke pincode, omdat een alfanumerieke pincode meer bescherming biedt.</string>
     <string name="payment_info_card_update_pin">Pincode bijwerken</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
@@ -4004,30 +4042,30 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Portemonnee uitschakelen</string>
     <string name="DeactivateWalletFragment__your_balance">Jouw krediet</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Het is raadzaam om je krediet eerst naar een ander portemonnee-adres over te schrijven voor je overschrijvingen uitschakelt. Als je er niet voor kiest om eerst je krediet over te schrijven dan blijft je krediet bestaan op het portemonnee-adres dat je aan Signal hebt gekoppeld. Je kunt het dan weer gebruiken als je overschrijvingen opnieuw inschakelt.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Het is raadzaam om je krediet eerst naar een ander portemonnee-adres over te schrijven voordat je betalingen uitschakelt. Als je er niet voor kiest om eerst je krediet over te schrijven dan blijft je krediet bestaan op het portemonnee-adres dat je aan Signal hebt gekoppeld. Je kunt het dan weer gebruiken als je betalingen opnieuw inschakelt.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Resterend krediet overschrijven</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Uitschakelen zonder overschrijven</string>
     <string name="DeactivateWalletFragment__deactivate">Uitschakelen</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Uitschakelen zonder overschrijven?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Je krediet blijft beschikbaar in de portemonnee die aan Signal is gekoppeld, zodra je overschrijvingen inschakelt.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Je krediet blijft beschikbaar in de portemonnee die aan Signal is gekoppeld, zodra je betalingen weer inschakelt.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Fout bij het uitschakelen van je portemonnee</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
-    <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-zin</string>
-    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstel-zin weergeven</string>
+    <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstelzin</string>
+    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstelzin weergeven</string>
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Herstelzin opslaan</string>
-    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
+    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstelzin in</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Je krediet wordt automatisch hersteld als je bij het opnieuw installeren van de Signal-app je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</item>
-        <item quantity="other">Je krediet wordt automatisch hersteld als je bij het opnieuw installeren van de Signal-app je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</item>
+        <item quantity="one">Je krediet wordt automatisch hersteld als je bij het opnieuw installeren van de Signal-app je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstelzin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</item>
+        <item quantity="other">Je krediet wordt automatisch hersteld als je bij het opnieuw installeren van de Signal-app je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstelzin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">Je hebt krediet. Tijd om je herstelzin op te slaan.—Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Je hebt krediet! Tijd om je herstelzin op te slaan. Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Tijd om je herstelzin op te slaan.—Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen. Meer informatie</string>
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstel-zin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen als je toegang hebt verloren.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Tijd om je herstelzin op te slaan. Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen. Meer informatie</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstelzin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen.</string>
     <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Handmatig invullen</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Plakken uit klembord</string>
@@ -4041,10 +4079,10 @@
     <string name="PaymentsRecoveryStartFragment__cancel">Annuleren</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
-    <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Herstel-zin plakken</string>
-    <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Herstel-zin</string>
+    <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Herstelzin plakken</string>
+    <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Herstelzin</string>
     <string name="PaymentsRecoveryPasteFragment__next">Volgende</string>
-    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Herstel-zin ongeldig</string>
+    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Herstelzin ongeldig</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Ga na dat je %1$d woorden hebt ingevuld en probeer het opnieuw.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
@@ -4053,27 +4091,27 @@
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Volgende</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Bewerken</string>
-    <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jouw herstel-zin</string>
+    <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jouw herstelzin</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Schrijf de volgende %1$d woorden op in dezelfde volgorde en bewaar ze op een veilige plaats.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Ga na dat je je zin juist hebt ingevuld.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Maak geen schermafdruk en verzend dit nooit via e-mail (ook niet aan jezelf).</string>
-    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Account voor overschrijvingen is hersteld.</string>
-    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Herstel-zin ongeldig</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingsaccount is hersteld.</string>
+    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Herstelzin ongeldig</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Ga na dat je je zin juist hebt ingevuld en probeer het opnieuw.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopiëren naar klembord?</string>
-    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Als je er voor kiest om je herstel-zin digitaal op te slaan, zorg er dan voor dat je het beveiligd / versleuteld opslaat op een plek waarvan je weet dat niemand anders er bij kan.</string>
+    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Als je er voor kiest om je herstelzin digitaal op te slaan, zorg er dan voor dat je het beveiligd / versleuteld opslaat op een plek waarvan je weet dat niemand anders er bij kan.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">Kopiëren</string>
 
     <!-- PaymentsRecoveryPhraseConfirmFragment -->
-    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Bevestig je herstel-zin</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Vul de volgende woorden van je herstel-zin in.</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Bevestig je herstelzin</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Vul de volgende woorden van je herstelzin in.</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Woord %1$d</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">De zin opnieuw weergeven</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__done">Klaar</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Herstel-zin bevestigd</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Herstelzin bevestigd</string>
 
     <!-- PaymentsRecoveryEntryFragment -->
-    <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
+    <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Vul je herstelzin in</string>
     <string name="PaymentsRecoveryEntryFragment__enter_word_d">Vul woord %1$d in</string>
     <string name="PaymentsRecoveryEntryFragment__word_d">Woord %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">Volgende</string>
@@ -4081,11 +4119,11 @@
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s heeft %2$s naar je overgemaakt</string>
-    <string name="UnreadPayments__d_new_payment_notifications">%1$d nieuwe overschrijving-meldingen</string>
+    <string name="UnreadPayments__d_new_payment_notifications">%1$d nieuwe betalingsmeldingen</string>
 
     <!-- CanNotSendPaymentDialog -->
-    <string name="CanNotSendPaymentDialog__cant_send_payment">Kan overschrijving niet verzenden</string>
-    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Deze persoon moet eerst een gespreksverzoek van je aanvaarden voor je kunt overschrijven naar deze persoon.</string>
+    <string name="CanNotSendPaymentDialog__cant_send_payment">Kan betaling niet verzenden</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Deze persoon moet eerst een gespreksverzoek van je aanvaarden voordat je een betaling kunt verzenden naar deze persoon.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Een bericht verzenden</string>
 
     <!-- GroupsInCommonMessageRequest -->
@@ -4108,11 +4146,11 @@
     <string name="QualitySelectorBottomSheetDialog__photo_quality">Afbeeldingskwaliteit</string>
 
     <!-- AppSettingsFragment -->
-    <string name="AppSettingsFragment__invite_your_friends">Kennissen uitnodigingen</string>
+    <string name="AppSettingsFragment__invite_your_friends">Vrienden uitnodigen</string>
     <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">AbonnementsID naar klembord gekopieerd</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Jouw registratie</string>
+    <string name="AccountSettingsFragment__account">Account</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert.</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Als je dit inschakelt zal Signal je verplichten om je Signal-pincode in te voeren wanneer je je opnieuw met dit telefoonnummer registreert. Zo voorkom je dat iemand anders zich met jouw telefoonnummer registreert om berichten te ontvangen die voor jou bedoeld zijn. Dit wordt ook wel twee-factor-authenticatie genoemd.</string>
     <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
@@ -4174,7 +4212,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Je oude telefoonnummer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Je nieuwe telefoonnummer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Je nieuwe telefoonnummer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer van je Signal-account.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Je moet je oude landcode aangeven</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Je moet je oude telefoonnummer invullen</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Je moet je nieuwe landcode aangeven</string>
@@ -4273,9 +4311,9 @@
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Kan betalingsslot niet aanzetten</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Kan betalingsvergrendeling niet aanzetten</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Om Betalingsslot aan te zetten, moet je eerst schermvergrendeling of vingerafdrukbeveiliging inschakelen in je telefooninstellingen.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">Om Betalingsvergrendeling aan te zetten, moet je eerst schermvergrendeling of vingerafdrukbeveiliging inschakelen in je telefooninstellingen.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Kon niet naar systeeminstellingen navigeren</string>
     <!-- Alert dialog button to go to phone settings -->
@@ -4482,7 +4520,7 @@
     <string name="PlaybackSpeedToggleTextView__2x">2x</string>
 
     <!-- PaymentRecipientSelectionFragment -->
-    <string name="PaymentRecipientSelectionFragment__new_payment">Nieuwe overschrijving</string>
+    <string name="PaymentRecipientSelectionFragment__new_payment">Nieuwe betaling</string>
 
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">Nieuw bericht</string>
@@ -4704,7 +4742,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
     <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
-    <string name="MySupportPreference__processing_transaction">Overschrijving aan het verwerken …</string>
+    <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken …</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
@@ -4757,12 +4795,12 @@
     <string name="Subscription__contact_support">Neem contact op</string>
     <string name="Subscription__get_a_s_badge">Ontvang een ‘%1$s’-badge</string>
 
-    <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
+    <string name="SubscribeFragment__processing_payment">Betaling aan het verwerken …</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van een overschrijving</string>
+    <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van betaling</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van een overschrijving. %1$s</string>
-    <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van betaling. %1$s</string>
+    <string name="DonationsErrors__your_payment">Je betaling kon niet worden verwerkt en er is geen geld overgemaakt. Probeer het opnieuw.</string>
     <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>
     <string name="DonationsErrors__couldnt_add_badge">Kan badge niet toevoegen</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4774,7 +4812,7 @@
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__your_payment_was_processed_but">Je betaling is verwerkt, maar Signal kan je donatiebericht niet versturen. Neem contact op met het supportteam.</string>
     <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
-    <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
+    <string name="DonationsErrors__your_payment_is_still">Je betaling wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donaties is mislukt</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donaties te annuleren moet je toegang hebben tot internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donaties maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signals website.</string>
@@ -4810,7 +4848,7 @@
     <!-- Stripe decline code contact issuer -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw. Neem contact op met je bank om hen om meer informatie te vragen als dit probleem aanhoud.</string>
     <!-- Stripe decline code purchase not supported -->
-    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Je betaalkaart ondersteunt dit type overschrijving niet. Probeer het via een andere betalingsmethode opnieuw.</string>
+    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Je betaalkaart ondersteunt dit type betaling niet. Probeer het via een andere betalingsmethode opnieuw.</string>
     <!-- Stripe decline code your card has expired -->
     <string name="DeclineCode__your_card_has_expired">Je betaalkaart is verlopen. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
     <!-- Stripe decline code go to google pay action label -->
@@ -4824,9 +4862,9 @@
     <!-- Stripe decline code insufficient funds -->
     <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Er staat onvoldoende krediet op je betaalkaart om te doneren. Probeer het via een andere betalingsmethode opnieuw.</string>
     <!-- Stripe decline code incorrect expiration month -->
-    <string name="DeclineCode__the_expiration_month">De maand waarop je betaalmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__the_expiration_month">De maand waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
     <!-- Stripe decline code incorrect expiration year -->
-    <string name="DeclineCode__the_expiration_year">Het jaar waarop je betaalmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+    <string name="DeclineCode__the_expiration_year">Het jaar waarop je betalingsmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
     <!-- Stripe decline code issuer not available -->
     <string name="DeclineCode__try_completing_the_payment_again">Probeer opnieuw om de betaling te doen of neem contact op met je bank om hen om meer informatie te vragen.</string>
     <!-- Stripe decline code processing error -->
@@ -4988,6 +5026,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Het openen van het belgeluid-keuzemenu is mislukt.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Uitgaveopmerkingen &amp; nieuws van Signal</string>
@@ -5007,7 +5049,7 @@
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Donatietype</string>
     <!-- Donation receipts date paid heading -->
-    <string name="DonationReceiptDetailsFragment__date_paid">Datum van overschrijving</string>
+    <string name="DonationReceiptDetailsFragment__date_paid">Datum van betaling</string>
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Afschrift delen</string>
     <!-- Donation receipts list end note -->
@@ -5231,7 +5273,7 @@
     <!-- Camera label for media selection toggle -->
     <string name="MediaSelectionActivity__camera">Camera</string>
     <!-- Hint for entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Typ of plak een verwijzing</string>
+    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Typ of plak een URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Een link delen met de personen die je verhaal bekijken</string>
     <!-- Hint text for searching for a story text post recipient. -->
@@ -5389,7 +5431,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Niet nu</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Badge inwisselen…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Badge inwisselen...</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Je hebt namens %1$s een donatie gedaan aan Signal. Ze krijgen de mogelijkheid om hun steun op hun profiel te tonen.</string>
     <!-- Expired gift sheet title -->
@@ -5545,7 +5587,7 @@
     <!-- Explanation about how stories are deleted and managed -->
     <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Verhalen verdwijnen automatisch na 24 uur. Kies wie jouw verhalen kan zien of maak nieuwe verhalen voor specifieke personen of groepen.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Zet verhalen uit</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Verhalen uitzetten</string>
     <!-- Preference summary to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Als je verhalen uitschakelt, kun je niet langer verhalen delen of bekijken.</string>
     <!-- Preference title to turn on stories -->
@@ -5768,7 +5810,7 @@
         <item quantity="other">We proberen binnen %1$d dagen opnieuw je contacten te verwerken.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">Om dit probleem eerder op te lossen, kun je overwegen contacten of accounts op je telefoon te verwijderen die veel contacten synchroniseren.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">Om dit probleem sneller op te lossen, kun je overwegen contacten of accounts op je telefoon te verwijderen die veel contacten synchroniseren.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
@@ -6066,9 +6108,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Bewerkingsgeschiedenis</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Alleen Signal-bèta</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Berichten bewerken is alleen beschikbaar voor gebruikers van Signal-bèta. Als je een bericht bewerkt, is dat alleen zichtbaar voor gebruikers van de laatste versie van Signal-bèta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Annuleren</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6103,6 +6145,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">Gebruikersnaam gekopieerd.</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link gekopieerd</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Standaardinstelling herstellen</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6119,8 +6171,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">De QR-code is ongeldig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Een gebruiker met gebruikersnaam %1$s kon niet worden gevonden.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Er is een netwerkfout opgetreden. Probeer het opnieuw.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6141,7 +6199,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">Weigeren</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Toestaan</string>
 
     <!-- EOF -->

@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">വേഗത്തിൽ മറുപടി നൽകുന്നതിന് ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് വലത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">വേഗത്തിൽ മറുപടി നൽകാൻ ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് ഇടത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ഒരിക്കൽ മാത്രം കാണാൻ അനുമതിയുള്ള മീഡിയാ ഫയലുകൾ, അവ അയച്ച ശേഷം സ്വയമേവ ഇല്ലാതാക്കും</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">നിങ്ങൾ ഇതിനകം ഈ സന്ദേശം കണ്ടു</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്കായി കുറിപ്പുകൾ ചേർക്കാൻ കഴിയും. നിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്ക് ചെയ്ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
@@ -507,7 +507,7 @@
         <item quantity="other">ഇത് തിരഞ്ഞെടുത്ത %1$d ചാറ്റുകളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">തിരഞ്ഞെടുത്ത ചാറ്റുകൾ ഇല്ലാതാക്കുന്നു…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">തിരഞ്ഞെടുത്ത ചാറ്റുകൾ ഇല്ലാതാക്കുന്നു...</string>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">ചാറ്റ് ആർക്കൈവ് ചെയ്‌തു</item>
         <item quantity="other">%1$d ചാറ്റുകൾ ആർക്കൈവ് ചെയ്‌തു</item>
@@ -694,7 +694,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">തിരഞ്ഞെടുത്ത ഷെഡ്യൂൾ ചെയ്ത സന്ദേശങ്ങൾ ഇല്ലാതാക്കണോ?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">ഷെഡ്യൂൾ ചെയ്ത സന്ദേശം ഇല്ലാതാക്കുന്നു…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">ഷെഡ്യൂൾ ചെയ്ത സന്ദേശം ഇല്ലാതാക്കുന്നു...</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
@@ -1755,7 +1755,7 @@
     <!-- Warning displayed when entering a call via a link -->
     <string name="WebRtcCallView__anyone_who_joins">ലിങ്കിലൂടെ ഈ കോളിൽ ചേരുന്ന ആർക്കും നിങ്ങളുടെ പേര്, ഫോട്ടോ, ഫോൺ നമ്പർ എന്നിവ കാണാനാകും.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">പ്രവേശനം അനുവദിക്കാൻ കാത്തിരിക്കുന്നു…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">പ്രവേശനം അനുവദിക്കാൻ കാത്തിരിക്കുന്നു...</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s നെ വിളിക്കും</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s നെയും %2$s നെയും വിളിക്കും</string>
@@ -2242,6 +2242,18 @@
     <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">\"കോൺ‌ടാക്റ്റ് Signal-ഇൽ (സിഗ്‌നലിൽ)‌ ചേർ‌ന്നു\" എന്ന അറിയിപ്പുകൾ ഓഫാക്കണോ? നിങ്ങൾക്ക് അവ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കാം: Signal-ഇൽ (സിഗ്നലിൽ) &gt; ക്രമീകരണങ്ങൾ &gt; അറിയിപ്പുകൾ.</string>
+
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">സന്ദേശങ്ങള്‍</string>
@@ -3114,6 +3126,32 @@
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</string>
 
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Next</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">സുരക്ഷാ സജ്ജീകരണം</string>
@@ -3252,7 +3290,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">പുതിയ കോൾ…</string>
+    <string name="contact_selection_list__new_call">പുതിയ കോൾ...</string>
     <string name="contact_selection_list__unknown_contact">പുതിയ സന്ദേശം…</string>
     <string name="contact_selection_list__unknown_contact_block">ഉപയോക്താവിനെ ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
@@ -4156,7 +4194,7 @@
     <string name="ExportAccountDataFragment__export_report_action">എക്സ്പോർട്ട് ചെയ്യുക</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യുന്നു…</string>
+    <string name="ExportAccountDataFragment__download_progress">റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യുന്നു...</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">എക്സ്പോർട്ട് ചെയ്യുമ്പോഴെ നിങ്ങളുടെ റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യൂ, Signal അത് നിങ്ങളുടെ ഉപകരണത്തിൽ സ്റ്റോർ ചെയ്യുന്നില്ല.</string>
 
@@ -4988,6 +5026,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">പിക്കർ തുറക്കുന്നത് പരാജയപ്പെട്ടു.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal പ്രകാശന കുറിപ്പുകളും വാര്‍ത്തകളും</string>
@@ -5389,7 +5431,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">ബാഡ്‌ജ് റിഡീം ചെയ്യുന്നു…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">ബാഡ്‌ജ് റിഡീം ചെയ്യുന്നു...</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">%1$s എന്നയാളുടെ പേരിൽ നിങ്ങൾ Signal-ലേക്ക് ഒരു സംഭാവന നൽകി. അവരുടെ പ്രൊഫൈലിൽ പിന്തുണ കാണിക്കാനുള്ള ഓപ്ഷൻ അവർക്ക് നൽകും.</string>
     <!-- Expired gift sheet title -->
@@ -6066,9 +6108,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">എഡിറ്റ് ചെയ്യൽ ചരിത്രം</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal ബീറ്റാ മാത്രം</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">സന്ദേശങ്ങൾ എഡിറ്റ് ചെയ്യൽ Signal ബീറ്റാ ഉപയോക്താക്കൾക്ക് മാത്രം. നിങ്ങളൊരു സന്ദേശം എഡിറ്റ് ചെയ്‌താൽ, Signal ബീറ്റയുടെ ഏറ്റവും പുതിയ പതിപ്പിലുള്ളവർക്ക് മാത്രമെ അത് കാണാനാകൂ.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">റദ്ദാക്കുക</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6103,6 +6145,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">ഉപയോക്തൃനാമം പകർത്തി</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">ലിങ്ക് പകർത്തി</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">പുനഃക്രമീകരിക്കുക</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6119,12 +6171,18 @@
     <string name="UsernameLinkSettings_qr_result_invalid">QR കോഡ് അസാധുവാണ്.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">%1$s എന്ന ഉപയോക്തൃനാമമുള്ള ഉപയോക്താവിനെ കണ്ടെത്താനായില്ല.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">നെറ്റ്‌വർക്ക് പിശക് ഉണ്ടായി. വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">ചേരാൻ ആഗ്രഹിക്കുന്നു…</string>
+    <string name="PendingParticipantsView__would_like_to_join">ചേരാൻ ആഗ്രഹിക്കുന്നു...</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
         <item quantity="one">+%1$d അഭ്യർത്ഥന</item>
@@ -6141,7 +6199,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">നിരസിക്കുക</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">അംഗീകരിക്കുക</string>
 
     <!-- EOF -->

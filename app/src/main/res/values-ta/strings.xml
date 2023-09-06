@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">விரைவாக பதிலளிக்க எந்த செய்தியிலும் வலதுபுறமாக ஸ்வைப் செய்யலாம்</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ஏற்கனவே இந்த மெசேஜைப் பார்த்தீர்கள்</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த சாட்டில் உங்களுக்கான குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட டிவைஸ்கள் ஏதேனும் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உண்டு.</string>
@@ -2243,6 +2243,18 @@
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>
 
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">செய்திகள்</string>
     <string name="NotificationChannel_calls">அழைப்புகள்</string>
@@ -3113,6 +3125,32 @@
     <string name="PaymentsHomeFragment__cancel">ரத்து</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">இப்பொழுது மேம்படுத்து</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Next</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4988,6 +5026,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">பிக்கரைத் திறக்க முடியவில்லை.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">சிக்னல் வெளியீடு குறிப்புகள், செய்திகள்</string>
@@ -6066,9 +6108,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">திருத்தங்களின் வரலாறு</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal பீட்டா மட்டும்</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">செய்திகளைத் திருத்துவது Signal பீட்டா பயனர்களுக்கு மட்டுமே கிடைக்கும். நீங்கள் ஒரு மெசேஜைத் திருத்தினால், அது Signal பீட்டாவின் சமீபத்திய பதிப்பில் உள்ளவர்களுக்கு மட்டுமே தெரியும்.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">ரத்துசெய்</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6103,6 +6145,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">பயனர்பெயர் நகலெடுக்கப்பட்டது</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">இணைப்பு நகலெடுக்கப்பட்டது</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">மீட்டமைக்க</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6119,12 +6171,18 @@
     <string name="UsernameLinkSettings_qr_result_invalid">QR குறியீடு தவறானது.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">%1$s என்ற பயனர் பெயரைக் கொண்ட ஒரு பயனரைக் கண்டறிய முடியவில்லை.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">நெட்வொர்க் பிழை ஏற்பட்டது. மீண்டும் முயலவும்.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">சேர விரும்புகிறார்…</string>
+    <string name="PendingParticipantsView__would_like_to_join">சேர விரும்புகிறார்...</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
         <item quantity="one">+%1$d கோரிக்கை</item>
@@ -6141,7 +6199,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">நிராகரி</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">ஒப்புதல்</string>
 
     <!-- EOF -->
