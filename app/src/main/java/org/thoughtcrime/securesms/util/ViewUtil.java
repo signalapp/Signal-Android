@@ -285,14 +285,41 @@ public final class ViewUtil {
     view.requestLayout();
   }
 
-  public static void setTopMargin(@NonNull View view, int margin) {
-    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = margin;
-    view.requestLayout();
+  public static void setTopMargin(@NonNull View view, @Px int margin) {
+    setTopMargin(view, margin, true);
   }
 
-  public static void setBottomMargin(@NonNull View view, int margin) {
+  /**
+   * Sets the top margin of the view and optionally requests a new layout pass.
+   *
+   * @param view            The view to set the margin on
+   * @param margin          The margin to set
+   * @param requestLayout   Whether requestLayout should be invoked on the view
+   */
+  public static void setTopMargin(@NonNull View view, @Px int margin, boolean requestLayout) {
+    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = margin;
+
+    if (requestLayout) {
+      view.requestLayout();
+    }
+  }
+
+  public static void setBottomMargin(@NonNull View view, @Px int margin) {
+    setBottomMargin(view, margin, true);
+  }
+
+  /**
+   * Sets the bottom margin of the view and optionally requests a new layout pass.
+   *
+   * @param view            The view to set the margin on
+   * @param margin          The margin to set
+   * @param requestLayout   Whether requestLayout should be invoked on the view
+   */
+  public static void setBottomMargin(@NonNull View view, @Px int margin, boolean requestLayout) {
     ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin = margin;
-    view.requestLayout();
+    if (requestLayout) {
+      view.requestLayout();
+    }
   }
 
   public static int getWidth(@NonNull View view) {

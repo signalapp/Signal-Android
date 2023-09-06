@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public final class TransferControlView extends FrameLayout {
 
@@ -126,7 +127,11 @@ public final class TransferControlView extends FrameLayout {
         break;
       case AttachmentTable.TRANSFER_PROGRESS_PENDING:
       case AttachmentTable.TRANSFER_PROGRESS_FAILED:
-        downloadDetailsText.setText(getDownloadText(this.slides));
+        String downloadText = getDownloadText(this.slides);
+        if (!Objects.equals(downloadText, downloadDetailsText.getText().toString())) {
+          downloadDetailsText.setText(getDownloadText(this.slides));
+        }
+
         display(downloadDetails);
         break;
       default:

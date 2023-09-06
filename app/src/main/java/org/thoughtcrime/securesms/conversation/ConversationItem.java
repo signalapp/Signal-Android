@@ -556,22 +556,22 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
 
         if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
-          ViewUtil.setTopMargin(footer, collapsedTopMargin);
-          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+          ViewUtil.setTopMargin(footer, collapsedTopMargin, false);
+          ViewUtil.setBottomMargin(footer, collapsedBottomMargin, false);
           needsMeasure   = true;
           updatingFooter = true;
         } else if (sizeWithMargins != bodyText.getMeasuredWidth() && sizeWithMargins <= minSize) {
           bodyBubble.getLayoutParams().width = minSize;
-          ViewUtil.setTopMargin(footer, collapsedTopMargin);
-          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+          ViewUtil.setTopMargin(footer, collapsedTopMargin, false);
+          ViewUtil.setBottomMargin(footer, collapsedBottomMargin, false);
           needsMeasure   = true;
           updatingFooter = true;
         }
       }
 
       if (!updatingFooter && !messageRecord.isFailed() && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
-        ViewUtil.setTopMargin(footer, collapsedTopMargin);
-        ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+        ViewUtil.setTopMargin(footer, collapsedTopMargin, false);
+        ViewUtil.setBottomMargin(footer, collapsedBottomMargin, false);
         updatingFooter = true;
         needsMeasure   = true;
       }
@@ -579,8 +579,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     int defaultTopMarginForRecord = getDefaultTopMarginForRecord(messageRecord, defaultTopMargin, defaultBottomMargin);
     if (!updatingFooter && ViewUtil.getTopMargin(footer) != defaultTopMarginForRecord) {
-      ViewUtil.setTopMargin(footer, defaultTopMarginForRecord);
-      ViewUtil.setBottomMargin(footer, defaultBottomMargin);
+      ViewUtil.setTopMargin(footer, defaultTopMarginForRecord, false);
+      ViewUtil.setBottomMargin(footer, defaultBottomMargin, false);
       needsMeasure = true;
     }
 
@@ -1626,17 +1626,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
 
       if (!isFooterVisible(current, next, isGroupThread) && isStoryReaction(current)) {
-        ViewUtil.setBottomMargin(quoteView, (int) DimensionUnit.DP.toPixels(8));
+        ViewUtil.setBottomMargin(quoteView, (int) DimensionUnit.DP.toPixels(8), false);
       } else {
-        ViewUtil.setBottomMargin(quoteView, 0);
+        ViewUtil.setBottomMargin(quoteView, 0, false);
       }
 
       if (mediaThumbnailStub.resolved()) {
-        ViewUtil.setTopMargin(mediaThumbnailStub.require(), readDimen(R.dimen.message_bubble_top_padding));
+        ViewUtil.setTopMargin(mediaThumbnailStub.require(), readDimen(R.dimen.message_bubble_top_padding), false);
       }
 
       if (linkPreviewStub.resolved() && !hasBigImageLinkPreview(current)) {
-        ViewUtil.setTopMargin(linkPreviewStub.get(), readDimen(R.dimen.message_bubble_top_padding));
+        ViewUtil.setTopMargin(linkPreviewStub.get(), readDimen(R.dimen.message_bubble_top_padding), false);
       }
     } else {
       if (quoteView != null) {
@@ -1645,7 +1645,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       int topMargin = (current.isOutgoing() || !startOfCluster || !groupThread) ? 0 : readDimen(R.dimen.message_bubble_top_image_margin);
       if (mediaThumbnailStub.resolved()) {
-        ViewUtil.setTopMargin(mediaThumbnailStub.require(), topMargin);
+        ViewUtil.setTopMargin(mediaThumbnailStub.require(), topMargin, false);
       }
     }
   }
