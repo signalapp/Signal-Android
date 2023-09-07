@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -114,8 +115,12 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Recipient recipient) {
-    return getIconWithUriForNotification(recipient.getId());
+  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+    if (Build.VERSION.SDK_INT > 29) {
+      return getIconWithUriForNotification(recipient.getId());
+    } else {
+      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient));
+    }
   }
 
   @WorkerThread

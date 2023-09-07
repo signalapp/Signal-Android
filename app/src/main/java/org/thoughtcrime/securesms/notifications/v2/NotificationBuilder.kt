@@ -360,7 +360,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       )
 
       if (intent != null) {
-        val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(conversation.recipient))
+        val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
           .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
           .setDesiredHeight(600)
           .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
