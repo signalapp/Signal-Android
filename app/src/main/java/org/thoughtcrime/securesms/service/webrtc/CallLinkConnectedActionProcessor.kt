@@ -60,6 +60,21 @@ class CallLinkConnectedActionProcessor(
       .build()
   }
 
+  override fun handleGroupCallEnded(currentState: WebRtcServiceState, groupCallHash: Int, groupCallEndReason: GroupCall.GroupCallEndReason): WebRtcServiceState {
+    val serviceState = super.handleGroupCallEnded(currentState, groupCallHash, groupCallEndReason)
+
+    val callLinkDisconnectReason = when (groupCallEndReason) {
+      GroupCall.GroupCallEndReason.DENIED_REQUEST_TO_JOIN_CALL -> CallLinkDisconnectReason.DeniedRequestToJoinCall()
+      GroupCall.GroupCallEndReason.REMOVED_FROM_CALL -> CallLinkDisconnectReason.RemovedFromCall()
+      else -> null
+    }
+
+    return serviceState.builder()
+      .changeCallInfoState()
+      .setCallLinkDisconnectReason(callLinkDisconnectReason)
+      .build()
+  }
+
   override fun handleSetCallLinkJoinRequestAccepted(currentState: WebRtcServiceState, participant: RecipientId): WebRtcServiceState {
     Log.i(tag, "handleSetCallLinkJoinRequestAccepted():")
 
