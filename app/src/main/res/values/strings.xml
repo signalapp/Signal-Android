@@ -2778,7 +2778,7 @@
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\-\- Please select an option \-\-</item>
+        <item>Please select an option</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
         <item>Question</item>
