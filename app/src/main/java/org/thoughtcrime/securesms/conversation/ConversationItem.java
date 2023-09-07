@@ -1153,7 +1153,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
         if (callLinkRootKey != null) {
           joinCallLinkStub.setVisibility(View.VISIBLE);
-          joinCallLinkStub.get().setTextColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorOnSurface);
+          joinCallLinkStub.get().setTextColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorPrimary);
+          joinCallLinkStub.get().setStrokeColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorOutline);
           joinCallLinkStub.get().setJoinClickListener(v -> {
             if (eventListener != null) {
               eventListener.onJoinCallLink(callLinkRootKey);
