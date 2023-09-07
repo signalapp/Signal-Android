@@ -23,6 +23,7 @@ interface V2ConversationContext {
   val selectedItems: Set<MultiselectPart>
   val isMessageRequestAccepted: Boolean
   val searchQuery: String?
+  val isParentInScroll: Boolean
 
   fun onStartExpirationTimeout(messageRecord: MessageRecord)
 

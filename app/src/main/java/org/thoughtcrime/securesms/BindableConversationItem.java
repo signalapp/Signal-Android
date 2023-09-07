@@ -57,6 +57,10 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
 
   void setEventListener(@Nullable EventListener listener);
 
+  default void setParentScrolling(boolean isParentScrolling) {
+    // Intentionally Blank.
+  }
+
   default void updateTimestamps() {
     // Intentionally Blank.
   }

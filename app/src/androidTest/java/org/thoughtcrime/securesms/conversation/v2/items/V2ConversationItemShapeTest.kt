@@ -217,6 +217,7 @@ class V2ConversationItemShapeTest {
     override val isMessageRequestAccepted: Boolean = true
     override val searchQuery: String? = null
     override val glideRequests: GlideRequests = mockk()
+    override val isParentInScroll: Boolean = false
 
     override fun onStartExpirationTimeout(messageRecord: MessageRecord) = Unit
 

@@ -419,6 +419,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
+  public void setParentScrolling(boolean isParentScrolling) {
+    bodyBubble.setParentScrolling(isParentScrolling);
+  }
+
+  @Override
   public void updateSelectedState() {
     setHasBeenQuoted(conversationMessage);
   }

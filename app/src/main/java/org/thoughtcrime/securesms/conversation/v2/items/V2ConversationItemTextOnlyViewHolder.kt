@@ -100,6 +100,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private val bodyBubbleDrawable = ChatColorsDrawable()
   private val footerDrawable = ChatColorsDrawable()
+  private val bodyBubbleLayoutTransition = BodyBubbleLayoutTransition()
 
   protected lateinit var shape: V2ConversationItemShape.MessageShape
 
@@ -155,7 +156,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     binding.conversationItemBodyWrapper.background = bodyBubbleDrawable
-    binding.conversationItemBodyWrapper.layoutTransition = BodyBubbleLayoutTransition()
+    binding.conversationItemBodyWrapper.layoutTransition = bodyBubbleLayoutTransition
 
     binding.conversationItemFooterBackground.background = footerDrawable
   }
@@ -166,6 +167,22 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   override fun bind(model: Model) {
+    var hasProcessedSupportedPayload = false
+
+    binding.conversationItemBodyWrapper.layoutTransition = if (conversationContext.isParentInScroll) {
+      null
+    } else {
+      bodyBubbleLayoutTransition
+    }
+
+    if (ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING in payload) {
+      if (payload.size == 1) {
+        return
+      } else {
+        hasProcessedSupportedPayload = true
+      }
+    }
+
     check(model is ConversationMessageElement)
     conversationMessage = model.conversationMessage
 
@@ -176,7 +193,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       adapterPosition = bindingAdapterPosition
     )
 
-    var hasProcessedSupportedPayload = false
     if (ConversationAdapterBridge.PAYLOAD_TIMESTAMP in payload) {
       presentDate()
       hasProcessedSupportedPayload = true

@@ -90,6 +90,10 @@ class ConversationAdapterV2(
 
   override var isMessageRequestAccepted: Boolean = false
 
+  override var isParentInScroll: Boolean = false
+
+  private val onScrollStateChangedListener = OnScrollStateChangedListener()
+
   init {
     registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_thread_header)
 
@@ -162,6 +166,8 @@ class ConversationAdapterV2(
         recyclerView.recycledViewPool.setMaxRecycledViews(type, count)
       }
     }
+
+    recyclerView.addOnScrollListener(onScrollStateChangedListener)
   }
 
   override fun onViewRecycled(holder: MappingViewHolder<*>) {
@@ -176,6 +182,8 @@ class ConversationAdapterV2(
       .children
       .filterIsInstance<Unbindable>()
       .forEach { it.unbind() }
+
+    recyclerView.removeOnScrollListener(onScrollStateChangedListener)
   }
 
   override val displayMode: ConversationItemDisplayMode
@@ -498,6 +506,11 @@ class ConversationAdapterV2(
     fun bindPayloadsIfAvailable(): Boolean {
       var payloadApplied = false
 
+      bindable.setParentScrolling(isParentInScroll)
+      if (payload.contains(ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING)) {
+        payloadApplied = true
+      }
+
       if (payload.contains(ConversationAdapterBridge.PAYLOAD_TIMESTAMP)) {
         bindable.updateTimestamps()
         payloadApplied = true
@@ -624,6 +637,16 @@ class ConversationAdapterV2(
         }
         conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0))
         conversationBanner.showDescription()
+      }
+    }
+  }
+
+  private inner class OnScrollStateChangedListener : RecyclerView.OnScrollListener() {
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+      val oldState = isParentInScroll
+      isParentInScroll = newState != RecyclerView.SCROLL_STATE_IDLE
+      if (isParentInScroll != oldState) {
+        notifyItemRangeChanged(0, itemCount, ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING)
       }
     }
   }
