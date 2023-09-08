@@ -3105,7 +3105,7 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Payments deactivated.</string>
     <string name="PaymentsHomeFragment__payment_failed">Payment failed</string>
     <string name="PaymentsHomeFragment__details">Details</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string>
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Activate</string>
