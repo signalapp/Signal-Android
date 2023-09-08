@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Hindi mai-upload ang mga log</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Pakiusap na hangga\'t maaari ay ipaliwanag ng mabuti upang matulungan kaming maunawaan ang isyu.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Pumili ng option \\-\\-</item>
+        <item>Please select an option</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
         <item>Question</item>
@@ -2914,7 +2914,6 @@
     <string name="preferences__payments">Payments</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Seguridad sa pagbayad</string>
-    <string name="preferences__payments_beta">Payments (Beta)</string>
     <string name="preferences__conversation_length_limit">Chat length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
     <string name="preferences__clear_message_history">I-clear ang message history</string>
@@ -3068,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">Naipadala na</string>
     <string name="PaymentsAllActivityFragment__received">Natanggap na</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Introducing payments (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gamitin ang Signal para mag-send at mag-receive ng MobileCoin, isang privacy-focused digital currency. I-activate para magsimula.</string>
     <string name="PaymentsHomeFragment__activate_payments">I-activate ang Payments</string>
     <string name="PaymentsHomeFragment__activating_payments">Activating payments…</string>
@@ -3102,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Deactivated na ang payments.</string>
     <string name="PaymentsHomeFragment__payment_failed">Payment failed</string>
     <string name="PaymentsHomeFragment__details">Mga Detalye</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Pwede mong gamitin ang Signal para maka-send at maka-receive ng MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. Ito\'y isang beta feature kaya maaari kang maka-encounter ng issues at ang payments o balances na mawawala sa\'yo ay hindi mare-recover. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">I-activate</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin terms</string>
     <string name="PaymentsHomeFragment__payments_not_available">Ang Payments sa Signal ay hindi na available. Pwede ka pa ring mag-transfer ng funds sa isang exchange pero hindi ka na pwedeng mag-send o mag-receive ng payments. Hindi ka na rin pwedeng mag-add ng funds.</string>
@@ -3128,15 +3129,15 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Hindi na muna</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Susunod</string>
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Mga Notipikasyon</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
@@ -4064,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">May balance ka! Oras na para i-save ang iyong recovery phrase—isang 24-word key na magagamit mo para ma-restore ang iyong balance.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Oras na para i-save ang iyong recovery phrase—isang 24-word key na magagamit mo para ma-restore ang iyong balance. Matuto pa</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Oras na para i-save ang iyong recovery phrase—isang 24-word key na magagamit mo para ma-restore ang iyong balance.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ang iyong recovery phrase ay isang %1$d-word phrase na unique sa\'yo. Gamitin ang phrase na ito para ma-restore ang balance mo.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
@@ -5029,7 +5030,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">Buksan</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; News</string>
@@ -5431,7 +5432,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Hindi ngayon</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Nire-redeem ang badge...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Nire-redeem ang badge…</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Nag-donate ka sa Signal para kay %1$s. Mabibigyan siya ng option na ipakita ang kanyang suporta sa kanyang profile.</string>
     <!-- Expired gift sheet title -->
@@ -6108,7 +6109,7 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">History ng edits</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">I-edit ang message</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
     <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
@@ -6152,9 +6153,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Kapag ni-reset mo ang iyong QR code, hindi na gagana ang existing QR code at link mo.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">I-reset</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">I-reset</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

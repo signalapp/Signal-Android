@@ -2397,15 +2397,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Włącz powiadomienia</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Aby otrzymywać powiadomienia o nowych wiadomościach:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Ustawienia</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Wiadomości</string>
@@ -2949,7 +2949,7 @@
     <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Wybierz opcję \\-\\-</item>
+        <item>Please select an option</item>
         <item>Coś nie działa</item>
         <item>Prośba o dodanie funkcji</item>
         <item>Pytanie</item>
@@ -3090,7 +3090,6 @@
     <string name="preferences__payments">Płatności</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Zabezpieczenie płatności</string>
-    <string name="preferences__payments_beta">Płatności (beta)</string>
     <string name="preferences__conversation_length_limit">Limit długości czatu</string>
     <string name="preferences__keep_messages">Zachowuj wiadomości</string>
     <string name="preferences__clear_message_history">Wyczyść historię wiadomości</string>
@@ -3246,7 +3245,8 @@
     <string name="PaymentsAllActivityFragment__sent">Wysłano</string>
     <string name="PaymentsAllActivityFragment__received">Odebrano</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Przedstawiamy płatności (beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Przedstawiamy płatności</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Korzystaj z Signal, aby wysyłać i otrzymywać MobileCoin, nową, skupioną na prywatności, cyfrową walutę. Aktywuj płatności, aby rozpocząć.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktywuj płatności</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktywowanie płatności…</string>
@@ -3280,8 +3280,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Płatności dezaktywowane.</string>
     <string name="PaymentsHomeFragment__payment_failed">Płatność nie powiodła się</string>
     <string name="PaymentsHomeFragment__details">Szczegóły</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Możesz używać aplikacji Signal, aby wysyłać i otrzymywać walutę MobileCoin. Wszystkie płatności podlegają Warunkom użytkowania waluty MobileCoin i portfela MobileCoin. To funkcja beta, co oznacza, że możesz napotkać problemy, a płatności i środki, które możesz stracić, nie da się odzyskać. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Aktywuj</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Zobacz warunki użytkowania MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Płatności w Signal nie są już dostępne. Wciąż możesz przenieść środki do kantora, ale nie możesz otrzymywać i wysyłać płatności, ani dodawać środków.</string>
@@ -3306,19 +3307,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Nie teraz</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Dalej</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Włącz uprawnienia</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Powiadomienia</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Kontakty</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3326,7 +3327,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Pamięć</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -4268,7 +4269,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Masz równowagę! Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi. Dowiedz się więcej</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Hasło odzyskiwania, to Twoje, mające %1$dsłów, unikalne hasło. Użyj go do przywrócenia swojego konta.</string>
     <string name="PaymentsRecoveryStartFragment__start">Rozpocznij</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Wpisz ręcznie</string>
@@ -5245,7 +5246,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">Włącz</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Listy zmian i nowości w Signal</string>
@@ -6374,9 +6375,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historia edycji</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Edytuj wiadomość</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Twoje zmiany w wiadomości będą widoczne wyłącznie u osób, które używają najnowszej wersji Signal. Osoby te będą mogły zobaczyć Twoją edycję wiadomości.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Anuluj</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6418,9 +6419,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Jeśli zresetujesz kod QR, Twój obecny kod QR i link nie będą działały.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Zresetuj</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Zresetuj</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

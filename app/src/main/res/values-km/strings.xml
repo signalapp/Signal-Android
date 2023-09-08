@@ -2169,15 +2169,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">បើក​សារជូនដំណឹង</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">ដើម្បីទទួលសារជូនដំណឹង សម្រាប់សារថ្មី៖</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">ការកំណត់</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">សារ</string>
@@ -2688,7 +2688,7 @@
     <string name="HelpFragment__could_not_upload_logs">មិនអាចបញ្ជូនកំណត់ត្រា</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">សូមពន្យល់តាមដែលអាចធ្វើទៅបានដើម្បីជួយយើងឱ្យយល់ពីបញ្ហា។</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- សូមជ្រើសរើសជម្រើសមួយ \\-\\-</item>
+        <item>Please select an option</item>
         <item>អ្វីមួយមិនដំណើរការ</item>
         <item>ការស្នើសុំមុខងារ</item>
         <item>សំណួរ</item>
@@ -2826,7 +2826,6 @@
     <string name="preferences__payments">ការទូទាត់</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">មុខងារចាក់សោការបង់ប្រាក់</string>
-    <string name="preferences__payments_beta">ការទូទាត់ (បេតា)</string>
     <string name="preferences__conversation_length_limit">ដែនកំណត់ការជជែក</string>
     <string name="preferences__keep_messages">រក្សាសារ</string>
     <string name="preferences__clear_message_history">លុបប្រវត្តិសារ</string>
@@ -2979,7 +2978,8 @@
     <string name="PaymentsAllActivityFragment__sent">បានផ្ញើ</string>
     <string name="PaymentsAllActivityFragment__received">បានទទួល</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">សូមណែនាំការទូទាត់ (សាកល្បង)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួល MobileCoin ដែលជារូបិយបណ្ណឌីជីថលថ្មីមួយផ្តោតលើឯកជនភាព។ បើកដំណើរការ ដើម្បីចាប់ផ្តើម។</string>
     <string name="PaymentsHomeFragment__activate_payments">បើកដំណើរការការទូទាត់</string>
     <string name="PaymentsHomeFragment__activating_payments">កំពុងបើកដំណើរការ ការទូទាត់…</string>
@@ -3013,8 +3013,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">ការទូទាត់ បានបិទដំណើរការ។</string>
     <string name="PaymentsHomeFragment__payment_failed">ការទូទាត់បរាជ័យ</string>
     <string name="PaymentsHomeFragment__details">លម្អិត</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">អ្នកអាចប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួលMobileCoin។ ការទូទាត់ទាំងអស់គឺស្ថិតនៅក្រោមលក្ខខណ្ឌនៃការប្រើប្រាស់សម្រាប់MobileCoin និង MobileCoin Wallet។ នេះជាមុខងារបេតា ដូចនេះ អ្នកអាចជួបប្រទះបញ្ហាមួយចំនួន និងការទូទាត់ ឬសមតុល្យអាចបាត់បង់ មិនអាចស្តារឡើងវិញទេ។ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">ធ្វើឱ្យសកម្ម</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">មើលលក្ខខណ្ឌ MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">ការទូទាត់នៅក្នុង Signal លែងមានហើយ។ អ្នកនៅតែអាចផ្ទេរប្រាក់ទៅកន្លែងប្តូរប្រាក់បាន ប៉ុន្តែអ្នកមិនអាចផ្ញើ និងទទួលការទូទាត់ ឬបន្ថែមថវិកាបានទេ។</string>
@@ -3039,19 +3040,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">កុំទាន់</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">បន្ទាប់</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">បើកការអនុញ្ញាត</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">សារជូនដំណឹង</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">បញ្ជីទំនាក់ទំនង</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3059,7 +3060,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">ឧបករណ៍ផ្ទុក</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -3962,7 +3963,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">អ្នកមានសមតុល្យ! ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។ ស្វែងយល់បន្ថែម</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ឃ្លាសង្គ្រោះរបស់អ្នក គឺជា%1$dពាក្យដែលប្លែកសម្រាប់អ្នក។ សូមប្រើឃ្លានេះសម្រាប់ទាញយកសមតុលអ្នកមកវិញ។</string>
     <string name="PaymentsRecoveryStartFragment__start">ចាប់ផ្ដើម</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">បញ្ជូលដោយខ្លួនឯង</string>
@@ -4921,7 +4922,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">បើក</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">កំណត់សម្គាល់ការចេញផ្សាយ &amp; និងព័ត៌មានរបស់ Signal</string>
@@ -5975,7 +5976,7 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ប្រវត្តិកែ</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">កែសារ</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
     <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
@@ -6019,9 +6020,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ប្រសិនបើអ្នកកំណត់កូដ QR របស់អ្នកឡើងវិញ កូដ QR និងតំណដែលមានស្រាប់របស់អ្នកនឹងមិនដំណើរការទៀតទេ។</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">កំណត់ឡើងវិញ</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">កំណត់ឡើងវិញ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

@@ -1073,7 +1073,7 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">ھەمبەھىرلە</string>
     <string name="InviteActivity_share_with_contacts">ئالاقەداشلار بىلەن ھەمبەھىر</string>
-    <string name="InviteActivity_share_via">... بىلەن ھەمبەھىر</string>
+    <string name="InviteActivity_share_via">… بىلەن ھەمبەھىر</string>
 
     <string name="InviteActivity_cancel">ۋاز كەچ</string>
     <string name="InviteActivity_sending">ئەۋەتىلىۋاتىدۇ…</string>
@@ -1689,7 +1689,7 @@
     <!-- Warning displayed when entering a call via a link -->
     <string name="WebRtcCallView__anyone_who_joins">بۇ ئۇلىنىش ئارقىلىق توپقا قېتىلغانلار سىزنىڭ ئىسمىڭىز، رەسىمىڭىز ۋە تېلېفون نومۇرىڭىزنى كۆرەلەيدۇ.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">قېتىلىشنى كۈتىۋاتىدۇ...</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">قېتىلىشنى كۈتىۋاتىدۇ…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s نى چاقىرىدۇ</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">‏Signal %1$s بىلەن %2$s نى چاقىرىدۇ</string>
@@ -2169,15 +2169,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">ئۇقتۇرۇشلارنى ئېچىڭ</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">يېڭى ئۇچۇرلارنىڭ ئۇقتۇرۇشلىرىنى تاپشۇرۇۋېلىش ئۈچۈن:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">تەڭشەكلەر</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">ئۇچۇرلار</string>
@@ -2688,7 +2688,7 @@
     <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\ - \\ - بىر تاللاشنى تاللاڭ \\ - \\ -</item>
+        <item>Please select an option</item>
         <item>بەزى نەرسە ئىشلىمەيۋاتىدۇ</item>
         <item>ئىقتىدار ئىلتىماسى</item>
         <item>سوئال</item>
@@ -2826,7 +2826,6 @@
     <string name="preferences__payments">چىقىملار</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">پۇل تۆلەش قۇلۇپى</string>
-    <string name="preferences__payments_beta">چىقىملار(سىناق)</string>
     <string name="preferences__conversation_length_limit">ئۇچۇر سان چېكى</string>
     <string name="preferences__keep_messages">ئۇچۇرلارنى ساقلاپ قېلىش</string>
     <string name="preferences__clear_message_history">ئۇچۇر تارىخىنى تازىلا</string>
@@ -2979,7 +2978,8 @@
     <string name="PaymentsAllActivityFragment__sent">يوللانغان</string>
     <string name="PaymentsAllActivityFragment__received">تاپشۇرۇۋېلىنغان</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">تونۇشتۇرۇش چىقىمى (سىناق)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">تۆلەمنى تونۇشتۇرۇش</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">سىز Signal دا MobileCoin يوللاپ ۋە قوبۇللىيالايسىز، ئۇ شەخسىيەت گەۋدىلەندۈرۈلگەن يېڭى رەقەملىك پۇل. باشلاش ئۈچۈن ئاكتىپلاڭ.</string>
     <string name="PaymentsHomeFragment__activate_payments">چىقىم قىلىشنى ئاكتىپلا</string>
     <string name="PaymentsHomeFragment__activating_payments">چىقىم قىلىشنى ئاكتىپلاۋاتىدۇ…</string>
@@ -3013,8 +3013,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">چىقىم چەكلەندى.</string>
     <string name="PaymentsHomeFragment__payment_failed">چىقىم قىلالمىدى</string>
     <string name="PaymentsHomeFragment__details">تەپسىلاتى</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">‫Signal نى ئىشلىتىپ MobileCoin ئەۋەتەلەيسىز ۋە تاپشۇرىۋالالايسىز. بارلىق چىقىملار MobileCoins ۋە MobileCoin ھەميانىنىڭ ئىشلىتىش شەرتلىرىگە بويسۇنىدۇ. بۇ سىناق ئىقتىدارى، شۇڭا بەزى مەسىلىلەرگە دۇچ كېلىشىڭىز ھەمدە چىقىم ياكى قالدۇقلىرىڭىزنى يوقىتىپ قويسىڭىز ئەسلىگە كەلتۈرەلمەسلىكىڭىز مۈمكىن. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">ئاكتىپلا</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ماددىلىرىنى كۆرسەت</string>
     <string name="PaymentsHomeFragment__payments_not_available">‫Signal دا چىقىم ئەمدى ئىشلىمەيدۇ. سىز مەبلەغلىرىڭىزنى ئالماشتۇرۇش ئورنىغا داۋاملىق يۆتكىيەلەيسىز. ئەمما ئەمدى چىقىمنى يوللاپ ۋە تاپشۇرىۋالالمايسىز ياكى مەبلەغ قوشالمايسىز.</string>
@@ -3039,19 +3040,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">ھازىر ئەمەس</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">كېيىنكى</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">ھوقۇق بېرىڭ</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">ئۇقتۇرۇشلار</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">ئالاقەداشلار</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3059,7 +3060,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">ساقلىغۇچ</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -3962,7 +3963,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">قالدۇق سوممىڭىز بار! قالدۇق سوممىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئەسلىگە كەلتۈرۈش ئىبارىسىنى (24 سۆزدىن تەركىب تاپقان بولىدۇ) ساقلىۋېلىڭ.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">قالدۇق سوممىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئەسلىگە كەلتۈرۈش ئىبارىسىنى (24 سۆزدىن تەركىب تاپقان بولىدۇ) ساقلىۋېلىڭ. تەپسىلاتى</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">قالدۇق سوممىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئەسلىگە كەلتۈرۈش ئىبارىسىنى (24 سۆزدىن تەركىب تاپقان بولىدۇ) ساقلىۋېلىڭ.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ئەسلىگە كەلتۈرۈش جۈملىڭىز بولسا بىر %1$d- سىزگە خاس بولغان سۆزلۈك جۈملە. قالدۇقىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ جۈملىنى ئىشلىتىڭ.</string>
     <string name="PaymentsRecoveryStartFragment__start">باشلا</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">قولدا كىرگۈزۈش</string>
@@ -4138,7 +4139,7 @@
 
     <!-- ChangeNumberLockActivity -->
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
-    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">قارىغاندا تېلېفون نومۇرىڭىزنى ئۆزگەرتمەكچى بولغاندەك قىلىسىز. ئەمما بىز ئوڭۇشلۇق بولدىمۇ-يوق بىلەلمەي قالدۇق. \n\nھازىرلا قايتا تەكشۈرۈپ بېقىڭ...</string>
+    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">قارىغاندا تېلېفون نومۇرىڭىزنى ئۆزگەرتمەكچى بولغاندەك قىلىسىز. ئەمما بىز ئوڭۇشلۇق بولدىمۇ-يوق بىلەلمەي قالدۇق. \n\nھازىرلا قايتا تەكشۈرۈپ بېقىڭ…</string>
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_confirmed">ھالەت ئۆزگىرىش توغرىلاندى</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
@@ -4921,7 +4922,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">ئېچىش</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal ئۇقتۇرۇشلىرى ۋە خەۋەرلىرى</string>
@@ -5975,9 +5976,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">تەھرىرلەش تارىخى</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">ئۇچۇر تەھرىرلەش</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">ئەگەر سىز ئۇچۇرنى تەھرىرلىسىڭىز، ئۇنى پەقەت Signalنىڭ ئەڭ يېڭى نەشرىنى ئىشلىتىۋاتقان كىشىلەرلا كۆرەلەيدۇ. ئۇلار سىزنىڭ ئۇچۇرنى تەھرىرلىگەنلىكىڭىزنى كۆرەلەيدۇ.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">بىكار قىلىش</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6019,9 +6020,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ئەگەر سىز QR كودىڭىزنى يېڭلىسىڭىز، سىزنىڭ ھازىرقى QR كودىڭىز ۋە ئۇلانمىڭىز ئىشلىمەيدۇ.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ئەسلىگە قايتۇر</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ئەسلىگە قايتۇر</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6049,7 +6050,7 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">...گە قېتىلىشنى خالامسىز؟</string>
+    <string name="PendingParticipantsView__would_like_to_join">…گە قېتىلىشنى خالامسىز؟</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
         <item quantity="other">+%1$d تەلەپ قىلىۋاتىدۇ</item>

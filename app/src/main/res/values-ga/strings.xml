@@ -2473,15 +2473,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Cuir Fógraí ar siúl</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Chun fógra a fháil nuair a thagann teachtaireacht nua isteach:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Socruithe</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Teachtaireachtaí</string>
@@ -3036,7 +3036,7 @@
     <string name="HelpFragment__could_not_upload_logs">Níorbh fhéidir na logaí a uaslódáil</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Mínigh go mion cad atá cearr le do thoil ionas gur féidir linn an fhadhb a thuiscint.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Déan rogha \\-\\-</item>
+        <item>Please select an option</item>
         <item>Tá rud éigin as gléas</item>
         <item>Iarratas ar Ghné Nua</item>
         <item>Ceist</item>
@@ -3178,7 +3178,6 @@
     <string name="preferences__payments">Íocaíochtaí</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Glas íocaíochtaí</string>
-    <string name="preferences__payments_beta">Íocaíochtaí (Beta)</string>
     <string name="preferences__conversation_length_limit">Teorainn an chomhrá</string>
     <string name="preferences__keep_messages">Coinnigh teachtaireachtaí</string>
     <string name="preferences__clear_message_history">Glan stair teachtaireachtaí</string>
@@ -3335,7 +3334,8 @@
     <string name="PaymentsAllActivityFragment__sent">Seolta</string>
     <string name="PaymentsAllActivityFragment__received">Faighte</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Introducing Payments (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Tús Eolais ar Íocaíochtaí</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Úsáid Signal le MobileCoin a sheoladh agus a fháil, airgeadra digiteach úrnua atá dírithe ar phríobháideachas. Gníomhachtaigh le tosú air.</string>
     <string name="PaymentsHomeFragment__activate_payments">Gníomhachtaigh Íocaíochtaí</string>
     <string name="PaymentsHomeFragment__activating_payments">Íocaíochtaí á ngníomhachtú…</string>
@@ -3369,8 +3369,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Payments deactivated.</string>
     <string name="PaymentsHomeFragment__payment_failed">Payment Failed</string>
     <string name="PaymentsHomeFragment__details">Mionsonraí</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Is féidir leat Signal a úsáid chun MobileCoin a sheoladh agus a fháil. Tá gach íocaíocht faoi réir Téarmaí Úsáide maidir le MobileCoins agus MobileCoin Wallet. Is gné bhéite é seo agus, mar sin, seans go mbeidh roinnt fadhbanna agat agus nach mbeidh tú in ann íocaíochtaí nó iarmhéideanna, a d\'fhéadfá a chailleadh, a aisghabháil. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Cuir i ngníomh é</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin Terms</string>
     <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
@@ -3395,19 +3396,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Ní anois</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Ar aghaidh</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Allow Permissions</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Fógraí</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Teagmhálaithe</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3415,7 +3416,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Stóras</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -4370,7 +4371,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Tá iarmhéid agat! Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur. Tuilleadh faisnéise</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Frása %1$d focal atá uathúil duitse is é d\'fhrása aisghabhála. Úsáid an frása seo chun d\'iarmhéid a aischur.</string>
     <string name="PaymentsRecoveryStartFragment__start">Tosaigh</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter Manually</string>
@@ -5353,7 +5354,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">Cuir ar siúl</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Nótaí Eisiúna agus Nuacht Signal</string>
@@ -6356,7 +6357,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Scrios...</string>
+    <string name="CallLogFragment__deleting">Scrios…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
     <string name="CallLogFragment__deletion_failed">Theip ar scriosadh.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
@@ -6507,9 +6508,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Stair eagarthóireachta</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Cuir Teachtaireacht in Eagar</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Má chuirfidh tú teachtaireacht in eagar, ní fheicfidh ach na daoine a bhfuil na leaganacha is déanaí de Signal acu í. Feicfidh siad gur chuir tú teachtaireacht in eagar.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Cuir ar ceal</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6551,9 +6552,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Má athshocraíonn tú do chód QR, ní oibreoidh an cód QR ná an nasc atá agat cheana féin a thuilleadh.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Athshocraigh</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Athshocraigh</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

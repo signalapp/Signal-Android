@@ -2169,15 +2169,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Bật lên Thông báo</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Để nhận thông báo cho các tin nhắn mới:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Cài đặt</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Tin nhắn</string>
@@ -2688,7 +2688,7 @@
     <string name="HelpFragment__could_not_upload_logs">Không thể tải lên nhật kí lỗi</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Vui lòng miêu tả càng chi tiết càng tốt để giúp chúng tôi hiểu về vấn đề.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Vui lòng chọn một tùy chọn \\-\\-</item>
+        <item>Please select an option</item>
         <item>Đã có lỗi</item>
         <item>Yêu cầu Tính năng</item>
         <item>Câu hỏi</item>
@@ -2826,7 +2826,6 @@
     <string name="preferences__payments">Thanh toán</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Khóa thanh toán</string>
-    <string name="preferences__payments_beta">Thanh toán (Beta)</string>
     <string name="preferences__conversation_length_limit">Số lượng tin nhắn tối đa trong một cuộc trò chuyện</string>
     <string name="preferences__keep_messages">Giữ tin nhắn</string>
     <string name="preferences__clear_message_history">Xóa lịch sử tin nhắn</string>
@@ -2979,7 +2978,8 @@
     <string name="PaymentsAllActivityFragment__sent">Đã gửi</string>
     <string name="PaymentsAllActivityFragment__received">Đã nhận</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Giới thiệu thanh toán (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Giới thiệu tính năng Thanh toán</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Sử dụng Signal để nhận và gửi MobileCoin, một loại tiền điện tử mới tập trung vào sự riêng tư. Kích hoạt để bắt đầu.</string>
     <string name="PaymentsHomeFragment__activate_payments">Kích hoạt Thanh toán</string>
     <string name="PaymentsHomeFragment__activating_payments">Đang kích hoạt thanh toán…</string>
@@ -3013,8 +3013,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Thanh toán đã huỷ kích hoạt.</string>
     <string name="PaymentsHomeFragment__payment_failed">Thanh toán không thành công</string>
     <string name="PaymentsHomeFragment__details">Chi tiết</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Bạn có thể dùng Signal để gửi và nhận MobileCoin. Tất cả thanh toán đều chịu Điều khoản Sử dụng cho MobileCoins và Ví MobileCoin. Đây là một tính năng beta nên bạn có thể sẽ gặp một số vấn đề và các thanh toán hoặc số dư bạn có thể mất sẽ không thể được khôi phục. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Kích hoạt</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Xem điều khoản MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Thanh toán trong Signal không còn nữa. Bạn vẫn có thể chuyển quỹ vào một sàn trao đổi nhưng bạn không thể gửi và nhận thanh toán hoặc thêm quỹ.</string>
@@ -3039,19 +3040,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Để sau</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Tiếp</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Đồng ý Cho phép</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Thông báo</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Danh bạ</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3059,7 +3060,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Lưu trữ</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -3962,7 +3963,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Bạn đã nhận được số dư! Đã đến lúc lưu cụm từ khôi phục—cụm 24 từ này giống như chìa khóa giúp bạn khôi phục số dư của mình.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Đã đến lúc lưu cụm từ khôi phục—cụm 24 từ này giống như chìa khóa giúp bạn khôi phục số dư của mình. Tìm hiểu thêm</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Đã đến lúc lưu cụm từ khôi phục—cụm 24 từ này giống như chìa khóa giúp bạn khôi phục số dư của mình.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Cụm từ khôi phục của bạn là một cụm từ gồm %1$d-từ chỉ riêng cho bạn. Sử dụng cụm từ này để khôi phục số dư của bạn.</string>
     <string name="PaymentsRecoveryStartFragment__start">Bắt đầu</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Nhập vào bằng tay</string>
@@ -4921,7 +4922,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">Bật</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Ghi chú Phát hành &amp; Tin tức của Signal</string>
@@ -5975,9 +5976,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Lịch sử chỉnh sửa</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Chỉnh sửa Tin nhắn</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Nếu bạn sửa một tin nhắn, thông tin về việc thay đổi sẽ chỉ hiển thị với người dùng các phiên bản mới nhất của Signal. Những người dùng này sẽ có thể thấy bạn đã chỉnh sửa một tin nhắn.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Hủy</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6019,9 +6020,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Nếu đặt lại mã QR, mã QR và đường dẫn hiện tại của bạn sẽ không còn hiệu lực nữa.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Đặt lại</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Đặt lại</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Порука није успешно учитана</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Повуците поруку ка десно за брз одговор</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Повуците поруку ка лево за брз одговор</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Садржаји који се могу само једном гледати бришу се након слања</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Већ сте видели ову поруку</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете додати личне белешке у ово ћаскање. Ако на налогу имате повезане уређаје, нове белешке ће бити синхронизоване.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d чланова групе имају исти назив.</string>
@@ -2245,15 +2245,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Укључите обавештења</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Да бисте примали обавештења о новим порукама:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Додирните „Подешавања“ у наставку</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Укључите обавештења</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Подешавања</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Поруке</string>
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Izaberite opciju \\-\\-</item>
+        <item>Изаберите опцију</item>
         <item>Nešto ne radi</item>
         <item>Zahtev za funkciju</item>
         <item>Pitanje</item>
@@ -2913,8 +2913,7 @@
     <string name="preferences__storage">Складиште</string>
     <string name="preferences__payments">Уплате</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Zaključavanje plaćanja</string>
-    <string name="preferences__payments_beta">Уплате (Beta)</string>
+    <string name="preferences__payment_lock">Закључавање плаћања</string>
     <string name="preferences__conversation_length_limit">Максималан број порука у ћаскању</string>
     <string name="preferences__keep_messages">Задржити поруке</string>
     <string name="preferences__clear_message_history">Избриши историју порука</string>
@@ -2966,11 +2965,11 @@
     <string name="preferences__this_setting_is_not_a_guarantee">Ово подешавање није гаранција и ваша тастатура га може занемарити.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">На мобилном интернету</string>
-    <string name="preferences_chats__when_using_wifi">На бежичној</string>
+    <string name="preferences_chats__when_using_wifi">На ВиФи-jy</string>
     <string name="preferences_chats__when_roaming">У ромингу</string>
     <string name="preferences_chats__media_auto_download">Ауто-преузимање медија</string>
     <string name="preferences_chats__message_history">Историја порука</string>
-    <string name="preferences_storage__storage_usage">Употреба складиште</string>
+    <string name="preferences_storage__storage_usage">Употреба складишта</string>
     <string name="preferences_storage__photos">Слике</string>
     <string name="preferences_storage__videos">Видео</string>
     <string name="preferences_storage__files">Fajlovi</string>
@@ -3001,7 +3000,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Уплате</string>
     <string name="preferences_chats__chats">Ћаскања</string>
-    <string name="preferences_data_and_storage__manage_storage">Управљати складиште</string>
+    <string name="preferences_data_and_storage__manage_storage">Управљај складиштем</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Користите мање података за позиве</string>
     <string name="preferences_data_and_storage__never">Никад</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ВиФи и мобилна мрежа</string>
@@ -3068,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">Послато</string>
     <string name="PaymentsAllActivityFragment__received">Примљено</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Увођење уплате (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Представљамо плаћања</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користите Signal за слање и примање MobileCoin-а, нове дигиталне валуте фокусиране на приватност. Активирајте да започнете.</string>
     <string name="PaymentsHomeFragment__activate_payments">Активирати уплате</string>
     <string name="PaymentsHomeFragment__activating_payments">Активирање уплате…</string>
@@ -3102,17 +3102,18 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Уплате деактивиране.</string>
     <string name="PaymentsHomeFragment__payment_failed">Неуспешна уплата</string>
     <string name="PaymentsHomeFragment__details">Опширније</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да користите Signal да бисте послали и примили MobileCoin. Сва плаћања подлежу условима коришћења за MobileCoins и новчаник MobileCoin-а. Ово је бета карактеристика, тако да можете наићи на грешке и плаћања или салто које можете изгубити не можете се вратити. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Можете да користите Signal да бисте слали и примали MobileCoin. Сва плаћања подлежу условима коришћења за MobileCoin и MobileCoin Wallet. Може се десити да наиђете на неке проблеме због којих се плаћања или износи које можда изгубите не могу повратити. </string>
     <string name="PaymentsHomeFragment__activate">Активирај</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледајте појмове MobileCoin-а</string>
     <string name="PaymentsHomeFragment__payments_not_available">Плаћања у Signal-у више није доступна. И даље можете преносити средства на размену, али више не можете да шаљете и примате уплате или да додате средства.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
-    <string name="PaymentsHomeFragment__turn_on">Želite li da aktivirate zaključavanje plaćanja kod budućih plaćanja?</string>
+    <string name="PaymentsHomeFragment__turn_on">Желите ли да активирате закључавање плаћања код будућих плаћања?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
-    <string name="PaymentsHomeFragment__add_an_additional_layer">Dodajte još jedan nivo bezbednosti i za plaćanja zahtevajte zaključavanje ekrana ili otisak prsta na Android uređaju.</string>
+    <string name="PaymentsHomeFragment__add_an_additional_layer">Додајте још један ниво безбедности и за плаћања захтевајте закључавање екрана или отисак прста на Android уређају.</string>
     <!-- Alert dialog button to enable payment lock -->
     <string name="PaymentsHomeFragment__enable">Uključi</string>
     <!-- Alert dialog button to not enable payment lock for now -->
@@ -3128,29 +3129,29 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Не сада</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Даље</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Дозволе</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Да бисте могли да шаљете поруке људима које знате, Signal ће затражити ове дозволе. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Обавештења</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Добијајте обавештења када вам стигну нове поруке.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Контакти</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Нађите људе које знате. Ваши контакти су шифровани и нису видљиви услузи Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Телефонски позиви</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Олакшајте регистрацију и омогућите додатне функције за позиве.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Складиште</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Шаљите фотографије, видео снимке и фајлове са свог уређаја.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3264,9 +3265,9 @@
     <string name="ConfirmPayment__payment_will_continue_processing">Уплата ће наставити прераду</string>
     <string name="ConfirmPaymentFragment__invalid_recipient">Неисправан прималац</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
-    <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Nismo uspeli da prikažemo zaključavanje plaćanja</string>
+    <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Нисмо успели да прикажемо закључавање плаћања</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
-    <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Aktivirali ste zaključavanje plaćanja u podešavanjima, ali ono ne može biti prikazano.</string>
+    <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Активирали сте закључавање плаћања у подешавањима, али оно не може бити приказано.</string>
     <!-- Button in a dialog that will take the user to the privacy settings -->
     <string name="ConfirmPaymentFragment__go_to_settings">Idite na podešavanja</string>
     <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ова особа није активирала уплате</string>
@@ -3978,9 +3979,9 @@
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Боја ћаскања</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Рисетовати боје ћаскања</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">Рисетовати боје ћаскања</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">Рисетовати боје ћаскања?</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Ресетовати боје ћаскања</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Ресетовати боје ћаскања</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Ресетовати боје ћаскања?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Поставити позадину</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Тамни режим затамњује позадину</string>
     <string name="ChatWallpaperFragment__contact_name">Име контакта</string>
@@ -3988,13 +3989,13 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед позадине</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Да ли желите да надјачате све боје за ћаскање?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Да ли желите да надјачате све позадине?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Рисетовати подразумеване боје</string>
-    <string name="ChatWallpaperFragment__reset_all_colors">Рисетовати све боје</string>
-    <string name="ChatWallpaperFragment__reset_default_wallpaper">Рисетовати подразумевану позадину</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Ресетовати подразумеване боје</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Ресетовати све боје</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Ресетовати подразумевану позадину</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
-    <string name="ChatWallpaperFragment__reset_wallpapers">Рисетовати позадине</string>
-    <string name="ChatWallpaperFragment__reset_wallpaper">Рисетовати позадину</string>
-    <string name="ChatWallpaperFragment__reset_wallpaper_question">Рисетовати позадину?</string>
+    <string name="ChatWallpaperFragment__reset_wallpapers">Ресетовати позадине</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper">Ресетовати позадину</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper_question">Ресетовати позадину?</string>
 
     <!-- ChatWallpaperSelectionFragment -->
     <string name="ChatWallpaperSelectionFragment__choose_from_photos">Одабери из фотографије</string>
@@ -4064,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Имате новац на налогу! Време је да сачувате фразу за опоравак – кључ од 24 речи који ћете користити да повратите новац са налога.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Време је да сачувате фразу за опоравак – кључ од 24 речи који ћете користити да повратите новац са налога. Сазнајте више</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Време је да сачувате фразу за опоравак – кључ од 24 речи који ћете користити да повратите новац са налога.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза опоравка је %1$d-речи фраза јединствена за вас. Користите ову фразу да бисте вратили салто.</string>
     <string name="PaymentsRecoveryStartFragment__start">Започни</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Унесите ручно</string>
@@ -4309,11 +4310,11 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нове преписке</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Za plaćanja zahtevajte zaključavanje ekrana ili otisak prsta na Android uređaju</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">За плаћања захтевајте закључавање екрана или отисак прста на Android уређају</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Ne možemo da aktiviramo zaključavanje plaćanja</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Не можемо да активирамо закључавање плаћања</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Da biste koristili zaključavanje plaćanja, morate prvo da aktivirate zaključavanje ekrana ili identifikaciju pomoću otiska prsta u podešavanjima telefona.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">Да бисте користили закључавање плаћања, морате прво да активирате закључавање екрана или идентификацију помоћу отиска прста у подешавањима телефона.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Nismo uspeli da dođemo do sistemskih podešavanja</string>
     <!-- Alert dialog button to go to phone settings -->
@@ -4332,7 +4333,7 @@
     <string name="ExpireTimerSettingsFragment__1_week">1 седмица</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 дан</string>
     <string name="ExpireTimerSettingsFragment__8_hours">8 сати</string>
-    <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">1 сат</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 минута</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Прилагодити време</string>
@@ -4358,7 +4359,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Квалитет медија</string>
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет сланог медија</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет послатог медија</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Слање висококвалитетних медија користиће више података.</string>
     <string name="DataAndStorageSettingsFragment__high">Висок</string>
     <string name="DataAndStorageSettingsFragment__standard">Стандардно</string>
@@ -5027,9 +5028,9 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Неуспешно отварање бирача.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Да бисте активирали обавештења, морате дати дозволу Signal-у да их приказује.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">Укључи</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal Напомене о издању &amp; Новости</string>
@@ -6108,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Историја измена</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Измените поруку</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Ако измените поруку, она ће бити видљива само људима који су на најновијим верзијама Signal-а. Они ће моћи да виде да сте изменили поруку.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Откажи</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6146,15 +6147,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Линк је копиран</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Линк није подешен</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Ресетујемо линк…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Желите ли да ресетујете QR код?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Ако ресетујете QR код, ваши постојећи QR код и линк више неће радити.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Ресетуј</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Ресетуј</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6172,13 +6173,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Није пронађен корисник са корисничким именом %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Овај корисник није пронађен.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Дошло је до мрежне грешке. Пробајте поново.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Немате приступ мрежи. Линк није ресетован. Пробајте поново касније.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Дошло је до грешке на мрежи приликом покушаја ресетовања линка. Пробајте поново касније.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

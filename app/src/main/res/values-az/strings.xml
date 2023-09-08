@@ -507,7 +507,7 @@
         <item quantity="other">Bu addımla seçilmiş %1$d çat həmişəlik silinəcək.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Silinir</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş çatlar silinir...</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş çatlar silinir…</string>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Çat arxivləşdirildi</item>
         <item quantity="other">%1$d çat arxivləşdirildi</item>
@@ -694,7 +694,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Seçilmiş planlaşdırılan mesaj silinsin?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Çat seansı təzələndi</string>
@@ -2245,15 +2245,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Bildirişləri işə sal</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Yeni mesajların bildirişlərini almaq üçün:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Parametrlər</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Mesajlar</string>
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Jurnal yüklənilə bilmədi</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Zəhmət olmasa anlamağımıza kömək etmək üçün problemi daha aydın təsvir edin.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Lütfən, bir seçim edin \\-\\-</item>
+        <item>Please select an option</item>
         <item>Problem var</item>
         <item>Xüsusiyyətlə əlaqəli sorğu</item>
         <item>Sual</item>
@@ -2914,7 +2914,6 @@
     <string name="preferences__payments">Ödənişlər</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Ödəniş kilidi</string>
-    <string name="preferences__payments_beta">Ödənişlər (Beta)</string>
     <string name="preferences__conversation_length_limit">Çatın uzunluq limiti</string>
     <string name="preferences__keep_messages">Mesajları saxla</string>
     <string name="preferences__clear_message_history">Mesaj tarixçəsini təmizlə</string>
@@ -3068,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">Göndərildi</string>
     <string name="PaymentsAllActivityFragment__received">Alındı</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Budur, ödənişlər (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Məxfiliyə əsaslanan yeni rəqəmsal pul vahidi olan MobileCoin göndərmək və almaq üçün Signal-dan istifadə edin. Başlatmaq üçün aktivləşdirin.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ödənişləri aktivləşdir</string>
     <string name="PaymentsHomeFragment__activating_payments">Ödənişlər aktivləşdirilir…</string>
@@ -3102,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Ödənişlər deaktiv edildi.</string>
     <string name="PaymentsHomeFragment__payment_failed">Ödəniş edilmədi</string>
     <string name="PaymentsHomeFragment__details">Təfsilatlar</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin göndərmək və almaq üçün Signal-ı istifadə edə bilərsiniz. Bütün ödənişlər, MobileCoins və MobileCoin Wallet üçün İstifadə Şərtlərinə tabedir. Bu bir beta özəllikdir, buna görə də bəzi problemlər yaşaya bilərsiniz və itirə biləcəyiniz ödənişlər və ya balanslar bərpa edilə bilmir. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Aktivləşdir</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin şərtlərinə bax</string>
     <string name="PaymentsHomeFragment__payments_not_available">Ödənişlər, Signal-da artıq əlçatmazdır. Yenə də bir birjaya pul köçürə bilərsiniz, ancaq ödəniş göndərə və ala və ya pul əlavə edə bilməzsiniz.</string>
@@ -3128,19 +3129,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">İndi yox</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Növbəti</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">İcazə ver</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Bildirişlər</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Əlaqələr</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3148,7 +3149,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Anbar</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -3290,7 +3291,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">... yeni zəng</string>
+    <string name="contact_selection_list__new_call">… yeni zəng</string>
     <string name="contact_selection_list__unknown_contact">Yeni mesaj</string>
     <string name="contact_selection_list__unknown_contact_block">İstifadəçini blokla</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Qrupa əlavə et</string>
@@ -4064,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Balans əldə etdiniz! Bərpa parolunu yaddaşda saxlamaq vaxtıdır— balansınızı bərpa etmək üçün 24 sözdən ibarət bir şifrə.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Bərpa parolunu yaddaşda saxlamaq vaxtıdır— balansınızı bərpa etmək üçün 24 sözdən ibarət bir şifrə. Daha ətraflı</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Bərpa parolunu yaddaşda saxlamaq vaxtıdır— balansınızı bərpa etmək üçün 24 sözdən ibarət bir şifrə.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Bərpa parolunuz, sizə xas %1$d sözdən ibarət bir paroldur. Balansınızı geri yükləmək üçün bu parolu istifadə edin.</string>
     <string name="PaymentsRecoveryStartFragment__start">Başla</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Əllə daxil edin</string>
@@ -4194,7 +4195,7 @@
     <string name="ExportAccountDataFragment__export_report_action">İxrac et</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Hesabat yaradılır...</string>
+    <string name="ExportAccountDataFragment__download_progress">Hesabat yaradılır…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Hesabatınız yalnız ixrac zamanı yaradılır və Signal tərəfindən cihazınızda saxlanmır.</string>
 
@@ -5029,7 +5030,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">İşə sal</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal buraxılış qeydləri və xəbərləri</string>
@@ -5431,7 +5432,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">İndi yox</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır…</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Siz %1$s adından Signal-a ianə verdiniz. Ona öz dəstəyini profilində göstərmə imkanı veriləcək.</string>
     <!-- Expired gift sheet title -->
@@ -5966,7 +5967,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Silinir...</string>
+    <string name="CallLogFragment__deleting">Silinir…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
     <string name="CallLogFragment__deletion_failed">Silinmədi.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
@@ -6108,7 +6109,7 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redaktə tarixçəsi</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Mesajı redaktə et</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
     <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
@@ -6152,9 +6153,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">QR kodunuzu sıfırlasanız, mövcud QR kodunuz və keçid artıq aktiv olmayacaq.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Sıfırla</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Sıfırla</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

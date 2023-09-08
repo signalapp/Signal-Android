@@ -507,7 +507,7 @@
         <item quantity="other">Dette sletter de %1$d valgte chats permanent.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Sletter</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte chats...</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte chats…</string>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Chat arkiveret</item>
         <item quantity="other">%1$d chats arkiveret</item>
@@ -694,7 +694,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Slet den valgte planlagte besked?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Sletter planlagte beskeder...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Sletter planlagte beskeder…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsession genindlæst</string>
@@ -2245,15 +2245,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Slå notifikationer til</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Sådan modtager du notifikationer om nye beskeder:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Indstillinger</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Beskeder</string>
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Vælg en valgmulighed \\-\\-</item>
+        <item>Please select an option</item>
         <item>Der er noget galt</item>
         <item>Funktionsanmodning</item>
         <item>Spørgsmål</item>
@@ -2914,7 +2914,6 @@
     <string name="preferences__payments">Betalinger</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalingslås</string>
-    <string name="preferences__payments_beta">Betalinger (Beta)</string>
     <string name="preferences__conversation_length_limit">Grænse for chatlængde</string>
     <string name="preferences__keep_messages">Bevar beskeder</string>
     <string name="preferences__clear_message_history">Ryd meddelelseshistorik</string>
@@ -3068,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">Sendt</string>
     <string name="PaymentsAllActivityFragment__received">Modtaget</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Nu introduceres betalinger (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducerer Betalinger</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny privatlivsfokuseret digital valuta. Aktivér for at komme i gang.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktiver Betalinger</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger …</string>
@@ -3102,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Betalinger er deaktiveret.</string>
     <string name="PaymentsHomeFragment__payment_failed">Betaling fejlede</string>
     <string name="PaymentsHomeFragment__details">Detaljer</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan bruge Signal til at sende og modtage MobileCoin. Alle betalinger er underlagt brugsbetingelserne for MobileCoins og MobileCoin Wallet. Dette er en beta-funktion, så du kan støde på nogle problemer, og betalinger eller saldi, du måtte miste, kan ikke gendannes. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Aktiver</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Se vilkår for MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke længere tilgængelige. Du kan stadig overføre penge til en børs, men du kan ikke længere sende og modtage betalinger eller tilføje midler.</string>
@@ -3128,19 +3129,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">Ikke nu</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">Næste</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Giv tilladelser</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">Notifikationer</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">Kontakter</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3148,7 +3149,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">Lagerplads</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -3290,7 +3291,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">Nyt opkald til...</string>
+    <string name="contact_selection_list__new_call">Nyt opkald til…</string>
     <string name="contact_selection_list__unknown_contact">Ny besked til…</string>
     <string name="contact_selection_list__unknown_contact_block">Blokér bruger</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Føj til gruppe</string>
@@ -4064,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Du har en saldo! Det er tid til at gemme din gendannelsessætning – en kode på 24 ord, som kan bruges til at genoprette din saldo.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Det er tid til at gemme din gendannelsessætning – en kode på 24 ord, som kan bruges til at genoprette din saldo. Lær mere</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Det er tid til at gemme din gendannelsessætning – en kode på 24 ord, som kan bruges til at genoprette din saldo.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Din gendannelsessætning er en %1$d-ords sætning, der er unik for dig. Brug den til at gendanne din saldo.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Indtast manuelt</string>
@@ -4194,7 +4195,7 @@
     <string name="ExportAccountDataFragment__export_report_action">Eksportér</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Genererer rapport...</string>
+    <string name="ExportAccountDataFragment__download_progress">Genererer rapport…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Din rapport genereres kun på eksporttidspunktet og gemmes ikke af Signal på din enhed.</string>
 
@@ -5029,7 +5030,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">Aktiver</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal-udgivelsesnoter og nyheder</string>
@@ -5431,7 +5432,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Ikke nu</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Indløser badge...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Indløser badge…</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Du har foretaget en donation til Signal på vegne af %1$s. De vil få mulighed for at vise deres støtte på deres profil.</string>
     <!-- Expired gift sheet title -->
@@ -5966,7 +5967,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">Sletter...</string>
+    <string name="CallLogFragment__deleting">Sletter…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
     <string name="CallLogFragment__deletion_failed">Sletning mislykkedes.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
@@ -6108,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redigeringshistorik</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Rediger besked</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Hvis du redigerer en besked, vil den kun være synlig for folk, der bruger de nyeste versioner af Signal. De vil kunne se, at du har redigeret en besked.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Annuller</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6152,9 +6153,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Hvis du nulstiller din QR-kode, vil din eksisterende QR-kode og dit link ikke længere fungere.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Nulstil</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Nulstil</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

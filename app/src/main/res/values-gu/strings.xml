@@ -2245,15 +2245,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">સૂચનાઓ ચાલુ કરો</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">નવા મેસેજ માટે સૂચનાઓ પ્રાપ્ત કરવા માટે:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">સેટિંગ્સ</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">મેસેજ</string>
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">લૉગ્સ અપલોડ કરી શક્યાં નથી.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">કૃપા કરીને સમસ્યાને સમજવામાં અમારી સહાય માટે શક્ય તેટલું વર્ણનાત્મક બનો.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- કૃપા કરીને એક વિકલ્પ પસંદ કરો \\-\\-</item>
+        <item>Please select an option</item>
         <item>કશું કામ નથી આપી રહ્યું</item>
         <item>સુવિધા વિનંતી</item>
         <item>પ્રશ્ન</item>
@@ -2914,7 +2914,6 @@
     <string name="preferences__payments">પેમેંટ્સ</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">પેમેન્ટ લૉક</string>
-    <string name="preferences__payments_beta">પેમેંટ્સ (બીટા)</string>
     <string name="preferences__conversation_length_limit">ચેટની લંબાઈ મર્યાદા</string>
     <string name="preferences__keep_messages">નવા મેસેજ</string>
     <string name="preferences__clear_message_history">મેસેજની હિસ્ટ્રી દૂર કરો</string>
@@ -3068,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">મોકલ્યો</string>
     <string name="PaymentsAllActivityFragment__received">મળી ગયા</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">પેમેંટ્સ (બીટા)નો પરિચય</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">પ્રસ્તુત છે ચુકવણીઓ</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin મોકલવા અને પ્રાપ્ત કરવા માટે Signalનો ઉપયોગ કરો, જે એક નવી ગોપનીયતા કેન્દ્રિત ડિજિટલ ચલણ છે. શરૂ કરવા માટે સક્રિય કરો.</string>
     <string name="PaymentsHomeFragment__activate_payments">પેમેન્ટ સક્રિય કરો</string>
     <string name="PaymentsHomeFragment__activating_payments">પેમેન્ટ સક્રિય કરી રહ્યું છે…</string>
@@ -3102,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">પેમેન્ટને નિષ્ક્રિય કરેલ છે.</string>
     <string name="PaymentsHomeFragment__payment_failed">પેમેન્ટ નિષ્ફળ</string>
     <string name="PaymentsHomeFragment__details">વિગતો</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">તમે MobileCoin મોકલવા અને પ્રાપ્ત કરવા માટે Signal નો ઉપયોગ કરી શકો છો. તમામ પેમેન્ટ MobileCoin અને MobileCoin વૉલેટ માટે ઉપયોગની શરતોને આધિન છે. આ બીટા સુવિધા છે તેથી તમે કેટલીક સમસ્યાઓ અને પેમેન્ટ અથવા બેલેન્સનો સામનો કરી શકો છો જે તમે ગુમાવી શકો છો તે રિસ્ટોર કરી શકાતું નથી. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">સક્રિય કરો</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ના નિયમો જુઓ</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal માં પેમેન્ટ હવે ઉપલબ્ધ નથી. તમે હજી પણ એક્સચેન્જમાં ફંડ સ્થાનાંતરિત કરી શકો છો પરંતુ તમે હવે પેમેન્ટ મોકલી શકતા નથી અને મેળવી શકતા નથી અથવા ફંડ ઉમેરી શકતા નથી.</string>
@@ -3128,19 +3129,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">અત્યારે નહીં</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">આગળ</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">પરવાનગીઓને મંજૂરી આપો</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">સૂચનાઓ</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">સંપર્કો</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3148,7 +3149,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">સ્ટોરેજ</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -4064,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">તમને બેલેન્સ મળ્યું છે! સમય છે તમારા રિકવરી ફ્રેઝને સેવ કરવાનો — જે એક 24-શબ્દની કી છે અને તેનો ઉપયોગ તમે તમારું બેલેન્સ પુનઃસ્થાપિત કરવા માટે કરી શકો છો.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">સમય છે તમારા રિકવરી ફ્રેઝને સેવ કરવાનો — જે એક 24-શબ્દની કી છે અને તેનો ઉપયોગ તમે તમારું બેલેન્સ પુનઃસ્થાપિત કરવા માટે કરી શકો છો. વધુ જાણો</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">સમય છે તમારા રિકવરી ફ્રેઝને સેવ કરવાનો — જે એક 24-શબ્દની કી છે અને તેનો ઉપયોગ તમે તમારું બેલેન્સ પુનઃસ્થાપિત કરવા માટે કરી શકો છો.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">તમારો રિકવરી ફ્રેઝ તમારા માટે અનન્ય %1$d શબ્દોનો ફ્રેઝ છે. તમારા પેમેન્ટ એકાઉન્ટને રિસ્ટોર કરવા માટે તેનો ઉપયોગ કરો.</string>
     <string name="PaymentsRecoveryStartFragment__start">શરૂ કરો</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">મેન્યુઅલી દાખલ કરો</string>
@@ -5029,7 +5030,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">ચાલુ કરો</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal રીલીઝ નોટ્સ અને સમાચાર</string>
@@ -6108,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ફેરફારોની હિસ્ટ્રી</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">મેસેજમાં ફેરફાર કરો</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">જો તમે મેસેજમાં ફેરફાર કરો છો, તો તે ફક્ત Signalના લેટેસ્ટ વર્ઝન પર હોય તે લોકોને જ દેખાશે. તેઓ જોઈ શકશે કે તમે મેસેજમાં ફેરફાર કર્યો છે.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">રદ કરો</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6152,9 +6153,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">જો તમે તમારો QR કોડ ફરીથી સેટ કરો છો, તો તમારો હાલનો QR કોડ અને લિંક હવે કામ કરશે નહીં.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ફરીથી સેટ કરો</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ફરીથી સેટ કરો</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->

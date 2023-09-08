@@ -507,7 +507,7 @@
         <item quantity="other">ಇದು ಆಯ್ಕೆ ಮಾಡಿದ ಎಲ್ಲಾ %1$d ಚಾಟ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">ಆಯ್ಕೆ ಮಾಡಿದ ಚಾಟ್‌ಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">ಆಯ್ಕೆ ಮಾಡಿದ ಚಾಟ್‌ಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">ಚಾಟ್ ಅನ್ನು ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ</item>
         <item quantity="other">%1$d ಚಾಟ್‌ಗಳನ್ನು ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ</item>
@@ -1755,7 +1755,7 @@
     <!-- Warning displayed when entering a call via a link -->
     <string name="WebRtcCallView__anyone_who_joins">ಲಿಂಕ್ ಮೂಲಕ ಈ ಕರೆಗೆ ಸೇರುವ ಯಾರಾದರೂ ನಿಮ್ಮ ಹೆಸರು, ಫೊಟೋ ಮತ್ತು ಫೋನ್ ನಂಬರ್ ಅನ್ನು ನೋಡುತ್ತಾರೆ.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">...ಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">…ಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s ಅವರಿಗೆ ರಿಂಗ್ ಮಾಡಲಿದೆ</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s ಮತ್ತು %2$s ಅವರಿಗೆ ರಿಂಗ್ ಮಾಡಲಿದೆ</string>
@@ -2245,15 +2245,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">ಹೊಸ ಸಂದೇಶಗಳಿಗಾಗಿ ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
     <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Settings</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">ಸಂದೇಶಗಳು</string>
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗದು</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ಸಾಧ್ಯವಾದಷ್ಟೂ ವಿವರಣೆ ನೀಡಿ</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- ಒಂದು ಆಯ್ಕೆಯನ್ನು ಮಾಡಿ \\-\\-</item>
+        <item>Please select an option</item>
         <item>ಏನೋ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ</item>
         <item>ಫೀಚರ್ ವಿನಂತಿ</item>
         <item>ಪ್ರಶ್ನೆ</item>
@@ -2914,7 +2914,6 @@
     <string name="preferences__payments">ಪೇಮೆಂಟ್‌ಗಳು</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">ಪಾವತಿ ಲಾಕ್</string>
-    <string name="preferences__payments_beta">ಪೇಮೆಂಟ್ಸ್ (ಬೀಟಾ)</string>
     <string name="preferences__conversation_length_limit">ಚಾಟ್ ಉದ್ದದ ಮಿತಿ</string>
     <string name="preferences__keep_messages">ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿ</string>
     <string name="preferences__clear_message_history">ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
@@ -3068,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
     <string name="PaymentsAllActivityFragment__received">ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">ಪಾವತಿಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ (ಬೀಟಾ)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ಗೌಪ್ಯತೆಯ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಿದ ಹೊಸ ಡಿಜಿಟಲ್ ಕರೆನ್ಸಿ ಮೊಬೈಲ್‌ ಕಾಯಿನ್ ಕಳುಹಿಸಲು ಮತ್ತು ಸ್ವೀಕರಿಸಲು Signal ಬಳಸಿ. ಆರಂಭಿಸಲು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="PaymentsHomeFragment__activate_payments">ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="PaymentsHomeFragment__activating_payments">ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
@@ -3102,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">ಪೇಮೆಂಟ್ಸ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
     <string name="PaymentsHomeFragment__payment_failed">ಪೇಮೆಂಟ್ ವಿಫಲವಾಗಿದೆ</string>
     <string name="PaymentsHomeFragment__details">ವಿವರಗಳು</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಕಳುಹಿಸಲು ಮತ್ತು ಸ್ವೀಕರಿಸಲು ನೀವು Signal ಬಳಸಬಹುದು. ಎಲ್ಲ ಪೇಮೆಂಟ್‌ಗಳು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ಗಳು ಮತ್ತು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ವಾಲೆಟ್‌ಗೆ ಬಳಕೆಯ ನಿಯಮಗಳಿಗೆ ಒಳಪಟ್ಟಿದೆ. ಇದು ಬೀಟಾ ಸೌಲಭ್ಯವಾಗಿದೆ. ಹೀಗಾಗಿ, ನೀವು ಕೆಲವು ಸಮಸ್ಯೆಗಳನ್ನು ಎದುರಿಸಬಹುದು ಮತ್ತು ನೀವು ಕಳೆದುಕೊಳ್ಳಬಹುದಾದ ಪೇಮೆಂಟ್‌ಗಳು ಅಥವಾ ಬ್ಯಾಲೆನ್ಸ್‌ಗಳನ್ನು ರಿಕವರಿ ಮಾಡಲಾಗದು. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ನಿಯಮಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal ನಲ್ಲಿ ಪೇಮೆಂಟ್ಸ್‌ ಇನ್ನು ಲಭ್ಯವಿರುವುದಿಲ್ಲ. ನೀವು ಇನ್ನೂ ಎಕ್ಸ್‌ಚೇಂಜ್‌ಗೆ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಬಹುದು. ಆದರೆ, ನೀವು ಇನ್ನು ಪೇಮೆಂಟ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗದು ಮತ್ತು ಸ್ವೀಕರಿಸಲಾಗದು ಅಥವಾ ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಲಾಗದು.</string>
@@ -3128,19 +3129,19 @@
 
     <!-- GrantPermissionsFragment -->
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
-    <string name="GrantPermissionsFragment__not_now">Not now</string>
+    <string name="GrantPermissionsFragment__not_now">ಈಗಲ್ಲ</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">Next</string>
+    <string name="GrantPermissionsFragment__next">ಮುಂದೆ</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">ಅನುಮತಿಗಳನ್ನು ಅನುಮತಿಸಿ</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">Notifications</string>
+    <string name="GrantPermissionsFragment__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
     <!-- Notifications permission row description -->
     <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contacts</string>
+    <string name="GrantPermissionsFragment__contacts">ಸಂಪರ್ಕಗಳು</string>
     <!-- Contacts permission row description -->
     <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
     <!-- Phone calls permission row title -->
@@ -3148,7 +3149,7 @@
     <!-- Phone calls permission row description -->
     <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
     <!-- Storage permission row title -->
-    <string name="GrantPermissionsFragment__storage">Storage</string>
+    <string name="GrantPermissionsFragment__storage">ಸ್ಟೊರೇಜ್</string>
     <!-- Storage permission row description -->
     <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
@@ -3290,7 +3291,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">ಇವರಿಗೆ ಹೊಸ ಕರೆ...</string>
+    <string name="contact_selection_list__new_call">ಇವರಿಗೆ ಹೊಸ ಕರೆ…</string>
     <string name="contact_selection_list__unknown_contact">..ಗೆ ಹೊಸ ಸಂದೇಶಗಳು</string>
     <string name="contact_selection_list__unknown_contact_block">ಬಳಕೆದಾರರನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
@@ -4064,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">ನೀವು ಬ್ಯಾಲೆನ್ಸ್ ಒಂದನ್ನು ಪಡೆದಿದ್ದೀರಿ! ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛ ಸೇವ್ ಮಾಡಲು ಸಮಯ—ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ರೀಸ್ಟೋರ್ ಮಾಡಲು 24-ಪದದ ಒಂದು ಕೀಯನ್ನು ನೀವು ಬಳಸಬಹುದು.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛ ಸೇವ್ ಮಾಡಲು ಸಮಯ—ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ರೀಸ್ಟೋರ್ ಮಾಡಲು 24-ಪದದ ಒಂದು ಕೀಯನ್ನು ನೀವು ಬಳಸಬಹುದು. ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛ ಸೇವ್ ಮಾಡಲು ಸಮಯ—ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ರೀಸ್ಟೋರ್ ಮಾಡಲು 24-ಪದದ ಒಂದು ಕೀಯನ್ನು ನೀವು ಬಳಸಬಹುದು.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವು %1$d- ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು, ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ಈ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ.</string>
     <string name="PaymentsRecoveryStartFragment__start">ಆರಂಭಿಸಿ</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ಹಸ್ತಚಾಲಿತವಾಗಿ ನಮೂದಿಸಿ</string>
@@ -4194,7 +4195,7 @@
     <string name="ExportAccountDataFragment__export_report_action">ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ...</string>
+    <string name="ExportAccountDataFragment__download_progress">ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">ಎಕ್ಸ್‌ಪೋರ್ಟ್‌ನ ವೇಳೆಯಲ್ಲಷ್ಟೇ ನಿಮ್ಮ ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ Signal ನಿಂದ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.</string>
 
@@ -5029,7 +5030,7 @@
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationSettingsFragment__turn_on">ಆನ್‌ ಮಾಡಿ</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal ರಿಲೀಸ್ ನೋಟ್‌ಗಳು &amp; ಸುದ್ದಿ</string>
@@ -5431,7 +5432,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">ಈಗಲ್ಲ</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">%1$s ಅವರ ಪರವಾಗಿ Signal ಗೆ ನೀವು ದೇಣಿಗೆ ನೀಡಿದ್ದೀರಿ. ತಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ತಮ್ಮ ಬೆಂಬಲವನ್ನು ಪ್ರದರ್ಶಿಸಲು ಅವರಿಗೆ ಆಯ್ಕೆಯನ್ನು ನೀಡಲಾಗುತ್ತದೆ.</string>
     <!-- Expired gift sheet title -->
@@ -5966,7 +5967,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Displayed when deleting call history items -->
-    <string name="CallLogFragment__deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
+    <string name="CallLogFragment__deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
     <string name="CallLogFragment__deletion_failed">ಅಳಿಸುವಿಕೆ ವಿಫಲಗೊಂಡಿದೆ.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
@@ -6108,7 +6109,7 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ಎಡಿಟ್‌ನ ಇತಿಹಾಸ</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Edit Message</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">ಮೆಸೇಜ್ ಎಡಿಟ್ ಮಾಡಿ</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
     <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
@@ -6152,9 +6153,9 @@
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ನಿಮ್ಮ QR ಕೋಡ್ ಅನ್ನು ನೀವು ರೀಸೆಟ್ ಮಾಡಿದರೆ, ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಕಾರ್ಯನಿರ್ವಹಿಸುವುದಿಲ್ಲ.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ಮರುಹೊಂದಿಸಿ</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ಮರುಹೊಂದಿಸಿ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6182,7 +6183,7 @@
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
-    <string name="PendingParticipantsView__would_like_to_join">...ಸೇರಲು ಬಯಸುತ್ತಾರೆ</string>
+    <string name="PendingParticipantsView__would_like_to_join">…ಸೇರಲು ಬಯಸುತ್ತಾರೆ</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
         <item quantity="one">+%1$d ವಿನಂತಿ</item>
