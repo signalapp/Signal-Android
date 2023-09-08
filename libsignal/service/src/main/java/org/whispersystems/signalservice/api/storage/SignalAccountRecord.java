@@ -50,7 +50,7 @@ public final class SignalAccountRecord implements SignalRecord {
     this.avatarUrlPath        = OptionalUtil.absentIfEmpty(proto.avatarUrlPath);
     this.pinnedConversations  = new ArrayList<>(proto.pinnedConversations.size());
     this.payments             = new Payments(proto.payments.enabled, OptionalUtil.absentIfEmpty(proto.payments.entropy));
-    this.defaultReactions     = new ArrayList<>(proto.preferredReactionEmoji.size());
+    this.defaultReactions     = new ArrayList<>(proto.preferredReactionEmoji);
     this.subscriber           = new Subscriber(proto.subscriberCurrencyCode, proto.subscriberId.toByteArray());
 
     for (AccountRecord.PinnedConversation conversation : proto.pinnedConversations) {
