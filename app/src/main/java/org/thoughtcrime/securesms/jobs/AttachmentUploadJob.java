@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
@@ -69,7 +69,7 @@ public final class AttachmentUploadJob extends BaseJob {
 
   public static long getMaxPlaintextSize() {
     long maxCipherTextSize = FeatureFlags.maxAttachmentSizeBytes();
-    long maxPaddedSize     = AttachmentCipherOutputStream.getPlaintextLength(maxCipherTextSize);
+    long maxPaddedSize     = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize);
     return PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize);
   }
 

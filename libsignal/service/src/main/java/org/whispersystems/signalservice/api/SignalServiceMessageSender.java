@@ -23,6 +23,7 @@ import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
 import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder;
@@ -786,7 +787,7 @@ public class SignalServiceMessageSender {
     byte[]             attachmentIV     = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getIV).orElseGet(() -> Util.getSecretBytes(16));
     long               paddedLength     = PaddingInputStream.getPaddedSize(attachment.getLength());
     InputStream        dataStream       = new PaddingInputStream(attachment.getInputStream(), attachment.getLength());
-    long               ciphertextLength = AttachmentCipherOutputStream.getCiphertextLength(paddedLength);
+    long               ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(paddedLength);
     PushAttachmentData attachmentData   = new PushAttachmentData(attachment.getContentType(),
                                                                  dataStream,
                                                                  ciphertextLength,

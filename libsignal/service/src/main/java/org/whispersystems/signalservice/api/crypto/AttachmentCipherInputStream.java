@@ -11,6 +11,8 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.protocol.logging.Log;
+import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.util.ContentLengthInputStream;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -78,10 +80,12 @@ public class AttachmentCipherInputStream extends FilterInputStream {
         }
         wrappedStream = new FileInputStream(file);
       } else {
+        final int             dataSize   = Math.toIntExact(AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(plaintextLength)));
+        final ChunkSizeChoice sizeChoice = ChunkSizeChoice.inferChunkSize(dataSize);
         wrappedStream = new IncrementalMacInputStream(
             new FileInputStream(file),
             parts[1],
-            ChunkSizeChoice.inferChunkSize(Math.toIntExact(plaintextLength)),
+            sizeChoice,
             incrementalDigest);
       }
       InputStream inputStream = new AttachmentCipherInputStream(wrappedStream, parts[0], file.length() - BLOCK_SIZE - mac.getMacLength());
