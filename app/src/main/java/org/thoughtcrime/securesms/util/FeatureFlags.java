@@ -100,7 +100,7 @@ public final class FeatureFlags {
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
-  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
+  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.3";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.11";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
