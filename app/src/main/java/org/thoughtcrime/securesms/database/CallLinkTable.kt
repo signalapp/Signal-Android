@@ -12,6 +12,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
+import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.LiveRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -133,6 +135,15 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .where("$ROOM_ID = ?", roomId.serialize())
       .run()
 
+    val recipientId = readableDatabase
+      .select(RECIPIENT_ID)
+      .from(TABLE_NAME)
+      .where("$ROOM_ID = ?", roomId.serialize())
+      .run()
+      .readToSingleLong()
+      .let { RecipientId.from(it) }
+
+    Recipient.live(recipientId).refresh()
     ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
