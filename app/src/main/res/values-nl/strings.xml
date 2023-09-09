@@ -1192,7 +1192,7 @@
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Herinner me later</string>
     <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
-    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
+    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe om je pincode te bevestigen, zodat je je pincode goed onthoudt.</string>
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
     <string name="Megaphones_get_started">Maak een begin</string>
     <string name="Megaphones_new_group">Nieuwe-stijl groep</string>
@@ -2909,7 +2909,7 @@
     <string name="preferences__mmsc_password">MMSC-wachtwoord</string>
     <string name="preferences__sms_delivery_reports">Sms-ontvangstbevestigingen</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
-    <string name="preferences__data_and_storage">Dataoverdracht en -opslag</string>
+    <string name="preferences__data_and_storage">Data en opslag</string>
     <string name="preferences__storage">Opslag</string>
     <string name="preferences__payments">Betalingen</string>
     <!-- Privacy settings payments section description -->
@@ -3001,11 +3001,11 @@
     <string name="preferences_app_protection__payments">Betalingen</string>
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Minder dataoverdracht bij oproepen</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Minder data gebruiken bij oproepen</string>
     <string name="preferences_data_and_storage__never">Nooit</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
     <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wanneer je een slechte verbinding hebt kan het instellen van minder dataoverdracht de kwaliteit van een oproep verbeteren</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Het gebruik van minder data kan de kwaliteit van oproepen op slechte netwerken verbeteren.</string>
     <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend chat</string>
     <string name="preferences_notifications__show">Laat zien</string>
     <string name="preferences_notifications__ringtone">Oproepgeluid</string>
@@ -4141,7 +4141,7 @@
 
     <!-- QualitySelectorBottomSheetDialog -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standaard</string>
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Sneller, minder dataoverdracht</string>
+    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Sneller, minder dataverbruik</string>
     <string name="QualitySelectorBottomSheetDialog__high">Hoog</string>
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langzamer, meer dataoverdracht</string>
     <string name="QualitySelectorBottomSheetDialog__photo_quality">Afbeeldingskwaliteit</string>
@@ -4360,7 +4360,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-verzendkwaliteit</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Door hoge kwaliteit media te verzenden verbruik je meer dataoverdracht. Als je provider je dataverbruik in rekening brengt kan dat dus duurder zijn.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Door hoge kwaliteit media te verzenden verbruik je meer data.</string>
     <string name="DataAndStorageSettingsFragment__high">Hoog</string>
     <string name="DataAndStorageSettingsFragment__standard">Standaard</string>
     <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
