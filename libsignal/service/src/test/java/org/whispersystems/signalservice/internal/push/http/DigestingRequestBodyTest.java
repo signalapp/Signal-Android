@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.internal.push.http;
 
 import org.junit.Test;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -14,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class DigestingRequestBodyTest {
 
   private static int  CONTENT_LENGTH = 70000;
-  private static int  TOTAL_LENGTH   = (int) AttachmentCipherOutputStream.getCiphertextLength(CONTENT_LENGTH);
+  private static int  TOTAL_LENGTH   = (int) AttachmentCipherStreamUtil.getCiphertextLength(CONTENT_LENGTH);
 
   private final byte[] attachmentKey = Util.getSecretBytes(64);
   private final byte[] attachmentIV  = Util.getSecretBytes(16);

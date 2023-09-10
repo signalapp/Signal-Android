@@ -32,7 +32,7 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
   @After
   fun tearDown() {
     InstrumentationApplicationDependencyProvider.clearHandlers()
-    SignalStore.phoneNumberPrivacy().clearUsernameOutOfSync()
+    SignalStore.account().usernameOutOfSync = false
   }
 
   @Test
@@ -78,7 +78,7 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
     // THEN
     assertTrue(didReserve)
     assertTrue(didConfirm)
-    assertFalse(SignalStore.phoneNumberPrivacy().isUsernameOutOfSync)
+    assertFalse(SignalStore.account().usernameOutOfSync)
   }
 
   @Test
@@ -108,7 +108,7 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
     // THEN
     assertTrue(didReserve)
     assertTrue(didConfirm)
-    assertFalse(SignalStore.phoneNumberPrivacy().isUsernameOutOfSync)
+    assertFalse(SignalStore.account().usernameOutOfSync)
   }
 
   @Test
@@ -142,7 +142,7 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
     // THEN
     assertFalse(didReserve)
     assertFalse(didConfirm)
-    assertFalse(SignalStore.phoneNumberPrivacy().isUsernameOutOfSync)
+    assertFalse(SignalStore.account().usernameOutOfSync)
   }
 
   @Test
@@ -176,6 +176,6 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
     // THEN
     assertTrue(didReserve)
     assertFalse(didConfirm)
-    assertTrue(SignalStore.phoneNumberPrivacy().isUsernameOutOfSync)
+    assertTrue(SignalStore.account().usernameOutOfSync)
   }
 }

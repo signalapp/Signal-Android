@@ -522,7 +522,14 @@ class ConversationFragment :
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
-  private lateinit var reactionDelegate: ConversationReactionDelegate
+  private val reactionDelegate: ConversationReactionDelegate by lazy(LazyThreadSafetyMode.NONE) {
+    val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
+    val delegate = ConversationReactionDelegate(conversationReactionStub)
+    delegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
+
+    delegate
+  }
+
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
 
   //region Android Lifecycle
@@ -952,10 +959,6 @@ class ConversationFragment :
       )
 
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
-
-    val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
-    reactionDelegate = ConversationReactionDelegate(conversationReactionStub)
-    reactionDelegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
 
     voiceMessageRecordingDelegate = VoiceMessageRecordingDelegate(
@@ -1035,7 +1038,7 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick { viewModel.pagingController.onDataInvalidated() }
+    val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {
@@ -1789,7 +1792,7 @@ class ConversationFragment :
     if (slideDeck == null) {
       val voiceNote: DraftTable.Draft? = draftViewModel.voiceNoteDraft
       if (voiceNote != null) {
-        sendMessageWithoutComposeInput(slide = AudioSlide.createFromVoiceNoteDraft(requireContext(), voiceNote), clearCompose = true)
+        sendMessageWithoutComposeInput(slide = AudioSlide.createFromVoiceNoteDraft(voiceNote), clearCompose = true)
         return
       }
     }
@@ -2305,7 +2308,7 @@ class ConversationFragment :
   }
 
   private fun isScrolledPastButtonThreshold(): Boolean {
-    return layoutManager.findFirstCompletelyVisibleItemPosition() > 4
+    return layoutManager.findFirstVisibleItemPosition() > 4
   }
 
   private fun shouldScrollToBottom(): Boolean {
@@ -2517,7 +2520,7 @@ class ConversationFragment :
 
       if (!ViewOnceUtil.isViewable(messageRecord)) {
         val toastText = if (messageRecord.isOutgoing) {
-          R.string.ConversationFragment_outgoing_view_once_media_files_are_automatically_removed
+          R.string.ConversationFragment_view_once_media_is_deleted_after_sending
         } else {
           R.string.ConversationFragment_you_already_viewed_this_message
         }
@@ -4060,7 +4063,7 @@ class ConversationFragment :
     }
 
     override fun sendVoiceNote(draft: VoiceNoteDraft) {
-      val audioSlide = AudioSlide(requireContext(), draft.uri, draft.size, MediaUtil.AUDIO_AAC, true)
+      val audioSlide = AudioSlide(draft.uri, draft.size, MediaUtil.AUDIO_AAC, true)
 
       sendMessageWithoutComposeInput(
         slide = audioSlide,

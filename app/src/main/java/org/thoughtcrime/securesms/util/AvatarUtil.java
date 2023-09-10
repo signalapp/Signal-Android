@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -115,20 +116,10 @@ public final class AvatarUtil {
 
   @WorkerThread
   public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      GlideRequest<Bitmap> glideRequest = GlideApp.with(context).asBitmap().load(new ConversationShortcutPhoto(recipient));
-      if (recipient.shouldBlurAvatar()) {
-        glideRequest = glideRequest.transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS));
-      }
-      return IconCompat.createWithAdaptiveBitmap(glideRequest.submit().get());
-    } catch (ExecutionException | InterruptedException e) {
-      Log.w(TAG, "Failed to generate shortcut icon for recipient " + recipient.getId() + ". Generating fallback.", e);
-
-      Drawable fallbackDrawable = getFallback(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE);
-      Bitmap   fallbackBitmap   = DrawableUtil.toBitmap(fallbackDrawable, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE);
-      Bitmap   wrappedBitmap    = DrawableUtil.wrapBitmapForShortcutInfo(fallbackBitmap);
-
-      return IconCompat.createWithAdaptiveBitmap(wrappedBitmap);
+    if (Build.VERSION.SDK_INT > 29) {
+      return getIconWithUriForNotification(recipient.getId());
+    } else {
+      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient));
     }
   }
 
@@ -223,7 +214,7 @@ public final class AvatarUtil {
 
     @Override
     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-      Log.d(TAG, "AvatarTarget#onResourceReady:");
+      Log.d(TAG, "AvatarTarget#onResourceReady: " + resource.getWidth() + ", " + resource.getHeight() + ", s:" + size);
       bitmap.set(resource);
       countDownLatch.countDown();
     }

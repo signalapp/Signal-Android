@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.lock.v2.SvrMigrationActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -232,17 +233,8 @@ public final class Megaphones {
         .setBody(R.string.NotificationsMegaphone_never_miss_a_message)
         .setImage(R.drawable.megaphone_notifications_64)
         .setActionButton(R.string.NotificationsMegaphone_turn_on, (megaphone, controller) -> {
-          if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.getInstance().isMessageChannelEnabled()) {
-            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getInstance().getMessagesChannel());
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-            controller.onMegaphoneNavigationRequested(intent);
-          } else if (Build.VERSION.SDK_INT >= 26 &&
-                     (!NotificationChannels.getInstance().areNotificationsEnabled() || !NotificationChannels.getInstance().isMessagesChannelGroupEnabled()))
-          {
-            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-            controller.onMegaphoneNavigationRequested(intent);
+          if (Build.VERSION.SDK_INT >= 26) {
+            controller.onMegaphoneDialogFragmentRequested(new TurnOnNotificationsBottomSheet());
           } else {
             controller.onMegaphoneNavigationRequested(AppSettingsActivity.notifications(context));
           }

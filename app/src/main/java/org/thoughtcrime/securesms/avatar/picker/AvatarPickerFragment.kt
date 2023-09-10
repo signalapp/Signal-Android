@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
 import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -238,7 +239,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
   @Suppress("DEPRECATION")
   private fun openGallery() {
     Permissions.with(this)
-      .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+      .request(*PermissionCompat.forImages())
       .ifNecessary()
       .onAllGranted {
         val intent = AvatarSelectionActivity.getIntentForGallery(requireContext())

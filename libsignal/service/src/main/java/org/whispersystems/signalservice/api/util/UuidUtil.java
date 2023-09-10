@@ -59,6 +59,10 @@ public final class UuidUtil {
     return ByteString.copyFrom(toByteArray(uuid));
   }
 
+  public static okio.ByteString toOkioByteString(UUID uuid) {
+    return okio.ByteString.of(toByteArray(uuid));
+  }
+
   public static UUID fromByteString(ByteString bytes) {
     return parseOrThrow(bytes.toByteArray());
   }

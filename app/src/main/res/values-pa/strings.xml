@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">ਸੁਨੇਹਾ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">ਤੁਰੰਤ ਜਵਾਬ ਦੇਣ ਲਈ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ ’ਤੇ ਸੱਜੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰ ਸਕਦੇ ਹੋ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ਤੁਰੰਤ ਜਵਾਬ ਦੇਣ ਲਈ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ ’ਤੇ ਖੱਬੇ ਪਾਸੇ ਸਵਾਈਪ ਕਰ ਸਕਦੇ ਹੋ</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ਇੱਕ-ਵਾਰ ਦੇਖੀਆਂ ਜਾ ਸਕਣ ਵਾਲੀਆਂ ਮੀਡੀਆ ਫ਼ਾਈਲਾਂ ਨੂੰ ਭੇਜੇ ਜਾਣ ਤੋਂ ਬਾਅਦ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਇਹ ਸੁਨੇਹਾ ਦੇਖ ਲਿਆ ਹੈ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ਤੁਸੀਂ ਇਸ ਚੈਟ ਵਿੱਚ ਖੁਦ ਲਈ ਨੋਟ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਦੇ ਨਾਲ ਹੋਰ ਡਿਵਾਈਸਾਂ ਨੂੰ ਲਿੰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ, ਤਾਂ ਨਵੇਂ ਨੋਟਸ ਉਹਨਾਂ ਨਾਲ ਵੀ ਸਿੰਕ ਕੀਤੇ ਜਾਣਗੇ।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">ਗਰੁੱਪ ਦੇ %1$d ਮੈਂਬਰਾਂ ਦਾ ਇੱਕੋ ਨਾਮ ਹੈ।</string>
@@ -2243,6 +2243,18 @@
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ਸੰਪਰਕ ਦੁਆਰਾ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਬਾਰੇ ਸੂਚਨਾਵਾਂ ਨੂੰ ਬੰਦ ਕਰਨਾ ਹੈ? ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ Signal &gt; ਸੈਟਿੰਗਾਂ &gt; ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਜਾ ਕੇ ਵਿੱਚ ਦੁਬਾਰਾ ਸਮਰੱਥ ਕਰ ਸਕਦੇ ਹੋ।</string>
 
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">ਨੋਟੀਫਿਕੇਸ਼ਨ ਨੂੰ ਚਾਲੂ ਕਰੋ</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">ਨਵੇਂ ਸੁਨੇਹਿਆਂ ਲਈ ਨੋਟੀਫਿਕੇਸ਼ਨ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">ਸੈਟਿੰਗਾਂ</string>
+
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">ਸੁਨੇਹੇ</string>
     <string name="NotificationChannel_calls">ਕਾਲਾਂ</string>
@@ -2763,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">ਲੌਗ ਅੱਪਲੋਡ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ਮਸਲੇ ਬਾਰੇ ਸਾਨੂੰ ਸਮਝਾਉਣ ਲਈ ਮਦਦ ਵਾਸਤੇ ਜਿੰਨਾ ਵੀ ਹੋ ਸਕੇ ਵੇਰਵਾ ਦਿਓ।</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵਿਕਲਪ ਚੁਣੋ \\-\\-</item>
+        <item>Please select an option</item>
         <item>ਕੋਈ ਚੀਜ਼ ਕੰਮ ਨਹੀਂ ਕਰ ਰਹੀ ਹੈ</item>
         <item>ਫੀਚਰ ਲਈ ਬੇਨਤੀ</item>
         <item>ਸਵਾਲ</item>
@@ -2902,7 +2914,6 @@
     <string name="preferences__payments">ਭੁਗਤਾਨ</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">ਭੁਗਤਾਨ ਲਾਕ</string>
-    <string name="preferences__payments_beta">ਭੁਗਤਾਨ (ਬੀਟਾ)</string>
     <string name="preferences__conversation_length_limit">ਚੈਟ ਦੀ ਲੰਬਾਈ ਦੀ ਸੀਮਾ</string>
     <string name="preferences__keep_messages">ਸੁਨੇਹੇ ਰੱਖੋ</string>
     <string name="preferences__clear_message_history">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਮਿਟਾਓ</string>
@@ -3056,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">ਭੇਜਿਆ</string>
     <string name="PaymentsAllActivityFragment__received">ਪ੍ਰਾਪਤ ਕੀਤਾ</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">ਭੁਗਤਾਨ (ਬੀਟਾ) ਨਾਲ ਜਾਣ-ਪਛਾਣ</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ਇੱਕ ਨਵੀਂ ਪਰਦੇਦਾਰੀ ਉੱਤੇ ਅਧਾਰਿਤ ਡਿਜੀਟਲ ਕਰੰਸੀ, MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰੋ। ਸ਼ੁਰੂਆਤ ਕਰਨ ਲਈ ਭੁਗਤਾਨ ਫੀਚਰ ਐਕਟੀਵੇਟ ਕਰੋ।</string>
     <string name="PaymentsHomeFragment__activate_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕਰੋ</string>
     <string name="PaymentsHomeFragment__activating_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
@@ -3090,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">ਭੁਗਤਾਨ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕੀਤਾ ਗਿਆ।</string>
     <string name="PaymentsHomeFragment__payment_failed">ਭੁਗਤਾਨ ਅਸਫ਼ਲ ਹੈ</string>
     <string name="PaymentsHomeFragment__details">ਵੇਰਵਾ</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">ਤੁਸੀਂ MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ। ਸਾਰੇ ਭੁਗਤਾਨ MobileCoins ਅਤੇ MobileCoin ਵਾਲੇਟ ਲਈ ਵਰਤੋਂ ਦੇ ਨਿਯਮਾਂ ਦੇ ਅਧੀਨ ਹਨ। ਇਹ ਇੱਕ ਬੀਟਾ ਵਿਸ਼ੇਸ਼ਤਾ ਹੈ ਇਸ ਲਈ ਤੁਹਾਨੂੰ ਕੁਝ ਮਸਲਿਆਂ ਦਾ ਸਾਹਮਣਾ ਕਰਨਾ ਪੈ ਸਕਦਾ ਹੈ ਅਤੇ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਦੁਆਰਾ ਗੁਆਏ ਜਾਣ ਵਾਂਲੇ ਭੁਗਤਾਨ ਜਾਂ ਬਕਾਏ ਮੁੜ ਪ੍ਰਾਪਤ ਨਾ ਕੀਤੇ ਜਾ ਸਕਣ। </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">ਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ਨਿਯਮ ਦੇਖੋ</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal ਵਿੱਚ ਭੁਗਤਾਨ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਕਿਸੇ ਐਕਸਚੇਂਜ ਵਿੱਚ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਹੁਣ ਭੁਗਤਾਨ ਭੇਜ ਅਤੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜਾਂ ਫੰਡ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
@@ -3113,6 +3126,32 @@
     <string name="PaymentsHomeFragment__cancel">ਰੱਦ ਕਰੋ</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">ਹਾਲੇ ਨਹੀਂ</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">ਅੱਗੇ</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">ਇਜਾਜ਼ਤਾਂ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿਓ</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">ਸੂਚਨਾਵਾਂ</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">ਸੰਪਰਕ</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">ਸਟੋਰੇਜ਼</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4026,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">ਤੁਹਾਡੇ ਕੋਲ ਬੈਲੈਂਸ ਹੈ! ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੁੰਜੀ ਹੈ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੁੰਜੀ ਹੈ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ। ਹੋਰ ਜਾਣੋ</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ਹੁਣ ਤੁਹਾਡੇ ਰਿਕਵਰੀ ਵਾਕ ਨੂੰ ਸੇਵ ਕਰਨ ਦਾ ਸਮਾਂ ਹੈ—24-ਸ਼ਬਦਾਂ ਦੀ ਇੱਕ ਕੁੰਜੀ ਹੈ ਜਿਸਦੀ ਵਰਤੋਂ ਤੁਸੀਂ ਆਪਣਾ ਬੈਲੈਂਸ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ਤੁਹਾਡਾ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ ਤੁਹਾਡੇ ਲਈ ਵਿਲੱਖਣ ਇੱਕ %1$d-ਸ਼ਬਦਾਂ ਵਾਲਾ ਸ਼ਬਦ-ਸਮੂਹ ਹੁੰਦਾ ਹੈ। ਆਪਣੇ ਬਕਾਏ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਇਸ ਸ਼ਬਦ-ਸਮੂਹ ਦੀ ਵਰਤੋਂ ਕਰੋ।</string>
     <string name="PaymentsRecoveryStartFragment__start">ਸ਼ੁਰੂ</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ਖੁਦ ਦਿਓ</string>
@@ -4988,6 +5027,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">ਚੋਣਕਾਰ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ ਹੈ।</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">ਚਾਲੂ ਕਰੋ</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal ਰਿਲੀਜ਼ ਨੋਟਸ ਅਤੇ ਖ਼ਬਰਾਂ</string>
@@ -6066,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ਸੋਧਣ ਦਾ ਇਤਿਹਾਸ</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">ਸਿਰਫ਼ Signal ਬੀਟਾ</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">ਸੁਨੇਹੇ ਨੂੰ ਸੋਧੋ</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">ਸੁਨੇਹਿਆਂ ਨੂੰ ਸੋਧਣ ਦੀ ਸਹੂਲਤ ਸਿਰਫ਼ Signal ਬੀਟਾ ਦੇ ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਉਪਲਬਧ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਕਿਸੇ ਸੁਨੇਹੇ ਨੂੰ ਸੋਧਦੇ ਹੋ, ਤਾਂ ਇਹ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਨੂੰ ਦਿਖਾਈ ਦੇਵੇਗਾ ਜਿਹਨਾਂ ਕੋਲ Signal ਬੀਟਾ ਦਾ ਨਵਾਂ ਵਰਜ਼ਨ ਹੈ।</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">ਰੱਦ ਕਰੋ</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6103,6 +6146,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">ਵਰਤੋਂਕਾਰ ਨਾਮ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">ਲਿੰਕ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ਜੇਕਰ ਤੁਸੀਂ ਆਪਣਾ QR ਕੋਡ ਰੀਸੈੱਟ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡਾ ਮੌਜੂਦਾ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ਰੀਸੈੱਟ ਕਰੋ</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ਰੀਸੈੱਟ ਕਰੋ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6119,8 +6172,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">QR ਕੋਡ ਅਵੈਧ ਸੀ।</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">ਵਰਤੋਂਕਾਰ ਨਾਂ %1$s ਵਾਲਾ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਲੱਭਿਆ।</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">ਨੈੱਟਵਰਕ ਗੜਬੜੀ ਪੇਸ਼ ਆਈ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ|</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6141,7 +6200,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">ਰੱਦ ਕਰੋ</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">ਮਨਜ਼ੂਰ ਕਰੋ</string>
 
     <!-- EOF -->

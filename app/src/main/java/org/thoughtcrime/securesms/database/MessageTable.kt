@@ -268,6 +268,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     private const val INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID = "message_thread_story_parent_story_scheduled_date_latest_revision_id_index"
     private const val INDEX_DATE_SENT_FROM_TO_THREAD = "message_date_sent_from_to_thread_index"
+    private const val INDEX_THREAD_COUNT = "message_thread_count_index"
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -286,7 +287,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS message_latest_revision_id_index ON $TABLE_NAME ($LATEST_REVISION_ID)",
       "CREATE INDEX IF NOT EXISTS message_from_recipient_id_index ON $TABLE_NAME ($FROM_RECIPIENT_ID)",
       "CREATE INDEX IF NOT EXISTS message_to_recipient_id_index ON $TABLE_NAME ($TO_RECIPIENT_ID)",
-      "CREATE UNIQUE INDEX IF NOT EXISTS message_unique_sent_from_thread ON $TABLE_NAME ($DATE_SENT, $FROM_RECIPIENT_ID, $THREAD_ID)"
+      "CREATE UNIQUE INDEX IF NOT EXISTS message_unique_sent_from_thread ON $TABLE_NAME ($DATE_SENT, $FROM_RECIPIENT_ID, $THREAD_ID)",
+      // This index is created specifically for getting the number of messages in a thread and therefore needs to be kept in sync with that query
+      "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_COUNT ON $TABLE_NAME ($THREAD_ID) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -1810,17 +1813,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getMessageCountForThread(threadId: Long): Int {
     return readableDatabase
       .select("COUNT(*)")
-      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
-      .where("$THREAD_ID = ? AND $STORY_TYPE = ? AND $PARENT_STORY_ID <= ? AND $SCHEDULED_DATE = ? AND $LATEST_REVISION_ID IS NULL", threadId, 0, 0, -1)
-      .run()
-      .readToSingleInt()
-  }
-
-  fun getMessageCountForThread(threadId: Long, beforeTime: Long): Int {
-    return readableDatabase
-      .select("COUNT(*)")
-      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
-      .where("$THREAD_ID = ? AND $DATE_RECEIVED < ? AND $STORY_TYPE = ? AND $PARENT_STORY_ID <= ? AND $SCHEDULED_DATE = ? AND $LATEST_REVISION_ID IS NULL", threadId, beforeTime, 0, 0, -1)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_COUNT")
+      .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL")
       .run()
       .readToSingleInt()
   }
@@ -5194,7 +5188,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         readReceiptCount = 0
       }
 
-      val slideDeck = SlideDeck(context, MmsNotificationAttachment(status, messageSize))
+      val slideDeck = SlideDeck(MmsNotificationAttachment(status, messageSize))
       val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(mailbox)) {
         try {
           GiftBadge.parseFrom(Base64.decode(body))
@@ -5285,7 +5279,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val previews = getLinkPreviews(cursor, attachments)
       val previewAttachments = previews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
 
-      val slideDeck = buildSlideDeck(context, attachments.filterNot { contactAttachments.contains(it) }.filterNot { previewAttachments.contains(it) })
+      val slideDeck = buildSlideDeck(attachments.filterNot { contactAttachments.contains(it) }.filterNot { previewAttachments.contains(it) })
 
       val quote = getQuote(cursor)
 
@@ -5389,7 +5383,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
       val attachments = attachments.getAttachments(cursor)
       val quoteAttachments: List<Attachment> = attachments.filter { it.isQuote }
-      val quoteDeck = SlideDeck(context, quoteAttachments)
+      val quoteDeck = SlideDeck(quoteAttachments)
 
       return if (quoteId > 0 && quoteAuthor > 0) {
         if (quoteText != null && (quoteMentions.isNotEmpty() || bodyRanges != null)) {
@@ -5437,12 +5431,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     companion object {
 
       @JvmStatic
-      fun buildSlideDeck(context: Context, attachments: List<DatabaseAttachment>): SlideDeck {
+      fun buildSlideDeck(attachments: List<DatabaseAttachment>): SlideDeck {
         val messageAttachments = attachments
           .filterNot { it.isQuote }
           .sortedWith(DisplayOrderComparator())
 
-        return SlideDeck(context, messageAttachments)
+        return SlideDeck(messageAttachments)
       }
     }
   }

@@ -16,8 +16,6 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -35,15 +33,15 @@ public class SlideDeck {
 
   private final List<Slide> slides = new LinkedList<>();
 
-  public SlideDeck(@NonNull Context context, @NonNull List<? extends Attachment> attachments) {
+  public SlideDeck(@NonNull List<? extends Attachment> attachments) {
     for (Attachment attachment : attachments) {
-      Slide slide = MediaUtil.getSlideForAttachment(context, attachment);
+      Slide slide = MediaUtil.getSlideForAttachment(attachment);
       if (slide != null) slides.add(slide);
     }
   }
 
-  public SlideDeck(@NonNull Context context, @NonNull Attachment attachment) {
-    Slide slide = MediaUtil.getSlideForAttachment(context, attachment);
+  public SlideDeck(@NonNull Attachment attachment) {
+    Slide slide = MediaUtil.getSlideForAttachment(attachment);
     if (slide != null) slides.add(slide);
   }
 

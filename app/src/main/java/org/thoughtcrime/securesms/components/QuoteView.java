@@ -4,18 +4,16 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -45,11 +43,12 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.io.IOException;
 import java.util.List;
 
-public class QuoteView extends FrameLayout implements RecipientForeverObserver {
+public class QuoteView extends ConstraintLayout implements RecipientForeverObserver {
 
   private static final String TAG = Log.tag(QuoteView.class);
 
@@ -79,17 +78,13 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
   }
 
-  private View               background;
-  private ViewGroup          mainView;
-  private ViewGroup          footerView;
   private TextView           authorView;
   private EmojiTextView      bodyView;
   private View               quoteBarView;
   private ShapeableImageView thumbnailView;
-  private View               attachmentVideoOverlayView;
-  private ViewGroup          attachmentContainerView;
-  private TextView           attachmentNameView;
-  private ImageView          dismissView;
+  private Stub<View>         attachmentVideoOVerlayStub;
+  private Stub<TextView>     attachmentNameViewStub;
+  private Stub<ImageView>    dismissStub;
   private EmojiImageView     missingStoryReaction;
   private EmojiImageView     storyReactionEmoji;
 
@@ -97,7 +92,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private LiveRecipient   author;
   private CharSequence    body;
   private TextView        mediaDescriptionText;
-  private TextView        missingLinkText;
+  private Stub<TextView>  missingLinkTextStub;
   private SlideDeck       attachments;
   private MessageType     messageType;
   private int             largeCornerRadius;
@@ -124,32 +119,27 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     initialize(attrs);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public QuoteView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     initialize(attrs);
   }
 
   private void initialize(@Nullable AttributeSet attrs) {
-    inflate(getContext(), R.layout.quote_view, this);
+    inflate(getContext(), R.layout.v2_quote_view, this);
 
-    this.background                   = findViewById(R.id.quote_background);
-    this.mainView                     = findViewById(R.id.quote_main);
-    this.footerView                   = findViewById(R.id.quote_missing_footer);
-    this.authorView                   = findViewById(R.id.quote_author);
-    this.bodyView                     = findViewById(R.id.quote_text);
-    this.quoteBarView                 = findViewById(R.id.quote_bar);
-    this.thumbnailView                = findViewById(R.id.quote_thumbnail);
-    this.attachmentVideoOverlayView   = findViewById(R.id.quote_video_overlay);
-    this.attachmentContainerView      = findViewById(R.id.quote_attachment_container);
-    this.attachmentNameView           = findViewById(R.id.quote_attachment_name);
-    this.dismissView                  = findViewById(R.id.quote_dismiss);
-    this.mediaDescriptionText         = findViewById(R.id.media_type);
-    this.missingLinkText              = findViewById(R.id.quote_missing_text);
-    this.missingStoryReaction         = findViewById(R.id.quote_missing_story_reaction_emoji);
-    this.storyReactionEmoji           = findViewById(R.id.quote_story_reaction_emoji);
-    this.largeCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_large);
-    this.smallCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
+    this.authorView                 = findViewById(R.id.quote_author);
+    this.bodyView                   = findViewById(R.id.quote_text);
+    this.quoteBarView               = findViewById(R.id.quote_bar);
+    this.thumbnailView              = findViewById(R.id.quote_thumbnail);
+    this.attachmentVideoOVerlayStub = new Stub<>(findViewById(R.id.quote_video_overlay_stub));
+    this.attachmentNameViewStub     = new Stub<>(findViewById(R.id.quote_attachment_name_stub));
+    this.dismissStub                = new Stub<>(findViewById(R.id.quote_dismiss_stub));
+    this.mediaDescriptionText       = findViewById(R.id.media_type);
+    this.missingLinkTextStub        = new Stub<>(findViewById(R.id.quote_missing_text_stub));
+    this.missingStoryReaction       = findViewById(R.id.quote_missing_story_reaction_emoji);
+    this.storyReactionEmoji         = findViewById(R.id.quote_story_reaction_emoji);
+    this.largeCornerRadius          = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_large);
+    this.smallCornerRadius          = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
 
     cornerMask = new CornerMask(this);
 
@@ -159,12 +149,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       messageType = MessageType.fromCode(typedArray.getInt(R.styleable.QuoteView_message_type, 0));
       typedArray.recycle();
 
-      dismissView.setVisibility(messageType == MessageType.PREVIEW ? VISIBLE : GONE);
+      dismissStub.setVisibility(messageType == MessageType.PREVIEW ? VISIBLE : GONE);
     }
 
     setMessageType(messageType);
-
-    dismissView.setOnClickListener(view -> setVisibility(GONE));
   }
 
   @Override
@@ -199,7 +187,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     params.width = thumbWidth;
 
     thumbnailView.setLayoutParams(params);
-    dismissView.setVisibility(messageType == MessageType.PREVIEW ? View.VISIBLE : View.GONE);
+    dismissStub.setVisibility(messageType == MessageType.PREVIEW ? View.VISIBLE : View.GONE);
+    if (dismissStub.resolved()) {
+      dismissStub.get().setOnClickListener(view -> setVisibility(GONE));
+    }
   }
 
   public void setQuote(GlideRequests glideRequests,
@@ -255,11 +246,6 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   public void onRecipientChanged(@NonNull Recipient recipient) {
     setQuoteAuthor(recipient);
   }
-
-  public @NonNull Projection getProjection(@NonNull ViewGroup parent) {
-    return Projection.relativeToParent(parent, this, getCorners());
-  }
-
   public @NonNull Projection.Corners getCorners() {
     return new Projection.Corners(cornerMask.getRadii());
   }
@@ -365,13 +351,13 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     boolean outgoing = messageType != MessageType.INCOMING && messageType != MessageType.STORY_REPLY_INCOMING;
     boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY_PREVIEW;
 
-    mainView.setMinimumHeight(isStoryReply() && originalMissing ? 0 : thumbHeight);
+    // TODO [alex] -- do we need this? mainView.setMinimumHeight(isStoryReply() && originalMissing ? 0 : thumbHeight);
     thumbnailView.setPadding(0, 0, 0, 0);
 
     StoryTextPostModel model = isStoryReply() ? getStoryTextPost(body) : null;
     if (model != null) {
-      attachmentVideoOverlayView.setVisibility(GONE);
-      attachmentContainerView.setVisibility(GONE);
+      attachmentVideoOVerlayStub.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
       glideRequests.load(model)
                    .centerCrop()
@@ -388,8 +374,8 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
         thumbnailView.setShapeAppearanceModel(buildShapeAppearanceForLayoutDirection());
       }
 
-      attachmentVideoOverlayView.setVisibility(GONE);
-      attachmentContainerView.setVisibility(GONE);
+      attachmentVideoOVerlayStub.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
       glideRequests.load(R.drawable.ic_gift_thumbnail)
                    .centerCrop()
@@ -403,17 +389,20 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     Slide documentSlide   = slideDeck.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
     Slide viewOnceSlide   = slideDeck.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);
 
-    attachmentVideoOverlayView.setVisibility(GONE);
+    attachmentVideoOVerlayStub.setVisibility(GONE);
 
     if (viewOnceSlide != null) {
       thumbnailView.setVisibility(GONE);
-      attachmentContainerView.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(GONE);
     } else if (imageVideoSlide != null && imageVideoSlide.getUri() != null) {
       thumbnailView.setVisibility(VISIBLE);
-      attachmentContainerView.setVisibility(GONE);
-      dismissView.setBackgroundResource(R.drawable.dismiss_background);
+      attachmentNameViewStub.setVisibility(GONE);
+
+      if (dismissStub.resolved()) {
+        dismissStub.get().setBackgroundResource(R.drawable.dismiss_background);
+      }
       if (imageVideoSlide.hasVideo() && !imageVideoSlide.isVideoGif()) {
-        attachmentVideoOverlayView.setVisibility(VISIBLE);
+        attachmentVideoOVerlayStub.setVisibility(VISIBLE);
       }
       glideRequests.load(new DecryptableUri(imageVideoSlide.getUri()))
                    .centerCrop()
@@ -422,17 +411,20 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                    .into(thumbnailView);
     } else if (documentSlide != null){
       thumbnailView.setVisibility(GONE);
-      attachmentContainerView.setVisibility(VISIBLE);
-      attachmentNameView.setText(documentSlide.getFileName().orElse(""));
+      attachmentNameViewStub.setVisibility(VISIBLE);
+      attachmentNameViewStub.get().setText(documentSlide.getFileName().orElse(""));
     } else {
       thumbnailView.setVisibility(GONE);
-      attachmentContainerView.setVisibility(GONE);
-      dismissView.setBackgroundDrawable(null);
+      attachmentNameViewStub.setVisibility(GONE);
+
+      if (dismissStub.resolved()) {
+        dismissStub.get().setBackground(null);
+      }
     }
   }
 
   private void setQuoteMissingFooter(boolean missing) {
-    footerView.setVisibility(missing && !isStoryReply() ? VISIBLE : GONE);
+    missingLinkTextStub.setVisibility(missing && !isStoryReply() ? VISIBLE : GONE);
   }
 
   private @Nullable StoryTextPostModel getStoryTextPost(@Nullable CharSequence body) {
@@ -501,12 +493,18 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     QuoteViewColorTheme quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(isOutgoing, isPreview, isWallpaperEnabled);
 
     quoteBarView.setBackgroundColor(quoteViewColorTheme.getBarColor(getContext()));
-    background.setBackgroundColor(quoteViewColorTheme.getBackgroundColor(getContext()));
+    setBackgroundColor(quoteViewColorTheme.getBackgroundColor(getContext()));
     authorView.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
     bodyView.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
-    attachmentNameView.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
+
+    if (attachmentNameViewStub.resolved()) {
+      attachmentNameViewStub.get().setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
+    }
     mediaDescriptionText.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
-    missingLinkText.setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
-    footerView.setBackgroundColor(quoteViewColorTheme.getBackgroundColor(getContext()));
+
+    if (missingLinkTextStub.resolved()) {
+      missingLinkTextStub.get().setTextColor(quoteViewColorTheme.getForegroundColor(getContext()));
+      missingLinkTextStub.get().setBackgroundColor(quoteViewColorTheme.getBackgroundColor(getContext()));
+    }
   }
 }

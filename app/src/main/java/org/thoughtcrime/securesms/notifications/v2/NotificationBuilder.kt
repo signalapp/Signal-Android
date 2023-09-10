@@ -274,7 +274,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val self: PersonCompat = PersonCompat.Builder()
         .setBot(false)
         .setName(if (includeShortcut) Recipient.self().getDisplayName(context) else context.getString(R.string.SingleRecipientNotificationBuilder_you))
-        .setIcon(if (includeShortcut) Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIconCompat() else null)
+        .setIcon(AvatarUtil.getIconWithUriForNotification(Recipient.self().id))
         .setKey(ConversationUtil.getShortcutId(Recipient.self().id))
         .build()
 
@@ -290,7 +290,7 @@ sealed class NotificationBuilder(protected val context: Context) {
             .setBot(false)
             .setName(notificationItem.getPersonName(context))
             .setUri(notificationItem.getPersonUri())
-            .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
+            .setIcon(notificationItem.getPersonIcon())
 
           if (includeShortcut) {
             personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.authorRecipient))
@@ -469,7 +469,12 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addPersonActual(recipient: Recipient) {
-      builder.addPerson(recipient.contactUri.toString())
+      builder.addPerson(
+        ConversationUtil.buildPerson(
+          context,
+          recipient
+        )
+      )
     }
 
     override fun setWhen(timestamp: Long) {

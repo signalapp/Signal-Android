@@ -162,6 +162,9 @@ class V2ConversationItemShape(
     /**
      * This message is in the middle of a cluster
      */
-    MIDDLE(collapsedSpacing, collapsedSpacing)
+    MIDDLE(collapsedSpacing, collapsedSpacing);
+
+    val isStartingShape: Boolean get() = this == SINGLE || this == START
+    val isEndingShape: Boolean get() = this == SINGLE || this == END
   }
 }

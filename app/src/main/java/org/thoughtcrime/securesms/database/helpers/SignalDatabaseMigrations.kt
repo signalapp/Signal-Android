@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V202_DropMessageTab
 import org.thoughtcrime.securesms.database.helpers.migration.V203_PreKeyStaleTimestamp
 import org.thoughtcrime.securesms.database.helpers.migration.V204_GroupForeignKeyMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V205_DropPushTable
+import org.thoughtcrime.securesms.database.helpers.migration.V206_AddConversationCountIndex
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -69,7 +70,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 205
+  const val DATABASE_VERSION = 206
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -299,6 +300,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 205) {
       V205_DropPushTable.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 206) {
+      V206_AddConversationCountIndex.migrate(context, db, oldVersion, newVersion)
     }
   }
 

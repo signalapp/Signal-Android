@@ -5,6 +5,10 @@ import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvali
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import okio.ByteString;
 
@@ -13,17 +17,19 @@ public final class ResumableUploadSpec {
   private final byte[] secretKey;
   private final byte[] iv;
 
-  private final String  cdnKey;
-  private final Integer cdnNumber;
-  private final String  resumeLocation;
-  private final Long    expirationTimestamp;
+  private final String              cdnKey;
+  private final Integer             cdnNumber;
+  private final String              resumeLocation;
+  private final Long                expirationTimestamp;
+  private final Map<String, String> headers;
 
   public ResumableUploadSpec(byte[] secretKey,
                              byte[] iv,
                              String cdnKey,
                              int cdnNumber,
                              String resumeLocation,
-                             long expirationTimestamp)
+                             long expirationTimestamp,
+                             Map<String, String> headers)
   {
     this.secretKey           = secretKey;
     this.iv                  = iv;
@@ -31,6 +37,7 @@ public final class ResumableUploadSpec {
     this.cdnNumber           = cdnNumber;
     this.resumeLocation      = resumeLocation;
     this.expirationTimestamp = expirationTimestamp;
+    this.headers             = headers;
   }
 
   public byte[] getSecretKey() {
@@ -57,6 +64,10 @@ public final class ResumableUploadSpec {
     return expirationTimestamp;
   }
 
+  public Map<String, String> getHeaders() {
+    return headers;
+  }
+
   public String serialize() {
     ResumableUpload.Builder builder = new ResumableUpload.Builder()
                                                          .secretKey(ByteString.of(getSecretKey()))
@@ -67,6 +78,13 @@ public final class ResumableUploadSpec {
                                                          .location(getResumeLocation())
                                                          .timeout(getExpirationTimestamp());
 
+    builder.headers(
+        headers.entrySet()
+               .stream()
+               .map(e -> new ResumableUpload.Header.Builder().key(e.getKey()).value_(e.getValue()).build())
+               .collect(Collectors.toList())
+    );
+
     return Base64.encodeBytes(builder.build().encode());
   }
 
@@ -76,13 +94,19 @@ public final class ResumableUploadSpec {
     try {
       ResumableUpload resumableUpload = ResumableUpload.ADAPTER.decode(Base64.decode(serializedSpec));
 
+      Map<String, String> headers = new HashMap<>();
+      for (ResumableUpload.Header header : resumableUpload.headers) {
+        headers.put(header.key, header.value_);
+      }
+
       return new ResumableUploadSpec(
           resumableUpload.secretKey.toByteArray(),
           resumableUpload.iv.toByteArray(),
           resumableUpload.cdnKey,
           resumableUpload.cdnNumber,
           resumableUpload.location,
-          resumableUpload.timeout
+          resumableUpload.timeout,
+          headers
       );
     } catch (IOException e) {
       throw new ResumeLocationInvalidException();

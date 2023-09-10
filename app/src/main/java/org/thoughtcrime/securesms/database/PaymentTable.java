@@ -417,6 +417,16 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
     return payments;
   }
 
+  public @NonNull List<UUID> getSubmittedIncomingPayments() {
+    return CursorExtensionsKt.readToList(
+        SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), PAYMENT_UUID)
+                                  .from(TABLE_NAME)
+                                  .where(DIRECTION + " = ? AND " + STATE + " = ?", Direction.RECEIVED.serialize(), State.SUBMITTED.serialize())
+                                  .run(),
+        c -> UuidUtil.parseOrNull(CursorUtil.requireString(c, PAYMENT_UUID))
+    );
+  }
+
   @AnyThread
   public @NonNull LiveData<List<PaymentTransaction>> getAllLive() {
     return LiveDataUtil.mapAsync(changeSignal, change -> getAll());

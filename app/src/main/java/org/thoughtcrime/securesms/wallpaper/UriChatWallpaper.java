@@ -84,13 +84,12 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
 
                 @Override
                 public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                  Log.i(TAG, "Loaded wallpaper " + uri);
-                  imageView.setImageBitmap(resource);
+                  Log.i(TAG, "Loaded wallpaper " + uri + " on " + Thread.currentThread().getName());
                   CACHE.put(uri, resource);
                   return false;
                 }
               })
-              .submit();
+              .into(imageView);
     }
   }
 

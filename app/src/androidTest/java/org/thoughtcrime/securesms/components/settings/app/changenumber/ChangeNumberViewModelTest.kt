@@ -50,7 +50,6 @@ class ChangeNumberViewModelTest {
 
   @Before
   fun setUp() {
-    ApplicationDependencies.getSignalServiceAccountManager().setSoTimeoutMillis(1000)
     ThreadUtil.runOnMainSync {
       viewModel = ChangeNumberViewModel(
         localNumber = harness.self.requireE164(),

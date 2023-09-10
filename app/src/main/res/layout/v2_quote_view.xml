@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
+
+    <View
+        android:id="@+id/quote_bar"
+        android:layout_width="@dimen/quote_corner_radius_bottom"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/signal_colorPrimary" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/quote_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/core_black"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/quote_attachment_name_stub"
+        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/quote_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Peter Parker" />
+
+    <ViewStub
+        android:id="@+id/quote_attachment_name_stub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:inflatedId="@id/quote_attachment_name_stub"
+        android:layout="@layout/v2_quote_view_attachment_name_stub"
+        app:layout_constraintBottom_toTopOf="@id/media_type"
+        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintStart_toEndOf="@id/quote_bar"
+        app:layout_constraintTop_toBottomOf="@id/quote_author"
+        app:layout_constraintWidth_default="spread"
+        app:layout_goneMarginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/media_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingTop="4dp"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/core_black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/quote_text"
+        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/quote_bar"
+        app:layout_constraintTop_toBottomOf="@id/quote_attachment_name_stub"
+        tools:text="Photo"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/quote_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        app:emoji_renderMentions="false"
+        app:emoji_renderSpoilers="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/content_barrier"
+        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/quote_bar"
+        app:layout_constraintTop_toBottomOf="@id/media_type"
+        tools:text="With great power comes great responsibility."
+        tools:visibility="visible" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/quote_thumbnail"
+        android:layout_width="@dimen/quote_thumb_size"
+        android:layout_height="0dp"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/content_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <ViewStub
+        android:id="@+id/quote_video_overlay_stub"
+        android:layout_width="13dp"
+        android:layout_height="16dp"
+        android:inflatedId="@id/quote_video_overlay_stub"
+        android:layout="@layout/v2_quote_view_video_overlay_stub"
+        app:layout_constraintBottom_toBottomOf="@id/quote_thumbnail"
+        app:layout_constraintEnd_toEndOf="@id/quote_thumbnail"
+        app:layout_constraintStart_toStartOf="@id/quote_thumbnail"
+        app:layout_constraintTop_toTopOf="@id/quote_thumbnail" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/quote_missing_story_reaction_emoji"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/content_barrier"
+        app:layout_constraintEnd_toStartOf="@id/quote_thumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_emoji"
+        tools:visibility="visible" />
+
+    <ViewStub
+        android:id="@+id/quote_dismiss_stub"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:inflatedId="@id/quote_dismiss_stub"
+        android:layout="@layout/v2_quote_view_dismiss_stub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/content_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="quote_attachment_name_stub,quote_author,quote_text,media_type" />
+
+    <ViewStub
+        android:id="@+id/quote_missing_text_stub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@id/quote_missing_text_stub"
+        android:layout="@layout/v2_quote_view_missing_text_stub"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/quote_bar"
+        app:layout_constraintTop_toBottomOf="@id/content_barrier" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/quote_story_reaction_emoji"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="@dimen/quote_story_emoji_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_emoji"
+        tools:visibility="visible" />
+</merge>

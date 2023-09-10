@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.internal.push.http
 
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import okhttp3.internal.http.UnrepeatableRequestBody
 import okio.BufferedSink
 import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
@@ -23,7 +24,7 @@ class DigestingRequestBody(
   private val progressListener: SignalServiceAttachment.ProgressListener?,
   private val cancelationSignal: CancelationSignal?,
   private val contentStart: Long
-) : RequestBody() {
+) : RequestBody(), UnrepeatableRequestBody {
   lateinit var transmittedDigest: ByteArray
     private set
   var incrementalDigest: ByteArray? = null
@@ -81,7 +82,7 @@ class DigestingRequestBody(
     return if (contentLength > 0) contentLength - contentStart else -1
   }
 
-  fun getAttachmentDigest() = AttachmentDigest(transmittedDigest, incrementalDigest)
+  fun getAttachmentDigest(): AttachmentDigest = AttachmentDigest(transmittedDigest, incrementalDigest)
 
   private fun logMessage(actual: Long, expected: Long): String {
     val difference = actual - expected

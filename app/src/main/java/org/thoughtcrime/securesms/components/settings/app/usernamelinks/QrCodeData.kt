@@ -38,7 +38,7 @@ class QrCodeData(
     @WorkerThread
     fun forData(data: String, size: Int): QrCodeData {
       val qrCodeWriter = QRCodeWriter()
-      val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.H.toString())
+      val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.Q.toString())
 
       val padded = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, size, size, hints)
       val dimens = padded.enclosingRectangle

@@ -29,6 +29,7 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.InvalidRegistrationIdException;
+import org.signal.libsignal.protocol.InvalidSessionException;
 import org.signal.libsignal.protocol.InvalidVersionException;
 import org.signal.libsignal.protocol.LegacyMessageException;
 import org.signal.libsignal.protocol.NoSessionException;
@@ -106,20 +107,23 @@ public class SignalServiceCipher {
     return sessionCipher.multiRecipientEncrypt(destinations, messageContent);
   }
 
-  public OutgoingPushMessage encrypt(SignalProtocolAddress        destination,
+  public OutgoingPushMessage encrypt(SignalProtocolAddress destination,
                                      Optional<UnidentifiedAccess> unidentifiedAccess,
-                                     EnvelopeContent              content)
+                                     EnvelopeContent content)
       throws UntrustedIdentityException, InvalidKeyException
   {
-    if (unidentifiedAccess.isPresent()) {
-      SignalSessionCipher       sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
-      SignalSealedSessionCipher sealedSessionCipher  = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber().orElse(null), localDeviceId));
-
-      return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, unidentifiedAccess.get().getUnidentifiedCertificate());
-    } else {
+    try {
       SignalSessionCipher sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
+      if (unidentifiedAccess.isPresent()) {
+        SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getServiceId().getRawUuid(), localAddress.getNumber()
+                                                                                                                                                                                                      .orElse(null), localDeviceId));
 
-      return content.processUnsealedSender(sessionCipher, destination);
+        return content.processSealedSender(sessionCipher, sealedSessionCipher, destination, unidentifiedAccess.get().getUnidentifiedCertificate());
+      } else {
+        return content.processUnsealedSender(sessionCipher, destination);
+      }
+    } catch (NoSessionException e) {
+      throw new InvalidSessionException("Session not found.");
     }
   }
 

@@ -28,7 +28,6 @@ import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 /**
  * A view level model used to pass arbitrary message related information needed
@@ -206,9 +205,7 @@ public class ConversationMessage {
       }
 
       String formattedDate = MessageRecordUtil.isScheduled(messageRecord) ? DateUtils.getOnlyTimeString(context, Locale.getDefault(), ((MediaMmsMessageRecord) messageRecord).getScheduledDate())
-                                                                          : DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), messageRecord.getTimestamp());
-
-
+                                                                          : DateUtils.getDatelessRelativeTimeSpanString(context, Locale.getDefault(), messageRecord.getTimestamp());
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,

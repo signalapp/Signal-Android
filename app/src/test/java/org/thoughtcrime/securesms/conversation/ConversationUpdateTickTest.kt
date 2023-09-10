@@ -30,27 +30,27 @@ class ConversationUpdateTickTest {
   }
 
   @Test
-  fun `Given no time has passed after onResume is invoked, then I expect one invocations of onTick`() {
+  fun `Given no time has passed after onResume is invoked, then I expect no invocations of onTick`() {
     // GIVEN
     ShadowLooper.pauseMainLooper()
     testSubject.onResume(lifecycleOwner)
 
     // THEN
-    verify(listener, times(1)).onTick()
+    verify(listener, never()).onTick()
   }
 
   @Test
-  fun `Given onResume is invoked, when half timeout passes, then I expect one invocations of onTick`() {
+  fun `Given onResume is invoked, when half timeout passes, then I expect no invocations of onTick`() {
     // GIVEN
     testSubject.onResume(lifecycleOwner)
     ShadowLooper.idleMainLooper(timeoutMillis / 2, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, times(1)).onTick()
+    verify(listener, never()).onTick()
   }
 
   @Test
-  fun `Given onResume is invoked, when timeout passes, then I expect two invocations of onTick`() {
+  fun `Given onResume is invoked, when timeout passes, then I expect one invocation of onTick`() {
     // GIVEN
     testSubject.onResume(lifecycleOwner)
 
@@ -58,11 +58,11 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, times(2)).onTick()
+    verify(listener, times(1)).onTick()
   }
 
   @Test
-  fun `Given onResume is invoked, when timeout passes five times, then I expect six invocations of onTick`() {
+  fun `Given onResume is invoked, when timeout passes five times, then I expect five invocations of onTick`() {
     // GIVEN
     testSubject.onResume(lifecycleOwner)
 
@@ -70,11 +70,11 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis * 5, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, times(6)).onTick()
+    verify(listener, times(5)).onTick()
   }
 
   @Test
-  fun `Given onResume then onPause is invoked, when timeout passes, then I expect one invocation of onTick`() {
+  fun `Given onResume then onPause is invoked, when timeout passes, then I expect no invocation of onTick`() {
     // GIVEN
     testSubject.onResume(lifecycleOwner)
     testSubject.onPause(lifecycleOwner)
@@ -83,6 +83,6 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, times(1)).onTick()
+    verify(listener, never()).onTick()
   }
 }

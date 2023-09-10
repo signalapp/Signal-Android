@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">సందేశాన్ని తెరవడంలో విఫలమైంది</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో కుడివైపు స్వైప్ చేయవచ్చు</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో ఎడమ వైపుకు స్వైప్ చేయవచ్చు</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">అవుట్‌గోయింగ్ ఒకసారి-వీక్షించండి మీడియా ఫైల్స్ పంపబడిన తర్వాత అవి స్వయంచాలకంగా తొలగించబడతాయి</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ఈ సందేశాన్ని మీరు ఇదివరకే వీక్షించారు</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ఈ చాట్‌లో మీరు మీ కోసం గమనికలను జోడించవచ్చు. ఒకవేళ మీ ఖాతాలో ఏదైనా లింక్ చేయబడిన పరికరాలు ఉంటే, కొత్త గమనికలు సమకాలీకరించబడతాయి.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d సమూహ సభ్యులకు అదే పేరు ఉంది.</string>
@@ -2243,6 +2243,18 @@
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">చేరిన Signal నోటిఫికేషన్‌లను ఆపివేయాలా? మీరు వాటిని Signal &gt; సెట్టింగులు &gt; నోటిఫికేషన్‌లు.</string>
 
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">నోటిఫికేషన్‌లను ప్రారంభించండి</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">క్రొత్త సందేశాల కోసం నోటిఫికేషన్‌లను స్వీకరించడానికి:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">సెట్టింగ్స్</string>
+
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">సందేశాలు</string>
     <string name="NotificationChannel_calls">కాల్స్</string>
@@ -2763,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">లాగ్‌లను అప్‌లోడ్ చేయలేదు</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">దయచేసి సమస్యను అర్థం చేసుకోవడంలో మాకు సహాయపడటానికి వీలైనంత వివరణాత్మకంగా ఉండండి.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- దయచేసి ఒక్క ఆప్షన్ ఎంచుకోండి \\-\\-</item>
+        <item>Please select an option</item>
         <item>ఏదో పనిచేయడం లేదు</item>
         <item>ఫీచర్ అభ్యర్ధన</item>
         <item>ప్రశ్న</item>
@@ -2902,7 +2914,6 @@
     <string name="preferences__payments">చెల్లింపులు</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">చెల్లింపు లాక్</string>
-    <string name="preferences__payments_beta">చెల్లింపులు (Beta)</string>
     <string name="preferences__conversation_length_limit">చాట్ నిడివి పరిమితి</string>
     <string name="preferences__keep_messages">సందేశాలను ఉంచు</string>
     <string name="preferences__clear_message_history">సందేశ చరిత్రను తొలగించండి</string>
@@ -3056,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">పంపిన</string>
     <string name="PaymentsAllActivityFragment__received">అందుకున్న</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">పేమెంట్‌లను పరిచయం చేస్తోంది (బీటా)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">గోప్యత‌పై దృష్టి గల డిజిటల్ కరెన్సీ MobileCoinను పంపడానికి మరియు అందుకోవడానికి Signalను ఉపయోగించండి. ప్రారంభించడానికి యాక్టివేట్ చేయండి.</string>
     <string name="PaymentsHomeFragment__activate_payments">చెల్లింపులను సక్రియం చేయండి</string>
     <string name="PaymentsHomeFragment__activating_payments">పేమెంట్‌లను యాక్టివేట్ చేస్తోంది…</string>
@@ -3090,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">చెల్లింపులు నిష్క్రియం చేయబడ్డాయి.</string>
     <string name="PaymentsHomeFragment__payment_failed">పేమెంట్ విఫలమైంది</string>
     <string name="PaymentsHomeFragment__details">వివరాలు</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin పంపడానికి, స్వీకరించడానికి మీరు Signal ఉపయోగించవచ్చు. అన్ని చెల్లింపులు MobileCoins మరియు MobileCoin Wallet కోసం వినియోగ నిబంధనలకు లోబడి ఉంటాయి. ఇది బీటా ఫీచర్ కనుక, మీరు కొన్ని సమస్యలను ఎదుర్కొనవచ్చు, అలానే మీరు కోల్పోయే పేమెంట్‌లను లేదా బ్యాలెన్స్‌లను తిరిగి పొందలేకపోవచ్చు. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">సక్రియం చేయండి</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin నిబంధనలను చూడండి.</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal లో చెల్లింపులు ఇకపై అందుబాటులో లేవు. మీరు ఇప్పటికీ నిధులను ఎక్స్ఛేంజికి బదిలీ చేయవచ్చు, కానీ మీరు ఇకపై చెల్లింపులను పంపలేరు మరియు స్వీకరించలేరు లేదా నిధులను జోడించలేరు.</string>
@@ -3113,6 +3126,32 @@
     <string name="PaymentsHomeFragment__cancel">రద్దు</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">నవీకరణ చేయండి ఇప్పుడు</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">ఇప్పుడు కాదు</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">తరువాత</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">అనుమతులను అనుమతించండి</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">ప్రకటనలు</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">పరిచయాలు</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">నిల్వ</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4026,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">మీకు బ్యాలెన్స్ ఉంది! మీ రికవరీ పదబంధాన్ని సేవ్ చేసే సమయం—మీ బ్యాలెన్స్‌ను పునరుద్ధరించడానికి మీరు ఉపయోగించగల 24-పదాల కీ.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">మీ రికవరీ పదబంధాన్ని సేవ్ చేసే సమయం—మీ బ్యాలెన్స్‌ను పునరుద్ధరించడానికి మీరు ఉపయోగించగల 24-పదాల కీ. మరింత తెలుసుకోండి</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">మీ రికవరీ పదబంధాన్ని సేవ్ చేసే సమయం—మీ బ్యాలెన్స్‌ను పునరుద్ధరించడానికి మీరు ఉపయోగించగల 24-పదాల కీ.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">మీ రికవరీ పదబంధం అనేది మీకే ప్రత్యేకమైన %1$d- పదబంధం. మీ బ్యాలెన్స్‌ని పునరుద్ధరించడానికి ఈ పదబంధాన్ని ఉపయోగించండి.</string>
     <string name="PaymentsRecoveryStartFragment__start">ప్రారంభించండి</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">మాన్యువల్‌గా నమోదు చేయండి</string>
@@ -4988,6 +5027,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">పికర్ ఓపెన్ చేయడం విఫలమైంది</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">ఆరంభించండి</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal రిలీజ్ నోట్‌లు &amp; న్యూస్</string>
@@ -6066,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">సవరణ చరిత్ర</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Signal బీటా మాత్రమే</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">సందేశాన్ని సవరించండి</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Signal బీటా యూజర్లకు మాత్రమే సందేశాలను సవరించడం అందుబాటులో ఉంది. ఒకవేళ మీరు ఒక సందేశాన్ని సవరిస్తే, Signal బీటా యొక్క తాజా వెర్షన్‌పై ఉన్న వ్యక్తులకు మాత్రమే ఇది కనపడుతుంది.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">రద్దు చేయండి</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6103,6 +6146,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">యూజర్‌నేమ్ కాపీ చేయబడింది</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">లింక్ కాపీ చేయబడింది</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ఒకవేళ మీరు మీ QR కోడ్‌ను రీసెట్ చేస్తే, మీ ప్రస్తుత QR కోడ్ మరియు లింక్ ఇకపై పని చేయవు.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">పునరుద్ధరించు</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">పునరుద్ధరించు</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6119,8 +6172,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">QR కోడ్ చెల్లుబాటు కాదు.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">%1$s యూజర్‌నేమ్‌తో ఒక యూజర్ కనుగొనబడలేదు.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">నెట్‌వర్క్ లోపాన్ని ఎదుర్కొంది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6141,7 +6200,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">తిరస్కరించు</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">ఆమోదించడానికి</string>
 
     <!-- EOF -->

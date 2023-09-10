@@ -49,6 +49,10 @@ public class Permissions {
     return new PermissionsBuilder(new FragmentPermissionObject(fragment));
   }
 
+  public static boolean isRuntimePermissionsRequired() {
+    return Build.VERSION.SDK_INT >= 23;
+  }
+
   public static class PermissionsBuilder {
 
     private final PermissionObject permissionObject;
@@ -239,13 +243,13 @@ public class Permissions {
   }
 
   public static boolean hasAny(@NonNull Context context, String... permissions) {
-    return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+    return !isRuntimePermissionsRequired() ||
         Stream.of(permissions).anyMatch(permission -> ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED);
 
   }
 
   public static boolean hasAll(@NonNull Context context, String... permissions) {
-    return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+    return !isRuntimePermissionsRequired() ||
         Stream.of(permissions).allMatch(permission -> ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED);
 
   }

@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Możesz przesunąć wiadomość w prawo, by szybko odpowiedzieć.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Możesz przesunąć wiadomość w lewo, by szybko odpowiedzieć.</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Wychodzące wiadomości jednorazowe są automatycznie usuwane po wysłaniu</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Już widziałeś(-aś) tę wiadomość</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tym czacie możesz dodawać swoje notatki. Jeśli z Twoim kontem są połączone jakieś urządzenia, nowe notatki zostaną zsynchronizowane.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d członków grupy ma to samo imię.</string>
@@ -2395,6 +2395,18 @@
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Wyłączyć powiadomienia \"Kontakt dołączył do Signal\"? Możesz włączyć je ponownie w Signal &gt; Ustawienia &gt; Powiadomienia.</string>
 
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Włącz powiadomienia</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Aby otrzymywać powiadomienia o nowych wiadomościach:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Ustawienia</string>
+
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Wiadomości</string>
     <string name="NotificationChannel_calls">Połączenia</string>
@@ -2937,7 +2949,7 @@
     <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Wybierz opcję \\-\\-</item>
+        <item>Please select an option</item>
         <item>Coś nie działa</item>
         <item>Prośba o dodanie funkcji</item>
         <item>Pytanie</item>
@@ -3078,7 +3090,6 @@
     <string name="preferences__payments">Płatności</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Zabezpieczenie płatności</string>
-    <string name="preferences__payments_beta">Płatności (beta)</string>
     <string name="preferences__conversation_length_limit">Limit długości czatu</string>
     <string name="preferences__keep_messages">Zachowuj wiadomości</string>
     <string name="preferences__clear_message_history">Wyczyść historię wiadomości</string>
@@ -3234,7 +3245,8 @@
     <string name="PaymentsAllActivityFragment__sent">Wysłano</string>
     <string name="PaymentsAllActivityFragment__received">Odebrano</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Przedstawiamy płatności (beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Przedstawiamy płatności</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Korzystaj z Signal, aby wysyłać i otrzymywać MobileCoin, nową, skupioną na prywatności, cyfrową walutę. Aktywuj płatności, aby rozpocząć.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktywuj płatności</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktywowanie płatności…</string>
@@ -3268,8 +3280,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Płatności dezaktywowane.</string>
     <string name="PaymentsHomeFragment__payment_failed">Płatność nie powiodła się</string>
     <string name="PaymentsHomeFragment__details">Szczegóły</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Możesz używać aplikacji Signal, aby wysyłać i otrzymywać walutę MobileCoin. Wszystkie płatności podlegają Warunkom użytkowania waluty MobileCoin i portfela MobileCoin. To funkcja beta, co oznacza, że możesz napotkać problemy, a płatności i środki, które możesz stracić, nie da się odzyskać. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Aktywuj</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Zobacz warunki użytkowania MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Płatności w Signal nie są już dostępne. Wciąż możesz przenieść środki do kantora, ale nie możesz otrzymywać i wysyłać płatności, ani dodawać środków.</string>
@@ -3291,6 +3304,32 @@
     <string name="PaymentsHomeFragment__cancel">Anuluj</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Aktualizuj teraz</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Nie teraz</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Dalej</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Włącz uprawnienia</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Powiadomienia</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Kontakty</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Pamięć</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4230,7 +4269,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Masz równowagę! Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi. Dowiedz się więcej</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Hasło odzyskiwania, to Twoje, mające %1$dsłów, unikalne hasło. Użyj go do przywrócenia swojego konta.</string>
     <string name="PaymentsRecoveryStartFragment__start">Rozpocznij</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Wpisz ręcznie</string>
@@ -5204,6 +5243,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora dzwonków.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Włącz</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Listy zmian i nowości w Signal</string>
@@ -6332,9 +6375,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historia edycji</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Tylko w Signal beta</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Edytuj wiadomość</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Edytowanie wiadomości to funkcja dostępna tylko dla użytkowników Signal beta. Twoje zmiany w wiadomości będą widoczne wyłącznie u osób, które używają najnowszej wersji Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Twoje zmiany w wiadomości będą widoczne wyłącznie u osób, które używają najnowszej wersji Signal. Osoby te będą mogły zobaczyć Twoją edycję wiadomości.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Anuluj</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6369,6 +6412,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">Skopiowano nazwę użytkownika</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Skopiowano link</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Jeśli zresetujesz kod QR, Twój obecny kod QR i link nie będą działały.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Zresetuj</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Zresetuj</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6385,8 +6438,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">Nieprawidłowy kod QR.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Nie udało się znaleźć użytkownika o nazwie %1$s.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Wystąpił błąd sieci. Spróbuj ponownie.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6411,7 +6470,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">Odrzuć</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Zaakceptuj</string>
 
     <!-- EOF -->

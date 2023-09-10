@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Sa saad kiiresti vastamiseks mistahes sõnumil paremale viibata</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Sa saad kiiresti vastamiseks mistahes sõnumil vasakule viibata</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Väljuvad korra vaatamise meediafailid eemaldatakse pärast nende saatmist automaatselt</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Sa vaatasid juba seda sõnumit</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Selles vestluses saad enda jaoks märkmeid lisada. Kui su kontol on lingitud seadmeid, siis uued märkmed sünkroonitakse.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupiliikmel on sama nimi.</string>
@@ -2243,6 +2243,18 @@
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kas lülitada Signaliga liitumise teavitused välja? Neid saab uuesti lubada, valides Signal &gt; Seaded &gt; Teavitused.</string>
 
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Teavituste lubamine</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Uute sõnumite korral teavituste saamiseks:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Sätted</string>
+
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Sõnumid</string>
     <string name="NotificationChannel_calls">Kõned</string>
@@ -2763,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Palun tee valik \\-\\-</item>
+        <item>Please select an option</item>
         <item>Miski ei tööta</item>
         <item>Funktsiooni taotlus</item>
         <item>Küsimus</item>
@@ -2902,7 +2914,6 @@
     <string name="preferences__payments">Maksed</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Makse kinnitus</string>
-    <string name="preferences__payments_beta">Maksed (beeta)</string>
     <string name="preferences__conversation_length_limit">Vestluse pikkuse limiit</string>
     <string name="preferences__keep_messages">Säilita sõnumid</string>
     <string name="preferences__clear_message_history">Tühjenda sõnumiajalugu</string>
@@ -3056,7 +3067,8 @@
     <string name="PaymentsAllActivityFragment__sent">Saadetud</string>
     <string name="PaymentsAllActivityFragment__received">Saadud</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Tutvustame makseid (beeta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Kasuta Signalit uue privaatsusele keskendunud digitaalse valuuta MobileCoin saatmiseks ja vastuvõtmiseks. Aktiveeri, et proovida.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktiivsed maksed</string>
     <string name="PaymentsHomeFragment__activating_payments">Maksete aktiveerimine…</string>
@@ -3090,8 +3102,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Maksed deaktiveeritud.</string>
     <string name="PaymentsHomeFragment__payment_failed">Makse ei õnnestunud</string>
     <string name="PaymentsHomeFragment__details">Üksikasjad</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Saad kasutada Signalit MobileCoinide saatmiseks ja vastuvõtmiseks. Kõik maksed toimuvad kooskõlas MobileCoinsi ja MobileCoin Walleti kasutustingimustega. See on beeta-funktsioon, niisiis võib ilmneda teatavaid probleeme ning kaotatud makseid või saldosid ei pruugi olla võimalik taastada. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
     <string name="PaymentsHomeFragment__activate">Aktiveeri</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näita MobileCoini kasutustingimusi</string>
     <string name="PaymentsHomeFragment__payments_not_available">Maksed pole enam Signalis saadaval. Sul on võimalik kanda vahendid valuutavahetusse, aga sul pole enam võimalik saata või saada makseid ega lisada vahendeid.</string>
@@ -3113,6 +3126,32 @@
     <string name="PaymentsHomeFragment__cancel">Loobu</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Uuenda kohe</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Mitte praegu</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Edasi</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Õiguste lubamine</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Teavitused</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Kontaktid</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Mäluruum</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4026,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Sul on arvel raha! Nüüd on aeg salvestada oma kontroll-lause – 24-sõnaline kinnituslause, mille abil saad oma arve saldo taastada.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Nüüd on aeg salvestada oma kontroll-lause – 24-sõnaline kinnituslause, mille abil saad oma arve saldo taastada. Rohkem teavet</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Nüüd on aeg salvestada oma kontroll-lause – 24-sõnaline kinnituslause, mille abil saad oma arve saldo taastada.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Sinu kontroll-lause on sinu isiklik %1$d-sõnaline lause. Kasuta seda lauset oma saldo taastamiseks.</string>
     <string name="PaymentsRecoveryStartFragment__start">Alusta</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Sisesta käsitsi</string>
@@ -4988,6 +5027,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Valija avamine nurjus.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Lülita sisse</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signali väljalaskemärkmed &amp; Uudised</string>
@@ -6066,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Muutmiste ajalugu</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Ainult Signal beeta</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Muuda sõnumit</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Sõnumeid saavad muuta ainult Signali beetakasutajad. Kui sõnumit muudad, on see nähtav ainult inimestele, kellel on uusim Signali beetaversioon.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Loobu</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6103,6 +6146,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">Kasutajanimi kopeeritud</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link kopeeritud</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Kui oma QR-koodi lähtestad, lõpetavad olemasolev QR-kood ja link toimimise.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Lähtesta</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Lähtesta</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6119,8 +6172,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">QR-kood on kehtetu.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Kasutajat nimega %1$s ei leitud</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Tekkis võrgu viga. Palun proovi uuesti.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6141,7 +6200,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">Keeldu</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Nõustu</string>
 
     <!-- EOF -->

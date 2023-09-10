@@ -14,6 +14,10 @@
     android:nextFocusRight="@+id/embedded_text_editor">
 
     <!-- STR Icon -->
+    <!-- Because of how ConstraintLayout wraps its children, we can't set a top constraint here
+         without increasing the parent height for short bubbles. This causes weird spacing issues.
+         Instead, inside V2ConversationItemTextOnlyViewHolder, we use an OnMeasureListener to position
+         this view vertically using a y-translate -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/conversation_item_reply"
         android:layout_width="@dimen/conversation_item_reply_size"
@@ -23,7 +27,6 @@
         app:contentPadding="9dp"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
         app:layout_constraintStart_toStartOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintTop_toTopOf="@id/conversation_item_body_wrapper"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/symbol_reply_24" />
 
@@ -46,10 +49,10 @@
             android:id="@+id/conversation_item_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingTop="@dimen/message_bubble_top_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
-            android:paddingBottom="@dimen/message_bubble_collapsed_footer_padding"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginTop="@dimen/message_bubble_top_padding"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/conversation_item_sent_text_primary_color"
             android:textColorLink="@color/conversation_item_sent_text_primary_color"

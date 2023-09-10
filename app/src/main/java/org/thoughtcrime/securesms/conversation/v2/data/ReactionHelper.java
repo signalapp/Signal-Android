@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 
 public class ReactionHelper {
 
-  private Collection<MessageId>                messageIds           = new LinkedList<>();
-  private Map<MessageId, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
+  private Collection<Long>                messageIds           = new LinkedList<>();
+  private Map<Long, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
 
   public void add(MessageRecord record) {
-    messageIds.add(new MessageId(record.getId()));
+    messageIds.add(record.getId());
   }
 
   public void addAll(List<MessageRecord> records) {
@@ -38,8 +38,7 @@ public class ReactionHelper {
   public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
     return records.stream()
                   .map(record -> {
-                    MessageId            messageId = new MessageId(record.getId());
-                    List<ReactionRecord> reactions = messageIdToReactions.get(messageId);
+                    List<ReactionRecord> reactions = messageIdToReactions.get(record.getId());
 
                     return recordWithReactions(record, reactions);
                   })

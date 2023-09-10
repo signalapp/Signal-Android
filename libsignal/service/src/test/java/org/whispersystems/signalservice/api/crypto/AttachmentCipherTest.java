@@ -35,7 +35,7 @@ public final class AttachmentCipherTest {
   public void attachment_encryptDecrypt() throws IOException, InvalidMessageException {
     byte[]        key             = Util.getSecretBytes(64);
     byte[]        plaintextInput  = "Peter Parker".getBytes();
-    EncryptResult encryptResult   = encryptData(plaintextInput, key, true);
+    EncryptResult encryptResult   = encryptData(plaintextInput, key, false);
     File          cipherFile      = writeToFile(encryptResult.ciphertext);
     InputStream   inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest);
     byte[]        plaintextOutput = readInputStreamFully(inputStream);
@@ -72,7 +72,7 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, null);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -97,7 +97,7 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, badDigest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, badDigest, null);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -158,8 +158,7 @@ public final class AttachmentCipherTest {
       ByteArrayInputStream  inputStream                   = new ByteArrayInputStream(plaintextInput);
       InputStream           paddedInputStream             = new PaddingInputStream(inputStream, length);
       ByteArrayOutputStream destinationOutputStream       = new ByteArrayOutputStream();
-      ByteArrayOutputStream incrementalDigestOutputStream = new ByteArrayOutputStream();
-      DigestingOutputStream encryptingOutputStream        = new AttachmentCipherOutputStreamFactory(key, iv).createIncrementalFor(destinationOutputStream, length, incrementalDigestOutputStream);
+      DigestingOutputStream encryptingOutputStream        = new AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream);
 
       Util.copy(paddedInputStream, encryptingOutputStream);
 
@@ -168,11 +167,10 @@ public final class AttachmentCipherTest {
 
       byte[] encryptedData     = destinationOutputStream.toByteArray();
       byte[] digest            = encryptingOutputStream.getTransmittedDigest();
-      byte[] incrementalDigest = incrementalDigestOutputStream.toByteArray();
 
       File cipherFile = writeToFile(encryptedData);
 
-      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, length, key, digest, incrementalDigest);
+      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, length, key, digest, null);
       byte[]      plaintextOutput = readInputStreamFully(decryptedStream);
 
       assertArrayEquals(plaintextInput, plaintextOutput);
@@ -220,7 +218,8 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(badMacCiphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, null);
+      fail();
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemThumbnail
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:adjustViewBounds="false"
+    android:contentDescription="@string/conversation_activity__attachment_thumbnail"
+    android:scaleType="centerInside"
+    tools:viewBindingIgnore="true" />

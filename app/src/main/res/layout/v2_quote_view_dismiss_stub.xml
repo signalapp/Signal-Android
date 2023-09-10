@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<androidx.appcompat.widget.AppCompatImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quote_dismiss"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:background="@drawable/dismiss_background"
+    app:srcCompat="@drawable/ic_x_20"
+    app:tint="@color/signal_colorOnSurface" />

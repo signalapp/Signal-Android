@@ -255,6 +255,14 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
+  fun setProgressWheelClickListener(listener: SlideClickListener?) {
+    state = state.copy(
+      thumbnailViewState = state.thumbnailViewState.copy(progressWheelClickListener = listener)
+    )
+
+    state.applyState(thumbnail, album)
+  }
+
   private fun setThumbnailBounds(bounds: IntArray) {
     val (minWidth, maxWidth, minHeight, maxHeight) = bounds
     state = state.copy(

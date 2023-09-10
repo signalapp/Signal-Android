@@ -328,7 +328,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
     @Override
     public void onActivatePayments() {
       new MaterialAlertDialogBuilder(requireContext())
-                     .setMessage(R.string.PaymentsHomeFragment__you_can_use_signal_to_send)
+                     .setMessage(R.string.PaymentsHomeFragment__you_can_use_signal_to_send_and)
                      .setPositiveButton(R.string.PaymentsHomeFragment__activate, (dialog, which) -> {
                        viewModel.activatePayments();
                        dialog.dismiss();

@@ -31,6 +31,8 @@ data class ConversationItemThumbnailState(
     @IgnoredOnParcel
     private val downloadClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
+    private val progressWheelClickListener: SlideClickListener? = null,
+    @IgnoredOnParcel
     private val longClickListener: OnLongClickListener? = null,
     private val visibility: Int = View.GONE,
     private val minWidth: Int = -1,
@@ -55,6 +57,7 @@ data class ConversationItemThumbnailState(
       thumbnailView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       thumbnailView.get().setThumbnailClickListener(clickListener)
       thumbnailView.get().setDownloadClickListener(downloadClickListener)
+      thumbnailView.get().setProgressWheelClickListener(progressWheelClickListener)
       thumbnailView.get().setOnLongClickListener(longClickListener)
       thumbnailView.get().setBounds(minWidth, maxWidth, minHeight, maxHeight)
     }

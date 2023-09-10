@@ -9,20 +9,22 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.collections.immutable.toImmutableList
+import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.UsernameUtil
 
 class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
-  private val username: String = Recipient.self().username.get()
-
   private val _state = mutableStateOf(
     UsernameLinkQrColorPickerState(
-      username = username,
-      qrCodeData = null,
+      username = SignalStore.account().username!!,
+      qrCodeData = QrCodeState.Loading,
       colorSchemes = UsernameQrCodeColorScheme.values().asList().toImmutableList(),
       selectedColorScheme = SignalStore.misc().usernameQrCodeColorScheme
     )
@@ -33,15 +35,23 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
   private val disposable: CompositeDisposable = CompositeDisposable()
 
   init {
-    disposable += Single
-      .fromCallable { QrCodeData.forData(UsernameUtil.generateLink(username), 64) }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { qrData ->
-        _state.value = _state.value.copy(
-          qrCodeData = qrData
-        )
-      }
+    val usernameLink = SignalStore.account().usernameLink
+
+    if (usernameLink != null) {
+      disposable += Single
+        .fromCallable { QrCodeData.forData(UsernameUtil.generateLink(usernameLink), 64) }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe { qrData ->
+          _state.value = _state.value.copy(
+            qrCodeData = QrCodeState.Present(qrData)
+          )
+        }
+    } else {
+      _state.value = _state.value.copy(
+        qrCodeData = QrCodeState.NotSet
+      )
+    }
   }
 
   override fun onCleared() {
@@ -50,6 +60,11 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
   fun onColorSelected(color: UsernameQrCodeColorScheme) {
     SignalStore.misc().usernameQrCodeColorScheme = color
+    SignalExecutors.BOUNDED.run {
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+
     _state.value = _state.value.copy(
       selectedColorScheme = color
     )

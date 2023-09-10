@@ -121,7 +121,7 @@ data class StoryTextPostModel(
     override fun decode(source: StoryTextPostModel, width: Int, height: Int, options: Options): Resource<Bitmap> {
       val message = SignalDatabase.messages.getMessageFor(source.storySentAtMillis, source.storyAuthor).run {
         if (this is MediaMmsMessageRecord) {
-          this.withAttachments(ApplicationDependencies.getApplication(), SignalDatabase.attachments.getAttachmentsForMessage(this.id))
+          this.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(this.id))
         } else {
           this
         }

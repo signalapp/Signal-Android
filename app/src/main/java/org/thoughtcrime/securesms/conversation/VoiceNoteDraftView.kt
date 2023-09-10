@@ -51,7 +51,7 @@ class VoiceNoteDraftView @JvmOverloads constructor(
 
   fun setDraft(draft: DraftTable.Draft) {
     audioView.setAudio(
-      AudioSlide.createFromVoiceNoteDraft(context, draft),
+      AudioSlide.createFromVoiceNoteDraft(draft),
       AudioViewCallbacksAdapter(),
       true,
       false

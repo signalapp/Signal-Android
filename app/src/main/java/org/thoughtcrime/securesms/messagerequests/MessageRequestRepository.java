@@ -373,10 +373,8 @@ public final class MessageRequestRepository {
 
   @WorkerThread
   private boolean isLegacyThread(@NonNull Recipient recipient) {
-    Context context  = ApplicationDependencies.getApplication();
-    Long    threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
+    Long threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
 
-    return threadId != null &&
-        (RecipientUtil.hasSentMessageInThread(threadId) || RecipientUtil.isPreMessageRequestThread(threadId));
+    return threadId != null && RecipientUtil.hasSentMessageInThread(threadId);
   }
 }

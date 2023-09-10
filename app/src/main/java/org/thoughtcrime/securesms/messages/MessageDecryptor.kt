@@ -172,6 +172,7 @@ object MessageDecryptor {
         if (cipherResult.metadata.sourceServiceId is ACI) {
           handlePniSignatureMessage(
             envelope,
+            bufferedProtocolStore,
             cipherResult.metadata.sourceServiceId as ACI,
             cipherResult.metadata.sourceE164,
             cipherResult.metadata.sourceDeviceId,
@@ -325,7 +326,7 @@ object MessageDecryptor {
     SignalGroupSessionBuilder(ReentrantSessionLock.INSTANCE, GroupSessionBuilder(senderKeyStore)).process(sender, message)
   }
 
-  private fun handlePniSignatureMessage(envelope: Envelope, aci: ACI, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
+  private fun handlePniSignatureMessage(envelope: Envelope, protocolStore: BufferedProtocolStore, aci: ACI, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
     Log.i(TAG, "${logPrefix(envelope, aci)} Processing PniSignatureMessage")
 
     val pni: PNI = PNI.parseOrThrow(pniSignatureMessage.pni.toByteArray())
@@ -335,11 +336,10 @@ object MessageDecryptor {
       return
     }
 
-    val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
     val aciAddress = SignalProtocolAddress(aci.toString(), deviceId)
     val pniAddress = SignalProtocolAddress(pni.toString(), deviceId)
-    val aciIdentity = identityStore.getIdentity(aciAddress)
-    val pniIdentity = identityStore.getIdentity(pniAddress)
+    val aciIdentity = protocolStore.getAciStore().getIdentity(aciAddress)
+    val pniIdentity = protocolStore.getAciStore().getIdentity(pniAddress)
 
     if (aciIdentity == null) {
       Log.w(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] No identity found for ACI address $aciAddress")

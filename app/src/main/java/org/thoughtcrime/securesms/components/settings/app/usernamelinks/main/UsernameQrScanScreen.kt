@@ -32,6 +32,7 @@ import org.signal.qr.QrScannerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
 import org.thoughtcrime.securesms.util.CommunicationActions
+import java.util.concurrent.TimeUnit
 
 /**
  * A screen that allows you to scan a QR code to start a chat.
@@ -53,7 +54,11 @@ fun UsernameQrScanScreen(
       QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_network_error), onDismiss = onQrResultHandled)
     }
     is QrScanResult.NotFound -> {
-      QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_not_found, qrScanResult.username), onDismiss = onQrResultHandled)
+      if (qrScanResult.username != null) {
+        QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_not_found, qrScanResult.username), onDismiss = onQrResultHandled)
+      } else {
+        QrScanResultDialog(stringResource(R.string.UsernameLinkSettings_qr_result_not_found_no_username), onDismiss = onQrResultHandled)
+      }
     }
     is QrScanResult.Success -> {
       CommunicationActions.startConversation(LocalContext.current, qrScanResult.recipient, null)
@@ -70,7 +75,7 @@ fun UsernameQrScanScreen(
     AndroidView(
       factory = { context ->
         val view = QrScannerView(context)
-        disposables += view.qrData.distinctUntilChanged().subscribe { data ->
+        disposables += view.qrData.throttleFirst(3000, TimeUnit.MILLISECONDS).subscribe { data ->
           onQrCodeScanned(data)
         }
         view

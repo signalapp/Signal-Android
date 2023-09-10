@@ -41,7 +41,7 @@ public final class DecryptableUriMediaInput {
       throw new AssertionError();
     }
 
-    MediaDataSource mediaDataSource = SignalDatabase.attachments().mediaDataSourceFor(partId);
+    MediaDataSource mediaDataSource = SignalDatabase.attachments().mediaDataSourceFor(partId, true);
 
     if (mediaDataSource == null) {
       throw new AssertionError();

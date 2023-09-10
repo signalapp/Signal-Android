@@ -63,24 +63,16 @@ public class ReactionsConversationView extends LinearLayout {
     removeAllViews();
   }
 
-  public boolean setReactions(@NonNull List<ReactionRecord> records, int bubbleWidth) {
-    if (records.equals(this.records) && this.bubbleWidth == bubbleWidth) {
+  public boolean setBubbleWidth(int bubbleWidth) {
+    if (bubbleWidth == this.bubbleWidth) {
       return false;
     }
 
-    this.records.clear();
-    this.records.addAll(records);
-
     this.bubbleWidth = bubbleWidth;
 
-    List<Reaction> reactions = buildSortedReactionsList(records);
-
-    removeAllViews();
-
-    for (Reaction reaction : reactions) {
-      View pill = buildPill(getContext(), this, reaction);
+    for (int i = 0; i < getChildCount(); i++) {
+      View pill = getChildAt(i);
       pill.setVisibility(bubbleWidth == 0 ? INVISIBLE : VISIBLE);
-      addView(pill);
     }
 
     measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
@@ -101,6 +93,26 @@ public class ReactionsConversationView extends LinearLayout {
       } else {
         ViewUtil.setLeftMargin(this, OUTER_MARGIN);
       }
+    }
+
+    return true;
+  }
+
+  public boolean setReactions(@NonNull List<ReactionRecord> records) {
+    if (records.equals(this.records)) {
+      return false;
+    }
+
+    this.records.clear();
+    this.records.addAll(records);
+
+    List<Reaction> reactions = buildSortedReactionsList(records);
+
+    removeAllViews();
+
+    for (Reaction reaction : reactions) {
+      View pill = buildPill(getContext(), this, reaction);
+      addView(pill);
     }
 
     return true;

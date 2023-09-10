@@ -60,7 +60,7 @@ private fun DrawScope.drawQr(
   deadzonePercent: Float,
   logo: ImageBitmap
 ) {
-  val deadzonePaddingPercent = 0.07f
+  val deadzonePaddingPercent = 0.045f
 
   // We want an even number of dots on either side of the deadzone
   val deadzoneRadius: Int = (data.height * (deadzonePercent + deadzonePaddingPercent)).toInt().let { candidateDeadzoneHeight ->

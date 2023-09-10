@@ -48,8 +48,8 @@ ktlint {
     version = "0.49.1"
 }
 
-def canonicalVersionCode = 1322
-def canonicalVersionName = "6.31.2"
+def canonicalVersionCode = 1326
+def canonicalVersionName = "6.32.3"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -184,6 +184,7 @@ android {
         buildConfigField "String", "STORAGE_URL", "\"https://storage.signal.org\""
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
         buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2.signal.org\""
+        buildConfigField "String", "SIGNAL_CDN3_URL", "\"https://cdn3.signal.org\""
         buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
@@ -198,6 +199,7 @@ android {
         buildConfigField "String[]", "SIGNAL_STORAGE_IPS", storage_ips
         buildConfigField "String[]", "SIGNAL_CDN_IPS", cdn_ips
         buildConfigField "String[]", "SIGNAL_CDN2_IPS", cdn2_ips
+        buildConfigField "String[]", "SIGNAL_CDN3_IPS", cdn3_ips
         buildConfigField "String[]", "SIGNAL_KBS_IPS", kbs_ips
         buildConfigField "String[]", "SIGNAL_SFU_IPS", sfu_ips
         buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
@@ -380,6 +382,7 @@ android {
             buildConfigField "String", "STORAGE_URL", "\"https://storage-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2-staging.signal.org\""
+            buildConfigField "String", "SIGNAL_CDN3_URL", "\"https://cdn3-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.staging.signal.org\""
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
             buildConfigField "String", "SIGNAL_SVR2_URL", "\"https://svr2.staging.signal.org\""
@@ -593,6 +596,7 @@ dependencies {
     testImplementation testLibs.robolectric.shadows.multidex
     testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation testLibs.conscrypt.openjdk.uber // Used by robolectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 

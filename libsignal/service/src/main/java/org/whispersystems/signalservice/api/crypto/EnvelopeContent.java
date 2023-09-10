@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.crypto;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.metadata.protocol.UnidentifiedSenderMessageContent;
 import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
 import org.signal.libsignal.protocol.message.CiphertextMessage;
@@ -28,12 +29,12 @@ public interface EnvelopeContent {
                                           SignalSealedSessionCipher sealedSessionCipher,
                                           SignalProtocolAddress destination,
                                           SenderCertificate senderCertificate)
-      throws UntrustedIdentityException, InvalidKeyException;
+      throws UntrustedIdentityException, InvalidKeyException, NoSessionException;
 
   /**
    * Processes the content using unsealed sender.
    */
-  OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) throws UntrustedIdentityException;
+  OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) throws UntrustedIdentityException, NoSessionException;
 
   /**
    * An estimated size, in bytes.
@@ -77,7 +78,7 @@ public interface EnvelopeContent {
                                                    SignalSealedSessionCipher sealedSessionCipher,
                                                    SignalProtocolAddress destination,
                                                    SenderCertificate senderCertificate)
-        throws UntrustedIdentityException, InvalidKeyException
+        throws UntrustedIdentityException, InvalidKeyException, NoSessionException
     {
       PushTransportDetails             transportDetails = new PushTransportDetails();
       CiphertextMessage                message          = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(content.toByteArray()));
@@ -94,7 +95,7 @@ public interface EnvelopeContent {
     }
 
     @Override
-    public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) throws UntrustedIdentityException {
+    public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) throws UntrustedIdentityException, NoSessionException {
       PushTransportDetails transportDetails     = new PushTransportDetails();
       CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(content.toByteArray()));
       int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
