@@ -31,6 +31,8 @@ object WebSocketDrainer {
 
   private val QUEUE_TIMEOUT = 30.seconds.inWholeMilliseconds
 
+  private val NO_NETWORK_WEBSOCKET_TIMEOUT = 5.seconds.inWholeMilliseconds
+
   @JvmStatic
   @WorkerThread
   fun blockUntilDrainedAndProcessed(): Boolean {
@@ -38,11 +40,16 @@ object WebSocketDrainer {
   }
 
   /**
-   * Blocks until the websocket is drained and all resulting processing jobs have finished, or until the [websocketDrainTimeoutMs] has been hit.
+   * Blocks until the websocket is drained and all resulting processing jobs have finished, or until the [requestedWebsocketDrainTimeoutMs] has been hit.
    * Note: the timeout specified here is only for draining the websocket. There is currently a non-configurable timeout for waiting for the job queues.
+   * Also, if it is discovered that it's unlikely that we'll be able to fetch messages (i.e. no network), then the timeout may be reduced.
    */
   @WorkerThread
-  fun blockUntilDrainedAndProcessed(websocketDrainTimeoutMs: Long): Boolean {
+  fun blockUntilDrainedAndProcessed(requestedWebsocketDrainTimeoutMs: Long): Boolean {
+    Log.d(TAG, "blockUntilDrainedAndProcessed() requestedWebsocketDrainTimeout: $requestedWebsocketDrainTimeoutMs ms")
+
+    var websocketDrainTimeout = requestedWebsocketDrainTimeoutMs
+
     val context = ApplicationDependencies.getApplication()
     val incomingMessageObserver = ApplicationDependencies.getIncomingMessageObserver()
     val powerManager = ServiceUtil.getPowerManager(context)
@@ -51,16 +58,21 @@ object WebSocketDrainer {
     val network = NetworkUtil.isConnected(context)
 
     if (doze || !network) {
-      Log.w(TAG, "We may be operating in a constrained environment. Doze: $doze Network: $network")
+      Log.w(TAG, "We may be operating in a constrained environment. Doze: $doze Network: $network.")
+    }
+
+    if (!network) {
+      Log.w(TAG, "Network is unavailable. Reducing websocket timeout to $NO_NETWORK_WEBSOCKET_TIMEOUT ms")
+      websocketDrainTimeout = NO_NETWORK_WEBSOCKET_TIMEOUT
     }
 
     incomingMessageObserver.registerKeepAliveToken(KEEP_ALIVE_TOKEN)
 
     val wakeLockTag = WAKELOCK_PREFIX + System.currentTimeMillis()
-    val wakeLock = WakeLockUtil.acquire(ApplicationDependencies.getApplication(), PowerManager.PARTIAL_WAKE_LOCK, websocketDrainTimeoutMs + QUEUE_TIMEOUT, wakeLockTag)
+    val wakeLock = WakeLockUtil.acquire(ApplicationDependencies.getApplication(), PowerManager.PARTIAL_WAKE_LOCK, websocketDrainTimeout + QUEUE_TIMEOUT, wakeLockTag)
 
     return try {
-      drainAndProcess(websocketDrainTimeoutMs, incomingMessageObserver)
+      drainAndProcess(websocketDrainTimeout, incomingMessageObserver)
     } finally {
       WakeLockUtil.release(wakeLock, wakeLockTag)
       incomingMessageObserver.removeKeepAliveToken(KEEP_ALIVE_TOKEN)
