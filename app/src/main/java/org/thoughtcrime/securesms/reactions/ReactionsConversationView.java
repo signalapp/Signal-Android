@@ -63,6 +63,16 @@ public class ReactionsConversationView extends LinearLayout {
     removeAllViews();
   }
 
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    if (w != oldw) {
+      int bubbleWidth = this.bubbleWidth;
+      this.bubbleWidth = -1;
+
+      setBubbleWidth(bubbleWidth);
+    }
+  }
+
   public boolean setBubbleWidth(int bubbleWidth) {
     if (bubbleWidth == this.bubbleWidth) {
       return false;
