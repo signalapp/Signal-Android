@@ -222,7 +222,9 @@ object DataMessageProcessor {
       }
       if (SignalDatabase.recipients.setProfileKey(senderRecipient.id, messageProfileKey)) {
         log(timestamp, "Profile key on message from " + senderRecipient.id + " didn't match our local store. It has been updated.")
-        ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.id))
+        SignalDatabase.runPostSuccessfulTransaction {
+          ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.id))
+        }
       }
     } else {
       warn(timestamp.toString(), "Ignored invalid profile key seen in message")
