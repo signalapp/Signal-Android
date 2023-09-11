@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">വേഗത്തിൽ മറുപടി നൽകുന്നതിന് ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് വലത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">വേഗത്തിൽ മറുപടി നൽകാൻ ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് ഇടത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">അയച്ചതിന് ശേഷം, ഒറ്റത്തവണ കാണാൻ മാത്രമുള്ള മീഡിയ ഇല്ലാതാക്കും</string>
     <string name="ConversationFragment_you_already_viewed_this_message">നിങ്ങൾ ഇതിനകം ഈ സന്ദേശം കണ്ടു</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്കായി കുറിപ്പുകൾ ചേർക്കാൻ കഴിയും. നിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്ക് ചെയ്ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
@@ -2247,11 +2247,11 @@
     <!-- Title for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">അറിയിപ്പുകൾ ഓണാക്കുക</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">പുതിയ സന്ദേശങ്ങള്‍-ക്കുള്ള അറിയിപ്പുകൾ ലഭിക്കുന്നതിന്:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">പുതിയ സന്ദേശങ്ങള്‍ക്കുള്ള അറിയിപ്പുകൾ ലഭിക്കുന്നതിന്:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. ചുവടെയുള്ള \"ക്രമീകരണങ്ങളിൽ\" ക്ലിക്ക് ചെയ്യുക</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s അറിയിപ്പുകൾ ഓണാക്കുക</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">ക്രമീകരണങ്ങൾ</string>
 
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക</item>
         <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
         <item>ഫീച്ചര്‍ അഭ്യർത്ഥന</item>
         <item>ചോദ്യം</item>
@@ -3068,7 +3068,7 @@
     <string name="PaymentsAllActivityFragment__received">ലഭിച്ചു</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">പേയ്മെന്റുകൾ അവതരിപ്പിക്കുന്നു</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">സ്വകാര്യതയ്ക്ക് പ്രാധാന്യം നൽകുന്ന പുതിയ ഡിജിറ്റൽ കറൻസിയായ MobileCoin അയയ്ക്കാനും സ്വീകരിക്കാനും Signal ഉപയോഗിക്കൂ. ആരംഭിക്കാൻ സജീവമാക്കൂ.</string>
     <string name="PaymentsHomeFragment__activate_payments">പേയ്മെന്റുകൾ സജീവമാക്കുക</string>
     <string name="PaymentsHomeFragment__activating_payments">പേയ്‌മെന്റുകൾ സജീവമാക്കുന്നു…</string>
@@ -3104,7 +3104,7 @@
     <string name="PaymentsHomeFragment__details">വിശദാംശങ്ങൾ</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">MobileCoin അയയ്ക്കാനും സ്വീകരിക്കാനും നിങ്ങൾക്ക് Signal ഉപയോഗിക്കാനാകും. എല്ലാ പേയ്മെന്റുകളും MobileCoins, MobileCoin വാലറ്റ് എന്നിവയുടെ ഉപയോഗ നയങ്ങൾക്ക് വിധേയമായിരിക്കും. നിങ്ങൾക്ക് ചില പ്രശ്‍നങ്ങൾ നേരിട്ടേക്കാം, നിങ്ങൾക്ക് നഷ്ടപ്പെട്ടേക്കാവുന്ന പേയ്മെന്റുകളോ ബാലൻസുകളോ വീണ്ടെടുക്കാനാകില്ല. </string>
     <string name="PaymentsHomeFragment__activate">സജീവമാക്കുക</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">മൊബൈൽ കോയിൻ നിബന്ധനകൾ കാണുക</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal-ലെ പേയ്‌മെന്റുകൾ ഇനി ലഭ്യമല്ല. നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു എക്സ്ചേഞ്ചിലേക്ക് ഫണ്ടുകൾ ട്രാൻസ്ഫർ ചെയ്യാൻ കഴിയും, എന്നാൽ നിങ്ങൾക്ക് ഇനി പേയ്മെന്റുകൾ അയയ്ക്കാനും കൂടാതെ സ്വീകരിക്കാനും അല്ലെങ്കിൽ ഫണ്ടുകൾ ചേർക്കാനോ കഴിയില്ല.</string>
@@ -3135,23 +3135,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">അനുമതികൾ അനുവദിക്കുക</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാനാകുന്ന ആളുകൾക്ക് സന്ദേശം എത്തിക്കാൻ നിങ്ങളെ സഹായിക്കാൻ, Signal ഈ അനുമതികൾ ചോദിക്കും. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">അറിയിപ്പുകൾ</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">പുതിയ സന്ദേശങ്ങൾ വരുമ്പോൾ അറിയിപ്പ് നേടൂ.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">കോൺടാക്ടുകൾ</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">നിങ്ങൾക്ക് അറിയാവുന്ന ആളുകളെ കണ്ടെത്തൂ. നിങ്ങളുടെ കോൺടാക്റ്റുകൾ എൻക്രിപ്റ്റ് ചെയ്‌തിരിക്കുന്നു, അത് Signal സേവനത്തിന് കാണാനാകില്ല.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">ഫോൺ കോളുകൾ</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">രജിസ്റ്റർ ചെയ്യൽ എളുപ്പമാക്കുകയും അധിക കോളിംഗ് ഫീച്ചറുകൾ പ്രവർത്തനക്ഷമമാക്കുകയും ചെയ്യുക.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">സ്റ്റോറേജ്</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് ഫോട്ടോകളോ വീഡിയോകളോ ഫയലുകളോ അയയ്ക്കുക.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5028,7 +5028,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">പിക്കർ തുറക്കുന്നത് പരാജയപ്പെട്ടു.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">അറിയിപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കാൻ, Signal-ന് അവ പ്രദർശിപ്പിക്കാനുള്ള അനുമതി വേണം.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">ഓൺ ചെയ്യുക</string>
 
@@ -6111,7 +6111,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">സന്ദേശം എഡിറ്റ് ചെയ്യുക</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">നിങ്ങളൊരു സന്ദേശം എഡിറ്റ് ചെയ്‌താൽ, Signal ബീറ്റയുടെ ഏറ്റവും പുതിയ പതിപ്പിലുള്ളവർക്ക് മാത്രമെ അത് കാണാനാകൂ. നിങ്ങളൊരു സന്ദേശം എഡിറ്റ് ചെയ്‌തുവെന്ന് അവർക്ക് കാണാനാകും.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">റദ്ദാക്കുക</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6147,11 +6147,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">ലിങ്ക് പകർത്തി</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">ലിങ്ക് സജ്ജീകരിച്ചിട്ടില്ല</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">ലിങ്ക് പുനഃക്രമീകരിക്കുന്നു…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR കോഡ് പുനഃക്രമീകരിക്കണോ?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">നിങ്ങൾ QR കോഡ് പുനഃക്രമീകരിക്കുക ആണെങ്കിൽ, നിങ്ങളുടെ നിലവിലുള്ള QR കോഡും ലിങ്കും പിന്നീട് പ്രവർത്തിക്കില്ല.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6173,13 +6173,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">%1$s എന്ന ഉപയോക്തൃനാമമുള്ള ഉപയോക്താവിനെ കണ്ടെത്താനായില്ല.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">ഈ ഉപയോക്താവിനെ കണ്ടെത്താനായില്ല.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">നെറ്റ്‌വർക്ക് പിശക് ഉണ്ടായി. വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">നിങ്ങൾക്ക് നെറ്റ്‌വർക്ക് ആക്‌സസ് ഇല്ല. നിങ്ങളുടെ ലിങ്ക് റീസെറ്റ് ചെയ്‌തില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">നിങ്ങളുടെ ലിങ്ക് പുനഃക്രമീകരിക്കാൻ ശ്രമിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശകുണ്ടായി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

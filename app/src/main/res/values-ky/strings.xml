@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">Билдирүү ачылган жок</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Тез жооп берүү үчүн билдирүүнү оңго сүрүп коюңуз</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Тез жооп берүү үчүн билдирүүнү солго сүрүп коюңуз</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Бир жолу көрүлүүчү нерсе жөнөтүлгөндөн кийин өчүп калат</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Бул билдирүүнү карагансыз</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>
@@ -2169,15 +2169,15 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Билдирмелерди иштетүү</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">To receive notifications for new messages:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Жаңы билдирмелердин келгенин билип туруу үчүн:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Төмөнкү \"Параметрлер\" дегенди басыңыз</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Билдирмелерди иштетиңиз</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__settings">Тууралоо</string>
+    <string name="TurnOnNotificationsBottomSheet__settings">Параметрлер</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Билдирүүлөр</string>
@@ -2688,7 +2688,7 @@
     <string name="HelpFragment__could_not_upload_logs">Журналдар жүктөлүп берилген жок</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Маселени мүмкүн болушунча кененирээк түшүндүрүп бериңиз.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Опция тандаңыз</item>
         <item>Бир нерсе иштебей жатат</item>
         <item>Жаңы функциялар талап кылынат</item>
         <item>Суроо берүү</item>
@@ -2979,7 +2979,7 @@
     <string name="PaymentsAllActivityFragment__received">Алынды</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Төлөмдөр</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Коопсуздук максатында, MobileCoin жаңы санарип акчасын жөнөтүү жана алуу үчүн Signal\'ды колдонуңуз. Баштоо үчүн иштетиңиз.</string>
     <string name="PaymentsHomeFragment__activate_payments">Төлөмдөрдү активдештирүү</string>
     <string name="PaymentsHomeFragment__activating_payments">Төлөмдөрдү активдештирүү…</string>
@@ -3015,7 +3015,7 @@
     <string name="PaymentsHomeFragment__details">Чоо-жайы</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">MobileCoin\'дерди Signal аркылуу жөнөтүп, ала аласыз. Бардык төлөмдөр MobileCoins жана MobileCoin Wallet кызматтарын Пайдалануу шарттары боюнча жүргүзүлөт. Көйгөйлөр келип чыгышы мүмкүн жана жоголгон төлөмдөр менен каражаттарыңыз кайра калыбына келбейт. </string>
     <string name="PaymentsHomeFragment__activate">Активдештирүү</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin шарттарын көрүү</string>
     <string name="PaymentsHomeFragment__payments_not_available">Сигналдагы төлөмдөр мындан ары жеткиликсиз. Сиз дагы эле биржага акча которо аласыз, бирок мындан ары төлөмдөрдү жөнүү жана алуу же каражат кошуу болбойт.</string>
@@ -3044,25 +3044,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Кийинки</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Уруксаттарды иштетүү</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Тааныган адамдар менен жазышууга жардам берүү үчүн Signal ушул уруксаттарды сурайт. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Билдирмелер</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Жаңы билдирүүлөрдүн келгенин билип турасыз.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Байланыштар</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Тааныштарыңызды табасыз. Байланыштарыңыз шифрленип, Signal кызматына көрүнбөйт.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Телефон чалуулар</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Катталуу процессин жеңилдетип, кошумча чалуу мүмкүнчүлүктөрүн иштетесиз.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Сактагыч</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Түзмөгүңүздөн сүрөттөрдү, видеолорду жана файлдарды жөнөтөсүз.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4920,7 +4920,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Тандоочу ачылбай койду.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Билдирмелерди күйгүзүү үчүн Signal\'га аларды көрсөткөнгө уруксат беришиңиз керек.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Күйгүзүү</string>
 
@@ -5978,7 +5978,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Билдирүүнү оңдоо</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Эгер билдирүүнү оңдосоңуз, ал Signal\'дын эң акыркы версиясын колдонгон адамдарга гана көрүнөт. Алар оңдолгон билдирүүнү көрө алышат.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Жок</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6014,15 +6014,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Шилтеме көчүрүлдү</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Шилтеме коюлган жок</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Шилтеме кайра коюлууда…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR кодду кайра коесузбу?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">QR кодуңузду кайра койсоңуз, учурдагы QR кодуңуз иштебей калат.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Баштапкы абалга келтирүү</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Кайра коюу</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Баштапкы абалга келтирүү</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6040,13 +6040,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Мындай колдонуучу (%1$s) табылган жок.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Бул колдонуучу табылган жок.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Тармактык ката кетти. Кайталап көрүңүз.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Интернет жок. Шилтемеңиз кайра коюлган жок. Бир аздан соң кайталаңыз.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Шилтемеңизди кайра коюп жатканда тармакта ката кетти. Бир аздан соң кайталаңыз.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

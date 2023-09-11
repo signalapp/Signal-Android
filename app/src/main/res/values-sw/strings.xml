@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Imeshindwa kufungua ujumbe</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Unaweza kusongeza kidole kwa upande wa kulia kwa ujumbe wowote ili kujibu haraka</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Unaweza kusongeza kidole kwa upande wa kushoto kwa ujumbe wowote ili kujibu haraka</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Media za kuangalia mara moja hufutwa baada ya kutuma</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Umeshautazama ujumbe huu</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Unaweza kujiongezea vidokezo kwenye gumzo hili. Ikiwa akaunti yako ina vifaa vyovyote vilivyounganishwa, vidokezo vipya vitasawazishwa.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Washiriki %1$d wa kikundi wana majina yanayofanana</string>
@@ -2245,13 +2245,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Ruhusu Arifa</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Washa arifa</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Ili upokee arifa za ujumbe mpya:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Ili upokee arifa za jumbe mpya:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Bofya \"Mipangilio\" hapa chini</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Washa arifa</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Mipangilio</string>
 
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Hukuweza kupakia kumbukumbu</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Tafadhali toa maelezo ya kina iwezekanavyo utusaidie kuelewa suala hili.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Tafadhali teua chaguo</item>
         <item>Kuna Kitu Kisichofanya Kazi</item>
         <item>Ombi la Kipengele</item>
         <item>Swali</item>
@@ -3068,7 +3068,7 @@
     <string name="PaymentsAllActivityFragment__received">Umepokewa</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Kuanzisha malipo</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Tumia Signal kutuma na kupokea MobileCoin, sarafu mpya ya kidijitali inayozingatia faragha. Wezesha ili uanze.</string>
     <string name="PaymentsHomeFragment__activate_payments">Wezesha Malipo</string>
     <string name="PaymentsHomeFragment__activating_payments">Unawezesha malipo…</string>
@@ -3104,7 +3104,7 @@
     <string name="PaymentsHomeFragment__details">Maelezo</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Unaweza kutumia Signal kutuma na kupokea MobileCoin. Malipo yote yako chini ya Masharti ya Matumizi kwa MobileCoins na MobileCoin Wallet. Unaweza kukumbana na hitilafu na malipo au salio ambazo huenda ukapoteza zisirejeshwe. </string>
     <string name="PaymentsHomeFragment__activate">Wezesha</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Angalia masharti ya MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Malipo katika Signal hayapatikani tena. Bado unaweza kuhamishia fedha kwenye ubadilishanaji lakini huwezi kutuma na kupokea malipo au kuongeza pesa.</string>
@@ -3133,25 +3133,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Inayofuata</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Kubali Ruhusa</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Kubalisha ruhusa</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Ili kukusaidia kutuma ujumbe kwa watu unaowajua, Signal itakuomba ruhusa hizi. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Arifa</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Arifiwa pale ujumbe mpya unapoingia.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Wawasiliani</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Tafuta watu unaowafahamu. Wawasiliani wako wamesimbwa fiche na hawaonekani kwa huduma ya Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Simu</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Fanya usajili kuwa rahisi na wezesha vipengele vya ziada vya kupiga simu.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Hifadhi</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Tuma picha, video na faili kutoka kwenye kifaa chako.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5028,7 +5028,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Haiwezekani kufungua picker.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Ili kuruhusu arifa, Signal inahitaji ruhusa ili kuzionyesha.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Washa</string>
 
@@ -6109,9 +6109,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historia ya uhariri</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Hariri ujumbe</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Hariri Ujumbe</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Ukihariri ujumbe, utaonekana kwa watu walio kwenye toleo jipya la beta la Signal pekee. Wataweza kuona kuwa umehariri ujumbe.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Ghairi</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6147,15 +6147,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Kiungo kimenakiliwa</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Kiungo hakijawekwa</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Kuweka upya kiungo…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Weka upya msimbo wa QR?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Ukiweka upya mipangilio ya msimbo wa QR, msimbo wa QR uliopo hautafanya kazi tena.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Ukiweka upya mipangilio ya msimbo wa QR, msimbo wa QR uliopo na kiungo havitafanya kazi tena.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Seti upya tena</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Weka upya mipangilio</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Seti upya tena</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6173,13 +6173,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Mtumiaji mwenye jina la mtumiaji %1$s hapatikani.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Mtumiaji huyu hajapatikana.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Hitilafu ya mtandao imetokea. Tafadhali jaribu tena.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Hauna ufikiaji wa mtandao. Kiungo chako hakikuwekwa upya. Jaribu tena baadaye.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Hitilafu ya kimtandao imetokea wakati wa kuweka upya kiungo chako. Jaribu tena baadaye.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

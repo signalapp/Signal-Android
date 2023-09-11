@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Kunne ikke åpne meldingen</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan sveipe til høyre på meldinger for å svare raskt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan sveipe til venstre på meldinger for å svare raskt</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Vis-én-gang-mediefiler slettes når de er sendt</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du har allerede åpnet denne meldingen</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan skrive notater til deg selv i denne samtalen. Hvis kontoen din har flere tilkoblede enheter, blir nye notater synkronisert.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
@@ -2245,13 +2245,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Skru på Varsler</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Slå på varsler</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">For å motta varsler for nye meldinger:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Slik mottar du varsler for nye meldinger:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Trykk på «Innstillinger» nedenfor</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Slå på varsler</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Innstillinger</string>
 
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Velg et alternativ</item>
         <item>Noe virker ikke som det skal</item>
         <item>Forespørsel om funksjon</item>
         <item>Spørsmål</item>
@@ -3104,7 +3104,7 @@
     <string name="PaymentsHomeFragment__details">Detaljer</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Nå kan du bruke Signal til å sende og motta MobileCoin. Alle betalingene skjer i samsvar med bruksvilkårene til MobileCoin og MobileCoin-lommeboken. Det kan oppstå enkelte problemer, og tapte saldoer og betalinger kan ikke gjenopprettes. </string>
     <string name="PaymentsHomeFragment__activate">Aktiver</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Åpne vilkårene for MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke lenger tilgjengelige. Du kan fortsatt overføre midler til en veksler, men du kan ikke lenger sende eller motta betalinger eller legge til midler.</string>
@@ -3133,25 +3133,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Neste</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Godta tillatelser</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Gi nødvendige tillatelser</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Signal ber om følgende tilganger for å gi deg muligheten til å sende meldinger til kjente og kjære: </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Varsler</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Få varsler når du mottar meldinger.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kontakter</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Finn dine bekjente. Kontaktlisten din krypteres og er ikke synlig for Signal-tjenesten.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefonsamtaler</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Gir deg tilgang til anropsfunksjoner i appen, og gjør det lettere å registrere seg.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Lagring</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send bilder, videoer og filer fra enheten din.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4065,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Du har penger på kontoen din! Det er på tide å lage en gjenopprettingsfrase som du kan bruke til å få tilgang til kontoen din.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Det er på tide å lage en gjenopprettingsfrase som du kan bruke til å få tilgang til kontoen din.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Det er på tide å lagre en gjenopprettingsfrase på 24 ord som du kan bruke til å gjenopprette saldoen din.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Gjenopprettingspassordet ditt er en setning på %1$d ord som du velger selv. Det kan brukes til å gjenopprette saldoen din.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Skriv inn manuelt</string>
@@ -5028,9 +5028,9 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Kunne ikke åpne velgeren.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Du må gi Signal tillatelse til å vise varsler før du kan slå dem på.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Slå på</string>
+    <string name="NotificationSettingsFragment__turn_on">Slå på varsler</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Merknader og nyheter fra Signal</string>
@@ -6147,13 +6147,13 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Lenken er kopiert</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Lenke mangler</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Lenken tilbakestilles …</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Vil du tilbakestille QR-koden?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">QR-koden og profillenken din vil slutte å virke hvis du tilbakestiller QR-koden.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">QR-koden og profillenken din slutter å virke hvis du tilbakestiller QR-koden.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Tilbakestill</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
@@ -6173,13 +6173,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Fant ingen bruker med brukernavn %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Brukeren ble ikke funnet.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Det oppstod en nettverksfeil. Prøv igjen.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du er ikke koblet til internett. Lenken ble ikke sendt. Prøv igjen senere.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">En feil oppstod da du forsøkte å tilbakestille lenken. Prøv igjen senere.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

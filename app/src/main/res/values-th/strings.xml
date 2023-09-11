@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">การเปิดข้อความล้มเหลว</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">คุณสามารถปัดด้านขวาเพื่อตอบข้อความอย่างรวดเร็ว</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวจะถูกลบหลังการส่ง</string>
     <string name="ConversationFragment_you_already_viewed_this_message">คุณเปิดดูข้อความนี้แล้ว</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกถึงตัวเองได้ในแชทนี้\nและหากบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ก็จะถูกซิงค์ด้วยเช่นกัน</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
@@ -2171,11 +2171,11 @@
     <!-- Title for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">เปิดการแจ้งเตือน</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">เพื่อรับการแจ้งเตือนสำหรับข้อความใหม่:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">วิธีเปิดใช้งานเพื่อรับการแจ้งเตือนข้อความใหม่:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. แตะ “การตั้งค่า” ด้านล่างนี้</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. เปิดใช้งานการแจ้งเตือน %1$s</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">การตั้งค่า</string>
 
@@ -2688,7 +2688,7 @@
     <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>กรุณาเลือกหนึ่งรายการ</item>
         <item>มีบางอย่างไม่ทำงาน</item>
         <item>คำขอฟีเจอร์</item>
         <item>คำถาม</item>
@@ -3015,7 +3015,7 @@
     <string name="PaymentsHomeFragment__details">รายละเอียด</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">คุณสามารถใช้ Signal เพื่อส่งและรับ MobileCoin การชำระเงินทั้งหมดอยู่ภายใต้เงื่อนไขการใช้งานสำหรับ MobileCoin และ MobileCoin Wallet คุณอาจพบปัญหาบางประการ และการชำระเงินหรือยอดคงเหลืออาจสูญหายไปโดยกู้คืนมาไม่ได้ </string>
     <string name="PaymentsHomeFragment__activate">เปิดใช้</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">ดูเงื่อนไข MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">ไม่สามารถชำระเงินใน Signal ได้อีกต่อไป คุณยังสามารถโอนเงินไปยังตลาดหลักทรัพย์ได้ แต่คุณจะไม่สามารถส่งและรับการชำระเงินหรือเพิ่มเงินได้อีก</string>
@@ -3042,27 +3042,27 @@
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
     <string name="GrantPermissionsFragment__not_now">ไว้ทีหลัง</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">ถัดไป</string>
+    <string name="GrantPermissionsFragment__next">ดำเนินการต่อ</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">อนุญาต</string>
+    <string name="GrantPermissionsFragment__allow_permissions">การอนุญาตสิทธิ์</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">เพื่อให้คุณสามารถส่งข้อความหาผู้ติดต่อที่รู้จัก Signal จะขอสิทธิ์การเข้าถึงต่อไปนี้ </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">การแจ้งเตือน</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">ได้รับแจ้งเตือนเมื่อมีข้อความใหม่</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">ผู้ติดต่อ</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">ค้นหาคนที่คุณรู้จัก โดยรายชื่อผู้ติดต่อของคุณจะได้รับการเข้ารหัสและไม่ถูกเปิดเผยต่อบริการของ Signal</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">การโทร</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">ช่วยให้การลงทะเบียนง่ายขึ้น พร้อมเข้าถึงฟีเจอร์การโทรอื่นๆ เพิ่มเติม</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">พื้นที่จัดเก็บ</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">ส่งรูปภาพ วิดีโอ และไฟล์ต่างๆ จากอุปกรณ์ของคุณ</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3963,7 +3963,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">คุณมียอดเงินคงเหลือ! ได้เวลาบันทึกวลีกู้คืนของคุณ ซึ่งคือรหัส 24 คำที่สามารถใช้เพื่อกู้คืนยอดเงินคงเหลือของคุณได้</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">ได้เวลาบันทึกวลีกู้คืนของคุณ ซึ่งคือรหัส 24 คำที่สามารถใช้เพื่อกู้คืนยอดเงินคงเหลือของคุณได้</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ได้เวลาบันทึกวลีกู้คืนแล้ว นี่คือรหัส 24 คำที่สามารถใช้เพื่อกู้คืนยอดเงินคงเหลือของคุณ</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">วลีกู้คืนของคุณคือวลี %1$d คำที่เฉพาะเจาะจงกับคุณและไม่ซ้ำใคร ใช้วลีนี้เพื่อกู้คืนยอดคงเหลือของคุณ</string>
     <string name="PaymentsRecoveryStartFragment__start">เริ่ม</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ใส่ด้วยมือ</string>
@@ -4920,9 +4920,9 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">การเปิดตัวเลือกล้มเหลว</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">เปิดใช้งานโดยอนุญาตให้ Signal ได้รับสิทธิ์การเข้าถึงเพื่อแสดงการแจ้งเตือน</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">เปิด</string>
+    <string name="NotificationSettingsFragment__turn_on">เปิดใช้งาน</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">บันทึกการเปลี่ยนแปลง Signal &amp; ข่าว</string>
@@ -6014,11 +6014,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">คัดลอกลิงก์แล้ว</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">ยังไม่ได้ตั้งค่าลิงก์</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">กำลังรีเซ็ตลิงก์…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">รีเซ็ตคิวอาร์โค้ดใช่หรือไม่</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">หากคุณรีเซ็ตคิวอาร์โค้ด คิวอาร์โค้ดและลิงก์ที่มีอยู่เดิมของคุณจะใช้งานไม่ได้อีกต่อไป</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6040,13 +6040,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">ไม่พบชื่อผู้ใช้ %1$s</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">ไม่พบผู้ใช้คนนี้</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">พบข้อผิดพลาดของเครือข่าย โปรดลองอีกครั้ง</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">คุณไม่ได้เชื่อมต่ออินเทอร์เน็ต ไม่สามารถรีเซ็ตลิงก์ของคุณได้ โปรดลองอีกครั้งในภายหลัง</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">เกิดข้อผิดพลาดด้านเครือข่ายขณะพยายามรีเซ็ตลิงก์ของคุณโปรดลองอีกครั้งในภายหลัง</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

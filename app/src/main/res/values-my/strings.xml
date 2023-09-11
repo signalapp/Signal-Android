@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">စာတိုကိုဖွင့်လို့မရပါ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">သင်သည်လျှင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ညာဘက်ပွတ်ဆွဲနိုင်ပါတယ်</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">သင်သည်လျင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ဘယ်ဘက်အပေါ်ကိုပွတ်ဆွဲနိုင်ပါတယ်</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">တစ်ကြိမ်ကြည့် မီဒီယာကို ပေးပို့ပြီးနောက် ပြန်ဖျက်သည်</string>
     <string name="ConversationFragment_you_already_viewed_this_message">သင် ဤမက်ဆေ့ခ်ျကို ကြည့်ပြီးပါပြီ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤချက်(တ်)တွင် သင်ကိုယ်တိုင်အတွက် မှတ်စုများ ထည့်နိုင်ပါသည်။\nသင့်အကောင့်နှင့် ချိတ်ထားသည့် စက်များရှိပါက မှတ်စုအသစ်များကို ချိန်ကိုက်ပါမည်။</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>
@@ -2169,13 +2169,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">အသိပေးချက်များကို ဖွင့်ပါ</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">အသိပေးချက်များကို ဖွင့်ရန်</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">မက်ဆေ့ချ်အသစ်များ အတွက် အသိပေးချက်များ လက်ခံရန် -</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">မက်ဆေ့ချ်အသစ်များအတွက် အသိပေးချက်များ လက်ခံရန်-</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. အောက်ပါ \"ဆက်တင်\" ကို နှိပ်ပါ</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s အသိပေးချက်များကို ဖွင့်ပါ</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">ဆက်တင်</string>
 
@@ -2688,7 +2688,7 @@
     <string name="HelpFragment__could_not_upload_logs">မှတ်တမ်းများ မတင်သွင်းနိုင်ပါ</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ကျွနှ်ပ်တို့နားလည်နိုင်ရန် ကိစ္စအကြောင်းကို တတ်နိုင်သမျှ ဖေါ်ပြပေးပါ။</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>ရွေးချယ်စရာတစ်ခုကို ရွေးပေးပါ</item>
         <item>တစ်ခုခု အလုပ်မလုပ်ပါ</item>
         <item>လုပ်ဆောင်ချက် အင်္ဂါရပ် တောင်းဆိုချက်</item>
         <item>မေးခွန်း</item>
@@ -2979,7 +2979,7 @@
     <string name="PaymentsAllActivityFragment__received">လက်ခံရရှိပြီး</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">ငွေပေးချေမှုများကို မိတ်ဆက်ခြင်း</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal သုံး၍ လုံခြုံရေးအလေးပေး ဒစ်ဂျစ်တယ်ငွေကြေးအသစ် MobileCoin ကို ပေးပို့လက်ခံလိုက်ပါ။ စတင်သုံးရန် ဖွင့်ပါ။</string>
     <string name="PaymentsHomeFragment__activate_payments">ငွေပေးချေမှုများ ဖွင့်မယ်</string>
     <string name="PaymentsHomeFragment__activating_payments">ငွေပေးချေမှုများ ဖွင့်နေသည်…</string>
@@ -3015,7 +3015,7 @@
     <string name="PaymentsHomeFragment__details">အသေးစိတ်အချက်အလက်များ</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">MobileCoin ပေးပို့ရန်နှင့် လက်ခံရန် Signal ကို သင် သုံးနိုင်ပါသည်။ ငွေပေးချေမှုများအားလုံးသည် MobileCoins နှင့် MobileCoin Wallet အတွက် အသုံးပြုမှုစည်းကမ်းချက်များကို လိုက်နာရပါမည်။ ပြဿနာအချို့ကို သင် ကြုံတွေ့ရနိုင်ပြီး သင် ဆုံးရှုံးသွားသော ငွေပေးချေမှုများ သို့မဟုတ် လက်ကျန်ငွေများကို ပြန်လည်ရယူ၍မရနိုင်ပါ။ </string>
     <string name="PaymentsHomeFragment__activate">ဖွင့်မယ်</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ၏သတ်မှတ်ချက်များ ကြည့်ရှုမယ်</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal ထဲတွင် ငွေပေးချေမှုများ မလုပ်ဆောင်နိုင်တော့ပါ။ ငွေလဲလှယ်မှုတစ်ခုသို့ ငွေများလွှဲနိုင်ပါသည်၊ သို့သော် သင်မှ ငွေပေးချေမှုများ ပေးပို့လက်ခံလို့မရတော့ပါ၊​ ငွေလည်း ထည့်ပေါင်းလို့မရတော့ပါ။</string>
@@ -3042,27 +3042,27 @@
     <!-- Displayed as a text-only action button at the bottom start of the screen -->
     <string name="GrantPermissionsFragment__not_now">ယခု မလုပ်သေးပါ</string>
     <!-- Displayed as an action button at the bottom end of the screen -->
-    <string name="GrantPermissionsFragment__next">နောက်ထက်</string>
+    <string name="GrantPermissionsFragment__next">ဆက်သွားမည်</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">ခွင့်ပြုချက်များ ပေးမယ်</string>
+    <string name="GrantPermissionsFragment__allow_permissions">ခွင့်ပြုချက်များ ပေးရန်</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">သင် သိရှိသောသူများထံသို့ မက်ဆေ့ချ်ပို့ရန်အတွက် ကူညီပေးရန် Signal သည် ထိုခွင့်ပြုချက်များကို တောင်းခံပါမည်။ </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">အသိပေးချက်များ</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">မက်ဆေ့ချ်အသစ်များ ရောက်လာသောအခါ အသိပေးချက်ရယူလိုက်ပါ။</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">အဆက်အသွယ်များ</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">သင် သိသောသူများကို ရှာဖွေလိုက်ပါ။ သင့်အဆက်အသွယ်များကို ကုဒ်ပြောင်းဝှက်ထားပြီး Signal ဝန်ဆောင်မှုက မမြင်တွေ့ရပါ။</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">ဖုန်းကောလ်များ</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">မှတ်ပုံတင်ခြင်းကို ပိုလွယ်အောင်လုပ်ပြီး ထပ်ဆောင်း ဖုန်းကောလ် အင်္ဂါရပ်များကို ဖွင့်လိုက်ပါ။</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">သိမ်းဆည်းမှု</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">သင့်စက်မှ ဓာတ်ပုံများ၊ ဗီဒီယိုများနှင့် ဖိုင်များကို ပေးပို့လိုက်ပါ။</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3963,7 +3963,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">လက်ကျန်ငွေ ရရှိထားပါသည်။ သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် ပြန်လည်ရယူရေး စကားစု—စာလုံး 24 လုံးပါ ကီး ကို သိမ်းရန် အချိန်ကျပါပြီ။</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် ပြန်လည်ရယူရေး စကားစု—စာလုံး 24 လုံးပါ ကီး ကို သိမ်းရန် အချိန်ကျပါပြီ။</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် ပြန်လည်ရယူရေး စကားစု—စာလုံး 24 လုံးပါ ကီးကို သိမ်းရန် အချိန်ကျပါပြီ။</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">သင်၏ ပြန်လည်ရယူရန် စာပုဒ်တိုသည် သင့်အတွက်သာ ထူးခြားသော စကားလုံး %1$d လုံးရှိသော စာပုဒ်တိုဖြစ်ပါသည်။ ၎င်းစာပုဒ်တိုကိုသုံး၍ သင့် လက်ကျန်ငွေ ပြန်ရယူလိုက်ပါ။</string>
     <string name="PaymentsRecoveryStartFragment__start">စမယ်</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ကိုယ်တိုင်ရိုက်ထည့်ပါ</string>
@@ -4920,7 +4920,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">ရွေးချယ်ထားသည်ကို ဖွင့်ရန် မအောင်မြင်ပါ။</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">အသိပေးချက်များကို ဖွင့်ရန်အတွက် Signal သည် ၎င်းတို့ကို ပြသရန် ခွင့်ပြုချက် လိုအပ်ပါသည်။</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">ဖွင့်မည်</string>
 
@@ -5978,7 +5978,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">မက်ဆေ့ချ် တည်းဖြတ်ရန်</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">မက်ဆေ့ချ်တစ်စောင်ကို တည်းဖြတ်ပါက ၎င်းကို Signal နောက်ဆုံးထွက်ဗားရှင်းများကို သုံးနေသူများသာ မြင်ရပါမည်။ ၎င်းတို့သည် မက်ဆေ့ချ်တစ်စောင်ကို သင် တည်းဖြတ်လိုက်ကြောင်း တွေ့မြင်ရပါမည်။</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">မလုပ်တော့ပါ</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6014,15 +6014,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">လင့်ခ် ကူးပြီး</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">လင့်ခ်ကို မသတ်မှတ်ထားပါ</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">လင့်ခ်ကို ပြန်လည်သတ်မှတ်နေဆဲ…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR ကုဒ်ကို ပြန်လည်သတ်မှတ်ပါမည်လား။</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">သင်၏ QR ကုဒ်ကို သင် ပြန်လည်သတ်မှတ်လိုက်ပါက မူလ QR ကုဒ်နှင့် လင့်ခ်မှာ အလုပ်လုပ်တော့မည်မဟုတ်ပါ။</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ရီဆက်ချမည်</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ပြန်လည်သတ်မှတ်ရန်</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ရီဆက်ချမည်</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6040,13 +6040,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">သုံးစွဲသူအမည် %1$s ဖြင့် သုံးစွဲသူကို ရှာမတွေ့ပါ။</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">ဤသုံးစွဲသူကို ရှာမတွေ့နိုင်ပါ။</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">ကွန်ရက် အမှားအယွင်းတစ်ခု ကြုံတွေ့ခဲ့ရပါသည်။ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">သင့်တွင် ကွန်ရက်သုံးစွဲခွင့် မရှိပါ။ သင်၏ လင့်ခ်ကို ပြန်လည်သတ်မှတ်ခဲ့ခြင်းမရှိပါ။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားစဉ် ကွန်ရက်ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

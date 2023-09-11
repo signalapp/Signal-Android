@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Eenmaligeweergave-media worden verwijderd nadat ze verzonden zijn</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al bekeken</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in deze chat notities voor jezelf achterlaten. Alle nieuwe notities worden gesynchroniseerd met apparaten die gekoppeld zijn met je account.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
@@ -2247,11 +2247,11 @@
     <!-- Title for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Meldingen inschakelen</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Om meldingen van nieuwe berichten te krijgen:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Om meldingen van nieuwe berichten te ontvangen:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tik op Instellingen hieronder</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Meldingen inschakelen</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Instellingen</string>
 
@@ -2775,7 +2775,7 @@
     <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Selecteer een optie</item>
         <item>Er werkt iets niet goed</item>
         <item>Verzoek voor een functie</item>
         <item>Vraag</item>
@@ -2964,9 +2964,9 @@
     <string name="preferences__request_keyboard_to_disable">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Let op: Signal kan niet garanderen dat gepersonaliseerd leren door het toetsenbord ook daadwerkelijk wordt voorkomen, omdat dit alleen werkt als je toetsenbord-app daaraan meewerkt.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Bij mobiele-dataoverdracht</string>
+    <string name="preferences_chats__when_using_mobile_data">Bij mobiele dataverbinding</string>
     <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
-    <string name="preferences_chats__when_roaming">Bij roamen</string>
+    <string name="preferences_chats__when_roaming">Bij roaming</string>
     <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
     <string name="preferences_chats__message_history">Gespreksgeschiedenis</string>
     <string name="preferences_storage__storage_usage">Opslaggebruik</string>
@@ -3003,9 +3003,9 @@
     <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Minder data gebruiken bij oproepen</string>
     <string name="preferences_data_and_storage__never">Nooit</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Het gebruik van minder data kan de kwaliteit van oproepen op slechte netwerken verbeteren.</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele data</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele data</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Door minder data te gebruiken kan de kwaliteit van oproepen op slechte netwerken verbeteren</string>
     <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend chat</string>
     <string name="preferences_notifications__show">Laat zien</string>
     <string name="preferences_notifications__ringtone">Oproepgeluid</string>
@@ -3104,7 +3104,7 @@
     <string name="PaymentsHomeFragment__details">Details</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Je kunt Signal gebruiken om MobileCoin te verzenden en te ontvangen. Op alle betalingen zijn de gebruiksvoorwaarden voor MobileCoins en de MobileCoin Wallet van toepassing. Er kunnen zich problemen voordoen. Verloren betalingen en krediet kan je dan niet terugvorderen. </string>
     <string name="PaymentsHomeFragment__activate">Inschakelen</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">De gebruiksvoorwaarden van MobileCoin weergeven</string>
     <string name="PaymentsHomeFragment__payments_not_available">Betalingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet overschrijven naar een andere beurs maar je kunt niet langer betalingen verzenden of ontvangen of krediet toevoegen.</string>
@@ -3135,23 +3135,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Geef toestemmingen</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Om je te helpen berichten te sturen naar mensen die je kent, vraagt Signal deze toestemmingen. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Meldingen</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Ontvang een melding wanneer er nieuwe berichten binnenkomen.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Contactpersonen</string>
+    <string name="GrantPermissionsFragment__contacts">Contacten</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Vind mensen die je kent. Je contacten zijn versleuteld en niet zichtbaar voor de Signal-service.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefoonoproepen</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Maak registreren eenvoudiger en schakel extra belfuncties in.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Opslag</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Verstuur foto\'s, video\'s en bestanden vanaf je apparaat.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4065,7 +4065,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Je hebt krediet! Tijd om je herstelzin op te slaan. Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Tijd om je herstelzin op te slaan. Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Tijd om je herstelzin op te slaan. Dit is een wachtwoord van 24 woorden dat je kunt gebruiken om je krediet te herstellen.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstelzin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen.</string>
     <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Handmatig invullen</string>
@@ -4143,7 +4143,7 @@
     <string name="QualitySelectorBottomSheetDialog__standard">Standaard</string>
     <string name="QualitySelectorBottomSheetDialog__faster_less_data">Sneller, minder dataverbruik</string>
     <string name="QualitySelectorBottomSheetDialog__high">Hoog</string>
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langzamer, meer dataoverdracht</string>
+    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langzamer, meer dataverbruik</string>
     <string name="QualitySelectorBottomSheetDialog__photo_quality">Afbeeldingskwaliteit</string>
 
     <!-- AppSettingsFragment -->
@@ -4306,7 +4306,7 @@
     <string name="PrivacySettingsFragment__disappearing_messages">Verlopende berichten</string>
     <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Screenshots in de lijst van recent geopende apps en in de app blokkeren</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle oproepen omleiden en verzegelde afzender.</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige chats</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige chats die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je chatpartner vanzelf worden gewist.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
@@ -4360,7 +4360,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-verzendkwaliteit</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Door hoge kwaliteit media te verzenden verbruik je meer data.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Als je media in hoge kwaliteit verzendt, verbruik je meer data.</string>
     <string name="DataAndStorageSettingsFragment__high">Hoog</string>
     <string name="DataAndStorageSettingsFragment__standard">Standaard</string>
     <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
@@ -5028,7 +5028,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Het openen van het belgeluid-keuzemenu is mislukt.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Om meldingen in te schakelen, heeft Signal toestemming nodig om deze weer te geven.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Inschakelen</string>
 
@@ -6147,15 +6147,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link gekopieerd</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Link niet ingesteld</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Link aan het herstellen…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR-code herstellen?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Als je je QR-code reset, werken je bestaande QR-code en link niet meer.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Als je je QR-code herstelt, werken je bestaande QR-code en link niet meer.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Standaardinstelling herstellen</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Herstellen</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Standaardinstelling herstellen</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6173,13 +6173,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Een gebruiker met gebruikersnaam %1$s kon niet worden gevonden.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Deze gebruiker kon niet worden gevonden.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Er is een netwerkfout opgetreden. Probeer het opnieuw.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Je hebt geen netwerktoegang. Je link is niet hersteld. Probeer het later opnieuw.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Er is een netwerkfout opgetreden tijdens het herstellen van je link. Probeer het later opnieuw.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
