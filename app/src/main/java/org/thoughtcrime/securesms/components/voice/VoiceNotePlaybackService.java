@@ -114,17 +114,9 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     private int previousPlaybackState = player.getPlaybackState();
 
     @Override
-    public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
-      onPlaybackStateChanged(playWhenReady, player.getPlaybackState());
-    }
-
-    @Override
     public void onPlaybackStateChanged(int playbackState) {
-      onPlaybackStateChanged(player.getPlayWhenReady(), playbackState);
-    }
-
-    private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
-     Log.d(TAG, "playWhenReady: " + playWhenReady + "\nplaybackState: " + playbackState);
+      Log.d(TAG, "[onPlaybackStateChanged] playbackState: " + playbackState);
+      boolean playWhenReady = player.getPlayWhenReady();
       switch (playbackState) {
         case Player.STATE_BUFFERING:
         case Player.STATE_READY:
