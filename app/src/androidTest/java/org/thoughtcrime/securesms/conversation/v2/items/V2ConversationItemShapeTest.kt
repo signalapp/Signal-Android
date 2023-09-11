@@ -210,7 +210,7 @@ class V2ConversationItemShapeTest {
 
     private val colorizer = Colorizer()
 
-    override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.STANDARD
+    override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.Standard
 
     override val clickListener: ConversationAdapter.ItemClickListener = FakeConversationItemClickListener
     override val selectedItems: Set<MultiselectPart> = emptySet()

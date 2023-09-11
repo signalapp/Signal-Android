@@ -93,8 +93,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     val colorizer = Colorizer()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, GlideApp.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient.hasWallpaper(), colorizer).apply {
-      setCondensedMode(ConversationItemDisplayMode.CONDENSED)
-      setScheduledMessagesMode(true)
+      setCondensedMode(ConversationItemDisplayMode.Condensed(scheduleMessageMode = true))
     }
 
     val list: RecyclerView = view.findViewById<RecyclerView>(R.id.scheduled_list).apply {

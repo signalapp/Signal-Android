@@ -48,7 +48,7 @@ class V2OnDispatchTouchEventListener(
   }
 
   override fun onDispatchTouchEvent(view: View, motionEvent: MotionEvent) {
-    if (conversationContext.displayMode == ConversationItemDisplayMode.CONDENSED) {
+    if (conversationContext.displayMode is ConversationItemDisplayMode.Condensed) {
       return
     }
 
