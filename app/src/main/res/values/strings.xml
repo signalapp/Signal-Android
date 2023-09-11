@@ -6099,6 +6099,12 @@
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Copied to clipboard</string>
 
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
     <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>

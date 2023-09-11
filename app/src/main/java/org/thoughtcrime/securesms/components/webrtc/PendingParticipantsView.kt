@@ -53,6 +53,8 @@ class PendingParticipantsView @JvmOverloads constructor(
 
     val firstRecipient: Recipient = unresolvedPendingParticipants.first()
     avatar.setAvatar(firstRecipient)
+    avatar.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
+
     name.text = firstRecipient.getShortDisplayName(context)
 
     allow.setOnClickListener { listener?.onAllowPendingRecipient(firstRecipient) }
@@ -70,6 +72,11 @@ class PendingParticipantsView @JvmOverloads constructor(
   }
 
   interface Listener {
+    /**
+     * Display the sheet containing the request for the top level participant
+     */
+    fun onLaunchRecipientSheet(pendingRecipient: Recipient)
+
     /**
      * Given recipient should be admitted to the call
      */
