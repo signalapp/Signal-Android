@@ -22,7 +22,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -30,10 +30,11 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
@@ -91,7 +92,7 @@ public final class AvatarUtil {
   }
 
   public static void loadIconIntoImageView(@NonNull Recipient recipient, @NonNull ImageView target, int requestedSize) {
-    Context  context  = target.getContext();
+    Context context = target.getContext();
 
     requestCircle(GlideApp.with(context).asDrawable(), context, recipient, requestedSize).into(target);
   }
@@ -103,23 +104,18 @@ public final class AvatarUtil {
       throws ExecutionException, InterruptedException
   {
     return requestSquare(GlideApp.with(context).asBitmap(), context, recipient)
-                                 .skipMemoryCache(true)
-                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                 .submit(width, height)
-                                 .get();
+        .skipMemoryCache(true)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .submit(width, height)
+        .get();
   }
 
   @WorkerThread
-  public static IconCompat getIconWithUriForNotification(@NonNull RecipientId recipientId) {
-    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipientId));
-  }
-
-  @WorkerThread
-  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+  public static @NonNull IconCompat getIconCompat(@NonNull Context context, @NonNull Recipient recipient) {
     if (Build.VERSION.SDK_INT > 29) {
-      return getIconWithUriForNotification(recipient.getId());
+      return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipient.getId()));
     } else {
-      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient));
+      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE));
     }
   }
 
@@ -129,17 +125,19 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
+  public static @NonNull Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
+    ThreadUtil.assertNotMainThread();
+
     try {
-      AvatarTarget avatarTarget = new AvatarTarget(size);
+      AvatarTarget  avatarTarget  = new AvatarTarget(size);
+      GlideRequests glideRequests = GlideApp.with(context);
 
-      SignalExecutors.BOUNDED_IO.submit(() -> {
-        requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).into(avatarTarget);
-      });
+      requestCircle(glideRequests.asBitmap(), context, recipient, size).into(avatarTarget);
 
-      return avatarTarget.await();
+      Bitmap bitmap = avatarTarget.await();
+      return Objects.requireNonNullElseGet(bitmap, () -> DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size));
     } catch (InterruptedException e) {
-      return null;
+      return DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size);
     }
   }
 
@@ -156,6 +154,7 @@ public final class AvatarUtil {
   }
 
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize, @Nullable BitmapTransformation transformation) {
+
     final ContactPhoto photo;
     if (Recipient.self().equals(recipient) && loadSelf) {
       photo = new ProfileContactPhoto(recipient);
@@ -163,10 +162,11 @@ public final class AvatarUtil {
       photo = recipient.getContactPhoto();
     }
 
+    final int size = targetSize == -1 ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : targetSize;
     final GlideRequest<T> request = glideRequest.load(photo)
-                                                .error(getFallback(context, recipient, targetSize))
+                                                .error(getFallback(context, recipient, size))
                                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                .override(targetSize);
+                                                .override(size);
 
     if (recipient.shouldBlurAvatar()) {
       BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
@@ -203,7 +203,6 @@ public final class AvatarUtil {
     }
 
     public @Nullable Bitmap await() throws InterruptedException {
-      Log.d(TAG, "AvatarTarget#await:");
       if (countDownLatch.await(1, TimeUnit.SECONDS)) {
         return bitmap.get();
       } else {
@@ -213,16 +212,27 @@ public final class AvatarUtil {
     }
 
     @Override
+    public void onDestroy() {
+      Log.d(TAG, "AvatarTarget: onDestroy");
+      super.onDestroy();
+    }
+
+    @Override
+    public void onLoadStarted(@Nullable Drawable placeholder) {
+      Log.d(TAG, "AvatarTarget: onLoadStarted");
+      super.onLoadStarted(placeholder);
+    }
+
+    @Override
     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-      Log.d(TAG, "AvatarTarget#onResourceReady: " + resource.getWidth() + ", " + resource.getHeight() + ", s:" + size);
+      Log.d(TAG, "AvatarTarget: onResourceReady");
       bitmap.set(resource);
       countDownLatch.countDown();
     }
 
     @Override
     public void onLoadFailed(@Nullable Drawable errorDrawable) {
-      Log.d(TAG, "AvatarTarget#onLoadFailed:");
-
+      Log.d(TAG, "AvatarTarget: onLoadFailed");
       if (errorDrawable == null) {
         throw new AssertionError("Expected an error drawable.");
       }
@@ -234,8 +244,7 @@ public final class AvatarUtil {
 
     @Override
     public void onLoadCleared(@Nullable Drawable placeholder) {
-      Log.d(TAG, "AvatarTarget#onLoadCleared:");
-
+      Log.d(TAG, "AvatarTarget: onLoadCleared");
       bitmap.set(null);
       countDownLatch.countDown();
     }

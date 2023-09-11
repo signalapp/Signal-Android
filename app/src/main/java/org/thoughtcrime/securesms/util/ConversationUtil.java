@@ -226,7 +226,7 @@ public final class ConversationUtil {
                                  .setIntent(ConversationIntents.createBuilderSync(context, resolved.getId(), threadId).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
-                                 .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
+                                 .setIcon(AvatarUtil.getIconCompat(context, resolved))
                                  .setPersons(persons)
                                  .setCategories(Sets.newHashSet(CATEGORY_SHARE_TARGET))
                                  .setActivity(activity)
@@ -286,11 +286,12 @@ public final class ConversationUtil {
   /**
    * @return A Compat Library Person object representing the given Recipient
    */
+  @WorkerThread
   public static @NonNull Person buildPerson(@NonNull Context context, @NonNull Recipient recipient) {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
-                     .setIcon(AvatarUtil.getIconWithUriForNotification(recipient.getId()))
+                     .setIcon(AvatarUtil.getIconCompat(context, recipient))
                      .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
                      .build();
   }
