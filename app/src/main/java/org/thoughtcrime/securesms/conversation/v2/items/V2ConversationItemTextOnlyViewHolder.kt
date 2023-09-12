@@ -585,6 +585,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
+    binding.conversationItemFooterDate.setOnClickListener(null)
     binding.conversationItemFooterDate.visible = true
     binding.conversationItemFooterDate.setTextColor(themeDelegate.getFooterTextColor(conversationMessage))
 
@@ -607,6 +608,10 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       var date = conversationMessage.formattedDate
       if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MediaMmsMessageRecord && record.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
+
+        binding.conversationItemFooterDate.setOnClickListener {
+          conversationContext.clickListener.onEditedIndicatorClicked(record)
+        }
       }
 
       binding.conversationItemFooterDate.text = date
