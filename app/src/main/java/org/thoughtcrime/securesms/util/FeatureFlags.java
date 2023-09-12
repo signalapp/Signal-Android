@@ -114,7 +114,7 @@ public final class FeatureFlags {
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
-  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.2";
+  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.3";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
 
   /**
