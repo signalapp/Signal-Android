@@ -16,8 +16,9 @@ object SystemWindowInsetsSetter {
   fun attach(view: View, lifecycleOwner: LifecycleOwner, @WindowInsetsCompat.Type.InsetsType insetType: Int = WindowInsetsCompat.Type.systemBars()) {
     val listener = view.doOnEachLayout {
       val insets: Insets? = ViewCompat.getRootWindowInsets(view)?.getInsets(insetType)
+      val canTrustInsets = Build.VERSION.SDK_INT > 29 || (WindowInsetsCompat.Type.ime() and insetType == 0)
 
-      if (Build.VERSION.SDK_INT > 29 && insets != null && !insets.isEmpty()) {
+      if (canTrustInsets && insets != null && !insets.isEmpty()) {
         view.post {
           view.setPadding(
             insets.left,
