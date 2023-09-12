@@ -137,7 +137,7 @@ fun SignalCallRow(
           containerColor = MaterialTheme.colorScheme.primaryContainer,
           contentColor = MaterialTheme.colorScheme.onSurface
         ),
-        modifier = Modifier.align(CenterVertically),
+        modifier = Modifier.align(CenterVertically)
       ) {
         Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))
       }

@@ -343,6 +343,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       SELECT $projection
       FROM $TABLE_NAME
       WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""}
+      ORDER BY $ID DESC
       $limitOffset
     """.trimIndent()
 
