@@ -108,7 +108,7 @@ class V2FooterPositionDelegate private constructor(
     val (left, right) = if (bodyContainer.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
       0 to horizontalPadding
     } else {
-       horizontalPadding to 0
+      horizontalPadding to 0
     }
 
     body.padding(right = right, left = left, bottom = footerViews.first().measuredHeight)
