@@ -106,7 +106,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     val LIST_UI_PROJECTION = arrayOf(ID, NAME, RECIPIENT_ID, ALLOWS_REPLIES, IS_UNKNOWN, PRIVACY_MODE, SEARCH_NAME)
   }
 
-  private object MembershipTable {
+  object MembershipTable {
     const val TABLE_NAME = "distribution_list_member"
 
     const val ID = "_id"

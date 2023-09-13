@@ -22,10 +22,10 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
 
     private const val ID = "_id"
     const val MESSAGE_ID = "message_id"
-    private const val AUTHOR_ID = "author_id"
-    private const val EMOJI = "emoji"
-    private const val DATE_SENT = "date_sent"
-    private const val DATE_RECEIVED = "date_received"
+    const val AUTHOR_ID = "author_id"
+    const val EMOJI = "emoji"
+    const val DATE_SENT = "date_sent"
+    const val DATE_RECEIVED = "date_received"
 
     @JvmField
     val CREATE_TABLE = """

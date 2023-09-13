@@ -1807,6 +1807,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     )
   }
 
+  fun clearCache() {
+    threadIdCache.clear()
+  }
+
   private fun createQuery(where: String, orderBy: String, offset: Long, limit: Long): String {
     val projection = COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION.joinToString(separator = ",")
 
@@ -1879,7 +1883,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     open fun getCurrent(): ThreadRecord? {
       val recipientId = RecipientId.from(cursor.requireLong(RECIPIENT_ID))
-      val recipientSettings = recipients.getRecord(context, cursor, RECIPIENT_ID)
+      val recipientSettings = RecipientTableCursorUtil.getRecord(context, cursor, RECIPIENT_ID)
 
       val recipient: Recipient = if (recipientSettings.groupId != null) {
         GroupTable.Reader(cursor).getCurrent()?.let { group ->

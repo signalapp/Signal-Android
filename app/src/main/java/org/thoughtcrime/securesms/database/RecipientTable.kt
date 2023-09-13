@@ -17,10 +17,7 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
-import org.signal.core.util.optionalBlob
-import org.signal.core.util.optionalBoolean
-import org.signal.core.util.optionalInt
-import org.signal.core.util.optionalLong
+import org.signal.core.util.nullIfBlank
 import org.signal.core.util.optionalString
 import org.signal.core.util.or
 import org.signal.core.util.orNull
@@ -29,7 +26,6 @@ import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBlob
-import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
@@ -39,11 +35,9 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.toDatabaseBadge
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.color.MaterialColor
@@ -58,6 +52,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.GroupTable.LegacyGroupInsertException
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
+import org.thoughtcrime.securesms.database.RecipientTableCursorUtil.getRecipientExtras
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
@@ -84,7 +79,6 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -93,12 +87,10 @@ import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -113,7 +105,6 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.io.Closeable
 import java.io.IOException
-import java.util.Arrays
 import java.util.Collections
 import java.util.LinkedList
 import java.util.Objects
@@ -123,9 +114,9 @@ import kotlin.math.max
 
 open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
 
-  companion object {
-    private val TAG = Log.tag(RecipientTable::class.java)
+  val TAG = Log.tag(RecipientTable::class.java)
 
+  companion object {
     private val UNREGISTERED_LIFESPAN: Long = TimeUnit.DAYS.toMillis(30)
 
     const val TABLE_NAME = "recipient"
@@ -651,6 +642,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun getAll(): RecipientIterator {
+    val cursor = readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .run()
+
+    return RecipientIterator(context, cursor)
+  }
+
   /**
    * Only call once to create initial release channel recipient.
    */
@@ -704,7 +704,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     readableDatabase.query(TABLE_NAME, RECIPIENT_PROJECTION, query, args, null, null, null).use { cursor ->
       return if (cursor != null && cursor.moveToNext()) {
-        getRecord(context, cursor)
+        RecipientTableCursorUtil.getRecord(context, cursor)
       } else {
         findRemappedIdRecord(id)
       }
@@ -1113,7 +1113,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     readableDatabase.query(table, columns, query, args, "$TABLE_NAME.$ID", null, null).use { cursor ->
       while (cursor != null && cursor.moveToNext()) {
-        out.add(getRecord(context, cursor))
+        out.add(RecipientTableCursorUtil.getRecord(context, cursor))
       }
     }
 
@@ -1709,9 +1709,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setProfileName(id: RecipientId, profileName: ProfileName) {
     val contentValues = ContentValues(1).apply {
-      put(PROFILE_GIVEN_NAME, profileName.givenName)
-      put(PROFILE_FAMILY_NAME, profileName.familyName)
-      put(PROFILE_JOINED_NAME, profileName.toString())
+      put(PROFILE_GIVEN_NAME, profileName.givenName.nullIfBlank())
+      put(PROFILE_FAMILY_NAME, profileName.familyName.nullIfBlank())
+      put(PROFILE_JOINED_NAME, profileName.toString().nullIfBlank())
     }
     if (update(id, contentValues)) {
       rotateStorageId(id)
@@ -3177,7 +3177,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where("$ID LIKE ? OR $ACI_COLUMN LIKE ? OR $PNI_COLUMN LIKE ?", "%$query%", "%$query%", "%$query%")
       .run()
       .readToList { cursor ->
-        getRecord(context, cursor)
+        RecipientTableCursorUtil.getRecord(context, cursor)
       }
   }
 
@@ -3650,7 +3650,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
       .use { cursor ->
         return if (cursor.moveToFirst()) {
-          readCapabilities(cursor)
+          RecipientTableCursorUtil.readCapabilities(cursor)
         } else {
           null
         }
@@ -4110,196 +4110,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     RecipientId.clearCache()
   }
 
-  fun getRecord(context: Context, cursor: Cursor): RecipientRecord {
-    return getRecord(context, cursor, ID)
-  }
-
-  fun getRecord(context: Context, cursor: Cursor, idColumnName: String): RecipientRecord {
-    val profileKeyString = cursor.requireString(PROFILE_KEY)
-    val expiringProfileKeyCredentialString = cursor.requireString(EXPIRING_PROFILE_KEY_CREDENTIAL)
-    var profileKey: ByteArray? = null
-    var expiringProfileKeyCredential: ExpiringProfileKeyCredential? = null
-
-    if (profileKeyString != null) {
-      try {
-        profileKey = Base64.decode(profileKeyString)
-      } catch (e: IOException) {
-        Log.w(TAG, e)
-      }
-
-      if (expiringProfileKeyCredentialString != null) {
-        try {
-          val columnDataBytes = Base64.decode(expiringProfileKeyCredentialString)
-          val columnData = ExpiringProfileKeyCredentialColumnData.ADAPTER.decode(columnDataBytes)
-          if (Arrays.equals(columnData.profileKey.toByteArray(), profileKey)) {
-            expiringProfileKeyCredential = ExpiringProfileKeyCredential(columnData.expiringProfileKeyCredential.toByteArray())
-          } else {
-            Log.i(TAG, "Out of date profile key credential data ignored on read")
-          }
-        } catch (e: InvalidInputException) {
-          Log.w(TAG, "Profile key credential column data could not be read", e)
-        } catch (e: IOException) {
-          Log.w(TAG, "Profile key credential column data could not be read", e)
-        }
-      }
-    }
-
-    val serializedWallpaper = cursor.requireBlob(WALLPAPER)
-    val chatWallpaper: ChatWallpaper? = if (serializedWallpaper != null) {
-      try {
-        ChatWallpaperFactory.create(Wallpaper.ADAPTER.decode(serializedWallpaper))
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to parse wallpaper.", e)
-        null
-      }
-    } else {
-      null
-    }
-
-    val customChatColorsId = cursor.requireLong(CUSTOM_CHAT_COLORS_ID)
-    val serializedChatColors = cursor.requireBlob(CHAT_COLORS)
-    val chatColors: ChatColors? = if (serializedChatColors != null) {
-      try {
-        forChatColor(forLongValue(customChatColorsId), ChatColor.ADAPTER.decode(serializedChatColors))
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to parse chat colors.", e)
-        null
-      }
-    } else {
-      null
-    }
-
-    val recipientId = RecipientId.from(cursor.requireLong(idColumnName))
-    val distributionListId: DistributionListId? = DistributionListId.fromNullable(cursor.requireLong(DISTRIBUTION_LIST_ID))
-    val avatarColor: AvatarColor = if (distributionListId != null) AvatarColor.UNKNOWN else AvatarColor.deserialize(cursor.requireString(AVATAR_COLOR))
-
-    return RecipientRecord(
-      id = recipientId,
-      aci = ACI.parseOrNull(cursor.requireString(ACI_COLUMN)),
-      pni = PNI.parsePrefixedOrNull(cursor.requireString(PNI_COLUMN)),
-      username = cursor.requireString(USERNAME),
-      e164 = cursor.requireString(E164),
-      email = cursor.requireString(EMAIL),
-      groupId = GroupId.parseNullableOrThrow(cursor.requireString(GROUP_ID)),
-      distributionListId = distributionListId,
-      recipientType = RecipientType.fromId(cursor.requireInt(TYPE)),
-      isBlocked = cursor.requireBoolean(BLOCKED),
-      muteUntil = cursor.requireLong(MUTE_UNTIL),
-      messageVibrateState = VibrateState.fromId(cursor.requireInt(MESSAGE_VIBRATE)),
-      callVibrateState = VibrateState.fromId(cursor.requireInt(CALL_VIBRATE)),
-      messageRingtone = Util.uri(cursor.requireString(MESSAGE_RINGTONE)),
-      callRingtone = Util.uri(cursor.requireString(CALL_RINGTONE)),
-      expireMessages = cursor.requireInt(MESSAGE_EXPIRATION_TIME),
-      registered = RegisteredState.fromId(cursor.requireInt(REGISTERED)),
-      profileKey = profileKey,
-      expiringProfileKeyCredential = expiringProfileKeyCredential,
-      systemProfileName = ProfileName.fromParts(cursor.requireString(SYSTEM_GIVEN_NAME), cursor.requireString(SYSTEM_FAMILY_NAME)),
-      systemDisplayName = cursor.requireString(SYSTEM_JOINED_NAME),
-      systemContactPhotoUri = cursor.requireString(SYSTEM_PHOTO_URI),
-      systemPhoneLabel = cursor.requireString(SYSTEM_PHONE_LABEL),
-      systemContactUri = cursor.requireString(SYSTEM_CONTACT_URI),
-      signalProfileName = ProfileName.fromParts(cursor.requireString(PROFILE_GIVEN_NAME), cursor.requireString(PROFILE_FAMILY_NAME)),
-      signalProfileAvatar = cursor.requireString(PROFILE_AVATAR),
-      profileAvatarFileDetails = AvatarHelper.getAvatarFileDetails(context, recipientId),
-      profileSharing = cursor.requireBoolean(PROFILE_SHARING),
-      lastProfileFetch = cursor.requireLong(LAST_PROFILE_FETCH),
-      notificationChannel = cursor.requireString(NOTIFICATION_CHANNEL),
-      unidentifiedAccessMode = UnidentifiedAccessMode.fromMode(cursor.requireInt(SEALED_SENDER_MODE)),
-      capabilities = readCapabilities(cursor),
-      storageId = Base64.decodeNullableOrThrow(cursor.requireString(STORAGE_SERVICE_ID)),
-      mentionSetting = MentionSetting.fromId(cursor.requireInt(MENTION_SETTING)),
-      wallpaper = chatWallpaper,
-      chatColors = chatColors,
-      avatarColor = avatarColor,
-      about = cursor.requireString(ABOUT),
-      aboutEmoji = cursor.requireString(ABOUT_EMOJI),
-      syncExtras = getSyncExtras(cursor),
-      extras = getExtras(cursor),
-      hasGroupsInCommon = cursor.requireBoolean(GROUPS_IN_COMMON),
-      badges = parseBadgeList(cursor.requireBlob(BADGES)),
-      needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE),
-      hiddenState = Recipient.HiddenState.deserialize(cursor.requireInt(HIDDEN)),
-      callLinkRoomId = cursor.requireString(CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) }
-    )
-  }
-
-  private fun readCapabilities(cursor: Cursor): RecipientRecord.Capabilities {
-    val capabilities = cursor.requireLong(CAPABILITIES)
-    return RecipientRecord.Capabilities(
-      rawBits = capabilities,
-      groupsV1MigrationCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH).toInt()),
-      senderKeyCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH).toInt()),
-      announcementGroupCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH).toInt()),
-      changeNumberCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.CHANGE_NUMBER, Capabilities.BIT_LENGTH).toInt()),
-      storiesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORIES, Capabilities.BIT_LENGTH).toInt()),
-      giftBadgesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH).toInt()),
-      pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PNP, Capabilities.BIT_LENGTH).toInt()),
-      paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH).toInt())
-    )
-  }
-
-  private fun parseBadgeList(serializedBadgeList: ByteArray?): List<Badge> {
-    var badgeList: BadgeList? = null
-    if (serializedBadgeList != null) {
-      try {
-        badgeList = BadgeList.ADAPTER.decode(serializedBadgeList)
-      } catch (e: IOException) {
-        Log.w(TAG, e)
-      }
-    }
-
-    val badges: List<Badge>
-    if (badgeList != null) {
-      val protoBadges = badgeList.badges
-      badges = ArrayList(protoBadges.size)
-      for (protoBadge in protoBadges) {
-        badges.add(Badges.fromDatabaseBadge(protoBadge))
-      }
-    } else {
-      badges = emptyList()
-    }
-
-    return badges
-  }
-
-  private fun getSyncExtras(cursor: Cursor): RecipientRecord.SyncExtras {
-    val storageProtoRaw = cursor.optionalString(STORAGE_SERVICE_PROTO).orElse(null)
-    val storageProto = if (storageProtoRaw != null) Base64.decodeOrThrow(storageProtoRaw) else null
-    val archived = cursor.optionalBoolean(ThreadTable.ARCHIVED).orElse(false)
-    val forcedUnread = cursor.optionalInt(ThreadTable.READ).map { status: Int -> status == ThreadTable.ReadStatus.FORCED_UNREAD.serialize() }.orElse(false)
-    val groupMasterKey = cursor.optionalBlob(GroupTable.V2_MASTER_KEY).map { GroupUtil.requireMasterKey(it) }.orElse(null)
-    val identityKey = cursor.optionalString(IDENTITY_KEY).map { Base64.decodeOrThrow(it) }.orElse(null)
-    val identityStatus = cursor.optionalInt(IDENTITY_STATUS).map { VerifiedStatus.forState(it) }.orElse(VerifiedStatus.DEFAULT)
-    val unregisteredTimestamp = cursor.optionalLong(UNREGISTERED_TIMESTAMP).orElse(0)
-    val systemNickname = cursor.optionalString(SYSTEM_NICKNAME).orElse(null)
-
-    return RecipientRecord.SyncExtras(
-      storageProto = storageProto,
-      groupMasterKey = groupMasterKey,
-      identityKey = identityKey,
-      identityStatus = identityStatus,
-      isArchived = archived,
-      isForcedUnread = forcedUnread,
-      unregisteredTimestamp = unregisteredTimestamp,
-      systemNickname = systemNickname
-    )
-  }
-
-  private fun getExtras(cursor: Cursor): Recipient.Extras? {
-    return Recipient.Extras.from(getRecipientExtras(cursor))
-  }
-
-  private fun getRecipientExtras(cursor: Cursor): RecipientExtras? {
-    return cursor.optionalBlob(EXTRAS).map { b: ByteArray ->
-      try {
-        RecipientExtras.ADAPTER.decode(b)
-      } catch (e: IOException) {
-        Log.w(TAG, e)
-        throw AssertionError(e)
-      }
-    }.orElse(null)
-  }
-
   private fun updateProfileValuesForMerge(values: ContentValues, record: RecipientRecord) {
     values.apply {
       put(PROFILE_KEY, if (record.profileKey != null) Base64.encodeWithPadding(record.profileKey) else null)
@@ -4424,6 +4234,28 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     val count: Int
       get() = cursor.count
+
+    override fun close() {
+      cursor.close()
+    }
+  }
+
+  class RecipientIterator(
+    private val context: Context,
+    private val cursor: Cursor
+  ) : Iterator<RecipientRecord>, Closeable {
+
+    override fun hasNext(): Boolean {
+      return cursor.count != 0 && !cursor.isLast
+    }
+
+    override fun next(): RecipientRecord {
+      if (!cursor.moveToNext()) {
+        throw NoSuchElementException()
+      }
+
+      return RecipientTableCursorUtil.getRecord(context, cursor)
+    }
 
     override fun close() {
       cursor.close()

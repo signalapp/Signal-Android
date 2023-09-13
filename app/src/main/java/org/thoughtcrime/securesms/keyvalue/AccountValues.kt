@@ -263,6 +263,30 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     }
   }
 
+  fun restorePniIdentityKeyFromBackup(publicKey: ByteArray, privateKey: ByteArray) {
+    synchronized(this) {
+      Log.i(TAG, "Setting a new PNI identity key pair.")
+
+      store
+        .beginWrite()
+        .putBlob(KEY_PNI_IDENTITY_PUBLIC_KEY, publicKey)
+        .putBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, privateKey)
+        .commit()
+    }
+  }
+
+  fun restoreAciIdentityKeyFromBackup(publicKey: ByteArray, privateKey: ByteArray) {
+    synchronized(this) {
+      Log.i(TAG, "Setting a new ACI identity key pair.")
+
+      store
+        .beginWrite()
+        .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, publicKey)
+        .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, privateKey)
+        .commit()
+    }
+  }
+
   /** Only to be used when restoring an identity public key from an old backup */
   fun restoreLegacyIdentityPublicKeyFromBackup(base64: String) {
     Log.w(TAG, "Restoring legacy identity public key from backup.")
@@ -345,6 +369,18 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     if (previous && !registered) {
       clearLocalCredentials()
     }
+  }
+
+  /**
+   * Function for testing backup/restore
+   */
+  @Deprecated("debug only")
+  fun clearRegistrationButKeepCredentials() {
+    putBoolean(KEY_IS_REGISTERED, false)
+
+    ApplicationDependencies.getIncomingMessageObserver().notifyRegistrationChanged()
+
+    Recipient.self().live().refresh()
   }
 
   val deviceName: String?
