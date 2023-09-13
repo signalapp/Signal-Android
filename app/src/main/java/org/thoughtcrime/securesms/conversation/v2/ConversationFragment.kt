@@ -3807,7 +3807,9 @@ class ConversationFragment :
     }
 
     override fun onRecorderCanceled(byUser: Boolean) {
-      updateToggleButtonState()
+      if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
+        updateToggleButtonState()
+      }
       voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
     }
 
