@@ -470,7 +470,7 @@
     <string name="ConversationFragment_failed_to_open_message">Neizdevās atvērt ziņu</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Variet vilkt pa labi, lai ātri atbildētu uz jebkuru ziņu</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Variet vilkt pa kreisi, lai ātri atbildētu uz jebkuru ziņu</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Vienreiz skatāmie multivides faili tiek dzēsti pēc nosūtīšanas</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau skatījāt šo ziņu</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šajā sarunā varat pievienot personiskās piezīmes. Ja jūsu kontam ir saistītas ierīces, jaunās piezīmes tiks sinhronizētas.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupas dalībniekiem ir vienāds vārds.</string>
@@ -900,8 +900,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Mēs pamanījām, ka paziņojumu parādīšana ir aizkavēta. Vai nosūtīt atkļūdošanas žurnālu?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Atkļūdošanas žurnāli palīdz mums diagnosticēt un novērst problēmu, un tie nesatur identificējošu informāciju.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Paziņojumi var aizkavēties akumulatora optimizācijas dēļ</string>
@@ -2321,13 +2323,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Iespējot Paziņojumus</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Paziņojumu iespējošana</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Lai saņemtu paziņojumus par jaunām ziņām:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Zemāk nospiediet uz \"Iestatījumi\"</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Iespējojiet paziņojumus</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Iestatījumi</string>
 
@@ -2862,7 +2864,7 @@
     <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Lūdzu, izvēlieties variantu</item>
         <item>Kaut kas nedarbojas</item>
         <item>Jaunas funkcijas pieprasījums</item>
         <item>Jautājums</item>
@@ -2876,6 +2878,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android atkļūdošanas žurnāla nosūtīšana</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Lēna paziņojumu piegāde</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Iesniegt</string>
     <!-- Action to decline to submit logs -->
@@ -3157,7 +3161,7 @@
     <string name="PaymentsAllActivityFragment__received">Saņemtās</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Jauna funkcija: maksājumi</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Izmantojiet lietotni Signal, lai nosūtītu un saņemtu MobileCoin — jaunu, uz privātumu vērstu digitālo valūtu. Aktivizējiet, lai sāktu.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivizēt maksājumus</string>
     <string name="PaymentsHomeFragment__activating_payments">Tiek aktivizēti maksājumi…</string>
@@ -3193,7 +3197,7 @@
     <string name="PaymentsHomeFragment__details">Rekvizīti</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Lietotni Signal var izmantot, lai nosūtītu un saņemtu MobileCoin. Uz visiem maksājumiem attiecas MobileCoin un MobileCoin Wallet lietošanas noteikumi. Var rasties dažas problēmas, un maksājumus vai atlikumus, kurus iespējams zaudēt, nevar atgūt. </string>
     <string name="PaymentsHomeFragment__activate">Aktivēt</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Skatīt MobileCoin lietošanas noteikumus</string>
     <string name="PaymentsHomeFragment__payments_not_available">Maksājumu opcija lietotnē Signal vairs nav pieejama. Jūs joprojām varat pārskaitīt līdzekļus uz biržu, bet vairs nevarat nosūtīt un saņemt maksājumus vai pievienot līdzekļus.</string>
@@ -3224,23 +3228,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Sniegt atļaujas</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Lai jūs varētu nosūtīt ziņas cilvēkiem, kurus pazīstat, Signal pieprasīs šīs atļaujas. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Paziņojumi</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Saņemiet paziņojumus, kad pienāk jaunas ziņas.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kontakti</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Atrodiet pazīstamus cilvēkus. Jūsu kontakti ir šifrēti un nav redzami pakalpojumam Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Tālruņa zvani</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Vienkāršojiet reģistrēšanos un iespējojiet papildu zvanīšanas funkcijas.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Krātuve</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Sūtiet fotoattēlus, videoklipus un failus no savas ierīces.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5136,7 +5140,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Neizdevās atvērt atlasītāju.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Lai iespējotu paziņojumus, Signal ir nepieciešama atļauja tos rādīt.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Ieslēgt</string>
 
@@ -6206,8 +6210,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal audiozvans</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Pievienoties</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Pievienot audiozvana nosaukumu</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Apstiprināt visus dalībniekus</string>
     <!-- Row label to share the link via Signal -->
@@ -6222,6 +6228,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nevar kopīgot zvana saiti.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Iekopēts starpliktuvē</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6244,7 +6256,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Rediģēt ziņu</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Ja rediģēsiet ziņu, tā būs redzama tikai personām, kuras izmanto jaunākās Signal versijas. Šīs personas redzēs, ka ziņa ir rediģēta.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Atcelt</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6280,15 +6292,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Saite nokopēta</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Saite nav iestatīta</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Notiek saites atiestatīšana…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Vai atiestatīt QR kodu?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Ja atiestatīsiet savu QR kodu, esošais QR kods un saite vairs nedarbosies.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Atstatīt</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Atiestatīt</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Atstatīt</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6306,13 +6318,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Nevarēja atrast lietotāju ar lietotājvārdu %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Nevarēja atrast šo lietotāju.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Radās tīkla kļūda. Lūdzu, mēģiniet vēlreiz.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Jums nav piekļuves tīklam. Jūsu saite netika atiestatīta. Lūdzu, mēģiniet vēlāk.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Mēģinot atiestatīt jūsu saiti, radās tīkla kļūda. Lūdzu, mēģiniet vēlāk.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

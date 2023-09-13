@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan swipe til højre på enhver besked, for at svare hurtigt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Mediefiler med engangsvisning slettes efter afsendelse</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du har allerede set denne besked</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan tilføje dine egne noter i denne chat. Hvis din konto har forbundne enheder, vil noterne blive synkroniseret.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Vi har bemærket, at notifikationerne er forsinkede. Indsend fejlretningslog?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Fejlretningslogs hjælper os med at diagnosticere og fikse problemet, og de indeholder ikke identificerende oplysninger.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Notifikationer kan være forsinkede på grund af batterioptimering</string>
@@ -2249,9 +2251,9 @@
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Sådan modtager du notifikationer om nye beskeder:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tryk på \"Indstillinger\" nedenfor</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Tænd for notifikationer</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Indstillinger</string>
 
@@ -2775,7 +2777,7 @@
     <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Vælg en mulighed</item>
         <item>Der er noget galt</item>
         <item>Funktionsanmodning</item>
         <item>Spørgsmål</item>
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Indsendelse af fejlretningslog fra Signal Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Langsomme notifikationer</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Send</string>
     <!-- Action to decline to submit logs -->
@@ -3068,7 +3072,7 @@
     <string name="PaymentsAllActivityFragment__received">Modtaget</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducerer Betalinger</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Vi introducerer betalinger</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny privatlivsfokuseret digital valuta. Aktivér for at komme i gang.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktiver Betalinger</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger …</string>
@@ -3104,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">Detaljer</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Du kan bruge Signal til at sende og modtage MobileCoin. Alle betalinger er underlagt brugsbetingelserne for MobileCoins og MobileCoin Wallet. Du kan støde på nogle problemer, og betalinger eller saldi, du måtte miste, kan ikke gendannes. </string>
     <string name="PaymentsHomeFragment__activate">Aktiver</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Se vilkår for MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke længere tilgængelige. Du kan stadig overføre penge til en børs, men du kan ikke længere sende og modtage betalinger eller tilføje midler.</string>
@@ -3135,23 +3139,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Giv tilladelser</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">For at hjælpe dig med at sende beskeder til folk, du kender, vil Signal bede om disse tilladelser. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Notifikationer</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Få en notifikation, når der kommer nye beskeder.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kontakter</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Find personer, du kender. Dine kontakter er krypterede og ikke synlige for Signal-tjenesten.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefonopkald</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Gør det nemmere at registrere og aktiver ekstra opkaldsfunktioner.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Lagerplads</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send billeder, videoer og filer fra din enhed.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5028,7 +5032,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Kunne ikke åbne vælgeren.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">For at aktivere notifikationer, skal Signal have tilladelse til at vise dem.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Aktiver</string>
 
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal-opkald</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Deltag</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Tilføj opkaldsnavn</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Godkend alle medlemmer</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Kan ikke dele link til opkald.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopieret til udklipsholder</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6147,11 +6159,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link kopieret</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Link er ikke indstillet</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Nulstiller link…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Nulstil QR-kode?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Hvis du nulstiller din QR-kode, vil din eksisterende QR-kode og dit link ikke længere fungere.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6173,13 +6185,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">En bruger med brugernavnet %1$s kunne ikke findes.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Denne bruger kunne ikke findes.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Oplevede en netværksfejl. Prøv igen.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du har ikke adgang til netværket. Dit link blev ikke nulstillet. Prøv igen senere.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Der opstod en netværksfejl under forsøget på at nulstille dit link. Prøv igen senere.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

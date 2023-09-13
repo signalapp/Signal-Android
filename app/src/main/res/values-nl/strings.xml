@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">We hebben gemerkt dat meldingen vertraagd zijn. Foutopsporingslog indienen?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Foutopsporingslogs helpen ons het probleem te diagnosticeren en op te lossen, en bevatten geen identificerende informatie.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Meldingen zijn mogelijk vertraagd vanwege batterij-optimalisaties</string>
@@ -1261,11 +1263,11 @@
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s heeft de groep aangepast.</string>
     <string name="MessageRecord_s_joined_signal">%1$s is vanaf nu bereikbaar via Signal.</string>
-    <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt verlopende berichten uitgeschakeld.</string>
-    <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft verlopende berichten uitgeschakeld.</string>
-    <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de tijdsspanne voor verlopende berichten op %1$s ingesteld.</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de tijdsspanne voor verlopende berichten op %2$s ingesteld.</string>
-    <string name="MessageRecord_disappearing_message_time_set_to_s">De tijdsspanne voor verlopende berichten is op %1$s ingesteld.</string>
+    <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt verdwijnende berichten uitgeschakeld.</string>
+    <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft verdwijnende berichten uitgeschakeld.</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten op %1$s ingesteld.</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verdwijnende berichten op %2$s ingesteld.</string>
+    <string name="MessageRecord_disappearing_message_time_set_to_s">De timer voor verdwijnende berichten is op %1$s ingesteld.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe-stijl groep.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden aan de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
     <string name="MessageRecord_chat_session_refreshed">Chatsessie vernieuwd</string>
@@ -2050,8 +2052,8 @@
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s kan nu Betalingen accepteren</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s is bereikbaar via Signal.</string>
-    <string name="ThreadRecord_disappearing_messages_disabled">Verlopende berichten uitgeschakeld</string>
-    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Verlopende berichten op %1$s ingesteld</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Verdwijnende berichten uitgeschakeld</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">De timer voor verdwijnende berichten is op %1$s ingesteld</string>
     <string name="ThreadRecord_safety_number_changed">Veiligheids­nummer is veranderd</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheids­nummer met %1$s is veranderd.</string>
     <string name="ThreadRecord_you_marked_verified">Door jou als geverifieerd gemarkeerd</string>
@@ -2475,7 +2477,7 @@
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Deze persoon is een onbekende, je zit zelfs niet in een groepsgesprek met deze persoon. Overweeg daarom zorgvuldig of je dit gespreksverzoek wilt aanvaarden.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">In deze groep zit niemand met wie je eerder een gesprek hebt gevoerd, overweeg daarom zorgvuldig of je wel lid wilt worden.</string>
     <string name="ConversationUpdateItem_view">Weergeven</string>
-    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Zodra je een bericht verzend zal de tijdspanne voor verlopende berichten op %1$s worden ingesteld.</string>
+    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Zodra je een bericht verzendt zal de timer voor verdwijnende berichten op %1$s worden ingesteld.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Doneren</string>
     <!-- Update item button text to send payment -->
@@ -2723,7 +2725,7 @@
     <string name="message_details_header__issues_need_your_attention">Enkele dingen vergen je aandacht.</string>
     <string name="message_details_header_sent">Verzonden</string>
     <string name="message_details_header_received">Ontvangen</string>
-    <string name="message_details_header_disappears">Verloopt over</string>
+    <string name="message_details_header_disappears">Verdwijnt over</string>
     <string name="message_details_header_via">Via</string>
 
     <!-- message_details_recipient_header -->
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android-foutopsporingslog ingediend</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Langzame meldingen</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Uploaden</string>
     <!-- Action to decline to submit logs -->
@@ -3315,7 +3319,7 @@
     <!-- Button to save a message attachment (image, file etc.) -->
 
     <!-- conversation_expiring_off -->
-    <string name="conversation_expiring_off__disappearing_messages">Verlopende berichten</string>
+    <string name="conversation_expiring_off__disappearing_messages">Verdwijnende berichten</string>
 
     <!-- conversation_selection -->
     <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -4303,12 +4307,12 @@
     <string name="PrivacySettingsFragment__blocked">Geblokkeerd</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d personen &amp; groepen</string>
     <string name="PrivacySettingsFragment__messaging">Berichten</string>
-    <string name="PrivacySettingsFragment__disappearing_messages">Verlopende berichten</string>
+    <string name="PrivacySettingsFragment__disappearing_messages">Verdwijnende berichten</string>
     <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Screenshots in de lijst van recent geopende apps en in de app blokkeren</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle oproepen omleiden en verzegelde afzender.</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige chats</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige chats die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je chatpartner vanzelf worden gewist.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaardtimer voor nieuwe chats</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel standaard verdwijnende berichten in voor alle nieuwe chats die jij zelf begint</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4326,8 +4330,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Indien ingeschakeld, zullen nieuwe berichten die zijn verstuurd en ontvangen in nieuwe chats die door jou zijn gestart, verdwijnen nadat ze zijn gezien.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, zullen nieuwe berichten die in deze chat zijn verstuurd en ontvangen, verdwijnen nadat ze zijn gezien.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor alle nieuwe chats die jij zelf begint in dat berichten voor iedereen na een bepaalde tijd worden gewist nadat ze zijn gezien.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze groep zijn verstuurd en ontvangen gewist nadat ze zijn gezien.</string>
     <string name="ExpireTimerSettingsFragment__off">Uit</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -4336,7 +4340,7 @@
     <string name="ExpireTimerSettingsFragment__1_hour">1 uur</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minuten</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 seconden</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Zelfgekozen tijdspanne</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Zelfgekozen tijd</string>
     <string name="ExpireTimerSettingsFragment__set">Instellen</string>
     <string name="ExpireTimerSettingsFragment__save">Opslaan</string>
 
@@ -4469,7 +4473,7 @@
     <string name="ConversationSettingsFragment__muted">Niet langer dempen</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Zoeken</string>
-    <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
+    <string name="ConversationSettingsFragment__disappearing_messages">Verdwijnende berichten</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Geluiden &amp; meldingen</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">In systeemcontactenlijst weergeven</string>
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal-oproep</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Deelnemen</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Oproepnaam toevoegen</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Alle leden goedkeuren</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Kan oproeplink niet delen.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->

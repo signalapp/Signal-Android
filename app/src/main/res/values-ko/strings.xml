@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">메시지 열기 실패</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">메시지를 오른쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">메시지를 왼쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">한 번만 볼 수 있는 미디어는 전송 후 삭제됩니다.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">이 메시지를 이미 읽었습니다.</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">이 대화에는 나를 위한 메모를 남길 수 있습니다.\n내 계정에 연결된 기기 또한 새 메모가 같이 동기화됩니다.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 이름이 같습니다.</string>
@@ -840,8 +840,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">알림에 지연이 있는 것 같네요. 디버그 로그를 제출할까요?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">디버그 로그를 제출하면 문제를 진단하고 수정하는 데 도움이 됩니다. 디버그 로그에는 식별 정보가 포함되지 않습니다.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">배터리 최적화로 인해 알림이 지연될 수 있습니다.</string>
@@ -2171,11 +2173,11 @@
     <!-- Title for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">알림 켜기</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">새 메시지 알림을 받으려면:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">새 메시지 알림을 받으려면 다음을 수행하세요.</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. 아래에서 \'설정\'을 탭합니다.</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s 알림을 켭니다.</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">설정</string>
 
@@ -2688,7 +2690,7 @@
     <string name="HelpFragment__could_not_upload_logs">로그를 업로드할 수 없습니다.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">저희가 문제를 해결할 수 있도록 최대한으로 설명해 주세요.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>옵션을 선택하세요.</item>
         <item>오류</item>
         <item>기능 요청</item>
         <item>질문</item>
@@ -2702,6 +2704,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 디버그 로그 제출</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">느린 알림</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">제출</string>
     <!-- Action to decline to submit logs -->
@@ -3015,7 +3019,7 @@
     <string name="PaymentsHomeFragment__details">세부 정보</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Signal을 사용하여 MobileCoin을 주고받으세요. 모든 결제에는 MobileCoins와 MobileCoin Wallet의 사용 약관이 적용됩니다. 일부 문제가 발생할 수 있으며, 손실된 결제나 잔액은 복구할 수 없습니다. </string>
     <string name="PaymentsHomeFragment__activate">활성화</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin 용어 보기</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal 결제는 더 이상 사용할 수 없습니다. 여전히 거래소로 자금을 이체할 수 있지만 더 이상 지불을 주고받거나 자금을 추가할 수 없습니다.</string>
@@ -3046,23 +3050,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">권한 허용</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">아는 사람에게 메시지를 보낼 수 있도록 Signal에서 이 권한을 요청합니다. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">알림</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">새 메시지가 도착하면 알림을 받으세요.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">연락처</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">아는 사람을 찾으세요. 연락처는 암호화되며 Signal 서비스에 표시되지 않습니다.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">통화</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">더욱 간편하게 가입하고 더 많은 통화 기능을 사용하세요.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">저장 공간</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">기기에서 사진, 동영상, 파일을 전송하세요.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4920,9 +4924,9 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">선택창을 열지 못했습니다.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">알림을 사용하려면 Signal에 알림을 표시할 권한을 부여해야 합니다.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">켜기</string>
+    <string name="NotificationSettingsFragment__turn_on">사용</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal 릴리스 노트 및 뉴스</string>
@@ -5940,8 +5944,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal 통화</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">참가</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">통화 이름 추가</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">모든 멤버 승인</string>
     <!-- Row label to share the link via Signal -->
@@ -5956,6 +5962,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">통화 링크를 공유할 수 없습니다.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">클립보드로 복사했습니다.</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6014,11 +6026,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">링크를 복사했습니다.</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">링크를 설정하지 않음</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">링크를 초기화하는 중…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR 코드를 초기화할까요?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">QR 코드를 초기화하면 기존 QR 코드와 링크가 더 이상 작동하지 않습니다.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6040,13 +6052,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">사용자 이름이 %1$s인 사용자를 찾을 수 없습니다.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">이 사용자를 찾을 수 없습니다.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">네트워크 오류가 발생했습니다. 다시 시도해 주세요.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">네트워크 액세스 권한이 없습니다. 링크를 초기화하지 못했습니다. 나중에 다시 시도하세요.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">링크를 초기화하는 중에 네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
