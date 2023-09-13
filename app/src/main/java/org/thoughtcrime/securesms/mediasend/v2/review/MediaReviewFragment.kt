@@ -317,6 +317,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   private fun handleMediaValidatorFilterError(error: MediaValidator.FilterError) {
     @Exhaustive
     when (error) {
+      MediaValidator.FilterError.None -> return
       MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
       MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
       MediaValidator.FilterError.TooManyItems -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
@@ -329,6 +330,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         callback.onNoMediaSelected()
       }
     }
+
+    sharedViewModel.clearMediaErrors()
   }
 
   private fun launchGallery() {

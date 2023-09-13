@@ -83,5 +83,6 @@ object MediaValidator {
         require(cause !is NoItems)
       }
     }
+    object None : FilterError()
   }
 }
