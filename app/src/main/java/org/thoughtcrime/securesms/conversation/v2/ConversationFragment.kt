@@ -540,6 +540,8 @@ class ConversationFragment :
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    binding.toolbar.isBackInvokedCallbackEnabled = false
+
     disposables.bindTo(viewLifecycleOwner)
     FullscreenHelper(requireActivity()).showSystemUI()
 
@@ -3971,6 +3973,10 @@ class ConversationFragment :
 
     override fun onKeyboardHidden() {
       closeEmojiSearch()
+
+      if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == true) {
+        searchMenuItem?.actionView?.clearFocus()
+      }
     }
   }
 
