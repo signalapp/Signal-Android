@@ -404,13 +404,13 @@ public abstract class WebRtcActionProcessor {
   }
 
   protected final @NonNull WebRtcServiceState handleSendHangup(@NonNull WebRtcServiceState currentState,
-                                                         @NonNull CallMetadata callMetadata,
-                                                         @NonNull HangupMetadata hangupMetadata,
-                                                         boolean broadcast)
+                                                               @NonNull CallMetadata callMetadata,
+                                                               @NonNull HangupMetadata hangupMetadata,
+                                                               boolean broadcast)
   {
     Log.i(tag, "handleSendHangup(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
-    HangupMessage            hangupMessage       = new HangupMessage(callMetadata.getCallId().longValue(), hangupMetadata.getType(), hangupMetadata.getDeviceId(), hangupMetadata.isLegacy());
+    HangupMessage            hangupMessage       = new HangupMessage(callMetadata.getCallId().longValue(), hangupMetadata.getType(), hangupMetadata.getDeviceId());
     Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
     SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forHangup(hangupMessage, true, destinationDeviceId);
 

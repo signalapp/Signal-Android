@@ -1320,11 +1320,7 @@ public class SignalServiceMessageSender {
         builderForHangup.setDeviceId(callMessage.getHangupMessage().get().getDeviceId());
       }
 
-      if (callMessage.getHangupMessage().get().isLegacy()) {
-        builder.setLegacyHangup(builderForHangup);
-      } else {
-        builder.setHangup(builderForHangup);
-      }
+      builder.setHangup(builderForHangup);
     } else if (callMessage.getBusyMessage().isPresent()) {
       builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
     } else if (callMessage.getOpaqueMessage().isPresent()) {

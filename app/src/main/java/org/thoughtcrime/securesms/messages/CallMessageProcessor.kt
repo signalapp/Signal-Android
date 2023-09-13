@@ -39,7 +39,7 @@ object CallMessageProcessor {
       callMessage.iceUpdateList.isNotEmpty() -> handleCallIceUpdateMessage(envelope, metadata, callMessage.iceUpdateList, senderRecipient.id)
       callMessage.hasHangup() || callMessage.hasLegacyHangup() -> {
         val hangup = if (callMessage.hasHangup()) callMessage.hangup else callMessage.legacyHangup
-        handleCallHangupMessage(envelope, metadata, hangup, senderRecipient.id, callMessage.hasLegacyHangup())
+        handleCallHangupMessage(envelope, metadata, hangup, senderRecipient.id)
       }
       callMessage.hasBusy() -> handleCallBusyMessage(envelope, metadata, callMessage.busy, senderRecipient.id)
       callMessage.hasOpaque() -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque, senderRecipient.requireAci(), serverDeliveredTimestamp)
@@ -115,8 +115,7 @@ object CallMessageProcessor {
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     hangup: SignalServiceProtos.CallMessage.Hangup,
-    senderRecipientId: RecipientId,
-    isLegacyHangup: Boolean
+    senderRecipientId: RecipientId
   ) {
     log(envelope.timestamp, "handleCallHangupMessage")
 
@@ -124,7 +123,7 @@ object CallMessageProcessor {
     ApplicationDependencies.getSignalCallManager()
       .receivedCallHangup(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
-        HangupMetadata(HangupMessage.Type.fromProto(hangup.type), isLegacyHangup, hangup.deviceId)
+        HangupMetadata(HangupMessage.Type.fromProto(hangup.type), hangup.deviceId)
       )
   }
 

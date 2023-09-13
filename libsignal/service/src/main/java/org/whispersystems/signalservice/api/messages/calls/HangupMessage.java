@@ -8,13 +8,11 @@ public class HangupMessage {
   private final long    id;
   private final Type    type;
   private final int     deviceId;
-  private final boolean isLegacy;
 
-  public HangupMessage(long id, Type type, int deviceId, boolean isLegacy) {
+  public HangupMessage(long id, Type type, int deviceId) {
     this.id       = id;
     this.type     = type;
     this.deviceId = deviceId;
-    this.isLegacy = isLegacy;
   }
 
   public long getId() {
@@ -27,10 +25,6 @@ public class HangupMessage {
 
   public int getDeviceId() {
     return deviceId;
-  }
-
-  public boolean isLegacy() {
-    return isLegacy;
   }
 
   public enum Type {
