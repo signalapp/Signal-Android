@@ -45,7 +45,7 @@ object WebSocketDrainer {
    * Also, if it is discovered that it's unlikely that we'll be able to fetch messages (i.e. no network), then the timeout may be reduced.
    */
   @WorkerThread
-  fun blockUntilDrainedAndProcessed(requestedWebsocketDrainTimeoutMs: Long): Boolean {
+  fun blockUntilDrainedAndProcessed(requestedWebsocketDrainTimeoutMs: Long, keepAliveToken: String = KEEP_ALIVE_TOKEN): Boolean {
     Log.d(TAG, "blockUntilDrainedAndProcessed() requestedWebsocketDrainTimeout: $requestedWebsocketDrainTimeoutMs ms")
 
     var websocketDrainTimeout = requestedWebsocketDrainTimeoutMs
@@ -66,16 +66,13 @@ object WebSocketDrainer {
       websocketDrainTimeout = NO_NETWORK_WEBSOCKET_TIMEOUT
     }
 
-    incomingMessageObserver.registerKeepAliveToken(KEEP_ALIVE_TOKEN)
-
     val wakeLockTag = WAKELOCK_PREFIX + System.currentTimeMillis()
     val wakeLock = WakeLockUtil.acquire(ApplicationDependencies.getApplication(), PowerManager.PARTIAL_WAKE_LOCK, websocketDrainTimeout + QUEUE_TIMEOUT, wakeLockTag)
 
     return try {
-      drainAndProcess(websocketDrainTimeout, incomingMessageObserver)
+      drainAndProcess(websocketDrainTimeout, incomingMessageObserver, keepAliveToken)
     } finally {
       WakeLockUtil.release(wakeLock, wakeLockTag)
-      incomingMessageObserver.removeKeepAliveToken(KEEP_ALIVE_TOKEN)
     }
   }
 
@@ -86,7 +83,7 @@ object WebSocketDrainer {
    * so that we know the queue has been drained.
    */
   @WorkerThread
-  private fun drainAndProcess(timeout: Long, incomingMessageObserver: IncomingMessageObserver): Boolean {
+  private fun drainAndProcess(timeout: Long, incomingMessageObserver: IncomingMessageObserver, keepAliveToken: String): Boolean {
     val stopwatch = Stopwatch("websocket-strategy")
 
     val jobManager = ApplicationDependencies.getJobManager()
@@ -97,7 +94,7 @@ object WebSocketDrainer {
       queueListener
     )
 
-    val successfullyDrained = blockUntilWebsocketDrained(incomingMessageObserver, timeout)
+    val successfullyDrained = blockUntilWebsocketDrained(incomingMessageObserver, timeout, keepAliveToken)
     if (!successfullyDrained) {
       return false
     }
@@ -119,25 +116,33 @@ object WebSocketDrainer {
     return true
   }
 
-  private fun blockUntilWebsocketDrained(incomingMessageObserver: IncomingMessageObserver, timeoutMs: Long): Boolean {
-    val latch = CountDownLatch(1)
-    incomingMessageObserver.addDecryptionDrainedListener(object : Runnable {
-      override fun run() {
+  private fun blockUntilWebsocketDrained(incomingMessageObserver: IncomingMessageObserver, timeoutMs: Long, keepAliveToken: String): Boolean {
+    try {
+      val latch = CountDownLatch(1)
+      var success = false
+      incomingMessageObserver.registerKeepAliveToken(keepAliveToken) {
+        Log.w(TAG, "Keep alive token purged")
         latch.countDown()
-        incomingMessageObserver.removeDecryptionDrainedListener(this)
       }
-    })
+      incomingMessageObserver.addDecryptionDrainedListener(object : Runnable {
+        override fun run() {
+          success = true
+          latch.countDown()
+          incomingMessageObserver.removeDecryptionDrainedListener(this)
+        }
+      })
 
-    return try {
-      if (latch.await(timeoutMs, TimeUnit.MILLISECONDS)) {
-        true
-      } else {
-        Log.w(TAG, "Hit timeout while waiting for decryptions to drain!")
+      return try {
+        if (!latch.await(timeoutMs, TimeUnit.MILLISECONDS)) {
+          Log.w(TAG, "Hit timeout while waiting for decryptions to drain!")
+        }
+        success
+      } catch (e: InterruptedException) {
+        Log.w(TAG, "Interrupted!", e)
         false
       }
-    } catch (e: InterruptedException) {
-      Log.w(TAG, "Interrupted!", e)
-      false
+    } finally {
+      incomingMessageObserver.removeKeepAliveToken(keepAliveToken)
     }
   }
 

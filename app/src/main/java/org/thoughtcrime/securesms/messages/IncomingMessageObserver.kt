@@ -79,6 +79,7 @@ class IncomingMessageObserver(private val context: Application) {
 
   private val decryptionDrainedListeners: MutableList<Runnable> = CopyOnWriteArrayList()
   private val keepAliveTokens: MutableMap<String, Long> = mutableMapOf()
+  private val keepAlivePurgeCallbacks: MutableMap<String, MutableList<Runnable>> = mutableMapOf()
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
@@ -181,12 +182,15 @@ class IncomingMessageObserver(private val context: Application) {
       timeIdle = if (appVisibleSnapshot) 0 else System.currentTimeMillis() - lastInteractionTime
 
       val keepAliveCutoffTime = System.currentTimeMillis() - keepAliveTokenMaxAge
-      val removedKeepAliveToken = keepAliveTokens.entries.removeIf { (_, createTime) -> createTime < keepAliveCutoffTime }
-      if (removedKeepAliveToken) {
-        Log.d(TAG, "Removed old keep web socket open requests.")
-      }
-
-      keepAliveEntries = keepAliveTokens.entries.map { it.key to it.value }.toImmutableSet()
+      keepAliveEntries = keepAliveTokens.entries.mapNotNull { (key, createTime) ->
+        if (createTime < keepAliveCutoffTime) {
+          Log.d(TAG, "Removed old keep web socket keep alive token $key")
+          keepAlivePurgeCallbacks.remove(key)?.forEach { it.run() }
+          null
+        } else {
+          key to createTime
+        }
+      }.toImmutableSet()
     }
 
     val registered = SignalStore.account().isRegistered
@@ -235,9 +239,16 @@ class IncomingMessageObserver(private val context: Application) {
     ApplicationDependencies.getSignalWebSocket().disconnect()
   }
 
-  fun registerKeepAliveToken(key: String) {
+  @JvmOverloads
+  fun registerKeepAliveToken(key: String, runnable: Runnable? = null) {
     lock.withLock {
       keepAliveTokens[key] = System.currentTimeMillis()
+      if (runnable != null) {
+        if (!keepAlivePurgeCallbacks.containsKey(key)) {
+          keepAlivePurgeCallbacks[key] = ArrayList()
+        }
+        keepAlivePurgeCallbacks[key]?.add(runnable)
+      }
       lastInteractionTime = System.currentTimeMillis()
       connectionNecessarySemaphore.release()
     }
@@ -246,6 +257,7 @@ class IncomingMessageObserver(private val context: Application) {
   fun removeKeepAliveToken(key: String) {
     lock.withLock {
       keepAliveTokens.remove(key)
+      keepAlivePurgeCallbacks.remove(key)
       lastInteractionTime = System.currentTimeMillis()
       connectionNecessarySemaphore.release()
     }
