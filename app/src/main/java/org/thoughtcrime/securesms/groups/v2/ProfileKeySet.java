@@ -59,6 +59,10 @@ public final class ProfileKeySet {
     for (DecryptedRequestingMember member : change.getNewRequestingMembersList()) {
       addMemberKey(editor, member.getAciBytes(), member.getProfileKey());
     }
+
+    for (DecryptedMember member : change.getPromotePendingPniAciMembersList()) {
+      addMemberKey(member, editor);
+    }
   }
 
   /**

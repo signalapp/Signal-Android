@@ -6,7 +6,7 @@ dependencyResolutionManagement {
         libs {
             version('androidx-appcompat', '1.6.1')
             version('androidx-activity', '1.7.2')
-            version('androidx-camera', '1.2.3')
+            version('androidx-camera', '1.3.0-rc01')
             version('androidx-fragment', '1.6.1')
             version('androidx-lifecycle', '2.6.1')
             version('androidx-media3', '1.1.0')

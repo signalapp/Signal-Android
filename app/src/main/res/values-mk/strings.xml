@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Можете да повлечете на десно на било која порака за брз одговор</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Еднократно видливите медиумски датотеки се бришат по праќањето</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Веќе сте ја виделе оваа порака</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додавате белешки за себе во овој разговор. Ако вашата сметка има поврзани уреди, новите белешки ќе се синхронизираат.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име.</string>
@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Забележавме дека известувањата доцнат. Сакате да испратите запис за отстранување грешки?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Записите за отстранување грешки ни помагаат при дијагностицирање и отстранување на грешката и не содржат лични податоци.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Известувањата може да бидат одложени поради оптимизација на батеријата</string>
@@ -2245,13 +2247,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Вклучете Известувања</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Вклучете ги известувањата</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">За да примате известувања за нови пораки:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Допрете на „Поставувања“ подолу</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Вклучете ги известувањата</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Поставувања</string>
 
@@ -2775,7 +2777,7 @@
     <string name="HelpFragment__could_not_upload_logs">Не успеа да се прикачат записите</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Ве молиме изберете опција</item>
         <item>Нешто не функционира</item>
         <item>Барање за функција</item>
         <item>Прашање</item>
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Поднесување запис за отстранување грешки на Signal за Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Прикажи известувања</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Испрати</string>
     <!-- Action to decline to submit logs -->
@@ -3068,7 +3072,7 @@
     <string name="PaymentsAllActivityFragment__received">Примено</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Воведуваме плаќања</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користете го Signal за испраќање и примање на MobileCoin, нова дигитална валута фокусирана на приватност. Активирајте за да започнете.</string>
     <string name="PaymentsHomeFragment__activate_payments">Активираj плаќања</string>
     <string name="PaymentsHomeFragment__activating_payments">Активирање на плаќања…</string>
@@ -3104,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">Детали</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Можете да го користите Signal за испраќање и примање MobileCoin. Сите плаќања се предмет на Условите за користење на MobileCoins и MobileCoin паричник. Може да наидете на некои проблеми и плаќањата или достапните средства што може да ги изгубите не може да се вратат. </string>
     <string name="PaymentsHomeFragment__activate">Активирај</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледни ги условите за употреба на MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Плаќањата во Signal не се повеќе достапни. Сѐ уште можете да префрлате средства за менување но не можете да испраќате и примате или пак додавате средства.</string>
@@ -3135,23 +3139,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Овозможи дозволи</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">За да ви помогне да пишувате на лица кои ги знаете, Signal ќе ги побара следните дозволи. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Известувања</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Добивајте известувања кога ќе пристигнат нови пораки.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Контакти</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Пронајдете луѓе кои ги познавате. Вашите контакти се шифрирани и не се видливи за услугата Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Телефонски повици</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Олеснете го процесот на регистрација и овозможете дополнителни функции за повици.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Склад</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Испраќајте слики, видеа или датотеки од вашиот уред.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4065,7 +4069,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Имате пари на сметката! Време е да ја зачувате вашата резервна фраза— клуч од 24 збора со којшто можете да ја повратите состојбата на вашата сметка.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Време е да ја зачувате вашата резервна фраза— клуч од 24 збора со којшто можете да ја повратите состојбата на вашата сметка.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Време е да ја зачувате вашата резервна фраза—клуч од 24 збора со којшто можете да ја повратите состојбата на вашата сметка.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Вашата резервна фраза е фраза со %1$d зборови уникатна за Вас. Употребете ја оваа фраза за да си ја повратите состојбата на сметката.</string>
     <string name="PaymentsRecoveryStartFragment__start">Започни</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Внеси рачно</string>
@@ -5028,7 +5032,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Не успеа да се отвори менито за избор.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">За да се овозможат известувања, треба да се даде дозвола на Signal за приказ.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Вклучи</string>
 
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal повик</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Приклучете се</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Додајте име на повикот</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Одобрете ги сите членови</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Не може да се сподели линкот за повикот.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Копирано на таблата со исечоци</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6111,7 +6123,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Измени ја пораката</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Ако измените порака, ќе биде видлива само за лицата кои ја користат последната верзија на Signal. Ќе можат да видат дека ја имате изменето пораката.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Откажи</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6147,11 +6159,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Линкот е копиран</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Нема поставен линк</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Линкот се ресетира…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Да се ресетира QR кодот?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Доколку го ресетирате вашиот QR код, вашите постоечки QR код и линк повеќе нема да функционираат.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6173,13 +6185,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Не е пронајден корисник со корисничкото име %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Не можеше да се пронајде овој корисник.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Се случи мрежна грешка. Ве молиме обидете се повторно.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Немате пристап до мрежа. Вашиот линк не беше ресетиран. Обидете се повторно подоцна.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Се јави мрежна грешка додека се обидувавте да го ресетирате вашиот линк. Обидете се повторно подоцна.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

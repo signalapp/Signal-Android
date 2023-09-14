@@ -274,7 +274,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val self: PersonCompat = PersonCompat.Builder()
         .setBot(false)
         .setName(if (includeShortcut) Recipient.self().getDisplayName(context) else context.getString(R.string.SingleRecipientNotificationBuilder_you))
-        .setIcon(AvatarUtil.getIconWithUriForNotification(Recipient.self().id))
+        .setIcon(AvatarUtil.getIconCompat(context, Recipient.self()))
         .setKey(ConversationUtil.getShortcutId(Recipient.self().id))
         .build()
 
@@ -290,7 +290,7 @@ sealed class NotificationBuilder(protected val context: Context) {
             .setBot(false)
             .setName(notificationItem.getPersonName(context))
             .setUri(notificationItem.getPersonUri())
-            .setIcon(notificationItem.getPersonIcon())
+            .setIcon(notificationItem.getPersonIcon(context))
 
           if (includeShortcut) {
             personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.authorRecipient))
@@ -360,7 +360,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       )
 
       if (intent != null) {
-        val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
+        val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompat(context, conversation.recipient))
           .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
           .setDesiredHeight(600)
           .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)

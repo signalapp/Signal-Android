@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -50,6 +51,10 @@ class ContactSearchMediator(
   arbitraryRepository: ArbitraryRepository? = null
 ) {
 
+  companion object {
+    private val TAG = Log.tag(ContactSearchMediator::class.java)
+  }
+
   private val queryDebouncer = Debouncer(300, TimeUnit.MILLISECONDS)
 
   private val viewModel: ContactSearchViewModel = ViewModelProvider(
@@ -70,14 +75,17 @@ class ContactSearchMediator(
     displayOptions = displayOptions,
     callbacks = object : ContactSearchAdapter.ClickCallbacks {
       override fun onStoryClicked(view: View, story: ContactSearchData.Story, isSelected: Boolean) {
+        Log.d(TAG, "onStoryClicked() Recipient: ${story.recipient.id}")
         toggleStorySelection(view, story, isSelected)
       }
 
       override fun onKnownRecipientClicked(view: View, knownRecipient: ContactSearchData.KnownRecipient, isSelected: Boolean) {
+        Log.d(TAG, "onKnownRecipientClicked() Recipient: ${knownRecipient.recipient.id}")
         toggleSelection(view, knownRecipient, isSelected)
       }
 
       override fun onExpandClicked(expand: ContactSearchData.Expand) {
+        Log.d(TAG, "onExpandClicked()")
         viewModel.expandSection(expand.sectionKey)
       }
     },
@@ -119,6 +127,7 @@ class ContactSearchMediator(
   }
 
   fun setKeysSelected(keys: Set<ContactSearchKey>) {
+    Log.d(TAG, "setKeysSelected() Keys: ${keys.map { it.toString() }}")
     viewModel.setKeysSelected(callbacks.onBeforeContactsSelected(null, keys))
   }
 
@@ -167,9 +176,11 @@ class ContactSearchMediator(
 
   private fun toggleSelection(view: View, contactSearchData: ContactSearchData, isSelected: Boolean) {
     return if (isSelected) {
+      Log.d(TAG, "toggleSelection(OFF) ${contactSearchData.contactSearchKey}")
       callbacks.onContactDeselected(view, contactSearchData.contactSearchKey)
       viewModel.setKeysNotSelected(setOf(contactSearchData.contactSearchKey))
     } else {
+      Log.d(TAG, "toggleSelection(ON) ${contactSearchData.contactSearchKey}")
       viewModel.setKeysSelected(callbacks.onBeforeContactsSelected(view, setOf(contactSearchData.contactSearchKey)))
     }
   }
@@ -212,10 +223,13 @@ class ContactSearchMediator(
 
   open class SimpleCallbacks : Callbacks {
     override fun onBeforeContactsSelected(view: View?, contactSearchKeys: Set<ContactSearchKey>): Set<ContactSearchKey> {
+      Log.d(TAG, "onBeforeContactsSelected() Selecting: ${contactSearchKeys.map { it.toString() }}")
       return contactSearchKeys
     }
 
-    override fun onContactDeselected(view: View?, contactSearchKey: ContactSearchKey) = Unit
+    override fun onContactDeselected(view: View?, contactSearchKey: ContactSearchKey) {
+      Log.i(TAG, "onContactDeselected() Deselected: $contactSearchKey}")
+    }
     override fun onAdapterListCommitted(size: Int) = Unit
   }
 

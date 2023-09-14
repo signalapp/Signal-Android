@@ -75,7 +75,7 @@ class MediaSelectionViewModel(
 
   private val internalHudCommands = PublishSubject.create<HudCommand>()
 
-  val mediaErrors: PublishSubject<MediaValidator.FilterError> = PublishSubject.create()
+  val mediaErrors: BehaviorSubject<MediaValidator.FilterError> = BehaviorSubject.createDefault(MediaValidator.FilterError.None)
   val hudCommands: Observable<HudCommand> = internalHudCommands
 
   private val disposables = CompositeDisposable()
@@ -419,6 +419,10 @@ class MediaSelectionViewModel(
 
   fun hasSelectedMedia(): Boolean {
     return store.state.selectedMedia.isNotEmpty()
+  }
+
+  fun clearMediaErrors() {
+    mediaErrors.onNext(MediaValidator.FilterError.None)
   }
 
   fun onRestoreState(context: Context, savedInstanceState: Bundle) {

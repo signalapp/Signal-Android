@@ -488,7 +488,7 @@
     <string name="ConversationFragment_failed_to_open_message">Theip air an teachtaireacht a oscailt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Tig leat teachtaireacht a shleamhnú ar dheis chun í a fhreagairt go tapa</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Tig leat teachtaireacht a shleamhnú ar chlé chun í a fhreagairt go tapa</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Scriostar meáin aonuaire tar éis a seoladh</string>
     <string name="ConversationFragment_you_already_viewed_this_message">D\'fhéach tú ar an teachtaireacht seo</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Is féidir leat nótaí a chur leis duit féin sa chomhrá seo. Má tá aon ghléas nasctha le do chuntas, déanfar nótaí nua a shioncronú.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Tá an t-ainm céanna ag an líon seo ball: %1$d.</string>
@@ -960,8 +960,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Thugamar faoi deara go bhfuil moill ar fhógraí. Cuir isteach loga dífhabhtaithe?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Cabhraíonn logaí dífhabhtaithe linn an fhadhb a dhiagnóisiú agus a réiteach, agus ní bhíonn faisnéis aitheantais iontu.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">D\'fhéadfaí go mbeadh moill ar fhógraí mar gheall ar bharrfheabhsú ceallra</string>
@@ -2473,13 +2475,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Cuir Fógraí ar siúl</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Cas orthu fógraí</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Chun fógra a fháil nuair a thagann teachtaireacht nua isteach:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tapáil \"Socruithe\" thíos</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Cas orthu fógraí</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Socruithe</string>
 
@@ -3036,7 +3038,7 @@
     <string name="HelpFragment__could_not_upload_logs">Níorbh fhéidir na logaí a uaslódáil</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Mínigh go mion cad atá cearr le do thoil ionas gur féidir linn an fhadhb a thuiscint.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Déan rogha</item>
         <item>Tá rud éigin as gléas</item>
         <item>Iarratas ar Ghné Nua</item>
         <item>Ceist</item>
@@ -3050,6 +3052,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Cur Isteach Loga Dífhabhtaithe Android Signal</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Fógraí malla</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Seol isteach é</string>
     <!-- Action to decline to submit logs -->
@@ -3371,7 +3375,7 @@
     <string name="PaymentsHomeFragment__details">Mionsonraí</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Is féidir leat Signal a úsáid chun MobileCoin a sheoladh agus a fháil. Tá gach íocaíocht faoi réir Téarmaí Úsáide MobileCoin agus MobileCoin Wallet. Seans go mbeidh roinnt fadhbanna agat agus nach mbeidh tú in ann íocaíochtaí nó iarmhéideanna, a d\'fhéadfá a chailleadh, a fháil ar ais. </string>
     <string name="PaymentsHomeFragment__activate">Cuir i ngníomh é</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin Terms</string>
     <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
@@ -3400,25 +3404,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Ar aghaidh</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Allow Permissions</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Tabhair Ceadanna</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Chun cabhrú leat teachtaireacht a sheoladh chuig daoine a bhfuil aithne agat orthu, iarrfaidh Signal na ceadanna seo. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Fógraí</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Faigh fógra nuair a thagann teachtaireachtaí nua isteach.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Teagmhálaithe</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Aimsigh daoine a bhfuil aithne agat orthu. Tá do theagmhálaithe criptithe agus dofheicthe ag seirbhís Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Glaonna gutháin</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Déan clárú níos éasca agus cumasaigh gnéithe curtha glaonna breise.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Stóras</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Seol grianghraif, físeáin agus comhaid ó do ghléas.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4371,7 +4375,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Tá iarmhéid agat! Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Tá sé in am duit do fhrása a shábháil, ar eochair 24 focal é is féidir leat a úsáid chun d\'iarmhéid a fháil ar ais.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Frása %1$d focal atá uathúil duitse is é d\'fhrása aisghabhála. Úsáid an frása seo chun d\'iarmhéid a aischur.</string>
     <string name="PaymentsRecoveryStartFragment__start">Tosaigh</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter Manually</string>
@@ -5352,9 +5356,9 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Theip air an roghnóir a oscailt.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Chun fógraí a chumasú, teastaíonn cead ó Signal lena dtaispeáint.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Cuir ar siúl</string>
+    <string name="NotificationSettingsFragment__turn_on">Cas orthu</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Nótaí Eisiúna agus Nuacht Signal</string>
@@ -6472,8 +6476,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Glao Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Téigh isteach ann</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Cuir ainm an ghlao leis</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Faomh gach ball</string>
     <!-- Row label to share the link via Signal -->
@@ -6488,6 +6494,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Ní féidir nasc an ghlao a chomhroinnt.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Cóipeáilte chuig an ngearrthaisce</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6546,11 +6558,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Nasc cóipeáilte</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Níl nasc socraithe</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Nasc á athshocrú…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Athshocraigh cód QR?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Má athshocraíonn tú do chód QR, ní oibreoidh an cód QR ná an nasc atá agat cheana féin a thuilleadh.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6572,13 +6584,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Níorbh fhéidir úsáideoir leis an ainm úsáideora %1$s a aimsiú.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Níorbh fhéidir an t-úsáideoir seo a aimsiú.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Tharla earráid líonra. Triail arís.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Níl rochtain líonra agat. Níor athshocraíodh do nasc. Triail arís níos déanaí.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Tharla earráid líonra agus do nasc á athshocrú. Triail arís níos déanaí.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

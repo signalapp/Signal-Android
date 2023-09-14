@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls;
 import org.thoughtcrime.securesms.components.webrtc.WifiToCellularPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
+import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -1087,6 +1088,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onLaunchPendingRequestsSheet() {
       new PendingParticipantsBottomSheet().show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    }
+
+    @Override
+    public void onLaunchRecipientSheet(@NonNull Recipient pendingRecipient) {
+      CallLinkIncomingRequestSheet.show(getSupportFragmentManager(), pendingRecipient.getId());
     }
   }
 

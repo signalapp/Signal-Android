@@ -322,12 +322,12 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else {
       long timestamp = messageRecord.getTimestamp();
       if (messageRecord.isEditMessage()) {
-        if (displayMode == ConversationItemDisplayMode.EDIT_HISTORY) {
+        if (displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) {
           timestamp = messageRecord.getDateSent();
         }
       }
       String date = DateUtils.getDatelessRelativeTimeSpanString(getContext(), locale, timestamp);
-      if (displayMode != ConversationItemDisplayMode.DETAILED && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {
+      if (displayMode != ConversationItemDisplayMode.Detailed.INSTANCE && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date);
       }
       dateView.setText(date);

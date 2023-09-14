@@ -448,7 +448,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun isContentCondensed(): Boolean {
-    return conversationContext.displayMode == ConversationItemDisplayMode.CONDENSED && conversationContext.getPreviousMessage(bindingAdapterPosition) == null
+    return conversationContext.displayMode is ConversationItemDisplayMode.Condensed && conversationContext.getPreviousMessage(bindingAdapterPosition) == null
   }
 
   private fun presentFooterExpiry() {
@@ -585,6 +585,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
+    binding.conversationItemFooterDate.setOnClickListener(null)
     binding.conversationItemFooterDate.visible = true
     binding.conversationItemFooterDate.setTextColor(themeDelegate.getFooterTextColor(conversationMessage))
 
@@ -605,8 +606,12 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.conversationItemFooterDate.text = conversationMessage.formattedDate
     } else {
       var date = conversationMessage.formattedDate
-      if (conversationContext.displayMode != ConversationItemDisplayMode.DETAILED && record is MediaMmsMessageRecord && record.isEditMessage()) {
+      if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MediaMmsMessageRecord && record.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
+
+        binding.conversationItemFooterDate.setOnClickListener {
+          conversationContext.clickListener.onEditedIndicatorClicked(record)
+        }
       }
 
       binding.conversationItemFooterDate.text = date

@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">無法開啟訊息</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">您可以向右滑動任何訊息以快速回覆</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">您可以向左滑動任何訊息以快速回覆</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">閱後即焚媒體在發送後被刪除</string>
     <string name="ConversationFragment_you_already_viewed_this_message">你已看過此訊息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">你可在此聊天中為自己新增筆記。若你的帳戶有任何已連結裝置，新的筆記將會進行同步處理。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d 個群組成員名稱相同。</string>
@@ -840,8 +840,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">我們注意到通知延遲了。要提交除錯日誌嗎？</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">除錯日誌可協助我們診斷並修正問題，而且不包含識別資料。</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">由於電池效能最佳化，通知可能會延遲</string>
@@ -2169,13 +2171,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">啟用「通知」</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">開啟「通知」</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">接收新訊息的通知：</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. 點按下面的「設定」</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s 開啟「通知」</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">設定</string>
 
@@ -2688,7 +2690,7 @@
     <string name="HelpFragment__could_not_upload_logs">無法上載記錄檔</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">請儘可能具體描述，以協助我們瞭解箇中問題。</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>請選擇一個選項</item>
         <item>系統運作異常</item>
         <item>功能請求</item>
         <item>問題</item>
@@ -2702,6 +2704,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 除錯日誌提交</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">通知緩慢</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">提交</string>
     <!-- Action to decline to submit logs -->
@@ -3015,7 +3019,7 @@
     <string name="PaymentsHomeFragment__details">詳細資料</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">你可使用 Signal 收發 MobileCoin。所有付款均受 MobileCoin 和 MobileCoin Wallet 的使用條款約束。你或許會遇到一些問題，以及你可能遺失付款或餘額而無法還原。 </string>
     <string name="PaymentsHomeFragment__activate">啟用</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">檢視 MobileCoin 條款</string>
     <string name="PaymentsHomeFragment__payments_not_available">付款已不再在 Signal 上可用。您仍可轉移款項至交易平台，惟您不再能發送和接收付款或增加款項。</string>
@@ -3046,23 +3050,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">允許存取權限</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">為協助你向認識的人發送訊息，Signal 將請求此等權限。 </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">通知</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">當新訊息到達時收到通知。</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">聯絡人</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">找到你認識的人。你的聯絡人名單已加密，Signal 服務無法看到。</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">電話通話</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">使註冊電話號碼更容易，並啟用其他通話功能。</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">儲存空間</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">從你的裝置發送照片、影片和檔案。</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4920,7 +4924,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟挑選器。</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">要啟用通知，Signal 需要顯示通知的權限。</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">開啟</string>
 
@@ -5940,8 +5944,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal 通話</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">加入</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">新增通話名稱</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">批准全部成員</string>
     <!-- Row label to share the link via Signal -->
@@ -5956,6 +5962,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">無法分享通話連結。</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">已複製至剪貼簿</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -5978,7 +5990,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">編輯訊息</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">只有使用最新 Signal 版本的用戶才能看到你的編輯訊息。他們將能看到你編輯了訊息。</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">只有使用最新 Signal 版本的用戶才能看到你的編輯訊息。他們將可以看到你編輯了訊息。</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">取消</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6014,11 +6026,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">已複製連結</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">未設定連結</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">正在重設連結…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">要重設二維碼嗎？</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">如果你重設二維碼，你現有的二維碼和連結將會無效。</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6040,13 +6052,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">找不到使用 %1$s 用戶名稱的用戶。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">找不到此用戶。</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">遇到網路問題。請重試。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">你沒有使用網路連線。你的連結未能重設，請稍後再試。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時發生網路錯誤。請稍後再試。</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

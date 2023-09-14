@@ -14,12 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.camera.core.ZoomState;
+import androidx.camera.video.FileDescriptorOutputOptions;
+import androidx.camera.video.Recording;
+import androidx.camera.video.VideoRecordEvent;
 import androidx.camera.view.CameraController;
 import androidx.camera.view.PreviewView;
-import androidx.camera.view.video.ExperimentalVideo;
-import androidx.camera.view.video.OnVideoSavedCallback;
-import androidx.camera.view.video.OutputFileOptions;
-import androidx.camera.view.video.OutputFileResults;
+import androidx.camera.view.video.AudioConfig;
+import androidx.core.util.Consumer;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.util.Executors;
@@ -39,7 +40,6 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @RequiresApi(26)
-@ExperimentalVideo
 class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener {
 
   private static final String TAG               = CameraXVideoCaptureHelper.class.getName();
@@ -57,25 +57,31 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   private ValueAnimator cameraMetricsAnimator;
 
-  private final OnVideoSavedCallback videoSavedListener = new OnVideoSavedCallback() {
-    @SuppressLint("RestrictedApi")
-    @Override
-    public void onVideoSaved(@NonNull OutputFileResults outputFileResults) {
-      try {
-        debouncer.clear();
-        cameraController.setZoomRatio(Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio());
-        memoryFileDescriptor.seek(0);
-        callback.onVideoSaved(memoryFileDescriptor.getFileDescriptor());
-      } catch (IOException e) {
-        callback.onVideoError(e);
-      }
-    }
+  private @Nullable Recording activeRecording = null;
 
-    @SuppressLint("RestrictedApi")
+  private final Consumer<VideoRecordEvent> videoSavedListener = new Consumer<>() {
     @Override
-    public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
-      debouncer.clear();
-      callback.onVideoError(cause);
+    public void accept(VideoRecordEvent videoRecordEvent) {
+      Log.d(TAG, "Received recording event: " + videoRecordEvent.getClass().getSimpleName());
+
+      if (videoRecordEvent instanceof VideoRecordEvent.Finalize) {
+        VideoRecordEvent.Finalize event = (VideoRecordEvent.Finalize) videoRecordEvent;
+
+        if (event.hasError()) {
+          Log.w(TAG, "Hit an error while recording! Error code: " + event.getError(), event.getCause());
+          debouncer.clear();
+          callback.onVideoError(event.getCause());
+        } else {
+          try {
+            debouncer.clear();
+            cameraController.setZoomRatio(Objects.requireNonNull(cameraController.getZoomState().getValue()).getMinZoomRatio());
+            memoryFileDescriptor.seek(0);
+            callback.onVideoSaved(memoryFileDescriptor.getFileDescriptor());
+          } catch (IOException e) {
+            callback.onVideoError(e);
+          }
+        }
+      }
     }
   };
 
@@ -140,9 +146,11 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
 
-    OutputFileOptions options = OutputFileOptions.builder(memoryFileDescriptor.getParcelFileDescriptor()).build();
+    FileDescriptorOutputOptions outputOptions = new FileDescriptorOutputOptions.Builder(memoryFileDescriptor.getParcelFileDescriptor()).build();
+    AudioConfig                 audioConfig   = AudioConfig.create(true);
 
-    cameraController.startRecording(options, Executors.mainThreadExecutor(), videoSavedListener);
+    activeRecording = cameraController.startRecording(outputOptions, audioConfig, Executors.mainThreadExecutor(), videoSavedListener);
+
     updateProgressAnimator.start();
     debouncer.publish(this::onVideoCaptureComplete);
   }
@@ -198,10 +206,19 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   @Override
   public void onVideoCaptureComplete() {
-    if (!canRecordAudio()) return;
+    if (!canRecordAudio()) {
+      Log.w(TAG, "Can't record audio!");
+      return;
+    }
+
+    if (activeRecording == null) {
+      Log.w(TAG, "No active recording!");
+      return;
+    }
 
     Log.d(TAG, "onVideoCaptureComplete");
-    cameraController.stopRecording();
+    activeRecording.close();
+    activeRecording = null;
 
     if (cameraMetricsAnimator != null && cameraMetricsAnimator.isRunning()) {
       cameraMetricsAnimator.reverse();
@@ -217,6 +234,16 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     ZoomState zoomState = Objects.requireNonNull(cameraController.getZoomState().getValue());
     float range = zoomState.getMaxZoomRatio() - zoomState.getMinZoomRatio();
     cameraController.setZoomRatio((range * increment) + zoomState.getMinZoomRatio());
+  }
+
+  @Override
+  protected void finalize() throws Throwable {
+    if (activeRecording != null) {
+      Log.w(TAG, "Dangling recording left open in finalize()! Attempting to close.");
+      activeRecording.close();
+    }
+
+    super.finalize();
   }
 
   static MemoryFileDescriptor createFileDescriptor(@NonNull Context context) throws MemoryFileDescriptor.MemoryFileException {

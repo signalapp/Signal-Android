@@ -123,9 +123,9 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
     }
   }
 
-  fun getPersonIcon(): IconCompat? {
+  fun getPersonIcon(context: Context): IconCompat? {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      AvatarUtil.getIconWithUriForNotification(authorRecipient.id)
+      AvatarUtil.getIconCompat(context, authorRecipient)
     } else {
       null
     }

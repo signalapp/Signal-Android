@@ -9,6 +9,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.squareup.wire.internal.toUnmodifiableList
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
+import org.signal.core.util.roundedString
 import org.signal.libsignal.metadata.InvalidMetadataMessageException
 import org.signal.libsignal.metadata.InvalidMetadataVersionException
 import org.signal.libsignal.metadata.ProtocolDuplicateMessageException
@@ -63,6 +64,8 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Conten
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.PniSignatureMessage
 import java.util.Optional
+import kotlin.time.Duration.Companion.nanoseconds
+import kotlin.time.DurationUnit
 
 /**
  * This class is designed to handle everything around the process of taking an [Envelope] and decrypting it into something
@@ -131,14 +134,16 @@ object MessageDecryptor {
     val cipher = SignalServiceCipher(localAddress, SignalStore.account().deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
 
     return try {
+      val startTimeNanos = System.nanoTime()
       val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp)
+      val endTimeNanos = System.nanoTime()
 
       if (cipherResult == null) {
         Log.w(TAG, "${logPrefix(envelope)} Decryption resulted in a null result!", true)
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 
-      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope (GUID ${envelope.serverGuid}). Delivery latency: ${serverDeliveredTimestamp - envelope.serverTimestamp} ms, Urgent: ${envelope.urgent}")
+      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope in ${(endTimeNanos - startTimeNanos).nanoseconds.toDouble(DurationUnit.MILLISECONDS).roundedString(2)} ms  (GUID ${envelope.serverGuid}). Delivery latency: ${serverDeliveredTimestamp - envelope.serverTimestamp} ms, Urgent: ${envelope.urgent}")
 
       val validationResult: EnvelopeContentValidator.Result = EnvelopeContentValidator.validate(envelope, cipherResult.content)
 

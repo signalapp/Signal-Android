@@ -37,6 +37,7 @@ import org.signal.core.util.SqlUtil.buildCustomCollectionQuery
 import org.signal.core.util.SqlUtil.buildSingleCollectionQuery
 import org.signal.core.util.SqlUtil.buildTrueUpdateQuery
 import org.signal.core.util.SqlUtil.getNextAutoIncrementId
+import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.forEach
@@ -2375,8 +2376,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getOldestUnreadMentionDetails(threadId: Long): Pair<RecipientId, Long>? {
     return readableDatabase
       .select(FROM_RECIPIENT_ID, DATE_RECEIVED)
-      .from(TABLE_NAME)
-      .where("$THREAD_ID = ? AND $READ = 0 AND $MENTIONS_SELF = 1", threadId)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
+      .where("$THREAD_ID = ? AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $LATEST_REVISION_ID IS NULL AND $READ = 0 AND $MENTIONS_SELF = 1", threadId)
       .orderBy("$DATE_RECEIVED ASC")
       .limit(1)
       .run()
@@ -2390,9 +2391,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun getUnreadMentionCount(threadId: Long): Int {
     return readableDatabase
-      .select("COUNT(*)")
-      .from(TABLE_NAME)
-      .where("$THREAD_ID = ? AND $READ = 0 AND $MENTIONS_SELF = 1", threadId)
+      .count()
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
+      .where("$THREAD_ID = ? AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $LATEST_REVISION_ID IS NULL AND $READ = 0 AND $MENTIONS_SELF = 1", threadId)
       .run()
       .readToSingleInt()
   }

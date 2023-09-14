@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vastaa viestiin nopeasti pyyhkäisemällä oikealle</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vastaa viestiin nopeasti pyyhkäisemällä vasemmalle</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Kertaluontoinen media poistetaan lähettämisen jälkeen</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Olet jo katsonut tämän viestin</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Voit lisätä itsellesi muistiinpanoja tähän keskusteluun. Jos tililläsi on yhdistettyjä laitteita, uudet muistiinpanot synkronoidaan.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ryhmän jäsenellä on sama nimi.</string>
@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Huomasimme viiveitä ilmoituksissa. Lähetetäänkö virheenkorjausloki?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Virheenkorjauslokit auttavat meitä diagnosoimaan ja korjaamaan ongelman, eivätkä ne sisällä tunnistetietoja.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Akun käytön optimointi voi aiheuttaa viiveitä ilmoituksissa</string>
@@ -2245,13 +2247,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Ota käyttöön Ilmoitukset</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Ota käyttöön ilmoitukset</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Vastaanottaaksesi ilmoituksia uusista viesteistä:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Napauta alla kohtaa Asetukset</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Ota ilmoitukset käyttöön</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Asetukset</string>
 
@@ -2775,7 +2777,7 @@
     <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään ongelma kuvailemalla se mahdollisimman tarkasti.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Valitse vaihtoehto</item>
         <item>Jokin ei toimi</item>
         <item>Ominaisuuspyyntö</item>
         <item>Kysymys</item>
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidin virheenkorjauslokin lähetys</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Hitaat ilmoitukset</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Lähetä</string>
     <!-- Action to decline to submit logs -->
@@ -3104,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">Lisätietoja</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Signalissa voi lähettää tai vastaanottaa MobileCoineja. Maksujen siirto tapahtuu MobileCoinsin ja MobileCoin Walletin käyttöehtojen mukaisesti. Mahdollisten teknisten ongelmien takia keskeytyneitä siirtoja tai katemenetyksiä ei korvata. </string>
     <string name="PaymentsHomeFragment__activate">Aktivoi</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näytä MobileCoinin ehdot</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signalin maksutoiminto ei ole enää käytettävissä. Varat voi yhä siirtää toiseen kauppapaikkaan, mutta varojen lisääminen tai maksujen lähettäminen ja vastaanottaminen ei ole enää mahdollista.</string>
@@ -3135,23 +3139,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Myönnä käyttöoikeudet</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Signal pyytää näitä käyttöoikeuksia, jotta voisit viestiä tuntemillesi ihmisille helpommin. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Ilmoitukset</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Saat ilmoituksen, kun uusia viestejä saapuu.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Yhteystiedot</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Etsi tuntemiasi ihmisiä. Yhteystietosi salataan, eivätkä ne näy Signal-palvelussa.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Puhelut</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Helpota rekisteröitymistä ja ota käyttöön puheluiden lisäominaisuuksia.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Tallennustila</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Lähetä valokuvia, videoita ja tiedostoja laitteestasi.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5028,7 +5032,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Valitsimen avaus epäonnistui.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Signal tarvitsee luvan ilmoitusten näyttämiseen, jotta ne voidaan ottaa käyttöön.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Ota käyttöön</string>
 
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal-puhelu</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Liity</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Lisää puhelun nimi</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Kaikkien jäsenten hyväksyntä</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Puhelulinkin jakaminen ei onnistu.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6147,13 +6159,13 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Linkki kopioitu</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Linkkiä ei ole asetettu</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Nollataan linkkiä…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Nollataanko QR-koodi?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Jos nollaat QR-koodin, nykyinen QR-koodisi ja linkkisi eivät enää toimi.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Jos nollaat QR-koodin, nykyinen QR-koodi ja linkki eivät enää toimi.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Palauta alkuasetuksiin</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
@@ -6173,13 +6185,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Käyttäjää käyttäjänimellä %1$s ei löytynyt.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Tätä käyttäjää ei löytynyt.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Tapahtui verkkovirhe. Yritä uudelleen.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Sinulla ei ole verkkoyhteyttä. Linkkiäsi ei nollattu. Yritä myöhemmin uudelleen.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Linkkiä nollatessa tapahtui verkkovirhe. Yritä myöhemmin uudelleen.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

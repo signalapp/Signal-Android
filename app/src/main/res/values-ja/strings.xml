@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">メッセージを開けませんでした</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">メッセージを右にスワイプすると素早く返信できます</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">メッセージを左にスワイプすると素早く返信できます</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">使い捨てメディアは送信後に削除されます</string>
     <string name="ConversationFragment_you_already_viewed_this_message">このメッセージは閲覧済みです</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">このチャットに自分用のメモを追加できます。新規のメモはリンク済み端末にも同期されます。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。</string>
@@ -840,8 +840,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">通知が遅れているいるようです。デバッグログを提供しますか？</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">デバッグログは、問題の診断と修正に役立てられます。個人を特定する情報は含まれません。</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">バッテリーの最適化のために通知が遅れることがあります</string>
@@ -2169,13 +2171,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">通知の有効化</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">通知を有効にするには</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">新着メッセージの通知を受けるには:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">新着メッセージの通知を受けるには</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. 下にある「設定」をタップする</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s 通知をオンにする</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">設定</string>
 
@@ -2688,7 +2690,7 @@
     <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>オプションを選択してください</item>
         <item>機能の不具合</item>
         <item>機能のリクエスト</item>
         <item>質問</item>
@@ -2702,6 +2704,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidデバッグログの提供</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">通知が遅い</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">送信する</string>
     <!-- Action to decline to submit logs -->
@@ -3015,7 +3019,7 @@
     <string name="PaymentsHomeFragment__details">詳細</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">MobileCoinの送受信にはSignalをご利用ください。すべての決済は、MobileCoinsとMobileCoin Walletの利用規約に準じます。おこなった決済が取り消されたり、残高の回復ができないといった問題などが発生する可能性があります。 </string>
     <string name="PaymentsHomeFragment__activate">有効にする</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoinの利用規約</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signalの決済機能は、利用できなくなりました。取引所への振替は可能ですが、送金や受け取り、入金はできません。</string>
@@ -3044,25 +3048,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">次へ</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">アクセス許可</string>
+    <string name="GrantPermissionsFragment__allow_permissions">権限を許可する</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">友人にメッセージを送信するには、Signalに権限を与える必要があります。 </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">通知</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">新しいメッセージが届いたときに通知を受け取ります。</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">連絡先</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">知り合いを探しましょう。連絡先は暗号化され、私たちSignalからは見えません。</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">通話</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">登録が簡単になり、通話機能が追加されます。</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">ストレージ</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">端末から写真、動画、ファイルを送信します。</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3963,7 +3967,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">残高があります！残高を復元するためのキーとなる、24単語のリカバリーフレーズを保存しましょう。</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">残高を復元するためのキーとなる、24単語のリカバリーフレーズを保存しましょう。</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">24単語のリカバリーフレーズ（残高を復元するためのキー）を保存しましょう。</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">あなたのリカバリーフレーズは%1$d語で、あなた固有のものです。口座の復元に使用してください。</string>
     <string name="PaymentsRecoveryStartFragment__start">開始</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">マニュアル入力</string>
@@ -4920,7 +4924,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">ファイルピッカーを開けませんでした</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">通知を有効にするには、Signalに通知を表示する権限を与える必要があります。</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">有効にする</string>
 
@@ -5940,8 +5944,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal 通話</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">参加する</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">通話名を追加する</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">全メンバーを承認制にする</string>
     <!-- Row label to share the link via Signal -->
@@ -5956,6 +5962,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">通話リンクを共有できません。</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">クリップボードにコピーしました</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -5976,7 +5988,7 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">編集履歴</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">メッセージを編集する</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">メッセージの編集</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
     <string name="SendingEditMessageBetaOnlyDialog_body">メッセージを編集した場合、Signalの最新バージョンを利用しているユーザーにのみ反映されます。そのユーザー達は、あなたが編集したメッセージを見ることができます。</string>
     <!-- Button to cancel sending edit message as it is beta only -->
@@ -6014,15 +6026,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">リンクをコピーしました</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">リンクが設定されていません</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">リンクをリセットしています…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QRコードをリセットしますか？</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">QRコードをリセットすると、これまでのQRコードとリンクは無効になります。</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">リセット</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">リセットする</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">リセット</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6040,13 +6052,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">ユーザーネーム「%1$s」を持つユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">このユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">ネットワークエラーが発生しました。あとで再度試してください。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ネットワークに接続できません。リンクはリセットされませんでした。あとで再度試してください。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">リンクのリセット中にネットワークエラーが発生しました。あとで再度試してください。</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

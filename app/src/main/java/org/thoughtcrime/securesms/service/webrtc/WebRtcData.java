@@ -148,16 +148,14 @@ public class WebRtcData {
    */
   public static class HangupMetadata {
     private final @NonNull HangupMessage.Type type;
-    private final          boolean            isLegacy;
     private final          int                deviceId;
 
     static @NonNull HangupMetadata fromType(@NonNull HangupMessage.Type type) {
-      return new HangupMetadata(type, true, 0);
+      return new HangupMetadata(type, 0);
     }
 
-    public HangupMetadata(@NonNull HangupMessage.Type type, boolean isLegacy, int deviceId) {
+    public HangupMetadata(@NonNull HangupMessage.Type type, int deviceId) {
       this.type     = type;
-      this.isLegacy = isLegacy;
       this.deviceId = deviceId;
     }
 
@@ -174,10 +172,6 @@ public class WebRtcData {
         case NEED_PERMISSION: return CallManager.HangupType.NEED_PERMISSION;
         default:              throw new IllegalArgumentException("Unexpected hangup type: " + type);
       }
-    }
-
-    boolean isLegacy() {
-      return isLegacy;
     }
 
     int getDeviceId() {

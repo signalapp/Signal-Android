@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
+import android.widget.Space
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
+import kotlin.math.max
 
 /**
  * Logical delegate for determining the footer position for a particular conversation item.
@@ -22,6 +24,7 @@ class V2FooterPositionDelegate private constructor(
   private val footerViews: List<View>,
   private val bodyContainer: View,
   private val body: EmojiTextView,
+  private val footerSpacer: Space?,
   private val thumbnailView: Stub<V2ConversationItemThumbnail>?
 ) : V2ConversationItemLayout.OnMeasureListener {
 
@@ -35,6 +38,7 @@ class V2FooterPositionDelegate private constructor(
     ),
     binding.conversationItemBodyWrapper,
     binding.conversationItemBody,
+    binding.conversationItemFooterSpace,
     null
   )
 
@@ -48,6 +52,7 @@ class V2FooterPositionDelegate private constructor(
     ),
     binding.textBridge.conversationItemBodyWrapper,
     binding.textBridge.conversationItemBody,
+    binding.textBridge.conversationItemFooterSpace,
     binding.thumbnailStub
   )
 
@@ -99,7 +104,14 @@ class V2FooterPositionDelegate private constructor(
       return
     }
 
-    body.padding(right = 0, left = 0, bottom = footerViews.first().measuredHeight)
+    val horizontalPadding = max(0, getFooterWidth() - (footerSpacer?.measuredWidth ?: 0) - body.measuredWidth)
+    val (left, right) = if (bodyContainer.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+      0 to horizontalPadding
+    } else {
+      horizontalPadding to 0
+    }
+
+    body.padding(right = right, left = left, bottom = footerViews.first().measuredHeight)
     displayState = DisplayState.UNDERNEATH
   }
 

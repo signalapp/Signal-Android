@@ -246,7 +246,13 @@ private fun CallLinkDetails(
 
       if (state.callLink.credentials?.adminPassBytes != null) {
         Rows.TextRow(
-          text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
+          text = stringResource(
+            id = if (state.callLink.state.name.isEmpty()) {
+              R.string.CreateCallLinkBottomSheetDialogFragment__add_call_name
+            } else {
+              R.string.CreateCallLinkBottomSheetDialogFragment__edit_call_name
+            }
+          ),
           onClick = callback::onEditNameClicked
         )
 

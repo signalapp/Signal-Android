@@ -58,21 +58,23 @@ class AvatarProvider : BaseContentProvider() {
       addURI(CONTENT_AUTHORITY, "avatar/#", AVATAR)
     }
 
+    private const val VERBOSE = false
+
     @JvmStatic
     fun getContentUri(recipientId: RecipientId): Uri {
-      Log.d(TAG, "getContentUri: $recipientId")
+      if (VERBOSE) Log.d(TAG, "getContentUri: $recipientId")
       return ContentUris.withAppendedId(CONTENT_URI, recipientId.toLong())
     }
   }
 
   override fun onCreate(): Boolean {
-    Log.i(TAG, "onCreate called")
+    if (VERBOSE) Log.i(TAG, "onCreate called")
     return true
   }
 
   @Throws(FileNotFoundException::class)
   override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor? {
-    Log.i(TAG, "openFile() called!")
+    if (VERBOSE) Log.i(TAG, "openFile() called!")
 
     if (KeyCachingService.isLocked(context)) {
       Log.w(TAG, "masterSecret was null, abandoning.")
@@ -80,7 +82,7 @@ class AvatarProvider : BaseContentProvider() {
     }
 
     if (uriMatcher.match(uri) == AVATAR) {
-      Log.i(TAG, "Loading avatar.")
+      if (VERBOSE) Log.i(TAG, "Loading avatar.")
       try {
         val recipient = getRecipientId(uri)?.let { Recipient.resolved(it) } ?: return null
         return if (Build.VERSION.SDK_INT >= 26) {
@@ -99,7 +101,7 @@ class AvatarProvider : BaseContentProvider() {
   }
 
   override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor? {
-    Log.i(TAG, "query() called: $uri")
+    if (VERBOSE) Log.i(TAG, "query() called: $uri")
 
     if (SignalDatabase.instance == null) {
       Log.w(TAG, "SignalDatabase unavailable")
@@ -123,7 +125,7 @@ class AvatarProvider : BaseContentProvider() {
   }
 
   override fun getType(uri: Uri): String? {
-    Log.i(TAG, "getType() called: $uri")
+    if (VERBOSE) Log.i(TAG, "getType() called: $uri")
 
     if (SignalDatabase.instance == null) {
       Log.w(TAG, "SignalDatabase unavailable")
@@ -140,18 +142,18 @@ class AvatarProvider : BaseContentProvider() {
   }
 
   override fun insert(uri: Uri, values: ContentValues?): Uri? {
-    Log.i(TAG, "insert() called")
+    if (VERBOSE) Log.i(TAG, "insert() called")
     return null
   }
 
   override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-    Log.i(TAG, "delete() called")
+    if (VERBOSE) Log.i(TAG, "delete() called")
     context?.applicationContext?.revokeUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
     return 0
   }
 
   override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-    Log.i(TAG, "update() called")
+    if (VERBOSE) Log.i(TAG, "update() called")
     return 0
   }
 
@@ -183,7 +185,7 @@ class AvatarProvider : BaseContentProvider() {
       handler
     )
 
-    Log.i(TAG, "${recipient.id}:createdProxy")
+    if (VERBOSE) Log.i(TAG, "${recipient.id}:createdProxy")
     return parcelFileDescriptor
   }
 
@@ -212,7 +214,7 @@ class AvatarProvider : BaseContentProvider() {
     private var memoryFile: MemoryFile? = null
 
     override fun onGetSize(): Long {
-      Log.i(TAG, "${recipient.id}:onGetSize:${Thread.currentThread().name}:${hashCode()}")
+      if (VERBOSE) Log.i(TAG, "${recipient.id}:onGetSize:${Thread.currentThread().name}:${hashCode()}")
       ensureResourceLoaded()
       return memoryFile!!.length().toLong()
     }
@@ -224,7 +226,7 @@ class AvatarProvider : BaseContentProvider() {
     }
 
     override fun onRelease() {
-      Log.i(TAG, "${recipient.id}:onRelease")
+      if (VERBOSE) Log.i(TAG, "${recipient.id}:onRelease")
       memoryFile = null
       handlerThread.quitSafely()
     }
@@ -234,13 +236,13 @@ class AvatarProvider : BaseContentProvider() {
         return
       }
 
-      Log.i(TAG, "Reading ${recipient.id} icon into RAM.")
+      if (VERBOSE) Log.i(TAG, "Reading ${recipient.id} icon into RAM.")
 
       val outputStream = ByteArrayOutputStream()
       val avatarBitmap = AvatarUtil.getBitmapForNotification(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE)
       avatarBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
 
-      Log.i(TAG, "Writing ${recipient.id} icon to MemoryFile")
+      if (VERBOSE) Log.i(TAG, "Writing ${recipient.id} icon to MemoryFile")
 
       memoryFile = MemoryFile("${recipient.id}-imf", outputStream.size())
 

@@ -102,6 +102,8 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
     }
   }
 
+  override fun isDarkTheme(): Boolean = true
+
   private val webRtcCallViewModel: WebRtcCallViewModel by activityViewModels()
   private val callLinkDetailsViewModel: CallLinkDetailsViewModel by viewModels(factoryProducer = {
     CallLinkDetailsViewModel.Factory(BundleCompat.getParcelable(requireArguments(), CALL_LINK_ROOM_ID, CallLinkRoomId::class.java)!!)

@@ -928,7 +928,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
    * Today this is only {@link org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet}.
    */
   private boolean isCondensedMode() {
-    return displayMode == ConversationItemDisplayMode.CONDENSED;
+    return displayMode instanceof ConversationItemDisplayMode.Condensed;
   }
 
   /**
@@ -1153,7 +1153,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
         if (callLinkRootKey != null) {
           joinCallLinkStub.setVisibility(View.VISIBLE);
-          joinCallLinkStub.get().setTextColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorOnSurface);
+          joinCallLinkStub.get().setTextColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorPrimary);
+          joinCallLinkStub.get().setStrokeColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorOutline);
           joinCallLinkStub.get().setJoinClickListener(v -> {
             if (eventListener != null) {
               eventListener.onJoinCallLink(callLinkRootKey);
@@ -1181,7 +1182,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewUtil.setTopMargin(linkPreviewStub.get(), 0);
       } else {
-        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, true, !isContentCondensed());
+        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, true, !isContentCondensed(), displayMode.getScheduleMessageMode());
         linkPreviewStub.get().setDownloadClickedListener(downloadClickListener);
         setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, false);
         ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1241,7 +1242,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       documentViewStub.get().setDocument(
           ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(),
           showControls,
-          displayMode != ConversationItemDisplayMode.DETAILED
+          displayMode != ConversationItemDisplayMode.Detailed.INSTANCE
       );
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
@@ -1763,7 +1764,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty() && displayMode != ConversationItemDisplayMode.EDIT_HISTORY) {
+    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty() && displayMode != ConversationItemDisplayMode.EditHistory.INSTANCE) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {
@@ -1786,11 +1787,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean forceFooter(@NonNull MessageRecord messageRecord) {
-    return hasAudio(messageRecord) || MessageRecordUtil.isEditMessage(messageRecord) || displayMode == ConversationItemDisplayMode.EDIT_HISTORY;
+    return hasAudio(messageRecord) || MessageRecordUtil.isEditMessage(messageRecord) || displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE;
   }
 
   private boolean forceGroupHeader(@NonNull MessageRecord messageRecord) {
-    return displayMode == ConversationItemDisplayMode.EDIT_HISTORY;
+    return displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE;
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
@@ -1894,7 +1895,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     int background;
 
-    if (isSingularMessage(current, previous, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EDIT_HISTORY) {
+    if (isSingularMessage(current, previous, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_alone;
         outliner.setRadius(bigRadius);
@@ -1990,11 +1991,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int spacingTop    = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
     int spacingBottom = spacingTop;
 
-    if (isStartOfMessageCluster(current, previous, isGroupThread) && (displayMode != ConversationItemDisplayMode.EDIT_HISTORY || next.isEmpty())) {
+    if (isStartOfMessageCluster(current, previous, isGroupThread) && (displayMode != ConversationItemDisplayMode.EditHistory.INSTANCE || next.isEmpty())) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
-    if (isEndOfMessageCluster(current, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EDIT_HISTORY) {
+    if (isEndOfMessageCluster(current, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) {
       spacingBottom = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 

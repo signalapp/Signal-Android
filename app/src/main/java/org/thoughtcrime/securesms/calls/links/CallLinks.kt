@@ -59,7 +59,6 @@ object CallLinks {
     }
 
     if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
-      Log.w(TAG, "Invalid url prefix.")
       return false
     }
 

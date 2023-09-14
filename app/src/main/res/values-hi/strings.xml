@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">मेसेज खोलने में असमर्थ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">आप जल्दी से उत्तर देने के लिए किसी भी मेसेज पर दाईं ओर स्वाइप कर सकते हैं</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">आप जल्दी से उत्तर देने के लिए किसी भी मेसेज पर बाईं ओर स्वाइप कर सकते हैं</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">व्यू-वन्स मीडिया भेजने के बाद डिलीट कर जाता है</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपने यह संदेश पहले ही देख लिया है</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आप इस चैट में खुद के लिए नोट्स शामिल कर सकते हैं। यदि आपके अकाउंट के कोई लिंक किए हुए डिवाइस हैं, तो नए नोट्स सिंक किए जाएँगे।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ग्रुप मेंबर्स का एक ही नाम है।</string>
@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">हमने देखा कि नोटिफिकेशन विलंबित हैं। डीबग लॉग जमा करें?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">डीबग लॉग समस्या का निदान करने और उसे ठीक करने में हमारी मदद करते हैं, और इसमें पहचान संबंधी जानकारी नहीं होती है।</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">बैटरी अनुकूलन के कारण नोटिफ़िकेशन में देरी हो सकती है</string>
@@ -2245,13 +2247,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">सूचनाओं को चालू करें</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">नोटिफ़िकेशन चालू करें</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">नए मेसेजेस के लिए सूचनाएँ पाने के लिए:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">नए संदेश के नोटिफ़िकेशन के लिए:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. नीचे \"सेटिंग्स\" पर टैप करें</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s नोटिफ़िकेशन चालू करें</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">सेटिंग्स</string>
 
@@ -2775,7 +2777,7 @@
     <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड नहीं किए जा सके</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया यथासंभव विस्तृत रूप से बताएँ ताकि हमें समस्या को समझने में मदद मिले।</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>कृपया एक विकल्प चुनें</item>
         <item>कुछ गड़बड़ है</item>
         <item>फ़ीचर अनुरोध</item>
         <item>सवाल</item>
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">सिग्नल एंड्रॉयड डीबग लॉग सबमिशन</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">धीमे नोटिफ़िकेशन</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">सबमिट</string>
     <!-- Action to decline to submit logs -->
@@ -3104,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">माहिती</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">आप मोबाइलकॉइन भेजने और प्राप्त करने के लिए Signal इस्तेमाल कर सकते हैं। सभी भुगतान मोबाइलकॉइन्स और मोबाइलकॉइन वॉलेट के उपयोग की शर्तों के अधीन हैं। आपको कुछ समस्याएँ आ सकती हैं और जो भुगतान या बैलेंस आप खोते हैं उन्हें रिकवर नहीं किया जा सकता। </string>
     <string name="PaymentsHomeFragment__activate">सक्रिय करें</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin शर्तें देखें</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal में भुगतान अब उपलब्ध नहीं है। अब भी आप किसी एक्सचेंज में धनराशि ट्रांसफ़र कर सकते हैं लेकिन अब आप भुगतान भेज या प्राप्त नहीं कर सकते या धनराशि नहीं जोड़ सकते।</string>
@@ -3135,23 +3139,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">अनुमतियाँ दें</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">जिन लोगों को आप जानते हैं उन्हें संदेश भेजने में आपकी मदद के लिए, Signal इन अनुमतियों का अनुरोध करेगा। </string>
     <!-- Notifications permission row title -->
-    <string name="GrantPermissionsFragment__notifications">सूचनाएं</string>
+    <string name="GrantPermissionsFragment__notifications">नोटिफ़िकेशन</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">नए संदेश आने पर जानकारी पाएं।</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">संपर्क</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">अपनी पहचान के लोगों को ढूंढें। आपके संपर्क एन्क्रिप्टेड हैं और Signal सेवा को दिखाई नहीं देते हैं।</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">फोन कॉल</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">पंजीकरण को आसान बनाएं और अतिरिक्त कॉलिंग फीचर्स सक्षम करें।</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">स्टॉरेज</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">अपनी डिवाइस से फोटो, वीडियो और फाइलें भेजें।</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5028,7 +5032,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर ओपेन करने में असफ़ल.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">नोटिफ़िकेशन सक्षम करने के लिए, Signal को उन्हें प्रदर्शित करने की अनुमति चाहिए।</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">शुरु करें</string>
 
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal कॉल</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">जुड़ें</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">कॉल नाम जोड़ें</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">सभी सदस्य स्वीकृत करें</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">कॉल लिंक साझा करने में असमर्थ।</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6147,11 +6159,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">लिंक कॉपी गिया</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">लिंक सेट नहीं है</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">लिंक फिर से स्थापित किया जा रहा है…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR कोड फिर से स्थापित करें?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">यदि आप अपना QR कोड फिर से स्थापित करते हैं, तो आपका मौजूदा QR कोड और लिंक अब काम नहीं करेगा।</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6173,13 +6185,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">%1$s यूजरनेम वाला यूजर नहीं मिला।</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">यह यूज़र नहीं मिला।</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">नेटवर्क संबंधी त्रुटी का सामना किया। कृपया फिर से प्रयास करें।</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">आपके पास नेटवर्क एक्सेस नहीं है। आपका लिंक फिर से स्थापित किया गया। बाद में पुन: प्रयास करें।</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">आपके लिंक को फिर से स्थापित करते समय एक नेटवर्क त्रुटि उत्पन्न हुई। बाद में पुन: प्रयास करें।</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

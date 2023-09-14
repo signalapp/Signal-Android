@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -38,6 +40,11 @@ public class JsonUtils {
 
   public static <T> T fromJson(Reader serialized, Class<T> clazz) throws IOException {
     return objectMapper.readValue(serialized, clazz);
+  }
+
+  public static <T> List<T> fromJsonArray(String serialized, Class<T> clazz) throws IOException {
+    TypeFactory typeFactory = objectMapper.getTypeFactory();
+    return objectMapper.readValue(serialized, typeFactory.constructCollectionType(List.class, clazz));
   }
 
   public static String toJson(Object object) throws IOException {

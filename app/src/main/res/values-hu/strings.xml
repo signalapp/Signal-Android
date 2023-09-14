@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Az egyszer megtekinthető médiafájl elküldés után törlődik</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet már megtekintetted</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Ebben a csevegésben írhatsz magadnak jegyzeteket.\nHa a fiókodat más, kapcsolt eszközökkel is használod, az új jegyzetek azokkal is szinkronizálásra kerülnek.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">A csoport %1$d tagjának megegyezik a neve.</string>
@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Észrevettük, hogy késnek az értesítések. Hibakeresési napló küldése?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">A hibakeresési naplók segítenek diagnosztizálni és kijavítani a problémát, és nem tartalmaznak azonosító információkat.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Az akkumulátor optimalizálása miatt az értesítések késhetnek</string>
@@ -2249,9 +2251,9 @@
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Értesítések fogadásához új üzenetekről:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Koppints az alábbi „Beállítások” lehetőségre</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Kapcsold be az értesítéseket</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Beállítások</string>
 
@@ -2775,7 +2777,7 @@
     <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Kérjük, válassz egy opciót</item>
         <item>Valami nem működik</item>
         <item>Funkciókérés</item>
         <item>Kérdés</item>
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">A Signal Android hibajavítási naplójának benyújtása</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Lassú értesítések</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Küldés</string>
     <!-- Action to decline to submit logs -->
@@ -3104,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">Részletek</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">A Signal segítségével küldhetsz és fogadhatsz MobileCoint. Minden fizetésre a MobileCoins és a MobileCoin Wallet felhasználási feltételei vonatkoznak. Előfordulhat, hogy hibákba futsz bele, és az elveszett fizetéseket és egyenlegeket nem lehet helyreállítani. </string>
     <string name="PaymentsHomeFragment__activate">Bekapcsolás</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin feltételek megtekintése</string>
     <string name="PaymentsHomeFragment__payments_not_available">A továbbiakban nem érhető el a Fizetések a Signalban. Az egyenlegedet továbbra is átutalhatod egy tőzsdére, de a továbbiakban már nem fogsz tudni pénzt küldeni vagy fogadni, sem pedig feltölteni az egyenlegedet.</string>
@@ -3135,23 +3139,23 @@
     <!-- Displayed as a title at the top of the screen -->
     <string name="GrantPermissionsFragment__allow_permissions">Jogosultságok engedélyezése</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">A Signal kérni fogja ezeket az engedélyeket, hogy segítsen üzenetet küldeni az ismerőseinek. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Értesítések</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Fogadj értesítést, ha új üzeneteid érkeznek.</string>
     <!-- Contacts permission row title -->
-    <string name="GrantPermissionsFragment__contacts">Kontaktok</string>
+    <string name="GrantPermissionsFragment__contacts">Névjegyek</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Találj olyan személyeket, akiket ismersz. A névjegyeid titkosítva vannak, és nem láthatók a Signal számára.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefonhívások</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Tedd egyszerűbbé a regisztrációt, és engedélyezd a további hívási funkciókat.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Tárolás</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Fényképeket, videókat és fájlokat is küldhetsz az eszközödről.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4065,7 +4069,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Van egyenleged! Itt az ideje, hogy elmentsd a helyreállítási mondatod—egy 24 szavas kulcsszót, amellyel helyreállíthatod az egyenleged.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Itt az ideje, hogy elmentsd a helyreállítási mondatod—egy 24 szavas kulcsszót, amellyel helyreállíthatod az egyenleged.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Itt az ideje, hogy elmentsd a helyreállítási mondatod – egy 24 szavas kulcsszót, amellyel helyreállíthatod az egyenlegedet.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">A helyreállítási mondatod egy %1$d szóból álló mondat, amely számodra egyedi. Használd arra, hogy helyreállítsd fizetési fiókodat!</string>
     <string name="PaymentsRecoveryStartFragment__start">Kezdés</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Kézi megadás</string>
@@ -5028,7 +5032,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Sikertelen tallózás.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Az értesítések engedélyezéséhez a Signalnak engedélyre van szüksége azok megjelenítéséhez.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Bekapcsolás</string>
 
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal-hívás</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Csatlakozás</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Hívásnév megadása</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Összes tag jóváhagyása</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">A híváshoz tartozó hivatkozás nem osztható meg.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Vágólapra másolva</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6147,11 +6159,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Hivatkozás másolva</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">A hivatkozás nincs beállítva</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Hivatkozás visszaállítása…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR-kód visszaállítása?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Ha visszaállítod a QR-kódod, a meglévő QR-kód és hivatkozás többé nem fog működni.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6173,13 +6185,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">A(z) %1$s felhasználónévvel rendelkező felhasználó nem található.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Ez a felhasználó nem található.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Hálózati hiba történt. Próbáld újra!</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nincs hálózati hozzáférésed. A hivatkozás nem került visszaállításra. Próbáld újra később!</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Hálózati hiba lépett fel a hivatkozás visszaállítása közben. Próbáld újra később!</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

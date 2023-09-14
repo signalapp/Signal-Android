@@ -187,7 +187,7 @@ class ConversationAdapterV2(
   }
 
   override val displayMode: ConversationItemDisplayMode
-    get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+    get() = condensedMode ?: ConversationItemDisplayMode.Standard
 
   override fun onStartExpirationTimeout(messageRecord: MessageRecord) {
     startExpirationTimeout(messageRecord)
@@ -484,7 +484,7 @@ class ConversationAdapterV2(
       get() = getConversationMessage(bindingAdapterPosition - 1)?.messageRecord.toOptional()
 
     protected val displayMode: ConversationItemDisplayMode
-      get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+      get() = condensedMode ?: ConversationItemDisplayMode.Standard
 
     override val conversationMessage: ConversationMessage
       get() = bindable.conversationMessage

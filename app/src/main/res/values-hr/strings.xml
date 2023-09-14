@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Otvaranje poruke nije uspjelo</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Za brzi odgovor, prijeđite prstom udesno po bilo kojoj poruci</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Za brzi odgovor, prijeđite prstom ulijevo po bilo kojoj poruci</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Jednom vidljivi medijski zapisi brišu se nakon slanja</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Već ste pregledali ovu poruku</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">U ovom razgovoru možete dodati osobne bilješke. Ako vaš račun ima povezane uređaje, nove će se bilješke sinkronizirati.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d člana/ova grupe imaju isto ime.</string>
@@ -930,8 +930,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Primijetili smo da obavijesti kasne. Poslati zapisnik pogreške?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Zapisi pogrešaka pomažu nam pri dijagnosticiranju i rješavanju problema i ne sadrže podatke za identifikaciju.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Obavijesti mogu kasniti zbog optimizacije baterije</string>
@@ -2397,13 +2399,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Uključite Obavijesti</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Uključite obavijesti</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Kako biste primali obavijesti o novim porukama:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Dodirnite “Postavke” u nastavku</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Uključite obavijesti</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Postavke</string>
 
@@ -2949,7 +2951,7 @@
     <string name="HelpFragment__could_not_upload_logs">Nije moguće učitati zapisnike</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Budite što detaljniji kako biste nam pomogli da razumijemo problem.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Odaberite opciju</item>
         <item>Nešto ne funkcionira</item>
         <item>Zahtjev za novom značajkom</item>
         <item>Pitanje</item>
@@ -2963,6 +2965,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Prijenos zapisnika pogreške za Signal Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Obavijesti kasne</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Pošalji</string>
     <!-- Action to decline to submit logs -->
@@ -3246,7 +3250,7 @@
     <string name="PaymentsAllActivityFragment__received">Primljeno</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Predstavljamo Plaćanja</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Predstavljamo plaćanja</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Koristite Signal za slanje i primanje MobileCoina, nove digitalne valute usmjerene na privatnost. Omogućite za početak.</string>
     <string name="PaymentsHomeFragment__activate_payments">Omogući plaćanja</string>
     <string name="PaymentsHomeFragment__activating_payments">Omogućavanje plaćanja…</string>
@@ -3282,7 +3286,7 @@
     <string name="PaymentsHomeFragment__details">Detalji</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Signal možete koristiti za slanje i primanje MobileCoina. Sva plaćanja podliježu Uvjetima korištenja za MobileCoins i MobileCoin Wallet. Mogli biste naići na neke probleme i gubitke u plaćanjima ili saldu koje neće biti moguće vratiti. </string>
     <string name="PaymentsHomeFragment__activate">Omogući</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Prikaži MobileCoin uvjete</string>
     <string name="PaymentsHomeFragment__payments_not_available">Uplate na Signalu više nisu dostupne. I dalje možete prenijeti sredstva na burzu, ali više ne možete slati i primati uplate niti dodavati sredstva.</string>
@@ -3311,25 +3315,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Sljedeće</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Omogući dozvole</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Omogući dopuštenja</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Signal traži ova dopuštenja kako bi vam pomogao u slanju poruka vašim poznanicima. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Obavijesti</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Primite obavijest kada stignu nove poruke.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kontakti</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Pronađite ljude koje poznajete. Vaši kontakti su šifrirani i nisu vidljivi usluzi Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Pozivi</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Osigurajte lakšu registraciju i omogućite dodatne značajke poziva.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Prostor za pohranu</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Šaljite fotografije, videozapise i datoteke sa svoga uređaja.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4269,7 +4273,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Imate nešto na stanju! Vrijeme je da spremite svoju frazu za oporavak—lozinku od 24 riječi koju možete koristiti za oporavak vašeg stanja.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Vrijeme je da spremite svoju frazu za oporavak—lozinku od 24 riječi koju možete koristiti za oporavak vašeg stanja.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Vrijeme je da spremite svoju frazu za oporavak—lozinku od 24 riječi koju možete koristiti za oporavak vašeg salda.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Vaša fraza za oporavak je jedinstvena fraza od %1$d riječi. Koristite ovu frazu za oporavak vašeg stanja.</string>
     <string name="PaymentsRecoveryStartFragment__start">Započni</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Unesi ručno</string>
@@ -5244,7 +5248,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Otvaranje alata za odabir nije uspjelo.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Kako biste omogućili obavijesti, Signal treba dopuštenje za njihovo prikazivanje.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Uključi</string>
 
@@ -6339,8 +6343,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal poziv</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Pridruži se</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Dodaj naziv poziva</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Odobri sve članove</string>
     <!-- Row label to share the link via Signal -->
@@ -6355,6 +6361,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nije moguće podijeliti poveznicu na poziv.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopirano u međuspremnik</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6413,11 +6425,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Poveznica je kopirana</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Poveznica nije postavljena</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Ponovno postavljanje poveznice…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Poništiti QR kôd?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Ako poništite svoj QR kôd, trenutni QR kôd i poveznica više neće biti važeći.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6439,13 +6451,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Korisnik pod korisničkim imenom %1$s nije pronađen.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Korisnik nije pronađen.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Došlo je do pogreške mreže. Pokušajte ponovno.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nema pristupa mreži. Vaša poveznica nije poništena. Pokušajte ponovno kasnije.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Došlo je do mrežne pogreške prilikom poništavanja poveznice. Pokušajte ponovno kasnije.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

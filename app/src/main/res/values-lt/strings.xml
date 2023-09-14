@@ -479,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į dešinę</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Vienkartinės peržiūros įrašas ištrinamas po išsiuntimo</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Tu jau peržiūrėjai šią žinutę</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje gali pridėti sau priminimų. Jei yra su paskyra susietų įrenginių, nauji priminimai bus sinchronizuoti.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
@@ -930,8 +930,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Pastebėjome, kad pranešimai vėluoja. Pateikti derinimo žurnalą?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Derinimo žurnalai padeda mums diagnozuoti ir išspręsti problemą, juose nėra identifikavimo informacijos.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Pranešimai gali vėluoti dėl baterijos optimizavimo</string>
@@ -2399,11 +2401,11 @@
     <!-- Title for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Įjungti pranešimus</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Norėdami gauti pranešimus apie naujas žinutes:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Jei nori gauti pranešimus apie naujas žinutes:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Bakstelėk „Nustatymus“ apačioje</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Įjunk pranešimus</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Nustatymai</string>
 
@@ -2949,7 +2951,7 @@
     <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Pasirink</item>
         <item>Kažkas neveikia</item>
         <item>Prašymas pridėti naują funkciją</item>
         <item>Klausimas</item>
@@ -2963,6 +2965,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">„Signal“ „Android“ derinimo žurnalo pateikimas</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Vėluojantys pranešimai</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Pateikti</string>
     <!-- Action to decline to submit logs -->
@@ -3246,7 +3250,7 @@
     <string name="PaymentsAllActivityFragment__received">Gauta</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">Introducing payments</string>
+    <string name="PaymentsHomeFragment_introducing_payments">Pristatome: mokėjimai</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Su „Signal“ siųsk ir gauk „MobileCoin“ – naują į privatumą orientuotą skaitmeninę valiutą. Įjunk ir pradėk.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktyvuoti mokėjimus</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktyvuojami mokėjimai…</string>
@@ -3282,7 +3286,7 @@
     <string name="PaymentsHomeFragment__details">Išsamesnė informacija</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Naudojant „Signal“ galima siųsti ir gauti „Mobile Coin“. Visiems mokėjimams taikomos „Mobile Coin“ ir „Mobile Coin Wallet“ naudojimo sąlygos. Gali būti, kad susidursi su tam tikromis problemomis, ir mokėjimai ar likučiai, kuriuos galbūt prarasi, nebus atkurti. </string>
     <string name="PaymentsHomeFragment__activate">Aktyvuoti</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Rodyti „MobileCoin“ sąlygas</string>
     <string name="PaymentsHomeFragment__payments_not_available">Mokėjimai Signal programėlėje daugiau nebeprieinami. Jūs vis dar galite pervesti lėšas į valiutos keitimo punktą, bet nebegalite siųsti ir gauti mokėjimų ar pridėti lėšų.</string>
@@ -3311,25 +3315,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Kitas</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Suteikite leidimus</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Suteik leidimus</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Kad padėtų tau siųsti žinutes savo pažįstamiems, „Signal“ paprašys šių leidimų. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Pranešimai</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Gauk pranešimus, kai ateina naujos žinutės.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Adresatai</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Rask savo pažįstamų. Tavo adresatai yra užšifruoti ir „Signal“ jų nemato.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Telefono skambučiai</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Palengvink registraciją ir įjunk papildomas skambinimo funkcijas.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Saugykla</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Siųsk nuotraukas, vaizdo įrašus ir failus iš savo įrenginio.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -5244,7 +5248,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Kad įgalintų pranešimus, „Signal“ reikalingas leidimas juos rodyti.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Įjungti</string>
 
@@ -6339,8 +6343,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">„Signal“ skambutis</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Prisijungti</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Pridėti skambučio pavadinimą</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Patvirtinti visus narius</string>
     <!-- Row label to share the link via Signal -->
@@ -6355,6 +6361,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nepavyksta bendrinti skambučio nuorodos.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Nukopijuota į iškarpinę</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6377,7 +6389,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Redaguoti žinutę</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">If you edit a message, it will only be visible to people who are on the latest versions of Signal. They will be able to see you edited a message.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Jei redaguosi žinutę, tai bus matoma tik naujausias „Signal“ versijas naudojantiems žmonėms. Jie matys, kad redagavai žinutę.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Atšaukti</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6413,15 +6425,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Nuoroda nukopijuota</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Nuoroda nenustatyta</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Nuoroda nustatoma iš naujo…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Nustatyti QR kodą iš naujo?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Jei nustatysi savo QR kodą iš naujo, esamas QR kodas ir nuoroda nebeveiks.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Atstatyti</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Nustatyti iš naujo</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Atstatyti</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6439,13 +6451,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Nepavyko rasti naudotojo, vardu %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Šio naudotojo nepavyko rasti.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Įvyko tinklo klaida. Bandyk dar kartą.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Tu neturi prieigos prie tinklo. Tavo nuoroda nebuvo nustatyta iš naujo. Pabandyk vėliau.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Bandant iš naujo nustatyti tavo nuorodą įvyko tinklo klaida. Pabandyk vėliau.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

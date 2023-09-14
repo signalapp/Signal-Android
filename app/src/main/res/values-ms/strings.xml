@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">Gagal untuk membuka mesej</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Anda boleh meleret ke kanan pada mana-mana mesej untuk balas pantas</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Anda boleh meleret ke kiri pada mana-mana mesej untuk balas pantas</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Media lihat sekali dipadamkan selepas dihantar</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Anda telah melihat mesej ini</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda boleh menambah nota untuk diri sendiri dalam sembang ini. Sekiranya akaun anda mempunyai peranti yang dipautkan, nota baharu akan disegerakkan.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Ahli kumpulan %1$d mempunyai nama yang sama.</string>
@@ -840,8 +840,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Kami mendapati pemberitahuan ditangguhkan. Hantar log nyahpepijat?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Log nyahpepijat membantu kami mendiagnosis dan membetulkan isu tersebut dan tidak mengandungi maklumat pengenalpastian.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Pemberitahuan mungkin ditangguhkan kerana pengoptimuman bateri</string>
@@ -2169,13 +2171,13 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Hidupkan Pemberitahuan</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Hidupkan pemberitahuan</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Untuk menerima pemberitahuan bagi mesej baharu:</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Untuk menerima pemberitahuan mesej baharu:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Ketik \"Tetapan\" di bawah</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Hidupkan pemberitahuan</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Tetapan</string>
 
@@ -2688,7 +2690,7 @@
     <string name="HelpFragment__could_not_upload_logs">Tidak dapat memuat naik log</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Tolong terangkan dengan sejelas mungkin untuk bantu kami memahami isu tersebut.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Sila pilih satu pilihan</item>
         <item>Sesuatu Tidak Berfungsi</item>
         <item>Permintaan Ciri</item>
         <item>Soalan</item>
@@ -2702,6 +2704,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Penyerahan Log Nyahpepijat Signal Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Pemberitahuan perlahan</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Hantar</string>
     <!-- Action to decline to submit logs -->
@@ -3015,7 +3019,7 @@
     <string name="PaymentsHomeFragment__details">Butiran</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Anda boleh menggunakan Signal untuk menghantar dan menerima MobileCoin. Semua pembayaran adalah tertakluk kepada Syarat Penggunaan untuk MobileCoins dan MobileCoin Wallet. Anda mungkin menghadapi beberapa isu dan pembayaran atau baki yang mungkin hilang tidak dapat dipulihkan. </string>
     <string name="PaymentsHomeFragment__activate">Aktifkan</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Lihat terma MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Pembayaran dalam Signal tidak lagi tersedia. Anda masih boleh memindah dana ke pertukaran tetapi anda tidak lagi dapat menghantar dan menerima pembayaran atau menambah dana.</string>
@@ -3044,25 +3048,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Seterusnya</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Benarkan Kebenaran</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Beri kebenaran</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Untuk membantu anda menghantar mesej kepada orang yang anda kenali, Signal akan meminta kebenaran ini. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Pemberitahuan</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Dapatkan pemberitahuan apabila mesej baharu tiba.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kenalan</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Cari orang yang anda kenal. Kenalan anda disulitkan dan tidak kelihatan kepada perkhidmatan Signal.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Panggilan telefon</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Jadikan pendaftaran lebih mudah dan dayakan ciri panggilan tambahan.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Penyimpanan</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Hantar foto, video dan fail daripada peranti anda.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3963,7 +3967,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Anda mempunyai baki! Masa untuk menyimpan frasa pemulihan anda—kunci 24 perkataan yang anda boleh gunakan untuk menyimpan baki anda.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Masa untuk menyimpan frasa pemulihan anda—kunci 24 perkataan yang anda boleh gunakan untuk menyimpan baki anda.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Masa untuk menyimpan frasa pemulihan anda—kunci 24 perkataan yang boleh digunakan untuk menyimpan baki anda.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Frasa pemulihan anda merupakan frasa %1$d perkataan yang unik untuk anda. Gunakan frasa ini untuk memulihkan baki anda.</string>
     <string name="PaymentsRecoveryStartFragment__start">Mulakan</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Masukkan secara manual</string>
@@ -4920,7 +4924,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal untuk membuka pemilih.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Untuk mendayakan pemberitahuan, Signal memerlukan kebenaran untuk memaparkannya.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Hidupkan</string>
 
@@ -5940,8 +5944,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Panggilan Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Sertai</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Tambah nama panggilan</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Luluskan semua ahli</string>
     <!-- Row label to share the link via Signal -->
@@ -5956,6 +5962,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Tidak dapat berkongsi pautan panggilan.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Disalin ke papan klip</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6014,15 +6026,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Pautan telah disalin</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Pautan tidak ditetapkan</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Menetapkan semula pautan…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Tetapkan semula kod QR?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Jika anda menetapkan semula kod QR anda, kod dan pautan QR sedia ada anda tidak akan berfungsi lagi.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Tetap semula</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Tetapkan semula</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Tetap semula</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6040,13 +6052,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Pengguna dengan nama Pengguna %1$s tidak ditemui.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Pengguna ini tidak dapat ditemui.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Mengalami ralat rangkaian. Sila cuba lagi.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Anda tidak mempunyai akses rangkaian. Pautan anda tidak ditetapkan semula. Cuba lagi kemudian.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Ralat rangkaian berlaku semasa cuba menetapkan semula pautan anda. Cuba lagi kemudian.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

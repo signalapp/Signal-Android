@@ -452,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">ئۇچۇرنى ئاچالمىدى</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا ئوڭ تەرەپكە سىيرىسىڭىز بولىدۇ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا سول تەرەپكە سىيرىسىڭىز بولىدۇ</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">ئەۋەتىلگەندىن كىيىن ئۆچۈرىۋېتىلگەن مېدىيا-كۆرۈلۈش سانى</string>
     <string name="ConversationFragment_you_already_viewed_this_message">سىز بۇ ئۇچۇرنى كۆرۈپ بولغان</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">بۇ پاراڭدا ئۆزىڭىزگە خاتىرە قوشالايسىز\n. ئەگەر ھېساباتىڭىزدا ئۇلانغان ئۈسكۈنىلەر بولسا، يېڭى خاتىرىلەر ماسقەدەملىنىدۇ.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گۇرۇپپا ئەزالىرىنىڭمۇ ئوخشاش نامى بار.</string>
@@ -840,8 +840,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">ئۇقتۇرۇشلارنىڭ كېچىكتۈرۈلگەنلىكىنى بايقىدۇق. خاتالىق خاتىرىسىنى يوللامسىز؟</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">خاتالىق خاتىرىلىرى بىزنىڭ مەسىلىگە دىئاگنوز قويۇشىمىز ۋە ھەل قىلىشىمىزغا ياردەم بېرىدۇ ، ۋە تونىتىش ئۇچۇرلىرىنى ئۆز ئىچىگە ئالمايدۇ.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">باتارىيە ئەلالاشتۇرۇلۇش تۈپەيلىدىن، ئۇقتۇرۇشلا كېچىكتۈرۈلىشى مۇمكىن</string>
@@ -2173,9 +2175,9 @@
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">يېڭى ئۇچۇرلارنىڭ ئۇقتۇرۇشلىرىنى تاپشۇرۇۋېلىش ئۈچۈن:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. تۆۋەندىكى «تەڭشەكلەر»نى چېكىڭ</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s ئۇقتۇرۇشلارنى ئېچىڭ</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">تەڭشەكلەر</string>
 
@@ -2688,7 +2690,7 @@
     <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>بىر تاللاشنى تاللاڭ</item>
         <item>بەزى نەرسە ئىشلىمەيۋاتىدۇ</item>
         <item>ئىقتىدار ئىلتىماسى</item>
         <item>سوئال</item>
@@ -2702,6 +2704,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">سىگنال ئاندىرويىد خاتالىق خاتىرىسىنى يوللاش</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">ئاستا ئۇقتۇرۇش</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">تاپشۇر</string>
     <!-- Action to decline to submit logs -->
@@ -3015,7 +3019,7 @@
     <string name="PaymentsHomeFragment__details">تەپسىلاتى</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">‫Signal نى ئىشلىتىپ MobileCoin ئەۋەتەلەيسىز ۋە تاپشۇرىۋالالايسىز. بارلىق تۆلەم ۋە چىقىملار MobileCoin ۋە MobileCoin ھەميانىنىڭ ئىشلىتىش شەرتلىرىگە بويسۇنىدۇ. بەزى مەسىلىلەرگە دۇچ كېلىشىڭز، يوقىتىش ئىھتىمالىڭىز بولغان تۆلەملەر ۋە قالدۇقلارنى ئەسلىگە كەلتۈرەلمەسلىكىڭىز مۇمكىن. </string>
     <string name="PaymentsHomeFragment__activate">ئاكتىپلا</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ماددىلىرىنى كۆرسەت</string>
     <string name="PaymentsHomeFragment__payments_not_available">‫Signal دا چىقىم ئەمدى ئىشلىمەيدۇ. سىز مەبلەغلىرىڭىزنى ئالماشتۇرۇش ئورنىغا داۋاملىق يۆتكىيەلەيسىز. ئەمما ئەمدى چىقىمنى يوللاپ ۋە تاپشۇرىۋالالمايسىز ياكى مەبلەغ قوشالمايسىز.</string>
@@ -3044,25 +3048,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">كېيىنكى</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">ھوقۇق بېرىڭ</string>
+    <string name="GrantPermissionsFragment__allow_permissions">ئىجازەت بېرىڭ</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">سىز تونۇيدىغان كىشىلەرگە ئۇچۇر يوللىشىڭىزغا ياردەم بېرىش ئۈچۈن، سىگنال بۇ ئىجازەتلەرنى تەلەپ قىلىدۇ. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">ئۇقتۇرۇشلار</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">يېڭى ئۇچۇرلار كەلگەندە، خەۋەردار بولۇڭ.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">ئالاقەداشلار</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">سىز تونۇيدىغان كىشىلەرنى تېپىڭ. ئالاقىداشلىرىڭىز مەخپىيلەشتۈرۈلگەن بولۇپ، سىگنال مۇلازىمىتىگە كۆرۈنمەيدۇ.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">تېلېفون چاقىرىقلىرى</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">تىزىملاشنى ئاسانلاشتۇرۇڭ ۋە قوشۇمچە چاقىرىش ئىقتىدارلىرىنى قوزغىتىڭ.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">ساقلىغۇچ</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">ئۈسكۈنىڭىزدىن رەسىم ، سىن ۋە ھۆججەتلەرنى ئەۋەتىڭ.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3963,7 +3967,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">قالدۇق سوممىڭىز بار! قالدۇق سوممىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئەسلىگە كەلتۈرۈش ئىبارىسىنى (24 سۆزدىن تەركىب تاپقان بولىدۇ) ساقلىۋېلىڭ.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">قالدۇق سوممىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن ئەسلىگە كەلتۈرۈش ئىبارىسىنى (24 سۆزدىن تەركىب تاپقان بولىدۇ) ساقلىۋېلىڭ.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ئەسلىگە كەلتۈرۈش ئىبارىسىنى ساقلىۋېلىش ۋاقتى - قالدۇق سوممىڭىزنى ئەسلىگە كەلتۈرۈشتە ئىشلىتەلەيدىغان 24 سۆزدىن تەركىپ تاپقان ئاچقۇچ.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ئەسلىگە كەلتۈرۈش جۈملىڭىز بولسا بىر %1$d- سىزگە خاس بولغان سۆزلۈك جۈملە. قالدۇقىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ جۈملىنى ئىشلىتىڭ.</string>
     <string name="PaymentsRecoveryStartFragment__start">باشلا</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">قولدا كىرگۈزۈش</string>
@@ -4920,7 +4924,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">تاللىغۇچنى ئاچالمىدى.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">ئۇقتۇرۇشللارنى قوزغىتىش ئۈچۈن، سىگنال ئۇلارنى كۆرسىتىش رۇخسىتىگە ئېرىشىشى كېرەك.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">ئېچىش</string>
 
@@ -5940,8 +5944,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal چاقىرىقى</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">قوشۇلۇش</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">چاقىرىق نامى قوشۇش</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">بارلىق ئەزلارغا رۇخسەت</string>
     <!-- Row label to share the link via Signal -->
@@ -5956,6 +5962,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">چاقىرىق ئۇلانمىسىنى ئورتاقلاشقىلى بولمىدى.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈرۈلدى</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -5976,7 +5988,7 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">تەھرىرلەش تارىخى</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">ئۇچۇر تەھرىرلەش</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">ئۇچۇرنى تەھرىرلەڭ</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
     <string name="SendingEditMessageBetaOnlyDialog_body">ئەگەر سىز ئۇچۇرنى تەھرىرلىسىڭىز، ئۇنى پەقەت Signalنىڭ ئەڭ يېڭى نەشرىنى ئىشلىتىۋاتقان كىشىلەرلا كۆرەلەيدۇ. ئۇلار سىزنىڭ ئۇچۇرنى تەھرىرلىگەنلىكىڭىزنى كۆرەلەيدۇ.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
@@ -6014,15 +6026,15 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">ئۇلانما كۆچۈرۈلدى</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">ئۇلىنىش تەڭشەلمىدى</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">ئۇلانمىنى يېڭىلاۋاتىدۇ…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR كودىڭىزنى يېڭىلامسىز؟</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">ئەگەر سىز QR كودىڭىزنى يېڭلىسىڭىز، سىزنىڭ ھازىرقى QR كودىڭىز ۋە ئۇلانمىڭىز ئىشلىمەيدۇ.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ئەگەر سىز QR كودىڭىزنى يېڭلىسىڭىز، سىزنىڭ ھازىرقى QR كودىڭىز ۋە ئۇلانمىڭىز قايتا ئىشلىمەيدۇ.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ئەسلىگە قايتۇر</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ئەسلىگە قايتۇرۇڭ</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ئەسلىگە قايتۇر</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6040,13 +6052,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">%1$s ئىسىملىك ئىشلەتكۈچى تېپىلمىدى.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">بۇ ئىشلەتكۈچى تېپىلالمىدى.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">تور خاتالىقى كۆرۈلدى. قايتا سىناڭ.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">سىزنىڭ تورغا ئېرىشىش ئىجازىتىڭىز يوق. ئۇلىنىشىڭىز ئەسلىگە كەلتۈرۈلمىدى. سەل تۇرۇپ قايتا سىناڭ.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">ئۇلانمىڭىزنى يېڭىلاشقا ئۇرۇنغان ۋاقىتتا تور خاتالىقى كۆرۈلدى. سەل تۇرۇپ قايتا سىناڭ.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

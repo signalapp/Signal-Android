@@ -18,6 +18,8 @@ ktlint {
 }
 
 dependencies {
+  implementation(gradleApi())
+
   implementation(libs.dnsjava)
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)

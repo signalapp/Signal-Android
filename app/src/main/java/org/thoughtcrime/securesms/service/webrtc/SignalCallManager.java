@@ -720,7 +720,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     Log.i(TAG, "onSendHangup: id: " + remotePeer.getCallId().format(remoteDevice) + " type: " + hangupType.name());
 
     WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
-    WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), false, deviceId);
+    WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), deviceId);
 
     process((s, p) -> p.handleSendHangup(s, callMetadata, hangupMetadata, broadcast));
   }

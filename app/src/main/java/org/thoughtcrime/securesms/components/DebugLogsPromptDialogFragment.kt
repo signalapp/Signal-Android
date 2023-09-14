@@ -13,11 +13,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import org.signal.core.util.ResourceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -27,14 +28,21 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil
 class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   companion object {
+    private const val KEY_PURPOSE = "purpose"
 
     @JvmStatic
-    fun show(context: Context, fragmentManager: FragmentManager) {
+    fun show(context: Context, fragmentManager: FragmentManager, purpose: Purpose) {
       if (NetworkUtil.isConnected(context) && fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
         DebugLogsPromptDialogFragment().apply {
-          arguments = bundleOf()
+          arguments = bundleOf(
+            KEY_PURPOSE to purpose.serialized
+          )
         }.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-        SignalStore.uiHints().lastNotificationLogsPrompt = System.currentTimeMillis()
+
+        when (purpose) {
+          Purpose.NOTIFICATIONS -> SignalStore.uiHints().lastNotificationLogsPrompt = System.currentTimeMillis()
+          Purpose.CRASH -> SignalStore.uiHints().lastCrashPrompt = System.currentTimeMillis()
+        }
       }
     }
   }
@@ -44,7 +52,12 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
 
   private val binding by ViewBinderDelegate(PromptLogsBottomSheetBinding::bind)
 
-  private lateinit var viewModel: PromptLogsViewModel
+  private val viewModel: PromptLogsViewModel by viewModels(
+    factoryProducer = {
+      val purpose = Purpose.deserialize(requireArguments().getInt(KEY_PURPOSE))
+      PromptLogsViewModel.Factory(ApplicationDependencies.getApplication(), purpose)
+    }
+  )
 
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
@@ -55,11 +68,21 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     disposables.bindTo(viewLifecycleOwner)
 
-    viewModel = ViewModelProvider(this).get(PromptLogsViewModel::class.java)
+    val purpose = Purpose.deserialize(requireArguments().getInt(KEY_PURPOSE))
+
+    when (purpose) {
+      Purpose.NOTIFICATIONS -> {
+        binding.title.setText(R.string.PromptLogsSlowNotificationsDialog__title)
+      }
+      Purpose.CRASH -> {
+        binding.title.setText(R.string.PromptLogsSlowNotificationsDialog__title_crash)
+      }
+    }
+
     binding.submit.setOnClickListener {
       val progressDialog = SignalProgressDialog.show(requireContext())
       disposables += viewModel.submitLogs().subscribe({ result ->
-        submitLogs(result)
+        submitLogs(result, purpose)
         progressDialog.dismiss()
         dismiss()
       }, { _ ->
@@ -68,30 +91,40 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
         dismiss()
       })
     }
+
     binding.decline.setOnClickListener {
-      SignalStore.uiHints().markDeclinedShareNotificationLogs()
+      if (purpose == Purpose.NOTIFICATIONS) {
+        SignalStore.uiHints().markDeclinedShareNotificationLogs()
+      }
+
       dismiss()
     }
   }
 
-  private fun submitLogs(debugLog: String) {
+  private fun submitLogs(debugLog: String, purpose: Purpose) {
     CommunicationActions.openEmail(
       requireContext(),
       SupportEmailUtil.getSupportEmailAddress(requireContext()),
       getString(R.string.DebugLogsPromptDialogFragment__signal_android_support_request),
-      getEmailBody(debugLog)
+      getEmailBody(debugLog, purpose)
     )
   }
 
-  private fun getEmailBody(debugLog: String?): String {
+  private fun getEmailBody(debugLog: String?, purpose: Purpose): String {
     val suffix = StringBuilder()
+
     if (debugLog != null) {
       suffix.append("\n")
       suffix.append(getString(R.string.HelpFragment__debug_log))
       suffix.append(" ")
       suffix.append(debugLog)
     }
-    val category = ResourceUtil.getEnglishResources(requireContext()).getString(R.string.DebugLogsPromptDialogFragment__slow_notifications_category)
+
+    val category = when (purpose) {
+      Purpose.NOTIFICATIONS -> ResourceUtil.getEnglishResources(requireContext()).getString(R.string.DebugLogsPromptDialogFragment__slow_notifications_category)
+      Purpose.CRASH -> ResourceUtil.getEnglishResources(requireContext()).getString(R.string.DebugLogsPromptDialogFragment__crash_category)
+    }
+
     return SupportEmailUtil.generateSupportEmailBody(
       requireContext(),
       R.string.DebugLogsPromptDialogFragment__signal_android_support_request,
@@ -99,5 +132,22 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
       "\n\n",
       suffix.toString()
     )
+  }
+
+  enum class Purpose(val serialized: Int) {
+
+    NOTIFICATIONS(1), CRASH(2);
+
+    companion object {
+      fun deserialize(serialized: Int): Purpose {
+        for (value in values()) {
+          if (value.serialized == serialized) {
+            return value
+          }
+        }
+
+        throw IllegalArgumentException("Invalid value: $serialized")
+      }
+    }
   }
 }

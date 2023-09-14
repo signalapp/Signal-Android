@@ -100,8 +100,8 @@ public final class FeatureFlags {
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
-  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
-  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.11";
+  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.3";
+  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.12";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
@@ -114,7 +114,8 @@ public final class FeatureFlags {
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
-  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.2";
+  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.3";
+  public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -181,7 +182,8 @@ public final class FeatureFlags {
       PROMPT_BATTERY_SAVER,
       USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
-      CONVERSATION_ITEM_V2_TEXT
+      CONVERSATION_ITEM_V2_TEXT,
+      CRASH_PROMPT_CONFIG
   );
 
   @VisibleForTesting
@@ -252,7 +254,8 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES
+      USERNAMES,
+      CRASH_PROMPT_CONFIG
   );
 
   /**
@@ -660,6 +663,11 @@ public final class FeatureFlags {
 
   public static String promptBatterySaver() {
     return getString(PROMPT_BATTERY_SAVER, "*");
+  }
+
+  /** Config object for what crashes to prompt about. */
+  public static String crashPromptConfig() {
+    return getString(CRASH_PROMPT_CONFIG, "");
   }
 
 

@@ -461,7 +461,7 @@
     <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vous pouvez balayer un message vers la droite pour y répondre rapidement</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vous pouvez balayer un message vers la gauche pour y répondre rapidement</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">View-once media is deleted after sending</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Les contenus éphémères sont supprimés après être envoyés</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà vu ce message</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vous pouvez ajouter des notes à votre attention dans cette conversation. Si des appareils sont reliés à votre compte, les nouvelles notes seront synchronisées.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membres du groupe portent le même nom.</string>
@@ -870,8 +870,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Nous avons remarqué que les notifications sont retardées. Envoyer un journal de débogage ?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Les journaux de débogage nous aident à diagnostiquer et résoudre les problèmes. Ils ne contiennent aucune information d’identification.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">L’envoi des notifications peut être retardé en raison de l’optimisation de la batterie.</string>
@@ -2247,11 +2249,11 @@
     <!-- Title for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Activer les notifications</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Pour recevoir des notifications de nouveaux messages :</string>
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Pour recevoir les notifications des nouveaux messages :</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
-    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Tap “Settings” below</string>
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Appuyez sur « Paramètres » ci-dessous</string>
     <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Turn on notifications</string>
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Activer les notifications</string>
     <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__settings">Paramètres</string>
 
@@ -2775,7 +2777,7 @@
     <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>Please select an option</item>
+        <item>Veuillez sélectionner une option</item>
         <item>Quelque chose ne fonctionne pas</item>
         <item>Demande de fonction</item>
         <item>Question</item>
@@ -2789,6 +2791,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Soumission du journal de débogage de Signal Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Voir les notifications</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Envoyer</string>
     <!-- Action to decline to submit logs -->
@@ -3104,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">Détails</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. You may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Vous pouvez désormais utiliser Signal pour envoyer et recevoir des MobileCoin. Tous les paiements sont soumis aux conditions d’utilisation de MobileCoins et de MobileCoin Wallet. Des problèmes pourraient survenir. Les paiements et les soldes que vous pourriez perdre sont irrécupérables. </string>
     <string name="PaymentsHomeFragment__activate">Activer</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Afficher les CGU de MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Les paiements ne sont plus proposés dans Signal. Vous pouvez encore transférer des fonds vers une plateforme de change, mais vous ne pouvez plus ni envoyer, ni recevoir de paiements, ni ajouter de fonds.</string>
@@ -3133,25 +3137,25 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">Suivant</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">Accorder les autorisations</string>
+    <string name="GrantPermissionsFragment__allow_permissions">Activer les autorisations</string>
     <!-- Displayed as a subtitle at the top of the screen -->
-    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">To help you message people you know, Signal will request these permissions. </string>
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Afin de vous aider à envoyer un message aux personnes que vous connaissez, Signal exige d’activer ces autorisations. </string>
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Notifications</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Get notified when new messages arrive.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Soyez informé lorsque vous recevez de nouveaux messages.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Contacts</string>
     <!-- Contacts permission row description -->
-    <string name="GrantPermissionsFragment__find_people_you_know">Find people you know. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="GrantPermissionsFragment__find_people_you_know">Trouvez les personnes que vous connaissez. Votre liste de contacts est cryptée et le service Signal n’y a pas accès.</string>
     <!-- Phone calls permission row title -->
-    <string name="GrantPermissionsFragment__phone_calls">Phone calls</string>
+    <string name="GrantPermissionsFragment__phone_calls">Appels par téléphone</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Make registering easier and enable additional calling features.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Facilitez l’étape d’inscription et activez des fonctions d’appel supplémentaires.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Espace de stockage</string>
     <!-- Storage permission row description -->
-    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Send photos, videos and files from your device.</string>
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Envoyez des photos, vidéos et fichiers depuis votre appareil.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4065,7 +4069,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Le solde de votre compte est disponible Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Il est temps d’enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase de %1$d mots qui vous est propre. Utilisez cette phrase pour restaurer votre solde.</string>
     <string name="PaymentsRecoveryStartFragment__start">Commencer</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Entrer manuellement</string>
@@ -5028,7 +5032,7 @@
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Échec d’ouverture du sélecteur.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Pour activer les notifications, Signal doit être autorisé à les afficher.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Activer</string>
 
@@ -6073,8 +6077,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Appel Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Rejoindre</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Ajouter un libellé d’appel</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approuver tous les membres</string>
     <!-- Row label to share the link via Signal -->
@@ -6089,6 +6095,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Impossible de partager le lien de l’appel.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Copié dans le presse-papiers</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6147,11 +6159,11 @@
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Le lien a été copié</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">Lien non configuré</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Resetting link…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Réinitialisation du lien…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Réinitialiser le code QR ?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_body">Si vous réinitialisez votre code QR, votre lien et code QR existants ne fonctionneront plus.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6173,13 +6185,13 @@
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Impossible de trouver l’utilisateur %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Impossible de trouver cet utilisateur.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Une erreur réseau est survenue. Veuillez réessayer.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Vous n’avez pas accès au réseau. Votre lien n’a pas été réinitialisé. Réessayez plus tard.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Une erreur réseau s’est produite lors de la tentative de réinitialisation de votre lien. Réessayez plus tard.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

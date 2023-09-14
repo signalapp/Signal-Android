@@ -111,7 +111,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           false,
                           true,
                           colorizer,
-                          ConversationItemDisplayMode.DETAILED);
+                          ConversationItemDisplayMode.Detailed.INSTANCE);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

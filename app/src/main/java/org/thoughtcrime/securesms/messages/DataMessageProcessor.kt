@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
+import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper
@@ -221,7 +222,9 @@ object DataMessageProcessor {
       }
       if (SignalDatabase.recipients.setProfileKey(senderRecipient.id, messageProfileKey)) {
         log(timestamp, "Profile key on message from " + senderRecipient.id + " didn't match our local store. It has been updated.")
-        ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.id))
+        SignalDatabase.runPostSuccessfulTransaction {
+          ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.id))
+        }
       }
     } else {
       warn(timestamp.toString(), "Ignored invalid profile key seen in message")
@@ -1117,8 +1120,9 @@ object DataMessageProcessor {
         val hasTitle = !TextUtils.isEmpty(title.orElse(""))
         val presentInBody = url.isPresent && urlsInMessage.containsUrl(url.get())
         val validDomain = url.isPresent && LinkUtil.isValidPreviewUrl(url.get())
+        val isForCallLink = url.isPresent && CallLinks.isCallLink(url.get())
 
-        if (hasTitle && (presentInBody || isStoryEmbed) && validDomain) {
+        if ((hasTitle || isForCallLink) && (presentInBody || isStoryEmbed) && validDomain) {
           val linkPreview = LinkPreview(url.get(), title.orElse(""), description.orElse(""), preview.date, thumbnail.toOptional())
           linkPreview
         } else {

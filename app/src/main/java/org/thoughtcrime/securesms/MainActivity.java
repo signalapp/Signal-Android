@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSh
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
-import org.thoughtcrime.securesms.notifications.SlowNotificationsViewModel;
+import org.thoughtcrime.securesms.notifications.VitalsViewModel;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppStartup;
@@ -45,7 +45,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
   private VoiceNoteMediaController      mediaController;
   private ConversationListTabsViewModel conversationListTabsViewModel;
-  private SlowNotificationsViewModel    slowNotificationsViewModel;
+  private VitalsViewModel               vitalsViewModel;
 
   private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
@@ -99,25 +99,27 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     conversationListTabsViewModel = new ViewModelProvider(this, factory).get(ConversationListTabsViewModel.class);
     updateTabVisibility();
 
-    slowNotificationsViewModel = new ViewModelProvider(this).get(SlowNotificationsViewModel.class);
+    vitalsViewModel = new ViewModelProvider(this).get(VitalsViewModel.class);
 
     lifecycleDisposable.add(
-        slowNotificationsViewModel
-            .getSlowNotificationState()
-            .subscribe(this::presentSlowNotificationState)
+        vitalsViewModel
+            .getVitalsState()
+            .subscribe(this::presentVitalsState)
     );
   }
 
   @SuppressLint("NewApi")
-  private void presentSlowNotificationState(SlowNotificationsViewModel.State slowNotificationState) {
-    switch (slowNotificationState) {
+  private void presentVitalsState(VitalsViewModel.State state) {
+    switch (state) {
       case NONE:
         break;
       case PROMPT_BATTERY_SAVER_DIALOG:
         PromptBatterySaverDialogFragment.show(getSupportFragmentManager());
         break;
-      case PROMPT_DEBUGLOGS:
-        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager());
+      case PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS:
+        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager(), DebugLogsPromptDialogFragment.Purpose.NOTIFICATIONS);
+      case PROMPT_DEBUGLOGS_FOR_CRASH:
+        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager(), DebugLogsPromptDialogFragment.Purpose.CRASH);
         break;
     }
   }
@@ -168,7 +170,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     updateTabVisibility();
 
-    slowNotificationsViewModel.checkSlowNotificationHeuristics();
+    vitalsViewModel.checkSlowNotificationHeuristics();
   }
 
   @Override
