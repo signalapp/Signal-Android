@@ -6612,7 +6612,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">إضافة اسم المكالمة</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">تعديل اسم المكالمة</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">الموافقة على جميع الأعضاء</string>
     <!-- Row label to share the link via Signal -->

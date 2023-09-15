@@ -873,7 +873,7 @@
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">సమస్యను గుర్తించడానికి మరియు పరిష్కరించడానికి డీబగ్ లాగ్‌లు మాకు సహాయపడతాయి, మరియు గుర్తించే సమాచారం కలిగి ఉండవు.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal సమస్యను ఎదుర్కొంది. డీబగ్ లాగ్‌ను సమర్పించేదా?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">బ్యాటరీ ఆప్టిమైజేషన్‌ల కారణంగా నోటిఫికేషన్‌లు ఆలస్యం కావచ్చు</string>
@@ -2792,7 +2792,7 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">నోటిఫికేషన్‌లు నిదానంగా ఉన్నాయి</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
+    <string name="DebugLogsPromptDialogFragment__crash_category">క్రాష్ అయింది</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">సమర్పించండి</string>
     <!-- Action to decline to submit logs -->
@@ -6080,7 +6080,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">కాల్ పేరును జోడించండి</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">కాల్ పేరును సవరించండి</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">సభ్యులందరినీ ఆమోదించండి</string>
     <!-- Row label to share the link via Signal -->
@@ -6098,9 +6098,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">ఎంట్రీని ఆమోదించండి</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">ఎంట్రీని తిరస్కరించండి</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->

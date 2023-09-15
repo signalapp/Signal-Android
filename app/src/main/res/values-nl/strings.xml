@@ -4331,7 +4331,7 @@
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor alle nieuwe chats die jij zelf begint in dat berichten voor iedereen na een bepaalde tijd worden gewist nadat ze zijn gezien.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze groep zijn verstuurd en ontvangen gewist nadat ze zijn gezien.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze chat zijn verstuurd en ontvangen gewist nadat ze zijn gezien.</string>
     <string name="ExpireTimerSettingsFragment__off">Uit</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -6080,7 +6080,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Oproepnaam toevoegen</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Oproepnaam bewerken</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Alle leden goedkeuren</string>
     <!-- Row label to share the link via Signal -->

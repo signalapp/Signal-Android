@@ -6080,7 +6080,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">அழைப்பின் பெயரைச் சேர்க்கவும்</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">அழைப்பின் பெயரைத் திருத்தவும்</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">அனைத்து உறுப்பினர்களையும் அங்கீகரிக்கவும்</string>
     <!-- Row label to share the link via Signal -->

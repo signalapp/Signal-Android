@@ -903,7 +903,7 @@
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Jurnalele de depanare ne ajută să diagnosticăm și să remediam problema și nu conțin informații de identificare.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal a întâmpinat o problemă. Trimiți jurnalul de depanare?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Este posibil ca notificările să întârzie din cauza optimizării bateriei</string>
@@ -2879,7 +2879,7 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Notificări lente</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash (erori)</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Trimite</string>
     <!-- Action to decline to submit logs -->
@@ -6213,7 +6213,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Adaugă numele apelului</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Editează numele apelului</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Aprobă toți membri</string>
     <!-- Row label to share the link via Signal -->
@@ -6231,9 +6231,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Aprobă intrarea</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Respinge intrarea</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->

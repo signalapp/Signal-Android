@@ -2786,7 +2786,7 @@
     <string name="preferences__led_color_unknown">不明</string>
     <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
     <string name="preferences__customize">カスタマイズ</string>
-    <string name="preferences__change_sound_and_vibration">test</string>
+    <string name="preferences__change_sound_and_vibration">サウンドとバイブの変更</string>
     <string name="preferences__sound">着信音</string>
     <string name="preferences__silent">無音</string>
     <string name="preferences__default">既定</string>
@@ -5947,7 +5947,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">通話名を追加する</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">通話名を編集する</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">全メンバーを承認制にする</string>
     <!-- Row label to share the link via Signal -->

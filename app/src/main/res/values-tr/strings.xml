@@ -2247,7 +2247,7 @@
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
-    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Bildirimleri açmak</string>
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Bildirimleri aç</string>
     <!-- Subtitle  for sheet explaining how to turn on app notifications -->
     <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Yeni ileti bildirimlerini almak için:</string>
     <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
@@ -6080,7 +6080,7 @@
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Arama adı ekle</string>
     <!-- Option to open a full screen dialog to edit a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Arama adını düzenle</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Tüm üyeleri onayla</string>
     <!-- Row label to share the link via Signal -->
@@ -6163,9 +6163,9 @@
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Bağlantı sıfırlanıyor…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Kare kod sıfırlansın mı?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Karekod sıfırlansın mı?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Kare kodunu sıfırlarsan mevcut kare kodun ve bağlantın artık çalışmaz.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Karekodu sıfırlarsan mevcut karekodun ve bağlantın artık çalışmaz.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Sıfırla</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
