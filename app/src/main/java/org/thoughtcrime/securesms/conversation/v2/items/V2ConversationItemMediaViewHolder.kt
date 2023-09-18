@@ -30,7 +30,7 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
 ) {
 
   init {
-    binding.textBridge.conversationItemBodyWrapper.clipToOutline = true
+    binding.textBridge.bodyWrapper.clipToOutline = true
   }
 
   override fun bind(model: Model) {
@@ -57,7 +57,7 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
         0
       }
 
-      this.constrainMaxWidth(binding.textBridge.conversationItemBodyWrapper.id, maxBodyWidth)
+      this.constrainMaxWidth(binding.textBridge.bodyWrapper.id, maxBodyWidth)
     }
   }
 

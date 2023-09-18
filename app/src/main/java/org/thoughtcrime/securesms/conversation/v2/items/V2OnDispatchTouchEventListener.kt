@@ -25,15 +25,15 @@ class V2OnDispatchTouchEventListener(
   }
 
   private val viewsToPivot = listOfNotNull(
-    binding.conversationItemFooterBackground,
-    binding.conversationItemFooterDate,
-    binding.conversationItemFooterExpiry,
-    binding.conversationItemDeliveryStatus,
-    binding.conversationItemReactions
+    binding.footerBackground,
+    binding.footerDate,
+    binding.footerExpiry,
+    binding.deliveryStatus,
+    binding.reactions
   )
 
   private val shrinkBubble = Runnable {
-    binding.conversationItemBodyWrapper.animate()
+    binding.bodyWrapper.animate()
       .scaleX(LONG_PRESS_SCALE_FACTOR)
       .scaleY(LONG_PRESS_SCALE_FACTOR)
       .setUpdateListener {
@@ -53,8 +53,8 @@ class V2OnDispatchTouchEventListener(
     }
 
     viewsToPivot.forEach {
-      val deltaX = it.x - binding.conversationItemBodyWrapper.x
-      val deltaY = it.y - binding.conversationItemBodyWrapper.y
+      val deltaX = it.x - binding.bodyWrapper.x
+      val deltaY = it.y - binding.bodyWrapper.y
 
       it.pivotX = -(deltaX / 2f)
       it.pivotY = -(deltaY / 2f)
@@ -64,7 +64,7 @@ class V2OnDispatchTouchEventListener(
       MotionEvent.ACTION_DOWN -> view.handler.postDelayed(shrinkBubble, SHRINK_BUBBLE_DELAY_MILLIS)
       MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
         view.handler.removeCallbacks(shrinkBubble)
-        (viewsToPivot + binding.conversationItemBodyWrapper).forEach {
+        (viewsToPivot + binding.bodyWrapper).forEach {
           it.animate()
             .scaleX(1f)
             .scaleY(1f)

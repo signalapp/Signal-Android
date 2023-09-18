@@ -31,28 +31,28 @@ class V2FooterPositionDelegate private constructor(
   constructor(binding: V2ConversationItemTextOnlyBindingBridge) : this(
     binding.root,
     listOfNotNull(
-      binding.conversationItemFooterDate,
-      binding.conversationItemDeliveryStatus,
-      binding.conversationItemFooterExpiry,
-      binding.conversationItemFooterSpace
+      binding.footerDate,
+      binding.deliveryStatus,
+      binding.footerExpiry,
+      binding.footerSpace
     ),
-    binding.conversationItemBodyWrapper,
-    binding.conversationItemBody,
-    binding.conversationItemFooterSpace,
+    binding.bodyWrapper,
+    binding.body,
+    binding.footerSpace,
     null
   )
 
   constructor(binding: V2ConversationItemMediaBindingBridge) : this(
     binding.textBridge.root,
     listOfNotNull(
-      binding.textBridge.conversationItemFooterDate,
-      binding.textBridge.conversationItemDeliveryStatus,
-      binding.textBridge.conversationItemFooterExpiry,
-      binding.textBridge.conversationItemFooterSpace
+      binding.textBridge.footerDate,
+      binding.textBridge.deliveryStatus,
+      binding.textBridge.footerExpiry,
+      binding.textBridge.footerSpace
     ),
-    binding.textBridge.conversationItemBodyWrapper,
-    binding.textBridge.conversationItemBody,
-    binding.textBridge.conversationItemFooterSpace,
+    binding.textBridge.bodyWrapper,
+    binding.textBridge.body,
+    binding.textBridge.footerSpace,
     binding.thumbnailStub
   )
 

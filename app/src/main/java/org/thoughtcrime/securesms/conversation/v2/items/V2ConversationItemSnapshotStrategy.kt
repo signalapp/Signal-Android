@@ -18,12 +18,12 @@ class V2ConversationItemSnapshotStrategy(
 ) : InteractiveConversationElement.SnapshotStrategy {
 
   private val viewsToRestoreScale = listOfNotNull(
-    binding.conversationItemBodyWrapper,
-    binding.conversationItemFooterBackground,
-    binding.conversationItemFooterDate,
-    binding.conversationItemFooterExpiry,
-    binding.conversationItemDeliveryStatus,
-    binding.conversationItemReactions
+    binding.bodyWrapper,
+    binding.footerBackground,
+    binding.footerDate,
+    binding.footerExpiry,
+    binding.deliveryStatus,
+    binding.reactions
   )
 
   private val viewsToHide = listOfNotNull(
@@ -33,7 +33,7 @@ class V2ConversationItemSnapshotStrategy(
 
   override val snapshotMetrics = InteractiveConversationElement.SnapshotMetrics(
     snapshotOffset = 0f,
-    contextMenuPadding = binding.conversationItemBodyWrapper.x
+    contextMenuPadding = binding.bodyWrapper.x
   )
 
   override fun snapshot(canvas: Canvas) {

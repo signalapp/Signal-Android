@@ -80,19 +80,19 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   override lateinit var conversationMessage: ConversationMessage
 
   override val root: ViewGroup = binding.root
-  override val bubbleView: View = binding.conversationItemBodyWrapper
+  override val bubbleView: View = binding.bodyWrapper
 
   override val bubbleViews: List<View> = listOfNotNull(
-    binding.conversationItemBodyWrapper,
-    binding.conversationItemFooterDate,
-    binding.conversationItemFooterExpiry,
-    binding.conversationItemDeliveryStatus,
-    binding.conversationItemFooterBackground
+    binding.bodyWrapper,
+    binding.footerDate,
+    binding.footerExpiry,
+    binding.deliveryStatus,
+    binding.footerBackground
   )
 
-  override val reactionsView: View = binding.conversationItemReactions
+  override val reactionsView: View = binding.reactions
   override val quotedIndicatorView: View? = null
-  override val replyView: View = binding.conversationItemReply
+  override val replyView: View = binding.reply
   override val contactPhotoHolderView: View? = binding.senderPhoto
   override val badgeImageView: View? = binding.senderBadge
 
@@ -108,9 +108,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     override fun onPreMeasure() = Unit
 
     override fun onPostMeasure(): Boolean {
-      val wrapperHeight = binding.conversationItemBodyWrapper.measuredHeight
+      val wrapperHeight = binding.bodyWrapper.measuredHeight
       val yTranslation = (wrapperHeight - 38.dp) / 2f
-      binding.conversationItemReply.translationY = -yTranslation
+      binding.reply.translationY = -yTranslation
 
       return false
     }
@@ -122,7 +122,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     binding.root.onDispatchTouchEventListener = dispatchTouchEventListener
 
-    binding.conversationItemReactions.setOnClickListener {
+    binding.reactions.setOnClickListener {
       conversationContext.clickListener
         .onReactionClicked(
           Multiselect.getParts(conversationMessage).asSingle().singlePart,
@@ -142,23 +142,23 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     val passthroughClickListener = PassthroughClickListener()
-    binding.conversationItemBody.setOnClickListener(passthroughClickListener)
-    binding.conversationItemBody.setOnLongClickListener(passthroughClickListener)
+    binding.body.setOnClickListener(passthroughClickListener)
+    binding.body.setOnLongClickListener(passthroughClickListener)
 
-    binding.conversationItemBody.isFocusable = false
-    binding.conversationItemBody.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().messageFontSize.toFloat())
-    binding.conversationItemBody.movementMethod = LongClickMovementMethod.getInstance(context)
+    binding.body.isFocusable = false
+    binding.body.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().messageFontSize.toFloat())
+    binding.body.movementMethod = LongClickMovementMethod.getInstance(context)
 
     if (binding.isIncoming) {
-      binding.conversationItemBody.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) R.color.core_grey_60 else R.color.core_grey_20))
+      binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) R.color.core_grey_60 else R.color.core_grey_20))
     } else {
-      binding.conversationItemBody.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
+      binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
     }
 
-    binding.conversationItemBodyWrapper.background = bodyBubbleDrawable
-    binding.conversationItemBodyWrapper.layoutTransition = bodyBubbleLayoutTransition
+    binding.bodyWrapper.background = bodyBubbleDrawable
+    binding.bodyWrapper.layoutTransition = bodyBubbleLayoutTransition
 
-    binding.conversationItemFooterBackground.background = footerDrawable
+    binding.footerBackground.background = footerDrawable
   }
 
   override fun invalidateChatColorsDrawable(coordinateRoot: ViewGroup) {
@@ -169,7 +169,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   override fun bind(model: Model) {
     var hasProcessedSupportedPayload = false
 
-    binding.conversationItemBodyWrapper.layoutTransition = if (conversationContext.isParentInScroll) {
+    binding.bodyWrapper.layoutTransition = if (conversationContext.isParentInScroll) {
       null
     } else {
       bodyBubbleLayoutTransition
@@ -223,7 +223,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     presentReactions()
 
     bodyBubbleDrawable.setChatColors(
-      if (binding.conversationItemBody.isJumbomoji) {
+      if (binding.body.isJumbomoji) {
         transparentChatColors
       } else if (binding.isIncoming) {
         ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getBodyBubbleColor(conversationMessage))
@@ -233,7 +233,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       shapeDelegate.corners
     )
 
-    binding.conversationItemReply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
+    binding.reply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
 
     itemView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
       topMargin = shape.topPadding.toInt()
@@ -257,9 +257,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     projections.add(
       Projection.relativeToParent(
         coordinateRoot,
-        binding.conversationItemBodyWrapper,
+        binding.bodyWrapper,
         shapeDelegate.corners
-      ).translateX(binding.conversationItemBodyWrapper.translationX).translateY(root.translationY)
+      ).translateX(binding.bodyWrapper.translationX).translateY(root.translationY)
     )
 
     return projections
@@ -297,7 +297,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else if (conversationMessage.threadRecipient.isGroup) {
       binding.senderPhoto
     } else {
-      binding.conversationItemBodyWrapper
+      binding.bodyWrapper
     }
   }
 
@@ -309,11 +309,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   override fun getGiphyMp4PlayableProjection(coordinateRoot: ViewGroup): Projection {
     return Projection.relativeToParent(
       coordinateRoot,
-      binding.conversationItemBodyWrapper,
+      binding.bodyWrapper,
       shapeDelegate.corners
     )
       .translateY(root.translationY)
-      .translateX(binding.conversationItemBodyWrapper.translationX)
+      .translateX(binding.bodyWrapper.translationX)
       .translateX(root.translationX)
   }
 
@@ -328,7 +328,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     val projection = Projection.relativeToParent(
       coordinateRoot,
-      binding.conversationItemFooterBackground,
+      binding.footerBackground,
       shapeDelegate.corners
     )
 
@@ -343,7 +343,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     val projection = Projection.relativeToParent(
       coordinateRoot,
-      binding.conversationItemBodyWrapper,
+      binding.bodyWrapper,
       shapeDelegate.corners
     )
 
@@ -356,8 +356,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun presentBody() {
-    binding.conversationItemBody.setTextColor(themeDelegate.getBodyTextColor(conversationMessage))
-    binding.conversationItemBody.setLinkTextColor(themeDelegate.getBodyTextColor(conversationMessage))
+    binding.body.setTextColor(themeDelegate.getBodyTextColor(conversationMessage))
+    binding.body.setLinkTextColor(themeDelegate.getBodyTextColor(conversationMessage))
 
     val record = conversationMessage.messageRecord
     var styledText: Spannable = conversationMessage.getDisplayBody(context)
@@ -367,21 +367,21 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     styledText = SearchUtil.getHighlightedSpan(Locale.getDefault(), STYLE_FACTORY, styledText, conversationContext.searchQuery, SearchUtil.STRICT)
     if (record.hasExtraText()) {
-      binding.conversationItemBody.setOverflowText(getLongMessageSpan())
+      binding.body.setOverflowText(getLongMessageSpan())
     } else {
-      binding.conversationItemBody.setOverflowText(null)
+      binding.body.setOverflowText(null)
     }
 
     if (isContentCondensed()) {
-      binding.conversationItemBody.maxLines = CONDENSED_MODE_MAX_LINES
+      binding.body.maxLines = CONDENSED_MODE_MAX_LINES
     } else {
-      binding.conversationItemBody.maxLines = Integer.MAX_VALUE
+      binding.body.maxLines = Integer.MAX_VALUE
     }
 
     val bodyText = StringUtil.trim(styledText)
 
-    binding.conversationItemBody.visible = bodyText.isNotEmpty()
-    binding.conversationItemBody.text = bodyText
+    binding.body.visible = bodyText.isNotEmpty()
+    binding.body.text = bodyText
   }
 
   private fun linkifyMessageBody(messageBody: Spannable) {
@@ -453,14 +453,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private fun presentFooterExpiry() {
     if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
-      binding.conversationItemFooterExpiry.stopAnimation()
-      binding.conversationItemFooterExpiry.visible = false
+      binding.footerExpiry.stopAnimation()
+      binding.footerExpiry.visible = false
       return
     }
 
-    binding.conversationItemFooterExpiry.setColorFilter(themeDelegate.getFooterIconColor(conversationMessage))
+    binding.footerExpiry.setColorFilter(themeDelegate.getFooterIconColor(conversationMessage))
 
-    val timer = binding.conversationItemFooterExpiry
+    val timer = binding.footerExpiry
     val record = conversationMessage.messageRecord
     if (record.expiresIn > 0 && !record.isPending) {
       timer.visible = true
@@ -525,14 +525,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private fun presentAlert() {
     val record = conversationMessage.messageRecord
-    binding.conversationItemBody.setCompoundDrawablesWithIntrinsicBounds(
+    binding.body.setCompoundDrawablesWithIntrinsicBounds(
       0,
       0,
       if (record.isKeyExchange) R.drawable.ic_menu_login else 0,
       0
     )
 
-    val alert = binding.conversationItemAlert ?: return
+    val alert = binding.alert ?: return
 
     when {
       record.isFailed -> alert.setFailed()
@@ -550,25 +550,25 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private fun presentReactions() {
     if (conversationMessage.messageRecord.reactions.isEmpty()) {
-      binding.conversationItemReactions.clear()
+      binding.reactions.clear()
       binding.root.removeOnMeasureListener(reactionMeasureListener)
     } else {
-      binding.conversationItemReactions.setReactions(conversationMessage.messageRecord.reactions)
+      binding.reactions.setReactions(conversationMessage.messageRecord.reactions)
       binding.root.addOnMeasureListener(reactionMeasureListener)
     }
   }
 
   private fun presentFooterBackground() {
-    if (!binding.conversationItemBody.isJumbomoji ||
+    if (!binding.body.isJumbomoji ||
       !conversationContext.hasWallpaper() ||
       shape == V2ConversationItemShape.MessageShape.MIDDLE ||
       shape == V2ConversationItemShape.MessageShape.START
     ) {
-      binding.conversationItemFooterBackground.visible = false
+      binding.footerBackground.visible = false
       return
     }
 
-    binding.conversationItemFooterBackground.visible = true
+    binding.footerBackground.visible = true
     footerDrawable.setChatColors(
       if (binding.isIncoming) {
         ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getFooterBubbleColor(conversationMessage))
@@ -581,13 +581,13 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private fun presentDate() {
     if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
-      binding.conversationItemFooterDate.visible = false
+      binding.footerDate.visible = false
       return
     }
 
-    binding.conversationItemFooterDate.setOnClickListener(null)
-    binding.conversationItemFooterDate.visible = true
-    binding.conversationItemFooterDate.setTextColor(themeDelegate.getFooterTextColor(conversationMessage))
+    binding.footerDate.setOnClickListener(null)
+    binding.footerDate.visible = true
+    binding.footerDate.setTextColor(themeDelegate.getFooterTextColor(conversationMessage))
 
     val record = conversationMessage.messageRecord
     if (record.isFailed) {
@@ -597,29 +597,29 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         else -> R.string.ConversationItem_error_not_sent_tap_for_details
       }
 
-      binding.conversationItemFooterDate.setText(errorMessage)
+      binding.footerDate.setText(errorMessage)
     } else if (record.isPendingInsecureSmsFallback) {
-      binding.conversationItemFooterDate.setText(R.string.ConversationItem_click_to_approve_unencrypted)
+      binding.footerDate.setText(R.string.ConversationItem_click_to_approve_unencrypted)
     } else if (record.isRateLimited) {
-      binding.conversationItemFooterDate.setText(R.string.ConversationItem_send_paused)
+      binding.footerDate.setText(R.string.ConversationItem_send_paused)
     } else if (record.isScheduled()) {
-      binding.conversationItemFooterDate.text = conversationMessage.formattedDate
+      binding.footerDate.text = conversationMessage.formattedDate
     } else {
       var date = conversationMessage.formattedDate
       if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MediaMmsMessageRecord && record.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
 
-        binding.conversationItemFooterDate.setOnClickListener {
+        binding.footerDate.setOnClickListener {
           conversationContext.clickListener.onEditedIndicatorClicked(record)
         }
       }
 
-      binding.conversationItemFooterDate.text = date
+      binding.footerDate.text = date
     }
   }
 
   private fun presentDeliveryStatus() {
-    val deliveryStatus = binding.conversationItemDeliveryStatus ?: return
+    val deliveryStatus = binding.deliveryStatus ?: return
 
     if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
       deliveryStatus.setNone()
@@ -678,7 +678,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     override fun onPreMeasure() = Unit
 
     override fun onPostMeasure(): Boolean {
-      return binding.conversationItemReactions.setBubbleWidth(binding.conversationItemBodyWrapper.measuredWidth)
+      return binding.reactions.setBubbleWidth(binding.bodyWrapper.measuredWidth)
     }
   }
 
@@ -688,7 +688,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     override fun onLongClick(v: View?): Boolean {
-      if (binding.conversationItemBody.hasSelection()) {
+      if (binding.body.hasSelection()) {
         return false
       }
 
