@@ -519,6 +519,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       return;
     }
 
+    reactionsView.setBubbleWidth(bodyBubble.getWidth());
+
     boolean needsMeasure = false;
 
     if (hasQuote(messageRecord)) {
