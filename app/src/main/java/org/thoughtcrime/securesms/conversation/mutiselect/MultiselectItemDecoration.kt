@@ -566,19 +566,13 @@ class MultiselectItemDecoration(
   }
 
   private fun RecyclerView.getInteractableChildren(): Sequence<InteractiveConversationElement> {
-    return if (FeatureFlags.useTextOnlyConversationItemV2()) {
-      children.map { getChildViewHolder(it) }.filterIsInstance<InteractiveConversationElement>()
-    } else {
-      children.filterIsInstance<InteractiveConversationElement>()
-    }
+    return children.map { getChildViewHolder(it) }.filterIsInstance<InteractiveConversationElement>() + children.filterIsInstance<InteractiveConversationElement>()
   }
 
   private fun resolveMultiselectable(parent: RecyclerView, child: View): Multiselectable? {
-    return if (FeatureFlags.useTextOnlyConversationItemV2()) {
-      parent.getChildViewHolder(child) as? Multiselectable
-    } else {
-      child as? Multiselectable
-    }
+    val multiselectable = parent.getChildViewHolder(child) as? Multiselectable
+
+    return multiselectable ?: child as? Multiselectable
   }
 
   private class PulseAnimator(pulseColor: Int) {
