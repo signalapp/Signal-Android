@@ -95,8 +95,33 @@ public class BlobProvider {
     return new BlobBuilder(data, fileSize);
   }
 
+  public synchronized boolean hasStream(@NonNull Context context, @NonNull Uri uri) {
+    waitUntilInitialized();
+    try {
+      if (isAuthority(uri)) {
+        StorageType storageType = StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT));
+
+        if (storageType.isMemory()) {
+          byte[] data = memoryBlobs.get(uri);
+
+          return data != null;
+        } else {
+          String id        = uri.getPathSegments().get(ID_PATH_SEGMENT);
+          String directory = getDirectory(storageType);
+          File   file      = new File(getOrCreateDirectory(context, directory), buildFileName(id));
+
+          return file.exists();
+        }
+      }
+    } catch (IOException e) {
+      // Intentionally left blank
+    }
+    return false;
+  }
+
   /**
    * Retrieve a stream for the content with the specified URI.
+   *
    * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
    */
   public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri) throws IOException {
@@ -106,6 +131,7 @@ public class BlobProvider {
 
   /**
    * Retrieve a stream for the content with the specified URI starting from the specified position.
+   *
    * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
    */
   public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri, long position) throws IOException {
@@ -479,7 +505,7 @@ public class BlobProvider {
      * Create a blob that will exist for multiple app sessions. The file will be created on disk
      * synchronously, but the data will copied asynchronously. This is helpful when the copy is
      * long-running, such as in the case of recording a voice note.
-     *
+     * <p>
      * It is the caller's responsibility to eventually call {@link BlobProvider#delete(Context, Uri)}
      * when the blob is no longer in use.
      */

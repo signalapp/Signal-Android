@@ -436,10 +436,9 @@ class MediaSelectionViewModel(
     val cameraFirstCapture: Media? = savedInstanceState.getParcelableCompat(STATE_CAMERA_FIRST_CAPTURE, Media::class.java)
     val editorCount: Int = savedInstanceState.getInt(STATE_EDITOR_COUNT, 0)
     val blobUri: Uri? = savedInstanceState.getParcelableCompat(STATE_EDITORS, Uri::class.java)
-
-    val editorStates: List<Bundle> = if (editorCount > 0 && blobUri != null) {
-      val accumulator: MutableList<Bundle> = mutableListOf<Bundle>()
-      val blobProvider: BlobProvider = BlobProvider.getInstance()
+    val blobProvider: BlobProvider = BlobProvider.getInstance()
+    val editorStates: List<Bundle> = if (editorCount > 0 && blobUri != null && blobProvider.hasStream(context, blobUri)) {
+      val accumulator: MutableList<Bundle> = mutableListOf()
       val blob: ByteArray = ByteStreams.toByteArray(blobProvider.getStream(context, blobUri))
       val parcel: Parcel = Parcel.obtain()
       parcel.unmarshall(blob, 0, blob.size)
