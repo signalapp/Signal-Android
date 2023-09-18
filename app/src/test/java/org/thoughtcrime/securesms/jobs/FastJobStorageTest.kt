@@ -194,13 +194,13 @@ class FastJobStorageTest {
 
     subject.updateJobAfterRetry(
       id = "id1",
-      isRunning = true,
+      currentTime = 0,
       runAttempt = 1,
       nextBackoffInterval = 10,
       serializedData = "a".toByteArray()
     )
 
-    Mockito.verify(database).updateJobAfterRetry(id = "id1", isRunning = true, runAttempt = 1, nextBackoffInterval = 10, serializedData = "a".toByteArray())
+    Mockito.verify(database).updateJobAfterRetry(id = "id1", currentTime = 0, runAttempt = 1, nextBackoffInterval = 10, serializedData = "a".toByteArray())
   }
 
   @Test
@@ -212,13 +212,13 @@ class FastJobStorageTest {
 
     subject.updateJobAfterRetry(
       id = "id1",
-      isRunning = true,
+      currentTime = 0,
       runAttempt = 1,
       nextBackoffInterval = 10,
       serializedData = "a".toByteArray()
     )
 
-    Mockito.verify(database, Mockito.times(0)).updateJobAfterRetry(id = "id1", isRunning = true, runAttempt = 1, nextBackoffInterval = 10, serializedData = "a".toByteArray())
+    Mockito.verify(database, Mockito.times(0)).updateJobAfterRetry(id = "id1", currentTime = 0, runAttempt = 1, nextBackoffInterval = 10, serializedData = "a".toByteArray())
   }
 
   @Test
@@ -230,7 +230,7 @@ class FastJobStorageTest {
 
     subject.updateJobAfterRetry(
       id = "1",
-      isRunning = false,
+      currentTime = 3,
       runAttempt = 1,
       nextBackoffInterval = 10,
       serializedData = "a".toByteArray()
@@ -239,6 +239,7 @@ class FastJobStorageTest {
     val job = subject.getJobSpec("1")
     check(job != null)
     job.isRunning assertIs false
+    job.lastRunAttemptTime assertIs 3
     job.runAttempt assertIs 1
     job.nextBackoffInterval assertIs 10
     job.serializedData!!.toString(Charset.defaultCharset()) assertIs "a"

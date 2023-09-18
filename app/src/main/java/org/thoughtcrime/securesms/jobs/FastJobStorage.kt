@@ -150,10 +150,10 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   }
 
   @Synchronized
-  override fun updateJobAfterRetry(id: String, isRunning: Boolean, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
+  override fun updateJobAfterRetry(id: String, currentTime: Long, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
     val job = getJobById(id)
     if (job == null || !job.isMemoryOnly) {
-      jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextBackoffInterval, serializedData)
+      jobDatabase.updateJobAfterRetry(id, currentTime, runAttempt, nextBackoffInterval, serializedData)
     }
 
     val iter = jobs.listIterator()
@@ -162,8 +162,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       if (current.id == id) {
         iter.set(
           current.copy(
-            isRunning = isRunning,
+            isRunning = false,
             runAttempt = runAttempt,
+            lastRunAttemptTime = currentTime,
             nextBackoffInterval = nextBackoffInterval,
             serializedData = serializedData
           )

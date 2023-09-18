@@ -213,12 +213,13 @@ class JobDatabase(
   }
 
   @Synchronized
-  fun updateJobAfterRetry(id: String, isRunning: Boolean, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
+  fun updateJobAfterRetry(id: String, currentTime: Long, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
     writableDatabase
       .update(Jobs.TABLE_NAME)
       .values(
-        Jobs.IS_RUNNING to if (isRunning) 1 else 0,
+        Jobs.IS_RUNNING to 0,
         Jobs.RUN_ATTEMPT to runAttempt,
+        Jobs.LAST_RUN_ATTEMPT_TIME to currentTime,
         Jobs.NEXT_BACKOFF_INTERVAL to nextBackoffInterval,
         Jobs.SERIALIZED_DATA to serializedData
       )

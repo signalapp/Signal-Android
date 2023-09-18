@@ -253,7 +253,7 @@ class JobController {
     int    nextRunAttempt = job.getRunAttempt() + 1;
     byte[] serializedData = job.serialize();
 
-    jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, backoffInterval, serializedData);
+    jobStorage.updateJobAfterRetry(job.getId(), System.currentTimeMillis(), nextRunAttempt, backoffInterval, serializedData);
     jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
 
     List<Constraint> constraints = Stream.of(jobStorage.getConstraintSpecs(job.getId()))

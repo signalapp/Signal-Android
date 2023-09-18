@@ -40,7 +40,7 @@ public interface JobStorage {
   void markJobAsRunning(@NonNull String id, long currentTime);
 
   @WorkerThread
-  void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @Nullable byte[] serializedData);
+  void updateJobAfterRetry(@NonNull String id, long currentTime, int runAttempt, long nextBackoffInterval, @Nullable byte[] serializedData);
 
   @WorkerThread
   void updateAllJobsToBePending();
