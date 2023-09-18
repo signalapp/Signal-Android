@@ -62,7 +62,7 @@ fun V2ConversationItemTextOnlyIncomingBinding.bridge(): V2ConversationItemTextOn
     conversationItemFooterExpiry = conversationItemExpirationTimer,
     conversationItemFooterBackground = conversationItemFooterBackground,
     conversationItemAlert = null,
-    conversationItemFooterSpace = null,
+    conversationItemFooterSpace = footerEndPad,
     isIncoming = true
   )
 }

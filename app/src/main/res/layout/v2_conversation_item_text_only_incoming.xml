@@ -139,18 +139,26 @@
         android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
         app:layout_constraintEnd_toStartOf="@id/conversation_item_expiration_timer"
-        app:layout_goneMarginEnd="@dimen/message_bubble_horizontal_padding"
+        app:layout_goneMarginEnd="0dp"
         tools:text="13:14pm" />
 
     <org.thoughtcrime.securesms.components.ExpirationTimerView
         android:id="@+id/conversation_item_expiration_timer"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
-        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintEnd_toStartOf="@id/footer_end_pad"
         app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
+
+    <Space
+        android:id="@+id/footer_end_pad"
+        android:layout_width="@dimen/message_bubble_horizontal_padding"
+        android:layout_height="@dimen/message_bubble_horizontal_padding"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
+    app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper" />
+
     <!-- End Footer -->
 
     <!-- Replies Icon -->

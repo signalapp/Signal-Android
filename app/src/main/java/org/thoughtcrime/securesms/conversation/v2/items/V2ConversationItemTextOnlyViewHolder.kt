@@ -463,8 +463,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     val timer = binding.conversationItemFooterExpiry
     val record = conversationMessage.messageRecord
     if (record.expiresIn > 0 && !record.isPending) {
-      binding.conversationItemFooterExpiry.visible = true
-      binding.conversationItemFooterExpiry.setPercentComplete(0f)
+      timer.visible = true
+      timer.setPercentComplete(0f)
 
       if (record.expireStarted > 0) {
         timer.setExpirationTime(record.expireStarted, record.expiresIn)
