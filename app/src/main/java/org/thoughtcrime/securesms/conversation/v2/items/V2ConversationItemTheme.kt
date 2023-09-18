@@ -39,10 +39,6 @@ class V2ConversationItemTheme(
       return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
     }
 
-    if (conversationMessage.messageRecord.hasNoBubble(context) && !conversationContext.hasWallpaper()) {
-      return conversationContext.getColorizer().getIncomingFooterTextColor(context, false)
-    }
-
     return getColor(
       conversationMessage,
       conversationContext.getColorizer()::getOutgoingFooterIconColor,
@@ -56,10 +52,6 @@ class V2ConversationItemTheme(
   ): Int {
     if (conversationMessage.messageRecord.isThumbnailAtBottomOfBubble(context)) {
       return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
-    }
-
-    if (conversationMessage.messageRecord.hasNoBubble(context) && !conversationContext.hasWallpaper()) {
-      return conversationContext.getColorizer().getIncomingFooterIconColor(context, false)
     }
 
     return getColor(
