@@ -183,6 +183,8 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChanged
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplacement
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsControllerV2
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModelV2
+import org.thoughtcrime.securesms.conversation.v2.computed.ConversationMessageComputeWorkers
+import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
@@ -1040,7 +1042,13 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick { adapter.updateTimestamps() }
+    val conversationUpdateTick = ConversationUpdateTick {
+      disposables += ConversationMessageComputeWorkers.recomputeFormattedDate(
+        requireContext(),
+        adapter.currentList.filterIsInstance<ConversationMessageElement>()
+      ).observeOn(AndroidSchedulers.mainThread()).subscribeBy { adapter.updateTimestamps() }
+    }
+
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
     if (args.conversationScreenType.isInPopup) {

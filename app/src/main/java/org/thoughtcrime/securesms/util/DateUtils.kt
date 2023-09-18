@@ -22,6 +22,7 @@ import android.os.Build
 import android.text.format.DateFormat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate
 import java.text.DateFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -124,16 +125,21 @@ object DateUtils : android.text.format.DateUtils() {
    */
   @JvmStatic
   fun getDatelessRelativeTimeSpanString(context: Context, locale: Locale, timestamp: Long): String {
+    return getDatelessRelativeTimeSpanFormattedDate(context, locale, timestamp).value
+  }
+
+  @JvmStatic
+  fun getDatelessRelativeTimeSpanFormattedDate(context: Context, locale: Locale, timestamp: Long): FormattedDate {
     return when {
       timestamp.isWithin(1.minutes) -> {
-        context.getString(R.string.DateUtils_just_now)
+        FormattedDate(true, context.getString(R.string.DateUtils_just_now))
       }
       timestamp.isWithin(1.hours) -> {
         val minutes = timestamp.convertDeltaTo(DurationUnit.MINUTES)
-        context.resources.getString(R.string.DateUtils_minutes_ago, minutes)
+        FormattedDate(true, context.resources.getString(R.string.DateUtils_minutes_ago, minutes))
       }
       else -> {
-        getOnlyTimeString(context, locale, timestamp)
+        FormattedDate(false, getOnlyTimeString(context, locale, timestamp))
       }
     }
   }

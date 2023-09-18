@@ -98,6 +98,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   override val badgeImageView: View? = binding.senderBadge
 
   private var reactionMeasureListener: ReactionMeasureListener = ReactionMeasureListener()
+  private var dateString: String = ""
 
   private val bodyBubbleDrawable = ChatColorsDrawable()
   private val footerDrawable = ChatColorsDrawable()
@@ -196,7 +197,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     )
 
     if (ConversationAdapterBridge.PAYLOAD_TIMESTAMP in payload) {
-      presentDate()
+      if (conversationMessage.computedProperties.formattedDate.value != dateString) {
+        presentDate()
+      }
       hasProcessedSupportedPayload = true
     }
 
@@ -605,6 +608,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
+    dateString = conversationMessage.computedProperties.formattedDate.value
+
     binding.footerDate.setOnClickListener(null)
     binding.footerDate.visible = true
     binding.footerDate.setTextColor(themeDelegate.getFooterTextColor(conversationMessage))
@@ -623,9 +628,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else if (record.isRateLimited) {
       binding.footerDate.setText(R.string.ConversationItem_send_paused)
     } else if (record.isScheduled()) {
-      binding.footerDate.text = conversationMessage.formattedDate
+      binding.footerDate.text = conversationMessage.computedProperties.formattedDate.value
     } else {
-      var date = conversationMessage.formattedDate
+      var date = dateString
       if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MediaMmsMessageRecord && record.isEditMessage()) {
         date = getContext().getString(R.string.ConversationItem_edited_timestamp_footer, date)
 
