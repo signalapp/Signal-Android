@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.hasExtraText
+import org.thoughtcrime.securesms.util.hasNoBubble
 import org.thoughtcrime.securesms.util.isScheduled
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -100,6 +101,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   private val bodyBubbleDrawable = ChatColorsDrawable()
   private val footerDrawable = ChatColorsDrawable()
+  private val senderDrawable = ChatColorsDrawable()
   private val bodyBubbleLayoutTransition = BodyBubbleLayoutTransition()
 
   protected lateinit var shape: V2ConversationItemShape.MessageShape
@@ -220,6 +222,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     presentAlert()
     presentSender()
     presentSenderNameColor()
+    presentSenderNameBackground()
     presentReactions()
 
     bodyBubbleDrawable.setChatColors(
@@ -478,6 +481,23 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       }
     } else {
       timer.visible = false
+    }
+  }
+
+  private fun presentSenderNameBackground() {
+    if (binding.senderName == null || !shape.isStartingShape || !conversationMessage.threadRecipient.isGroup || !conversationMessage.messageRecord.hasNoBubble(context)) {
+      return
+    }
+
+    if (conversationContext.hasWallpaper()) {
+      senderDrawable.setChatColors(
+        ChatColors.forColor(ChatColors.Id.BuiltIn, themeDelegate.getFooterBubbleColor(conversationMessage)),
+        footerCorners
+      )
+
+      binding.senderName.background = senderDrawable
+    } else {
+      binding.senderName.background = null
     }
   }
 
