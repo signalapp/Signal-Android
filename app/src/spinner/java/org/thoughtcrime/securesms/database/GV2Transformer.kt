@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
-import com.google.protobuf.ByteString
+import okio.ByteString
 import org.signal.core.util.requireBlob
 import org.signal.spinner.ColumnTransformer
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
@@ -19,7 +19,7 @@ object GV2Transformer : ColumnTransformer {
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     return if (columnName == GroupTable.V2_DECRYPTED_GROUP) {
       val groupBytes = cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)
-      val group = DecryptedGroup.parseFrom(groupBytes)
+      val group = DecryptedGroup.ADAPTER.decode(groupBytes!!)
       group.formatAsHtml()
     } else {
       null
@@ -28,19 +28,19 @@ object GV2Transformer : ColumnTransformer {
 }
 
 private fun DecryptedGroup.formatAsHtml(): String {
-  val members: String = describeList(membersList, DecryptedMember::getAciBytes)
-  val pending: String = describeList(pendingMembersList, DecryptedPendingMember::getServiceIdBytes)
-  val requesting: String = describeList(requestingMembersList, DecryptedRequestingMember::getAciBytes)
-  val banned: String = describeList(bannedMembersList, DecryptedBannedMember::getServiceIdBytes)
+  val members: String = describeList(members, DecryptedMember::aciBytes)
+  val pending: String = describeList(pendingMembers, DecryptedPendingMember::serviceIdBytes)
+  val requesting: String = describeList(requestingMembers, DecryptedRequestingMember::aciBytes)
+  val banned: String = describeList(bannedMembers, DecryptedBannedMember::serviceIdBytes)
 
   return """
     Revision:     $revision
     Title:        $title
     Avatar:       ${(avatar?.length ?: 0) != 0}
-    Timer:        ${disappearingMessagesTimer.duration}
+    Timer:        ${disappearingMessagesTimer!!.duration}
     Description:  "$description"
     Announcement: $isAnnouncementGroup
-    Access:       attributes(${accessControl.attributes}) members(${accessControl.members}) link(${accessControl.addFromInviteLink})
+    Access:       attributes(${accessControl!!.attributes}) members(${accessControl!!.members}) link(${accessControl!!.addFromInviteLink})
     Members:      $members
     Pending:      $pending
     Requesting:   $requesting

@@ -36,7 +36,7 @@ message Envelope {
   optional bool   urgent               = 14 [default = true];
   reserved      /*updatedPni*/           15; // Not used presently, may be used in the future
   optional bool   story                = 16;
-  optional bytes  reporting_token      = 17;
+  optional bytes  reportingToken       = 17;
   // NEXT ID: 18
 }
 
@@ -122,7 +122,7 @@ message CallMessage {
   optional Busy      busy                = 5;
   reserved        /* profileKey */         6;
   optional Hangup    hangup              = 7;
-  optional bool      multiRing           = 8;
+  reserved        /* multiRing */          8;
   optional uint32    destinationDeviceId = 9;
   optional Opaque    opaque              = 10;
 }

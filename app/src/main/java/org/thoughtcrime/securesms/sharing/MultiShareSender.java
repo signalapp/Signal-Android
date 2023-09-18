@@ -390,14 +390,14 @@ public final class MultiShareSender {
   {
     return OutgoingMessage.textStoryMessage(
         recipient,
-        Base64.encodeBytes(StoryTextPost.newBuilder()
-                                        .setBody(getBodyForTextStory(multiShareArgs.getDraftText(), multiShareArgs.getLinkPreview()))
-                                        .setStyle(StoryTextPost.Style.DEFAULT)
-                                        .setBackground(background.serialize())
-                                        .setTextBackgroundColor(0)
-                                        .setTextForegroundColor(Color.WHITE)
-                                        .build()
-                                        .toByteArray()),
+        Base64.encodeBytes(new StoryTextPost.Builder()
+                                            .body(getBodyForTextStory(multiShareArgs.getDraftText(), multiShareArgs.getLinkPreview()))
+                                            .style(StoryTextPost.Style.DEFAULT)
+                                            .background(background.serialize())
+                                            .textBackgroundColor(0)
+                                            .textForegroundColor(Color.WHITE)
+                                            .build()
+                                            .encode()),
         sentTimestamp,
         storyType.toTextStoryType(),
         buildLinkPreviews(context, multiShareArgs.getLinkPreview()),

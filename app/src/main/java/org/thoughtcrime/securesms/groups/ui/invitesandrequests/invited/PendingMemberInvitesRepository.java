@@ -7,7 +7,6 @@ import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
 import com.annimon.stream.Stream;
-import com.google.protobuf.ByteString;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -30,6 +29,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+import okio.ByteString;
+
 /**
  * Repository for modifying the pending members on a single group.
  */
@@ -49,17 +50,17 @@ final class PendingMemberInvitesRepository {
 
   public void getInvitees(@NonNull Consumer<InviteeResult> onInviteesLoaded) {
     executor.execute(() -> {
-      GroupTable                   groupDatabase     = SignalDatabase.groups();
-      GroupTable.V2GroupProperties v2GroupProperties = groupDatabase.getGroup(groupId).get().requireV2GroupProperties();
-      DecryptedGroup               decryptedGroup    = v2GroupProperties.getDecryptedGroup();
-      List<DecryptedPendingMember>                 pendingMembersList = decryptedGroup.getPendingMembersList();
+      GroupTable                                   groupDatabase      = SignalDatabase.groups();
+      GroupTable.V2GroupProperties                 v2GroupProperties  = groupDatabase.getGroup(groupId).get().requireV2GroupProperties();
+      DecryptedGroup                               decryptedGroup     = v2GroupProperties.getDecryptedGroup();
+      List<DecryptedPendingMember>                 pendingMembersList = decryptedGroup.pendingMembers;
       List<SinglePendingMemberInvitedByYou>        byMe               = new ArrayList<>(pendingMembersList.size());
       List<MultiplePendingMembersInvitedByAnother> byOthers           = new ArrayList<>(pendingMembersList.size());
       ByteString                                   self               = SignalStore.account().requireAci().toByteString();
       boolean                                      selfIsAdmin        = v2GroupProperties.isAdmin(Recipient.self());
 
       Stream.of(pendingMembersList)
-            .groupBy(DecryptedPendingMember::getAddedByAci)
+            .groupBy(m -> m.addedByAci)
             .forEach(g ->
               {
                 ByteString                   inviterAci     = g.getKey();
@@ -69,7 +70,7 @@ final class PendingMemberInvitesRepository {
                   for (DecryptedPendingMember pendingMember : invitedMembers) {
                     try {
                       Recipient      invitee        = GroupProtoUtil.pendingMemberToRecipient(pendingMember);
-                      UuidCiphertext uuidCipherText = new UuidCiphertext(pendingMember.getServiceIdCipherText().toByteArray());
+                      UuidCiphertext uuidCipherText = new UuidCiphertext(pendingMember.serviceIdCipherText.toByteArray());
 
                       byMe.add(new SinglePendingMemberInvitedByYou(invitee, uuidCipherText));
                     } catch (InvalidInputException e) {
@@ -82,7 +83,7 @@ final class PendingMemberInvitesRepository {
 
                   for (DecryptedPendingMember pendingMember : invitedMembers) {
                     try {
-                      uuidCipherTexts.add(new UuidCiphertext(pendingMember.getServiceIdCipherText().toByteArray()));
+                      uuidCipherTexts.add(new UuidCiphertext(pendingMember.serviceIdCipherText.toByteArray()));
                     } catch (InvalidInputException e) {
                       Log.w(TAG, e);
                     }

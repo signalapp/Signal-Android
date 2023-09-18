@@ -26,17 +26,18 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIds;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import kotlin.collections.CollectionsKt;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -994,10 +995,11 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private String describeGroupLinkChange(@Nullable ACI editor, @NonNull AccessControl.AccessRequired fromAccess, AccessControl.AccessRequired toAccess){
-    DecryptedGroup       previousGroupState = DecryptedGroup.newBuilder()
-                                                            .setAccessControl(AccessControl.newBuilder()
-                                                                                           .setAddFromInviteLink(fromAccess))
-                                                            .build();
+    DecryptedGroup       previousGroupState = new DecryptedGroup.Builder()
+                                                                .accessControl(new AccessControl.Builder()
+                                                                                                .addFromInviteLink(fromAccess)
+                                                                                                .build())
+                                                                .build();
     DecryptedGroupChange change             = (editor != null ? changeBy(editor) : changeByUnknown()).inviteLinkAccess(toAccess)
                                                                                                      .build();
 
@@ -1434,7 +1436,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group) {
-    return describeNewGroup(group, DecryptedGroupChange.getDefaultInstance());
+    return describeNewGroup(group, new DecryptedGroupChange());
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange groupChange) {
@@ -1467,23 +1469,19 @@ public final class GroupsV2UpdateMessageProducerTest {
     private final DecryptedGroup.Builder builder;
 
     GroupStateBuilder(@NonNull ACI foundingMember, int revision) {
-    builder = DecryptedGroup.newBuilder()
-                            .setRevision(revision)
-                            .addMembers(DecryptedMember.newBuilder()
-                                                       .setAciBytes(foundingMember.toByteString()));
+      builder = new DecryptedGroup.Builder()
+          .revision(revision)
+          .members(Collections.singletonList(new DecryptedMember.Builder().aciBytes(foundingMember.toByteString()).build()));
     }
 
     GroupStateBuilder invite(@NonNull ACI inviter, @NonNull ServiceId invitee) {
-       builder.addPendingMembers(DecryptedPendingMember.newBuilder()
-                                                       .setServiceIdBytes(invitee.toByteString())
-                                                       .setAddedByAci(inviter.toByteString()));
-       return this;
+      builder.pendingMembers(CollectionsKt.plus(builder.pendingMembers, new DecryptedPendingMember.Builder().serviceIdBytes(invitee.toByteString()).addedByAci(inviter.toByteString()).build()));
+      return this;
     }
 
     GroupStateBuilder member(@NonNull ACI member) {
-       builder.addMembers(DecryptedMember.newBuilder()
-                                         .setAciBytes(member.toByteString()));
-       return this;
+      builder.members(CollectionsKt.plus(builder.members, new DecryptedMember.Builder().aciBytes(member.toByteString()).build()));
+      return this;
     }
 
     public DecryptedGroup build() {

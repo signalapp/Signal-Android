@@ -1,100 +1,102 @@
 package org.whispersystems.signalservice.api.util;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.AttachmentPointer;
 import org.whispersystems.util.FlagUtil;
 
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
+import okio.ByteString;
+
 public final class AttachmentPointerUtil {
-  public static SignalServiceAttachmentPointer createSignalAttachmentPointer(byte[] pointer) throws InvalidMessageStructureException, InvalidProtocolBufferException {
-    return createSignalAttachmentPointer(SignalServiceProtos.AttachmentPointer.parseFrom(pointer));
+  public static SignalServiceAttachmentPointer createSignalAttachmentPointer(byte[] pointer) throws InvalidMessageStructureException, IOException {
+    return createSignalAttachmentPointer(AttachmentPointer.ADAPTER.decode(pointer));
   }
 
-  public static SignalServiceAttachmentPointer createSignalAttachmentPointer(SignalServiceProtos.AttachmentPointer pointer) throws InvalidMessageStructureException {
-    return new SignalServiceAttachmentPointer(pointer.getCdnNumber(),
+  public static SignalServiceAttachmentPointer createSignalAttachmentPointer(AttachmentPointer pointer) throws InvalidMessageStructureException {
+    return new SignalServiceAttachmentPointer(Objects.requireNonNull(pointer.cdnNumber),
                                               SignalServiceAttachmentRemoteId.from(pointer),
-                                              pointer.getContentType(),
-                                              pointer.getKey().toByteArray(),
-                                              pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.empty(),
-                                              pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.empty(),
-                                              pointer.getWidth(), pointer.getHeight(),
-                                              pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.empty(),
-                                              pointer.hasIncrementalDigest() ? Optional.of(pointer.getIncrementalDigest().toByteArray()) : Optional.empty(),
-                                              pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.empty(),
-                                              (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE)) != 0,
-                                              (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.BORDERLESS_VALUE)) != 0,
-                                              (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.GIF_VALUE)) != 0,
-                                              pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.empty(),
-                                              pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.empty(),
-                                              pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
+                                              pointer.contentType,
+                                              Objects.requireNonNull(pointer.key).toByteArray(),
+                                              pointer.size != null ? Optional.of(pointer.size) : Optional.empty(),
+                                              pointer.thumbnail != null ? Optional.of(pointer.thumbnail.toByteArray()): Optional.empty(),
+                                              pointer.width != null ? pointer.width : 0,
+                                              pointer.height != null ? pointer.height : 0,
+                                              pointer.digest != null ? Optional.of(pointer.digest.toByteArray()) : Optional.empty(),
+                                              pointer.incrementalDigest != null ? Optional.of(pointer.incrementalDigest.toByteArray()) : Optional.empty(),
+                                              pointer.fileName != null ? Optional.of(pointer.fileName) : Optional.empty(),
+                                              ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE.getValue())) != 0,
+                                              ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.BORDERLESS.getValue())) != 0,
+                                              ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.GIF.getValue())) != 0,
+                                              pointer.caption != null ? Optional.of(pointer.caption) : Optional.empty(),
+                                              pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
+                                              pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0);
 
   }
 
-  public static SignalServiceProtos.AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
-    SignalServiceProtos.AttachmentPointer.Builder builder = SignalServiceProtos.AttachmentPointer.newBuilder()
-                                                                                                 .setCdnNumber(attachment.getCdnNumber())
-                                                                                                 .setContentType(attachment.getContentType())
-                                                                                                 .setKey(ByteString.copyFrom(attachment.getKey()))
-                                                                                                 .setDigest(ByteString.copyFrom(attachment.getDigest().get()))
-                                                                                                 .setSize(attachment.getSize().get())
-                                                                                                 .setUploadTimestamp(attachment.getUploadTimestamp());
+  public static AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
+    AttachmentPointer.Builder builder = new AttachmentPointer.Builder()
+                                                             .cdnNumber(attachment.getCdnNumber())
+                                                             .contentType(attachment.getContentType())
+                                                             .key(ByteString.of(attachment.getKey()))
+                                                             .digest(ByteString.of(attachment.getDigest().get()))
+                                                             .size(attachment.getSize().get())
+                                                             .uploadTimestamp(attachment.getUploadTimestamp());
 
     if (attachment.getIncrementalDigest().isPresent()) {
-      builder.setIncrementalDigest(ByteString.copyFrom(attachment.getIncrementalDigest().get()));
+      builder.incrementalDigest(ByteString.of(attachment.getIncrementalDigest().get()));
     }
 
     if (attachment.getRemoteId().getV2().isPresent()) {
-      builder.setCdnId(attachment.getRemoteId().getV2().get());
+      builder.cdnId(attachment.getRemoteId().getV2().get());
     }
 
     if (attachment.getRemoteId().getV3().isPresent()) {
-      builder.setCdnKey(attachment.getRemoteId().getV3().get());
+      builder.cdnKey(attachment.getRemoteId().getV3().get());
     }
 
     if (attachment.getFileName().isPresent()) {
-      builder.setFileName(attachment.getFileName().get());
+      builder.fileName(attachment.getFileName().get());
     }
 
     if (attachment.getPreview().isPresent()) {
-      builder.setThumbnail(ByteString.copyFrom(attachment.getPreview().get()));
+      builder.thumbnail(ByteString.of(attachment.getPreview().get()));
     }
 
     if (attachment.getWidth() > 0) {
-      builder.setWidth(attachment.getWidth());
+      builder.width(attachment.getWidth());
     }
 
     if (attachment.getHeight() > 0) {
-      builder.setHeight(attachment.getHeight());
+      builder.height(attachment.getHeight());
     }
 
     int flags = 0;
 
     if (attachment.getVoiceNote()) {
-      flags |= FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE);
+      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE.getValue());
     }
 
     if (attachment.isBorderless()) {
-      flags |= FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.BORDERLESS_VALUE);
+      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.BORDERLESS.getValue());
     }
 
     if (attachment.isGif()) {
-      flags |= FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.GIF_VALUE);
+      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.GIF.getValue());
     }
 
-    builder.setFlags(flags);
+    builder.flags(flags);
 
     if (attachment.getCaption().isPresent()) {
-      builder.setCaption(attachment.getCaption().get());
+      builder.caption(attachment.getCaption().get());
     }
 
     if (attachment.getBlurHash().isPresent()) {
-      builder.setBlurHash(attachment.getBlurHash().get());
+      builder.blurHash(attachment.getBlurHash().get());
     }
 
     return builder.build();

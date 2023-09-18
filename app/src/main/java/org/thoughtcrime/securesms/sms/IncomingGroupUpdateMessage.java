@@ -1,15 +1,10 @@
 package org.thoughtcrime.securesms.sms;
 
-import com.google.protobuf.ByteString;
-
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.Optional;
-
-import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 public final class IncomingGroupUpdateMessage extends IncomingTextMessage {
 

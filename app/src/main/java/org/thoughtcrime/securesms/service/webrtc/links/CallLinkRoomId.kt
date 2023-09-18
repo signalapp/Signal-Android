@@ -6,8 +6,9 @@
 package org.thoughtcrime.securesms.service.webrtc.links
 
 import android.os.Parcelable
-import com.google.protobuf.ByteString
 import kotlinx.parcelize.Parcelize
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Serializer
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.util.Base64
@@ -16,7 +17,7 @@ import org.thoughtcrime.securesms.util.Base64
 class CallLinkRoomId private constructor(private val roomId: ByteArray) : Parcelable {
   fun serialize(): String = DatabaseSerializer.serialize(this)
 
-  fun encodeForProto(): ByteString = ByteString.copyFrom(roomId)
+  fun encodeForProto(): ByteString = roomId.toByteString()
 
   override fun equals(other: Any?): Boolean {
     if (this === other) return true

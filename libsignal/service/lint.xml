@@ -3,4 +3,5 @@
     <!-- It's a bummer, but Android Studio doesn't seem to be smart enough to recognize Optional and stream() are available to us in this lib -->
     <issue id="NewApi" severity="ignore" />
     <issue id="OptionalUsedAsFieldOrParameterType" severity="ignore" />
+    <issue id="NewClassNamingConvention" severity="ignore" />
 </lint>

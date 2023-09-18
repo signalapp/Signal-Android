@@ -75,13 +75,11 @@ public class WebRtcData {
     private final @NonNull byte[]  remoteIdentityKey;
     private final          long    serverReceivedTimestamp;
     private final          long    serverDeliveredTimestamp;
-    private final          boolean isMultiRing;
 
-    public ReceivedOfferMetadata(@NonNull byte[] remoteIdentityKey, long serverReceivedTimestamp, long serverDeliveredTimestamp, boolean isMultiRing) {
+    public ReceivedOfferMetadata(@NonNull byte[] remoteIdentityKey, long serverReceivedTimestamp, long serverDeliveredTimestamp) {
       this.remoteIdentityKey        = remoteIdentityKey;
       this.serverReceivedTimestamp  = serverReceivedTimestamp;
       this.serverDeliveredTimestamp = serverDeliveredTimestamp;
-      this.isMultiRing              = isMultiRing;
     }
 
     @NonNull byte[] getRemoteIdentityKey() {
@@ -94,10 +92,6 @@ public class WebRtcData {
 
     long getServerDeliveredTimestamp() {
       return serverDeliveredTimestamp;
-    }
-
-    boolean isMultiRing() {
-      return isMultiRing;
     }
   }
 
@@ -127,19 +121,13 @@ public class WebRtcData {
    */
   public static class ReceivedAnswerMetadata {
     private final @NonNull byte[]  remoteIdentityKey;
-    private final          boolean isMultiRing;
 
-    public ReceivedAnswerMetadata(@NonNull byte[] remoteIdentityKey, boolean isMultiRing) {
+    public ReceivedAnswerMetadata(@NonNull byte[] remoteIdentityKey) {
       this.remoteIdentityKey = remoteIdentityKey;
-      this.isMultiRing       = isMultiRing;
     }
 
     @NonNull byte[] getRemoteIdentityKey() {
       return remoteIdentityKey;
-    }
-
-    boolean isMultiRing() {
-      return isMultiRing;
     }
   }
 

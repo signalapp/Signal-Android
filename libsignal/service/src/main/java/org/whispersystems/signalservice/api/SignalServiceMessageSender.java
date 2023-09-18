@@ -5,8 +5,6 @@
  */
 package org.whispersystems.signalservice.api;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
@@ -66,8 +64,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.DistributionId;
-import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
@@ -90,35 +88,35 @@ import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableExcept
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
+import org.whispersystems.signalservice.internal.push.AttachmentPointer;
 import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes;
 import org.whispersystems.signalservice.internal.push.AttachmentV4UploadAttributes;
+import org.whispersystems.signalservice.internal.push.BodyRange;
+import org.whispersystems.signalservice.internal.push.CallMessage;
+import org.whispersystems.signalservice.internal.push.Content;
+import org.whispersystems.signalservice.internal.push.DataMessage;
+import org.whispersystems.signalservice.internal.push.EditMessage;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
 import org.whispersystems.signalservice.internal.push.GroupMismatchedDevices;
 import org.whispersystems.signalservice.internal.push.GroupStaleDevices;
 import org.whispersystems.signalservice.internal.push.MismatchedDevices;
+import org.whispersystems.signalservice.internal.push.NullMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
+import org.whispersystems.signalservice.internal.push.PniSignatureMessage;
+import org.whispersystems.signalservice.internal.push.Preview;
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
+import org.whispersystems.signalservice.internal.push.ReceiptMessage;
 import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.EditMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.NullMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Preview;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.ReceiptMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.StoryMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TextAttachment;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TypingMessage;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Verified;
 import org.whispersystems.signalservice.internal.push.StaleDevices;
+import org.whispersystems.signalservice.internal.push.StoryMessage;
+import org.whispersystems.signalservice.internal.push.SyncMessage;
+import org.whispersystems.signalservice.internal.push.TextAttachment;
+import org.whispersystems.signalservice.internal.push.TypingMessage;
+import org.whispersystems.signalservice.internal.push.Verified;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
@@ -152,6 +150,8 @@ import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
+
+import okio.ByteString;
 
 /**
  * The main interface for sending Signal Service messages.
@@ -222,8 +222,8 @@ public class SignalServiceMessageSender {
     Content content = createReceiptContent(message);
 
     if (includePniSignature) {
-      content = content.toBuilder()
-                       .setPniSignatureMessage(createPniSignatureMessage())
+      content = content.newBuilder()
+                       .pniSignatureMessage(createPniSignatureMessage())
                        .build();
     }
 
@@ -462,8 +462,8 @@ public class SignalServiceMessageSender {
   {
     if (includePniSignature) {
       Log.d(TAG, "[" + message.getTimestamp() + "] Including PNI signature.");
-      content = content.toBuilder()
-                       .setPniSignatureMessage(createPniSignatureMessage())
+      content = content.newBuilder()
+                       .pniSignatureMessage(createPniSignatureMessage())
                        .build();
     }
 
@@ -509,8 +509,8 @@ public class SignalServiceMessageSender {
                                                                   boolean                                story)
       throws IOException
   {
-    ByteString      distributionBytes = ByteString.copyFrom(message.serialize());
-    Content         content           = Content.newBuilder().setSenderKeyDistributionMessage(distributionBytes).build();
+    ByteString      distributionBytes = ByteString.of(message.serialize());
+    Content         content           = new Content.Builder().senderKeyDistributionMessage(distributionBytes).build();
     EnvelopeContent envelopeContent   = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, groupId);
     long            timestamp         = System.currentTimeMillis();
 
@@ -771,8 +771,8 @@ public class SignalServiceMessageSender {
   public @Nonnull OutgoingPushMessage getEncryptedSyncPniInitializeDeviceMessage(int deviceId, @Nonnull SyncMessage.PniChangeNumber pniChangeNumber)
       throws UntrustedIdentityException, IOException, InvalidKeyException
   {
-    SyncMessage.Builder syncMessage     = createSyncMessageBuilder().setPniChangeNumber(pniChangeNumber);
-    Content.Builder     content         = Content.newBuilder().setSyncMessage(syncMessage);
+    SyncMessage.Builder syncMessage     = createSyncMessageBuilder().pniChangeNumber(pniChangeNumber);
+    Content.Builder     content         = new Content.Builder().syncMessage(syncMessage.build());
     EnvelopeContent     envelopeContent = EnvelopeContent.encrypted(content.build(), ContentHint.IMPLICIT, Optional.empty());
 
     return getEncryptedMessage(localAddress, Optional.empty(), deviceId, envelopeContent, false);
@@ -886,25 +886,25 @@ public class SignalServiceMessageSender {
   private SendMessageResult sendVerifiedSyncMessage(VerifiedMessage message)
       throws IOException, UntrustedIdentityException
   {
-    byte[] nullMessageBody = DataMessage.newBuilder()
-                                        .setBody(Base64.encodeBytes(Util.getRandomLengthBytes(140)))
-                                        .build()
-                                        .toByteArray();
+    byte[] nullMessageBody = new DataMessage.Builder()
+                                            .body(Base64.encodeBytes(Util.getRandomLengthBytes(140)))
+                                            .build()
+                                            .encode();
 
-    NullMessage nullMessage = NullMessage.newBuilder()
-                                         .setPadding(ByteString.copyFrom(nullMessageBody))
+    NullMessage nullMessage = new NullMessage.Builder()
+                                             .padding(ByteString.of(nullMessageBody))
+                                             .build();
+
+    Content     content     = new Content.Builder()
+                                         .nullMessage(nullMessage)
                                          .build();
-
-    Content     content     = Content.newBuilder()
-                                     .setNullMessage(nullMessage)
-                                     .build();
 
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty());
 
     SendMessageResult result = sendMessage(message.getDestination(), Optional.empty(), message.getTimestamp(), envelopeContent, false, null, false, false);
 
     if (result.getSuccess().isNeedsSync()) {
-      Content         syncMessage        = createMultiDeviceVerifiedContent(message, nullMessage.toByteArray());
+      Content         syncMessage        = createMultiDeviceVerifiedContent(message, nullMessage.encode());
       EnvelopeContent syncMessageContent = EnvelopeContent.encrypted(syncMessage, ContentHint.IMPLICIT, Optional.empty());
 
       sendMessage(localAddress, Optional.empty(), message.getTimestamp(), syncMessageContent, false, null, false, false);
@@ -916,96 +916,94 @@ public class SignalServiceMessageSender {
   public SendMessageResult sendNullMessage(SignalServiceAddress address, Optional<UnidentifiedAccessPair> unidentifiedAccess)
       throws UntrustedIdentityException, IOException
   {
-    byte[] nullMessageBody = DataMessage.newBuilder()
-                                        .setBody(Base64.encodeBytes(Util.getRandomLengthBytes(140)))
-                                        .build()
-                                        .toByteArray();
+    byte[] nullMessageBody = new DataMessage.Builder()
+                                            .body(Base64.encodeBytes(Util.getRandomLengthBytes(140)))
+                                            .build()
+                                            .encode();
 
-    NullMessage nullMessage = NullMessage.newBuilder()
-                                         .setPadding(ByteString.copyFrom(nullMessageBody))
+    NullMessage nullMessage = new NullMessage.Builder()
+                                             .padding(ByteString.of(nullMessageBody))
+                                             .build();
+
+    Content     content     = new Content.Builder()
+                                         .nullMessage(nullMessage)
                                          .build();
-
-    Content     content     = Content.newBuilder()
-                                     .setNullMessage(nullMessage)
-                                     .build();
 
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty());
 
     return sendMessage(address, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), envelopeContent, false, null, false, false);
   }
 
-  private SignalServiceProtos.PniSignatureMessage createPniSignatureMessage() {
+  private PniSignatureMessage createPniSignatureMessage() {
     byte[] signature = localPniIdentity.signAlternateIdentity(aciStore.getIdentityKeyPair().getPublicKey());
 
-    return SignalServiceProtos.PniSignatureMessage.newBuilder()
-        .setPni(UuidUtil.toByteString(localPni.getRawUuid()))
-        .setSignature(ByteString.copyFrom(signature))
-        .build();
+    return new PniSignatureMessage.Builder()
+                                  .pni(UuidUtil.toByteString(localPni.getRawUuid()))
+                                  .signature(ByteString.of(signature))
+                                  .build();
   }
 
   private Content createTypingContent(SignalServiceTypingMessage message) {
-    Content.Builder       container = Content.newBuilder();
-    TypingMessage.Builder builder   = TypingMessage.newBuilder();
+    Content.Builder       container = new Content.Builder();
+    TypingMessage.Builder builder   = new TypingMessage.Builder();
 
-    builder.setTimestamp(message.getTimestamp());
+    builder.timestamp(message.getTimestamp());
 
-    if      (message.isTypingStarted()) builder.setAction(TypingMessage.Action.STARTED);
-    else if (message.isTypingStopped()) builder.setAction(TypingMessage.Action.STOPPED);
+    if      (message.isTypingStarted()) builder.action(TypingMessage.Action.STARTED);
+    else if (message.isTypingStopped()) builder.action(TypingMessage.Action.STOPPED);
     else                                throw new IllegalArgumentException("Unknown typing indicator");
 
     if (message.getGroupId().isPresent()) {
-      builder.setGroupId(ByteString.copyFrom(message.getGroupId().get()));
+      builder.groupId(ByteString.of(message.getGroupId().get()));
     }
 
-    return container.setTypingMessage(builder).build();
+    return container.typingMessage(builder.build()).build();
   }
 
   private Content createStoryContent(SignalServiceStoryMessage message) throws IOException {
-    Content.Builder      container = Content.newBuilder();
-    StoryMessage.Builder builder   = StoryMessage.newBuilder();
+    Content.Builder      container = new Content.Builder();
+    StoryMessage.Builder builder   = new StoryMessage.Builder();
 
     if (message.getProfileKey().isPresent()) {
-      builder.setProfileKey(ByteString.copyFrom(message.getProfileKey().get()));
+      builder.profileKey(ByteString.of(message.getProfileKey().get()));
     }
 
     if (message.getGroupContext().isPresent()) {
-      builder.setGroup(createGroupContent(message.getGroupContext().get()));
+      builder.group(createGroupContent(message.getGroupContext().get()));
     }
 
     if (message.getFileAttachment().isPresent()) {
       if (message.getFileAttachment().get().isStream()) {
-        builder.setFileAttachment(createAttachmentPointer(message.getFileAttachment().get().asStream()));
+        builder.fileAttachment(createAttachmentPointer(message.getFileAttachment().get().asStream()));
       } else {
-        builder.setFileAttachment(createAttachmentPointer(message.getFileAttachment().get().asPointer()));
+        builder.fileAttachment(createAttachmentPointer(message.getFileAttachment().get().asPointer()));
       }
     }
 
     if (message.getTextAttachment().isPresent()) {
-      builder.setTextAttachment(createTextAttachment(message.getTextAttachment().get()));
+      builder.textAttachment(createTextAttachment(message.getTextAttachment().get()));
     }
 
     if (message.getBodyRanges().isPresent()) {
-      builder.addAllBodyRanges(message.getBodyRanges().get());
+      builder.bodyRanges(message.getBodyRanges().get());
     }
 
-    builder.setAllowsReplies(message.getAllowsReplies().orElse(true));
+    builder.allowsReplies(message.getAllowsReplies().orElse(true));
 
-    return container.setStoryMessage(builder).build();
+    return container.storyMessage(builder.build()).build();
   }
 
   private Content createReceiptContent(SignalServiceReceiptMessage message) {
-    Content.Builder        container = Content.newBuilder();
-    ReceiptMessage.Builder builder   = ReceiptMessage.newBuilder();
+    Content.Builder        container = new Content.Builder();
+    ReceiptMessage.Builder builder   = new ReceiptMessage.Builder();
 
-    for (long timestamp : message.getTimestamps()) {
-      builder.addTimestamp(timestamp);
-    }
+    builder.timestamp = message.getTimestamps();
 
-    if      (message.isDeliveryReceipt()) builder.setType(ReceiptMessage.Type.DELIVERY);
-    else if (message.isReadReceipt())     builder.setType(ReceiptMessage.Type.READ);
-    else if (message.isViewedReceipt())   builder.setType(ReceiptMessage.Type.VIEWED);
+    if      (message.isDeliveryReceipt()) builder.type(ReceiptMessage.Type.DELIVERY);
+    else if (message.isReadReceipt())     builder.type(ReceiptMessage.Type.READ);
+    else if (message.isViewedReceipt())   builder.type(ReceiptMessage.Type.VIEWED);
 
-    return container.setReceiptMessage(builder).build();
+    return container.receiptMessage(builder.build()).build();
   }
 
   private Content createMessageContent(SentTranscriptMessage transcriptMessage) throws IOException {
@@ -1021,180 +1019,195 @@ public class SignalServiceMessageSender {
   }
 
   private Content createMessageContent(SignalServiceDataMessage message) throws IOException {
-    Content.Builder     container   = Content.newBuilder();
+    Content.Builder     container   = new Content.Builder();
     DataMessage.Builder dataMessage = createDataMessage(message);
 
-    return enforceMaxContentSize(container.setDataMessage(dataMessage).build());
+    return enforceMaxContentSize(container.dataMessage(dataMessage.build()).build());
   }
 
   private Content createEditMessageContent(SignalServiceEditMessage editMessage) throws IOException {
-    Content.Builder     container        = Content.newBuilder();
+    Content.Builder     container        = new Content.Builder();
     DataMessage.Builder dataMessage      = createDataMessage(editMessage.getDataMessage());
-    EditMessage.Builder editMessageProto = EditMessage.newBuilder()
-                                                      .setDataMessage(dataMessage)
-                                                      .setTargetSentTimestamp(editMessage.getTargetSentTimestamp());
+    EditMessage.Builder editMessageProto = new EditMessage.Builder()
+                                                          .dataMessage(dataMessage.build())
+                                                          .targetSentTimestamp(editMessage.getTargetSentTimestamp());
 
-    return enforceMaxContentSize(container.setEditMessage(editMessageProto).build());
+    return enforceMaxContentSize(container.editMessage(editMessageProto.build()).build());
   }
 
   private DataMessage.Builder createDataMessage(SignalServiceDataMessage message) throws IOException {
-    DataMessage.Builder     builder   = DataMessage.newBuilder();
-    List<AttachmentPointer> pointers  = createAttachmentPointers(message.getAttachments());
+    DataMessage.Builder     builder  = new DataMessage.Builder();
+    List<AttachmentPointer> pointers = createAttachmentPointers(message.getAttachments());
+
+    builder.requiredProtocolVersion = 0;
 
     if (!pointers.isEmpty()) {
-      builder.addAllAttachments(pointers);
+      builder.attachments(pointers);
 
       for (AttachmentPointer pointer : pointers) {
-        if (pointer.getAttachmentIdentifierCase() == AttachmentPointer.AttachmentIdentifierCase.CDNKEY || pointer.getCdnNumber() != 0) {
-          builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.CDN_SELECTOR_ATTACHMENTS_VALUE, builder.getRequiredProtocolVersion()));
-          break;
-        }
+        // TODO [cody] wire
+//        if (pointer.getAttachmentIdentifierCase() == AttachmentPointer.AttachmentIdentifierCase.CDNKEY || pointer.getCdnNumber() != 0) {
+//          builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.CDN_SELECTOR_ATTACHMENTS_VALUE, builder.getRequiredProtocolVersion()));
+//          break;
+//        }
       }
     }
 
     if (message.getBody().isPresent()) {
-      builder.setBody(message.getBody().get());
+      builder.body(message.getBody().get());
     }
 
     if (message.getGroupContext().isPresent()) {
-      builder.setGroupV2(createGroupContent(message.getGroupContext().get()));
+      builder.groupV2(createGroupContent(message.getGroupContext().get()));
     }
 
     if (message.isEndSession()) {
-      builder.setFlags(DataMessage.Flags.END_SESSION_VALUE);
+      builder.flags(DataMessage.Flags.END_SESSION.getValue());
     }
 
     if (message.isExpirationUpdate()) {
-      builder.setFlags(DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE);
+      builder.flags(DataMessage.Flags.EXPIRATION_TIMER_UPDATE.getValue());
     }
 
     if (message.isProfileKeyUpdate()) {
-      builder.setFlags(DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE);
+      builder.flags(DataMessage.Flags.PROFILE_KEY_UPDATE.getValue());
     }
 
     if (message.getExpiresInSeconds() > 0) {
-      builder.setExpireTimer(message.getExpiresInSeconds());
+      builder.expireTimer(message.getExpiresInSeconds());
     }
 
     if (message.getProfileKey().isPresent()) {
-      builder.setProfileKey(ByteString.copyFrom(message.getProfileKey().get()));
+      builder.profileKey(ByteString.of(message.getProfileKey().get()));
     }
 
     if (message.getQuote().isPresent()) {
-      DataMessage.Quote.Builder quoteBuilder = DataMessage.Quote.newBuilder()
-                                                                .setId(message.getQuote().get().getId())
-                                                                .setText(message.getQuote().get().getText())
-                                                                .setAuthorAci(message.getQuote().get().getAuthor().toString())
-                                                                .setType(message.getQuote().get().getType().getProtoType());
+      DataMessage.Quote.Builder quoteBuilder = new DataMessage.Quote.Builder()
+                                                                .id(message.getQuote().get().getId())
+                                                                .text(message.getQuote().get().getText())
+                                                                .authorAci(message.getQuote().get().getAuthor().toString())
+                                                                .type(message.getQuote().get().getType().getProtoType());
 
       List<SignalServiceDataMessage.Mention> mentions = message.getQuote().get().getMentions();
       if (mentions != null && !mentions.isEmpty()) {
+        List<BodyRange> bodyRanges = new ArrayList<>(quoteBuilder.bodyRanges);
         for (SignalServiceDataMessage.Mention mention : mentions) {
-          quoteBuilder.addBodyRanges(BodyRange.newBuilder()
-                                              .setStart(mention.getStart())
-                                              .setLength(mention.getLength())
-                                              .setMentionAci(mention.getServiceId().toString()));
+          bodyRanges.add(new BodyRange.Builder()
+                                      .start(mention.getStart())
+                                      .length(mention.getLength())
+                                      .mentionAci(mention.getServiceId().toString())
+                                      .build());
         }
+        builder.bodyRanges(bodyRanges);
 
-        builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
+        builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS.getValue(), builder.requiredProtocolVersion));
       }
 
       List<BodyRange> bodyRanges = message.getQuote().get().getBodyRanges();
       if (bodyRanges != null) {
-        quoteBuilder.addAllBodyRanges(bodyRanges);
+        List<BodyRange> quoteBodyRanges = new ArrayList<>(quoteBuilder.bodyRanges);
+        quoteBodyRanges.addAll(bodyRanges);
+        quoteBuilder.bodyRanges(quoteBodyRanges);
       }
 
       List<SignalServiceDataMessage.Quote.QuotedAttachment> attachments = message.getQuote().get().getAttachments();
       if (attachments != null) {
+        List<DataMessage.Quote.QuotedAttachment> quotedAttachments = new ArrayList<>(attachments.size());
         for (SignalServiceDataMessage.Quote.QuotedAttachment attachment : attachments) {
-          DataMessage.Quote.QuotedAttachment.Builder quotedAttachment = DataMessage.Quote.QuotedAttachment.newBuilder();
+          DataMessage.Quote.QuotedAttachment.Builder quotedAttachment = new DataMessage.Quote.QuotedAttachment.Builder();
 
-          quotedAttachment.setContentType(attachment.getContentType());
+          quotedAttachment.contentType(attachment.getContentType());
 
           if (attachment.getFileName() != null) {
-            quotedAttachment.setFileName(attachment.getFileName());
+            quotedAttachment.fileName(attachment.getFileName());
           }
 
           if (attachment.getThumbnail() != null) {
-            quotedAttachment.setThumbnail(createAttachmentPointer(attachment.getThumbnail().asStream()));
+            quotedAttachment.thumbnail(createAttachmentPointer(attachment.getThumbnail().asStream()));
           }
 
-          quoteBuilder.addAttachments(quotedAttachment);
+          quotedAttachments.add(quotedAttachment.build());
         }
+        quoteBuilder.attachments(quotedAttachments);
       }
 
-      builder.setQuote(quoteBuilder);
+      builder.quote(quoteBuilder.build());
     }
 
     if (message.getSharedContacts().isPresent()) {
-      builder.addAllContact(createSharedContactContent(message.getSharedContacts().get()));
+      builder.contact = createSharedContactContent(message.getSharedContacts().get());
     }
 
     if (message.getPreviews().isPresent()) {
+      List<Preview> previews = new ArrayList<>(message.getPreviews().get().size());
       for (SignalServicePreview preview : message.getPreviews().get()) {
-        builder.addPreview(createPreview(preview));
+        previews.add(createPreview(preview));
       }
+      builder.preview(previews);
     }
 
     if (message.getMentions().isPresent()) {
+      List<BodyRange> bodyRanges = new ArrayList<>(builder.bodyRanges);
       for (SignalServiceDataMessage.Mention mention : message.getMentions().get()) {
-        builder.addBodyRanges(BodyRange.newBuilder()
-                                       .setStart(mention.getStart())
-                                       .setLength(mention.getLength())
-                                       .setMentionAci(mention.getServiceId().toString()));
+        bodyRanges.add(new BodyRange.Builder()
+                                    .start(mention.getStart())
+                                    .length(mention.getLength())
+                                    .mentionAci(mention.getServiceId().toString())
+                                    .build());
       }
-      builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
+      builder.bodyRanges(bodyRanges);
+      builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS.getValue(), builder.requiredProtocolVersion));
     }
 
     if (message.getSticker().isPresent()) {
-      DataMessage.Sticker.Builder stickerBuilder = DataMessage.Sticker.newBuilder();
+      DataMessage.Sticker.Builder stickerBuilder = new DataMessage.Sticker.Builder();
 
-      stickerBuilder.setPackId(ByteString.copyFrom(message.getSticker().get().getPackId()));
-      stickerBuilder.setPackKey(ByteString.copyFrom(message.getSticker().get().getPackKey()));
-      stickerBuilder.setStickerId(message.getSticker().get().getStickerId());
+      stickerBuilder.packId(ByteString.of(message.getSticker().get().getPackId()));
+      stickerBuilder.packKey(ByteString.of(message.getSticker().get().getPackKey()));
+      stickerBuilder.stickerId(message.getSticker().get().getStickerId());
 
       if (message.getSticker().get().getEmoji() != null) {
-        stickerBuilder.setEmoji(message.getSticker().get().getEmoji());
+        stickerBuilder.emoji(message.getSticker().get().getEmoji());
       }
 
       if (message.getSticker().get().getAttachment().isStream()) {
-        stickerBuilder.setData(createAttachmentPointer(message.getSticker().get().getAttachment().asStream()));
+        stickerBuilder.data_(createAttachmentPointer(message.getSticker().get().getAttachment().asStream()));
       } else {
-        stickerBuilder.setData(createAttachmentPointer(message.getSticker().get().getAttachment().asPointer()));
+        stickerBuilder.data_(createAttachmentPointer(message.getSticker().get().getAttachment().asPointer()));
       }
 
-      builder.setSticker(stickerBuilder.build());
+      builder.sticker(stickerBuilder.build());
     }
 
     if (message.isViewOnce()) {
-      builder.setIsViewOnce(message.isViewOnce());
-      builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.VIEW_ONCE_VIDEO_VALUE, builder.getRequiredProtocolVersion()));
+      builder.isViewOnce(message.isViewOnce());
+      builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.VIEW_ONCE_VIDEO.getValue(), builder.requiredProtocolVersion));
     }
 
     if (message.getReaction().isPresent()) {
-      DataMessage.Reaction.Builder reactionBuilder = DataMessage.Reaction.newBuilder()
-                                                                         .setEmoji(message.getReaction().get().getEmoji())
-                                                                         .setRemove(message.getReaction().get().isRemove())
-                                                                         .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp())
-                                                                         .setTargetAuthorAci(message.getReaction().get().getTargetAuthor().toString());
+      DataMessage.Reaction.Builder reactionBuilder = new DataMessage.Reaction.Builder()
+                                                                             .emoji(message.getReaction().get().getEmoji())
+                                                                             .remove(message.getReaction().get().isRemove())
+                                                                             .targetSentTimestamp(message.getReaction().get().getTargetSentTimestamp())
+                                                                             .targetAuthorAci(message.getReaction().get().getTargetAuthor().toString());
 
-      builder.setReaction(reactionBuilder.build());
-      builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS_VALUE, builder.getRequiredProtocolVersion()));
+      builder.reaction(reactionBuilder.build());
+      builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS.getValue(), builder.requiredProtocolVersion));
     }
 
     if (message.getRemoteDelete().isPresent()) {
-      DataMessage.Delete delete = DataMessage.Delete.newBuilder()
-                                                    .setTargetSentTimestamp(message.getRemoteDelete().get().getTargetSentTimestamp())
-                                                    .build();
-      builder.setDelete(delete);
+      DataMessage.Delete delete = new DataMessage.Delete.Builder()
+                                                        .targetSentTimestamp(message.getRemoteDelete().get().getTargetSentTimestamp())
+                                                        .build();
+      builder.delete(delete);
     }
 
     if (message.getGroupCallUpdate().isPresent()) {
       String eraId = message.getGroupCallUpdate().get().getEraId();
       if (eraId != null) {
-        builder.setGroupCallUpdate(DataMessage.GroupCallUpdate.newBuilder().setEraId(eraId));
+        builder.groupCallUpdate(new DataMessage.GroupCallUpdate.Builder().eraId(eraId).build());
       } else {
-        builder.setGroupCallUpdate(DataMessage.GroupCallUpdate.getDefaultInstance());
+        builder.groupCallUpdate(new DataMessage.GroupCallUpdate());
       }
     }
 
@@ -1203,55 +1216,59 @@ public class SignalServiceMessageSender {
 
       if (payment.getPaymentNotification().isPresent()) {
         SignalServiceDataMessage.PaymentNotification        paymentNotification = payment.getPaymentNotification().get();
-        DataMessage.Payment.Notification.MobileCoin.Builder mobileCoinPayment   = DataMessage.Payment.Notification.MobileCoin.newBuilder().setReceipt(ByteString.copyFrom(paymentNotification.getReceipt()));
-        DataMessage.Payment.Notification.Builder            paymentBuilder      = DataMessage.Payment.Notification.newBuilder()
-                                                                                                                  .setNote(paymentNotification.getNote())
-                                                                                                                  .setMobileCoin(mobileCoinPayment);
+        DataMessage.Payment.Notification.MobileCoin.Builder mobileCoinPayment   = new DataMessage.Payment.Notification.MobileCoin.Builder().receipt(ByteString.of(paymentNotification.getReceipt()));
+        DataMessage.Payment.Notification.Builder            paymentBuilder      = new DataMessage.Payment.Notification.Builder()
+                                                                                                                      .note(paymentNotification.getNote())
+                                                                                                                      .mobileCoin(mobileCoinPayment.build());
 
-        builder.setPayment(DataMessage.Payment.newBuilder().setNotification(paymentBuilder));
+        builder.payment(new DataMessage.Payment.Builder().notification(paymentBuilder.build()).build());
       } else if (payment.getPaymentActivation().isPresent()) {
-        DataMessage.Payment.Activation.Builder activationBuilder = DataMessage.Payment.Activation.newBuilder().setType(payment.getPaymentActivation().get().getType());
-        builder.setPayment(DataMessage.Payment.newBuilder().setActivation(activationBuilder));
+        DataMessage.Payment.Activation.Builder activationBuilder = new DataMessage.Payment.Activation.Builder().type(payment.getPaymentActivation().get().getType());
+        builder.payment(new DataMessage.Payment.Builder().activation(activationBuilder.build()).build());
       }
-        builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.PAYMENTS_VALUE, builder.getRequiredProtocolVersion()));
+        builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.PAYMENTS.getValue(), builder.requiredProtocolVersion));
     }
 
     if (message.getStoryContext().isPresent()) {
       SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
 
-      builder.setStoryContext(DataMessage.StoryContext.newBuilder()
-                                                      .setAuthorAci(storyContext.getAuthorServiceId().toString())
-                                                      .setSentTimestamp(storyContext.getSentTimestamp()));
+      builder.storyContext(new DataMessage.StoryContext.Builder()
+                                                       .authorAci(storyContext.getAuthorServiceId().toString())
+                                                       .sentTimestamp(storyContext.getSentTimestamp())
+                                                       .build());
     }
 
     if (message.getGiftBadge().isPresent()) {
       SignalServiceDataMessage.GiftBadge giftBadge = message.getGiftBadge().get();
 
-      builder.setGiftBadge(DataMessage.GiftBadge.newBuilder()
-                                                .setReceiptCredentialPresentation(ByteString.copyFrom(giftBadge.getReceiptCredentialPresentation().serialize())));
+      builder.giftBadge(new DataMessage.GiftBadge.Builder()
+                                                 .receiptCredentialPresentation(ByteString.of(giftBadge.getReceiptCredentialPresentation().serialize()))
+                                                 .build());
     }
 
     if (message.getBodyRanges().isPresent()) {
-      builder.addAllBodyRanges(message.getBodyRanges().get());
+      List<BodyRange> bodyRanges = new ArrayList<>(builder.bodyRanges);
+      bodyRanges.addAll(message.getBodyRanges().get());
+      builder.bodyRanges(bodyRanges);
     }
 
-    builder.setTimestamp(message.getTimestamp());
+    builder.timestamp(message.getTimestamp());
 
     return builder;
   }
 
   private Preview createPreview(SignalServicePreview preview) throws IOException {
-    Preview.Builder previewBuilder = Preview.newBuilder()
-                                            .setTitle(preview.getTitle())
-                                            .setDescription(preview.getDescription())
-                                            .setDate(preview.getDate())
-                                            .setUrl(preview.getUrl());
+    Preview.Builder previewBuilder = new Preview.Builder()
+                                                .title(preview.getTitle())
+                                                .description(preview.getDescription())
+                                                .date(preview.getDate())
+                                                .url(preview.getUrl());
 
     if (preview.getImage().isPresent()) {
       if (preview.getImage().get().isStream()) {
-        previewBuilder.setImage(createAttachmentPointer(preview.getImage().get().asStream()));
+        previewBuilder.image(createAttachmentPointer(preview.getImage().get().asStream()));
       } else {
-        previewBuilder.setImage(createAttachmentPointer(preview.getImage().get().asPointer()));
+        previewBuilder.image(createAttachmentPointer(preview.getImage().get().asPointer()));
       }
     }
 
@@ -1259,96 +1276,96 @@ public class SignalServiceMessageSender {
   }
 
   private Content createCallContent(SignalServiceCallMessage callMessage) {
-    Content.Builder     container = Content.newBuilder();
-    CallMessage.Builder builder   = CallMessage.newBuilder();
+    Content.Builder     container = new Content.Builder();
+    CallMessage.Builder builder   = new CallMessage.Builder();
 
     if (callMessage.getOfferMessage().isPresent()) {
       OfferMessage offer = callMessage.getOfferMessage().get();
-      CallMessage.Offer.Builder offerBuilder = CallMessage.Offer.newBuilder()
-                                                                .setId(offer.getId())
-                                                                .setType(offer.getType().getProtoType());
+      CallMessage.Offer.Builder offerBuilder = new CallMessage.Offer.Builder()
+                                                                    .id(offer.getId())
+                                                                    .type(offer.getType().getProtoType());
 
       if (offer.getOpaque() != null) {
-        offerBuilder.setOpaque(ByteString.copyFrom(offer.getOpaque()));
+        offerBuilder.opaque(ByteString.of(offer.getOpaque()));
       }
 
       if (offer.getSdp() != null) {
-        offerBuilder.setSdp(offer.getSdp());
+        offerBuilder.sdp(offer.getSdp());
       }
 
-      builder.setOffer(offerBuilder);
+      builder.offer(offerBuilder.build());
     } else if (callMessage.getAnswerMessage().isPresent()) {
       AnswerMessage answer = callMessage.getAnswerMessage().get();
-      CallMessage.Answer.Builder answerBuilder = CallMessage.Answer.newBuilder()
-                                                                   .setId(answer.getId());
+      CallMessage.Answer.Builder answerBuilder = new CallMessage.Answer.Builder()
+                                                                       .id(answer.getId());
 
       if (answer.getOpaque() != null) {
-        answerBuilder.setOpaque(ByteString.copyFrom(answer.getOpaque()));
+        answerBuilder.opaque(ByteString.of(answer.getOpaque()));
       }
 
       if (answer.getSdp() != null) {
-        answerBuilder.setSdp(answer.getSdp());
+        answerBuilder.sdp(answer.getSdp());
       }
 
-      builder.setAnswer(answerBuilder);
+      builder.answer(answerBuilder.build());
     } else if (callMessage.getIceUpdateMessages().isPresent()) {
       List<IceUpdateMessage> updates = callMessage.getIceUpdateMessages().get();
-
+      List<CallMessage.IceUpdate> iceUpdates = new ArrayList<>(updates.size());
       for (IceUpdateMessage update : updates) {
-        CallMessage.IceUpdate.Builder iceBuilder = CallMessage.IceUpdate.newBuilder()
-                                                                        .setId(update.getId())
-                                                                        .setMid("audio")
-                                                                        .setLine(0);
+        CallMessage.IceUpdate.Builder iceBuilder = new CallMessage.IceUpdate.Builder()
+                                                                            .id(update.getId())
+                                                                            .mid("audio")
+                                                                            .line(0);
 
         if (update.getOpaque() != null) {
-          iceBuilder.setOpaque(ByteString.copyFrom(update.getOpaque()));
+          iceBuilder.opaque(ByteString.of(update.getOpaque()));
         }
 
         if (update.getSdp() != null) {
-          iceBuilder.setSdp(update.getSdp());
+          iceBuilder.sdp(update.getSdp());
         }
 
-        builder.addIceUpdate(iceBuilder);
+        iceUpdates.add(iceBuilder.build());
       }
+      builder.iceUpdate(iceUpdates);
     } else if (callMessage.getHangupMessage().isPresent()) {
       CallMessage.Hangup.Type    protoType        = callMessage.getHangupMessage().get().getType().getProtoType();
-      CallMessage.Hangup.Builder builderForHangup = CallMessage.Hangup.newBuilder()
-                                                                      .setType(protoType)
-                                                                      .setId(callMessage.getHangupMessage().get().getId());
+      CallMessage.Hangup.Builder builderForHangup = new CallMessage.Hangup.Builder()
+                                                                          .type(protoType)
+                                                                          .id(callMessage.getHangupMessage().get().getId());
 
       if (protoType != CallMessage.Hangup.Type.HANGUP_NORMAL) {
-        builderForHangup.setDeviceId(callMessage.getHangupMessage().get().getDeviceId());
+        builderForHangup.deviceId(callMessage.getHangupMessage().get().getDeviceId());
       }
 
-      builder.setHangup(builderForHangup);
+      builder.hangup(builderForHangup.build());
     } else if (callMessage.getBusyMessage().isPresent()) {
-      builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
+      builder.busy(new CallMessage.Busy.Builder().id(callMessage.getBusyMessage().get().getId()).build());
     } else if (callMessage.getOpaqueMessage().isPresent()) {
       OpaqueMessage              opaqueMessage = callMessage.getOpaqueMessage().get();
-      ByteString                 data          = ByteString.copyFrom(opaqueMessage.getOpaque());
+      ByteString                 data          = ByteString.of(opaqueMessage.getOpaque());
       CallMessage.Opaque.Urgency urgency       = opaqueMessage.getUrgency().toProto();
 
-      builder.setOpaque(CallMessage.Opaque.newBuilder().setData(data).setUrgency(urgency));
+      builder.opaque(new CallMessage.Opaque.Builder().data_(data).urgency(urgency).build());
     }
-
-    builder.setMultiRing(callMessage.isMultiRing());
 
     if (callMessage.getDestinationDeviceId().isPresent()) {
-      builder.setDestinationDeviceId(callMessage.getDestinationDeviceId().get());
+      builder.destinationDeviceId(callMessage.getDestinationDeviceId().get());
     }
 
-    container.setCallMessage(builder);
+    container.callMessage(builder.build());
     return container.build();
   }
 
   private Content createMultiDeviceContactsContent(SignalServiceAttachmentStream contacts, boolean complete) throws IOException {
-    Content.Builder     container = Content.newBuilder();
+    Content.Builder     container = new Content.Builder();
     SyncMessage.Builder builder   = createSyncMessageBuilder();
-    builder.setContacts(SyncMessage.Contacts.newBuilder()
-                                            .setBlob(createAttachmentPointer(contacts))
-                                            .setComplete(complete));
+    builder.contacts(new SyncMessage.Contacts.Builder()
+                                             .blob(createAttachmentPointer(contacts))
+                                             .complete(complete)
+                                             .build());
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createMultiDeviceSentTranscriptContent(SentTranscriptMessage transcript, boolean unidentifiedAccess) throws IOException {
@@ -1370,309 +1387,316 @@ public class SignalServiceMessageSender {
                                                          boolean isRecipientUpdate,
                                                          Set<SignalServiceStoryMessageRecipient> storyMessageRecipients)
   {
-    Content.Builder          container    = Content.newBuilder();
+    Content.Builder          container    = new Content.Builder();
     SyncMessage.Builder      syncMessage  = createSyncMessageBuilder();
-    SyncMessage.Sent.Builder sentMessage  = SyncMessage.Sent.newBuilder();
-    DataMessage              dataMessage  = content != null && content.hasDataMessage() ? content.getDataMessage() : null;
-    StoryMessage             storyMessage = content != null && content.hasStoryMessage() ? content.getStoryMessage() : null;
-    EditMessage              editMessage  = content != null && content.hasEditMessage() ? content.getEditMessage() : null;
+    SyncMessage.Sent.Builder sentMessage  = new SyncMessage.Sent.Builder();
+    DataMessage              dataMessage  = content != null && content.dataMessage != null ? content.dataMessage : null;
+    StoryMessage             storyMessage = content != null && content.storyMessage != null ? content.storyMessage : null;
+    EditMessage              editMessage  = content != null && content.editMessage != null ? content.editMessage : null;
 
-    sentMessage.setTimestamp(timestamp);
+    sentMessage.timestamp(timestamp);
 
+    List<SyncMessage.Sent.UnidentifiedDeliveryStatus> unidentifiedDeliveryStatuses = new ArrayList<>(sendMessageResults.size());
     for (SendMessageResult result : sendMessageResults) {
       if (result.getSuccess() != null) {
-        sentMessage.addUnidentifiedStatus(SyncMessage.Sent.UnidentifiedDeliveryStatus.newBuilder()
-                                                                                     .setDestinationServiceId(result.getAddress().getServiceId().toString())
-                                                                                     .setUnidentified(result.getSuccess().isUnidentified())
-                                                                                     .build());
-
+        unidentifiedDeliveryStatuses.add(new SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
+                                                                                        .destinationServiceId(result.getAddress().getServiceId().toString())
+                                                                                        .unidentified(result.getSuccess().isUnidentified())
+                                                                                        .build());
       }
     }
+    sentMessage.unidentifiedStatus(unidentifiedDeliveryStatuses);
 
     if (recipient.isPresent()) {
-      sentMessage.setDestinationServiceId(recipient.get().getServiceId().toString());
+      sentMessage.destinationServiceId(recipient.get().getServiceId().toString());
       if (recipient.get().getNumber().isPresent()) {
-        sentMessage.setDestinationE164(recipient.get().getNumber().get());
+        sentMessage.destinationE164(recipient.get().getNumber().get());
       }
     }
 
     if (dataMessage != null) {
-      sentMessage.setMessage(dataMessage);
-      if (dataMessage.getExpireTimer() > 0) {
-        sentMessage.setExpirationStartTimestamp(System.currentTimeMillis());
+      sentMessage.message(dataMessage);
+      if (dataMessage.expireTimer != null && dataMessage.expireTimer > 0) {
+        sentMessage.expirationStartTimestamp(System.currentTimeMillis());
       }
 
-      if (dataMessage.getIsViewOnce()) {
-        dataMessage = dataMessage.toBuilder().clearAttachments().build();
-        sentMessage.setMessage(dataMessage);
+      if (dataMessage.isViewOnce != null && dataMessage.isViewOnce) {
+        dataMessage = dataMessage.newBuilder().attachments(Collections.emptyList()).build();
+        sentMessage.message(dataMessage);
       }
     }
 
     if (storyMessage != null) {
-      sentMessage.setStoryMessage(storyMessage);
+      sentMessage.storyMessage(storyMessage);
     }
 
     if (editMessage != null) {
-      sentMessage.setEditMessage(editMessage);
+      sentMessage.editMessage(editMessage);
     }
 
-    sentMessage.addAllStoryMessageRecipients(storyMessageRecipients.stream()
-                                                                   .map(this::createStoryMessageRecipient)
-                                                                   .collect(Collectors.toSet()));
+    Set<SyncMessage.Sent.StoryMessageRecipient> storyMessageRecipientsSet = storyMessageRecipients.stream()
+                                                                                                  .map(this::createStoryMessageRecipient)
+                                                                                                  .collect(Collectors.toSet());
+    sentMessage.storyMessageRecipients(new ArrayList<>(storyMessageRecipientsSet));
 
-    sentMessage.setIsRecipientUpdate(isRecipientUpdate);
+    sentMessage.isRecipientUpdate(isRecipientUpdate);
 
-    return container.setSyncMessage(syncMessage.setSent(sentMessage)).build();
+    return container.syncMessage(syncMessage.sent(sentMessage.build()).build()).build();
   }
   
   private SyncMessage.Sent.StoryMessageRecipient createStoryMessageRecipient(SignalServiceStoryMessageRecipient storyMessageRecipient) {
-    return SyncMessage.Sent.StoryMessageRecipient.newBuilder()
-                                                 .addAllDistributionListIds(storyMessageRecipient.getDistributionListIds())
-                                                 .setDestinationServiceId(storyMessageRecipient.getSignalServiceAddress().getIdentifier())
-                                                 .setIsAllowedToReply(storyMessageRecipient.isAllowedToReply())
-                                                 .build();
+    return new SyncMessage.Sent.StoryMessageRecipient.Builder()
+                                                     .distributionListIds(storyMessageRecipient.getDistributionListIds())
+                                                     .destinationServiceId(storyMessageRecipient.getSignalServiceAddress().getIdentifier())
+                                                     .isAllowedToReply(storyMessageRecipient.isAllowedToReply())
+                                                     .build();
   }
 
   private Content createMultiDeviceReadContent(List<ReadMessage> readMessages) {
-    Content.Builder     container = Content.newBuilder();
+    Content.Builder     container = new Content.Builder();
     SyncMessage.Builder builder   = createSyncMessageBuilder();
 
-    for (ReadMessage readMessage : readMessages) {
-      builder.addRead(SyncMessage.Read.newBuilder()
-                                      .setTimestamp(readMessage.getTimestamp())
-                                      .setSenderAci(readMessage.getSender().toString()));
-    }
+    builder.read(
+        readMessages.stream()
+                    .map(readMessage -> new SyncMessage.Read.Builder()
+                                                            .timestamp(readMessage.getTimestamp())
+                                                            .senderAci(readMessage.getSender().toString())
+                                                            .build())
+                    .collect(Collectors.toList())
+    );
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createMultiDeviceViewedContent(List<ViewedMessage> readMessages) {
-    Content.Builder     container = Content.newBuilder();
+    Content.Builder     container = new Content.Builder();
     SyncMessage.Builder builder   = createSyncMessageBuilder();
 
-    for (ViewedMessage readMessage : readMessages) {
-      builder.addViewed(SyncMessage.Viewed.newBuilder()
-                                          .setTimestamp(readMessage.getTimestamp())
-                                          .setSenderAci(readMessage.getSender().toString()));
-    }
+    builder.viewed(
+        readMessages.stream()
+                    .map(readMessage -> new SyncMessage.Viewed.Builder()
+                                                              .timestamp(readMessage.getTimestamp())
+                                                              .senderAci(readMessage.getSender().toString())
+                                                              .build())
+                    .collect(Collectors.toList())
+    );
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createMultiDeviceViewOnceOpenContent(ViewOnceOpenMessage readMessage) {
-    Content.Builder                  container       = Content.newBuilder();
+    Content.Builder                  container       = new Content.Builder();
     SyncMessage.Builder              builder         = createSyncMessageBuilder();
 
-    builder.setViewOnceOpen(SyncMessage.ViewOnceOpen.newBuilder()
-                                                    .setTimestamp(readMessage.getTimestamp())
-                                                    .setSenderAci(readMessage.getSender().toString()));
+    builder.viewOnceOpen(new SyncMessage.ViewOnceOpen.Builder()
+                                                     .timestamp(readMessage.getTimestamp())
+                                                     .senderAci(readMessage.getSender().toString())
+                                                     .build());
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createMultiDeviceBlockedContent(BlockedListMessage blocked) {
-    Content.Builder             container      = Content.newBuilder();
+    Content.Builder             container      = new Content.Builder();
     SyncMessage.Builder         syncMessage    = createSyncMessageBuilder();
-    SyncMessage.Blocked.Builder blockedMessage = SyncMessage.Blocked.newBuilder();
+    SyncMessage.Blocked.Builder blockedMessage = new SyncMessage.Blocked.Builder();
 
-    for (SignalServiceAddress address : blocked.getAddresses()) {
-      blockedMessage.addAcis(address.getServiceId().toString());
-      if (address.getNumber().isPresent()) {
-        blockedMessage.addNumbers(address.getNumber().get());
-      }
-    }
+    blockedMessage.acis(blocked.getAddresses().stream().map(a -> a.getServiceId().toString()).collect(Collectors.toList()));
+    blockedMessage.numbers(blocked.getAddresses().stream().filter(a -> a.getNumber().isPresent()).map(a -> a.getNumber().get()).collect(Collectors.toList()));
+    blockedMessage.groupIds(blocked.getGroupIds().stream().map(ByteString::of).collect(Collectors.toList()));
 
-    for (byte[] groupId : blocked.getGroupIds()) {
-      blockedMessage.addGroupIds(ByteString.copyFrom(groupId));
-    }
-
-    return container.setSyncMessage(syncMessage.setBlocked(blockedMessage)).build();
+    return container.syncMessage(syncMessage.blocked(blockedMessage.build()).build()).build();
   }
 
   private Content createMultiDeviceConfigurationContent(ConfigurationMessage configuration) {
-    Content.Builder                   container            = Content.newBuilder();
+    Content.Builder                   container            = new Content.Builder();
     SyncMessage.Builder               syncMessage          = createSyncMessageBuilder();
-    SyncMessage.Configuration.Builder configurationMessage = SyncMessage.Configuration.newBuilder();
+    SyncMessage.Configuration.Builder configurationMessage = new SyncMessage.Configuration.Builder();
 
     if (configuration.getReadReceipts().isPresent()) {
-      configurationMessage.setReadReceipts(configuration.getReadReceipts().get());
+      configurationMessage.readReceipts(configuration.getReadReceipts().get());
     }
 
     if (configuration.getUnidentifiedDeliveryIndicators().isPresent()) {
-      configurationMessage.setUnidentifiedDeliveryIndicators(configuration.getUnidentifiedDeliveryIndicators().get());
+      configurationMessage.unidentifiedDeliveryIndicators(configuration.getUnidentifiedDeliveryIndicators().get());
     }
 
     if (configuration.getTypingIndicators().isPresent()) {
-      configurationMessage.setTypingIndicators(configuration.getTypingIndicators().get());
+      configurationMessage.typingIndicators(configuration.getTypingIndicators().get());
     }
 
     if (configuration.getLinkPreviews().isPresent()) {
-      configurationMessage.setLinkPreviews(configuration.getLinkPreviews().get());
+      configurationMessage.linkPreviews(configuration.getLinkPreviews().get());
     }
 
-    configurationMessage.setProvisioningVersion(ProvisioningVersion.CURRENT.getValue());
+    configurationMessage.provisioningVersion(ProvisioningVersion.CURRENT.getValue());
 
-    return container.setSyncMessage(syncMessage.setConfiguration(configurationMessage)).build();
+    return container.syncMessage(syncMessage.configuration(configurationMessage.build()).build()).build();
   }
 
   private Content createMultiDeviceStickerPackOperationContent(List<StickerPackOperationMessage> stickerPackOperations) {
-    Content.Builder     container   = Content.newBuilder();
+    Content.Builder     container   = new Content.Builder();
     SyncMessage.Builder syncMessage = createSyncMessageBuilder();
 
+    List<SyncMessage.StickerPackOperation> stickerPackOperationProtos = new ArrayList<>(stickerPackOperations.size());
     for (StickerPackOperationMessage stickerPackOperation : stickerPackOperations) {
-      SyncMessage.StickerPackOperation.Builder builder = SyncMessage.StickerPackOperation.newBuilder();
+      SyncMessage.StickerPackOperation.Builder builder = new SyncMessage.StickerPackOperation.Builder();
 
       if (stickerPackOperation.getPackId().isPresent()) {
-        builder.setPackId(ByteString.copyFrom(stickerPackOperation.getPackId().get()));
+        builder.packId(ByteString.of(stickerPackOperation.getPackId().get()));
       }
 
       if (stickerPackOperation.getPackKey().isPresent()) {
-        builder.setPackKey(ByteString.copyFrom(stickerPackOperation.getPackKey().get()));
+        builder.packKey(ByteString.of(stickerPackOperation.getPackKey().get()));
       }
 
       if (stickerPackOperation.getType().isPresent()) {
         switch (stickerPackOperation.getType().get()) {
-          case INSTALL: builder.setType(SyncMessage.StickerPackOperation.Type.INSTALL); break;
-          case REMOVE:  builder.setType(SyncMessage.StickerPackOperation.Type.REMOVE); break;
+          case INSTALL:
+            builder.type(SyncMessage.StickerPackOperation.Type.INSTALL);
+            break;
+          case REMOVE:
+            builder.type(SyncMessage.StickerPackOperation.Type.REMOVE);
+            break;
         }
       }
 
-      syncMessage.addStickerPackOperation(builder);
+      stickerPackOperationProtos.add(builder.build());
     }
 
-    return container.setSyncMessage(syncMessage).build();
+    return container.syncMessage(syncMessage.stickerPackOperation(stickerPackOperationProtos).build()).build();
   }
 
   private Content createMultiDeviceFetchTypeContent(SignalServiceSyncMessage.FetchType fetchType) {
-    Content.Builder                 container    = Content.newBuilder();
+    Content.Builder                 container    = new Content.Builder();
     SyncMessage.Builder             syncMessage  = createSyncMessageBuilder();
-    SyncMessage.FetchLatest.Builder fetchMessage = SyncMessage.FetchLatest.newBuilder();
+    SyncMessage.FetchLatest.Builder fetchMessage = new SyncMessage.FetchLatest.Builder();
 
     switch (fetchType) {
       case LOCAL_PROFILE:
-        fetchMessage.setType(SyncMessage.FetchLatest.Type.LOCAL_PROFILE);
+        fetchMessage.type(SyncMessage.FetchLatest.Type.LOCAL_PROFILE);
         break;
       case STORAGE_MANIFEST:
-        fetchMessage.setType(SyncMessage.FetchLatest.Type.STORAGE_MANIFEST);
+        fetchMessage.type(SyncMessage.FetchLatest.Type.STORAGE_MANIFEST);
         break;
       case SUBSCRIPTION_STATUS:
-       fetchMessage.setType(SyncMessage.FetchLatest.Type.SUBSCRIPTION_STATUS);
+       fetchMessage.type(SyncMessage.FetchLatest.Type.SUBSCRIPTION_STATUS);
         break;
       default:
         Log.w(TAG, "Unknown fetch type!");
         break;
     }
 
-    return container.setSyncMessage(syncMessage.setFetchLatest(fetchMessage)).build();
+    return container.syncMessage(syncMessage.fetchLatest(fetchMessage.build()).build()).build();
   }
 
   private Content createMultiDeviceMessageRequestResponseContent(MessageRequestResponseMessage message) {
-    Content.Builder container = Content.newBuilder();
+    Content.Builder container = new Content.Builder();
     SyncMessage.Builder syncMessage = createSyncMessageBuilder();
-    SyncMessage.MessageRequestResponse.Builder responseMessage = SyncMessage.MessageRequestResponse.newBuilder();
+    SyncMessage.MessageRequestResponse.Builder responseMessage = new SyncMessage.MessageRequestResponse.Builder();
 
     if (message.getGroupId().isPresent()) {
-      responseMessage.setGroupId(ByteString.copyFrom(message.getGroupId().get()));
+      responseMessage.groupId(ByteString.of(message.getGroupId().get()));
     }
 
     if (message.getPerson().isPresent()) {
-      responseMessage.setThreadAci(message.getPerson().get().toString());
+      responseMessage.threadAci(message.getPerson().get().toString());
     }
 
     switch (message.getType()) {
       case ACCEPT:
-        responseMessage.setType(SyncMessage.MessageRequestResponse.Type.ACCEPT);
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.ACCEPT);
         break;
       case DELETE:
-        responseMessage.setType(SyncMessage.MessageRequestResponse.Type.DELETE);
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.DELETE);
         break;
       case BLOCK:
-        responseMessage.setType(SyncMessage.MessageRequestResponse.Type.BLOCK);
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.BLOCK);
         break;
       case BLOCK_AND_DELETE:
-        responseMessage.setType(SyncMessage.MessageRequestResponse.Type.BLOCK_AND_DELETE);
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.BLOCK_AND_DELETE);
         break;
       default:
         Log.w(TAG, "Unknown type!");
-        responseMessage.setType(SyncMessage.MessageRequestResponse.Type.UNKNOWN);
+        responseMessage.type(SyncMessage.MessageRequestResponse.Type.UNKNOWN);
         break;
     }
 
-    syncMessage.setMessageRequestResponse(responseMessage);
+    syncMessage.messageRequestResponse(responseMessage.build());
 
-    return container.setSyncMessage(syncMessage).build();
+    return container.syncMessage(syncMessage.build()).build();
   }
 
   private Content createMultiDeviceOutgoingPaymentContent(OutgoingPaymentMessage message) {
-    Content.Builder                     container      = Content.newBuilder();
+    Content.Builder                     container      = new Content.Builder();
     SyncMessage.Builder                 syncMessage    = createSyncMessageBuilder();
-    SyncMessage.OutgoingPayment.Builder paymentMessage = SyncMessage.OutgoingPayment.newBuilder();
+    SyncMessage.OutgoingPayment.Builder paymentMessage = new SyncMessage.OutgoingPayment.Builder();
 
     if (message.getRecipient().isPresent()) {
-      paymentMessage.setRecipientServiceId(message.getRecipient().get().toString());
+      paymentMessage.recipientServiceId(message.getRecipient().get().toString());
     }
 
     if (message.getNote().isPresent()) {
-      paymentMessage.setNote(message.getNote().get());
+      paymentMessage.note(message.getNote().get());
     }
 
     try {
-      SyncMessage.OutgoingPayment.MobileCoin.Builder mobileCoinBuilder = SyncMessage.OutgoingPayment.MobileCoin.newBuilder();
+      SyncMessage.OutgoingPayment.MobileCoin.Builder mobileCoinBuilder = new SyncMessage.OutgoingPayment.MobileCoin.Builder();
 
       if (message.getAddress().isPresent()) {
-        mobileCoinBuilder.setRecipientAddress(ByteString.copyFrom(message.getAddress().get()));
+        mobileCoinBuilder.recipientAddress(ByteString.of(message.getAddress().get()));
       }
-      mobileCoinBuilder.setAmountPicoMob(Uint64Util.bigIntegerToUInt64(message.getAmount().toPicoMobBigInteger()))
-                       .setFeePicoMob(Uint64Util.bigIntegerToUInt64(message.getFee().toPicoMobBigInteger()))
-                       .setReceipt(message.getReceipt())
-                       .setLedgerBlockTimestamp(message.getBlockTimestamp())
-                       .setLedgerBlockIndex(message.getBlockIndex())
-                       .addAllOutputPublicKeys(message.getPublicKeys())
-                       .addAllSpentKeyImages(message.getKeyImages());
+      mobileCoinBuilder.amountPicoMob(Uint64Util.bigIntegerToUInt64(message.getAmount().toPicoMobBigInteger()))
+                       .feePicoMob(Uint64Util.bigIntegerToUInt64(message.getFee().toPicoMobBigInteger()))
+                       .receipt(message.getReceipt())
+                       .ledgerBlockTimestamp(message.getBlockTimestamp())
+                       .ledgerBlockIndex(message.getBlockIndex())
+                       .outputPublicKeys(message.getPublicKeys())
+                       .spentKeyImages(message.getKeyImages());
 
-      paymentMessage.setMobileCoin(mobileCoinBuilder);
+      paymentMessage.mobileCoin(mobileCoinBuilder.build());
     } catch (Uint64RangeException e) {
       throw new AssertionError(e);
     }
 
-    syncMessage.setOutgoingPayment(paymentMessage);
+    syncMessage.outgoingPayment(paymentMessage.build());
 
-    return container.setSyncMessage(syncMessage).build();
+    return container.syncMessage(syncMessage.build()).build();
   }
 
   private Content createMultiDeviceSyncKeysContent(KeysMessage keysMessage) {
-    Content.Builder          container   = Content.newBuilder();
+    Content.Builder          container   = new Content.Builder();
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
-    SyncMessage.Keys.Builder builder     = SyncMessage.Keys.newBuilder();
+    SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
 
     if (keysMessage.getStorageService().isPresent()) {
-      builder.setStorageService(ByteString.copyFrom(keysMessage.getStorageService().get().serialize()));
+      builder.storageService(ByteString.of(keysMessage.getStorageService().get().serialize()));
     } else {
       Log.w(TAG, "Invalid keys message!");
     }
 
-    return container.setSyncMessage(syncMessage.setKeys(builder)).build();
+    return container.syncMessage(syncMessage.keys(builder.build()).build()).build();
   }
 
   private Content createMultiDeviceVerifiedContent(VerifiedMessage verifiedMessage, byte[] nullMessage) {
-    Content.Builder     container              = Content.newBuilder();
+    Content.Builder     container              = new Content.Builder();
     SyncMessage.Builder syncMessage            = createSyncMessageBuilder();
-    Verified.Builder    verifiedMessageBuilder = Verified.newBuilder();
+    Verified.Builder    verifiedMessageBuilder = new Verified.Builder();
 
-    verifiedMessageBuilder.setNullMessage(ByteString.copyFrom(nullMessage));
-    verifiedMessageBuilder.setIdentityKey(ByteString.copyFrom(verifiedMessage.getIdentityKey().serialize()));
-    verifiedMessageBuilder.setDestinationAci(verifiedMessage.getDestination().getServiceId().toString());
+    verifiedMessageBuilder.nullMessage(ByteString.of(nullMessage));
+    verifiedMessageBuilder.identityKey(ByteString.of(verifiedMessage.getIdentityKey().serialize()));
+    verifiedMessageBuilder.destinationAci(verifiedMessage.getDestination().getServiceId().toString());
 
 
-    switch(verifiedMessage.getVerified()) {
-      case DEFAULT:    verifiedMessageBuilder.setState(Verified.State.DEFAULT);    break;
-      case VERIFIED:   verifiedMessageBuilder.setState(Verified.State.VERIFIED);   break;
-      case UNVERIFIED: verifiedMessageBuilder.setState(Verified.State.UNVERIFIED); break;
+    switch (verifiedMessage.getVerified()) {
+      case DEFAULT:    verifiedMessageBuilder.state(Verified.State.DEFAULT);    break;
+      case VERIFIED:   verifiedMessageBuilder.state(Verified.State.VERIFIED);   break;
+      case UNVERIFIED: verifiedMessageBuilder.state(Verified.State.UNVERIFIED); break;
       default:         throw new AssertionError("Unknown: " + verifiedMessage.getVerified());
     }
 
-    syncMessage.setVerified(verifiedMessageBuilder);
-    return container.setSyncMessage(syncMessage).build();
+    syncMessage.verified(verifiedMessageBuilder.build());
+    return container.syncMessage(syncMessage.build()).build();
   }
 
   private Content createRequestContent(SyncMessage.Request request) throws IOException {
@@ -1680,31 +1704,31 @@ public class SignalServiceMessageSender {
       throw new IOException("Sync requests should only be sent from a linked device");
     }
 
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder().setRequest(request);
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().request(request);
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createCallEventContent(SyncMessage.CallEvent proto) {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallEvent(proto);
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().callEvent(proto);
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createCallLinkUpdateContent(SyncMessage.CallLinkUpdate proto) {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallLinkUpdate(proto);
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().callLinkUpdate(proto);
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private Content createCallLogEventContent(SyncMessage.CallLogEvent proto) {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallLogEvent(proto);
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().callLogEvent(proto);
 
-    return container.setSyncMessage(builder).build();
+    return container.syncMessage(builder.build()).build();
   }
 
   private SyncMessage.Builder createSyncMessageBuilder() {
@@ -1712,21 +1736,20 @@ public class SignalServiceMessageSender {
     byte[]       padding = Util.getRandomLengthBytes(512);
     random.nextBytes(padding);
 
-    SyncMessage.Builder builder = SyncMessage.newBuilder();
-    builder.setPadding(ByteString.copyFrom(padding));
+    SyncMessage.Builder builder = new SyncMessage.Builder();
+    builder.padding(ByteString.of(padding));
 
     return builder;
   }
 
   private static GroupContextV2 createGroupContent(SignalServiceGroupV2 group) {
-    GroupContextV2.Builder builder = GroupContextV2.newBuilder()
-                                                   .setMasterKey(ByteString.copyFrom(group.getMasterKey().serialize()))
-                                                   .setRevision(group.getRevision());
-
+    GroupContextV2.Builder builder = new GroupContextV2.Builder()
+                                                       .masterKey(ByteString.of(group.getMasterKey().serialize()))
+                                                       .revision(group.getRevision());
 
     byte[] signedGroupChange = group.getSignedGroupChange();
     if (signedGroupChange != null && signedGroupChange.length <= 2048) {
-      builder.setGroupChange(ByteString.copyFrom(signedGroupChange));
+      builder.groupChange(ByteString.of(signedGroupChange));
     }
 
     return builder.build();
@@ -1736,90 +1759,94 @@ public class SignalServiceMessageSender {
     List<DataMessage.Contact> results = new LinkedList<>();
 
     for (SharedContact contact : contacts) {
-      DataMessage.Contact.Name.Builder nameBuilder    = DataMessage.Contact.Name.newBuilder();
+      DataMessage.Contact.Name.Builder nameBuilder = new DataMessage.Contact.Name.Builder();
 
-      if (contact.getName().getFamily().isPresent())  nameBuilder.setFamilyName(contact.getName().getFamily().get());
-      if (contact.getName().getGiven().isPresent())   nameBuilder.setGivenName(contact.getName().getGiven().get());
-      if (contact.getName().getMiddle().isPresent())  nameBuilder.setMiddleName(contact.getName().getMiddle().get());
-      if (contact.getName().getPrefix().isPresent())  nameBuilder.setPrefix(contact.getName().getPrefix().get());
-      if (contact.getName().getSuffix().isPresent())  nameBuilder.setSuffix(contact.getName().getSuffix().get());
-      if (contact.getName().getDisplay().isPresent()) nameBuilder.setDisplayName(contact.getName().getDisplay().get());
+      if (contact.getName().getFamily().isPresent())  nameBuilder.familyName(contact.getName().getFamily().get());
+      if (contact.getName().getGiven().isPresent())   nameBuilder.givenName(contact.getName().getGiven().get());
+      if (contact.getName().getMiddle().isPresent())  nameBuilder.middleName(contact.getName().getMiddle().get());
+      if (contact.getName().getPrefix().isPresent())  nameBuilder.prefix(contact.getName().getPrefix().get());
+      if (contact.getName().getSuffix().isPresent())  nameBuilder.suffix(contact.getName().getSuffix().get());
+      if (contact.getName().getDisplay().isPresent()) nameBuilder.displayName(contact.getName().getDisplay().get());
 
-      DataMessage.Contact.Builder contactBuilder = DataMessage.Contact.newBuilder()
-                                                                      .setName(nameBuilder);
+      DataMessage.Contact.Builder contactBuilder = new DataMessage.Contact.Builder().name(nameBuilder.build());
 
       if (contact.getAddress().isPresent()) {
+        List<DataMessage.Contact.PostalAddress> postalAddresses = new ArrayList<>(contact.getAddress().get().size());
         for (SharedContact.PostalAddress address : contact.getAddress().get()) {
-          DataMessage.Contact.PostalAddress.Builder addressBuilder = DataMessage.Contact.PostalAddress.newBuilder();
+          DataMessage.Contact.PostalAddress.Builder addressBuilder = new DataMessage.Contact.PostalAddress.Builder();
 
           switch (address.getType()) {
-            case HOME:   addressBuilder.setType(DataMessage.Contact.PostalAddress.Type.HOME); break;
-            case WORK:   addressBuilder.setType(DataMessage.Contact.PostalAddress.Type.WORK); break;
-            case CUSTOM: addressBuilder.setType(DataMessage.Contact.PostalAddress.Type.CUSTOM); break;
+            case HOME:   addressBuilder.type(DataMessage.Contact.PostalAddress.Type.HOME); break;
+            case WORK:   addressBuilder.type(DataMessage.Contact.PostalAddress.Type.WORK); break;
+            case CUSTOM: addressBuilder.type(DataMessage.Contact.PostalAddress.Type.CUSTOM); break;
             default:     throw new AssertionError("Unknown type: " + address.getType());
           }
 
-          if (address.getCity().isPresent())         addressBuilder.setCity(address.getCity().get());
-          if (address.getCountry().isPresent())      addressBuilder.setCountry(address.getCountry().get());
-          if (address.getLabel().isPresent())        addressBuilder.setLabel(address.getLabel().get());
-          if (address.getNeighborhood().isPresent()) addressBuilder.setNeighborhood(address.getNeighborhood().get());
-          if (address.getPobox().isPresent())        addressBuilder.setPobox(address.getPobox().get());
-          if (address.getPostcode().isPresent())     addressBuilder.setPostcode(address.getPostcode().get());
-          if (address.getRegion().isPresent())       addressBuilder.setRegion(address.getRegion().get());
-          if (address.getStreet().isPresent())       addressBuilder.setStreet(address.getStreet().get());
+          if (address.getCity().isPresent())         addressBuilder.city(address.getCity().get());
+          if (address.getCountry().isPresent())      addressBuilder.country(address.getCountry().get());
+          if (address.getLabel().isPresent())        addressBuilder.label(address.getLabel().get());
+          if (address.getNeighborhood().isPresent()) addressBuilder.neighborhood(address.getNeighborhood().get());
+          if (address.getPobox().isPresent())        addressBuilder.pobox(address.getPobox().get());
+          if (address.getPostcode().isPresent())     addressBuilder.postcode(address.getPostcode().get());
+          if (address.getRegion().isPresent())       addressBuilder.region(address.getRegion().get());
+          if (address.getStreet().isPresent())       addressBuilder.street(address.getStreet().get());
 
-          contactBuilder.addAddress(addressBuilder);
+          postalAddresses.add(addressBuilder.build());
         }
+        contactBuilder.address(postalAddresses);
       }
 
       if (contact.getEmail().isPresent()) {
+        List<DataMessage.Contact.Email> emails = new ArrayList<>(contact.getEmail().get().size());
         for (SharedContact.Email email : contact.getEmail().get()) {
-          DataMessage.Contact.Email.Builder emailBuilder = DataMessage.Contact.Email.newBuilder()
-                                                                                    .setValue(email.getValue());
+          DataMessage.Contact.Email.Builder emailBuilder = new DataMessage.Contact.Email.Builder().value_(email.getValue());
 
           switch (email.getType()) {
-            case HOME:   emailBuilder.setType(DataMessage.Contact.Email.Type.HOME);   break;
-            case WORK:   emailBuilder.setType(DataMessage.Contact.Email.Type.WORK);   break;
-            case MOBILE: emailBuilder.setType(DataMessage.Contact.Email.Type.MOBILE); break;
-            case CUSTOM: emailBuilder.setType(DataMessage.Contact.Email.Type.CUSTOM); break;
+            case HOME:   emailBuilder.type(DataMessage.Contact.Email.Type.HOME);   break;
+            case WORK:   emailBuilder.type(DataMessage.Contact.Email.Type.WORK);   break;
+            case MOBILE: emailBuilder.type(DataMessage.Contact.Email.Type.MOBILE); break;
+            case CUSTOM: emailBuilder.type(DataMessage.Contact.Email.Type.CUSTOM); break;
             default:     throw new AssertionError("Unknown type: " + email.getType());
           }
 
-          if (email.getLabel().isPresent()) emailBuilder.setLabel(email.getLabel().get());
+          if (email.getLabel().isPresent()) emailBuilder.label(email.getLabel().get());
 
-          contactBuilder.addEmail(emailBuilder);
+          emails.add(emailBuilder.build());
         }
+        contactBuilder.email(emails);
       }
 
       if (contact.getPhone().isPresent()) {
+        List<DataMessage.Contact.Phone> phones = new ArrayList<>(contact.getPhone().get().size());
         for (SharedContact.Phone phone : contact.getPhone().get()) {
-          DataMessage.Contact.Phone.Builder phoneBuilder = DataMessage.Contact.Phone.newBuilder()
-                                                                                    .setValue(phone.getValue());
+          DataMessage.Contact.Phone.Builder phoneBuilder = new DataMessage.Contact.Phone.Builder().value_(phone.getValue());
 
           switch (phone.getType()) {
-            case HOME:   phoneBuilder.setType(DataMessage.Contact.Phone.Type.HOME);   break;
-            case WORK:   phoneBuilder.setType(DataMessage.Contact.Phone.Type.WORK);   break;
-            case MOBILE: phoneBuilder.setType(DataMessage.Contact.Phone.Type.MOBILE); break;
-            case CUSTOM: phoneBuilder.setType(DataMessage.Contact.Phone.Type.CUSTOM); break;
+            case HOME:   phoneBuilder.type(DataMessage.Contact.Phone.Type.HOME);   break;
+            case WORK:   phoneBuilder.type(DataMessage.Contact.Phone.Type.WORK);   break;
+            case MOBILE: phoneBuilder.type(DataMessage.Contact.Phone.Type.MOBILE); break;
+            case CUSTOM: phoneBuilder.type(DataMessage.Contact.Phone.Type.CUSTOM); break;
             default:     throw new AssertionError("Unknown type: " + phone.getType());
           }
 
-          if (phone.getLabel().isPresent()) phoneBuilder.setLabel(phone.getLabel().get());
+          if (phone.getLabel().isPresent()) phoneBuilder.label(phone.getLabel().get());
 
-          contactBuilder.addNumber(phoneBuilder);
+          phones.add(phoneBuilder.build());
         }
+        contactBuilder.number(phones);
       }
 
       if (contact.getAvatar().isPresent()) {
         AttachmentPointer pointer = contact.getAvatar().get().getAttachment().isStream() ? createAttachmentPointer(contact.getAvatar().get().getAttachment().asStream())
                                                                                          : createAttachmentPointer(contact.getAvatar().get().getAttachment().asPointer());
-        contactBuilder.setAvatar(DataMessage.Contact.Avatar.newBuilder()
-                                                           .setAvatar(pointer)
-                                                           .setIsProfile(contact.getAvatar().get().isProfile()));
+        contactBuilder.avatar(new DataMessage.Contact.Avatar.Builder()
+                                                            .avatar(pointer)
+                                                            .isProfile(contact.getAvatar().get().isProfile())
+                                                            .build());
       }
 
       if (contact.getOrganization().isPresent()) {
-        contactBuilder.setOrganization(contact.getOrganization().get());
+        contactBuilder.organization(contact.getOrganization().get());
       }
 
       results.add(contactBuilder.build());
@@ -1983,10 +2010,10 @@ public class SignalServiceMessageSender {
       try {
         OutgoingPushMessageList messages = getEncryptedMessages(recipient, unidentifiedAccess, timestamp, content, online, urgent, story);
 
-        if (content.getContent().isPresent() && content.getContent().get().getSyncMessage() != null && content.getContent().get().getSyncMessage().hasSent()) {
+        if (content.getContent().isPresent() && content.getContent().get().syncMessage != null && content.getContent().get().syncMessage.sent != null) {
           Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a sent sync message to devices: " + messages.getDevices());
-        } else if (content.getContent().isPresent() && content.getContent().get().hasSenderKeyDistributionMessage()) {
-          Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a SKDM to " + messages.getDestination() + " for devices: " + messages.getDevices() + (content.getContent().get().hasDataMessage() ? " (it's piggy-backing on a DataMessage)" : ""));
+        } else if (content.getContent().isPresent() && content.getContent().get().senderKeyDistributionMessage != null) {
+          Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a SKDM to " + messages.getDestination() + " for devices: " + messages.getDevices() + (content.getContent().get().dataMessage != null ? " (it's piggy-backing on a DataMessage)" : ""));
         }
 
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
@@ -2162,7 +2189,7 @@ public class SignalServiceMessageSender {
 
       byte[] ciphertext;
       try {
-        ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, senderCertificate, content.toByteArray(), contentHint, groupId);
+        ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, senderCertificate, content.encode(), contentHint, groupId);
       } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
         throw new UntrustedIdentityException("Untrusted during group encrypt", e.getName(), e.getUntrustedIdentity());
       }
@@ -2298,56 +2325,56 @@ public class SignalServiceMessageSender {
   }
 
   private TextAttachment createTextAttachment(SignalServiceTextAttachment attachment) throws IOException {
-    TextAttachment.Builder builder = TextAttachment.newBuilder();
+    TextAttachment.Builder builder = new TextAttachment.Builder();
 
     if (attachment.getStyle().isPresent()) {
       switch (attachment.getStyle().get()) {
         case DEFAULT:
-          builder.setTextStyle(TextAttachment.Style.DEFAULT);
+          builder.textStyle(TextAttachment.Style.DEFAULT);
           break;
         case REGULAR:
-          builder.setTextStyle(TextAttachment.Style.REGULAR);
+          builder.textStyle(TextAttachment.Style.REGULAR);
           break;
         case BOLD:
-          builder.setTextStyle(TextAttachment.Style.BOLD);
+          builder.textStyle(TextAttachment.Style.BOLD);
           break;
         case SERIF:
-          builder.setTextStyle(TextAttachment.Style.SERIF);
+          builder.textStyle(TextAttachment.Style.SERIF);
           break;
         case SCRIPT:
-          builder.setTextStyle(TextAttachment.Style.SCRIPT);
+          builder.textStyle(TextAttachment.Style.SCRIPT);
           break;
         case CONDENSED:
-          builder.setTextStyle(TextAttachment.Style.CONDENSED);
+          builder.textStyle(TextAttachment.Style.CONDENSED);
           break;
         default:
           throw new AssertionError("Unknown type: " + attachment.getStyle().get());
       }
     }
 
-    TextAttachment.Gradient.Builder gradientBuilder = TextAttachment.Gradient.newBuilder();
+    TextAttachment.Gradient.Builder gradientBuilder = new TextAttachment.Gradient.Builder();
 
     if (attachment.getBackgroundGradient().isPresent()) {
       SignalServiceTextAttachment.Gradient gradient = attachment.getBackgroundGradient().get();
 
-      if (gradient.getAngle().isPresent()) gradientBuilder.setAngle(gradient.getAngle().get());
+      if (gradient.getAngle().isPresent()) gradientBuilder.angle(gradient.getAngle().get());
 
       if (!gradient.getColors().isEmpty()) {
-        gradientBuilder.setStartColor(gradient.getColors().get(0));
-        gradientBuilder.setEndColor(gradient.getColors().get(gradient.getColors().size() - 1));
+        gradientBuilder.startColor(gradient.getColors().get(0));
+        gradientBuilder.endColor(gradient.getColors().get(gradient.getColors().size() - 1));
       }
 
-      gradientBuilder.addAllColors(gradient.getColors());
-      gradientBuilder.addAllPositions(gradient.getPositions());
+      gradientBuilder.colors = gradient.getColors();
+      gradientBuilder.positions = gradient.getPositions();
 
-      builder.setGradient(gradientBuilder.build());
+      builder.gradient(gradientBuilder.build());
     }
 
-    if (attachment.getText().isPresent())                builder.setText(attachment.getText().get());
-    if (attachment.getTextForegroundColor().isPresent()) builder.setTextForegroundColor(attachment.getTextForegroundColor().get());
-    if (attachment.getTextBackgroundColor().isPresent()) builder.setTextBackgroundColor(attachment.getTextBackgroundColor().get());
-    if (attachment.getPreview().isPresent())             builder.setPreview(createPreview(attachment.getPreview().get()));
-    if (attachment.getBackgroundColor().isPresent())     builder.setColor(attachment.getBackgroundColor().get());
+    if (attachment.getText().isPresent())                builder.text(attachment.getText().get());
+    if (attachment.getTextForegroundColor().isPresent()) builder.textForegroundColor(attachment.getTextForegroundColor().get());
+    if (attachment.getTextBackgroundColor().isPresent()) builder.textBackgroundColor(attachment.getTextBackgroundColor().get());
+    if (attachment.getPreview().isPresent())             builder.preview(createPreview(attachment.getPreview().get()));
+    if (attachment.getBackgroundColor().isPresent())     builder.color(attachment.getBackgroundColor().get());
 
     return builder.build();
   }
@@ -2527,7 +2554,7 @@ public class SignalServiceMessageSender {
   }
 
   private Content enforceMaxContentSize(Content content) {
-    int size = content.toByteArray().length;
+    int size = content.encode().length;
 
     if (maxEnvelopeSize > 0 && size > maxEnvelopeSize) {
       throw new ContentTooLargeException(size);

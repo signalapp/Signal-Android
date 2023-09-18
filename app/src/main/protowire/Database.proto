@@ -40,7 +40,6 @@ message BadgeList {
     repeated Badge badges = 1;
 }
 
-
 import "SignalService.proto";
 import "DecryptedGroups.proto";
 
@@ -68,7 +67,7 @@ message AudioWaveFormData {
 message ProfileChangeDetails {
     message StringChange {
         string previous = 1;
-        string new      = 2;
+        string newValue = 2;
     }
 
     StringChange profileNameChange = 1;

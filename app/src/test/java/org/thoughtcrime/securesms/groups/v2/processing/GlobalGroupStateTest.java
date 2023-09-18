@@ -36,10 +36,10 @@ public final class GlobalGroupStateTest {
   }
 
   private static DecryptedGroup state(int revision) {
-    return DecryptedGroup.newBuilder().setRevision(revision).build();
+    return new DecryptedGroup.Builder().revision(revision).build();
   }
 
   private static DecryptedGroupChange change(int revision) {
-    return DecryptedGroupChange.newBuilder().setRevision(revision).build();
+    return new DecryptedGroupChange.Builder().revision(revision).build();
   }
 }

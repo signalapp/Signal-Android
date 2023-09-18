@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.RecipientAccessList
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.messages.SendMessageResult
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.Content
 
 /**
  * Stores a rolling buffer of all outgoing messages. Used for the retry logic required for sender key.
@@ -191,7 +191,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
       return -1
     }
 
-    val content: SignalServiceProtos.Content = results.first { it.isSuccess && it.success.content.isPresent }.success.content.get()
+    val content: Content = results.first { it.isSuccess && it.success.content.isPresent }.success.content.get()
 
     return insert(recipientDevices, sentTimestamp, content, contentHint, listOf(messageId), urgent)
   }
@@ -228,14 +228,14 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     return payloadId
   }
 
-  private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>, urgent: Boolean): Long {
+  private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: Content, contentHint: ContentHint, messageIds: List<MessageId>, urgent: Boolean): Long {
     val db = databaseHelper.signalWritableDatabase
 
     db.beginTransaction()
     try {
       val payloadValues = ContentValues().apply {
         put(MslPayloadTable.DATE_SENT, dateSent)
-        put(MslPayloadTable.CONTENT, content.toByteArray())
+        put(MslPayloadTable.CONTENT, content.encode())
         put(MslPayloadTable.CONTENT_HINT, contentHint.type)
         put(MslPayloadTable.URGENT, urgent.toInt())
       }
@@ -300,7 +300,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
           return MessageLogEntry(
             recipientId = RecipientId.from(CursorUtil.requireLong(entryCursor, MslRecipientTable.RECIPIENT_ID)),
             dateSent = CursorUtil.requireLong(entryCursor, MslPayloadTable.DATE_SENT),
-            content = SignalServiceProtos.Content.parseFrom(CursorUtil.requireBlob(entryCursor, MslPayloadTable.CONTENT)),
+            content = Content.ADAPTER.decode(CursorUtil.requireBlob(entryCursor, MslPayloadTable.CONTENT)),
             contentHint = ContentHint.fromType(CursorUtil.requireInt(entryCursor, MslPayloadTable.CONTENT_HINT)),
             urgent = entryCursor.requireBoolean(MslPayloadTable.URGENT),
             relatedMessages = messageIds

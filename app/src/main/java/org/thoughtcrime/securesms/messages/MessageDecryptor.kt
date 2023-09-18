@@ -60,9 +60,9 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.PniSignatureMessage
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import java.util.Optional
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit
@@ -103,7 +103,7 @@ object MessageDecryptor {
       return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
     }
 
-    if (destination == selfPni && envelope.hasSourceServiceId()) {
+    if (destination == selfPni && envelope.sourceServiceId != null) {
       Log.i(TAG, "${logPrefix(envelope)} Received a message at our PNI. Marking as needing a PNI signature.")
 
       val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId)
@@ -116,7 +116,7 @@ object MessageDecryptor {
       }
     }
 
-    if (destination == selfPni && !envelope.hasSourceServiceId()) {
+    if (destination == selfPni && envelope.sourceServiceId == null) {
       Log.w(TAG, "${logPrefix(envelope)} Got a sealed sender message to our PNI? Invalid message, ignoring.")
       return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
     }
@@ -143,7 +143,7 @@ object MessageDecryptor {
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 
-      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope in ${(endTimeNanos - startTimeNanos).nanoseconds.toDouble(DurationUnit.MILLISECONDS).roundedString(2)} ms  (GUID ${envelope.serverGuid}). Delivery latency: ${serverDeliveredTimestamp - envelope.serverTimestamp} ms, Urgent: ${envelope.urgent}")
+      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope in ${(endTimeNanos - startTimeNanos).nanoseconds.toDouble(DurationUnit.MILLISECONDS).roundedString(2)} ms  (GUID ${envelope.serverGuid}). Delivery latency: ${serverDeliveredTimestamp - envelope.serverTimestamp!!} ms, Urgent: ${envelope.urgent}")
 
       val validationResult: EnvelopeContentValidator.Result = EnvelopeContentValidator.validate(envelope, cipherResult.content)
 
@@ -163,17 +163,17 @@ object MessageDecryptor {
       }
 
       // Must handle SKDM's immediately, because subsequent decryptions could rely on it
-      if (cipherResult.content.hasSenderKeyDistributionMessage()) {
+      if (cipherResult.content.senderKeyDistributionMessage != null) {
         handleSenderKeyDistributionMessage(
           envelope,
           cipherResult.metadata.sourceServiceId,
           cipherResult.metadata.sourceDeviceId,
-          SenderKeyDistributionMessage(cipherResult.content.senderKeyDistributionMessage.toByteArray()),
+          SenderKeyDistributionMessage(cipherResult.content.senderKeyDistributionMessage!!.toByteArray()),
           bufferedProtocolStore.getAciStore()
         )
       }
 
-      if (cipherResult.content.hasPniSignatureMessage()) {
+      if (cipherResult.content.pniSignatureMessage != null) {
         if (cipherResult.metadata.sourceServiceId is ACI) {
           handlePniSignatureMessage(
             envelope,
@@ -181,19 +181,19 @@ object MessageDecryptor {
             cipherResult.metadata.sourceServiceId as ACI,
             cipherResult.metadata.sourceE164,
             cipherResult.metadata.sourceDeviceId,
-            cipherResult.content.pniSignatureMessage
+            cipherResult.content.pniSignatureMessage!!
           )
         } else {
           Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the sourceServiceId isn't an ACI!")
         }
-      } else if (cipherResult.content.hasPniSignatureMessage()) {
+      } else if (cipherResult.content.pniSignatureMessage != null) {
         Log.w(TAG, "${logPrefix(envelope)} Ignoring PNI signature because the feature flag is disabled!")
       }
 
       // TODO We can move this to the "message processing" stage once we give it access to the envelope. But for now it'll stay here.
-      if (envelope.hasReportingToken() && envelope.reportingToken != null && envelope.reportingToken.size() > 0) {
+      if (envelope.reportingToken != null && envelope.reportingToken!!.size > 0) {
         val sender = RecipientId.from(cipherResult.metadata.sourceServiceId)
-        SignalDatabase.recipients.setReportingToken(sender, envelope.reportingToken.toByteArray())
+        SignalDatabase.recipients.setReportingToken(sender, envelope.reportingToken!!.toByteArray())
       }
 
       Result.Success(envelope, serverDeliveredTimestamp, cipherResult.content, cipherResult.metadata, followUpOperations.toUnmodifiableList())
@@ -218,7 +218,7 @@ object MessageDecryptor {
 
             followUpOperations += FollowUpOperation {
               val sender: Recipient = Recipient.external(context, e.sender)
-              AutomaticSessionResetJob(sender.id, e.senderDevice, envelope.timestamp)
+              AutomaticSessionResetJob(sender.id, e.senderDevice, envelope.timestamp!!)
             }
 
             Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
@@ -281,7 +281,7 @@ object MessageDecryptor {
       Log.w(TAG, "${logPrefix(envelope)} Decryption error for a sync message! Enqueuing a session reset job.")
 
       followUpOperations += FollowUpOperation {
-        AutomaticSessionResetJob(sender.id, senderDevice, envelope.timestamp)
+        AutomaticSessionResetJob(sender.id, senderDevice, envelope.timestamp!!)
       }
 
       return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
@@ -309,7 +309,7 @@ object MessageDecryptor {
             SignalDatabase.threads.getOrCreateThreadIdFor(sender)
           }
 
-          ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.id, senderDevice, envelope.timestamp, receivedTimestamp, threadId)
+          ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.id, senderDevice, envelope.timestamp!!, receivedTimestamp, threadId)
           ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary()
           null
         }
@@ -334,7 +334,7 @@ object MessageDecryptor {
   private fun handlePniSignatureMessage(envelope: Envelope, protocolStore: BufferedProtocolStore, aci: ACI, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {
     Log.i(TAG, "${logPrefix(envelope, aci)} Processing PniSignatureMessage")
 
-    val pni: PNI = PNI.parseOrThrow(pniSignatureMessage.pni.toByteArray())
+    val pni: PNI = PNI.parseOrThrow(pniSignatureMessage.pni!!.toByteArray())
 
     if (SignalDatabase.recipients.isAssociated(aci, pni)) {
       Log.i(TAG, "${logPrefix(envelope, aci)}[handlePniSignatureMessage] ACI ($aci) and PNI ($pni) are already associated.")
@@ -356,7 +356,7 @@ object MessageDecryptor {
       return
     }
 
-    if (pniIdentity.verifyAlternateIdentity(aciIdentity, pniSignatureMessage.signature.toByteArray())) {
+    if (pniIdentity.verifyAlternateIdentity(aciIdentity, pniSignatureMessage.signature!!.toByteArray())) {
       Log.i(TAG, "${logPrefix(envelope, aci)}[validatePniSignature] PNI signature is valid. Associating ACI ($aci) with PNI ($pni)")
       SignalDatabase.recipients.getAndPossiblyMergePnpVerified(aci, pni, e164)
     } else {
@@ -387,28 +387,28 @@ object MessageDecryptor {
   }
 
   private fun logPrefix(envelope: Envelope): String {
-    return logPrefix(envelope.timestamp, envelope.sourceServiceId ?: "<sealed>", envelope.sourceDevice)
+    return logPrefix(envelope.timestamp!!, envelope.sourceServiceId ?: "<sealed>", envelope.sourceDevice)
   }
 
   private fun logPrefix(envelope: Envelope, sender: ServiceId): String {
-    return logPrefix(envelope.timestamp, sender.toString(), envelope.sourceDevice)
+    return logPrefix(envelope.timestamp!!, sender.toString(), envelope.sourceDevice)
   }
 
   private fun logPrefix(envelope: Envelope, cipherResult: SignalServiceCipherResult): String {
-    return logPrefix(envelope.timestamp, cipherResult.metadata.sourceServiceId.toString(), cipherResult.metadata.sourceDeviceId)
+    return logPrefix(envelope.timestamp!!, cipherResult.metadata.sourceServiceId.toString(), cipherResult.metadata.sourceDeviceId)
   }
 
   private fun logPrefix(envelope: Envelope, exception: ProtocolException): String {
     return if (exception.sender != null) {
-      logPrefix(envelope.timestamp, exception.sender, exception.senderDevice)
+      logPrefix(envelope.timestamp!!, exception.sender, exception.senderDevice)
     } else {
-      logPrefix(envelope.timestamp, envelope.sourceServiceId, envelope.sourceDevice)
+      logPrefix(envelope.timestamp!!, envelope.sourceServiceId, envelope.sourceDevice)
     }
   }
 
-  private fun logPrefix(timestamp: Long, sender: String?, deviceId: Int): String {
+  private fun logPrefix(timestamp: Long, sender: String?, deviceId: Int?): String {
     val senderString = sender ?: "null"
-    return "[$timestamp] $senderString:$deviceId |"
+    return "[$timestamp] $senderString:${deviceId ?: 0} |"
   }
 
   private fun buildSendRetryReceiptJob(envelope: Envelope, protocolException: ProtocolException, sender: Recipient): SendRetryReceiptJob {
@@ -419,11 +419,11 @@ object MessageDecryptor {
       originalContent = protocolException.unidentifiedSenderMessageContent.get().content
       envelopeType = protocolException.unidentifiedSenderMessageContent.get().type
     } else {
-      originalContent = envelope.content.toByteArray()
-      envelopeType = envelope.type.number.toCiphertextMessageType()
+      originalContent = envelope.content!!.toByteArray()
+      envelopeType = envelope.type!!.value.toCiphertextMessageType()
     }
 
-    val decryptionErrorMessage: DecryptionErrorMessage = DecryptionErrorMessage.forOriginalMessage(originalContent, envelopeType, envelope.timestamp, protocolException.senderDevice)
+    val decryptionErrorMessage: DecryptionErrorMessage = DecryptionErrorMessage.forOriginalMessage(originalContent, envelopeType, envelope.timestamp!!, protocolException.senderDevice)
     val groupId: GroupId? = protocolException.parseGroupId(envelope)
     return SendRetryReceiptJob(sender.id, Optional.ofNullable(groupId), decryptionErrorMessage)
   }
@@ -443,10 +443,10 @@ object MessageDecryptor {
 
   private fun Int.toCiphertextMessageType(): Int {
     return when (this) {
-      Envelope.Type.CIPHERTEXT_VALUE -> CiphertextMessage.WHISPER_TYPE
-      Envelope.Type.PREKEY_BUNDLE_VALUE -> CiphertextMessage.PREKEY_TYPE
-      Envelope.Type.UNIDENTIFIED_SENDER_VALUE -> CiphertextMessage.SENDERKEY_TYPE
-      Envelope.Type.PLAINTEXT_CONTENT_VALUE -> CiphertextMessage.PLAINTEXT_CONTENT_TYPE
+      Envelope.Type.CIPHERTEXT.value -> CiphertextMessage.WHISPER_TYPE
+      Envelope.Type.PREKEY_BUNDLE.value -> CiphertextMessage.PREKEY_TYPE
+      Envelope.Type.UNIDENTIFIED_SENDER.value -> CiphertextMessage.SENDERKEY_TYPE
+      Envelope.Type.PLAINTEXT_CONTENT.value -> CiphertextMessage.PLAINTEXT_CONTENT_TYPE
       else -> CiphertextMessage.WHISPER_TYPE
     }
   }

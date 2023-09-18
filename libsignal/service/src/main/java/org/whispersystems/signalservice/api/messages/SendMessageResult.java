@@ -5,7 +5,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
+import org.whispersystems.signalservice.internal.push.Content;
 
 import java.util.List;
 import java.util.Optional;

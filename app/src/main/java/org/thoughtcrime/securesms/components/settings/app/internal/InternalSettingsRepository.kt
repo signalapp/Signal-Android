@@ -32,7 +32,7 @@ class InternalSettingsRepository(context: Context) {
       val title = "Release Note Title"
       val bodyText = "Release note body. Aren't I awesome?"
       val body = "$title\n\n$bodyText"
-      val bodyRangeList = BodyRangeList.newBuilder()
+      val bodyRangeList = BodyRangeList.Builder()
         .addStyle(BodyRangeList.BodyRange.Style.BOLD, 0, title.length)
 
       val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId!!

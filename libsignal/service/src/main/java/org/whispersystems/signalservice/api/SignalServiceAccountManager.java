@@ -61,6 +61,7 @@ import org.whispersystems.signalservice.internal.push.BackupAuthCheckRequest;
 import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse;
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
+import org.whispersystems.signalservice.internal.push.PaymentAddress;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.ProvisionMessage;
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion;
@@ -68,7 +69,6 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
@@ -730,7 +730,7 @@ public class SignalServiceAccountManager {
                                               String name,
                                               String about,
                                               String aboutEmoji,
-                                              Optional<SignalServiceProtos.PaymentAddress> paymentsAddress,
+                                              Optional<PaymentAddress> paymentsAddress,
                                               AvatarUploadParams avatar,
                                               List<String> visibleBadgeIds)
       throws IOException
@@ -741,7 +741,7 @@ public class SignalServiceAccountManager {
     byte[]            ciphertextName              = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
     byte[]            ciphertextAbout             = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
     byte[]            ciphertextEmoji             = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
-    byte[]            ciphertextMobileCoinAddress = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.toByteArray(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
+    byte[]            ciphertextMobileCoinAddress = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.encode(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
     ProfileAvatarData profileAvatarData           = null;
 
     if (avatar.stream != null && !avatar.keepTheSame) {

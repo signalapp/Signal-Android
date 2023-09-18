@@ -9,8 +9,7 @@ import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import app.cash.exhaustive.Exhaustive
-import com.google.protobuf.ByteString
-import com.google.protobuf.InvalidProtocolBufferException
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Bitmask
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
@@ -814,7 +813,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     updateExtras(recipientId) {
-      it.setHideStory(insert.shouldHideStory())
+      it.hideStory(insert.shouldHideStory())
     }
 
     threadDatabase.applyStorageSyncUpdate(recipientId, insert)
@@ -871,7 +870,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     updateExtras(recipientId) {
-      it.setHideStory(update.new.shouldHideStory())
+      it.hideStory(update.new.shouldHideStory())
     }
 
     threads.applyStorageSyncUpdate(recipientId, update.new)
@@ -910,8 +909,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     Log.i(TAG, "Creating restore placeholder for $groupId")
     val createdId = groups.create(
       masterKey,
-      DecryptedGroup.newBuilder()
-        .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+      DecryptedGroup.Builder()
+        .revision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
         .build()
     )
 
@@ -921,7 +920,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     groups.setShowAsStoryState(groupId, insert.storySendMode.toShowAsStoryState())
     updateExtras(recipient.id) {
-      it.setHideStory(insert.shouldHideStory())
+      it.hideStory(insert.shouldHideStory())
     }
 
     Log.i(TAG, "Scheduling request for latest group info for $groupId")
@@ -943,7 +942,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val recipient = Recipient.externalGroupExact(groupId)
 
     updateExtras(recipient.id) {
-      it.setHideStory(update.new.shouldHideStory())
+      it.hideStory(update.new.shouldHideStory())
     }
 
     groups.setShowAsStoryState(groupId, update.new.storySendMode.toShowAsStoryState())
@@ -1222,7 +1221,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       Log.d(TAG, "No recipients utilizing updated chat color.")
     } else {
       val values = ContentValues(2).apply {
-        put(CHAT_COLORS, chatColors.serialize().toByteArray())
+        put(CHAT_COLORS, chatColors.serialize().encode())
         put(CUSTOM_CHAT_COLORS_ID, chatColors.id.longValue)
       }
 
@@ -1313,7 +1312,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setColor(id: RecipientId, color: ChatColors) {
     val values = ContentValues().apply {
-      put(CHAT_COLORS, color.serialize().toByteArray())
+      put(CHAT_COLORS, color.serialize().encode())
       put(CUSTOM_CHAT_COLORS_ID, color.id.longValue)
     }
     if (update(id, values)) {
@@ -1427,7 +1426,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setLastSessionResetTime(id: RecipientId, lastResetTime: DeviceLastResetTime) {
     val values = ContentValues(1).apply {
-      put(LAST_SESSION_RESET, lastResetTime.toByteArray())
+      put(LAST_SESSION_RESET, lastResetTime.encode())
     }
     update(id, values)
   }
@@ -1438,28 +1437,25 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         return try {
           val serialized = cursor.requireBlob(LAST_SESSION_RESET)
           if (serialized != null) {
-            DeviceLastResetTime.parseFrom(serialized)
+            DeviceLastResetTime.ADAPTER.decode(serialized)
           } else {
-            DeviceLastResetTime.newBuilder().build()
+            DeviceLastResetTime()
           }
-        } catch (e: InvalidProtocolBufferException) {
+        } catch (e: IOException) {
           Log.w(TAG, e)
-          DeviceLastResetTime.newBuilder().build()
+          DeviceLastResetTime()
         }
       }
     }
 
-    return DeviceLastResetTime.newBuilder().build()
+    return DeviceLastResetTime()
   }
 
   fun setBadges(id: RecipientId, badges: List<Badge>) {
-    val badgeListBuilder = BadgeList.newBuilder()
-    for (badge in badges) {
-      badgeListBuilder.addBadges(toDatabaseBadge(badge))
-    }
+    val badgeList = BadgeList(badges = badges.map { toDatabaseBadge(it) })
 
     val values = ContentValues(1).apply {
-      put(BADGES, badgeListBuilder.build().toByteArray())
+      put(BADGES, badgeList.encode())
     }
 
     if (update(id, values)) {
@@ -1568,12 +1564,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   ): Boolean {
     val selection = "$ID = ? AND $PROFILE_KEY = ?"
     val args = arrayOf(id.serialize(), Base64.encodeBytes(profileKey.serialize()))
-    val columnData = ExpiringProfileKeyCredentialColumnData.newBuilder()
-      .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-      .setExpiringProfileKeyCredential(ByteString.copyFrom(expiringProfileKeyCredential.serialize()))
+    val columnData = ExpiringProfileKeyCredentialColumnData.Builder()
+      .profileKey(profileKey.serialize().toByteString())
+      .expiringProfileKeyCredential(expiringProfileKeyCredential.serialize().toByteString())
       .build()
     val values = ContentValues(1).apply {
-      put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(columnData.toByteArray()))
+      put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(columnData.encode()))
     }
     val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values)
 
@@ -1850,9 +1846,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   private fun setWallpaper(id: RecipientId, wallpaper: Wallpaper?) {
     val existingWallpaperUri = getWallpaperUri(id)
     val values = ContentValues().apply {
-      put(WALLPAPER, wallpaper?.toByteArray())
-      if (wallpaper != null && wallpaper.hasFile()) {
-        put(WALLPAPER_URI, wallpaper.file.uri)
+      put(WALLPAPER, wallpaper?.encode())
+      if (wallpaper?.file_ != null) {
+        put(WALLPAPER_URI, wallpaper.file_.uri)
       } else {
         putNull(WALLPAPER_URI)
       }
@@ -1869,8 +1865,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setDimWallpaperInDarkTheme(id: RecipientId, enabled: Boolean) {
     val wallpaper = getWallpaper(id) ?: throw IllegalStateException("No wallpaper set for $id")
-    val updated = wallpaper.toBuilder()
-      .setDimLevelInDarkTheme(if (enabled) ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME else 0f)
+    val updated = wallpaper.newBuilder()
+      .dimLevelInDarkTheme(if (enabled) ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME else 0f)
       .build()
 
     setWallpaper(id, updated)
@@ -1882,8 +1878,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         val raw = cursor.requireBlob(WALLPAPER)
         return if (raw != null) {
           try {
-            Wallpaper.parseFrom(raw)
-          } catch (e: InvalidProtocolBufferException) {
+            Wallpaper.ADAPTER.decode(raw)
+          } catch (e: IOException) {
             null
           }
         } else {
@@ -1898,8 +1894,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   private fun getWallpaperUri(id: RecipientId): Uri? {
     val wallpaper = getWallpaper(id)
 
-    return if (wallpaper != null && wallpaper.hasFile()) {
-      Uri.parse(wallpaper.file.uri)
+    return if (wallpaper != null && wallpaper.file_ != null) {
+      Uri.parse(wallpaper.file_.uri)
     } else {
       null
     }
@@ -2046,13 +2042,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun setHideStory(id: RecipientId, hideStory: Boolean) {
-    updateExtras(id) { it.setHideStory(hideStory) }
+    updateExtras(id) { it.hideStory(hideStory) }
     rotateStorageId(id)
     StorageSyncHelper.scheduleSyncForDataChange()
   }
 
   fun updateLastStoryViewTimestamp(id: RecipientId) {
-    updateExtras(id) { it.setLastStoryView(System.currentTimeMillis()) }
+    updateExtras(id) { it.lastStoryView(System.currentTimeMillis()) }
   }
 
   fun clearUsernameIfExists(username: String) {
@@ -2329,10 +2325,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         is PnpOperation.SetPni -> {
           affectedIds.add(operation.recipientId)
         }
+
         is PnpOperation.Merge -> {
           oldIds.add(operation.secondaryId)
           affectedIds.add(operation.primaryId)
         }
+
         is PnpOperation.SessionSwitchoverInsert -> {}
         is PnpOperation.ChangeNumberInsert -> changedNumberId = operation.recipientId
       }
@@ -2364,6 +2362,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             .where("$ID = ?", operation.recipientId)
             .run()
         }
+
         is PnpOperation.RemovePni -> {
           writableDatabase
             .update(TABLE_NAME)
@@ -2371,6 +2370,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             .where("$ID = ?", operation.recipientId)
             .run()
         }
+
         is PnpOperation.SetAci -> {
           writableDatabase
             .update(TABLE_NAME)
@@ -2382,6 +2382,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             .where("$ID = ?", operation.recipientId)
             .run()
         }
+
         is PnpOperation.SetE164 -> {
           writableDatabase
             .update(TABLE_NAME)
@@ -2389,6 +2390,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             .where("$ID = ?", operation.recipientId)
             .run()
         }
+
         is PnpOperation.SetPni -> {
           writableDatabase
             .update(TABLE_NAME)
@@ -2406,20 +2408,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             .where("$ID = ?", operation.recipientId)
             .run()
         }
+
         is PnpOperation.Merge -> {
           val mergeResult: MergeResult = merge(operation.primaryId, operation.secondaryId, inputPni)
           hadThreadMerge = hadThreadMerge || mergeResult.neededThreadMerge
         }
+
         is PnpOperation.SessionSwitchoverInsert -> {
           if (hadThreadMerge) {
             Log.d(TAG, "Skipping SSE insert because we already had a thread merge event.")
           } else {
             val threadId: Long? = threads.getThreadIdFor(operation.recipientId)
             if (threadId != null) {
-              val event = SessionSwitchoverEvent
-                .newBuilder()
-                .setE164(operation.e164 ?: "")
-                .build()
+              val event = SessionSwitchoverEvent(e164 = operation.e164 ?: "")
               try {
                 SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
               } catch (e: Exception) {
@@ -2471,6 +2472,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             }
           }
         }
+
         is PnpOperation.ChangeNumberInsert -> {
           if (changeSet.id is PnpIdResolver.PnpNoopId) {
             SignalDatabase.messages.insertNumberChangeMessages(changeSet.id.recipientId)
@@ -2485,6 +2487,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       is PnpIdResolver.PnpNoopId -> {
         changeSet.id.recipientId
       }
+
       is PnpIdResolver.PnpInsert -> {
         val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForNewUser(changeSet.id.e164, changeSet.id.pni, changeSet.id.aci))
         RecipientId.from(id)
@@ -3094,8 +3097,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           val serializedChatColors = cursor.requireBlob(CHAT_COLORS)
           var chatColors: ChatColors? = if (serializedChatColors != null) {
             try {
-              forChatColor(forLongValue(customChatColorsId), ChatColor.parseFrom(serializedChatColors))
-            } catch (e: InvalidProtocolBufferException) {
+              forChatColor(forLongValue(customChatColorsId), ChatColor.ADAPTER.decode(serializedChatColors))
+            } catch (e: IOException) {
               null
             }
           } else {
@@ -3117,7 +3120,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           }
 
           val contentValues = ContentValues().apply {
-            put(CHAT_COLORS, chatColors.serialize().toByteArray())
+            put(CHAT_COLORS, chatColors.serialize().encode())
             put(CUSTOM_CHAT_COLORS_ID, chatColors.id.longValue)
           }
           db.update(TABLE_NAME, contentValues, "$ID = ?", arrayOf(id.toString()))
@@ -3604,7 +3607,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun manuallyShowAvatar(recipientId: RecipientId) {
-    updateExtras(recipientId) { b: RecipientExtras.Builder -> b.setManuallyShownAvatar(true) }
+    updateExtras(recipientId) { b: RecipientExtras.Builder -> b.manuallyShownAvatar(true) }
   }
 
   fun getCapabilities(id: RecipientId): RecipientRecord.Capabilities? {
@@ -3629,8 +3632,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       db.query(TABLE_NAME, arrayOf(ID, EXTRAS), ID_WHERE, SqlUtil.buildArgs(recipientId), null, null, null).use { cursor ->
         if (cursor.moveToNext()) {
           val state = getRecipientExtras(cursor)
-          val builder = if (state != null) state.toBuilder() else RecipientExtras.newBuilder()
-          val updatedState = updater.apply(builder).build().toByteArray()
+          val builder = state?.newBuilder() ?: RecipientExtras.Builder()
+          val updatedState = updater.apply(builder).build().encode()
           val values = ContentValues(1).apply {
             put(EXTRAS, updatedState)
           }
@@ -3782,7 +3785,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     // Thread Merge Event (remaps happen inside ThreadTable#merge)
     if (threadMerge.neededMerge) {
-      val mergeEvent: ThreadMergeEvent.Builder = ThreadMergeEvent.newBuilder()
+      val mergeEvent: ThreadMergeEvent.Builder = ThreadMergeEvent.Builder()
 
       if (secondaryRecord.e164 != null) {
         mergeEvent.previousE164 = secondaryRecord.e164
@@ -3807,7 +3810,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       CALL_VIBRATE to if (primaryRecord.callVibrateState != VibrateState.DEFAULT) primaryRecord.callVibrateState.id else secondaryRecord.callVibrateState.id,
       NOTIFICATION_CHANNEL to (primaryRecord.notificationChannel ?: secondaryRecord.notificationChannel),
       MUTE_UNTIL to if (primaryRecord.muteUntil > 0) primaryRecord.muteUntil else secondaryRecord.muteUntil,
-      CHAT_COLORS to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.serialize().toByteArray() }.orElse(null),
+      CHAT_COLORS to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.serialize().encode() }.orElse(null),
       AVATAR_COLOR to primaryRecord.avatarColor.serialize(),
       CUSTOM_CHAT_COLORS_ID to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.id.longValue }.orElse(null),
       MESSAGE_EXPIRATION_TIME to if (primaryRecord.expireMessages > 0) primaryRecord.expireMessages else secondaryRecord.expireMessages,
@@ -4094,7 +4097,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       if (expiringProfileKeyCredentialString != null) {
         try {
           val columnDataBytes = Base64.decode(expiringProfileKeyCredentialString)
-          val columnData = ExpiringProfileKeyCredentialColumnData.parseFrom(columnDataBytes)
+          val columnData = ExpiringProfileKeyCredentialColumnData.ADAPTER.decode(columnDataBytes)
           if (Arrays.equals(columnData.profileKey.toByteArray(), profileKey)) {
             expiringProfileKeyCredential = ExpiringProfileKeyCredential(columnData.expiringProfileKeyCredential.toByteArray())
           } else {
@@ -4111,8 +4114,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val serializedWallpaper = cursor.requireBlob(WALLPAPER)
     val chatWallpaper: ChatWallpaper? = if (serializedWallpaper != null) {
       try {
-        ChatWallpaperFactory.create(Wallpaper.parseFrom(serializedWallpaper))
-      } catch (e: InvalidProtocolBufferException) {
+        ChatWallpaperFactory.create(Wallpaper.ADAPTER.decode(serializedWallpaper))
+      } catch (e: IOException) {
         Log.w(TAG, "Failed to parse wallpaper.", e)
         null
       }
@@ -4124,8 +4127,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val serializedChatColors = cursor.requireBlob(CHAT_COLORS)
     val chatColors: ChatColors? = if (serializedChatColors != null) {
       try {
-        forChatColor(forLongValue(customChatColorsId), ChatColor.parseFrom(serializedChatColors))
-      } catch (e: InvalidProtocolBufferException) {
+        forChatColor(forLongValue(customChatColorsId), ChatColor.ADAPTER.decode(serializedChatColors))
+      } catch (e: IOException) {
         Log.w(TAG, "Failed to parse chat colors.", e)
         null
       }
@@ -4206,15 +4209,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     var badgeList: BadgeList? = null
     if (serializedBadgeList != null) {
       try {
-        badgeList = BadgeList.parseFrom(serializedBadgeList)
-      } catch (e: InvalidProtocolBufferException) {
+        badgeList = BadgeList.ADAPTER.decode(serializedBadgeList)
+      } catch (e: IOException) {
         Log.w(TAG, e)
       }
     }
 
     val badges: List<Badge>
     if (badgeList != null) {
-      val protoBadges = badgeList.badgesList
+      val protoBadges = badgeList.badges
       badges = ArrayList(protoBadges.size)
       for (protoBadge in protoBadges) {
         badges.add(Badges.fromDatabaseBadge(protoBadge))
@@ -4254,10 +4257,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   private fun getRecipientExtras(cursor: Cursor): RecipientExtras? {
-    return cursor.optionalBlob(EXTRAS).map { b: ByteArray? ->
+    return cursor.optionalBlob(EXTRAS).map { b: ByteArray ->
       try {
-        RecipientExtras.parseFrom(b)
-      } catch (e: InvalidProtocolBufferException) {
+        RecipientExtras.ADAPTER.decode(b)
+      } catch (e: IOException) {
         Log.w(TAG, e)
         throw AssertionError(e)
       }

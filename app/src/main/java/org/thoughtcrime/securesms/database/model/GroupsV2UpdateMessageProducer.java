@@ -12,8 +12,6 @@ import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.core.util.StringUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
@@ -51,6 +49,8 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import okio.ByteString;
+
 final class GroupsV2UpdateMessageProducer {
 
   @NonNull private final  Context               context;
@@ -72,26 +72,32 @@ final class GroupsV2UpdateMessageProducer {
    * <p>
    * When the revision of the group is 0, the change is very noisy and only the editor is useful.
    */
-  UpdateDescription describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange decryptedGroupChange) {
-    Optional<DecryptedPendingMember> selfPending = DecryptedGroupUtil.findPendingByServiceId(group.getPendingMembersList(), selfIds.getAci());
-    if (!selfPending.isPresent() && selfIds.getPni() != null) {
-      selfPending = DecryptedGroupUtil.findPendingByServiceId(group.getPendingMembersList(), selfIds.getPni());
-    }
+  UpdateDescription describeNewGroup(@Nullable DecryptedGroup group, @Nullable DecryptedGroupChange decryptedGroupChange) {
+    Optional<DecryptedPendingMember> selfPending = Optional.empty();
 
-    if (selfPending.isPresent()) {
-      return updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, selfPending.get().getAddedByAci(), R.drawable.ic_update_group_add_16);
-    }
-
-    ByteString foundingMemberUuid = decryptedGroupChange.getEditorServiceIdBytes();
-    if (!foundingMemberUuid.isEmpty()) {
-      if (selfIds.matches(foundingMemberUuid)) {
-        return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), R.drawable.ic_update_group_16);
-      } else {
-        return updateDescription(R.string.MessageRecord_s_added_you, foundingMemberUuid, R.drawable.ic_update_group_add_16);
+    if (group != null) {
+      selfPending = DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfIds.getAci());
+      if (selfPending.isEmpty() && selfIds.getPni() != null) {
+        selfPending = DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfIds.getPni());
       }
     }
 
-    if (DecryptedGroupUtil.findMemberByAci(group.getMembersList(), selfIds.getAci()).isPresent()) {
+    if (selfPending.isPresent()) {
+      return updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, selfPending.get().addedByAci, R.drawable.ic_update_group_add_16);
+    }
+
+    if (decryptedGroupChange != null) {
+      ByteString foundingMemberUuid = decryptedGroupChange.editorServiceIdBytes;
+      if (foundingMemberUuid.size() > 0) {
+        if (selfIds.matches(foundingMemberUuid)) {
+          return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), R.drawable.ic_update_group_16);
+        } else {
+          return updateDescription(R.string.MessageRecord_s_added_you, foundingMemberUuid, R.drawable.ic_update_group_add_16);
+        }
+      }
+    }
+
+    if (group != null && DecryptedGroupUtil.findMemberByAci(group.members, selfIds.getAci()).isPresent()) {
       return updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16);
     } else {
       return updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
@@ -99,14 +105,14 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   List<UpdateDescription> describeChanges(@Nullable DecryptedGroup previousGroupState, @NonNull DecryptedGroupChange change) {
-    if (DecryptedGroup.getDefaultInstance().equals(previousGroupState)) {
+    if (new DecryptedGroup().equals(previousGroupState)) {
       previousGroupState = null;
     }
 
     List<UpdateDescription> updates = new LinkedList<>();
 
-    boolean   editorUnknown   = change.getEditorServiceIdBytes().isEmpty();
-    ServiceId editorServiceId = editorUnknown ? null : ServiceId.parseOrNull(change.getEditorServiceIdBytes());
+    boolean   editorUnknown   = change.editorServiceIdBytes.size() == 0;
+    ServiceId editorServiceId = editorUnknown ? null : ServiceId.parseOrNull(change.editorServiceIdBytes);
 
     if (editorServiceId == null || editorServiceId.isUnknown()) {
       editorUnknown = true;
@@ -172,12 +178,12 @@ final class GroupsV2UpdateMessageProducer {
    * Handles case of future protocol versions where we don't know what has changed.
    */
   private void describeUnknownChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
     if (editorIsYou) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_you_updated_group), R.drawable.ic_update_group_16));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_updated_group, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_updated_group, change.editorServiceIdBytes, R.drawable.ic_update_group_16));
     }
   }
 
@@ -186,25 +192,25 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeMemberAdditions(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    for (DecryptedMember member : change.getNewMembersList()) {
-      boolean newMemberIsYou = selfIds.matches(member.getAciBytes());
+    for (DecryptedMember member : change.newMembers) {
+      boolean newMemberIsYou = selfIds.matches(member.aciBytes);
 
       if (editorIsYou) {
         if (newMemberIsYou) {
           updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group_via_the_group_link), R.drawable.ic_update_group_accept_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_added_s, member.getAciBytes(), R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_added_s, member.aciBytes, R.drawable.ic_update_group_add_16));
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_add_16));
+          updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
         } else {
-          if (member.getAciBytes().equals(change.getEditorServiceIdBytes())) {
-            updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, member.getAciBytes(), R.drawable.ic_update_group_accept_16));
+          if (member.aciBytes.equals(change.editorServiceIdBytes)) {
+            updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, member.aciBytes, R.drawable.ic_update_group_accept_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_added_s, change.getEditorServiceIdBytes(), member.getAciBytes(), R.drawable.ic_update_group_add_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_added_s, change.editorServiceIdBytes, member.aciBytes, R.drawable.ic_update_group_add_16));
           }
         }
       }
@@ -212,21 +218,21 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeUnknownEditorMemberAdditions(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (DecryptedMember member : change.getNewMembersList()) {
-      boolean newMemberIsYou = selfIds.matches(member.getAciBytes());
+    for (DecryptedMember member : change.newMembers) {
+      boolean newMemberIsYou = selfIds.matches(member.aciBytes);
 
       if (newMemberIsYou) {
         updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, member.getAciBytes(), R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, member.aciBytes, R.drawable.ic_update_group_add_16));
       }
     }
   }
 
   private void describeMemberRemovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    for (ByteString member : change.getDeleteMembersList()) {
+    for (ByteString member : change.deleteMembers) {
       boolean removedMemberIsYou = selfIds.matches(member);
 
       if (editorIsYou) {
@@ -237,12 +243,12 @@ final class GroupsV2UpdateMessageProducer {
         }
       } else {
         if (removedMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_removed_you_from_the_group, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_remove_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_removed_you_from_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_remove_16));
         } else {
-          if (member.equals(change.getEditorServiceIdBytes())) {
+          if (member.equals(change.editorServiceIdBytes)) {
             updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, member, R.drawable.ic_update_group_leave_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_removed_s, change.getEditorServiceIdBytes(), member, R.drawable.ic_update_group_remove_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_removed_s, change.editorServiceIdBytes, member, R.drawable.ic_update_group_remove_16));
           }
         }
       }
@@ -250,7 +256,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeUnknownEditorMemberRemovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (ByteString member : change.getDeleteMembersList()) {
+    for (ByteString member : change.deleteMembers) {
       boolean removedMemberIsYou = selfIds.matches(member);
 
       if (removedMemberIsYou) {
@@ -262,29 +268,29 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeModifyMemberRoles(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    for (DecryptedModifyMemberRole roleChange : change.getModifyMemberRolesList()) {
-      boolean changedMemberIsYou = selfIds.matches(roleChange.getAciBytes());
-      if (roleChange.getRole() == Member.Role.ADMINISTRATOR) {
+    for (DecryptedModifyMemberRole roleChange : change.modifyMemberRoles) {
+      boolean changedMemberIsYou = selfIds.matches(roleChange.aciBytes);
+      if (roleChange.role == Member.Role.ADMINISTRATOR) {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, roleChange.getAciBytes(), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
         } else {
           if (changedMemberIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_s_made_you_an_admin, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_made_you_an_admin, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_made_s_an_admin, change.getEditorServiceIdBytes(), roleChange.getAciBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_made_s_an_admin, change.editorServiceIdBytes, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
 
           }
         }
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_revoked_admin_privileges_from_s, roleChange.getAciBytes(), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_revoked_admin_privileges_from_s, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
         } else {
           if (changedMemberIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_admin_privileges, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_admin_privileges, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_revoked_admin_privileges_from_s, change.getEditorServiceIdBytes(), roleChange.getAciBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_revoked_admin_privileges_from_s, change.editorServiceIdBytes, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
           }
         }
       }
@@ -292,37 +298,37 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeUnknownEditorModifyMemberRoles(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (DecryptedModifyMemberRole roleChange : change.getModifyMemberRolesList()) {
-      boolean changedMemberIsYou = selfIds.matches(roleChange.getAciBytes());
+    for (DecryptedModifyMemberRole roleChange : change.modifyMemberRoles) {
+      boolean changedMemberIsYou = selfIds.matches(roleChange.aciBytes);
 
-      if (roleChange.getRole() == Member.Role.ADMINISTRATOR) {
+      if (roleChange.role == Member.Role.ADMINISTRATOR) {
         if (changedMemberIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_now_an_admin), R.drawable.ic_update_group_role_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_is_now_an_admin, roleChange.getAciBytes(), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_is_now_an_admin, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
         }
       } else {
         if (changedMemberIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_an_admin), R.drawable.ic_update_group_role_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_an_admin, roleChange.getAciBytes(), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_an_admin, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
         }
       }
     }
   }
 
   private void describeInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou       = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou       = selfIds.matches(change.editorServiceIdBytes);
     int     notYouInviteCount = 0;
 
-    for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
-      boolean newMemberIsYou = selfIds.matches(invitee.getServiceIdBytes());
+    for (DecryptedPendingMember invitee : change.newPendingMembers) {
+      boolean newMemberIsYou = selfIds.matches(invitee.serviceIdBytes);
 
       if (newMemberIsYou) {
-        updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_add_16));
+        updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, invitee.getServiceIdBytes(), R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, invitee.serviceIdBytes, R.drawable.ic_update_group_add_16));
         } else {
           notYouInviteCount++;
         }
@@ -330,23 +336,23 @@ final class GroupsV2UpdateMessageProducer {
     }
 
     if (notYouInviteCount > 0) {
-      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, notYouInviteCount, change.getEditorServiceIdBytes(), notYouInviteCount, R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, notYouInviteCount, change.editorServiceIdBytes, notYouInviteCount, R.drawable.ic_update_group_add_16));
     }
   }
 
   private void describeUnknownEditorInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     int notYouInviteCount = 0;
 
-    for (DecryptedPendingMember invitee : change.getNewPendingMembersList()) {
-      boolean newMemberIsYou = selfIds.matches(invitee.getServiceIdBytes());
+    for (DecryptedPendingMember invitee : change.newPendingMembers) {
+      boolean newMemberIsYou = selfIds.matches(invitee.serviceIdBytes);
 
       if (newMemberIsYou) {
-        UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.getAddedByAci());
+        UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.addedByAci);
 
         if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
           updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group), R.drawable.ic_update_group_add_16));
         } else {
-          updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, invitee.getAddedByAci(), R.drawable.ic_update_group_add_16));
+          updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, invitee.addedByAci, R.drawable.ic_update_group_add_16));
         }
       } else {
         notYouInviteCount++;
@@ -359,19 +365,19 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRevokedInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou     = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou     = selfIds.matches(change.editorServiceIdBytes);
     int     notDeclineCount = 0;
 
-    for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
-      boolean decline = invitee.getServiceIdBytes().equals(change.getEditorServiceIdBytes());
+    for (DecryptedPendingMemberRemoval invitee : change.deletePendingMembers) {
+      boolean decline = invitee.serviceIdBytes.equals(change.editorServiceIdBytes);
       if (decline) {
         if (editorIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
         } else {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
         }
-      } else if (selfIds.matches(invitee.getServiceIdBytes())) {
-        updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_decline_16));
+      } else if (selfIds.matches(invitee.serviceIdBytes)) {
+        updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_decline_16));
       } else {
         notDeclineCount++;
       }
@@ -381,7 +387,7 @@ final class GroupsV2UpdateMessageProducer {
       if (editorIsYou) {
         updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_you_revoked_invites, notDeclineCount, notDeclineCount), R.drawable.ic_update_group_decline_16));
       } else {
-        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notDeclineCount, change.getEditorServiceIdBytes(), notDeclineCount, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notDeclineCount, change.editorServiceIdBytes, notDeclineCount, R.drawable.ic_update_group_decline_16));
       }
     }
   }
@@ -389,8 +395,8 @@ final class GroupsV2UpdateMessageProducer {
   private void describeUnknownEditorRevokedInvitations(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     int notDeclineCount = 0;
 
-    for (DecryptedPendingMemberRemoval invitee : change.getDeletePendingMembersList()) {
-      boolean inviteeWasYou = selfIds.matches(invitee.getServiceIdBytes());
+    for (DecryptedPendingMemberRemoval invitee : change.deletePendingMembers) {
+      boolean inviteeWasYou = selfIds.matches(invitee.serviceIdBytes);
 
       if (inviteeWasYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
@@ -405,10 +411,10 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describePromotePending(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
-      ByteString aci            = newMember.getAciBytes();
+    for (DecryptedMember newMember : change.promotePendingMembers) {
+      ByteString aci            = newMember.aciBytes;
       boolean    newMemberIsYou = selfIds.matches(aci);
 
       if (editorIsYou) {
@@ -419,12 +425,12 @@ final class GroupsV2UpdateMessageProducer {
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
         } else {
-          if (aci.equals(change.getEditorServiceIdBytes())) {
+          if (aci.equals(change.editorServiceIdBytes)) {
             updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, aci, R.drawable.ic_update_group_accept_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.getEditorServiceIdBytes(), aci, R.drawable.ic_update_group_add_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.editorServiceIdBytes, aci, R.drawable.ic_update_group_add_16));
           }
         }
       }
@@ -432,8 +438,8 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeUnknownEditorPromotePending(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
-      ByteString aci            = newMember.getAciBytes();
+    for (DecryptedMember newMember : change.promotePendingMembers) {
+      ByteString aci            = newMember.aciBytes;
       boolean    newMemberIsYou = selfIds.matches(aci);
 
       if (newMemberIsYou) {
@@ -445,116 +451,116 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.hasNewTitle()) {
-      String newTitle = StringUtil.isolateBidi(change.getNewTitle().getValue());
+    if (change.newTitle != null) {
+      String newTitle = StringUtil.isolateBidi(change.newTitle.value_);
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_name_to_s, change.getEditorServiceIdBytes(), newTitle, R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_name_to_s, change.editorServiceIdBytes, newTitle, R.drawable.ic_update_group_name_16));
       }
     }
   }
 
   private void describeNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.hasNewDescription()) {
+    if (change.newDescription != null) {
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), R.drawable.ic_update_group_name_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, change.editorServiceIdBytes, R.drawable.ic_update_group_name_16));
       }
     }
   }
 
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.hasNewTitle()) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.getNewTitle().getValue())), R.drawable.ic_update_group_name_16));
+    if (change.newTitle != null) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.newTitle.value_)), R.drawable.ic_update_group_name_16));
     }
   }
 
   private void describeUnknownEditorNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.hasNewDescription()) {
+    if (change.newDescription != null) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_description_has_changed), R.drawable.ic_update_group_name_16));
     }
   }
 
   private void describeNewAvatar(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.hasNewAvatar()) {
+    if (change.newAvatar != null) {
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_avatar), R.drawable.ic_update_group_avatar_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_avatar, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_avatar_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_avatar, change.editorServiceIdBytes, R.drawable.ic_update_group_avatar_16));
       }
     }
   }
 
   private void describeUnknownEditorNewAvatar(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.hasNewAvatar()) {
+    if (change.newAvatar != null) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_group_avatar_has_been_changed), R.drawable.ic_update_group_avatar_16));
     }
   }
 
   void describeNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.hasNewTimer()) {
-      String time = ExpirationUtil.getExpirationDisplayValue(context, change.getNewTimer().getDuration());
+    if (change.newTimer != null) {
+      String time = ExpirationUtil.getExpirationDisplayValue(context, change.newTimer.duration);
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, change.getEditorServiceIdBytes(), time, R.drawable.ic_update_timer_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, change.editorServiceIdBytes, time, R.drawable.ic_update_timer_16));
       }
     }
   }
 
   private void describeUnknownEditorNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.hasNewTimer()) {
-      String time = ExpirationUtil.getExpirationDisplayValue(context, change.getNewTimer().getDuration());
+    if (change.newTimer != null) {
+      String time = ExpirationUtil.getExpirationDisplayValue(context, change.newTimer.duration);
       updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));
     }
   }
 
   private void describeNewAttributeAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.getNewAttributeAccess() != AccessControl.AccessRequired.UNKNOWN) {
-      String accessLevel = GV2AccessLevelUtil.toString(context, change.getNewAttributeAccess());
+    if (change.newAttributeAccess != AccessControl.AccessRequired.UNKNOWN) {
+      String accessLevel = GV2AccessLevelUtil.toString(context, change.newAttributeAccess);
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_info_to_s, accessLevel), R.drawable.ic_update_group_role_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_info_to_s, change.getEditorServiceIdBytes(), accessLevel, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_info_to_s, change.editorServiceIdBytes, accessLevel, R.drawable.ic_update_group_role_16));
       }
     }
   }
 
   private void describeUnknownEditorNewAttributeAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.getNewAttributeAccess() != AccessControl.AccessRequired.UNKNOWN) {
-      String accessLevel = GV2AccessLevelUtil.toString(context, change.getNewAttributeAccess());
+    if (change.newAttributeAccess != AccessControl.AccessRequired.UNKNOWN) {
+      String accessLevel = GV2AccessLevelUtil.toString(context, change.newAttributeAccess);
       updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_info_has_been_changed_to_s, accessLevel), R.drawable.ic_update_group_role_16));
     }
   }
 
   private void describeNewMembershipAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.getNewMemberAccess() != AccessControl.AccessRequired.UNKNOWN) {
-      String accessLevel = GV2AccessLevelUtil.toString(context, change.getNewMemberAccess());
+    if (change.newMemberAccess != AccessControl.AccessRequired.UNKNOWN) {
+      String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberAccess);
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_membership_to_s, accessLevel), R.drawable.ic_update_group_role_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_membership_to_s, change.getEditorServiceIdBytes(), accessLevel, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_membership_to_s, change.editorServiceIdBytes, accessLevel, R.drawable.ic_update_group_role_16));
       }
     }
   }
 
   private void describeUnknownEditorNewMembershipAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.getNewMemberAccess() != AccessControl.AccessRequired.UNKNOWN) {
-      String accessLevel = GV2AccessLevelUtil.toString(context, change.getNewMemberAccess());
+    if (change.newMemberAccess != AccessControl.AccessRequired.UNKNOWN) {
+      String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberAccess);
       updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_membership_has_been_changed_to_s, accessLevel), R.drawable.ic_update_group_role_16));
     }
   }
@@ -565,14 +571,15 @@ final class GroupsV2UpdateMessageProducer {
   {
     AccessControl.AccessRequired previousAccessControl = null;
 
-    if (previousGroupState != null) {
-      previousAccessControl = previousGroupState.getAccessControl().getAddFromInviteLink();
+    if (previousGroupState != null && previousGroupState.accessControl != null) {
+      previousAccessControl = previousGroupState.accessControl.addFromInviteLink;
     }
 
-    boolean editorIsYou      = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou      = selfIds.matches(change.editorServiceIdBytes);
     boolean groupLinkEnabled = false;
 
-    switch (change.getNewInviteLinkAccess()) {
+    //noinspection EnhancedSwitchMigration
+    switch (change.newInviteLinkAccess) {
       case ANY:
         groupLinkEnabled = true;
         if (editorIsYou) {
@@ -583,9 +590,9 @@ final class GroupsV2UpdateMessageProducer {
           }
         } else {
           if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
           }
         }
         break;
@@ -599,9 +606,9 @@ final class GroupsV2UpdateMessageProducer {
           }
         } else {
           if (previousAccessControl == AccessControl.AccessRequired.ANY) {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
           }
         }
         break;
@@ -609,16 +616,16 @@ final class GroupsV2UpdateMessageProducer {
         if (editorIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_the_group_link), R.drawable.ic_update_group_role_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
         }
         break;
     }
 
-    if (!groupLinkEnabled && change.getNewInviteLinkPassword().size() > 0) {
+    if (!groupLinkEnabled && change.newInviteLinkPassword.size() > 0) {
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_reset_the_group_link), R.drawable.ic_update_group_role_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_reset_the_group_link, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_reset_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
       }
     }
   }
@@ -629,11 +636,12 @@ final class GroupsV2UpdateMessageProducer {
   {
     AccessControl.AccessRequired previousAccessControl = null;
 
-    if (previousGroupState != null) {
-      previousAccessControl = previousGroupState.getAccessControl().getAddFromInviteLink();
+    if (previousGroupState != null && previousGroupState.accessControl != null) {
+      previousAccessControl = previousGroupState.accessControl.addFromInviteLink;
     }
 
-    switch (change.getNewInviteLinkAccess()) {
+    //noinspection EnhancedSwitchMigration
+    switch (change.newInviteLinkAccess) {
       case ANY:
         if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off), R.drawable.ic_update_group_role_16));
@@ -653,69 +661,69 @@ final class GroupsV2UpdateMessageProducer {
         break;
     }
 
-    if (change.getNewInviteLinkPassword().size() > 0) {
+    if (change.newInviteLinkPassword.size() > 0) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_reset), R.drawable.ic_update_group_role_16));
     }
   }
 
   private void describeRequestingMembers(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    Set<ByteString> deleteRequestingUuids = new HashSet<>(change.getDeleteRequestingMembersList());
+    Set<ByteString> deleteRequestingUuids = new HashSet<>(change.deleteRequestingMembers);
 
-    for (DecryptedRequestingMember member : change.getNewRequestingMembersList()) {
-      boolean requestingMemberIsYou = selfIds.matches(member.getAciBytes());
+    for (DecryptedRequestingMember member : change.newRequestingMembers) {
+      boolean requestingMemberIsYou = selfIds.matches(member.aciBytes);
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), R.drawable.ic_update_group_16));
       } else {
-        if (deleteRequestingUuids.contains(member.getAciBytes())) {
+        if (deleteRequestingUuids.contains(member.aciBytes)) {
           updates.add(updateDescription(R.plurals.MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link,
-                                        change.getDeleteRequestingMembersCount(),
-                                        member.getAciBytes(),
-                                        change.getDeleteRequestingMembersCount(),
+                                        change.deleteRequestingMembers.size(),
+                                        member.aciBytes,
+                                        change.deleteRequestingMembers.size(),
                                         R.drawable.ic_update_group_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_requested_to_join_via_the_group_link, member.getAciBytes(), R.drawable.ic_update_group_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_requested_to_join_via_the_group_link, member.aciBytes, R.drawable.ic_update_group_16));
         }
       }
     }
   }
 
   private void describeRequestingMembersApprovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (DecryptedApproveMember requestingMember : change.getPromoteRequestingMembersList()) {
-      boolean requestingMemberIsYou = selfIds.matches(requestingMember.getAciBytes());
+    for (DecryptedApproveMember requestingMember : change.promoteRequestingMembers) {
+      boolean requestingMemberIsYou = selfIds.matches(requestingMember.aciBytes);
 
       if (requestingMemberIsYou) {
-        updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_accept_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_accept_16));
       } else {
-        boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+        boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requestingMember.getAciBytes(), R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requestingMember.aciBytes, R.drawable.ic_update_group_accept_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, change.getEditorServiceIdBytes(), requestingMember.getAciBytes(), R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, change.editorServiceIdBytes, requestingMember.aciBytes, R.drawable.ic_update_group_accept_16));
         }
       }
     }
   }
 
   private void describeUnknownEditorRequestingMembersApprovals(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (DecryptedApproveMember requestingMember : change.getPromoteRequestingMembersList()) {
-      boolean requestingMemberIsYou = selfIds.matches(requestingMember.getAciBytes());
+    for (DecryptedApproveMember requestingMember : change.promoteRequestingMembers) {
+      boolean requestingMemberIsYou = selfIds.matches(requestingMember.aciBytes);
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_approved), R.drawable.ic_update_group_accept_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_approved, requestingMember.getAciBytes(), R.drawable.ic_update_group_accept_16));
+        updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_approved, requestingMember.aciBytes, R.drawable.ic_update_group_accept_16));
       }
     }
   }
 
   private void describeRequestingMembersDeletes(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    Set<ByteString> newRequestingUuids = change.getNewRequestingMembersList().stream().map(DecryptedRequestingMember::getAciBytes).collect(Collectors.toSet());
+    Set<ByteString> newRequestingUuids = change.newRequestingMembers.stream().map(m -> m.aciBytes).collect(Collectors.toSet());
 
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    for (ByteString requestingMember : change.getDeleteRequestingMembersList()) {
+    for (ByteString requestingMember : change.deleteRequestingMembers) {
       if (newRequestingUuids.contains(requestingMember)) {
         continue;
       }
@@ -729,19 +737,19 @@ final class GroupsV2UpdateMessageProducer {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
         }
       } else {
-        boolean editorIsCanceledMember = change.getEditorServiceIdBytes().equals(requestingMember);
+        boolean editorIsCanceledMember = change.editorServiceIdBytes.equals(requestingMember);
 
         if (editorIsCanceledMember) {
           updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, requestingMember, R.drawable.ic_update_group_decline_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, change.getEditorServiceIdBytes(), requestingMember, R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, change.editorServiceIdBytes, requestingMember, R.drawable.ic_update_group_decline_16));
         }
       }
     }
   }
 
   private void describeUnknownEditorRequestingMembersDeletes(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (ByteString requestingMember : change.getDeleteRequestingMembersList()) {
+    for (ByteString requestingMember : change.deleteRequestingMembers) {
       boolean requestingMemberIsYou = selfIds.matches(requestingMember);
 
       if (requestingMemberIsYou) {
@@ -753,36 +761,36 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
+    if (change.newIsAnnouncementGroup == EnabledState.ENABLED) {
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_allow_only_admins_to_send, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_allow_only_admins_to_send, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
       }
-    } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
+    } else if (change.newIsAnnouncementGroup == EnabledState.DISABLED) {
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_allow_all_members_to_send, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_allow_all_members_to_send, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
       }
     }
   }
 
   private void describeUnknownEditorAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
+    if (change.newIsAnnouncementGroup == EnabledState.ENABLED) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
-    } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
+    } else if (change.newIsAnnouncementGroup == EnabledState.DISABLED) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
     }
   }
 
   private void describePromotePendingPniAci(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    boolean editorIsYou = selfIds.matches(change.getEditorServiceIdBytes());
+    boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
-    for (DecryptedMember newMember : change.getPromotePendingPniAciMembersList()) {
-      ByteString uuid           = newMember.getAciBytes();
+    for (DecryptedMember newMember : change.promotePendingPniAciMembers) {
+      ByteString uuid           = newMember.aciBytes;
       boolean    newMemberIsYou = selfIds.matches(uuid);
 
       if (editorIsYou) {
@@ -793,12 +801,12 @@ final class GroupsV2UpdateMessageProducer {
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.getEditorServiceIdBytes(), R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
         } else {
-          if (uuid.equals(change.getEditorServiceIdBytes())) {
+          if (uuid.equals(change.editorServiceIdBytes)) {
             updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, uuid, R.drawable.ic_update_group_accept_16));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.getEditorServiceIdBytes(), uuid, R.drawable.ic_update_group_add_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.editorServiceIdBytes, uuid, R.drawable.ic_update_group_add_16));
           }
         }
       }
@@ -806,8 +814,8 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeUnknownEditorPromotePendingPniAci(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
-    for (DecryptedMember newMember : change.getPromotePendingPniAciMembersList()) {
-      ByteString aci            = newMember.getAciBytes();
+    for (DecryptedMember newMember : change.promotePendingPniAciMembers) {
+      ByteString aci            = newMember.aciBytes;
       boolean    newMemberIsYou = selfIds.matches(aci);
 
       if (newMemberIsYou) {

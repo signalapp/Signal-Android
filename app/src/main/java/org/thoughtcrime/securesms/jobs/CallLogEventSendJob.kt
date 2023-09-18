@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import okio.ByteString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -13,7 +12,7 @@ import org.thoughtcrime.securesms.jobs.protos.CallLogEventSendJobData
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit
  */
 class CallLogEventSendJob private constructor(
   parameters: Parameters,
-  private val callLogEvent: SignalServiceProtos.SyncMessage.CallLogEvent
+  private val callLogEvent: SyncMessage.CallLogEvent
 ) : BaseJob(parameters) {
 
   companion object {
@@ -37,16 +36,15 @@ class CallLogEventSendJob private constructor(
         .setMaxAttempts(Parameters.UNLIMITED)
         .addConstraint(NetworkConstraint.KEY)
         .build(),
-      SignalServiceProtos.SyncMessage.CallLogEvent
-        .newBuilder()
-        .setTimestamp(timestamp)
-        .setType(SignalServiceProtos.SyncMessage.CallLogEvent.Type.CLEAR)
-        .build()
+      SyncMessage.CallLogEvent(
+        timestamp = timestamp,
+        type = SyncMessage.CallLogEvent.Type.CLEAR
+      )
     )
   }
 
   override fun serialize(): ByteArray = CallLogEventSendJobData.Builder()
-    .callLogEvent(ByteString.of(*callLogEvent.toByteArray()))
+    .callLogEvent(callLogEvent.encodeByteString())
     .build()
     .encode()
 
@@ -74,7 +72,7 @@ class CallLogEventSendJob private constructor(
     override fun create(parameters: Parameters, serializedData: ByteArray?): CallLogEventSendJob {
       return CallLogEventSendJob(
         parameters,
-        SignalServiceProtos.SyncMessage.CallLogEvent.parseFrom(
+        SyncMessage.CallLogEvent.ADAPTER.decode(
           CallLogEventSendJobData.ADAPTER.decode(serializedData!!).callLogEvent.toByteArray()
         )
       )

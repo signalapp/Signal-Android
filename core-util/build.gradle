@@ -1,6 +1,5 @@
 plugins {
     id 'signal-library'
-    id 'com.google.protobuf'
     id 'kotlin-kapt'
     id 'com.squareup.wire'
 }
@@ -9,30 +8,12 @@ android {
     namespace 'org.signal.core.util'
 }
 
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.18.0'
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option "lite"
-                }
-            }
-        }
-    }
-}
-
 dependencies {
-    implementation libs.google.protobuf.javalite
     implementation libs.androidx.sqlite
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.mockito.core
-    testImplementation (testLibs.robolectric.robolectric) {
-        exclude group: 'com.google.protobuf', module: 'protobuf-java'
-    }
+    testImplementation (testLibs.robolectric.robolectric)
 }
 
 wire {

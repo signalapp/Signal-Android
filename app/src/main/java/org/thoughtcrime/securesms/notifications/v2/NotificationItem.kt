@@ -168,7 +168,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
       .messageRanges
       .adjustBodyRanges(updated.bodyAdjustments)
       ?.run {
-        rangesList
+        ranges
           .filter { it.style == BodyRangeList.BodyRange.Style.SPOILER }
           .sortedBy { it.start }
           .reversed()

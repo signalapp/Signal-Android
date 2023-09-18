@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.protos.groups.Member;
@@ -20,6 +18,9 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.UUID;
 
+import okio.Buffer;
+import okio.ByteString;
+
 final class ProtoTestUtils {
 
   static ProfileKey randomProfileKey() {
@@ -37,7 +38,7 @@ final class ProtoTestUtils {
    */
   static ByteString encrypt(UUID uuid) {
     byte[] uuidBytes = UuidUtil.toByteArray(uuid);
-    return ByteString.copyFrom(Arrays.copyOf(uuidBytes, uuidBytes.length + 1));
+    return ByteString.of(Arrays.copyOf(uuidBytes, uuidBytes.length + 1));
   }
 
   /**
@@ -52,7 +53,7 @@ final class ProtoTestUtils {
     System.arraycopy(uuidBytes, 0, concat, 0, uuidBytes.length);
     System.arraycopy(profileKeyBytes, 0, concat, uuidBytes.length, profileKeyBytes.length);
 
-    return ByteString.copyFrom(concat);
+    return ByteString.of(concat);
   }
 
   /**
@@ -60,64 +61,68 @@ final class ProtoTestUtils {
    * equality assertions in these tests.
    */
   static ByteString presentation(ByteString uuid, ByteString profileKey) {
-    return uuid.concat(profileKey);
+    try (Buffer buffer = new Buffer()) {
+      buffer.write(uuid);
+      buffer.write(profileKey);
+      return buffer.readByteString();
+    }
   }
 
   static DecryptedModifyMemberRole promoteAdmin(UUID member) {
-    return DecryptedModifyMemberRole.newBuilder()
-                                    .setAciBytes(UuidUtil.toByteString(member))
-                                    .setRole(Member.Role.ADMINISTRATOR)
-                                    .build();
+    return new DecryptedModifyMemberRole.Builder()
+        .aciBytes(UuidUtil.toByteString(member))
+        .role(Member.Role.ADMINISTRATOR)
+        .build();
   }
 
   static DecryptedModifyMemberRole demoteAdmin(UUID member) {
-    return DecryptedModifyMemberRole.newBuilder()
-                                    .setAciBytes(UuidUtil.toByteString(member))
-                                    .setRole(Member.Role.DEFAULT)
-                                    .build();
+    return new DecryptedModifyMemberRole.Builder()
+        .aciBytes(UuidUtil.toByteString(member))
+        .role(Member.Role.DEFAULT)
+        .build();
   }
 
   static Member encryptedMember(UUID uuid, ProfileKey profileKey) {
-    return Member.newBuilder()
-                 .setPresentation(presentation(uuid, profileKey))
-                 .build();
+    return new Member.Builder()
+        .presentation(presentation(uuid, profileKey))
+        .build();
   }
 
   static RequestingMember encryptedRequestingMember(UUID uuid, ProfileKey profileKey) {
-    return RequestingMember.newBuilder()
-                           .setPresentation(presentation(uuid, profileKey))
-                           .build();
+    return new RequestingMember.Builder()
+        .presentation(presentation(uuid, profileKey))
+        .build();
   }
 
   static DecryptedMember member(UUID uuid) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(UuidUtil.toByteString(uuid))
-                          .setRole(Member.Role.DEFAULT)
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(UuidUtil.toByteString(uuid))
+        .role(Member.Role.DEFAULT)
+        .build();
   }
 
   static DecryptedMember member(UUID uuid, ByteString profileKey, int joinedAtRevision) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(UuidUtil.toByteString(uuid))
-                          .setRole(Member.Role.DEFAULT)
-                          .setJoinedAtRevision(joinedAtRevision)
-                          .setProfileKey(profileKey)
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(UuidUtil.toByteString(uuid))
+        .role(Member.Role.DEFAULT)
+        .joinedAtRevision(joinedAtRevision)
+        .profileKey(profileKey)
+        .build();
   }
 
   static DecryptedPendingMemberRemoval pendingMemberRemoval(UUID uuid) {
-    return DecryptedPendingMemberRemoval.newBuilder()
-                                        .setServiceIdBytes(UuidUtil.toByteString(uuid))
-                                        .setServiceIdCipherText(encrypt(uuid))
-                                        .build();
+    return new DecryptedPendingMemberRemoval.Builder()
+        .serviceIdBytes(UuidUtil.toByteString(uuid))
+        .serviceIdCipherText(encrypt(uuid))
+        .build();
   }
 
   static DecryptedPendingMember pendingMember(UUID uuid) {
-    return DecryptedPendingMember.newBuilder()
-                                 .setServiceIdBytes(UuidUtil.toByteString(uuid))
-                                 .setServiceIdCipherText(encrypt(uuid))
-                                 .setRole(Member.Role.DEFAULT)
-                                 .build();
+    return new DecryptedPendingMember.Builder()
+        .serviceIdBytes(UuidUtil.toByteString(uuid))
+        .serviceIdCipherText(encrypt(uuid))
+        .role(Member.Role.DEFAULT)
+        .build();
   }
 
   static DecryptedRequestingMember requestingMember(UUID uuid) {
@@ -125,16 +130,16 @@ final class ProtoTestUtils {
   }
 
   static DecryptedRequestingMember requestingMember(UUID uuid, ProfileKey profileKey) {
-    return DecryptedRequestingMember.newBuilder()
-                                    .setAciBytes(UuidUtil.toByteString(uuid))
-                                    .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-                                    .build();
+    return new DecryptedRequestingMember.Builder()
+        .aciBytes(UuidUtil.toByteString(uuid))
+        .profileKey(ByteString.of(profileKey.serialize()))
+        .build();
   }
 
   static DecryptedBannedMember bannedMember(UUID uuid) {
-    return DecryptedBannedMember.newBuilder()
-                                .setServiceIdBytes(UuidUtil.toByteString(uuid))
-                                .build();
+    return new DecryptedBannedMember.Builder()
+        .serviceIdBytes(UuidUtil.toByteString(uuid))
+        .build();
   }
 
   static DecryptedApproveMember approveMember(UUID uuid) {
@@ -146,10 +151,10 @@ final class ProtoTestUtils {
   }
 
   private static DecryptedApproveMember approve(UUID uuid, Member.Role role) {
-    return DecryptedApproveMember.newBuilder()
-                                 .setAciBytes(UuidUtil.toByteString(uuid))
-                                 .setRole(role)
-                                 .build();
+    return new DecryptedApproveMember.Builder()
+        .aciBytes(UuidUtil.toByteString(uuid))
+        .role(role)
+        .build();
   }
 
   static DecryptedMember member(UUID uuid, ProfileKey profileKey) {
@@ -157,19 +162,19 @@ final class ProtoTestUtils {
   }
 
   static DecryptedMember pendingPniAciMember(UUID uuid, UUID pni, ProfileKey profileKey) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(UuidUtil.toByteString(uuid))
-                          .setPniBytes(UuidUtil.toByteString(pni))
-                          .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(UuidUtil.toByteString(uuid))
+        .pniBytes(UuidUtil.toByteString(pni))
+        .profileKey(ByteString.of(profileKey.serialize()))
+        .build();
   }
 
   static DecryptedMember pendingPniAciMember(ByteString uuid, ByteString pni, ByteString profileKey) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(uuid)
-                          .setPniBytes(pni)
-                          .setProfileKey(profileKey)
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(uuid)
+        .pniBytes(pni)
+        .profileKey(profileKey)
+        .build();
   }
 
   static DecryptedMember admin(UUID uuid, ProfileKey profileKey) {
@@ -177,30 +182,30 @@ final class ProtoTestUtils {
   }
 
   static DecryptedMember admin(UUID uuid) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(UuidUtil.toByteString(uuid))
-                          .setRole(Member.Role.ADMINISTRATOR)
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(UuidUtil.toByteString(uuid))
+        .role(Member.Role.ADMINISTRATOR)
+        .build();
   }
 
   static DecryptedMember withProfileKey(DecryptedMember member, ProfileKey profileKey) {
-    return DecryptedMember.newBuilder(member)
-                          .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-                          .build();
+    return member.newBuilder()
+        .profileKey(ByteString.of(profileKey.serialize()))
+        .build();
   }
 
   static DecryptedMember asAdmin(DecryptedMember member) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(member.getAciBytes())
-                          .setRole(Member.Role.ADMINISTRATOR)
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(member.aciBytes)
+        .role(Member.Role.ADMINISTRATOR)
+        .build();
   }
 
   static DecryptedMember asMember(DecryptedMember member) {
-    return DecryptedMember.newBuilder()
-                          .setAciBytes(member.getAciBytes())
-                          .setRole(Member.Role.DEFAULT)
-                          .build();
+    return new DecryptedMember.Builder()
+        .aciBytes(member.aciBytes)
+        .role(Member.Role.DEFAULT)
+        .build();
   }
 
   public static ProfileKey newProfileKey() {

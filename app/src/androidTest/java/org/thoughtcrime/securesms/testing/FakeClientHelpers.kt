@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
+import okio.ByteString.Companion.toByteString
 import org.signal.libsignal.internal.Native
 import org.signal.libsignal.internal.NativeHandleGuard
 import org.signal.libsignal.metadata.certificate.CertificateValidator
@@ -9,15 +10,16 @@ import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.thoughtcrime.securesms.database.model.toProtoByteString
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import org.whispersystems.util.Base64
 import java.util.Optional
 import java.util.UUID
@@ -52,9 +54,9 @@ object FakeClientHelpers {
   }
 
   fun encryptedTextMessage(now: Long, message: String = "Test body message"): EnvelopeContent {
-    val content = SignalServiceProtos.Content.newBuilder().apply {
-      setDataMessage(
-        SignalServiceProtos.DataMessage.newBuilder().apply {
+    val content = Content.Builder().apply {
+      dataMessage(
+        DataMessage.Builder().buildWith {
           body = message
           timestamp = now
         }
@@ -64,16 +66,16 @@ object FakeClientHelpers {
   }
 
   fun OutgoingPushMessage.toEnvelope(timestamp: Long, destination: ServiceId): Envelope {
-    return Envelope.newBuilder()
-      .setType(Envelope.Type.valueOf(this.type))
-      .setSourceDevice(1)
-      .setTimestamp(timestamp)
-      .setServerTimestamp(timestamp + 1)
-      .setDestinationServiceId(destination.toString())
-      .setServerGuid(UUID.randomUUID().toString())
-      .setContent(Base64.decode(this.content).toProtoByteString())
-      .setUrgent(true)
-      .setStory(false)
+    return Envelope.Builder()
+      .type(Envelope.Type.fromValue(this.type))
+      .sourceDevice(1)
+      .timestamp(timestamp)
+      .serverTimestamp(timestamp + 1)
+      .destinationServiceId(destination.toString())
+      .serverGuid(UUID.randomUUID().toString())
+      .content(Base64.decode(this.content).toByteString())
+      .urgent(true)
+      .story(false)
       .build()
   }
 }

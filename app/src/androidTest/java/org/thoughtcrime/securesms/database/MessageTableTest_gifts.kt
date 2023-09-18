@@ -48,7 +48,7 @@ class MessageTableTest_gifts {
     val messageId = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val result = mms.setOutgoingGiftsRevealed(listOf(messageId))
@@ -62,7 +62,7 @@ class MessageTableTest_gifts {
     val messageId = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
     mms.setOutgoingGiftsRevealed(listOf(messageId))
 
@@ -76,13 +76,13 @@ class MessageTableTest_gifts {
     val messageId = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 2,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val result = mms.setOutgoingGiftsRevealed(listOf(messageId))
@@ -96,13 +96,13 @@ class MessageTableTest_gifts {
     val messageId = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val messageId2 = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 2,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val result = mms.setOutgoingGiftsRevealed(listOf(messageId, messageId2))
@@ -115,13 +115,13 @@ class MessageTableTest_gifts {
     val messageId = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val messageId2 = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 2,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     MmsHelper.insert(
@@ -140,13 +140,13 @@ class MessageTableTest_gifts {
     val messageId = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val messageId2 = MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 2,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val messageId3 = MmsHelper.insert(
@@ -165,13 +165,13 @@ class MessageTableTest_gifts {
     MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 1,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     MmsHelper.insert(
       recipient = Recipient.resolved(recipients[0]),
       sentTimeMillis = 2,
-      giftBadge = GiftBadge.getDefaultInstance()
+      giftBadge = GiftBadge()
     )
 
     val messageId3 = MmsHelper.insert(

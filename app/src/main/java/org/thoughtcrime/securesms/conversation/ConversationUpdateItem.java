@@ -454,7 +454,7 @@ public final class ConversationUpdateItem extends FrameLayout
       if (Util.hasItems(acis)) {
         if (acis.contains(SignalStore.account().requireAci())) {
           text = R.string.ConversationUpdateItem_return_to_call;
-        } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).getIsCallFull()) {
+        } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).isCallFull) {
           text = R.string.ConversationUpdateItem_call_is_full;
         } else {
           text = R.string.ConversationUpdateItem_join_call;

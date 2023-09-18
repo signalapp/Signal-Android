@@ -74,7 +74,7 @@ class StoryContextMenuTest {
     val expected = "Hello"
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.TEXT_STORY_WITH_REPLIES,
-      body = Base64.encodeBytes(StoryTextPost.newBuilder().setBody(expected).build().toByteArray())
+      body = Base64.encodeBytes(StoryTextPost.Builder().body(expected).build().encode())
     )
 
     // WHEN
@@ -93,7 +93,7 @@ class StoryContextMenuTest {
     val expected = "https://www.signal.org"
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.TEXT_STORY_WITH_REPLIES,
-      body = Base64.encodeBytes(StoryTextPost.newBuilder().build().toByteArray()),
+      body = Base64.encodeBytes(StoryTextPost.Builder().build().encode()),
       linkPreviews = listOf(LinkPreview(expected, "", "", 0L, Optional.empty()))
     )
 
@@ -115,7 +115,7 @@ class StoryContextMenuTest {
     val expected = "$text $url"
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.TEXT_STORY_WITH_REPLIES,
-      body = Base64.encodeBytes(StoryTextPost.newBuilder().setBody(text).build().toByteArray()),
+      body = Base64.encodeBytes(StoryTextPost.Builder().body(text).build().encode()),
       linkPreviews = listOf(LinkPreview(url, "", "", 0L, Optional.empty()))
     )
 

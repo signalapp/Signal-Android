@@ -8,8 +8,6 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.MessageLite;
 import com.squareup.wire.Message;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
@@ -1386,10 +1384,10 @@ public class PushServiceSocket {
   public AttachmentDigest uploadGroupV2Avatar(byte[] avatarCipherText, AvatarUploadAttributes uploadAttributes)
       throws IOException
   {
-    return uploadToCdn0(AVATAR_UPLOAD_PATH, uploadAttributes.getAcl(), uploadAttributes.getKey(),
-                       uploadAttributes.getPolicy(), uploadAttributes.getAlgorithm(),
-                       uploadAttributes.getCredential(), uploadAttributes.getDate(),
-                       uploadAttributes.getSignature(),
+    return uploadToCdn0(AVATAR_UPLOAD_PATH, uploadAttributes.acl, uploadAttributes.key,
+                       uploadAttributes.policy, uploadAttributes.algorithm,
+                       uploadAttributes.credential, uploadAttributes.date,
+                       uploadAttributes.signature,
                        new ByteArrayInputStream(avatarCipherText),
                        "application/octet-stream", avatarCipherText.length,
                        new NoCipherOutputStreamFactory(),
@@ -1904,11 +1902,6 @@ public class PushServiceSocket {
   private static RequestBody jsonRequestBody(String jsonBody) {
     return jsonBody != null ? RequestBody.create(MediaType.parse("application/json"), jsonBody)
                             : null;
-  }
-
-  private static RequestBody protobufRequestBody(MessageLite protobufBody) {
-    return protobufBody != null ? RequestBody.create(MediaType.parse("application/x-protobuf"), protobufBody.toByteArray())
-                                : null;
   }
 
   private static RequestBody protobufRequestBody(Message<?, ?> protobufBody) {
@@ -2620,7 +2613,7 @@ public class PushServiceSocket {
   }
 
   public Group getGroupsV2Group(GroupsV2AuthorizationString authorization)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException, MalformedResponseException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
     try (Response response = makeStorageRequest(authorization.toString(),
                                                 GROUPSV2_GROUP,
@@ -2628,12 +2621,12 @@ public class PushServiceSocket {
                                                 null,
                                                 GROUPS_V2_GET_CURRENT_HANDLER))
     {
-      return Group.parseFrom(readBodyBytes(response));
+      return Group.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
   public AvatarUploadAttributes getGroupsV2AvatarUploadForm(String authorization)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException, MalformedResponseException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
     try (Response response = makeStorageRequest(authorization,
                                                 GROUPSV2_AVATAR_REQUEST,
@@ -2641,12 +2634,12 @@ public class PushServiceSocket {
                                                 null,
                                                 NO_HANDLER))
     {
-      return AvatarUploadAttributes.parseFrom(readBodyBytes(response));
+      return AvatarUploadAttributes.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
   public GroupChange patchGroupsV2Group(GroupChange.Actions groupChange, String authorization, Optional<byte[]> groupLinkPassword)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException, MalformedResponseException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
     String path;
 
@@ -2662,7 +2655,7 @@ public class PushServiceSocket {
                                                 protobufRequestBody(groupChange),
                                                 GROUPS_V2_PATCH_RESPONSE_HANDLER))
     {
-      return GroupChange.parseFrom(readBodyBytes(response));
+      return GroupChange.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
@@ -2682,7 +2675,7 @@ public class PushServiceSocket {
 
       GroupChanges groupChanges;
       try (InputStream input = response.body().byteStream()) {
-        groupChanges = GroupChanges.parseFrom(input);
+        groupChanges = GroupChanges.ADAPTER.decode(input);
       } catch (IOException e) {
         throw new PushNetworkException(e);
       }
@@ -2705,7 +2698,7 @@ public class PushServiceSocket {
   }
 
   public GroupJoinInfo getGroupJoinInfo(Optional<byte[]> groupLinkPassword, GroupsV2AuthorizationString authorization)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException, MalformedResponseException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
     String passwordParam = groupLinkPassword.map(Base64UrlSafe::encodeBytesWithoutPadding).orElse("");
     try (Response response = makeStorageRequest(authorization.toString(),
@@ -2714,12 +2707,12 @@ public class PushServiceSocket {
                                                 null,
                                                 GROUPS_V2_GET_JOIN_INFO_HANDLER))
     {
-      return GroupJoinInfo.parseFrom(readBodyBytes(response));
+      return GroupJoinInfo.ADAPTER.decode(readBodyBytes(response));
     }
   }
 
   public GroupExternalCredential getGroupExternalCredential(GroupsV2AuthorizationString authorization)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException, MalformedResponseException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
     try (Response response = makeStorageRequest(authorization.toString(),
                                                 GROUPSV2_TOKEN,
@@ -2727,7 +2720,7 @@ public class PushServiceSocket {
                                                 null,
                                                 NO_HANDLER))
     {
-      return GroupExternalCredential.parseFrom(readBodyBytes(response));
+      return GroupExternalCredential.ADAPTER.decode(readBodyBytes(response));
     }
   }
 

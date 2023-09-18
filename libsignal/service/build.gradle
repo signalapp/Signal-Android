@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 apply plugin: 'java-library'
 apply plugin: 'org.jetbrains.kotlin.jvm'
 apply plugin: 'java-test-fixtures'
-apply plugin: 'com.google.protobuf'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'idea'
@@ -53,7 +52,6 @@ ktlint {
 }
 
 dependencies {
-    implementation libs.google.protobuf.javalite
     api libs.google.libphonenumber
     api libs.jackson.core
     api libs.jackson.module.kotlin
@@ -82,22 +80,9 @@ tasks.whenTaskAdded { task ->
     }
 }
 
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.18.0'
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option "lite"
-                }
-            }
-        }
-    }
-}
-
 wire {
+    protoLibrary = true
+
     kotlin {
         javaInterop = true
     }
@@ -105,11 +90,15 @@ wire {
     sourcePath {
         srcDir 'src/main/protowire'
     }
+
+    custom {
+        // Comes from wire-handler jar project
+        schemaHandlerFactoryClass = "org.signal.wire.Factory"
+    }
 }
 
 idea {
     module {
-        generatedSourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java")
         scopes.COMPILE.plus += [configurations.ideaTestFixturesImplementation]
     }
 }

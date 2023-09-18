@@ -9,6 +9,7 @@ import com.annimon.stream.Stream;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -52,7 +52,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.SyncMessage;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.io.IOException;
@@ -209,7 +209,7 @@ public class StorageSyncJob extends BaseJob {
       } else {
         Log.w(TAG, "Failed to decrypt remote storage! Requesting new keys from primary.", e);
         SignalStore.storageService().clearStorageKeyFromPrimary();
-        ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forRequest(RequestMessage.forType(SignalServiceProtos.SyncMessage.Request.Type.KEYS)), UnidentifiedAccessUtil.getAccessForSync(context));
+        ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forRequest(RequestMessage.forType(SyncMessage.Request.Type.KEYS)), UnidentifiedAccessUtil.getAccessForSync(context));
       }
     }
   }

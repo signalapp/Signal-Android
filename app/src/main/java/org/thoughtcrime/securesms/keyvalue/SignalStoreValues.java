@@ -3,12 +3,11 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.core.util.ByteSerializer;
 import org.signal.core.util.StringSerializer;
 import org.thoughtcrime.securesms.database.model.databaseprotos.SignalStoreList;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -69,14 +68,14 @@ abstract class SignalStoreValues {
     }
 
     try {
-      SignalStoreList signalStoreList = SignalStoreList.parseFrom(blob);
+      SignalStoreList signalStoreList = SignalStoreList.ADAPTER.decode(blob);
 
-      return signalStoreList.getContentsList()
+      return signalStoreList.contents
                             .stream()
                             .map(serializer::deserialize)
                             .collect(Collectors.toList());
 
-    } catch (InvalidProtocolBufferException e) {
+    } catch (IOException e) {
       throw new IllegalArgumentException(e);
     }
   }
@@ -110,12 +109,12 @@ abstract class SignalStoreValues {
   }
 
   <T> void putList(@NonNull String key, @NonNull List<T> values, @NonNull StringSerializer<T> serializer) {
-    putBlob(key, SignalStoreList.newBuilder()
-                                .addAllContents(values.stream()
-                                                      .map(serializer::serialize)
-                                                      .collect(Collectors.toList()))
-                                .build()
-                                .toByteArray());
+    putBlob(key, new SignalStoreList.Builder()
+                                    .contents(values.stream()
+                                                    .map(serializer::serialize)
+                                                    .collect(Collectors.toList()))
+                                    .build()
+                                    .encode());
   }
 
   void remove(@NonNull String key) {

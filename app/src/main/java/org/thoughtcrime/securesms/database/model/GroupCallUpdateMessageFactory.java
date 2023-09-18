@@ -12,8 +12,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +53,14 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.Spannabl
   }
 
   private @NonNull String createString() {
-    String time = DateUtils.getTimeString(context, Locale.getDefault(), groupCallUpdateDetails.getStartedCallTimestamp());
+    String time = DateUtils.getTimeString(context, Locale.getDefault(), groupCallUpdateDetails.startedCallTimestamp);
 
     switch (joinedMembers.size()) {
       case 0:
         return withTime ? context.getString(R.string.MessageRecord_group_call_s, time)
                         : context.getString(R.string.MessageRecord_group_call);
       case 1:
-        if (joinedMembers.get(0).toString().equals(groupCallUpdateDetails.getStartedCallUuid())) {
+        if (joinedMembers.get(0).toString().equals(groupCallUpdateDetails.startedCallUuid)) {
           if (Objects.equals(joinedMembers.get(0), selfAci)) {
             return withTime ? context.getString(R.string.MessageRecord_you_started_a_group_call_s, time)
                             : context.getString(R.string.MessageRecord_you_started_a_group_call);

@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -13,12 +11,17 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import okio.ByteString;
 
 public final class GroupChangeReconstruct {
 
@@ -26,48 +29,52 @@ public final class GroupChangeReconstruct {
    * Given a {@param fromState} and a {@param toState} creates a {@link DecryptedGroupChange} that would take the {@param fromState} to the {@param toState}.
    */
   public static DecryptedGroupChange reconstructGroupChange(DecryptedGroup fromState, DecryptedGroup toState) {
-    DecryptedGroupChange.Builder builder = DecryptedGroupChange.newBuilder()
-                                                               .setRevision(toState.getRevision());
+    DecryptedGroupChange.Builder builder = new DecryptedGroupChange.Builder()
+                                                                   .revision(toState.revision);
 
-    if (!fromState.getTitle().equals(toState.getTitle())) {
-      builder.setNewTitle(DecryptedString.newBuilder().setValue(toState.getTitle()));
+    if (!fromState.title.equals(toState.title)) {
+      builder.newTitle(new DecryptedString.Builder().value_(toState.title).build());
     }
 
-    if (!fromState.getDescription().equals(toState.getDescription())) {
-      builder.setNewDescription(DecryptedString.newBuilder().setValue(toState.getDescription()));
+    if (!fromState.description.equals(toState.description)) {
+      builder.newDescription(new DecryptedString.Builder().value_(toState.description).build());
     }
 
-    if (!fromState.getIsAnnouncementGroup().equals(toState.getIsAnnouncementGroup())) {
-      builder.setNewIsAnnouncementGroup(toState.getIsAnnouncementGroup());
+    if (!fromState.isAnnouncementGroup.equals(toState.isAnnouncementGroup)) {
+      builder.newIsAnnouncementGroup(toState.isAnnouncementGroup);
     }
 
-    if (!fromState.getAvatar().equals(toState.getAvatar())) {
-      builder.setNewAvatar(DecryptedString.newBuilder().setValue(toState.getAvatar()));
+    if (!fromState.avatar.equals(toState.avatar)) {
+      builder.newAvatar(new DecryptedString.Builder().value_(toState.avatar).build());
     }
 
-    if (!fromState.getDisappearingMessagesTimer().equals(toState.getDisappearingMessagesTimer())) {
-      builder.setNewTimer(toState.getDisappearingMessagesTimer());
+    if (!Objects.equals(fromState.disappearingMessagesTimer, toState.disappearingMessagesTimer)) {
+      builder.newTimer(toState.disappearingMessagesTimer);
     }
 
-    if (!fromState.getAccessControl().getAttributes().equals(toState.getAccessControl().getAttributes())) {
-      builder.setNewAttributeAccess(toState.getAccessControl().getAttributes());
+    if (fromState.accessControl == null || (toState.accessControl != null && !fromState.accessControl.attributes.equals(toState.accessControl.attributes))) {
+      if (toState.accessControl != null) {
+        builder.newAttributeAccess(toState.accessControl.attributes);
+      }
     }
 
-    if (!fromState.getAccessControl().getMembers().equals(toState.getAccessControl().getMembers())) {
-      builder.setNewMemberAccess(toState.getAccessControl().getMembers());
+    if (fromState.accessControl == null || (toState.accessControl != null && !fromState.accessControl.members.equals(toState.accessControl.members))) {
+      if (toState.accessControl != null) {
+        builder.newMemberAccess(toState.accessControl.members);
+      }
     }
 
-    Set<ByteString> fromStateMemberAcis = membersToSetOfAcis(fromState.getMembersList());
-    Set<ByteString> toStateMemberAcis   = membersToSetOfAcis(toState.getMembersList());
+    Set<ByteString> fromStateMemberAcis = membersToSetOfAcis(fromState.members);
+    Set<ByteString> toStateMemberAcis   = membersToSetOfAcis(toState.members);
 
-    Set<ByteString> pendingMembersListA = pendingMembersToSetOfServiceIds(fromState.getPendingMembersList());
-    Set<ByteString> pendingMembersListB = pendingMembersToSetOfServiceIds(toState.getPendingMembersList());
-    
-    Set<ByteString> requestingMembersListA = requestingMembersToSetOfAcis(fromState.getRequestingMembersList());
-    Set<ByteString> requestingMembersListB = requestingMembersToSetOfAcis(toState.getRequestingMembersList());
+    Set<ByteString> pendingMembersListA = pendingMembersToSetOfServiceIds(fromState.pendingMembers);
+    Set<ByteString> pendingMembersListB = pendingMembersToSetOfServiceIds(toState.pendingMembers);
 
-    Set<ByteString> bannedMembersListA = bannedMembersToSetOfServiceIds(fromState.getBannedMembersList());
-    Set<ByteString> bannedMembersListB = bannedMembersToSetOfServiceIds(toState.getBannedMembersList());
+    Set<ByteString> requestingMembersListA = requestingMembersToSetOfAcis(fromState.requestingMembers);
+    Set<ByteString> requestingMembersListB = requestingMembersToSetOfAcis(toState.requestingMembers);
+
+    Set<ByteString> bannedMembersListA = bannedMembersToSetOfServiceIds(fromState.bannedMembers);
+    Set<ByteString> bannedMembersListB = bannedMembersToSetOfServiceIds(toState.bannedMembers);
 
     Set<ByteString> removedPendingMemberServiceIds = subtract(pendingMembersListA, pendingMembersListB);
     Set<ByteString> removedRequestingMemberAcis    = subtract(requestingMembersListA, requestingMembersListB);
@@ -80,87 +87,87 @@ public final class GroupChangeReconstruct {
 
     Set<ByteString>                addedByInvitationAcis         = intersect(newMemberAcis, removedPendingMemberServiceIds);
     Set<ByteString>                addedByRequestApprovalAcis    = intersect(newMemberAcis, removedRequestingMemberAcis);
-    Set<DecryptedMember>           addedMembersByInvitation      = intersectByAci(toState.getMembersList(), addedByInvitationAcis);
-    Set<DecryptedMember>           addedMembersByRequestApproval = intersectByAci(toState.getMembersList(), addedByRequestApprovalAcis);
-    Set<DecryptedMember>           addedMembers                  = intersectByAci(toState.getMembersList(), subtract(newMemberAcis, addedByInvitationAcis, addedByRequestApprovalAcis));
-    Set<DecryptedPendingMember>    uninvitedMembers              = intersectPendingByServiceId(fromState.getPendingMembersList(), subtract(removedPendingMemberServiceIds, addedByInvitationAcis));
-    Set<DecryptedRequestingMember> rejectedRequestMembers        = intersectRequestingByAci(fromState.getRequestingMembersList(), subtract(removedRequestingMemberAcis, addedByRequestApprovalAcis));
+    Set<DecryptedMember>           addedMembersByInvitation      = intersectByAci(toState.members, addedByInvitationAcis);
+    Set<DecryptedMember>           addedMembersByRequestApproval = intersectByAci(toState.members, addedByRequestApprovalAcis);
+    Set<DecryptedMember>           addedMembers                  = intersectByAci(toState.members, subtract(newMemberAcis, addedByInvitationAcis, addedByRequestApprovalAcis));
+    Set<DecryptedPendingMember>    uninvitedMembers              = intersectPendingByServiceId(fromState.pendingMembers, subtract(removedPendingMemberServiceIds, addedByInvitationAcis));
+    Set<DecryptedRequestingMember> rejectedRequestMembers        = intersectRequestingByAci(fromState.requestingMembers, subtract(removedRequestingMemberAcis, addedByRequestApprovalAcis));
 
-    for (DecryptedMember member : intersectByAci(fromState.getMembersList(), removedMemberAcis)) {
-      builder.addDeleteMembers(member.getAciBytes());
-    }
 
-    for (DecryptedMember member : addedMembers) {
-      builder.addNewMembers(member);
-    }
+    builder.deleteMembers(intersectByAci(fromState.members, removedMemberAcis).stream()
+                                                                              .map(m -> m.aciBytes)
+                                                                              .collect(Collectors.toList()));
 
-    for (DecryptedMember member : addedMembersByInvitation) {
-      builder.addPromotePendingMembers(member);
-    }
+    builder.newMembers(new ArrayList<>(addedMembers));
 
-    for (DecryptedPendingMember uninvitedMember : uninvitedMembers) {
-      builder.addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                   .setServiceIdBytes(uninvitedMember.getServiceIdBytes())
-                                                                   .setServiceIdCipherText(uninvitedMember.getServiceIdCipherText()));
-    }
+    builder.promotePendingMembers(new ArrayList<>(addedMembersByInvitation));
 
-    for (DecryptedPendingMember invitedMember : intersectPendingByServiceId(toState.getPendingMembersList(), newPendingMemberServiceIds)) {
-      builder.addNewPendingMembers(invitedMember);
-    }
+    builder.deletePendingMembers(uninvitedMembers.stream()
+                                                 .map(uninvitedMember -> new DecryptedPendingMemberRemoval.Builder()
+                                                                                                          .serviceIdBytes(uninvitedMember.serviceIdBytes)
+                                                                                                          .serviceIdCipherText(uninvitedMember.serviceIdCipherText)
+                                                                                                          .build())
+                                                 .collect(Collectors.toList()));
+
+    builder.newPendingMembers(new ArrayList<>(intersectPendingByServiceId(toState.pendingMembers, newPendingMemberServiceIds)));
 
     Set<ByteString>                        consistentMemberAcis      = intersect(fromStateMemberAcis, toStateMemberAcis);
-    Set<DecryptedMember>                   changedMembers            = intersectByAci(subtract(toState.getMembersList(), fromState.getMembersList()), consistentMemberAcis);
-    Map<ByteString, DecryptedMember>       membersAciMap             = mapByAci(fromState.getMembersList());
-    Map<ByteString, DecryptedBannedMember> bannedMembersServiceIdMap = bannedServiceIdMap(toState.getBannedMembersList());
+    Set<DecryptedMember>                   changedMembers            = intersectByAci(subtract(toState.members, fromState.members), consistentMemberAcis);
+    Map<ByteString, DecryptedMember>       membersAciMap             = mapByAci(fromState.members);
+    Map<ByteString, DecryptedBannedMember> bannedMembersServiceIdMap = bannedServiceIdMap(toState.bannedMembers);
 
+    List<DecryptedModifyMemberRole> modifiedMemberRoles = new ArrayList<>(changedMembers.size());
+    List<DecryptedMember>           modifiedProfileKeys = new ArrayList<>(changedMembers.size());
     for (DecryptedMember newState : changedMembers) {
-      DecryptedMember oldState = membersAciMap.get(newState.getAciBytes());
-      if (oldState.getRole() != newState.getRole()) {
-        builder.addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                              .setAciBytes(newState.getAciBytes())
-                                                              .setRole(newState.getRole()));
+      DecryptedMember oldState = membersAciMap.get(newState.aciBytes);
+      if (oldState.role != newState.role) {
+        modifiedMemberRoles.add(new DecryptedModifyMemberRole.Builder()
+                                                             .aciBytes(newState.aciBytes)
+                                                             .role(newState.role)
+                                                             .build());
       }
 
-      if (!oldState.getProfileKey().equals(newState.getProfileKey())) {
-        builder.addModifiedProfileKeys(newState);
+      if (!oldState.profileKey.equals(newState.profileKey)) {
+        modifiedProfileKeys.add(newState);
+      }
+    }
+    builder.modifyMemberRoles(modifiedMemberRoles);
+    builder.modifiedProfileKeys(modifiedProfileKeys);
+
+    if (fromState.accessControl == null || (toState.accessControl != null && !fromState.accessControl.addFromInviteLink.equals(toState.accessControl.addFromInviteLink))) {
+      if (toState.accessControl != null) {
+        builder.newInviteLinkAccess(toState.accessControl.addFromInviteLink);
       }
     }
 
-    if (!fromState.getAccessControl().getAddFromInviteLink().equals(toState.getAccessControl().getAddFromInviteLink())) {
-      builder.setNewInviteLinkAccess(toState.getAccessControl().getAddFromInviteLink());
+    builder.newRequestingMembers(new ArrayList<>(intersectRequestingByAci(toState.requestingMembers, newRequestingMemberAcis)));
+
+    builder.deleteRequestingMembers(rejectedRequestMembers.stream().map(requestingMember -> requestingMember.aciBytes).collect(Collectors.toList()));
+
+    builder.promoteRequestingMembers(addedMembersByRequestApproval.stream()
+                                                                  .map(member -> new DecryptedApproveMember.Builder()
+                                                                                                           .aciBytes(member.aciBytes)
+                                                                                                           .role(member.role)
+                                                                                                           .build())
+                                                                  .collect(Collectors.toList()));
+
+    if (!fromState.inviteLinkPassword.equals(toState.inviteLinkPassword)) {
+      builder.newInviteLinkPassword(toState.inviteLinkPassword);
     }
 
-    for (DecryptedRequestingMember requestingMember : intersectRequestingByAci(toState.getRequestingMembersList(), newRequestingMemberAcis)) {
-      builder.addNewRequestingMembers(requestingMember);
-    }
-    
-    for (DecryptedRequestingMember requestingMember : rejectedRequestMembers) {
-      builder.addDeleteRequestingMembers(requestingMember.getAciBytes());
-    }
+    builder.deleteBannedMembers(removedBannedMemberServiceIds.stream().map(serviceIdBinary -> new DecryptedBannedMember.Builder().serviceIdBytes(serviceIdBinary).build()).collect(Collectors.toList()));
 
-    for (DecryptedMember member : addedMembersByRequestApproval) {
-      builder.addPromoteRequestingMembers(DecryptedApproveMember.newBuilder()
-                                                                .setAciBytes(member.getAciBytes())
-                                                                .setRole(member.getRole()));
-    }
+    builder.newBannedMembers(newBannedMemberServiceIds.stream()
+                                                      .map(serviceIdBinary -> {
+                                                        DecryptedBannedMember.Builder newBannedBuilder = new DecryptedBannedMember.Builder().serviceIdBytes(serviceIdBinary);
+                                                        DecryptedBannedMember         bannedMember     = bannedMembersServiceIdMap.get(serviceIdBinary);
+                                                        if (bannedMember != null) {
+                                                          newBannedBuilder.timestamp(bannedMember.timestamp);
+                                                        }
 
-    if (!fromState.getInviteLinkPassword().equals(toState.getInviteLinkPassword())) {
-      builder.setNewInviteLinkPassword(toState.getInviteLinkPassword());
-    }
-
-    for (ByteString serviceIdBinary : removedBannedMemberServiceIds) {
-      builder.addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setServiceIdBytes(serviceIdBinary).build());
-    }
-
-    for (ByteString serviceIdBinary : newBannedMemberServiceIds) {
-      DecryptedBannedMember.Builder newBannedBuilder = DecryptedBannedMember.newBuilder().setServiceIdBytes(serviceIdBinary);
-      DecryptedBannedMember         bannedMember     = bannedMembersServiceIdMap.get(serviceIdBinary);
-      if (bannedMember != null) {
-        newBannedBuilder.setTimestamp(bannedMember.getTimestamp());
-      }
-
-      builder.addNewBannedMembers(newBannedBuilder);
-    }
+                                                        return newBannedBuilder.build();
+                                                      })
+                                                      .collect(Collectors.toList()));
 
     return builder.build();
   }
@@ -168,7 +175,7 @@ public final class GroupChangeReconstruct {
   private static Map<ByteString, DecryptedMember> mapByAci(List<DecryptedMember> membersList) {
     Map<ByteString, DecryptedMember> map = new LinkedHashMap<>(membersList.size());
     for (DecryptedMember member : membersList) {
-      map.put(member.getAciBytes(), member);
+      map.put(member.aciBytes, member);
     }
     return map;
   }
@@ -176,7 +183,7 @@ public final class GroupChangeReconstruct {
   private static Map<ByteString, DecryptedBannedMember> bannedServiceIdMap(List<DecryptedBannedMember> membersList) {
     Map<ByteString, DecryptedBannedMember> map = new LinkedHashMap<>(membersList.size());
     for (DecryptedBannedMember member : membersList) {
-      map.put(member.getServiceIdBytes(), member);
+      map.put(member.serviceIdBytes, member);
     }
     return map;
   }
@@ -184,7 +191,7 @@ public final class GroupChangeReconstruct {
   private static Set<DecryptedMember> intersectByAci(Collection<DecryptedMember> members, Set<ByteString> acis) {
     Set<DecryptedMember> result = new LinkedHashSet<>(members.size());
     for (DecryptedMember member : members) {
-      if (acis.contains(member.getAciBytes()))
+      if (acis.contains(member.aciBytes))
         result.add(member);
     }
     return result;
@@ -193,16 +200,16 @@ public final class GroupChangeReconstruct {
   private static Set<DecryptedPendingMember> intersectPendingByServiceId(Collection<DecryptedPendingMember> members, Set<ByteString> serviceIds) {
     Set<DecryptedPendingMember> result = new LinkedHashSet<>(members.size());
     for (DecryptedPendingMember member : members) {
-      if (serviceIds.contains(member.getServiceIdBytes()))
+      if (serviceIds.contains(member.serviceIdBytes))
         result.add(member);
     }
     return result;
   }
-  
+
   private static Set<DecryptedRequestingMember> intersectRequestingByAci(Collection<DecryptedRequestingMember> members, Set<ByteString> acis) {
     Set<DecryptedRequestingMember> result = new LinkedHashSet<>(members.size());
     for (DecryptedRequestingMember member : members) {
-      if (acis.contains(member.getAciBytes()))
+      if (acis.contains(member.aciBytes))
         result.add(member);
     }
     return result;
@@ -211,7 +218,7 @@ public final class GroupChangeReconstruct {
   private static Set<ByteString> pendingMembersToSetOfServiceIds(Collection<DecryptedPendingMember> pendingMembers) {
     Set<ByteString> serviceIds = new LinkedHashSet<>(pendingMembers.size());
     for (DecryptedPendingMember pendingMember : pendingMembers) {
-      serviceIds.add(pendingMember.getServiceIdBytes());
+      serviceIds.add(pendingMember.serviceIdBytes);
     }
     return serviceIds;
   }
@@ -219,7 +226,7 @@ public final class GroupChangeReconstruct {
   private static Set<ByteString> requestingMembersToSetOfAcis(Collection<DecryptedRequestingMember> requestingMembers) {
     Set<ByteString> acis = new LinkedHashSet<>(requestingMembers.size());
     for (DecryptedRequestingMember requestingMember : requestingMembers) {
-      acis.add(requestingMember.getAciBytes());
+      acis.add(requestingMember.aciBytes);
     }
     return acis;
   }
@@ -227,7 +234,7 @@ public final class GroupChangeReconstruct {
   private static Set<ByteString> membersToSetOfAcis(Collection<DecryptedMember> members) {
     Set<ByteString> acis = new LinkedHashSet<>(members.size());
     for (DecryptedMember member : members) {
-      acis.add(member.getAciBytes());
+      acis.add(member.aciBytes);
     }
     return acis;
   }
@@ -235,7 +242,7 @@ public final class GroupChangeReconstruct {
   private static Set<ByteString> bannedMembersToSetOfServiceIds(Collection<DecryptedBannedMember> bannedMembers) {
     Set<ByteString> serviceIds = new LinkedHashSet<>(bannedMembers.size());
     for (DecryptedBannedMember bannedMember : bannedMembers) {
-      serviceIds.add(bannedMember.getServiceIdBytes());
+      serviceIds.add(bannedMember.serviceIdBytes);
     }
     return serviceIds;
   }

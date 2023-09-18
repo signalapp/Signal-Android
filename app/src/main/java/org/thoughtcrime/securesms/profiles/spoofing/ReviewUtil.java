@@ -113,7 +113,7 @@ public final class ReviewUtil {
 
   private static @NonNull ProfileChangeDetails getProfileChangeDetails(@NonNull MessageRecord messageRecord) {
     try {
-      return ProfileChangeDetails.parseFrom(Base64.decode(messageRecord.getBody()));
+      return ProfileChangeDetails.ADAPTER.decode(Base64.decode(messageRecord.getBody()));
     } catch (IOException e) {
       throw new IllegalArgumentException(e);
     }

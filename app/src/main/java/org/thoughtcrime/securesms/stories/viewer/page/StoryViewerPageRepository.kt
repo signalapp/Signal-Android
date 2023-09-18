@@ -226,7 +226,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
   private fun getTextStoryLength(body: String): Int {
     return if (canParseToTextStory(body)) {
       val breakIteratorCompat = BreakIteratorCompat.getInstance()
-      breakIteratorCompat.setText(StoryTextPost.parseFrom(Base64.decode(body)).body)
+      breakIteratorCompat.setText(StoryTextPost.ADAPTER.decode(Base64.decode(body)).body)
       breakIteratorCompat.countBreaks()
     } else {
       0
@@ -236,7 +236,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
   private fun canParseToTextStory(body: String): Boolean {
     return if (body.isNotEmpty()) {
       try {
-        StoryTextPost.parseFrom(Base64.decode(body))
+        StoryTextPost.ADAPTER.decode(Base64.decode(body))
         return true
       } catch (e: Exception) {
         false

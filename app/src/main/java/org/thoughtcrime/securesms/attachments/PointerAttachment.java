@@ -13,7 +13,7 @@ import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.DataMessage;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -152,18 +152,18 @@ public class PointerAttachment extends Attachment {
                                              null));
   }
 
-  public static Optional<Attachment> forPointer(SignalServiceProtos.DataMessage.Quote.QuotedAttachment quotedAttachment) {
+  public static Optional<Attachment> forPointer(DataMessage.Quote.QuotedAttachment quotedAttachment) {
     SignalServiceAttachment thumbnail;
     try {
-      thumbnail = quotedAttachment.hasThumbnail() ? AttachmentPointerUtil.createSignalAttachmentPointer(quotedAttachment.getThumbnail()) : null;
+      thumbnail = quotedAttachment.thumbnail != null ? AttachmentPointerUtil.createSignalAttachmentPointer(quotedAttachment.thumbnail) : null;
     } catch (InvalidMessageStructureException e) {
       return Optional.empty();
     }
 
-    return Optional.of(new PointerAttachment(quotedAttachment.getContentType(),
+    return Optional.of(new PointerAttachment(quotedAttachment.contentType,
                                              AttachmentTable.TRANSFER_PROGRESS_PENDING,
                                              thumbnail != null ? thumbnail.asPointer().getSize().orElse(0) : 0,
-                                             quotedAttachment.getFileName(),
+                                             quotedAttachment.fileName,
                                              thumbnail != null ? thumbnail.asPointer().getCdnNumber() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getRemoteId().toString() : "0",
                                              thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,

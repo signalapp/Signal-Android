@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata
 import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto
 
 /**
@@ -60,33 +60,33 @@ class PushProcessMessageJobMigration : JobMigration(10) {
       Log.i(TAG, "Migrating PushProcessJob to V2")
 
       val protoBytes: ByteArray = Base64.decode(inputData.getString("message_content"))
-      val proto = SignalServiceContentProto.parseFrom(protoBytes)
+      val proto = SignalServiceContentProto.ADAPTER.decode(protoBytes)
 
-      val sourceServiceId = ServiceId.parseOrThrow(proto.metadata.address.uuid)
-      val destinationServiceId = ServiceId.parseOrThrow(proto.metadata.destinationUuid)
+      val sourceServiceId = ServiceId.parseOrThrow(proto.metadata!!.address!!.uuid!!)
+      val destinationServiceId = ServiceId.parseOrThrow(proto.metadata!!.destinationUuid!!)
 
-      val envelope = Envelope.newBuilder()
-        .setSourceServiceId(sourceServiceId.toString())
-        .setSourceDevice(proto.metadata.senderDevice)
-        .setDestinationServiceId(destinationServiceId.toString())
-        .setTimestamp(proto.metadata.timestamp)
-        .setServerGuid(proto.metadata.serverGuid)
-        .setServerTimestamp(proto.metadata.serverReceivedTimestamp)
+      val envelope = Envelope.Builder()
+        .sourceServiceId(sourceServiceId.toString())
+        .sourceDevice(proto.metadata!!.senderDevice)
+        .destinationServiceId(destinationServiceId.toString())
+        .timestamp(proto.metadata!!.timestamp)
+        .serverGuid(proto.metadata!!.serverGuid)
+        .serverTimestamp(proto.metadata!!.serverReceivedTimestamp)
 
       val metadata = EnvelopeMetadata(
         sourceServiceId = sourceServiceId.toByteArray().toByteString(),
-        sourceE164 = if (proto.metadata.address.hasE164()) proto.metadata.address.e164 else null,
-        sourceDeviceId = proto.metadata.senderDevice,
-        sealedSender = proto.metadata.needsReceipt,
-        groupId = if (proto.metadata.hasGroupId()) proto.metadata.groupId.toByteArray().toByteString() else null,
+        sourceE164 = if (proto.metadata?.address?.e164 != null) proto.metadata!!.address!!.e164 else null,
+        sourceDeviceId = proto.metadata!!.senderDevice!!,
+        sealedSender = proto.metadata!!.needsReceipt!!,
+        groupId = if (proto.metadata?.groupId != null) proto.metadata!!.groupId!! else null,
         destinationServiceId = destinationServiceId.toByteArray().toByteString()
       )
 
       val completeMessage = CompleteMessage(
-        envelope = envelope.build().toByteArray().toByteString(),
-        content = proto.content.toByteArray().toByteString(),
+        envelope = envelope.build().encodeByteString(),
+        content = proto.content!!.encodeByteString(),
         metadata = metadata,
-        serverDeliveredTimestamp = proto.metadata.serverDeliveredTimestamp
+        serverDeliveredTimestamp = proto.metadata!!.serverDeliveredTimestamp!!
       )
 
       return jobData

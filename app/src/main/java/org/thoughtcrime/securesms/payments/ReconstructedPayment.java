@@ -84,7 +84,7 @@ public final class ReconstructedPayment implements Payment {
 
   @Override
   public @NonNull PaymentMetaData getPaymentMetaData() {
-    return PaymentMetaData.getDefaultInstance();
+    return new PaymentMetaData();
   }
 
   @Override

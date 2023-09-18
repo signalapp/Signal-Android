@@ -6,7 +6,7 @@ import org.whispersystems.signalservice.api.messages.EnvelopeResponse;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.Envelope;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage;
@@ -312,7 +312,7 @@ public final class SignalWebSocket {
       }
     }
 
-    SignalServiceProtos.Envelope envelope = SignalServiceProtos.Envelope.parseFrom(request.body.toByteArray());
+    Envelope envelope = Envelope.ADAPTER.decode(request.body.toByteArray());
 
     return new EnvelopeResponse(envelope, timestamp, request);
   }

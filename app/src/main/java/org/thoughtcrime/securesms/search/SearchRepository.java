@@ -315,13 +315,16 @@ public class SearchRepository {
     int startIndex = TextUtils.indexOf(body, cleanSnippet);
 
     if (startIndex != -1) {
-      BodyRangeList.Builder builder = BodyRangeList.newBuilder();
-      for (BodyRangeList.BodyRange range : bodyRanges.getRangesList()) {
-        int adjustedStart = range.getStart() - startIndex + startOffset;
-        if (adjustedStart >= 0 && adjustedStart + range.getLength() <= bodySnippet.length()) {
-          builder.addRanges(range.toBuilder().setStart(adjustedStart).build());
+      List<BodyRangeList.BodyRange> newRanges = new ArrayList<>(bodyRanges.ranges.size());
+      for (BodyRangeList.BodyRange range : bodyRanges.ranges) {
+        int adjustedStart = range.start - startIndex + startOffset;
+        if (adjustedStart >= 0 && adjustedStart + range.length <= bodySnippet.length()) {
+          newRanges.add(range.newBuilder().start(adjustedStart).build());
         }
       }
+
+      BodyRangeList.Builder builder = new BodyRangeList.Builder();
+      builder.ranges(newRanges);
 
       MessageStyler.style(id, builder.build(), bodySnippet);
     }

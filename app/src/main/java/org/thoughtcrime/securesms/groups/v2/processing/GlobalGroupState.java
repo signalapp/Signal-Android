@@ -43,7 +43,7 @@ final class GlobalGroupState {
 
   int getEarliestRevisionNumber() {
     if (localState != null) {
-      return localState.getRevision();
+      return localState.revision;
     } else {
       if (serverHistory.isEmpty()) {
         throw new AssertionError();
@@ -57,7 +57,7 @@ final class GlobalGroupState {
       if (localState == null) {
         throw new AssertionError();
       }
-      return localState.getRevision();
+      return localState.revision;
     }
     return serverHistory.get(serverHistory.size() - 1).getRevision();
   }

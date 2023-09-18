@@ -131,7 +131,7 @@ class StoryTextPostView @JvmOverloads constructor(
     linkPreviewView.visible = false
 
     val font: TextFont = TextFont.fromStyle(storyTextPost.style)
-    setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask)
+    setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background!!).chatBubbleMask)
 
     if (font.isAllCaps) {
       setText(storyTextPost.body.uppercase(Locale.getDefault()), false)

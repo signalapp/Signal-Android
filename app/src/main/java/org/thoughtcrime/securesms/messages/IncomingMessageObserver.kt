@@ -34,7 +34,7 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.Envelope
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
@@ -264,17 +264,17 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   @VisibleForTesting
-  fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation>? {
-    return when (envelope.type.number) {
-      SignalServiceProtos.Envelope.Type.RECEIPT_VALUE -> {
+  fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation>? {
+    return when (envelope.type) {
+      Envelope.Type.RECEIPT -> {
         processReceipt(envelope)
         null
       }
 
-      SignalServiceProtos.Envelope.Type.PREKEY_BUNDLE_VALUE,
-      SignalServiceProtos.Envelope.Type.CIPHERTEXT_VALUE,
-      SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE,
-      SignalServiceProtos.Envelope.Type.PLAINTEXT_CONTENT_VALUE -> {
+      Envelope.Type.PREKEY_BUNDLE,
+      Envelope.Type.CIPHERTEXT,
+      Envelope.Type.UNIDENTIFIED_SENDER,
+      Envelope.Type.PLAINTEXT_CONTENT -> {
         processMessage(bufferedProtocolStore, envelope, serverDeliveredTimestamp)
       }
 
@@ -285,12 +285,12 @@ class IncomingMessageObserver(private val context: Application) {
     }
   }
 
-  private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
+  private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
     val localReceiveMetric = SignalLocalMetrics.MessageReceive.start()
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
     localReceiveMetric.onEnvelopeDecrypted()
 
-    SignalLocalMetrics.MessageLatency.onMessageReceived(envelope.serverTimestamp, serverDeliveredTimestamp, envelope.urgent)
+    SignalLocalMetrics.MessageLatency.onMessageReceived(envelope.serverTimestamp!!, serverDeliveredTimestamp, envelope.urgent!!)
     when (result) {
       is MessageDecryptor.Result.Success -> {
         val job = PushProcessMessageJob.processOrDefer(messageContentProcessor, result, localReceiveMetric)
@@ -303,7 +303,7 @@ class IncomingMessageObserver(private val context: Application) {
           PushProcessMessageErrorJob(
             result.toMessageState(),
             result.errorMetadata.toExceptionMetadata(),
-            result.envelope.timestamp
+            result.envelope.timestamp!!
           )
         }
       }
@@ -318,17 +318,17 @@ class IncomingMessageObserver(private val context: Application) {
     return result.followUpOperations
   }
 
-  private fun processReceipt(envelope: SignalServiceProtos.Envelope) {
+  private fun processReceipt(envelope: Envelope) {
     if (!UuidUtil.isUuid(envelope.sourceServiceId)) {
       Log.w(TAG, "Invalid envelope source UUID!")
       return
     }
 
-    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceServiceId))
+    val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceServiceId!!))
 
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDevice}, Timestamp: ${envelope.timestamp}")
-    SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp, senderId, System.currentTimeMillis())
-    SignalDatabase.messageLog.deleteEntryForRecipient(envelope.timestamp, senderId, envelope.sourceDevice)
+    SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp!!, senderId, System.currentTimeMillis())
+    SignalDatabase.messageLog.deleteEntryForRecipient(envelope.timestamp!!, senderId, envelope.sourceDevice!!)
   }
 
   private fun MessageDecryptor.Result.toMessageState(): MessageState {

@@ -5,7 +5,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.testing.LogPredicate
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.Envelope
 
 class TimingMessageContentProcessor(context: Context) : MessageContentProcessor(context) {
   companion object {
@@ -19,9 +20,9 @@ class TimingMessageContentProcessor(context: Context) : MessageContentProcessor(
     fun endTag(timestamp: Long) = "$timestamp end"
   }
 
-  override fun process(envelope: SignalServiceProtos.Envelope, content: SignalServiceProtos.Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean, localMetric: SignalLocalMetrics.MessageReceive?) {
-    Log.d(TAG, startTag(envelope.timestamp))
+  override fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean, localMetric: SignalLocalMetrics.MessageReceive?) {
+    Log.d(TAG, startTag(envelope.timestamp!!))
     super.process(envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent, localMetric)
-    Log.d(TAG, endTag(envelope.timestamp))
+    Log.d(TAG, endTag(envelope.timestamp!!))
   }
 }

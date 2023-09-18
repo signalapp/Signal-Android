@@ -33,6 +33,7 @@ buildscript {
             exclude group: 'io.outfoxx', module: 'swiftpoet'
         }
         classpath 'androidx.benchmark:benchmark-gradle-plugin:1.1.0-beta04'
+        classpath files("$rootDir/wire-handler/wire-handler-1.0.0.jar")
     }
 }
 

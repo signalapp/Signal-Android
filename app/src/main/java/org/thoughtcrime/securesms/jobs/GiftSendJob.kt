@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
-import com.google.protobuf.ByteString
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -63,7 +63,7 @@ class GiftSendJob private constructor(parameters: Parameters, private val recipi
       recipient = recipient,
       expiresIn = TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
       sentTimestamp = System.currentTimeMillis(),
-      giftBadge = GiftBadge.newBuilder().setRedemptionToken(ByteString.copyFrom(token)).build()
+      giftBadge = GiftBadge(redemptionToken = token.toByteString())
     )
 
     Log.i(TAG, "Sending gift badge to $recipientId...")

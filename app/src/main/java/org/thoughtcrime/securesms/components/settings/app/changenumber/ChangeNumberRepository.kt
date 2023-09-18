@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
-import org.thoughtcrime.securesms.database.model.toProtoByteString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
@@ -42,7 +42,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
@@ -367,13 +367,13 @@ class ChangeNumberRepository(
 
         // Device Messages
         if (deviceId != primaryDeviceId) {
-          val pniChangeNumber = SyncMessage.PniChangeNumber.newBuilder()
-            .setIdentityKeyPair(pniIdentity.serialize().toProtoByteString())
-            .setSignedPreKey(signedPreKeyRecord.serialize().toProtoByteString())
-            .setLastResortKyberPreKey(lastResortKyberPreKeyRecord.serialize().toProtoByteString())
-            .setRegistrationId(pniRegistrationId)
-            .setNewE164(newE164)
-            .build()
+          val pniChangeNumber = SyncMessage.PniChangeNumber(
+            identityKeyPair = pniIdentity.serialize().toByteString(),
+            signedPreKey = signedPreKeyRecord.serialize().toByteString(),
+            lastResortKyberPreKey = lastResortKyberPreKeyRecord.serialize().toByteString(),
+            registrationId = pniRegistrationId,
+            newE164 = newE164
+          )
 
           deviceMessages += messageSender.getEncryptedSyncPniInitializeDeviceMessage(deviceId, pniChangeNumber)
         }
@@ -391,12 +391,12 @@ class ChangeNumberRepository(
       pniRegistrationIds.mapKeys { it.key.toString() }
     )
 
-    val metadata = PendingChangeNumberMetadata.newBuilder()
-      .setPreviousPni(SignalStore.account().pni!!.toByteString())
-      .setPniIdentityKeyPair(pniIdentity.serialize().toProtoByteString())
-      .setPniRegistrationId(pniRegistrationIds[primaryDeviceId]!!)
-      .setPniSignedPreKeyId(devicePniSignedPreKeys[primaryDeviceId]!!.keyId)
-      .build()
+    val metadata = PendingChangeNumberMetadata(
+      previousPni = SignalStore.account().pni!!.toByteString(),
+      pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
+      pniRegistrationId = pniRegistrationIds[primaryDeviceId]!!,
+      pniSignedPreKeyId = devicePniSignedPreKeys[primaryDeviceId]!!.keyId
+    )
 
     return ChangeNumberRequestData(request, metadata)
   }

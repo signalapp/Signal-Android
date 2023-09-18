@@ -70,7 +70,7 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
 
     val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     val values = ContentValues(1).apply {
-      put(CHAT_COLORS, chatColors.serialize().toByteArray())
+      put(CHAT_COLORS, chatColors.serialize().encode())
     }
 
     val rowId = db.insert(TABLE_NAME, null, values)
@@ -90,7 +90,7 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
 
     val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     val values = ContentValues(1).apply {
-      put(CHAT_COLORS, chatColors.serialize().toByteArray())
+      put(CHAT_COLORS, chatColors.serialize().encode())
     }
 
     val rowsUpdated = db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(chatColors.id.longValue))
@@ -131,6 +131,6 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
   private fun Cursor.getId(): Long = CursorUtil.requireLong(this, ID)
   private fun Cursor.getChatColors(): ChatColors = ChatColors.forChatColor(
     ChatColors.Id.forLongValue(getId()),
-    ChatColor.parseFrom(CursorUtil.requireBlob(this, CHAT_COLORS))
+    ChatColor.ADAPTER.decode(CursorUtil.requireBlob(this, CHAT_COLORS))
   )
 }

@@ -2,19 +2,18 @@ package org.thoughtcrime.securesms.sms;
 
 import androidx.annotation.NonNull;
 
-import com.google.protobuf.ByteString;
-
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.util.Random;
 import java.util.UUID;
+
+import okio.ByteString;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -29,11 +28,10 @@ public class GroupV2UpdateMessageUtilTest {
                                                .deleteMember(alice)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -53,11 +51,10 @@ public class GroupV2UpdateMessageUtilTest {
                                                .deleteMember(bob)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -78,11 +75,10 @@ public class GroupV2UpdateMessageUtilTest {
                                                .addMember(bob)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -101,11 +97,10 @@ public class GroupV2UpdateMessageUtilTest {
                                                .denyRequest(alice)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -126,11 +121,10 @@ public class GroupV2UpdateMessageUtilTest {
                                                .addMember(bob)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 

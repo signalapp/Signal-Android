@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
@@ -1179,9 +1179,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       }
 
       @JvmStatic
-      fun from(type: CallEvent.Type): Type? {
+      fun from(type: CallEvent.Type?): Type? {
         return when (type) {
-          CallEvent.Type.UNKNOWN_TYPE -> null
+          null, CallEvent.Type.UNKNOWN_TYPE -> null
           CallEvent.Type.AUDIO_CALL -> AUDIO_CALL
           CallEvent.Type.VIDEO_CALL -> VIDEO_CALL
           CallEvent.Type.GROUP_CALL -> GROUP_CALL
@@ -1207,9 +1207,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       }
 
       @JvmStatic
-      fun from(direction: CallEvent.Direction): Direction? {
+      fun from(direction: CallEvent.Direction?): Direction? {
         return when (direction) {
-          CallEvent.Direction.UNKNOWN_DIRECTION -> null
+          null, CallEvent.Direction.UNKNOWN_DIRECTION -> null
           CallEvent.Direction.INCOMING -> INCOMING
           CallEvent.Direction.OUTGOING -> OUTGOING
         }
@@ -1284,9 +1284,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       }
 
       @JvmStatic
-      fun from(event: CallEvent.Event): Event? {
+      fun from(event: CallEvent.Event?): Event? {
         return when (event) {
-          CallEvent.Event.UNKNOWN_ACTION -> null
+          null, CallEvent.Event.UNKNOWN_ACTION -> null
           CallEvent.Event.ACCEPTED -> ACCEPTED
           CallEvent.Event.NOT_ACCEPTED -> NOT_ACCEPTED
           CallEvent.Event.DELETE -> DELETE

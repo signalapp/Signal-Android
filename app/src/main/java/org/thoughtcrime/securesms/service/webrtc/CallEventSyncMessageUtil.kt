@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.service.webrtc
 
-import com.google.protobuf.ByteString
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent
 
 /**
  * Helper for creating call event sync messages.
@@ -64,18 +65,17 @@ object CallEventSyncMessageUtil {
 
     val conversationId: ByteString = when {
       recipient.isCallLink -> recipient.requireCallLinkRoomId().encodeForProto()
-      recipient.isGroup -> ByteString.copyFrom(recipient.requireGroupId().decodedId)
+      recipient.isGroup -> recipient.requireGroupId().decodedId.toByteString()
       else -> recipient.requireServiceId().toByteString()
     }
 
-    return CallEvent
-      .newBuilder()
-      .setConversationId(conversationId)
-      .setId(callId)
-      .setTimestamp(timestamp)
-      .setType(callType)
-      .setDirection(if (isOutgoing) CallEvent.Direction.OUTGOING else CallEvent.Direction.INCOMING)
-      .setEvent(event)
-      .build()
+    return CallEvent(
+      conversationId = conversationId,
+      id = callId,
+      timestamp = timestamp,
+      type = callType,
+      direction = if (isOutgoing) CallEvent.Direction.OUTGOING else CallEvent.Direction.INCOMING,
+      event = event
+    )
   }
 }

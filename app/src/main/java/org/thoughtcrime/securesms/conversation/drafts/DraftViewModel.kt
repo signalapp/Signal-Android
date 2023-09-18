@@ -62,7 +62,7 @@ class DraftViewModel @JvmOverloads constructor(
       } else if (mentionRanges == null) {
         styleBodyRanges
       } else {
-        styleBodyRanges.toBuilder().addAllRanges(mentionRanges.rangesList).build()
+        styleBodyRanges.newBuilder().apply { ranges += mentionRanges.ranges }.build()
       }
 
       saveDrafts(it.copy(textDraft = text.toTextDraft(), bodyRangesDraft = bodyRanges?.toDraft(), messageEditDraft = Draft(Draft.MESSAGE_EDIT, messageId.serialize())))
@@ -84,7 +84,7 @@ class DraftViewModel @JvmOverloads constructor(
       } else if (mentionRanges == null) {
         styleBodyRanges
       } else {
-        styleBodyRanges.toBuilder().addAllRanges(mentionRanges.rangesList).build()
+        styleBodyRanges.newBuilder().apply { ranges += mentionRanges.ranges }.build()
       }
 
       saveDrafts(it.copy(textDraft = text.toTextDraft(), bodyRangesDraft = bodyRanges?.toDraft()))
@@ -148,5 +148,5 @@ private fun String.toTextDraft(): Draft? {
 }
 
 private fun BodyRangeList.toDraft(): Draft {
-  return Draft(Draft.BODY_RANGES, Base64.encodeBytes(toByteArray()))
+  return Draft(Draft.BODY_RANGES, Base64.encodeBytes(encode()))
 }

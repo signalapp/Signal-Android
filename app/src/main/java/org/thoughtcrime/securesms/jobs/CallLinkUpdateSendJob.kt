@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import com.google.protobuf.ByteString
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -17,8 +17,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLinkUpdate
-import java.lang.Exception
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
@@ -68,9 +67,7 @@ class CallLinkUpdateSendJob private constructor(
       return
     }
 
-    val callLinkUpdate = CallLinkUpdate.newBuilder()
-      .setRootKey(ByteString.copyFrom(callLink.credentials.linkKeyBytes))
-      .build()
+    val callLinkUpdate = CallLinkUpdate(rootKey = callLink.credentials.linkKeyBytes.toByteString())
 
     ApplicationDependencies.getSignalServiceMessageSender()
       .sendSyncMessage(SignalServiceSyncMessage.forCallLinkUpdate(callLinkUpdate), Optional.empty())

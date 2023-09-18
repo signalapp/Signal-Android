@@ -8,15 +8,14 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
@@ -36,7 +35,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,10 +59,10 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
   private static final String KEY_TIMESTAMP               = "timestamp";
   private static final String KEY_GROUP_CONTEXT_V2        = "group_context_v2";
 
-  private final List<RecipientId>                  recipients;
-  private final int                                initialRecipientCount;
-  private final SignalServiceProtos.GroupContextV2 groupContextV2;
-  private final long                               timestamp;
+  private final List<RecipientId> recipients;
+  private final int               initialRecipientCount;
+  private final GroupContextV2    groupContextV2;
+  private final long              timestamp;
 
   @WorkerThread
   public static @NonNull Job create(@NonNull Context context,
@@ -71,8 +70,8 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                     @NonNull DecryptedGroup decryptedGroup,
                                     @NonNull OutgoingMessage groupMessage)
   {
-    List<ACI>       memberAcis        = DecryptedGroupUtil.toAciList(decryptedGroup.getMembersList());
-    List<ServiceId> pendingServiceIds = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.getPendingMembersList());
+    List<ACI>       memberAcis        = DecryptedGroupUtil.toAciList(decryptedGroup.members);
+    List<ServiceId> pendingServiceIds = DecryptedGroupUtil.pendingToServiceIdList(decryptedGroup.pendingMembers);
 
     Stream<ACI>       memberServiceIds          = Stream.of(memberAcis)
                                                         .filter(ACI::isValid)
@@ -87,7 +86,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                         .collect(Collectors.toSet());
 
     MessageGroupContext.GroupV2Properties properties   = groupMessage.requireGroupV2Properties();
-    SignalServiceProtos.GroupContextV2    groupContext = properties.getGroupContext();
+    GroupContextV2                        groupContext = properties.getGroupContext();
 
     String queue = Recipient.externalGroupExact(groupId).getId().toQueueKey();
 
@@ -105,7 +104,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
   private PushGroupSilentUpdateSendJob(@NonNull List<RecipientId> recipients,
                                        int initialRecipientCount,
                                        long timestamp,
-                                       @NonNull SignalServiceProtos.GroupContextV2 groupContextV2,
+                                       @NonNull GroupContextV2 groupContextV2,
                                        @NonNull Parameters parameters)
   {
     super(parameters);
@@ -121,7 +120,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     return new JsonJobData.Builder().putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
                                     .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
                                     .putLong(KEY_TIMESTAMP, timestamp)
-                                    .putString(KEY_GROUP_CONTEXT_V2, Base64.encodeBytes(groupContextV2.toByteArray()))
+                                    .putString(KEY_GROUP_CONTEXT_V2, Base64.encodeBytes(groupContextV2.encode()))
                                     .serialize();
   }
 
@@ -136,7 +135,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    GroupId.V2 groupId = GroupId.v2(GroupUtil.requireMasterKey(groupContextV2.getMasterKey().toByteArray()));
+    GroupId.V2 groupId = GroupId.v2(GroupUtil.requireMasterKey(groupContextV2.masterKey.toByteArray()));
 
     if (Recipient.externalGroupExact(groupId).isBlocked()) {
       Log.i(TAG, "Not updating group state for blocked group " + groupId);
@@ -201,10 +200,10 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
       long              timestamp             = data.getLong(KEY_TIMESTAMP);
       byte[]            contextBytes          = Base64.decodeOrThrow(data.getString(KEY_GROUP_CONTEXT_V2));
 
-      SignalServiceProtos.GroupContextV2 groupContextV2;
+      GroupContextV2 groupContextV2;
       try {
-        groupContextV2 = SignalServiceProtos.GroupContextV2.parseFrom(contextBytes);
-      } catch (InvalidProtocolBufferException e) {
+        groupContextV2 = GroupContextV2.ADAPTER.decode(contextBytes);
+      } catch (IOException e) {
         throw new AssertionError(e);
       }
 

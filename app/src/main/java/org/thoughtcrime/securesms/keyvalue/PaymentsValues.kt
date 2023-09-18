@@ -5,7 +5,6 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.google.protobuf.InvalidProtocolBufferException
 import com.mobilecoin.lib.Mnemonics
 import com.mobilecoin.lib.exceptions.BadMnemonicException
 import org.signal.core.util.logging.Log
@@ -23,6 +22,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.payments.Money
+import java.io.IOException
 import java.math.BigDecimal
 import java.util.Arrays
 import java.util.Currency
@@ -292,12 +292,12 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
   }
 
   fun mobileCoinLatestFullLedger(): MobileCoinLedgerWrapper {
-    val blob = store.getBlob(MOB_LEDGER, null) ?: return MobileCoinLedgerWrapper(MobileCoinLedger.getDefaultInstance())
+    val blob = store.getBlob(MOB_LEDGER, null) ?: return MobileCoinLedgerWrapper(MobileCoinLedger())
     return try {
-      MobileCoinLedgerWrapper(MobileCoinLedger.parseFrom(blob))
-    } catch (e: InvalidProtocolBufferException) {
+      MobileCoinLedgerWrapper(MobileCoinLedger.ADAPTER.decode(blob))
+    } catch (e: IOException) {
       Log.w(TAG, "Bad cached ledger, clearing", e)
-      setMobileCoinFullLedger(MobileCoinLedgerWrapper(MobileCoinLedger.getDefaultInstance()))
+      setMobileCoinFullLedger(MobileCoinLedgerWrapper(MobileCoinLedger()))
       throw AssertionError(e)
     }
   }
@@ -351,7 +351,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
       .putBoolean(USER_CONFIRMED_MNEMONIC, true)
       .commit()
 
-    liveMobileCoinLedger.postValue(MobileCoinLedgerWrapper(MobileCoinLedger.getDefaultInstance()))
+    liveMobileCoinLedger.postValue(MobileCoinLedgerWrapper(MobileCoinLedger()))
     StorageSyncHelper.scheduleSyncForDataChange()
 
     return WalletRestoreResult.ENTROPY_CHANGED

@@ -15,7 +15,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.ContactDetails;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
@@ -39,16 +39,16 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
     byte[] detailsSerialized = new byte[(int) detailsLength];
     Util.readFully(in, detailsSerialized);
 
-    SignalServiceProtos.ContactDetails details = SignalServiceProtos.ContactDetails.parseFrom(detailsSerialized);
+    ContactDetails details = ContactDetails.ADAPTER.decode(detailsSerialized);
 
-    if (!SignalServiceAddress.isValidAddress(details.getAci(), details.getNumber())) {
+    if (!SignalServiceAddress.isValidAddress(details.aci, details.number)) {
       throw new IOException("Missing contact address!");
     }
 
-    SignalServiceAddress                    address       = new SignalServiceAddress(ServiceId.parseOrThrow(details.getAci()), details.getNumber());
-    Optional<String>                        name          = Optional.ofNullable(details.getName());
+    SignalServiceAddress                    address       = new SignalServiceAddress(ServiceId.parseOrThrow(details.aci), details.number);
+    Optional<String>                        name          = Optional.ofNullable(details.name);
     Optional<SignalServiceAttachmentStream> avatar        = Optional.empty();
-    Optional<String>                        color         = details.hasColor() ? Optional.of(details.getColor()) : Optional.empty();
+    Optional<String>                        color         = details.color != null ? Optional.of(details.color) : Optional.empty();
     Optional<VerifiedMessage>               verified      = Optional.empty();
     Optional<ProfileKey>                    profileKey    = Optional.empty();
     boolean                                 blocked       = false;
@@ -56,29 +56,30 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
     Optional<Integer>                       inboxPosition = Optional.empty();
     boolean                                 archived      = false;
 
-    if (details.hasAvatar()) {
-      long        avatarLength      = details.getAvatar().getLength();
+    if (details.avatar != null) {
+      long        avatarLength      = details.avatar.length;
       InputStream avatarStream      = new LimitedInputStream(in, avatarLength);
-      String      avatarContentType = details.getAvatar().getContentType();
+      String      avatarContentType = details.avatar.contentType;
 
       avatar = Optional.of(new SignalServiceAttachmentStream(avatarStream, avatarContentType, avatarLength, Optional.empty(), false, false, false, null, null));
     }
 
-    if (details.hasVerified()) {
+    if (details.verified != null) {
       try {
-        if (!SignalServiceAddress.isValidAddress(details.getVerified().getDestinationAci(), null)) {
+        if (!SignalServiceAddress.isValidAddress(details.verified.destinationAci, null)) {
           throw new InvalidMessageException("Missing Verified address!");
         }
-        IdentityKey          identityKey = new IdentityKey(details.getVerified().getIdentityKey().toByteArray(), 0);
-        SignalServiceAddress destination = new SignalServiceAddress(ServiceId.parseOrThrow(details.getVerified().getDestinationAci()));
+
+        IdentityKey          identityKey = new IdentityKey(details.verified.identityKey.toByteArray(), 0);
+        SignalServiceAddress destination = new SignalServiceAddress(ServiceId.parseOrThrow(details.verified.destinationAci));
 
         VerifiedMessage.VerifiedState state;
 
-        switch (details.getVerified().getState()) {
+        switch (details.verified.state) {
           case VERIFIED:  state = VerifiedMessage.VerifiedState.VERIFIED;   break;
           case UNVERIFIED:state = VerifiedMessage.VerifiedState.UNVERIFIED; break;
           case DEFAULT:   state = VerifiedMessage.VerifiedState.DEFAULT;    break;
-          default:        throw new InvalidMessageException("Unknown state: " + details.getVerified().getState());
+          default:        throw new InvalidMessageException("Unknown state: " + details.verified.state);
         }
 
         verified = Optional.of(new VerifiedMessage(destination, identityKey, state, System.currentTimeMillis()));
@@ -88,24 +89,24 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       }
     }
 
-    if (details.hasProfileKey()) {
+    if (details.profileKey != null) {
       try {
-        profileKey = Optional.ofNullable(new ProfileKey(details.getProfileKey().toByteArray()));
+        profileKey = Optional.ofNullable(new ProfileKey(details.profileKey.toByteArray()));
       } catch (InvalidInputException e) {
         Log.w(TAG, "Invalid profile key ignored", e);
       }
     }
 
-    if (details.hasExpireTimer() && details.getExpireTimer() > 0) {
-      expireTimer = Optional.of(details.getExpireTimer());
+    if (details.expireTimer != null && details.expireTimer > 0) {
+      expireTimer = Optional.of(details.expireTimer);
     }
 
-    if (details.hasInboxPosition()) {
-      inboxPosition = Optional.of(details.getInboxPosition());
+    if (details.inboxPosition != null) {
+      inboxPosition = Optional.of(details.inboxPosition);
     }
 
-    blocked  = details.getBlocked();
-    archived = details.getArchived();
+    blocked  = details.blocked;
+    archived = details.archived;
 
     return new DeviceContact(address, name, avatar, color, verified, profileKey, blocked, expireTimer, inboxPosition, archived);
   }

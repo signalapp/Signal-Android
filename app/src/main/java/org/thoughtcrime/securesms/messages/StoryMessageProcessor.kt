@@ -20,28 +20,30 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.push.StoryMessage
+import org.whispersystems.signalservice.internal.push.TextAttachment
 
 object StoryMessageProcessor {
 
-  fun process(envelope: Envelope, content: SignalServiceProtos.Content, metadata: EnvelopeMetadata, senderRecipient: Recipient, threadRecipient: Recipient) {
-    val storyMessage = content.storyMessage
+  fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, senderRecipient: Recipient, threadRecipient: Recipient) {
+    val storyMessage = content.storyMessage!!
 
-    log(envelope.timestamp, "Story message.")
+    log(envelope.timestamp!!, "Story message.")
 
     if (threadRecipient.isInactiveGroup) {
-      warn(envelope.timestamp, "Dropping a group story from a group we're no longer in.")
+      warn(envelope.timestamp!!, "Dropping a group story from a group we're no longer in.")
       return
     }
 
     if (threadRecipient.isGroup && !SignalDatabase.groups.isCurrentMember(threadRecipient.requireGroupId().requirePush(), senderRecipient.id)) {
-      warn(envelope.timestamp, "Dropping a group story from a user who's no longer a member.")
+      warn(envelope.timestamp!!, "Dropping a group story from a user who's no longer a member.")
       return
     }
 
     if (!threadRecipient.isGroup && !(senderRecipient.isProfileSharing || senderRecipient.isSystemContact)) {
-      warn(envelope.timestamp, "Dropping story from an untrusted source.")
+      warn(envelope.timestamp!!, "Dropping story from an untrusted source.")
       return
     }
 
@@ -50,29 +52,29 @@ object StoryMessageProcessor {
     SignalDatabase.messages.beginTransaction()
 
     try {
-      val storyType: StoryType = if (storyMessage.hasAllowsReplies() && storyMessage.allowsReplies) {
-        StoryType.withReplies(storyMessage.hasTextAttachment())
+      val storyType: StoryType = if (storyMessage.allowsReplies == true) {
+        StoryType.withReplies(isTextStory = storyMessage.textAttachment != null)
       } else {
-        StoryType.withoutReplies(storyMessage.hasTextAttachment())
+        StoryType.withoutReplies(isTextStory = storyMessage.textAttachment != null)
       }
 
       val mediaMessage = IncomingMediaMessage(
         from = senderRecipient.id,
-        sentTimeMillis = envelope.timestamp,
-        serverTimeMillis = envelope.serverTimestamp,
+        sentTimeMillis = envelope.timestamp!!,
+        serverTimeMillis = envelope.serverTimestamp!!,
         receivedTimeMillis = System.currentTimeMillis(),
         storyType = storyType,
         isUnidentified = metadata.sealedSender,
         body = serializeTextAttachment(storyMessage),
-        groupId = storyMessage.group.groupId,
-        attachments = if (storyMessage.hasFileAttachment()) listOfNotNull(storyMessage.fileAttachment.toPointer()) else emptyList(),
+        groupId = storyMessage.group?.groupId,
+        attachments = listOfNotNull(storyMessage.fileAttachment?.toPointer()),
         linkPreviews = DataMessageProcessor.getLinkPreviews(
-          previews = if (storyMessage.textAttachment.hasPreview()) listOf(storyMessage.textAttachment.preview) else emptyList(),
+          previews = listOfNotNull(storyMessage.textAttachment?.preview),
           body = "",
           isStoryEmbed = true
         ),
         serverGuid = envelope.serverGuid,
-        messageRanges = storyMessage.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
+        messageRanges = storyMessage.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
       )
 
       insertResult = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
@@ -91,66 +93,60 @@ object StoryMessageProcessor {
     }
   }
 
-  fun serializeTextAttachment(story: SignalServiceProtos.StoryMessage): String? {
-    if (!story.hasTextAttachment()) {
-      return null
-    }
-    val textAttachment = story.textAttachment
-    val builder = StoryTextPost.newBuilder()
+  fun serializeTextAttachment(story: StoryMessage): String? {
+    val textAttachment = story.textAttachment ?: return null
+    val builder = StoryTextPost.Builder()
 
-    if (textAttachment.hasText()) {
-      builder.body = textAttachment.text
+    if (textAttachment.text != null) {
+      builder.body = textAttachment.text!!
     }
 
-    if (textAttachment.hasTextStyle()) {
-      when (textAttachment.textStyle) {
-        SignalServiceProtos.TextAttachment.Style.DEFAULT -> builder.style = StoryTextPost.Style.DEFAULT
-        SignalServiceProtos.TextAttachment.Style.REGULAR -> builder.style = StoryTextPost.Style.REGULAR
-        SignalServiceProtos.TextAttachment.Style.BOLD -> builder.style = StoryTextPost.Style.BOLD
-        SignalServiceProtos.TextAttachment.Style.SERIF -> builder.style = StoryTextPost.Style.SERIF
-        SignalServiceProtos.TextAttachment.Style.SCRIPT -> builder.style = StoryTextPost.Style.SCRIPT
-        SignalServiceProtos.TextAttachment.Style.CONDENSED -> builder.style = StoryTextPost.Style.CONDENSED
-        else -> Unit
-      }
+    when (textAttachment.textStyle) {
+      TextAttachment.Style.DEFAULT -> builder.style = StoryTextPost.Style.DEFAULT
+      TextAttachment.Style.REGULAR -> builder.style = StoryTextPost.Style.REGULAR
+      TextAttachment.Style.BOLD -> builder.style = StoryTextPost.Style.BOLD
+      TextAttachment.Style.SERIF -> builder.style = StoryTextPost.Style.SERIF
+      TextAttachment.Style.SCRIPT -> builder.style = StoryTextPost.Style.SCRIPT
+      TextAttachment.Style.CONDENSED -> builder.style = StoryTextPost.Style.CONDENSED
+      null -> Unit
     }
 
-    if (textAttachment.hasTextBackgroundColor()) {
-      builder.textBackgroundColor = textAttachment.textBackgroundColor
+    if (textAttachment.textBackgroundColor != null) {
+      builder.textBackgroundColor = textAttachment.textBackgroundColor!!
     }
 
-    if (textAttachment.hasTextForegroundColor()) {
-      builder.textForegroundColor = textAttachment.textForegroundColor
+    if (textAttachment.textForegroundColor != null) {
+      builder.textForegroundColor = textAttachment.textForegroundColor!!
     }
 
-    val chatColorBuilder = ChatColor.newBuilder()
+    val chatColorBuilder = ChatColor.Builder()
 
-    if (textAttachment.hasColor()) {
-      chatColorBuilder.setSingleColor(ChatColor.SingleColor.newBuilder().setColor(textAttachment.color))
-    } else if (textAttachment.hasGradient()) {
-      val gradient = textAttachment.gradient
-      val linearGradientBuilder = ChatColor.LinearGradient.newBuilder()
-      linearGradientBuilder.rotation = gradient.angle.toFloat()
+    if (textAttachment.color != null) {
+      chatColorBuilder.singleColor(ChatColor.SingleColor.Builder().color(textAttachment.color!!).build())
+    } else if (textAttachment.gradient != null) {
+      val gradient = textAttachment.gradient!!
+      val linearGradientBuilder = ChatColor.LinearGradient.Builder()
+      linearGradientBuilder.rotation = (gradient.angle ?: 0).toFloat()
 
-      if (gradient.positionsList.size > 1 && gradient.colorsList.size == gradient.positionsList.size) {
-        val positions = ArrayList(gradient.positionsList)
+      if (gradient.positions.size > 1 && gradient.colors.size == gradient.positions.size) {
+        val positions = ArrayList(gradient.positions)
         positions[0] = 0f
         positions[positions.size - 1] = 1f
-        linearGradientBuilder.addAllColors(ArrayList(gradient.colorsList))
-        linearGradientBuilder.addAllPositions(positions)
-      } else if (gradient.colorsList.isNotEmpty()) {
+        linearGradientBuilder.colors(ArrayList(gradient.colors))
+        linearGradientBuilder.positions(positions)
+      } else if (gradient.colors.isNotEmpty()) {
         warn("Incoming text story has color / position mismatch. Defaulting to start and end colors.")
-        linearGradientBuilder.addColors(gradient.colorsList[0])
-        linearGradientBuilder.addColors(gradient.colorsList[gradient.colorsList.size - 1])
-        linearGradientBuilder.addAllPositions(listOf(0f, 1f))
+        linearGradientBuilder.colors(listOf(gradient.colors[0], gradient.colors[gradient.colors.size - 1]))
+        linearGradientBuilder.positions(listOf(0f, 1f))
       } else {
         warn("Incoming text story did not have a valid linear gradient.")
-        linearGradientBuilder.addAllColors(listOf(Color.BLACK, Color.BLACK))
-        linearGradientBuilder.addAllPositions(listOf(0f, 1f))
+        linearGradientBuilder.colors(listOf(Color.BLACK, Color.BLACK))
+        linearGradientBuilder.positions(listOf(0f, 1f))
       }
-      chatColorBuilder.setLinearGradient(linearGradientBuilder)
+      chatColorBuilder.linearGradient(linearGradientBuilder.build())
     }
-    builder.setBackground(chatColorBuilder)
+    builder.background(chatColorBuilder.build())
 
-    return Base64.encodeBytes(builder.build().toByteArray())
+    return Base64.encodeBytes(builder.build().encode())
   }
 }

@@ -18,11 +18,11 @@ public final class GroupDetails {
   }
 
   public @NonNull String getGroupName() {
-    return joinInfo.getTitle();
+    return joinInfo.title;
   }
 
   public @NonNull String getGroupDescription() {
-    return joinInfo.getDescription();
+    return joinInfo.description;
   }
 
   public @Nullable byte[] getAvatarBytes() {
@@ -34,10 +34,10 @@ public final class GroupDetails {
   }
 
   public int getGroupMembershipCount() {
-    return joinInfo.getMemberCount();
+    return joinInfo.memberCount;
   }
 
   public boolean joinRequiresAdminApproval() {
-    return joinInfo.getAddFromInviteLink() == AccessControl.AccessRequired.ADMINISTRATOR;
+    return joinInfo.addFromInviteLink == AccessControl.AccessRequired.ADMINISTRATOR;
   }
 }

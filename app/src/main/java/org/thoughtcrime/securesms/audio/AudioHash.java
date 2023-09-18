@@ -22,13 +22,13 @@ public final class AudioHash {
   }
 
   public AudioHash(@NonNull AudioWaveFormData audioWaveForm) {
-    this(Base64.encodeBytes(audioWaveForm.toByteArray()), audioWaveForm);
+    this(Base64.encodeBytes(audioWaveForm.encode()), audioWaveForm);
   }
 
   public static @Nullable AudioHash parseOrNull(@Nullable String hash) {
     if (hash == null) return null;
     try {
-      return new AudioHash(hash, AudioWaveFormData.parseFrom(Base64.decode(hash)));
+      return new AudioHash(hash, AudioWaveFormData.ADAPTER.decode(Base64.decode(hash)));
     } catch (IOException e) {
       return null;
     }

@@ -34,15 +34,15 @@ public class PartialDecryptedGroup {
   }
 
   public int getRevision() {
-    return decryptedGroup.getRevision();
+    return decryptedGroup.revision;
   }
 
   public List<DecryptedMember> getMembersList() {
-    return decryptedGroup.getMembersList();
+    return decryptedGroup.members;
   }
 
   public List<DecryptedPendingMember> getPendingMembersList() {
-    return decryptedGroup.getPendingMembersList();
+    return decryptedGroup.pendingMembers;
   }
 
   public DecryptedGroup getFullyDecryptedGroup()

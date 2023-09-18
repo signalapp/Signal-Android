@@ -6,12 +6,11 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.whispersystems.signalservice.api.payments.Money;
 
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -68,7 +67,7 @@ public class PaymentParcelable implements Parcelable {
     dest.writeString(payment.getNote());
     dest.writeString(payment.getAmount().serialize());
     dest.writeString(payment.getFee().serialize());
-    dest.writeByteArray(payment.getPaymentMetaData().toByteArray());
+    dest.writeByteArray(payment.getPaymentMetaData().encode());
     dest.writeByte(payment.isSeen() ? (byte) 1 : 0);
     dest.writeString(payment.getAmountWithDirection().serialize());
     dest.writeString(payment.getAmountPlusFeeWithDirection().serialize());
@@ -119,12 +118,12 @@ public class PaymentParcelable implements Parcelable {
         note                       = in.readString();
         amount                     = Money.parse(in.readString());
         fee                        = Money.parse(in.readString());
-        paymentMetaData            = PaymentMetaData.parseFrom(in.createByteArray());
+        paymentMetaData            = PaymentMetaData.ADAPTER.decode(in.createByteArray());
         isSeen                     = in.readByte() == 1;
         amountWithDirection        = Money.parse(in.readString());
         amountPlusFeeWithDirection = Money.parse(in.readString());
         isDefrag                   = in.readByte() == 1;
-      } catch (Money.ParseException | InvalidProtocolBufferException e) {
+      } catch (Money.ParseException | IOException e) {
         throw new IllegalArgumentException();
       }
     }

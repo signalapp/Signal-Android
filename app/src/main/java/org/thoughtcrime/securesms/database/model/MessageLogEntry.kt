@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database.model
 
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.ContentHint
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.Content
 
 /**
  * Model class for reading from the [org.thoughtcrime.securesms.database.MessageSendLogTables].
@@ -10,7 +10,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 data class MessageLogEntry(
   val recipientId: RecipientId,
   val dateSent: Long,
-  val content: SignalServiceProtos.Content,
+  val content: Content,
   val contentHint: ContentHint,
   @get:JvmName("isUrgent")
   val urgent: Boolean,

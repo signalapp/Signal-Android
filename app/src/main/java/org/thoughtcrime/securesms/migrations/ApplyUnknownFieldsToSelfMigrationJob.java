@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;

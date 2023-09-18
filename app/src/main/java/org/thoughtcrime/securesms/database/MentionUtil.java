@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public final class MentionUtil {
 
@@ -93,26 +94,29 @@ public final class MentionUtil {
       return null;
     }
 
-    BodyRangeList.Builder builder = BodyRangeList.newBuilder();
-
-    for (Mention mention : mentions) {
-      String uuid = Recipient.resolved(mention.getRecipientId()).requireAci().toString();
-      builder.addRanges(BodyRangeList.BodyRange.newBuilder()
-                                               .setMentionUuid(uuid)
-                                               .setStart(mention.getStart())
-                                               .setLength(mention.getLength()));
-    }
-
+    BodyRangeList.Builder builder = new BodyRangeList.Builder();
+    builder.ranges(
+        mentions.stream()
+                .map(mention -> {
+                  String uuid = Recipient.resolved(mention.getRecipientId()).requireAci().toString();
+                  return new BodyRangeList.BodyRange.Builder()
+                      .mentionUuid(uuid)
+                      .start(mention.getStart())
+                      .length(mention.getLength())
+                      .build();
+                })
+                .collect(Collectors.toList())
+    );
     return builder.build();
   }
 
   public static @NonNull List<Mention> bodyRangeListToMentions(@Nullable BodyRangeList bodyRanges) {
     if (bodyRanges != null) {
-      return Stream.of(bodyRanges.getRangesList())
-                   .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
+      return Stream.of(bodyRanges.ranges)
+                   .filter(bodyRange -> bodyRange.mentionUuid != null)
                    .map(mention -> {
-                     RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.getMentionUuid())).getId();
-                     return new Mention(id, mention.getStart(), mention.getLength());
+                     RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.mentionUuid)).getId();
+                     return new Mention(id, mention.start, mention.length);
                    })
                    .toList();
     } else {

@@ -79,12 +79,11 @@ class GiftMessageView @JvmOverloads constructor(
       }
 
       actionView.setText(
-        when (giftBadge.redemptionState ?: GiftBadge.RedemptionState.UNRECOGNIZED) {
+        when (giftBadge.redemptionState) {
           GiftBadge.RedemptionState.PENDING -> R.string.GiftMessageView__redeem
           GiftBadge.RedemptionState.STARTED -> R.string.GiftMessageView__redeeming
           GiftBadge.RedemptionState.REDEEMED -> R.string.GiftMessageView__redeemed
           GiftBadge.RedemptionState.FAILED -> R.string.GiftMessageView__redeem
-          GiftBadge.RedemptionState.UNRECOGNIZED -> R.string.GiftMessageView__redeem
         }
       )
     }

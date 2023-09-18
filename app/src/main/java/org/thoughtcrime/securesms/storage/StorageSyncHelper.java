@@ -168,7 +168,7 @@ public final class StorageSyncHelper {
     if (linkComponents != null) {
       account.setUsernameLink(new AccountRecord.UsernameLink.Builder()
                                                             .entropy(ByteString.of(linkComponents.getEntropy()))
-                                                            .serverId(UuidUtil.toOkioByteString(linkComponents.getServerId()))
+                                                            .serverId(UuidUtil.toByteString(linkComponents.getServerId()))
                                                             .color(StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc().getUsernameQrCodeColorScheme()))
                                                             .build());
     } else {

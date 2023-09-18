@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.auth.AuthCredentialPresentation;
@@ -33,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import okio.ByteString;
 
 public class GroupsV2Api {
 
@@ -79,8 +79,8 @@ public class GroupsV2Api {
     if (newGroup.getAvatar().isPresent()) {
       String cdnKey = uploadAvatar(newGroup.getAvatar().get(), newGroup.getGroupSecretParams(), authorization);
 
-      group = Group.newBuilder(group)
-                    .setAvatar(cdnKey)
+      group = group.newBuilder()
+                    .avatar(cdnKey)
                     .build();
     }
 
@@ -114,12 +114,12 @@ public class GroupsV2Api {
       throws IOException, InvalidGroupStateException, VerificationFailedException
   {
     PushServiceSocket.GroupHistory     group           = socket.getGroupsV2GroupHistory(fromRevision, authorization, GroupsV2Operations.HIGHEST_KNOWN_EPOCH, includeFirstState);
-    List<DecryptedGroupHistoryEntry>   result          = new ArrayList<>(group.getGroupChanges().getGroupChangesList().size());
+    List<DecryptedGroupHistoryEntry>   result          = new ArrayList<>(group.getGroupChanges().groupChanges.size());
     GroupsV2Operations.GroupOperations groupOperations = groupsOperations.forGroup(groupSecretParams);
 
-    for (GroupChanges.GroupChangeState change : group.getGroupChanges().getGroupChangesList()) {
-      Optional<DecryptedGroup>       decryptedGroup  = change.hasGroupState() ? Optional.of(groupOperations.decryptGroup(change.getGroupState())) : Optional.empty();
-      Optional<DecryptedGroupChange> decryptedChange = change.hasGroupChange() ? groupOperations.decryptChange(change.getGroupChange(), false) : Optional.empty();
+    for (GroupChanges.GroupChangeState change : group.getGroupChanges().groupChanges) {
+      Optional<DecryptedGroup>       decryptedGroup  = change.groupState != null ? Optional.of(groupOperations.decryptGroup(change.groupState)) : Optional.empty();
+      Optional<DecryptedGroupChange> decryptedChange = change.groupChange != null ? groupOperations.decryptChange(change.groupChange, false) : Optional.empty();
 
       result.add(new DecryptedGroupHistoryEntry(decryptedGroup, decryptedChange));
     }
@@ -151,14 +151,14 @@ public class GroupsV2Api {
 
     byte[] cipherText;
     try {
-      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(GroupAttributeBlob.newBuilder().setAvatar(ByteString.copyFrom(avatar)).build().toByteArray());
+      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(new GroupAttributeBlob.Builder().avatar(ByteString.of(avatar)).build().encode());
     } catch (VerificationFailedException e) {
       throw new AssertionError(e);
     }
 
     socket.uploadGroupV2Avatar(cipherText, form);
 
-    return form.getKey();
+    return form.key;
   }
 
   public GroupChange patchGroup(GroupChange.Actions groupChange,

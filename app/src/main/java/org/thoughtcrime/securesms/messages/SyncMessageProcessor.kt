@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.messages
 
+import ProtoUtil.isNotEmpty
 import android.content.Context
-import com.google.protobuf.ByteString
 import com.mobilecoin.lib.exceptions.SerializationException
+import okio.ByteString
 import org.signal.core.util.Hex
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.util.Pair
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.expireTimerDuration
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupMasterKey
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContext
@@ -100,27 +102,28 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.StorageKey
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.StoryMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Blocked
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLinkUpdate
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLogEvent
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Configuration
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.FetchLatest
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.MessageRequestResponse
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Read
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Request
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Sent
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.ViewOnceOpen
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.EditMessage
+import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.push.StoryMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage.Blocked
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallLogEvent
+import org.whispersystems.signalservice.internal.push.SyncMessage.Configuration
+import org.whispersystems.signalservice.internal.push.SyncMessage.FetchLatest
+import org.whispersystems.signalservice.internal.push.SyncMessage.MessageRequestResponse
+import org.whispersystems.signalservice.internal.push.SyncMessage.Read
+import org.whispersystems.signalservice.internal.push.SyncMessage.Request
+import org.whispersystems.signalservice.internal.push.SyncMessage.Sent
+import org.whispersystems.signalservice.internal.push.SyncMessage.StickerPackOperation
+import org.whispersystems.signalservice.internal.push.SyncMessage.ViewOnceOpen
+import org.whispersystems.signalservice.internal.push.Verified
 import java.io.IOException
 import java.util.Optional
 import java.util.UUID
-import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Duration
 
 object SyncMessageProcessor {
 
@@ -132,27 +135,27 @@ object SyncMessageProcessor {
     metadata: EnvelopeMetadata,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ) {
-    val syncMessage = content.syncMessage
+    val syncMessage = content.syncMessage!!
 
     when {
-      syncMessage.hasSent() -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent, senderRecipient, earlyMessageCacheEntry)
-      syncMessage.hasRequest() -> handleSynchronizeRequestMessage(context, syncMessage.request, envelope.timestamp)
-      syncMessage.readList.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.readList, envelope.timestamp, earlyMessageCacheEntry)
-      syncMessage.viewedList.isNotEmpty() -> handleSynchronizeViewedMessage(context, syncMessage.viewedList, envelope.timestamp)
-      syncMessage.hasViewOnceOpen() -> handleSynchronizeViewOnceOpenMessage(context, syncMessage.viewOnceOpen, envelope.timestamp, earlyMessageCacheEntry)
-      syncMessage.hasVerified() -> handleSynchronizeVerifiedMessage(context, syncMessage.verified)
-      syncMessage.stickerPackOperationList.isNotEmpty() -> handleSynchronizeStickerPackOperation(syncMessage.stickerPackOperationList, envelope.timestamp)
-      syncMessage.hasConfiguration() -> handleSynchronizeConfigurationMessage(context, syncMessage.configuration, envelope.timestamp)
-      syncMessage.hasBlocked() -> handleSynchronizeBlockedListMessage(syncMessage.blocked)
-      syncMessage.hasFetchLatest() && syncMessage.fetchLatest.hasType() -> handleSynchronizeFetchMessage(syncMessage.fetchLatest.type, envelope.timestamp)
-      syncMessage.hasMessageRequestResponse() -> handleSynchronizeMessageRequestResponse(syncMessage.messageRequestResponse, envelope.timestamp)
-      syncMessage.hasOutgoingPayment() -> handleSynchronizeOutgoingPayment(syncMessage.outgoingPayment, envelope.timestamp)
-      syncMessage.hasKeys() && syncMessage.keys.hasStorageService() -> handleSynchronizeKeys(syncMessage.keys.storageService, envelope.timestamp)
-      syncMessage.hasContacts() -> handleSynchronizeContacts(syncMessage.contacts, envelope.timestamp)
-      syncMessage.hasCallEvent() -> handleSynchronizeCallEvent(syncMessage.callEvent, envelope.timestamp)
-      syncMessage.hasCallLinkUpdate() -> handleSynchronizeCallLink(syncMessage.callLinkUpdate, envelope.timestamp)
-      syncMessage.hasCallLogEvent() -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent, envelope.timestamp)
-      else -> warn(envelope.timestamp, "Contains no known sync types...")
+      syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, earlyMessageCacheEntry)
+      syncMessage.request != null -> handleSynchronizeRequestMessage(context, syncMessage.request!!, envelope.timestamp!!)
+      syncMessage.read.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.read, envelope.timestamp!!, earlyMessageCacheEntry)
+      syncMessage.viewed.isNotEmpty() -> handleSynchronizeViewedMessage(context, syncMessage.viewed, envelope.timestamp!!)
+      syncMessage.viewOnceOpen != null -> handleSynchronizeViewOnceOpenMessage(context, syncMessage.viewOnceOpen!!, envelope.timestamp!!, earlyMessageCacheEntry)
+      syncMessage.verified != null -> handleSynchronizeVerifiedMessage(context, syncMessage.verified!!)
+      syncMessage.stickerPackOperation.isNotEmpty() -> handleSynchronizeStickerPackOperation(syncMessage.stickerPackOperation, envelope.timestamp!!)
+      syncMessage.configuration != null -> handleSynchronizeConfigurationMessage(context, syncMessage.configuration!!, envelope.timestamp!!)
+      syncMessage.blocked != null -> handleSynchronizeBlockedListMessage(syncMessage.blocked!!)
+      syncMessage.fetchLatest?.type != null -> handleSynchronizeFetchMessage(syncMessage.fetchLatest!!.type!!, envelope.timestamp!!)
+      syncMessage.messageRequestResponse != null -> handleSynchronizeMessageRequestResponse(syncMessage.messageRequestResponse!!, envelope.timestamp!!)
+      syncMessage.outgoingPayment != null -> handleSynchronizeOutgoingPayment(syncMessage.outgoingPayment!!, envelope.timestamp!!)
+      syncMessage.keys?.storageService != null -> handleSynchronizeKeys(syncMessage.keys!!.storageService!!, envelope.timestamp!!)
+      syncMessage.contacts != null -> handleSynchronizeContacts(syncMessage.contacts!!, envelope.timestamp!!)
+      syncMessage.callEvent != null -> handleSynchronizeCallEvent(syncMessage.callEvent!!, envelope.timestamp!!)
+      syncMessage.callLinkUpdate != null -> handleSynchronizeCallLink(syncMessage.callLinkUpdate!!, envelope.timestamp!!)
+      syncMessage.callLogEvent != null -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent!!, envelope.timestamp!!)
+      else -> warn(envelope.timestamp!!, "Contains no known sync types...")
     }
   }
 
@@ -166,54 +169,64 @@ object SyncMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ) {
-    log(envelope.timestamp, "Processing sent transcript for message with ID ${sent.timestamp}")
+    log(envelope.timestamp!!, "Processing sent transcript for message with ID ${sent.timestamp!!}")
 
     try {
-      if (sent.hasStoryMessage() || sent.storyMessageRecipientsList.isNotEmpty()) {
+      if (sent.storyMessage != null || sent.storyMessageRecipients.isNotEmpty()) {
         handleSynchronizeSentStoryMessage(envelope, sent)
         return
       }
 
-      if (sent.hasEditMessage()) {
+      if (sent.editMessage != null) {
         handleSynchronizeSentEditMessage(context, envelope, sent, senderRecipient, earlyMessageCacheEntry)
         return
       }
 
-      val dataMessage = sent.message
-      val groupId: GroupId.V2? = if (dataMessage.hasGroupContext) GroupId.v2(dataMessage.groupV2.groupMasterKey) else null
+      if (sent.isRecipientUpdate == true) {
+        handleGroupRecipientUpdate(sent, envelope.timestamp!!)
+        return
+      }
+
+      val dataMessage = if (sent.message != null) {
+        sent.message!!
+      } else {
+        warn(envelope.timestamp!!, "Sync message missing nested message to sync")
+        return
+      }
+
+      val groupId: GroupId.V2? = if (dataMessage.hasGroupContext) GroupId.v2(dataMessage.groupV2!!.groupMasterKey) else null
 
       if (groupId != null) {
-        if (MessageContentProcessor.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, dataMessage.groupV2, senderRecipient) == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
+        if (MessageContentProcessor.handleGv2PreProcessing(context, envelope.timestamp!!, content, metadata, groupId, dataMessage.groupV2!!, senderRecipient) == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
           return
         }
       }
 
       var threadId: Long = -1
       when {
-        sent.isRecipientUpdate -> handleGroupRecipientUpdate(sent, envelope.timestamp)
-        dataMessage.isEndSession -> threadId = handleSynchronizeSentEndSessionMessage(context, sent, envelope.timestamp)
+        dataMessage.isEndSession -> threadId = handleSynchronizeSentEndSessionMessage(context, sent, envelope.timestamp!!)
         dataMessage.isGroupV2Update -> {
           handleSynchronizeSentGv2Update(context, envelope, sent)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
-        dataMessage.hasGroupCallUpdate() -> DataMessageProcessor.handleGroupCallUpdateMessage(envelope, dataMessage, senderRecipient.id, groupId)
-        dataMessage.isEmptyGroupV2Message -> warn(envelope.timestamp, "Empty GV2 message! Doing nothing.")
+        dataMessage.groupCallUpdate != null -> DataMessageProcessor.handleGroupCallUpdateMessage(envelope, dataMessage, senderRecipient.id, groupId)
+        dataMessage.isEmptyGroupV2Message -> warn(envelope.timestamp!!, "Empty GV2 message! Doing nothing.")
         dataMessage.isExpirationUpdate -> threadId = handleSynchronizeSentExpirationUpdate(sent)
-        dataMessage.hasStoryContext() -> threadId = handleSynchronizeSentStoryReply(sent, envelope.timestamp)
-        dataMessage.hasReaction() -> {
+        dataMessage.storyContext != null -> threadId = handleSynchronizeSentStoryReply(sent, envelope.timestamp!!)
+        dataMessage.reaction != null -> {
           DataMessageProcessor.handleReaction(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         dataMessage.hasRemoteDelete -> DataMessageProcessor.handleRemoteDelete(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry)
-        dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.timestamp)
-        else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp)
+        dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.timestamp!!)
+        else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp!!)
       }
 
       if (groupId != null && SignalDatabase.groups.isUnknownGroup(groupId)) {
-        DataMessageProcessor.handleUnknownGroupMessage(envelope.timestamp, dataMessage.groupV2)
+        DataMessageProcessor.handleUnknownGroupMessage(envelope.timestamp!!, dataMessage.groupV2!!)
       }
 
-      if (dataMessage.hasProfileKey()) {
+      if (dataMessage.profileKey.isNotEmpty()) {
         val recipient: Recipient = getSyncMessageDestination(sent)
         if (!recipient.isSystemContact && !recipient.isProfileSharing) {
           SignalDatabase.recipients.setProfileSharing(recipient.id, true)
@@ -226,11 +239,11 @@ object SyncMessageProcessor {
       }
 
       if (SignalStore.rateLimit().needsRecaptcha()) {
-        log(envelope.timestamp, "Got a sent transcript while in reCAPTCHA mode. Assuming we're good to message again.")
+        log(envelope.timestamp!!, "Got a sent transcript while in reCAPTCHA mode. Assuming we're good to message again.")
         RateLimitUtil.retryAllRateLimitedMessages(context)
       }
 
-      ApplicationDependencies.getMessageNotifier().setLastDesktopActivityTimestamp(sent.timestamp)
+      ApplicationDependencies.getMessageNotifier().setLastDesktopActivityTimestamp(sent.timestamp!!)
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     }
@@ -238,9 +251,9 @@ object SyncMessageProcessor {
 
   private fun getSyncMessageDestination(message: Sent): Recipient {
     return if (message.message.hasGroupContext) {
-      Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.message.groupV2.groupMasterKey))
+      Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.message!!.groupV2!!.groupMasterKey))
     } else {
-      Recipient.externalPush(SignalServiceAddress(ServiceId.parseOrThrow(message.destinationServiceId), message.destinationE164))
+      Recipient.externalPush(SignalServiceAddress(ServiceId.parseOrThrow(message.destinationServiceId!!), message.destinationE164))
     }
   }
 
@@ -252,30 +265,32 @@ object SyncMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ) {
-    val targetSentTimestamp: Long = sent.editMessage.targetSentTimestamp
+    val editMessage: EditMessage = sent.editMessage!!
+    val targetSentTimestamp: Long = editMessage.targetSentTimestamp!!
     val targetMessage: MessageRecord? = SignalDatabase.messages.getMessageFor(targetSentTimestamp, senderRecipient.id)
     val senderRecipientId = senderRecipient.id
 
     if (targetMessage == null) {
-      warn(envelope.timestamp, "[handleSynchronizeSentEditMessage] Could not find matching message! targetTimestamp: $targetSentTimestamp  author: $senderRecipientId")
+      warn(envelope.timestamp!!, "[handleSynchronizeSentEditMessage] Could not find matching message! targetTimestamp: $targetSentTimestamp  author: $senderRecipientId")
       if (earlyMessageCacheEntry != null) {
         ApplicationDependencies.getEarlyMessageCache().store(senderRecipientId, targetSentTimestamp, earlyMessageCacheEntry)
         PushProcessEarlyMessagesJob.enqueue()
       }
-    } else if (MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp)) {
-      val message = sent.editMessage.dataMessage
+    } else if (MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!)) {
+      val message: DataMessage = editMessage.dataMessage!!
       val toRecipient: Recipient = if (message.hasGroupContext) {
-        Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2.groupMasterKey))
+        Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2!!.groupMasterKey))
       } else {
-        Recipient.externalPush(ServiceId.parseOrThrow(sent.destinationServiceId))
+        Recipient.externalPush(ServiceId.parseOrThrow(sent.destinationServiceId!!))
       }
+
       if (message.isMediaMessage) {
-        handleSynchronizeSentEditMediaMessage(context, targetMessage, toRecipient, sent, message, envelope.timestamp)
+        handleSynchronizeSentEditMediaMessage(context, targetMessage, toRecipient, sent, message, envelope.timestamp!!)
       } else {
-        handleSynchronizeSentEditTextMessage(targetMessage, toRecipient, sent, message, envelope.timestamp)
+        handleSynchronizeSentEditTextMessage(targetMessage, toRecipient, sent, message, envelope.timestamp!!)
       }
     } else {
-      warn(envelope.timestamp, "[handleSynchronizeSentEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${targetMessage.serverTimestamp}, sendAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}")
+      warn(envelope.timestamp!!, "[handleSynchronizeSentEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${targetMessage.serverTimestamp}, sendAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}")
     }
   }
 
@@ -289,7 +304,7 @@ object SyncMessageProcessor {
     log(envelopeTimestamp, "Synchronize sent edit text message for message: ${targetMessage.id}")
 
     val body = message.body ?: ""
-    val bodyRanges = message.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
+    val bodyRanges = message.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
     val isGroup = toRecipient.isGroup
@@ -299,7 +314,7 @@ object SyncMessageProcessor {
       val outgoingMessage = OutgoingMessage(
         recipient = toRecipient,
         body = body,
-        timestamp = sent.timestamp,
+        timestamp = sent.timestamp!!,
         expiresIn = targetMessage.expiresIn,
         isSecure = true,
         bodyRanges = bodyRanges,
@@ -311,7 +326,7 @@ object SyncMessageProcessor {
     } else {
       val outgoingTextMessage = OutgoingMessage(
         threadRecipient = toRecipient,
-        sentTimeMillis = sent.timestamp,
+        sentTimeMillis = sent.timestamp!!,
         body = body,
         expiresIn = targetMessage.expiresIn,
         isUrgent = true,
@@ -330,8 +345,8 @@ object SyncMessageProcessor {
     }
 
     if (toRecipient.isSelf) {
-      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
-      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
     }
   }
 
@@ -347,12 +362,12 @@ object SyncMessageProcessor {
 
     val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, message)
     val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(message)
-    val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(message.previewList, message.body ?: "", false)
-    val mentions: List<Mention> = DataMessageProcessor.getMentions(message.bodyRangesList)
-    val viewOnce: Boolean = message.isViewOnce
-    val bodyRanges: BodyRangeList? = message.bodyRangesList.toBodyRangeList()
+    val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false)
+    val mentions: List<Mention> = DataMessageProcessor.getMentions(message.bodyRanges)
+    val viewOnce: Boolean = message.isViewOnce == true
+    val bodyRanges: BodyRangeList? = message.bodyRanges.toBodyRangeList()
 
-    val syncAttachments = message.attachmentsList.toPointersWithinLimit().filter {
+    val syncAttachments = message.attachments.toPointersWithinLimit().filter {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }
 
@@ -363,7 +378,7 @@ object SyncMessageProcessor {
       recipient = toRecipient,
       body = message.body ?: "",
       attachments = syncAttachments.ifEmpty { (targetMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
-      timestamp = sent.timestamp,
+      timestamp = sent.timestamp!!,
       expiresIn = targetMessage.expiresIn,
       viewOnce = viewOnce,
       quote = quote,
@@ -394,8 +409,8 @@ object SyncMessageProcessor {
         ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, targetMessage.expireStarted, targetMessage.expireStarted)
       }
       if (toRecipient.isSelf) {
-        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, toRecipient.id, System.currentTimeMillis())
       }
       SignalDatabase.messages.setTransactionSuccessful()
     } finally {
@@ -412,45 +427,45 @@ object SyncMessageProcessor {
 
   @Throws(MmsException::class)
   private fun handleSynchronizeSentStoryMessage(envelope: Envelope, sent: Sent) {
-    log(envelope.timestamp, "Synchronize sent story message for " + sent.timestamp)
+    log(envelope.timestamp!!, "Synchronize sent story message for " + sent.timestamp)
 
-    val manifest = SentStorySyncManifest.fromRecipientsSet(sent.storyMessageRecipientsList)
+    val manifest = SentStorySyncManifest.fromRecipientsSet(sent.storyMessageRecipients)
 
-    if (sent.isRecipientUpdate) {
-      log(envelope.timestamp, "Processing recipient update for story message and exiting...")
-      SignalDatabase.storySends.applySentStoryManifest(manifest, sent.timestamp)
+    if (sent.isRecipientUpdate == true) {
+      log(envelope.timestamp!!, "Processing recipient update for story message and exiting...")
+      SignalDatabase.storySends.applySentStoryManifest(manifest, sent.timestamp!!)
       return
     }
 
-    val storyMessage: StoryMessage = sent.storyMessage
+    val storyMessage: StoryMessage = sent.storyMessage!!
     val distributionIds: Set<DistributionId> = manifest.getDistributionIdSet()
-    val groupId: GroupId.V2? = storyMessage.group.groupId
+    val groupId: GroupId.V2? = storyMessage.group?.groupId
     val textStoryBody: String? = StoryMessageProcessor.serializeTextAttachment(storyMessage)
-    val bodyRanges: BodyRangeList? = storyMessage.bodyRangesList.toBodyRangeList()
+    val bodyRanges: BodyRangeList? = storyMessage.bodyRanges.toBodyRangeList()
     val storyType: StoryType = storyMessage.type
 
     val linkPreviews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(
-      previews = if (storyMessage.textAttachment.hasPreview()) listOf(storyMessage.textAttachment.preview) else emptyList(),
+      previews = listOfNotNull(storyMessage.textAttachment?.preview),
       body = "",
       isStoryEmbed = true
     )
 
-    val attachments: List<Attachment> = if (storyMessage.hasFileAttachment()) listOfNotNull(storyMessage.fileAttachment.toPointer()) else emptyList()
+    val attachments: List<Attachment> = listOfNotNull(storyMessage.fileAttachment?.toPointer())
 
     for (distributionId in distributionIds) {
       val distributionRecipientId = SignalDatabase.distributionLists.getOrCreateByDistributionId(distributionId, manifest)
       val distributionListRecipient = Recipient.resolved(distributionRecipientId)
-      insertSentStoryMessage(sent, distributionListRecipient, null, textStoryBody, attachments, sent.timestamp, storyType, linkPreviews, bodyRanges)
+      insertSentStoryMessage(sent, distributionListRecipient, null, textStoryBody, attachments, sent.timestamp!!, storyType, linkPreviews, bodyRanges)
     }
 
     if (groupId != null) {
       val groupRecipient: Optional<RecipientId> = SignalDatabase.recipients.getByGroupId(groupId)
       if (groupRecipient.isPresent) {
-        insertSentStoryMessage(sent, Recipient.resolved(groupRecipient.get()), groupId, textStoryBody, attachments, sent.timestamp, storyType, linkPreviews, bodyRanges)
+        insertSentStoryMessage(sent, Recipient.resolved(groupRecipient.get()), groupId, textStoryBody, attachments, sent.timestamp!!, storyType, linkPreviews, bodyRanges)
       }
     }
 
-    SignalDatabase.storySends.applySentStoryManifest(manifest, sent.timestamp)
+    SignalDatabase.storySends.applySentStoryManifest(manifest, sent.timestamp!!)
   }
 
   @Throws(MmsException::class)
@@ -503,8 +518,8 @@ object SyncMessageProcessor {
       attachments = allAttachments.filterNot { it.isSticker }
 
       if (recipient.isSelf) {
-        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
       }
 
       SignalDatabase.messages.setTransactionSuccessful()
@@ -527,7 +542,7 @@ object SyncMessageProcessor {
       return
     }
 
-    val record = SignalDatabase.messages.getMessageFor(sent.timestamp, Recipient.self().id)
+    val record = SignalDatabase.messages.getMessageFor(sent.timestamp!!, Recipient.self().id)
     if (record == null) {
       warn("Got recipient update for non-existing message! Skipping.")
       return
@@ -543,9 +558,9 @@ object SyncMessageProcessor {
 
     for (messageRecipientId in messageRecipientIds.keys) {
       if ((localReceipts[messageRecipientId] ?: GroupReceiptTable.STATUS_UNKNOWN) < GroupReceiptTable.STATUS_UNDELIVERED) {
-        SignalDatabase.groupReceipts.update(messageRecipientId, messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp)
+        SignalDatabase.groupReceipts.update(messageRecipientId, messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp!!)
       } else if (!localReceipts.containsKey(messageRecipientId)) {
-        SignalDatabase.groupReceipts.insert(listOf(messageRecipientId), messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp)
+        SignalDatabase.groupReceipts.insert(listOf(messageRecipientId), messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp!!)
       }
     }
 
@@ -561,9 +576,9 @@ object SyncMessageProcessor {
 
     for (messageRecipientId in messageRecipientIds.keys) {
       if ((localReceipts[messageRecipientId] ?: GroupReceiptTable.STATUS_UNKNOWN) < GroupReceiptTable.STATUS_UNDELIVERED) {
-        SignalDatabase.groupReceipts.update(messageRecipientId, messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp)
+        SignalDatabase.groupReceipts.update(messageRecipientId, messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp!!)
       } else if (!localReceipts.containsKey(messageRecipientId)) {
-        SignalDatabase.groupReceipts.insert(listOf(messageRecipientId), messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp)
+        SignalDatabase.groupReceipts.insert(listOf(messageRecipientId), messageId, GroupReceiptTable.STATUS_UNDELIVERED, sent.timestamp!!)
       }
     }
 
@@ -577,7 +592,7 @@ object SyncMessageProcessor {
     log(envelopeTimestamp, "Synchronize end session message.")
 
     val recipient: Recipient = getSyncMessageDestination(sent)
-    val outgoingEndSessionMessage: OutgoingMessage = endSessionMessage(recipient, sent.timestamp)
+    val outgoingEndSessionMessage: OutgoingMessage = endSessionMessage(recipient, sent.timestamp!!)
     val threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
     if (!recipient.isGroup) {
@@ -599,48 +614,56 @@ object SyncMessageProcessor {
 
   @Throws(IOException::class, GroupChangeBusyException::class)
   private fun handleSynchronizeSentGv2Update(context: Context, envelope: Envelope, sent: Sent) {
-    log(envelope.timestamp, "Synchronize sent GV2 update for message with timestamp " + sent.timestamp)
+    log(envelope.timestamp!!, "Synchronize sent GV2 update for message with timestamp " + sent.timestamp!!)
 
-    val dataMessage: DataMessage = sent.message
-    val groupId: GroupId.V2? = dataMessage.groupV2.groupId
+    val dataMessage: DataMessage = sent.message!!
+    val groupId: GroupId.V2? = dataMessage.groupV2?.groupId
 
-    if (MessageContentProcessor.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2, SignalDatabase.groups.getGroup(GroupId.v2(dataMessage.groupV2.groupMasterKey))) == null) {
-      log(envelope.timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
+    if (groupId == null) {
+      warn(envelope.timestamp!!, "GV2 update missing group id")
+      return
+    }
+
+    if (MessageContentProcessor.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp!!, dataMessage.groupV2!!, SignalDatabase.groups.getGroup(groupId)) == null) {
+      log(envelope.timestamp!!, "Ignoring GV2 message for group we are not currently in $groupId")
     }
   }
 
   @Throws(MmsException::class)
   private fun handleSynchronizeSentExpirationUpdate(sent: Sent, sideEffect: Boolean = false): Long {
-    log(sent.timestamp, "Synchronize sent expiration update.")
+    log(sent.timestamp!!, "Synchronize sent expiration update.")
 
     val groupId: GroupId? = getSyncMessageDestination(sent).groupId.orNull()
 
     if (groupId != null && groupId.isV2) {
-      warn(sent.timestamp, "Expiration update received for GV2. Ignoring.")
+      warn(sent.timestamp!!, "Expiration update received for GV2. Ignoring.")
       return -1
     }
 
     val recipient: Recipient = getSyncMessageDestination(sent)
-    val expirationUpdateMessage: OutgoingMessage = expirationUpdateMessage(recipient, if (sideEffect) sent.timestamp - 1 else sent.timestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
+    val expirationUpdateMessage: OutgoingMessage = expirationUpdateMessage(recipient, if (sideEffect) sent.timestamp!! - 1 else sent.timestamp!!, sent.message!!.expireTimerDuration.inWholeMilliseconds)
     val threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
     val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
 
     SignalDatabase.messages.markAsSent(messageId, true)
 
-    SignalDatabase.recipients.setExpireMessages(recipient.id, sent.message.expireTimer)
+    SignalDatabase.recipients.setExpireMessages(recipient.id, sent.message!!.expireTimerDuration.inWholeSeconds.toInt())
 
     return threadId
   }
 
   @Throws(MmsException::class, BadGroupIdException::class)
   private fun handleSynchronizeSentStoryReply(sent: Sent, envelopeTimestamp: Long): Long {
-    log(envelopeTimestamp, "Synchronize sent story reply for " + sent.timestamp)
+    log(envelopeTimestamp, "Synchronize sent story reply for " + sent.timestamp!!)
 
     try {
-      val reaction: DataMessage.Reaction = sent.message.reaction
+      val dataMessage: DataMessage = sent.message!!
+      val storyContext: DataMessage.StoryContext = dataMessage.storyContext!!
+
+      val reaction: DataMessage.Reaction? = dataMessage.reaction
       val parentStoryId: ParentStoryId
-      val authorServiceId: ServiceId = ServiceId.parseOrThrow(sent.message.storyContext.authorAci)
-      val sentTimestamp: Long = sent.message.storyContext.sentTimestamp
+      val authorServiceId: ServiceId = ServiceId.parseOrThrow(storyContext.authorAci!!)
+      val sentTimestamp: Long = storyContext.sentTimestamp!!
       val recipient: Recipient = getSyncMessageDestination(sent)
       var quoteModel: QuoteModel? = null
       var expiresInMillis = 0L
@@ -651,16 +674,16 @@ object SyncMessageProcessor {
       val groupStory: Boolean = threadRecipientId != null && (SignalDatabase.groups.getGroup(threadRecipientId).orNull()?.isActive ?: false)
       var bodyRanges: BodyRangeList? = null
 
-      val body: String? = if (sent.message.hasReaction() && EmojiUtil.isEmoji(reaction.emoji)) {
-        reaction.emoji
-      } else if (sent.message.hasBody()) {
-        bodyRanges = sent.message.bodyRangesList.toBodyRangeList()
-        sent.message.body
+      val body: String? = if (EmojiUtil.isEmoji(reaction?.emoji)) {
+        reaction!!.emoji
+      } else if (dataMessage.body != null) {
+        bodyRanges = dataMessage.bodyRanges.toBodyRangeList()
+        dataMessage.body
       } else {
         null
       }
 
-      if (sent.message.hasGroupContext) {
+      if (dataMessage.hasGroupContext) {
         parentStoryId = GroupReply(storyMessageId)
       } else if (groupStory || story.storyType.isStoryWithReplies) {
         parentStoryId = DirectReply(storyMessageId)
@@ -672,7 +695,7 @@ object SyncMessageProcessor {
           bodyBodyRanges = story.messageRanges
         }
         quoteModel = QuoteModel(sentTimestamp, storyAuthorRecipient, quoteBody, false, story.slideDeck.asAttachments(), emptyList(), QuoteModel.Type.NORMAL, bodyBodyRanges)
-        expiresInMillis = sent.message.expireTimer.seconds.inWholeMilliseconds
+        expiresInMillis = dataMessage.expireTimerDuration.inWholeMilliseconds
       } else {
         warn(envelopeTimestamp, "Story has replies disabled. Dropping reply.")
         return -1L
@@ -681,17 +704,17 @@ object SyncMessageProcessor {
       val mediaMessage = OutgoingMessage(
         recipient = recipient,
         body = body,
-        timestamp = sent.timestamp,
+        timestamp = sent.timestamp!!,
         expiresIn = expiresInMillis,
         parentStoryId = parentStoryId,
-        isStoryReaction = sent.message.hasReaction(),
+        isStoryReaction = reaction != null,
         quote = quoteModel,
-        mentions = DataMessageProcessor.getMentions(sent.message.bodyRangesList),
+        mentions = DataMessageProcessor.getMentions(dataMessage.bodyRanges),
         bodyRanges = bodyRanges,
         isSecure = true
       )
 
-      if (recipient.expiresInSeconds != sent.message.expireTimer) {
+      if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt()) {
         handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
       }
 
@@ -708,16 +731,16 @@ object SyncMessageProcessor {
         }
 
         SignalDatabase.messages.markAsSent(messageId, true)
-        if (sent.message.expireTimer > 0) {
-          SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp)
+        if (dataMessage.expireTimerDuration > Duration.ZERO) {
+          SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
 
           ApplicationDependencies
             .getExpiringMessageManager()
-            .scheduleDeletion(messageId, true, sent.expirationStartTimestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
+            .scheduleDeletion(messageId, true, sent.expirationStartTimestamp ?: 0, dataMessage.expireTimerDuration.inWholeMilliseconds)
         }
         if (recipient.isSelf) {
-          SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
-          SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+          SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+          SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
         }
         SignalDatabase.messages.setTransactionSuccessful()
       } finally {
@@ -733,25 +756,26 @@ object SyncMessageProcessor {
 
   @Throws(MmsException::class, BadGroupIdException::class)
   private fun handleSynchronizeSentMediaMessage(context: Context, sent: Sent, envelopeTimestamp: Long): Long {
-    log(envelopeTimestamp, "Synchronize sent media message for " + sent.timestamp)
+    log(envelopeTimestamp, "Synchronize sent media message for " + sent.timestamp!!)
 
     val recipient: Recipient = getSyncMessageDestination(sent)
-    val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, sent.message)
-    val sticker: Attachment? = DataMessageProcessor.getStickerAttachment(envelopeTimestamp, sent.message)
-    val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(sent.message)
-    val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(sent.message.previewList, sent.message.body ?: "", false)
-    val mentions: List<Mention> = DataMessageProcessor.getMentions(sent.message.bodyRangesList)
-    val giftBadge: GiftBadge? = if (sent.message.hasGiftBadge()) GiftBadge.newBuilder().setRedemptionToken(sent.message.giftBadge.receiptCredentialPresentation).build() else null
-    val viewOnce: Boolean = sent.message.isViewOnce
-    val bodyRanges: BodyRangeList? = sent.message.bodyRangesList.toBodyRangeList()
-    val syncAttachments: List<Attachment> = listOfNotNull(sticker) + if (viewOnce) listOf<Attachment>(TombstoneAttachment(MediaUtil.VIEW_ONCE, false)) else sent.message.attachmentsList.toPointersWithinLimit()
+    val dataMessage: DataMessage = sent.message!!
+    val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, dataMessage)
+    val sticker: Attachment? = DataMessageProcessor.getStickerAttachment(envelopeTimestamp, dataMessage)
+    val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(dataMessage)
+    val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(dataMessage.preview, dataMessage.body ?: "", false)
+    val mentions: List<Mention> = DataMessageProcessor.getMentions(dataMessage.bodyRanges)
+    val giftBadge: GiftBadge? = if (dataMessage.giftBadge?.receiptCredentialPresentation != null) GiftBadge.Builder().redemptionToken(dataMessage.giftBadge!!.receiptCredentialPresentation!!).build() else null
+    val viewOnce: Boolean = dataMessage.isViewOnce == true
+    val bodyRanges: BodyRangeList? = dataMessage.bodyRanges.toBodyRangeList()
+    val syncAttachments: List<Attachment> = listOfNotNull(sticker) + if (viewOnce) listOf<Attachment>(TombstoneAttachment(MediaUtil.VIEW_ONCE, false)) else dataMessage.attachments.toPointersWithinLimit()
 
     val mediaMessage = OutgoingMessage(
       recipient = recipient,
-      body = sent.message.body ?: "",
+      body = dataMessage.body ?: "",
       attachments = syncAttachments,
-      timestamp = sent.timestamp,
-      expiresIn = sent.message.expireTimer.seconds.inWholeMilliseconds,
+      timestamp = sent.timestamp!!,
+      expiresIn = dataMessage.expireTimerDuration.inWholeMilliseconds,
       viewOnce = viewOnce,
       quote = quote,
       contacts = sharedContacts,
@@ -762,7 +786,7 @@ object SyncMessageProcessor {
       isSecure = true
     )
 
-    if (recipient.expiresInSeconds != sent.message.expireTimer) {
+    if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt()) {
       handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
     }
 
@@ -784,14 +808,14 @@ object SyncMessageProcessor {
 
       attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
 
-      if (sent.message.expireTimer > 0) {
-        SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp)
+      if (dataMessage.expireTimerDuration > Duration.ZERO) {
+        SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
 
-        ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, sent.expirationStartTimestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
+        ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, sent.expirationStartTimestamp ?: 0, dataMessage.expireTimerDuration.inWholeMilliseconds)
       }
       if (recipient.isSelf) {
-        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
       }
       SignalDatabase.messages.setTransactionSuccessful()
     } finally {
@@ -809,14 +833,15 @@ object SyncMessageProcessor {
 
   @Throws(MmsException::class, BadGroupIdException::class)
   private fun handleSynchronizeSentTextMessage(sent: Sent, envelopeTimestamp: Long): Long {
-    log(envelopeTimestamp, "Synchronize sent text message for " + sent.timestamp)
+    log(envelopeTimestamp, "Synchronize sent text message for " + sent.timestamp!!)
 
     val recipient = getSyncMessageDestination(sent)
-    val body = sent.message.body ?: ""
-    val expiresInMillis = sent.message.expireTimer.seconds.inWholeMilliseconds
-    val bodyRanges = sent.message.bodyRangesList.filterNot { it.hasMentionAci() }.toBodyRangeList()
+    val dataMessage: DataMessage = sent.message!!
+    val body = dataMessage.body ?: ""
+    val expiresInMillis = dataMessage.expireTimerDuration.inWholeMilliseconds
+    val bodyRanges = dataMessage.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
 
-    if (recipient.expiresInSeconds != sent.message.expireTimer) {
+    if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt()) {
       handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
     }
 
@@ -828,7 +853,7 @@ object SyncMessageProcessor {
       val outgoingMessage = OutgoingMessage(
         recipient = recipient,
         body = body,
-        timestamp = sent.timestamp,
+        timestamp = sent.timestamp!!,
         expiresIn = expiresInMillis,
         isSecure = true,
         bodyRanges = bodyRanges
@@ -837,20 +862,20 @@ object SyncMessageProcessor {
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
       updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
     } else {
-      val outgoingTextMessage = text(threadRecipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp, bodyRanges = bodyRanges)
+      val outgoingTextMessage = text(threadRecipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp!!, bodyRanges = bodyRanges)
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
       SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
     SignalDatabase.threads.update(threadId, true)
     SignalDatabase.messages.markAsSent(messageId, true)
     if (expiresInMillis > 0) {
-      SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp)
-      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, isGroup, sent.expirationStartTimestamp, expiresInMillis)
+      SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
+      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, isGroup, sent.expirationStartTimestamp ?: 0, expiresInMillis)
     }
 
     if (recipient.isSelf) {
-      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
-      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp!!, recipient.id, System.currentTimeMillis())
     }
 
     return threadId
@@ -920,13 +945,18 @@ object SyncMessageProcessor {
       }
   }
 
-  private fun handleSynchronizeViewedMessage(context: Context, viewedMessages: MutableList<SyncMessage.Viewed>, envelopeTimestamp: Long) {
+  private fun handleSynchronizeViewedMessage(context: Context, viewedMessages: List<SyncMessage.Viewed>, envelopeTimestamp: Long) {
     log(envelopeTimestamp, "Synchronize view message. Count: ${viewedMessages.size}, Timestamps: ${viewedMessages.map { it.timestamp }}")
 
     val records = viewedMessages
       .mapNotNull { message ->
-        val author = Recipient.externalPush(ServiceId.parseOrThrow(message.senderAci)).id
-        SignalDatabase.messages.getMessageFor(message.timestamp, author)
+        val author = Recipient.externalPush(ServiceId.parseOrThrow(message.senderAci!!)).id
+        if (message.timestamp != null) {
+          SignalDatabase.messages.getMessageFor(message.timestamp!!, author)
+        } else {
+          warn(envelopeTimestamp, "Message timestamp null")
+          null
+        }
       }
 
     val toMarkViewed = records.map { it.id }
@@ -952,8 +982,13 @@ object SyncMessageProcessor {
   private fun handleSynchronizeViewOnceOpenMessage(context: Context, openMessage: ViewOnceOpen, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
     log(envelopeTimestamp, "Handling a view-once open for message: " + openMessage.timestamp)
 
-    val author: RecipientId = Recipient.externalPush(ServiceId.parseOrThrow(openMessage.senderAci)).id
-    val timestamp: Long = openMessage.timestamp
+    val author: RecipientId = Recipient.externalPush(ServiceId.parseOrThrow(openMessage.senderAci!!)).id
+    val timestamp: Long = if (openMessage.timestamp != null) {
+      openMessage.timestamp!!
+    } else {
+      warn(envelopeTimestamp, "Open message missing timestamp")
+      return
+    }
     val record: MessageRecord? = SignalDatabase.messages.getMessageFor(timestamp, author)
 
     if (record != null) {
@@ -973,7 +1008,7 @@ object SyncMessageProcessor {
     }
   }
 
-  private fun handleSynchronizeVerifiedMessage(context: Context, verifiedMessage: SignalServiceProtos.Verified) {
+  private fun handleSynchronizeVerifiedMessage(context: Context, verifiedMessage: Verified) {
     log("Synchronize verified message.")
 
     IdentityUtil.processVerifiedMessage(context, verifiedMessage)
@@ -985,14 +1020,13 @@ object SyncMessageProcessor {
     val jobManager = ApplicationDependencies.getJobManager()
 
     for (operation in stickerPackOperations) {
-      if (operation.hasPackId() && operation.hasPackKey() && operation.hasType()) {
-        val packId = Hex.toStringCondensed(operation.packId.toByteArray())
-        val packKey = Hex.toStringCondensed(operation.packKey.toByteArray())
+      if (operation.packId != null && operation.packKey != null && operation.type != null) {
+        val packId = Hex.toStringCondensed(operation.packId!!.toByteArray())
+        val packKey = Hex.toStringCondensed(operation.packKey!!.toByteArray())
 
-        when (operation.type) {
+        when (operation.type!!) {
           StickerPackOperation.Type.INSTALL -> jobManager.add(StickerPackDownloadJob.forInstall(packId, packKey, false))
           StickerPackOperation.Type.REMOVE -> SignalDatabase.stickers.uninstallPack(packId)
-          else -> warn("Unknown sticker operation: ${operation.type}")
         }
       } else {
         warn("Received incomplete sticker pack operation sync.")
@@ -1003,26 +1037,26 @@ object SyncMessageProcessor {
   private fun handleSynchronizeConfigurationMessage(context: Context, configurationMessage: Configuration, envelopeTimestamp: Long) {
     log(envelopeTimestamp, "Synchronize configuration message.")
 
-    if (configurationMessage.hasReadReceipts()) {
-      TextSecurePreferences.setReadReceiptsEnabled(context, configurationMessage.readReceipts)
+    if (configurationMessage.readReceipts != null) {
+      TextSecurePreferences.setReadReceiptsEnabled(context, configurationMessage.readReceipts!!)
     }
 
-    if (configurationMessage.hasUnidentifiedDeliveryIndicators()) {
-      TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, configurationMessage.unidentifiedDeliveryIndicators)
+    if (configurationMessage.unidentifiedDeliveryIndicators != null) {
+      TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, configurationMessage.unidentifiedDeliveryIndicators!!)
     }
 
-    if (configurationMessage.hasTypingIndicators()) {
-      TextSecurePreferences.setTypingIndicatorsEnabled(context, configurationMessage.typingIndicators)
+    if (configurationMessage.typingIndicators != null) {
+      TextSecurePreferences.setTypingIndicatorsEnabled(context, configurationMessage.typingIndicators!!)
     }
 
-    if (configurationMessage.hasLinkPreviews()) {
-      SignalStore.settings().isLinkPreviewsEnabled = configurationMessage.linkPreviews
+    if (configurationMessage.linkPreviews != null) {
+      SignalStore.settings().isLinkPreviewsEnabled = configurationMessage.linkPreviews!!
     }
   }
 
   private fun handleSynchronizeBlockedListMessage(blockMessage: Blocked) {
-    val addresses: List<SignalServiceAddress> = blockMessage.acisList.mapNotNull { SignalServiceAddress.fromRaw(it, null).orNull() }
-    val groupIds: List<ByteArray> = blockMessage.groupIdsList.mapNotNull { it.toByteArray() }
+    val addresses: List<SignalServiceAddress> = blockMessage.acis.mapNotNull { SignalServiceAddress.fromRaw(it, null).orNull() }
+    val groupIds: List<ByteArray> = blockMessage.groupIds.map { it.toByteArray() }
 
     SignalDatabase.recipients.applyBlockedUpdate(addresses, groupIds)
   }
@@ -1041,10 +1075,10 @@ object SyncMessageProcessor {
   private fun handleSynchronizeMessageRequestResponse(response: MessageRequestResponse, envelopeTimestamp: Long) {
     log(envelopeTimestamp, "Synchronize message request response.")
 
-    val recipient: Recipient = if (response.hasThreadAci()) {
-      Recipient.externalPush(ServiceId.parseOrThrow(response.threadAci))
-    } else if (response.hasGroupId()) {
-      val groupId: GroupId = GroupId.push(response.groupId)
+    val recipient: Recipient = if (response.threadAci != null) {
+      Recipient.externalPush(ServiceId.parseOrThrow(response.threadAci!!))
+    } else if (response.groupId != null) {
+      val groupId: GroupId = GroupId.push(response.groupId!!)
       Recipient.externalPossiblyMigratedGroup(groupId)
     } else {
       warn("Message request response was missing a thread recipient! Skipping.")
@@ -1080,20 +1114,24 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeOutgoingPayment(outgoingPayment: SyncMessage.OutgoingPayment, envelopeTimestamp: Long) {
-    if (!outgoingPayment.hasMobileCoin()) {
-      log("Unknown outgoing payment, ignoring.")
+    log(envelopeTimestamp, "Synchronize outgoing payment.")
+
+    val mobileCoin = if (outgoingPayment.mobileCoin != null) {
+      outgoingPayment.mobileCoin!!
+    } else {
+      log(envelopeTimestamp, "Unknown outgoing payment, ignoring.")
       return
     }
 
     var recipientId: RecipientId? = ServiceId.parseOrNull(outgoingPayment.recipientServiceId)?.let { RecipientId.from(it) }
 
-    var timestamp = outgoingPayment.mobileCoin.ledgerBlockTimestamp
+    var timestamp: Long = mobileCoin.ledgerBlockTimestamp ?: 0L
     if (timestamp == 0L) {
       timestamp = System.currentTimeMillis()
     }
 
-    var address: MobileCoinPublicAddress? = if (outgoingPayment.mobileCoin.hasRecipientAddress()) {
-      MobileCoinPublicAddress.fromBytes(outgoingPayment.mobileCoin.recipientAddress.toByteArray())
+    var address: MobileCoinPublicAddress? = if (mobileCoin.recipientAddress != null) {
+      MobileCoinPublicAddress.fromBytes(mobileCoin.recipientAddress!!.toByteArray())
     } else {
       null
     }
@@ -1112,12 +1150,12 @@ object SyncMessageProcessor {
           recipientId,
           address!!,
           timestamp,
-          outgoingPayment.mobileCoin.ledgerBlockIndex,
+          mobileCoin.ledgerBlockIndex!!,
           outgoingPayment.note ?: "",
-          outgoingPayment.mobileCoin.amountPicoMob.toMobileCoinMoney(),
-          outgoingPayment.mobileCoin.feePicoMob.toMobileCoinMoney(),
-          outgoingPayment.mobileCoin.receipt.toByteArray(),
-          PaymentMetaDataUtil.fromKeysAndImages(outgoingPayment.mobileCoin.outputPublicKeysList, outgoingPayment.mobileCoin.spentKeyImagesList)
+          mobileCoin.amountPicoMob!!.toMobileCoinMoney(),
+          mobileCoin.feePicoMob!!.toMobileCoinMoney(),
+          mobileCoin.receipt!!.toByteArray(),
+          PaymentMetaDataUtil.fromKeysAndImages(mobileCoin.outputPublicKeys, mobileCoin.spentKeyImages)
         )
     } catch (e: SerializationException) {
       warn(envelopeTimestamp, "Ignoring synchronized outgoing payment with bad data.", e)
@@ -1146,13 +1184,18 @@ object SyncMessageProcessor {
       return
     }
 
-    val attachment: SignalServiceAttachmentPointer = contactsMessage.blob.toSignalServiceAttachmentPointer()
+    if (contactsMessage.blob == null) {
+      log(envelopeTimestamp, "Contact blob is null")
+      return
+    }
+
+    val attachment: SignalServiceAttachmentPointer = contactsMessage.blob!!.toSignalServiceAttachmentPointer()
 
     ApplicationDependencies.getJobManager().add(MultiDeviceContactSyncJob(attachment))
   }
 
   private fun handleSynchronizeCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    if (!callEvent.hasId()) {
+    if (callEvent.id == null) {
       log(envelopeTimestamp, "Synchronize call event missing call id, ignoring. type: ${callEvent.type}")
       return
     }
@@ -1168,20 +1211,23 @@ object SyncMessageProcessor {
     if (callLogEvent.type != CallLogEvent.Type.CLEAR) {
       log(envelopeTimestamp, "Synchronize call log event has an invalid type ${callLogEvent.type}, ignoring.")
       return
+    } else if (callLogEvent.timestamp == null) {
+      log(envelopeTimestamp, "Synchronize call log event has null timestamp")
+      return
     }
 
-    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(callLogEvent.timestamp)
-    SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(callLogEvent.timestamp)
+    SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(callLogEvent.timestamp!!)
+    SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(callLogEvent.timestamp!!)
   }
 
   private fun handleSynchronizeCallLink(callLinkUpdate: CallLinkUpdate, envelopeTimestamp: Long) {
-    if (!callLinkUpdate.hasRootKey()) {
+    if (callLinkUpdate.rootKey == null) {
       log(envelopeTimestamp, "Synchronize call link missing root key, ignoring.")
       return
     }
 
     val callLinkRootKey = try {
-      CallLinkRootKey(callLinkUpdate.rootKey.toByteArray())
+      CallLinkRootKey(callLinkUpdate.rootKey!!.toByteArray())
     } catch (e: CallException) {
       log(envelopeTimestamp, "Synchronize call link has invalid root key, ignoring.")
       return
@@ -1193,7 +1239,7 @@ object SyncMessageProcessor {
       SignalDatabase.callLinks.updateCallLinkCredentials(
         roomId,
         CallLinkCredentials(
-          callLinkUpdate.rootKey.toByteArray(),
+          callLinkUpdate.rootKey!!.toByteArray(),
           callLinkUpdate.adminPassKey?.toByteArray()
         )
       )
@@ -1216,18 +1262,18 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeOneToOneCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    val callId: Long = callEvent.id
-    val timestamp: Long = callEvent.timestamp
+    val callId: Long = callEvent.id!!
+    val timestamp: Long = callEvent.timestamp ?: 0L
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
     val direction: CallTable.Direction? = CallTable.Direction.from(callEvent.direction)
     val event: CallTable.Event? = CallTable.Event.from(callEvent.event)
 
-    if (timestamp == 0L || type == null || direction == null || event == null || !callEvent.hasConversationId()) {
-      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+    if (timestamp == 0L || type == null || direction == null || event == null || callEvent.conversationId == null) {
+      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + (callEvent.conversationId != null))
       return
     }
 
-    val aci = ACI.parseOrThrow(callEvent.conversationId)
+    val aci = ACI.parseOrThrow(callEvent.conversationId!!)
     val recipientId = RecipientId.from(aci)
 
     log(envelopeTimestamp, "Synchronize call event call: $callId")
@@ -1256,25 +1302,26 @@ object SyncMessageProcessor {
       return
     }
 
-    val callId: Long = callEvent.id
-    val timestamp: Long = callEvent.timestamp
+    val callId: Long = callEvent.id!!
+    val timestamp: Long = callEvent.timestamp ?: 0L
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
     val direction: CallTable.Direction? = CallTable.Direction.from(callEvent.direction)
     val event: CallTable.Event? = CallTable.Event.from(callEvent.event)
+    val hasConversationId: Boolean = callEvent.conversationId != null
 
-    if (timestamp == 0L || type == null || direction == null || event == null || !callEvent.hasConversationId()) {
-      warn(envelopeTimestamp, "Group/Ad-hoc call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+    if (timestamp == 0L || type == null || direction == null || event == null || !hasConversationId) {
+      warn(envelopeTimestamp, "Group/Ad-hoc call event sync message is not valid, ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
       return
     }
 
     val recipient: Recipient? = when (type) {
       CallTable.Type.AD_HOC_CALL -> {
-        val callLinkRoomId = CallLinkRoomId.fromBytes(callEvent.conversationId.toByteArray())
+        val callLinkRoomId = CallLinkRoomId.fromBytes(callEvent.conversationId!!.toByteArray())
         val callLink = SignalDatabase.callLinks.getOrCreateCallLinkByRoomId(callLinkRoomId)
         Recipient.resolved(callLink.recipientId)
       }
       CallTable.Type.GROUP_CALL -> {
-        val groupId: GroupId = GroupId.push(callEvent.conversationId.toByteArray())
+        val groupId: GroupId = GroupId.push(callEvent.conversationId!!.toByteArray())
         Recipient.externalGroupExact(groupId)
       }
       else -> {
@@ -1292,14 +1339,14 @@ object SyncMessageProcessor {
 
     if (call != null) {
       if (call.type !== type) {
-        warn(envelopeTimestamp, "Group/Ad-hoc call event type mismatch, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+        warn(envelopeTimestamp, "Group/Ad-hoc call event type mismatch, ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
         return
       }
       when (event) {
         CallTable.Event.DELETE -> SignalDatabase.calls.deleteGroupCall(call)
         CallTable.Event.ACCEPTED -> {
-          if (call.timestamp < callEvent.timestamp) {
-            SignalDatabase.calls.setTimestamp(call.callId, recipient.id, callEvent.timestamp)
+          if (call.timestamp < timestamp) {
+            SignalDatabase.calls.setTimestamp(call.callId, recipient.id, timestamp)
           }
           if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
             SignalDatabase.calls.acceptIncomingGroupCall(call)
@@ -1307,15 +1354,15 @@ object SyncMessageProcessor {
             warn(envelopeTimestamp, "Invalid direction OUTGOING for event ACCEPTED")
           }
         }
-        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
-        else -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
+        else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
       }
     } else {
       when (event) {
-        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(callEvent.id, recipient.id, direction, timestamp)
-        CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.id, recipient.id, direction, timestamp)
-        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
-        else -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(callEvent.id!!, recipient.id, direction, timestamp)
+        CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.id!!, recipient.id, direction, timestamp)
+        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
+        else -> warn("Unsupported event type $event. Ignoring. timestamp: $timestamp type: $type direction: $direction event: $event hasPeer: $hasConversationId")
       }
     }
   }

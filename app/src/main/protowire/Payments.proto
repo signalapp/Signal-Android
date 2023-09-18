@@ -31,8 +31,8 @@ message MobileCoinLedger {
 message PaymentMetaData {
 
   message MobileCoinTxoIdentification {
-    repeated bytes PublicKey = 1;
-    repeated bytes KeyImages = 2;
+    repeated bytes publicKey = 1;
+    repeated bytes keyImages = 2;
   }
 
   MobileCoinTxoIdentification mobileCoinTxoIdentification = 1;

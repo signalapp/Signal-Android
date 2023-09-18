@@ -1060,10 +1060,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (conversationMessage.getBottomButton() != null) {
         callToActionStub.get().setVisibility(View.VISIBLE);
-        callToActionStub.get().setText(conversationMessage.getBottomButton().getLabel());
+        callToActionStub.get().setText(conversationMessage.getBottomButton().label);
         callToActionStub.get().setOnClickListener(v -> {
           if (eventListener != null) {
-            eventListener.onCallToAction(conversationMessage.getBottomButton().getAction());
+            eventListener.onCallToAction(conversationMessage.getBottomButton().action);
           }
         });
       } else if (callToActionStub.resolved()) {

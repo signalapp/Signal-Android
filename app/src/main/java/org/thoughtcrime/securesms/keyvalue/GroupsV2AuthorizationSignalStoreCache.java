@@ -2,9 +2,6 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.auth.AuthCredentialWithPniResponse;
@@ -15,11 +12,15 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCred
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.function.Function;
+
+import okio.ByteString;
 
 public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Authorization.ValueCache {
 
@@ -76,17 +77,17 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
     }
 
     try {
-      TemporalAuthCredentialResponses temporalCredentials = TemporalAuthCredentialResponses.parseFrom(credentialBlob);
-      HashMap<Long, T>                result              = new HashMap<>(temporalCredentials.getCredentialResponseCount());
+      TemporalAuthCredentialResponses temporalCredentials = TemporalAuthCredentialResponses.ADAPTER.decode(credentialBlob);
+      HashMap<Long, T>                result              = new HashMap<>(temporalCredentials.credentialResponse.size());
 
-      for (TemporalAuthCredentialResponse credential : temporalCredentials.getCredentialResponseList()) {
-        result.put(credential.getDate(), factory.apply(credential.getAuthCredentialResponse().toByteArray()));
+      for (TemporalAuthCredentialResponse credential : temporalCredentials.credentialResponse) {
+        result.put(credential.date, factory.apply(credential.authCredentialResponse.toByteArray()));
       }
 
       Log.i(TAG, String.format(Locale.US, "Loaded %d credentials from local storage", result.size()));
 
       return result;
-    } catch (InvalidProtocolBufferException | InvalidInputException e) {
+    } catch (IOException | InvalidInputException e) {
       throw new AssertionError(e);
     }
   }
@@ -98,16 +99,18 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
   }
 
   private <T extends ByteArray> void write(@NonNull String key, @NonNull Map<Long, T> values) {
-    TemporalAuthCredentialResponses.Builder builder = TemporalAuthCredentialResponses.newBuilder();
+    TemporalAuthCredentialResponses.Builder builder = new TemporalAuthCredentialResponses.Builder();
 
+    List<TemporalAuthCredentialResponse> respones = new ArrayList<>();
     for (Map.Entry<Long, T> entry : values.entrySet()) {
-      builder.addCredentialResponse(TemporalAuthCredentialResponse.newBuilder()
-                                                                  .setDate(entry.getKey())
-                                                                  .setAuthCredentialResponse(ByteString.copyFrom(entry.getValue().serialize())));
+      respones.add(new TemporalAuthCredentialResponse.Builder()
+                                                     .date(entry.getKey())
+                                                     .authCredentialResponse(ByteString.of(entry.getValue().serialize()))
+                                                     .build());
     }
 
     store.beginWrite()
-         .putBlob(key, builder.build().toByteArray())
+         .putBlob(key, builder.credentialResponse(respones).build().encode())
          .commit();
 
     Log.i(TAG, String.format(Locale.US, "Written %d credentials to local storage", values.size()));

@@ -1228,7 +1228,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       .use { cursor: Cursor ->
         if (cursor.moveToFirst()) {
           val bytes = Base64.decode(cursor.requireNonNullString(MessageTable.BODY))
-          ThreadMergeEvent.parseFrom(bytes)
+          ThreadMergeEvent.ADAPTER.decode(bytes)
         } else {
           null
         }
@@ -1246,7 +1246,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       .use { cursor: Cursor ->
         if (cursor.moveToFirst()) {
           val bytes = Base64.decode(cursor.requireNonNullString(MessageTable.BODY))
-          SessionSwitchoverEvent.parseFrom(bytes)
+          SessionSwitchoverEvent.ADAPTER.decode(bytes)
         } else {
           null
         }

@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
  * Represents a card showing user details for a recipient under review.
- *
+ * <p>
  * See {@link ReviewCardViewHolder} for usage.
  */
 class ReviewCard {
@@ -25,11 +25,11 @@ class ReviewCard {
              @Nullable Action primaryAction,
              @Nullable Action secondaryAction)
   {
-    this.reviewRecipient         = reviewRecipient;
-    this.inCommonGroupsCount     = inCommonGroupsCount;
-    this.cardType                = cardType;
-    this.primaryAction           = primaryAction;
-    this.secondaryAction         = secondaryAction;
+    this.reviewRecipient     = reviewRecipient;
+    this.inCommonGroupsCount = inCommonGroupsCount;
+    this.cardType            = cardType;
+    this.primaryAction       = primaryAction;
+    this.secondaryAction     = secondaryAction;
   }
 
   @NonNull Recipient getReviewRecipient() {
@@ -45,10 +45,10 @@ class ReviewCard {
   }
 
   @Nullable ProfileChangeDetails.StringChange getNameChange() {
-    if (reviewRecipient.getProfileChangeDetails() == null || !reviewRecipient.getProfileChangeDetails().hasProfileNameChange()) {
+    if (reviewRecipient.getProfileChangeDetails() == null || reviewRecipient.getProfileChangeDetails().profileNameChange == null) {
       return null;
     } else {
-      return reviewRecipient.getProfileChangeDetails().getProfileNameChange();
+      return reviewRecipient.getProfileChangeDetails().profileNameChange;
     }
   }
 

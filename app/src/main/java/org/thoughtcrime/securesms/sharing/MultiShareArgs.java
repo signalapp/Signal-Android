@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.logging.Log;
@@ -24,7 +23,6 @@ import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -102,9 +100,9 @@ public final class MultiShareArgs implements Parcelable {
     try {
       byte[] data = ParcelUtil.readByteArray(in);
       if (data != null) {
-        bodyRanges = BodyRangeList.parseFrom(data);
+        bodyRanges = BodyRangeList.ADAPTER.decode(data);
       }
-    } catch (InvalidProtocolBufferException e) {
+    } catch (IOException e) {
       Log.w(TAG, "Invalid body range", e);
     }
     this.bodyRanges = bodyRanges;
@@ -274,7 +272,7 @@ public final class MultiShareArgs implements Parcelable {
     }
 
     if (bodyRanges != null) {
-      ParcelUtil.writeByteArray(dest, bodyRanges.toByteArray());
+      ParcelUtil.writeByteArray(dest, bodyRanges.encode());
     } else {
       ParcelUtil.writeByteArray(dest, null);
     }
