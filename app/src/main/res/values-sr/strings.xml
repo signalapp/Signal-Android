@@ -540,9 +540,9 @@
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
-    <string name="ConversationListFragment__notification_profile">Профил нотификације</string>
+    <string name="ConversationListFragment__notification_profile">Профил обавештења</string>
     <!-- Tooltip shown after you have created your first notification profile -->
-    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Угасите или упалите овде Ваш профил нотификације.</string>
+    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Угасите или упалите овде Ваш профил обавештења.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s упаљено</string>
 
@@ -857,7 +857,7 @@
 
     <!-- LinkPreviewView -->
     <string name="LinkPreviewView_no_link_preview_available">Prikaz linka nije dostupan</string>
-    <string name="LinkPreviewView_this_group_link_is_not_active">Link za grupu nije aktivan</string>
+    <string name="LinkPreviewView_this_group_link_is_not_active">Линк за групу није активан</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
     <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Користите овај линк да се придружите позиву преко Signal-а</string>
@@ -1029,12 +1029,12 @@
     <string name="CustomNotificationsDialogFragment__unknown">Непознато</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Link za grupu</string>
+    <string name="ShareableGroupLinkDialogFragment__group_link">Линк за групу</string>
     <string name="ShareableGroupLinkDialogFragment__share">Поделите</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Resetuj link</string>
+    <string name="ShareableGroupLinkDialogFragment__reset_link">Ресетуj линк</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Одобри нове чланове</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Obavezno je da administrator odobri nove članove koji se pridružuju preko linka za grupu.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Da li ste sigurni da želite da resetujete link za grupu? Ljudi više neće moći da se pridruže grupi preko trenutnog linka.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Обавезно је да администратор групе одобри нове чланове који се придружују групи преко линка за групу.</string>
+    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Да ли сте сигурни да желите да ресетујете линк за групу? Људи више неће моћи да се придруже групи преко тренутног линка.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR кôд</string>
@@ -1054,13 +1054,13 @@
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Захтев за придруживање</string>
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Није могуће придружити се групи. Пробајте поново касније.</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Link za grupu nije aktivan</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Линк за групу није активан</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Не може да се придружи групи</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
     <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Не можете да се придружите овој групи преко линка за групу јер вас је администратор уклонио.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Link za grupu više nije ispravan.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Линк за групу више није исправан.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_link_error">Greška sa linkom</string>
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
@@ -1075,9 +1075,9 @@
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli da koristite linkove za grupe.</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava ovaj link za grupu. Ažurirajte aplikaciju na najnoviju verziju da biste se pridružili ovoj grupi preko linka.</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Верзија Сигнала коју користите не подржава овај линк за групу. Ажурирајте апликацију на најновију верзију да бисте се придружили овој групи преко линка.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ажурирајте Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link za grupu nije ispravan</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Линк за групу није исправан</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Позивница пријатељима</string>
@@ -1086,9 +1086,9 @@
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktiviraj i podeli link</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Podeli link</string>
 
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nije moguće aktivirati link za grupu. Probajte ponovo kasnije.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Није могуће активирати линк за групу. Пробајте поново касније.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nemate pravo da aktivirate link za grupu. Obratite se administratoru.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Немате право да активирате линк за групу. Обратите се администратору.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Тренутно нисте члан групе.</string>
 
     <!-- GV2 Request confirmation dialog -->
@@ -1143,7 +1143,7 @@
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Медији</string>
-    <string name="MediaOverviewActivity_Files">Fajlovi</string>
+    <string name="MediaOverviewActivity_Files">Датотеке</string>
     <string name="MediaOverviewActivity_Audio">Звук</string>
     <string name="MediaOverviewActivity_All">Сви</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
@@ -1390,26 +1390,26 @@
     <string name="MessageRecord_allow_only_admins_to_send">Подешавања групе су измењена како би се омогућили да само админи шаљу поруке.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Uključili ste link za grupu bez obaveznog odobrenja administratora.</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Uključili ste link za grupu sa obaveznim odobrenjem administratora.</string>
-    <string name="MessageRecord_you_turned_off_the_group_link">Isključili ste link za grupu.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s je uključio/la link za grupu bez obaveznog odobrenja administratora.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s je uključio/la link za grupu sa obaveznim odobrenjem administratora.</string>
-    <string name="MessageRecord_s_turned_off_the_group_link">%1$s je isključio/la link za grupu.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Uključen je link za grupu bez obaveznog odobrenja administratora.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Uključen je link za grupu sa obaveznim odobrenjem administratora.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_off">Link za grupu je isključen.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Isključili ste obavezno odobrenje administratora za link za grupu.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s je isključio/la obavezno odobrenje administratora za link za grupu.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Isključeno je obavezno odobrenje administratora za link za grupu.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Uključili ste obavezno odobrenje administratora za link za grupu.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s je uključio/la obavezno odobrenje administratora za link za grupu.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Uključeno je obavezno odobrenje administratora za link za grupu.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Укључили сте линк за групу без обавезног одобрења администратора.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Укључили сте линк за групу са обавезним одобрењем администратора.</string>
+    <string name="MessageRecord_you_turned_off_the_group_link">Искључили сте линк за групу.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s је укључио/ла линк за групу без обавезног одобрења администратора.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s је укључио/ла линк за групу са обавезним одобрењем администратора.</string>
+    <string name="MessageRecord_s_turned_off_the_group_link">%1$s је искључио/ла линк за групу.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Укључен је линк за групу без обавезног одобрења администратора.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Укључен је линк за групу са обавезним одобрењем администратора.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_off">Линк за групу је искључен.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Искључили сте обавезно одобрење администратора за линк за групу.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s је искључио/​ла обавезно одобрење администратора за линк за групу.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Искључено је обавезно одобрење администратора за линк за групу.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Укључили сте обавезно одобрење администратора за линк за групу.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s jе укључио/ла обавезно одобрење администратора за линк за групу.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Укључено је обавезно одобрење администратора за линк за групу.</string>
 
     <!-- GV2 group link reset -->
-    <string name="MessageRecord_you_reset_the_group_link">Resetovali ste link za grupu.</string>
-    <string name="MessageRecord_s_reset_the_group_link">%1$s je resetovao/la link za grupu.</string>
-    <string name="MessageRecord_the_group_link_has_been_reset">Link za grupu je resetovan.</string>
+    <string name="MessageRecord_you_reset_the_group_link">Ресетовали сте линк за групу.</string>
+    <string name="MessageRecord_s_reset_the_group_link">%1$s је ресетовао/ла линк за групу.</string>
+    <string name="MessageRecord_the_group_link_has_been_reset">Линк за групу је ресетован.</string>
 
     <!-- GV2 group link joins -->
     <string name="MessageRecord_you_joined_the_group_via_the_group_link">Pridružili ste se grupi preko linka za grupu.</string>
@@ -1843,7 +1843,7 @@
     <string name="ProxyBottomSheetFragment_proxy_server">Прокси сервер</string>
     <string name="ProxyBottomSheetFragment_proxy_address">Адреса проксија</string>
     <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Да ли желите да користите ову прокси адресу?</string>
-    <string name="ProxyBottomSheetFragment_use_proxy">Користи проки</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">Користи прокси</string>
     <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно повезан са прокси сервером.</string>
 
     <!-- RecaptchaProofActivity -->
@@ -2243,7 +2243,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реаговао/ла је %1$s на вашу налепницу.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ова порука је обрисана.</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Искључити нотификације контакта који се придружио Signal-у? Можете их поново омогућити у Signal &gt; Подешавања &gt; Нотификације.</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Искључити обавештења контакта који се придружио Signal-у? Можете их поново омогућити у Signal &gt; Подешавања &gt; Обавештења.</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -2269,7 +2269,7 @@
     <string name="NotificationChannel_missing_display_name">Непозната</string>
     <string name="NotificationChannel_voice_notes">Гласовне белешке</string>
     <string name="NotificationChannel_contact_joined_signal">Контакт се придружио Signalу</string>
-    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>
+    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала обавештења.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Позадинска веза</string>
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
@@ -2577,8 +2577,8 @@
     <string name="expiration_minutes_abbreviated">%1$d m</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d сат.</item>
-        <item quantity="other">%1$d сат.</item>
+        <item quantity="one">%1$d сат</item>
+        <item quantity="other">%1$d сати</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$d h</string>
@@ -2667,13 +2667,13 @@
     <string name="EditAboutFragment_about">О контакту</string>
     <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите неколико речи о себи</string>
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">Говорите слободно</string>
+    <string name="EditAboutFragment_speak_freely">Причајте слободно</string>
     <string name="EditAboutFragment_encrypted">Шифровано</string>
     <string name="EditAboutFragment_be_kind">Будите љубазни</string>
     <string name="EditAboutFragment_coffee_lover">Љубитељ кафе</string>
     <string name="EditAboutFragment_free_to_chat">Доступан за ћаскање</string>
     <string name="EditAboutFragment_taking_a_break">Правим паузу</string>
-    <string name="EditAboutFragment_working_on_something_new">Радим на нешто ново</string>
+    <string name="EditAboutFragment_working_on_something_new">Радим на нечему новом</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Уређивање групе</string>
@@ -2853,14 +2853,14 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">СМС и ММС</string>
-    <string name="preferences__pref_use_address_book_photos">Користите фотографије из адресара</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Користите фотографије контакта из Вашег адресара ако је доступна</string>
+    <string name="preferences__pref_use_address_book_photos">Користите слике из адресара</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Користите слике контакта из Вашег адресара ако је доступна</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Остави ћаскања са искљученим обавештењима архивирана</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ћаскања са искљученим обавештењима која су архивирана остаће архивирана када стигне нова порука.</string>
-    <string name="preferences__generate_link_previews">Generisanje prikaza linka</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Direktno sa veb-sajtova preuzimajte prikaze linkova za poruke koje šaljete.</string>
+    <string name="preferences__generate_link_previews">Генерисање приказа линка</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Директно са веб-сајтова преузимајте приказе линкова за поруке које шаљете.</string>
     <string name="preferences__change_passphrase">Измени лозинку</string>
     <string name="preferences__change_your_passphrase">Измените вашу лозинку</string>
     <string name="preferences__enable_passphrase">Омогући лозинку за закључавање екрана</string>
@@ -2869,11 +2869,11 @@
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Аутоматски закључај Signal након одређеног интервала неактивности</string>
     <string name="preferences__inactivity_timeout_passphrase">Интервал истека лозинке</string>
     <string name="preferences__inactivity_timeout_interval">Интервал неактивности</string>
-    <string name="preferences__notifications">Обавештавање</string>
+    <string name="preferences__notifications">Обавештавања</string>
     <string name="preferences__led_color">Боја ЛЕД светла</string>
     <string name="preferences__led_color_unknown">Непозната</string>
     <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>
-    <string name="preferences__customize">Прилагодити</string>
+    <string name="preferences__customize">Прилагоди</string>
     <string name="preferences__change_sound_and_vibration">Променити звук и вибрацију</string>
     <string name="preferences__sound">Звук</string>
     <string name="preferences__silent">Без звука</string>
@@ -2919,7 +2919,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Закључавање плаћања</string>
     <string name="preferences__conversation_length_limit">Максималан број порука у ћаскању</string>
-    <string name="preferences__keep_messages">Задржити поруке</string>
+    <string name="preferences__keep_messages">Задржати поруке</string>
     <string name="preferences__clear_message_history">Избриши историју порука</string>
     <string name="preferences__linked_devices">Повезани уређаји</string>
     <string name="preferences__light_theme">Светла</string>
@@ -2975,8 +2975,8 @@
     <string name="preferences_chats__message_history">Историја порука</string>
     <string name="preferences_storage__storage_usage">Употреба складишта</string>
     <string name="preferences_storage__photos">Слике</string>
-    <string name="preferences_storage__videos">Видео</string>
-    <string name="preferences_storage__files">Fajlovi</string>
+    <string name="preferences_storage__videos">Снимци</string>
+    <string name="preferences_storage__files">Датотеке</string>
     <string name="preferences_storage__audio">Звук</string>
     <string name="preferences_storage__review_storage">Прегледајте складиште</string>
     <string name="preferences_storage__delete_older_messages">Обрисати старе поруке?</string>
@@ -2995,9 +2995,9 @@
     <string name="preferences_storage__one_year">1 година</string>
     <string name="preferences_storage__six_months">6 месеци</string>
     <string name="preferences_storage__thirty_days">30 дана</string>
-    <string name="preferences_storage__none">Нема</string>
-    <string name="preferences_storage__s_messages">%1$s поруке</string>
-    <string name="preferences_storage__custom">Посебно</string>
+    <string name="preferences_storage__none">Неограничено</string>
+    <string name="preferences_storage__s_messages">%1$s Порука</string>
+    <string name="preferences_storage__custom">Одређени броj</string>
     <string name="preferences_advanced__use_system_emoji">Користи системски емоџи</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Преусмеравање свих позива преко Signal-овог сервера да би се избегло откривање ваше ИП адресе вашем контакту. Умањује квалитет позива.</string>
     <string name="preferences_advanced__always_relay_calls">Увек преусмеравај позиве</string>
@@ -3034,7 +3034,7 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Омогући од било кога</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Омогућите поруке са запечаћеним пошиљаоцем од особа које нису у вашем именику и са којима нисте поделили ваш профил.</string>
     <string name="preferences_proxy">Прокси</string>
-    <string name="preferences_use_proxy">Користи проки</string>
+    <string name="preferences_use_proxy">Користи прокси</string>
     <string name="preferences_off">Искључено</string>
     <string name="preferences_on">Укључено</string>
     <string name="preferences_proxy_address">Адреса проксија</string>
@@ -4291,15 +4291,15 @@
     <string name="NotificationsSettingsFragment__notify_when">Обавести када…</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт се придружио Signal-у</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsFragment__notification_profiles">Профили нотификације</string>
+    <string name="NotificationsSettingsFragment__notification_profiles">Профили обавештења</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Профили</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Креирајте профил да бисте примили обавештења само од људи и група које одаберете.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Направите профил да бисте примили обавештења само од људи и група које одаберете.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="NotificationProfilesFragment__notification_profiles">Профили нотификације</string>
+    <string name="NotificationProfilesFragment__notification_profiles">Профили обавештења</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Креирај профил</string>
 
@@ -4340,7 +4340,7 @@
     <string name="ExpireTimerSettingsFragment__1_hour">1 сат</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 минута</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Прилагодити време</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Прилагођено време</string>
     <string name="ExpireTimerSettingsFragment__set">Поставити</string>
     <string name="ExpireTimerSettingsFragment__save">Сачувај</string>
 
@@ -4487,7 +4487,7 @@
     <string name="ConversationSettingsFragment__add_members">Додај чланове</string>
     <string name="ConversationSettingsFragment__permissions">Дозволе</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Захтеви и позивнице</string>
-    <string name="ConversationSettingsFragment__group_link">Link za grupu</string>
+    <string name="ConversationSettingsFragment__group_link">Линк за групу</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додај у контакте</string>
     <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -4500,7 +4500,7 @@
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Додај чланове</string>
     <string name="PermissionsSettingsFragment__edit_group_info">Уреди информације о групи</string>
-    <string name="PermissionsSettingsFragment__send_messages">Слање поруке</string>
+    <string name="PermissionsSettingsFragment__send_messages">Слање порука</string>
     <string name="PermissionsSettingsFragment__all_members">Сви чланови</string>
     <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Ко може додати нове чланове?</string>
@@ -4904,7 +4904,7 @@
     <!-- Call to action button once the profile name is edited -->
     <string name="EditNotificationProfileFragment__save">Сачувај</string>
     <!-- Title of edit notification profile screen -->
-    <string name="EditNotificationProfileFragment__edit_this_profile">Уредити овај профил</string>
+    <string name="EditNotificationProfileFragment__edit_this_profile">Уреди овај профил</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
     <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Профил са тим именом већ постоји</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
@@ -4921,9 +4921,9 @@
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Мора имати име</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="AddAllowedMembers__allowed_notifications">Дозвољене нотификације</string>
+    <string name="AddAllowedMembers__allowed_notifications">Дозвољена обавештења</string>
     <!-- Description of what the user should be doing with this screen -->
-    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Додајте људе и групе које желите обавештења и позиве када је овај профил укључен</string>
+    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Додајте људе и групе од којих желите да добијате обавештења када је овај профил укључен</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Додај људе или групе</string>
 
@@ -4931,7 +4931,7 @@
     <string name="SelectRecipientsFragment__add">Додај</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
-    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Креирајте профил да бисте примили обавештења и позиве само од људи и група које желите да чујете.</string>
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Направите профил да бисте примили обавештења и позиве само од људи и група које желите да чујете.</string>
     <!-- Header shown above list of all notification profiles -->
     <string name="NotificationProfilesFragment__profiles">Профили</string>
     <!-- Button that starts the create new notification profile flow -->
@@ -4950,7 +4950,7 @@
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">Обриши</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
-    <string name="NotificationProfileDetails__edit_notification_profile">Уреди профил нотификације</string>
+    <string name="NotificationProfileDetails__edit_notification_profile">Уреди профил обавештења</string>
     <!-- Schedule description if all days are selected -->
     <string name="NotificationProfileDetails__everyday">Сваки дан</string>
     <!-- Profile status on if it is the active profile -->
@@ -4975,7 +4975,7 @@
     <!-- Descriptor text indicating what the user can do with this screen -->
     <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Подесити распоред да би аутоматски упалили овај профил</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
-    <string name="EditNotificationProfileSchedule__schedule">РаспоредРаспоред</string>
+    <string name="EditNotificationProfileSchedule__schedule">Распоред</string>
     <!-- Label for showing the start time for the schedule -->
     <string name="EditNotificationProfileSchedule__start">Започни</string>
     <!-- Label for showing the end time for the schedule -->

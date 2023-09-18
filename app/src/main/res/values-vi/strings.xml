@@ -843,7 +843,7 @@
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Nhật ký gỡ lỗi giúp chúng tôi xác định và khắc phục vấn đề, và không chứa thông tin nhận dạng.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal đã gặp một vấn đề. Gửi nhật ký gỡ lỗi?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Các thông báo giờ đây có thể bị hoãn vì thiết lập tối ưu hóa pin</string>
@@ -995,10 +995,10 @@
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__group_link">Đường dẫn nhóm</string>
     <string name="ShareableGroupLinkDialogFragment__share">Chia sẻ</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Cài lại đường dẫn</string>
+    <string name="ShareableGroupLinkDialogFragment__reset_link">Đặt lại đường dẫn</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Chấp nhận thành viên mới</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Cần quản trị viên chấp nhận thành viên tham gia qua đường dẫn nhóm.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Bạn có muốn cài lại đường dẫn nhóm? Người dùng khác sẽ không thể tham gia nhóm bằng đường dẫn hiện tại.</string>
+    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Bạn có muốn đặt lại đường dẫn nhóm? Người dùng khác sẽ không thể tham gia nhóm bằng đường dẫn hiện tại.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Mã QR</string>
@@ -1906,8 +1906,8 @@
     <string name="Slide_video">Video</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_secure_session_reset">Bạn đã tái thiết lập phiên bảo mật.</string>
-    <string name="SmsMessageRecord_secure_session_reset_s">%1$s đã tái thiết lập phiên bảo mật.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Bạn đã đặt lại phiên bảo mật.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%1$s đã đặt lại phiên bảo mật.</string>
     <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lặp.</string>
 
     <!-- StickerManagementActivity -->
@@ -1961,7 +1961,7 @@
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Đã cập nhật nhóm</string>
     <string name="ThreadRecord_left_the_group">Đã rời nhóm</string>
-    <string name="ThreadRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>
+    <string name="ThreadRecord_secure_session_reset">Đã đặt lại phiên bảo mật.</string>
     <string name="ThreadRecord_draft">Nháp:</string>
     <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
     <string name="ThreadRecord_sticker">Nhãn dán</string>
@@ -2705,7 +2705,7 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Thông báo chậm</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
+    <string name="DebugLogsPromptDialogFragment__crash_category">Đóng đột ngột</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Gửi</string>
     <!-- Action to decline to submit logs -->
@@ -3593,7 +3593,7 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">Xóa tất cả dữ liệu ?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Thao tác này sẽ thiết lập lại ứng dụng và xóa tất cả tin nhắn. Ứng dụng sẽ đóng sau khi quá trình này hoàn tất.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Thao tác này sẽ đặt lại ứng dụng và xóa tất cả tin nhắn. Ứng dụng sẽ đóng sau khi quá trình này hoàn tất.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">Tiến hành</string>
     <!-- Confirmation action to cancel application data deletion -->
@@ -3663,64 +3663,64 @@
     <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Trên màn hình WiFi Direct, loại bỏ tất cả các nhóm được nhớ và huỷ liên kết bất vì thiết bị được kết nối hoặc được mời.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Màn hình WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Thử tắt và bật lại Wi-Fi, trên cả hai thiết bị.</string>
-    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Đảm bảo cả hai thiết bị đều đang ở chế độ truyền tải.</string>
+    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Đảm bảo cả hai thiết bị đều đang ở chế độ chuyển.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Đi đến trang hỗ trợ</string>
     <string name="DeviceTransferSetup__try_again">Thử lại</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Đang chờ thiết bị còn lại</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Nhấn Tiếp tục trên thiết bị còn lại của bạn để bắt đầu việc truyền tải.</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Nhấn Tiếp tục trên thiết bị còn lại của bạn để bắt đầu việc chuyển.</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Nhấn Tiếp tục trên thiết bị còn lại của bạn…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Không thể truyền tải từ các phiên bản mới hơn của Signal</string>
+    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Không thể chuyển từ các phiên bản mới hơn của Signal</string>
     <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Không đọc được dữ liệu được truyền</string>
+    <string name="NewDeviceTransfer__failure_foreign_key">Không đọc được dữ liệu được chuyển</string>
 
     <!-- DeviceTransferFragment -->
-    <string name="DeviceTransfer__transferring_data">Đang truyền tải dữ liệu</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">Giữ cả hai thiết bị gần nhau. Không tắt các thiết bị và để mở Signal. Việc truyền tải được bảo mật hai chiều.</string>
+    <string name="DeviceTransfer__transferring_data">Đang chuyển dữ liệu</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">Giữ cả hai thiết bị gần nhau. Không tắt các thiết bị và để mở Signal. Việc chuyển được bảo mật hai chiều.</string>
     <string name="DeviceTransfer__d_messages_so_far">Đã được %1$d tin nhắn…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% trong tổng số tin nhắn cho đến nay…</string>
     <string name="DeviceTransfer__cancel">Hủy</string>
     <string name="DeviceTransfer__try_again">Thử lại</string>
     <string name="DeviceTransfer__stop_transfer">Dừng chuyển</string>
-    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Tất cả tiến trình truyền tải sẽ bị mất.</string>
-    <string name="DeviceTransfer__transfer_failed">Truyền tải không thành công</string>
-    <string name="DeviceTransfer__unable_to_transfer">Không thể truyền tải</string>
+    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Tất cả tiến trình chuyển sẽ bị mất.</string>
+    <string name="DeviceTransfer__transfer_failed">Chuyển không thành công</string>
+    <string name="DeviceTransfer__unable_to_transfer">Không thể chuyển</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Chuyển Tài khoản</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Tải Signal trên thiết bị Android mới của bạn</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Nhấn vào \"Truyền tải hoặc khôi phục tài khoản\""</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Nhấn vào \"Chuyển hoặc khôi phục tài khoản\""</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Chọn \"Truyền tải từ thiết bị Android\" khi được hỏi và sau đó \"Tiếp tục\". Giữ cả hai thiết bị gần nhau."</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Chọn \"Chuyển từ thiết bị Android\" khi được hỏi và sau đó \"Tiếp tục\". Giữ cả hai thiết bị gần nhau."</string>
     <string name="OldDeviceTransferInstructions__continue">Tiếp tục</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Đi đến thiết bị mới của bạn</string>
-    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Dữ liệu Signal của bạn đã được truyền tải vào thiết bị mới của bạn. Để hoàn tất quá trình truyền tải, bạn phải tiếp tục việc đăng ký trên thiết bị mới của bạn.</string>
+    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Dữ liệu Signal của bạn đã được chuyển vào thiết bị mới của bạn. Để hoàn tất quá trình chuyển, bạn phải tiếp tục việc đăng ký trên thiết bị mới của bạn.</string>
     <string name="OldDeviceTransferComplete__close">Đóng</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Truyền tải thành công</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Truyền tải hoàn tất</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Để hoàn tất quá trình truyền tải, bạn phải tiếp tục đăng ký.</string>
+    <string name="NewDeviceTransferComplete__transfer_successful">Chuyển thành công</string>
+    <string name="NewDeviceTransferComplete__transfer_complete">Chuyển hoàn tất</string>
+    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Để hoàn tất quá trình chuyển, bạn phải tiếp tục đăng ký.</string>
     <string name="NewDeviceTransferComplete__continue_registration">Tiếp tục đăng ký</string>
 
     <!-- DeviceToDeviceTransferService -->
-    <string name="DeviceToDeviceTransferService_content_title">Truyền tải tài khoản</string>
+    <string name="DeviceToDeviceTransferService_content_title">Chuyển tài khoản</string>
     <string name="DeviceToDeviceTransferService_status_ready">Đang chuẩn bị để kết nối với thiết bị Android còn lại của bạn…</string>
     <string name="DeviceToDeviceTransferService_status_starting_up">Đang chuẩn bị để kết nối cho thiết bị Android còn lại của bạn…</string>
     <string name="DeviceToDeviceTransferService_status_discovery">Đang tìm kiếm thiết bị Android còn lại của bạn…</string>
     <string name="DeviceToDeviceTransferService_status_network_connected">Đang kết nối với thiết bị Android còn lại của bạn…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Yêu cầu xác minh</string>
-    <string name="DeviceToDeviceTransferService_status_service_connected">Đang truyền tải tài khoản…</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">Đang chuyển tài khoản…</string>
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Hoàn tất việc đăng ký trên thiết bị mới của bạn</string>
-    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Tài khoản Signal của bạn đã được truyền tải vào thiết bị mới của bạn, nhưng bạn phải tiếp tục việc đăng ký trên đó để tiếp tục. Signal sẽ ngưng hoạt động trên thiết bị này.</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Tài khoản Signal của bạn đã được chuyển vào thiết bị mới của bạn, nhưng bạn phải tiếp tục việc đăng ký trên đó để tiếp tục. Signal sẽ ngưng hoạt động trên thiết bị này.</string>
     <string name="OldDeviceTransferLockedDialog__done">Xong</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Huỷ và kích hoạt thiết bị này</string>
 
@@ -3892,13 +3892,13 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Bạn có muốn ghi đè tất cả các màu cuộc trò chuyện?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Cài lại màu mặc định</string>
-    <string name="ChatWallpaperFragment__reset_all_colors">Cài lại tất cả màu</string>
-    <string name="ChatWallpaperFragment__reset_default_wallpaper">Cài lại màn hình nền mặc định</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả ảnh nền</string>
-    <string name="ChatWallpaperFragment__reset_wallpapers">Cài lại các màn hình nền</string>
-    <string name="ChatWallpaperFragment__reset_wallpaper">Cài lại màn hình nền</string>
-    <string name="ChatWallpaperFragment__reset_wallpaper_question">Cài lại màn hình nền?</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Đặt lại màu mặc định</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Đặt lại tất cả màu</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Đặt lại hình nền mặc định</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả hình nền</string>
+    <string name="ChatWallpaperFragment__reset_wallpapers">Đặt lại các hình nền</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper">Đặt lại hình nền</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper_question">Đặt lại hình nền?</string>
 
     <!-- ChatWallpaperSelectionFragment -->
     <string name="ChatWallpaperSelectionFragment__choose_from_photos">Chọn từ bộ sưu tập</string>
@@ -5965,9 +5965,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Chấp thuận</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Từ chối</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6028,7 +6028,7 @@
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
     <string name="UsernameLinkSettings_link_not_set_label">Chưa đặt đường dẫn</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Đang cài lại đường dẫn…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Đang đặt lại đường dẫn…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">Đặt lại mã QR?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -6056,9 +6056,9 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Lỗi mạng. Xin hãy thử lại.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Bạn không có quyền truy cập mạng. Đường dẫn của bạn chưa được cài lại. Thử lại sau.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Bạn không có quyền truy cập mạng. Đường dẫn của bạn chưa được đặt lại. Thử lại sau.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">Có lỗi kết nối mạng khi đang tiến hành cài lại đường dẫn. Thử lại sau.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Có lỗi kết nối mạng khi đang tiến hành đặt lại đường dẫn. Thử lại sau.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
