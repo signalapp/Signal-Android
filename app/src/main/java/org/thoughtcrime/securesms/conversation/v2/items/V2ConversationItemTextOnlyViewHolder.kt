@@ -644,6 +644,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
+    deliveryStatus.setTint(themeDelegate.getFooterIconColor(conversationMessage))
+
     val onlyShowSendingStatus = when {
       record.isOutgoing && !record.isRemoteDelete -> false
       record.isRemoteDelete -> true
