@@ -600,7 +600,15 @@ public class WebRtcCallView extends ConstraintLayout {
   public void setStatus(@Nullable String status) {
     ThreadUtil.assertMainThread();
     this.status.setText(status);
-    collapsedToolbar.setSubtitle(status);
+    try {
+      // Toolbar's subtitle view sometimes already has a parent somehow,
+      // so we clear it out first so that it removes the view from its parent.
+      // In addition, we catch the ISE to prevent a crash.
+      collapsedToolbar.setSubtitle(null);
+      collapsedToolbar.setSubtitle(status);
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "IllegalStateException trying to set status on collapsed Toolbar.");
+    }
   }
 
   private void setStatus(@StringRes int statusRes) {
