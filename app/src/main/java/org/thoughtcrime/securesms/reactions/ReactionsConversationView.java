@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
@@ -74,7 +75,7 @@ public class ReactionsConversationView extends LinearLayout {
   }
 
   public boolean setBubbleWidth(int bubbleWidth) {
-    if (bubbleWidth == this.bubbleWidth) {
+    if (bubbleWidth == this.bubbleWidth || getChildCount() == 0) {
       return false;
     }
 
@@ -93,16 +94,20 @@ public class ReactionsConversationView extends LinearLayout {
       int margin = (bubbleWidth - railWidth - OUTER_MARGIN);
 
       if (outgoing) {
-        ViewUtil.setRightMargin(this, margin);
+        setEndMargin(margin);
       } else {
-        ViewUtil.setLeftMargin(this, margin);
+        setStartMargin(margin);
       }
     } else {
       if (outgoing) {
-        ViewUtil.setRightMargin(this, OUTER_MARGIN);
+        setEndMargin(OUTER_MARGIN);
       } else {
-        ViewUtil.setLeftMargin(this, OUTER_MARGIN);
+        setStartMargin(OUTER_MARGIN);
       }
+    }
+
+    if (!isInLayout()) {
+      requestLayout();
     }
 
     return true;
@@ -159,6 +164,26 @@ public class ReactionsConversationView extends LinearLayout {
     } else {
       return reactions;
     }
+  }
+
+  private void setStartMargin(int margin) {
+    if (ViewUtil.isLtr(this)) {
+      getMarginLayoutParams().leftMargin = margin;
+    } else {
+      getMarginLayoutParams().rightMargin = margin;
+    }
+  }
+
+  private void setEndMargin(int margin) {
+    if (ViewUtil.isLtr(this)) {
+      getMarginLayoutParams().rightMargin = margin;
+    } else {
+      getMarginLayoutParams().leftMargin = margin;
+    }
+  }
+
+  private @NonNull MarginLayoutParams getMarginLayoutParams() {
+    return (MarginLayoutParams) getLayoutParams();
   }
 
   private static View buildPill(@NonNull Context context, @NonNull ViewGroup parent, @NonNull Reaction reaction) {
