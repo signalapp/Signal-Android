@@ -582,11 +582,12 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun presentFooterBackground() {
-    if (!binding.body.isJumbomoji ||
-      !conversationContext.hasWallpaper() ||
-      shape == V2ConversationItemShape.MessageShape.MIDDLE ||
-      shape == V2ConversationItemShape.MessageShape.START
-    ) {
+    if (!binding.body.isJumbomoji || !conversationContext.hasWallpaper()) {
+      binding.footerBackground.visible = false
+      return
+    }
+
+    if (!(conversationMessage.messageRecord.isEditMessage || shape.isEndingShape)) {
       binding.footerBackground.visible = false
       return
     }
@@ -603,7 +604,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun presentDate() {
-    if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
+    if (!shape.isEndingShape && !conversationMessage.messageRecord.isEditMessage) {
       binding.footerDate.visible = false
       return
     }
