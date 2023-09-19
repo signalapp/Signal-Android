@@ -162,8 +162,9 @@ public class VoiceNotePlaybackService extends MediaSessionService {
           player.seekTo(mediaItemIndex, 1);
           player.setPlayWhenReady(true);
         }
+      } else if (reason == Player.DISCONTINUITY_REASON_SEEK) {
+        player.setPlayWhenReady(true);
       }
-
 
       boolean isWithinThreshold = mediaItemIndex < LOAD_MORE_THRESHOLD ||
                                   mediaItemIndex + LOAD_MORE_THRESHOLD >= player.getMediaItemCount();
