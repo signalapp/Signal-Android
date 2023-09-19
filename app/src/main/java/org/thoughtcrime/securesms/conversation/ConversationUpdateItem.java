@@ -712,9 +712,7 @@ public final class ConversationUpdateItem extends FrameLayout
         return;
       }
 
-      final Recipient sender = ConversationUpdateItem.this.senderObserver.getObservedRecipient();
-
-      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
+      IdentityUtil.getRemoteIdentityKey(getContext(), messageRecord.getToRecipient()).addListener(new ListenableFuture.Listener<>() {
         @Override
         public void onSuccess(Optional<IdentityRecord> result) {
           if (result.isPresent()) {
