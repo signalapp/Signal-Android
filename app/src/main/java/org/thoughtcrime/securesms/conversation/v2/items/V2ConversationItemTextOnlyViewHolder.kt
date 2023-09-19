@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -464,7 +465,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
-    binding.footerExpiry.setColorFilter(themeDelegate.getFooterIconColor(conversationMessage))
+    binding.footerExpiry.setColorFilter(themeDelegate.getFooterTextColor(conversationMessage), PorterDuff.Mode.SRC_IN)
 
     val timer = binding.footerExpiry
     val record = conversationMessage.messageRecord
