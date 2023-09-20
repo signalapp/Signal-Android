@@ -223,6 +223,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     presentDeliveryStatus()
     presentFooterBackground()
     presentFooterExpiry()
+    presentFooterEndPadding()
     presentAlert()
     presentSender()
     presentSenderNameColor()
@@ -480,6 +481,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else {
       timer.stopAnimation()
       timer.visible = false
+    }
+  }
+
+  private fun presentFooterEndPadding() {
+    binding.footerSpace?.visibility = if (isForcedFooter() || shape.isEndingShape) {
+      View.INVISIBLE
+    } else {
+      View.GONE
     }
   }
 
