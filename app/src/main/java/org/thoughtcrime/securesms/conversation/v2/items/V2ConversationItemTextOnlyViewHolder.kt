@@ -459,17 +459,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun presentFooterExpiry() {
-    if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
-      binding.footerExpiry.stopAnimation()
-      binding.footerExpiry.visible = false
-      return
-    }
-
-    binding.footerExpiry.setColorFilter(themeDelegate.getFooterTextColor(conversationMessage), PorterDuff.Mode.SRC_IN)
-
     val timer = binding.footerExpiry
     val record = conversationMessage.messageRecord
     if (record.expiresIn > 0 && !record.isPending) {
+      timer.setColorFilter(themeDelegate.getFooterTextColor(conversationMessage), PorterDuff.Mode.SRC_IN)
+
       timer.visible = true
       timer.setPercentComplete(0f)
 
@@ -484,6 +478,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         conversationContext.onStartExpirationTimeout(record)
       }
     } else {
+      timer.stopAnimation()
       timer.visible = false
     }
   }
@@ -588,7 +583,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       return
     }
 
-    if (!(conversationMessage.messageRecord.isEditMessage || shape.isEndingShape)) {
+    if (!(isForcedFooter() || shape.isEndingShape)) {
       binding.footerBackground.visible = false
       return
     }
@@ -697,6 +692,10 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
   override fun disallowSwipe(latestDownX: Float, latestDownY: Float): Boolean {
     return false
+  }
+
+  private fun isForcedFooter(): Boolean {
+    return conversationMessage.messageRecord.isEditMessage || conversationMessage.messageRecord.expiresIn > 0L
   }
 
   private inner class ReactionMeasureListener : V2ConversationItemLayout.OnMeasureListener {
