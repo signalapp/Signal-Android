@@ -600,7 +600,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun presentDate() {
-    if (!shape.isEndingShape && !conversationMessage.messageRecord.isEditMessage) {
+    if (!shape.isEndingShape && !isForcedFooter()) {
       binding.footerDate.visible = false
       return
     }

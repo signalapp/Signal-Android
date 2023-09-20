@@ -156,7 +156,7 @@
         android:layout_width="@dimen/message_bubble_horizontal_padding"
         android:layout_height="@dimen/message_bubble_horizontal_padding"
         app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date"
-    app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
         app:layout_constraintEnd_toEndOf="@id/conversation_item_body_wrapper" />
 
     <!-- End Footer -->
