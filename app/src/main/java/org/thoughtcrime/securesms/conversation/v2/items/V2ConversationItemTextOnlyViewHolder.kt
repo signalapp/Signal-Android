@@ -112,17 +112,17 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     override fun onPreMeasure() = Unit
 
     override fun onPostMeasure(): Boolean {
-      val wrapperHeight = binding.bodyWrapper.measuredHeight
-      val yTranslation = (wrapperHeight - 38.dp) / 2f
-      binding.reply.translationY = -yTranslation
-
       return false
     }
   }
 
   init {
     binding.root.addOnMeasureListener(footerDelegate)
-    binding.root.addOnMeasureListener(replyDelegate)
+    binding.bodyWrapper.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
+      val wrapperHeight = bottom - top
+      val yTranslation = (wrapperHeight - 38.dp) / 2f
+      binding.reply.translationY = -yTranslation
+    }
 
     binding.root.onDispatchTouchEventListener = dispatchTouchEventListener
 

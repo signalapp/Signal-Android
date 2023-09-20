@@ -35,7 +35,11 @@ class V2ConversationItemLayout @JvmOverloads constructor(
     onMeasureListeners.forEach { it.onPreMeasure() }
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-    val remeasure = onMeasureListeners.map { it.onPostMeasure() }.any { it }
+    var remeasure = false
+    onMeasureListeners.forEach {
+      remeasure = it.onPostMeasure() || remeasure
+    }
+
     if (remeasure) {
       super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
