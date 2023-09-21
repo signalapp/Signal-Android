@@ -76,10 +76,6 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
       throw IllegalStateException("This should only be run if you have the capability!")
     }
 
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      throw IllegalStateException("This should only be running if PNP is enabled!")
-    }
-
     if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
       Log.w(TAG, "Not registered! Skipping, as it wouldn't do anything.")
       return

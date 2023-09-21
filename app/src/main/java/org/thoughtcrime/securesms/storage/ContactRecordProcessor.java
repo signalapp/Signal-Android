@@ -67,11 +67,6 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
    */
   @Override
   public void process(@NonNull Collection<SignalContactRecord> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      super.process(remoteRecords, keyGenerator);
-      return;
-    }
-
     List<SignalContactRecord> unregisteredAciOnly = new ArrayList<>();
     List<SignalContactRecord> pniE164Only         = new ArrayList<>();
 
@@ -149,10 +144,6 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      remote = remote.withoutPni();
-    }
-
     Optional<RecipientId> found = remote.getAci().isPresent() ? recipientTable.getByAci(remote.getAci().get()) : Optional.empty();
 
     if (found.isEmpty() && remote.getNumber().isPresent()) {
@@ -180,11 +171,6 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   @NonNull SignalContactRecord merge(@NonNull SignalContactRecord remote, @NonNull SignalContactRecord local, @NonNull StorageKeyGenerator keyGenerator) {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      local  = local.withoutPni();
-      remote = remote.withoutPni();
-    }
-
     String profileGivenName;
     String profileFamilyName;
 
@@ -217,35 +203,30 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     PNI    pni;
     String e164;
 
-    if (FeatureFlags.phoneNumberPrivacy()) {
-      boolean e164sMatchButPnisDont = local.getNumber().isPresent() &&
-                                      local.getNumber().get().equals(remote.getNumber().orElse(null)) &&
-                                      local.getPni().isPresent() &&
-                                      remote.getPni().isPresent() &&
-                                      !local.getPni().get().equals(remote.getPni().get());
+    boolean e164sMatchButPnisDont = local.getNumber().isPresent() &&
+                                    local.getNumber().get().equals(remote.getNumber().orElse(null)) &&
+                                    local.getPni().isPresent() &&
+                                    remote.getPni().isPresent() &&
+                                    !local.getPni().get().equals(remote.getPni().get());
 
-      boolean pnisMatchButE164sDont = local.getPni().isPresent() &&
-                                      local.getPni().get().equals(remote.getPni().orElse(null)) &&
-                                      local.getNumber().isPresent() &&
-                                      remote.getNumber().isPresent() &&
-                                      !local.getNumber().get().equals(remote.getNumber().get());
+    boolean pnisMatchButE164sDont = local.getPni().isPresent() &&
+                                    local.getPni().get().equals(remote.getPni().orElse(null)) &&
+                                    local.getNumber().isPresent() &&
+                                    remote.getNumber().isPresent() &&
+                                    !local.getNumber().get().equals(remote.getNumber().get());
 
-      if (e164sMatchButPnisDont) {
-        Log.w(TAG, "Matching E164s, but the PNIs differ! Trusting our local pair.");
-        // TODO [pnp] Schedule CDS fetch?
-        pni  = local.getPni().get();
-        e164 = local.getNumber().get();
-      } else if (pnisMatchButE164sDont) {
-        Log.w(TAG, "Matching PNIs, but the E164s differ! Trusting our local pair.");
-        // TODO [pnp] Schedule CDS fetch?
-        pni  = local.getPni().get();
-        e164 = local.getNumber().get();
-      } else {
-        pni  = OptionalUtil.or(remote.getPni(), local.getPni()).orElse(null);
-        e164 = OptionalUtil.or(remote.getNumber(), local.getNumber()).orElse(null);
-      }
+    if (e164sMatchButPnisDont) {
+      Log.w(TAG, "Matching E164s, but the PNIs differ! Trusting our local pair.");
+      // TODO [pnp] Schedule CDS fetch?
+      pni  = local.getPni().get();
+      e164 = local.getNumber().get();
+    } else if (pnisMatchButE164sDont) {
+      Log.w(TAG, "Matching PNIs, but the E164s differ! Trusting our local pair.");
+      // TODO [pnp] Schedule CDS fetch?
+      pni  = local.getPni().get();
+      e164 = local.getNumber().get();
     } else {
-      pni  = null;
+      pni  = OptionalUtil.or(remote.getPni(), local.getPni()).orElse(null);
       e164 = OptionalUtil.or(remote.getNumber(), local.getNumber()).orElse(null);
     }
 

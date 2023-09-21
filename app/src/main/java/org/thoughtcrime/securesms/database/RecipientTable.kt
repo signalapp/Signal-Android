@@ -793,11 +793,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val recipientId: RecipientId
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
-      if (FeatureFlags.phoneNumberPrivacy()) {
-        recipientId = getAndPossiblyMergePnpVerified(insert.aci.orNull(), insert.pni.orNull(), insert.number.orNull())
-      } else {
-        recipientId = getAndPossiblyMerge(insert.aci.orNull(), insert.number.orNull())
-      }
+      recipientId = getAndPossiblyMergePnpVerified(insert.aci.orNull(), insert.pni.orNull(), insert.number.orNull())
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
@@ -834,11 +830,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       var recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.old.id.raw)).get()
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
-      if (FeatureFlags.phoneNumberPrivacy()) {
-        recipientId = getAndPossiblyMergePnpVerified(update.new.aci.orElse(null), update.new.pni.orElse(null), update.new.number.orElse(null))
-      } else {
-        recipientId = getAndPossiblyMerge(update.new.aci.orElse(null), update.new.number.orElse(null))
-      }
+      recipientId = getAndPossiblyMergePnpVerified(update.new.aci.orElse(null), update.new.pni.orElse(null), update.new.number.orElse(null))
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
@@ -2158,14 +2150,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun markUnregistered(id: RecipientId) {
-    if (FeatureFlags.phoneNumberPrivacy()) {
-      val record = getRecord(id)
+    val record = getRecord(id)
 
-      if (record.aci != null && record.pni != null) {
-        markUnregisteredAndSplit(id, record)
-      } else {
-        markUnregisteredWithoutSplit(id)
-      }
+    if (record.aci != null && record.pni != null) {
+      markUnregisteredAndSplit(id, record)
     } else {
       markUnregisteredWithoutSplit(id)
     }
@@ -2216,8 +2204,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Done so we can match a split contact during storage sync.
    */
   fun splitForStorageSync(storageId: ByteArray) {
-    check(FeatureFlags.phoneNumberPrivacy())
-
     val record = getByStorageId(storageId)!!
     check(record.aci != null && record.pni != null)
 
@@ -3874,11 +3860,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val username = contact.username.orElse(null)
 
       put(ACI_COLUMN, contact.aci.orElse(null)?.toString())
-
-      if (FeatureFlags.phoneNumberPrivacy()) {
-        put(PNI_COLUMN, contact.pni.orElse(null)?.toString())
-      }
-
+      put(PNI_COLUMN, contact.pni.orElse(null)?.toString())
       put(E164, contact.number.orElse(null))
       put(PROFILE_GIVEN_NAME, profileName.givenName)
       put(PROFILE_FAMILY_NAME, profileName.familyName)

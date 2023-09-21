@@ -381,7 +381,7 @@ class ContactRecordProcessorTest {
   }
 
   @Test
-  fun `merge, pnpDisabled, pniDropped`() {
+  fun `merge, pnpDisabled, pniNotDropped`() {
     // GIVEN
     val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
@@ -411,7 +411,7 @@ class ContactRecordProcessorTest {
     // THEN
     assertEquals(remote.aci, result.aci)
     assertEquals(remote.number.get(), result.number.get())
-    assertEquals(false, result.pni.isPresent)
+    assertEquals(true, result.pni.isPresent)
   }
 
   private fun buildRecord(id: StorageId = STORAGE_ID_A, record: ContactRecord): SignalContactRecord {

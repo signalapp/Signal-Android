@@ -160,7 +160,7 @@ public final class StorageSyncHelper {
                                                                  .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
                                                                  .setUsername(self.getUsername().orElse(null));
 
-    if (!FeatureFlags.phoneNumberPrivacy() || !self.getPnpCapability().isSupported()) {
+    if (!self.getPnpCapability().isSupported()) {
       account.setE164(self.requireE164());
     }
 
