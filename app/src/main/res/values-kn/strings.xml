@@ -6016,6 +6016,8 @@
     <string name="CallLogFragment__no_calls">ಯಾವುದೇ ಕರೆಗಳಿಲ್ಲ.</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">ಸ್ನೇಹಿತರಿಗೆ ಕರೆ ಮಾಡುವ ಮೂಲಕ ಪ್ರಾರಂಭಿಸಿ.</string>
+    <!-- Displayed as a message in a dialog when deleting multiple items -->
+    <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
