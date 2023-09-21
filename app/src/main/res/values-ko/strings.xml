@@ -843,7 +843,7 @@
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">디버그 로그를 제출하면 문제를 진단하고 수정하는 데 도움이 됩니다. 디버그 로그에는 식별 정보가 포함되지 않습니다.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal에 오류가 발생했습니다. 디버그 로그를 제출할까요?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">배터리 최적화로 인해 알림이 지연될 수 있습니다.</string>
@@ -2705,7 +2705,7 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">느린 알림</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
+    <string name="DebugLogsPromptDialogFragment__crash_category">충돌</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">제출</string>
     <!-- Action to decline to submit logs -->
@@ -5965,9 +5965,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">입장 승인</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">입장 거부</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->

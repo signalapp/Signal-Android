@@ -4312,7 +4312,7 @@
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Screenshots in de lijst van recent geopende apps en in de app blokkeren</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle oproepen omleiden en verzegelde afzender.</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaardtimer voor nieuwe chats</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel standaard verdwijnende berichten in voor alle nieuwe chats die jij zelf begint</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel een standaardtimer voor verdwijnende berichten in voor alle nieuwe chats die jij zelf begint</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4330,7 +4330,7 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor alle nieuwe chats die jij zelf begint in dat nieuwe verzonden en ontvangen berichten worden gewist nadat ze zijn gezien.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor nieuwe chats die jij zelf begint in dat nieuwe verstuurde en ontvangen berichten worden gewist nadat ze zijn gezien en de timer is afgelopen.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze chat zijn verstuurd en ontvangen gewist nadat ze zijn gezien.</string>
     <string name="ExpireTimerSettingsFragment__off">Uit</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>

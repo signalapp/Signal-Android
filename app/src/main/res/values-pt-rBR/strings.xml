@@ -873,7 +873,7 @@
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Os registros de depuração nos ajudam a diagnosticar e corrigir o problema e não contêm informações de identificação.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">O Signal encontrou um problema. Enviar registro de depuração?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">As notificações podem atrasar devido a otimizações de bateria</string>
@@ -2792,7 +2792,7 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Notificações lentas</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
+    <string name="DebugLogsPromptDialogFragment__crash_category">Travamento</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Enviar</string>
     <!-- Action to decline to submit logs -->
@@ -6098,9 +6098,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Aprovar entrada</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Recusar entrada</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->

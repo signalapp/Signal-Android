@@ -2918,7 +2918,7 @@
     <string name="preferences__payments">Zahlungen</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Zahlungssperre</string>
-    <string name="preferences__conversation_length_limit">Höchstzahl an Chats</string>
+    <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten in einem Chat</string>
     <string name="preferences__keep_messages">Nachrichten behalten</string>
     <string name="preferences__clear_message_history">Nachrichtenverlauf leeren</string>
     <string name="preferences__linked_devices">Gekoppelte Geräte</string>

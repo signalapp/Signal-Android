@@ -873,7 +873,7 @@
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Ақауларды түзету журналдары диагностика жасап, ақауларды түзетуге мүмкіндік береді және онда жеке басты анықтайтын ақпарат болмайды.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal encountered a problem. Submit debug log?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal жұмысында ақау шықты. Ақауларды түзету журналын жіберу керек пе?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Батареяны оңтайландыру процестеріне байланысты хабарландырулар аздап кешігуі мүмкін</string>
@@ -2792,7 +2792,7 @@
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Баяу хабарландырулар</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__crash_category">Crash</string>
+    <string name="DebugLogsPromptDialogFragment__crash_category">Апат</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Жіберу</string>
     <!-- Action to decline to submit logs -->
@@ -6098,9 +6098,9 @@
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__approve_entry">Approve entry</string>
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Жазбаны мақұлдау</string>
     <!-- Displayed as line item in sheet for approving or denying a single user -->
-    <string name="CallLinkIncomingRequestSheet__deny_entry">Deny entry</string>
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Жазбадан бас тарту</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
