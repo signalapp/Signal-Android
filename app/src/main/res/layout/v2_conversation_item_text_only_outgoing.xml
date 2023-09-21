@@ -124,20 +124,22 @@
     <org.thoughtcrime.securesms.components.ExpirationTimerView
         android:id="@+id/conversation_item_expiration_timer"
         android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status" />
+        android:paddingBottom="@dimen/message_bubble_bottom_padding"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
+        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <org.thoughtcrime.securesms.components.DeliveryStatusView
         android:id="@+id/conversation_item_delivery_status"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center_vertical"
         android:paddingBottom="@dimen/message_bubble_bottom_padding"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toStartOf="@id/footer_end_pad" />
+        app:layout_constraintEnd_toStartOf="@id/footer_end_pad"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <Space
         android:id="@+id/footer_end_pad"
