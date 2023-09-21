@@ -176,5 +176,6 @@ public abstract class SignalServiceAttachment {
      * @param progress The amount that has been transmitted/received in bytes thus far
      */
     public void onAttachmentProgress(long total, long progress);
+    boolean shouldCancel();
   }
 }

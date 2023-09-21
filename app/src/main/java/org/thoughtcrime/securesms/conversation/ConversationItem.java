@@ -63,12 +63,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.collect.Sets;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
@@ -106,8 +110,10 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -241,7 +247,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final PassthroughClickListener        passthroughClickListener        = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener           = new AttachmentDownloadClickListener();
-  private final ProgressWheelClickListener      progressWheelClickListener      = new ProgressWheelClickListener();
+  private final PlayVideoClickListener          playVideoClickListener          = new PlayVideoClickListener();
+  private final AttachmentCancelClickListener   attachmentCancelClickListener   = new AttachmentCancelClickListener();
   private final SlideClickPassthroughListener   singleDownloadClickListener     = new SlideClickPassthroughListener(downloadClickListener);
   private final SharedContactEventListener      sharedContactEventListener      = new SharedContactEventListener();
   private final SharedContactClickListener      sharedContactClickListener      = new SharedContactClickListener();
@@ -1172,7 +1179,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         mediaThumbnailStub.require().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(linkPreview.getThumbnail().get())), showControls, false);
         mediaThumbnailStub.require().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
         mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
-        mediaThumbnailStub.require().setProgressWheelClickListener(progressWheelClickListener);
+        mediaThumbnailStub.require().setCancelDownloadClickListener(attachmentCancelClickListener);
+        mediaThumbnailStub.require().setPlayVideoClickListener(playVideoClickListener);
         mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
 
         linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, false);
@@ -1312,7 +1320,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                                     false);
       mediaThumbnailStub.require().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
-      mediaThumbnailStub.require().setProgressWheelClickListener(progressWheelClickListener);
+      mediaThumbnailStub.require().setCancelDownloadClickListener(attachmentCancelClickListener);
+      mediaThumbnailStub.require().setPlayVideoClickListener(playVideoClickListener);
       mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.require().setOnClickListener(passthroughClickListener);
       mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord));
@@ -2443,17 +2452,83 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private class ProgressWheelClickListener implements SlideClickListener {
+  private class AttachmentCancelClickListener implements SlidesClickedListener {
+    @Override
+    public void onClick(View v, List<Slide> slides) {
+      Log.i(TAG, "onClick() for attachment cancellation");
+      final JobManager jobManager = ApplicationDependencies.getJobManager();
+      if (messageRecord.isMmsNotification()) {
+        Log.i(TAG, "Canceling MMS attachments download");
+        jobManager.cancel("mms-operation");
+      } else {
+        Log.i(TAG, "Canceling push attachment downloads for " + slides.size() + " items");
+
+        for (Slide slide : slides) {
+          final String queue = AttachmentDownloadJob.constructQueueString(((DatabaseAttachment) slide.asAttachment()).getAttachmentId());
+          jobManager.cancelAllInQueue(queue);
+        }
+      }
+    }
+  }
+
+  private class PlayVideoClickListener implements SlideClickListener {
+    private static final float MINIMUM_DOWNLOADED_THRESHOLD = 0.05f;
+    private              View  parentView;
+    private              Slide activeSlide;
 
     @Override
     public void onClick(View v, Slide slide) {
-      final boolean isIncremental        = slide.asAttachment().getIncrementalDigest() != null;
-      final boolean contentTypeSupported = MediaUtil.isVideoType(slide.getContentType());
-      if (FeatureFlags.instantVideoPlayback() && isIncremental && contentTypeSupported) {
-        launchMediaPreview(v, slide);
-      } else {
-        Log.d(TAG, "Non-eligible slide clicked: " + "\tisIncremental: " + isIncremental + "\tcontentTypeSupported: " + contentTypeSupported);
+      if (messageRecord.isOutgoing()) {
+        Log.d(TAG, "Video player button for outgoing slide clicked.");
+        return;
       }
+      if (MediaUtil.isInstantVideoSupported(slide)) {
+        final DatabaseAttachment databaseAttachment = (DatabaseAttachment) slide.asAttachment();
+        if (databaseAttachment.getTransferState() != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+          final AttachmentId attachmentId = databaseAttachment.getAttachmentId();
+          final JobManager   jobManager   = ApplicationDependencies.getJobManager();
+          final String       queue        = AttachmentDownloadJob.constructQueueString(attachmentId);
+          setup(v, slide);
+          jobManager.add(new AttachmentDownloadJob(messageRecord.getId(),
+                                                   attachmentId,
+                                                   true));
+          jobManager.addListener(queue, (job, jobState) -> {
+            if (jobState.isComplete()) {
+              cleanup();
+            }
+          });
+        } else {
+          launchMediaPreview(v, slide);
+          cleanup();
+        }
+      } else {
+        Log.d(TAG, "Non-eligible slide clicked.");
+      }
+    }
+
+    private void setup(View v, Slide slide) {
+      parentView = v;
+      activeSlide = slide;
+      if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+    }
+
+    private void cleanup() {
+      parentView = null;
+      activeSlide = null;
+      if (EventBus.getDefault().isRegistered(this)) {
+        EventBus.getDefault().unregister(this);
+      }
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEventAsync(PartProgressEvent event) {
+     float progressPercent = ((float) event.progress) / event.total;
+      final View currentParentView = parentView;
+      final Slide currentActiveSlide = activeSlide;
+      if (progressPercent >= MINIMUM_DOWNLOADED_THRESHOLD && currentParentView != null && currentActiveSlide != null) {
+        cleanup();
+        launchMediaPreview(currentParentView, currentActiveSlide);
+     }
     }
   }
 

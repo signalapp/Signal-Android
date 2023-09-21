@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.internal.push.http;
 import org.junit.Test;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -70,6 +71,15 @@ public class DigestingRequestBodyTest {
   }
 
   private DigestingRequestBody getBody(long contentStart) {
-    return new DigestingRequestBody(new ByteArrayInputStream(input), outputStreamFactory, "application/octet", CONTENT_LENGTH, (a, b) -> {}, () -> false, contentStart);
+    return new DigestingRequestBody(new ByteArrayInputStream(input), outputStreamFactory, "application/octet", CONTENT_LENGTH, new SignalServiceAttachment.ProgressListener() {
+      @Override
+      public void onAttachmentProgress(long total, long progress) {
+        // no-op
+      }
+
+      @Override public boolean shouldCancel() {
+        return false;
+      }
+    }, () -> false, contentStart);
   }
 }

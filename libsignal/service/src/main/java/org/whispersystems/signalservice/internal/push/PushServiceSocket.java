@@ -1445,7 +1445,7 @@ public class PushServiceSocket {
     }
   }
 
-  private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes,  ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
     try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
@@ -1502,6 +1502,9 @@ public class PushServiceSocket {
 
           if (listener != null) {
             listener.onAttachmentProgress(body.contentLength() + offset, totalRead);
+            if (listener.shouldCancel()) {
+              call.cancel();
+            }
           }
         }
       } else if (response.code() == 416) {

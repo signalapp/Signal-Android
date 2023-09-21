@@ -172,7 +172,11 @@ public abstract class Attachment {
 
   @Nullable
   public byte[] getIncrementalDigest() {
-    return incrementalDigest;
+    if (incrementalDigest != null && incrementalDigest.length > 0) {
+      return incrementalDigest;
+    } else {
+      return null;
+    }
   }
 
   @Nullable

@@ -213,10 +213,18 @@ public final class AttachmentUploadJob extends BaseJob {
                                                                        .withCaption(attachment.getCaption())
                                                                        .withCancelationSignal(this::isCanceled)
                                                                        .withResumableUploadSpec(resumableUploadSpec)
-                                                                       .withListener((total, progress) -> {
-                                                                         EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
-                                                                         if (notification != null) {
-                                                                           notification.setProgress(total, progress);
+                                                                       .withListener(new SignalServiceAttachment.ProgressListener() {
+                                                                         @Override
+                                                                         public void onAttachmentProgress(long total, long progress) {
+                                                                           EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
+                                                                           if (notification != null) {
+                                                                             notification.setProgress(total, progress);
+                                                                           }
+                                                                         }
+
+                                                                         @Override
+                                                                         public boolean shouldCancel() {
+                                                                           return isCanceled();
                                                                          }
                                                                        });
       if (MediaUtil.isImageType(attachment.getContentType())) {

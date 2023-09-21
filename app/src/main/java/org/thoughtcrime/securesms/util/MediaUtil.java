@@ -468,6 +468,15 @@ public class MediaUtil {
     return mediaMetadataRetriever.getFrameAtTime(timeUs);
   }
 
+  public static boolean isInstantVideoSupported(Slide slide) {
+    if (!FeatureFlags.instantVideoPlayback()) {
+      return false;
+    }
+    final boolean isIncremental        = slide.asAttachment().getIncrementalDigest() != null;
+    final boolean contentTypeSupported = isVideoType(slide.getContentType());
+    return isIncremental && contentTypeSupported;
+  }
+
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {
     final String[] sections = mimeType.split("/", 2);
     return sections.length > 1 ? sections[0] : null;
