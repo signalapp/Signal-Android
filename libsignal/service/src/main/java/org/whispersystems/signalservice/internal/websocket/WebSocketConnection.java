@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -60,7 +61,6 @@ public class WebSocketConnection extends WebSocketListener {
   private final Set<Long>                           keepAlives       = new HashSet<>();
 
   private final String                                    name;
-  private final String                                    wsUri;
   private final TrustStore                                trustStore;
   private final Optional<CredentialsProvider>             credentialsProvider;
   private final String                                    signalAgent;
@@ -70,7 +70,9 @@ public class WebSocketConnection extends WebSocketListener {
   private final Optional<SignalProxy>                     signalProxy;
   private final BehaviorSubject<WebSocketConnectionState> webSocketState;
   private final boolean                                   allowStories;
-  private final SignalServiceUrl                          serviceUrl;
+  private final SignalServiceUrl[]                        serviceUrls;
+  private final String                                    extraPathUri;
+  private final SecureRandom                              random;
 
   private WebSocket client;
 
@@ -101,25 +103,33 @@ public class WebSocketConnection extends WebSocketListener {
     this.healthMonitor       = healthMonitor;
     this.webSocketState      = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED);
     this.allowStories        = allowStories;
-    this.serviceUrl          = serviceConfiguration.getSignalServiceUrls()[0];
-
-    String uri = serviceUrl.getUrl().replace("https://", "wss://").replace("http://", "ws://");
-
-    if (credentialsProvider.isPresent()) {
-      this.wsUri = uri + "/v1/websocket/" + extraPathUri + "?login=%s&password=%s";
-    } else {
-      this.wsUri = uri + "/v1/websocket/" + extraPathUri;
-    }
+    this.serviceUrls         = serviceConfiguration.getSignalServiceUrls();
+    this.extraPathUri        = extraPathUri;
+    this.random              = new SecureRandom();
   }
 
   public String getName() {
     return name;
   }
 
+  private Pair<SignalServiceUrl, String> getConnectionInfo() {
+    SignalServiceUrl serviceUrl = serviceUrls[random.nextInt(serviceUrls.length)];
+    String           uri        = serviceUrl.getUrl().replace("https://", "wss://").replace("http://", "ws://");
+
+    if (credentialsProvider.isPresent()) {
+      return new Pair<>(serviceUrl, uri + "/v1/websocket/" + extraPathUri + "?login=%s&password=%s");
+    } else {
+      return new Pair<>(serviceUrl, uri + "/v1/websocket/" + extraPathUri);
+    }
+  }
+
   public synchronized Observable<WebSocketConnectionState> connect() {
     log("connect()");
 
     if (client == null) {
+      Pair<SignalServiceUrl, String> connectionInfo = getConnectionInfo();
+      SignalServiceUrl               serviceUrl     = connectionInfo.first();
+      String                         wsUri          = connectionInfo.second();
       String filledUri;
 
       if (credentialsProvider.isPresent()) {
