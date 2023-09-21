@@ -81,6 +81,11 @@ class AvatarProvider : BaseContentProvider() {
       return null
     }
 
+    if (SignalDatabase.instance == null) {
+      Log.w(TAG, "SignalDatabase unavailable")
+      return null
+    }
+
     if (uriMatcher.match(uri) == AVATAR) {
       if (VERBOSE) Log.i(TAG, "Loading avatar.")
       try {
