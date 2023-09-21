@@ -502,6 +502,18 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectNoSessionSwitchoverEvent()
     }
 
+    test("steal, e164+pni+aci * pni+aci, all provided, aci sessions but not pni sessions, no SSE expected") {
+      given(E164_A, PNI_A, ACI_A, createThread = true, aciSession = true, pniSession = false)
+      given(null, PNI_B, ACI_B, createThread = false, aciSession = true, pniSession = false)
+
+      process(E164_A, PNI_B, ACI_A)
+
+      expect(E164_A, PNI_B, ACI_A)
+      expect(null, null, ACI_B)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
     test("merge, e164 & pni & aci, all provided") {
       given(E164_A, null, null)
       given(null, PNI_A, null)

@@ -86,6 +86,7 @@ public final class FeatureFlags {
   private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "global.payments.disabledRegions";
   public  static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
+  public  static final String BLOCK_SSE                         = "android.blockSessionSwitchoverEvents";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
@@ -183,7 +184,8 @@ public final class FeatureFlags {
       USERNAMES,
       INSTANT_VIDEO_PLAYBACK,
       CONVERSATION_ITEM_V2_TEXT,
-      CRASH_PROMPT_CONFIG
+      CRASH_PROMPT_CONFIG,
+      BLOCK_SSE
   );
 
   @VisibleForTesting
@@ -255,7 +257,8 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
       USERNAMES,
-      CRASH_PROMPT_CONFIG
+      CRASH_PROMPT_CONFIG,
+      BLOCK_SSE
   );
 
   /**
@@ -386,6 +389,13 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getBoolean(PHONE_NUMBER_PRIVACY, false) || Environment.IS_PNP;
+  }
+
+  /**
+   * Whether session switchover events should be blocked on the client.
+   */
+  public static boolean blockSessionSwitchoverEvents() {
+    return getBoolean(BLOCK_SSE, false) && !phoneNumberPrivacy();
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */

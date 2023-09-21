@@ -2650,7 +2650,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * records and turning it into a possible event.
    */
   private fun sessionSwitchoverEventIfNeeded(pniVerified: Boolean, oldRecord: RecipientRecord?, newRecord: RecipientRecord?): PnpOperation? {
-    return if (oldRecord != null && newRecord != null && needsSessionSwitchoverEvent(pniVerified, oldRecord.serviceId, newRecord.serviceId)) {
+    return if (oldRecord != null && newRecord != null && oldRecord.serviceId == oldRecord.pni && newRecord.serviceId == newRecord.aci && needsSessionSwitchoverEvent(pniVerified, oldRecord.serviceId, newRecord.serviceId)) {
       PnpOperation.SessionSwitchoverInsert(
         recipientId = newRecord.id,
         e164 = newRecord.e164
