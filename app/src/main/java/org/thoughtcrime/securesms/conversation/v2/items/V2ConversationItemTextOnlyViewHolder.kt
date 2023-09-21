@@ -652,7 +652,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   private fun presentDeliveryStatus() {
     val deliveryStatus = binding.deliveryStatus ?: return
 
-    if (shape == V2ConversationItemShape.MessageShape.MIDDLE || shape == V2ConversationItemShape.MessageShape.START) {
+    if (!shape.isEndingShape && !isForcedFooter()) {
       deliveryStatus.setNone()
       return
     }
