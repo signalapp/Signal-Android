@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
@@ -55,7 +54,7 @@ public class AlbumThumbnailView extends FrameLayout {
     inflate(getContext(), R.layout.album_thumbnail_view, this);
 
     albumCellContainer = findViewById(R.id.album_cell_container);
-    transferControls = new Stub<>(findViewById(R.id.album_transfer_controls_stub));
+    transferControls   = new Stub<>(findViewById(R.id.album_transfer_controls_stub));
   }
 
   public void setSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides, boolean showControls) {
@@ -65,13 +64,12 @@ public class AlbumThumbnailView extends FrameLayout {
 
     if (showControls) {
       transferControls.get().setShowDownloadText(true);
+      transferControls.get().setSlides(slides);
       transferControls.get().setDownloadClickListener(v -> {
         if (downloadClickListener != null) {
           downloadClickListener.onClick(v, slides);
         }
       });
-      transferControls.get().setSlides(slides);
-      transferControls.setVisibility(VISIBLE);
     } else {
       if (transferControls.resolved()) {
         transferControls.get().setVisibility(GONE);
@@ -87,7 +85,6 @@ public class AlbumThumbnailView extends FrameLayout {
 
     showSlides(glideRequests, slides);
     applyCorners();
-    forceLayout();
   }
 
   public void setCellBackgroundColor(@ColorInt int color) {
@@ -120,25 +117,22 @@ public class AlbumThumbnailView extends FrameLayout {
   private void inflateLayout(int sizeClass) {
     albumCellContainer.removeAllViews();
 
-    int resId = switch (sizeClass) {
-      case 2 -> R.layout.album_thumbnail_2;
-      case 3 -> R.layout.album_thumbnail_3;
-      case 4 -> R.layout.album_thumbnail_4;
-      case 5 -> R.layout.album_thumbnail_5;
-      default -> R.layout.album_thumbnail_many;
-    };
-
-    inflate(getContext(), resId, albumCellContainer);
-    if (transferControls.resolved()) {
-     int size = switch (sizeClass) {
-        case 2 -> R.dimen.album_2_total_height;
-        case 3 -> R.dimen.album_3_total_height;
-        case 4 -> R.dimen.album_4_total_height;
-        default -> R.dimen.album_5_total_height;
-      };
-      final ViewGroup.LayoutParams params = transferControls.get().getLayoutParams();
-      params.height = getContext().getResources().getDimensionPixelSize(size);
-      transferControls.get().setLayoutParams(params);
+    switch (sizeClass) {
+      case 2:
+        inflate(getContext(), R.layout.album_thumbnail_2, albumCellContainer);
+        break;
+      case 3:
+        inflate(getContext(), R.layout.album_thumbnail_3, albumCellContainer);
+        break;
+      case 4:
+        inflate(getContext(), R.layout.album_thumbnail_4, albumCellContainer);
+        break;
+      case 5:
+        inflate(getContext(), R.layout.album_thumbnail_5, albumCellContainer);
+        break;
+      default:
+        inflate(getContext(), R.layout.album_thumbnail_many, albumCellContainer);
+        break;
     }
   }
 

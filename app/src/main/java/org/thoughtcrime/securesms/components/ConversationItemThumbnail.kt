@@ -255,17 +255,9 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
-  fun setPlayVideoClickListener(listener: SlideClickListener?) {
+  fun setProgressWheelClickListener(listener: SlideClickListener?) {
     state = state.copy(
-      thumbnailViewState = state.thumbnailViewState.copy(playVideoClickListener = listener)
-    )
-
-    state.applyState(thumbnail, album)
-  }
-
-  fun setCancelDownloadClickListener(listener: SlidesClickedListener?) {
-    state = state.copy(
-      thumbnailViewState = state.thumbnailViewState.copy(cancelDownloadClickListener = listener)
+      thumbnailViewState = state.thumbnailViewState.copy(progressWheelClickListener = listener)
     )
 
     state.applyState(thumbnail, album)

@@ -31,7 +31,6 @@ import org.signal.core.util.logging.Log;
 import org.signal.glide.transforms.SignalDownsampleStrategy;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
@@ -42,6 +41,7 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -80,13 +80,12 @@ public class ThumbnailView extends FrameLayout {
 
   private final CornerMask cornerMask;
 
-  private ThumbnailViewTransferControlsState transferControlsState       = new ThumbnailViewTransferControlsState();
+  private ThumbnailViewTransferControlsState transferControlsState      = new ThumbnailViewTransferControlsState();
   private Stub<TransferControlView>          transferControlViewStub;
-  private SlideClickListener                 thumbnailClickListener      = null;
-  private SlidesClickedListener              downloadClickListener       = null;
-  private SlidesClickedListener              cancelDownloadClickListener = null;
-  private SlideClickListener                 playVideoClickListener      = null;
-  private Slide                              slide                       = null;
+  private SlideClickListener                 thumbnailClickListener     = null;
+  private SlidesClickedListener              downloadClickListener      = null;
+  private SlideClickListener                 progressWheelClickListener = null;
+  private Slide                              slide                      = null;
 
 
   public ThumbnailView(Context context) {
@@ -368,11 +367,10 @@ public class ThumbnailView extends FrameLayout {
       }
 
       transferControlsState = transferControlsState.withSlide(slide)
-                                                   .withDownloadClickListener(new DownloadClickDispatcher())
-                                                   .withCancelDownloadClickListener(new CancelClickDispatcher());
+                                                   .withDownloadClickListener(new DownloadClickDispatcher());
 
-      if (MediaUtil.isInstantVideoSupported(slide)) {
-        transferControlsState = transferControlsState.withInstantPlaybackClickListener(new ProgressWheelClickDispatcher());
+      if (FeatureFlags.instantVideoPlayback()) {
+        transferControlsState = transferControlsState.withProgressWheelClickListener(new ProgressWheelClickDispatcher());
       }
 
       transferControlsState.applyState(transferControlViewStub);
@@ -527,12 +525,8 @@ public class ThumbnailView extends FrameLayout {
     this.downloadClickListener = listener;
   }
 
-  public void setCancelDownloadClickListener(SlidesClickedListener listener) {
-    this.cancelDownloadClickListener = listener;
-  }
-
-  public void setPlayVideoClickListener(SlideClickListener listener) {
-    this.playVideoClickListener = listener;
+  public void setProgressWheelClickListener(SlideClickListener listener) {
+    this.progressWheelClickListener = listener;
   }
 
   public void clear(GlideRequests glideRequests) {
@@ -574,9 +568,9 @@ public class ThumbnailView extends FrameLayout {
 
   private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
-                                                              .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                                              .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
-                                                              .transition(withCrossFade()));
+                                                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                                    .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
+                                                    .transition(withCrossFade()));
 
     boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
 
@@ -631,7 +625,7 @@ public class ThumbnailView extends FrameLayout {
     if (Util.equals(slide, other)) {
 
       if (slide != null && other != null) {
-        byte[] digestLeft  = slide.asAttachment().getDigest();
+        byte[] digestLeft = slide.asAttachment().getDigest();
         byte[] digestRight = other.asAttachment().getDigest();
 
         return Arrays.equals(digestLeft, digestRight);
@@ -676,26 +670,14 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  private class CancelClickDispatcher implements View.OnClickListener {
-    @Override
-    public void onClick(View view) {
-      Log.i(TAG, "onClick() for cancel button");
-      if (cancelDownloadClickListener != null && slide != null) {
-        cancelDownloadClickListener.onClick(view, Collections.singletonList(slide));
-      } else {
-        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide + "  cancelDownloadClickListener: " + cancelDownloadClickListener);
-      }
-    }
-  }
-
   private class ProgressWheelClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      Log.i(TAG, "onClick() for instant video playback");
-      if (playVideoClickListener != null && slide != null) {
-        playVideoClickListener.onClick(view, slide);
+      Log.i(TAG, "onClick() for progress wheel");
+      if (progressWheelClickListener != null && slide != null) {
+        progressWheelClickListener.onClick(view, slide);
       } else {
-        Log.w(TAG, "Received an instant video click, but unable to execute it. slide: " + slide + "  progressWheelClickListener: " + playVideoClickListener);
+        Log.w(TAG, "Received a progress wheel click, but unable to execute it. slide: " + slide + "  progressWheelClickListener: " + progressWheelClickListener);
       }
     }
   }

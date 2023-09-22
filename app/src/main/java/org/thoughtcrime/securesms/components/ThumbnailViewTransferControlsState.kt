@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components
 
 import android.view.View.OnClickListener
-import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.views.Stub
 
@@ -13,8 +12,7 @@ data class ThumbnailViewTransferControlsState(
   val isClickable: Boolean = true,
   val slide: Slide? = null,
   val downloadClickedListener: OnClickListener? = null,
-  val cancelDownloadClickedListener: OnClickListener? = null,
-  val instantPlaybackClickListener: OnClickListener? = null,
+  val progressWheelClickedListener: OnClickListener? = null,
   val showDownloadText: Boolean = true
 ) {
 
@@ -22,8 +20,7 @@ data class ThumbnailViewTransferControlsState(
   fun withClickable(isClickable: Boolean): ThumbnailViewTransferControlsState = copy(isClickable = isClickable)
   fun withSlide(slide: Slide?): ThumbnailViewTransferControlsState = copy(slide = slide)
   fun withDownloadClickListener(downloadClickedListener: OnClickListener): ThumbnailViewTransferControlsState = copy(downloadClickedListener = downloadClickedListener)
-  fun withCancelDownloadClickListener(cancelClickListener: OnClickListener): ThumbnailViewTransferControlsState = copy(cancelDownloadClickedListener = cancelClickListener)
-  fun withInstantPlaybackClickListener(instantPlaybackClickListener: OnClickListener): ThumbnailViewTransferControlsState = copy(instantPlaybackClickListener = instantPlaybackClickListener)
+  fun withProgressWheelClickListener(progressWheelClickedListener: OnClickListener): ThumbnailViewTransferControlsState = copy(progressWheelClickedListener = progressWheelClickedListener)
   fun withDownloadText(showDownloadText: Boolean): ThumbnailViewTransferControlsState = copy(showDownloadText = showDownloadText)
 
   fun applyState(transferControlView: Stub<TransferControlView>) {
@@ -34,9 +31,8 @@ data class ThumbnailViewTransferControlsState(
         transferControlView.get().setSlide(slide)
       }
       transferControlView.get().setDownloadClickListener(downloadClickedListener)
+      transferControlView.get().setProgressWheelClickListener(progressWheelClickedListener)
       transferControlView.get().setShowDownloadText(showDownloadText)
-      transferControlView.get().setCancelClickListener(cancelDownloadClickedListener)
-      transferControlView.get().setInstantPlaybackClickListener(instantPlaybackClickListener)
     }
   }
 }

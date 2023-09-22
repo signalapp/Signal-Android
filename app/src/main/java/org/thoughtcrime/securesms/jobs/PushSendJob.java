@@ -200,17 +200,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withWidth(attachment.getWidth())
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())
-                                    .withListener(new SignalServiceAttachment.ProgressListener() {
-                                      @Override
-                                      public void onAttachmentProgress(long total, long progress) {
-                                        EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
-                                      }
-
-                                      @Override
-                                      public boolean shouldCancel() {
-                                        return isCanceled();
-                                      }
-                                    })
+                                    .withListener((total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)))
                                     .build();
     } catch (IOException ioe) {
       Log.w(TAG, "Couldn't open attachment", ioe);
