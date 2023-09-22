@@ -92,7 +92,7 @@ public final class WifiDirect {
     if (Build.VERSION.SDK_INT >= 33 && context.checkSelfPermission(Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
       Log.i(TAG, "Nearby Wifi permission required");
       return AvailableStatus.REQUIRED_PERMISSION_NOT_GRANTED;
-    } else if (Build.VERSION.SDK_INT >= 23 && context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+    } else if (Build.VERSION.SDK_INT < 33 && Build.VERSION.SDK_INT >= 23 && context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
       Log.i(TAG, "Fine location permission required");
       return AvailableStatus.REQUIRED_PERMISSION_NOT_GRANTED;
     }
