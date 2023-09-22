@@ -1098,7 +1098,7 @@ public class SignalServiceMessageSender {
                                       .mentionAci(mention.getServiceId().toString())
                                       .build());
         }
-        builder.bodyRanges(bodyRanges);
+        quoteBuilder.bodyRanges(bodyRanges);
 
         builder.requiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS.getValue(), builder.requiredProtocolVersion));
       }
