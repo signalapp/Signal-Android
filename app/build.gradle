@@ -520,6 +520,7 @@ dependencies {
     implementation project(':sms-exporter')
     implementation project(':sticky-header-grid')
     implementation project(':photoview')
+    implementation project(':glide-webp')
 
     implementation libs.libsignal.android
 

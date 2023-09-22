@@ -60,6 +60,4 @@ public class EncryptedBitmapResourceEncoder extends EncryptedCoder implements Re
       return Bitmap.CompressFormat.JPEG;
     }
   }
-
-
 }
