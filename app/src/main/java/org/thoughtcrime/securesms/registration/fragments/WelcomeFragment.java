@@ -118,8 +118,8 @@ public final class WelcomeFragment extends LoggingFragment {
 
   private void onContinueClicked() {
     if (Permissions.isRuntimePermissionsRequired()) {
-      NavHostFragment.findNavController(this)
-                     .navigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(GrantPermissionsFragment.WelcomeAction.CONTINUE));
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                  WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(GrantPermissionsFragment.WelcomeAction.CONTINUE));
     } else {
       gatherInformationAndContinue(
           this,
@@ -134,8 +134,8 @@ public final class WelcomeFragment extends LoggingFragment {
 
   private void onRestoreFromBackupClicked() {
     if (Permissions.isRuntimePermissionsRequired()) {
-      NavHostFragment.findNavController(this)
-                     .navigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(GrantPermissionsFragment.WelcomeAction.RESTORE_BACKUP));
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                  WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(GrantPermissionsFragment.WelcomeAction.RESTORE_BACKUP));
     } else {
       gatherInformationAndChooseBackup(this, viewModel, WelcomeFragmentDirections.actionTransferOrRestore());
     }
