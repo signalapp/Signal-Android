@@ -85,6 +85,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -519,6 +520,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public void setQueryFilter(String filter) {
+    if (Objects.equals(filter, this.cursorFilter)) {
+      return;
+    }
+
     this.cursorFilter = filter;
     contactSearchMediator.onFilterChanged(filter);
   }
