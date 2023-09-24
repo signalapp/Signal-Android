@@ -137,8 +137,8 @@ object CallMessageProcessor {
   ) {
     log(envelope.timestamp!!, "handleCallHangupMessage")
 
-    val (hangupId, hangupDeviceId) = if (hangup?.id != null && hangup.deviceId != null) {
-      hangup.id!! to hangup.deviceId!!
+    val (hangupId: Long, hangupDeviceId: Int?) = if (hangup?.id != null) {
+      hangup.id!! to hangup.deviceId
     } else {
       warn(envelope.timestamp!!, "Invalid hangup, null message or missing id/deviceId")
       return
@@ -148,7 +148,7 @@ object CallMessageProcessor {
     ApplicationDependencies.getSignalCallManager()
       .receivedCallHangup(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
-        HangupMetadata(HangupMessage.Type.fromProto(hangup.type), hangupDeviceId)
+        HangupMetadata(HangupMessage.Type.fromProto(hangup.type), hangupDeviceId ?: 0)
       )
   }
 
