@@ -29,7 +29,7 @@ public final class SignalServiceGroupV2 {
    * Creates a context model populated from a protobuf group V2 context.
    */
   public static SignalServiceGroupV2 fromProtobuf(@NonNull GroupContextV2 groupContextV2) {
-    Preconditions.checkArgument(groupContextV2.masterKey == null || groupContextV2.revision == null);
+    Preconditions.checkArgument(groupContextV2.masterKey != null && groupContextV2.revision != null);
 
     GroupMasterKey masterKey;
     try {
