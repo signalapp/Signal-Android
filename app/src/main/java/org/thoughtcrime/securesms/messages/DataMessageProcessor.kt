@@ -1136,11 +1136,11 @@ object DataMessageProcessor {
         val validDomain = url.isPresent && LinkUtil.isValidPreviewUrl(url.get())
         val isForCallLink = url.isPresent && CallLinks.isCallLink(url.get())
 
-        if ((hasTitle || isForCallLink) && (presentInBody || isStoryEmbed) && validDomain && preview.date != null) {
-          val linkPreview = LinkPreview(url.get(), title.orElse(""), description.orElse(""), preview.date!!, thumbnail.toOptional())
+        if ((hasTitle || isForCallLink) && (presentInBody || isStoryEmbed) && validDomain) {
+          val linkPreview = LinkPreview(url.get(), title.orElse(""), description.orElse(""), preview.date ?: 0, thumbnail.toOptional())
           linkPreview
         } else {
-          warn(String.format("Discarding an invalid link preview. hasTitle: %b presentInBody: %b isStoryEmbed: %b validDomain: %b date: %b", hasTitle, presentInBody, isStoryEmbed, validDomain, preview.date != null))
+          warn(String.format("Discarding an invalid link preview. hasTitle: %b presentInBody: %b isStoryEmbed: %b validDomain: %b", hasTitle, presentInBody, isStoryEmbed, validDomain))
           null
         }
       }
