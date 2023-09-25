@@ -29,7 +29,10 @@ jobject nativeDecodeBitmap(JNIEnv *env, jobject, jbyteArray data) {
     int height;
 
     uint8_t *pixels = WebPDecodeBGRA(buffer, bufferLength, &width, &height);
-    jobject jbitmap = createBitmap(env, width, height, pixels);
+    jobject jbitmap = nullptr;
+    if (pixels != nullptr) {
+        jbitmap = createBitmap(env, width, height, pixels);
+    }
 
     WebPFree(pixels);
     env->ReleaseByteArrayElements(data, javaBytes, 0);
