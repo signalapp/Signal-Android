@@ -601,7 +601,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         }
 
         val recipientId = RecipientId.from(id)
-        update(recipientId, groupUpdates)
+        val updateSuccess = update(recipientId, groupUpdates)
+
+        if (!updateSuccess) {
+          Log.w(TAG, "Failed to update newly-created record for $recipientId")
+        }
 
         return recipientId
       }

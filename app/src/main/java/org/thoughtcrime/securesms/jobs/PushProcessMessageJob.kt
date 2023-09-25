@@ -114,15 +114,11 @@ class PushProcessMessageJob private constructor(
     }
 
     fun processOrDefer(messageProcessor: MessageContentProcessor, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive): PushProcessMessageJob? {
-      val queueName: String
-
       val groupContext = GroupUtil.getGroupContextIfPresent(result.content)
       val groupId = groupContext?.groupId
       var requireNetwork = false
 
-      if (groupId != null) {
-        queueName = getQueueName(RecipientId.from(groupId))
-
+      val queueName: String = if (groupId != null) {
         if (groupId.isV2) {
           val localRevision = groups.getGroupV2Revision(groupId.requireV2())
 
@@ -131,10 +127,11 @@ class PushProcessMessageJob private constructor(
             requireNetwork = true
           }
         }
+        getQueueName(RecipientId.from(groupId))
       } else if (result.content.syncMessage != null && result.content.syncMessage!!.sent != null && result.content.syncMessage!!.sent!!.destinationServiceId != null) {
-        queueName = getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId!!)))
+        getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId!!)))
       } else {
-        queueName = getQueueName(RecipientId.from(result.metadata.sourceServiceId))
+        getQueueName(RecipientId.from(result.metadata.sourceServiceId))
       }
 
       return if (requireNetwork || !isQueueEmpty(queueName = queueName, isGroup = groupId != null)) {

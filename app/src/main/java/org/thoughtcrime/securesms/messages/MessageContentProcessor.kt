@@ -125,11 +125,11 @@ open class MessageContentProcessor(private val context: Context) {
     @Throws(BadGroupIdException::class)
     private fun getMessageDestination(content: Content, sender: Recipient): Recipient {
       return if (content.storyMessage != null && content.storyMessage!!.group.isValid) {
-        getGroupRecipient(content.storyMessage!!.group, sender)
+        getGroupRecipient(content.storyMessage?.group, sender)
       } else if (content.dataMessage.hasGroupContext) {
-        getGroupRecipient(content.dataMessage!!.groupV2, sender)
+        getGroupRecipient(content.dataMessage?.groupV2, sender)
       } else if (content.editMessage?.dataMessage.hasGroupContext) {
-        getGroupRecipient(content.editMessage!!.dataMessage!!.groupV2, sender)
+        getGroupRecipient(content.editMessage?.dataMessage?.groupV2, sender)
       } else {
         sender
       }

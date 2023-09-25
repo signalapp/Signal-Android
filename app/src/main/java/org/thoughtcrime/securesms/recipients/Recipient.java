@@ -320,7 +320,14 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull GroupId groupId) {
-    return Recipient.resolved(RecipientId.from(groupId));
+    RecipientId id = RecipientId.from(groupId);
+    try {
+      return Recipient.resolved(id);
+    } catch (RecipientTable.MissingRecipientException ex) {
+      Log.w(TAG, "Could not find recipient (" + id + ") for group " + groupId + ". Clearing RecipientId cache and trying again.", ex);
+      RecipientId.clearCache();
+      return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId));
+    }
   }
 
   /**
