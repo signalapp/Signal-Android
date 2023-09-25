@@ -5,15 +5,15 @@
 
 package org.thoughtcrime.securesms.components
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import org.signal.core.util.ResourceUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
@@ -31,13 +31,17 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
     private const val KEY_PURPOSE = "purpose"
 
     @JvmStatic
-    fun show(context: Context, fragmentManager: FragmentManager, purpose: Purpose) {
-      if (NetworkUtil.isConnected(context) && fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
+    fun show(activity: AppCompatActivity, purpose: Purpose) {
+      if (!activity.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+        return
+      }
+
+      if (NetworkUtil.isConnected(activity) && activity.supportFragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
         DebugLogsPromptDialogFragment().apply {
           arguments = bundleOf(
             KEY_PURPOSE to purpose.serialized
           )
-        }.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        }.show(activity.supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
 
         when (purpose) {
           Purpose.NOTIFICATIONS -> SignalStore.uiHints().lastNotificationLogsPrompt = System.currentTimeMillis()

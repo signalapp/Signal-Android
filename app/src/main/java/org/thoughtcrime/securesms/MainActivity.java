@@ -117,9 +117,9 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
         PromptBatterySaverDialogFragment.show(getSupportFragmentManager());
         break;
       case PROMPT_DEBUGLOGS_FOR_NOTIFICATIONS:
-        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager(), DebugLogsPromptDialogFragment.Purpose.NOTIFICATIONS);
+        DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.NOTIFICATIONS);
       case PROMPT_DEBUGLOGS_FOR_CRASH:
-        DebugLogsPromptDialogFragment.show(this, getSupportFragmentManager(), DebugLogsPromptDialogFragment.Purpose.CRASH);
+        DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.CRASH);
         break;
     }
   }
