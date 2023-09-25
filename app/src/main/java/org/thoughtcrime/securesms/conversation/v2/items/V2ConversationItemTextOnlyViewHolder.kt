@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.VibrateUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.hasExtraText
 import org.thoughtcrime.securesms.util.hasNoBubble
@@ -191,7 +192,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     conversationMessage = model.conversationMessage
 
     shape = shapeDelegate.setMessageShape(
-      isLtr = itemView.layoutDirection == View.LAYOUT_DIRECTION_LTR,
       currentMessage = conversationMessage.messageRecord,
       isGroupThread = conversationMessage.threadRecipient.isGroup,
       adapterPosition = bindingAdapterPosition
@@ -345,6 +345,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun invalidateBodyBubbleDrawable(coordinateRoot: ViewGroup) {
+    bodyBubbleDrawable.setCorners(shapeDelegate.corners.toRelativeRadii(ViewUtil.isLtr(coordinateRoot)))
+
     if (bodyBubbleDrawable.isSolidColor()) {
       return
     }

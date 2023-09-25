@@ -47,7 +47,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(),
       isGroupThread = false,
       adapterPosition = 5
@@ -69,7 +68,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.END
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -91,7 +89,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.START
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(prev),
       isGroupThread = false,
       adapterPosition = 5
@@ -115,7 +112,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.MIDDLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -137,7 +133,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -159,7 +154,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(prev),
       isGroupThread = false,
       adapterPosition = 5
@@ -183,7 +177,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5

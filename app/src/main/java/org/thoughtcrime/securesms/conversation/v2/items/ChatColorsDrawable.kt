@@ -142,6 +142,13 @@ class ChatColorsDrawable : Drawable() {
     return gradientColors == null
   }
 
+  fun setCorners(corners: FloatArray) {
+    if (!this.corners.contentEquals(corners)) {
+      this.corners = corners
+      invalidateSelf()
+    }
+  }
+
   /**
    * Sets the chat color and shape as specified. If the colors are a gradient,
    * we will use masking to draw, and we will draw every time we're told to by
