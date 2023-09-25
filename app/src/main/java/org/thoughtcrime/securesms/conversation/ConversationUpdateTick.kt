@@ -8,7 +8,6 @@ import androidx.lifecycle.LifecycleOwner
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.util.Util
 import java.util.concurrent.TimeUnit
-import kotlin.math.max
 
 /**
  * Lifecycle-aware class which will call onTick every 1 minute.
