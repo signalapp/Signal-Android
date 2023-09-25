@@ -2,8 +2,11 @@ package org.thoughtcrime.securesms
 
 import android.content.ContentValues
 import android.os.Build
+import org.signal.core.util.logging.AndroidLogger
+import org.signal.core.util.logging.Log
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
+import org.signal.spinner.SpinnerLogger
 import org.thoughtcrime.securesms.database.DatabaseMonitor
 import org.thoughtcrime.securesms.database.GV2Transformer
 import org.thoughtcrime.securesms.database.GV2UpdateTransformer
@@ -22,8 +25,10 @@ import org.thoughtcrime.securesms.database.RecipientTransformer
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TimestampTransformer
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
+import org.thoughtcrime.securesms.util.FeatureFlags
 import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {
@@ -68,6 +73,8 @@ class SpinnerApplicationContext : ApplicationContext() {
         StorageServicePlugin.PATH to StorageServicePlugin()
       )
     )
+
+    Log.initialize({ FeatureFlags.internalUser() }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
 
     DatabaseMonitor.initialize(object : QueryMonitor {
       override fun onSql(sql: String, args: Array<Any>?) {

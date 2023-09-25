@@ -5,7 +5,7 @@ html, body {
   width: 100%;
 }
 
-select, input {
+select, input, button {
   font-family: 'Roboto Mono', monospace;
   font-variant-ligatures: none;
   font-size: 1rem;

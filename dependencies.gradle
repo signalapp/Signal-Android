@@ -19,6 +19,7 @@ dependencyResolutionManagement {
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '8.0.2')
             version('accompanist', '0.28.0')
+            version('nanohttpd', '2.3.1')
 
             // Android Plugins
             library('android-library', 'com.android.library', 'com.android.library.gradle.plugin').versionRef('android-gradle-plugin')
@@ -144,7 +145,8 @@ dependencyResolutionManagement {
             library('stream', 'com.annimon:stream:1.1.8')
             library('lottie', 'com.airbnb.android:lottie:5.2.0')
             library('dnsjava', 'dnsjava:dnsjava:2.1.9')
-            library('nanohttpd-webserver', 'org.nanohttpd:nanohttpd-webserver:2.3.1')
+            library('nanohttpd-webserver', 'org.nanohttpd', 'nanohttpd-webserver').versionRef('nanohttpd')
+            library('nanohttpd-websocket', 'org.nanohttpd', 'nanohttpd-websocket').versionRef('nanohttpd')
             library('kotlinx-collections-immutable', 'org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5')
 
             // Can't use the newest version because it hits some weird NoClassDefFoundException
