@@ -94,10 +94,10 @@ class CallLogRepository(
   fun deleteAllCallLogsOnOrBeforeNow(): Single<Int> {
     return Single.fromCallable {
       SignalDatabase.rawDatabase.withinTransaction {
-        val now = System.currentTimeMillis()
-        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(now)
-        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(now)
-        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(now))
+        val latestTimestamp = SignalDatabase.calls.getLatestTimestamp()
+        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(latestTimestamp)
+        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(latestTimestamp)
+        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(latestTimestamp))
       }
 
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(emptySet())

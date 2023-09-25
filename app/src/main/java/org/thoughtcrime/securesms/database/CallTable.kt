@@ -806,6 +806,17 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
   }
 
+  /**
+   * Gets the most recent timestamp from the [TIMESTAMP] column
+   */
+  fun getLatestTimestamp(): Long {
+    val statement = """
+      SELECT $TIMESTAMP FROM $TABLE_NAME ORDER BY $TIMESTAMP DESC LIMIT 1
+    """.trimIndent()
+
+    return readableDatabase.query(statement).readToSingleLong(-1)
+  }
+
   fun deleteNonAdHocCallEventsOnOrBefore(timestamp: Long) {
     val messageIdsOnOrBeforeTimestamp = """
       SELECT $MESSAGE_ID FROM $TABLE_NAME WHERE $TIMESTAMP <= $timestamp AND $MESSAGE_ID IS NOT NULL
