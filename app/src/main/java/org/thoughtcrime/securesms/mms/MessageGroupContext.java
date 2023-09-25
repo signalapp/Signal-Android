@@ -11,6 +11,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
@@ -161,12 +162,12 @@ public final class MessageGroupContext {
     }
 
     public @NonNull DecryptedGroupChange getChange() {
-      return decryptedGroupV2Context.change;
+      return decryptedGroupV2Context.change != null ? decryptedGroupV2Context.change : SignalServiceProtoUtil.getEmptyGroupChange();
     }
 
     public @NonNull List<? extends ServiceId> getAllActivePendingAndRemovedMembers() {
       DecryptedGroup        groupState  = decryptedGroupV2Context.groupState;
-      DecryptedGroupChange  groupChange = decryptedGroupV2Context.change;
+      DecryptedGroupChange  groupChange = getChange();
 
       return Stream.of(DecryptedGroupUtil.toAciList(groupState.members),
                        DecryptedGroupUtil.pendingToServiceIdList(groupState.pendingMembers),

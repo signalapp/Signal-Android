@@ -6,6 +6,7 @@ import okio.ByteString
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -31,6 +32,9 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 object SignalServiceProtoUtil {
+
+  @JvmStatic
+  val emptyGroupChange: DecryptedGroupChange by lazy { DecryptedGroupChange() }
 
   /** Contains some user data that affects the conversation  */
   val DataMessage.hasRenderableContent: Boolean
