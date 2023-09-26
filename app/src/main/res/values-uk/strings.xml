@@ -585,7 +585,7 @@
     <string name="ConversationListItemAction_archived_conversations_d">Архівні чати (%1$d)</string>
 
     <!-- ConversationTitleView -->
-    <string name="ConversationTitleView_verified">Завірено</string>
+    <string name="ConversationTitleView_verified">Підтверджено</string>
     <string name="ConversationTitleView_you">Ви</string>
 
     <!-- ConversationTypingView -->
@@ -1400,7 +1400,7 @@
     <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s більше не у групі.</string>
 
     <!-- GV2 role change -->
-    <string name="MessageRecord_you_made_s_an_admin">Ви створили %1$s адміністратора.</string>
+    <string name="MessageRecord_you_made_s_an_admin">Ви зробили користувача %1$s адміністратором.</string>
     <string name="MessageRecord_s_made_s_an_admin">%1$s зробив (-ла) %2$s адміністратором.</string>
     <string name="MessageRecord_s_made_you_an_admin">%1$s зробив (-ла) вас адміністратором.</string>
     <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ви відкликали привілеї адміністратора у %1$s.</string>
@@ -2049,7 +2049,7 @@
     <string name="RegistrationActivity_cancel">Скасувати</string>
     <string name="RegistrationActivity_next">Далі</string>
     <string name="RegistrationActivity_continue">Продовжити</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Візьміть конфіденційність з собою. \\ n-разів Будьте собою в кожному повідомленні.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Візьміть конфіденційність із собою.\nБудьте собою в кожному повідомленні.</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Номер телефону</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
@@ -6283,7 +6283,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">Почніть із дзвінка другу.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
+    <string name="CallLogFragment__call_links_youve_created">Створені посилання на виклики більше не працюватимуть для тих, хто їх має.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

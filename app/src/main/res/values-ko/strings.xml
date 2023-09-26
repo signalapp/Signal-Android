@@ -5884,7 +5884,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">친구에게 전화를 걸어 시작하세요.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
+    <string name="CallLogFragment__call_links_youve_created">내가 만든 통화 링크를 가진 사용자가 해당 링크를 더 이상 사용할 수 없습니다.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

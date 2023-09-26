@@ -39,14 +39,14 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">მიმდინარეობს Signal-ის განახლება…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">თქვენ ჯერ არ დაგიყენებიათ პაროლფრაზა!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">გამოვრთო პაროლფრაზა?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">დაუყოვნებლივ განიბლოკება Signal და შეტყობინებები.</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">შენ ჯერ არ დაგიყენებია პაროლფრაზა!</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">გამოვრთოთ პაროლფრაზა?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ეს სამუდამოდ განბლოკავს Signal-ს და მიმოწერის შეტყობინებებს.</string>
     <string name="ApplicationPreferencesActivity_disable">გამორთვა</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">გამოვრთოთ Signal-ის შეტყობინებები და ზარები?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-ის შეტყობინებებისა და ზარების გათიშვა სერვერიდან რეგისტრაციის გაუქმებით. მომავალში მათი გამოყენებისათვის დაგჭირდება ტელეფონის ნომრის ხელახალი რეგისტრაცია.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">სერვერთან დაკავშირებისას დაფიქსირდა შეცდომა!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">პინ-კოდი საჭიროა რეგისტრაციის ბლოკირებისთვის. პინის გასათიშად, ჯერ უნდა გათიშო რეგისტრაციის ბლოკირება.</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">პინ-კოდი საჭიროა რეგისტრაციის ბლოკირებისთვის. პინ-კოდის გასათიშად, ჯერ უნდა გათიშო რეგისტრაციის ბლოკირება.</string>
     <string name="ApplicationPreferencesActivity_pin_created">პინ-კოდი შექმნილია.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">პინ-კოდი გათიშულია.</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ტრანზაქციების აღდგენის ფრაზის ჩაწერა</string>
@@ -86,9 +86,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">მედიის ასარჩევი აპლიკაცია ვერ მოიძებნა.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">სურათების, ვიდეოების ან აუდიოს მისამაგრებლად Signal-ს მეხსიერებაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"მეხსიერება\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის უფლება სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"კონტაქტები\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"ადგილმდებარეობა\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">სურათების, ვიდეოების ან აუდიოს მისამაგრებლად Signal-ს მეხსიერებაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"ნებართვები\" და ჩართო \"მეხსიერება\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"ნებართვები\" და ჩართო \"კონტაქტები\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"ნებართვები\" და ჩართო \"ადგილმდებარეობა\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s-ს ტრანზაქციები არ გაუაქტიურებია </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -137,15 +137,15 @@
     <!-- Error displayed under the card expiry text field when the card is expired -->
     <string name="CreditCardFragment__card_has_expired">ბარათს ვადა აქვს გასული</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">კოდი ზედმეტად მოკლეა</string>
+    <string name="CreditCardFragment__code_is_too_short">კოდი ძალიან მოკლეა</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">კოდი ზედმეტად გრძელია</string>
+    <string name="CreditCardFragment__code_is_too_long">კოდი ძალიან გრძელია</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
     <string name="CreditCardFragment__invalid_code">კოდი არასწორია</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
     <string name="CreditCardFragment__invalid_month">თვე არასწორია</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">წელის მითითება აუცილებელია</string>
+    <string name="CreditCardFragment__year_required">წელი სავალდებულოა</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">წელი არასწორია</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
@@ -158,10 +158,10 @@
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ჯგუფის წევრები ვეღარ შეძლებენ ამ ჯგუფში შენს ხელახლა დამატებას.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ჯგუფის წევრები შეძლებენ ამ ჯგუფში შენს ხელახლა დამატებას.</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">თქვენ შეძლებთ ერთმანეთთან მიმოწერას და დარეკვას, და შენი სახლი და სურათი იქნება მათთან გაზიარებული.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">თქვენ შეძლებთ ერთმანეთთან მიმოწერას და დარეკვას, და შენი სახელი და სურათი იქნება მათთან გაზიარებული.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">ერთმანეთთან მიმოწერას შეძლებთ.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ბლოკირებული ადამიანები ვეღარ შეძლებენ შენთან დარეკვას ან მოწერას.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">დაბლოკილი ადამიანები ვეღარ შეძლებენ შენთან დარეკვას ან მოწერას.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">დაბლოკილი ხალხი ვერ მოგწერს.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-ის განახლებების და სიახლეების მიღების დაბლოკვა.</string>
@@ -197,7 +197,7 @@
     <string name="CameraContacts_signal_groups">Signal-ის ჯგუფები</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">შენ შეგიძლია მაქსიმუმ %1$d-ში გააზიარო.</item>
+        <item quantity="one">შენ შეგიძლია მაქსიმუმ %1$d ჩატში გააზიარო.</item>
         <item quantity="other">შენ შეგიძლია მაქსიმუმ %1$d-ში გააზიარო.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">აირჩიე Signal-ის მიმღები</string>
@@ -349,7 +349,7 @@
     <string name="ConversationActivity_transport_insecure_mms">დაუცველი MMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">Signal-ის შეტყობინება</string>
-    <string name="ConversationActivity_lets_switch_to_signal">მოდი, გადავერთოთ სიგნალზე %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">მოდი, გადავერთოთ Signal-ზე %1$s</string>
     <string name="ConversationActivity_specify_recipient">გთხოვთ აირჩიო კონტაქტი</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">მიმაგრებული ფაილი აღემატება იმ შეტყობინების ზომების ლიმიტებს, რომლის გაგზავნასაც შენ ცდილობ.</string>
     <string name="ConversationActivity_unable_to_record_audio">აუდიოს ჩაწერა შეუძლებელია!</string>
@@ -6017,7 +6017,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">დაიწყე მეგობართან დარეკვით.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
+    <string name="CallLogFragment__call_links_youve_created">შენ მიერ შექმნილი ზარის ბმულები აღარ იმუშავებს მათთვის, ვისაც ისინი აქვთ.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

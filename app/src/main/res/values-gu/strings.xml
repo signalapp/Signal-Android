@@ -6017,7 +6017,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">કોઈ મિત્રને કૉલ કરીને શરૂઆત કરો.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
+    <string name="CallLogFragment__call_links_youve_created">તમે બનાવેલ કૉલ લિંક હવે જેમની પાસે છે તેમના માટે કામ નહીં કરે.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

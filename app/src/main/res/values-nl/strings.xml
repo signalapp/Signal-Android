@@ -856,7 +856,7 @@
     <string name="LeaveGroupDialog_choose_admin">Beheerder kiezen</string>
 
     <!-- LinkPreviewView -->
-    <string name="LinkPreviewView_no_link_preview_available">Geen voorbeeldafbeelding beschikbaar</string>
+    <string name="LinkPreviewView_no_link_preview_available">Geen linkvoorbeeld beschikbaar</string>
     <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepslink is niet actief</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
@@ -2853,14 +2853,14 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Bèta</string>
     <string name="preferences__sms_mms">Sms en mms</string>
-    <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemcontactenlijst gebruiken</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemcontactenlijst weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
+    <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit systeemcontactenlijst gebruiken</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar profielfoto\'s uit je eigen systeemcontactenlijst weer</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Gedempte chats gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte chats die zijn gearchiveerd, blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
-    <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke link naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
+    <string name="preferences__generate_link_previews">Linkvoorbeelden meesturen</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Genereer voor elke link die je verzendt een voorbeeld van de website en stuur dit mee met je bericht</string>
     <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
     <string name="preferences__change_your_passphrase">Wijzig je wachtwoord</string>
     <string name="preferences__enable_passphrase">Appvergrendeling met wachtwoord inschakelen</string>
@@ -6017,7 +6017,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">Ga aan de slag door een contact te bellen.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">Call links you\'ve created will no longer work for people who have them.</string>
+    <string name="CallLogFragment__call_links_youve_created">Oproeplinks die je hebt gemaakt, zullen niet langer werken voor personen die ze al hebben ontvangen.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
