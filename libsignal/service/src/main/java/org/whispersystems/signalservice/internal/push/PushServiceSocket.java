@@ -279,7 +279,7 @@ public class PushServiceSocket {
   private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
   private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
   private static final String CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method/paypal";
-  private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
+  private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/stripe/%s";
   private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/braintree/%s";
   private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS           = "/v1/subscription/%s/receipt_credentials";
   private static final String CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/create";
