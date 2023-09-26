@@ -2854,7 +2854,7 @@
     <string name="preferences_beta">Bèta</string>
     <string name="preferences__sms_mms">Sms en mms</string>
     <string name="preferences__pref_use_address_book_photos">Profielfoto\'s uit systeemcontactenlijst gebruiken</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar profielfoto\'s uit je eigen systeemcontactenlijst weer</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto\'s uit je eigen systeemcontactenlijst weer</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Gedempte chats gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
@@ -4331,7 +4331,7 @@
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor nieuwe chats die jij zelf begint in dat nieuwe verstuurde en ontvangen berichten worden gewist nadat ze zijn gezien en de timer is afgelopen.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze chat zijn verstuurd en ontvangen gewist nadat ze zijn gezien.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, worden nieuwe berichten die in deze chat zijn verstuurd en ontvangen gewist nadat ze zijn gezien en de timer is afgelopen.</string>
     <string name="ExpireTimerSettingsFragment__off">Uit</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
