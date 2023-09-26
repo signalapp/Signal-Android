@@ -117,8 +117,6 @@ class MultiselectForwardFragment :
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    Log.d(TAG, "onViewCreated()")
-
     view.minimumHeight = resources.displayMetrics.heightPixels
 
     contactSearchRecycler = view.findViewById(R.id.contact_selection_list)
@@ -135,9 +133,7 @@ class MultiselectForwardFragment :
       this::getConfiguration,
       object : ContactSearchMediator.SimpleCallbacks() {
         override fun onBeforeContactsSelected(view: View?, contactSearchKeys: Set<ContactSearchKey>): Set<ContactSearchKey> {
-          val filtered: Set<ContactSearchKey> = filterContacts(view, contactSearchKeys)
-          Log.d(TAG, "onBeforeContactsSelected() Attempting to select: ${contactSearchKeys.map { it.toString() }}, Filtered selection: ${filtered.map { it.toString() } }")
-          return filtered
+          return filterContacts(view, contactSearchKeys)
         }
       }
     )
@@ -228,6 +224,7 @@ class MultiselectForwardFragment :
     disposables += contactSearchMediator
       .getErrorEvents()
       .subscribe {
+        @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
         val message: Int = when (it) {
           ContactSearchError.CONTACT_NOT_SELECTABLE -> R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group
           ContactSearchError.RECOMMENDED_LIMIT_REACHED -> R.string.ContactSelectionListFragment_recommended_member_limit_reached
@@ -238,8 +235,6 @@ class MultiselectForwardFragment :
       }
 
     viewModel.state.observe(viewLifecycleOwner) {
-      Log.d(TAG, "State change: ${it.stage.javaClass.simpleName}")
-
       when (it.stage) {
         MultiselectForwardState.Stage.Selection -> {}
         MultiselectForwardState.Stage.FirstConfirmation -> displayFirstSendConfirmation()
@@ -276,8 +271,6 @@ class MultiselectForwardFragment :
 
   override fun onResume() {
     super.onResume()
-
-    Log.d(TAG, "onViewCreated()")
 
     val now = System.currentTimeMillis()
     val expiringMessages = args.multiShareArgs.filter { it.expiresAt > 0L }
@@ -338,8 +331,6 @@ class MultiselectForwardFragment :
   }
 
   private fun dismissWithSuccess(@PluralsRes toastTextResId: Int) {
-    Log.d(TAG, "dismissWithSuccess() Selected: ${contactSearchMediator.getSelectedContacts().map { it.toString() }}")
-
     requireListener<Callback>().setResult(
       Bundle().apply {
         putBoolean(RESULT_SENT, true)
@@ -350,7 +341,7 @@ class MultiselectForwardFragment :
   }
 
   private fun dismissAndShowToast(@PluralsRes toastTextResId: Int) {
-    Log.d(TAG, "dismissAndShowToast() Selected: ${contactSearchMediator.getSelectedContacts().map { it.toString() }}")
+    Log.d(TAG, "dismissAndShowToast")
 
     val argCount = getMessageCount()
 
@@ -372,7 +363,7 @@ class MultiselectForwardFragment :
   }
 
   private fun dismissWithSelection(selectedContacts: Set<ContactSearchKey>) {
-    Log.d(TAG, "dismissWithSelection() Selected: ${selectedContacts.map { it.toString() }}")
+    Log.d(TAG, "dismissWithSelection")
 
     callback.onFinishForwardAction()
     dismissibleDialog?.dismiss()
