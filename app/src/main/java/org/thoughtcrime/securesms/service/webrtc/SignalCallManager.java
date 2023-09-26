@@ -637,6 +637,11 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
+  public void onLowBandwidthForVideo(@Nullable Remote remote, boolean recovered) {
+    // TODO: Implement handling of the "low outgoing bandwidth for video" notification.
+  }
+
+  @Override
   public void onCallConcluded(@Nullable Remote remote) {
     if (!(remote instanceof RemotePeer)) {
       return;
@@ -883,6 +888,11 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onAudioLevels(@NonNull GroupCall groupCall) {
     processStateless(s -> serviceState.getActionProcessor().handleGroupAudioLevelsChanged(serviceState, s));
+  }
+
+  @Override
+  public void onLowBandwidthForVideo(@NonNull GroupCall groupCall, boolean recovered) {
+    // TODO: Implement handling of the "low outgoing bandwidth for video" notification.
   }
 
   @Override
