@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.widget.Space
+import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -79,7 +80,7 @@ class V2FooterPositionDelegate private constructor(
       return false
     }
 
-    if (body.isJumbomoji) {
+    if (body.isJumbomoji || StringUtil.hasMixedTextDirection(body.text)) {
       displayUnderneathBody()
       return true
     }
