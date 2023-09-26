@@ -88,10 +88,13 @@ public final class BubbleUtil {
       bubbleLoggingMessage.append("\nconversationChannel = null");
     }
 
-    Log.d(TAG, bubbleLoggingMessage.toString());
 
-    return (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
-           (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
+    boolean canBubble = (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
+                        (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
+
+    bubbleLoggingMessage.append("\nComputed canBubble: ").append(canBubble);
+    Log.d(TAG, bubbleLoggingMessage.toString());
+    return canBubble;
   }
 
   /**
