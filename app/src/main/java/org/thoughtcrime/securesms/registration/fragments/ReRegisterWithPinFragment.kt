@@ -139,10 +139,10 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
           onSkipPinEntry()
         } else if (processor.isServerSentError()) {
           Log.i(TAG, "Error from server, not likely recoverable", processor.error)
-          Toast.makeText(requireContext(), R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show()
+          genericErrorDialog()
         } else {
           Log.i(TAG, "Unexpected error occurred", processor.error)
-          Toast.makeText(requireContext(), R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show()
+          genericErrorDialog()
         }
       }
   }
@@ -245,5 +245,12 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
   private fun onSkipPinEntry() {
     registrationViewModel.setUserSkippedReRegisterFlow(true)
     findNavController().safeNavigate(R.id.action_reRegisterWithPinFragment_to_enterPhoneNumberFragment)
+  }
+
+  private fun genericErrorDialog() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setMessage(R.string.RegistrationActivity_error_connecting_to_service)
+      .setPositiveButton(android.R.string.ok, null)
+      .show()
   }
 }
