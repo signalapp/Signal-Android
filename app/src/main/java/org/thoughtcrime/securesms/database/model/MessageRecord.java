@@ -332,7 +332,7 @@ public abstract class MessageRecord extends DisplayRecord {
         }
         return UpdateDescription.concatWithNewLines(newGroupDescriptions);
       }
-    } catch (IOException | IllegalArgumentException e) {
+    } catch (IOException | IllegalArgumentException | IllegalStateException e) {
       Log.w(TAG, "GV2 Message update detail could not be read", e);
       return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
     }
