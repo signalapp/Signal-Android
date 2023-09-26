@@ -28,8 +28,18 @@ object UsernameUtil {
   private const val BASE_URL_SCHEMELESS = "signal.me/#eu/"
   private const val BASE_URL = "https://$BASE_URL_SCHEMELESS"
 
+  private val SEARCH_PATTERN = Pattern.compile(
+    String.format(
+      Locale.US,
+      "^[a-zA-Z_][a-zA-Z0-9_]{%d,%d}(.[0-9]+)?$",
+      MIN_LENGTH - 1,
+      MAX_LENGTH - 1,
+      Pattern.CASE_INSENSITIVE
+    )
+  )
+
   fun isValidUsernameForSearch(value: String): Boolean {
-    return value.isNotEmpty() && !DIGIT_START_PATTERN.matcher(value).matches()
+    return value.isNotEmpty() && SEARCH_PATTERN.matcher(value).matches()
   }
 
   @JvmStatic
