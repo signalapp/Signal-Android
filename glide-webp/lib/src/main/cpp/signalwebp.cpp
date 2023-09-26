@@ -1,5 +1,6 @@
 #include <jni.h>
 #include <webp/demux.h>
+#include <android/log.h>
 
 jobject createBitmap(JNIEnv *env, int width, int height, const uint8_t *pixels) {
     static auto      jbitmapConfigClass         = reinterpret_cast<jclass>(env->NewGlobalRef(env->FindClass("android/graphics/Bitmap$Config")));
@@ -17,21 +18,49 @@ jobject createBitmap(JNIEnv *env, int width, int height, const uint8_t *pixels) 
     return jbitmap;
 }
 
-jobject nativeDecodeBitmap(JNIEnv *env, jobject, jbyteArray data) {
+jobject nativeDecodeBitmapScaled(JNIEnv *env, jobject, jbyteArray data, jint requestedWidth, jint requestedHeight) {
     jbyte *javaBytes    = env->GetByteArrayElements(data, nullptr);
     auto  *buffer       = reinterpret_cast<uint8_t *>(javaBytes);
     jsize  bufferLength = env->GetArrayLength(data);
 
     WebPBitstreamFeatures features;
-    WebPGetFeatures(buffer, bufferLength, &features);
+    if (WebPGetFeatures(buffer, bufferLength, &features) != VP8_STATUS_OK) {
+        __android_log_write(ANDROID_LOG_WARN, "WebpResourceDecoder", "GetFeatures");
+        env->ReleaseByteArrayElements(data, javaBytes, 0);
+        return nullptr;
+    }
 
-    int width;
-    int height;
+    WebPDecoderConfig config;
+    if (!WebPInitDecoderConfig(&config)) {
+        __android_log_write(ANDROID_LOG_WARN, "WebpResourceDecoder", "Init decoder config");
+        env->ReleaseByteArrayElements(data, javaBytes, 0);
+        return nullptr;
+    }
 
-    uint8_t *pixels = WebPDecodeBGRA(buffer, bufferLength, &width, &height);
+    float hRatio = 1.0;
+    float vRatio = 1.0;
+    if (features.width >= features.height && features.width > 0) {
+        vRatio = static_cast<float>(features.height) / static_cast<float>(features.width);
+    } else if (features.width < features.height && features.height > 0) {
+        hRatio = static_cast<float>(features.width) / static_cast<float>(features.height);
+    }
+
+    config.options.no_fancy_upsampling = 1;
+    config.options.use_scaling         = 1;
+    config.options.scaled_width        = static_cast<int>(static_cast<float>(requestedWidth) * hRatio);
+    config.options.scaled_height       = static_cast<int>(static_cast<float>(requestedHeight) * vRatio);
+    config.output.colorspace           = MODE_BGRA;
+
+    if (WebPDecode(buffer, bufferLength, &config) != VP8_STATUS_OK) {
+        __android_log_write(ANDROID_LOG_WARN, "WebpResourceDecoder", "WebPDecode");
+        env->ReleaseByteArrayElements(data, javaBytes, 0);
+        return nullptr;
+    }
+
+    uint8_t *pixels = config.output.u.RGBA.rgba;
     jobject jbitmap = nullptr;
     if (pixels != nullptr) {
-        jbitmap = createBitmap(env, width, height, pixels);
+        jbitmap = createBitmap(env, config.output.width, config.output.height, pixels);
     }
 
     WebPFree(pixels);
@@ -52,7 +81,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *) {
     }
 
     static const JNINativeMethod methods[] = {
-            {"nativeDecodeBitmap", "([B)Landroid/graphics/Bitmap;", reinterpret_cast<void *>(nativeDecodeBitmap)}
+            {"nativeDecodeBitmapScaled", "([BII)Landroid/graphics/Bitmap;", reinterpret_cast<void *>(nativeDecodeBitmapScaled)}
     };
 
     int rc = env->RegisterNatives(c, methods, sizeof(methods) / sizeof(JNINativeMethod));

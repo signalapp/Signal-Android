@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
       "test_05.webp",
       "test_06_lossless.webp",
       "test_06_lossy.webp",
-      "test_07_lossless.webp"
+      "test_07_lossless.webp",
+      "test_09_large.webp"
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {

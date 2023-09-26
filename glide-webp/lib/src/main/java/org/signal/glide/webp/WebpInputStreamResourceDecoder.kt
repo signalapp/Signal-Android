@@ -64,7 +64,7 @@ class WebpInputStreamResourceDecoder(private val bitmapPool: BitmapPool) : Resou
       throw e
     }
 
-    val bitmap: Bitmap? = WebpDecoder().nativeDecodeBitmap(webp)
+    val bitmap: Bitmap? = WebpDecoder().nativeDecodeBitmapScaled(webp, width, height)
     return BitmapResource.obtain(bitmap, bitmapPool)
   }
 }

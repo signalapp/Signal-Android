@@ -21,4 +21,5 @@ add_subdirectory(${LIBWEBP_PATH} ${CMAKE_CURRENT_BINARY_DIR}/libwebp)
 
 add_library(signalwebp SHARED ${SOURCES})
 target_include_directories(signalwebp PRIVATE ${LIBWEBP_PATH}/src)
-target_link_libraries(signalwebp webpdemux)
+find_library(androidlog log)
+target_link_libraries(signalwebp webpdemux ${androidlog})

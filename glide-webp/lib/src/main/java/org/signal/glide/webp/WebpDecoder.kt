@@ -13,5 +13,5 @@ class WebpDecoder {
     System.loadLibrary("signalwebp")
   }
 
-  external fun nativeDecodeBitmap(data: ByteArray): Bitmap?
+  external fun nativeDecodeBitmapScaled(data: ByteArray, requestedWidth: Int, requestedHeight: Int): Bitmap?
 }
