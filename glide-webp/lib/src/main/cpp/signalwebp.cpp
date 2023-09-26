@@ -1,6 +1,9 @@
 #include <jni.h>
 #include <webp/demux.h>
 #include <android/log.h>
+#include <string>
+
+#define TAG "WebpResourceDecoder"
 
 jobject createBitmap(JNIEnv *env, int width, int height, const uint8_t *pixels) {
     static auto      jbitmapConfigClass         = reinterpret_cast<jclass>(env->NewGlobalRef(env->FindClass("android/graphics/Bitmap$Config")));
@@ -25,42 +28,52 @@ jobject nativeDecodeBitmapScaled(JNIEnv *env, jobject, jbyteArray data, jint req
 
     WebPBitstreamFeatures features;
     if (WebPGetFeatures(buffer, bufferLength, &features) != VP8_STATUS_OK) {
-        __android_log_write(ANDROID_LOG_WARN, "WebpResourceDecoder", "GetFeatures");
+        __android_log_write(ANDROID_LOG_WARN, TAG, "GetFeatures");
         env->ReleaseByteArrayElements(data, javaBytes, 0);
         return nullptr;
     }
 
     WebPDecoderConfig config;
     if (!WebPInitDecoderConfig(&config)) {
-        __android_log_write(ANDROID_LOG_WARN, "WebpResourceDecoder", "Init decoder config");
+        __android_log_write(ANDROID_LOG_WARN, TAG, "Init decoder config");
         env->ReleaseByteArrayElements(data, javaBytes, 0);
         return nullptr;
-    }
-
-    float hRatio = 1.0;
-    float vRatio = 1.0;
-    if (features.width >= features.height && features.width > 0) {
-        vRatio = static_cast<float>(features.height) / static_cast<float>(features.width);
-    } else if (features.width < features.height && features.height > 0) {
-        hRatio = static_cast<float>(features.width) / static_cast<float>(features.height);
     }
 
     config.options.no_fancy_upsampling = 1;
-    config.options.use_scaling         = 1;
-    config.options.scaled_width        = static_cast<int>(static_cast<float>(requestedWidth) * hRatio);
-    config.options.scaled_height       = static_cast<int>(static_cast<float>(requestedHeight) * vRatio);
     config.output.colorspace           = MODE_BGRA;
 
-    if (WebPDecode(buffer, bufferLength, &config) != VP8_STATUS_OK) {
-        __android_log_write(ANDROID_LOG_WARN, "WebpResourceDecoder", "WebPDecode");
-        env->ReleaseByteArrayElements(data, javaBytes, 0);
-        return nullptr;
+    if (requestedWidth > 0 && requestedHeight > 0 && features.width > 0 && features.height > 0 && (requestedWidth < features.width || requestedHeight < features.height)) {
+        float hRatio = 1.0;
+        float vRatio = 1.0;
+        if (features.width >= features.height) {
+            vRatio = static_cast<float>(features.height) / static_cast<float>(features.width);
+        } else {
+            hRatio = static_cast<float>(features.width) / static_cast<float>(features.height);
+        }
+
+        config.options.use_scaling   = 1;
+        config.options.scaled_width  = static_cast<int>(static_cast<float>(requestedWidth) * hRatio);
+        config.options.scaled_height = static_cast<int>(static_cast<float>(requestedHeight) * vRatio);
     }
 
-    uint8_t *pixels = config.output.u.RGBA.rgba;
+    uint8_t *pixels = nullptr;
+    int width       = 0;
+    int height      = 0;
+
+    VP8StatusCode result = WebPDecode(buffer, bufferLength, &config);
+    if (result != VP8_STATUS_OK) {
+        __android_log_write(ANDROID_LOG_WARN, TAG, ("Scaled WebPDecode failed (" + std::to_string(result) + ") Trying without scaled").c_str());
+        pixels = WebPDecodeBGRA(buffer, bufferLength, &width, &height);
+    } else {
+        pixels = config.output.u.RGBA.rgba;
+        width  = config.output.width;
+        height = config.output.height;
+    }
+
     jobject jbitmap = nullptr;
     if (pixels != nullptr) {
-        jbitmap = createBitmap(env, config.output.width, config.output.height, pixels);
+        jbitmap = createBitmap(env, width, height, pixels);
     }
 
     WebPFree(pixels);
