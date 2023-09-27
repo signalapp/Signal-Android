@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 
@@ -48,7 +49,10 @@ class VitalsViewModel(private val context: Application) : AndroidViewModel(conte
     return Single.fromCallable {
       var state = State.NONE
       if (SlowNotificationHeuristics.isHavingDelayedNotifications()) {
-        if (SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() && Build.VERSION.SDK_INT >= 23) {
+        if (LocaleFeatureFlags.isBatterySaverPromptEnabled() &&
+          SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations() &&
+          Build.VERSION.SDK_INT >= 23
+        ) {
           if (SlowNotificationHeuristics.shouldPromptBatterySaver()) {
             state = State.PROMPT_BATTERY_SAVER_DIALOG
           }

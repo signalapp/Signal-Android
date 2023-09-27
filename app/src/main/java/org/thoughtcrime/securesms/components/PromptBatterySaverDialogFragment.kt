@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptBatterySaverBottomSheetBinding
@@ -41,8 +40,6 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
 
   private val binding by ViewBinderDelegate(PromptBatterySaverBottomSheetBinding::bind)
 
-  private lateinit var viewModel: PromptLogsViewModel
-
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -52,7 +49,6 @@ class PromptBatterySaverDialogFragment : FixedRoundedCornerBottomSheetDialogFrag
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     disposables.bindTo(viewLifecycleOwner)
 
-    viewModel = ViewModelProvider(this)[PromptLogsViewModel::class.java]
     binding.continueButton.setOnClickListener {
       PowerManagerCompat.requestIgnoreBatteryOptimizations(requireContext())
     }
