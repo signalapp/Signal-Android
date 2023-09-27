@@ -1,8 +1,8 @@
 package org.whispersystems.signalservice.internal.push.http;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
+import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -11,6 +11,8 @@ import okio.Buffer;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 public class DigestingRequestBodyTest {
 
@@ -36,8 +38,14 @@ public class DigestingRequestBodyTest {
       fromMiddle.writeTo(buffer);
     }
 
-    assertArrayEquals(fromStart.getTransmittedDigest(), fromMiddle.getTransmittedDigest());
-    assertArrayEquals(fromStart.getIncrementalDigest(), fromMiddle.getIncrementalDigest());
+    final AttachmentDigest fullResult = fromStart.getAttachmentDigest();
+    assertNotNull(fullResult);
+
+    final AttachmentDigest partialResult = fromMiddle.getAttachmentDigest();
+    assertNotNull(partialResult);
+
+    assertArrayEquals(fullResult.getDigest(), partialResult.getDigest());
+    assertArrayEquals(fullResult.getIncrementalDigest(), partialResult.getIncrementalDigest());
   }
 
   @Test

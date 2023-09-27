@@ -35,6 +35,7 @@ public class DatabaseAttachment extends Attachment {
                             String relay,
                             byte[] digest,
                             byte[] incrementalDigest,
+                            int incrementalMacChunkSize,
                             String fastPreflightId,
                             boolean voiceNote,
                             boolean borderless,
@@ -50,7 +51,7 @@ public class DatabaseAttachment extends Attachment {
                             int displayOrder,
                             long uploadTimestamp)
   {
-    super(contentType, transferProgress, size, fileName, cdnNumber, location, key, relay, digest, incrementalDigest, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, uploadTimestamp, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferProgress, size, fileName, cdnNumber, location, key, relay, digest, incrementalDigest, fastPreflightId, voiceNote, borderless, videoGif, width, height, incrementalMacChunkSize, quote, uploadTimestamp, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;

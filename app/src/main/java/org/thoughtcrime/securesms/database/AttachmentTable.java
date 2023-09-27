@@ -92,41 +92,42 @@ public class AttachmentTable extends DatabaseTable {
 
   public  static final String TAG = Log.tag(AttachmentTable.class);
 
-  public  static final String TABLE_NAME             = "part";
-  public  static final String ROW_ID                 = "_id";
-          static final String ATTACHMENT_JSON_ALIAS  = "attachment_json";
-  public  static final String MMS_ID                 = "mid";
-          static final String CONTENT_TYPE           = "ct";
-          static final String NAME                   = "name";
-          static final String CONTENT_DISPOSITION    = "cd";
-          static final String CONTENT_LOCATION       = "cl";
-  public  static final String DATA                   = "_data";
-          static final String TRANSFER_STATE         = "pending_push";
-  public  static final String TRANSFER_FILE          = "transfer_file";
-  public  static final String SIZE                   = "data_size";
-          static final String FILE_NAME              = "file_name";
-  public  static final String UNIQUE_ID              = "unique_id";
-          static final String DIGEST                 = "digest";
-          static final String VOICE_NOTE             = "voice_note";
-          static final String BORDERLESS             = "borderless";
-          static final String VIDEO_GIF              = "video_gif";
-          static final String QUOTE                  = "quote";
-  public  static final String STICKER_PACK_ID        = "sticker_pack_id";
-  public  static final String STICKER_PACK_KEY       = "sticker_pack_key";
-          static final String STICKER_ID             = "sticker_id";
-          static final String STICKER_EMOJI          = "sticker_emoji";
-          static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
-  public  static final String DATA_RANDOM            = "data_random";
-          static final String WIDTH                  = "width";
-          static final String HEIGHT                 = "height";
-          static final String CAPTION                = "caption";
-          static final String DATA_HASH              = "data_hash";
-          static final String VISUAL_HASH            = "blur_hash";
-          static final String TRANSFORM_PROPERTIES   = "transform_properties";
-          static final String DISPLAY_ORDER          = "display_order";
-          static final String UPLOAD_TIMESTAMP       = "upload_timestamp";
-          static final String CDN_NUMBER             = "cdn_number";
-          static final String MAC_DIGEST             = "incremental_mac_digest";
+  public  static final String TABLE_NAME                 = "part";
+  public  static final String ROW_ID                     = "_id";
+          static final String ATTACHMENT_JSON_ALIAS      = "attachment_json";
+  public  static final String MMS_ID                     = "mid";
+          static final String CONTENT_TYPE               = "ct";
+          static final String NAME                       = "name";
+          static final String CONTENT_DISPOSITION        = "cd";
+          static final String CONTENT_LOCATION           = "cl";
+  public  static final String DATA                       = "_data";
+          static final String TRANSFER_STATE             = "pending_push";
+  public  static final String TRANSFER_FILE              = "transfer_file";
+  public  static final String SIZE                       = "data_size";
+          static final String FILE_NAME                  = "file_name";
+  public  static final String UNIQUE_ID                  = "unique_id";
+          static final String DIGEST                     = "digest";
+          static final String VOICE_NOTE                 = "voice_note";
+          static final String BORDERLESS                 = "borderless";
+          static final String VIDEO_GIF                  = "video_gif";
+          static final String QUOTE                      = "quote";
+  public  static final String STICKER_PACK_ID            = "sticker_pack_id";
+  public  static final String STICKER_PACK_KEY           = "sticker_pack_key";
+          static final String STICKER_ID                 = "sticker_id";
+          static final String STICKER_EMOJI              = "sticker_emoji";
+          static final String FAST_PREFLIGHT_ID          = "fast_preflight_id";
+  public  static final String DATA_RANDOM                = "data_random";
+          static final String WIDTH                      = "width";
+          static final String HEIGHT                     = "height";
+          static final String CAPTION                    = "caption";
+          static final String DATA_HASH                  = "data_hash";
+          static final String VISUAL_HASH                = "blur_hash";
+          static final String TRANSFORM_PROPERTIES       = "transform_properties";
+          static final String DISPLAY_ORDER              = "display_order";
+          static final String UPLOAD_TIMESTAMP           = "upload_timestamp";
+          static final String CDN_NUMBER                 = "cdn_number";
+          static final String MAC_DIGEST                 = "incremental_mac_digest";
+          static final String INCREMENTAL_MAC_CHUNK_SIZE = "incremental_mac_chunk_size";
 
   private static final String DIRECTORY              = "parts";
 
@@ -144,53 +145,54 @@ public class AttachmentTable extends DatabaseTable {
   private static final String[] PROJECTION = new String[] {ROW_ID,
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
                                                            CDN_NUMBER, CONTENT_LOCATION, DATA,
-                                                           TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST, MAC_DIGEST,
+                                                           TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST, MAC_DIGEST, INCREMENTAL_MAC_CHUNK_SIZE,
                                                            FAST_PREFLIGHT_ID, VOICE_NOTE, BORDERLESS, VIDEO_GIF, QUOTE, DATA_RANDOM,
                                                            WIDTH, HEIGHT, CAPTION, STICKER_PACK_ID,
                                                            STICKER_PACK_KEY, STICKER_ID, STICKER_EMOJI, DATA_HASH, VISUAL_HASH,
                                                            TRANSFORM_PROPERTIES, TRANSFER_FILE, DISPLAY_ORDER,
                                                            UPLOAD_TIMESTAMP };
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID                 + " INTEGER PRIMARY KEY, " +
-                                                                                  MMS_ID                 + " INTEGER, " +
-                                                                                  "seq"                  + " INTEGER DEFAULT 0, " +
-                                                                                  CONTENT_TYPE           + " TEXT, " +
-                                                                                  NAME                   + " TEXT, " +
-                                                                                  "chset"                + " INTEGER, " +
-                                                                                  CONTENT_DISPOSITION    + " TEXT, " +
-                                                                                  "fn"                   + " TEXT, " +
-                                                                                  "cid"                  + " TEXT, "  +
-                                                                                  CONTENT_LOCATION       + " TEXT, " +
-                                                                                  "ctt_s"                + " INTEGER, " +
-                                                                                  "ctt_t"                + " TEXT, " +
-                                                                                  "encrypted"            + " INTEGER, " +
-                                                                                  TRANSFER_STATE         + " INTEGER, " +
-                                                                                  DATA                   + " TEXT, " +
-                                                                                  SIZE                   + " INTEGER, " +
-                                                                                  FILE_NAME              + " TEXT, " +
-                                                                                  UNIQUE_ID              + " INTEGER NOT NULL, " +
-                                                                                  DIGEST                 + " BLOB, " +
-                                                                                  FAST_PREFLIGHT_ID      + " TEXT, " +
-                                                                                  VOICE_NOTE             + " INTEGER DEFAULT 0, " +
-                                                                                  BORDERLESS             + " INTEGER DEFAULT 0, " +
-                                                                                  VIDEO_GIF              + " INTEGER DEFAULT 0, " +
-                                                                                  DATA_RANDOM            + " BLOB, " +
-                                                                                  QUOTE                  + " INTEGER DEFAULT 0, " +
-                                                                                  WIDTH                  + " INTEGER DEFAULT 0, " +
-                                                                                  HEIGHT                 + " INTEGER DEFAULT 0, " +
-                                                                                  CAPTION                + " TEXT DEFAULT NULL, " +
-                                                                                  STICKER_PACK_ID        + " TEXT DEFAULT NULL, " +
-                                                                                  STICKER_PACK_KEY       + " DEFAULT NULL, " +
-                                                                                  STICKER_ID             + " INTEGER DEFAULT -1, " +
-                                                                                  STICKER_EMOJI          + " STRING DEFAULT NULL, " +
-                                                                                  DATA_HASH              + " TEXT DEFAULT NULL, " +
-                                                                                  VISUAL_HASH            + " TEXT DEFAULT NULL, " +
-                                                                                  TRANSFORM_PROPERTIES   + " TEXT DEFAULT NULL, " +
-                                                                                  TRANSFER_FILE          + " TEXT DEFAULT NULL, " +
-                                                                                  DISPLAY_ORDER          + " INTEGER DEFAULT 0, " +
-                                                                                  UPLOAD_TIMESTAMP       + " INTEGER DEFAULT 0, " +
-                                                                                  CDN_NUMBER             + " INTEGER DEFAULT 0, " +
-                                                                                  MAC_DIGEST             + " BLOB);";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID                     + " INTEGER PRIMARY KEY, " +
+                                                                                  MMS_ID                     + " INTEGER, " +
+                                                                                  "seq"                      + " INTEGER DEFAULT 0, " +
+                                                                                  CONTENT_TYPE               + " TEXT, " +
+                                                                                  NAME                       + " TEXT, " +
+                                                                                  "chset"                    + " INTEGER, " +
+                                                                                  CONTENT_DISPOSITION        + " TEXT, " +
+                                                                                  "fn"                       + " TEXT, " +
+                                                                                  "cid"                      + " TEXT, "  +
+                                                                                  CONTENT_LOCATION           + " TEXT, " +
+                                                                                  "ctt_s"                    + " INTEGER, " +
+                                                                                  "ctt_t"                    + " TEXT, " +
+                                                                                  "encrypted"                + " INTEGER, " +
+                                                                                  TRANSFER_STATE             + " INTEGER, " +
+                                                                                  DATA                       + " TEXT, " +
+                                                                                  SIZE                       + " INTEGER, " +
+                                                                                  FILE_NAME                  + " TEXT, " +
+                                                                                  UNIQUE_ID                  + " INTEGER NOT NULL, " +
+                                                                                  DIGEST                     + " BLOB, " +
+                                                                                  FAST_PREFLIGHT_ID          + " TEXT, " +
+                                                                                  VOICE_NOTE                 + " INTEGER DEFAULT 0, " +
+                                                                                  BORDERLESS                 + " INTEGER DEFAULT 0, " +
+                                                                                  VIDEO_GIF                  + " INTEGER DEFAULT 0, " +
+                                                                                  DATA_RANDOM                + " BLOB, " +
+                                                                                  QUOTE                      + " INTEGER DEFAULT 0, " +
+                                                                                  WIDTH                      + " INTEGER DEFAULT 0, " +
+                                                                                  HEIGHT                     + " INTEGER DEFAULT 0, " +
+                                                                                  CAPTION                    + " TEXT DEFAULT NULL, " +
+                                                                                  STICKER_PACK_ID            + " TEXT DEFAULT NULL, " +
+                                                                                  STICKER_PACK_KEY           + " DEFAULT NULL, " +
+                                                                                  STICKER_ID                 + " INTEGER DEFAULT -1, " +
+                                                                                  STICKER_EMOJI              + " STRING DEFAULT NULL, " +
+                                                                                  DATA_HASH                  + " TEXT DEFAULT NULL, " +
+                                                                                  VISUAL_HASH                + " TEXT DEFAULT NULL, " +
+                                                                                  TRANSFORM_PROPERTIES       + " TEXT DEFAULT NULL, " +
+                                                                                  TRANSFER_FILE              + " TEXT DEFAULT NULL, " +
+                                                                                  DISPLAY_ORDER              + " INTEGER DEFAULT 0, " +
+                                                                                  UPLOAD_TIMESTAMP           + " INTEGER DEFAULT 0, " +
+                                                                                  CDN_NUMBER                 + " INTEGER DEFAULT 0, " +
+                                                                                  MAC_DIGEST                 + " BLOB, " +
+                                                                                  INCREMENTAL_MAC_CHUNK_SIZE + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -728,6 +730,7 @@ public class AttachmentTable extends DatabaseTable {
     contentValues.put(CONTENT_LOCATION, sourceAttachment.getLocation());
     contentValues.put(DIGEST, sourceAttachment.getDigest());
     contentValues.put(MAC_DIGEST, sourceAttachment.getIncrementalDigest());
+    contentValues.put(INCREMENTAL_MAC_CHUNK_SIZE, sourceAttachment.getIncrementalMacChunkSize());
     contentValues.put(CONTENT_DISPOSITION, sourceAttachment.getKey());
     contentValues.put(NAME, sourceAttachment.getRelay());
     contentValues.put(SIZE, sourceAttachment.getSize());
@@ -777,6 +780,7 @@ public class AttachmentTable extends DatabaseTable {
     values.put(CONTENT_LOCATION, attachment.getLocation());
     values.put(DIGEST, attachment.getDigest());
     values.put(MAC_DIGEST, attachment.getIncrementalDigest());
+    values.put(INCREMENTAL_MAC_CHUNK_SIZE, attachment.getIncrementalMacChunkSize());
     values.put(CONTENT_DISPOSITION, attachment.getKey());
     values.put(NAME, attachment.getRelay());
     values.put(SIZE, attachment.getSize());
@@ -1309,6 +1313,7 @@ public class AttachmentTable extends DatabaseTable {
                                               object.getString(NAME),
                                               null,
                                               null,
+                                              0,
                                               object.getString(FAST_PREFLIGHT_ID),
                                               object.getInt(VOICE_NOTE) == 1,
                                               object.getInt(BORDERLESS) == 1,
@@ -1357,6 +1362,7 @@ public class AttachmentTable extends DatabaseTable {
                                   cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
                                   cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
                                   cursor.getBlob(cursor.getColumnIndexOrThrow(MAC_DIGEST)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(INCREMENTAL_MAC_CHUNK_SIZE)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
                                   cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
                                   cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
@@ -1429,6 +1435,7 @@ public class AttachmentTable extends DatabaseTable {
       contentValues.put(CONTENT_LOCATION, useTemplateUpload ? template.getLocation() : attachment.getLocation());
       contentValues.put(DIGEST, useTemplateUpload ? template.getDigest() : attachment.getDigest());
       contentValues.put(MAC_DIGEST, useTemplateUpload ? template.getIncrementalDigest() : attachment.getIncrementalDigest());
+      contentValues.put(INCREMENTAL_MAC_CHUNK_SIZE, useTemplateUpload ? template.getIncrementalMacChunkSize() : attachment.getIncrementalMacChunkSize());
       contentValues.put(CONTENT_DISPOSITION, useTemplateUpload ? template.getKey() : attachment.getKey());
       contentValues.put(NAME, useTemplateUpload ? template.getRelay() : attachment.getRelay());
       contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));

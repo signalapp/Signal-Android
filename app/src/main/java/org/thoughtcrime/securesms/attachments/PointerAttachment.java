@@ -31,6 +31,7 @@ public class PointerAttachment extends Attachment {
                             @Nullable String relay,
                             @Nullable byte[] digest,
                             @Nullable byte[] incrementalDigest,
+                            int incrementalMacChunkSize,
                             @Nullable String fastPreflightId,
                             boolean voiceNote,
                             boolean borderless,
@@ -42,7 +43,7 @@ public class PointerAttachment extends Attachment {
                             @Nullable StickerLocator stickerLocator,
                             @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, incrementalDigest, fastPreflightId, voiceNote, borderless, videoGif, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null, null);
+    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, incrementalDigest, fastPreflightId, voiceNote, borderless, videoGif, width, height, incrementalMacChunkSize, false, uploadTimestamp, caption, stickerLocator, blurHash, null, null);
   }
 
   @Nullable
@@ -111,9 +112,11 @@ public class PointerAttachment extends Attachment {
                                              pointer.get().asPointer().getFileName().orElse(null),
                                              pointer.get().asPointer().getCdnNumber(),
                                              pointer.get().asPointer().getRemoteId().toString(),
-                                             encodedKey, null,
+                                             encodedKey,
+                                             null,
                                              pointer.get().asPointer().getDigest().orElse(null),
                                              pointer.get().asPointer().getIncrementalDigest().orElse(null),
+                                             pointer.get().asPointer().getIncrementalMacChunkSize(),
                                              fastPreflightId,
                                              pointer.get().asPointer().getVoiceNote(),
                                              pointer.get().asPointer().isBorderless(),
@@ -140,6 +143,7 @@ public class PointerAttachment extends Attachment {
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
                                              thumbnail != null ? thumbnail.asPointer().getIncrementalDigest().orElse(null) : null,
+                                             thumbnail != null ? thumbnail.asPointer().getIncrementalMacChunkSize() : 0,
                                              null,
                                              false,
                                              false,
@@ -170,6 +174,7 @@ public class PointerAttachment extends Attachment {
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
                                              thumbnail != null ? thumbnail.asPointer().getIncrementalDigest().orElse(null) : null,
+                                             thumbnail != null ? thumbnail.asPointer().getIncrementalMacChunkSize() : 0,
                                              null,
                                              false,
                                              false,

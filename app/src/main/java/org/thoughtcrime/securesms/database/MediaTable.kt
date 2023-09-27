@@ -50,6 +50,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.NAME}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MAC_DIGEST}, 
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.INCREMENTAL_MAC_CHUNK_SIZE}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
@@ -57,7 +58,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID}, 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID 
-   FROM 
+      FROM 
         ${AttachmentTable.TABLE_NAME} 
         LEFT JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
         LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} 

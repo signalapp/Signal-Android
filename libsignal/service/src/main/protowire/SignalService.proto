@@ -670,21 +670,22 @@ message AttachmentPointer {
     fixed64        cdnId           = 1;
     string         cdnKey          = 15;
   }
-  optional string  contentType       = 2;
-  optional bytes   key               = 3;
-  optional uint32  size              = 4;
-  optional bytes   thumbnail         = 5;
-  optional bytes   digest            = 6;
-  optional bytes   incrementalDigest = 16;
-  optional string  fileName          = 7;
-  optional uint32  flags             = 8;
-  optional uint32  width             = 9;
-  optional uint32  height            = 10;
-  optional string  caption           = 11;
-  optional string  blurHash          = 12;
-  optional uint64  uploadTimestamp   = 13;
-  optional uint32  cdnNumber         = 14;
-  // Next ID: 17
+  optional string  contentType             = 2;
+  optional bytes   key                     = 3;
+  optional uint32  size                    = 4;
+  optional bytes   thumbnail               = 5;
+  optional bytes   digest                  = 6;
+  optional bytes   incrementalDigest       = 16;
+  optional uint32  incrementalMacChunkSize = 17;
+  optional string  fileName                = 7;
+  optional uint32  flags                   = 8;
+  optional uint32  width                   = 9;
+  optional uint32  height                  = 10;
+  optional string  caption                 = 11;
+  optional string  blurHash                = 12;
+  optional uint64  uploadTimestamp         = 13;
+  optional uint32  cdnNumber               = 14;
+  // Next ID: 18
 }
 
 message GroupContext {

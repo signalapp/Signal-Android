@@ -20,7 +20,6 @@ import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -833,6 +832,7 @@ public class SignalServiceMessageSender {
                                               attachment.getWidth(), attachment.getHeight(),
                                               Optional.of(attachmentIdAndDigest.second().getDigest()),
                                               Optional.of(attachmentIdAndDigest.second().getIncrementalDigest()),
+                                              attachmentIdAndDigest.second().getIncrementalMacChunkSize(),
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.isBorderless(),
@@ -874,6 +874,7 @@ public class SignalServiceMessageSender {
                                               attachment.getHeight(),
                                               Optional.of(digest.getDigest()),
                                               Optional.ofNullable(digest.getIncrementalDigest()),
+                                              digest.getIncrementalMacChunkSize(),
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.isBorderless(),

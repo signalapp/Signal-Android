@@ -48,6 +48,7 @@ public abstract class Attachment {
   private final int     height;
   private final boolean quote;
   private final long    uploadTimestamp;
+  private final int     incrementalMacChunkSize;
 
   @Nullable
   private final String caption;
@@ -80,6 +81,7 @@ public abstract class Attachment {
                     boolean videoGif,
                     int width,
                     int height,
+                    int incrementalMacChunkSize,
                     boolean quote,
                     long uploadTimestamp,
                     @Nullable String caption,
@@ -88,29 +90,30 @@ public abstract class Attachment {
                     @Nullable AudioHash audioHash,
                     @Nullable TransformProperties transformProperties)
   {
-    this.contentType         = contentType;
-    this.transferState       = transferState;
-    this.size                = size;
-    this.fileName            = fileName;
-    this.cdnNumber           = cdnNumber;
-    this.location            = location;
-    this.key                 = key;
-    this.relay               = relay;
-    this.digest              = digest;
-    this.incrementalDigest   = incrementalDigest;
-    this.fastPreflightId     = fastPreflightId;
-    this.voiceNote           = voiceNote;
-    this.borderless          = borderless;
-    this.videoGif            = videoGif;
-    this.width               = width;
-    this.height              = height;
-    this.quote               = quote;
-    this.uploadTimestamp     = uploadTimestamp;
-    this.stickerLocator      = stickerLocator;
-    this.caption             = caption;
-    this.blurHash            = blurHash;
-    this.audioHash           = audioHash;
-    this.transformProperties = transformProperties != null ? transformProperties : TransformProperties.empty();
+    this.contentType             = contentType;
+    this.transferState           = transferState;
+    this.size                    = size;
+    this.fileName                = fileName;
+    this.cdnNumber               = cdnNumber;
+    this.location                = location;
+    this.key                     = key;
+    this.relay                   = relay;
+    this.digest                  = digest;
+    this.incrementalDigest       = incrementalDigest;
+    this.fastPreflightId         = fastPreflightId;
+    this.voiceNote               = voiceNote;
+    this.borderless              = borderless;
+    this.videoGif                = videoGif;
+    this.width                   = width;
+    this.height                  = height;
+    this.incrementalMacChunkSize = incrementalMacChunkSize;
+    this.quote                   = quote;
+    this.uploadTimestamp         = uploadTimestamp;
+    this.stickerLocator          = stickerLocator;
+    this.caption                 = caption;
+    this.blurHash                = blurHash;
+    this.audioHash               = audioHash;
+    this.transformProperties     = transformProperties != null ? transformProperties : TransformProperties.empty();
   }
 
   @Nullable
@@ -198,6 +201,10 @@ public abstract class Attachment {
 
   public int getHeight() {
     return height;
+  }
+
+  public int getIncrementalMacChunkSize() {
+    return incrementalMacChunkSize;
   }
 
   public boolean isQuote() {

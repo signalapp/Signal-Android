@@ -28,6 +28,7 @@ public final class AttachmentPointerUtil {
                                               pointer.height != null ? pointer.height : 0,
                                               pointer.digest != null ? Optional.of(pointer.digest.toByteArray()) : Optional.empty(),
                                               pointer.incrementalDigest != null ? Optional.of(pointer.incrementalDigest.toByteArray()) : Optional.empty(),
+                                              pointer.incrementalMacChunkSize != null ? pointer.incrementalMacChunkSize : 0,
                                               pointer.fileName != null ? Optional.of(pointer.fileName) : Optional.empty(),
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE.getValue())) != 0,
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.BORDERLESS.getValue())) != 0,

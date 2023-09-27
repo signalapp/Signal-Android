@@ -13,7 +13,6 @@ import androidx.media3.datasource.TransferListener;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
-import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -65,7 +64,7 @@ class PartDataSource implements DataSource {
       final byte[] decode       = Base64.decode(attachmentKey);
       final File   transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.getAttachmentId());
       try {
-        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.getSize(), decode, attachment.getDigest(), attachment.getIncrementalDigest());
+        this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.getSize(), decode, attachment.getDigest(), attachment.getIncrementalDigest(), attachment.getIncrementalMacChunkSize());
 
         long skipped = 0;
         while (skipped < dataSpec.position) {
