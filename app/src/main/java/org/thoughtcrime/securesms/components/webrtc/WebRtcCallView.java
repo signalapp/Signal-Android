@@ -477,6 +477,8 @@ public class WebRtcCallView extends ConstraintLayout {
       } else if (state.getGroupCallState().isRinging()) {
         callLinkWarningCard.setVisibility(View.GONE);
         setStatus(state.getIncomingRingingGroupDescription(getContext()));
+      } else {
+        callLinkWarningCard.setVisibility(View.GONE);
       }
     }
 
