@@ -51,7 +51,7 @@ dependencyResolutionManagement {
             library('androidx-activity-ktx', 'androidx.activity', 'activity-ktx').versionRef('androidx-activity')
             library('androidx-activity-compose', 'androidx.activity', 'activity-compose').versionRef('androidx-activity')
             library('androidx-appcompat', 'androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
-            library('androidx-core-ktx', 'androidx.core:core-ktx:1.10.0')
+            library('androidx-core-ktx', 'androidx.core:core-ktx:1.12.0')
             library('androidx-fragment-ktx', 'androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
             library('androidx-fragment-testing', 'androidx.fragment', 'fragment-testing').versionRef('androidx-fragment')
             library('androidx-annotation', 'androidx.annotation:annotation:1.4.0')
