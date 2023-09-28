@@ -58,6 +58,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
+import org.thoughtcrime.securesms.components.webrtc.CallLinkNullMessageSender;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
@@ -99,6 +100,7 @@ import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -773,6 +775,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     if (state == null) {
       return;
+    }
+
+    if (state.isCallLink()) {
+      CallLinkNullMessageSender.onSendAnyway(new HashSet<>(changedRecipients));
     }
 
     if (state.getGroupCallState().isConnected()) {
