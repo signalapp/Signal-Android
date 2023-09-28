@@ -87,7 +87,7 @@ class GroupRecord(
   val membershipAdditionAccessControl: GroupAccessControl
     get() {
       return if (isV2Group) {
-        if (requireV2GroupProperties().decryptedGroup.accessControl!!.members == AccessControl.AccessRequired.MEMBER) {
+        if ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).members == AccessControl.AccessRequired.MEMBER) {
           GroupAccessControl.ALL_MEMBERS
         } else {
           GroupAccessControl.ONLY_ADMINS
@@ -105,7 +105,7 @@ class GroupRecord(
   val attributesAccessControl: GroupAccessControl
     get() {
       return if (isV2Group) {
-        if (requireV2GroupProperties().decryptedGroup.accessControl!!.attributes == AccessControl.AccessRequired.MEMBER) {
+        if ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).attributes == AccessControl.AccessRequired.MEMBER) {
           GroupAccessControl.ALL_MEMBERS
         } else {
           GroupAccessControl.ONLY_ADMINS
