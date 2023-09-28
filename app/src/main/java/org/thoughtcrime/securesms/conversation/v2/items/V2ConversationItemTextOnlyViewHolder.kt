@@ -238,7 +238,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       } else {
         conversationMessage.threadRecipient.chatColors
       },
-      shapeDelegate.corners
+      shapeDelegate.cornersLTR
     )
 
     binding.reply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
@@ -266,7 +266,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       Projection.relativeToParent(
         coordinateRoot,
         binding.bodyWrapper,
-        shapeDelegate.corners
+        shapeDelegate.cornersLTR
       ).translateX(binding.bodyWrapper.translationX).translateY(root.translationY)
     )
 
@@ -318,7 +318,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     return Projection.relativeToParent(
       coordinateRoot,
       binding.bodyWrapper,
-      shapeDelegate.corners
+      shapeDelegate.cornersLTR
     )
       .translateY(root.translationY)
       .translateX(binding.bodyWrapper.translationX)
@@ -337,7 +337,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     val projection = Projection.relativeToParent(
       coordinateRoot,
       binding.footerBackground,
-      shapeDelegate.corners
+      shapeDelegate.cornersLTR
     )
 
     footerDrawable.applyMaskProjection(projection)
@@ -345,7 +345,13 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun invalidateBodyBubbleDrawable(coordinateRoot: ViewGroup) {
-    bodyBubbleDrawable.setCorners(shapeDelegate.corners.toRelativeRadii(ViewUtil.isLtr(coordinateRoot)))
+    val corners: Projection.Corners = if (ViewUtil.isLtr(coordinateRoot)) {
+      shapeDelegate.cornersLTR
+    } else {
+      shapeDelegate.cornersRTL
+    }
+
+    bodyBubbleDrawable.setCorners(corners.toRadii())
 
     if (bodyBubbleDrawable.isSolidColor()) {
       return
@@ -354,7 +360,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     val projection = Projection.relativeToParent(
       coordinateRoot,
       binding.bodyWrapper,
-      shapeDelegate.corners
+      corners
     )
 
     bodyBubbleDrawable.applyMaskProjection(projection)

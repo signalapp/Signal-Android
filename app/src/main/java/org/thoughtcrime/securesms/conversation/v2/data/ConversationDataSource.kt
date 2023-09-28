@@ -47,12 +47,12 @@ private object ThreadHeaderKey : ConversationElementKey
  * ConversationDataSource for V2. Assumes that ThreadId is never -1L.
  */
 class ConversationDataSource(
-  private val context: Context,
+  private val localContext: Context,
   private val threadId: Long,
   private val messageRequestData: ConversationData.MessageRequestData,
   private val showUniversalExpireTimerUpdate: Boolean,
   private var baseSize: Int,
-  private val messageRequestRepository: MessageRequestRepository = MessageRequestRepository(context)
+  private val messageRequestRepository: MessageRequestRepository = MessageRequestRepository(localContext)
 ) : PagedDataSource<ConversationElementKey, ConversationElement> {
 
   companion object {
@@ -130,9 +130,9 @@ class ConversationDataSource(
 
     val messages = records.map { record ->
       ConversationMessageFactory.createWithUnresolvedData(
-        context,
+        localContext,
         record,
-        record.getDisplayBody(context),
+        record.getDisplayBody(localContext),
         extraData.mentionsById[record.id],
         extraData.hasBeenQuoted.contains(record.id),
         threadRecipient
@@ -192,7 +192,7 @@ class ConversationDataSource(
         stopwatch.split("models")
 
         return ConversationMessageFactory.createWithUnresolvedData(
-          ApplicationDependencies.getApplication(),
+          localContext,
           record,
           record.getDisplayBody(ApplicationDependencies.getApplication()),
           extraData.mentionsById[record.id],
@@ -222,13 +222,13 @@ class ConversationDataSource(
     return if (messageRecord.isUpdate) {
       ConversationUpdate(this)
     } else if (messageRecord.isOutgoing) {
-      if (this.isTextOnly(context)) {
+      if (this.isTextOnly(localContext)) {
         OutgoingTextOnly(this)
       } else {
         OutgoingMedia(this)
       }
     } else {
-      if (this.isTextOnly(context)) {
+      if (this.isTextOnly(localContext)) {
         IncomingTextOnly(this)
       } else {
         IncomingMedia(this)

@@ -31,7 +31,10 @@ class V2ConversationItemShape(
     private val clusterTimeout = 3.minutes
   }
 
-  var corners: Projection.Corners = Projection.Corners(bigRadius)
+  var cornersLTR: Projection.Corners = Projection.Corners(bigRadius)
+    private set
+
+  var cornersRTL: Projection.Corners = Projection.Corners(bigRadius)
     private set
 
   /**
@@ -80,7 +83,8 @@ class V2ConversationItemShape(
       bottomStart
     )
 
-    corners = newCorners
+    cornersLTR = newCorners
+    cornersRTL = Projection.Corners(newCorners.toRelativeRadii(false))
   }
 
   private fun isSingularMessage(
