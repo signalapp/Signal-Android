@@ -4542,7 +4542,7 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Supprimer %1$s ?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">Vous ne verrez pas cette personne lors d\'une recherche Vous recevrez une demande si cette personne essaye de vous envoyer un message à l\'avenir.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Vous ne verrez pas cette personne lors d\'une recherche. Vous recevrez une demande si cette personne essaye de vous envoyer un message à l\'avenir.</string>
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s a été supprimé</string>
     <!-- Snackbar message after blocking a contact -->
