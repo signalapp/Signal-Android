@@ -52,6 +52,10 @@ public final class AttachmentPointerUtil {
       builder.incrementalDigest(ByteString.of(attachment.getIncrementalDigest().get()));
     }
 
+    if (attachment.getIncrementalMacChunkSize() > 0) {
+      builder.incrementalMacChunkSize(attachment.getIncrementalMacChunkSize());
+    }
+
     if (attachment.getRemoteId().getV2().isPresent()) {
       builder.cdnId(attachment.getRemoteId().getV2().get());
     }
