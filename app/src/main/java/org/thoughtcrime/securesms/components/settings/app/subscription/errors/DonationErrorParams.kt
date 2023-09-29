@@ -25,7 +25,8 @@ class DonationErrorParams<V> private constructor(
     ): DonationErrorParams<V> {
       return when (throwable) {
         is DonationError.GiftRecipientVerificationError -> getVerificationErrorParams(context, throwable, callback)
-        is DonationError.PaymentSetupError.StripeDeclinedError -> getDeclinedErrorParams(context, throwable, callback)
+        is DonationError.PaymentSetupError.StripeDeclinedError -> getStripeDeclinedErrorParams(context, throwable, callback)
+        is DonationError.PaymentSetupError.PayPalDeclinedError -> getPayPalDeclinedErrorParams(context, throwable, callback)
         is DonationError.PaymentSetupError -> DonationErrorParams(
           title = R.string.DonationsErrors__error_processing_payment,
           message = R.string.DonationsErrors__your_payment,
@@ -88,7 +89,14 @@ class DonationErrorParams<V> private constructor(
       }
     }
 
-    private fun <V> getDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.StripeDeclinedError, callback: Callback<V>): DonationErrorParams<V> {
+    private fun <V> getPayPalDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.PayPalDeclinedError, callback: Callback<V>): DonationErrorParams<V> {
+      return when (declinedError.code) {
+        PayPalDeclineCode.KnownCode.DECLINED -> getLearnMoreParams(context, callback, R.string.DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal)
+        else -> getLearnMoreParams(context, callback, R.string.DeclineCode__try_another_payment_method_or_contact_your_bank)
+      }
+    }
+
+    private fun <V> getStripeDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.StripeDeclinedError, callback: Callback<V>): DonationErrorParams<V> {
       val getStripeDeclineCodePositiveActionParams: (Context, Callback<V>, Int) -> DonationErrorParams<V> = when (declinedError.method) {
         PaymentSourceType.Stripe.CreditCard -> this::getTryCreditCardAgainParams
         PaymentSourceType.Stripe.GooglePay -> this::getGoToGooglePayParams
