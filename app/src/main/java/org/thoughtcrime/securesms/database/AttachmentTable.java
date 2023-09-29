@@ -20,6 +20,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.media.MediaDataSource;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -1628,7 +1630,7 @@ public class AttachmentTable extends DatabaseTable {
     }
   }
 
-  public static final class TransformProperties {
+  public static final class TransformProperties implements Parcelable {
 
     private static final int DEFAULT_MEDIA_QUALITY = SentMediaQuality.STANDARD.getCode();
 
@@ -1651,6 +1653,40 @@ public class AttachmentTable extends DatabaseTable {
       this.videoTrimEndTimeUs   = videoTrimEndTimeUs;
       this.sentMediaQuality     = sentMediaQuality;
     }
+
+    protected TransformProperties(Parcel in) {
+      skipTransform        = in.readByte() != 0;
+      videoTrim            = in.readByte() != 0;
+      videoTrimStartTimeUs = in.readLong();
+      videoTrimEndTimeUs   = in.readLong();
+      sentMediaQuality     = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+      dest.writeByte((byte) (skipTransform ? 1 : 0));
+      dest.writeByte((byte) (videoTrim ? 1 : 0));
+      dest.writeLong(videoTrimStartTimeUs);
+      dest.writeLong(videoTrimEndTimeUs);
+      dest.writeInt(sentMediaQuality);
+    }
+
+    @Override
+    public int describeContents() {
+      return 0;
+    }
+
+    public static final Creator<TransformProperties> CREATOR = new Creator<>() {
+      @Override
+      public TransformProperties createFromParcel(Parcel in) {
+        return new TransformProperties(in);
+      }
+
+      @Override
+      public TransformProperties[] newArray(int size) {
+        return new TransformProperties[size];
+      }
+    };
 
     public static @NonNull TransformProperties empty() {
       return new TransformProperties(false, false, 0, 0, DEFAULT_MEDIA_QUALITY);

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.attachments;
 
 import android.net.Uri;
+import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +45,10 @@ public class PointerAttachment extends Attachment {
                             @Nullable BlurHash blurHash)
   {
     super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, incrementalDigest, fastPreflightId, voiceNote, borderless, videoGif, width, height, incrementalMacChunkSize, false, uploadTimestamp, caption, stickerLocator, blurHash, null, null);
+  }
+
+  protected PointerAttachment(Parcel in) {
+    super(in);
   }
 
   @Nullable
