@@ -9,11 +9,11 @@ import android.app.Application
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 
 /**
- * PNIs were incorrectly being set to ACI column, remove them if present.
+ * PNIs were incorrectly being set to ACI column, clear them if present.
  */
 @Suppress("ClassName")
-object V208_ClearRecipientPniFromAciColumn : SignalDatabaseMigration {
+object V209_ClearRecipientPniFromAciColumn : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-    db.execSQL("DELETE FROM recipient WHERE aci LIKE 'PNI:%'")
+    db.execSQL("UPDATE recipient SET aci = NULL WHERE aci LIKE 'PNI:%'")
   }
 }
