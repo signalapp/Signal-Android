@@ -803,10 +803,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       recipientId = RecipientId.from(id)
     }
 
-    if (insert.identityKey.isPresent && insert.aci.isPresent) {
+    if (insert.identityKey.isPresent && (insert.aci.isPresent || insert.pni.isPresent)) {
       try {
+        val serviceId: ServiceId = insert.aci.orNull() ?: insert.pni.get()
         val identityKey = IdentityKey(insert.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(insert.aci.get().toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
+        identities.updateIdentityAfterSync(serviceId.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
       } catch (e: InvalidKeyException) {
         Log.w(TAG, "Failed to process identity key during insert! Skipping.", e)
       }
@@ -1071,7 +1072,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   private fun getRecordForSync(query: String?, args: Array<String>?): List<RecipientRecord> {
     val table =
       """
-      $TABLE_NAME LEFT OUTER JOIN ${IdentityTable.TABLE_NAME} ON $TABLE_NAME.$ACI_COLUMN = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS} 
+      $TABLE_NAME LEFT OUTER JOIN ${IdentityTable.TABLE_NAME} ON ($TABLE_NAME.$ACI_COLUMN = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS} OR ($TABLE_NAME.$ACI_COLUMN IS NULL AND $TABLE_NAME.$PNI_COLUMN = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS}))
                   LEFT OUTER JOIN ${GroupTable.TABLE_NAME} ON $TABLE_NAME.$GROUP_ID = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} 
                   LEFT OUTER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
       """
@@ -1115,7 +1116,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where(
         """
         $STORAGE_SERVICE_ID NOT NULL AND (
-            ($TYPE = ? AND $ACI_COLUMN NOT NULL AND $ID != ?)
+            ($TYPE = ? AND ($ACI_COLUMN NOT NULL OR $PNI_COLUMN NOT NULL) AND $ID != ?)
             OR
             $TYPE = ?
             OR
@@ -2382,12 +2383,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         }
 
         is PnpOperation.SetPni -> {
-          writableDatabase
-            .update(TABLE_NAME)
-            .values(ACI_COLUMN to operation.pni.toString())
-            .where("$ID = ? AND ($ACI_COLUMN IS NULL OR $ACI_COLUMN = $PNI_COLUMN)", operation.recipientId)
-            .run()
-
           writableDatabase
             .update(TABLE_NAME)
             .values(

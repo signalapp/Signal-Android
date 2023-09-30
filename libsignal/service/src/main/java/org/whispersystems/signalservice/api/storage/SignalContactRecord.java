@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 import okio.ByteString;
 
 public final class SignalContactRecord implements SignalRecord {
@@ -292,7 +294,7 @@ public final class SignalContactRecord implements SignalRecord {
     private final StorageId             id;
     private final ContactRecord.Builder builder;
 
-    public Builder(byte[] rawId, ACI aci, byte[] serializedUnknowns) {
+    public Builder(byte[] rawId, @Nullable ACI aci, byte[] serializedUnknowns) {
       this.id = StorageId.forContact(rawId);
 
       if (serializedUnknowns != null) {
@@ -301,7 +303,7 @@ public final class SignalContactRecord implements SignalRecord {
         this.builder = new ContactRecord.Builder();
       }
 
-      builder.aci(aci.toString());
+      builder.aci(aci == null ? "" : aci.toString());
     }
 
     public Builder setE164(String e164) {

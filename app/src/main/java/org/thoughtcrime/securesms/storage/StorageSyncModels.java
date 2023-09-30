@@ -57,9 +57,9 @@ public final class StorageSyncModels {
 
   public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientRecord settings, @NonNull byte[] rawStorageId) {
     switch (settings.getRecipientType()) {
-      case INDIVIDUAL:              return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
-      case GV1:         return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
-      case GV2:         return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
+      case INDIVIDUAL:        return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
+      case GV1:               return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
+      case GV2:               return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
       case DISTRIBUTION_LIST: return SignalStorageRecord.forStoryDistributionList(localToRemoteStoryDistributionList(settings, rawStorageId));
       default:                throw new AssertionError("Unsupported type!");
     }
@@ -134,10 +134,9 @@ public final class StorageSyncModels {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 
-    ACI       aci       = recipient.getAci() != null ? recipient.getAci() : ACI.UNKNOWN;
     boolean   hideStory = recipient.getExtras() != null && recipient.getExtras().hideStory();
 
-    return new SignalContactRecord.Builder(rawStorageId, aci, recipient.getSyncExtras().getStorageProto())
+    return new SignalContactRecord.Builder(rawStorageId, recipient.getAci(), recipient.getSyncExtras().getStorageProto())
                                   .setE164(recipient.getE164())
                                   .setPni(recipient.getPni())
                                   .setProfileKey(recipient.getProfileKey())

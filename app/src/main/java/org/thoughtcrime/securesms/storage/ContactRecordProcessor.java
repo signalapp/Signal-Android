@@ -305,7 +305,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   private static boolean doParamsMatch(@NonNull SignalContactRecord contact,
                                        @Nullable byte[] unknownFields,
-                                       @NonNull ACI aci,
+                                       @Nullable ACI aci,
                                        @Nullable PNI pni,
                                        @Nullable String e164,
                                        @NonNull String profileGivenName,
