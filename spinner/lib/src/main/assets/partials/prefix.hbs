@@ -23,6 +23,7 @@
   <li {{#if isBrowse}}class="active"{{/if}}><a href="/browse?db={{database}}">Browse</a></li>
   <li {{#if isQuery}}class="active"{{/if}}><a href="/query?db={{database}}">Query</a></li>
   <li {{#if isRecent}}class="active"{{/if}}><a href="/recent?db={{database}}">Recent</a></li>
+  <li {{#if isLogs}}class="active"{{/if}}><a href="/logs?db={{database}}">Logs</a></li>
   {{#each plugins}}
   <li {{#if (eq name activePlugin.name)}}class="active"{{/if}}><a href="{{path}}">{{name}}</a></li>
   {{/each}}

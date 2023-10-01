@@ -22,8 +22,9 @@ import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.util.MessageTableTestUtils
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.EditMessage
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.EditMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import kotlin.time.Duration.Companion.seconds
 
 @RunWith(AndroidJUnit4::class)
@@ -67,16 +68,17 @@ class EditMessageSyncProcessorTest {
 
       val content = MessageContentFuzzer.fuzzTextMessage()
       val metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, toRecipient.id)
-      val syncContent = SignalServiceProtos.Content.newBuilder().setSyncMessage(
-        SignalServiceProtos.SyncMessage.newBuilder().setSent(
-          SignalServiceProtos.SyncMessage.Sent.newBuilder()
-            .setDestinationServiceId(metadata.destinationServiceId.toString())
-            .setTimestamp(originalTimestamp)
-            .setExpirationStartTimestamp(originalTimestamp)
-            .setMessage(content.dataMessage)
-        )
+      val syncContent = Content.Builder().syncMessage(
+        SyncMessage.Builder().sent(
+          SyncMessage.Sent.Builder()
+            .destinationServiceId(metadata.destinationServiceId.toString())
+            .timestamp(originalTimestamp)
+            .expirationStartTimestamp(originalTimestamp)
+            .message(content.dataMessage)
+            .build()
+        ).build()
       ).build()
-      SignalDatabase.recipients.setExpireMessages(toRecipient.id, content.dataMessage.expireTimer)
+      SignalDatabase.recipients.setExpireMessages(toRecipient.id, content.dataMessage?.expireTimer ?: 0)
       val syncTextMessage = TestMessage(
         envelope = MessageContentFuzzer.envelope(originalTimestamp),
         content = syncContent,
@@ -86,18 +88,20 @@ class EditMessageSyncProcessorTest {
 
       val editTimestamp = originalTimestamp + 200
       val editedContent = MessageContentFuzzer.fuzzTextMessage()
-      val editSyncContent = SignalServiceProtos.Content.newBuilder().setSyncMessage(
-        SignalServiceProtos.SyncMessage.newBuilder().setSent(
-          SignalServiceProtos.SyncMessage.Sent.newBuilder()
-            .setDestinationServiceId(metadata.destinationServiceId.toString())
-            .setTimestamp(editTimestamp)
-            .setExpirationStartTimestamp(editTimestamp)
-            .setEditMessage(
-              EditMessage.newBuilder()
-                .setDataMessage(editedContent.dataMessage)
-                .setTargetSentTimestamp(originalTimestamp)
+      val editSyncContent = Content.Builder().syncMessage(
+        SyncMessage.Builder().sent(
+          SyncMessage.Sent.Builder()
+            .destinationServiceId(metadata.destinationServiceId.toString())
+            .timestamp(editTimestamp)
+            .expirationStartTimestamp(editTimestamp)
+            .editMessage(
+              EditMessage.Builder()
+                .dataMessage(editedContent.dataMessage)
+                .targetSentTimestamp(originalTimestamp)
+                .build()
             )
-        )
+            .build()
+        ).build()
       ).build()
 
       val syncEditMessage = TestMessage(
@@ -109,38 +113,38 @@ class EditMessageSyncProcessorTest {
 
       testResult.runSync(listOf(syncTextMessage, syncEditMessage))
 
-      SignalDatabase.recipients.setExpireMessages(toRecipient.id, content.dataMessage.expireTimer / 1000)
+      SignalDatabase.recipients.setExpireMessages(toRecipient.id, (content.dataMessage?.expireTimer ?: 0) / 1000)
       val originalTextMessage = OutgoingMessage(
         threadRecipient = toRecipient,
         sentTimeMillis = originalTimestamp,
-        body = content.dataMessage.body,
-        expiresIn = content.dataMessage.expireTimer.seconds.inWholeMilliseconds,
+        body = content.dataMessage?.body ?: "",
+        expiresIn = content.dataMessage?.expireTimer?.seconds?.inWholeMilliseconds ?: 0,
         isUrgent = true,
         isSecure = true,
-        bodyRanges = content.dataMessage.bodyRangesList.toBodyRangeList()
+        bodyRanges = content.dataMessage?.bodyRanges.toBodyRangeList()
       )
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
       val originalMessageId = SignalDatabase.messages.insertMessageOutbox(originalTextMessage, threadId, false, null)
       SignalDatabase.messages.markAsSent(originalMessageId, true)
-      if (content.dataMessage.expireTimer > 0) {
+      if ((content.dataMessage?.expireTimer ?: 0) > 0) {
         SignalDatabase.messages.markExpireStarted(originalMessageId, originalTimestamp)
       }
 
       val editMessage = OutgoingMessage(
         threadRecipient = toRecipient,
         sentTimeMillis = editTimestamp,
-        body = editedContent.dataMessage.body,
-        expiresIn = content.dataMessage.expireTimer.seconds.inWholeMilliseconds,
+        body = editedContent.dataMessage?.body ?: "",
+        expiresIn = content.dataMessage?.expireTimer?.seconds?.inWholeMilliseconds ?: 0,
         isUrgent = true,
         isSecure = true,
-        bodyRanges = editedContent.dataMessage.bodyRangesList.toBodyRangeList(),
+        bodyRanges = editedContent.dataMessage?.bodyRanges.toBodyRangeList(),
         messageToEdit = originalMessageId
       )
 
       val editMessageId = SignalDatabase.messages.insertMessageOutbox(editMessage, threadId, false, null)
       SignalDatabase.messages.markAsSent(editMessageId, true)
 
-      if (content.dataMessage.expireTimer > 0) {
+      if ((content.dataMessage?.expireTimer ?: 0) > 0) {
         SignalDatabase.messages.markExpireStarted(editMessageId, originalTimestamp)
       }
       testResult.collectLocal()
@@ -167,7 +171,7 @@ class EditMessageSyncProcessorTest {
 
     fun runSync(messages: List<TestMessage>) {
       messages.forEach { (envelope, content, metadata, serverDeliveredTimestamp) ->
-        if (content.hasSyncMessage()) {
+        if (content.syncMessage != null) {
           processorV2.process(
             envelope,
             content,

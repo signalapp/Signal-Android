@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database.model
 
-import com.google.protobuf.ByteString
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.Test
@@ -10,7 +11,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.GroupContextV2
 import java.util.Random
 import java.util.UUID
 
@@ -34,7 +35,7 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
    */
   @Test(expected = AssertionError::class)
   fun throwOnEmptyGv2Change() {
-    val groupContext = DecryptedGroupV2Context.getDefaultInstance()
+    val groupContext = DecryptedGroupV2Context()
 
     val messageRecord = mock<MessageRecord> {
       on { decryptedGroupV2Context } doReturn groupContext
@@ -53,13 +54,13 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
     val change = ChangeBuilder.changeBy(alice)
       .requestJoin(alice)
       .build()
-      .toBuilder()
-      .setRevision(9)
+      .newBuilder()
+      .revision(9)
       .build()
 
-    val context = DecryptedGroupV2Context.newBuilder()
-      .setContext(SignalServiceProtos.GroupContextV2.newBuilder().setMasterKey(ByteString.copyFrom(randomBytes())))
-      .setChange(change)
+    val context = DecryptedGroupV2Context.Builder()
+      .context(GroupContextV2.Builder().masterKey(randomBytes().toByteString()).build())
+      .change(change)
       .build()
 
     val messageRecord = mock<MessageRecord> {
@@ -68,11 +69,11 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
 
     val newEncodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(messageRecord, 10, aliceByteString)
 
-    val newContext = DecryptedGroupV2Context.parseFrom(Base64.decode(newEncodedBody))
+    val newContext = DecryptedGroupV2Context.ADAPTER.decode(Base64.decode(newEncodedBody))
 
-    assertThat("revision updated to 10", newContext.change.revision, `is`(10))
-    assertThat("change should retain join request", newContext.change.newRequestingMembersList[0].aciBytes, `is`(aliceByteString))
-    assertThat("change should add delete request", newContext.change.deleteRequestingMembersList[0], `is`(aliceByteString))
+    assertThat("revision updated to 10", newContext.change!!.revision, `is`(10))
+    assertThat("change should retain join request", newContext.change!!.newRequestingMembers[0].aciBytes, `is`(aliceByteString))
+    assertThat("change should add delete request", newContext.change!!.deleteRequestingMembers[0], `is`(aliceByteString))
   }
 
   private fun randomBytes(): ByteArray {

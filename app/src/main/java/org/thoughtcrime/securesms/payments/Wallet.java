@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.protobuf.ByteString;
 import com.mobilecoin.lib.AccountKey;
 import com.mobilecoin.lib.AccountSnapshot;
 import com.mobilecoin.lib.Amount;
@@ -51,6 +50,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeoutException;
+
+import okio.ByteString;
 
 public final class Wallet {
 
@@ -135,7 +136,7 @@ public final class Wallet {
   @WorkerThread
   public @Nullable MobileCoinLedgerWrapper tryGetFullLedger(@Nullable Long minimumBlockIndex) throws IOException, FogSyncException {
     try {
-      MobileCoinLedger.Builder builder               = MobileCoinLedger.newBuilder();
+      MobileCoinLedger.Builder builder               = new MobileCoinLedger.Builder();
       BigInteger               totalUnspent          = BigInteger.ZERO;
       long                     highestBlockTimeStamp = 0;
       UnsignedLong             highestBlockIndex     = UnsignedLong.ZERO;
@@ -159,21 +160,23 @@ public final class Wallet {
         }
       }
 
+      List<MobileCoinLedger.OwnedTXO> spentTxos = new LinkedList<>();
+      List<MobileCoinLedger.OwnedTXO> unspentTxos = new LinkedList<>();
       for (OwnedTxOut txOut : accountSnapshot.getAccountActivity().getAllTokenTxOuts(TokenId.MOB)) {
         final Amount txOutAmount = txOut.getAmount();
-        MobileCoinLedger.OwnedTXO.Builder txoBuilder = MobileCoinLedger.OwnedTXO.newBuilder()
-                                                                                .setAmount(Uint64Util.bigIntegerToUInt64(txOutAmount.getValue()))
-                                                                                .setReceivedInBlock(getBlock(txOut.getReceivedBlockIndex(), txOut.getReceivedBlockTimestamp()))
-                                                                                .setKeyImage(ByteString.copyFrom(txOut.getKeyImage().getData()))
-                                                                                .setPublicKey(ByteString.copyFrom(txOut.getPublicKey().getKeyBytes()));
+        MobileCoinLedger.OwnedTXO.Builder txoBuilder = new MobileCoinLedger.OwnedTXO.Builder()
+                                                                                    .amount(Uint64Util.bigIntegerToUInt64(txOutAmount.getValue()))
+                                                                                    .receivedInBlock(getBlock(txOut.getReceivedBlockIndex(), txOut.getReceivedBlockTimestamp()))
+                                                                                    .keyImage(ByteString.of(txOut.getKeyImage().getData()))
+                                                                                    .publicKey(ByteString.of(txOut.getPublicKey().getKeyBytes()));
         if (txOut.getSpentBlockIndex() != null &&
             (minimumBlockIndex == null || txOut.isSpent(UnsignedLong.valueOf(minimumBlockIndex))))
         {
-          txoBuilder.setSpentInBlock(getBlock(txOut.getSpentBlockIndex(), txOut.getSpentBlockTimestamp()));
-          builder.addSpentTxos(txoBuilder);
+          txoBuilder.spentInBlock(getBlock(txOut.getSpentBlockIndex(), txOut.getSpentBlockTimestamp()));
+          spentTxos.add(txoBuilder.build());
         } else {
           totalUnspent = totalUnspent.add(txOutAmount.getValue());
-          builder.addUnspentTxos(txoBuilder);
+          unspentTxos.add(txoBuilder.build());
         }
 
         if (txOut.getSpentBlockIndex() != null && txOut.getSpentBlockIndex().compareTo(highestBlockIndex) > 0) {
@@ -192,12 +195,16 @@ public final class Wallet {
           highestBlockTimeStamp = txOut.getReceivedBlockTimestamp().getTime();
         }
       }
-      builder.setBalance(Uint64Util.bigIntegerToUInt64(totalUnspent))
-             .setTransferableBalance(Uint64Util.bigIntegerToUInt64(accountSnapshot.getTransferableAmount(minimumTxFee).getValue()))
-             .setAsOfTimeStamp(asOfTimestamp)
-             .setHighestBlock(MobileCoinLedger.Block.newBuilder()
-                                                    .setBlockNumber(highestBlockIndex.longValue())
-                                                    .setTimestamp(highestBlockTimeStamp));
+
+      builder.spentTxos(spentTxos)
+             .unspentTxos(unspentTxos)
+             .balance(Uint64Util.bigIntegerToUInt64(totalUnspent))
+             .transferableBalance(Uint64Util.bigIntegerToUInt64(accountSnapshot.getTransferableAmount(minimumTxFee).getValue()))
+             .asOfTimeStamp(asOfTimestamp)
+             .highestBlock(new MobileCoinLedger.Block.Builder()
+                                                     .blockNumber(highestBlockIndex.longValue())
+                                                     .timestamp(highestBlockTimeStamp)
+                                                     .build());
       SignalStore.paymentsValues().setEnclaveFailure(false);
       return new MobileCoinLedgerWrapper(builder.build());
     } catch (InvalidFogResponse e) {
@@ -220,10 +227,10 @@ public final class Wallet {
   }
 
   private static @Nullable MobileCoinLedger.Block getBlock(@NonNull UnsignedLong blockIndex, @Nullable Date timeStamp) throws Uint64RangeException {
-    MobileCoinLedger.Block.Builder builder = MobileCoinLedger.Block.newBuilder();
-    builder.setBlockNumber(Uint64Util.bigIntegerToUInt64(blockIndex.toBigInteger()));
+    MobileCoinLedger.Block.Builder builder = new MobileCoinLedger.Block.Builder();
+    builder.blockNumber(Uint64Util.bigIntegerToUInt64(blockIndex.toBigInteger()));
     if (timeStamp != null) {
-      builder.setTimestamp(timeStamp.getTime());
+      builder.timestamp(timeStamp.getTime());
     }
     return builder.build();
   }

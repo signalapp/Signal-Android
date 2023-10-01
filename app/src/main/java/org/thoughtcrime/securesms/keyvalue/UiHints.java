@@ -22,6 +22,7 @@ public class UiHints extends SignalStoreValues {
   private static final String LAST_NOTIFICATION_LOGS_PROMPT_TIME     = "uihints.last_notification_logs_prompt";
   private static final String DISMISSED_BATTERY_SAVER_PROMPT         = "uihints.declined_battery_saver_prompt";
   private static final String LAST_BATTERY_SAVER_PROMPT              = "uihints.last_battery_saver_prompt";
+  private static final String LAST_CRASH_PROMPT                      = "uihints.last_crash_prompt";
 
   UiHints(@NonNull KeyValueStore store) {
     super(store);
@@ -153,5 +154,13 @@ public class UiHints extends SignalStoreValues {
 
   public void setLastBatterySaverPrompt(long time) {
     putLong(LAST_BATTERY_SAVER_PROMPT, time);
+  }
+
+  public void setLastCrashPrompt(long time) {
+    putLong(LAST_CRASH_PROMPT, time);
+  }
+
+  public long getLastCrashPrompt() {
+    return getLong(LAST_CRASH_PROMPT, 0);
   }
 }

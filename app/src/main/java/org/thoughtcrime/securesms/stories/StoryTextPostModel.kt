@@ -48,16 +48,16 @@ data class StoryTextPostModel(
 ) : Key, Parcelable {
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-    messageDigest.update(storyTextPost.toByteArray())
+    messageDigest.update(storyTextPost.encode())
     messageDigest.update(storySentAtMillis.toString().toByteArray())
     messageDigest.update(storyAuthor.serialize().toByteArray())
-    messageDigest.update(bodyRanges?.toByteArray() ?: ByteArray(0))
+    messageDigest.update(bodyRanges?.encode() ?: ByteArray(0))
   }
 
   val text: String = storyTextPost.body
 
   fun getPlaceholder(): Drawable {
-    return if (storyTextPost.hasBackground()) {
+    return if (storyTextPost.background != null) {
       ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask
     } else {
       ColorDrawable(Color.TRANSPARENT)
@@ -65,10 +65,10 @@ data class StoryTextPostModel(
   }
 
   override fun writeToParcel(parcel: Parcel, flags: Int) {
-    ParcelUtil.writeByteArray(parcel, storyTextPost.toByteArray())
+    ParcelUtil.writeByteArray(parcel, storyTextPost.encode())
     parcel.writeLong(storySentAtMillis)
     parcel.writeParcelable(storyAuthor, flags)
-    ParcelUtil.writeByteArray(parcel, bodyRanges?.toByteArray())
+    ParcelUtil.writeByteArray(parcel, bodyRanges?.encode())
   }
 
   override fun describeContents(): Int {
@@ -78,10 +78,10 @@ data class StoryTextPostModel(
   companion object CREATOR : Parcelable.Creator<StoryTextPostModel> {
     override fun createFromParcel(parcel: Parcel): StoryTextPostModel {
       return StoryTextPostModel(
-        storyTextPost = StoryTextPost.parseFrom(ParcelUtil.readByteArray(parcel)),
+        storyTextPost = StoryTextPost.ADAPTER.decode(ParcelUtil.readByteArray(parcel)!!),
         storySentAtMillis = parcel.readLong(),
         storyAuthor = parcel.readParcelableCompat(RecipientId::class.java)!!,
-        bodyRanges = ParcelUtil.readByteArray(parcel)?.let { BodyRangeList.parseFrom(it) }
+        bodyRanges = ParcelUtil.readByteArray(parcel)?.let { BodyRangeList.ADAPTER.decode(it) }
       )
     }
 
@@ -102,7 +102,7 @@ data class StoryTextPostModel(
     @Throws(IOException::class)
     fun parseFrom(body: String, storySentAtMillis: Long, storyAuthor: RecipientId, bodyRanges: BodyRangeList?): StoryTextPostModel {
       return StoryTextPostModel(
-        storyTextPost = StoryTextPost.parseFrom(Base64.decode(body)),
+        storyTextPost = StoryTextPost.ADAPTER.decode(Base64.decode(body)),
         storySentAtMillis = storySentAtMillis,
         storyAuthor = storyAuthor,
         bodyRanges = bodyRanges
@@ -121,7 +121,7 @@ data class StoryTextPostModel(
     override fun decode(source: StoryTextPostModel, width: Int, height: Int, options: Options): Resource<Bitmap> {
       val message = SignalDatabase.messages.getMessageFor(source.storySentAtMillis, source.storyAuthor).run {
         if (this is MediaMmsMessageRecord) {
-          this.withAttachments(ApplicationDependencies.getApplication(), SignalDatabase.attachments.getAttachmentsForMessage(this.id))
+          this.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(this.id))
         } else {
           this
         }

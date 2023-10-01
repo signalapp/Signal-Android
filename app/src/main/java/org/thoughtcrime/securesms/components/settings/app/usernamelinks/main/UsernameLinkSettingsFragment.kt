@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
@@ -17,7 +18,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -29,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -55,7 +56,6 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import java.io.ByteArrayOutputStream
 
 @OptIn(
-  ExperimentalMaterial3Api::class,
   ExperimentalPermissionsApi::class
 )
 class UsernameLinkSettingsFragment : ComposeFragment() {
@@ -71,6 +71,7 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
     val scope: CoroutineScope = rememberCoroutineScope()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
+    var showResetDialog: Boolean by remember { mutableStateOf(false) }
 
     Scaffold(
       snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -95,7 +96,9 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
           onShareBadge = {
             shareQrBadge(it)
           },
-          screenshotController = screenshotController
+          screenshotController = screenshotController,
+          onResetClicked = { showResetDialog = true },
+          onLinkResultHandled = { viewModel.onUsernameLinkResetResultHandled() }
         )
       }
 
@@ -113,6 +116,16 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
           modifier = Modifier.padding(contentPadding)
         )
       }
+    }
+
+    if (showResetDialog) {
+      ResetDialog(
+        onConfirm = {
+          viewModel.onUsernameLinkReset()
+          showResetDialog = false
+        },
+        onDismiss = { showResetDialog = false }
+      )
     }
   }
 
@@ -182,20 +195,43 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     }
   }
 
+  @Composable
+  private fun ResetDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(id = R.string.UsernameLinkSettings_reset_link_dialog_title),
+      body = stringResource(id = R.string.UsernameLinkSettings_reset_link_dialog_body),
+      confirm = stringResource(id = R.string.UsernameLinkSettings_reset_link_dialog_confirm_button),
+      dismiss = stringResource(id = android.R.string.cancel),
+      onConfirm = onConfirm,
+      onDismiss = onDismiss
+    )
+  }
+
   @Preview
   @Composable
-  private fun AppBarPreview() {
-    SignalTheme(isDarkMode = false) {
+  private fun PreviewAppBar() {
+    SignalTheme {
       Surface {
         TopAppBarContent(activeTab = ActiveTab.Code)
       }
     }
   }
 
+  @Preview(name = "Light Theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
+  @Preview(name = "Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+  @Composable
+  private fun PreviewAll() {
+    FragmentContent()
+  }
+
   @Preview
   @Composable
-  fun PreviewAll() {
-    FragmentContent()
+  private fun PreviewResetDialog() {
+    SignalTheme {
+      Surface {
+        ResetDialog(onConfirm = {}, onDismiss = {})
+      }
+    }
   }
 
   private fun shareQrBadge(badge: Bitmap) {

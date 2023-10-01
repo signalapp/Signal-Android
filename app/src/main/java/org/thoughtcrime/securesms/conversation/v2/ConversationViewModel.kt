@@ -74,7 +74,7 @@ import kotlin.time.Duration
  */
 class ConversationViewModel(
   val threadId: Long,
-  requestedStartingPosition: Int,
+  private val requestedStartingPosition: Int,
   private val repository: ConversationRepository,
   recipientRepository: ConversationRecipientRepository,
   messageRequestRepository: MessageRequestRepository,

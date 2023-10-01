@@ -58,6 +58,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
+import org.thoughtcrime.securesms.components.webrtc.CallLinkNullMessageSender;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
@@ -73,6 +74,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls;
 import org.thoughtcrime.securesms.components.webrtc.WifiToCellularPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
+import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -98,6 +100,7 @@ import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -774,6 +777,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       return;
     }
 
+    if (state.isCallLink()) {
+      CallLinkNullMessageSender.onSendAnyway(new HashSet<>(changedRecipients));
+    }
+
     if (state.getGroupCallState().isConnected()) {
       ApplicationDependencies.getSignalCallManager().groupApproveSafetyChange(changedRecipients);
     } else {
@@ -1087,6 +1094,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onLaunchPendingRequestsSheet() {
       new PendingParticipantsBottomSheet().show(getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    }
+
+    @Override
+    public void onLaunchRecipientSheet(@NonNull Recipient pendingRecipient) {
+      CallLinkIncomingRequestSheet.show(getSupportFragmentManager(), pendingRecipient.getId());
     }
   }
 

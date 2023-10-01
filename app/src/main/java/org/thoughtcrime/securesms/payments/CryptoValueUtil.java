@@ -16,28 +16,21 @@ public final class CryptoValueUtil {
   }
 
   public static @NonNull CryptoValue moneyToCryptoValue(@NonNull Money money) {
-    CryptoValue.Builder builder = CryptoValue.newBuilder();
+    CryptoValue.Builder builder = new CryptoValue.Builder();
 
     if (money instanceof Money.MobileCoin) {
       Money.MobileCoin mobileCoin = (Money.MobileCoin) money;
-      builder.setMobileCoinValue(CryptoValue.MobileCoinValue
-                                            .newBuilder()
-                                            .setPicoMobileCoin(mobileCoin.serializeAmountString()));
+      builder.mobileCoinValue(new CryptoValue.MobileCoinValue.Builder().picoMobileCoin(mobileCoin.serializeAmountString()).build());
     }
 
     return builder.build();
   }
 
   public static @NonNull Money cryptoValueToMoney(@NonNull CryptoValue amount) {
-    CryptoValue.ValueCase valueCase = amount.getValueCase();
-
-    switch (valueCase) {
-      case MOBILECOINVALUE:
-        return Money.picoMobileCoin(new BigInteger(amount.getMobileCoinValue().getPicoMobileCoin()));
-      case VALUE_NOT_SET:
-        throw new AssertionError();
+    if (amount.mobileCoinValue != null) {
+      return Money.picoMobileCoin(new BigInteger(amount.mobileCoinValue.picoMobileCoin));
+    } else {
+      throw new AssertionError();
     }
-
-    throw new AssertionError();
   }
 }

@@ -6,7 +6,6 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
-import com.google.protobuf.ByteString;
 
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.logging.Log;
@@ -32,6 +31,8 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
+import okio.ByteString;
+
 public final class LedgerReconcile {
 
   private static final String TAG = Log.tag(LedgerReconcile.class);
@@ -53,14 +54,14 @@ public final class LedgerReconcile {
                                                   @NonNull List<MobileCoinLedgerWrapper.OwnedTxo> allTxOuts)
   {
     List<? extends Payment> nonFailedLocalPayments = Stream.of(allLocalPaymentTransactions).filter(i -> i.getState() != State.FAILED).toList();
-    Set<ByteString> allKnownPublicKeys = new HashSet<>(nonFailedLocalPayments.size());
-    Set<ByteString> allKnownKeyImages  = new HashSet<>(nonFailedLocalPayments.size());
+    Set<ByteString>         allKnownPublicKeys     = new HashSet<>(nonFailedLocalPayments.size());
+    Set<ByteString>         allKnownKeyImages      = new HashSet<>(nonFailedLocalPayments.size());
 
     for (Payment paymentTransaction : nonFailedLocalPayments) {
-      PaymentMetaData.MobileCoinTxoIdentification txoIdentification = paymentTransaction.getPaymentMetaData().getMobileCoinTxoIdentification();
+      PaymentMetaData.MobileCoinTxoIdentification txoIdentification = paymentTransaction.getPaymentMetaData().mobileCoinTxoIdentification;
 
-      allKnownPublicKeys.addAll(txoIdentification.getPublicKeyList());
-      allKnownKeyImages.addAll(txoIdentification.getKeyImagesList());
+      allKnownPublicKeys.addAll(txoIdentification.publicKey);
+      allKnownKeyImages.addAll(txoIdentification.keyImages);
     }
 
     Set<MobileCoinLedgerWrapper.OwnedTxo> knownTxosByKeyImage = Stream.of(allTxOuts)
@@ -120,7 +121,7 @@ public final class LedgerReconcile {
 
   private static @NonNull Payment findBlock(@NonNull Payment local, @NonNull Map<ByteString, MobileCoinLedgerWrapper.OwnedTxo> allTxOuts) {
     if (local.getDirection().isReceived()) {
-      for (ByteString publicKey : local.getPaymentMetaData().getMobileCoinTxoIdentification().getPublicKeyList()) {
+      for (ByteString publicKey : local.getPaymentMetaData().mobileCoinTxoIdentification.publicKey) {
         MobileCoinLedgerWrapper.OwnedTxo ownedTxo = allTxOuts.get(publicKey);
 
         if (ownedTxo != null) {
@@ -131,7 +132,7 @@ public final class LedgerReconcile {
         }
       }
     } else {
-      for (ByteString keyImage : local.getPaymentMetaData().getMobileCoinTxoIdentification().getKeyImagesList()) {
+      for (ByteString keyImage : local.getPaymentMetaData().mobileCoinTxoIdentification.keyImages) {
         MobileCoinLedgerWrapper.OwnedTxo ownedTxo = allTxOuts.get(keyImage);
 
         if (ownedTxo != null && ownedTxo.getSpentInBlock() != null) {

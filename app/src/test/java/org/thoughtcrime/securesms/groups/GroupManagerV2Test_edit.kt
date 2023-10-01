@@ -151,8 +151,8 @@ class GroupManagerV2Test_edit {
 
     then { patchedGroup ->
       assertThat("Revision updated by one", patchedGroup.revision, `is`(6))
-      assertThat("Self is no longer in the group", patchedGroup.membersList.find { it.aciBytes == selfAci.toByteString() }, Matchers.nullValue())
-      assertThat("Other is now an admin in the group", patchedGroup.membersList.find { it.aciBytes == otherAci.toByteString() }?.role, `is`(Member.Role.ADMINISTRATOR))
+      assertThat("Self is no longer in the group", patchedGroup.members.find { it.aciBytes == selfAci.toByteString() }, Matchers.nullValue())
+      assertThat("Other is now an admin in the group", patchedGroup.members.find { it.aciBytes == otherAci.toByteString() }?.role, `is`(Member.Role.ADMINISTRATOR))
     }
   }
 }

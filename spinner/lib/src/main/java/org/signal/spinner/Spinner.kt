@@ -68,6 +68,10 @@ object Spinner {
     server.onSql(dbName, queryString)
   }
 
+  internal fun log(item: SpinnerLogItem) {
+    server.onLog(item)
+  }
+
   private fun replaceQueryArgs(query: String, args: Array<Any>?): String {
     if (args == null) {
       return query

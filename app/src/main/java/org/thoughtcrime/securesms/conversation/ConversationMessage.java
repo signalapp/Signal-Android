@@ -12,20 +12,23 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
+import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate;
 import org.thoughtcrime.securesms.database.BodyRangeUtil;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 
 import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.Locale;
 
 /**
  * A view level model used to pass arbitrary message related information needed
@@ -43,6 +46,7 @@ public class ConversationMessage {
   @NonNull  private final Recipient              threadRecipient;
             private final boolean                hasBeenQuoted;
   @Nullable private final MessageRecord          originalMessage;
+  @NonNull  private final ComputedProperties     computedProperties;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -50,14 +54,16 @@ public class ConversationMessage {
                               boolean hasBeenQuoted,
                               @Nullable MessageStyler.Result styleResult,
                               @NonNull Recipient threadRecipient,
-                              @Nullable MessageRecord originalMessage)
+                              @Nullable MessageRecord originalMessage,
+                              @NonNull ComputedProperties computedProperties)
   {
-    this.messageRecord   = messageRecord;
-    this.hasBeenQuoted   = hasBeenQuoted;
-    this.mentions        = mentions != null ? mentions : Collections.emptyList();
-    this.styleResult     = styleResult != null ? styleResult : MessageStyler.Result.none();
-    this.threadRecipient = threadRecipient;
-    this.originalMessage = originalMessage;
+    this.messageRecord      = messageRecord;
+    this.hasBeenQuoted      = hasBeenQuoted;
+    this.mentions           = mentions != null ? mentions : Collections.emptyList();
+    this.styleResult        = styleResult != null ? styleResult : MessageStyler.Result.none();
+    this.threadRecipient    = threadRecipient;
+    this.originalMessage    = originalMessage;
+    this.computedProperties = computedProperties;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -88,6 +94,10 @@ public class ConversationMessage {
 
   public boolean hasBeenQuoted() {
     return hasBeenQuoted;
+  }
+
+  public @NonNull ComputedProperties getComputedProperties() {
+    return computedProperties;
   }
 
   @Override
@@ -150,6 +160,27 @@ public class ConversationMessage {
     return threadRecipient;
   }
 
+  public static @NonNull FormattedDate getFormattedDate(@NonNull Context context, @NonNull MessageRecord messageRecord) {
+    return MessageRecordUtil.isScheduled(messageRecord) ? new FormattedDate(false, DateUtils.getOnlyTimeString(context, Locale.getDefault(), ((MediaMmsMessageRecord) messageRecord).getScheduledDate()))
+                                                        : DateUtils.getDatelessRelativeTimeSpanFormattedDate(context, Locale.getDefault(), messageRecord.getTimestamp());
+  }
+
+  public static class ComputedProperties {
+    private @NonNull FormattedDate formattedDate;
+
+    ComputedProperties(@NonNull FormattedDate formattedDate) {
+      this.formattedDate = formattedDate;
+    }
+
+    public synchronized FormattedDate getFormattedDate() {
+      return formattedDate;
+    }
+
+    public synchronized void setFormattedDate(@NonNull FormattedDate formattedDate) {
+      this.formattedDate = formattedDate;
+    }
+  }
+
   /**
    * Factory providing multiple ways of creating {@link ConversationMessage}s.
    */
@@ -194,13 +225,16 @@ public class ConversationMessage {
         }
       }
 
+      FormattedDate formattedDate = getFormattedDate(context, messageRecord);
+
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
                                      hasBeenQuoted,
                                      styleResult,
                                      threadRecipient,
-                                     originalMessage);
+                                     originalMessage,
+                                     new ComputedProperties(formattedDate));
     }
 
     /**

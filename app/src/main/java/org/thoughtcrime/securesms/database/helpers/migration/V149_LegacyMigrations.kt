@@ -14,7 +14,6 @@ import android.preference.PreferenceManager
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
 import com.annimon.stream.Stream
-import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.Hex
@@ -50,6 +49,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.File
+import java.io.IOException
 import java.util.LinkedList
 import java.util.Locale
 import java.util.UUID
@@ -1375,14 +1375,14 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
             continue
           }
           try {
-            val hasReceiveLaterThanNotified: Boolean = ReactionList.parseFrom(reactions)
-              .reactionsList
+            val hasReceiveLaterThanNotified: Boolean = ReactionList.ADAPTER.decode(reactions)
+              .reactions
               .stream()
               .anyMatch { r: ReactionList.Reaction -> r.receivedTime > notifiedTimestamp }
             if (!hasReceiveLaterThanNotified) {
               smsIds.add(cursor.getLong(cursor.getColumnIndexOrThrow("_id")))
             }
-          } catch (e: InvalidProtocolBufferException) {
+          } catch (e: IOException) {
             Log.e(TAG, e)
           }
         }
@@ -1402,14 +1402,14 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
             continue
           }
           try {
-            val hasReceiveLaterThanNotified: Boolean = ReactionList.parseFrom(reactions)
-              .reactionsList
+            val hasReceiveLaterThanNotified: Boolean = ReactionList.ADAPTER.decode(reactions)
+              .reactions
               .stream()
               .anyMatch { r: ReactionList.Reaction -> r.receivedTime > notifiedTimestamp }
             if (!hasReceiveLaterThanNotified) {
               mmsIds.add(cursor.getLong(cursor.getColumnIndexOrThrow("_id")))
             }
-          } catch (e: InvalidProtocolBufferException) {
+          } catch (e: IOException) {
             Log.e(TAG, e)
           }
         }
@@ -1490,7 +1490,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
       for (entry: Map.Entry<MaterialColor, ChatColors> in entrySet) {
         val whereArgs = SqlUtil.buildArgs(entry.key.serialize())
         val values = ContentValues(2)
-        values.put("chat_colors", entry.value.serialize().toByteArray())
+        values.put("chat_colors", entry.value.serialize().encode())
         values.put("custom_chat_colors_id", entry.value.id.longValue)
         db.update("recipient", values, where, whereArgs)
       }
@@ -2678,9 +2678,9 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
   private fun migrateReaction(db: SQLiteDatabase, cursor: Cursor, isMms: Boolean) {
     try {
       val messageId = CursorUtil.requireLong(cursor, "_id")
-      val reactionList = ReactionList.parseFrom(CursorUtil.requireBlob(cursor, "reactions"))
+      val reactionList = ReactionList.ADAPTER.decode(CursorUtil.requireBlob(cursor, "reactions"))
 
-      for (reaction in reactionList.reactionsList) {
+      for (reaction in reactionList.reactions) {
         val contentValues = ContentValues().apply {
           put("message_id", messageId)
           put("is_mms", if (isMms) 1 else 0)
@@ -2691,7 +2691,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         }
         db.insert("reaction", null, contentValues)
       }
-    } catch (e: InvalidProtocolBufferException) {
+    } catch (e: IOException) {
       Log.w(TAG, "Failed to parse reaction!")
     }
   }

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.notifications
 
 import android.os.Build
 import android.text.TextUtils
+import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -85,6 +86,7 @@ object SlowNotificationHeuristics {
     return true
   }
 
+  @WorkerThread
   @JvmStatic
   fun isHavingDelayedNotifications(): Boolean {
     if (!SignalStore.settings().isMessageNotificationsEnabled ||

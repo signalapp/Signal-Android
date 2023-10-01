@@ -1,13 +1,12 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import com.google.protobuf.ByteString;
-
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
 import java.util.Optional;
+
+import okio.ByteString;
 
 public final class OutgoingPaymentMessage {
 

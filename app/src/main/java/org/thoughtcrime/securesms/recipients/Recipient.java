@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import androidx.annotation.AnyThread;
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -50,16 +49,14 @@ import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -75,7 +72,6 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-import static org.thoughtcrime.securesms.database.RecipientTable.InsightsBannerTier;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class Recipient {
@@ -324,7 +320,14 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull GroupId groupId) {
-    return Recipient.resolved(RecipientId.from(groupId));
+    RecipientId id = RecipientId.from(groupId);
+    try {
+      return Recipient.resolved(id);
+    } catch (RecipientTable.MissingRecipientException ex) {
+      Log.w(TAG, "Could not find recipient (" + id + ") for group " + groupId + ". Clearing RecipientId cache and trying again.", ex);
+      RecipientId.clearCache();
+      return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId));
+    }
   }
 
   /**
@@ -343,8 +346,9 @@ public class Recipient {
     RecipientTable db = SignalDatabase.recipients();
     RecipientId    id = null;
 
-    if (UuidUtil.isUuid(identifier)) {
-      ServiceId serviceId = ServiceId.parseOrThrow(identifier);
+    ServiceId serviceId = ServiceId.parseOrNull(identifier);
+
+    if (serviceId != null) {
       id = db.getOrInsertFromServiceId(serviceId);
     } else if (GroupId.isEncodedGroup(identifier)) {
       id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));
@@ -1310,15 +1314,15 @@ public class Recipient {
     }
 
     public boolean manuallyShownAvatar() {
-      return recipientExtras.getManuallyShownAvatar();
+      return recipientExtras.manuallyShownAvatar;
     }
 
     public boolean hideStory() {
-      return recipientExtras.getHideStory();
+      return recipientExtras.hideStory;
     }
 
     public boolean hasViewedStory() {
-      return recipientExtras.getLastStoryView() > 0L;
+      return recipientExtras.lastStoryView > 0L;
     }
 
     @Override

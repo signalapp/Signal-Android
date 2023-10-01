@@ -50,7 +50,7 @@ class ManageProfileViewModel extends ViewModel {
   private final SingleLiveEvent<Event>               events;
   private final RecipientForeverObserver             observer;
   private final ManageProfileRepository              repository;
-  private final UsernameEditRepository               usernameEditRepository;
+  private final UsernameRepository                   usernameEditRepository;
   private final MutableLiveData<Optional<Badge>>     badge;
 
   private byte[] previousAvatar;
@@ -63,7 +63,7 @@ class ManageProfileViewModel extends ViewModel {
     this.aboutEmoji             = new MutableLiveData<>();
     this.events                 = new SingleLiveEvent<>();
     this.repository             = new ManageProfileRepository();
-    this.usernameEditRepository = new UsernameEditRepository();
+    this.usernameEditRepository = new UsernameRepository();
     this.badge                  = new DefaultValueLiveData<>(Optional.empty());
     this.observer               = this::onRecipientChanged;
     this.avatarState            = LiveDataUtil.combineLatest(Recipient.self().live().getLiveData(), internalAvatarState, (self, state) -> new AvatarState(state, self));
@@ -104,7 +104,7 @@ class ManageProfileViewModel extends ViewModel {
     return events;
   }
 
-  public Single<UsernameEditRepository.UsernameDeleteResult> deleteUsername() {
+  public Single<UsernameRepository.UsernameDeleteResult> deleteUsername() {
     return usernameEditRepository.deleteUsername().observeOn(AndroidSchedulers.mainThread());
   }
 

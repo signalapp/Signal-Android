@@ -116,7 +116,7 @@ import okhttp3.OkHttpClient;
     @Override
     public @NonNull SignalDataSource createDataSource() {
       return new SignalDataSource(new DefaultDataSourceFactory(context, "GenericUserAgent", null).createDataSource(),
-                                  new PartDataSource(context, listener),
+                                  new PartDataSource(listener),
                                   new BlobDataSource(context, listener),
                                   okHttpClient != null ? new ChunkedDataSource(okHttpClient, listener) : null);
     }

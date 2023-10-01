@@ -209,7 +209,7 @@ public final class AttachmentCompressionJob extends BaseJob {
 
       notification.setIndeterminateProgress();
 
-      try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId())) {
+      try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId(), false)) {
         if (dataSource == null) {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }

@@ -65,6 +65,14 @@ public final class WifiDirect {
   private       WifiP2pDnsSdServiceRequest   serviceRequest;
   private final HandlerThread                wifiDirectCallbacksHandler;
 
+  public static @NonNull String requiredPermission() {
+    if (Build.VERSION.SDK_INT >= 33) {
+      return Manifest.permission.NEARBY_WIFI_DEVICES;
+    } else {
+      return Manifest.permission.ACCESS_FINE_LOCATION;
+    }
+  }
+
   /**
    * Determine the ability to use WiFi Direct by checking if the device supports WiFi Direct
    * and the appropriate permissions have been granted.
@@ -81,9 +89,12 @@ public final class WifiDirect {
       return AvailableStatus.WIFI_MANAGER_NOT_AVAILABLE;
     }
 
-    if (Build.VERSION.SDK_INT >= 23 && context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+    if (Build.VERSION.SDK_INT >= 33 && context.checkSelfPermission(Manifest.permission.NEARBY_WIFI_DEVICES) != PackageManager.PERMISSION_GRANTED) {
+      Log.i(TAG, "Nearby Wifi permission required");
+      return AvailableStatus.REQUIRED_PERMISSION_NOT_GRANTED;
+    } else if (Build.VERSION.SDK_INT < 33 && Build.VERSION.SDK_INT >= 23 && context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
       Log.i(TAG, "Fine location permission required");
-      return AvailableStatus.FINE_LOCATION_PERMISSION_NOT_GRANTED;
+      return AvailableStatus.REQUIRED_PERMISSION_NOT_GRANTED;
     }
 
     return Build.VERSION.SDK_INT <= 23 || wifiManager.isP2pSupported() ? AvailableStatus.AVAILABLE
@@ -464,7 +475,7 @@ public final class WifiDirect {
   public enum AvailableStatus {
     FEATURE_NOT_AVAILABLE,
     WIFI_MANAGER_NOT_AVAILABLE,
-    FINE_LOCATION_PERMISSION_NOT_GRANTED,
+    REQUIRED_PERMISSION_NOT_GRANTED,
     WIFI_DIRECT_NOT_AVAILABLE,
     AVAILABLE
   }

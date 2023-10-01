@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil;
@@ -33,7 +34,13 @@ import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Provide a foreground service for {@link SignalCallManager} to leverage to run in the background when necessary. Also
@@ -62,6 +69,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private static final long FOREGROUND_SERVICE_TIMEOUT        = TimeUnit.SECONDS.toMillis(10);
 
   private final WebSocketKeepAliveTask webSocketKeepAliveTask = new WebSocketKeepAliveTask();
+  private final Executor               singleThreadExecutor   = SignalExecutors.newCachedSingleThreadExecutor("signal-webrtc-in-call", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD);
 
   private SignalCallManager callManager;
 
@@ -72,7 +80,9 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private SignalAudioManager              signalAudioManager;
   private int                             lastNotificationId;
   private Notification                    lastNotification;
-  private boolean                         stopping = false;
+  private long                            lastNotificationRequestTime;
+  private Disposable                      lastNotificationDisposable = Disposable.disposed();
+  private boolean                         stopping                   = false;
 
   public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId, boolean isVideoCall) {
     Intent intent = new Intent(context, WebRtcCallService.class);
@@ -219,6 +229,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private void setCallNotification() {
     setCallNotification(false);
   }
+
   private void setCallNotification(boolean stopping) {
     if (!stopping && lastNotificationId != INVALID_NOTIFICATION_ID) {
       startForegroundCompat(lastNotificationId, lastNotification);
@@ -230,10 +241,28 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public void setCallInProgressNotification(int type, @NonNull RecipientId id, boolean isVideoCall) {
+    lastNotificationDisposable.dispose();
+
+    boolean requiresAsyncNotificationLoad = Build.VERSION.SDK_INT <= 29;
+
     lastNotificationId = CallNotificationBuilder.getNotificationId(type);
-    lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall);
+    lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall, requiresAsyncNotificationLoad);
 
     startForegroundCompat(lastNotificationId, lastNotification);
+
+    if (requiresAsyncNotificationLoad) {
+      final long requestTime = System.currentTimeMillis();
+      lastNotificationRequestTime = requestTime;
+      lastNotificationDisposable  = Single
+          .fromCallable(() -> CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id), isVideoCall, false))
+          .subscribeOn(Schedulers.from(singleThreadExecutor))
+          .observeOn(AndroidSchedulers.mainThread())
+          .filter(unused -> requestTime == lastNotificationRequestTime && !stopping)
+          .subscribe(notification -> {
+            lastNotification = notification;
+            startForegroundCompat(lastNotificationId, lastNotification);
+          });
+    }
   }
 
   private synchronized void startForegroundCompat(int notificationId, Notification notification) {

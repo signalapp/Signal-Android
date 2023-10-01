@@ -191,7 +191,7 @@ class DraftRepository(
     var updatedText: Spannable? = null
 
     if (textDraft != null && bodyRangesDraft != null) {
-      val bodyRanges: BodyRangeList = BodyRangeList.parseFrom(Base64.decodeOrThrow(bodyRangesDraft.value))
+      val bodyRanges: BodyRangeList = BodyRangeList.ADAPTER.decode(Base64.decodeOrThrow(bodyRangesDraft.value))
       val mentions: List<Mention> = MentionUtil.bodyRangeListToMentions(bodyRanges)
 
       val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, textDraft.value, mentions)
@@ -208,7 +208,7 @@ class DraftRepository(
     val quoteId: QuoteId = QuoteId.deserialize(context, serialized) ?: return null
     val messageRecord: MessageRecord = SignalDatabase.messages.getMessageFor(quoteId.id, quoteId.author)?.let {
       if (it is MediaMmsMessageRecord) {
-        it.withAttachments(context, SignalDatabase.attachments.getAttachmentsForMessage(it.id))
+        it.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(it.id))
       } else {
         it
       }

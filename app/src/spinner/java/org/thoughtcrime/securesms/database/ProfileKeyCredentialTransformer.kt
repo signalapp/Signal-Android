@@ -19,7 +19,7 @@ object ProfileKeyCredentialTransformer : ColumnTransformer {
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     val columnDataString = cursor.requireString(RecipientTable.EXPIRING_PROFILE_KEY_CREDENTIAL) ?: return DefaultColumnTransformer.transform(tableName, columnName, cursor)
     val columnDataBytes = Base64.decode(columnDataString)
-    val columnData = ExpiringProfileKeyCredentialColumnData.parseFrom(columnDataBytes)
+    val columnData = ExpiringProfileKeyCredentialColumnData.ADAPTER.decode(columnDataBytes)
     val credential = ExpiringProfileKeyCredential(columnData.expiringProfileKeyCredential.toByteArray())
 
     return """

@@ -11,14 +11,15 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
+import org.whispersystems.signalservice.internal.push.GroupContext;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,24 +41,24 @@ public final class MessageGroupContext {
     this.encodedGroupContext = encodedGroupContext;
     if (v2) {
       this.groupV1 = null;
-      this.groupV2 = new GroupV2Properties(DecryptedGroupV2Context.parseFrom(Base64.decode(encodedGroupContext)));
+      this.groupV2 = new GroupV2Properties(DecryptedGroupV2Context.ADAPTER.decode(Base64.decode(encodedGroupContext)));
       this.group   = groupV2;
     } else {
-      this.groupV1 = new GroupV1Properties(GroupContext.parseFrom(Base64.decode(encodedGroupContext)));
+      this.groupV1 = new GroupV1Properties(GroupContext.ADAPTER.decode(Base64.decode(encodedGroupContext)));
       this.groupV2 = null;
       this.group   = groupV1;
     }
   }
 
   public MessageGroupContext(@NonNull GroupContext group) {
-    this.encodedGroupContext = Base64.encodeBytes(group.toByteArray());
+    this.encodedGroupContext = Base64.encodeBytes(group.encode());
     this.groupV1             = new GroupV1Properties(group);
     this.groupV2             = null;
     this.group               = groupV1;
   }
 
   public MessageGroupContext(@NonNull DecryptedGroupV2Context group) {
-    this.encodedGroupContext = Base64.encodeBytes(group.toByteArray());
+    this.encodedGroupContext = Base64.encodeBytes(group.encode());
     this.groupV1             = null;
     this.groupV2             = new GroupV2Properties(group);
     this.group               = groupV2;
@@ -111,24 +112,24 @@ public final class MessageGroupContext {
     }
 
     public boolean isQuit() {
-      return groupContext.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
+      return groupContext.type == GroupContext.Type.QUIT;
     }
 
     public boolean isUpdate() {
-      return groupContext.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
+      return groupContext.type == GroupContext.Type.UPDATE;
     }
 
     @Override
     public @NonNull String getName() {
-      return groupContext.getName();
+      return groupContext.name;
     }
 
     @Override
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
       RecipientId selfId = Recipient.self().getId();
 
-      return Stream.of(groupContext.getMembersList())
-                   .map(GroupContext.Member::getE164)
+      return Stream.of(groupContext.members)
+                   .map(m -> m.e164)
                    .withoutNulls()
                    .map(RecipientId::fromE164)
                    .filterNot(selfId::equals)
@@ -144,9 +145,9 @@ public final class MessageGroupContext {
 
     private GroupV2Properties(DecryptedGroupV2Context decryptedGroupV2Context) {
       this.decryptedGroupV2Context = decryptedGroupV2Context;
-      this.groupContext            = decryptedGroupV2Context.getContext();
+      this.groupContext            = decryptedGroupV2Context.context;
       try {
-        groupMasterKey = new GroupMasterKey(groupContext.getMasterKey().toByteArray());
+        groupMasterKey = new GroupMasterKey(groupContext.masterKey.toByteArray());
       } catch (InvalidInputException e) {
         throw new AssertionError(e);
       }
@@ -161,15 +162,15 @@ public final class MessageGroupContext {
     }
 
     public @NonNull DecryptedGroupChange getChange() {
-      return decryptedGroupV2Context.getChange();
+      return decryptedGroupV2Context.change != null ? decryptedGroupV2Context.change : SignalServiceProtoUtil.getEmptyGroupChange();
     }
 
     public @NonNull List<? extends ServiceId> getAllActivePendingAndRemovedMembers() {
-      DecryptedGroup        groupState  = decryptedGroupV2Context.getGroupState();
-      DecryptedGroupChange  groupChange = decryptedGroupV2Context.getChange();
+      DecryptedGroup        groupState  = decryptedGroupV2Context.groupState;
+      DecryptedGroupChange  groupChange = getChange();
 
-      return Stream.of(DecryptedGroupUtil.toAciList(groupState.getMembersList()),
-                       DecryptedGroupUtil.pendingToServiceIdList(groupState.getPendingMembersList()),
+      return Stream.of(DecryptedGroupUtil.toAciList(groupState.members),
+                       DecryptedGroupUtil.pendingToServiceIdList(groupState.pendingMembers),
                        DecryptedGroupUtil.removedMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedPendingMembersServiceIdList(groupChange),
                        DecryptedGroupUtil.removedRequestingMembersServiceIdList(groupChange))
@@ -180,15 +181,15 @@ public final class MessageGroupContext {
 
     @Override
     public @NonNull String getName() {
-      return decryptedGroupV2Context.getGroupState().getTitle();
+      return decryptedGroupV2Context.groupState.title;
     }
 
     @Override
     public @NonNull List<RecipientId> getMembersListExcludingSelf() {
-      List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.getGroupState().getMembersCount());
+      List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.groupState.members.size());
 
-      for (DecryptedMember member : decryptedGroupV2Context.getGroupState().getMembersList()) {
-        RecipientId recipient = RecipientId.from(ACI.parseOrThrow(member.getAciBytes()));
+      for (DecryptedMember member : decryptedGroupV2Context.groupState.members) {
+        RecipientId recipient = RecipientId.from(ACI.parseOrThrow(member.aciBytes));
         if (!Recipient.self().getId().equals(recipient)) {
           members.add(recipient);
         }

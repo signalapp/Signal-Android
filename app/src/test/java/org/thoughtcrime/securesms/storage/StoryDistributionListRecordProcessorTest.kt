@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.storage
 
-import com.google.protobuf.ByteString
+import okio.ByteString
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
@@ -31,7 +31,7 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto without an identifier, when I isInvalid, then I expect true`() {
     // GIVEN
-    val proto = StoryDistributionListRecord.getDefaultInstance()
+    val proto = StoryDistributionListRecord()
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
 
     // WHEN
@@ -44,10 +44,9 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto with an identifier that is not a UUID, when I isInvalid, then I expect true`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(ByteString.copyFrom("Greetings, fellow UUIDs".encodeToByteArray()))
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*"Greetings, fellow UUIDs".encodeToByteArray()))
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -62,10 +61,9 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto without a name or deletion timestamp, when I isInvalid, then I expect true`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(UUID.randomUUID()))
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(UUID.randomUUID())))
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -80,11 +78,10 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto with a deletion timestamp, when I isInvalid, then I expect false`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(UUID.randomUUID()))
-      .setDeletedAtTimestamp(1)
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(UUID.randomUUID())))
+      .deletedAtTimestamp(1)
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -99,11 +96,10 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto that is MyStory with a deletion timestamp, when I isInvalid, then I expect true`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(DistributionId.MY_STORY.asUuid()))
-      .setDeletedAtTimestamp(1)
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(DistributionId.MY_STORY.asUuid())))
+      .deletedAtTimestamp(1)
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -118,11 +114,10 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a validated proto that is MyStory, when I isInvalid with another MyStory, then I expect true`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(DistributionId.MY_STORY.asUuid()))
-      .setDeletedAtTimestamp(1)
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(DistributionId.MY_STORY.asUuid())))
+      .deletedAtTimestamp(1)
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -138,11 +133,10 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto with a visible name, when I isInvalid, then I expect false`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(UUID.randomUUID()))
-      .setName("A visible name")
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(UUID.randomUUID())))
+      .name("A visible name")
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -157,10 +151,9 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto without a name, when I isInvalid, then I expect false`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(UUID.randomUUID()))
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(UUID.randomUUID())))
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)
@@ -175,11 +168,10 @@ class StoryDistributionListRecordProcessorTest {
   @Test
   fun `Given a proto without a visible name, when I isInvalid, then I expect true`() {
     // GIVEN
-    val proto = StoryDistributionListRecord
-      .getDefaultInstance()
-      .toBuilder()
-      .setIdentifier(UuidUtil.toByteString(UUID.randomUUID()))
-      .setName("     ")
+    val proto = StoryDistributionListRecord()
+      .newBuilder()
+      .identifier(ByteString.of(*UuidUtil.toByteArray(UUID.randomUUID())))
+      .name("     ")
       .build()
 
     val record = SignalStoryDistributionListRecord(STORAGE_ID, proto)

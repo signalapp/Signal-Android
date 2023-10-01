@@ -2,7 +2,10 @@ package org.whispersystems.signalservice.api.messages;
 
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.api.util.Preconditions;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
+
+import io.reactivex.rxjava3.annotations.NonNull;
 
 /**
  * Group information to include in SignalServiceMessages destined to v2 groups.
@@ -25,21 +28,23 @@ public final class SignalServiceGroupV2 {
   /**
    * Creates a context model populated from a protobuf group V2 context.
    */
-  public static SignalServiceGroupV2 fromProtobuf(SignalServiceProtos.GroupContextV2 groupContextV2) {
+  public static SignalServiceGroupV2 fromProtobuf(@NonNull GroupContextV2 groupContextV2) {
+    Preconditions.checkArgument(groupContextV2.masterKey != null && groupContextV2.revision != null);
+
     GroupMasterKey masterKey;
     try {
-      masterKey = new GroupMasterKey(groupContextV2.getMasterKey().toByteArray());
+      masterKey = new GroupMasterKey(groupContextV2.masterKey.toByteArray());
     } catch (InvalidInputException e) {
       throw new AssertionError(e);
     }
 
     Builder builder = newBuilder(masterKey);
 
-    if (groupContextV2.hasGroupChange() && !groupContextV2.getGroupChange().isEmpty()) {
-      builder.withSignedGroupChange(groupContextV2.getGroupChange().toByteArray());
+    if (groupContextV2.groupChange != null && groupContextV2.groupChange.size() > 0) {
+      builder.withSignedGroupChange(groupContextV2.groupChange.toByteArray());
     }
 
-    return builder.withRevision(groupContextV2.getRevision())
+    return builder.withRevision(groupContextV2.revision)
                   .build();
   }
 

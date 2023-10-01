@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.messages.calls;
 
-
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.CallMessage;
 
 public class OfferMessage {
 
@@ -34,13 +33,13 @@ public class OfferMessage {
   }
 
   public enum Type {
-    AUDIO_CALL("audio_call", SignalServiceProtos.CallMessage.Offer.Type.OFFER_AUDIO_CALL),
-    VIDEO_CALL("video_call", SignalServiceProtos.CallMessage.Offer.Type.OFFER_VIDEO_CALL);
+    AUDIO_CALL("audio_call", CallMessage.Offer.Type.OFFER_AUDIO_CALL),
+    VIDEO_CALL("video_call", CallMessage.Offer.Type.OFFER_VIDEO_CALL);
 
     private final String code;
-    private final SignalServiceProtos.CallMessage.Offer.Type protoType;
+    private final CallMessage.Offer.Type protoType;
 
-    Type(String code, SignalServiceProtos.CallMessage.Offer.Type protoType) {
+    Type(String code, CallMessage.Offer.Type protoType) {
       this.code      = code;
       this.protoType = protoType;
     }
@@ -49,11 +48,11 @@ public class OfferMessage {
       return code;
     }
 
-    public SignalServiceProtos.CallMessage.Offer.Type getProtoType() {
+    public CallMessage.Offer.Type getProtoType() {
       return protoType;
     }
 
-    public static Type fromProto(SignalServiceProtos.CallMessage.Offer.Type offerType) {
+    public static Type fromProto(CallMessage.Offer.Type offerType) {
       for (Type type : Type.values()) {
         if (type.getProtoType().equals(offerType)) {
           return type;

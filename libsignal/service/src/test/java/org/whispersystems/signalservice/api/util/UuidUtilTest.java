@@ -1,12 +1,12 @@
 package org.whispersystems.signalservice.api.util;
 
-import com.google.protobuf.ByteString;
-
 import org.junit.Test;
 import org.signal.libsignal.protocol.util.Hex;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import okio.ByteString;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -53,7 +53,7 @@ public final class UuidUtilTest {
   public void byte_string_round_trip() {
     UUID uuid = UUID.fromString("67dfd496-ea02-4720-b13d-83a462168b1d");
 
-    UUID result = UuidUtil.fromByteString(ByteString.copyFrom(UuidUtil.toByteArray(uuid)));
+    UUID result = UuidUtil.fromByteString(ByteString.of(UuidUtil.toByteArray(uuid)));
 
     assertEquals(uuid, result);
   }

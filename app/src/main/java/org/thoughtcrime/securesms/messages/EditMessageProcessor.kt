@@ -32,9 +32,9 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.hasAudio
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.Envelope
 import java.util.Optional
 
 object EditMessageProcessor {
@@ -43,51 +43,51 @@ object EditMessageProcessor {
     senderRecipient: Recipient,
     threadRecipient: Recipient,
     envelope: Envelope,
-    content: SignalServiceProtos.Content,
+    content: Content,
     metadata: EnvelopeMetadata,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ) {
-    val editMessage = content.editMessage
+    val editMessage = content.editMessage!!
 
-    log(envelope.timestamp, "[handleEditMessage] Edit message for " + editMessage.targetSentTimestamp)
+    log(envelope.timestamp!!, "[handleEditMessage] Edit message for " + editMessage.targetSentTimestamp)
 
-    var targetMessage: MediaMmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp, senderRecipient.id) as? MediaMmsMessageRecord
+    var targetMessage: MediaMmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp!!, senderRecipient.id) as? MediaMmsMessageRecord
     val targetThreadRecipient: Recipient? = if (targetMessage != null) SignalDatabase.threads.getRecipientForThreadId(targetMessage.threadId) else null
 
     if (targetMessage == null || targetThreadRecipient == null) {
-      warn(envelope.timestamp, "[handleEditMessage] Could not find matching message! timestamp: ${editMessage.targetSentTimestamp}  author: ${senderRecipient.id}")
+      warn(envelope.timestamp!!, "[handleEditMessage] Could not find matching message! timestamp: ${editMessage.targetSentTimestamp}  author: ${senderRecipient.id}")
 
       if (earlyMessageCacheEntry != null) {
-        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.id, editMessage.targetSentTimestamp, earlyMessageCacheEntry)
+        ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.id, editMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
         PushProcessEarlyMessagesJob.enqueue()
       }
 
       return
     }
 
-    val message = editMessage.dataMessage
+    val message = editMessage.dataMessage!!
     val isMediaMessage = message.isMediaMessage
-    val groupId: GroupId.V2? = message.groupV2.groupId
+    val groupId: GroupId.V2? = message.groupV2?.groupId
 
     val originalMessage = targetMessage.originalMessageId?.let { SignalDatabase.messages.getMessageRecord(it.id) } ?: targetMessage
-    val validTiming = MessageConstraintsUtil.isValidEditMessageReceive(originalMessage, senderRecipient, envelope.serverTimestamp)
+    val validTiming = MessageConstraintsUtil.isValidEditMessageReceive(originalMessage, senderRecipient, envelope.serverTimestamp!!)
     val validAuthor = senderRecipient.id == originalMessage.fromRecipient.id
     val validGroup = groupId == targetThreadRecipient.groupId.orNull()
     val validTarget = !originalMessage.isViewOnce && !originalMessage.hasAudio() && !originalMessage.hasSharedContact()
 
     if (!validTiming || !validAuthor || !validGroup || !validTarget) {
-      warn(envelope.timestamp, "[handleEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${originalMessage.serverTimestamp}, editAuthor: ${senderRecipient.id}, targetAuthor: ${originalMessage.fromRecipient.id}, editThread: ${threadRecipient.id}, targetThread: ${targetThreadRecipient.id}, validity: (timing: $validTiming, author: $validAuthor, group: $validGroup, target: $validTarget)")
+      warn(envelope.timestamp!!, "[handleEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${originalMessage.serverTimestamp}, editAuthor: ${senderRecipient.id}, targetAuthor: ${originalMessage.fromRecipient.id}, editThread: ${threadRecipient.id}, targetThread: ${targetThreadRecipient.id}, validity: (timing: $validTiming, author: $validAuthor, group: $validGroup, target: $validTarget)")
       return
     }
 
-    if (groupId != null && MessageContentProcessor.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, message.groupV2, senderRecipient) == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
-      warn(envelope.timestamp, "[handleEditMessage] Group processor indicated we should ignore this.")
+    if (groupId != null && MessageContentProcessor.handleGv2PreProcessing(context, envelope.timestamp!!, content, metadata, groupId, message.groupV2!!, senderRecipient) == MessageContentProcessor.Gv2PreProcessResult.IGNORE) {
+      warn(envelope.timestamp!!, "[handleEditMessage] Group processor indicated we should ignore this.")
       return
     }
 
     DataMessageProcessor.notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
-    targetMessage = targetMessage.withAttachments(context, SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
+    targetMessage = targetMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
 
     val insertResult: InsertResult? = if (isMediaMessage || targetMessage.quote != null || targetMessage.slideDeck.slides.isNotEmpty()) {
       handleEditMediaMessage(senderRecipient.id, groupId, envelope, metadata, message, targetMessage)
@@ -97,7 +97,7 @@ object EditMessageProcessor {
 
     if (insertResult != null) {
       SignalExecutors.BOUNDED.execute {
-        ApplicationDependencies.getJobManager().add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp, MessageId(insertResult.messageId)))
+        ApplicationDependencies.getJobManager().add(SendDeliveryReceiptJob(senderRecipient.id, message.timestamp!!, MessageId(insertResult.messageId)))
       }
 
       if (targetMessage.expireStarted > 0) {
@@ -122,9 +122,9 @@ object EditMessageProcessor {
     message: DataMessage,
     targetMessage: MediaMmsMessageRecord
   ): InsertResult? {
-    val messageRanges: BodyRangeList? = message.bodyRangesList.filter { it.hasStyle() }.toList().toBodyRangeList()
+    val messageRanges: BodyRangeList? = message.bodyRanges.filter { it.mentionAci == null }.toList().toBodyRangeList()
     val targetQuote = targetMessage.quote
-    val quote: QuoteModel? = if (targetQuote != null && message.hasQuote()) {
+    val quote: QuoteModel? = if (targetQuote != null && message.quote != null) {
       QuoteModel(
         targetQuote.id,
         targetQuote.author,
@@ -138,25 +138,25 @@ object EditMessageProcessor {
     } else {
       null
     }
-    val attachments = message.attachmentsList.toPointersWithinLimit()
+    val attachments = message.attachments.toPointersWithinLimit()
     attachments.filter {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }
     val mediaMessage = IncomingMediaMessage(
       from = senderRecipientId,
-      sentTimeMillis = message.timestamp,
-      serverTimeMillis = envelope.serverTimestamp,
+      sentTimeMillis = message.timestamp!!,
+      serverTimeMillis = envelope.serverTimestamp!!,
       receivedTimeMillis = targetMessage.dateReceived,
       expiresIn = targetMessage.expiresIn,
-      isViewOnce = message.isViewOnce,
+      isViewOnce = message.isViewOnce == true,
       isUnidentified = metadata.sealedSender,
       body = message.body,
       groupId = groupId,
       attachments = attachments,
       quote = quote,
       sharedContacts = emptyList(),
-      linkPreviews = DataMessageProcessor.getLinkPreviews(message.previewList, message.body ?: "", false),
-      mentions = DataMessageProcessor.getMentions(message.bodyRangesList),
+      linkPreviews = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false),
+      mentions = DataMessageProcessor.getMentions(message.bodyRanges),
       serverGuid = envelope.serverGuid,
       messageRanges = messageRanges,
       isPushMessage = true
@@ -185,8 +185,8 @@ object EditMessageProcessor {
     var textMessage = IncomingTextMessage(
       senderRecipientId,
       metadata.sourceDeviceId,
-      envelope.timestamp,
-      envelope.timestamp,
+      envelope.timestamp!!,
+      envelope.timestamp!!,
       targetMessage.dateReceived,
       message.body,
       Optional.ofNullable(groupId),

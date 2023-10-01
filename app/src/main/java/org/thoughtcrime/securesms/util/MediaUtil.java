@@ -90,7 +90,7 @@ public class MediaUtil {
     }
   }
 
-  public static @NonNull Slide getSlideForAttachment(Context context, Attachment attachment) {
+  public static @NonNull Slide getSlideForAttachment(Attachment attachment) {
     if (attachment.isSticker()) {
       return new StickerSlide(attachment);
     }
@@ -98,12 +98,12 @@ public class MediaUtil {
     switch (getSlideTypeFromContentType(attachment.getContentType())) {
       case GIF       : return new GifSlide(attachment);
       case IMAGE     : return new ImageSlide(attachment);
-      case VIDEO     : return new VideoSlide(context, attachment);
-      case AUDIO     : return new AudioSlide(context, attachment);
-      case MMS       : return new MmsSlide(context, attachment);
-      case LONG_TEXT : return new TextSlide(context, attachment);
-      case VIEW_ONCE : return new ViewOnceSlide(context, attachment);
-      case DOCUMENT  : return new DocumentSlide(context, attachment);
+      case VIDEO     : return new VideoSlide(attachment);
+      case AUDIO     : return new AudioSlide(attachment);
+      case MMS       : return new MmsSlide(attachment);
+      case LONG_TEXT : return new TextSlide(attachment);
+      case VIEW_ONCE : return new ViewOnceSlide(attachment);
+      case DOCUMENT  : return new DocumentSlide(attachment);
       default        : throw new AssertionError();
     }
   }
@@ -446,7 +446,7 @@ public class MediaUtil {
     {
       try {
         AttachmentId    attachmentId = PartAuthority.requireAttachmentId(uri);
-        MediaDataSource source       = SignalDatabase.attachments().mediaDataSourceFor(attachmentId);
+        MediaDataSource source       = SignalDatabase.attachments().mediaDataSourceFor(attachmentId, false);
         return extractFrame(source, timeUs);
       } catch (IOException e) {
         Log.w(TAG, "Failed to extract frame for URI: " + uri, e);

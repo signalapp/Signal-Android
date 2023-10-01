@@ -91,7 +91,7 @@ public class ThreadPhotoRailView extends FrameLayout {
     public void onBindItemViewHolder(ThreadPhotoViewHolder viewHolder, @NonNull Cursor cursor) {
       ThumbnailView          imageView   = viewHolder.imageView;
       MediaTable.MediaRecord mediaRecord = MediaTable.MediaRecord.from(cursor);
-      Slide                  slide       = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
+      Slide                  slide       = MediaUtil.getSlideForAttachment(mediaRecord.getAttachment());
 
       if (slide != null) {
         imageView.setImageResource(glideRequests, slide, false, false);

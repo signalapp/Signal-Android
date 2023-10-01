@@ -3,21 +3,18 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -30,12 +27,15 @@ import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
+import org.whispersystems.signalservice.internal.push.Content;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import okio.ByteString;
 
 /**
  * Resends a previously-sent message in response to receiving a retry receipt.
@@ -111,7 +111,7 @@ public class ResendMessageJob extends BaseJob {
     return new JsonJobData.Builder()
                    .putString(KEY_RECIPIENT_ID, recipientId.serialize())
                    .putLong(KEY_SENT_TIMESTAMP, sentTimestamp)
-                   .putBlobAsString(KEY_CONTENT, content.toByteArray())
+                   .putBlobAsString(KEY_CONTENT, content.encode())
                    .putInt(KEY_CONTENT_HINT, contentHint.getType())
                    .putBoolean(KEY_URGENT, urgent)
                    .putBlobAsString(KEY_GROUP_ID, groupId != null ? groupId.getDecodedId() : null)
@@ -169,9 +169,9 @@ public class ResendMessageJob extends BaseJob {
       }
 
       SenderKeyDistributionMessage senderKeyDistributionMessage = messageSender.getOrCreateNewGroupSession(distributionId);
-      ByteString                   distributionBytes            = ByteString.copyFrom(senderKeyDistributionMessage.serialize());
+      ByteString                   distributionBytes            = ByteString.of(senderKeyDistributionMessage.serialize());
 
-      contentToSend = contentToSend.toBuilder().setSenderKeyDistributionMessage(distributionBytes).build();
+      contentToSend = contentToSend.newBuilder().senderKeyDistributionMessage(distributionBytes).build();
     }
 
     SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
@@ -204,8 +204,8 @@ public class ResendMessageJob extends BaseJob {
 
       Content content;
       try {
-        content = Content.parseFrom(data.getStringAsBlob(KEY_CONTENT));
-      } catch (InvalidProtocolBufferException e) {
+        content = Content.ADAPTER.decode(data.getStringAsBlob(KEY_CONTENT));
+      } catch (IOException e) {
         throw new AssertionError(e);
       }
 

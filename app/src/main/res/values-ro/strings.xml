@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -219,11 +218,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">Nu, mulțumesc</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Elimină</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Elimini poza de profil?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Elimini poza de grup?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Actualizează Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Această versiune a aplicației nu mai este suportată. Pentru a continua să trimiți și să primești mesaje, actualizează la cea mai recentă versiune.</string>
@@ -256,9 +250,6 @@
     <string name="ContactsCursorLoader_groups">Grupuri</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">Membri grupului</string>
-    <string name="ContactsCursorLoader_phone_number_search">Căutare număr de telefon</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">Caută după nume de utilizator</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Poveștile Mele</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -297,7 +288,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Nu a fost trimis, atinge pentru detalii</string>
     <string name="ConversationItem_error_partially_not_delivered">Trimis parțial, atinge pentru detalii</string>
     <string name="ConversationItem_error_network_not_delivered">Trimitere eșuată</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, atinge pentru a-l procesa.</string>
     <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
     <string name="ConversationItem_send_paused">Trimiterea a fost întreruptă</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, atinge pentru varianta nesecurizată</string>
@@ -334,15 +324,11 @@
     <string name="ConversationActivity_add_attachment">Adaugă atașament</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Trimite editare</string>
-    <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
     <string name="ConversationActivity_compose_message">Compune mesaj</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ne pare rău, a apărut o eroare în setarea atașamentului tău.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatarul nu este o adresă validă de SMS sau email!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Mesajul este gol!</string>
     <string name="ConversationActivity_group_members">Membri grup</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">Atinge aici pentru a începe un apel de grup</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Nu s-au putut edita mesajele SMS</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Modificările pot fi aplicate numai în termen de %1$d oră de la momentul în care ați trimis acest mesaj.</item>
@@ -368,7 +354,6 @@
     <string name="ConversationActivity_transport_signal">Mesaj Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Te rugăm alege un contact</string>
-    <string name="ConversationActivity_unblock">Deblochează</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care-l trimiți.</string>
     <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu poți trimite mesaje acestui grup pentru că nu mai ești membru.</string>
@@ -392,8 +377,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal are nevoie de permisiunea pentru microfon pentru a înregistra videoclipuri.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nu poate trimite mesaje SMS/MMS pentru că nu este aplicația ta implicită de SMS. Vrei să schimbi asta în setările tale Android?</string>
-    <string name="ConversationActivity_yes">Da</string>
     <string name="ConversationActivity_no">Nu</string>
     <string name="ConversationActivity_search_position">%1$d din %2$d</string>
     <string name="ConversationActivity_no_results">Niciun rezultat</string>
@@ -416,16 +399,6 @@
 
     <string name="ConversationActivity_error_sending_media">Eroare la trimiterea conținutului media</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Raportat ca spam și blocat.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Mesajele prin SMS sunt momentan dezactivate. Poți să exporți mesajele către altă aplicație de pe telefonul tău.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Mesajele SMS nu mai sunt acceptate de Signal. Poți să exporți mesajele către altă aplicație de pe telefonul tău.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Exportă mesaje SMS</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">Mesajele SMS sunt momentan dezactivate. Invită pe %1$s pe Signal ca să continui conversația aici.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Mesajele SMS nu mai sunt acceptate pe Signal. Invită pe %1$s pe Signal ca să continui conversația aici.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -497,7 +470,7 @@
     <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Poți glisa la dreapta pe orice mesaj pentru a răspunde rapid</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Poți glisa la stânga pe orice mesaj pentru a răspunde rapid</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fișierele trimise de tip media vizibile o singură dată sunt eliminate automat după ce sunt trimise</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Media Vizualizare unică este ștearsă după trimitere</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ai văzut deja acest mesaj</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Poți adăuga notițe personale în această conversație. Dacă ai adăugat dispozitive asociate la contul tău, notițele noi vor fi sincronizate.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membri ai grupului au același nume.</string>
@@ -509,8 +482,6 @@
     <string name="ConversationFragment_not_now">Nu acum</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Numărul tău de siguranță pentru %1$s s-a schimbat</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Numărul tău de siguranță pentru %1$s s-a schimbat, probabil pentru că au reinstalat Signal sau au schimbat dispozitivele. Atinge Verificare pentru a confirma noul număr de siguranță. Acest lucru este opțional.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$s activ</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Blochez cererea?</string>
     <!-- Dialog message for block group link join requests -->
@@ -616,12 +587,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Selectează membrii</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Treci mai jos ca să filtrezi</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Eliberează ca să filtrezi</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Eroare la setarea pozei de profil</string>
@@ -719,8 +684,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Când trimiți un mesaj programat, asigură-te că dispozitivul tău va fi pornit și conectat la internet în momentul trimiterii. Dacă nu, mesajul tău se va trimite când se reconectează dispozitivul tău.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Ca să activezi programarea mesajelor:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Ca să re-activezi programarea mesajelor:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -937,8 +900,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Am observat că notificările sunt întârziate. Trimiți jurnalul de depanare?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">Jurnalele de depanare ne ajută să diagnosticăm și să remediam problema și nu conțin informații de identificare.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal a întâmpinat o problemă. Trimiți jurnalul de depanare?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Este posibil ca notificările să întârzie din cauza optimizării bateriei</string>
@@ -1180,8 +1145,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Atinge lung pentru mesaj vocal, eliberează și trimite</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Mesajele SMS nu mai sunt acceptat în Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Editează mesajul</string>
 
@@ -1216,9 +1179,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">Conexiune în fundal activată</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
@@ -1283,7 +1243,6 @@
     <string name="Megaphones_get_started">Începe</string>
     <string name="Megaphones_new_group">Grup nou</string>
     <string name="Megaphones_invite_friends">Invită prieteni</string>
-    <string name="Megaphones_use_sms">Utilizează SMS</string>
     <string name="Megaphones_chat_colors">Culoare conversație</string>
     <string name="Megaphones_add_a_profile_photo">Adaugă o poză de profil</string>
 
@@ -1295,11 +1254,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Se inițializează serviciul de apel Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apel Signal</string>
-    <string name="NotificationBarManager__decline_call">Respinge apelul</string>
-    <string name="NotificationBarManager__answer_call">Răspunde apelului</string>
-    <string name="NotificationBarManager__end_call">Închide apelul</string>
     <string name="NotificationBarManager__cancel_call">Anulează apelul</string>
-    <string name="NotificationBarManager__join_call">Alătură-te apelului</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">Activezi Notificările?</string>
@@ -1716,8 +1671,6 @@
         <item quantity="other">Mai ai %1$d de încercări rămase. Dacă rămâi fără încercări, poți crea un cod PIN nou. Poți înregistra și utiliza contul, dar vei pierde unele setări salvate, cum ar fi informațiile despre profil.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Schimbă tastaturile</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Creează-ți PIN-ul</string>
@@ -1795,7 +1748,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera ta</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Apel în curs…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupul este prea mare pentru a apela participanții.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Se reconectează…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1925,8 +1877,6 @@
     <string name="WebRtcCallView__toggle_camera">Schimbă camera</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Comută mute</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Comută sunetul</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Închide</string>
 
@@ -1988,7 +1938,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">La acest număr va fi trimis un cod de verificare. Se pot aplica tarife de operator.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Vei primi un apel pentru a verifica acest număr.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">Este numărul tău de telefon de mai sus corect?</string>
     <string name="RegistrationActivity_edit_number">Editează număr</string>
     <string name="RegistrationActivity_missing_google_play_services">Serviciile Google Play lipsesc</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Signal, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket, sau crezi că vezi asta în urma unei erori, te rugăm contactează support@signal.org pentru ajutor la depanare.</string>
@@ -2002,8 +1951,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Ai făcut prea multe încercări pentru înregistrarea acestui număr. Încearcă din nou în %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rugăm verifică conexiunea la rețea și încearcă din nou.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">S-a petrecut o eroare neașteptată.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nu ți-am putut trimite un cod de verificare prin SMS. Încearcă să primești codul prin apel vocal.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2023,8 +1970,6 @@
         <item quantity="other">Ești acum la %1$d pași de a trimite un jurnal de depanare.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm dacă ești om.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal nu a putut să trimită un cod SMS din cauza unui eșec extern.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">Apel vocal</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -2037,11 +1982,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introdu numărul tău de telefon pentru a putea începe.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introdu codul trimis la %1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asigură-te că telefonul tău are semnal celular pentru a putea primi SMS-ul sau apelul</string>
 
     <string name="RegistrationActivity_phone_number_description">Număr de telefon</string>
     <string name="RegistrationActivity_country_code_description">Prefixul țării</string>
-    <string name="RegistrationActivity_country_code_hint">Țară</string>
     <string name="RegistrationActivity_call">Apelează</string>
     <string name="RegistrationActivity_verification_code">Cod de Verificare</string>
     <string name="RegistrationActivity_resend_code">Trimite din nou codul</string>
@@ -2071,9 +2014,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Nu s-a găsit nici un rezultat pentru \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">Conversații</string>
-    <string name="SearchFragment_header_contacts">Contacte</string>
-    <string name="SearchFragment_header_messages">Mesaje</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2112,17 +2052,9 @@
     <string name="Slide_video">Video</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Primit mesajul conform căruia schimbul de chei este corupt!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune de protocol invalidă.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">A fost primit un mesaj cu noul număr de siguranță. Apasă pentru a fi procesat și afișat.</string>
     <string name="SmsMessageRecord_secure_session_reset">Ai resetat sesiunea securizată.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s a resetat sesiunea securizată.</string>
     <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Acest mesaj nu a putut fi procesat deoarece a fost trimis de pe o versiune mai nouă de Signal. Poți solicita contactului tău să trimită din nou acest mesaj după ce actualizezi.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">Eroare la procesarea mesajului primit.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Autocolante</string>
@@ -2276,7 +2208,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiază sau trimite un link pentru numele de utilizator</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rugăm actualizează-ți aplicația pentru a putea compara.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Codul QR scanat nu este un număr de siguranță cu un format corect. Te rugăm scanează din nou.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Distribuie numărul de siguranță prin…</string>
@@ -2310,12 +2241,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Notificări fără sunet</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">Import în curs</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Se importă mesajele text</string>
-    <string name="ApplicationMigrationService_import_complete">Import terminat</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">Importarea bazei de date de sistem este gata.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Atinge pentru a deschide.</string>
@@ -2362,7 +2287,6 @@
         <item quantity="few">%1$d conversații</item>
         <item quantity="other">%1$d de conversații</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversații</string>
     <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
     <string name="MessageNotifier_locked_message">Mesaj blocat</string>
     <string name="MessageNotifier_message_delivery_failed">Livrarea mesajului a eșuat.</string>
@@ -2381,7 +2305,6 @@
     <string name="MessageNotifier_view_once_video">Videoclip vizibil o singură dată</string>
     <string name="MessageNotifier_reply">Răspunde</string>
     <string name="MessageNotifier_signal_message">Mesaj Signal</string>
-    <string name="MessageNotifier_unsecured_sms">SMS nesecurizat</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
     <string name="MessageNotifier_reacted_s_to_s">A reacționat cu %1$s la: \"%2$s\".</string>
@@ -2397,6 +2320,18 @@
     <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Dezactivează notificările pentru contact alăturat la Signal? Le poți activa din nou în Signal &gt; Setări &gt; Notificări.</string>
+
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Activează notificările</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Pentru a primi notificări pentru mesaje noi:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Atinge „Setări” de mai jos</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Activează notificările</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Setări</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Mesaje</string>
@@ -2462,7 +2397,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">Dispozitivul nu mai este înregistrat</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Acest dispozitiv nu mai este înregistrat. Acest fapt este posibil pentru că ai înregistrat numărul tău de telefon la Signal de pe un dispozitiv diferit.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2582,8 +2516,6 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS nesecurizat</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS nesecurizat</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Programează mesajul</string>
-    <string name="conversation_activity__from_sim_name">De la %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Trimite</string>
     <string name="conversation_activity__compose_description">Compunere mesaj</string>
@@ -2592,7 +2524,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Comutare panou cu atașamente de la camera rapidă</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Înregistrează și trimite un atașament audio</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blochează înregistrarea atașamentului audio</string>
-    <string name="conversation_activity__enable_signal_for_sms">Activează Signal pentru SMS</string>
     <string name="conversation_activity__message_could_not_be_sent">Mesajul nu a putut fi trimis. Verifică-ți conexiunea și încearcă din nou.</string>
 
     <!-- conversation_input_panel -->
@@ -2657,16 +2588,6 @@
     <string name="QuoteView_no_longer_available">Nu mai este disponibilă</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">Donație pentru un prieten</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Permisiune Bluetooth refuzată</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Te rugăm să activezi permisiunea pentru \"Dispozitive din apropiere\" pentru a utiliza bluetooth ca să înregistrezi mesaje vocale.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Deschide setările</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Nu acum</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulează până jos</string>
@@ -2787,17 +2708,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nu s-a găsit nimic</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Dorești să imporți mesajele tale text existente în baza de date criptată Signal?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
-    <string name="database_migration_activity__skip">Omitere</string>
-    <string name="database_migration_activity__import">Importă</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">S-ar putea să dureze câteva momente. Te rugăm să ai răbdare, te vom notifica atunci când importul este gata.</string>
-    <string name="database_migration_activity__importing">SE IMPORTĂ</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">Vezi conversația completă</string>
     <string name="load_more_header__loading">Se încarcă</string>
 
     <!-- media_overview_activity -->
@@ -2870,7 +2781,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pentru a verifica securitatea criptării integrale între tine și %1$s, compară numerele de mai sus cu cele de pe dispozitivul acestora. Poți de asemenea scana codul de pe telefonul lor. <a href=\"https://signal.org/redirect/safety-numbers\">Află mai multe.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Pentru a verifica criptarea integrală a conversației tale cu %1$s, potrivește cardul de culoare de mai sus cu dispozitivul său și compară numerele. Dacă nu se potrivesc, glisează și încearcă cealaltă pereche de numere de siguranță. Doar o pereche trebuie să se potrivească.</string>
     <string name="verify_display_fragment__tap_to_scan">Atinge pentru a scana</string>
@@ -2890,9 +2800,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">Ai nevoie de ajutor?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">Am înțeles</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">Distribuie numărul de siguranță</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scanează codul QR de pe dispozitivul contactului tău.</string>
@@ -2934,7 +2841,6 @@
     <string name="AndroidManifest__linked_devices">Dispozitive asociate</string>
     <string name="AndroidManifest__invite_friends">Invită prieteni</string>
     <string name="AndroidManifest_archived_conversations">Conversații arhivate</string>
-    <string name="AndroidManifest_remove_photo">Elimină poza</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">Ai citit deja FAQ-ul nostru?</string>
@@ -2958,7 +2864,7 @@
     <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Te rugăm să fii cât mai descriptiv pentru a ne ajuta să înțelegem problema.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Selectează o opțiune \\-\\-</item>
+        <item>Selectează o opțiune</item>
         <item>Ceva nu funcționează</item>
         <item>Cerere privind funcția</item>
         <item>Întrebare</item>
@@ -2972,6 +2878,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Trimiterea jurnalului de depanare Signal Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Notificări lente</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Crash (erori)</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Trimite</string>
     <!-- Action to decline to submit logs -->
@@ -3098,7 +3006,6 @@
     <string name="preferences__payments">Plăți</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Deblocare în caz de plată</string>
-    <string name="preferences__payments_beta">Plăți (Beta)</string>
     <string name="preferences__conversation_length_limit">Limita de mărime a conversației</string>
     <string name="preferences__keep_messages">Păstrare mesaje</string>
     <string name="preferences__clear_message_history">Șterge istoricul mesajelor</string>
@@ -3126,8 +3033,6 @@
     <string name="preferences__app_icon_notification_warning">Notificările vor afișa întotdeauna pictograma și numele standard Signal.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Află mai multe</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Pictogramă pentru %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Ilustrație grafică unde pictograma de rezervă aplicației va fi vizibilă.</string>
     <string name="preferences__disable_pin">Dezactivare PIN</string>
@@ -3185,7 +3090,6 @@
     <string name="preferences_advanced__use_system_emoji">Folosește emoji de sistem</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționează toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contactul tău. Activarea va reduce calitatea apelului.</string>
     <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
-    <string name="preferences_app_protection__who_can">Cine poate…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Plăți</string>
     <string name="preferences_chats__chats">Conversații</string>
@@ -3218,8 +3122,6 @@
     <string name="preferences_communication__category_sealed_sender">Expeditor Ascuns</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Permite oricui</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesaje primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">Află mai multe</string>
-    <string name="preferences_setup_a_username">Configurează un nume de utilizator</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Utilizează proxy</string>
     <string name="preferences_off">Dezactivate</string>
@@ -3258,7 +3160,8 @@
     <string name="PaymentsAllActivityFragment__sent">Trimis</string>
     <string name="PaymentsAllActivityFragment__received">Primit</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Îți prezentăm plăți (Beta)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Îți prezentăm plăți</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Folosește Signal și trimite și primește MobileCoin, o nouă monedă digitală axată pe confidențialitate. Activează pentru a începe.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activare Plăți</string>
     <string name="PaymentsHomeFragment__activating_payments">Se activează plățile…</string>
@@ -3292,8 +3195,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Plățile au fost dezactivate.</string>
     <string name="PaymentsHomeFragment__payment_failed">Plata a eșuat</string>
     <string name="PaymentsHomeFragment__details">Detalii</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Poți utiliza Signal pentru a trimite si primi MobileCoin. Toate plățile sunt supuse Termenilor de Utilizare ai monedei virtuale și portofelului MobileCoin. Aceasta este o caracteristică beta, prin urmare poți întâmpina probleme, iar plățile sau soldul pierdut nu pot fi recuperate. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Poți folosi Signal pentru a trimite și a primi MobileCoin. Toate plățile sunt supuse Termenilor de utilizare pentru MobileCoins și MobileCoin Wallet. Este posibil să întâmpini probleme, iar soldul sau plățile pierdute nu pot fi recuperate. </string>
     <string name="PaymentsHomeFragment__activate">Activare</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vezi termenii MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Plățile în Signal nu mai sunt disponibile. Poți transfera în continuare fonduri către un exchange, dar nu mai poți trimite sau primi plăți ori adăuga fonduri.</string>
@@ -3315,6 +3219,32 @@
     <string name="PaymentsHomeFragment__cancel">Anulează</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Actualizează acum</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Nu acum</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Următorul</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Activare permisiuni</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Pentru a te ajuta să trimiți mesaje persoanelor pe care le cunoști, Signal va solicita aceste permisiuni. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Notificări</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Primește notificări când sosesc mesaje noi.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Contacte</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Găsește oameni pe care îi cunoști. Contactele tale sunt criptate și nu sunt vizibile pentru serviciul Signal.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Apeluri telefonice</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Fă înregistrarea mai ușoară și activează funcții suplimentare de apelare.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Spațiu de stocare</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Trimite fotografii, videoclipuri și fișiere de pe dispozitivul tău.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3548,7 +3478,6 @@
     <string name="conversation__menu_format_text">Formatează text</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">Extinde popup-ul</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Adaugă la contacte</string>
@@ -3587,8 +3516,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">Importă SMS de sistem</string>
-    <string name="reminder_header_sms_import_text">Apasă pentru a copia mesajele SMS din telefon în baza de date criptată Signal.</string>
     <string name="reminder_header_push_title">Activează mesaje și apeluri Signal</string>
     <string name="reminder_header_push_text">Actualizează-ți experiența ta de comunicare.</string>
     <string name="reminder_header_service_outage_text">Signal întâmpină dificultăți tehnice. Muncim din greu pentru a restabili serviciul cât mai repede posibil.</string>
@@ -3746,17 +3673,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Apel Signal de grup în desfășurare</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
     <string name="ConversationListFragment_loading">Se încarcă…</string>
     <string name="CallNotificationBuilder_connecting">Se conectează…</string>
     <string name="Permissions_permission_required">E nevoie de permisiune</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal are nevoie de permisiunea SMS pentru a putea trimite SMS dar i-a fost refuzat accesul permanent. Te rugăm să navighezi în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"SMS\".</string>
     <string name="Permissions_continue">Continuă</string>
     <string name="Permissions_not_now">Nu acum</string>
-    <string name="conversation_activity__enable_signal_messages">ACTIVEAZĂ MESAJELE SIGNAL</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Signal</string>
-    <string name="PushDecryptJob_new_locked_message">Mesaj nou blocat</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblochează pentru a vedea mesajele în curs</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie să ai această parolă pentru a putea restaura un backup.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Trebuie să ai parola pentru a restabili un backup.</string>
@@ -3817,8 +3739,6 @@
     <string name="RegistrationActivity_incorrect_code">Cod incorect</string>
     <string name="BackupUtil_never">Niciodată</string>
     <string name="BackupUtil_unknown">Necunoscut</string>
-    <string name="preferences_app_protection__see_my_phone_number">Să-mi vadă numărul de telefon</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">Să mă găsească după numărul de telefon</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Număr de telefon</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3832,10 +3752,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Numărul tău de telefon va fi vizibil pentru persoanele și grupurile către care trimiți mesaje. Persoanele care au numărul tău de telefon în lista lor de contacte îl vor vedea și pe Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Toată lumea</string>
-    <string name="PhoneNumberPrivacy_my_contacts">Contactele mele</string>
     <string name="PhoneNumberPrivacy_nobody">Nimeni</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">Numărul tău de telefon va fi vizibil pentru toate persoanele și grupurile cărora le trimiți mesaje.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">Oricine are numărul tău de telefon în contactele lor te va vedea ca un contact pe Signal. Alții te vor putea găsi prin căutare.</string>
     <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blochează accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
@@ -4254,7 +4171,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Ai sold! E timpul să salvezi fraza de recuperare—o cheie de 24 de cuvinte pe care le poți folosi ca să restaurezi echilibrul.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">E timpul să salvezi fraza de recuperare—o cheie de 24 de cuvinte pe care le poți folosi ca să restaurezi echilibrul. Află mai multe</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">E timpul să salvezi fraza de recuperare—o cheie de 24 de cuvinte pe care le poți folosi ca să restaurezi echilibrul.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Fraza de recuperare este formată din %1$d de cuvinte și este unică pentru tine. Utilizează această frază pentru a-ți recupera soldul.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Introdu manual</string>
@@ -4306,11 +4223,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">Cuvântul %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">Următorul</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Cuvânt invalid</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">Vizualizare</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s ți-a trimis %2$s</string>
@@ -4782,7 +4694,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Distribuie</string>
@@ -4939,7 +4850,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">Donează pentru un Prieten</string>
 
     <string name="Boost__enter_custom_amount">Introdu o Sumă Specifică</string>
-    <string name="Boost__one_time_contribution">Contribuție unică</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Suma minimă pe care o poți dona este %1$s</string>
 
@@ -5229,6 +5139,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Nu s-a putut deschide selectorul.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Pentru a activa notificările, Signal are nevoie de permisiunea ta pentru a le afișa.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Activare</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Informații despre versiune &amp; știri Signal</string>
@@ -5386,8 +5300,6 @@
     <string name="StoryViewsAndRepliesDialogFragment__replies">Răspunsuri</string>
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">Reacționează la această poveste</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">Răspuns privat către %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">Răspunde către %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -5642,8 +5554,6 @@
     <string name="ViewReceivedGiftSheet__not_now">Nu acum</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Răscumpărarea insignei…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Îți poți revendica insigna mai târziu.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Ai făcut o donație către Signal în numele %1$s. Persoana aleasă de tine va primi opțiunea să afișeze sprijinul la profil.</string>
     <!-- Expired gift sheet title -->
@@ -5958,23 +5868,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal nu va mai accepta SMS-uri</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal nu mai acceptă SMS-uri</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal va elimina în curând posibilitatea de a trimite mesaje SMS deoarece mesajele Signal oferă criptare integrală și o confidențialitate puternică pe care mesajele SMS nu o au. Asta ne va permite și să îmbunătățim experiența de trimitere de mesaje.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal eliminat suportul pentru trimiterea mesajelor SMS deoarece mesajele Signal oferă criptare integrală și o confidențialitate puternică pe care mesajele SMS nu o au. Asta ne va permite și să îmbunătățim experiența de trimitere de mesaje.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Exportă SMS-urile</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Amintește-mi mai târziu</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Află mai multe</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">Suportul pentru SMS-uri dispare</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Nu-ți face griji, mesajele criptate Signal vor continua să funcționeze.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Continuă</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Exportul a fost finalizat</string>
     <!-- Button to continue to next screen -->
@@ -6191,10 +6088,6 @@
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Apel video</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Alătură-te apelului</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Întoarcere la apel</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Apel vocal</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6252,12 +6145,12 @@
         <item quantity="few">%1$d apeluri șterse</item>
         <item quantity="other">%1$d de apeluri șterse</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Anulează</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">Fără apeluri.</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">Începe prin a suna un prieten.</string>
+    <!-- Displayed as a message in a dialog when deleting multiple items -->
+    <string name="CallLogFragment__call_links_youve_created">Linkurile de apel pe care le-ai creat nu vor mai funcționa pentru persoanele care le au.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -6319,8 +6212,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Apel Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Alătură-te</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Adaugă numele apelului</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Editează numele apelului</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Aprobă toți membri</string>
     <!-- Row label to share the link via Signal -->
@@ -6335,6 +6230,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nu se poate trimite linkul de apel.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">S-a copiat în clipboard</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Aprobă intrarea</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Respinge intrarea</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6355,9 +6256,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Istoricul mesajelor</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Doar Signal beta</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Editează mesajul</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Editarea mesajelor este disponibilă numai pentru utilizatorii Signal beta. Dacă editezi un mesaj, acesta va fi vizibil numai pentru persoanele care au cea mai recentă versiune de Signal beta.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Dacă editezi un mesaj, acesta va fi vizibil numai pentru persoanele care au cea mai recentă versiune de Signal beta. Ele vor putea să vadă că ai editat un mesaj.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Anulează</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6392,6 +6293,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">Numele de utilizator a fost copiat</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Link copiat</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Linkul nu este setat</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Se resetează linkul…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Resetezi codul QR?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Dacă resetezi codul QR, codul QR existent și linkul nu vor mai funcționa.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Resetare</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Resetare</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6408,8 +6319,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">Codul QR a fost invalid.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Un utilizator cu numele de utilizator %1$s nu a putut fi găsit.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Acest utilizator nu a putut fi găsit.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Am experimentat o eroare de rețea. Te rugăm încearcă din nou.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Nu ai acces la rețea. Linkul tău nu a fost resetat. Încearcă mai târziu.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">A apărut o eroare de rețea la încercarea de a-ți reseta linkul. Încearcă mai târziu.</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6432,7 +6349,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">Respinge</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Aprobă</string>
 
     <!-- EOF -->

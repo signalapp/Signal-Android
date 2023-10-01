@@ -45,6 +45,14 @@ android {
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
   }
+
+  buildFeatures {
+    compose = true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion = "1.4.4"
+  }
 }
 
 dependencies {
@@ -65,6 +73,9 @@ dependencies {
   implementation(libs.material.material)
   implementation(libs.androidx.constraintlayout)
   implementation(libs.kotlin.stdlib.jdk8)
+  implementation(libs.androidx.activity.compose)
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.androidx.compose.material3)
 
   ktlintRuleset(libs.ktlint.twitter.compose)
 

@@ -293,22 +293,22 @@ class GroupTableTest {
 
   private fun insertPushGroup(
     members: List<DecryptedMember> = listOf(
-      DecryptedMember.newBuilder()
-        .setAciBytes(harness.self.requireAci().toByteString())
-        .setJoinedAtRevision(0)
-        .setRole(Member.Role.DEFAULT)
+      DecryptedMember.Builder()
+        .aciBytes(harness.self.requireAci().toByteString())
+        .joinedAtRevision(0)
+        .role(Member.Role.DEFAULT)
         .build(),
-      DecryptedMember.newBuilder()
-        .setAciBytes(Recipient.resolved(harness.others[0]).requireAci().toByteString())
-        .setJoinedAtRevision(0)
-        .setRole(Member.Role.DEFAULT)
+      DecryptedMember.Builder()
+        .aciBytes(Recipient.resolved(harness.others[0]).requireAci().toByteString())
+        .joinedAtRevision(0)
+        .role(Member.Role.DEFAULT)
         .build()
     )
   ): GroupId {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
-    val decryptedGroupState = DecryptedGroup.newBuilder()
-      .addAllMembers(members)
-      .setRevision(0)
+    val decryptedGroupState = DecryptedGroup.Builder()
+      .members(members)
+      .revision(0)
       .build()
 
     return groupTable.create(groupMasterKey, decryptedGroupState)!!
@@ -317,23 +317,23 @@ class GroupTableTest {
   private fun insertPushGroupWithSelfAndOthers(others: List<RecipientId>): GroupId {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
 
-    val selfMember: DecryptedMember = DecryptedMember.newBuilder()
-      .setAciBytes(harness.self.requireAci().toByteString())
-      .setJoinedAtRevision(0)
-      .setRole(Member.Role.DEFAULT)
+    val selfMember: DecryptedMember = DecryptedMember.Builder()
+      .aciBytes(harness.self.requireAci().toByteString())
+      .joinedAtRevision(0)
+      .role(Member.Role.DEFAULT)
       .build()
 
     val otherMembers: List<DecryptedMember> = others.map { id ->
-      DecryptedMember.newBuilder()
-        .setAciBytes(Recipient.resolved(id).requireAci().toByteString())
-        .setJoinedAtRevision(0)
-        .setRole(Member.Role.DEFAULT)
+      DecryptedMember.Builder()
+        .aciBytes(Recipient.resolved(id).requireAci().toByteString())
+        .joinedAtRevision(0)
+        .role(Member.Role.DEFAULT)
         .build()
     }
 
-    val decryptedGroupState = DecryptedGroup.newBuilder()
-      .addAllMembers(listOf(selfMember) + otherMembers)
-      .setRevision(0)
+    val decryptedGroupState = DecryptedGroup.Builder()
+      .members(listOf(selfMember) + otherMembers)
+      .revision(0)
       .build()
 
     return groupTable.create(groupMasterKey, decryptedGroupState)!!

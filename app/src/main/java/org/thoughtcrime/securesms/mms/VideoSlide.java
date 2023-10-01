@@ -45,7 +45,7 @@ public class VideoSlide extends Slide {
     super(constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, width, height, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 
-  public VideoSlide(Context context, Attachment attachment) {
+  public VideoSlide(Attachment attachment) {
     super(attachment);
   }
 

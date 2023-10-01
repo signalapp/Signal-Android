@@ -17,7 +17,6 @@ import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaItem.LocalConfiguration
-import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.common.Timeline
@@ -36,12 +35,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.hasAudio
-import java.util.Objects
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-import java.util.stream.Collectors
 import kotlin.math.max
 
 /**
@@ -146,7 +142,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
     ) { mediaItems: List<MediaItem> ->
       player.clearMediaItems()
       if (mediaItems.isNotEmpty() && latestUri == uri) {
-        applyDescriptionsToQueue(mediaItems)
+        addItemsToPlaylist(mediaItems)
         val window = max(0, indexOfPlayerMediaItemByUri(uri))
         player.addListener(object : Player.Listener {
           override fun onTimelineChanged(timeline: Timeline, reason: Int) {
@@ -206,40 +202,14 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
   }
 
   @MainThread
-  private fun applyDescriptionsToQueue(mediaItems: List<MediaItem>) {
-    for (mediaItem in mediaItems) {
-      val playbackProperties = mediaItem.localConfiguration ?: continue
-      val holderIndex = indexOfPlayerMediaItemByUri(playbackProperties.uri)
-      val next = VoiceNoteMediaItemFactory.buildNextVoiceNoteMediaItem(mediaItem)
-      val currentIndex: Int = player.currentMediaItemIndex
-      if (holderIndex != -1) {
-        if (currentIndex != holderIndex) {
-          player.removeMediaItem(holderIndex)
-          player.addMediaItem(holderIndex, mediaItem)
-        }
-        if (currentIndex != holderIndex + 1) {
-          if (player.mediaItemCount > 1) {
-            player.removeMediaItem(holderIndex + 1)
-          }
-          player.addMediaItem(holderIndex + 1, next)
-        }
-      } else {
-        val insertLocation = indexAfter(mediaItem)
-        player.addMediaItem(insertLocation, next)
-        player.addMediaItem(insertLocation, mediaItem)
-      }
-    }
-    val itemsCount: Int = player.mediaItemCount
-    if (itemsCount > 0) {
-      val lastIndex = itemsCount - 1
-      val last: MediaItem = player.getMediaItemAt(lastIndex)
-      if (last.localConfiguration?.uri == VoiceNoteMediaItemFactory.NEXT_URI) {
-        player.removeMediaItem(lastIndex)
-        if (player.mediaItemCount > 1) {
-          val end = VoiceNoteMediaItemFactory.buildEndVoiceNoteMediaItem(last)
-          player.addMediaItem(lastIndex, end)
-        }
-      }
+  private fun addItemsToPlaylist(mediaItems: List<MediaItem>) {
+    var mediaItemsWithNextTone = mediaItems.flatMap { listOf(it, VoiceNoteMediaItemFactory.buildNextVoiceNoteMediaItem(it)) }.toMutableList()
+    mediaItemsWithNextTone = mediaItemsWithNextTone.subList(0, mediaItemsWithNextTone.size - 1).toMutableList()
+    if (player.mediaItemCount == 0) {
+      mediaItemsWithNextTone += VoiceNoteMediaItemFactory.buildEndVoiceNoteMediaItem(mediaItemsWithNextTone.last())
+      player.addMediaItems(mediaItemsWithNextTone)
+    } else {
+      player.addMediaItems(player.mediaItemCount, mediaItemsWithNextTone)
     }
   }
 
@@ -253,48 +223,20 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
     return -1
   }
 
-  private fun indexAfter(target: MediaItem): Int {
-    val size: Int = player.mediaItemCount
-    val targetMessageId = target.mediaMetadata.extras?.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID) ?: 0L
-    for (i in 0 until size) {
-      val mediaMetadata: MediaMetadata = player.getMediaItemAt(i).mediaMetadata
-      val messageId = mediaMetadata.extras!!.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID)
-      if (messageId > targetMessageId) {
-        return i
-      }
-    }
-    return size
-  }
-
   fun loadMoreVoiceNotes() {
     if (!canLoadMore) {
       return
     }
     val currentMediaItem: MediaItem = player.currentMediaItem ?: return
     val messageId = currentMediaItem.mediaMetadata.extras!!.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID)
+    val currentPlaylist = List(player.mediaItemCount) { index -> player.getMediaItemAt(index) }.mapNotNull { it.requestMetadata.mediaUri }
     SimpleTask.run(
       EXECUTOR,
-      { loadMediaItemsForConsecutivePlayback(messageId) }
+      { loadMediaItemsForConsecutivePlayback(messageId).filterNot { it.requestMetadata.mediaUri in currentPlaylist } }
     ) { mediaItems: List<MediaItem> ->
-      if (Util.hasItems(mediaItems) && canLoadMore) {
-        applyDescriptionsToQueue(mediaItems)
+      if (mediaItems.isNotEmpty() && canLoadMore) {
+        addItemsToPlaylist(mediaItems)
       }
-    }
-  }
-
-  private fun loadMediaItemsForSinglePlayback(messageId: Long): List<MediaItem> {
-    return try {
-      val messageRecord = messages
-        .getMessageRecord(messageId)
-      if (!messageRecord.hasAudio()) {
-        Log.w(TAG, "Message does not contain audio.")
-        return emptyList<MediaItem>()
-      }
-      val mediaItem = VoiceNoteMediaItemFactory.buildMediaItem(context, messageRecord)
-      mediaItem?.let { listOf(it) } ?: emptyList()
-    } catch (e: NoSuchMessageException) {
-      Log.w(TAG, "Could not find message.", e)
-      emptyList()
     }
   }
 
@@ -302,20 +244,26 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
     return listOf<MediaItem>(VoiceNoteMediaItemFactory.buildMediaItem(context, threadId, draftUri))
   }
 
-  @WorkerThread
-  private fun loadMediaItemsForConsecutivePlayback(messageId: Long): List<MediaItem> {
+  private fun loadMediaItemsForSinglePlayback(messageId: Long): List<MediaItem> {
     return try {
-      val recordsAfter = messages.getMessagesAfterVoiceNoteInclusive(messageId, LIMIT)
-      recordsAfter.filter { it.hasAudio() }.stream()
-        .map<MediaItem?> { record: MessageRecord? ->
-          VoiceNoteMediaItemFactory
-            .buildMediaItem(context, record!!)
-        }
-        .filter { obj: MediaItem? -> Objects.nonNull(obj) }
-        .collect(Collectors.toList())
+      listOf(messages.getMessageRecord(messageId)).messageRecordsToVoiceNoteMediaItems()
     } catch (e: NoSuchMessageException) {
       Log.w(TAG, "Could not find message.", e)
       emptyList()
     }
+  }
+
+  @WorkerThread
+  private fun loadMediaItemsForConsecutivePlayback(messageId: Long): List<MediaItem> {
+    return try {
+      messages.getMessagesAfterVoiceNoteInclusive(messageId, LIMIT).messageRecordsToVoiceNoteMediaItems()
+    } catch (e: NoSuchMessageException) {
+      Log.w(TAG, "Could not find message.", e)
+      emptyList()
+    }
+  }
+
+  private fun List<MessageRecord>.messageRecordsToVoiceNoteMediaItems(): List<MediaItem> {
+    return this.filter { it.hasAudio() }.mapNotNull { VoiceNoteMediaItemFactory.buildMediaItem(context, it) }
   }
 }

@@ -21,8 +21,8 @@ import org.whispersystems.signalservice.api.crypto.protos.CompleteMessage
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.Envelope
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata as EnvelopeMetadataProto
@@ -39,8 +39,8 @@ class PushProcessMessageJob private constructor(
 
   override fun serialize(): ByteArray {
     return CompleteMessage(
-      envelope = envelope.toByteArray().toByteString(),
-      content = content.toByteArray().toByteString(),
+      envelope = envelope.encodeByteString(),
+      content = content.encodeByteString(),
       metadata = EnvelopeMetadataProto(
         sourceServiceId = ByteString.of(*metadata.sourceServiceId.toByteArray()),
         sourceE164 = metadata.sourceE164,
@@ -76,8 +76,8 @@ class PushProcessMessageJob private constructor(
         val completeMessage = CompleteMessage.ADAPTER.decode(data!!)
         PushProcessMessageJob(
           parameters = parameters,
-          envelope = Envelope.parseFrom(completeMessage.envelope.toByteArray()),
-          content = Content.parseFrom(completeMessage.content.toByteArray()),
+          envelope = Envelope.ADAPTER.decode(completeMessage.envelope.toByteArray()),
+          content = Content.ADAPTER.decode(completeMessage.content.toByteArray()),
           metadata = EnvelopeMetadata(
             sourceServiceId = ServiceId.parseOrThrow(completeMessage.metadata.sourceServiceId.toByteArray()),
             sourceE164 = completeMessage.metadata.sourceE164,
@@ -114,27 +114,24 @@ class PushProcessMessageJob private constructor(
     }
 
     fun processOrDefer(messageProcessor: MessageContentProcessor, result: MessageDecryptor.Result.Success, localReceiveMetric: SignalLocalMetrics.MessageReceive): PushProcessMessageJob? {
-      val queueName: String
-
       val groupContext = GroupUtil.getGroupContextIfPresent(result.content)
       val groupId = groupContext?.groupId
       var requireNetwork = false
 
-      if (groupId != null) {
-        queueName = getQueueName(RecipientId.from(groupId))
-
+      val queueName: String = if (groupId != null) {
         if (groupId.isV2) {
           val localRevision = groups.getGroupV2Revision(groupId.requireV2())
 
-          if (groupContext.revision > localRevision || GroupsV1MigratedCache.hasV1Group(groupId)) {
+          if (groupContext.revision!! > localRevision || GroupsV1MigratedCache.hasV1Group(groupId)) {
             Log.i(TAG, "Adding network constraint to group-related job.")
             requireNetwork = true
           }
         }
-      } else if (result.content.hasSyncMessage() && result.content.syncMessage.hasSent() && result.content.syncMessage.sent.hasDestinationServiceId()) {
-        queueName = getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage.sent.destinationServiceId)))
+        getQueueName(RecipientId.from(groupId))
+      } else if (result.content.syncMessage != null && result.content.syncMessage!!.sent != null && result.content.syncMessage!!.sent!!.destinationServiceId != null) {
+        getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId!!)))
       } else {
-        queueName = getQueueName(RecipientId.from(result.metadata.sourceServiceId))
+        getQueueName(RecipientId.from(result.metadata.sourceServiceId))
       }
 
       return if (requireNetwork || !isQueueEmpty(queueName = queueName, isGroup = groupId != null)) {
@@ -145,12 +142,12 @@ class PushProcessMessageJob private constructor(
         if (requireNetwork) {
           builder.addConstraint(NetworkConstraint.KEY).setLifespan(TimeUnit.DAYS.toMillis(30))
         }
-        PushProcessMessageJob(builder.build(), result.envelope.toBuilder().clearContent().build(), result.content, result.metadata, result.serverDeliveredTimestamp)
+        PushProcessMessageJob(builder.build(), result.envelope.newBuilder().content(null).build(), result.content, result.metadata, result.serverDeliveredTimestamp)
       } else {
         try {
           messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp, localMetric = localReceiveMetric)
         } catch (e: Exception) {
-          Log.e(TAG, "Failed to process message with timestamp ${result.envelope.timestamp}. Dropping.")
+          Log.e(TAG, "Failed to process message with timestamp ${result.envelope.timestamp}. Dropping.", e)
         }
         null
       }

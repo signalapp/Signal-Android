@@ -1,8 +1,5 @@
 package org.whispersystems.signalservice.api.storage;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -12,14 +9,18 @@ import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
+
+import okio.ByteString;
 
 public final class SignalAccountRecord implements SignalRecord {
 
@@ -43,16 +44,16 @@ public final class SignalAccountRecord implements SignalRecord {
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
-    this.givenName            = OptionalUtil.absentIfEmpty(proto.getGivenName());
-    this.familyName           = OptionalUtil.absentIfEmpty(proto.getFamilyName());
-    this.profileKey           = OptionalUtil.absentIfEmpty(proto.getProfileKey());
-    this.avatarUrlPath        = OptionalUtil.absentIfEmpty(proto.getAvatarUrlPath());
-    this.pinnedConversations  = new ArrayList<>(proto.getPinnedConversationsCount());
-    this.payments             = new Payments(proto.getPayments().getEnabled(), OptionalUtil.absentIfEmpty(proto.getPayments().getEntropy()));
-    this.defaultReactions     = new ArrayList<>(proto.getPreferredReactionEmojiList());
-    this.subscriber           = new Subscriber(proto.getSubscriberCurrencyCode(), proto.getSubscriberId().toByteArray());
+    this.givenName            = OptionalUtil.absentIfEmpty(proto.givenName);
+    this.familyName           = OptionalUtil.absentIfEmpty(proto.familyName);
+    this.profileKey           = OptionalUtil.absentIfEmpty(proto.profileKey);
+    this.avatarUrlPath        = OptionalUtil.absentIfEmpty(proto.avatarUrlPath);
+    this.pinnedConversations  = new ArrayList<>(proto.pinnedConversations.size());
+    this.payments             = new Payments(proto.payments.enabled, OptionalUtil.absentIfEmpty(proto.payments.entropy));
+    this.defaultReactions     = new ArrayList<>(proto.preferredReactionEmoji);
+    this.subscriber           = new Subscriber(proto.subscriberCurrencyCode, proto.subscriberId.toByteArray());
 
-    for (AccountRecord.PinnedConversation conversation : proto.getPinnedConversationsList()) {
+    for (AccountRecord.PinnedConversation conversation : proto.pinnedConversations) {
       pinnedConversations.add(PinnedConversation.fromRemote(conversation));
     }
   }
@@ -212,7 +213,7 @@ public final class SignalAccountRecord implements SignalRecord {
   }
 
   public byte[] serializeUnknownFields() {
-    return hasUnknownFields ? proto.toByteArray() : null;
+    return hasUnknownFields ? proto.encode() : null;
   }
 
   public Optional<String> getGivenName() {
@@ -232,35 +233,35 @@ public final class SignalAccountRecord implements SignalRecord {
   }
 
   public boolean isNoteToSelfArchived() {
-    return proto.getNoteToSelfArchived();
+    return proto.noteToSelfArchived;
   }
 
   public boolean isNoteToSelfForcedUnread() {
-    return proto.getNoteToSelfMarkedUnread();
+    return proto.noteToSelfMarkedUnread;
   }
 
   public boolean isReadReceiptsEnabled() {
-    return proto.getReadReceipts();
+    return proto.readReceipts;
   }
 
   public boolean isTypingIndicatorsEnabled() {
-    return proto.getTypingIndicators();
+    return proto.typingIndicators;
   }
 
   public boolean isSealedSenderIndicatorsEnabled() {
-    return proto.getSealedSenderIndicators();
+    return proto.sealedSenderIndicators;
   }
 
   public boolean isLinkPreviewsEnabled() {
-    return proto.getLinkPreviews();
+    return proto.linkPreviews;
   }
 
   public AccountRecord.PhoneNumberSharingMode getPhoneNumberSharingMode() {
-    return proto.getPhoneNumberSharingMode();
+    return proto.phoneNumberSharingMode;
   }
 
   public boolean isPhoneNumberUnlisted() {
-    return proto.getUnlistedPhoneNumber();
+    return proto.unlistedPhoneNumber;
   }
 
   public List<PinnedConversation> getPinnedConversations() {
@@ -268,7 +269,7 @@ public final class SignalAccountRecord implements SignalRecord {
   }
 
   public boolean isPreferContactAvatars() {
-    return proto.getPreferContactAvatars();
+    return proto.preferContactAvatars;
   }
 
   public Payments getPayments() {
@@ -276,15 +277,15 @@ public final class SignalAccountRecord implements SignalRecord {
   }
 
   public int getUniversalExpireTimer() {
-    return proto.getUniversalExpireTimer();
+    return proto.universalExpireTimer;
   }
 
   public boolean isPrimarySendsSms() {
-    return proto.getPrimarySendsSms();
+    return proto.primarySendsSms;
   }
 
   public String getE164() {
-    return proto.getE164();
+    return proto.e164;
   }
 
   public List<String> getDefaultReactions() {
@@ -296,43 +297,47 @@ public final class SignalAccountRecord implements SignalRecord {
   }
 
   public boolean isDisplayBadgesOnProfile() {
-    return proto.getDisplayBadgesOnProfile();
+    return proto.displayBadgesOnProfile;
   }
 
   public boolean isSubscriptionManuallyCancelled() {
-    return proto.getSubscriptionManuallyCancelled();
+    return proto.subscriptionManuallyCancelled;
   }
 
   public boolean isKeepMutedChatsArchived() {
-    return proto.getKeepMutedChatsArchived();
+    return proto.keepMutedChatsArchived;
   }
 
   public boolean hasSetMyStoriesPrivacy() {
-    return proto.getHasSetMyStoriesPrivacy();
+    return proto.hasSetMyStoriesPrivacy;
   }
 
   public boolean hasViewedOnboardingStory() {
-    return proto.getHasViewedOnboardingStory();
+    return proto.hasViewedOnboardingStory;
   }
 
   public boolean isStoriesDisabled() {
-    return proto.getStoriesDisabled();
+    return proto.storiesDisabled;
   }
 
   public OptionalBool getStoryViewReceiptsState() {
-    return proto.getStoryViewReceiptsEnabled();
+    return proto.storyViewReceiptsEnabled;
   }
 
   public boolean hasReadOnboardingStory() {
-    return proto.getHasReadOnboardingStory();
+    return proto.hasReadOnboardingStory;
   }
 
   public boolean hasSeenGroupStoryEducationSheet() {
-    return proto.getHasSeenGroupStoryEducationSheet();
+    return proto.hasSeenGroupStoryEducationSheet;
   }
 
   public @Nullable String getUsername() {
-    return proto.getUsername();
+    return proto.username;
+  }
+
+  public @Nullable AccountRecord.UsernameLink getUsernameLink() {
+    return proto.usernameLink;
   }
 
   public AccountRecord toProto() {
@@ -381,18 +386,18 @@ public final class SignalAccountRecord implements SignalRecord {
     }
 
     static PinnedConversation fromRemote(AccountRecord.PinnedConversation remote) {
-      if (remote.hasContact()) {
-        ServiceId serviceId = ServiceId.parseOrNull(remote.getContact().getServiceId());
+      if (remote.contact != null) {
+        ServiceId serviceId = ServiceId.parseOrNull(remote.contact.serviceId);
         if (serviceId != null) {
-          return forContact(new SignalServiceAddress(serviceId, remote.getContact().getE164()));
+          return forContact(new SignalServiceAddress(serviceId, remote.contact.e164));
         } else {
-          Log.w(TAG, "Bad serviceId on pinned contact! Length: " + remote.getContact().getServiceId());
+          Log.w(TAG, "Bad serviceId on pinned contact! Length: " + remote.contact.serviceId);
           return PinnedConversation.forEmpty();
         }
-      } else if (!remote.getLegacyGroupId().isEmpty()) {
-        return forGroupV1(remote.getLegacyGroupId().toByteArray());
-      } else if (!remote.getGroupMasterKey().isEmpty()) {
-        return forGroupV2(remote.getGroupMasterKey().toByteArray());
+      } else if (remote.legacyGroupId != null && remote.legacyGroupId.size() > 0) {
+        return forGroupV1(remote.legacyGroupId.toByteArray());
+      } else if (remote.groupMasterKey != null && remote.groupMasterKey.size() > 0) {
+        return forGroupV2(remote.groupMasterKey.toByteArray());
       } else {
         return PinnedConversation.forEmpty();
       }
@@ -416,20 +421,20 @@ public final class SignalAccountRecord implements SignalRecord {
 
     private AccountRecord.PinnedConversation toRemote() {
       if (contact.isPresent()) {
-        AccountRecord.PinnedConversation.Contact.Builder contactBuilder = AccountRecord.PinnedConversation.Contact.newBuilder();
+        AccountRecord.PinnedConversation.Contact.Builder contactBuilder = new AccountRecord.PinnedConversation.Contact.Builder();
 
-        contactBuilder.setServiceId(contact.get().getServiceId().toString());
+        contactBuilder.serviceId(contact.get().getServiceId().toString());
 
         if (contact.get().getNumber().isPresent()) {
-          contactBuilder.setE164(contact.get().getNumber().get());
+          contactBuilder.e164(contact.get().getNumber().get());
         }
-        return AccountRecord.PinnedConversation.newBuilder().setContact(contactBuilder.build()).build();
+        return new AccountRecord.PinnedConversation.Builder().contact(contactBuilder.build()).build();
       } else if (groupV1Id.isPresent()) {
-        return AccountRecord.PinnedConversation.newBuilder().setLegacyGroupId(ByteString.copyFrom(groupV1Id.get())).build();
+        return new AccountRecord.PinnedConversation.Builder().legacyGroupId(ByteString.of(groupV1Id.get())).build();
       } else if (groupV2MasterKey.isPresent()) {
-        return AccountRecord.PinnedConversation.newBuilder().setGroupMasterKey(ByteString.copyFrom(groupV2MasterKey.get())).build();
+        return new AccountRecord.PinnedConversation.Builder().groupMasterKey(ByteString.of(groupV2MasterKey.get())).build();
       } else {
-        return AccountRecord.PinnedConversation.newBuilder().build();
+        return new AccountRecord.PinnedConversation.Builder().build();
       }
     }
 
@@ -534,184 +539,188 @@ public final class SignalAccountRecord implements SignalRecord {
       if (serializedUnknowns != null) {
         this.builder = parseUnknowns(serializedUnknowns);
       } else {
-        this.builder = AccountRecord.newBuilder();
+        this.builder = new AccountRecord.Builder();
       }
     }
 
     public Builder setGivenName(String givenName) {
-      builder.setGivenName(givenName == null ? "" : givenName);
+      builder.givenName(givenName == null ? "" : givenName);
       return this;
     }
 
     public Builder setFamilyName(String familyName) {
-      builder.setFamilyName(familyName == null ? "" : familyName);
+      builder.familyName(familyName == null ? "" : familyName);
       return this;
     }
 
     public Builder setProfileKey(byte[] profileKey) {
-      builder.setProfileKey(profileKey == null ? ByteString.EMPTY : ByteString.copyFrom(profileKey));
+      builder.profileKey(profileKey == null ? ByteString.EMPTY : ByteString.of(profileKey));
       return this;
     }
 
     public Builder setAvatarUrlPath(String urlPath) {
-      builder.setAvatarUrlPath(urlPath == null ? "" : urlPath);
+      builder.avatarUrlPath(urlPath == null ? "" : urlPath);
       return this;
     }
 
     public Builder setNoteToSelfArchived(boolean archived) {
-      builder.setNoteToSelfArchived(archived);
+      builder.noteToSelfArchived(archived);
       return this;
     }
 
     public Builder setNoteToSelfForcedUnread(boolean forcedUnread) {
-      builder.setNoteToSelfMarkedUnread(forcedUnread);
+      builder.noteToSelfMarkedUnread(forcedUnread);
       return this;
     }
 
     public Builder setReadReceiptsEnabled(boolean enabled) {
-      builder.setReadReceipts(enabled);
+      builder.readReceipts(enabled);
       return this;
     }
 
     public Builder setTypingIndicatorsEnabled(boolean enabled) {
-      builder.setTypingIndicators(enabled);
+      builder.typingIndicators(enabled);
       return this;
     }
 
     public Builder setSealedSenderIndicatorsEnabled(boolean enabled) {
-      builder.setSealedSenderIndicators(enabled);
+      builder.sealedSenderIndicators(enabled);
       return this;
     }
 
     public Builder setLinkPreviewsEnabled(boolean enabled) {
-      builder.setLinkPreviews(enabled);
+      builder.linkPreviews(enabled);
       return this;
     }
 
     public Builder setPhoneNumberSharingMode(AccountRecord.PhoneNumberSharingMode mode) {
-      builder.setPhoneNumberSharingMode(mode);
+      builder.phoneNumberSharingMode(mode);
       return this;
     }
 
     public Builder setUnlistedPhoneNumber(boolean unlisted) {
-      builder.setUnlistedPhoneNumber(unlisted);
+      builder.unlistedPhoneNumber(unlisted);
       return this;
     }
 
     public Builder setPinnedConversations(List<PinnedConversation> pinnedConversations) {
-      builder.clearPinnedConversations();
-
-      for (PinnedConversation pinned : pinnedConversations) {
-        builder.addPinnedConversations(pinned.toRemote());
-      }
-
+      builder.pinnedConversations(pinnedConversations.stream().map(PinnedConversation::toRemote).collect(Collectors.toList()));
       return this;
     }
 
     public Builder setPreferContactAvatars(boolean preferContactAvatars) {
-      builder.setPreferContactAvatars(preferContactAvatars);
+      builder.preferContactAvatars(preferContactAvatars);
       return this;
     }
 
     public Builder setPayments(boolean enabled, byte[] entropy) {
-      org.whispersystems.signalservice.internal.storage.protos.Payments.Builder paymentsBuilder = org.whispersystems.signalservice.internal.storage.protos.Payments.newBuilder();
+      org.whispersystems.signalservice.internal.storage.protos.Payments.Builder paymentsBuilder = new org.whispersystems.signalservice.internal.storage.protos.Payments.Builder();
 
       boolean entropyPresent = entropy != null && entropy.length == PaymentsConstants.PAYMENTS_ENTROPY_LENGTH;
 
-      paymentsBuilder.setEnabled(enabled && entropyPresent);
+      paymentsBuilder.enabled(enabled && entropyPresent);
 
       if (entropyPresent) {
-        paymentsBuilder.setEntropy(ByteString.copyFrom(entropy));
+        paymentsBuilder.entropy(ByteString.of(entropy));
       }
 
-      builder.setPayments(paymentsBuilder);
+      builder.payments(paymentsBuilder.build());
 
       return this;
     }
 
     public Builder setUniversalExpireTimer(int timer) {
-      builder.setUniversalExpireTimer(timer);
+      builder.universalExpireTimer(timer);
       return this;
     }
 
     public Builder setPrimarySendsSms(boolean primarySendsSms) {
-      builder.setPrimarySendsSms(primarySendsSms);
+      builder.primarySendsSms(primarySendsSms);
       return this;
     }
 
     public Builder setE164(String e164) {
-      builder.setE164(e164);
+      builder.e164(e164);
       return this;
     }
 
     public Builder setDefaultReactions(List<String> defaultReactions) {
-      builder.clearPreferredReactionEmoji();
-      builder.addAllPreferredReactionEmoji(defaultReactions);
+      builder.preferredReactionEmoji(new ArrayList<>(defaultReactions));
       return this;
     }
 
     public Builder setSubscriber(Subscriber subscriber) {
       if (subscriber.id.isPresent() && subscriber.currencyCode.isPresent()) {
-        builder.setSubscriberId(ByteString.copyFrom(subscriber.id.get()));
-        builder.setSubscriberCurrencyCode(subscriber.currencyCode.get());
+        builder.subscriberId(ByteString.of(subscriber.id.get()));
+        builder.subscriberCurrencyCode(subscriber.currencyCode.get());
       } else {
-        builder.clearSubscriberId();
-        builder.clearSubscriberCurrencyCode();
+        builder.subscriberId(StorageRecordProtoUtil.getDefaultAccountRecord().subscriberId);
+        builder.subscriberCurrencyCode(StorageRecordProtoUtil.getDefaultAccountRecord().subscriberCurrencyCode);
       }
 
       return this;
     }
 
     public Builder setDisplayBadgesOnProfile(boolean displayBadgesOnProfile) {
-      builder.setDisplayBadgesOnProfile(displayBadgesOnProfile);
+      builder.displayBadgesOnProfile(displayBadgesOnProfile);
       return this;
     }
 
     public Builder setSubscriptionManuallyCancelled(boolean subscriptionManuallyCancelled) {
-      builder.setSubscriptionManuallyCancelled(subscriptionManuallyCancelled);
+      builder.subscriptionManuallyCancelled(subscriptionManuallyCancelled);
       return this;
     }
 
     public Builder setKeepMutedChatsArchived(boolean keepMutedChatsArchived) {
-      builder.setKeepMutedChatsArchived(keepMutedChatsArchived);
+      builder.keepMutedChatsArchived(keepMutedChatsArchived);
       return this;
     }
 
     public Builder setHasSetMyStoriesPrivacy(boolean hasSetMyStoriesPrivacy) {
-      builder.setHasSetMyStoriesPrivacy(hasSetMyStoriesPrivacy);
+      builder.hasSetMyStoriesPrivacy(hasSetMyStoriesPrivacy);
       return this;
     }
 
     public Builder setHasViewedOnboardingStory(boolean hasViewedOnboardingStory) {
-      builder.setHasViewedOnboardingStory(hasViewedOnboardingStory);
+      builder.hasViewedOnboardingStory(hasViewedOnboardingStory);
       return this;
     }
 
     public Builder setStoriesDisabled(boolean storiesDisabled) {
-      builder.setStoriesDisabled(storiesDisabled);
+      builder.storiesDisabled(storiesDisabled);
       return this;
     }
 
     public Builder setStoryViewReceiptsState(OptionalBool storyViewedReceiptsEnabled) {
-      builder.setStoryViewReceiptsEnabled(storyViewedReceiptsEnabled);
+      builder.storyViewReceiptsEnabled(storyViewedReceiptsEnabled);
       return this;
     }
 
     public Builder setHasReadOnboardingStory(boolean hasReadOnboardingStory) {
-      builder.setHasReadOnboardingStory(hasReadOnboardingStory);
+      builder.hasReadOnboardingStory(hasReadOnboardingStory);
       return this;
     }
 
     public Builder setHasSeenGroupStoryEducationSheet(boolean hasSeenGroupStoryEducationSheet) {
-      builder.setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducationSheet);
+      builder.hasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducationSheet);
       return this;
     }
 
     public Builder setUsername(@Nullable String username) {
       if (username == null || username.isEmpty()) {
-        builder.clearUsername();
+        builder.username(StorageRecordProtoUtil.getDefaultAccountRecord().username);
       } else {
-        builder.setUsername(username);
+        builder.username(username);
+      }
+
+      return this;
+    }
+
+    public Builder setUsernameLink(@Nullable AccountRecord.UsernameLink link) {
+      if (link == null) {
+        builder.usernameLink(StorageRecordProtoUtil.getDefaultAccountRecord().usernameLink);
+      } else {
+        builder.usernameLink(link);
       }
 
       return this;
@@ -719,10 +728,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
     private static AccountRecord.Builder parseUnknowns(byte[] serializedUnknowns) {
       try {
-        return AccountRecord.parseFrom(serializedUnknowns).toBuilder();
-      } catch (InvalidProtocolBufferException e) {
+        return AccountRecord.ADAPTER.decode(serializedUnknowns).newBuilder();
+      } catch (IOException e) {
         Log.w(TAG, "Failed to combine unknown fields!", e);
-        return AccountRecord.newBuilder();
+        return new AccountRecord.Builder();
       }
     }
 

@@ -49,7 +49,6 @@ public class UsernameEditFragment extends LoggingFragment {
 
   private UsernameEditViewModel       viewModel;
   private UsernameEditFragmentBinding binding;
-  private ImageView                   suffixProgress;
   private LifecycleDisposable         lifecycleDisposable;
   private UsernameEditFragmentArgs    args;
 
@@ -128,22 +127,9 @@ public class UsernameEditFragment extends LoggingFragment {
     pipe.setBounds(0, 0, (int) DimensionUnit.DP.toPixels(1f), (int) DimensionUnit.DP.toPixels(20f));
     suffixTextView.setCompoundDrawablesRelative(pipe, null, null, null);
 
-    LinearLayout              suffixParent   = (LinearLayout) suffixTextView.getParent();
-    LinearLayout.LayoutParams layoutParams   = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
     ViewUtil.setLeftMargin(suffixTextView, (int) DimensionUnit.DP.toPixels(16f));
 
     binding.usernameTextWrapper.getSuffixTextView().setCompoundDrawablePadding((int) DimensionUnit.DP.toPixels(16f));
-
-    layoutParams.topMargin    = suffixTextView.getPaddingTop();
-    layoutParams.bottomMargin = suffixTextView.getPaddingBottom();
-    layoutParams.setMarginEnd(suffixTextView.getPaddingEnd());
-
-    suffixProgress = new ImageView(requireContext());
-    suffixProgress.setImageDrawable(getInProgressDrawable());
-    suffixProgress.setContentDescription(getString(R.string.load_more_header__loading));
-    suffixProgress.setVisibility(View.GONE);
-    suffixParent.addView(suffixProgress, 0, layoutParams);
 
     suffixTextView.setOnClickListener(this::onLearnMore);
   }
@@ -152,7 +138,6 @@ public class UsernameEditFragment extends LoggingFragment {
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
-    suffixProgress = null;
   }
 
   private void onLearnMore(@Nullable View unused) {
@@ -166,11 +151,11 @@ public class UsernameEditFragment extends LoggingFragment {
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {
     TextInputLayout usernameInputWrapper = binding.usernameTextWrapper;
 
-    presentSuffix(state.getUsername());
-    presentButtonState(state.getButtonState());
-    presentSummary(state.getUsername());
+    presentSuffix(state.username);
+    presentButtonState(state.buttonState);
+    presentSummary(state.username);
 
-    switch (state.getUsernameStatus()) {
+    switch (state.usernameStatus) {
       case NONE:
         usernameInputWrapper.setError(null);
         break;
@@ -218,8 +203,12 @@ public class UsernameEditFragment extends LoggingFragment {
   private void presentSummary(@NonNull UsernameState usernameState) {
     if (usernameState.getUsername() != null) {
       binding.summary.setText(usernameState.getUsername());
+      binding.summary.setAlpha(1f);
+    } else if (usernameState instanceof UsernameState.Loading) {
+      binding.summary.setAlpha(0.5f);
     } else {
       binding.summary.setText(R.string.UsernameEditFragment__choose_your_username);
+      binding.summary.setAlpha(1f);
     }
   }
 
@@ -304,23 +293,10 @@ public class UsernameEditFragment extends LoggingFragment {
     boolean isInProgress = usernameState.isInProgress();
 
     if (isInProgress) {
-      suffixProgress.setVisibility(View.VISIBLE);
+      binding.suffixProgress.setVisibility(View.VISIBLE);
     } else {
-      suffixProgress.setVisibility(View.GONE);
+      binding.suffixProgress.setVisibility(View.GONE);
     }
-  }
-
-  private IndeterminateDrawable<CircularProgressIndicatorSpec> getInProgressDrawable() {
-    CircularProgressIndicatorSpec spec = new CircularProgressIndicatorSpec(requireContext(), null);
-    spec.indicatorInset = 0;
-    spec.indicatorSize = (int) DimensionUnit.DP.toPixels(16f);
-    spec.trackColor = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant);
-    spec.trackThickness = (int) DimensionUnit.DP.toPixels(1f);
-
-    IndeterminateDrawable<CircularProgressIndicatorSpec> drawable = IndeterminateDrawable.createCircularDrawable(requireContext(), spec);
-    drawable.setBounds(0, 0, spec.indicatorSize, spec.indicatorSize);
-
-    return drawable;
   }
 
   private void onEvent(@NonNull UsernameEditViewModel.Event event) {

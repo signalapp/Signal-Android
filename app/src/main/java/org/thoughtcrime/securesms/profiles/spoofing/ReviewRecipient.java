@@ -45,11 +45,11 @@ public class ReviewRecipient {
       int weight1 = recipient1.getRecipient().getId().equals(alwaysFirstId) ? -100 : 0;
       int weight2 = recipient2.getRecipient().getId().equals(alwaysFirstId) ? -100 : 0;
 
-      if (recipient1.getProfileChangeDetails() != null && recipient1.getProfileChangeDetails().hasProfileNameChange()) {
+      if (recipient1.getProfileChangeDetails() != null && recipient1.getProfileChangeDetails().profileNameChange != null) {
         weight1--;
       }
 
-      if (recipient2.getProfileChangeDetails() != null && recipient2.getProfileChangeDetails().hasProfileNameChange()) {
+      if (recipient2.getProfileChangeDetails() != null && recipient2.getProfileChangeDetails().profileNameChange != null) {
         weight2--;
       }
 

@@ -1,12 +1,11 @@
 package org.whispersystems.signalservice.api.push;
 
-import com.google.protobuf.ByteString;
-
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 
 import java.util.Objects;
-import java.util.UUID;
+
+import okio.ByteString;
 
 /**
  * Helper for dealing with [ServiceId] matching when you only care that either of your

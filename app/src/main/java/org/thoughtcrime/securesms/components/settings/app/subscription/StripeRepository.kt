@@ -47,6 +47,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
+  private val monthlyDonationRepository = MonthlyDonationRepository(ApplicationDependencies.getDonationsService())
 
   fun isGooglePayAvailable(): Completable {
     return googlePayApi.queryIsReadyToPay()
@@ -153,8 +154,12 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
   }
 
-  override fun fetchSetupIntent(): Single<StripeIntentAccessor> {
-    Log.d(TAG, "Fetching setup intent from Signal service...")
+  /**
+   * Creates the PaymentMethod via the Signal Service. Note that if the operation fails with a 409,
+   * it means that the PaymentMethod is already tied to a PayPal account. We can retry in this
+   * situation by simply deleting the old subscriber id on the service and replacing it.
+   */
+  private fun createPaymentMethod(retryOn409: Boolean = true): Single<StripeClientSecret> {
     return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
       .flatMap {
         Single.fromCallable {
@@ -163,7 +168,18 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
             .createStripeSubscriptionPaymentMethod(it.subscriberId)
         }
       }
-      .flatMap(ServiceResponse<StripeClientSecret>::flattenResult)
+      .flatMap { serviceResponse ->
+        if (retryOn409 && serviceResponse.status == 409) {
+          monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(retryOn409 = false))
+        } else {
+          serviceResponse.flattenResult()
+        }
+      }
+  }
+
+  override fun fetchSetupIntent(): Single<StripeIntentAccessor> {
+    Log.d(TAG, "Fetching setup intent from Signal service...")
+    return createPaymentMethod()
       .map {
         StripeIntentAccessor(
           objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,
@@ -191,6 +207,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
           }
           StatusAndPaymentMethodId(it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
         }
+
         StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
           StatusAndPaymentMethodId(it.status, it.paymentMethod)
         }

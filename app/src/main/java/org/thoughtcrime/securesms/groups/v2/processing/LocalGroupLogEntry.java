@@ -21,7 +21,7 @@ final class LocalGroupLogEntry {
   @Nullable private final DecryptedGroupChange change;
 
   LocalGroupLogEntry(@NonNull DecryptedGroup group, @Nullable DecryptedGroupChange change) {
-    if (change != null && group.getRevision() != change.getRevision()) {
+    if (change != null && group.revision != change.revision) {
       throw new AssertionError();
     }
 

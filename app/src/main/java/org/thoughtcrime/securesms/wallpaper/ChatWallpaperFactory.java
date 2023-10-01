@@ -14,12 +14,12 @@ public final class ChatWallpaperFactory {
   private ChatWallpaperFactory() {}
 
   public static @NonNull ChatWallpaper create(@NonNull Wallpaper model) {
-    if (model.hasSingleColor()) {
-      return buildForSingleColor(model.getSingleColor(), model.getDimLevelInDarkTheme());
-    } else if (model.hasLinearGradient()) {
-      return buildForLinearGradinent(model.getLinearGradient(), model.getDimLevelInDarkTheme());
-    } else if (model.hasFile()) {
-      return buildForFile(model.getFile(), model.getDimLevelInDarkTheme());
+    if (model.singleColor != null) {
+      return buildForSingleColor(model.singleColor, model.dimLevelInDarkTheme);
+    } else if (model.linearGradient != null) {
+      return buildForLinearGradinent(model.linearGradient, model.dimLevelInDarkTheme);
+    } else if (model.file_ != null) {
+      return buildForFile(model.file_, model.dimLevelInDarkTheme);
     } else {
       throw new IllegalArgumentException();
     }
@@ -28,7 +28,7 @@ public final class ChatWallpaperFactory {
   public static @NonNull ChatWallpaper updateWithDimming(@NonNull ChatWallpaper wallpaper, float dimLevelInDarkTheme) {
     Wallpaper model = wallpaper.serialize();
 
-    return create(model.toBuilder().setDimLevelInDarkTheme(dimLevelInDarkTheme).build());
+    return create(model.newBuilder().dimLevelInDarkTheme(dimLevelInDarkTheme).build());
   }
 
   public static @NonNull ChatWallpaper create(@NonNull Uri uri) {
@@ -36,25 +36,25 @@ public final class ChatWallpaperFactory {
   }
 
   private static @NonNull ChatWallpaper buildForSingleColor(@NonNull Wallpaper.SingleColor singleColor, float dimLevelInDarkTheme) {
-    return new SingleColorChatWallpaper(singleColor.getColor(), dimLevelInDarkTheme);
+    return new SingleColorChatWallpaper(singleColor.color, dimLevelInDarkTheme);
   }
 
   private static @NonNull ChatWallpaper buildForLinearGradinent(@NonNull Wallpaper.LinearGradient gradient, float dimLevelInDarkTheme) {
-    int[] colors = new int[gradient.getColorsCount()];
+    int[] colors = new int[gradient.colors.size()];
     for (int i = 0; i < colors.length; i++) {
-      colors[i] = gradient.getColors(i);
+      colors[i] = gradient.colors.get(i);
     }
 
-    float[] positions = new float[gradient.getPositionsCount()];
+    float[] positions = new float[gradient.positions.size()];
     for (int i = 0; i < positions.length; i++) {
-      positions[i] = gradient.getPositions(i);
+      positions[i] = gradient.positions.get(i);
     }
 
-    return new GradientChatWallpaper(gradient.getRotation(), colors, positions, dimLevelInDarkTheme);
+    return new GradientChatWallpaper(gradient.rotation, colors, positions, dimLevelInDarkTheme);
   }
 
   private static @NonNull ChatWallpaper buildForFile(@NonNull Wallpaper.File file, float dimLevelInDarkTheme) {
-    Uri uri = Uri.parse(file.getUri());
+    Uri uri = Uri.parse(file.uri);
     return new UriChatWallpaper(uri, dimLevelInDarkTheme);
   }
 }

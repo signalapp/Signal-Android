@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.model.databaseprotos
 
-import com.google.protobuf.ByteString
+import okio.ByteString.Companion.toByteString
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
@@ -9,37 +9,37 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.GroupContextV2
 import java.util.UUID
 
 fun groupContext(masterKey: GroupMasterKey, init: DecryptedGroupV2Context.Builder.() -> Unit): DecryptedGroupV2Context {
-  val builder = DecryptedGroupV2Context.newBuilder()
+  val builder = DecryptedGroupV2Context.Builder()
   builder.context = encryptedGroupContext(masterKey)
   builder.init()
   return builder.build()
 }
 
 fun groupChange(editor: ServiceId, init: DecryptedGroupChange.Builder.() -> Unit): DecryptedGroupChange {
-  val builder = DecryptedGroupChange.newBuilder()
+  val builder = DecryptedGroupChange.Builder()
   builder.editorServiceIdBytes = editor.toByteString()
   builder.init()
   return builder.build()
 }
 
-fun encryptedGroupContext(masterKey: GroupMasterKey): SignalServiceProtos.GroupContextV2 {
-  return SignalServiceProtos.GroupContextV2.newBuilder().setMasterKey(ByteString.copyFrom(masterKey.serialize())).build()
+fun encryptedGroupContext(masterKey: GroupMasterKey): GroupContextV2 {
+  return GroupContextV2.Builder().masterKey(masterKey.serialize().toByteString()).build()
 }
 
 fun DecryptedGroupChange.Builder.addRequestingMember(aci: ACI) {
-  addNewRequestingMembers(requestingMember(aci))
+  newRequestingMembers += requestingMember(aci)
 }
 
 fun DecryptedGroupChange.Builder.deleteRequestingMember(aci: ACI) {
-  addDeleteRequestingMembers(aci.toByteString())
+  deleteRequestingMembers += aci.toByteString()
 }
 
 fun DecryptedGroupChange.Builder.addMember(aci: ACI) {
-  addNewMembers(member(aci))
+  newMembers += member(aci)
 }
 
 fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
@@ -47,21 +47,21 @@ fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: I
 }
 
 fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return DecryptedMember.newBuilder()
-    .setRole(role)
-    .setAciBytes(aci.toByteString())
-    .setJoinedAtRevision(joinedAt)
+  return DecryptedMember.Builder()
+    .role(role)
+    .aciBytes(aci.toByteString())
+    .joinedAtRevision(joinedAt)
     .build()
 }
 
 fun requestingMember(serviceId: ServiceId): DecryptedRequestingMember {
-  return DecryptedRequestingMember.newBuilder()
-    .setAciBytes(serviceId.toByteString())
+  return DecryptedRequestingMember.Builder()
+    .aciBytes(serviceId.toByteString())
     .build()
 }
 
 fun pendingMember(serviceId: ServiceId): DecryptedPendingMember {
-  return DecryptedPendingMember.newBuilder()
-    .setServiceIdBytes(serviceId.toByteString())
+  return DecryptedPendingMember.Builder()
+    .serviceIdBytes(serviceId.toByteString())
     .build()
 }

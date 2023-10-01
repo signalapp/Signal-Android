@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
  */
 public class ViewOnceSlide extends Slide {
 
-  public ViewOnceSlide(@NonNull Context context, @NonNull Attachment attachment) {
+  public ViewOnceSlide(@NonNull Attachment attachment) {
     super(attachment);
   }
 

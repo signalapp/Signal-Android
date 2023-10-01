@@ -12,6 +12,7 @@ data class ThumbnailViewTransferControlsState(
   val isClickable: Boolean = true,
   val slide: Slide? = null,
   val downloadClickedListener: OnClickListener? = null,
+  val progressWheelClickedListener: OnClickListener? = null,
   val showDownloadText: Boolean = true
 ) {
 
@@ -19,6 +20,7 @@ data class ThumbnailViewTransferControlsState(
   fun withClickable(isClickable: Boolean): ThumbnailViewTransferControlsState = copy(isClickable = isClickable)
   fun withSlide(slide: Slide?): ThumbnailViewTransferControlsState = copy(slide = slide)
   fun withDownloadClickListener(downloadClickedListener: OnClickListener): ThumbnailViewTransferControlsState = copy(downloadClickedListener = downloadClickedListener)
+  fun withProgressWheelClickListener(progressWheelClickedListener: OnClickListener): ThumbnailViewTransferControlsState = copy(progressWheelClickedListener = progressWheelClickedListener)
   fun withDownloadText(showDownloadText: Boolean): ThumbnailViewTransferControlsState = copy(showDownloadText = showDownloadText)
 
   fun applyState(transferControlView: Stub<TransferControlView>) {
@@ -29,6 +31,7 @@ data class ThumbnailViewTransferControlsState(
         transferControlView.get().setSlide(slide)
       }
       transferControlView.get().setDownloadClickListener(downloadClickedListener)
+      transferControlView.get().setProgressWheelClickListener(progressWheelClickedListener)
       transferControlView.get().setShowDownloadText(showDownloadText)
     }
   }

@@ -12,6 +12,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
+import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -133,6 +134,15 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .where("$ROOM_ID = ?", roomId.serialize())
       .run()
 
+    val recipientId = readableDatabase
+      .select(RECIPIENT_ID)
+      .from(TABLE_NAME)
+      .where("$ROOM_ID = ?", roomId.serialize())
+      .run()
+      .readToSingleLong()
+      .let { RecipientId.from(it) }
+
+    Recipient.live(recipientId).refresh()
     ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
@@ -333,6 +343,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       SELECT $projection
       FROM $TABLE_NAME
       WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""}
+      ORDER BY $ID DESC
       $limitOffset
     """.trimIndent()
 

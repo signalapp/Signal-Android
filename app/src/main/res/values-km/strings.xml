@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -217,11 +216,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">ទេ អរគុណ</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">ដកចេញ</string>
-    <string name="ClearProfileActivity_remove_profile_photo">ដកចេញរូបថតប្រូហ្វាល់?</string>
-    <string name="ClearProfileActivity_remove_group_photo">ដកចេញរូបថតក្រុម?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">ដំឡើង Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">កំណែកម្មវិធីនេះមិនត្រូវបានគាំទ្រទៀតទេ។ ដើម្បីបន្តការផ្ញើនិងទទួលសារធ្វើបច្ចុប្បន្នភាពទៅកំណែចុងក្រោយ។</string>
@@ -254,9 +248,6 @@
     <string name="ContactsCursorLoader_groups">ក្រុម</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">សមាជិកក្រុម</string>
-    <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">ស្វែងរកតាមឈ្មោះអ្នកប្រើ</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -295,7 +286,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">មិនបានផ្ញើរ ចុចដើម្បីមើលព័ត៌មានលម្អិត</string>
     <string name="ConversationItem_error_partially_not_delivered">បានផ្ញើផ្នែកខ្លះ ប៉ះព័ត៌មើលលម្អិត</string>
     <string name="ConversationItem_error_network_not_delivered">ផ្ញើបរាជ័យ</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
     <string name="ConversationItem_group_action_left">%1$s នាក់បានចាកចេញពីក្រុម។</string>
     <string name="ConversationItem_send_paused">ការផ្ញើបានផ្អាក</string>
     <string name="ConversationItem_click_to_approve_unencrypted">ផ្ញើបរាជ័យ ចុច សម្រាប់ជំនួសគ្មានសុវត្ថិភាព</string>
@@ -332,15 +322,11 @@
     <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">ផ្ញើសារដែលកែ</string>
-    <string name="ConversationActivity_select_contact_info">ជ្រើសរើសព័ត៌មានលេខទំនាក់ទំនង</string>
     <string name="ConversationActivity_compose_message">បង្កើតសារថ្មី</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">សុំទោស មានបញ្ហក្នុងការកំណត់ឯកសារភ្ជាប់របស់អ្នក។</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">អ្នកទទួល មិនមានSMS ឬ អ៊ីម៉ែល ត្រឹមត្រូវ!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">សារទទេ!</string>
     <string name="ConversationActivity_group_members">សមាជិកក្រុម</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">ចុចនៅទីនេះដើម្បីចាប់ផ្តើមការហៅជាក្រុម</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">មិនអាចកែសារជាអក្សរទេ</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="other">ការកែសារអាចធ្វើបានតែក្នុងរយៈពេល %1$d ម៉ោងគិតចាប់ពីពេលដែលអ្នកបានផ្ញើសារនេះប៉ុណ្ណោះ។</item>
@@ -362,7 +348,6 @@
     <string name="ConversationActivity_transport_signal">សារ Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">តោះដូរទៅកាន់ Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
-    <string name="ConversationActivity_unblock">ឈប់ទប់ស្កាត់</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">ឯកសារភ្ជាប់លើសទំហំកំណត់ សម្រាប់ប្រភេទសារដែលអ្នកកំពុងផ្ញើ។</string>
     <string name="ConversationActivity_unable_to_record_audio">មិនអាចថតសំឡេងបាន!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">អ្នកមិនអាចផ្ញើសារទៅក្រុមនេះបានទេ ដោយសារអ្នកមិនមែនជាសមាជិកក្រុម។</string>
@@ -386,8 +371,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal ត្រូវការការអនុញ្ញាត ដើម្បីថតវីដេអូ។</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal មិនអាចផ្ញើសារ SMS/MMS ពីព្រោះវាមិនមែនកម្មវិធីសារ SMS លំនាំដើម។ តើអ្នកចង់ផ្លាស់ប្តូរវា ក្នុងកម្មវិធីកំណត់របស់ Android​ អ្នកទេ?</string>
-    <string name="ConversationActivity_yes">មែន</string>
     <string name="ConversationActivity_no">ទេ</string>
     <string name="ConversationActivity_search_position">%1$d នៃ%2$d</string>
     <string name="ConversationActivity_no_results">គ្មានលទ្ធផល</string>
@@ -410,16 +393,6 @@
 
     <string name="ConversationActivity_error_sending_media">បញ្ហាបញ្ជូនមេឌា</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">បានរាយការណ៍ជាសារឥតបានការ និងបានទប់ស្កាត់។</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">ការផ្ញើសារជាអក្សរបច្ចុប្បន្នត្រូវបានបិទ។ អ្នកអាចនាំចេញសាររបស់អ្នកទៅកម្មវិធីមួយទៀតនៅលើទូរសព្ទរបស់អ្នក។</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">មិនអាចផ្ញើសារជាអក្សរបាននៅក្នុង Signal ទៀតទេ។ អ្នកអាចនាំចេញសាររបស់អ្នកទៅកម្មវិធីមួយទៀតនៅលើទូរសព្ទរបស់អ្នក។</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">នាំចេញសារជាអក្សរ</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">ការផ្ញើសារជាអក្សរបច្ចុប្បន្នត្រូវបានបិទ។ បបួល %1$s ឲ្យប្រើ Signal ដើម្បីរក្សាការសន្ទនានៅទីនេះ។</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">មិនអាចផ្ញើសារជាអក្សរបាននៅក្នុង Signal ទៀតទេ។ បបួល %1$s ឲ្យប្រើ Signal ដើម្បីរក្សាការសន្ទនានៅទីនេះ។</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -479,7 +452,7 @@
     <string name="ConversationFragment_failed_to_open_message">បរាជ័យក្នុងការបើកសារ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">អ្នកអាចអូសទៅស្តាំលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">អ្នកអាចអូសទៅឆ្វេងលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ឯកសារមេឌៀមើលបានតែម្តងដែលផ្ញើចេញទៅ នឹងត្រូវលុបចោលដោយស្វ័យប្រវត្តិបន្ទាប់ពីបានផ្ញើចេញ</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">មេឌៀដែលមើលបានតែម្តងត្រូវបានលុបបន្ទាប់ពីផ្ញើ</string>
     <string name="ConversationFragment_you_already_viewed_this_message">អ្នកបានបើកមើលសារនេះរួចហើយ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">អ្នកអាចកត់ត្រាសម្រាប់ខ្លួនឯងនៅក្នុងការជជែកនេះ។ បើគណនីរបស់អ្នកបានភ្ជាប់ទៅឧបករណ៍ណាមួយ កំណត់សម្គាល់ថ្មីៗនឹងត្រូវបានធ្វើសមកាលកម្ម។</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d សមាជិកក្រុមមានឈ្មោះដូចគ្នា។</string>
@@ -491,8 +464,6 @@
     <string name="ConversationFragment_not_now">ពេលក្រោយ</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">លេខសុវត្ថិភាពរបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">លេខសុវត្ថិភាពរបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ អាចដោយសារពួកគេបានបញ្ចូល Signal សារឡើងវិញ ឬផ្លាស់ប្តូរឧបករណ៍។ ចុច ផ្ទៀងផ្ទាត់ ដើម្បីបញ្ជាក់លេខសុវត្ថិភាពថ្មី។​ នេះគឺជាជម្រើស។</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">%1$s បើក</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">ទប់ស្កាត់ការស្នើសុំឬ?</string>
     <!-- Dialog message for block group link join requests -->
@@ -583,12 +554,6 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">ជ្រើសរើសសមាជិក</string>
-
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">ទាញចុះក្រោមដើម្បីត្រង</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">ព្រលែងដើម្បីត្រង</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">ប្រវត្តិរូប</string>
@@ -687,8 +652,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">នៅពេលអ្នកផ្ញើសារដែលបានកំណត់ពេលផ្ញើ សូមប្រាកដថាឧបករណ៍របស់អ្នកនឹងបើក និងភ្ជាប់អ៊ីនធឺណិតនៅពេលផ្ញើ។ ប្រសិនបើមិនអ៊ីចឹងទេ សាររបស់អ្នកនឹងផ្ញើចេញនៅពេលដែលឧបករណ៍របស់អ្នកភ្ជាប់អ៊ីនធឺណិតឡើងវិញ។</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">យល់ព្រម</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">ដើម្បីបើកការកំណត់ពេលផ្ញើសារ៖</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">ដើម្បីបើកឡើងវិញនូវការកំណត់ពេលផ្ញើសារ៖</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -877,8 +840,10 @@
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">យើងបានកត់សម្គាល់ថាការជូនដំណឹងត្រូវបានពន្យារពេល។ ដាក់បញ្ជូនកំណត់ហេតុបញ្ហា?</string>
-    <!-- Message for dialog asking user to submit logs for debugging slow notification issues -->
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
     <string name="PromptLogsSlowNotificationsDialog__message">កំណត់ហេតុបញ្ហាជួយឲ្យយើងវិភាគ និងដោះស្រាយបញ្ហានេះ ហើយមិនមានព័ត៌មានកំណត់អត្តសញ្ញាណទេ។</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal បានជួបប្រទះបញ្ហាមួយ។ ដាក់បញ្ជូនកំណត់ហេតុបំបាត់បញ្ហា?</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">ការជូនដំណឹងអាចនឹងពន្យារពេល ដោយសារការបង្កើនប្រសិទ្ធភាពថ្ម</string>
@@ -1104,8 +1069,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ចុចអោយជាប់ដើម្បីថតសំឡេងជាសារ ដកដៃចេញដើម្បីផ្ញើ</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">មិនអាចផ្ញើសារជាអក្សរបាននៅក្នុង Signal ទៀតទេ។</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">កែសារ</string>
 
@@ -1138,9 +1101,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">បានបើកការតភ្ជាប់ពីក្រោយ</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">ព័ត៌មាន</string>
@@ -1195,7 +1155,6 @@
     <string name="Megaphones_get_started">ចាប់ផ្តើម</string>
     <string name="Megaphones_new_group">ក្រុមថ្មី</string>
     <string name="Megaphones_invite_friends">អញ្ជើញមិត្តភក្តិ</string>
-    <string name="Megaphones_use_sms">ប្រើប្រាស់ SMS</string>
     <string name="Megaphones_chat_colors">ពណ៌ការជជែក</string>
     <string name="Megaphones_add_a_profile_photo">បញ្ចូលរូបថតប្រូហ្វាល់</string>
 
@@ -1207,11 +1166,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">ចាប់ផ្តើមសេវាកម្មហៅទូរសព្ទរបស់ Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">បញ្ឈប់សេវាកម្មការហៅ Signal</string>
-    <string name="NotificationBarManager__decline_call">បដិសេធការហៅ</string>
-    <string name="NotificationBarManager__answer_call">ទទួលការហៅ</string>
-    <string name="NotificationBarManager__end_call">បិទការហៅ</string>
     <string name="NotificationBarManager__cancel_call">បោះបង់ការហៅ</string>
-    <string name="NotificationBarManager__join_call">ចូលរួមការហៅ</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">បើក សារជូនដំណឹង?</string>
@@ -1596,8 +1551,6 @@
         <item quantity="other">អ្នកនៅមានការព្យាយាម %1$d ដង។ បើការព្យាយាមអស់ អ្នកអាចបង្កើតលេខកូដ PIN ថ្មី។ អ្នកអាចចុះឈ្មោះ និងប្រើប្រាស់គណនីរបស់អ្នក តែអ្នកនឹងត្រូវបាត់បង់ការកំណត់ដែលបានរក្សាទុក ដូចជាព័ត៌មានប្រវត្តិរូបរបស់អ្នក។</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">ប្តូរក្តារចុច</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
@@ -1675,7 +1628,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">ដើម្បីហៅទៅ%1$s, Signal ត្រូវការចូលប្រើប្រាស់កាមេរ៉ារបស់អ្នក</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">កំពុងហៅ…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">ក្រុមធំពេក ក្នុងការហៅអ្នកចូលរួម។</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1783,8 +1735,6 @@
     <string name="WebRtcCallView__toggle_camera">បិទ/បើកកាមេរ៉ា</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">បិទ/បើកសំឡេង</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">បិទ/បើកសំឡេងរោទ៍</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">បិទការហៅ</string>
 
@@ -1844,7 +1794,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">លេខកូដផ្ទៀងផ្ទាត់នឹងត្រូវបានផ្ញើទៅកាន់លេខនេះ។ អាចនឹងមានការគិតថ្លៃពីក្រុមហ៊ុនសេវាទូរសព្ទ។</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">អ្នកនឹងទទួលបានការហៅមួយដើម្បីផ្ទៀងផ្ទាត់លេខនេះ។</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">តើលេខរបស់អ្នកខាងលើត្រឹមត្រូវទេ?</string>
     <string name="RegistrationActivity_edit_number">កែប្រែលេខ</string>
     <string name="RegistrationActivity_missing_google_play_services">រកមិនឃើញ Google Play Services</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">ឧបករណ៍នេះមិនមាន Google Play Services។ អ្នកនៅតែអាចប្រើប្រាស់Signalបាន ប៉ុន្តែលទ្ធផលការកំណត់នេះអាចកាត់បន្ថយទំនុកចិត្ត ឬល្បឿន។ \n\n បើអ្នកមិនមែនជាអ្នកប្រើប្រាស់កម្រិតខ្ពស់ទេ មិនប្រើប្រាស់ Android ROM ផ្សេង ឬជឿជាក់ថាអ្នកកំពុងឃើញបញ្ហានេះ សូមទំនាក់ទំនង support@signal.org សម្រាប់ជួយក្នុងការដោះស្រាយបញ្ហា។</string>
@@ -1858,8 +1807,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">អ្នកបានព្យាយាមជាច្រើនដងពេកក្នុងការចុះឈ្មោះលេខនេះ។ សូមព្យាយាមម្តងទៀតក្នុងរយៈពេល %1$s។</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវាបាន។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយព្យាយាមម្តងទៀត។</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">បញ្ហាមួយដែលមិនបានរំពឹងទុកបានកើតឡើង</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">យើងមិនអាចផ្ញើលេខកូដផ្ទៀងផ្ទាត់តាមរយៈសារជាអក្សរទេ។ សាកល្បងទទួលលេខកូដរបស់អ្នកតាមរយៈការហៅជាសំឡេងជំនួសវិញ។</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -1877,8 +1824,6 @@
         <item quantity="other">You are now %1$d steps away from submitting a debug log.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">យើងត្រូវផ្ទៀងផ្ទាត់ថាអ្នកជាមនុស្ស។</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal មិនអាចផ្ញើលេខកូដតាមសារ SMS បានទេ ដោយសារបញ្ហាបច្ចេកទេសខាងក្រៅ។</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">ហៅជាសំឡេង</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -1891,11 +1836,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">បញ្ចូលលេខទូរសព្ទរបស់អ្នកដើម្បីចាប់ផ្ដើម។</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">បញ្ចូលលេខកូដដែលយើងបានផ្ញើទៅ%1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ប្រាកដថា ទូរស័ព្ទរបស់អ្នកមានសេវា ដើម្បីទទូលបានសារ SMS ឬការហៅ</string>
 
     <string name="RegistrationActivity_phone_number_description">លេខទូរស័ព្ទ</string>
     <string name="RegistrationActivity_country_code_description">កូដប្រទេស</string>
-    <string name="RegistrationActivity_country_code_hint">ប្រទេស</string>
     <string name="RegistrationActivity_call">ហៅចេញ</string>
     <string name="RegistrationActivity_verification_code">កូដផ្ទៀងផ្ទាត់</string>
     <string name="RegistrationActivity_resend_code">ផ្ញើកូដម្តងទៀត</string>
@@ -1925,9 +1868,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">រកមិនឃើញលទ្ធផលសម្រាប់ \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">ការជជែក</string>
-    <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
-    <string name="SearchFragment_header_messages">សារ</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -1966,17 +1906,9 @@
     <string name="Slide_video">វីដេអូ</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">បានទទួលសារផ្លាស់ប្តូរ សោរមានបញ្ហា!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        ទទួលបានសារផ្លាស់ប្តូរសោរ សម្រាប់កំណែប្រូតូកូលមិនត្រឹមត្រូវ។
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">ទទួលបានសារជាមួយលេខសុវត្ថិភាពថ្មី។ ចុច ដើម្បីដំណើការនិងបង្ហាញ។</string>
     <string name="SmsMessageRecord_secure_session_reset">អ្នកកំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s កំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>
     <string name="SmsMessageRecord_duplicate_message">សារស្ទួន។</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">សារនេះ មិនអាចដំណើរការបាន ព្រោះវាត្រូវបានផ្ញើចេញពី Signal ជំនាន់ថ្មីជាង។ អ្នកអាចទាក់ទងដៃគូសន្ទនារបស់អ្នក ដើម្បីផ្ញើសារនេះម្តងទៀតបន្ទាប់ពីអ្នកបានធ្វើបច្ចុប្បន្នភាព។</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">បញ្ហាទទួលសារផ្ញើចូល។</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">ស្ទីកគ័រ</string>
@@ -2128,7 +2060,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ចម្លង ឬចែករំលែកតំណឈ្មោះអ្នកប្រើ</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់នៅលើSignal ជំនាន់ចាស់។ សូមប្រាប់គេឲ្យធ្វើបច្ចុប្បន្នភាពកម្មវិធី មុនពេលផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព។</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ Signalកំណែថ្មីជាង ជាមួយទម្រង់QRកូដ ដែលមិនត្រូវគ្នា។ សូមធ្វើបច្ចុប្បន្នភាព ដើម្បីប្រៀបធៀប។</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">កូដQR ដែលស្កែន គឺមិនត្រូវតាមទម្រង់លេខកូដផ្ទៀងផ្ទាត់សុវត្ថិភាពទេ។ សូមព្យាយាមស្កែនម្តងទៀត។</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">ចែករំលែកលេខសុវត្ថិភាពតាម…</string>
@@ -2162,12 +2093,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">បិទសំឡេងការជូនដំណឹង</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">ការនាំចូលកំពុងដំណើរការ</string>
-    <string name="ApplicationMigrationService_importing_text_messages">កំពុងនាំចូលសារជាអក្សរ</string>
-    <string name="ApplicationMigrationService_import_complete">នាំចូលជោគជ័យ</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">ការនាំចូលប្រព័ន្ធមូលដ្ឋានទិន្នន័យ បានជោគជ័យ។</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">ចុច ដើម្បីបើក។</string>
@@ -2210,7 +2135,6 @@
     <plurals name="MessageNotifier_d_chats">
         <item quantity="other">ការជជែក %1$d</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">សារថ្មី %1$d នៅក្នុងការជជែក %2$d</string>
     <string name="MessageNotifier_most_recent_from_s">ថ្មីៗភាគច្រើនមកពី៖ %1$s</string>
     <string name="MessageNotifier_locked_message">សារចាក់សោរ</string>
     <string name="MessageNotifier_message_delivery_failed">សារបញ្ជូនបរាជ័យ។</string>
@@ -2229,7 +2153,6 @@
     <string name="MessageNotifier_view_once_video">បង្ហាញ-ម្តង វីដេអូ</string>
     <string name="MessageNotifier_reply">ឆ្លើយតប</string>
     <string name="MessageNotifier_signal_message">សារ Signal </string>
-    <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ទំនាក់ទំនង</string>
     <string name="MessageNotifier_reacted_s_to_s">បានប្រតិកម្ម %1$s ទៅនឹង៖ \"%2$s\"។</string>
@@ -2245,6 +2168,18 @@
     <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">បិទសារជូនដំណឹងលេខទំនាក់ទំនងចូលរួម Signal? អ្នកអាចបើកវាម្តងទៀតក្នុង Signal &gt; ការកំណត់ &gt; សារជូនដំណឹង។</string>
+
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">បើកការជូនដំណឹង</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">ដើម្បីទទួលការជូនដំណឹងសម្រាប់សារថ្មីៗ៖</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. ចុច “ការកំណត់” ខាងក្រោម</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s បើកការជូនដំណឹង</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">ការកំណត់</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">សារ</string>
@@ -2308,7 +2243,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">ឧបករណ៍នេះលែងបានចុះឈ្មោះហើយ!</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">លែងចុះឈ្មោះឧបករណ៍នេះទៀតហើយ។ ទំនងជាអ្នកបានចុះឈ្មោះលេខទូរសព្ទរបស់អ្នកជាមួយ Signal នៅលើឧបករណ៍ផ្សេង។</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2422,8 +2356,6 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS គ្មានសុវត្ថិភាព</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS គ្មានសុវត្ថិភាព</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">កំណត់ពេលផ្ញើសារ</string>
-    <string name="conversation_activity__from_sim_name">មកពី %1$s</string>
     <string name="conversation_activity__sim_n">ស៊ីមកាត %1$d</string>
     <string name="conversation_activity__send">ផ្ញើ</string>
     <string name="conversation_activity__compose_description">ការបង្កើតសារថ្មី</string>
@@ -2432,7 +2364,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">បិទបើកថតឯកសារភ្ជាប់កាមេរ៉ារហ័ស</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ថត​ និងផ្ញើឯកសារភ្ជាប់ជាសំឡេង</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">បិទការថតឯកសារសម្លេង</string>
-    <string name="conversation_activity__enable_signal_for_sms">បើក Signal សម្រាប់ SMS</string>
     <string name="conversation_activity__message_could_not_be_sent">សារមិនអាចផ្ញើ។ ពិនិត្យការតភ្ជាប់របស់អ្នក ហើយសាកល្បងម្តងទៀត។</string>
 
     <!-- conversation_input_panel -->
@@ -2497,16 +2428,6 @@
     <string name="QuoteView_no_longer_available">លែងមានទៀតហើយ</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">ការបរិច្ចាគសម្រាប់មិត្តភក្តិម្នាក់</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">ការអនុញ្ញាតប៊្លូធូសត្រូវបានបដិសេធ</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">សូមបើកការអនុញ្ញាត \"ឧបករណ៍នៅក្បែរ\" ដើម្បីប្រើប៊្លូធូសសម្រាប់ថតសារជាសំឡេង។</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">បើកការកំណត់</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">កុំទាន់</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">អូសចុះក្រោម</string>
@@ -2615,17 +2536,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">ពុំរកមិនឃើញអ្វីទេ</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">តើអ្នកចង់នាំចូលសារជាអក្សរដែលមានស្រាប់ ចូលក្នុងមូលដ្ឋានទិន្នន័យដែលមានកាណាល់កូដសម្ងាត់របស់Signalទេ?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ប្រព័ន្ទមូលដ្ឋានទិន្នន័យលំនាំដើម នឹងមិនត្រូវបានកែប្រែ ឬផ្លាស់ប្តូរ តាមវិធីណាមួយឡើយ។</string>
-    <string name="database_migration_activity__skip">រំលង</string>
-    <string name="database_migration_activity__import">នាំចូល</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">នេះអាចចំណាយពេលខ្លះ។ សូមអត់ធ្មត់ យើងនឹងជូនដំណឹងដល់អ្នកនៅពេលដែលការនាំចូលបានបញ្ចប់។</string>
-    <string name="database_migration_activity__importing">នាំចូល</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">មើលការជជែកទាំងស្រុង</string>
     <string name="load_more_header__loading">កំពុងផ្ទុក</string>
 
     <!-- media_overview_activity -->
@@ -2696,7 +2607,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ដើម្បីផ្ទៀងផ្ទាត់សន្តិសុខនៃកូដនីយកម្មទាំងសងខាងរបស់អ្នកជាមួយ %1$s, ប្រៀបធៀបលេខខាងលើជាមួយឧបករណ៍របស់ពួកគេ។ អ្នកក៏អាចស្កេនលេខកូដនៅលើទូរស័ព្ទរបស់គេបានដែរ។ <a href=\"https://signal.org/redirect/safety-numbers\">សិក្សាបន្ថែម</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">ដើម្បីផ្ទៀងផ្ទាត់ការអ៊ីនគ្រីបទាំងសងខាងជាមួយ %1$s សូមផ្គូផ្គងកាតពណ៌ខាងលើជាមួយឧបករណ៍របស់ពួកគេ ហើយប្រៀបធៀបលេខ។ ប្រសិនបើលេខទាំងនេះមិនត្រូវគ្នាទេ សូមអូស ហើយសាកល្បងលេខសុវត្ថិភាពគូផ្សេងទៀត។ មានតែមួយគូប៉ុណ្ណោះដែលត្រូវផ្គូផ្គង។</string>
     <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
@@ -2716,9 +2626,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">ត្រូវការជំនួយ?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">យល់ហើយ</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">ស្កេនកូដ QR លើឧបករណ៍ទំនាក់ទំនងរបស់អ្នក។</string>
@@ -2760,7 +2667,6 @@
     <string name="AndroidManifest__linked_devices">ភ្ជាប់ឧបករណ៍</string>
     <string name="AndroidManifest__invite_friends">អញ្ជើញមិត្តភក្តិ</string>
     <string name="AndroidManifest_archived_conversations">ការជជែកដែលបានទុកក្នុងបណ្ណសារ</string>
-    <string name="AndroidManifest_remove_photo">ដករូបថតចេញ</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">តើអ្នកបានអាចសំណួរដែលសួរញឹកញាប់ហើយឬនៅ?</string>
@@ -2784,7 +2690,7 @@
     <string name="HelpFragment__could_not_upload_logs">មិនអាចបញ្ជូនកំណត់ត្រា</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">សូមពន្យល់តាមដែលអាចធ្វើទៅបានដើម្បីជួយយើងឱ្យយល់ពីបញ្ហា។</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- សូមជ្រើសរើសជម្រើសមួយ \\-\\-</item>
+        <item>សូមជ្រើសរើសជម្រើសមួយ</item>
         <item>អ្វីមួយមិនដំណើរការ</item>
         <item>ការស្នើសុំមុខងារ</item>
         <item>សំណួរ</item>
@@ -2798,6 +2704,8 @@
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">ការដាក់បញ្ជូនកំណត់ហេតុបញ្ហា Signal Android</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__slow_notifications_category">ការជូនដំណឹងយឺត</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">គាំង</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">បញ្ជូន</string>
     <!-- Action to decline to submit logs -->
@@ -2922,7 +2830,6 @@
     <string name="preferences__payments">ការទូទាត់</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">មុខងារចាក់សោការបង់ប្រាក់</string>
-    <string name="preferences__payments_beta">ការទូទាត់ (បេតា)</string>
     <string name="preferences__conversation_length_limit">ដែនកំណត់ការជជែក</string>
     <string name="preferences__keep_messages">រក្សាសារ</string>
     <string name="preferences__clear_message_history">លុបប្រវត្តិសារ</string>
@@ -2950,8 +2857,6 @@
     <string name="preferences__app_icon_notification_warning">ការជូនដំណឹងនឹងបង្ហាញឈ្មោះ និងរូបកម្មវិធី Signal លំនាំដើមជានិច្ច។</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">ស្វែងយល់បន្ថែម</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">រូបតំណាងសម្រាប់ %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">ក្រាហ្វិកបង្ហាញពីកន្លែងដែលនឹងអាចមើលឃើញរូបកម្មវិធីជំនួស។</string>
     <string name="preferences__disable_pin">បិទលេខកូដ PIN</string>
@@ -3007,7 +2912,6 @@
     <string name="preferences_advanced__use_system_emoji">ប្រើរូបអារម្មណ៍emoji នៅក្នុងប្រព័ន្ធ</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ Signal ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន អាយភី របស់អ្នក ទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
     <string name="preferences_advanced__always_relay_calls">តែងតែបញ្ជូនការហៅចេញ</string>
-    <string name="preferences_app_protection__who_can">អ្នកអាច…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ការទូទាត់</string>
     <string name="preferences_chats__chats">ការជជែក</string>
@@ -3040,8 +2944,6 @@
     <string name="preferences_communication__category_sealed_sender">សញ្ញាអ្នកផ្ញើ</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">អនុញ្ញាតពីនរណាម្នាក់</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">បើក ត្រាអ្នកផ្ញើសម្រាប់សារទទួលបានពីអ្នកក្រៅបញ្ជីទំនាក់ទំនង និងមនុស្សដែលអ្នកមិនបានចែករំលែកទម្រង់របស់អ្នក។</string>
-    <string name="preferences_communication__sealed_sender_learn_more">សិក្សាបន្ថែម</string>
-    <string name="preferences_setup_a_username">កំណត់ឈ្មោះអ្នកប្រើប្រាស់</string>
     <string name="preferences_proxy">ប្រូកស៊ី</string>
     <string name="preferences_use_proxy">ប្រើប្រាស់ ប្រូកស៊ី</string>
     <string name="preferences_off">បិទ</string>
@@ -3080,7 +2982,8 @@
     <string name="PaymentsAllActivityFragment__sent">បានផ្ញើ</string>
     <string name="PaymentsAllActivityFragment__received">បានទទួល</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">សូមណែនាំការទូទាត់ (សាកល្បង)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">សូមណែនាំអំពីការបង់ប្រាក់</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួល MobileCoin ដែលជារូបិយបណ្ណឌីជីថលថ្មីមួយផ្តោតលើឯកជនភាព។ បើកដំណើរការ ដើម្បីចាប់ផ្តើម។</string>
     <string name="PaymentsHomeFragment__activate_payments">បើកដំណើរការការទូទាត់</string>
     <string name="PaymentsHomeFragment__activating_payments">កំពុងបើកដំណើរការ ការទូទាត់…</string>
@@ -3114,8 +3017,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">ការទូទាត់ បានបិទដំណើរការ។</string>
     <string name="PaymentsHomeFragment__payment_failed">ការទូទាត់បរាជ័យ</string>
     <string name="PaymentsHomeFragment__details">លម្អិត</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">អ្នកអាចប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួលMobileCoin។ ការទូទាត់ទាំងអស់គឺស្ថិតនៅក្រោមលក្ខខណ្ឌនៃការប្រើប្រាស់សម្រាប់MobileCoin និង MobileCoin Wallet។ នេះជាមុខងារបេតា ដូចនេះ អ្នកអាចជួបប្រទះបញ្ហាមួយចំនួន និងការទូទាត់ ឬសមតុល្យអាចបាត់បង់ មិនអាចស្តារឡើងវិញទេ។ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">អ្នកអាចប្រើ Signal ដើម្បីផ្ញើ និងទទួល MobileCoin។ ការបង់ប្រាក់ទាំងអស់ត្រូវអនុវត្តតាមលក្ខខណ្ឌប្រើប្រាស់សម្រាប់ MobileCoins និង MobileCoin Wallet។ អ្នកអាចនឹងជួបប្រទះបញ្ហាមួយចំនួន ហើយការបង់ប្រាក់ ឬសមតុល្យដែលអ្នកអាចនឹងបាត់បង់ មិនអាចស្តារមកវិញបានទេ។ </string>
     <string name="PaymentsHomeFragment__activate">ធ្វើឱ្យសកម្ម</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">មើលលក្ខខណ្ឌ MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">ការទូទាត់នៅក្នុង Signal លែងមានហើយ។ អ្នកនៅតែអាចផ្ទេរប្រាក់ទៅកន្លែងប្តូរប្រាក់បាន ប៉ុន្តែអ្នកមិនអាចផ្ញើ និងទទួលការទូទាត់ ឬបន្ថែមថវិកាបានទេ។</string>
@@ -3137,6 +3041,32 @@
     <string name="PaymentsHomeFragment__cancel">បោះបង់</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">ធ្វើបច្ចុប្បន្នភាពឥឡូវនេះ</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">ឥឡូវកុំទាន់</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">បន្ទាប់</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">បើកការអនុញ្ញាត</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">ដើម្បីជួយអ្នកក្នុងការផ្ញើសារទៅកាន់មនុស្សដែលអ្នកស្គាល់ Signal នឹងស្នើសុំការអនុញ្ញាតទាំងនេះ។ </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">ការជូនដំណឹង</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">ទទួលបានការជូនដំណឹងនៅពេលសារថ្មីៗមកដល់។</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">បញ្ជីទំនាក់ទំនង</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">ស្វែងរកមនុស្សដែលអ្នកស្គាល់។ បញ្ជីទំនាក់ទំនងរបស់អ្នកត្រូវបានអ៊ីនគ្រីប និងមិនអាចមើលឃើញដោយសេវាកម្ម Signal បានទេ។</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">ការហៅទូរសព្ទ</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">ធ្វើឲ្យការចុះឈ្មោះកាន់តែងាយស្រួល និងបើកមុខងារហៅទូរសព្ទបន្ថែម។</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">ការផ្ទុក</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">ផ្ញើរូបថត វីដេអូ និងឯកសារពីឧបករណ៍របស់អ្នក។</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3368,7 +3298,6 @@
     <string name="conversation__menu_format_text">កំណត់ទម្រង់អត្ថបទ</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">ពង្រីកការផុសឡើង</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">បន្ថែមទៅបញ្ជីទំនាក់ទំនង</string>
@@ -3405,8 +3334,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">ប្រៀបធៀបជាមួយ clipboard</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>
-    <string name="reminder_header_sms_import_text">ចុចដើម្បីចម្លងសារក្នុងទូរសព្ទដៃរបស់អ្នកចូលទៅក្នុងមូលដ្ឋានទិន្នន័យដែលកាណាល់កូដសម្ងាត់របស់Signal។</string>
     <string name="reminder_header_push_title">បើកការផ្ញើសារ និងការហៅចេញតាមSignal</string>
     <string name="reminder_header_push_text">ធ្វើឲ្យបទពិសោធន៍ទំនាក់ទំនងប្រសើរឡើង។</string>
     <string name="reminder_header_service_outage_text">Signal កំពុងជួបប្រទះបញ្ហាបច្ចេកទេស។ យើងកំពុងធ្វើការស្តារសេវាកម្មយ៉ាងរហ័សតាមដែលអាចធ្វើទៅបាន។</string>
@@ -3550,17 +3477,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">កំពុងហៅជាក្រុមតាម Signal</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
     <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>
     <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់…</string>
     <string name="Permissions_permission_required">ទាមទារការអនុញ្ញាត</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signalត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីផ្ញើសារ SMS ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"សារ SMS\"។</string>
     <string name="Permissions_continue">បន្ត</string>
     <string name="Permissions_not_now">ពេលក្រោយ</string>
-    <string name="conversation_activity__enable_signal_messages">បើកប្រើសារ SIGNAL </string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">ផ្លាស់ទីទិន្នន័យ Signal</string>
-    <string name="PushDecryptJob_new_locked_message">សារចាក់សោរថ្មី</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">ដោះសោរដើម្បីមើលសាររង់ចាំ</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">បម្រុងទុកឃ្លាសម្ងាត់</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ការបម្រុងទុក នឹងត្រូវរក្សាទុកនៅលើអង្គរក្សាទុកខាងក្រៅ និងកូដនីយកម្មជាមួយឃ្លាសម្ងាត់ខាងក្រោម។ អ្នកត្រូវមានឃ្លាសម្ងាត់នេះដើម្បីស្តារការបម្រុងទុកឡើងវិញ។</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">អ្នកត្រូវតែមានឃ្លាសម្ងាត់នេះ ដើម្បីស្ដារការបម្រុងទុក។</string>
@@ -3621,8 +3543,6 @@
     <string name="RegistrationActivity_incorrect_code">លេខកូដមិនត្រឹមត្រូវ</string>
     <string name="BackupUtil_never">មិនធ្លាប់</string>
     <string name="BackupUtil_unknown">មិនស្គាល់</string>
-    <string name="preferences_app_protection__see_my_phone_number">មើលលេខទូរស័ព្ទរបស់ខ្ញុំ</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">ស្វែងរកលេខទូរស័ព្ទរបស់ខ្ញុំ</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">លេខទូរសព្ទ</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3636,10 +3556,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">មនុស្ស និងក្រុមទាំងឡាយដែលអ្នកផ្ញើសារទៅនឹងអាចមើលឃើញលេខទូរសព្ទរបស់អ្នក។ អ្នកទាំងឡាយដែលមានលេខទូរសព្ទរបស់អ្នកនៅក្នុងបញ្ជីទំនាក់ទំនងរបស់ពួកគេក៏នឹងអាចមើលវាឃើញនៅលើ Signal ដែរ។</string>
     <string name="PhoneNumberPrivacy_everyone">អ្នករាល់គ្នា</string>
-    <string name="PhoneNumberPrivacy_my_contacts">បញ្ជីទំនាក់ទំនងរបស់ខ្ញុំ</string>
     <string name="PhoneNumberPrivacy_nobody">គ្មាននរណា</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">លេខទូរស័ព្ទរបស់អ្នក នឹងបង្ហាញទៅមនុស្សទាំងអស់ និងក្រុម ដែលអ្នកផ្ញើសារ។</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">នរណាម្នាក់ ដែលមានលេខទូរស័ព្ទរបស់អ្នកនៅក្នុងបញ្ជីទំនាក់ទំនងរបស់គេ នឹងឃើញអ្នកជាលេខទំនាក់ទំនងមួយនៅលើ Signal។ អ្នកដទៃ នឹងអាចរកអ្នកនៅ ការស្វែងរក។</string>
     <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ចាក់សោរការប្រើប្រាស់ Signal ជាមួយសោរអេក្រង់ Android ឬ ក្រយៅដៃ</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">អេក្រង់ជាប់សោរ ទុកចោលហួសកំណត់</string>
@@ -4050,7 +3967,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">អ្នកមានសមតុល្យ! ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។ ស្វែងយល់បន្ថែម</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ឃ្លាសង្គ្រោះរបស់អ្នក គឺជា%1$dពាក្យដែលប្លែកសម្រាប់អ្នក។ សូមប្រើឃ្លានេះសម្រាប់ទាញយកសមតុលអ្នកមកវិញ។</string>
     <string name="PaymentsRecoveryStartFragment__start">ចាប់ផ្ដើម</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">បញ្ជូលដោយខ្លួនឯង</string>
@@ -4102,11 +4019,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">ពាក្យ %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">បន្ទាប់</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">ពាក្យមិនត្រឹមត្រូវ</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">បង្ហាញ</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s បានផ្ញើអោយអ្នក %2$s</string>
@@ -4574,7 +4486,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">ចែករំលែក</string>
@@ -4723,7 +4634,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">បរិច្ចាគសម្រាប់មិត្តភក្តិម្នាក់</string>
 
     <string name="Boost__enter_custom_amount">បញ្ចូលចំនួនទឹកប្រាក់កំណត់ផ្ទាល់ខ្លួន</string>
-    <string name="Boost__one_time_contribution">ចូលរួមចំនែកតែមួយលើក</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">ចំនួនទឹកប្រាក់អប្បបរមាដែលអ្នកអាចបរិច្ចាគបានគឺ %1$s</string>
 
@@ -5013,6 +4923,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">បរាជ័យក្នុងការបើកសារ</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">ដើម្បីបើកការជូនដំណឹង Signal ត្រូវការការអនុញ្ញាតដើម្បីបង្ហាញពួកវា។</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">បើក</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">កំណត់សម្គាល់ការចេញផ្សាយ &amp; និងព័ត៌មានរបស់ Signal</string>
@@ -5164,8 +5078,6 @@
     <string name="StoryViewsAndRepliesDialogFragment__replies">ការឆ្លើយតប</string>
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">ប្រតិកម្មនឹងរឿងរ៉ាវនេះ</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">កំពុងឆ្លើយតបជាឯកជនទៅ %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">ឆ្លើយតបទៅ %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -5408,8 +5320,6 @@
     <string name="ViewReceivedGiftSheet__not_now">ពេលក្រោយ</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">កំពុងប្តូរយកស្លាក…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">អ្នកអាចប្តូរយកស្លាករបស់អ្នកនៅពេលក្រោយ។</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">អ្នកបានបរិច្ចាគទៅ Signal ជំនួសឲ្យ %1$s។ គេនឹងត្រូវបានផ្តល់ជម្រើសដើម្បីបង្ហាញការគាំទ្ររបស់គេនៅលើប្រូហ្វាល់របស់គេ។</string>
     <!-- Expired gift sheet title -->
@@ -5704,23 +5614,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal នឹងមិនអាចប្រើបានជាមួយសារជាអក្សរទៀតទេ</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal លែងប្រើបានជាមួយសារជាអក្សរទៀតហើយ</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal នឹងដកការគាំទ្រចំពោះការផ្ញើសារជាអក្សរក្នុងពេលឆាប់ៗនេះ ដោយសារតែសារ Signal ផ្តល់នូវការអ៊ីនគ្រីបទាំងសងខាង និងឯកជនភាពខ្ពស់ដែលសារជាអក្សរមិនមាន។ ការធ្វើបែបនេះនឹងអាចឲ្យយើងធ្វើឲ្យបទពិសោធន៍នៃការផ្ញើសារ Signal មានភាពប្រសើរឡើងផងដែរ។</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal បានដកការគាំទ្រចំពោះការផ្ញើសារជាអក្សរ ដោយសារតែសារ Signal ផ្តល់នូវការអ៊ីនគ្រីបទាំងសងខាង និងឯកជនភាពខ្ពស់ដែលសារជាអក្សរមិនមាន។ ការធ្វើបែបនេះនឹងអាចឲ្យយើងធ្វើឲ្យបទពិសោធន៍នៃការផ្ញើសារ Signal មានភាពប្រសើរឡើងផងដែរ។</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">នាំចេញសារជាអក្សរ</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">រំលឹកខ្ញុំពេលក្រោយ</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">ស្វែងយល់បន្ថែម</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">សារជាអក្សរនឹងលែងប្រើបានទៀតហើយ</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">កុំបារម្ភអី! សារ Signal ដែលបានអ៊ីនគ្រីបនឹងបន្តដំណើរការ។</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">បន្ត</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">ការនាំចេញបានបញ្ចប់</string>
     <!-- Button to continue to next screen -->
@@ -5931,10 +5828,6 @@
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">ការហៅជាវីដេអូ</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">ចូលរួមការហៅ</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">ត្រឡប់ទៅការហៅ</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">ហៅជាសំឡេង</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -5986,12 +5879,12 @@
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">បានលុបការហៅ %1$d</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">មិនធ្វើវិញ</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">មិនមានការហៅទេ។</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">ចាប់ផ្តើមដោយហៅមិត្តភក្តិម្នាក់។</string>
+    <!-- Displayed as a message in a dialog when deleting multiple items -->
+    <string name="CallLogFragment__call_links_youve_created">តំណសម្រាប់ការហៅដែលអ្នកបានបង្កើតឡើងនឹងលែងដំណើរការសម្រាប់អ្នកទាំងឡាយដែលមានពួកវាទៀតហើយ។</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -6053,8 +5946,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">ការហៅតាម Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">ចូលរួម</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">ដាក់ឈ្មោះសម្រាប់ការហៅ</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">កែឈ្មោះសម្រាប់ការហៅ</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">អនុញ្ញាតសមាជិកទាំងអស់</string>
     <!-- Row label to share the link via Signal -->
@@ -6069,6 +5964,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">មិនអាចចែករំលែកតំណសម្រាប់ការហៅបានទេ។</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">បានចម្លងទៅឃ្លីបបត</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">អនុញ្ញាតឲ្យចូល</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">បដិសេធមិនឲ្យចូល</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6089,9 +5990,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ប្រវត្តិកែ</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">សម្រាប់តែ Signal បេតាប៉ុណ្ណោះ</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">កែសារ</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">ការកែសារមានសម្រាប់តែអ្នកប្រើ Signal បេតាប៉ុណ្ណោះ។ ប្រសិនបើអ្នកកែសារ មានតែអ្នកដែលមានកំណែចុងក្រោយបំផុតនៃ Signal បេតាប៉ុណ្ណោះទើបអាចមើលវាឃើញ។</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">ប្រសិនបើអ្នកកែសារ មានតែអ្នកដែលមានកំណែចុងក្រោយបំផុតនៃ Signal ប៉ុណ្ណោះទើបអាចមើលវាឃើញ។ ពួកគេនឹងអាចមើលឃើញថាអ្នកបានកែសារ។</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">បោះបង់</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6126,6 +6027,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">បានចម្លងឈ្មោះអ្នកប្រើ</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">បានចម្លងតំណ</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">តំណមិនត្រូវបានកំណត់ទេ</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">កំណត់តំណឡើងវិញ…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">កំណត់កូដ QR ឡើងវិញឬ?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">ប្រសិនបើអ្នកកំណត់កូដ QR របស់អ្នកឡើងវិញ កូដ QR និងតំណដែលមានស្រាប់របស់អ្នកនឹងមិនដំណើរការទៀតទេ។</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">កំណត់ឡើងវិញ</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">កំណត់ឡើងវិញ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6142,8 +6053,14 @@
     <string name="UsernameLinkSettings_qr_result_invalid">កូដ QR មិនត្រឹមត្រូវទេ។</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">រកមិនឃើញអ្នកប្រើដែលមានឈ្មោះ %1$s ទេ។</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">រកមិនឃើញអ្នកប្រើនេះទេ។</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">បានជួបប្រទះបញ្ហាបណ្តាញ។ សូមព្យាយាមម្តងទៀត។</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">អ្នកមិនមានសិទ្ធិចូលប្រើបណ្តាញទេ។ តំណរបស់អ្នកមិនត្រូវបានកំណត់ឡើងវិញទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">បញ្ហាបណ្តាញមួយបានកើតឡើង ខណៈពេលព្យាយាមកំណត់តំណរបស់អ្នកឡើងវិញ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -6162,7 +6079,7 @@
     </plurals>
     <!-- Content description for rejecting a user -->
     <string name="PendingParticipantsBottomSheet__reject">ច្រានចោល</string>
-    <!-- Content desccription for confirming a user -->
+    <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">អនុញាតិ</string>
 
     <!-- EOF -->

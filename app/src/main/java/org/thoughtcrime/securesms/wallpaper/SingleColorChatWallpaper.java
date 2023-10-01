@@ -61,14 +61,14 @@ public final class SingleColorChatWallpaper implements ChatWallpaper, Parcelable
 
   @Override
   public @NonNull Wallpaper serialize() {
-    Wallpaper.SingleColor.Builder builder = Wallpaper.SingleColor.newBuilder();
+    Wallpaper.SingleColor.Builder builder = new Wallpaper.SingleColor.Builder();
 
-    builder.setColor(color);
+    builder.color(color);
 
-    return Wallpaper.newBuilder()
-                    .setSingleColor(builder)
-                    .setDimLevelInDarkTheme(dimLevelInDarkTheme)
-                    .build();
+    return new Wallpaper.Builder()
+                        .singleColor(builder.build())
+                        .dimLevelInDarkTheme(dimLevelInDarkTheme)
+                        .build();
   }
 
   @Override

@@ -70,7 +70,7 @@ final class GroupStateMapper {
     final int from = Math.max(0, inputState.getEarliestRevisionNumber());
     final int to   = Math.min(inputState.getLatestRevisionNumber(), maximumRevisionToApply);
 
-    if (current != null && current.getRevision() == PLACEHOLDER_REVISION) {
+    if (current != null && current.revision == PLACEHOLDER_REVISION) {
       Log.i(TAG, "Ignoring place holder group state");
     } else {
       stateChain.push(current, null);
@@ -83,11 +83,11 @@ final class GroupStateMapper {
         continue;
       }
 
-      if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.getRevision() == PLACEHOLDER_REVISION) {
-        DecryptedGroup previousState = DecryptedGroup.newBuilder(entry.getGroup())
-                                                     .setTitle(current.getTitle())
-                                                     .setAvatar(current.getAvatar())
-                                                     .build();
+      if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.revision == PLACEHOLDER_REVISION) {
+        DecryptedGroup previousState = entry.getGroup().newBuilder()
+                                                       .title(current.title)
+                                                       .avatar(current.avatar)
+                                                       .build();
 
         stateChain.push(previousState, null);
       }
@@ -135,12 +135,12 @@ final class GroupStateMapper {
         try {
           return DecryptedGroupUtil.applyWithoutRevisionCheck(group, change);
         } catch (NotAbleToApplyGroupV2ChangeException e) {
-          Log.w(TAG, "Unable to apply V" + change.getRevision(), e);
+          Log.w(TAG, "Unable to apply V" + change.revision, e);
           return null;
         }
       },
       (groupB, groupA) -> GroupChangeReconstruct.reconstructGroupChange(groupA, groupB),
-      (groupA, groupB) -> groupA.getRevision() == groupB.getRevision() && DecryptedGroupUtil.changeIsEmpty(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB))
+      (groupA, groupB) -> groupA.revision == groupB.revision && DecryptedGroupUtil.changeIsEmpty(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB))
     );
   }
 }

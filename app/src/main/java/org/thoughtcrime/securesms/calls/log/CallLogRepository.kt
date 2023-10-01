@@ -86,18 +86,22 @@ class CallLogRepository(
   /**
    * Delete all call events / unowned links and enqueue clear history job, and then
    * emit a clear history message.
+   *
+   * This explicitly drops failed call link revocations of call links, and those call links
+   * will remain visible to the user. This is safe because the clear history sync message should
+   * only clear local history and then poll link status from the server.
    */
   fun deleteAllCallLogsOnOrBeforeNow(): Single<Int> {
     return Single.fromCallable {
       SignalDatabase.rawDatabase.withinTransaction {
-        val now = System.currentTimeMillis()
-        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(now)
-        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(now)
-        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(now))
+        val latestTimestamp = SignalDatabase.calls.getLatestTimestamp()
+        SignalDatabase.calls.deleteNonAdHocCallEventsOnOrBefore(latestTimestamp)
+        SignalDatabase.callLinks.deleteNonAdminCallLinksOnOrBefore(latestTimestamp)
+        ApplicationDependencies.getJobManager().add(CallLogEventSendJob.forClearHistory(latestTimestamp))
       }
 
       SignalDatabase.callLinks.getAllAdminCallLinksExcept(emptySet())
-    }.flatMap(this::revokeAndCollectResults).map { -1 }.subscribeOn(Schedulers.io())
+    }.flatMap(this::revokeAndCollectResults).map { 0 }.subscribeOn(Schedulers.io())
   }
 
   /**

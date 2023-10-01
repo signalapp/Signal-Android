@@ -1,13 +1,13 @@
 package org.whispersystems.signalservice.api.push
 
-import com.google.protobuf.ByteString
+import okio.ByteString
 import org.signal.libsignal.protocol.ServiceId.InvalidServiceIdException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.logging.Log
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.util.UuidUtil
-import java.lang.IllegalArgumentException
 import java.util.UUID
-import kotlin.jvm.Throws
 import org.signal.libsignal.protocol.ServiceId as LibSignalServiceId
 import org.signal.libsignal.protocol.ServiceId.Aci as LibSignalAci
 import org.signal.libsignal.protocol.ServiceId.Pni as LibSignalPni
@@ -75,7 +75,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
 
     /** Parses a ServiceId serialized as a ByteString. Returns null if the ServiceId is invalid. */
     @JvmStatic
-    fun parseOrNull(bytes: ByteString): ServiceId? = parseOrNull(bytes.toByteArray())
+    fun parseOrNull(bytes: okio.ByteString): ServiceId? = parseOrNull(bytes.toByteArray())
 
     /** Parses a ServiceId serialized as a string. Crashes if the ServiceId is invalid. */
     @JvmStatic
@@ -101,7 +101,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
 
   fun toProtocolAddress(deviceId: Int): SignalProtocolAddress = SignalProtocolAddress(libSignalServiceId.toServiceIdString(), deviceId)
 
-  fun toByteString(): ByteString = ByteString.copyFrom(libSignalServiceId.toServiceIdBinary())
+  fun toByteString(): ByteString = ByteString.of(*libSignalServiceId.toServiceIdBinary())
 
   fun toByteArray(): ByteArray = libSignalServiceId.toServiceIdBinary()
 

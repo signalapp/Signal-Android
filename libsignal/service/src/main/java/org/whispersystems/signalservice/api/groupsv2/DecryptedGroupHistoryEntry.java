@@ -17,7 +17,7 @@ public final class DecryptedGroupHistoryEntry {
   public DecryptedGroupHistoryEntry(Optional<DecryptedGroup> group, Optional<DecryptedGroupChange> change)
       throws InvalidGroupStateException
   {
-    if (group.isPresent() && change.isPresent() && group.get().getRevision() != change.get().getRevision()) {
+    if (group.isPresent() && change.isPresent() && group.get().revision != change.get().revision) {
       throw new InvalidGroupStateException();
     }
 

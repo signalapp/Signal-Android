@@ -19,14 +19,11 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.NoGroupsI
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.RemovedContactHidden
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.UniversalExpireTimerUpdate
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
-import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
-import org.whispersystems.signalservice.api.push.ServiceId
 
 private typealias ConversationElement = MappingModel<*>
 
@@ -50,12 +47,12 @@ private object ThreadHeaderKey : ConversationElementKey
  * ConversationDataSource for V2. Assumes that ThreadId is never -1L.
  */
 class ConversationDataSource(
-  private val context: Context,
+  private val localContext: Context,
   private val threadId: Long,
   private val messageRequestData: ConversationData.MessageRequestData,
   private val showUniversalExpireTimerUpdate: Boolean,
   private var baseSize: Int,
-  private val messageRequestRepository: MessageRequestRepository = MessageRequestRepository(context)
+  private val messageRequestRepository: MessageRequestRepository = MessageRequestRepository(localContext)
 ) : PagedDataSource<ConversationElementKey, ConversationElement> {
 
   companion object {
@@ -97,15 +94,8 @@ class ConversationDataSource(
   }
 
   override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<ConversationElement> {
-    val stopwatch = Stopwatch("load($start, $length), thread $threadId")
+    val stopwatch = Stopwatch(title = "load($start, $length), thread $threadId", decimalPlaces = 2)
     var records: MutableList<MessageRecord> = ArrayList(length)
-    val mentionHelper = MentionHelper()
-    val quotedHelper = QuotedHelper()
-    val attachmentHelper = AttachmentHelper()
-    val reactionHelper = ReactionHelper()
-    val paymentHelper = PaymentHelper()
-    val callHelper = CallHelper()
-    val referencedIds = hashSetOf<ServiceId>()
 
     MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId, start.toLong(), length.toLong()))
       .use { reader ->
@@ -115,17 +105,6 @@ class ConversationDataSource(
           }
 
           records.add(record)
-          mentionHelper.add(record)
-          quotedHelper.add(record)
-          reactionHelper.add(record)
-          attachmentHelper.add(record)
-          paymentHelper.add(record)
-          callHelper.add(record)
-
-          val updateDescription = record.getUpdateDisplayBody(context, null)
-          if (updateDescription != null) {
-            referencedIds.addAll(updateDescription.mentioned)
-          }
         }
       }
 
@@ -143,46 +122,19 @@ class ConversationDataSource(
 
     stopwatch.split("messages")
 
-    mentionHelper.fetchMentions(context)
-    stopwatch.split("mentions")
+    val extraData = MessageDataFetcher.fetch(records)
+    stopwatch.split("extra-data")
 
-    quotedHelper.fetchQuotedState()
-    stopwatch.split("is-quoted")
-
-    reactionHelper.fetchReactions()
-    stopwatch.split("reactions")
-
-    records = reactionHelper.buildUpdatedModels(records)
-    stopwatch.split("reaction-models")
-
-    attachmentHelper.fetchAttachments()
-    stopwatch.split("attachments")
-
-    records = attachmentHelper.buildUpdatedModels(context, records)
-    stopwatch.split("attachment-models")
-
-    paymentHelper.fetchPayments()
-    stopwatch.split("payments")
-
-    records = paymentHelper.buildUpdatedModels(records)
-    stopwatch.split("payment-models")
-
-    callHelper.fetchCalls()
-    stopwatch.split("calls")
-
-    records = callHelper.buildUpdatedModels(records)
-    stopwatch.split("call-models")
-
-    referencedIds.forEach { Recipient.resolved(RecipientId.from(it)) }
-    stopwatch.split("recipient-resolves")
+    records = MessageDataFetcher.updateModelsWithData(records, extraData).toMutableList()
+    stopwatch.split("models")
 
     val messages = records.map { record ->
       ConversationMessageFactory.createWithUnresolvedData(
-        context,
+        localContext,
         record,
-        record.getDisplayBody(context),
-        mentionHelper.getMentions(record.id),
-        quotedHelper.isQuoted(record.id),
+        record.getDisplayBody(localContext),
+        extraData.mentionsById[record.id],
+        extraData.hasBeenQuoted.contains(record.id),
         threadRecipient
       ).toMappingModel()
     }
@@ -198,7 +150,8 @@ class ConversationDataSource(
     }
 
     stopwatch.split("header")
-    stopwatch.stop(TAG)
+    val log = stopwatch.stopAndGetLogString()
+    Log.d(TAG, "$log || ${extraData.timeLog}")
 
     return if (threadHeaders.isNotEmpty()) messages + threadHeaders else messages
   }
@@ -213,7 +166,7 @@ class ConversationDataSource(
       return null
     }
 
-    val stopwatch = Stopwatch("load($key), thread $threadId")
+    val stopwatch = Stopwatch(title = "load($key), thread $threadId", decimalPlaces = 2)
     var record = SignalDatabase.messages.getMessageRecordOrNull(key.id)
 
     if ((record as? MediaMmsMessageRecord)?.parentStoryId?.isGroupReply() == true) {
@@ -227,50 +180,29 @@ class ConversationDataSource(
 
     stopwatch.split("message")
 
+    var extraData: MessageDataFetcher.ExtraMessageData? = null
     try {
       if (record == null) {
         return null
       } else {
-        val mentions = SignalDatabase.mentions.getMentionsForMessage(key.id)
-        stopwatch.split("mentions")
+        extraData = MessageDataFetcher.fetch(record)
+        stopwatch.split("extra-data")
 
-        val isQuoted = SignalDatabase.messages.isQuoted(record)
-        stopwatch.split("is-quoted")
-
-        val reactions = SignalDatabase.reactions.getReactions(MessageId(key.id))
-        record = ReactionHelper.recordWithReactions(record, reactions)
-        stopwatch.split("reactions")
-
-        val attachments = SignalDatabase.attachments.getAttachmentsForMessage(key.id)
-        if (attachments.size > 0) {
-          record = (record as MediaMmsMessageRecord).withAttachments(context, attachments)
-        }
-        stopwatch.split("attachments")
-
-        if (record.isPaymentNotification) {
-          record = SignalDatabase.payments.updateMessageWithPayment(record)
-        }
-        stopwatch.split("payments")
-
-        if (record.isCallLog && !record.isGroupCall) {
-          val call = SignalDatabase.calls.getCallByMessageId(record.id)
-          if (call != null && record is MediaMmsMessageRecord) {
-            record = record.withCall(call)
-          }
-        }
-        stopwatch.split("calls")
+        record = MessageDataFetcher.updateModelWithData(record, extraData)
+        stopwatch.split("models")
 
         return ConversationMessageFactory.createWithUnresolvedData(
-          ApplicationDependencies.getApplication(),
+          localContext,
           record,
           record.getDisplayBody(ApplicationDependencies.getApplication()),
-          mentions,
-          isQuoted,
+          extraData.mentionsById[record.id],
+          extraData.hasBeenQuoted.contains(record.id),
           threadRecipient
         ).toMappingModel()
       }
     } finally {
-      stopwatch.stop(TAG)
+      val log = stopwatch.stopAndGetLogString()
+      Log.d(TAG, "$log || ${extraData?.timeLog}")
     }
   }
 
@@ -290,13 +222,13 @@ class ConversationDataSource(
     return if (messageRecord.isUpdate) {
       ConversationUpdate(this)
     } else if (messageRecord.isOutgoing) {
-      if (this.isTextOnly(context)) {
+      if (this.isTextOnly(localContext)) {
         OutgoingTextOnly(this)
       } else {
         OutgoingMedia(this)
       }
     } else {
-      if (this.isTextOnly(context)) {
+      if (this.isTextOnly(localContext)) {
         IncomingTextOnly(this)
       } else {
         IncomingMedia(this)

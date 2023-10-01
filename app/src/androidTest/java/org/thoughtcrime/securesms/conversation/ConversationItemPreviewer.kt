@@ -144,6 +144,7 @@ class ConversationItemPreviewer {
       1024,
       Optional.empty(),
       Optional.empty(),
+      0,
       Optional.of("/not-there.jpg"),
       false,
       false,

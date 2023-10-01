@@ -16,19 +16,19 @@ import kotlin.random.Random
  */
 object GroupTestingUtils {
   fun member(aci: ACI, revision: Int = 0, role: Member.Role = Member.Role.ADMINISTRATOR): DecryptedMember {
-    return DecryptedMember.newBuilder()
-      .setAciBytes(aci.toByteString())
-      .setJoinedAtRevision(revision)
-      .setRole(role)
+    return DecryptedMember.Builder()
+      .aciBytes(aci.toByteString())
+      .joinedAtRevision(revision)
+      .role(role)
       .build()
   }
 
   fun insertGroup(revision: Int = 0, vararg members: DecryptedMember): TestGroupInfo {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
-    val decryptedGroupState = DecryptedGroup.newBuilder()
-      .addAllMembers(members.toList())
-      .setRevision(revision)
-      .setTitle(MessageContentFuzzer.string())
+    val decryptedGroupState = DecryptedGroup.Builder()
+      .members(members.toList())
+      .revision(revision)
+      .title(MessageContentFuzzer.string())
       .build()
 
     val groupId = SignalDatabase.groups.create(groupMasterKey, decryptedGroupState)!!

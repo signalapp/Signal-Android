@@ -10,7 +10,6 @@
     <dimen name="emoji_drawer_item_width">46dp</dimen>
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
-    <dimen name="transport_selection_popup_width">200sp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="keyboard_toolbar_height">44dp</dimen>
 
@@ -107,15 +106,6 @@
 
     <dimen name="unread_count_bubble_radius">12.5dp</dimen>
 
-    <dimen name="insights_modal_title_margin_top">41dp</dimen>
-    <dimen name="insights_modal_description_margin_top">12dp</dimen>
-    <dimen name="insights_modal_progress_margin_top">23dp</dimen>
-    <dimen name="insights_modal_progress_size">187dp</dimen>
-    <dimen name="insights_modal_avatar_size">140dp</dimen>
-    <dimen name="insights_modal_view_insights_margin_top">41dp</dimen>
-    <dimen name="insights_modal_percent_text_size">28sp</dimen>
-    <dimen name="insights_modal_percent_sign_text_size">20sp</dimen>
-
     <dimen name="invite_edit_text_min_height">84dp</dimen>
 
     <!-- RedPhone -->
@@ -130,8 +120,6 @@
          the prox sensor kick in.) -->
 
     <dimen name="floating_action_button_margin">16dp</dimen>
-
-    <dimen name="alertview_small_icon_size">14dp</dimen>
 
     <dimen name="recording_voice_lock_target">-150dp</dimen>
 

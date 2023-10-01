@@ -92,8 +92,26 @@ public final class ImageCompressionUtil {
                              .submit(maxDimension, maxDimension)
                              .get();
     } catch (ExecutionException | InterruptedException e) {
+      Log.w(TAG, "Verbose logging to try to give all possible debug information for Glide issues. Exceptions below may be duplicated.", e);
       if (e.getCause() instanceof GlideException) {
-        ((GlideException) e.getCause()).logRootCauses(TAG);
+        List<Throwable> rootCauses = ((GlideException) e.getCause()).getRootCauses();
+        if (!rootCauses.isEmpty()) {
+          for (int i = 0, size = rootCauses.size(); i < size; i++) {
+            Log.w(TAG, "Root cause (" + (i + 1) + " of " + size + ")", rootCauses.get(i));
+          }
+        } else {
+          Log.w(TAG, "Encountered GlideException with no root cause.", e.getCause());
+        }
+        List<Throwable> causes = ((GlideException) e.getCause()).getCauses();
+        if (!causes.isEmpty()) {
+          for (int i = 0, size = causes.size(); i < size; i++) {
+            Log.w(TAG, "Caused by (" + (i + 1) + " of " + size + ")", causes.get(i));
+          }
+        } else {
+          Log.w(TAG, "Encountered GlideException with no child cause.", e.getCause());
+        }
+      } else {
+        Log.w(TAG, "Encountered non-GlideException.", e);
       }
       throw new BitmapDecodingException(e);
     }

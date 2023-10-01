@@ -95,8 +95,10 @@ class BadgeImageView @JvmOverloads constructor(
   }
 
   private fun clearDrawable() {
-    setImageDrawable(null)
-    isClickable = false
+    if (drawable != null) {
+      setImageDrawable(null)
+      isClickable = false
+    }
   }
 
   private fun getGlideRequests(): GlideRequests? {

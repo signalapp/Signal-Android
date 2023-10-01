@@ -6,7 +6,6 @@ import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
 import okio.ByteString
-import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -26,9 +25,9 @@ import org.thoughtcrime.securesms.testing.Entry
 import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketMessage
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage
+import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.websocket.WebSocketMessage
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.util.regex.Pattern
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.minutes
@@ -93,7 +92,7 @@ class MessageProcessingPerformanceTest {
     val messageCount = 100
     val envelopes = generateInboundEnvelopes(bobClient, messageCount)
     val firstTimestamp = envelopes.first().timestamp
-    val lastTimestamp = envelopes.last().timestamp
+    val lastTimestamp = envelopes.last().timestamp ?: 0
 
     // Inject the envelopes into the websocket
     Thread {
@@ -179,32 +178,19 @@ class MessageProcessingPerformanceTest {
   }
 
   private fun webSocketTombstone(): ByteString {
-    return WebSocketMessage
-      .newBuilder()
-      .setRequest(
-        WebSocketRequestMessage.newBuilder()
-          .setVerb("PUT")
-          .setPath("/api/v1/queue/empty")
-      )
-      .build()
-      .toByteArray()
-      .toByteString()
+    return WebSocketMessage(request = WebSocketRequestMessage(verb = "PUT", path = "/api/v1/queue/empty")).encodeByteString()
   }
 
   private fun Envelope.toWebSocketPayload(): ByteString {
-    return WebSocketMessage
-      .newBuilder()
-      .setType(WebSocketMessage.Type.REQUEST)
-      .setRequest(
-        WebSocketRequestMessage.newBuilder()
-          .setVerb("PUT")
-          .setPath("/api/v1/message")
-          .setId(Random(System.currentTimeMillis()).nextLong())
-          .addHeaders("X-Signal-Timestamp: ${this.timestamp}")
-          .setBody(this.toByteString())
+    return WebSocketMessage(
+      type = WebSocketMessage.Type.REQUEST,
+      request = WebSocketRequestMessage(
+        verb = "PUT",
+        path = "/api/v1/message",
+        id = Random(System.currentTimeMillis()).nextLong(),
+        headers = listOf("X-Signal-Timestamp: ${this.timestamp}"),
+        body = this.encodeByteString()
       )
-      .build()
-      .toByteArray()
-      .toByteString()
+    ).encodeByteString()
   }
 }

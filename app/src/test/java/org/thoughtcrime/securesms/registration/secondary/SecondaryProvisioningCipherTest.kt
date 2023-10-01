@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.registration.secondary
 
-import com.google.protobuf.ByteString
+import okio.ByteString
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.`is`
@@ -8,9 +8,9 @@ import org.junit.Test
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
-import org.whispersystems.signalservice.internal.push.ProvisioningProtos
-import org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage
-import org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisioningVersion
+import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
+import org.whispersystems.signalservice.internal.push.ProvisionMessage
+import org.whispersystems.signalservice.internal.push.ProvisioningVersion
 import java.util.UUID
 
 class SecondaryProvisioningCipherTest {
@@ -23,16 +23,18 @@ class SecondaryProvisioningCipherTest {
     val primaryProfileKey = ProfileKeyUtil.createNew()
     val primaryProvisioningCipher = PrimaryProvisioningCipher(provisioningCipher.secondaryDevicePublicKey.publicKey)
 
-    val message = ProvisionMessage.newBuilder()
-      .setAciIdentityKeyPublic(ByteString.copyFrom(primaryIdentityKeyPair.publicKey.serialize()))
-      .setAciIdentityKeyPrivate(ByteString.copyFrom(primaryIdentityKeyPair.privateKey.serialize()))
-      .setProvisioningCode("code")
-      .setProvisioningVersion(ProvisioningVersion.CURRENT_VALUE)
-      .setNumber("+14045555555")
-      .setAci(UUID.randomUUID().toString())
-      .setProfileKey(ByteString.copyFrom(primaryProfileKey.serialize()))
+    val message = ProvisionMessage(
+      aciIdentityKeyPublic = ByteString.of(*primaryIdentityKeyPair.publicKey.serialize()),
+      aciIdentityKeyPrivate = ByteString.of(*primaryIdentityKeyPair.privateKey.serialize()),
+      provisioningCode = "code",
+      provisioningVersion = ProvisioningVersion.CURRENT.value,
+      number = "+14045555555",
+      aci = UUID.randomUUID().toString(),
+      profileKey = ByteString.of(*primaryProfileKey.serialize()),
+      readReceipts = true
+    )
 
-    val provisionMessage = ProvisioningProtos.ProvisionEnvelope.parseFrom(primaryProvisioningCipher.encrypt(message.build()))
+    val provisionMessage = ProvisionEnvelope.ADAPTER.decode(primaryProvisioningCipher.encrypt(message))
 
     val result = provisioningCipher.decrypt(provisionMessage)
     assertThat(result, instanceOf(SecondaryProvisioningCipher.ProvisionDecryptResult.Success::class.java))

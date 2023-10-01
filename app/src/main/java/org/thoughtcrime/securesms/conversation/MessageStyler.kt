@@ -63,13 +63,13 @@ object MessageStyler {
     var bottomButton: BodyRange.Button? = null
 
     messageRanges
-      .rangesList
+      .ranges
       .filter { r -> r.start >= 0 && r.start < span.length && r.start + r.length >= 0 }
       .forEach { range ->
         val start = range.start
         val end = (range.start + range.length).coerceAtMost(span.length)
 
-        if (range.hasStyle()) {
+        if (range.style != null) {
           val styleSpan: Any? = when (range.style) {
             BodyRange.Style.BOLD -> boldStyle()
             BodyRange.Style.ITALIC -> italicStyle()
@@ -90,10 +90,10 @@ object MessageStyler {
             span.setSpan(styleSpan, start, end, SPAN_FLAGS)
             appliedStyle = true
           }
-        } else if (range.hasLink() && range.link != null) {
+        } else if (range.link != null) {
           span.setSpan(PlaceholderURLSpan(range.link), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
           hasLinks = true
-        } else if (range.hasButton() && range.button != null) {
+        } else if (range.button != null) {
           bottomButton = range.button
         }
       }
@@ -245,7 +245,7 @@ object MessageStyler {
           }
 
           if (spanLength > 0 && style != null) {
-            BodyRange.newBuilder().setStart(spanStart).setLength(spanLength).setStyle(style).build()
+            BodyRange(start = spanStart, length = spanLength, style = style)
           } else {
             null
           }
@@ -255,7 +255,7 @@ object MessageStyler {
     }
 
     return if (bodyRanges.isNotEmpty()) {
-      BodyRangeList.newBuilder().addAllRanges(bodyRanges).build()
+      BodyRangeList(ranges = bodyRanges)
     } else {
       null
     }

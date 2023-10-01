@@ -43,6 +43,13 @@ object ConversationItemSelection {
     drawConversationItem: Boolean,
     hasReaction: Boolean
   ): Bitmap {
+    val snapshotStrategy = target.getSnapshotStrategy()
+    if (snapshotStrategy != null) {
+      return createBitmap(target.root.width, target.root.height).applyCanvas {
+        snapshotStrategy.snapshot(this)
+      }
+    }
+
     val bodyBubble = target.bubbleView
     val reactionsView = target.reactionsView
 

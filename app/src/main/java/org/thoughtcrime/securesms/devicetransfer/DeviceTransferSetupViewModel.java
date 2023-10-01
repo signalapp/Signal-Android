@@ -78,7 +78,7 @@ public final class DeviceTransferSetupViewModel extends ViewModel {
 
   public void onWifiDirectUnavailable(WifiDirect.AvailableStatus availability) {
     Log.i(TAG, "Wifi Direct unavailable: " + availability);
-    if (availability == WifiDirect.AvailableStatus.FINE_LOCATION_PERMISSION_NOT_GRANTED) {
+    if (availability == WifiDirect.AvailableStatus.REQUIRED_PERMISSION_NOT_GRANTED) {
       store.update(s -> s.updateStep(SetupStep.PERMISSIONS_CHECK));
     } else {
       store.update(s -> s.updateStep(SetupStep.WIFI_DIRECT_UNAVAILABLE));

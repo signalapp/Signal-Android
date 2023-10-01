@@ -91,8 +91,8 @@ class ReviewCardViewHolder extends RecyclerView.ViewHolder {
 
     if (reviewCard.getNameChange() != null) {
       subtextLine2.setText(SpanUtil.italic(context.getString(R.string.ReviewCard__recently_changed,
-                                                             reviewCard.getNameChange().getPrevious(),
-                                                             reviewCard.getNameChange().getNew())));
+                                                             reviewCard.getNameChange().previous,
+                                                             reviewCard.getNameChange().newValue)));
     }
   }
 

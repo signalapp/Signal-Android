@@ -173,10 +173,10 @@ public final class GroupsV1MigrationUtil {
         return null;
       }
 
-      Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.getRevision());
+      Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.revision);
       SignalDatabase.groups().migrateToV2(threadId, gv1Id, decryptedGroup);
 
-      Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
+      Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.revision);
       try {
         GroupManager.updateGroupFromServer(context, gv1Id.deriveV2MigrationMasterKey(), LATEST, System.currentTimeMillis(), null);
       } catch (GroupChangeBusyException | GroupNotAMemberException e) {

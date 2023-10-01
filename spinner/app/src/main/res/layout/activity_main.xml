@@ -27,4 +27,10 @@
         android:layout_height="match_parent"
         android:text="Then go to localhost:5000 in your browser." />
 
+    <Button
+        android:id="@+id/log_throwable_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Throwable" />
+
 </LinearLayout>

@@ -31,11 +31,10 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.Envelope
 import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.locks.ReentrantLock
-import kotlin.UnsupportedOperationException
 
 /**
  * Welcome to Bob's Client.
@@ -61,7 +60,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   }
 
   /** Inspired by SignalServiceMessageSender#getEncryptedMessage */
-  fun encrypt(now: Long): SignalServiceProtos.Envelope {
+  fun encrypt(now: Long): Envelope {
     val envelopeContent = FakeClientHelpers.encryptedTextMessage(now)
 
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, null)
@@ -72,10 +71,10 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     }
 
     return cipher.encrypt(getAliceProtocolAddress(), getAliceUnidentifiedAccess(), envelopeContent)
-      .toEnvelope(envelopeContent.content.get().dataMessage.timestamp, getAliceServiceId())
+      .toEnvelope(envelopeContent.content.get().dataMessage!!.timestamp!!, getAliceServiceId())
   }
 
-  fun decrypt(envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long) {
+  fun decrypt(envelope: Envelope, serverDeliveredTimestamp: Long) {
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, UnidentifiedAccessUtil.getCertificateValidator())
     cipher.decrypt(envelope, serverDeliveredTimestamp)
   }

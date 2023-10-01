@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.notifications
 
 import android.os.Build
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -43,6 +44,7 @@ class SlowNotificationsViewModel : ViewModel() {
     checkSubject.onNext(Unit)
   }
 
+  @WorkerThread
   private fun checkHeuristics(): Single<State> {
     return Single.fromCallable {
       var state = State.NONE

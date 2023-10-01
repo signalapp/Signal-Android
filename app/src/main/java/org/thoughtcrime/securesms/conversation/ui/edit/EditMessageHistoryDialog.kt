@@ -91,7 +91,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
       conversationRecipient.hasWallpaper(),
       colorizer
     ).apply {
-      setCondensedMode(ConversationItemDisplayMode.EDIT_HISTORY)
+      setCondensedMode(ConversationItemDisplayMode.EditHistory)
     }
 
     binding.editHistoryList.apply {

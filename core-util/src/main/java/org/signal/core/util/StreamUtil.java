@@ -60,12 +60,21 @@ public final class StreamUtil {
   }
 
   public static byte[] readFully(InputStream in) throws IOException {
-    ByteArrayOutputStream bout = new ByteArrayOutputStream();
-    byte[] buffer              = new byte[4096];
-    int read;
+    return readFully(in, Integer.MAX_VALUE);
+  }
+
+  public static byte[] readFully(InputStream in, int maxBytes) throws IOException {
+    ByteArrayOutputStream bout      = new ByteArrayOutputStream();
+    byte[]                buffer    = new byte[4096];
+    int                   totalRead = 0;
+    int                   read;
 
     while ((read = in.read(buffer)) != -1) {
       bout.write(buffer, 0, read);
+      totalRead += read;
+      if (totalRead > maxBytes) {
+        throw new IOException("Stream size limit exceeded");
+      }
     }
 
     in.close();

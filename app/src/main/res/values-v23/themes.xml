@@ -34,12 +34,6 @@
         <item name="android:navigationBarColor">@color/signal_colorBackground</item>
     </style>
 
-    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/transparent</item>
-    </style>
-
     <style name="Theme.Signal.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@color/signal_colorBackground</item>

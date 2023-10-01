@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.DataMessage
 
 class QuoteModel(
   val id: Long,
@@ -49,8 +49,8 @@ class QuoteModel(
         return NORMAL
       }
 
-      fun fromProto(type: SignalServiceProtos.DataMessage.Quote.Type): Type {
-        return if (type == SignalServiceProtos.DataMessage.Quote.Type.GIFT_BADGE) {
+      fun fromProto(type: DataMessage.Quote.Type?): Type {
+        return if (type == DataMessage.Quote.Type.GIFT_BADGE) {
           GIFT_BADGE
         } else {
           NORMAL

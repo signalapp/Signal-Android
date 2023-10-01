@@ -74,7 +74,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
     val colorizer = Colorizer()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, GlideApp.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient.hasWallpaper(), colorizer).apply {
-      setCondensedMode(ConversationItemDisplayMode.CONDENSED)
+      setCondensedMode(ConversationItemDisplayMode.Condensed(scheduleMessageMode = false))
     }
 
     val list: RecyclerView = view.findViewById<RecyclerView>(R.id.quotes_list).apply {

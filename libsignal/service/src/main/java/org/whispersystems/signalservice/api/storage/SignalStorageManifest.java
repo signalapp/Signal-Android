@@ -1,17 +1,19 @@
 package org.whispersystems.signalservice.api.storage;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
+import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
+import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import okio.ByteString;
 
 public class SignalStorageManifest {
   public static final SignalStorageManifest EMPTY = new SignalStorageManifest(0, 1, Collections.emptyList());
@@ -39,16 +41,16 @@ public class SignalStorageManifest {
 
   public static SignalStorageManifest deserialize(byte[] serialized) {
     try {
-      StorageManifest manifest       = StorageManifest.parseFrom(serialized);
-      ManifestRecord  manifestRecord = ManifestRecord.parseFrom(manifest.getValue());
-      List<StorageId> ids            = new ArrayList<>(manifestRecord.getIdentifiersCount());
+      StorageManifest manifest       = StorageManifest.ADAPTER.decode(serialized);
+      ManifestRecord  manifestRecord = ManifestRecord.ADAPTER.decode(manifest.value_);
+      List<StorageId> ids            = new ArrayList<>(manifestRecord.identifiers.size());
 
-      for (ManifestRecord.Identifier id : manifestRecord.getIdentifiersList()) {
-        ids.add(StorageId.forType(id.getRaw().toByteArray(), id.getTypeValue()));
+      for (ManifestRecord.Identifier id : manifestRecord.identifiers) {
+        ids.add(StorageId.forType(id.raw.toByteArray(), id.type.getValue()));
       }
 
-      return new SignalStorageManifest(manifest.getVersion(), manifestRecord.getSourceDevice(), ids);
-    } catch (InvalidProtocolBufferException e) {
+      return new SignalStorageManifest(manifest.version, manifestRecord.sourceDevice, ids);
+    } catch (IOException e) {
       throw new AssertionError(e);
     }
   }
@@ -70,7 +72,7 @@ public class SignalStorageManifest {
   }
 
   public Optional<StorageId> getAccountStorageId() {
-    List<StorageId> list = storageIdsByType.get(ManifestRecord.Identifier.Type.ACCOUNT_VALUE);
+    List<StorageId> list = storageIdsByType.get(ManifestRecord.Identifier.Type.ACCOUNT.getValue());
 
     if (list != null && list.size() > 0) {
       return Optional.of(list.get(0));
@@ -87,21 +89,27 @@ public class SignalStorageManifest {
     List<ManifestRecord.Identifier> ids = new ArrayList<>(storageIds.size());
 
     for (StorageId id : storageIds) {
-      ids.add(ManifestRecord.Identifier.newBuilder()
-                                       .setTypeValue(id.getType())
-                                       .setRaw(ByteString.copyFrom(id.getRaw()))
-                                       .build());
+      ManifestRecord.Identifier.Type type = ManifestRecord.Identifier.Type.Companion.fromValue(id.getType());
+      if (type != null) {
+        ids.add(new ManifestRecord.Identifier.Builder()
+                                             .type(type)
+                                             .raw(ByteString.of(id.getRaw()))
+                                             .build());
+      } else {
+        ByteString unknownEnum = ProtoUtil.writeUnknownEnumValue(StorageRecordProtoUtil.STORAGE_ID_TYPE_TAG, id.getType());
+        ids.add(new ManifestRecord.Identifier(ByteString.of(id.getRaw()), ManifestRecord.Identifier.Type.UNKNOWN, unknownEnum));
+      }
     }
 
-    ManifestRecord manifestRecord = ManifestRecord.newBuilder()
-                                                  .addAllIdentifiers(ids)
-                                                  .setSourceDevice(sourceDeviceId)
-                                                  .build();
+    ManifestRecord manifestRecord = new ManifestRecord.Builder()
+                                                      .identifiers(ids)
+                                                      .sourceDevice(sourceDeviceId)
+                                                      .build();
 
-    return StorageManifest.newBuilder()
-                          .setVersion(version)
-                          .setValue(manifestRecord.toByteString())
-                          .build()
-                          .toByteArray();
+    return new StorageManifest.Builder()
+                              .version(version)
+                              .value_(manifestRecord.encodeByteString())
+                              .build()
+                              .encode();
   }
 }

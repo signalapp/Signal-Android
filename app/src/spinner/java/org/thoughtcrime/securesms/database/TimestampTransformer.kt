@@ -11,7 +11,8 @@ import java.time.LocalDateTime
 object TimestampTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
     return columnName.contains("date", true) ||
-      columnName.contains("timestamp", true)
+      columnName.contains("timestamp", true) ||
+      columnName.contains("created_at", true)
   }
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {

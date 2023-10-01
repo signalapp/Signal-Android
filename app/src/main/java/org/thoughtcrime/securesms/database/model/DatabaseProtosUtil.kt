@@ -2,46 +2,27 @@
 
 package org.thoughtcrime.securesms.database.model
 
-import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange
+import org.whispersystems.signalservice.internal.push.BodyRange
 
 /**
  * Collection of extensions to make working with database protos cleaner.
  */
-
-fun ByteArray.toProtoByteString(): ByteString {
-  return ByteString.copyFrom(this)
-}
-
 fun BodyRangeList.Builder.addStyle(style: BodyRangeList.BodyRange.Style, start: Int, length: Int): BodyRangeList.Builder {
-  addRanges(
-    BodyRangeList.BodyRange.newBuilder()
-      .setStyle(style)
-      .setStart(start)
-      .setLength(length)
-  )
-
+  ranges += BodyRangeList.BodyRange(style = style, start = start, length = length)
   return this
 }
 
 fun BodyRangeList.Builder.addLink(link: String, start: Int, length: Int): BodyRangeList.Builder {
-  addRanges(
-    BodyRangeList.BodyRange.newBuilder()
-      .setLink(link)
-      .setStart(start)
-      .setLength(length)
-  )
-
+  ranges += BodyRangeList.BodyRange(link = link, start = start, length = length)
   return this
 }
 
 fun BodyRangeList.Builder.addButton(label: String, action: String, start: Int, length: Int): BodyRangeList.Builder {
-  addRanges(
-    BodyRangeList.BodyRange.newBuilder()
-      .setButton(BodyRangeList.BodyRange.Button.newBuilder().setLabel(label).setAction(action))
-      .setStart(start)
-      .setLength(length)
+  ranges += BodyRangeList.BodyRange(
+    button = BodyRangeList.BodyRange.Button(label = label, action = action),
+    start = start,
+    length = length
   )
 
   return this
@@ -52,7 +33,7 @@ fun List<BodyRange>?.toBodyRangeList(): BodyRangeList? {
     return null
   }
 
-  val builder = BodyRangeList.newBuilder()
+  val builder = BodyRangeList.Builder()
 
   for (bodyRange in this) {
     var style: BodyRangeList.BodyRange.Style? = null
@@ -65,7 +46,7 @@ fun List<BodyRange>?.toBodyRangeList(): BodyRangeList? {
       else -> Unit
     }
     if (style != null) {
-      builder.addStyle(style, bodyRange.start, bodyRange.length)
+      builder.addStyle(style, bodyRange.start!!, bodyRange.length!!)
     }
   }
 

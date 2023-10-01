@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
-import com.google.protobuf.ByteString;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,6 +25,7 @@ import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +33,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+
+import okio.ByteString;
 
 import static org.junit.Assert.assertEquals;
 
@@ -45,7 +47,7 @@ public final class LedgerReconcileTest {
 
   @Test
   public void empty_lists() {
-    List<Payment> payments = reconcile(Collections.emptyList(), new MobileCoinLedgerWrapper(MobileCoinLedger.getDefaultInstance()));
+    List<Payment> payments = reconcile(Collections.emptyList(), new MobileCoinLedgerWrapper(new MobileCoinLedger()));
 
     assertEquals(Collections.emptyList(), payments);
   }
@@ -232,16 +234,14 @@ public final class LedgerReconcileTest {
   }
 
   private MobileCoinLedger.Block block(long blockIndex) {
-    return MobileCoinLedger.Block.newBuilder()
-                                 .setBlockNumber(blockIndex)
-                                 .build();
+    return new MobileCoinLedger.Block.Builder()
+                                     .blockNumber(blockIndex)
+                                     .build();
   }
 
   private MobileCoinLedger ledger(MobileCoinLedger.OwnedTXO... txos) {
-    MobileCoinLedger.Builder builder = MobileCoinLedger.newBuilder();
-    for (MobileCoinLedger.OwnedTXO txo : txos) {
-      builder.addUnspentTxos(txo);
-    }
+    MobileCoinLedger.Builder builder = new MobileCoinLedger.Builder();
+    builder.unspentTxos(Arrays.asList(txos));
     return builder.build();
   }
 
@@ -250,19 +250,19 @@ public final class LedgerReconcileTest {
   }
 
   private MobileCoinLedger.OwnedTXO spentTxo(Money.MobileCoin mob, ByteString keyImage, ByteString publicKey, MobileCoinLedger.Block receivedBlock, MobileCoinLedger.Block spentBlock) {
-    return txo(mob, keyImage, publicKey, receivedBlock).setSpentInBlock(spentBlock).build();
+    return txo(mob, keyImage, publicKey, receivedBlock).spentInBlock(spentBlock).build();
   }
 
   private MobileCoinLedger.OwnedTXO.Builder txo(Money.MobileCoin mob, ByteString keyImage, ByteString publicKey, MobileCoinLedger.Block receivedBlock) {
     if (mob.isNegative()) {
       throw new AssertionError();
     }
-    MobileCoinLedger.OwnedTXO.Builder builder = MobileCoinLedger.OwnedTXO.newBuilder()
-                                                                         .setReceivedInBlock(receivedBlock)
-                                                                         .setKeyImage(keyImage)
-                                                                         .setPublicKey(publicKey);
+    MobileCoinLedger.OwnedTXO.Builder builder = new MobileCoinLedger.OwnedTXO.Builder()
+                                                                             .receivedInBlock(receivedBlock)
+                                                                             .keyImage(keyImage)
+                                                                             .publicKey(publicKey);
     try {
-      builder.setAmount(Uint64Util.bigIntegerToUInt64(mob.toPicoMobBigInteger()));
+      builder.amount(Uint64Util.bigIntegerToUInt64(mob.toPicoMobBigInteger()));
     } catch (Uint64RangeException e) {
       throw new AssertionError(e);
     }
@@ -272,14 +272,14 @@ public final class LedgerReconcileTest {
   private static Payment payment(String note, Money.MobileCoin valueAndDirection, Set<ByteString> keyImages, Set<ByteString> publicKeys) {
     UUID uuid = UUID.randomUUID();
 
-    PaymentMetaData.MobileCoinTxoIdentification.Builder builderForValue = PaymentMetaData.MobileCoinTxoIdentification.newBuilder();
+    PaymentMetaData.MobileCoinTxoIdentification.Builder builderForValue = new PaymentMetaData.MobileCoinTxoIdentification.Builder();
 
-    builderForValue.addAllKeyImages(keyImages);
-    builderForValue.addAllPublicKey(publicKeys);
+    builderForValue.keyImages(new ArrayList<>(keyImages));
+    builderForValue.publicKey(new ArrayList<>(publicKeys));
 
-    PaymentMetaData paymentMetaData = PaymentMetaData.newBuilder()
-                                                     .setMobileCoinTxoIdentification(builderForValue)
-                                                     .build();
+    PaymentMetaData paymentMetaData = new PaymentMetaData.Builder()
+                                                         .mobileCoinTxoIdentification(builderForValue.build())
+                                                         .build();
 
     return new Payment() {
       @Override
@@ -375,7 +375,7 @@ public final class LedgerReconcileTest {
 
   private static ByteString id(long id) {
     byte[] bytes = ByteUtil.longToByteArray(id);
-    return ByteString.copyFrom(bytes);
+    return ByteString.of(bytes);
   }
 
   private static Money.MobileCoin mob(double value) {

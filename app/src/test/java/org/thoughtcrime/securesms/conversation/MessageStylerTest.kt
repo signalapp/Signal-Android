@@ -35,15 +35,15 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 2
+    bodyRange.ranges.size assertIs 2
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 5
     }
 
-    bodyRange.rangesList[1].apply {
+    bodyRange.ranges[1].apply {
       style assertIs Style.ITALIC
       start assertIs 10
       length assertIs 5
@@ -57,15 +57,15 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 2
+    bodyRange.ranges.size assertIs 2
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 5
     }
 
-    bodyRange.rangesList[1].apply {
+    bodyRange.ranges[1].apply {
       style assertIs Style.ITALIC
       start assertIs 3
       length assertIs 7
@@ -79,9 +79,9 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 1
+    bodyRange.ranges.size assertIs 1
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 10
@@ -95,9 +95,9 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 1
+    bodyRange.ranges.size assertIs 1
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 10
@@ -111,15 +111,15 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 2
+    bodyRange.ranges.size assertIs 2
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 4
     }
 
-    bodyRange.rangesList[1].apply {
+    bodyRange.ranges[1].apply {
       style assertIs Style.BOLD
       start assertIs 6
       length assertIs 4
@@ -133,9 +133,9 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 1
+    bodyRange.ranges.size assertIs 1
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 10
@@ -160,9 +160,9 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 1
+    bodyRange.ranges.size assertIs 1
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 10
@@ -177,9 +177,9 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 1
+    bodyRange.ranges.size assertIs 1
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 8
@@ -193,15 +193,15 @@ class MessageStylerTest {
 
     val bodyRange = MessageStyler.getStyling(text)!!
 
-    bodyRange.rangesCount assertIs 2
+    bodyRange.ranges.size assertIs 2
 
-    bodyRange.rangesList[0].apply {
+    bodyRange.ranges[0].apply {
       style assertIs Style.BOLD
       start assertIs 0
       length assertIs 3
     }
 
-    bodyRange.rangesList[1].apply {
+    bodyRange.ranges[1].apply {
       style assertIs Style.BOLD
       start assertIs 7
       length assertIs 3

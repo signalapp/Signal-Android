@@ -144,7 +144,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   @Override
   public int getSectionItemViewType(int section, int offset) {
     MediaTable.MediaRecord mediaRecord = media.get(section, offset);
-    Slide                  slide       = MediaUtil.getSlideForAttachment(context, mediaRecord.getAttachment());
+    Slide                  slide       = MediaUtil.getSlideForAttachment(mediaRecord.getAttachment());
 
     if (slide.hasAudio()) return AUDIO_DETAIL;
     if (slide.hasImage() || slide.hasVideo()) return detailView ? GALLERY_DETAIL : GALLERY;
@@ -171,7 +171,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   @Override
   public void onBindItemViewHolder(ItemViewHolder viewHolder, int section, int offset) {
     MediaTable.MediaRecord mediaRecord = media.get(section, offset);
-    Slide                  slide       = MediaUtil.getSlideForAttachment(context, mediaRecord.getAttachment());
+    Slide                  slide       = MediaUtil.getSlideForAttachment(mediaRecord.getAttachment());
 
     ((SelectableViewHolder) viewHolder).bind(context, mediaRecord, slide);
   }

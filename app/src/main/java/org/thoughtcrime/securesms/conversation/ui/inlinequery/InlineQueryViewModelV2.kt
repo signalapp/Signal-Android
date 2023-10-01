@@ -33,7 +33,7 @@ class InlineQueryViewModelV2(
 
   val results: Observable<Results>
   val selection: Observable<InlineQueryReplacement> = selectionSubject.observeOn(AndroidSchedulers.mainThread())
-  val isMentionsShowing: Observable<Boolean> = isMentionsShowingSubject.observeOn(AndroidSchedulers.mainThread())
+  val isMentionsShowing: Observable<Boolean> = isMentionsShowingSubject.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread())
 
   init {
     results = querySubject.switchMap { query ->

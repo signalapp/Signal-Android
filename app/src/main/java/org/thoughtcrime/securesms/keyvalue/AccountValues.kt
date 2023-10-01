@@ -26,6 +26,9 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents
+import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.security.SecureRandom
 
 internal class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
@@ -64,6 +67,11 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_PNI_LAST_RESORT_KYBER_PREKEY_ID = "account.pni_last_resort_kyber_prekey_id"
     private const val KEY_PNI_LAST_RESORT_KYBER_PREKEY_ROTATION_TIME = "account.pni_last_resort_kyber_prekey_rotation_time"
 
+    private const val KEY_USERNAME = "account.username"
+    private const val KEY_USERNAME_LINK_ENTROPY = "account.username_link_entropy"
+    private const val KEY_USERNAME_LINK_SERVER_ID = "account.username_link_server_id"
+    private const val KEY_USERNAME_OUT_OF_SYNC = "phoneNumberPrivacy.usernameOutOfSync"
+
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
 
@@ -100,7 +108,9 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       KEY_ACI_IDENTITY_PUBLIC_KEY,
       KEY_ACI_IDENTITY_PRIVATE_KEY,
       KEY_PNI_IDENTITY_PUBLIC_KEY,
-      KEY_PNI_IDENTITY_PRIVATE_KEY
+      KEY_PNI_IDENTITY_PRIVATE_KEY,
+      KEY_USERNAME,
+      KEY_USERNAME_LINK_SERVER_ID
     )
   }
 
@@ -350,6 +360,43 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
   val isLinkedDevice: Boolean
     get() = !isPrimaryDevice
+
+  /** The local user's full username (nickname.discriminator), if set. */
+  var username: String?
+    get() {
+      val value = getString(KEY_USERNAME, null)
+      return if (value.isNullOrBlank()) null else value
+    }
+    set(value) {
+      putString(KEY_USERNAME, value)
+    }
+
+  /** The local user's username link components, if set. */
+  var usernameLink: UsernameLinkComponents?
+    get() {
+      val entropy: ByteArray? = getBlob(KEY_USERNAME_LINK_ENTROPY, null)
+      val serverId: ByteArray? = getBlob(KEY_USERNAME_LINK_SERVER_ID, null)
+
+      return if (entropy != null && serverId != null) {
+        val serverIdUuid = UuidUtil.parseOrThrow(serverId)
+        UsernameLinkComponents(entropy, serverIdUuid)
+      } else {
+        null
+      }
+    }
+    set(value) {
+      store
+        .beginWrite()
+        .putBlob(KEY_USERNAME_LINK_ENTROPY, value?.entropy)
+        .putBlob(KEY_USERNAME_LINK_SERVER_ID, value?.serverId?.toByteArray())
+        .apply()
+    }
+
+  /**
+   * There are some cases where our username may fall out of sync with the service. In particular, we may get a new value for our username from
+   * storage service but then find that it doesn't match what's on the service.
+   */
+  var usernameOutOfSync: Boolean by booleanValue(KEY_USERNAME_OUT_OF_SYNC, false)
 
   private fun clearLocalCredentials() {
     putString(KEY_SERVICE_PASSWORD, Util.getSecret(18))

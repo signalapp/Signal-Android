@@ -43,6 +43,8 @@ object FcmFetchManager {
   private val TAG = Log.tag(FcmFetchManager::class.java)
   private val EXECUTOR = SerialMonoLifoExecutor(SignalExecutors.UNBOUNDED)
 
+  private val KEEP_ALIVE_TOKEN = "FcmFetch"
+
   val WEBSOCKET_DRAIN_TIMEOUT = 5.minutes.inWholeMilliseconds
 
   @Volatile
@@ -140,7 +142,7 @@ object FcmFetchManager {
 
   @JvmStatic
   fun retrieveMessages(context: Context): Boolean {
-    val success = WebSocketDrainer.blockUntilDrainedAndProcessed(WEBSOCKET_DRAIN_TIMEOUT)
+    val success = WebSocketDrainer.blockUntilDrainedAndProcessed(WEBSOCKET_DRAIN_TIMEOUT, KEEP_ALIVE_TOKEN)
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.")

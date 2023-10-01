@@ -29,10 +29,6 @@
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="NoAnimation.Theme.AppCompat.Light.DarkActionBar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowAnimationStyle">@null</item>
-    </style>
-
     <style name="TextSecure.DialogActivity" parent="Theme.AppCompat.Light">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -117,11 +113,6 @@
            parent="TextSecure.LightActionBar">
     </style>
 
-    <style name="TextSecure.HighlightActionBar" parent="@style/TextSecure.DarkActionBar.Conversation">
-        <item name="background">@color/core_ultramarine</item>
-        <item name="elevation">0dp</item>
-    </style>
-
     <style name="TextSecure.DarkActionBar.TabBar"
         parent="@style/Widget.AppCompat.ActionBar.TabBar">
         <item name="background">@color/core_grey_95</item>
@@ -136,11 +127,6 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">#BFffffff</item>
         <item name="elevation">4dp</item>
-    </style>
-
-    <style name="TextSecure.Conversation.TabBar" parent="@style/Widget.AppCompat.ActionBar.TabBar">
-        <item name="android:textColorPrimary">@color/signal_text_toolbar_title</item>
-        <item name="android:textColorSecondary">@color/signal_text_toolbar_subtitle</item>
     </style>
 
     <style name="TextSecure.DarkActionBar.Conversation">
@@ -158,21 +144,6 @@
         <item name="android:colorControlActivated" tools:ignore="NewApi">@color/core_ultramarine</item>
     </style>
 
-    <style name="TextSecure.DarkActionBar.ReactionOverlay">
-        <item name="android:popupTheme" tools:ignore="NewApi">@style/Signal.DayNight.Popup</item>
-        <item name="popupTheme">@style/Signal.DayNight.Popup</item>
-        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
-        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
-        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow</item>
-        <item name="colorControlHighlight">?colorAccent</item>
-        <item name="android:colorControlHighlight" tools:ignore="NewApi">?colorAccent</item>
-        <item name="colorControlNormal">@color/signal_text_secondary</item>
-        <item name="android:colorControlNormal" tools:ignore="NewApi">@color/signal_text_primary</item>
-        <item name="colorControlActivated">?colorAccent</item>
-        <item name="android:colorControlActivated" tools:ignore="NewApi">?colorAccent</item>
-    </style>
-
     <style name="Signal.Toolbar.PaymentInfoCard" parent="@style/Widget.AppCompat.ActionBar">
         <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.PaymentCard</item>
         <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.PaymentCard</item>
@@ -182,16 +153,6 @@
         <item name="android:textColor">@color/signal_text_primary</item>
         <item name="android:textColorHint">@color/signal_text_secondary</item>
         <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextSecure.TitleTextStyle.Dark" parent="TextSecure.TitleTextStyle">
-        <item name="android:textColor">@color/transparent_white_90</item>
-        <item name="android:textColorHint">@color/transparent_white_60</item>
-    </style>
-
-    <style name="TextSecure.TitleTextStyle.Light" parent="TextSecure.TitleTextStyle">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/transparent_white_80</item>
     </style>
 
     <style name="TextSecure.TitleTextStyle.Conversation" parent="TextSecure.TitleTextStyle">
@@ -208,10 +169,6 @@
         <item name="android:textColor">@color/transparent_white_60</item>
     </style>
 
-    <style name="TextSecure.SubtitleTextStyle.Light" parent="TextSecure.SubtitleTextStyle">
-        <item name="android:textColor">@color/transparent_white_80</item>
-    </style>
-
     <style name="TextSecure.SubtitleTextStyle.Conversation" parent="TextSecure.TitleTextStyle">
         <item name="android:textColor">@color/signal_text_toolbar_subtitle</item>
     </style>
@@ -222,36 +179,6 @@
         <item name="android:textStyle">normal</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowColor">#ffffff</item>
-        <item name="android:shadowDx">1.0</item>
-        <item name="android:shadowDy">1.0</item>
-        <item name="android:shadowRadius">0.0</item>
-        <item name="android:lineSpacingMultiplier">1.25</item>
-    </style>
-
-    <style name="Registration.Label" parent="@android:style/TextAppearance">
-        <item name="android:textSize">12.0sp</item>
-        <item name="android:typeface">sans</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">#ff808080</item>
-        <item name="android:gravity">left</item>
-        <item name="android:layout_gravity">left</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowColor">#ffffff</item>
-        <item name="android:shadowDx">1.0</item>
-        <item name="android:shadowDy">1.0</item>
-        <item name="android:shadowRadius">0.0</item>
-        <item name="android:lineSpacingMultiplier">1.25</item>
-    </style>
-
-    <style name="Registration.BigLabel" parent="@style/Registration.Label">
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="Registration.Constant" parent="@android:style/TextAppearance">
-        <item name="android:typeface">sans</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">#ff808080</item>
         <item name="android:shadowColor">#ffffff</item>
         <item name="android:shadowDx">1.0</item>
         <item name="android:shadowDy">1.0</item>
@@ -286,11 +213,6 @@
         <item name="android:imeOptions">flagNoEnterAction</item>
         <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
-    </style>
-
-    <style name="AttachmentTypeLabel">
-        <item name="android:textColor">#ff999999</item>
-        <item name="android:textSize">14sp</item>
     </style>
 
     <!-- RedPhone -->
@@ -329,27 +251,6 @@
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
         <item name="android:divider">@null</item>
         <item name="android:dividerHeight">0dp</item>
-    </style>
-
-    <style name="Color1SwitchStyle">
-        <item name="colorControlActivated">@color/white</item>
-    </style>
-
-    <style name="WebRtcCallScreenTextWhite">
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="WebRtcCallScreenTextWhite.Small">
-        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-    </style>
-
-    <style name="WebRtcCallScreenTextWhite.Medium">
-        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-    </style>
-
-    <style name="WebRtcCallScreenTextWhite.ExtraLarge">
-        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
-        <item name="android:textSize">40sp</item>
     </style>
 
     <style name="Signal.SearchView" parent="Widget.AppCompat.SearchView">
@@ -391,18 +292,6 @@
         <item name="android:actionOverflowButtonStyle">@style/Signal.DayNight.Toolbar.Overflow</item>
     </style>
 
-    <style name="Widget.Signal.ArcProgressBar" parent="">
-        <item name="android:layout_width">187dp</item>
-        <item name="android:layout_height">187dp</item>
-        <item name="arcBackgroundColor">@color/insight_progress_background</item>
-        <item name="arcForegroundColor">@color/core_ultramarine</item>
-        <item name="arcProgress">0.0</item>
-        <item name="arcStartAngle">120</item>
-        <item name="arcSweepAngle">300</item>
-        <item name="arcWidth">8dp</item>
-        <item name="arcRoundedEnds">true</item>
-    </style>
-
     <declare-styleable name="ProgressCard">
         <attr name="progressCardTitle" format="string" />
     </declare-styleable>
@@ -440,25 +329,6 @@
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="iconGravity">textStart</item>
-    </style>
-
-    <style name="Widget.Signal.Button.Icon.Circular" parent="Widget.Signal.Button.Icon">
-        <item name="android:layout_width">48dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="iconSize">24dp</item>
-        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
-        <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
-        <item name="iconTint">@color/white</item>
-        <item name="iconTintMode">multiply</item>
-        <item name="rippleColor">@color/core_ultramarine</item>
-    </style>
-
-    <style name="Widget.Signal.Button.Icon.Circular.Small">
-        <item name="android:layout_width">24dp</item>
-        <item name="android:layout_height">24dp</item>
-        <item name="iconSize">10dp</item>
-        <item name="android:padding">0dp</item>
         <item name="iconGravity">textStart</item>
     </style>
 

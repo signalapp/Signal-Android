@@ -3,15 +3,13 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
@@ -27,6 +25,8 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
+import okio.ByteString;
 
 /**
  * Tells a linked device about sent payments.
@@ -87,7 +87,7 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
       return;
     }
 
-    PaymentMetaData.MobileCoinTxoIdentification txoIdentification = payment.getPaymentMetaData().getMobileCoinTxoIdentification();
+    PaymentMetaData.MobileCoinTxoIdentification txoIdentification = payment.getPaymentMetaData().mobileCoinTxoIdentification;
 
     boolean defrag = payment.isDefrag();
 
@@ -107,13 +107,13 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
     OutgoingPaymentMessage outgoingPaymentMessage = new OutgoingPaymentMessage(uuid,
                                                                                payment.getAmount().requireMobileCoin(),
                                                                                payment.getFee().requireMobileCoin(),
-                                                                               ByteString.copyFrom(receipt),
+                                                                               ByteString.of(receipt),
                                                                                payment.getBlockIndex(),
                                                                                payment.getTimestamp(),
                                                                                defrag ? Optional.empty() : Optional.of(payment.getPayee().requirePublicAddress().serialize()),
                                                                                defrag ? Optional.empty() : Optional.of(payment.getNote()),
-                                                                               txoIdentification.getPublicKeyList(),
-                                                                               txoIdentification.getKeyImagesList());
+                                                                               txoIdentification.publicKey,
+                                                                               txoIdentification.keyImages);
 
 
     ApplicationDependencies.getSignalServiceMessageSender()

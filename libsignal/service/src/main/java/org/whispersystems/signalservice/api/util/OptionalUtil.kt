@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.util
 
-import com.google.protobuf.ByteString
+import okio.ByteString
 import java.util.Optional
 
 object OptionalUtil {
@@ -41,7 +41,7 @@ object OptionalUtil {
 
   @JvmStatic
   fun absentIfEmpty(value: ByteString?): Optional<ByteArray> {
-    return if (value == null || value.isEmpty) {
+    return if (value == null || value.size == 0) {
       Optional.empty()
     } else {
       Optional.of(value.toByteArray())

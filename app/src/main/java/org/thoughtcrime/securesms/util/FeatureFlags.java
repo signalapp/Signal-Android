@@ -86,6 +86,7 @@ public final class FeatureFlags {
   private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "global.payments.disabledRegions";
   public  static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
+  public  static final String BLOCK_SSE                         = "android.blockSessionSwitchoverEvents";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
@@ -100,8 +101,8 @@ public final class FeatureFlags {
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
-  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
-  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.8";
+  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.3";
+  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.13";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
@@ -113,6 +114,9 @@ public final class FeatureFlags {
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
   public  static final String USERNAMES                         = "android.usernames";
+  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
+  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.4";
+  public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -177,7 +181,11 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES
+      USERNAMES,
+      INSTANT_VIDEO_PLAYBACK,
+      CONVERSATION_ITEM_V2_TEXT,
+      CRASH_PROMPT_CONFIG,
+      BLOCK_SSE
   );
 
   @VisibleForTesting
@@ -248,7 +256,9 @@ public final class FeatureFlags {
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
       PROMPT_BATTERY_SAVER,
-      USERNAMES
+      USERNAMES,
+      CRASH_PROMPT_CONFIG,
+      BLOCK_SSE
   );
 
   /**
@@ -379,6 +389,13 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getBoolean(PHONE_NUMBER_PRIVACY, false) || Environment.IS_PNP;
+  }
+
+  /**
+   * Whether session switchover events should be blocked on the client.
+   */
+  public static boolean blockSessionSwitchoverEvents() {
+    return getBoolean(BLOCK_SSE, false) && !phoneNumberPrivacy();
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */
@@ -629,6 +646,23 @@ public final class FeatureFlags {
     }
   }
 
+  /**
+   * Allow the video players to read from the temporary download files for attachments.
+   * @return whether this functionality is enabled.
+   */
+  public static boolean instantVideoPlayback() {
+    return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
+  }
+
+  /**
+   * Note: this setting is currently
+   *
+   * @return Whether to use TextOnly V2 Conversation Items.
+   */
+  public static boolean useTextOnlyConversationItemV2() {
+    return getBoolean(CONVERSATION_ITEM_V2_TEXT, false);
+  }
+
   public static String promptForDelayedNotificationLogs() {
     return getString(PROMPT_FOR_NOTIFICATION_LOGS, "*");
   }
@@ -640,6 +674,12 @@ public final class FeatureFlags {
   public static String promptBatterySaver() {
     return getString(PROMPT_BATTERY_SAVER, "*");
   }
+
+  /** Config object for what crashes to prompt about. */
+  public static String crashPromptConfig() {
+    return getString(CRASH_PROMPT_CONFIG, "");
+  }
+
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

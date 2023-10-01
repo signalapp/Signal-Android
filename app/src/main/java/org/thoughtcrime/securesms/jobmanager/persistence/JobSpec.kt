@@ -5,7 +5,8 @@ data class JobSpec(
   val factoryKey: String,
   val queueKey: String?,
   val createTime: Long,
-  val nextRunAttemptTime: Long,
+  val lastRunAttemptTime: Long,
+  val nextBackoffInterval: Long,
   val runAttempt: Int,
   val maxAttempts: Int,
   val lifespan: Long,
@@ -15,8 +16,8 @@ data class JobSpec(
   val isMemoryOnly: Boolean
 ) {
 
-  fun withNextRunAttemptTime(updated: Long): JobSpec {
-    return copy(nextRunAttemptTime = updated)
+  fun withNextBackoffInterval(updated: Long): JobSpec {
+    return copy(nextBackoffInterval = updated)
   }
 
   fun withData(updatedSerializedData: ByteArray?): JobSpec {
@@ -24,7 +25,7 @@ data class JobSpec(
   }
 
   override fun toString(): String {
-    return "id: JOB::$id | factoryKey: $factoryKey | queueKey: $queueKey | createTime: $createTime | nextRunAttemptTime: $nextRunAttemptTime | runAttempt: $runAttempt | maxAttempts: $maxAttempts | lifespan: $lifespan | isRunning: $isRunning | memoryOnly: $isMemoryOnly"
+    return "id: JOB::$id | factoryKey: $factoryKey | queueKey: $queueKey | createTime: $createTime | lastRunAttemptTime: $lastRunAttemptTime | nextBackoffInterval: $nextBackoffInterval | runAttempt: $runAttempt | maxAttempts: $maxAttempts | lifespan: $lifespan | isRunning: $isRunning | memoryOnly: $isMemoryOnly"
   }
 
   override fun equals(other: Any?): Boolean {
@@ -37,7 +38,8 @@ data class JobSpec(
     if (factoryKey != other.factoryKey) return false
     if (queueKey != other.queueKey) return false
     if (createTime != other.createTime) return false
-    if (nextRunAttemptTime != other.nextRunAttemptTime) return false
+    if (lastRunAttemptTime != other.lastRunAttemptTime) return false
+    if (nextBackoffInterval != other.nextBackoffInterval) return false
     if (runAttempt != other.runAttempt) return false
     if (maxAttempts != other.maxAttempts) return false
     if (lifespan != other.lifespan) return false
@@ -60,7 +62,8 @@ data class JobSpec(
     result = 31 * result + factoryKey.hashCode()
     result = 31 * result + (queueKey?.hashCode() ?: 0)
     result = 31 * result + createTime.hashCode()
-    result = 31 * result + nextRunAttemptTime.hashCode()
+    result = 31 * result + lastRunAttemptTime.hashCode()
+    result = 31 * result + nextBackoffInterval.hashCode()
     result = 31 * result + runAttempt
     result = 31 * result + maxAttempts
     result = 31 * result + lifespan.hashCode()

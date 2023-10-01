@@ -16,14 +16,14 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun init() {
-    jobs += jobDatabase.allJobSpecs
+    jobs += jobDatabase.getAllJobSpecs()
 
-    for (constraintSpec in jobDatabase.allConstraintSpecs) {
+    for (constraintSpec in jobDatabase.getAllConstraintSpecs()) {
       val jobConstraints: MutableList<ConstraintSpec> = constraintsByJobId.getOrPut(constraintSpec.jobSpecId) { mutableListOf() }
       jobConstraints += constraintSpec
     }
 
-    for (dependencySpec in jobDatabase.allDependencySpecs.filterNot { it.hasCircularDependency() }) {
+    for (dependencySpec in jobDatabase.getAllDependencySpecs().filterNot { it.hasCircularDependency() }) {
       val jobDependencies: MutableList<DependencySpec> = dependenciesByJobId.getOrPut(dependencySpec.jobId) { mutableListOf() }
       jobDependencies += dependencySpec
     }
@@ -39,8 +39,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
     for (fullSpec in fullSpecs) {
       jobs += fullSpec.jobSpec
-      constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs
-      dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs
+      constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
+      dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
     }
   }
 
@@ -58,22 +58,27 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   override fun getPendingJobsWithNoDependenciesInCreatedOrder(currentTime: Long): List<JobSpec> {
     val migrationJob: JobSpec? = getMigrationJob()
 
-    return if (migrationJob != null && !migrationJob.isRunning && migrationJob.nextRunAttemptTime <= currentTime) {
+    return if (migrationJob != null && !migrationJob.isRunning && migrationJob.hasEligibleRunTime(currentTime)) {
       listOf(migrationJob)
     } else if (migrationJob != null) {
       emptyList()
     } else {
       jobs
-        .groupBy { it.queueKey ?: it.id }
+        .groupBy {
+          // Group together by queue. If it doesn't have a queue, we just use the ID, since it's unique and will give us all of the jobs without queues.
+          it.queueKey ?: it.id
+        }
         .map { byQueueKey: Map.Entry<String, List<JobSpec>> ->
+          // Find the oldest job in each queue
           byQueueKey.value.minByOrNull { it.createTime }
         }
         .filterNotNull()
         .filter { job ->
+          // Filter out all jobs with unmet dependencies
           dependenciesByJobId[job.id].isNullOrEmpty()
         }
         .filterNot { it.isRunning }
-        .filter { job -> job.nextRunAttemptTime <= currentTime }
+        .filter { job -> job.hasEligibleRunTime(currentTime) }
         .sortedBy { it.createTime }
     }
   }
@@ -123,10 +128,10 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   }
 
   @Synchronized
-  override fun updateJobRunningState(id: String, isRunning: Boolean) {
+  override fun markJobAsRunning(id: String, currentTime: Long) {
     val job: JobSpec? = getJobById(id)
     if (job == null || !job.isMemoryOnly) {
-      jobDatabase.updateJobRunningState(id, isRunning)
+      jobDatabase.markJobAsRunning(id, currentTime)
     }
 
     val iter = jobs.listIterator()
@@ -134,16 +139,21 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     while (iter.hasNext()) {
       val current: JobSpec = iter.next()
       if (current.id == id) {
-        iter.set(current.copy(isRunning = isRunning))
+        iter.set(
+          current.copy(
+            isRunning = true,
+            lastRunAttemptTime = currentTime
+          )
+        )
       }
     }
   }
 
   @Synchronized
-  override fun updateJobAfterRetry(id: String, isRunning: Boolean, runAttempt: Int, nextRunAttemptTime: Long, serializedData: ByteArray?) {
+  override fun updateJobAfterRetry(id: String, currentTime: Long, runAttempt: Int, nextBackoffInterval: Long, serializedData: ByteArray?) {
     val job = getJobById(id)
     if (job == null || !job.isMemoryOnly) {
-      jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData)
+      jobDatabase.updateJobAfterRetry(id, currentTime, runAttempt, nextBackoffInterval, serializedData)
     }
 
     val iter = jobs.listIterator()
@@ -152,9 +162,10 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       if (current.id == id) {
         iter.set(
           current.copy(
-            isRunning = isRunning,
+            isRunning = false,
             runAttempt = runAttempt,
-            nextRunAttemptTime = nextRunAttemptTime,
+            lastRunAttemptTime = currentTime,
+            nextBackoffInterval = nextBackoffInterval,
             serializedData = serializedData
           )
         )
@@ -303,5 +314,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     }
 
     return dependsOnJob.createTime > job.createTime
+  }
+
+  /**
+   * Whether or not the job's eligible to be run based off of it's [Job.nextBackoffInterval] and other properties.
+   */
+  private fun JobSpec.hasEligibleRunTime(currentTime: Long): Boolean {
+    return this.lastRunAttemptTime > currentTime || (this.lastRunAttemptTime + this.nextBackoffInterval) < currentTime
   }
 }

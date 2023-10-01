@@ -21,7 +21,7 @@ class StoryTextPostRepository {
 
   fun getTypeface(recordId: Long): Single<Typeface> {
     return getRecord(recordId).flatMap {
-      val model = StoryTextPost.parseFrom(Base64.decode(it.body))
+      val model = StoryTextPost.ADAPTER.decode(Base64.decode(it.body))
       val textFont = TextFont.fromStyle(model.style)
       val script = TextToScript.guessScript(model.body)
 

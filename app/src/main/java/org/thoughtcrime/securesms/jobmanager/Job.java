@@ -38,7 +38,8 @@ public abstract class Job {
   private final Parameters parameters;
 
   private int  runAttempt;
-  private long nextRunAttemptTime;
+  private long lastRunAttemptTime;
+  private long nextBackoffInterval;
 
   private volatile boolean canceled;
 
@@ -60,8 +61,12 @@ public abstract class Job {
     return runAttempt;
   }
 
-  public final long getNextRunAttemptTime() {
-    return nextRunAttemptTime;
+  public final long getLastRunAttemptTime() {
+    return lastRunAttemptTime;
+  }
+
+  public final long getNextBackoffInterval() {
+    return nextBackoffInterval;
   }
 
   public final @Nullable byte[] getInputData() {
@@ -86,8 +91,13 @@ public abstract class Job {
   }
 
   /** Should only be invoked by {@link JobController} */
-  final void setNextRunAttemptTime(long nextRunAttemptTime) {
-    this.nextRunAttemptTime = nextRunAttemptTime;
+  final void setLastRunAttemptTime(long lastRunAttemptTime) {
+    this.lastRunAttemptTime = lastRunAttemptTime;
+  }
+
+  /** Should only be invoked by {@link JobController} */
+  final void setNextBackoffInterval(long nextBackoffInterval) {
+    this.nextBackoffInterval = nextBackoffInterval;
   }
 
   /** Should only be invoked by {@link JobController} */

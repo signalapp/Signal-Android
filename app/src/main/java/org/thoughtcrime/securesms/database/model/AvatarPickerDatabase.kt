@@ -69,7 +69,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : D
     val where = ID_WHERE
     val values = ContentValues(1)
 
-    values.put(AVATAR, avatar.toProto().toByteArray())
+    values.put(AVATAR, avatar.toProto().encode())
     db.update(TABLE_NAME, values, where, SqlUtil.buildArgs(databaseId.id))
   }
 
@@ -96,14 +96,14 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : D
 
     if (databaseId is Avatar.DatabaseId.Saved) {
       val values = ContentValues(2)
-      values.put(AVATAR, avatar.toProto().toByteArray())
+      values.put(AVATAR, avatar.toProto().encode())
 
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(databaseId.id))
 
       return avatar
     } else {
       val values = ContentValues(4)
-      values.put(AVATAR, avatar.toProto().toByteArray())
+      values.put(AVATAR, avatar.toProto().encode())
 
       if (groupId != null) {
         values.put(GROUP_ID, groupId.toString())
@@ -126,7 +126,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : D
       while (it.moveToNext()) {
         val id = CursorUtil.requireLong(it, ID)
         val blob = CursorUtil.requireBlob(it, AVATAR)
-        val proto = CustomAvatar.parseFrom(blob)
+        val proto = CustomAvatar.ADAPTER.decode(blob)
         results.add(proto.toAvatar(id))
       }
     }
@@ -157,7 +157,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : D
       while (it.moveToNext()) {
         val id = CursorUtil.requireLong(it, ID)
         val blob = CursorUtil.requireBlob(it, AVATAR)
-        val proto = CustomAvatar.parseFrom(blob)
+        val proto = CustomAvatar.ADAPTER.decode(blob)
         results.add(proto.toAvatar(id))
       }
     }
@@ -167,18 +167,18 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : D
 
   private fun Avatar.toProto(): CustomAvatar {
     return when (this) {
-      is Avatar.Photo -> CustomAvatar.newBuilder().setPhoto(CustomAvatar.Photo.newBuilder().setUri(this.uri.toString())).build()
-      is Avatar.Text -> CustomAvatar.newBuilder().setText(CustomAvatar.Text.newBuilder().setText(this.text).setColors(this.color.code)).build()
-      is Avatar.Vector -> CustomAvatar.newBuilder().setVector(CustomAvatar.Vector.newBuilder().setKey(this.key).setColors(this.color.code)).build()
+      is Avatar.Photo -> CustomAvatar(photo = CustomAvatar.Photo(uri = this.uri.toString()))
+      is Avatar.Text -> CustomAvatar(text = CustomAvatar.Text(text = this.text, colors = this.color.code))
+      is Avatar.Vector -> CustomAvatar(vector = CustomAvatar.Vector(key = this.key, colors = this.color.code))
       else -> throw AssertionError()
     }
   }
 
   private fun CustomAvatar.toAvatar(id: Long): Avatar {
     return when {
-      hasPhoto() -> Avatar.Photo(Uri.parse(photo.uri), photo.size, Avatar.DatabaseId.Saved(id))
-      hasText() -> Avatar.Text(text.text, Avatars.colorMap[text.colors] ?: Avatars.colors[0], Avatar.DatabaseId.Saved(id))
-      hasVector() -> Avatar.Vector(vector.key, Avatars.colorMap[vector.colors] ?: Avatars.colors[0], Avatar.DatabaseId.Saved(id))
+      photo != null -> Avatar.Photo(Uri.parse(photo.uri), photo.size, Avatar.DatabaseId.Saved(id))
+      text != null -> Avatar.Text(text.text, Avatars.colorMap[text.colors] ?: Avatars.colors[0], Avatar.DatabaseId.Saved(id))
+      vector != null -> Avatar.Vector(vector.key, Avatars.colorMap[vector.colors] ?: Avatars.colors[0], Avatar.DatabaseId.Saved(id))
       else -> throw AssertionError()
     }
   }

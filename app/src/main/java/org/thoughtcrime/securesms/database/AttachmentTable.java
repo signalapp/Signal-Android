@@ -20,6 +20,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.media.MediaDataSource;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -35,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
@@ -91,41 +94,42 @@ public class AttachmentTable extends DatabaseTable {
 
   public  static final String TAG = Log.tag(AttachmentTable.class);
 
-  public  static final String TABLE_NAME             = "part";
-  public  static final String ROW_ID                 = "_id";
-          static final String ATTACHMENT_JSON_ALIAS  = "attachment_json";
-  public  static final String MMS_ID                 = "mid";
-          static final String CONTENT_TYPE           = "ct";
-          static final String NAME                   = "name";
-          static final String CONTENT_DISPOSITION    = "cd";
-          static final String CONTENT_LOCATION       = "cl";
-  public  static final String DATA                   = "_data";
-          static final String TRANSFER_STATE         = "pending_push";
-  public  static final String TRANSFER_FILE          = "transfer_file";
-  public  static final String SIZE                   = "data_size";
-          static final String FILE_NAME              = "file_name";
-  public  static final String UNIQUE_ID              = "unique_id";
-          static final String DIGEST                 = "digest";
-          static final String VOICE_NOTE             = "voice_note";
-          static final String BORDERLESS             = "borderless";
-          static final String VIDEO_GIF              = "video_gif";
-          static final String QUOTE                  = "quote";
-  public  static final String STICKER_PACK_ID        = "sticker_pack_id";
-  public  static final String STICKER_PACK_KEY       = "sticker_pack_key";
-          static final String STICKER_ID             = "sticker_id";
-          static final String STICKER_EMOJI          = "sticker_emoji";
-          static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
-  public  static final String DATA_RANDOM            = "data_random";
-          static final String WIDTH                  = "width";
-          static final String HEIGHT                 = "height";
-          static final String CAPTION                = "caption";
-          static final String DATA_HASH              = "data_hash";
-          static final String VISUAL_HASH            = "blur_hash";
-          static final String TRANSFORM_PROPERTIES   = "transform_properties";
-          static final String DISPLAY_ORDER          = "display_order";
-          static final String UPLOAD_TIMESTAMP       = "upload_timestamp";
-          static final String CDN_NUMBER             = "cdn_number";
-          static final String MAC_DIGEST             = "incremental_mac_digest";
+  public  static final String TABLE_NAME                 = "part";
+  public  static final String ROW_ID                     = "_id";
+          static final String ATTACHMENT_JSON_ALIAS      = "attachment_json";
+  public  static final String MMS_ID                     = "mid";
+          static final String CONTENT_TYPE               = "ct";
+          static final String NAME                       = "name";
+          static final String CONTENT_DISPOSITION        = "cd";
+          static final String CONTENT_LOCATION           = "cl";
+  public  static final String DATA                       = "_data";
+          static final String TRANSFER_STATE             = "pending_push";
+  public  static final String TRANSFER_FILE              = "transfer_file";
+  public  static final String SIZE                       = "data_size";
+          static final String FILE_NAME                  = "file_name";
+  public  static final String UNIQUE_ID                  = "unique_id";
+          static final String DIGEST                     = "digest";
+          static final String VOICE_NOTE                 = "voice_note";
+          static final String BORDERLESS                 = "borderless";
+          static final String VIDEO_GIF                  = "video_gif";
+          static final String QUOTE                      = "quote";
+  public  static final String STICKER_PACK_ID            = "sticker_pack_id";
+  public  static final String STICKER_PACK_KEY           = "sticker_pack_key";
+          static final String STICKER_ID                 = "sticker_id";
+          static final String STICKER_EMOJI              = "sticker_emoji";
+          static final String FAST_PREFLIGHT_ID          = "fast_preflight_id";
+  public  static final String DATA_RANDOM                = "data_random";
+          static final String WIDTH                      = "width";
+          static final String HEIGHT                     = "height";
+          static final String CAPTION                    = "caption";
+          static final String DATA_HASH                  = "data_hash";
+          static final String VISUAL_HASH                = "blur_hash";
+          static final String TRANSFORM_PROPERTIES       = "transform_properties";
+          static final String DISPLAY_ORDER              = "display_order";
+          static final String UPLOAD_TIMESTAMP           = "upload_timestamp";
+          static final String CDN_NUMBER                 = "cdn_number";
+          static final String MAC_DIGEST                 = "incremental_mac_digest";
+          static final String INCREMENTAL_MAC_CHUNK_SIZE = "incremental_mac_chunk_size";
 
   private static final String DIRECTORY              = "parts";
 
@@ -143,53 +147,54 @@ public class AttachmentTable extends DatabaseTable {
   private static final String[] PROJECTION = new String[] {ROW_ID,
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
                                                            CDN_NUMBER, CONTENT_LOCATION, DATA,
-                                                           TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST, MAC_DIGEST,
+                                                           TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST, MAC_DIGEST, INCREMENTAL_MAC_CHUNK_SIZE,
                                                            FAST_PREFLIGHT_ID, VOICE_NOTE, BORDERLESS, VIDEO_GIF, QUOTE, DATA_RANDOM,
                                                            WIDTH, HEIGHT, CAPTION, STICKER_PACK_ID,
                                                            STICKER_PACK_KEY, STICKER_ID, STICKER_EMOJI, DATA_HASH, VISUAL_HASH,
                                                            TRANSFORM_PROPERTIES, TRANSFER_FILE, DISPLAY_ORDER,
                                                            UPLOAD_TIMESTAMP };
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID                 + " INTEGER PRIMARY KEY, " +
-                                                                                  MMS_ID                 + " INTEGER, " +
-                                                                                  "seq"                  + " INTEGER DEFAULT 0, " +
-                                                                                  CONTENT_TYPE           + " TEXT, " +
-                                                                                  NAME                   + " TEXT, " +
-                                                                                  "chset"                + " INTEGER, " +
-                                                                                  CONTENT_DISPOSITION    + " TEXT, " +
-                                                                                  "fn"                   + " TEXT, " +
-                                                                                  "cid"                  + " TEXT, "  +
-                                                                                  CONTENT_LOCATION       + " TEXT, " +
-                                                                                  "ctt_s"                + " INTEGER, " +
-                                                                                  "ctt_t"                + " TEXT, " +
-                                                                                  "encrypted"            + " INTEGER, " +
-                                                                                  TRANSFER_STATE         + " INTEGER, " +
-                                                                                  DATA                   + " TEXT, " +
-                                                                                  SIZE                   + " INTEGER, " +
-                                                                                  FILE_NAME              + " TEXT, " +
-                                                                                  UNIQUE_ID              + " INTEGER NOT NULL, " +
-                                                                                  DIGEST                 + " BLOB, " +
-                                                                                  FAST_PREFLIGHT_ID      + " TEXT, " +
-                                                                                  VOICE_NOTE             + " INTEGER DEFAULT 0, " +
-                                                                                  BORDERLESS             + " INTEGER DEFAULT 0, " +
-                                                                                  VIDEO_GIF              + " INTEGER DEFAULT 0, " +
-                                                                                  DATA_RANDOM            + " BLOB, " +
-                                                                                  QUOTE                  + " INTEGER DEFAULT 0, " +
-                                                                                  WIDTH                  + " INTEGER DEFAULT 0, " +
-                                                                                  HEIGHT                 + " INTEGER DEFAULT 0, " +
-                                                                                  CAPTION                + " TEXT DEFAULT NULL, " +
-                                                                                  STICKER_PACK_ID        + " TEXT DEFAULT NULL, " +
-                                                                                  STICKER_PACK_KEY       + " DEFAULT NULL, " +
-                                                                                  STICKER_ID             + " INTEGER DEFAULT -1, " +
-                                                                                  STICKER_EMOJI          + " STRING DEFAULT NULL, " +
-                                                                                  DATA_HASH              + " TEXT DEFAULT NULL, " +
-                                                                                  VISUAL_HASH            + " TEXT DEFAULT NULL, " +
-                                                                                  TRANSFORM_PROPERTIES   + " TEXT DEFAULT NULL, " +
-                                                                                  TRANSFER_FILE          + " TEXT DEFAULT NULL, " +
-                                                                                  DISPLAY_ORDER          + " INTEGER DEFAULT 0, " +
-                                                                                  UPLOAD_TIMESTAMP       + " INTEGER DEFAULT 0, " +
-                                                                                  CDN_NUMBER             + " INTEGER DEFAULT 0, " +
-                                                                                  MAC_DIGEST             + " BLOB);";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID                     + " INTEGER PRIMARY KEY, " +
+                                                                                  MMS_ID                     + " INTEGER, " +
+                                                                                  "seq"                      + " INTEGER DEFAULT 0, " +
+                                                                                  CONTENT_TYPE               + " TEXT, " +
+                                                                                  NAME                       + " TEXT, " +
+                                                                                  "chset"                    + " INTEGER, " +
+                                                                                  CONTENT_DISPOSITION        + " TEXT, " +
+                                                                                  "fn"                       + " TEXT, " +
+                                                                                  "cid"                      + " TEXT, "  +
+                                                                                  CONTENT_LOCATION           + " TEXT, " +
+                                                                                  "ctt_s"                    + " INTEGER, " +
+                                                                                  "ctt_t"                    + " TEXT, " +
+                                                                                  "encrypted"                + " INTEGER, " +
+                                                                                  TRANSFER_STATE             + " INTEGER, " +
+                                                                                  DATA                       + " TEXT, " +
+                                                                                  SIZE                       + " INTEGER, " +
+                                                                                  FILE_NAME                  + " TEXT, " +
+                                                                                  UNIQUE_ID                  + " INTEGER NOT NULL, " +
+                                                                                  DIGEST                     + " BLOB, " +
+                                                                                  FAST_PREFLIGHT_ID          + " TEXT, " +
+                                                                                  VOICE_NOTE                 + " INTEGER DEFAULT 0, " +
+                                                                                  BORDERLESS                 + " INTEGER DEFAULT 0, " +
+                                                                                  VIDEO_GIF                  + " INTEGER DEFAULT 0, " +
+                                                                                  DATA_RANDOM                + " BLOB, " +
+                                                                                  QUOTE                      + " INTEGER DEFAULT 0, " +
+                                                                                  WIDTH                      + " INTEGER DEFAULT 0, " +
+                                                                                  HEIGHT                     + " INTEGER DEFAULT 0, " +
+                                                                                  CAPTION                    + " TEXT DEFAULT NULL, " +
+                                                                                  STICKER_PACK_ID            + " TEXT DEFAULT NULL, " +
+                                                                                  STICKER_PACK_KEY           + " DEFAULT NULL, " +
+                                                                                  STICKER_ID                 + " INTEGER DEFAULT -1, " +
+                                                                                  STICKER_EMOJI              + " STRING DEFAULT NULL, " +
+                                                                                  DATA_HASH                  + " TEXT DEFAULT NULL, " +
+                                                                                  VISUAL_HASH                + " TEXT DEFAULT NULL, " +
+                                                                                  TRANSFORM_PROPERTIES       + " TEXT DEFAULT NULL, " +
+                                                                                  TRANSFER_FILE              + " TEXT DEFAULT NULL, " +
+                                                                                  DISPLAY_ORDER              + " INTEGER DEFAULT 0, " +
+                                                                                  UPLOAD_TIMESTAMP           + " INTEGER DEFAULT 0, " +
+                                                                                  CDN_NUMBER                 + " INTEGER DEFAULT 0, " +
+                                                                                  MAC_DIGEST                 + " BLOB, " +
+                                                                                  INCREMENTAL_MAC_CHUNK_SIZE + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -612,7 +617,7 @@ public class AttachmentTable extends DatabaseTable {
   }
 
   /**
-   * Check if data file is in use by another attachment row with a different hash. Rows with the same data and has
+   * Check if data file is in use by another attachment row with a different hash. Rows with the same data and hash
    * will be fixed in a later call to {@link #updateAttachmentAndMatchingHashes(SQLiteDatabase, AttachmentId, String, ContentValues)}.
    */
   private boolean isAttachmentFileUsedByOtherAttachments(@Nullable AttachmentId attachmentId, @NonNull DataInfo dataInfo) {
@@ -638,7 +643,7 @@ public class AttachmentTable extends DatabaseTable {
 
     database.beginTransaction();
     try {
-      dataInfo = deduplicateAttachment(dataInfo, attachmentId);
+      dataInfo = deduplicateAttachment(dataInfo, attachmentId, placeholder != null ? placeholder.getTransformProperties() : TransformProperties.empty());
       if (oldInfo != null) {
         updateAttachmentDataHash(database, oldInfo.hash, dataInfo);
       }
@@ -727,6 +732,7 @@ public class AttachmentTable extends DatabaseTable {
     contentValues.put(CONTENT_LOCATION, sourceAttachment.getLocation());
     contentValues.put(DIGEST, sourceAttachment.getDigest());
     contentValues.put(MAC_DIGEST, sourceAttachment.getIncrementalDigest());
+    contentValues.put(INCREMENTAL_MAC_CHUNK_SIZE, sourceAttachment.getIncrementalMacChunkSize());
     contentValues.put(CONTENT_DISPOSITION, sourceAttachment.getKey());
     contentValues.put(NAME, sourceAttachment.getRelay());
     contentValues.put(SIZE, sourceAttachment.getSize());
@@ -776,6 +782,7 @@ public class AttachmentTable extends DatabaseTable {
     values.put(CONTENT_LOCATION, attachment.getLocation());
     values.put(DIGEST, attachment.getDigest());
     values.put(MAC_DIGEST, attachment.getIncrementalDigest());
+    values.put(INCREMENTAL_MAC_CHUNK_SIZE, attachment.getIncrementalMacChunkSize());
     values.put(CONTENT_DISPOSITION, attachment.getKey());
     values.put(NAME, attachment.getRelay());
     values.put(SIZE, attachment.getSize());
@@ -891,7 +898,7 @@ public class AttachmentTable extends DatabaseTable {
 
     database.beginTransaction();
     try {
-      dataInfo = deduplicateAttachment(dataInfo, databaseAttachment.getAttachmentId());
+      dataInfo = deduplicateAttachment(dataInfo, databaseAttachment.getAttachmentId(), databaseAttachment.getTransformProperties());
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(SIZE, dataInfo.length);
@@ -1131,7 +1138,7 @@ public class AttachmentTable extends DatabaseTable {
   {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] { dataType, SIZE, DATA_RANDOM, DATA_HASH }, PART_ID_WHERE, attachmentId.toStrings(), null, null, null)) {
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] { dataType, SIZE, DATA_RANDOM, DATA_HASH, TRANSFORM_PROPERTIES }, PART_ID_WHERE, attachmentId.toStrings(), null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         if (cursor.isNull(cursor.getColumnIndexOrThrow(dataType))) {
           return null;
@@ -1140,7 +1147,8 @@ public class AttachmentTable extends DatabaseTable {
         return new DataInfo(new File(cursor.getString(cursor.getColumnIndexOrThrow(dataType))),
                             cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
                             cursor.getBlob(cursor.getColumnIndexOrThrow(DATA_RANDOM)),
-                            cursor.getString(cursor.getColumnIndexOrThrow(DATA_HASH)));
+                            cursor.getString(cursor.getColumnIndexOrThrow(DATA_HASH)),
+                            TransformProperties.parse(CursorUtil.requireString(cursor, TRANSFORM_PROPERTIES)));
       } else {
         return null;
       }
@@ -1171,7 +1179,7 @@ public class AttachmentTable extends DatabaseTable {
   }
 
   /**
-   * Reads the entire stream and saves to disk. If you need to deduplicate attachments, call {@link #deduplicateAttachment(DataInfo, AttachmentId)}
+   * Reads the entire stream and saves to disk. If you need to deduplicate attachments, call {@link #deduplicateAttachment(DataInfo, AttachmentId, TransformProperties)}
    * afterwards and use the {@link DataInfo} returned by it instead.
    */
   private @NonNull DataInfo storeAttachmentStream(@NonNull File destination, @NonNull InputStream in) throws MmsException {
@@ -1189,69 +1197,74 @@ public class AttachmentTable extends DatabaseTable {
         throw new IllegalStateException("Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
       }
 
-      return new DataInfo(destination, length, out.first, hash);
+      return new DataInfo(destination, length, out.first, hash, null);
     } catch (IOException | NoSuchAlgorithmException e) {
       throw new MmsException(e);
     }
   }
 
-  private @NonNull DataInfo deduplicateAttachment(@NonNull DataInfo dataInfo, @Nullable AttachmentId attachmentId) throws MmsException {
+  private @NonNull DataInfo deduplicateAttachment(@NonNull DataInfo dataInfo,
+                                                  @Nullable AttachmentId attachmentId,
+                                                  @NonNull TransformProperties transformProperties)
+  {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     if (!db.inTransaction()) {
       throw new IllegalStateException("Must be in a transaction!");
     }
 
-    Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(db, dataInfo.hash, attachmentId);
-    if (sharedDataInfo.isPresent()) {
-      Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
-      if (!dataInfo.file.equals(sharedDataInfo.get().file)) {
-        if (isAttachmentFileUsedByOtherAttachments(attachmentId, dataInfo)) {
-          Log.i(TAG, "[setAttachmentData] Original file still in use by another attachment with a different hash.");
-        } else if (dataInfo.file.delete()) {
-          Log.i(TAG, "[setAttachmentData] Deleted original file. " + dataInfo.file);
+    List<DataInfo> sharedDataInfos = findDuplicateDataFileInfos(db, dataInfo.hash, attachmentId);
+    for (DataInfo sharedDataInfo : sharedDataInfos) {
+      if (dataInfo.file.equals(sharedDataInfo.file)) {
+        continue;
+      }
+
+      boolean isUsedElsewhere = isAttachmentFileUsedByOtherAttachments(attachmentId, dataInfo);
+      boolean isSameQuality   = transformProperties.sentMediaQuality == sharedDataInfo.transformProperties.sentMediaQuality;
+
+      Log.i(TAG, "[deduplicateAttachment] Potential duplicate data file found. usedElsewhere: " + isUsedElsewhere + " sameQuality: " + isSameQuality + " otherFile: " + sharedDataInfo.file.getAbsolutePath());
+
+      if (!isSameQuality) {
+        continue;
+      }
+
+      if (!isUsedElsewhere) {
+        if (dataInfo.file.delete()) {
+          Log.i(TAG, "[deduplicateAttachment] Deleted original file. " + dataInfo.file);
         } else {
-          Log.w(TAG, "[setAttachmentData] Original file could not be deleted.");
+          Log.w(TAG, "[deduplicateAttachment] Original file could not be deleted.");
         }
       }
-      return sharedDataInfo.get();
-    } else {
-      Log.i(TAG, "[setAttachmentData] No matching attachment data found. " + dataInfo.file.getAbsolutePath());
+
+      return sharedDataInfo;
     }
 
+    Log.i(TAG, "[deduplicateAttachment] No acceptable matching attachment data found. " + dataInfo.file.getAbsolutePath());
     return dataInfo;
   }
 
-  private static @NonNull Optional<DataInfo> findDuplicateDataFileInfo(@NonNull SQLiteDatabase database,
-                                                                       @NonNull String hash,
-                                                                       @Nullable AttachmentId excludedAttachmentId)
+  private static @NonNull List<DataInfo> findDuplicateDataFileInfos(@NonNull SQLiteDatabase database,
+                                                                    @NonNull String hash,
+                                                                    @Nullable AttachmentId excludedAttachmentId)
   {
     if (!database.inTransaction()) {
       throw new IllegalArgumentException("Must be in a transaction!");
     }
 
     Pair<String, String[]> selectorArgs = buildSharedFileSelectorArgs(hash, excludedAttachmentId);
-    try (Cursor cursor = database.query(TABLE_NAME,
-                                        new String[]{DATA, DATA_RANDOM, SIZE, TRANSFORM_PROPERTIES},
-                                        selectorArgs.first,
-                                        selectorArgs.second,
-                                        null,
-                                        null,
-                                        null,
-                                        "1"))
-    {
-      if (cursor == null || !cursor.moveToFirst()) return Optional.empty();
-
-      if (cursor.getCount() > 0) {
-        DataInfo dataInfo = new DataInfo(new File(CursorUtil.requireString(cursor, DATA)),
-                                         CursorUtil.requireLong(cursor, SIZE),
-                                         CursorUtil.requireBlob(cursor, DATA_RANDOM),
-                                         hash);
-        return Optional.of(dataInfo);
-      } else {
-        return Optional.empty();
-      }
-    }
+    return CursorExtensionsKt.readToList(database.query(TABLE_NAME,
+                                                        new String[] { DATA, DATA_RANDOM, SIZE, TRANSFORM_PROPERTIES },
+                                                        selectorArgs.first,
+                                                        selectorArgs.second,
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null),
+                                         cursor -> new DataInfo(new File(CursorUtil.requireString(cursor, DATA)),
+                                                                CursorUtil.requireLong(cursor, SIZE),
+                                                                CursorUtil.requireBlob(cursor, DATA_RANDOM),
+                                                                hash,
+                                                                TransformProperties.parse(CursorUtil.requireString(cursor, TRANSFORM_PROPERTIES))));
   }
 
   private static Pair<String, String[]> buildSharedFileSelectorArgs(@NonNull String newHash,
@@ -1302,6 +1315,7 @@ public class AttachmentTable extends DatabaseTable {
                                               object.getString(NAME),
                                               null,
                                               null,
+                                              0,
                                               object.getString(FAST_PREFLIGHT_ID),
                                               object.getInt(VOICE_NOTE) == 1,
                                               object.getInt(BORDERLESS) == 1,
@@ -1336,39 +1350,40 @@ public class AttachmentTable extends DatabaseTable {
   private @NonNull DatabaseAttachment getAttachment(@NonNull Cursor cursor) {
     String contentType = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE));
     return new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
-                                                                  cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
-                                                  cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
-                                                  !cursor.isNull(cursor.getColumnIndexOrThrow(DATA)),
-                                                  MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
-                                                  contentType,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
-                                                  cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(CDN_NUMBER)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
-                                                  cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
-                                                  cursor.getBlob(cursor.getColumnIndexOrThrow(MAC_DIGEST)),
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(VIDEO_GIF)) == 1,
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
-                                                  cursor.getString(cursor.getColumnIndexOrThrow(CAPTION)),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)) >= 0
-                                                  ? new StickerLocator(CursorUtil.requireString(cursor, STICKER_PACK_ID),
-                                                                       CursorUtil.requireString(cursor, STICKER_PACK_KEY),
-                                                                       CursorUtil.requireInt(cursor, STICKER_ID),
-                                                                       CursorUtil.requireString(cursor, STICKER_EMOJI))
-                                                  : null,
-                                                  MediaUtil.isAudioType(contentType) ? null : BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))),
-                                                  MediaUtil.isAudioType(contentType) ? AudioHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))) : null,
-                                                  TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES))),
-                                                  cursor.getInt(cursor.getColumnIndexOrThrow(DISPLAY_ORDER)),
-                                                  cursor.getLong(cursor.getColumnIndexOrThrow(UPLOAD_TIMESTAMP)));
+                                                   cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
+                                  !cursor.isNull(cursor.getColumnIndexOrThrow(DATA)),
+                                  MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
+                                  contentType,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(CDN_NUMBER)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
+                                  cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
+                                  cursor.getBlob(cursor.getColumnIndexOrThrow(MAC_DIGEST)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(INCREMENTAL_MAC_CHUNK_SIZE)),
+                                  cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(VIDEO_GIF)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
+                                  cursor.getString(cursor.getColumnIndexOrThrow(CAPTION)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)) >= 0
+                                  ? new StickerLocator(CursorUtil.requireString(cursor, STICKER_PACK_ID),
+                                                       CursorUtil.requireString(cursor, STICKER_PACK_KEY),
+                                                       CursorUtil.requireInt(cursor, STICKER_ID),
+                                                       CursorUtil.requireString(cursor, STICKER_EMOJI))
+                                  : null,
+                                  MediaUtil.isAudioType(contentType) ? null : BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))),
+                                  MediaUtil.isAudioType(contentType) ? AudioHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(VISUAL_HASH))) : null,
+                                  TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES))),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(DISPLAY_ORDER)),
+                                  cursor.getLong(cursor.getColumnIndexOrThrow(UPLOAD_TIMESTAMP)));
   }
 
   private AttachmentId insertAttachment(long mmsId, Attachment attachment, boolean quote)
@@ -1388,26 +1403,30 @@ public class AttachmentTable extends DatabaseTable {
       if (attachment.getUri() != null) {
         DataInfo storeDataInfo = storeAttachmentStream(PartAuthority.getAttachmentStream(context, attachment.getUri()));
         Log.d(TAG, "Wrote part to file: " + storeDataInfo.file.getAbsolutePath());
-        dataInfo = deduplicateAttachment(storeDataInfo, attachmentId);
+        dataInfo = deduplicateAttachment(storeDataInfo, attachmentId, attachment.getTransformProperties());
       }
 
       Attachment template = attachment;
+      boolean useTemplateUpload = false;
 
       if (dataInfo != null && dataInfo.hash != null) {
-        Attachment possibleTemplate = findTemplateAttachment(dataInfo.hash);
+        List<DatabaseAttachment> possibleTemplates = findTemplateAttachments(dataInfo.hash);
 
-        if (possibleTemplate != null) {
-          Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
-          template = possibleTemplate;
+        for (Attachment possibleTemplate : possibleTemplates) {
+          useTemplateUpload = possibleTemplate.getUploadTimestamp() > attachment.getUploadTimestamp() &&
+                              possibleTemplate.getTransferState() == TRANSFER_PROGRESS_DONE &&
+                              possibleTemplate.getTransformProperties().shouldSkipTransform() &&
+                              possibleTemplate.getDigest() != null &&
+                              !attachment.getTransformProperties().isVideoEdited() &&
+                              possibleTemplate.getTransformProperties().sentMediaQuality == attachment.getTransformProperties().getSentMediaQuality();
+
+          if (useTemplateUpload) {
+            Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
+            template = possibleTemplate;
+            break;
+          }
         }
       }
-
-      boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() &&
-                                  template.getTransferState() == TRANSFER_PROGRESS_DONE           &&
-                                  template.getTransformProperties().shouldSkipTransform()         &&
-                                  template.getDigest() != null                                    &&
-                                  !attachment.getTransformProperties().isVideoEdited()            &&
-                                  template.getTransformProperties().sentMediaQuality == attachment.getTransformProperties().getSentMediaQuality();
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(MMS_ID, mmsId);
@@ -1418,6 +1437,7 @@ public class AttachmentTable extends DatabaseTable {
       contentValues.put(CONTENT_LOCATION, useTemplateUpload ? template.getLocation() : attachment.getLocation());
       contentValues.put(DIGEST, useTemplateUpload ? template.getDigest() : attachment.getDigest());
       contentValues.put(MAC_DIGEST, useTemplateUpload ? template.getIncrementalDigest() : attachment.getIncrementalDigest());
+      contentValues.put(INCREMENTAL_MAC_CHUNK_SIZE, useTemplateUpload ? template.getIncrementalMacChunkSize() : attachment.getIncrementalMacChunkSize());
       contentValues.put(CONTENT_DISPOSITION, useTemplateUpload ? template.getKey() : attachment.getKey());
       contentValues.put(NAME, useTemplateUpload ? template.getRelay() : attachment.getRelay());
       contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
@@ -1450,7 +1470,7 @@ public class AttachmentTable extends DatabaseTable {
         contentValues.put(DATA, dataInfo.file.getAbsolutePath());
         contentValues.put(SIZE, dataInfo.length);
         contentValues.put(DATA_RANDOM, dataInfo.random);
-        if (attachment.getTransformProperties().isVideoEdited() || attachment.getTransformProperties().sentMediaQuality != template.getTransformProperties().getSentMediaQuality()) {
+        if (attachment.getTransformProperties().isVideoEdited()) {
           contentValues.putNull(DATA_HASH);
         } else {
           contentValues.put(DATA_HASH, dataInfo.hash);
@@ -1478,17 +1498,11 @@ public class AttachmentTable extends DatabaseTable {
     return attachmentId;
   }
 
-  private @Nullable DatabaseAttachment findTemplateAttachment(@NonNull String dataHash) {
+  private @NonNull List<DatabaseAttachment> findTemplateAttachments(@NonNull String dataHash) {
     String   selection = DATA_HASH + " = ?";
     String[] args      = new String[] { dataHash };
 
-    try (Cursor cursor = databaseHelper.getSignalWritableDatabase().query(TABLE_NAME, null, selection, args, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return getAttachments(cursor).get(0);
-      }
-    }
-
-    return null;
+    return CursorExtensionsKt.readToList(databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null), this::getAttachment);
   }
 
   @WorkerThread
@@ -1509,15 +1523,28 @@ public class AttachmentTable extends DatabaseTable {
 
 
   @RequiresApi(23)
-  public @Nullable MediaDataSource mediaDataSourceFor(@NonNull AttachmentId attachmentId) {
+  public @Nullable MediaDataSource mediaDataSourceFor(@NonNull AttachmentId attachmentId, Boolean allowReadingFromTempFile) {
     DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, DATA);
 
-    if (dataInfo == null) {
-      Log.w(TAG, "No data file found for video attachment...");
-      return null;
+    if (dataInfo != null) {
+      return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
     }
 
-    return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
+    if (allowReadingFromTempFile) {
+      Log.d(TAG, "Completed data file not found for video attachment, checking for in-progress files.");
+
+      SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
+
+      File transferFile = getTransferFile(database, attachmentId);
+
+      if (transferFile != null) {
+        return EncryptedMediaDataSource.createForDiskBlob(attachmentSecret, transferFile);
+      }
+    }
+
+    Log.w(TAG, "No data file found for video attachment!");
+
+    return null;
   }
 
   public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId, Collection<Long> excludedIds) {
@@ -1536,16 +1563,18 @@ public class AttachmentTable extends DatabaseTable {
 
   @VisibleForTesting
   static class DataInfo {
-    final File   file;
-    final long   length;
-    final byte[] random;
-    final String hash;
+    final File                file;
+    final long                length;
+    final byte[]              random;
+    final String              hash;
+    final TransformProperties transformProperties;
 
-    private DataInfo(File file, long length, byte[] random, String hash) {
-      this.file   = file;
-      this.length = length;
-      this.random = random;
-      this.hash   = hash;
+    private DataInfo(File file, long length, byte[] random, String hash, TransformProperties transformProperties) {
+      this.file                = file;
+      this.length              = length;
+      this.random              = random;
+      this.hash                = hash;
+      this.transformProperties = transformProperties;
     }
 
     @Override
@@ -1556,12 +1585,13 @@ public class AttachmentTable extends DatabaseTable {
       return length == dataInfo.length &&
              Objects.equals(file, dataInfo.file) &&
              Arrays.equals(random, dataInfo.random) &&
-             Objects.equals(hash, dataInfo.hash);
+             Objects.equals(hash, dataInfo.hash) &&
+             Objects.equals(transformProperties, dataInfo.transformProperties);
     }
 
     @Override
     public int hashCode() {
-      int result = Objects.hash(file, length, hash);
+      int result = Objects.hash(file, length, hash, transformProperties);
       result = 31 * result + Arrays.hashCode(random);
       return result;
     }
@@ -1600,7 +1630,7 @@ public class AttachmentTable extends DatabaseTable {
     }
   }
 
-  public static final class TransformProperties {
+  public static final class TransformProperties implements Parcelable {
 
     private static final int DEFAULT_MEDIA_QUALITY = SentMediaQuality.HIGH.getCode();
 
@@ -1623,6 +1653,40 @@ public class AttachmentTable extends DatabaseTable {
       this.videoTrimEndTimeUs   = videoTrimEndTimeUs;
       this.sentMediaQuality     = sentMediaQuality;
     }
+
+    protected TransformProperties(Parcel in) {
+      skipTransform        = in.readByte() != 0;
+      videoTrim            = in.readByte() != 0;
+      videoTrimStartTimeUs = in.readLong();
+      videoTrimEndTimeUs   = in.readLong();
+      sentMediaQuality     = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+      dest.writeByte((byte) (skipTransform ? 1 : 0));
+      dest.writeByte((byte) (videoTrim ? 1 : 0));
+      dest.writeLong(videoTrimStartTimeUs);
+      dest.writeLong(videoTrimEndTimeUs);
+      dest.writeInt(sentMediaQuality);
+    }
+
+    @Override
+    public int describeContents() {
+      return 0;
+    }
+
+    public static final Creator<TransformProperties> CREATOR = new Creator<>() {
+      @Override
+      public TransformProperties createFromParcel(Parcel in) {
+        return new TransformProperties(in);
+      }
+
+      @Override
+      public TransformProperties[] newArray(int size) {
+        return new TransformProperties[size];
+      }
+    };
 
     public static @NonNull TransformProperties empty() {
       return new TransformProperties(false, false, 0, 0, DEFAULT_MEDIA_QUALITY);

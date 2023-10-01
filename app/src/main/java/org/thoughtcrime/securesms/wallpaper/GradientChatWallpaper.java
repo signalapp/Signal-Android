@@ -10,7 +10,9 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.components.RotatableGradientDrawable;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public final class GradientChatWallpaper implements ChatWallpaper, Parcelable {
@@ -112,22 +114,26 @@ public final class GradientChatWallpaper implements ChatWallpaper, Parcelable {
 
   @Override
   public @NonNull Wallpaper serialize() {
-    Wallpaper.LinearGradient.Builder builder = Wallpaper.LinearGradient.newBuilder();
+    Wallpaper.LinearGradient.Builder builder = new Wallpaper.LinearGradient.Builder();
 
-    builder.setRotation(degrees);
+    builder.rotation(degrees);
 
-    for (int color : colors) {
-      builder.addColors(color);
+    List<Integer> colors = new ArrayList<>(this.colors.length);
+    for (int color : this.colors) {
+      colors.add(color);
     }
+    builder.colors(colors);
 
-    for (float position : positions) {
-      builder.addPositions(position);
+    List<Float> positions = new ArrayList<>(this.positions.length);
+    for (float position : this.positions) {
+      positions.add(position);
     }
+    builder.positions(positions);
 
-    return Wallpaper.newBuilder()
-                    .setLinearGradient(builder)
-                    .setDimLevelInDarkTheme(dimLevelInDarkTheme)
-                    .build();
+    return new Wallpaper.Builder()
+                        .linearGradient(builder.build())
+                        .dimLevelInDarkTheme(dimLevelInDarkTheme)
+                        .build();
   }
 
   @Override

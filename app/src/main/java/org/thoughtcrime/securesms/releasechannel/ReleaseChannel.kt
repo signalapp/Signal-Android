@@ -45,6 +45,7 @@ object ReleaseChannel {
         mediaHeight,
         Optional.empty(),
         Optional.empty(),
+        0,
         Optional.of(media),
         false,
         false,

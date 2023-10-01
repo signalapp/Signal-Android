@@ -32,7 +32,7 @@ object Gifts {
   ): OutgoingMessage {
     return OutgoingMessage(
       threadRecipient = recipient,
-      body = Base64.encodeBytes(giftBadge.toByteArray()),
+      body = Base64.encodeBytes(giftBadge.encode()),
       isSecure = true,
       sentTimeMillis = sentTimestamp,
       expiresIn = expiresIn,

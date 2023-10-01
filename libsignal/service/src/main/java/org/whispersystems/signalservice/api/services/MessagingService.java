@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.services;
 
-import com.google.protobuf.ByteString;
-
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
@@ -20,7 +18,7 @@ import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 import org.whispersystems.util.Base64;
 
 import java.security.SecureRandom;
@@ -30,6 +28,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Single;
+import okio.ByteString;
 
 /**
  * Provide WebSocket based interface to message sending endpoints.
@@ -48,13 +47,13 @@ public class MessagingService {
       add("content-type:application/json");
     }};
 
-    WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
-                                                                    .setId(new SecureRandom().nextLong())
-                                                                    .setVerb("PUT")
-                                                                    .setPath(String.format("/v1/messages/%s?story=%s", list.getDestination(), story ? "true" : "false"))
-                                                                    .addAllHeaders(headers)
-                                                                    .setBody(ByteString.copyFrom(JsonUtil.toJson(list).getBytes()))
-                                                                    .build();
+    WebSocketRequestMessage requestMessage = new WebSocketRequestMessage.Builder()
+                                                                        .id(new SecureRandom().nextLong())
+                                                                        .verb("PUT")
+                                                                        .path(String.format("/v1/messages/%s?story=%s", list.getDestination(), story ? "true" : "false"))
+                                                                        .headers(headers)
+                                                                        .body(ByteString.of(JsonUtil.toJson(list).getBytes()))
+                                                                        .build();
 
     ResponseMapper<SendMessageResponse> responseMapper = DefaultResponseMapper.extend(SendMessageResponse.class)
                                                                               .withResponseMapper((status, body, getHeader, unidentified) -> {
@@ -80,13 +79,13 @@ public class MessagingService {
 
     String path = String.format(Locale.US, "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s", timestamp, online, urgent, story);
 
-    WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
-                                                                    .setId(new SecureRandom().nextLong())
-                                                                    .setVerb("PUT")
-                                                                    .setPath(path)
-                                                                    .addAllHeaders(headers)
-                                                                    .setBody(ByteString.copyFrom(body))
-                                                                    .build();
+    WebSocketRequestMessage requestMessage = new WebSocketRequestMessage.Builder()
+                                                                        .id(new SecureRandom().nextLong())
+                                                                        .verb("PUT")
+                                                                        .path(path)
+                                                                        .headers(headers)
+                                                                        .body(ByteString.of(body))
+                                                                        .build();
 
     return signalWebSocket.request(requestMessage)
                           .map(DefaultResponseMapper.extend(SendGroupMessageResponse.class)

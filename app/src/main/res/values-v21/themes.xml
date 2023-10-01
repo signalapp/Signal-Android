@@ -54,11 +54,6 @@
         <item name="android:navigationBarColor">@color/signal_colorSurface1</item>
     </style>
 
-    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">@color/transparent</item>
-    </style>
-
     <style name="Theme.Signal.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@color/signal_colorBackground</item>
@@ -84,14 +79,5 @@
     </style>
 
     <style name="Signal.ConversationSettings.WindowAnimation" parent="android:style/Animation" >
-    </style>
-
-    <!-- For some reason, using fully transparent causes issues with the nav bar height calculation. Using *almost* transparent prevents this. -->
-    <style name="TextSecure.LightNoActionBar.TransparentNavigationBar">
-        <item name="android:windowTranslucentNavigation">true</item>
-    </style>
-
-    <style name="TextSecure.DarkNoActionBar.TransparentNavigationBar">
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 </resources>

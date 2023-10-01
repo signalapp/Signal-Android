@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.messages
 
-import com.google.protobuf.ByteString
-import com.google.protobuf.GeneratedMessageLite
+import ProtoUtil.isNotEmpty
+import com.squareup.wire.Message
+import okio.ByteString
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -18,79 +20,81 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage.Payment
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.StoryMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Sent
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TypingMessage
+import org.whispersystems.signalservice.internal.push.AttachmentPointer
+import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.DataMessage.Payment
+import org.whispersystems.signalservice.internal.push.GroupContextV2
+import org.whispersystems.signalservice.internal.push.StoryMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage.Sent
+import org.whispersystems.signalservice.internal.push.TypingMessage
 import java.util.Optional
-
-private val ByteString.isNotEmpty: Boolean
-  get() = !this.isEmpty
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 object SignalServiceProtoUtil {
+
+  @JvmStatic
+  val emptyGroupChange: DecryptedGroupChange by lazy { DecryptedGroupChange() }
 
   /** Contains some user data that affects the conversation  */
   val DataMessage.hasRenderableContent: Boolean
     get() {
-      return attachmentsList.isNotEmpty() ||
-        hasBody() ||
-        hasQuote() ||
-        contactList.isNotEmpty() ||
-        previewList.isNotEmpty() ||
-        bodyRangesList.isNotEmpty() ||
-        hasSticker() ||
-        hasReaction() ||
+      return attachments.isNotEmpty() ||
+        body != null ||
+        quote != null ||
+        contact.isNotEmpty() ||
+        preview.isNotEmpty() ||
+        bodyRanges.isNotEmpty() ||
+        sticker != null ||
+        reaction != null ||
         hasRemoteDelete
     }
 
   val DataMessage.hasDisallowedAnnouncementOnlyContent: Boolean
     get() {
-      return hasBody() ||
-        attachmentsList.isNotEmpty() ||
-        hasQuote() ||
-        previewList.isNotEmpty() ||
-        bodyRangesList.isNotEmpty() ||
-        hasSticker()
+      return body != null ||
+        attachments.isNotEmpty() ||
+        quote != null ||
+        preview.isNotEmpty() ||
+        bodyRanges.isNotEmpty() ||
+        sticker != null
     }
 
   val DataMessage.isExpirationUpdate: Boolean
-    get() = flags and DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE != 0
+    get() = flags != null && flags!! and DataMessage.Flags.EXPIRATION_TIMER_UPDATE.value != 0
 
   val DataMessage.hasRemoteDelete: Boolean
-    get() = hasDelete() && delete.hasTargetSentTimestamp()
+    get() = delete != null && delete!!.targetSentTimestamp != null
 
   val DataMessage.isGroupV2Update: Boolean
     get() = !hasRenderableContent && hasSignedGroupChange
 
-  val DataMessage.hasGroupContext: Boolean
-    get() = hasGroupV2() && groupV2.hasMasterKey() && groupV2.masterKey.isNotEmpty
+  val DataMessage?.hasGroupContext: Boolean
+    get() = this?.groupV2?.masterKey.isNotEmpty()
 
   val DataMessage.hasSignedGroupChange: Boolean
-    get() = hasGroupContext && groupV2.hasSignedGroupChange
+    get() = hasGroupContext && groupV2!!.hasSignedGroupChange
 
   val DataMessage.isMediaMessage: Boolean
-    get() = attachmentsList.isNotEmpty() || hasQuote() || contactList.isNotEmpty() || hasSticker() || bodyRangesList.isNotEmpty() || previewList.isNotEmpty()
+    get() = attachments.isNotEmpty() || quote != null || contact.isNotEmpty() || sticker != null || bodyRanges.isNotEmpty() || preview.isNotEmpty()
 
   val DataMessage.isEndSession: Boolean
-    get() = flags and DataMessage.Flags.END_SESSION_VALUE != 0
+    get() = flags != null && flags!! and DataMessage.Flags.END_SESSION.value != 0
 
   val DataMessage.isStoryReaction: Boolean
-    get() = hasReaction() && hasStoryContext()
+    get() = reaction != null && storyContext != null
 
   val DataMessage.isPaymentActivationRequest: Boolean
-    get() = hasPayment() && payment.hasActivation() && payment.activation.type == Payment.Activation.Type.REQUEST
+    get() = payment?.activation?.type == Payment.Activation.Type.REQUEST
 
   val DataMessage.isPaymentActivated: Boolean
-    get() = hasPayment() && payment.hasActivation() && payment.activation.type == Payment.Activation.Type.ACTIVATED
+    get() = payment?.activation?.type == Payment.Activation.Type.ACTIVATED
 
   val DataMessage.isInvalid: Boolean
     get() {
-      if (isViewOnce) {
-        val contentType = attachmentsList[0].contentType.lowercase()
-        return attachmentsList.size != 1 || !MediaUtil.isImageOrVideoType(contentType)
+      if (isViewOnce == true) {
+        val contentType = attachments[0].contentType?.lowercase()
+        return attachments.size != 1 || !MediaUtil.isImageOrVideoType(contentType)
       }
       return false
     }
@@ -98,31 +102,34 @@ object SignalServiceProtoUtil {
   val DataMessage.isEmptyGroupV2Message: Boolean
     get() = hasGroupContext && !isGroupV2Update && !hasRenderableContent
 
+  val DataMessage.expireTimerDuration: Duration
+    get() = (expireTimer ?: 0).seconds
+
   val GroupContextV2.hasSignedGroupChange: Boolean
-    get() = hasGroupChange() && groupChange.isNotEmpty
+    get() = groupChange.isNotEmpty()
 
   val GroupContextV2.signedGroupChange: ByteArray
-    get() = groupChange.toByteArray()
+    get() = groupChange!!.toByteArray()
 
   val GroupContextV2.groupMasterKey: GroupMasterKey
-    get() = GroupMasterKey(masterKey.toByteArray())
+    get() = GroupMasterKey(masterKey!!.toByteArray())
 
   val GroupContextV2?.isValid: Boolean
-    get() = this != null && masterKey.isNotEmpty
+    get() = this?.masterKey.isNotEmpty()
 
   val GroupContextV2.groupId: GroupId.V2?
     get() = if (isValid) GroupId.v2(groupMasterKey) else null
 
   val StoryMessage.type: StoryType
     get() {
-      return if (allowsReplies) {
-        if (hasTextAttachment()) {
+      return if (allowsReplies == true) {
+        if (textAttachment != null) {
           StoryType.TEXT_STORY_WITH_REPLIES
         } else {
           StoryType.STORY_WITH_REPLIES
         }
       } else {
-        if (hasTextAttachment()) {
+        if (textAttachment != null) {
           StoryType.TEXT_STORY_WITHOUT_REPLIES
         } else {
           StoryType.STORY_WITHOUT_REPLIES
@@ -131,16 +138,16 @@ object SignalServiceProtoUtil {
     }
 
   fun Sent.isUnidentified(serviceId: ServiceId?): Boolean {
-    return serviceId != null && unidentifiedStatusList.firstOrNull { ServiceId.parseOrNull(it.destinationServiceId) == serviceId }?.unidentified ?: false
+    return serviceId != null && unidentifiedStatus.firstOrNull { ServiceId.parseOrNull(it.destinationServiceId) == serviceId }?.unidentified ?: false
   }
 
   val Sent.serviceIdsToUnidentifiedStatus: Map<ServiceId, Boolean>
     get() {
-      return unidentifiedStatusList
+      return unidentifiedStatus
         .mapNotNull { status ->
           val serviceId = ServiceId.parseOrNull(status.destinationServiceId)
           if (serviceId != null) {
-            serviceId to status.unidentified
+            serviceId to (status.unidentified ?: false)
           } else {
             null
           }
@@ -149,7 +156,7 @@ object SignalServiceProtoUtil {
     }
 
   val TypingMessage.hasStarted: Boolean
-    get() = hasAction() && action == TypingMessage.Action.STARTED
+    get() = action == TypingMessage.Action.STARTED
 
   fun ByteString.toDecryptionErrorMessage(metadata: EnvelopeMetadata): DecryptionErrorMessage {
     try {
@@ -180,7 +187,7 @@ object SignalServiceProtoUtil {
   }
 
   @Suppress("UNCHECKED_CAST")
-  inline fun <reified MessageType : GeneratedMessageLite<MessageType, BuilderType>, BuilderType : GeneratedMessageLite.Builder<MessageType, BuilderType>> GeneratedMessageLite.Builder<MessageType, BuilderType>.buildWith(block: BuilderType.() -> Unit): MessageType {
+  inline fun <reified MessageType : Message<MessageType, BuilderType>, BuilderType : Message.Builder<MessageType, BuilderType>> Message.Builder<MessageType, BuilderType>.buildWith(block: BuilderType.() -> Unit): MessageType {
     block(this as BuilderType)
     return build()
   }

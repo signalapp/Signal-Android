@@ -5,15 +5,11 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
-import org.signal.core.util.tracing.TraceProtos.Trace;
-import org.signal.core.util.tracing.TraceProtos.TracePacket;
-import org.signal.core.util.tracing.TraceProtos.TrackDescriptor;
-import org.signal.core.util.tracing.TraceProtos.TrackEvent;
-
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.UUID;
@@ -22,24 +18,26 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import okio.ByteString;
+
 /**
  * A class to create Perfetto-compatible traces. Currently keeps the entire trace in memory to
  * avoid weirdness with synchronizing to disk.
- *
+ * <p>
  * Some general info on how the Perfetto format works:
  * - The file format is just a Trace proto (see Trace.proto)
  * - The Trace proto is just a series of TracePackets
  * - TracePackets can describe:
- *   - Threads
- *   - Start of a method
- *   - End of a method
- *   - (And a bunch of other stuff that's not relevant to use at this point)
- *
+ * - Threads
+ * - Start of a method
+ * - End of a method
+ * - (And a bunch of other stuff that's not relevant to use at this point)
+ * <p>
  * We keep a circular buffer of TracePackets for method calls, and we keep a separate list of
  * TracePackets for threads so we don't lose any of those.
- *
+ * <p>
  * Serializing is just a matter of throwing all the TracePackets we have into a proto.
- *
+ * <p>
  * Note: This class aims to be largely-thread-safe, but prioritizes speed and memory efficiency
  * above all else. These methods are going to be called very quickly from every thread imaginable,
  * and we want to create as little overhead as possible. The idea being that it's ok if we don't,
@@ -50,7 +48,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class Tracer {
 
   public static final class TrackId {
-    public static final long DB_LOCK        = -8675309;
+    public static final long DB_LOCK = -8675309;
 
     private static final String DB_LOCK_NAME = "Database Lock";
   }
@@ -129,19 +127,12 @@ public final class Tracer {
   }
 
   public @NonNull byte[] serialize() {
-    Trace.Builder trace = Trace.newBuilder();
+    List<TracePacket> packets = new ArrayList<>();
+    packets.addAll(threadPackets.values());
+    packets.addAll(eventPackets);
+    packets.add(forSynchronization(clock.getTimeNanos()));
 
-    for (TracePacket thread : threadPackets.values()) {
-      trace.addPacket(thread);
-    }
-
-    for (TracePacket event : eventPackets) {
-      trace.addPacket(event);
-    }
-
-    trace.addPacket(forSynchronization(clock.getTimeNanos()));
-
-    return trace.build().toByteArray();
+    return new Trace.Builder().packet(packets).build().encode();
   }
 
   /**
@@ -149,7 +140,7 @@ public final class Tracer {
    * The tracking of the event count is not perfectly thread-safe, but doing it in a thread-safe
    * way would likely involve adding a lock, which we really don't want to do, since it'll add
    * unnecessary overhead.
-   *
+   * <p>
    * Note that we keep track of the event count separately because
    * {@link ConcurrentLinkedQueue#size()} is NOT a constant-time operation.
    */
@@ -174,57 +165,60 @@ public final class Tracer {
   }
 
   private static TracePacket forTrack(long id, String name) {
-    return TracePacket.newBuilder()
-                      .setTrustedPacketSequenceId(TRUSTED_SEQUENCE_ID)
-                      .setTrackDescriptor(TrackDescriptor.newBuilder()
-                                                         .setUuid(id)
-                                                         .setName(name))
-                      .build();
+    return new TracePacket.Builder()
+        .trusted_packet_sequence_id(TRUSTED_SEQUENCE_ID)
+        .track_descriptor(new TrackDescriptor.Builder()
+                              .uuid(id)
+                              .name(name).build())
+        .build();
 
   }
 
   private static TracePacket forMethodStart(@NonNull String name, long time, long threadId, @Nullable Map<String, String> values) {
-    TrackEvent.Builder event = TrackEvent.newBuilder()
-                                         .setTrackUuid(threadId)
-                                         .setName(name)
-                                         .setType(TrackEvent.Type.TYPE_SLICE_BEGIN);
+    TrackEvent.Builder event = new TrackEvent.Builder()
+        .track_uuid(threadId)
+        .name(name)
+        .type(TrackEvent.Type.TYPE_SLICE_BEGIN);
 
+    List<DebugAnnotation> debugAnnotations = new LinkedList<>();
     if (values != null) {
       for (Map.Entry<String, String> entry : values.entrySet()) {
-        event.addDebugAnnotations(debugAnnotation(entry.getKey(), entry.getValue()));
+        debugAnnotations.add(debugAnnotation(entry.getKey(), entry.getValue()));
       }
     }
+    event.debug_annotations(debugAnnotations);
 
-    return TracePacket.newBuilder()
-                      .setTrustedPacketSequenceId(TRUSTED_SEQUENCE_ID)
-                      .setTimestamp(time)
-                      .setTrackEvent(event)
-                      .build();
+    return new TracePacket.Builder()
+        .trusted_packet_sequence_id(TRUSTED_SEQUENCE_ID)
+        .timestamp(time)
+        .track_event(event.build())
+        .build();
   }
 
-  private static TraceProtos.DebugAnnotation debugAnnotation(@NonNull String key, @Nullable String value) {
-    return TraceProtos.DebugAnnotation.newBuilder()
-                                      .setName(key)
-                                      .setStringValue(value != null ? value : "")
-                                      .build();
+  private static DebugAnnotation debugAnnotation(@NonNull String key, @Nullable String value) {
+    return new DebugAnnotation.Builder()
+        .name(key)
+        .string_value(value != null ? value : "")
+        .build();
   }
 
   private static TracePacket forMethodEnd(@NonNull String name, long time, long threadId) {
-    return TracePacket.newBuilder()
-                      .setTrustedPacketSequenceId(TRUSTED_SEQUENCE_ID)
-                      .setTimestamp(time)
-                      .setTrackEvent(TrackEvent.newBuilder()
-                                               .setTrackUuid(threadId)
-                                               .setName(name)
-                                               .setType(TrackEvent.Type.TYPE_SLICE_END))
-                      .build();
+    return new TracePacket.Builder()
+        .trusted_packet_sequence_id(TRUSTED_SEQUENCE_ID)
+        .timestamp(time)
+        .track_event(new TrackEvent.Builder()
+                         .track_uuid(threadId)
+                         .name(name)
+                         .type(TrackEvent.Type.TYPE_SLICE_END)
+                         .build())
+        .build();
   }
 
   private static TracePacket forSynchronization(long time) {
-    return TracePacket.newBuilder()
-                      .setTrustedPacketSequenceId(TRUSTED_SEQUENCE_ID)
-                      .setTimestamp(time)
-                      .setSynchronizationMarker(ByteString.copyFrom(SYNCHRONIZATION_MARKER))
+    return new TracePacket.Builder()
+                      .trusted_packet_sequence_id(TRUSTED_SEQUENCE_ID)
+                      .timestamp(time)
+                      .synchronization_marker(ByteString.of(SYNCHRONIZATION_MARKER))
                       .build();
   }
 

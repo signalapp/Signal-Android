@@ -14,12 +14,12 @@ fun BodyRangeList?.adjustBodyRanges(bodyAdjustments: List<BodyAdjustment>): Body
     return this
   }
 
-  val newBodyRanges = rangesList.toMutableList()
+  val newBodyRanges = ranges.toMutableList()
 
   for (adjustment in bodyAdjustments) {
     val adjustmentLength = adjustment.oldLength - adjustment.newLength
 
-    rangesList.forEachIndexed { listIndex, range ->
+    ranges.forEachIndexed { listIndex, range ->
       val needsRangeStartsAfterAdjustment = range.start > adjustment.startIndex
       val needsRangeCoversAdjustment = range.start <= adjustment.startIndex && range.start + range.length >= adjustment.startIndex + adjustment.oldLength
 
@@ -28,10 +28,10 @@ fun BodyRangeList?.adjustBodyRanges(bodyAdjustments: List<BodyAdjustment>): Body
       val newLength: Int? = if (needsRangeCoversAdjustment) newRange.length - adjustmentLength else null
 
       if (newStart != null || newLength != null) {
-        newBodyRanges[listIndex] = newRange.toBuilder().setStart(newStart ?: newRange.start).setLength(newLength ?: newRange.length).build()
+        newBodyRanges[listIndex] = newRange.newBuilder().start(newStart ?: newRange.start).length(newLength ?: newRange.length).build()
       }
     }
   }
 
-  return BodyRangeList.newBuilder().addAllRanges(newBodyRanges).build()
+  return BodyRangeList(ranges = newBodyRanges)
 }

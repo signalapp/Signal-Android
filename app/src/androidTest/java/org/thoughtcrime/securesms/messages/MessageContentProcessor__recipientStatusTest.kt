@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import okio.ByteString.Companion.toByteString
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.toProtoByteString
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.GroupTestingUtils.asMember
@@ -15,8 +15,8 @@ import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.util.MessageTableTestUtils
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2
+import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.GroupContextV2
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -41,9 +41,9 @@ class MessageContentProcessor__recipientStatusTest {
   @Test
   fun syncGroupSentTextMessageWithRecipientUpdateFollowup() {
     val (groupId, masterKey, groupRecipientId) = GroupTestingUtils.insertGroup(revision = 0, harness.self.asMember(), harness.others[0].asMember(), harness.others[1].asMember())
-    val groupContextV2 = GroupContextV2.newBuilder().setRevision(0).setMasterKey(masterKey.serialize().toProtoByteString()).build()
+    val groupContextV2 = GroupContextV2.Builder().revision(0).masterKey(masterKey.serialize().toByteString()).build()
 
-    val initialTextMessage = DataMessage.newBuilder().buildWith {
+    val initialTextMessage = DataMessage.Builder().buildWith {
       body = MessageContentFuzzer.string()
       groupV2 = groupContextV2
       timestamp = envelopeTimestamp

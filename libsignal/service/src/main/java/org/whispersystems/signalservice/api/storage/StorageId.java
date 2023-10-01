@@ -12,23 +12,23 @@ public class StorageId {
   private final byte[] raw;
 
   public static StorageId forContact(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.CONTACT_VALUE, Preconditions.checkNotNull(raw));
+    return new StorageId(ManifestRecord.Identifier.Type.CONTACT.getValue(), Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forGroupV1(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.GROUPV1_VALUE, Preconditions.checkNotNull(raw));
+    return new StorageId(ManifestRecord.Identifier.Type.GROUPV1.getValue(), Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forGroupV2(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.GROUPV2_VALUE, Preconditions.checkNotNull(raw));
+    return new StorageId(ManifestRecord.Identifier.Type.GROUPV2.getValue(), Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forStoryDistributionList(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST_VALUE, Preconditions.checkNotNull(raw));
+    return new StorageId(ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST.getValue(), Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forAccount(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.ACCOUNT_VALUE, Preconditions.checkNotNull(raw));
+    return new StorageId(ManifestRecord.Identifier.Type.ACCOUNT.getValue(), Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forType(byte[] raw, int type) {
@@ -58,23 +58,11 @@ public class StorageId {
 
   public static boolean isKnownType(int val) {
     for (ManifestRecord.Identifier.Type type : ManifestRecord.Identifier.Type.values()) {
-      if (type != ManifestRecord.Identifier.Type.UNRECOGNIZED && type.getNumber() == val) {
+      if (type != ManifestRecord.Identifier.Type.UNKNOWN && type.getValue() == val) {
         return true;
       }
     }
     return false;
-  }
-
-  public static int largestKnownType() {
-    int max = 0;
-
-    for (ManifestRecord.Identifier.Type type : ManifestRecord.Identifier.Type.values()) {
-      if (type != ManifestRecord.Identifier.Type.UNRECOGNIZED) {
-        max = Math.max(type.getNumber(), max);
-      }
-    }
-
-    return max;
   }
 
   @Override

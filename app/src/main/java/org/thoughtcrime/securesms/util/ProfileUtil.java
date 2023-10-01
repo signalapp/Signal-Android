@@ -46,7 +46,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.PaymentAddress;
 
 import java.io.IOException;
 import java.util.List;
@@ -170,12 +170,12 @@ public final class ProfileUtil {
     }
 
     try {
-      IdentityKey                        identityKey             = new IdentityKey(Base64.decode(profileAndCredential.getProfile().getIdentityKey()), 0);
-      ProfileCipher                      profileCipher           = new ProfileCipher(profileKey);
-      byte[]                             decrypted               = profileCipher.decryptWithLength(encryptedPaymentsAddress);
-      SignalServiceProtos.PaymentAddress paymentAddress          = SignalServiceProtos.PaymentAddress.parseFrom(decrypted);
-      byte[]                             bytes                   = MobileCoinPublicAddressProfileUtil.verifyPaymentsAddress(paymentAddress, identityKey);
-      MobileCoinPublicAddress            mobileCoinPublicAddress = MobileCoinPublicAddress.fromBytes(bytes);
+      IdentityKey             identityKey             = new IdentityKey(Base64.decode(profileAndCredential.getProfile().getIdentityKey()), 0);
+      ProfileCipher           profileCipher           = new ProfileCipher(profileKey);
+      byte[]                  decrypted               = profileCipher.decryptWithLength(encryptedPaymentsAddress);
+      PaymentAddress          paymentAddress          = PaymentAddress.ADAPTER.decode(decrypted);
+      byte[]                  bytes                   = MobileCoinPublicAddressProfileUtil.verifyPaymentsAddress(paymentAddress, identityKey);
+      MobileCoinPublicAddress mobileCoinPublicAddress = MobileCoinPublicAddress.fromBytes(bytes);
 
       if (mobileCoinPublicAddress == null) {
         throw new PaymentsAddressException(PaymentsAddressException.Code.INVALID_ADDRESS);
@@ -315,7 +315,7 @@ public final class ProfileUtil {
   private static void uploadProfile(@NonNull ProfileName profileName,
                                     @Nullable String about,
                                     @Nullable String aboutEmoji,
-                                    @Nullable SignalServiceProtos.PaymentAddress paymentsAddress,
+                                    @Nullable PaymentAddress paymentsAddress,
                                     @NonNull AvatarUploadParams avatar,
                                     @NonNull List<Badge> badges)
       throws IOException
@@ -354,7 +354,7 @@ public final class ProfileUtil {
     ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
   }
 
-  private static @Nullable SignalServiceProtos.PaymentAddress getSelfPaymentsAddressProtobuf() {
+  private static @Nullable PaymentAddress getSelfPaymentsAddressProtobuf() {
     if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
       return null;
     } else {

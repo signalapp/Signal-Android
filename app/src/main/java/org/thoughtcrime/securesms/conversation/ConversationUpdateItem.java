@@ -454,7 +454,7 @@ public final class ConversationUpdateItem extends FrameLayout
       if (Util.hasItems(acis)) {
         if (acis.contains(SignalStore.account().requireAci())) {
           text = R.string.ConversationUpdateItem_return_to_call;
-        } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).getIsCallFull()) {
+        } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).isCallFull) {
           text = R.string.ConversationUpdateItem_call_is_full;
         } else {
           text = R.string.ConversationUpdateItem_join_call;
@@ -712,9 +712,7 @@ public final class ConversationUpdateItem extends FrameLayout
         return;
       }
 
-      final Recipient sender = ConversationUpdateItem.this.senderObserver.getObservedRecipient();
-
-      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
+      IdentityUtil.getRemoteIdentityKey(getContext(), messageRecord.getToRecipient()).addListener(new ListenableFuture.Listener<>() {
         @Override
         public void onSuccess(Optional<IdentityRecord> result) {
           if (result.isPresent()) {

@@ -243,6 +243,7 @@ class UploadDependencyGraphTest {
       attachment.relay,
       attachment.digest,
       attachment.incrementalDigest,
+      attachment.incrementalMacChunkSize,
       attachment.fastPreflightId,
       attachment.isVoiceNote,
       attachment.isBorderless,

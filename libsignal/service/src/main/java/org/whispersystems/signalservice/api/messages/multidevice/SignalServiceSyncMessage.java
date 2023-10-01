@@ -6,11 +6,9 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLinkUpdate;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallLogEvent;
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent;
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallLinkUpdate;
+import org.whispersystems.signalservice.internal.push.SyncMessage.CallLogEvent;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -15,7 +16,6 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberRepository
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
-import org.thoughtcrime.securesms.database.model.toProtoByteString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -31,7 +31,7 @@ import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import java.io.IOException
@@ -74,10 +74,6 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   public override fun onRun() {
     if (Recipient.self().pnpCapability != Recipient.Capability.SUPPORTED) {
       throw IllegalStateException("This should only be run if you have the capability!")
-    }
-
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      throw IllegalStateException("This should only be running if PNP is enabled!")
     }
 
     if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
@@ -212,13 +208,13 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
         // Device Messages
         if (deviceId != primaryDeviceId) {
-          val pniChangeNumber = SignalServiceProtos.SyncMessage.PniChangeNumber.newBuilder()
-            .setIdentityKeyPair(pniIdentity.serialize().toProtoByteString())
-            .setSignedPreKey(signedPreKeyRecord.serialize().toProtoByteString())
-            .setLastResortKyberPreKey(lastResortKyberPreKeyRecord.serialize().toProtoByteString())
-            .setRegistrationId(pniRegistrationId)
-            .setNewE164(newE164)
-            .build()
+          val pniChangeNumber = SyncMessage.PniChangeNumber(
+            identityKeyPair = pniIdentity.serialize().toByteString(),
+            signedPreKey = signedPreKeyRecord.serialize().toByteString(),
+            lastResortKyberPreKey = lastResortKyberPreKeyRecord.serialize().toByteString(),
+            registrationId = pniRegistrationId,
+            newE164 = newE164
+          )
 
           deviceMessages += messageSender.getEncryptedSyncPniInitializeDeviceMessage(deviceId, pniChangeNumber)
         }

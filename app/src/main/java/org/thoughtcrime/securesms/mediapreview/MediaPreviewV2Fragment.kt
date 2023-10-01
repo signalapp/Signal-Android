@@ -47,9 +47,11 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
@@ -89,6 +91,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   private lateinit var fullscreenHelper: FullscreenHelper
 
   private var individualItemWidth: Int = 0
+  private var dbChangeObserver: DatabaseObserver.Observer? = null
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -131,7 +134,12 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
     viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
     val sorting = MediaTable.Sorting.deserialize(args.sorting.ordinal)
-    viewModel.fetchAttachments(requireContext(), PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
+    val startingAttachmentId = PartAuthority.requireAttachmentId(args.initialMediaUri)
+    val threadId = args.threadId
+    viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting)
+    val dbObserver = DatabaseObserver.Observer { viewModel.fetchAttachments(requireContext(), startingAttachmentId, threadId, sorting, true) }
+    ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(dbObserver)
+    this.dbChangeObserver = dbObserver
   }
 
   @SuppressLint("RestrictedApi")
@@ -485,6 +493,15 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
   }
 
+  override fun onDestroy() {
+    super.onDestroy()
+    val observer = dbChangeObserver
+    if (observer != null) {
+      ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer)
+      dbChangeObserver = null
+    }
+  }
+
   override fun unableToPlayMedia() {
     Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_play_media, Toast.LENGTH_LONG).show()
     requireActivity().finish()
@@ -596,7 +613,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }.show()
   }
 
-  fun canRemotelyDelete(attachment: DatabaseAttachment): Boolean {
+  private fun canRemotelyDelete(attachment: DatabaseAttachment): Boolean {
     val mmsId = attachment.mmsId
     val attachmentCount = SignalDatabase.attachments.getAttachmentsForMessage(mmsId).size
     return attachmentCount <= 1 && MessageConstraintsUtil.isValidRemoteDeleteSend(listOf(SignalDatabase.messages.getMessageRecord(mmsId)), System.currentTimeMillis())

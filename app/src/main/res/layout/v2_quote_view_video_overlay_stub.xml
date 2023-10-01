@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quote_video_overlay"
+    android:layout_width="13dp"
+    android:layout_height="16dp"
+    android:importantForAccessibility="no"
+    app:srcCompat="@drawable/exo_icon_play_ultramarine" />

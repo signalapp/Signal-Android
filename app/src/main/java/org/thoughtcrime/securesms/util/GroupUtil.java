@@ -21,7 +21,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.Content;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,17 +34,17 @@ public final class GroupUtil {
 
   private static final String TAG = Log.tag(GroupUtil.class);
 
-  public static @Nullable SignalServiceProtos.GroupContextV2 getGroupContextIfPresent(@NonNull SignalServiceProtos.Content content) {
-    if (content.hasDataMessage() && SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.getDataMessage())) {
-      return content.getDataMessage().getGroupV2();
-    } else if (content.hasSyncMessage()                 &&
-               content.getSyncMessage().hasSent() &&
-               content.getSyncMessage().getSent().hasMessage() &&
-               SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.getSyncMessage().getSent().getMessage()))
+  public static @Nullable GroupContextV2 getGroupContextIfPresent(@NonNull Content content) {
+    if (content.dataMessage != null && SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.dataMessage)) {
+      return content.dataMessage.groupV2;
+    } else if (content.syncMessage != null                 &&
+               content.syncMessage.sent != null &&
+               content.syncMessage.sent.message != null &&
+               SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.syncMessage.sent.message))
     {
-      return content.getSyncMessage().getSent().getMessage().getGroupV2();
-    } else if (content.hasStoryMessage() && SignalServiceProtoUtil.INSTANCE.isValid(content.getStoryMessage().getGroup())) {
-      return content.getStoryMessage().getGroup();
+      return content.syncMessage.sent.message.groupV2;
+    } else if (content.storyMessage != null && SignalServiceProtoUtil.INSTANCE.isValid(content.storyMessage.group)) {
+      return content.storyMessage.group;
     } else {
       return null;
     }

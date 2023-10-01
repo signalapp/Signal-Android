@@ -11,11 +11,11 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.OptionalUtil.emptyIfStringEmpty
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange
+import org.whispersystems.signalservice.internal.push.BodyRange
 import java.util.LinkedList
 import java.util.Optional
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage.Payment as PaymentProto
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage.Quote as QuoteProto
+import org.whispersystems.signalservice.internal.push.DataMessage.Payment as PaymentProto
+import org.whispersystems.signalservice.internal.push.DataMessage.Quote as QuoteProto
 
 /**
  * Represents a decrypted Signal Service data message.

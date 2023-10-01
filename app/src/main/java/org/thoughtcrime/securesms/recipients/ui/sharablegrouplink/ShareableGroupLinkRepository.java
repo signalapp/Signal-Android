@@ -68,8 +68,8 @@ final class ShareableGroupLinkRepository {
                                                               .get()
                                                               .requireV2GroupProperties()
                                                               .getDecryptedGroup()
-                                                              .getAccessControl()
-                                                              .getAddFromInviteLink();
+                                                              .accessControl
+                                                              .addFromInviteLink;
 
     boolean enabled;
     boolean approvalNeeded;
@@ -77,7 +77,6 @@ final class ShareableGroupLinkRepository {
     switch (currentState) {
       case UNKNOWN:
       case UNSATISFIABLE:
-      case UNRECOGNIZED:
       case MEMBER:
         enabled        = false;
         approvalNeeded = false;

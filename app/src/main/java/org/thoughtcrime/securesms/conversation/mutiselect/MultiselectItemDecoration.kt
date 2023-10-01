@@ -27,6 +27,7 @@ import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.animation.ArgbEvaluatorCompat
@@ -35,7 +36,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge.PulseRequest
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -124,7 +125,15 @@ class MultiselectItemDecoration(
   }
 
   private fun getCurrentSelection(parent: RecyclerView): Set<MultiselectPart> {
-    return (parent.adapter as ConversationAdapterBridge).selectedItems
+    return parent.findAdapterBridge().selectedItems
+  }
+
+  private fun RecyclerView.findAdapterBridge(): ConversationAdapterBridge {
+    return when (val parentAdapter = adapter!!) {
+      is ConversationAdapterBridge -> parentAdapter
+      is ConcatAdapter -> (parentAdapter.adapters[1] as ConversationAdapterBridge)
+      else -> error("Unexpected adapter configuration")
+    }
   }
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
@@ -156,14 +165,14 @@ class MultiselectItemDecoration(
     outRect.setEmpty()
     updateChildOffsets(parent, view)
 
-    consumePulseRequest(parent.adapter as ConversationAdapterBridge)
+    consumePulseRequest(parent.findAdapterBridge())
   }
 
   /**
    * Draws the background shade.
    */
   override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-    val adapter = parent.adapter as ConversationAdapterBridge
+    val adapter = parent.findAdapterBridge()
 
     if (adapter.selectedItems.isEmpty()) {
       drawFocusShadeUnderIfNecessary(canvas, parent)
@@ -231,7 +240,7 @@ class MultiselectItemDecoration(
    * Draws the selected check or empty circle.
    */
   override fun onDrawOver(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-    val adapter = parent.adapter as ConversationAdapterBridge
+    val adapter = parent.findAdapterBridge()
     if (adapter.selectedItems.isEmpty()) {
       drawFocusShadeOverIfNecessary(canvas, parent)
     }
@@ -347,7 +356,7 @@ class MultiselectItemDecoration(
    * called in getItemOffsets to ensure the gutter goes away when multiselect mode ends.
    */
   private fun updateChildOffsets(parent: RecyclerView, child: View) {
-    val adapter = parent.adapter as ConversationAdapterBridge
+    val adapter = parent.findAdapterBridge()
     val isLtr = ViewUtil.isLtr(child)
     val multiselectable: Multiselectable = resolveMultiselectable(parent, child) ?: return
 
@@ -558,7 +567,7 @@ class MultiselectItemDecoration(
   }
 
   private fun RecyclerView.getMultiselectableChildren(): Sequence<Multiselectable> {
-    return if (SignalStore.internalValues().useConversationItemV2()) {
+    return if (FeatureFlags.useTextOnlyConversationItemV2()) {
       children.map { getChildViewHolder(it) }.filterIsInstance<Multiselectable>()
     } else {
       children.filterIsInstance<Multiselectable>()
@@ -566,19 +575,13 @@ class MultiselectItemDecoration(
   }
 
   private fun RecyclerView.getInteractableChildren(): Sequence<InteractiveConversationElement> {
-    return if (SignalStore.internalValues().useConversationItemV2()) {
-      children.map { getChildViewHolder(it) }.filterIsInstance<InteractiveConversationElement>()
-    } else {
-      children.filterIsInstance<InteractiveConversationElement>()
-    }
+    return children.map { getChildViewHolder(it) }.filterIsInstance<InteractiveConversationElement>() + children.filterIsInstance<InteractiveConversationElement>()
   }
 
   private fun resolveMultiselectable(parent: RecyclerView, child: View): Multiselectable? {
-    return if (SignalStore.internalValues().useConversationItemV2()) {
-      parent.getChildViewHolder(child) as? Multiselectable
-    } else {
-      child as? Multiselectable
-    }
+    val multiselectable = parent.getChildViewHolder(child) as? Multiselectable
+
+    return multiselectable ?: child as? Multiselectable
   }
 
   private class PulseAnimator(pulseColor: Int) {

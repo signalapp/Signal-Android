@@ -7,7 +7,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRe
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.SyncMessage
 
 /**
  * Represents a list of, or update to a list of, who can access a story through what
@@ -84,12 +84,12 @@ data class SentStorySyncManifest(
       return SentStorySyncManifest(entries)
     }
 
-    fun fromRecipientsSet(recipients: List<SignalServiceProtos.SyncMessage.Sent.StoryMessageRecipient>): SentStorySyncManifest {
+    fun fromRecipientsSet(recipients: List<SyncMessage.Sent.StoryMessageRecipient>): SentStorySyncManifest {
       val entries = recipients.toSet().map { recipient ->
         Entry(
-          recipientId = RecipientId.from(ServiceId.parseOrThrow(recipient.destinationServiceId)),
-          allowedToReply = recipient.isAllowedToReply,
-          distributionLists = recipient.distributionListIdsList.map { DistributionId.from(it) }
+          recipientId = RecipientId.from(ServiceId.parseOrThrow(recipient.destinationServiceId!!)),
+          allowedToReply = recipient.isAllowedToReply!!,
+          distributionLists = recipient.distributionListIds.map { DistributionId.from(it) }
         )
       }
 

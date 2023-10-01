@@ -6,14 +6,14 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.Request;
+import org.whispersystems.signalservice.internal.push.SyncMessage.Request;
 
 public class RequestMessage {
 
   private final Request request;
 
   public static RequestMessage forType(Request.Type type) {
-    return new RequestMessage(Request.newBuilder().setType(type).build());
+    return new RequestMessage(new Request.Builder().type(type).build());
   }
 
   public RequestMessage(Request request) {
@@ -25,23 +25,23 @@ public class RequestMessage {
   }
 
   public boolean isContactsRequest() {
-    return request.getType() == Request.Type.CONTACTS;
+    return request.type == Request.Type.CONTACTS;
   }
 
   public boolean isBlockedListRequest() {
-    return request.getType() == Request.Type.BLOCKED;
+    return request.type == Request.Type.BLOCKED;
   }
 
   public boolean isConfigurationRequest() {
-    return request.getType() == Request.Type.CONFIGURATION;
+    return request.type == Request.Type.CONFIGURATION;
   }
 
   public boolean isKeysRequest() {
-    return request.getType() == Request.Type.KEYS;
+    return request.type == Request.Type.KEYS;
   }
 
   public boolean isPniIdentityRequest() {
-    return request.getType() == Request.Type.PNI_IDENTITY;
+    return request.type == Request.Type.PNI_IDENTITY;
   }
 
   public boolean isUrgent() {

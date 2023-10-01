@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import java.io.InputStream
-import java.lang.Exception
 import java.security.MessageDigest
 import java.util.Locale
 
@@ -34,7 +33,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
   }
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-    messageDigest.update(giftBadge.toByteArray())
+    messageDigest.update(giftBadge.encode())
   }
 
   class Fetcher(

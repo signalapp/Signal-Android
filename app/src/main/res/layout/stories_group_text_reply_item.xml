@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +9,8 @@
     android:clipToPadding="false"
     android:paddingHorizontal="8dp"
     android:paddingTop="6dp"
-    android:paddingBottom="6dp">
+    android:paddingBottom="6dp"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/avatar"
@@ -18,22 +18,14 @@
         android:layout_height="28dp"
         app:fallbackImageSize="small"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/bubble_start_barrier"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        app:barrierDirection="end"
-        app:barrierMargin="8dp"
-        app:constraint_referenced_ids="avatar" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/bubble_end_barrier"
         android:layout_width="1dp"
         android:layout_height="1dp"
         app:barrierDirection="end"
-        app:barrierMargin="12dp"
         app:constraint_referenced_ids="viewed_at,viewed_at_below,delivery_status,name,body" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -41,8 +33,7 @@
         android:layout_width="1dp"
         android:layout_height="1dp"
         app:barrierDirection="start"
-        app:barrierMargin="-8dp"
-        app:constraint_referenced_ids="alert_view,spacer" />
+        app:constraint_referenced_ids="alert_view" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/viewed_at_end_barrier"
@@ -64,10 +55,11 @@
         android:id="@+id/bubble"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/rounded_rectangle_surface_variant_18"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bubble_end_barrier"
-        app:layout_constraintStart_toStartOf="@+id/bubble_start_barrier"
+        app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <org.thoughtcrime.securesms.components.FromTextView
@@ -81,7 +73,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="@+id/message_content_end_barrier"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/bubble_start_barrier"
+        app:layout_constraintStart_toStartOf="@+id/bubble"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Miles Morales" />
 
@@ -91,17 +83,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="1dp"
         android:textAppearance="@style/Signal.Text.Body"
         app:emoji_renderSpoilers="true"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/viewed_at_below"
-        app:layout_constraintEnd_toEndOf="@+id/message_content_end_barrier"
+        app:layout_constraintEnd_toStartOf="@+id/viewed_at"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/bubble_start_barrier"
+        app:layout_constraintStart_toStartOf="@+id/bubble"
         app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constrainedWidth="true"
         app:layout_goneMarginBottom="7dp"
+        app:layout_goneMarginEnd="12dp"
         app:measureLastLine="true"
         tools:text="This is a very long message that is supposed to properly wrap when it hits the end." />
 
@@ -110,11 +102,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="5dp"
         android:textAppearance="@style/Signal.Text.Caption"
         android:textColor="@color/transparent_white_60"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/message_content_end_barrier"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/body"
         tools:text="15m"
@@ -126,6 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="5dp"
         android:textAppearance="@style/Signal.Text.Caption"
         android:textColor="@color/transparent_white_60"
@@ -134,7 +129,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/message_content_end_barrier"
         app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="@+id/bubble_start_barrier"
+        app:layout_constraintStart_toStartOf="@+id/bubble"
         tools:text="Not sent, tap for details"
         tools:textColor="@color/signal_text_secondary" />
 
@@ -156,22 +151,22 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:visibility="gone"
-        app:layout_goneMarginEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reaction"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/bubble_end_barrier"
-        tools:visibility="gone" />
+        app:layout_goneMarginEnd="0dp"
+        tools:visibility="visible" />
 
     <Space
         android:id="@+id/spacer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_goneMarginEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reaction"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/bubble_end_barrier" />
+        app:layout_constraintStart_toEndOf="@+id/bubble_end_barrier"
+        app:layout_goneMarginEnd="0dp" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/reaction"

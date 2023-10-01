@@ -14,7 +14,7 @@ function init() {
     window.location.href = window.location.href.split('?')[0] + '?db=' + e.target.value;
   }
 
-  if (Handsontable) {
+  if (typeof Handsontable !== 'undefined') {
     Handsontable.renderers.registerRenderer('nullRenderer', nullRenderer)
   }
 }

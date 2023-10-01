@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.maps.PlacePickerActivity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -72,7 +73,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   fun launchGallery(recipientId: RecipientId, text: CharSequence?, isReply: Boolean) {
     Permissions
       .with(fragment)
-      .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+      .request(*PermissionCompat.forImagesAndVideos())
       .ifNecessary()
       .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
       .onAllGranted { mediaGalleryLauncher.launch(MediaSelectionInput(emptyList(), recipientId, text, isReply)) }

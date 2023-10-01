@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.isStoryReaction
@@ -55,7 +54,7 @@ object NotificationStateProvider {
             if (record is MediaMmsMessageRecord) {
               val attachments = SignalDatabase.attachments.getAttachmentsForMessage(record.id)
               if (attachments.isNotEmpty()) {
-                record = record.withAttachments(ApplicationDependencies.getApplication(), attachments)
+                record = record.withAttachments(attachments)
               }
             }
 

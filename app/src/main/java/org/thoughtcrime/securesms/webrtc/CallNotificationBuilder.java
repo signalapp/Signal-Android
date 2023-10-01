@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -36,13 +37,22 @@ public class CallNotificationBuilder {
   public static final int TYPE_ESTABLISHED         = 3;
   public static final int TYPE_INCOMING_CONNECTING = 4;
 
+  @IntDef(value = {
+      TYPE_INCOMING_RINGING,
+      TYPE_OUTGOING_RINGING,
+      TYPE_ESTABLISHED,
+      TYPE_INCOMING_CONNECTING
+  })
+  public @interface CallNotificationType {
+  }
+
   private enum LaunchCallScreenIntentState {
     CONTENT(null, 0),
     AUDIO(WebRtcCallActivity.ANSWER_ACTION, 1),
     VIDEO(WebRtcCallActivity.ANSWER_VIDEO_ACTION, 2);
 
     final @Nullable String action;
-    final int              requestCode;
+    final           int    requestCode;
 
     LaunchCallScreenIntentState(@Nullable String action, int requestCode) {
       this.action      = action;
@@ -61,9 +71,25 @@ public class CallNotificationBuilder {
    */
   public static final int API_LEVEL_CALL_STYLE = 29;
 
-  public static Notification getCallInProgressNotification(Context context, int type, Recipient recipient, boolean isVideoCall) {
-    PendingIntent              pendingIntent = getActivityPendingIntent(context, LaunchCallScreenIntentState.CONTENT);
-    NotificationCompat.Builder builder       = new NotificationCompat.Builder(context, getNotificationChannel(type))
+  /**
+   * Gets the Notification for the current in-progress call.
+   *
+   * @param context         Context, normally the service requesting this notification
+   * @param type            The type of notification desired
+   * @param recipient       The target of the call (group, call link, or 1:1 recipient)
+   * @param isVideoCall     Whether the call is a video call
+   * @param skipPersonIcon  Whether to skip loading the icon for a person, used to avoid blocking the UI thread on older apis.
+   */
+  public static Notification getCallInProgressNotification(
+      Context context,
+      @CallNotificationType int type,
+      Recipient recipient,
+      boolean isVideoCall,
+      boolean skipPersonIcon
+  )
+  {
+    PendingIntent pendingIntent = getActivityPendingIntent(context, LaunchCallScreenIntentState.CONTENT);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, getNotificationChannel(type))
         .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
         .setContentIntent(pendingIntent)
         .setOngoing(true)
@@ -80,7 +106,9 @@ public class CallNotificationBuilder {
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
       builder.setFullScreenIntent(pendingIntent, true);
 
-      Person person = ConversationUtil.buildPerson(context, recipient);
+      Person person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
+                                     : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+
       builder.addPerson(person);
 
       if (deviceVersionSupportsIncomingCallStyle()) {
@@ -102,7 +130,9 @@ public class CallNotificationBuilder {
       builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
-      Person person = ConversationUtil.buildPerson(context, recipient);
+      Person person = skipPersonIcon ? ConversationUtil.buildPersonWithoutIcon(context, recipient)
+                                     : ConversationUtil.buildPerson(context.getApplicationContext(), recipient);
+
       builder.addPerson(person);
 
       if (deviceVersionSupportsIncomingCallStyle()) {
@@ -126,11 +156,11 @@ public class CallNotificationBuilder {
 
   public static @NonNull Notification getStartingNotification(@NonNull Context context) {
     return new NotificationCompat.Builder(context, NotificationChannels.getInstance().CALL_STATUS)
-                                 .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
-                                 .setOngoing(true)
-                                 .setContentTitle(context.getString(R.string.NotificationBarManager__starting_signal_call_service))
-                                 .setPriority(NotificationCompat.PRIORITY_MIN)
-                                 .build();
+        .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+        .setOngoing(true)
+        .setContentTitle(context.getString(R.string.NotificationBarManager__starting_signal_call_service))
+        .setPriority(NotificationCompat.PRIORITY_MIN)
+        .build();
   }
 
   public static @NonNull Notification getStoppingNotification(@NonNull Context context) {

@@ -387,9 +387,9 @@ public class LinkPreviewRepository {
           Log.i(TAG, "Group is not locally available for preview generation, fetching from server");
 
           DecryptedGroupJoinInfo joinInfo    = GroupManager.getGroupJoinInfoFromServer(context, groupMasterKey, groupInviteLinkUrl.getPassword());
-          String                 description = getMemberCountDescription(context, joinInfo.getMemberCount());
+          String                 description = getMemberCountDescription(context, joinInfo.memberCount);
           Optional<Attachment>   thumbnail   = Optional.empty();
-          byte[]                 avatarBytes = AvatarGroupsV2DownloadJob.downloadGroupAvatarBytes(context, groupMasterKey, joinInfo.getAvatar());
+          byte[]                 avatarBytes = AvatarGroupsV2DownloadJob.downloadGroupAvatarBytes(context, groupMasterKey, joinInfo.avatar);
 
           if (avatarBytes != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
@@ -399,7 +399,7 @@ public class LinkPreviewRepository {
             if (bitmap != null) bitmap.recycle();
           }
 
-          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.getTitle(), description, 0, thumbnail));
+          callback.onSuccess(new LinkPreview(groupUrl, joinInfo.title, description, 0, thumbnail));
         }
       } catch (ExecutionException | InterruptedException | IOException | VerificationFailedException e) {
         Log.w(TAG, "Failed to fetch group link preview.", e);

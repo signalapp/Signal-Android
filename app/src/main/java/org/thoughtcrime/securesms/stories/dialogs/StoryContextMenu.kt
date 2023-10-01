@@ -94,7 +94,7 @@ object StoryContextMenu {
 
   fun share(fragment: Fragment, messageRecord: MediaMmsMessageRecord) {
     val intent = if (messageRecord.storyType.isTextStory) {
-      val textStoryBody = StoryTextPost.parseFrom(Base64.decode(messageRecord.body)).body
+      val textStoryBody = StoryTextPost.ADAPTER.decode(Base64.decode(messageRecord.body)).body
       val linkUrl = messageRecord.linkPreviews.firstOrNull()?.url ?: ""
       val shareText = "$textStoryBody $linkUrl".trim()
 

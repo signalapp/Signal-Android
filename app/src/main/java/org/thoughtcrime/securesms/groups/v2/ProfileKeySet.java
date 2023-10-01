@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.groups.v2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -12,13 +10,13 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.UUID;
+
+import okio.ByteString;
 
 /**
  * Collects profile keys from group states.
@@ -42,22 +40,30 @@ public final class ProfileKeySet {
    * authoritative.
    */
   public void addKeysFromGroupChange(@NonNull DecryptedGroupChange change) {
-    ServiceId editor = ServiceId.parseOrNull(change.getEditorServiceIdBytes());
+    ServiceId editor = ServiceId.parseOrNull(change.editorServiceIdBytes);
 
-    for (DecryptedMember member : change.getNewMembersList()) {
+    for (DecryptedMember member : change.newMembers) {
       addMemberKey(member, editor);
     }
 
-    for (DecryptedMember member : change.getPromotePendingMembersList()) {
+    for (DecryptedMember member : change.promotePendingMembers) {
       addMemberKey(member, editor);
     }
 
-    for (DecryptedMember member : change.getModifiedProfileKeysList()) {
+    for (DecryptedMember member : change.modifiedProfileKeys) {
       addMemberKey(member, editor);
     }
 
-    for (DecryptedRequestingMember member : change.getNewRequestingMembersList()) {
-      addMemberKey(editor, member.getAciBytes(), member.getProfileKey());
+    for (DecryptedRequestingMember member : change.newRequestingMembers) {
+      addMemberKey(editor, member.aciBytes, member.profileKey);
+    }
+
+    for (DecryptedMember member : change.promotePendingPniAciMembers) {
+      addMemberKey(member, editor);
+    }
+
+    for (DecryptedMember member : change.promotePendingPniAciMembers) {
+      addMemberKey(member, editor);
     }
   }
 
@@ -69,13 +75,13 @@ public final class ProfileKeySet {
    * gathered from a group state can only be used to fill in gaps in knowledge.
    */
   public void addKeysFromGroupState(@NonNull DecryptedGroup group) {
-    for (DecryptedMember member : group.getMembersList()) {
+    for (DecryptedMember member : group.members) {
       addMemberKey(member, null);
     }
   }
 
   private void addMemberKey(@NonNull DecryptedMember member, @Nullable ServiceId changeSource) {
-    addMemberKey(changeSource, member.getAciBytes(), member.getProfileKey());
+    addMemberKey(changeSource, member.aciBytes, member.profileKey);
   }
 
   private void addMemberKey(@Nullable ServiceId changeSource,

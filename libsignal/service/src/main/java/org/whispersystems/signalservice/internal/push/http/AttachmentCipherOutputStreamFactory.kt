@@ -27,14 +27,13 @@ class AttachmentCipherOutputStreamFactory(private val key: ByteArray, private va
   }
 
   @Throws(IOException::class)
-  fun createIncrementalFor(wrap: OutputStream?, length: Long, incrementalDigestOut: OutputStream?): DigestingOutputStream {
+  fun createIncrementalFor(wrap: OutputStream?, length: Long, sizeChoice: ChunkSizeChoice, incrementalDigestOut: OutputStream?): DigestingOutputStream {
     if (length > Int.MAX_VALUE) {
       throw IllegalArgumentException("Attachment length overflows int!")
     }
 
     val privateKey = key.sliceArray(AES_KEY_LENGTH until key.size)
-    val chunkSizeChoice = ChunkSizeChoice.inferChunkSize(length.toInt().coerceAtLeast(1))
-    val incrementalStream = IncrementalMacOutputStream(wrap, privateKey, chunkSizeChoice, incrementalDigestOut)
+    val incrementalStream = IncrementalMacOutputStream(wrap, privateKey, sizeChoice, incrementalDigestOut)
     return createFor(incrementalStream)
   }
 }

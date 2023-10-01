@@ -10,7 +10,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MediaTable
@@ -152,9 +151,9 @@ class ConversationSettingsRepository(
       consumer(
         if (groupRecord.isV2Group) {
           val decryptedGroup: DecryptedGroup = groupRecord.requireV2GroupProperties().decryptedGroup
-          val pendingMembers: List<RecipientId> = decryptedGroup.pendingMembersList
-            .map(DecryptedPendingMember::getServiceIdBytes)
-            .map(GroupProtoUtil::serviceIdBinaryToRecipientId)
+          val pendingMembers: List<RecipientId> = decryptedGroup.pendingMembers
+            .map { m -> m.serviceIdBytes }
+            .map { s -> GroupProtoUtil.serviceIdBinaryToRecipientId(s) }
 
           val members = mutableListOf<RecipientId>()
 

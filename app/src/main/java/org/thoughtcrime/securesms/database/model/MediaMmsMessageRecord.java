@@ -229,7 +229,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                      getOriginalMessageId(), getRevisionNumber());
   }
 
-  public @NonNull MediaMmsMessageRecord withAttachments(@NonNull Context context, @NonNull List<DatabaseAttachment> attachments) {
+  public @NonNull MediaMmsMessageRecord withAttachments(@NonNull List<DatabaseAttachment> attachments) {
     Map<AttachmentId, DatabaseAttachment> attachmentIdMap = new HashMap<>();
     for (DatabaseAttachment attachment : attachments) {
       attachmentIdMap.put(attachment.getAttachmentId(), attachment);
@@ -239,10 +239,10 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     Set<Attachment>   contactAttachments     = contacts.stream().map(Contact::getAvatarAttachment).filter(Objects::nonNull).collect(Collectors.toSet());
     List<LinkPreview> linkPreviews           = updateLinkPreviews(getLinkPreviews(), attachmentIdMap);
     Set<Attachment>   linkPreviewAttachments = linkPreviews.stream().map(LinkPreview::getThumbnail).filter(Optional::isPresent).map(Optional::get).collect(Collectors.toSet());
-    Quote             quote                  = updateQuote(context, getQuote(), attachments);
+    Quote             quote                  = updateQuote(getQuote(), attachments);
 
     List<DatabaseAttachment> slideAttachments = attachments.stream().filter(a -> !contactAttachments.contains(a)).filter(a -> !linkPreviewAttachments.contains(a)).collect(Collectors.toList());
-    SlideDeck                slideDeck        = MessageTable.MmsReader.buildSlideDeck(context, slideAttachments);
+    SlideDeck                slideDeck        = MessageTable.MmsReader.buildSlideDeck(slideAttachments);
 
     return new MediaMmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), slideDeck,
                                      getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
@@ -302,13 +302,13 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                        .collect(Collectors.toList());
   }
 
-  private static @Nullable Quote updateQuote(@NonNull Context context, @Nullable Quote quote, @NonNull List<DatabaseAttachment> attachments) {
+  private static @Nullable Quote updateQuote(@Nullable Quote quote, @NonNull List<DatabaseAttachment> attachments) {
     if (quote == null) {
       return null;
     }
 
     List<DatabaseAttachment> quoteAttachments = attachments.stream().filter(Attachment::isQuote).collect(Collectors.toList());
 
-    return quote.withAttachment(new SlideDeck(context, quoteAttachments));
+    return quote.withAttachment(new SlideDeck(quoteAttachments));
   }
 }

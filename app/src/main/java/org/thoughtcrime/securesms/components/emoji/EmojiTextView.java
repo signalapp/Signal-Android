@@ -32,7 +32,6 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -312,13 +311,6 @@ public class EmojiTextView extends AppCompatTextView {
     setText(previousText, BufferType.SPANNABLE);
   }
 
-  public void setForceCustomEmoji(boolean forceCustom) {
-    if (this.forceCustom != forceCustom) {
-      this.forceCustom = forceCustom;
-      setText(previousText, BufferType.SPANNABLE);
-    }
-  }
-
   @SuppressLint("ClickableViewAccessibility")
   public void bindGestureListener() {
     GestureDetectorCompat gestureDetectorCompat = new GestureDetectorCompat(getContext(), new OnGestureListener());
@@ -362,10 +354,10 @@ public class EmojiTextView extends AppCompatTextView {
           return;
         }
 
-        int          overflowEnd = getLayout().getLineEnd(maxLines - 1);
+        int          overflowEnd = getLayout().getLineEnd(maxLines);
         CharSequence overflow    = getText().subSequence(overflowStart, overflowEnd);
         float        adjust      = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
-        CharSequence ellipsized  = StringUtil.trim(TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END));
+        CharSequence ellipsized  = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
         newContent.append(getText().subSequence(0, overflowStart).toString())

@@ -33,6 +33,7 @@ buildscript {
             exclude group: 'io.outfoxx', module: 'swiftpoet'
         }
         classpath 'androidx.benchmark:benchmark-gradle-plugin:1.1.0-beta04'
+        classpath files("$rootDir/wire-handler/wire-handler-1.0.0.jar")
     }
 }
 
@@ -97,6 +98,8 @@ task qa {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+    // Because gradle is weird, we delete here for glide-webp/lib project so the clean tasks there doesn't barf
+    delete fileTree("glide-webp/lib/.cxx")
 }
 
 task format {

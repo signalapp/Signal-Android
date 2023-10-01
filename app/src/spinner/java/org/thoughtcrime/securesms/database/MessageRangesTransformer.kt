@@ -14,12 +14,12 @@ object MessageRangesTransformer : ColumnTransformer {
     val messageRangesData: ByteArray? = cursor.requireBlob(MessageTable.MESSAGE_RANGES)
 
     return if (messageRangesData != null) {
-      val ranges = BodyRangeList.parseFrom(messageRangesData)
-      ranges.rangesList
+      val ranges = BodyRangeList.ADAPTER.decode(messageRangesData)
+      ranges.ranges
         .take(5)
         .map { range ->
-          val mention = range.hasMentionUuid()
-          val style = range.hasStyle()
+          val mention = range.mentionUuid != null
+          val style = range.style != null
           val start = range.start
           val length = range.length
 
@@ -36,8 +36,8 @@ object MessageRangesTransformer : ColumnTransformer {
           rangeString
         }.joinToString("<br>")
         .let {
-          if (ranges.rangesCount > 5) {
-            it + "<br>" + "Not showing an additional ${ranges.rangesCount - 5} body ranges."
+          if (ranges.ranges.size > 5) {
+            it + "<br>" + "Not showing an additional ${ranges.ranges.size - 5} body ranges."
           } else {
             it
           }

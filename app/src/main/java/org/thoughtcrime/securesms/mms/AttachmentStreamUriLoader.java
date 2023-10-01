@@ -20,7 +20,7 @@ public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, I
 
   @Override
   public @Nullable LoadData<InputStream> buildLoadData(@NonNull AttachmentModel attachmentModel, int width, int height, @NonNull Options options) {
-    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.plaintextLength, attachmentModel.key, attachmentModel.digest, attachmentModel.incrementalDigest));
+    return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.plaintextLength, attachmentModel.key, attachmentModel.digest, attachmentModel.incrementalDigest, attachmentModel.incrementalMacChunkSize));
   }
 
   @Override
@@ -46,19 +46,22 @@ public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, I
     public @NonNull byte[]           key;
     public @NonNull Optional<byte[]> digest;
     public @NonNull Optional<byte[]> incrementalDigest;
+    public          int              incrementalMacChunkSize;
     public          long             plaintextLength;
 
     public AttachmentModel(@NonNull File attachment,
                            @NonNull byte[] key,
                            long plaintextLength,
                            @NonNull Optional<byte[]> digest,
-                           @NonNull Optional<byte[]> incrementalDigest)
+                           @NonNull Optional<byte[]> incrementalDigest,
+                           int incrementalMacChunkSize)
     {
-      this.attachment        = attachment;
-      this.key               = key;
-      this.digest            = digest;
-      this.incrementalDigest = incrementalDigest;
-      this.plaintextLength   = plaintextLength;
+      this.attachment              = attachment;
+      this.key                     = key;
+      this.digest                  = digest;
+      this.incrementalDigest       = incrementalDigest;
+      this.incrementalMacChunkSize = incrementalMacChunkSize;
+      this.plaintextLength         = plaintextLength;
     }
 
     @Override
