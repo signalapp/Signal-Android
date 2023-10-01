@@ -81,7 +81,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     super.onCreate(savedInstanceState, ready)
     setContentView(R.layout.fragment_container)
 
-    voiceNoteMediaController = VoiceNoteMediaController(this)
+    voiceNoteMediaController = VoiceNoteMediaController(this, false)
 
     if (savedInstanceState == null) {
       replaceStoryViewerFragment()

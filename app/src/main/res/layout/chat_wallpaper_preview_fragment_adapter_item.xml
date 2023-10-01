@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.media3.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
@@ -21,4 +21,4 @@
         android:visibility="gone"
         tools:alpha="0.2f"
         tools:visibility="visible" />
-</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+</androidx.media3.ui.AspectRatioFrameLayout>

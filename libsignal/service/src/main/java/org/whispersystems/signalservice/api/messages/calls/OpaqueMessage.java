@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.messages.calls;
 
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.CallMessage;
 
 public class OpaqueMessage {
 
@@ -24,11 +24,11 @@ public class OpaqueMessage {
     DROPPABLE,
     HANDLE_IMMEDIATELY;
 
-    public SignalServiceProtos.CallMessage.Opaque.Urgency toProto() {
+    public CallMessage.Opaque.Urgency toProto() {
       if (this == HANDLE_IMMEDIATELY) {
-        return SignalServiceProtos.CallMessage.Opaque.Urgency.HANDLE_IMMEDIATELY;
+        return CallMessage.Opaque.Urgency.HANDLE_IMMEDIATELY;
       }
-      return SignalServiceProtos.CallMessage.Opaque.Urgency.DROPPABLE;
+      return CallMessage.Opaque.Urgency.DROPPABLE;
     }
   }
 }

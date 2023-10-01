@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import com.google.protobuf.ByteString;
-
 import org.junit.Test;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.protos.groups.AccessControl;
@@ -13,7 +11,10 @@ import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
+import java.util.List;
 import java.util.UUID;
+
+import okio.ByteString;
 
 import static org.junit.Assert.assertEquals;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.admin;
@@ -48,208 +49,208 @@ public final class GroupChangeReconstructTest {
 
   @Test
   public void empty_to_empty() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().build();
+    DecryptedGroup from = new DecryptedGroup.Builder().build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().build(), decryptedGroupChange);
   }
 
   @Test
   public void revision_set_to_the_target() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setRevision(10).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setRevision(20).build();
+    DecryptedGroup from = new DecryptedGroup.Builder().revision(10).build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().revision(20).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(20, decryptedGroupChange.getRevision());
+    assertEquals(20, decryptedGroupChange.revision);
   }
 
   @Test
   public void title_change() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setTitle("A").build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setTitle("B").build();
+    DecryptedGroup from = new DecryptedGroup.Builder().title("A").build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().title("B").build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewTitle(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newTitle(new DecryptedString.Builder().value_("B").build()).build(), decryptedGroupChange);
   }
 
   @Test
   public void description_change() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setDescription("A").build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setDescription("B").build();
+    DecryptedGroup from = new DecryptedGroup.Builder().description("A").build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().description("B").build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewDescription(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newDescription(new DecryptedString.Builder().value_("B").build()).build(), decryptedGroupChange);
   }
 
   @Test
   public void announcement_group_change() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setIsAnnouncementGroup(EnabledState.DISABLED).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setIsAnnouncementGroup(EnabledState.ENABLED).build();
+    DecryptedGroup from = new DecryptedGroup.Builder().isAnnouncementGroup(EnabledState.DISABLED).build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().isAnnouncementGroup(EnabledState.ENABLED).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewIsAnnouncementGroup(EnabledState.ENABLED).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newIsAnnouncementGroup(EnabledState.ENABLED).build(), decryptedGroupChange);
   }
 
   @Test
   public void avatar_change() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setAvatar("A").build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setAvatar("B").build();
+    DecryptedGroup from = new DecryptedGroup.Builder().avatar("A").build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().avatar("B").build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewAvatar(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newAvatar(new DecryptedString.Builder().value_("B").build()).build(), decryptedGroupChange);
   }
 
   @Test
   public void timer_change() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(100)).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(200)).build();
+    DecryptedGroup from = new DecryptedGroup.Builder().disappearingMessagesTimer(new DecryptedTimer.Builder().duration(100).build()).build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().disappearingMessagesTimer(new DecryptedTimer.Builder().duration(200).build()).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewTimer(DecryptedTimer.newBuilder().setDuration(200)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newTimer(new DecryptedTimer.Builder().duration(200).build()).build(), decryptedGroupChange);
   }
 
   @Test
   public void access_control_change_attributes() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setAccessControl(AccessControl.newBuilder().setAttributes(AccessControl.AccessRequired.MEMBER)).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setAccessControl(AccessControl.newBuilder().setAttributes(AccessControl.AccessRequired.ADMINISTRATOR)).build();
+    DecryptedGroup from = new DecryptedGroup.Builder().accessControl(new AccessControl.Builder().attributes(AccessControl.AccessRequired.MEMBER).build()).build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().accessControl(new AccessControl.Builder().attributes(AccessControl.AccessRequired.ADMINISTRATOR).build()).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewAttributeAccess(AccessControl.AccessRequired.ADMINISTRATOR).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newAttributeAccess(AccessControl.AccessRequired.ADMINISTRATOR).build(), decryptedGroupChange);
   }
 
   @Test
   public void access_control_change_membership() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setAccessControl(AccessControl.newBuilder().setMembers(AccessControl.AccessRequired.ADMINISTRATOR)).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setAccessControl(AccessControl.newBuilder().setMembers(AccessControl.AccessRequired.MEMBER)).build();
+    DecryptedGroup from = new DecryptedGroup.Builder().accessControl(new AccessControl.Builder().members(AccessControl.AccessRequired.ADMINISTRATOR).build()).build();
+    DecryptedGroup to   = new DecryptedGroup.Builder().accessControl(new AccessControl.Builder().members(AccessControl.AccessRequired.MEMBER).build()).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewMemberAccess(AccessControl.AccessRequired.MEMBER).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newMemberAccess(AccessControl.AccessRequired.MEMBER).build(), decryptedGroupChange);
   }
 
   @Test
   public void access_control_change_membership_and_attributes() {
-    DecryptedGroup from = DecryptedGroup.newBuilder().setAccessControl(AccessControl.newBuilder().setMembers(AccessControl.AccessRequired.MEMBER)
-                                                     .setAttributes(AccessControl.AccessRequired.ADMINISTRATOR)).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().setAccessControl(AccessControl.newBuilder().setMembers(AccessControl.AccessRequired.ADMINISTRATOR)
-                                                     .setAttributes(AccessControl.AccessRequired.MEMBER)).build();
+    DecryptedGroup from = new DecryptedGroup.Builder().accessControl(new AccessControl.Builder().members(AccessControl.AccessRequired.MEMBER)
+                                                                                                .attributes(AccessControl.AccessRequired.ADMINISTRATOR).build()).build();
+    DecryptedGroup to = new DecryptedGroup.Builder().accessControl(new AccessControl.Builder().members(AccessControl.AccessRequired.ADMINISTRATOR)
+                                                                                              .attributes(AccessControl.AccessRequired.MEMBER).build()).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().setNewMemberAccess(AccessControl.AccessRequired.ADMINISTRATOR)
-                   .setNewAttributeAccess(AccessControl.AccessRequired.MEMBER).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newMemberAccess(AccessControl.AccessRequired.ADMINISTRATOR)
+                                                   .newAttributeAccess(AccessControl.AccessRequired.MEMBER).build(), decryptedGroupChange);
   }
 
   @Test
   public void new_member() {
     UUID           uuidNew = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().addMembers(member(uuidNew)).build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().members(List.of(member(uuidNew))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addNewMembers(member(uuidNew)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newMembers(List.of(member(uuidNew))).build(), decryptedGroupChange);
   }
 
   @Test
   public void removed_member() {
     UUID           uuidOld = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().addMembers(member(uuidOld)).build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().members(List.of(member(uuidOld))).build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addDeleteMembers(UuidUtil.toByteString(uuidOld)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().deleteMembers(List.of(UuidUtil.toByteString(uuidOld))).build(), decryptedGroupChange);
   }
 
   @Test
   public void new_member_and_existing_member() {
     UUID           uuidOld = UUID.randomUUID();
     UUID           uuidNew = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().addMembers(member(uuidOld)).build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().addMembers(member(uuidOld)).addMembers(member(uuidNew)).build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().members(List.of(member(uuidOld))).build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().members(List.of(member(uuidOld), member(uuidNew))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addNewMembers(member(uuidNew)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newMembers(List.of(member(uuidNew))).build(), decryptedGroupChange);
   }
 
   @Test
   public void removed_member_and_remaining_member() {
     UUID           uuidOld       = UUID.randomUUID();
     UUID           uuidRemaining = UUID.randomUUID();
-    DecryptedGroup from          = DecryptedGroup.newBuilder().addMembers(member(uuidOld)).addMembers(member(uuidRemaining)).build();
-    DecryptedGroup to            = DecryptedGroup.newBuilder().addMembers(member(uuidRemaining)).build();
+    DecryptedGroup from          = new DecryptedGroup.Builder().members(List.of(member(uuidOld), member(uuidRemaining))).build();
+    DecryptedGroup to            = new DecryptedGroup.Builder().members(List.of(member(uuidRemaining))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addDeleteMembers(UuidUtil.toByteString(uuidOld)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().deleteMembers(List.of(UuidUtil.toByteString(uuidOld))).build(), decryptedGroupChange);
   }
 
   @Test
   public void new_member_by_invite() {
     UUID           uuidNew = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().addPendingMembers(pendingMember(uuidNew)).build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().addMembers(member(uuidNew)).build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().pendingMembers(List.of(pendingMember(uuidNew))).build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().members(List.of(member(uuidNew))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addPromotePendingMembers(member(uuidNew)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().promotePendingMembers(List.of(member(uuidNew))).build(), decryptedGroupChange);
   }
 
   @Test
   public void uninvited_member_by_invite() {
     UUID           uuidNew = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().addPendingMembers(pendingMember(uuidNew)).build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().pendingMembers(List.of(pendingMember(uuidNew))).build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addDeletePendingMembers(pendingMemberRemoval(uuidNew)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().deletePendingMembers(List.of(pendingMemberRemoval(uuidNew))).build(), decryptedGroupChange);
   }
 
   @Test
   public void new_invite() {
     UUID           uuidNew = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().addPendingMembers(pendingMember(uuidNew)).build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().pendingMembers(List.of(pendingMember(uuidNew))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addNewPendingMembers(pendingMember(uuidNew)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newPendingMembers(List.of(pendingMember(uuidNew))).build(), decryptedGroupChange);
   }
 
   @Test
   public void to_admin() {
     UUID           uuid       = UUID.randomUUID();
     ProfileKey     profileKey = randomProfileKey();
-    DecryptedGroup from       = DecryptedGroup.newBuilder().addMembers(withProfileKey(member(uuid), profileKey)).build();
-    DecryptedGroup to         = DecryptedGroup.newBuilder().addMembers(withProfileKey(admin(uuid), profileKey)).build();
+    DecryptedGroup from       = new DecryptedGroup.Builder().members(List.of(withProfileKey(member(uuid), profileKey))).build();
+    DecryptedGroup to         = new DecryptedGroup.Builder().members(List.of(withProfileKey(admin(uuid), profileKey))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addModifyMemberRoles(promoteAdmin(uuid)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().modifyMemberRoles(List.of(promoteAdmin(uuid))).build(), decryptedGroupChange);
   }
 
   @Test
   public void to_member() {
     UUID           uuid       = UUID.randomUUID();
     ProfileKey     profileKey = randomProfileKey();
-    DecryptedGroup from       = DecryptedGroup.newBuilder().addMembers(withProfileKey(admin(uuid), profileKey)).build();
-    DecryptedGroup to         = DecryptedGroup.newBuilder().addMembers(withProfileKey(member(uuid), profileKey)).build();
+    DecryptedGroup from       = new DecryptedGroup.Builder().members(List.of(withProfileKey(admin(uuid), profileKey))).build();
+    DecryptedGroup to         = new DecryptedGroup.Builder().members(List.of(withProfileKey(member(uuid), profileKey))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addModifyMemberRoles(demoteAdmin(uuid)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().modifyMemberRoles(List.of(demoteAdmin(uuid))).build(), decryptedGroupChange);
   }
 
   @Test
@@ -257,151 +258,154 @@ public final class GroupChangeReconstructTest {
     UUID           uuid        = UUID.randomUUID();
     ProfileKey     profileKey1 = randomProfileKey();
     ProfileKey     profileKey2 = randomProfileKey();
-    DecryptedGroup from        = DecryptedGroup.newBuilder().addMembers(withProfileKey(admin(uuid),profileKey1)).build();
-    DecryptedGroup to          = DecryptedGroup.newBuilder().addMembers(withProfileKey(admin(uuid),profileKey2)).build();
+    DecryptedGroup from        = new DecryptedGroup.Builder().members(List.of(withProfileKey(admin(uuid), profileKey1))).build();
+    DecryptedGroup to          = new DecryptedGroup.Builder().members(List.of(withProfileKey(admin(uuid), profileKey2))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addModifiedProfileKeys(withProfileKey(admin(uuid),profileKey2)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().modifiedProfileKeys(List.of(withProfileKey(admin(uuid), profileKey2))).build(), decryptedGroupChange);
   }
 
   @Test
   public void new_invite_access() {
-    DecryptedGroup from = DecryptedGroup.newBuilder()
-                                        .setAccessControl(AccessControl.newBuilder()
-                                                                       .setAddFromInviteLink(AccessControl.AccessRequired.ADMINISTRATOR))
-                                        .build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder()
-                                        .setAccessControl(AccessControl.newBuilder()
-                                                                       .setAddFromInviteLink(AccessControl.AccessRequired.UNSATISFIABLE))
-                                        .build();
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .accessControl(new AccessControl.Builder()
+                           .addFromInviteLink(AccessControl.AccessRequired.ADMINISTRATOR)
+                           .build())
+        .build();
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .accessControl(new AccessControl.Builder()
+                           .addFromInviteLink(AccessControl.AccessRequired.UNSATISFIABLE)
+                           .build())
+        .build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder()
-                                     .setNewInviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE)
-                                     .build(),
+    assertEquals(new DecryptedGroupChange.Builder()
+                     .newInviteLinkAccess(AccessControl.AccessRequired.UNSATISFIABLE)
+                     .build(),
                  decryptedGroupChange);
   }
 
   @Test
   public void new_requesting_members() {
-    UUID           member1     = UUID.randomUUID();
-    ProfileKey     profileKey1 = newProfileKey();
-    DecryptedGroup from        = DecryptedGroup.newBuilder()
-                                               .build();
-    DecryptedGroup to          = DecryptedGroup.newBuilder()
-                                               .addRequestingMembers(requestingMember(member1, profileKey1))
-                                               .build();
+    UUID       member1     = UUID.randomUUID();
+    ProfileKey profileKey1 = newProfileKey();
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .build();
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .requestingMembers(List.of(requestingMember(member1, profileKey1)))
+        .build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder()
-                                     .addNewRequestingMembers(requestingMember(member1, profileKey1))
-                                     .build(),
+    assertEquals(new DecryptedGroupChange.Builder()
+                     .newRequestingMembers(List.of(requestingMember(member1, profileKey1)))
+                     .build(),
                  decryptedGroupChange);
   }
 
   @Test
   public void new_requesting_members_ignores_existing_by_uuid() {
-    UUID           member1     = UUID.randomUUID();
-    UUID           member2     = UUID.randomUUID();
-    ProfileKey     profileKey2 = newProfileKey();
-    DecryptedGroup from        = DecryptedGroup.newBuilder()
-                                               .addRequestingMembers(requestingMember(member1, newProfileKey()))
-                                               .build();
-    DecryptedGroup to          = DecryptedGroup.newBuilder()
-                                               .addRequestingMembers(requestingMember(member1, newProfileKey()))
-                                               .addRequestingMembers(requestingMember(member2, profileKey2))
-                                               .build();
+    UUID       member1     = UUID.randomUUID();
+    UUID       member2     = UUID.randomUUID();
+    ProfileKey profileKey2 = newProfileKey();
+
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .requestingMembers(List.of(requestingMember(member1, newProfileKey())))
+        .build();
+
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .requestingMembers(List.of(requestingMember(member1, newProfileKey()), requestingMember(member2, profileKey2)))
+        .build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder()
-                                     .addNewRequestingMembers(requestingMember(member2, profileKey2))
-                                     .build(),
+    assertEquals(new DecryptedGroupChange.Builder()
+                     .newRequestingMembers(List.of(requestingMember(member2, profileKey2)))
+                     .build(),
                  decryptedGroupChange);
   }
 
   @Test
   public void removed_requesting_members() {
-    UUID           member1 = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder()
-                                           .addRequestingMembers(requestingMember(member1, newProfileKey()))
-                                           .build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder()
-                                           .build();
+    UUID member1 = UUID.randomUUID();
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .requestingMembers(List.of(requestingMember(member1, newProfileKey())))
+        .build();
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder()
-                                     .addDeleteRequestingMembers(UuidUtil.toByteString(member1))
-                                     .build(),
+    assertEquals(new DecryptedGroupChange.Builder()
+                     .deleteRequestingMembers(List.of(UuidUtil.toByteString(member1)))
+                     .build(),
                  decryptedGroupChange);
   }
 
   @Test
   public void promote_requesting_members() {
-    UUID           member1     = UUID.randomUUID();
-    ProfileKey     profileKey1 = newProfileKey();
-    UUID           member2     = UUID.randomUUID();
-    ProfileKey     profileKey2 = newProfileKey();
-    DecryptedGroup from        = DecryptedGroup.newBuilder()
-                                               .addRequestingMembers(requestingMember(member1, profileKey1))
-                                               .addRequestingMembers(requestingMember(member2, profileKey2))
-                                               .build();
-    DecryptedGroup to          = DecryptedGroup.newBuilder()
-                                               .addMembers(member(member1, profileKey1))
-                                               .addMembers(admin(member2, profileKey2))
-                                               .build();
+    UUID       member1     = UUID.randomUUID();
+    ProfileKey profileKey1 = newProfileKey();
+    UUID       member2     = UUID.randomUUID();
+    ProfileKey profileKey2 = newProfileKey();
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .requestingMembers(List.of(requestingMember(member1, profileKey1)))
+        .requestingMembers(List.of(requestingMember(member2, profileKey2)))
+        .build();
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .members(List.of(member(member1, profileKey1)))
+        .members(List.of(admin(member2, profileKey2)))
+        .build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder()
-                                     .addPromoteRequestingMembers(approveMember(member1))
-                                     .addPromoteRequestingMembers(approveAdmin(member2))
-                                     .build(),
+    assertEquals(new DecryptedGroupChange.Builder()
+                     .promoteRequestingMembers(List.of(approveMember(member1)))
+                     .promoteRequestingMembers(List.of(approveAdmin(member2)))
+                     .build(),
                  decryptedGroupChange);
   }
 
   @Test
   public void new_invite_link_password() {
-    ByteString     password1 = ByteString.copyFrom(Util.getSecretBytes(16));
-    ByteString     password2 = ByteString.copyFrom(Util.getSecretBytes(16));
-    DecryptedGroup from      = DecryptedGroup.newBuilder()
-                                             .setInviteLinkPassword(password1)
-                                             .build();
-    DecryptedGroup to        = DecryptedGroup.newBuilder()
-                                             .setInviteLinkPassword(password2)
-                                             .build();
+    ByteString password1 = ByteString.of(Util.getSecretBytes(16));
+    ByteString password2 = ByteString.of(Util.getSecretBytes(16));
+    DecryptedGroup from = new DecryptedGroup.Builder()
+        .inviteLinkPassword(password1)
+        .build();
+    DecryptedGroup to = new DecryptedGroup.Builder()
+        .inviteLinkPassword(password2)
+        .build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder()
-                                     .setNewInviteLinkPassword(password2)
-                                     .build(),
+    assertEquals(new DecryptedGroupChange.Builder()
+                     .newInviteLinkPassword(password2)
+                     .build(),
                  decryptedGroupChange);
   }
 
   @Test
   public void new_banned_member() {
     UUID           uuidNew = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().addBannedMembers(bannedMember(uuidNew)).build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().bannedMembers(List.of(bannedMember(uuidNew))).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addNewBannedMembers(bannedMember(uuidNew)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().newBannedMembers(List.of(bannedMember(uuidNew))).build(), decryptedGroupChange);
   }
 
   @Test
   public void removed_banned_member() {
     UUID           uuidOld = UUID.randomUUID();
-    DecryptedGroup from    = DecryptedGroup.newBuilder().addBannedMembers(bannedMember(uuidOld)).build();
-    DecryptedGroup to      = DecryptedGroup.newBuilder().build();
+    DecryptedGroup from    = new DecryptedGroup.Builder().bannedMembers(List.of(bannedMember(uuidOld))).build();
+    DecryptedGroup to      = new DecryptedGroup.Builder().build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
-    assertEquals(DecryptedGroupChange.newBuilder().addDeleteBannedMembers(bannedMember(uuidOld)).build(), decryptedGroupChange);
+    assertEquals(new DecryptedGroupChange.Builder().deleteBannedMembers(List.of(bannedMember(uuidOld))).build(), decryptedGroupChange);
   }
 }

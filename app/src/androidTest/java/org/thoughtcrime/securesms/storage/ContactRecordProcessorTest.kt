@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
@@ -38,26 +38,31 @@ class ContactRecordProcessorTest {
     val originalId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     setStorageId(originalId, STORAGE_ID_A)
 
-    val remote1 = buildRecord(STORAGE_ID_B) {
-      setServiceId(ACI_A.toString())
-      setUnregisteredAtTimestamp(100)
-    }
+    val remote1 = buildRecord(
+      STORAGE_ID_B,
+      ContactRecord(
+        aci = ACI_A.toString(),
+        unregisteredAtTimestamp = 100
+      )
+    )
 
-    val remote2 = buildRecord(STORAGE_ID_C) {
-      setServiceId(PNI_A.toString())
-      setServicePni(PNI_A.toString())
-      setServiceE164(E164_A)
-    }
+    val remote2 = buildRecord(
+      STORAGE_ID_C,
+      ContactRecord(
+        pni = PNI_A.toString(),
+        e164 = E164_A
+      )
+    )
 
     // WHEN
     val subject = ContactRecordProcessor()
     subject.process(listOf(remote1, remote2), StorageSyncHelper.KEY_GENERATOR)
 
     // THEN
-    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+    val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
 
     val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
-    val byPni: RecipientId = SignalDatabase.recipients.getByServiceId(PNI_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByPni(PNI_A).get()
 
     assertEquals(originalId, byAci)
     assertEquals(byE164, byPni)
@@ -70,23 +75,29 @@ class ContactRecordProcessorTest {
     val originalId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
     setStorageId(originalId, STORAGE_ID_A)
 
-    val remote1 = buildRecord(STORAGE_ID_B) {
-      setServiceId(ACI_A.toString())
-      setUnregisteredAtTimestamp(0)
-    }
+    val remote1 = buildRecord(
+      STORAGE_ID_B,
+      ContactRecord(
+        aci = ACI_A.toString(),
+        unregisteredAtTimestamp = 0
+      )
+    )
 
-    val remote2 = buildRecord(STORAGE_ID_C) {
-      setServiceId(PNI_A.toString())
-      setServicePni(PNI_A.toString())
-      setServiceE164(E164_A)
-    }
+    val remote2 = buildRecord(
+      STORAGE_ID_C,
+      ContactRecord(
+        aci = PNI_A.toString(),
+        pni = PNI_A.toString(),
+        e164 = E164_A
+      )
+    )
 
     // WHEN
     val subject = ContactRecordProcessor()
     subject.process(listOf(remote1, remote2), StorageSyncHelper.KEY_GENERATOR)
 
     // THEN
-    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+    val byAci: RecipientId = SignalDatabase.recipients.getByAci(ACI_A).get()
     val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
     val byPni: RecipientId = SignalDatabase.recipients.getByPni(PNI_A).get()
 
@@ -95,8 +106,8 @@ class ContactRecordProcessorTest {
     assertEquals(byAci, byE164)
   }
 
-  private fun buildRecord(id: StorageId, applyParams: ContactRecord.Builder.() -> ContactRecord.Builder): SignalContactRecord {
-    return SignalContactRecord(id, ContactRecord.getDefaultInstance().toBuilder().applyParams().build())
+  private fun buildRecord(id: StorageId, record: ContactRecord): SignalContactRecord {
+    return SignalContactRecord(id, record)
   }
 
   private fun setStorageId(recipientId: RecipientId, storageId: StorageId) {

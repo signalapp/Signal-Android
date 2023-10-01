@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue
 
-import com.google.protobuf.InvalidProtocolBufferException
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
+import java.io.IOException
 
 internal class ChatColorsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -37,14 +37,14 @@ internal class ChatColorsValues internal constructor(store: KeyValueStore) : Sig
   var chatColors: ChatColors?
     get() = getBlob(KEY_CHAT_COLORS, null)?.let { bytes ->
       try {
-        ChatColors.forChatColor(chatColorsId, ChatColor.parseFrom(bytes))
-      } catch (e: InvalidProtocolBufferException) {
+        ChatColors.forChatColor(chatColorsId, ChatColor.ADAPTER.decode(bytes))
+      } catch (e: IOException) {
         null
       }
     }
     set(value) {
       if (value != null) {
-        putBlob(KEY_CHAT_COLORS, value.serialize().toByteArray())
+        putBlob(KEY_CHAT_COLORS, value.serialize().encode())
         chatColorsId = value.id
       } else {
         remove(KEY_CHAT_COLORS)

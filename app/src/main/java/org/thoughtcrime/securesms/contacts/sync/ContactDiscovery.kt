@@ -57,9 +57,13 @@ object ContactDiscovery {
     }
 
     if (!SignalStore.registrationValues().isRegistrationComplete) {
-      Log.w(TAG, "Registration is not yet complete. Skipping, but running a routine to possibly mark it complete.")
-      RegistrationUtil.maybeMarkRegistrationComplete()
-      return
+      if (SignalStore.account().isRegistered && SignalStore.svr().lastPinCreateFailed()) {
+        Log.w(TAG, "Registration isn't complete, but only because PIN creation failed. Allowing CDS to continue.")
+      } else {
+        Log.w(TAG, "Registration is not yet complete. Skipping, but running a routine to possibly mark it complete.")
+        RegistrationUtil.maybeMarkRegistrationComplete()
+        return
+      }
     }
 
     refreshRecipients(
@@ -140,7 +144,7 @@ object ContactDiscovery {
   ): RefreshResult {
     val stopwatch = Stopwatch(descriptor)
 
-    val preExistingRegisteredIds: Set<RecipientId> = SignalDatabase.recipients.getRegistered().toSet()
+    val preExistingRegisteredIds: Set<RecipientId> = SignalDatabase.recipients.getRegistered()
     stopwatch.split("pre-existing")
 
     val result: RefreshResult = refresh()

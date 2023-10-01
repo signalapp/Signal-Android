@@ -312,7 +312,7 @@ class StoryGroupReplyFragment :
   }
 
   private fun onDeleteClick(messageRecord: MessageRecord) {
-    lifecycleDisposable += DeleteDialog.show(requireActivity(), setOf(messageRecord)).subscribe { didDeleteThread ->
+    lifecycleDisposable += DeleteDialog.show(requireActivity(), setOf(messageRecord)).subscribe { (_, didDeleteThread) ->
       if (didDeleteThread) {
         throw AssertionError("We should never end up deleting a Group Thread like this.")
       }

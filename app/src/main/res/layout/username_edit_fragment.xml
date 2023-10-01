@@ -69,6 +69,19 @@
         </EditText>
 
     </com.google.android.material.textfield.TextInputLayout>
+    
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/suffix_progress"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="@id/username_text_wrapper"
+        app:layout_constraintBottom_toBottomOf="@id/username_text_wrapper"
+        app:indicatorSize="16dp"
+        app:trackThickness="1dp"
+        app:trackColor="@color/transparent"
+        app:indicatorColor="@color/signal_colorOnSurfaceVariant"/>
 
     <TextView
         android:id="@+id/username_error"

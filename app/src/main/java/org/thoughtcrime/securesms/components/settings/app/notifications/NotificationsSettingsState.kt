@@ -10,6 +10,7 @@ data class NotificationsSettingsState(
 
 data class MessageNotificationsState(
   val notificationsEnabled: Boolean,
+  val canEnableNotifications: Boolean,
   val sound: Uri,
   val vibrateEnabled: Boolean,
   val ledColor: String,
@@ -17,11 +18,13 @@ data class MessageNotificationsState(
   val inChatSoundsEnabled: Boolean,
   val repeatAlerts: Int,
   val messagePrivacy: String,
-  val priority: Int
+  val priority: Int,
+  val troubleshootNotifications: Boolean
 )
 
 data class CallNotificationsState(
   val notificationsEnabled: Boolean,
+  val canEnableNotifications: Boolean,
   val ringtone: Uri,
   val vibrateEnabled: Boolean
 )

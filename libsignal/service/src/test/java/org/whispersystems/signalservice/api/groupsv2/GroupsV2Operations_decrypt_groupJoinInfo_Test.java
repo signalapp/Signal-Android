@@ -46,100 +46,100 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
   
   @Test
   public void decrypt_title_field_2() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setTitle(groupOperations.encryptTitle("Title!"))
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .title(groupOperations.encryptTitle("Title!"))
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals("Title!", decryptedGroupJoinInfo.getTitle());
+    assertEquals("Title!", decryptedGroupJoinInfo.title);
   }
 
   @Test
   public void avatar_field_passed_through_3() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setAvatar("AvatarCdnKey")
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .avatar("AvatarCdnKey")
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals("AvatarCdnKey", decryptedGroupJoinInfo.getAvatar());
+    assertEquals("AvatarCdnKey", decryptedGroupJoinInfo.avatar);
   }
 
   @Test
   public void member_count_passed_through_4() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setMemberCount(97)
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .memberCount(97)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals(97, decryptedGroupJoinInfo.getMemberCount());
+    assertEquals(97, decryptedGroupJoinInfo.memberCount);
   }
 
   @Test
   public void add_from_invite_link_access_control_passed_though_5_administrator() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setAddFromInviteLink(AccessControl.AccessRequired.ADMINISTRATOR)
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .addFromInviteLink(AccessControl.AccessRequired.ADMINISTRATOR)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals(AccessControl.AccessRequired.ADMINISTRATOR, decryptedGroupJoinInfo.getAddFromInviteLink());
+    assertEquals(AccessControl.AccessRequired.ADMINISTRATOR, decryptedGroupJoinInfo.addFromInviteLink);
   }
 
   @Test
   public void add_from_invite_link_access_control_passed_though_5_any() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setAddFromInviteLink(AccessControl.AccessRequired.ANY)
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .addFromInviteLink(AccessControl.AccessRequired.ANY)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals(AccessControl.AccessRequired.ANY, decryptedGroupJoinInfo.getAddFromInviteLink());
+    assertEquals(AccessControl.AccessRequired.ANY, decryptedGroupJoinInfo.addFromInviteLink);
   }
 
   @Test
   public void revision_passed_though_6() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setRevision(11)
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .revision(11)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals(11, decryptedGroupJoinInfo.getRevision());
+    assertEquals(11, decryptedGroupJoinInfo.revision);
   }
 
   @Test
   public void pending_approval_passed_though_7_true() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setPendingAdminApproval(true)
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .pendingAdminApproval(true)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertTrue(decryptedGroupJoinInfo.getPendingAdminApproval());
+    assertTrue(decryptedGroupJoinInfo.pendingAdminApproval);
   }
 
   @Test
   public void pending_approval_passed_though_7_false() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setPendingAdminApproval(false)
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .pendingAdminApproval(false)
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertFalse(decryptedGroupJoinInfo.getPendingAdminApproval());
+    assertFalse(decryptedGroupJoinInfo.pendingAdminApproval);
   }
 
   @Test
   public void decrypt_description_field_8() {
-    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
-                                               .setDescription(groupOperations.encryptDescription("Description!"))
+    GroupJoinInfo groupJoinInfo = new GroupJoinInfo.Builder()
+                                               .description(groupOperations.encryptDescription("Description!"))
                                                .build();
 
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
-    assertEquals("Description!", decryptedGroupJoinInfo.getDescription());
+    assertEquals("Description!", decryptedGroupJoinInfo.description);
   }
 }

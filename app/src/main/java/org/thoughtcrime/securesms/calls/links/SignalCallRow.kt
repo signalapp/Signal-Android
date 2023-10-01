@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -35,7 +37,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.theme.SignalTheme
-import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
@@ -49,10 +50,10 @@ import java.time.Instant
 @Composable
 private fun SignalCallRowPreview() {
   val callLink = remember {
-    val credentials = CallLinkCredentials.generate()
+    val credentials = CallLinkCredentials(byteArrayOf(1, 2, 3, 4), byteArrayOf(5, 6, 7, 8))
     CallLinkTable.CallLink(
       recipientId = RecipientId.UNKNOWN,
-      roomId = CallLinkRoomId.fromCallLinkRootKey(CallLinkRootKey(credentials.linkKeyBytes)),
+      roomId = CallLinkRoomId.fromBytes(byteArrayOf(1, 3, 5, 7)),
       credentials = credentials,
       state = SignalCallLinkState(
         name = "Call Name",
@@ -76,6 +77,14 @@ fun SignalCallRow(
   onJoinClicked: (() -> Unit)?,
   modifier: Modifier = Modifier
 ) {
+  val callUrl = if (LocalInspectionMode.current) {
+    "https://signal.call.example.com"
+  } else {
+    remember(callLink.credentials) {
+      callLink.credentials?.let { CallLinks.url(it.linkKeyBytes) } ?: ""
+    }
+  }
+
   Row(
     modifier = modifier
       .fillMaxWidth()
@@ -113,7 +122,7 @@ fun SignalCallRow(
         text = callLink.state.name.ifEmpty { stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__signal_call) }
       )
       Text(
-        text = callLink.credentials?.let { CallLinks.url(it.linkKeyBytes) } ?: "",
+        text = callUrl,
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
@@ -124,6 +133,10 @@ fun SignalCallRow(
 
       Buttons.Small(
         onClick = onJoinClicked,
+        colors = ButtonDefaults.buttonColors(
+          containerColor = MaterialTheme.colorScheme.primaryContainer,
+          contentColor = MaterialTheme.colorScheme.onSurface
+        ),
         modifier = Modifier.align(CenterVertically)
       ) {
         Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))

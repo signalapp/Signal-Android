@@ -32,7 +32,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
     Parameters.Builder()
       .setQueue("MultiDeviceContactSyncJob")
       .build(),
-    AttachmentPointerUtil.createAttachmentPointer(contactsAttachment).toByteArray()
+    AttachmentPointerUtil.createAttachmentPointer(contactsAttachment).encode()
   )
 
   override fun serialize(): ByteArray? {

@@ -175,14 +175,13 @@ public class KeyBackupService {
         final KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         final RestoreResponse   status            = KeyBackupCipher.getKeyRestoreResponse(response, remoteAttestation);
 
-        TokenResponse nextToken = status.hasToken()
-                                  ? new TokenResponse(token.getBackupId(), status.getToken().toByteArray(), status.getTries())
-                                  : token;
+        TokenResponse nextToken = status.token != null ? new TokenResponse(token.getBackupId(), status.token.toByteArray(), status.tries)
+                                                       : token;
 
-        Log.i(TAG, "Restore " + status.getStatus());
-        switch (status.getStatus()) {
+        Log.i(TAG, "Restore " + status.status);
+        switch (status.status) {
           case OK:
-            KbsData kbsData = PinHashUtil.decryptSvrDataIVCipherText(hashedPin, status.getData().toByteArray());
+            KbsData kbsData = PinHashUtil.decryptSvrDataIVCipherText(hashedPin, status.data_.toByteArray());
             MasterKey masterKey = kbsData.getMasterKey();
             return new SvrPinData(masterKey, nextToken);
           case PIN_MISMATCH:
@@ -191,8 +190,8 @@ public class KeyBackupService {
           case TOKEN_MISMATCH:
             Log.i(TAG, "Restore TOKEN_MISMATCH");
             // if the number of tries has not fallen, the pin is correct we're just using an out of date token
-            boolean canRetry = remainingTries == status.getTries();
-            Log.i(TAG, String.format(Locale.US, "Token MISMATCH remainingTries: %d, status.getTries(): %d", remainingTries, status.getTries()));
+            boolean canRetry = remainingTries == status.tries;
+            Log.i(TAG, String.format(Locale.US, "Token MISMATCH remainingTries: %d, status.getTries(): %d", remainingTries, status.tries));
             throw new TokenException(nextToken, canRetry);
           case MISSING:
             Log.i(TAG, "Restore OK! No data though");
@@ -259,11 +258,11 @@ public class KeyBackupService {
         KeyBackupRequest      request           = KeyBackupCipher.createKeyBackupRequest(kbsAccessKey, kbsData, token, remoteAttestation, serviceId, maxTries);
         KeyBackupResponse     response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         BackupResponse        backupResponse    = KeyBackupCipher.getKeyBackupResponse(response, remoteAttestation);
-        BackupResponse.Status status            = backupResponse.getStatus();
+        BackupResponse.Status status            = backupResponse.status;
 
         switch (status) {
           case OK:
-            return backupResponse.hasToken() ? new TokenResponse(token.getBackupId(), backupResponse.getToken().toByteArray(), maxTries) : token;
+            return backupResponse.token != null ? new TokenResponse(token.getBackupId(), backupResponse.token.toByteArray(), maxTries) : token;
           case ALREADY_EXISTS:
             throw new UnauthenticatedResponseException("Already exists");
           case NOT_YET_VALID:

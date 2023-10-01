@@ -121,7 +121,7 @@ public class ApplicationMigrations {
     static final int GLIDE_CACHE_CLEAR             = 77;
     static final int SYSTEM_NAME_RESYNC            = 78;
     static final int RECOVERY_PASSWORD_SYNC        = 79;
-    static final int DECRYPTIONS_DRAINED           = 80;
+//    static final int DECRYPTIONS_DRAINED           = 80;
     static final int REBUILD_MESSAGE_FTS_INDEX_3   = 81;
     static final int TO_FROM_RECIPIENTS            = 82;
     static final int REBUILD_MESSAGE_FTS_INDEX_4   = 83;
@@ -136,9 +136,12 @@ public class ApplicationMigrations {
     static final int ATTACHMENT_CLEANUP_3          = 92;
     static final int EMOJI_SEARCH_INDEX_CHECK      = 93;
     static final int IDENTITY_FIX                  = 94;
+    static final int COPY_USERNAME_TO_SIGNAL_STORE = 95;
+    static final int RECHECK_PAYMENTS              = 96;
+    static final int THREAD_COUNT_DB_MIGRATION     = 97;
   }
 
-  public static final int CURRENT_VERSION = 94;
+  public static final int CURRENT_VERSION = 97;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -556,9 +559,10 @@ public class ApplicationMigrations {
       jobs.put(Version.RECOVERY_PASSWORD_SYNC, new AttributesMigrationJob());
     }
 
-    if (lastSeenVersion < Version.DECRYPTIONS_DRAINED) {
-      jobs.put(Version.DECRYPTIONS_DRAINED, new DecryptionsDrainedMigrationJob());
-    }
+    // Needed for the conversion to inline decryptions and is no longer necessary
+    // if (lastSeenVersion < Version.DECRYPTIONS_DRAINED) {
+    //   jobs.put(Version.DECRYPTIONS_DRAINED, new DecryptionsDrainedMigrationJob());
+    // }
 
     if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX_3) {
       jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX_3, new RebuildMessageSearchIndexMigrationJob());
@@ -614,6 +618,18 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.IDENTITY_FIX) {
       jobs.put(Version.IDENTITY_FIX, new IdentityTableCleanupMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.COPY_USERNAME_TO_SIGNAL_STORE) {
+      jobs.put(Version.COPY_USERNAME_TO_SIGNAL_STORE, new CopyUsernameToSignalStoreMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RECHECK_PAYMENTS) {
+      jobs.put(Version.RECHECK_PAYMENTS, new RecheckPaymentsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.THREAD_COUNT_DB_MIGRATION) {
+      jobs.put(Version.THREAD_COUNT_DB_MIGRATION, new DatabaseMigrationJob());
     }
 
     return jobs;

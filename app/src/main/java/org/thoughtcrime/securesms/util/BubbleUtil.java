@@ -33,6 +33,7 @@ import static org.thoughtcrime.securesms.util.ConversationUtil.CONVERSATION_SUPP
 public final class BubbleUtil {
 
   private static final String TAG = Log.tag(BubbleUtil.class);
+  private static String currentState = "";
 
   private BubbleUtil() {
   }
@@ -75,23 +76,30 @@ public final class BubbleUtil {
 
     final StringBuilder bubbleLoggingMessage = new StringBuilder("Bubble State:");
     if (Build.VERSION.SDK_INT < 31) {
-      bubbleLoggingMessage.append("\nisBelowApi31 = true");
+      bubbleLoggingMessage.append("\tisBelowApi31 = true");
     } else {
-      bubbleLoggingMessage.append("\nnotificationManager.areBubblesEnabled() = ").append(notificationManager.areBubblesEnabled());
-      bubbleLoggingMessage.append("\nnotificationManager.getBubblePreference() = ").append(notificationManager.getBubblePreference());
+      bubbleLoggingMessage.append("\tnm.areBubblesEnabled() = ").append(notificationManager.areBubblesEnabled());
+      bubbleLoggingMessage.append("\tnm.getBubblePreference() = ").append(notificationManager.getBubblePreference());
     }
 
-    bubbleLoggingMessage.append("\nnotificationManager.areBubblesAllowed() = ").append(notificationManager.areBubblesAllowed());
+    bubbleLoggingMessage.append("\tnm.areBubblesAllowed() = ").append(notificationManager.areBubblesAllowed());
     if (conversationChannel != null) {
-      bubbleLoggingMessage.append("\nconversationChannel.canBubble() = ").append(conversationChannel.canBubble());
+      bubbleLoggingMessage.append("\tcc.canBubble(").append(conversationChannel.getId()).append(") = ").append(conversationChannel.canBubble());
     } else {
-      bubbleLoggingMessage.append("\nconversationChannel = null");
+      bubbleLoggingMessage.append("\tcc = null");
     }
 
-    Log.d(TAG, bubbleLoggingMessage.toString());
 
-    return (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
-           (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
+    boolean canBubble = (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
+                        (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
+
+    bubbleLoggingMessage.append("\tFinal answer… canBubble: ").append(canBubble);
+    final String state = bubbleLoggingMessage.toString();
+    if (!state.equals(currentState)) {
+      Log.d(TAG, state);
+      currentState = state;
+    }
+    return canBubble;
   }
 
   /**

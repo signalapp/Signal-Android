@@ -104,13 +104,13 @@ class SignalSmsExportService : SmsExportService() {
 
   override fun onMessageExportStarted(exportableMessage: ExportableMessage) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().setProgress(MessageExportState.Progress.STARTED).build()
+      it.newBuilder().progress(MessageExportState.Progress.STARTED).build()
     }
   }
 
   override fun onMessageExportSucceeded(exportableMessage: ExportableMessage) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().setProgress(MessageExportState.Progress.COMPLETED).build()
+      it.newBuilder().progress(MessageExportState.Progress.COMPLETED).build()
     }
 
     SignalDatabase.messages.markMessageExported(exportableMessage.getMessageId())
@@ -118,7 +118,7 @@ class SignalSmsExportService : SmsExportService() {
 
   override fun onMessageExportFailed(exportableMessage: ExportableMessage) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().setProgress(MessageExportState.Progress.INIT).build()
+      it.newBuilder().progress(MessageExportState.Progress.INIT).build()
     }
 
     SignalDatabase.messages.markMessageExportFailed(exportableMessage.getMessageId())
@@ -126,45 +126,45 @@ class SignalSmsExportService : SmsExportService() {
 
   override fun onMessageIdCreated(exportableMessage: ExportableMessage, messageId: Long) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().setMessageId(messageId).build()
+      it.newBuilder().messageId(messageId).build()
     }
   }
 
   override fun onAttachmentPartExportStarted(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().addStartedAttachments(part.contentId).build()
+      it.newBuilder().apply { startedAttachments += part.contentId }.build()
     }
   }
 
   override fun onAttachmentPartExportSucceeded(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().addCompletedAttachments(part.contentId).build()
+      it.newBuilder().apply { completedAttachments += part.contentId }.build()
     }
   }
 
   override fun onAttachmentPartExportFailed(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      val startedAttachments = it.startedAttachmentsList - part.contentId
-      it.toBuilder().clearStartedAttachments().addAllStartedAttachments(startedAttachments).build()
+      val startedAttachments = it.startedAttachments - part.contentId
+      it.newBuilder().startedAttachments(startedAttachments).build()
     }
   }
 
   override fun onRecipientExportStarted(exportableMessage: ExportableMessage, recipient: String) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().addStartedRecipients(recipient).build()
+      it.newBuilder().apply { startedRecipients += recipient }.build()
     }
   }
 
   override fun onRecipientExportSucceeded(exportableMessage: ExportableMessage, recipient: String) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      it.toBuilder().addCompletedRecipients(recipient).build()
+      it.newBuilder().apply { completedRecipients += recipient }.build()
     }
   }
 
   override fun onRecipientExportFailed(exportableMessage: ExportableMessage, recipient: String) {
     SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
-      val startedAttachments = it.startedRecipientsList - recipient
-      it.toBuilder().clearStartedRecipients().addAllStartedRecipients(startedAttachments).build()
+      val startedAttachments = it.startedRecipients - recipient
+      it.newBuilder().startedRecipients(startedAttachments).build()
     }
   }
 

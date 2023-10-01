@@ -8,6 +8,6 @@
     android:layout_height="wrap_content"
     android:visibility="gone"
     app:doc_captionColor="@color/conversation_item_sent_text_secondary_color"
-    app:doc_downloadButtonTint="@color/signal_icon_tint_secondary"
+    app:doc_downloadButtonTint="@color/signal_colorOnCustom"
     app:doc_titleColor="@color/conversation_item_sent_text_primary_color"
     tools:visibility="visible" />

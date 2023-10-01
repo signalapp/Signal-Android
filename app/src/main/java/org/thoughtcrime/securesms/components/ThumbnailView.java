@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -79,11 +80,12 @@ public class ThumbnailView extends FrameLayout {
 
   private final CornerMask cornerMask;
 
-  private ThumbnailViewTransferControlsState transferControlsState  = new ThumbnailViewTransferControlsState();
+  private ThumbnailViewTransferControlsState transferControlsState      = new ThumbnailViewTransferControlsState();
   private Stub<TransferControlView>          transferControlViewStub;
-  private SlideClickListener                 thumbnailClickListener = null;
-  private SlidesClickedListener              downloadClickListener  = null;
-  private Slide                              slide                  = null;
+  private SlideClickListener                 thumbnailClickListener     = null;
+  private SlidesClickedListener              downloadClickListener      = null;
+  private SlideClickListener                 progressWheelClickListener = null;
+  private Slide                              slide                      = null;
 
 
   public ThumbnailView(Context context) {
@@ -366,6 +368,11 @@ public class ThumbnailView extends FrameLayout {
 
       transferControlsState = transferControlsState.withSlide(slide)
                                                    .withDownloadClickListener(new DownloadClickDispatcher());
+
+      if (FeatureFlags.instantVideoPlayback()) {
+        transferControlsState = transferControlsState.withProgressWheelClickListener(new ProgressWheelClickDispatcher());
+      }
+
       transferControlsState.applyState(transferControlViewStub);
     } else {
       transferControlViewStub.setVisibility(View.GONE);
@@ -518,6 +525,10 @@ public class ThumbnailView extends FrameLayout {
     this.downloadClickListener = listener;
   }
 
+  public void setProgressWheelClickListener(SlideClickListener listener) {
+    this.progressWheelClickListener = listener;
+  }
+
   public void clear(GlideRequests glideRequests) {
     glideRequests.clear(image);
     image.setImageDrawable(null);
@@ -655,6 +666,18 @@ public class ThumbnailView extends FrameLayout {
         downloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {
         Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + slide + "  downloadClickListener: " + downloadClickListener);
+      }
+    }
+  }
+
+  private class ProgressWheelClickDispatcher implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+      Log.i(TAG, "onClick() for progress wheel");
+      if (progressWheelClickListener != null && slide != null) {
+        progressWheelClickListener.onClick(view, slide);
+      } else {
+        Log.w(TAG, "Received a progress wheel click, but unable to execute it. slide: " + slide + "  progressWheelClickListener: " + progressWheelClickListener);
       }
     }
   }

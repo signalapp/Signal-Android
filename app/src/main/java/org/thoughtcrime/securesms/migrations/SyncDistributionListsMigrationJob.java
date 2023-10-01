@@ -48,10 +48,6 @@ public final class SyncDistributionListsMigrationJob extends MigrationJob {
       return;
     }
 
-    if (Recipient.self().getStoriesCapability() != Recipient.Capability.SUPPORTED) {
-      Log.i(TAG, "Stories capability is not supported.");
-    }
-
     List<RecipientId> listRecipients = SignalDatabase.distributionLists()
                                                      .getAllListRecipients()
                                                      .stream()

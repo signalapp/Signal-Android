@@ -43,7 +43,7 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   private static final String TAG = Log.tag(JobManager.class);
 
-  public static final int CURRENT_VERSION = 9;
+  public static final int CURRENT_VERSION = 10;
 
   private final Application   application;
   private final Configuration configuration;

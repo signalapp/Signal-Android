@@ -199,6 +199,22 @@ public class RecipientUtil {
   }
 
   @WorkerThread
+  public static Recipient.HiddenState getRecipientHiddenState(long threadId) {
+    if (threadId < 0) {
+      return Recipient.HiddenState.NOT_HIDDEN;
+    }
+
+    ThreadTable threadTable     = SignalDatabase.threads();
+    Recipient   threadRecipient = threadTable.getRecipientForThreadId(threadId);
+
+    if (threadRecipient == null) {
+      return Recipient.HiddenState.NOT_HIDDEN;
+    }
+
+    return threadRecipient.getHiddenState();
+  }
+
+  @WorkerThread
   public static boolean isRecipientHidden(long threadId) {
     if (threadId < 0) {
       return false;
@@ -264,30 +280,16 @@ public class RecipientUtil {
     return isCallRequestAccepted(threadId, threadRecipient);
   }
 
-  /**
-   * @return True if a conversation existed before we enabled message requests, otherwise false.
-   */
-  @WorkerThread
-  public static boolean isPreMessageRequestThread(@Nullable Long threadId) {
-    long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
-    return threadId != null && SignalDatabase.messages().getMessageCountForThread(threadId, beforeTime) > 0;
-  }
-
   @WorkerThread
   public static void shareProfileIfFirstSecureMessage(@NonNull Recipient recipient) {
     if (recipient.isProfileSharing()) {
       return;
     }
 
-    long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
-
-    if (isPreMessageRequestThread(threadId)) {
-      return;
-    }
-
+    long    threadId     = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
     boolean firstMessage = SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) == 0;
 
-    if (firstMessage) {
+    if (firstMessage || recipient.isHidden()) {
       SignalDatabase.recipients().setProfileSharing(recipient.getId(), true);
     }
   }
@@ -297,7 +299,6 @@ public class RecipientUtil {
            threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact()  ||
            !threadRecipient.isRegistered()    ||
-           threadRecipient.isForceSmsSelection() ||
            threadRecipient.isHidden();
   }
 
@@ -346,12 +347,10 @@ public class RecipientUtil {
            threadRecipient.isSelf() ||
            threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact() ||
-           threadRecipient.isForceSmsSelection() ||
            !threadRecipient.isRegistered() ||
            (!threadRecipient.isHidden() && (
                hasSentMessageInThread(threadId) ||
-               noSecureMessagesAndNoCallsInThread(threadId) ||
-               isPreMessageRequestThread(threadId))
+               noSecureMessagesAndNoCallsInThread(threadId))
            );
   }
 
@@ -359,8 +358,7 @@ public class RecipientUtil {
   private static boolean isCallRequestAccepted(@Nullable Long threadId, @NonNull Recipient threadRecipient) {
     return threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact() ||
-           hasSentMessageInThread(threadId) ||
-           isPreMessageRequestThread(threadId);
+           hasSentMessageInThread(threadId);
   }
 
   @WorkerThread

@@ -1,0 +1,127 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto3";
+
+option java_package        = "org.signal.storageservice.protos.groups.local";
+option java_multiple_files = true;
+
+import "Groups.proto";
+
+// Decrypted version of Member
+// Keep field numbers in step
+message DecryptedMember {
+  bytes       aciBytes         = 1;
+  Member.Role role             = 2;
+  bytes       profileKey       = 3;
+  uint32      joinedAtRevision = 5;
+  bytes       pniBytes         = 6;
+}
+
+message DecryptedPendingMember {
+  bytes       serviceIdBytes      = 1;
+  Member.Role role                = 2;
+  bytes       addedByAci          = 3;
+  uint64      timestamp           = 4;
+  bytes       serviceIdCipherText = 5;
+}
+
+message DecryptedRequestingMember {
+  bytes  aciBytes   = 1;
+  bytes  profileKey = 2;
+  uint64 timestamp  = 4;
+}
+
+message DecryptedBannedMember {
+  bytes  serviceIdBytes = 1;
+  uint64 timestamp      = 2;
+}
+
+message DecryptedPendingMemberRemoval {
+  bytes serviceIdBytes = 1;
+  bytes serviceIdCipherText  = 2;
+}
+
+message DecryptedApproveMember {
+  bytes       aciBytes = 1;
+  Member.Role role     = 2;
+}
+
+message DecryptedModifyMemberRole {
+  bytes       aciBytes = 1;
+  Member.Role role     = 2;
+}
+
+// Decrypted version of message Group
+// Keep field numbers in step
+message DecryptedGroup {
+           string                    title                     = 2;
+           string                    avatar                    = 3;
+           DecryptedTimer            disappearingMessagesTimer = 4;
+           AccessControl             accessControl             = 5;
+           uint32                    revision                  = 6;
+  repeated DecryptedMember           members                   = 7;
+  repeated DecryptedPendingMember    pendingMembers            = 8;
+  repeated DecryptedRequestingMember requestingMembers         = 9;
+           bytes                     inviteLinkPassword        = 10;
+           string                    description               = 11;
+           EnabledState              isAnnouncementGroup       = 12;
+  repeated DecryptedBannedMember     bannedMembers             = 13;
+}
+
+// Decrypted version of message GroupChange.Actions
+// Keep field numbers in step
+message DecryptedGroupChange {
+           bytes                         editorServiceIdBytes        = 1;
+           uint32                        revision                    = 2;
+  repeated DecryptedMember               newMembers                  = 3;
+  repeated bytes                         deleteMembers               = 4;
+  repeated DecryptedModifyMemberRole     modifyMemberRoles           = 5;
+  repeated DecryptedMember               modifiedProfileKeys         = 6;
+  repeated DecryptedPendingMember        newPendingMembers           = 7;
+  repeated DecryptedPendingMemberRemoval deletePendingMembers        = 8;
+  repeated DecryptedMember               promotePendingMembers       = 9;
+           DecryptedString               newTitle                    = 10;
+           DecryptedString               newAvatar                   = 11;
+           DecryptedTimer                newTimer                    = 12;
+           AccessControl.AccessRequired  newAttributeAccess          = 13;
+           AccessControl.AccessRequired  newMemberAccess             = 14;
+           AccessControl.AccessRequired  newInviteLinkAccess         = 15;
+  repeated DecryptedRequestingMember     newRequestingMembers        = 16;
+  repeated bytes                         deleteRequestingMembers     = 17;
+  repeated DecryptedApproveMember        promoteRequestingMembers    = 18;
+           bytes                         newInviteLinkPassword       = 19;
+           DecryptedString               newDescription              = 20;
+           EnabledState                  newIsAnnouncementGroup      = 21;
+  repeated DecryptedBannedMember         newBannedMembers            = 22;
+  repeated DecryptedBannedMember         deleteBannedMembers         = 23;
+  repeated DecryptedMember               promotePendingPniAciMembers = 24;
+}
+
+message DecryptedString {
+  string value = 1;
+}
+
+message DecryptedTimer {
+  uint32 duration = 1;
+}
+
+message DecryptedGroupJoinInfo {
+  string                       title                = 2;
+  string                       avatar               = 3;
+  uint32                       memberCount          = 4;
+  AccessControl.AccessRequired addFromInviteLink    = 5;
+  uint32                       revision             = 6;
+  bool                         pendingAdminApproval = 7;
+  string                       description          = 8;
+  bool                         isAnnouncementGroup  = 9;
+}
+
+enum EnabledState {
+  UNKNOWN  = 0;
+  ENABLED  = 1;
+  DISABLED = 2;
+}
+

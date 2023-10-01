@@ -63,9 +63,9 @@ class VerifySafetyNumberViewModel(
         e164Fingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
       }
 
-      if (resolved.serviceId.isPresent) {
+      if (resolved.aci.isPresent) {
         val localIdentifier = SignalStore.account().requireAci().toByteArray()
-        val remoteIdentifier = resolved.requireServiceId().toByteArray()
+        val remoteIdentifier = resolved.requireAci().toByteArray()
         val version = 2
         aciFingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
       }
@@ -97,13 +97,13 @@ class VerifySafetyNumberViewModel(
     val context: Context = ApplicationDependencies.getApplication()
 
     SignalExecutors.BOUNDED.execute {
-      ReentrantSessionLock.INSTANCE.acquire().use { unused ->
+      ReentrantSessionLock.INSTANCE.acquire().use { _ ->
         if (verified) {
           Log.i(TAG, "Saving identity: $recipientId")
           ApplicationDependencies.getProtocolStore().aci().identities()
             .saveIdentityWithoutSideEffects(
               recipientId,
-              recipient.resolve().requireServiceId(),
+              recipient.resolve().requireAci(),
               remoteIdentity,
               IdentityTable.VerifiedStatus.VERIFIED,
               false,

@@ -474,6 +474,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ViewStub
+            android:id="@+id/call_screen_pending_recipients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="32dp"
+            android:inflatedId="@+id/call_screen_pending_recipients_view"
+            android:layout="@layout/call_screen_pending_participants_view"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_footer_gradient_barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ViewStub
+            android:id="@+id/call_screen_call_link_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="28dp"
+            android:inflatedId="@+id/call_screen_call_link_warning_view"
+            android:layout="@layout/call_screen_call_link_warning_card"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_footer_gradient_barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/call_screen_footer_gradient_barrier"
             android:layout_width="wrap_content"

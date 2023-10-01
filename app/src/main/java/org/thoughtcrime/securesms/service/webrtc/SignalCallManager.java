@@ -27,6 +27,7 @@ import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
+import org.signal.ringrtc.GroupCall.Reaction;
 import org.signal.ringrtc.HttpHeader;
 import org.signal.ringrtc.NetworkRoute;
 import org.signal.ringrtc.PeekInfo;
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -80,9 +82,9 @@ import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage;
+import org.whispersystems.signalservice.internal.push.SyncMessage;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -103,6 +105,7 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.jvm.functions.Function1;
+import kotlin.text.Charsets;
 
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;
@@ -191,7 +194,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     serviceExecutor.execute(() -> {
       if (needsToSetSelfUuid) {
         try {
-          callManager.setSelfUuid(SignalStore.account().requireAci().uuid());
+          callManager.setSelfUuid(SignalStore.account().requireAci().getRawUuid());
           needsToSetSelfUuid = false;
         } catch (CallException e) {
           Log.w(TAG, "Unable to set self UUID on CallManager", e);
@@ -354,6 +357,22 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleDropCall(s, callId));
   }
 
+  public void setCallLinkJoinRequestAccepted(@NonNull RecipientId participant) {
+    process((s, p) -> p.handleSetCallLinkJoinRequestAccepted(s, participant));
+  }
+
+  public void setCallLinkJoinRequestRejected(@NonNull RecipientId participant) {
+    process((s, p) -> p.handleSetCallLinkJoinRequestRejected(s, participant));
+  }
+
+  public void removeFromCallLink(@NonNull CallParticipant participant) {
+    process((s, p) -> p.handleRemoveFromCallLink(s, participant));
+  }
+
+  public void blockFromCallLink(@NonNull CallParticipant participant) {
+    process((s, p) -> p.handleBlockFromCallLink(s, participant));
+  }
+
   public void peekCallLinkCall(@NonNull RecipientId id) {
     if (callManager == null) {
       Log.i(TAG, "Unable to peekCallLinkCall, call manager is null");
@@ -422,7 +441,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
         List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, groupId))
                                                         .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
                                                         .toList();
-        callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(), credential.getTokenBytes().toByteArray(), members, peekInfo -> {
+        callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(), credential.token.getBytes(Charsets.UTF_8), members, peekInfo -> {
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
           if (threadId != null) {
@@ -462,7 +481,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
                                                               .collect(Collectors.toList());
 
         callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(),
-                                  credential.getTokenBytes().toByteArray(),
+                                  credential.token.getBytes(Charsets.UTF_8),
                                   members,
                                   peekInfo -> receivedGroupCallPeekForRingingCheck(info, peekInfo));
       } catch (IOException | VerificationFailedException | CallException e) {
@@ -475,7 +494,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     networkExecutor.execute(() -> {
       try {
         GroupExternalCredential credential = GroupManager.getGroupExternalCredential(context, groupId);
-        process((s, p) -> p.handleGroupMembershipProofResponse(s, groupCallHashCode, credential.getTokenBytes().toByteArray()));
+        process((s, p) -> p.handleGroupMembershipProofResponse(s, groupCallHashCode, credential.token.getBytes(Charsets.UTF_8)));
       } catch (IOException e) {
         Log.w(TAG, "Unable to get group membership proof from service", e);
         process((s, p) -> p.handleGroupCallEnded(s, groupCallHashCode, GroupCall.GroupCallEndReason.SFU_CLIENT_FAILED_TO_JOIN));
@@ -619,6 +638,11 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
+  public void onLowBandwidthForVideo(@Nullable Remote remote, boolean recovered) {
+    // TODO: Implement handling of the "low outgoing bandwidth for video" notification.
+  }
+
+  @Override
   public void onCallConcluded(@Nullable Remote remote) {
     if (!(remote instanceof RemotePeer)) {
       return;
@@ -703,7 +727,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     Log.i(TAG, "onSendHangup: id: " + remotePeer.getCallId().format(remoteDevice) + " type: " + hangupType.name());
 
     WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
-    WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), false, deviceId);
+    WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), deviceId);
 
     process((s, p) -> p.handleSendHangup(s, callMetadata, hangupMetadata, broadcast));
   }
@@ -724,14 +748,14 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
-  public void onSendCallMessage(@NonNull UUID uuid, @NonNull byte[] bytes, @NonNull CallManager.CallMessageUrgency urgency) {
+  public void onSendCallMessage(@NonNull UUID aciUuid, @NonNull byte[] bytes, @NonNull CallManager.CallMessageUrgency urgency) {
     Log.i(TAG, "onSendCallMessage():");
 
     OpaqueMessage            opaqueMessage = new OpaqueMessage(bytes, getUrgencyFromCallUrgency(urgency));
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
 
     networkExecutor.execute(() -> {
-      Recipient recipient = Recipient.resolved(RecipientId.from(ServiceId.from(uuid)));
+      Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(aciUuid)));
       if (recipient.isBlocked()) {
         return;
       }
@@ -826,16 +850,17 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID sender, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
+      ACI         senderAci       = ACI.from(sender);
       GroupId.V2  groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
       GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
-      Recipient   senderRecipient = Recipient.externalPush(ServiceId.from(sender));
+      Recipient   senderRecipient = Recipient.externalPush(senderAci);
 
       if (group != null &&
           group.isActive() &&
           !Recipient.resolved(group.getRecipientId()).isBlocked() &&
           (!group.isAnnouncementGroup() || group.isAdmin(senderRecipient)))
       {
-        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, sender, ringUpdate));
+        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, senderAci, ringUpdate));
       } else {
         Log.w(TAG, "Unable to ring unknown/inactive/blocked group.");
       }
@@ -864,6 +889,16 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onAudioLevels(@NonNull GroupCall groupCall) {
     processStateless(s -> serviceState.getActionProcessor().handleGroupAudioLevelsChanged(serviceState, s));
+  }
+
+  @Override
+  public void onLowBandwidthForVideo(@NonNull GroupCall groupCall, boolean recovered) {
+    // TODO: Implement handling of the "low outgoing bandwidth for video" notification.
+  }
+
+  @Override
+  public void onReactions(@NonNull GroupCall groupCall, List<Reaction> reactions) {
+    // TODO: Implement handling of reactions.
   }
 
   @Override

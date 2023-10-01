@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.audio;
 
 import androidx.annotation.NonNull;
 
-import com.google.protobuf.ByteString;
-
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
 
 import java.util.concurrent.TimeUnit;
+
+import okio.ByteString;
 
 public class AudioFileInfo {
   private final long    durationUs;
@@ -14,7 +14,7 @@ public class AudioFileInfo {
   private final float[] waveForm;
 
   public static @NonNull AudioFileInfo fromDatabaseProtobuf(@NonNull AudioWaveFormData audioWaveForm) {
-    return new AudioFileInfo(audioWaveForm.getDurationUs(), audioWaveForm.getWaveForm().toByteArray());
+    return new AudioFileInfo(audioWaveForm.durationUs, audioWaveForm.waveForm.toByteArray());
   }
 
   AudioFileInfo(long durationUs, byte[] waveFormBytes) {
@@ -37,9 +37,9 @@ public class AudioFileInfo {
   }
 
   public @NonNull AudioWaveFormData toDatabaseProtobuf() {
-    return AudioWaveFormData.newBuilder()
-                            .setDurationUs(durationUs)
-                            .setWaveForm(ByteString.copyFrom(waveFormBytes))
-                            .build();
+    return new AudioWaveFormData.Builder()
+                                .durationUs(durationUs)
+                                .waveForm(ByteString.of(waveFormBytes))
+                                .build();
   }
 }

@@ -74,7 +74,7 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
 
   private fun buildSentTranscript(recipientsSet: Set<SignalServiceStoryMessageRecipient>): SentTranscriptMessage {
     return SentTranscriptMessage(
-      Optional.of(SignalServiceAddress(Recipient.self().requireServiceId())),
+      Optional.of(SignalServiceAddress(Recipient.self().requireAci())),
       sentTimestamp,
       Optional.empty(),
       0,

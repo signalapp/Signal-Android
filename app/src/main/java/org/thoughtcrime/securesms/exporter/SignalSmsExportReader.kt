@@ -156,17 +156,15 @@ class SignalSmsExportReader(
     private fun mapExportState(messageExportState: MessageExportState): SmsExportState {
       return SmsExportState(
         messageId = messageExportState.messageId,
-        startedRecipients = messageExportState.startedRecipientsList.toSet(),
-        completedRecipients = messageExportState.completedRecipientsList.toSet(),
-        startedAttachments = messageExportState.startedAttachmentsList.toSet(),
-        completedAttachments = messageExportState.completedAttachmentsList.toSet(),
+        startedRecipients = messageExportState.startedRecipients.toSet(),
+        completedRecipients = messageExportState.completedRecipients.toSet(),
+        startedAttachments = messageExportState.startedAttachments.toSet(),
+        completedAttachments = messageExportState.completedAttachments.toSet(),
         progress = messageExportState.progress.let {
           when (it) {
             MessageExportState.Progress.INIT -> SmsExportState.Progress.INIT
             MessageExportState.Progress.STARTED -> SmsExportState.Progress.STARTED
             MessageExportState.Progress.COMPLETED -> SmsExportState.Progress.COMPLETED
-            MessageExportState.Progress.UNRECOGNIZED -> SmsExportState.Progress.INIT
-            null -> SmsExportState.Progress.INIT
           }
         }
       )

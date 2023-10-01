@@ -106,7 +106,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class ConversationRepository(
-  context: Context,
+  private val localContext: Context,
   private val isInBubble: Boolean
 ) {
 
@@ -114,7 +114,7 @@ class ConversationRepository(
     private val TAG = Log.tag(ConversationRepository::class.java)
   }
 
-  private val applicationContext = context.applicationContext
+  private val applicationContext = localContext.applicationContext
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
 
   /**
@@ -139,7 +139,7 @@ class ConversationRepository(
 
       val messageRequestData = metadata.messageRequestData
       val dataSource = ConversationDataSource(
-        applicationContext,
+        localContext,
         threadId,
         messageRequestData,
         metadata.showUniversalExpireTimerMessage,
@@ -209,7 +209,7 @@ class ConversationRepository(
       val message = OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
-        body = splitMessage.body,
+        body = if (slideDeck != null) OutgoingMessage.buildMessage(slideDeck, splitMessage.body) else splitMessage.body,
         expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
         isUrgent = true,
         isSecure = true,
@@ -288,15 +288,14 @@ class ConversationRepository(
   }
 
   fun getMessageCounts(threadId: Long): Flowable<MessageCounts> {
-    return RxDatabaseObserver.conversationList
+    return RxDatabaseObserver.conversation(threadId)
       .map { getUnreadCount(threadId) }
       .distinctUntilChanged()
       .map { MessageCounts(it, getUnreadMentionsCount(threadId)) }
   }
 
   private fun getUnreadCount(threadId: Long): Int {
-    val threadRecord = SignalDatabase.threads.getThreadRecord(threadId)
-    return threadRecord?.unreadCount ?: 0
+    return SignalDatabase.messages.getUnreadCount(threadId)
   }
 
   private fun getUnreadMentionsCount(threadId: Long): Int {
@@ -509,7 +508,7 @@ class ConversationRepository(
       val slideDeck = SlideDeck()
 
       if (contact.avatarAttachment != null) {
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, contact.avatarAttachment))
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(contact.avatarAttachment))
       }
 
       slideDeck to body
@@ -518,7 +517,7 @@ class ConversationRepository(
       val slideDeck = SlideDeck()
 
       linkPreview.thumbnail.ifPresent {
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, it))
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(it))
       }
 
       slideDeck to conversationMessage.getDisplayBody(context)
@@ -532,7 +531,7 @@ class ConversationRepository(
       if (messageRecord.isViewOnceMessage()) {
         val attachment = TombstoneAttachment(MediaUtil.VIEW_ONCE, true)
         slideDeck = SlideDeck()
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, attachment))
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(attachment))
       }
 
       slideDeck to conversationMessage.getDisplayBody(context)

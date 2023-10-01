@@ -106,4 +106,10 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
       SignalDatabase.groups.removeUnmigratedV1Members(groupId)
     }.subscribeOn(Schedulers.io())
   }
+
+  fun isJustSelf(groupId: GroupId): Single<Boolean> {
+    return Single.fromCallable {
+      SignalDatabase.groups.requireGroup(groupId).members == listOf(Recipient.self().id)
+    }
+  }
 }

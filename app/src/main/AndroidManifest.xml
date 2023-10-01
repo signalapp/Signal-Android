@@ -44,6 +44,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" android:usesPermissionFlags="neverForLocation" />
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_CALL_STATE"/>
@@ -93,6 +95,10 @@
     <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"/>
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
     <application android:name=".ApplicationContext"
                  android:icon="@mipmap/ic_launcher"
@@ -630,22 +636,11 @@
                 android:value="org.thoughtcrime.securesms.MainActivity" />
     </activity>
 
-    <activity android:name=".conversation.ConversationActivity"
-              android:windowSoftInputMode="stateUnchanged"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:parentActivityName=".MainActivity"
-              android:exported="false">
-        <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.MainActivity" />
-    </activity>
-
     <activity android:name=".conversation.BubbleConversationActivity"
-              android:theme="@style/Signal.DayNight"
-              android:allowEmbedded="true"
-              android:resizeableActivity="true"
-              android:exported="false"/>
+        android:theme="@style/Signal.DayNight"
+        android:allowEmbedded="true"
+        android:resizeableActivity="true"
+        android:exported="false"/>
 
     <activity android:name=".conversation.ConversationPopupActivity"
               android:windowSoftInputMode="stateVisible"
@@ -1145,9 +1140,11 @@
 
     <service
         android:name=".components.voice.VoiceNotePlaybackService"
+        android:foregroundServiceType="mediaPlayback"
         android:exported="true">
         <intent-filter>
             <action android:name="android.media.browse.MediaBrowserService" />
+            <action android:name="androidx.media3.session.MediaSessionService"/>
         </intent-filter>
     </service>
 
@@ -1334,7 +1331,7 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".messageprocessingalarm.MessageProcessReceiver" android:exported="false">
+    <receiver android:name=".messageprocessingalarm.RoutineMessageFetchReceiver" android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
             <action android:name="org.thoughtcrime.securesms.action.PROCESS_MESSAGES" />

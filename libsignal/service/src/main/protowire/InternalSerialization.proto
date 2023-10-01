@@ -1,0 +1,56 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto2";
+
+package textsecure;
+
+import "SignalService.proto";
+
+option java_package        = "org.whispersystems.signalservice.internal.serialize.protos";
+option java_multiple_files = true;
+
+message SignalServiceContentProto {
+  optional AddressProto  localAddress = 1;
+  optional MetadataProto metadata     = 2;
+  oneof data {
+     signalservice.DataMessage legacyDataMessage = 3;
+     signalservice.Content     content           = 4;
+  }
+}
+
+message SignalServiceEnvelopeProto {
+  optional int32  type                     = 1;
+  optional string sourceServiceId          = 2;
+  reserved      /*sourceE164*/               3;
+  optional int32  deviceId                 = 4;
+  reserved      /*legacyMessage*/            5;
+  optional bytes  content                  = 6;
+  optional int64  timestamp                = 7;
+  optional int64  serverReceivedTimestamp  = 8;
+  optional int64  serverDeliveredTimestamp = 9;
+  optional string serverGuid               = 10;
+  optional string destinationServiceId     = 11;
+  optional bool   urgent                   = 12 [default = true];
+  optional bool   story                    = 13;
+  optional bytes  reportingToken           = 14;
+}
+
+message MetadataProto {
+  optional AddressProto address                  = 1;
+  optional int32        senderDevice             = 2;
+  optional int64        timestamp                = 3;
+  optional int64        serverReceivedTimestamp  = 5;
+  optional int64        serverDeliveredTimestamp = 6;
+  optional bool         needsReceipt             = 4;
+  optional string       serverGuid               = 7;
+  optional bytes        groupId                  = 8;
+  optional string       destinationUuid          = 9;
+}
+
+message AddressProto {
+  optional bytes  uuid  = 1;
+  optional string e164  = 2;
+}

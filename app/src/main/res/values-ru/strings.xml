@@ -13,7 +13,6 @@
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
@@ -220,11 +219,6 @@
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
     <string name="CensorshipCircumventionMegaphone_no_thanks">Нет, спасибо</string>
 
-    <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Удалить</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Удалить фото профиля?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Удалить фото группы?</string>
-
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Обновите Signal</string>
     <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Эта версия приложения больше не поддерживается. Чтобы и далее отправлять и получать сообщения, обновитесь до последней версии.</string>
@@ -244,6 +238,10 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Оператор может взимать плату. Номер, по которому вы звоните, не зарегистрирован в Signal. Этот звонок будет сделан через вашего оператора мобильной связи, а не через интернет.</string>
     <string name="CommunicationActions_cant_join_call">Невозможно присоединиться к звонку</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Эта ссылка на звонок уже недействительна.</string>
+    <!-- Title on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_invalid_link">Недействительная ссылка</string>
+    <!-- Message on dialog when call link url cannot be parsed -->
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">Это недействительная ссылка на звонок. Убедитесь, что ссылка не повреждена и корректна, перед тем как попробовать присоединиться.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -253,9 +251,6 @@
     <string name="ContactsCursorLoader_groups">Группы</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">Участники группы</string>
-    <string name="ContactsCursorLoader_phone_number_search">Поиск по номеру телефона</string>
-    <!-- Header for username search -->
-    <string name="ContactsCursorLoader_find_by_username">Поиск по имени пользователя</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Мои истории</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
@@ -294,7 +289,6 @@
     <string name="ConversationItem_error_not_sent_tap_for_details">Не отправлено. Подробнее…</string>
     <string name="ConversationItem_error_partially_not_delivered">Частично отправлено. Подробнее…</string>
     <string name="ConversationItem_error_network_not_delivered">Отправка не удалась</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получено сообщение обмена ключами. Обработать?</string>
     <string name="ConversationItem_group_action_left">%1$s покинул(-а) группу.</string>
     <string name="ConversationItem_send_paused">Отправка приостановлена</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Не отправлено. Отправить незащищённым?</string>
@@ -331,21 +325,24 @@
     <string name="ConversationActivity_add_attachment">Добавить вложение</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Отправить с изменениями</string>
-    <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
     <string name="ConversationActivity_compose_message">Написать сообщение</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
     <string name="ConversationActivity_group_members">Участники группы</string>
-    <string name="ConversationActivity__tap_here_to_start_a_group_call">Нажмите здесь, чтобы начать групповой звонок</string>
-    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Невозможно редактировать SMS-сообщения</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">Изменения могут быть внесены только в течение %1$d часа с момента отправки этого сообщения.</item>
         <item quantity="few">Изменения могут быть внесены только в течение %1$d часов с момента отправки этого сообщения.</item>
         <item quantity="many">Изменения могут быть внесены только в течение %1$d часов с момента отправки этого сообщения.</item>
         <item quantity="other">Изменения могут быть внесены только в течение %1$d часа с момента отправки этого сообщения.</item>
+    </plurals>
+    <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
+    <plurals name="ConversationActivity_edit_message_too_many_edits">
+        <item quantity="one">Только %1$d изменение может быть внесено в это сообщение.</item>
+        <item quantity="few">Только %1$d изменения могут быть внесены в это сообщение.</item>
+        <item quantity="many">Только %1$d изменений могут быть внесены в это сообщение.</item>
+        <item quantity="other">Только %1$d изменения могут быть внесены в это сообщение.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
@@ -360,7 +357,6 @@
     <string name="ConversationActivity_transport_signal">Сообщение Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдем на Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Пожалуйста, выберите контакт</string>
-    <string name="ConversationActivity_unblock">Разблокировать</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает предельный размер для того типа сообщения, которое вы отправляете.</string>
     <string name="ConversationActivity_unable_to_record_audio">Не удалось записать аудио!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что уже не являетесь её участником.</string>
@@ -384,8 +380,6 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal требуется разрешение на доступ к микрофону, чтобы записывать видео.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не может отправлять SMS/MMS-сообщения, так как не является приложением по умолчанию для SMS. Хотите изменить это в настройках Android?</string>
-    <string name="ConversationActivity_yes">Да</string>
     <string name="ConversationActivity_no">Нет</string>
     <string name="ConversationActivity_search_position">%1$d из %2$d</string>
     <string name="ConversationActivity_no_results">Нет результатов</string>
@@ -408,16 +402,6 @@
 
     <string name="ConversationActivity_error_sending_media">Ошибка при отправке медиафайла</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме, и пользователь был заблокирован.</string>
-
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Обмен SMS-сообщениями в настоящее время отключён. Вы можете экспортировать сообщения в другое приложение на вашем телефоне.</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Обмен SMS-сообщениями больше не поддерживается в Signal. Вы можете экспортировать сообщения в другое приложение на вашем телефоне.</string>
-    <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Экспортировать SMS-сообщения</string>
-    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">Обмен SMS-сообщениями в настоящее время отключён. Пригласите %1$s в Signal, чтобы продолжить разговор здесь.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Обмен SMS-сообщениями больше не поддерживается в Signal. Пригласите %1$s в Signal, чтобы продолжить разговор здесь.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -495,7 +479,7 @@
     <string name="ConversationFragment_failed_to_open_message">Не удалось открыть сообщение</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Вы можете провести вправо по любому сообщению, чтобы быстро ответить</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Вы можете провести влево по любому сообщению, чтобы быстро ответить</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Исходящие одноразовые медиафайлы автоматически удаляются после того, как они были отправлены</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Одноразовое медиасообщение удалено после отправки</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Вы уже просмотрели это сообщение</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Вы можете добавлять заметки для себя в этом чате. Если у вашей учётной записи есть привязанные устройства, то новые заметки будут синхронизированы.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d участников группы имеют одинаковое имя.</string>
@@ -507,8 +491,6 @@
     <string name="ConversationFragment_not_now">Не сейчас</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш с %1$s код безопасности изменился</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш с %1$s код безопасности изменился — скорее всего потому, что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтвердить», чтобы проверить новый код безопасности. Это необязательно.</string>
-    <!-- Message shown to indicate which notification profile is on/active -->
-    <string name="ConversationFragment__s_on">«%1$s» включён</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">Заблокировать запрос?</string>
     <!-- Dialog message for block group link join requests -->
@@ -621,12 +603,6 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Выберите участников</string>
 
-    <!-- ConversationListFilterPullView -->
-    <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Проведите пальцем вниз, чтобы отфильтровать</string>
-    <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Отпустите, чтобы отфильтровать</string>
-
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профиль</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при установке фото профиля</string>
@@ -724,8 +700,6 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">При отправке запланированного сообщения убедитесь, что ваше устройство будет включено и подключено к интернету в момент отправки. Если нет, ваше сообщение будет отправлено, когда устройство подключится снова.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Хорошо</string>
-    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Чтобы включить планирование сообщений:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Чтобы снова включить планирование сообщений:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
@@ -953,6 +927,23 @@
         <item quantity="many">%1$d участников</item>
         <item quantity="other">%1$d участников</item>
     </plurals>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title">Мы заметили, что уведомления приходят с задержкой. Отправить журналы отладки?</string>
+    <!-- Message for dialog asking user to submit logs for debugging a crash -->
+    <string name="PromptLogsSlowNotificationsDialog__message">Журналы отладки помогают нам диагностировать и устранять проблему и не содержат идентифицирующей информации.</string>
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Возникла проблема в Signal. Отправить журналы отладки?</string>
+
+    <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
+    <string name="PromptBatterySaverBottomSheet__title">Уведомления могут приходить с задержкой в связи с оптимизацией работы батареи</string>
+    <!-- Message explaining that battery saver may delay notifications -->
+    <string name="PromptBatterySaverBottomSheet__message">Чтобы уведомления о сообщениях не задерживались, вы можете отключить оптимизацию батареи для Signal.</string>
+
+    <!-- Button to continue to try and disable battery saver -->
+    <string name="PromptBatterySaverBottomSheet__continue">Продолжить</string>
+    <!-- Button to dismiss battery saver dialog prompt-->
+    <string name="PromptBatterySaverBottomSheet__dismiss">Закрыть</string>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу</string>
@@ -1192,8 +1183,6 @@
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Удерживайте для записи аудио; отпустите для отправки</string>
-    <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Обмен SMS-сообщениями больше не поддерживается в Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">Редактировать сообщение</string>
 
@@ -1229,9 +1218,6 @@
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
     <string name="MessageRetrievalService_background_connection_enabled">Фоновое соединение активно</string>
-
-    <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS беспроводного провайдера</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Медиа</string>
@@ -1301,7 +1287,6 @@
     <string name="Megaphones_get_started">С чего начать</string>
     <string name="Megaphones_new_group">Новая группа</string>
     <string name="Megaphones_invite_friends">Пригласить друзей</string>
-    <string name="Megaphones_use_sms">Использовать SMS</string>
     <string name="Megaphones_chat_colors">Цвета чата</string>
     <string name="Megaphones_add_a_profile_photo">Добавьте фото профиля</string>
 
@@ -1313,11 +1298,7 @@
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Сервис звонков Signal</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Останавливаем сервис звонков Signal</string>
-    <string name="NotificationBarManager__decline_call">Отклонить звонок</string>
-    <string name="NotificationBarManager__answer_call">Ответить</string>
-    <string name="NotificationBarManager__end_call">Завершить</string>
     <string name="NotificationBarManager__cancel_call">Отменить</string>
-    <string name="NotificationBarManager__join_call">Присоединиться к звонку</string>
 
     <!-- NotificationsMegaphone -->
     <string name="NotificationsMegaphone_turn_on_notifications">Включить уведомления?</string>
@@ -1750,8 +1731,6 @@
         <item quantity="other">У вас осталось %1$d попыток. Если вы исчерпаете попытки, вы сможете создать новый PIN-код. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Регистрация в Signal - Нужна помощь с PIN-кодом для Android</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="PinRestoreEntryFragment_switch_keyboard">Переключить клавиатуру</string>
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">Создать PIN-код</string>
@@ -1829,7 +1808,6 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Чтобы позвонить %1$s, Signal необходим доступ к вашей камере</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Подключаемся…</string>
-    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Невозможно звонить участникам: группа слишком большая.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
     <string name="WebRtcCallActivity__reconnecting">Переподключаемся…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
@@ -1840,6 +1818,60 @@
     <string name="WebRtcCallActivity__open_settings">Открыть настройки</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Не сейчас</string>
+    <!-- Title for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__approve_d_requests">
+        <item quantity="one">Одобрить %1$d запрос?</item>
+        <item quantity="few">Одобрить %1$d запроса?</item>
+        <item quantity="many">Одобрить %1$d запросов?</item>
+        <item quantity="other">Одобрить %1$d запроса?</item>
+    </plurals>
+    <!-- Positive action for call link approve all dialog -->
+    <string name="WebRtcCallActivity__approve_all">Одобрить все</string>
+    <!-- Message for dialog to approve all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
+        <item quantity="one">%1$d человек будет добавлен к звонку.</item>
+        <item quantity="few">%1$d человека будут добавлены к звонку.</item>
+        <item quantity="many">%1$d человек будут добавлены к звонку.</item>
+        <item quantity="other">%1$d человека будут добавлены к звонку.</item>
+    </plurals>
+    <!-- Title for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__deny_d_requests">
+        <item quantity="one">Отклонить %1$d запрос?</item>
+        <item quantity="few">Отклонить %1$d запроса?</item>
+        <item quantity="many">Отклонить %1$d запросов?</item>
+        <item quantity="other">Отклонить %1$d запроса?</item>
+    </plurals>
+    <!-- Message for dialog to deny all requests -->
+    <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
+        <item quantity="one">%1$d человек не будет добавлен к звонку.</item>
+        <item quantity="few">%1$d человека не будут добавлены к звонку.</item>
+        <item quantity="many">%1$d человек не будут добавлены к звонку.</item>
+        <item quantity="other">%1$d человека не будут добавлены к звонку.</item>
+    </plurals>
+    <!-- Positive action for call link deny all dialog -->
+    <string name="WebRtcCallActivity__deny_all">Отклонить все</string>
+    <!-- Displayed in call status when users are pending -->
+    <plurals name="WebRtcCallActivity__d_people_waiting">
+        <item quantity="one">%1$d человек ждёт</item>
+        <item quantity="few">%1$d человека ждут</item>
+        <item quantity="many">%1$d человек ждут</item>
+        <item quantity="other">%1$d человека ждут</item>
+    </plurals>
+    <!-- Displayed in call status during call link when no users are pending -->
+    <plurals name="WebRtcCallActivity__d_people">
+        <item quantity="one">%1$d человека</item>
+        <item quantity="few">%1$d человек</item>
+        <item quantity="many">%1$d людей</item>
+        <item quantity="other">%1$d людей</item>
+    </plurals>
+    <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__join_request_denied">Запрос на присоединение отклонён</string>
+    <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
+    <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Ваш запрос на присоединение к этому звонку был отклонён.</string>
+    <!-- Title of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__removed_from_call">Удалён(-на) из звонка</string>
+    <!-- Message of dialog displayed when a user is removed from a call link -->
+    <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Кто-то удалил вас из звонка.</string>
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">Звонок Signal</string>
@@ -1852,6 +1884,12 @@
     <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
     <string name="WebRtcCallView__joining">Присоединяемся…</string>
     <string name="WebRtcCallView__disconnected">Отключено</string>
+    <!-- Utilized in the lobby before joining a call link -->
+    <string name="WebRtcCallView__signal_call_link">Ссылка на звонок Signal</string>
+    <!-- Warning displayed when entering a call via a link -->
+    <string name="WebRtcCallView__anyone_who_joins">Все, кто присоединится к этому звонку по ссылке, будут видеть ваше имя, фото и номер телефона.</string>
+    <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
+    <string name="WebRtcCallView__waiting_to_be_let_in">Ожидание добавления…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal будет звонить у %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal будет звонить у %1$s и %2$s</string>
@@ -1910,8 +1948,6 @@
     <string name="WebRtcCallView__toggle_camera">Переключение камеры</string>
     <!-- Toggle content description for toggling mute state  -->
     <string name="WebRtcCallView__toggle_mute">Отключение звука</string>
-    <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Включение звонка</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Завершить звонок</string>
 
@@ -1974,7 +2010,6 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">На этот номер будет отправлен код подтверждения. Могут применяться тарифы оператора.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Вы получите звонок, чтобы подтвердить этот номер.</string>
-    <string name="RegistrationActivity_is_your_phone_number_above_correct">Правильно ли указан ваш номер телефона выше?</string>
     <string name="RegistrationActivity_edit_number">Изменить номер</string>
     <string name="RegistrationActivity_missing_google_play_services">Отсутствуют Службы Google Play</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">На устройстве отсутствуют Службы Google Play. Вы можете продолжить использование Signal, но надёжность или производительность могут снизиться.\n\nЕсли вы не продвинутый пользователь, не используете стороннюю прошивку Android или считаете, что видите это сообщение по ошибке, обратитесь в службу поддержки по адресу support@signal.org для помощи с устранением неполадок.</string>
@@ -1988,8 +2023,6 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
-    <!-- A description text for an alert dialog where we do not or can not explain the error to the user. -->
-    <string name="RegistrationActivity_generic_error">Произошла непредвиденная ошибка.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Мы не смогли отправить вам код проверки по SMS. Попробуйте получить код с помощью голосового вызова.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2010,8 +2043,6 @@
         <item quantity="other">Вы в %1$d шагах от отправки журнала отладки.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Нам нужно убедиться, что вы человек.</string>
-    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal не смог отправить SMS-код из-за внешнего сбоя.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">Голосовой звонок</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
@@ -2024,11 +2055,9 @@
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введите свой номер телефона, чтобы начать.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Введите код, который мы отправили на %1$s</string>
-    <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Убедитесь, что ваш телефон находится в зоне действия сети и сможет принять SMS или звонок</string>
 
     <string name="RegistrationActivity_phone_number_description">Номер телефона</string>
     <string name="RegistrationActivity_country_code_description">Код страны</string>
-    <string name="RegistrationActivity_country_code_hint">Страна</string>
     <string name="RegistrationActivity_call">Позвонить</string>
     <string name="RegistrationActivity_verification_code">Код подтверждения</string>
     <string name="RegistrationActivity_resend_code">Отправить код ещё раз</string>
@@ -2058,9 +2087,6 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Не найдено результатов для «%1$s»</string>
-    <string name="SearchFragment_header_conversations">Чаты</string>
-    <string name="SearchFragment_header_contacts">Контакты</string>
-    <string name="SearchFragment_header_messages">Сообщения</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2099,17 +2125,9 @@
     <string name="Slide_video">Видео</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Получено повреждённое сообщение обмена ключами!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-        Получено сообщение обмена ключами для неверной версии протокола.
-    </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Получено сообщение с новым кодом безопасности. Обработать и показать его?</string>
     <string name="SmsMessageRecord_secure_session_reset">Вы сбросили защищенный сеанс.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s сбросил(-а) защищённый сеанс.</string>
     <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
-    <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Это сообщение не удалось обработать, поскольку оно было отправлено из более новой версии Signal. Вы можете попросить своего контакта снова отправить это сообщение после того, как вы обновите Signal.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">Ошибка обработки входящего сообщения.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Стикеры</string>
@@ -2264,7 +2282,6 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копировать или поделиться ссылкой на имя пользователя</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Пожалуйста, попросите его обновиться, чтобы подтвердить код безопасности.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версия Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Просканированный QR-код не является кодом безопасности. Пожалуйста, попробуйте ещё раз.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Поделиться кодом безопасности через…</string>
@@ -2298,12 +2315,6 @@
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Откл. звук уведомлений</string>
-
-    <!-- ApplicationMigrationService -->
-    <string name="ApplicationMigrationService_import_in_progress">Идет импорт</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Импорт текстовых сообщений</string>
-    <string name="ApplicationMigrationService_import_complete">Импорт завершён</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">Импорт системной базы данных завершён.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Нажмите, чтобы открыть.</string>
@@ -2352,7 +2363,6 @@
         <item quantity="many">%1$d чатов</item>
         <item quantity="other">%1$d чата</item>
     </plurals>
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новое(-ых) сообщение(-я) в %2$d чате(-ах)</string>
     <string name="MessageNotifier_most_recent_from_s">Последнее от: %1$s</string>
     <string name="MessageNotifier_locked_message">Сообщение скрыто</string>
     <string name="MessageNotifier_message_delivery_failed">Доставка сообщения не удалась.</string>
@@ -2371,7 +2381,6 @@
     <string name="MessageNotifier_view_once_video">Одноразовое видео</string>
     <string name="MessageNotifier_reply">Ответить</string>
     <string name="MessageNotifier_signal_message">Сообщение Signal</string>
-    <string name="MessageNotifier_unsecured_sms">Незащищенное SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Контакт</string>
     <string name="MessageNotifier_reacted_s_to_s">Отреагировал(-а) %1$s на: «%2$s».</string>
@@ -2387,6 +2396,18 @@
     <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Отключить уведомления «Контакт присоединился к Signal»? Вы можете заново включить их в Signal &gt; Настройки &gt; Уведомления.</string>
+
+    <!-- TurnOnNotificationsBottomSheet -->
+    <!-- Title for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__turn_on_notifications">Включите уведомления</string>
+    <!-- Subtitle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__to_receive_notifications">Чтобы получать уведомления о новых сообщениях:</string>
+    <!-- Sheet step 1  for sheet explaining how to turn on app notifications-->
+    <string name="TurnOnNotificationsBottomSheet__1_tap_settings_below">1. Нажмите «Настройки» ниже</string>
+    <!-- Sheet step 2 with placeholder which will be replaced with an image of a toggle  for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__2_s_turn_on_notifications">2. %1$s Включите уведомления</string>
+    <!-- Label for button at the bottom of the sheet which opens system app notification settings for sheet explaining how to turn on app notifications -->
+    <string name="TurnOnNotificationsBottomSheet__settings">Настройки</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Сообщения</string>
@@ -2453,7 +2474,6 @@
     </plurals>
 
     <!-- UnauthorizedReminder -->
-    <string name="UnauthorizedReminder_device_no_longer_registered">Устройство больше не зарегистрировано</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Это устройство больше не зарегистрировано. Это может быть вызвано тем, что вы зарегистрировали свой номер телефона в Signal на другом устройстве.</string>
     <!-- Action in reminder banner that will take user to re-register -->
@@ -2576,8 +2596,6 @@
     <string name="conversation_activity__type_message_sms_insecure">Незащищённое SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Незащищённое MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Запланировать сообщение</string>
-    <string name="conversation_activity__from_sim_name">Через %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Отправить</string>
     <string name="conversation_activity__compose_description">Написание сообщения</string>
@@ -2586,7 +2604,6 @@
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Быстрая камера</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записать и отправить аудио-вложение</string>
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Зафиксировать запись аудиосообщения</string>
-    <string name="conversation_activity__enable_signal_for_sms">Использовать Signal для SMS</string>
     <string name="conversation_activity__message_could_not_be_sent">Не удалось отправить сообщение. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
 
     <!-- conversation_input_panel -->
@@ -2651,16 +2668,6 @@
     <string name="QuoteView_no_longer_available">Больше не доступна</string>
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">Пожертвование за друга</string>
-
-    <!-- ConversationParentFragment -->
-    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Разрешение Bluetooth отключено</string>
-    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Пожалуйста, включите разрешение «Устройства Bluetooth поблизости», чтобы использовать Bluetooth во время записи голосовых сообщений.</string>
-    <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Открыть настройки</string>
-    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Не сейчас</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить вниз</string>
@@ -2787,17 +2794,7 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Ничего не найдено</string>
 
-    <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных Signal?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных никак изменена не будет.</string>
-    <string name="database_migration_activity__skip">Пропустить</string>
-    <string name="database_migration_activity__import">Импортировать</string>
-    <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Это может занять некоторое время. Пожалуйста, наберитесь терпения, мы сообщим вам, когда импорт завершится.</string>
-    <string name="database_migration_activity__importing">ИДЁТ ИМПОРТ</string>
-
-
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">Посмотреть полный чат</string>
     <string name="load_more_header__loading">Загрузка</string>
 
     <!-- media_overview_activity -->
@@ -2871,7 +2868,6 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Чтобы убедиться в безопасности сквозного шифрования с %1$s, сравните числа выше с устройством вашего собеседника. Вы также можете отсканировать код на его устройстве. <a href=\"https://signal.org/redirect/safety-numbers\">Узнать больше.</a>]]></string>
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Чтобы удостовериться в наличии сквозного шифрования с %1$s, сопоставьте цветную карточку выше с устройством вашего собеседника и сравните цифры. Если они не совпадают, свайпните и попробуйте другую пару кодов безопасности. Как минимум одна пара кодов должна совпадать.</string>
     <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
@@ -2891,9 +2887,6 @@
     <string name="PnpSafetyNumberEducationDialog__help">Нужна помощь?</string>
     <!-- Confirmation button for educating users about new safety number changes -->
     <string name="PnpSafetyNumberEducationDialog__confirm">Понятно</string>
-
-    <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Просканируйте QR-код на устройстве собеседника.</string>
@@ -2935,7 +2928,6 @@
     <string name="AndroidManifest__linked_devices">Привязанные устройства</string>
     <string name="AndroidManifest__invite_friends">Пригласить друзей</string>
     <string name="AndroidManifest_archived_conversations">Архивированные чаты</string>
-    <string name="AndroidManifest_remove_photo">Удалить фото</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">Вы уже прочитали наши ЧаВО?</string>
@@ -2959,7 +2951,7 @@
     <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Пожалуйста, выберите вариант \\-\\-</item>
+        <item>Пожалуйста, выберите вариант</item>
         <item>Что-то не работает</item>
         <item>Запросить новые функции</item>
         <item>Вопрос</item>
@@ -2969,6 +2961,16 @@
         <item>Пожертвования; Значки</item>
         <item>Экспорт SMS</item>
     </string-array>
+    <!-- Subject of email when submitting debug logs to help debug slow notifications -->
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Отправка журнала отладки Signal Android</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Уведомления приходят с задержкой</string>
+    <!-- Category to organize the support email sent -->
+    <string name="DebugLogsPromptDialogFragment__crash_category">Сбой</string>
+    <!-- Action to submit logs and take user to send an e-mail -->
+    <string name="DebugLogsPromptDialogFragment__submit">Отправить</string>
+    <!-- Action to decline to submit logs -->
+    <string name="DebugLogsPromptDialogFragment__no_thanks">Нет, спасибо</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
@@ -3092,7 +3094,6 @@
     <string name="preferences__payments">Платежи</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Блокировка платежей</string>
-    <string name="preferences__payments_beta">Платежи (бета)</string>
     <string name="preferences__conversation_length_limit">Макс. число сообщений в чате</string>
     <string name="preferences__keep_messages">Хранить сообщения</string>
     <string name="preferences__clear_message_history">Очистить историю сообщений</string>
@@ -3120,8 +3121,6 @@
     <string name="preferences__app_icon_notification_warning">В уведомлениях всегда будут отображаться значок и название Signal по умолчанию.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Узнать больше</string>
-    <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Значок для %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Графика, иллюстрирующая, где будет виден заменяющий значок приложения.</string>
     <string name="preferences__disable_pin">Отключить PIN-код</string>
@@ -3180,7 +3179,6 @@
     <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адрес собеседнику. Качество звонка ухудшится.</string>
     <string name="preferences_advanced__always_relay_calls">Всегда ретранслировать звонки</string>
-    <string name="preferences_app_protection__who_can">Кто может…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Платежи</string>
     <string name="preferences_chats__chats">Чаты</string>
@@ -3195,6 +3193,8 @@
     <string name="preferences_notifications__ringtone">Мелодия</string>
     <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
     <string name="preferences_notifications__priority">Приоритет</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Устранение неполадок с уведомлениями</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Обход цензуры</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -3211,8 +3211,6 @@
     <string name="preferences_communication__category_sealed_sender">Запечатанный отправитель</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и кому вы ещё не открывали свой профиль.</string>
-    <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
-    <string name="preferences_setup_a_username">Создать имя пользователя</string>
     <string name="preferences_proxy">Прокси</string>
     <string name="preferences_use_proxy">Использовать прокси</string>
     <string name="preferences_off">Отключено</string>
@@ -3251,7 +3249,8 @@
     <string name="PaymentsAllActivityFragment__sent">Отправленные</string>
     <string name="PaymentsAllActivityFragment__received">Полученные</string>
 
-    <string name="PaymentsHomeFragment__introducing_payments">Новая функция: платежи (бета)</string>
+    <!-- Displayed on a welcome screen for payments -->
+    <string name="PaymentsHomeFragment_introducing_payments">Новая функция: платежи</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Используйте Signal, чтобы отправлять и получать MobileCoin — новую цифр. валюту c акцентом на конфиденциальность. Активируйте, чтобы начать.</string>
     <string name="PaymentsHomeFragment__activate_payments">Активировать платежи</string>
     <string name="PaymentsHomeFragment__activating_payments">Активируем платежи…</string>
@@ -3285,8 +3284,9 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Платежи деактивированы.</string>
     <string name="PaymentsHomeFragment__payment_failed">Платёж не удался</string>
     <string name="PaymentsHomeFragment__details">Подробнее</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Вы можете использовать Signal, чтобы отправлять и получать MobileCoin. Все платежи регламентируются Условиями использования MobileCoins и MobileCoin Wallet. Это бета-функция, так что вы можете столкнуться с некоторыми проблемами, и платежи или средства, которые вы можете потерять, невозможно будет восстановить. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
+    <!-- Displayed as a description in a dialog when the user tries to activate payments -->
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Вы можете использовать Signal, чтобы отправлять и получать MobileCoin. Все платежи регламентируются Условиями использования MobileCoins и MobileCoin Wallet. Вы можете столкнуться с некоторыми проблемами, и платежи или средства, которые вы можете потерять, невозможно будет восстановить. </string>
     <string name="PaymentsHomeFragment__activate">Активировать</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Просмотреть Условия MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Платежи в Signal больше не доступны. Вы можете перевести средства на биржу, но больше не можете отправлять или получать платежи или пополнять баланс.</string>
@@ -3308,6 +3308,32 @@
     <string name="PaymentsHomeFragment__cancel">Отменить</string>
     <!-- Alert dialog button to update now -->
     <string name="PaymentsHomeFragment__update_now">Обновиться</string>
+
+    <!-- GrantPermissionsFragment -->
+    <!-- Displayed as a text-only action button at the bottom start of the screen -->
+    <string name="GrantPermissionsFragment__not_now">Не сейчас</string>
+    <!-- Displayed as an action button at the bottom end of the screen -->
+    <string name="GrantPermissionsFragment__next">Далее</string>
+    <!-- Displayed as a title at the top of the screen -->
+    <string name="GrantPermissionsFragment__allow_permissions">Включите разрешения</string>
+    <!-- Displayed as a subtitle at the top of the screen -->
+    <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">Чтобы вы могли отправлять сообщения тем, кого знаете, Signal будет запрашивать эти разрешения. </string>
+    <!-- Notifications permission row title -->
+    <string name="GrantPermissionsFragment__notifications">Уведомления</string>
+    <!-- Notifications permission row description -->
+    <string name="GrantPermissionsFragment__get_notified_when">Получать уведомления о новых сообщениях.</string>
+    <!-- Contacts permission row title -->
+    <string name="GrantPermissionsFragment__contacts">Контакты</string>
+    <!-- Contacts permission row description -->
+    <string name="GrantPermissionsFragment__find_people_you_know">Найдите людей, которых вы знаете. Ваши контакты зашифрованы и не видны Signal.</string>
+    <!-- Phone calls permission row title -->
+    <string name="GrantPermissionsFragment__phone_calls">Телефонные звонки</string>
+    <!-- Phone calls permission row description -->
+    <string name="GrantPermissionsFragment__make_registering_easier">Упростить регистрацию и включить дополнительные функции звонков.</string>
+    <!-- Storage permission row title -->
+    <string name="GrantPermissionsFragment__storage">Хранилище</string>
+    <!-- Storage permission row description -->
+    <string name="GrantPermissionsFragment__send_photos_videos_and_files">Отправляйте фото, видео и файлы со своего устройства.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3542,7 +3568,6 @@
     <string name="conversation__menu_format_text">Форматировать текст</string>
 
     <!-- conversation_popup -->
-    <string name="conversation_popup__menu_expand_popup">Расширить</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавить в контакты</string>
@@ -3582,8 +3607,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравнить с буфером обмена</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_import_title">Импортировать SMS из системы</string>
-    <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с вашего устройства в зашифрованную базу данных Signal.</string>
     <string name="reminder_header_push_title">Включить звонки и сообщения Signal</string>
     <string name="reminder_header_push_text">Откройте для себя новый уровень общения.</string>
     <string name="reminder_header_service_outage_text">У Signal возникли технические неполадки. Мы прилагаем все усилия, чтобы как можно быстрее восстановить обслуживание.</string>
@@ -3608,33 +3631,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Обновить</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Insights -->
-    <string name="Insights__percent">%</string>
-    <string name="Insights__title">Выводы</string>
-    <string name="InsightsDashboardFragment__title">Выводы</string>
-    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматически защитил %1$d%% ваших исходящих сообщения(-ий) за последние %2$d дня(-ей). Чаты между пользователями Signal всегда защищены сквозным шифрованием.</string>
-    <string name="InsightsDashboardFragment__spread_the_word">Расскажите другим</string>
-    <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены за последние %1$d дней.</string>
-    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
-    <string name="InsightsDashboardFragment__start_a_conversation">Начать чат</string>
-    <string name="InsightsDashboardFragment__invite_your_contacts">Начните общаться безопасно и включите новые функции, которые выходят за пределы ограничений незащищённых SMS, приглашая больше контактов присоединиться к Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Эта статистика была сгенерирована локально на вашем устройстве и видна только вам. Она никогда никуда не передаётся.</string>
-    <string name="InsightsDashboardFragment__encrypted_messages">Зашифрованных сообщений</string>
-    <string name="InsightsDashboardFragment__cancel">Отменить</string>
-    <string name="InsightsDashboardFragment__send">Отправить</string>
-    <string name="InsightsModalFragment__title">Представляем «Выводы»</string>
-    <string name="InsightsModalFragment__description">Узнайте, сколько из ваших исходящих сообщений было отправлено безопасно, а затем быстро пригласите новые контакты, чтобы увеличить ваш процент Signal.</string>
-    <string name="InsightsModalFragment__view_insights">Просмотреть выводы</string>
-
-    <string name="FirstInviteReminder__title">Пригласить в Signal</string>
-    <string name="FirstInviteReminder__description">Вы могли бы увеличить количество отправляемых вами зашифрованных сообщений на %1$d%%</string>
-    <string name="SecondInviteReminder__title">Улучшите свой Signal</string>
-    <string name="SecondInviteReminder__description">Пригласить %1$s</string>
-    <string name="InsightsReminder__view_insights">Просмотреть выводы</string>
-    <string name="InsightsReminder__invite">Пригласить</string>
 
     <!-- Edit KBS Pin -->
 
@@ -3775,17 +3771,12 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Текущий групповой звонок Signal</string>
 
     <!-- transport_selection_list_item -->
-    <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
     <string name="ConversationListFragment_loading">Загружаем…</string>
     <string name="CallNotificationBuilder_connecting">Подключается…</string>
     <string name="Permissions_permission_required">Требуется разрешение</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal требуется разрешение на доступ к SMS-сообщениям для отправки SMS, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Сообщения» («SMS»).</string>
     <string name="Permissions_continue">Продолжить</string>
     <string name="Permissions_not_now">Не сейчас</string>
-    <string name="conversation_activity__enable_signal_messages">ВКЛЮЧИТЬ СООБЩЕНИЯ SIGNAL</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Миграция базы данных Signal</string>
-    <string name="PushDecryptJob_new_locked_message">Новое заблокированное сообщение</string>
-    <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокируйте для просмотра ожидающих сообщений</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Парольная фраза резервной копии</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервные копии будут сохранены во внешнем хранилище и зашифрованы с помощью приведённой ниже парольной фразы. У вас должна быть эта фраза, чтобы восстановить резервную копию.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Вам понадобится эта парольная фраза, чтобы восстановить резервную копию.</string>
@@ -3846,8 +3837,6 @@
     <string name="RegistrationActivity_incorrect_code">Неверный код</string>
     <string name="BackupUtil_never">Никогда</string>
     <string name="BackupUtil_unknown">Неизвестно</string>
-    <string name="preferences_app_protection__see_my_phone_number">Видеть мой номер телефона</string>
-    <string name="preferences_app_protection__find_me_by_phone_number">Найти меня по номеру телефона</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Номер телефона</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -3861,10 +3850,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Ваш номер телефона будет виден людям и группам, которым вы отправляете сообщения. Люди, у которых есть ваш номер в телефонных контактах, также увидят его в Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Все</string>
-    <string name="PhoneNumberPrivacy_my_contacts">Мои контакты</string>
     <string name="PhoneNumberPrivacy_nobody">Никто</string>
-    <string name="PhoneNumberPrivacy_everyone_see_description">Ваш номер телефона будет виден всем людям и группам, которым вы отправляете сообщения.</string>
-    <string name="PhoneNumberPrivacy_everyone_find_description">Любой, у кого есть в контактах ваш номер телефона, будет видеть вас как контакта в Signal. Другие смогут найти вас в поиске.</string>
     <string name="preferences_app_protection__screen_lock">Блокировка экрана</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Блокировка доступа к Signal при помощи блокировки экрана Android или отпечатка пальца</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Период бездействия для блокировки экрана</string>
@@ -4287,7 +4273,7 @@
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Всё получилось! Теперь сохраните свою фразу для восстановления — ключ из 24 слов, который вы сможете использовать для восстановления информации.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Теперь сохраните свою фразу для восстановления — ключ из 24 слов, который вы сможете использовать для восстановления информации. Узнать больше</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Теперь сохраните свою фразу для восстановления — ключ из 24 слов, который вы сможете использовать для восстановления информации.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза восстановления — это уникальная фраза, состоящая из %1$d слов. Она понадобится вам, чтобы восстановить свой баланс.</string>
     <string name="PaymentsRecoveryStartFragment__start">Начать</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Ввести вручную</string>
@@ -4339,11 +4325,6 @@
     <string name="PaymentsRecoveryEntryFragment__word_d">Слово № %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">Далее</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Неправильное слово</string>
-
-    <!-- ClearClipboardAlarmReceiver -->
-
-    <!-- PaymentNotificationsView -->
-    <string name="PaymentNotificationsView__view">Просмотреть</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s отправил(-а) вам %2$s</string>
@@ -4817,7 +4798,6 @@
 
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
-    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Поделиться</string>
@@ -4978,7 +4958,6 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">Пожертвовать за друга</string>
 
     <string name="Boost__enter_custom_amount">Ввести сумму</string>
-    <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Минимальная сумма пожертвования составляет %1$s</string>
 
@@ -5268,6 +5247,10 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Не удалось открыть приложение для выбора мелодии.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">Чтобы включить уведомления, Signal должен получить разрешение на их отображение.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Включить</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Обновления и новости Signal</string>
@@ -5428,8 +5411,6 @@
     <string name="StoryViewsAndRepliesDialogFragment__replies">Ответы</string>
     <!-- Description of action for reaction button -->
     <string name="StoryReplyComposer__react_to_this_story">Отреагировать на историю</string>
-    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__replying_privately_to_s">Приватный ответ для %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__reply_to_s">Ответить %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -5690,8 +5671,6 @@
     <string name="ViewReceivedGiftSheet__not_now">Не сейчас</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Принятие значка…</string>
-    <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Вы можете принять свой значок позже.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Вы сделали пожертвование в Signal от имени %1$s. Этот пользователь сможет продемонстрировать свою поддержку в профиле.</string>
     <!-- Expired gift sheet title -->
@@ -6016,23 +5995,10 @@
     <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal больше не будет поддерживать SMS</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Сигнал больше не поддерживает SMS</string>
-    <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal скоро прекратит поддержку отправки SMS-сообщений, поскольку сообщения Signal защищены сквозным шифрованием и обеспечивают высокую степень конфиденциальности, чего не позволяют SMS-сообщения. Это также позволит нам улучшить работу Signal с сообщениями.</string>
-    <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal прекратил поддержку отправки SMS-сообщений, поскольку сообщения Signal защищены сквозным шифрованием и обеспечивают высокую степень конфиденциальности, чего не позволяют SMS-сообщения. Это также позволит нам улучшить работу Signal с сообщениями.</string>
-    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Экспорт SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Напомните мне позже</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Узнать больше</string>
 
-    <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">Поддержка SMS прекращается</string>
-    <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Не волнуйтесь, зашифрованные сообщения Signal будут работать по-прежнему.</string>
-    <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Продолжить</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Экспорт завершён</string>
     <!-- Button to continue to next screen -->
@@ -6244,14 +6210,14 @@
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
     <string name="CallLogAdapter__call_link">Ссылка на звонок</string>
+    <!-- Accessibility description for the video call button -->
+    <string name="CallLogAdapter__start_a_video_call">Начать видеозвонок</string>
+    <!-- Accessibility description for the voice call button -->
+    <string name="CallLogAdapter__start_a_voice_call">Начать аудиозвонок</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Видеозвонок</string>
-    <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Присоединиться к звонку</string>
-    <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Вернуться к звонку</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Начать аудиозвонок</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -6312,12 +6278,12 @@
         <item quantity="many">%1$d звонков удалено</item>
         <item quantity="other">%1$d звонка удалено</item>
     </plurals>
-    <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Отменить</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">Нет звонков.</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">Начните со звонка другу.</string>
+    <!-- Displayed as a message in a dialog when deleting multiple items -->
+    <string name="CallLogFragment__call_links_youve_created">Созданные вами ссылки на звонки больше не будут действовать для тех, у кого они есть.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -6334,6 +6300,10 @@
     <string name="CallStateUpdatePopupWindow__mic_on">Микрофон включён</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Микрофон выключен</string>
+    <!-- Displayed when the user turns on their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_on">Звук включён</string>
+    <!-- Displayed when the user turns off their speakerphone -->
+    <string name="CallStateUpdatePopupWindow__speaker_off">Звук выключен</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Кнопка съёмки</string>
@@ -6355,6 +6325,18 @@
     <string name="CreateCallLink__create_a_call_link">Создать ссылку для звонка</string>
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Поделиться ссылкой для звонка Signal</string>
+    <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Используйте эту ссылку, чтобы присоединиться к звонку Signal: %1$s</string>
+
+    <!-- CallLinkInfoSheet -->
+    <!-- Sheet title -->
+    <string name="CallLinkInfoSheet__call_info">Информация о звонке</string>
+    <!-- Dialog title for removing or blocking participants -->
+    <string name="CallLinkInfoSheet__remove_s_from_the_call">Удалить %1$s из звонка?</string>
+    <!-- Dialog action to remove participant from the call -->
+    <string name="CallLinkInfoSheet__remove">Удалить</string>
+    <!-- Dialog action to block participant from the call -->
+    <string name="CallLinkInfoSheet__block_from_call">Заблокировать от звонка</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
@@ -6363,8 +6345,10 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Звонок Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Войти</string>
-    <!-- Option to open a full screen dialog to enter a call name -->
+    <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Добавить имя звонка</string>
+    <!-- Option to open a full screen dialog to edit a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Изменить имя звонка</string>
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Одобрить всех участников</string>
     <!-- Row label to share the link via Signal -->
@@ -6379,6 +6363,12 @@
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Невозможно поделиться ссылкой на звонок.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Скопировано в буфер обмена</string>
+
+    <!-- CallLinkIncomingRequestSheet -->
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__approve_entry">Принять запрос</string>
+    <!-- Displayed as line item in sheet for approving or denying a single user -->
+    <string name="CallLinkIncomingRequestSheet__deny_entry">Отклонить запрос</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
@@ -6399,9 +6389,9 @@
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">История изменений</string>
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Только для бета-версии Signal</string>
+    <string name="SendingEditMessageBetaOnlyDialog_title">Редактировать сообщение</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Редактирование сообщений доступно только для пользователей бета-версии Signal. Если вы отредактируете сообщение, то оно будет доступно только тем, кто пользуется последней бета-версией Signal.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Если вы отредактируете сообщение, это увидят только те, кто пользуется последними версиями Signal. Они увидят, что вы отредактировали сообщение.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Отменить</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -6436,6 +6426,16 @@
     <string name="UsernameLinkSettings_username_copied_toast">Имя пользователя скопировано</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Ссылка скопирована</string>
+    <!-- Content of a text field that is shown when the user has not yet set a username link -->
+    <string name="UsernameLinkSettings_link_not_set_label">Ссылка не установлена</string>
+    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
+    <string name="UsernameLinkSettings_resetting_link_label">Сброс ссылки…</string>
+    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Сбросить QR-код?</string>
+    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_body">При сбросе QR-кода ваш существующий QR-код и ссылка перестанут работать.</string>
+    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Сбросить</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Сбросить</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
@@ -6452,9 +6452,40 @@
     <string name="UsernameLinkSettings_qr_result_invalid">QR-код был недействителен.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">Пользователь с именем %1$s не найден.</string>
+    <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Этот пользователь не найден.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Произошла ошибка сети. Пожалуйста, попробуйте ещё раз.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">У вас нет доступа к сети. Ваша ссылка не была сброшена. Попробуйте ещё раз позже.</string>
+    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Произошла ошибка сети при попытке сбросить ссылку. Попробуйте ещё раз позже.</string>
 
+    <!-- PendingParticipantsView -->
+    <!-- Displayed in the popup card when a remote user attempts to join a call link -->
+    <string name="PendingParticipantsView__would_like_to_join">Хотел(-а) бы присоединиться…</string>
+    <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
+    <plurals name="PendingParticipantsView__plus_d_requests">
+        <item quantity="one">+%1$d запрос</item>
+        <item quantity="few">+%1$d запроса</item>
+        <item quantity="many">+%1$d запросов</item>
+        <item quantity="other">+%1$d запроса</item>
+    </plurals>
+
+    <!-- PendingParticipantsBottomSheet -->
+    <!-- Title of the bottom sheet displaying requests to join the call link -->
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">Запросы на участие в этом звонке</string>
+    <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
+    <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
+        <item quantity="one">%1$d человек ждёт</item>
+        <item quantity="few">%1$d человека ждут</item>
+        <item quantity="many">%1$d человек ждут</item>
+        <item quantity="other">%1$d человека ждут</item>
+    </plurals>
+    <!-- Content description for rejecting a user -->
+    <string name="PendingParticipantsBottomSheet__reject">Отклонить</string>
+    <!-- Content description for confirming a user -->
+    <string name="PendingParticipantsBottomSheet__approve">Принять</string>
 
     <!-- EOF -->
 </resources>

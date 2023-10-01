@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.attachments;
 
 import android.net.Uri;
+import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.ParcelCompat;
 
 import org.thoughtcrime.securesms.audio.AudioHash;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
@@ -52,8 +54,19 @@ public class UriAttachment extends Attachment {
                        @Nullable AudioHash audioHash,
                        @Nullable TransformProperties transformProperties)
   {
-    super(contentType, transferState, size, fileName, 0, null, null, null, null, null, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferState, size, fileName, 0, null, null, null, null, null, fastPreflightId, voiceNote, borderless, videoGif, width, height, 0, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.dataUri = Objects.requireNonNull(dataUri);
+  }
+
+  protected UriAttachment(Parcel in) {
+    super(in);
+    this.dataUri = Objects.requireNonNull(ParcelCompat.readParcelable(in, Uri.class.getClassLoader(), Uri.class));
+  }
+
+  @Override
+  public void writeToParcel(@NonNull Parcel dest, int flags) {
+    super.writeToParcel(dest, flags);
+    dest.writeParcelable(dataUri, 0);
   }
 
   @Override

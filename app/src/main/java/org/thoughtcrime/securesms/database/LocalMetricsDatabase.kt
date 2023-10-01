@@ -153,6 +153,16 @@ class LocalMetricsDatabase private constructor(
     writableDatabase.delete(TABLE_NAME, null, null)
   }
 
+  fun getOldestMetricTime(eventName: String): Long {
+    readableDatabase.rawQuery("SELECT $CREATED_AT FROM $TABLE_NAME WHERE $EVENT_NAME = ? ORDER BY $CREATED_AT ASC", SqlUtil.buildArgs(eventName)).use { cursor ->
+      return if (cursor.moveToFirst()) {
+        cursor.getLong(0)
+      } else {
+        0
+      }
+    }
+  }
+
   fun getMetrics(): List<EventMetrics> {
     val db = readableDatabase
 
@@ -213,7 +223,7 @@ class LocalMetricsDatabase private constructor(
     }
   }
 
-  private fun eventPercent(eventName: String, percent: Int): Long {
+  fun eventPercent(eventName: String, percent: Int): Long {
     return percentile(EventTotals.VIEW_NAME, "$EVENT_NAME = '$eventName'", percent)
   }
 

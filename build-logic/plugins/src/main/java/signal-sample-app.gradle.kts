@@ -10,17 +10,17 @@ import org.gradle.kotlin.dsl.the
 val libs = the<LibrariesForLibs>()
 val testLibs = the<LibrariesForTestLibs>()
 
-val signalBuildToolsVersion: String by extra
-val signalCompileSdkVersion: String by extra
-val signalTargetSdkVersion: Int by extra
-val signalMinSdkVersion: Int by extra
-val signalJavaVersion: JavaVersion by extra
+val signalBuildToolsVersion: String by rootProject.extra
+val signalCompileSdkVersion: String by rootProject.extra
+val signalTargetSdkVersion: Int by rootProject.extra
+val signalMinSdkVersion: Int by rootProject.extra
+val signalJavaVersion: JavaVersion by rootProject.extra
+val signalKotlinJvmTarget: String by rootProject.extra
 
 plugins {
   id("com.android.application")
   id("kotlin-android")
   id("ktlint")
-  id("android-constants")
 }
 
 android {
@@ -43,7 +43,15 @@ android {
   }
 
   kotlinOptions {
-    jvmTarget = "11"
+    jvmTarget = signalKotlinJvmTarget
+  }
+
+  buildFeatures {
+    compose = true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion = "1.4.4"
   }
 }
 
@@ -65,6 +73,9 @@ dependencies {
   implementation(libs.material.material)
   implementation(libs.androidx.constraintlayout)
   implementation(libs.kotlin.stdlib.jdk8)
+  implementation(libs.androidx.activity.compose)
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.androidx.compose.material3)
 
   ktlintRuleset(libs.ktlint.twitter.compose)
 

@@ -55,6 +55,10 @@ include ':sticky-header-grid'
 include ':photoview'
 include ':core-ui'
 include ':benchmark'
+include ':microbenchmark'
+include ':video-app'
+include ':glide-webp'
+include ':glide-webp-app'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
@@ -83,7 +87,9 @@ project(':contacts-app').projectDir = file('contacts/app')
 project(':qr').projectDir = file('qr/lib')
 project(':qr-app').projectDir = file('qr/app')
 
+project(':glide-webp').projectDir = file('glide-webp/lib')
+project(':glide-webp-app').projectDir = file('glide-webp/app')
+
 rootProject.name='Signal'
 
 apply from: 'dependencies.gradle'
-include ':microbenchmark'

@@ -1,17 +1,13 @@
 package org.thoughtcrime.securesms.groups.v2.processing
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.both
 import org.hamcrest.Matchers.hasItem
-import org.hamcrest.Matchers.hasProperty
 import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.notNullValue
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -26,7 +22,6 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.signal.storageservice.protos.groups.local.DecryptedString
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.database.GroupStateTestData
@@ -46,9 +41,8 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
-import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import java.util.UUID
 
@@ -60,9 +54,9 @@ class GroupsV2StateProcessorTest {
     private val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
     private val selfAci: ACI = ACI.from(UUID.randomUUID())
     private val serviceIds: ServiceIds = ServiceIds(selfAci, PNI.from(UUID.randomUUID()))
-    private val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
-    private val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
-    private val others: List<DecryptedMember> = listOf(member(otherSid))
+    private val otherAci: ACI = ACI.from(UUID.randomUUID())
+    private val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherAci))
+    private val others: List<DecryptedMember> = listOf(member(otherAci))
   }
 
   private lateinit var groupTable: GroupTable
@@ -92,7 +86,7 @@ class GroupsV2StateProcessorTest {
     mockkStatic(ApplicationDependencies::class)
     every { ApplicationDependencies.getJobManager() } returns jobManager
 
-    processor = GroupsV2StateProcessor.StateProcessorForGroup(serviceIds, ApplicationProvider.getApplicationContext(), groupTable, groupsV2API, groupsV2Authorization, masterKey, profileAndMessageHelper)
+    processor = GroupsV2StateProcessor.StateProcessorForGroup(serviceIds, groupTable, groupsV2API, groupsV2Authorization, masterKey, profileAndMessageHelper)
   }
 
   @After
@@ -247,18 +241,18 @@ class GroupsV2StateProcessorTest {
     given {
       localState(
         revision = 5,
-        disappearingMessageTimer = DecryptedTimer.newBuilder().setDuration(1000).build()
+        disappearingMessageTimer = DecryptedTimer.Builder().duration(1000).build()
       )
     }
 
-    val signedChange = DecryptedGroupChange.newBuilder().apply {
+    val signedChange = DecryptedGroupChange.Builder().apply {
       revision = 6
-      setNewTimer(DecryptedTimer.newBuilder().setDuration(5000))
+      newTimer(DecryptedTimer.Builder().duration(5000).build())
     }
 
     val result = processor.updateLocalGroupToRevision(6, 0, signedChange.build())
     assertThat("revision matches peer change", result.latestServer!!.revision, `is`(6))
-    assertThat("timer changed by peer change", result.latestServer!!.disappearingMessagesTimer.duration, `is`(5000))
+    assertThat("timer changed by peer change", result.latestServer!!.disappearingMessagesTimer!!.duration, `is`(5000))
   }
 
   @Test
@@ -268,7 +262,7 @@ class GroupsV2StateProcessorTest {
         revision = 2,
         title = "Breaking Signal for Science",
         description = "We break stuff, because we must.",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 2))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
       )
       changeSet {
         changeLog(2) {
@@ -278,7 +272,7 @@ class GroupsV2StateProcessorTest {
       apiCallParameters(2, true)
     }
 
-    val result = processor.updateLocalGroupToRevision(2, 0, DecryptedGroupChange.getDefaultInstance())
+    val result = processor.updateLocalGroupToRevision(2, 0, DecryptedGroupChange())
     assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
     assertThat("revision matches server", result.latestServer!!.revision, `is`(2))
   }
@@ -290,7 +284,7 @@ class GroupsV2StateProcessorTest {
         revision = 3,
         title = "Breaking Signal for Science",
         description = "We break stuff, because we must.",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 2))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
       )
       changeSet {
         changeLog(2) {
@@ -307,7 +301,7 @@ class GroupsV2StateProcessorTest {
 
     every { groupTable.isUnknownGroup(any<GroupId>()) } returns true
 
-    val result = processor.updateLocalGroupToRevision(2, 0, DecryptedGroupChange.getDefaultInstance())
+    val result = processor.updateLocalGroupToRevision(2, 0, DecryptedGroupChange())
 
     assertThat("local should update to revision added", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
     assertThat("revision matches peer revision added", result.latestServer!!.revision, `is`(2))
@@ -346,13 +340,13 @@ class GroupsV2StateProcessorTest {
       serverState(
         revision = 3,
         title = "Beam me up",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 3))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 3))
       )
       changeSet {
         changeLog(3) {
           fullSnapshot(serverState)
           change {
-            addNewMembers(member(selfAci, joinedAt = 3))
+            newMembers += member(selfAci, joinedAt = 3)
           }
         }
       }
@@ -376,13 +370,13 @@ class GroupsV2StateProcessorTest {
       serverState(
         revision = 5,
         title = "Beam me up!",
-        members = listOf(member(otherSid), member(selfAci, joinedAt = 3))
+        members = listOf(member(otherAci), member(selfAci, joinedAt = 3))
       )
       changeSet {
         changeLog(3) {
           fullSnapshot(extendGroup = serverState, title = "Beam me up")
           change {
-            addNewMembers(member(selfAci, joinedAt = 3))
+            newMembers += member(selfAci, joinedAt = 3)
           }
         }
         changeLog(4) {
@@ -424,13 +418,13 @@ class GroupsV2StateProcessorTest {
       changeSet {
         changeLog(100) {
           change {
-            addNewMembers(member(selfAci, joinedAt = 100))
+            newMembers += member(selfAci, joinedAt = 100)
           }
         }
         changeLog(101) {
           change {
-            addDeleteMembers(randomMembers[1].uuid)
-            addModifiedProfileKeys(randomMembers[0])
+            deleteMembers += randomMembers[1].aciBytes
+            modifiedProfileKeys += randomMembers[0]
           }
         }
       }
@@ -445,13 +439,13 @@ class GroupsV2StateProcessorTest {
             members = selfAndOthers + randomMembers[0] + randomMembers[1]
           )
           change {
-            addNewMembers(member(selfAci, joinedAt = 100))
+            newMembers += member(selfAci, joinedAt = 100)
           }
         }
         changeLog(101) {
           change {
-            addDeleteMembers(randomMembers[1].uuid)
-            addModifiedProfileKeys(randomMembers[0])
+            deleteMembers += randomMembers[1].aciBytes
+            modifiedProfileKeys += randomMembers[0]
           }
         }
       }
@@ -470,7 +464,7 @@ class GroupsV2StateProcessorTest {
    */
   @Test
   fun missedMemberAddResolvesWithMultipleRevisionUpdate() {
-    val secondOther = member(ServiceId.from(UUID.randomUUID()))
+    val secondOther = member(ACI.from(UUID.randomUUID()))
 
     profileAndMessageHelper.masterKey = masterKey
 
@@ -510,9 +504,9 @@ class GroupsV2StateProcessorTest {
 
     val result = processor.updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, 0, null)
     assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
-    assertThat("members contains second other", result.latestServer!!.membersList, hasItem(secondOther))
+    assertThat("members contains second other", result.latestServer!!.members, hasItem(secondOther))
 
-    assertThat("group update messages contains new member add", updateMessageContextArgs.map { it.change.newMembersList }, hasItem(hasItem(secondOther)))
+    assertThat("group update messages contains new member add", updateMessageContextArgs.map { it.change!!.newMembers }, hasItem(hasItem(secondOther)))
   }
 
   /**
@@ -521,7 +515,7 @@ class GroupsV2StateProcessorTest {
    */
   @Test
   fun missedMemberAddResolvesWithForcedUpdate() {
-    val secondOther = member(ServiceId.from(UUID.randomUUID()))
+    val secondOther = member(ACI.from(UUID.randomUUID()))
 
     profileAndMessageHelper.masterKey = masterKey
 
@@ -544,16 +538,10 @@ class GroupsV2StateProcessorTest {
 
     val result = processor.forceSanityUpdateFromServer(0)
     assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
-    assertThat("members contains second other", result.latestServer!!.membersList, hasItem(secondOther))
+    assertThat("members contains second other", result.latestServer!!.members, hasItem(secondOther))
     assertThat("title should be updated", result.latestServer!!.title, `is`("Changed"))
-
-    assertThat("group update messages contains new member add", updateMessageContextArgs.map { it.change.newMembersList }, hasItem(hasItem(secondOther)))
-
-    assertThat(
-      "group update messages contains title change",
-      updateMessageContextArgs.map { it.change.newTitle },
-      hasItem(both<DecryptedString>(notNullValue()).and(hasProperty("value", `is`("Changed"))))
-    )
+    assertThat("group update messages contains new member add", updateMessageContextArgs.map { it.change!!.newMembers }, hasItem(hasItem(secondOther)))
+    assertThat("group update messages contains title change", updateMessageContextArgs.mapNotNull { it.change!!.newTitle }.any { it.value_ == "Changed" })
   }
 
   /**

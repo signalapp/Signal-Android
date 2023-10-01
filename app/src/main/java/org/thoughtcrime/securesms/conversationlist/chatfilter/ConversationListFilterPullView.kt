@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.doOnEachLayout
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -193,6 +194,18 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     return state == FilterPullState.OPEN
   }
 
+  fun openImmediate() {
+    if (state == FilterPullState.CLOSED) {
+      setState(FilterPullState.OPEN_APEX, source)
+      setState(FilterPullState.OPENING, source)
+      animatePillIn(
+        source = ConversationFilterSource.OVERFLOW,
+        animationStartDelay = 0.milliseconds,
+        animationDuration = 0.milliseconds
+      )
+    }
+  }
+
   private fun open(source: ConversationFilterSource) {
     setState(FilterPullState.OPENING, source)
     animatePillIn(source)
@@ -214,15 +227,19 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     })
   }
 
-  private fun animatePillIn(source: ConversationFilterSource) {
+  private fun animatePillIn(
+    source: ConversationFilterSource,
+    animationStartDelay: Duration = 300.milliseconds,
+    animationDuration: Duration = 300.milliseconds
+  ) {
     binding.filterText.visibility = VISIBLE
     binding.filterText.alpha = 0f
     binding.filterText.isEnabled = true
 
     pillAnimator?.cancel()
     pillAnimator = ObjectAnimator.ofFloat(binding.filterText, ALPHA, 1f).apply {
-      startDelay = 300
-      duration = 300
+      startDelay = animationStartDelay.inWholeMilliseconds
+      duration = animationDuration.inWholeMilliseconds
       doOnEnd {
         setState(FilterPullState.OPEN, source)
       }

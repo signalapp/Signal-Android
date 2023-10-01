@@ -617,10 +617,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Use V2 ConversationItem"),
-        isChecked = state.useConversationItemV2,
+        title = DSLSettingsText.from("Use V2 ConversationItem for Media"),
+        isChecked = state.useConversationItemV2ForMedia,
         onClick = {
-          viewModel.setUseConversationItemV2(!state.useConversationItemV2)
+          viewModel.setUseConversationItemV2Media(!state.useConversationItemV2ForMedia)
         }
       )
     }
@@ -768,7 +768,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun clearKeepLongerLogs() {
     SimpleTask.run({
-      LogDatabase.getInstance(requireActivity().application).clearKeepLonger()
+      LogDatabase.getInstance(requireActivity().application).logs.clearKeepLonger()
     }) {
       Toast.makeText(requireContext(), "Cleared keep longer logs", Toast.LENGTH_SHORT).show()
     }

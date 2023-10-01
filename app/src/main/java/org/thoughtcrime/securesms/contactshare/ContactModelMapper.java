@@ -9,7 +9,7 @@ import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.DataMessage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -125,47 +125,47 @@ public class ContactModelMapper {
     return new Contact(name, sharedContact.getOrganization().orElse(null), phoneNumbers, emails, postalAddresses, avatar);
   }
 
-  public static Contact remoteToLocal(@NonNull SignalServiceProtos.DataMessage.Contact contact) {
-    Name name = new Name(contact.getName().getDisplayName(),
-                         contact.getName().getGivenName(),
-                         contact.getName().getFamilyName(),
-                         contact.getName().getPrefix(),
-                         contact.getName().getSuffix(),
-                         contact.getName().getMiddleName());
+  public static Contact remoteToLocal(@NonNull DataMessage.Contact contact) {
+    Name name = new Name(contact.name.displayName,
+                         contact.name.givenName,
+                         contact.name.familyName,
+                         contact.name.prefix,
+                         contact.name.suffix,
+                         contact.name.middleName);
 
-    List<Phone> phoneNumbers = new ArrayList<>(contact.getNumberCount());
-    for (SignalServiceProtos.DataMessage.Contact.Phone phone : contact.getNumberList()) {
-      phoneNumbers.add(new Phone(phone.getValue(),
-                                 remoteToLocalType(phone.getType()),
-                                 phone.getLabel()));
+    List<Phone> phoneNumbers = new ArrayList<>(contact.number.size());
+    for (DataMessage.Contact.Phone phone : contact.number) {
+      phoneNumbers.add(new Phone(phone.value_,
+                                 remoteToLocalType(phone.type),
+                                 phone.label));
     }
 
-    List<Email> emails = new ArrayList<>(contact.getEmailCount());
-    for (SignalServiceProtos.DataMessage.Contact.Email email : contact.getEmailList()) {
-      emails.add(new Email(email.getValue(),
-                           remoteToLocalType(email.getType()),
-                           email.getLabel()));
+    List<Email> emails = new ArrayList<>(contact.email.size());
+    for (DataMessage.Contact.Email email : contact.email) {
+      emails.add(new Email(email.value_,
+                           remoteToLocalType(email.type),
+                           email.label));
     }
 
-    List<PostalAddress> postalAddresses = new ArrayList<>(contact.getAddressCount());
-    for (SignalServiceProtos.DataMessage.Contact.PostalAddress postalAddress : contact.getAddressList()) {
-      postalAddresses.add(new PostalAddress(remoteToLocalType(postalAddress.getType()),
-                                            postalAddress.getLabel(),
-                                            postalAddress.getStreet(),
-                                            postalAddress.getPobox(),
-                                            postalAddress.getNeighborhood(),
-                                            postalAddress.getCity(),
-                                            postalAddress.getRegion(),
-                                            postalAddress.getPostcode(),
-                                            postalAddress.getCountry()));
+    List<PostalAddress> postalAddresses = new ArrayList<>(contact.address.size());
+    for (DataMessage.Contact.PostalAddress postalAddress : contact.address) {
+      postalAddresses.add(new PostalAddress(remoteToLocalType(postalAddress.type),
+                                            postalAddress.label,
+                                            postalAddress.street,
+                                            postalAddress.pobox,
+                                            postalAddress.neighborhood,
+                                            postalAddress.city,
+                                            postalAddress.region,
+                                            postalAddress.postcode,
+                                            postalAddress.country));
     }
 
     Avatar avatar = null;
-    if (contact.hasAvatar()) {
+    if (contact.avatar != null) {
       try {
-        SignalServiceAttachmentPointer attachmentPointer = AttachmentPointerUtil.createSignalAttachmentPointer(contact.getAvatar().getAvatar());
+        SignalServiceAttachmentPointer attachmentPointer = AttachmentPointerUtil.createSignalAttachmentPointer(contact.avatar.avatar);
         Attachment                     attachment        = PointerAttachment.forPointer(Optional.of(attachmentPointer.asPointer())).get();
-        boolean                        isProfile         = contact.getAvatar().getIsProfile();
+        boolean                        isProfile         = contact.avatar.isProfile;
 
         avatar = new Avatar(null, attachment, isProfile);
       } catch (InvalidMessageStructureException e) {
@@ -173,7 +173,7 @@ public class ContactModelMapper {
       }
     }
 
-    return new Contact(name, contact.getOrganization(), phoneNumbers, emails, postalAddresses, avatar);
+    return new Contact(name, contact.organization, phoneNumbers, emails, postalAddresses, avatar);
   }
 
   private static Phone.Type remoteToLocalType(SharedContact.Phone.Type type) {
@@ -185,7 +185,7 @@ public class ContactModelMapper {
     }
   }
 
-  private static Phone.Type remoteToLocalType(SignalServiceProtos.DataMessage.Contact.Phone.Type type) {
+  private static Phone.Type remoteToLocalType(DataMessage.Contact.Phone.Type type) {
     switch (type) {
       case HOME:   return Phone.Type.HOME;
       case MOBILE: return Phone.Type.MOBILE;
@@ -203,7 +203,7 @@ public class ContactModelMapper {
     }
   }
 
-  private static Email.Type remoteToLocalType(SignalServiceProtos.DataMessage.Contact.Email.Type type) {
+  private static Email.Type remoteToLocalType(DataMessage.Contact.Email.Type type) {
     switch (type) {
       case HOME:   return Email.Type.HOME;
       case MOBILE: return Email.Type.MOBILE;
@@ -220,7 +220,7 @@ public class ContactModelMapper {
     }
   }
 
-  private static PostalAddress.Type remoteToLocalType(SignalServiceProtos.DataMessage.Contact.PostalAddress.Type type) {
+  private static PostalAddress.Type remoteToLocalType(DataMessage.Contact.PostalAddress.Type type) {
     switch (type) {
       case HOME:   return PostalAddress.Type.HOME;
       case WORK:   return PostalAddress.Type.WORK;

@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.linkpreview;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.ParcelCompat;
 import androidx.core.text.HtmlCompat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +19,7 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import java.io.IOException;
 import java.util.Optional;
 
-public class LinkPreview {
+public class LinkPreview implements Parcelable {
 
   @JsonProperty
   private final String       url;
@@ -66,6 +70,42 @@ public class LinkPreview {
     this.attachmentId = attachmentId;
     this.thumbnail    = Optional.empty();
   }
+
+  protected LinkPreview(Parcel in) {
+    url          = in.readString();
+    title        = in.readString();
+    description  = in.readString();
+    date         = in.readLong();
+    attachmentId = ParcelCompat.readParcelable(in, AttachmentId.class.getClassLoader(), AttachmentId.class);
+    thumbnail    = Optional.ofNullable(ParcelCompat.readParcelable(in, Attachment.class.getClassLoader(), Attachment.class));
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(url);
+    dest.writeString(title);
+    dest.writeString(description);
+    dest.writeLong(date);
+    dest.writeParcelable(attachmentId, flags);
+    dest.writeParcelable(thumbnail.orElse(null), 0);
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  public static final Creator<LinkPreview> CREATOR = new Creator<LinkPreview>() {
+    @Override
+    public LinkPreview createFromParcel(Parcel in) {
+      return new LinkPreview(in);
+    }
+
+    @Override
+    public LinkPreview[] newArray(int size) {
+      return new LinkPreview[size];
+    }
+  };
 
   public @NonNull String getUrl() {
     return url;

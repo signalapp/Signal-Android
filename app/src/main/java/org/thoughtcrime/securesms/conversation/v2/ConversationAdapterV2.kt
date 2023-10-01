@@ -9,13 +9,15 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
+import androidx.core.view.children
 import androidx.lifecycle.LifecycleOwner
+import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.exoplayer2.MediaItem
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.Unbindable
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
@@ -34,9 +36,13 @@ import org.thoughtcrime.securesms.conversation.v2.data.OutgoingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationContext
-import org.thoughtcrime.securesms.conversation.v2.items.V2TextOnlyViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemMediaViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemTextOnlyViewHolder
+import org.thoughtcrime.securesms.conversation.v2.items.V2Payload
 import org.thoughtcrime.securesms.conversation.v2.items.bridge
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBinding
+import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaOutgoingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
@@ -47,6 +53,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.HtmlUtil
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
@@ -57,7 +64,7 @@ import java.util.Optional
 
 class ConversationAdapterV2(
   private val lifecycleOwner: LifecycleOwner,
-  private val glideRequests: GlideRequests,
+  override val glideRequests: GlideRequests,
   override val clickListener: ItemClickListener,
   private var hasWallpaper: Boolean,
   private val colorizer: Colorizer,
@@ -73,7 +80,7 @@ class ConversationAdapterV2(
   override val selectedItems: Set<MultiselectPart>
     get() = _selected.toSet()
 
-  override var searchQuery: String? = null
+  override var searchQuery: String = ""
   private var inlineContent: ConversationMessage? = null
 
   private var recordToPulse: ConversationMessage? = null
@@ -83,6 +90,10 @@ class ConversationAdapterV2(
 
   override var isMessageRequestAccepted: Boolean = false
 
+  override var isParentInScroll: Boolean = false
+
+  private val onScrollStateChangedListener = OnScrollStateChangedListener()
+
   init {
     registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_thread_header)
 
@@ -91,25 +102,37 @@ class ConversationAdapterV2(
       ConversationUpdateViewHolder(view)
     }
 
-    registerFactory(OutgoingMedia::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_multimedia, parent, false)
-      OutgoingMediaViewHolder(view)
+    if (SignalStore.internalValues().useConversationItemV2Media()) {
+      registerFactory(OutgoingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_media_outgoing, parent, false)
+        V2ConversationItemMediaViewHolder(V2ConversationItemMediaOutgoingBinding.bind(view).bridge(), this)
+      }
+
+      registerFactory(IncomingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_media_incoming, parent, false)
+        V2ConversationItemMediaViewHolder(V2ConversationItemMediaIncomingBinding.bind(view).bridge(), this)
+      }
+    } else {
+      registerFactory(OutgoingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_sent_multimedia, parent, false)
+        OutgoingMediaViewHolder(view)
+      }
+
+      registerFactory(IncomingMedia::class.java) { parent ->
+        val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
+        IncomingMediaViewHolder(view)
+      }
     }
 
-    registerFactory(IncomingMedia::class.java) { parent ->
-      val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
-      IncomingMediaViewHolder(view)
-    }
-
-    if (SignalStore.internalValues().useConversationItemV2()) {
+    if (FeatureFlags.useTextOnlyConversationItemV2()) {
       registerFactory(OutgoingTextOnly::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_outgoing, parent, false)
-        V2TextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
+        V2ConversationItemTextOnlyViewHolder(V2ConversationItemTextOnlyOutgoingBinding.bind(view).bridge(), this)
       }
 
       registerFactory(IncomingTextOnly::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_text_only_incoming, parent, false)
-        V2TextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
+        V2ConversationItemTextOnlyViewHolder(V2ConversationItemTextOnlyIncomingBinding.bind(view).bridge(), this)
       }
     } else {
       registerFactory(OutgoingTextOnly::class.java) { parent ->
@@ -143,9 +166,28 @@ class ConversationAdapterV2(
         recyclerView.recycledViewPool.setMaxRecycledViews(type, count)
       }
     }
+
+    recyclerView.addOnScrollListener(onScrollStateChangedListener)
   }
+
+  override fun onViewRecycled(holder: MappingViewHolder<*>) {
+    if (holder is ConversationViewHolder) {
+      holder.bindable.unbind()
+    }
+  }
+
+  /** Triggered when switching addapters or by setting adapter to null on [recyclerView] in [ConversationFragment] */
+  override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+    recyclerView
+      .children
+      .filterIsInstance<Unbindable>()
+      .forEach { it.unbind() }
+
+    recyclerView.removeOnScrollListener(onScrollStateChangedListener)
+  }
+
   override val displayMode: ConversationItemDisplayMode
-    get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+    get() = condensedMode ?: ConversationItemDisplayMode.Standard
 
   override fun onStartExpirationTimeout(messageRecord: MessageRecord) {
     startExpirationTimeout(messageRecord)
@@ -163,9 +205,13 @@ class ConversationAdapterV2(
     return getConversationMessage(adapterPosition + 1)?.messageRecord
   }
 
-  fun updateSearchQuery(searchQuery: String?) {
+  fun updateSearchQuery(searchQuery: String) {
+    val oldQuery = this.searchQuery
     this.searchQuery = searchQuery
-    notifyItemRangeChanged(0, itemCount)
+
+    if (oldQuery != this.searchQuery) {
+      notifyItemRangeChanged(0, itemCount, V2Payload.SEARCH_QUERY_UPDATED)
+    }
   }
 
   fun getLastVisibleConversationMessage(position: Int): ConversationMessage? {
@@ -198,7 +244,7 @@ class ConversationAdapterV2(
   fun playInlineContent(conversationMessage: ConversationMessage?) {
     if (this.inlineContent !== conversationMessage) {
       this.inlineContent = conversationMessage
-      notifyItemRangeChanged(0, itemCount)
+      notifyItemRangeChanged(0, itemCount, V2Payload.PLAY_INLINE_CONTENT)
     }
   }
 
@@ -238,19 +284,19 @@ class ConversationAdapterV2(
     return if (this.hasWallpaper != hasWallpaper) {
       Log.d(TAG, "Resetting adapter due to wallpaper change.")
       this.hasWallpaper = hasWallpaper
-      notifyItemRangeChanged(0, itemCount)
+      notifyItemRangeChanged(0, itemCount, V2Payload.WALLPAPER)
       true
     } else {
       false
     }
   }
 
-  fun onMessageRequestStateChanged(isMessageRequestAccepted: Boolean) {
+  fun setMessageRequestIsAccepted(isMessageRequestAccepted: Boolean) {
     val oldState = this.isMessageRequestAccepted
     this.isMessageRequestAccepted = isMessageRequestAccepted
 
     if (oldState != isMessageRequestAccepted) {
-      notifyItemRangeChanged(0, itemCount)
+      notifyItemRangeChanged(0, itemCount, V2Payload.MESSAGE_REQUEST_STATE)
     }
   }
 
@@ -361,7 +407,7 @@ class ConversationAdapterV2(
         searchQuery,
         false,
         hasWallpaper && displayMode.displayWallpaper(),
-        true, // isMessageRequestAccepted,
+        isMessageRequestAccepted,
         model.conversationMessage == inlineContent,
         colorizer,
         displayMode
@@ -417,7 +463,7 @@ class ConversationAdapterV2(
         searchQuery,
         false,
         hasWallpaper && displayMode.displayWallpaper(),
-        true, // isMessageRequestAccepted,
+        isMessageRequestAccepted,
         model.conversationMessage == inlineContent,
         colorizer,
         displayMode
@@ -438,7 +484,7 @@ class ConversationAdapterV2(
       get() = getConversationMessage(bindingAdapterPosition - 1)?.messageRecord.toOptional()
 
     protected val displayMode: ConversationItemDisplayMode
-      get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+      get() = condensedMode ?: ConversationItemDisplayMode.Standard
 
     override val conversationMessage: ConversationMessage
       get() = bindable.conversationMessage
@@ -459,6 +505,11 @@ class ConversationAdapterV2(
 
     fun bindPayloadsIfAvailable(): Boolean {
       var payloadApplied = false
+
+      bindable.setParentScrolling(isParentInScroll)
+      if (payload.contains(ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING)) {
+        payloadApplied = true
+      }
 
       if (payload.contains(ConversationAdapterBridge.PAYLOAD_TIMESTAMP)) {
         bindable.updateTimestamps()
@@ -586,6 +637,16 @@ class ConversationAdapterV2(
         }
         conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0))
         conversationBanner.showDescription()
+      }
+    }
+  }
+
+  private inner class OnScrollStateChangedListener : RecyclerView.OnScrollListener() {
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+      val oldState = isParentInScroll
+      isParentInScroll = newState != RecyclerView.SCROLL_STATE_IDLE
+      if (isParentInScroll != oldState) {
+        notifyItemRangeChanged(0, itemCount, ConversationAdapterBridge.PAYLOAD_PARENT_SCROLLING)
       }
     }
   }

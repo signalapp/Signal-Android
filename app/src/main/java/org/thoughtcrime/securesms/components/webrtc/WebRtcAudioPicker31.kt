@@ -30,7 +30,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
       return null
     }
 
-    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinct().filterNot { it.deviceType == SignalAudioManager.AudioDevice.NONE }
+    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinctBy { it.deviceType.name }.filterNot { it.deviceType == SignalAudioManager.AudioDevice.NONE }
     val currentDeviceId = am.communicationDevice?.id ?: -1
     if (devices.size < threshold) {
       Log.d(TAG, "Only found $devices devices,\nnot showing picker.")

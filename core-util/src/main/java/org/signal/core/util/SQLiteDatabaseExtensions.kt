@@ -273,7 +273,7 @@ class UpdateBuilderPart2(
   }
 
   fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_NONE): Int {
-    return db.update(tableName, conflictStrategy, values, null, null)
+    return db.update(tableName, conflictStrategy, values, null, arrayOf<String>())
   }
 }
 

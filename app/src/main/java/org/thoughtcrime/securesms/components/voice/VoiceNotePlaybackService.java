@@ -1,31 +1,36 @@
 package org.thoughtcrime.securesms.components.voice;
 
-import android.app.Notification;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Process;
-import android.support.v4.media.MediaBrowserCompat;
-import android.support.v4.media.session.MediaControllerCompat;
-import android.support.v4.media.session.MediaSessionCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.media.MediaBrowserServiceCompat;
+import androidx.annotation.OptIn;
+import androidx.core.content.ContextCompat;
+import androidx.media3.common.AudioAttributes;
+import androidx.media3.common.C;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.PlaybackParameters;
+import androidx.media3.common.Player;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.session.MediaController;
+import androidx.media3.session.MediaSession;
+import androidx.media3.session.MediaSessionService;
+import androidx.media3.session.SessionToken;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.PlaybackException;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.audio.AudioAttributes;
-import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
-import com.google.android.exoplayer2.ui.PlayerNotificationManager;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -33,10 +38,8 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
-import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 
@@ -46,131 +49,98 @@ import java.util.List;
 /**
  * Android Service responsible for playback of voice notes.
  */
-public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
+@OptIn(markerClass = UnstableApi.class)
+public class VoiceNotePlaybackService extends MediaSessionService {
 
   public static final String ACTION_NEXT_PLAYBACK_SPEED = "org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackService.action.next_playback_speed";
   public static final String ACTION_SET_AUDIO_STREAM    = "org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackService.action.set_audio_stream";
 
   private static final String TAG                 = Log.tag(VoiceNotePlaybackService.class);
-  private static final String EMPTY_ROOT_ID       = "empty-root-id";
+  private static final String SESSION_ID          = "VoiceNotePlayback";
   private static final int    LOAD_MORE_THRESHOLD = 2;
 
-  private static final long SUPPORTED_ACTIONS = PlaybackStateCompat.ACTION_PLAY |
-                                                PlaybackStateCompat.ACTION_PAUSE |
-                                                PlaybackStateCompat.ACTION_SEEK_TO |
-                                                PlaybackStateCompat.ACTION_STOP |
-                                                PlaybackStateCompat.ACTION_PLAY_PAUSE;
-
-  private MediaSessionCompat           mediaSession;
-  private MediaSessionConnector        mediaSessionConnector;
-  private VoiceNotePlayer              player;
-  private BecomingNoisyReceiver        becomingNoisyReceiver;
-  private KeyClearedReceiver           keyClearedReceiver;
-  private VoiceNoteNotificationManager voiceNoteNotificationManager;
-  private VoiceNotePlaybackPreparer    voiceNotePlaybackPreparer;
-  private boolean                      isForegroundService;
-  private VoiceNotePlaybackParameters  voiceNotePlaybackParameters;
+  private MediaSession                         mediaSession;
+  private VoiceNotePlayer                      player;
+  private KeyClearedReceiver                   keyClearedReceiver;
+  private VoiceNotePlayerCallback              voiceNotePlayerCallback;
 
   @Override
   public void onCreate() {
     super.onCreate();
-
-    mediaSession                 = new MediaSessionCompat(this, TAG);
-    voiceNotePlaybackParameters  = new VoiceNotePlaybackParameters(mediaSession);
-    mediaSessionConnector        = new MediaSessionConnector(mediaSession);
-    becomingNoisyReceiver        = new BecomingNoisyReceiver(this, mediaSession.getSessionToken());
-    keyClearedReceiver           = new KeyClearedReceiver(this, mediaSession.getSessionToken());
-    player                       = new VoiceNotePlayer(this);
-    voiceNoteNotificationManager = new VoiceNoteNotificationManager(this,
-                                                                    mediaSession.getSessionToken(),
-                                                                    new VoiceNoteNotificationManagerListener());
-    voiceNotePlaybackPreparer    = new VoiceNotePlaybackPreparer(this, player, voiceNotePlaybackParameters);
-
+    player = new VoiceNotePlayer(this);
     player.addListener(new VoiceNotePlayerEventListener());
 
-    mediaSessionConnector.setPlayer(player);
-    mediaSessionConnector.setEnabledPlaybackActions(SUPPORTED_ACTIONS);
-    mediaSessionConnector.setPlaybackPreparer(voiceNotePlaybackPreparer);
-    mediaSessionConnector.setQueueNavigator(new VoiceNoteQueueNavigator(mediaSession));
+    voiceNotePlayerCallback = new VoiceNotePlayerCallback(this, player);
+    mediaSession            = buildMediaSession(false);
 
-    VoiceNotePlaybackController voiceNotePlaybackController = new VoiceNotePlaybackController(player.getInternalPlayer(), voiceNotePlaybackParameters);
-    mediaSessionConnector.registerCustomCommandReceiver(voiceNotePlaybackController);
+    if (mediaSession == null) {
+      Log.e(TAG, "Unable to create media session at all, stopping service to avoid crash.");
+      stopSelf();
+      return;
+    }
 
-    setSessionToken(mediaSession.getSessionToken());
+    keyClearedReceiver = new KeyClearedReceiver(this, mediaSession.getToken());
 
-    mediaSession.setActive(true);
-    keyClearedReceiver.register();
+    setMediaNotificationProvider(new VoiceNoteMediaNotificationProvider(this));
+    setListener(new MediaSessionServiceListener());
   }
 
   @Override
   public void onTaskRemoved(Intent rootIntent) {
     super.onTaskRemoved(rootIntent);
 
-    player.stop();
-    player.clearMediaItems();
+    mediaSession.getPlayer().stop();
+    mediaSession.getPlayer().clearMediaItems();
   }
 
   @Override
   public void onDestroy() {
-    super.onDestroy();
-    mediaSession.setActive(false);
-    mediaSession.release();
-    becomingNoisyReceiver.unregister();
-    keyClearedReceiver.unregister();
     player.release();
+    mediaSession.release();
+    mediaSession = null;
+    clearListener();
+    mediaSession = null;
+    super.onDestroy();
+    keyClearedReceiver.unregister();
   }
 
+  @Nullable
   @Override
-  public @Nullable BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) {
-    if (clientUid == Process.myUid()) {
-      return new BrowserRoot(EMPTY_ROOT_ID, null);
-    } else {
-      return null;
-    }
-  }
-
-  @Override
-  public void onLoadChildren(@NonNull String parentId, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) {
-    result.sendResult(Collections.emptyList());
+  public MediaSession onGetSession(@NonNull MediaSession.ControllerInfo controllerInfo) {
+    return mediaSession;
   }
 
   private class VoiceNotePlayerEventListener implements Player.Listener {
-
-    @Override
-    public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
-      onPlaybackStateChanged(playWhenReady, player.getPlaybackState());
-    }
+    private int previousPlaybackState = player.getPlaybackState();
 
     @Override
     public void onPlaybackStateChanged(int playbackState) {
-      onPlaybackStateChanged(player.getPlayWhenReady(), playbackState);
-    }
-
-    private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
+      Log.d(TAG, "[onPlaybackStateChanged] playbackState: " + playbackState);
+      boolean playWhenReady = player.getPlayWhenReady();
       switch (playbackState) {
         case Player.STATE_BUFFERING:
         case Player.STATE_READY:
-          voiceNoteNotificationManager.showNotification(player);
 
           if (!playWhenReady) {
             stopForeground(false);
-            isForegroundService = false;
-            becomingNoisyReceiver.unregister();
           } else {
             sendViewedReceiptForCurrentWindowIndex();
-            becomingNoisyReceiver.register();
+          }
+          break;
+        case Player.STATE_ENDED:
+          if (previousPlaybackState == Player.STATE_READY) {
+            player.clearMediaItems();
           }
           break;
         default:
-          becomingNoisyReceiver.unregister();
-          voiceNoteNotificationManager.hideNotification();
       }
+      previousPlaybackState = playbackState;
     }
 
     @Override
     public void onPositionDiscontinuity(@NonNull Player.PositionInfo oldPosition, @NonNull Player.PositionInfo newPosition, int reason) {
-      int currentWindowIndex = newPosition.windowIndex;
-      if (currentWindowIndex == C.INDEX_UNSET) {
+      int mediaItemIndex = newPosition.mediaItemIndex;
+      if (mediaItemIndex == C.INDEX_UNSET) {
         return;
       }
 
@@ -181,7 +151,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
           Log.d(TAG, "onPositionDiscontinuity: current window uri: " + currentMediaItem.playbackProperties.uri);
         }
 
-        PlaybackParameters playbackParameters = getPlaybackParametersForWindowPosition(currentWindowIndex);
+        PlaybackParameters playbackParameters = getPlaybackParametersForWindowPosition(mediaItemIndex);
 
         final float speed = playbackParameters != null ? playbackParameters.speed : 1f;
         if (speed != player.getPlaybackParameters().speed) {
@@ -189,16 +159,18 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
           if (playbackParameters != null) {
             player.setPlaybackParameters(playbackParameters);
           }
-          player.seekTo(currentWindowIndex, 1);
+          player.seekTo(mediaItemIndex, 1);
           player.setPlayWhenReady(true);
         }
+      } else if (reason == Player.DISCONTINUITY_REASON_SEEK) {
+        player.setPlayWhenReady(true);
       }
 
-      boolean isWithinThreshold = currentWindowIndex < LOAD_MORE_THRESHOLD ||
-                                  currentWindowIndex + LOAD_MORE_THRESHOLD >= player.getMediaItemCount();
+      boolean isWithinThreshold = mediaItemIndex < LOAD_MORE_THRESHOLD ||
+                                  mediaItemIndex + LOAD_MORE_THRESHOLD >= player.getMediaItemCount();
 
-      if (isWithinThreshold && currentWindowIndex % 2 == 0) {
-        voiceNotePlaybackPreparer.loadMoreVoiceNotes();
+      if (isWithinThreshold && mediaItemIndex % 2 == 0) {
+        voiceNotePlayerCallback.loadMoreVoiceNotes();
       }
     }
 
@@ -217,13 +189,60 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       }
 
       Log.i(TAG, "onAudioAttributesChanged: Setting audio stream to " + stream);
-      mediaSession.setPlaybackToLocal(stream);
+    }
+  }
+
+  /**
+   * Some devices, such as the ASUS Zenfone 8, erroneously report multiple broadcast receivers for {@value Intent#ACTION_MEDIA_BUTTON} in the package manager.
+   * This triggers a failure within the {@link MediaSession} initialization and throws an {@link IllegalStateException}.
+   * This method will catch that exception and attempt to disable the duplicated broadcast receiver in the hopes of getting the package manager to
+   * report only 1, avoiding the error.
+   * If that doesn't work, it returns null, signaling the {@link MediaSession} cannot be built on this device.
+   *
+   * @return the built MediaSession, or null if the session cannot be built.
+   */
+  private @Nullable MediaSession buildMediaSession(boolean isRetry) {
+    try {
+      return new MediaSession.Builder(this, player).setCallback(voiceNotePlayerCallback).setId(SESSION_ID).build();
+    } catch (IllegalStateException e) {
+
+      if (isRetry) {
+        Log.e(TAG, "Unable to create media session, even after retry.", e);
+        return null;
+      }
+
+      Log.w(TAG, "Unable to create media session with default parameters.", e);
+      PackageManager pm          = this.getPackageManager();
+      Intent         queryIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+      queryIntent.setPackage(this.getPackageName());
+      final List<ResolveInfo> mediaButtonReceivers = pm.queryBroadcastReceivers(queryIntent, /* flags= */ 0);
+
+      Log.d(TAG, "Found " + mediaButtonReceivers.size() + " BroadcastReceivers for " + Intent.ACTION_MEDIA_BUTTON);
+
+      boolean found = false;
+
+      if (mediaButtonReceivers.size() > 1) {
+        for (ResolveInfo receiverInfo : mediaButtonReceivers) {
+
+          final ActivityInfo activityInfo = receiverInfo.activityInfo;
+
+          if (!found && activityInfo.packageName.contains("androidx.media.session")) {
+            found = true;
+          } else {
+            pm.setComponentEnabledSetting(new ComponentName(activityInfo.packageName, activityInfo.name), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+          }
+        }
+
+        return buildMediaSession(true);
+      } else {
+        return null;
+      }
     }
   }
 
   private @Nullable PlaybackParameters getPlaybackParametersForWindowPosition(int currentWindowIndex) {
     if (isAudioMessage(currentWindowIndex)) {
-      return voiceNotePlaybackParameters.getParameters();
+    return player.getPlaybackParameters();
     } else {
       return null;
     }
@@ -271,49 +290,49 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     }
   }
 
-  private class VoiceNoteNotificationManagerListener implements PlayerNotificationManager.NotificationListener {
-
-    @Override
-    public void onNotificationPosted(int notificationId, Notification notification, boolean ongoing) {
-      if (ongoing && !isForegroundService) {
-        try {
-          ForegroundServiceUtil.start(getApplicationContext(), new Intent(getApplicationContext(), VoiceNotePlaybackService.class));
-          startForeground(notificationId, notification);
-          isForegroundService = true;
-        } catch (UnableToStartException e) {
-          Log.e(TAG, "Unable to start foreground service!", e);
-        }
-      }
-    }
-
-    @Override
-    public void onNotificationCancelled(int notificationId, boolean dismissedByUser) {
-      stopForeground(true);
-      isForegroundService = false;
-      stopSelf();
-    }
-  }
-
   /**
    * Receiver to stop playback and kill the notification if user locks signal via screen lock.
+   * This registers itself as a receiver on the [Context] as soon as it can.
    */
   private static class KeyClearedReceiver extends BroadcastReceiver {
+    private static final String TAG = Log.tag(KeyClearedReceiver.class);
     private static final IntentFilter KEY_CLEARED_FILTER = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
 
-    private final Context               context;
-    private final MediaControllerCompat controller;
+    private final Context                           context;
+    private final ListenableFuture<MediaController> controllerFuture;
+    private       MediaController                   controller;
 
     private boolean registered;
 
-    private KeyClearedReceiver(@NonNull Context context, @NonNull MediaSessionCompat.Token token) {
-      this.context    = context;
-      this.controller = new MediaControllerCompat(context, token);
+    private KeyClearedReceiver(@NonNull Context context, @NonNull SessionToken token) {
+      this.context     = context;
+      Log.d(TAG, "Creating media controller…");
+      controllerFuture = new MediaController.Builder(context, token).buildAsync();
+      Futures.addCallback(controllerFuture, new FutureCallback<>() {
+        @Override
+        public void onSuccess(@Nullable MediaController result) {
+          Log.d(TAG, "Successfully created media controller.");
+          controller = result;
+          register();
+        }
+
+        @Override
+        public void onFailure(@NonNull Throwable t) {
+          Log.w(TAG, "KeyClearedReceiver.onFailure", t);
+        }
+      }, ContextCompat.getMainExecutor(context));
     }
 
     void register() {
+      if (controller == null) {
+        Log.w(TAG, "Failed to register KeyClearedReceiver because MediaController was null.");
+        return;
+      }
+      
       if (!registered) {
-        context.registerReceiver(this, KEY_CLEARED_FILTER);
+        ContextCompat.registerReceiver(context, this, KEY_CLEARED_FILTER, ContextCompat.RECEIVER_NOT_EXPORTED);
         registered = true;
+        Log.d(TAG, "Successfully registered.");
       }
     }
 
@@ -322,48 +341,24 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
         context.unregisterReceiver(this);
         registered = false;
       }
+      MediaController.releaseFuture(controllerFuture);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-      controller.getTransportControls().stop();
+      if (controller == null) {
+        Log.w(TAG, "Received broadcast but could not stop playback because MediaController was null.");
+      } else {
+        Log.i(TAG, "Received broadcast, stopping playback.");
+        controller.stop();
+      }
     }
   }
 
-  /**
-   * Receiver to pause playback when things become noisy.
-   */
-  private static class BecomingNoisyReceiver extends BroadcastReceiver {
-    private static final IntentFilter NOISY_INTENT_FILTER = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-
-    private final Context               context;
-    private final MediaControllerCompat controller;
-
-    private boolean registered;
-
-    private BecomingNoisyReceiver(Context context, MediaSessionCompat.Token token) {
-      this.context    = context;
-      this.controller = new MediaControllerCompat(context, token);
-    }
-
-    void register() {
-      if (!registered) {
-        context.registerReceiver(this, NOISY_INTENT_FILTER);
-        registered = true;
-      }
-    }
-
-    void unregister() {
-      if (registered) {
-        context.unregisterReceiver(this);
-        registered = false;
-      }
-    }
-
-    public void onReceive(Context context, @NonNull Intent intent) {
-      if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(intent.getAction())) {
-        controller.getTransportControls().pause();
-      }
+  private static class MediaSessionServiceListener implements Listener {
+    @Override
+    public void onForegroundServiceStartNotAllowedException() {
+      Log.e(TAG, "Could not start VoiceNotePlaybackService, encountered a ForegroundServiceStartNotAllowedException.");
     }
   }
 }

@@ -108,7 +108,7 @@ public class TypingSendJob extends BaseJob {
       return;
     }
 
-    if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
+    if (!recipient.isRegistered()) {
       Log.w(TAG, "Not sending typing indicators to non-Signal recipients.");
       return;
     }

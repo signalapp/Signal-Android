@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class TextSlide extends Slide {
 
-  public TextSlide(@NonNull Context context, @NonNull Attachment attachment) {
+  public TextSlide(@NonNull Attachment attachment) {
     super(attachment);
   }
 

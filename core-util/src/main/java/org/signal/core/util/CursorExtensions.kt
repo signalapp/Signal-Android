@@ -2,6 +2,7 @@ package org.signal.core.util
 
 import android.database.Cursor
 import androidx.core.database.getLongOrNull
+import androidx.core.database.getStringOrNull
 import java.util.Optional
 
 fun Cursor.requireString(column: String): String? {
@@ -181,3 +182,23 @@ inline fun Cursor.forEach(operation: (Cursor) -> Unit) {
 }
 
 fun Boolean.toInt(): Int = if (this) 1 else 0
+
+/**
+ * Renders the entire cursor row as a string.
+ * Not necessarily used in the app, but very useful to have available when debugging.
+ */
+fun Cursor.rowToString(): String {
+  val builder = StringBuilder()
+  for (i in 0 until this.columnCount) {
+    builder
+      .append(this.getColumnName(i))
+      .append("=")
+      .append(this.getStringOrNull(i))
+
+    if (i < this.columnCount - 1) {
+      builder.append(", ")
+    }
+  }
+
+  return builder.toString()
+}

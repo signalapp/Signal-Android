@@ -2,17 +2,18 @@ package org.thoughtcrime.securesms.sms;
 
 import androidx.annotation.NonNull;
 
-import com.google.protobuf.ByteString;
-
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.util.Random;
 import java.util.UUID;
+
+import okio.ByteString;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -22,16 +23,15 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJustAGroupLeave_whenEditorIsRemoved_shouldReturnTrue() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(alice)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -45,17 +45,16 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJustAGroupLeave_whenOtherIsRemoved_shouldReturnFalse() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
-    UUID bob   = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(bob)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -69,18 +68,17 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJustAGroupLeave_whenEditorIsRemovedAndOtherChanges_shouldReturnFalse() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
-    UUID bob   = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(alice)
                                                .addMember(bob)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -94,16 +92,15 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJoinRequestCancel_whenChangeRemovesRequestingMembers_shouldReturnTrue() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .denyRequest(alice)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 
@@ -117,18 +114,17 @@ public class GroupV2UpdateMessageUtilTest {
   @Test
   public void isJoinRequestCancel_whenChangeContainsNoRemoveRequestingMembers_shouldReturnFalse() {
     // GIVEN
-    UUID alice = UUID.randomUUID();
-    UUID bob   = UUID.randomUUID();
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
     DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
                                                .deleteMember(alice)
                                                .addMember(bob)
                                                .build();
 
-    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
-                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
-                                                             .setChange(change)
-                                                             .build();
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
 
     MessageGroupContext messageGroupContext = new MessageGroupContext(context);
 

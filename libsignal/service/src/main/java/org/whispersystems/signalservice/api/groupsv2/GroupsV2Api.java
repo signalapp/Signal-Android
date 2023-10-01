@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.auth.AuthCredentialPresentation;
@@ -21,18 +19,20 @@ import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import okio.ByteString;
 
 public class GroupsV2Api {
 
@@ -56,15 +56,15 @@ public class GroupsV2Api {
   /**
    * Create an auth token from a credential response.
    */
-  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(ServiceId aci,
-                                                                    ServiceId pni,
+  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(ACI aci,
+                                                                    PNI pni,
                                                                     long redemptionTimeSeconds,
                                                                     GroupSecretParams groupSecretParams,
                                                                     AuthCredentialWithPniResponse authCredentialWithPniResponse)
       throws VerificationFailedException
   {
     ClientZkAuthOperations     authOperations             = groupsOperations.getAuthOperations();
-    AuthCredentialWithPni      authCredentialWithPni      = authOperations.receiveAuthCredentialWithPni(aci.uuid(), pni.uuid(), redemptionTimeSeconds, authCredentialWithPniResponse);
+    AuthCredentialWithPni      authCredentialWithPni      = authOperations.receiveAuthCredentialWithPniAsServiceId(aci.getLibSignalAci(), pni.getLibSignalPni(), redemptionTimeSeconds, authCredentialWithPniResponse);
     AuthCredentialPresentation authCredentialPresentation = authOperations.createAuthCredentialPresentation(new SecureRandom(), groupSecretParams, authCredentialWithPni);
 
     return new GroupsV2AuthorizationString(groupSecretParams, authCredentialPresentation);
@@ -79,8 +79,8 @@ public class GroupsV2Api {
     if (newGroup.getAvatar().isPresent()) {
       String cdnKey = uploadAvatar(newGroup.getAvatar().get(), newGroup.getGroupSecretParams(), authorization);
 
-      group = Group.newBuilder(group)
-                    .setAvatar(cdnKey)
+      group = group.newBuilder()
+                    .avatar(cdnKey)
                     .build();
     }
 
@@ -114,12 +114,12 @@ public class GroupsV2Api {
       throws IOException, InvalidGroupStateException, VerificationFailedException
   {
     PushServiceSocket.GroupHistory     group           = socket.getGroupsV2GroupHistory(fromRevision, authorization, GroupsV2Operations.HIGHEST_KNOWN_EPOCH, includeFirstState);
-    List<DecryptedGroupHistoryEntry>   result          = new ArrayList<>(group.getGroupChanges().getGroupChangesList().size());
+    List<DecryptedGroupHistoryEntry>   result          = new ArrayList<>(group.getGroupChanges().groupChanges.size());
     GroupsV2Operations.GroupOperations groupOperations = groupsOperations.forGroup(groupSecretParams);
 
-    for (GroupChanges.GroupChangeState change : group.getGroupChanges().getGroupChangesList()) {
-      Optional<DecryptedGroup>       decryptedGroup  = change.hasGroupState() ? Optional.of(groupOperations.decryptGroup(change.getGroupState())) : Optional.empty();
-      Optional<DecryptedGroupChange> decryptedChange = change.hasGroupChange() ? groupOperations.decryptChange(change.getGroupChange(), false) : Optional.empty();
+    for (GroupChanges.GroupChangeState change : group.getGroupChanges().groupChanges) {
+      Optional<DecryptedGroup>       decryptedGroup  = change.groupState != null ? Optional.of(groupOperations.decryptGroup(change.groupState)) : Optional.empty();
+      Optional<DecryptedGroupChange> decryptedChange = change.groupChange != null ? groupOperations.decryptChange(change.groupChange, false) : Optional.empty();
 
       result.add(new DecryptedGroupHistoryEntry(decryptedGroup, decryptedChange));
     }
@@ -151,14 +151,14 @@ public class GroupsV2Api {
 
     byte[] cipherText;
     try {
-      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(GroupAttributeBlob.newBuilder().setAvatar(ByteString.copyFrom(avatar)).build().toByteArray());
+      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(new GroupAttributeBlob.Builder().avatar(ByteString.of(avatar)).build().encode());
     } catch (VerificationFailedException e) {
       throw new AssertionError(e);
     }
 
     socket.uploadGroupV2Avatar(cipherText, form);
 
-    return form.getKey();
+    return form.key;
   }
 
   public GroupChange patchGroup(GroupChange.Actions groupChange,

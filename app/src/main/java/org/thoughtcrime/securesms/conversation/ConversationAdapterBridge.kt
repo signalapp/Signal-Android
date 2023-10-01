@@ -16,6 +16,7 @@ interface ConversationAdapterBridge {
     const val PAYLOAD_TIMESTAMP = 0
     const val PAYLOAD_NAME_COLORS = 1
     const val PAYLOAD_SELECTED = 2
+    const val PAYLOAD_PARENT_SCROLLING = 3
   }
 
   fun hasNoConversationMessages(): Boolean

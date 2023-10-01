@@ -34,7 +34,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
       ViewSentGiftBottomSheet().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_SENT_TO, messageRecord.toRecipient.id)
-          putByteArray(ARG_GIFT_BADGE, messageRecord.giftBadge!!.toByteArray())
+          putByteArray(ARG_GIFT_BADGE, messageRecord.giftBadge!!.encode())
         }
         show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
       }
@@ -45,7 +45,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     get() = requireArguments().getParcelableCompat(ARG_SENT_TO, RecipientId::class.java)!!
 
   private val giftBadge: GiftBadge
-    get() = GiftBadge.parseFrom(requireArguments().getByteArray(ARG_GIFT_BADGE))
+    get() = GiftBadge.ADAPTER.decode(requireArguments().getByteArray(ARG_GIFT_BADGE)!!)
 
   private val lifecycleDisposable = LifecycleDisposable()
 

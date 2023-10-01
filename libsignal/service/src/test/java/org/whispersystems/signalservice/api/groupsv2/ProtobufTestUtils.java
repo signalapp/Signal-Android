@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import com.google.protobuf.MessageLite;
+import com.squareup.wire.Message;
+import com.squareup.wire.WireField;
 
 import java.util.stream.Stream;
 
@@ -9,17 +10,12 @@ final class ProtobufTestUtils {
   /**
    * Finds the largest declared field number in the supplied protobuf class.
    */
-  static int getMaxDeclaredFieldNumber(Class<? extends MessageLite> protobufClass) {
+  static int getMaxDeclaredFieldNumber(Class<? extends Message<?, ?>> protobufClass) {
     return Stream.of(protobufClass.getFields())
-                 .filter(f -> f.getType() == int.class)
-                 .mapToInt(f -> {
-                   try {
-                     return (int) f.get(null);
-                   } catch (IllegalAccessException e) {
-                     throw new AssertionError(e);
-                   }
-                 })
-                 .max()
+                 .map(f -> f.getAnnotationsByType(WireField.class))
+                 .filter(a -> a.length == 1)
+                 .map(a -> a[0].tag())
+                 .max(Integer::compareTo)
                  .orElse(0);
   }
 }

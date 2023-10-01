@@ -2,7 +2,10 @@ package org.whispersystems.signalservice.internal.push.http
 
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import okhttp3.internal.http.UnrepeatableRequestBody
 import okio.BufferedSink
+import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
+import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -22,11 +25,8 @@ class DigestingRequestBody(
   private val progressListener: SignalServiceAttachment.ProgressListener?,
   private val cancelationSignal: CancelationSignal?,
   private val contentStart: Long
-) : RequestBody() {
-  lateinit var transmittedDigest: ByteArray
-    private set
-  var incrementalDigest: ByteArray? = null
-    private set
+) : RequestBody(), UnrepeatableRequestBody {
+  var attachmentDigest: AttachmentDigest? = null
 
   init {
     require(contentLength >= contentStart)
@@ -42,8 +42,9 @@ class DigestingRequestBody(
     val digestStream = ByteArrayOutputStream()
     val inner = SkippingOutputStream(contentStart, sink.outputStream())
     val isIncremental = outputStreamFactory is AttachmentCipherOutputStreamFactory
+    val sizeChoice: ChunkSizeChoice = ChunkSizeChoice.inferChunkSize(contentLength.toInt())
     val outputStream: DigestingOutputStream = if (isIncremental) {
-      (outputStreamFactory as AttachmentCipherOutputStreamFactory).createIncrementalFor(inner, contentLength, digestStream)
+      (outputStreamFactory as AttachmentCipherOutputStreamFactory).createIncrementalFor(inner, contentLength, sizeChoice, digestStream)
     } else {
       outputStreamFactory.createFor(inner)
     }
@@ -62,19 +63,35 @@ class DigestingRequestBody(
     }
 
     outputStream.flush()
-    if (isIncremental) {
+
+    val incrementalDigest: ByteArray = if (isIncremental) {
+      if (contentLength != total) {
+        Log.w(TAG, "Content uploaded ${logMessage(total, contentLength)} bytes compared to expected!")
+      } else {
+        Log.d(TAG, "Wrote the expected number of bytes.")
+      }
       outputStream.close()
       digestStream.close()
-      incrementalDigest = digestStream.toByteArray()
+      digestStream.toByteArray()
+    } else {
+      ByteArray(0)
     }
-    transmittedDigest = outputStream.transmittedDigest
+
+    attachmentDigest = AttachmentDigest(outputStream.transmittedDigest, incrementalDigest, sizeChoice.sizeInBytes)
   }
 
   override fun contentLength(): Long {
     return if (contentLength > 0) contentLength - contentStart else -1
   }
 
-  fun getAttachmentDigest() = AttachmentDigest(transmittedDigest, incrementalDigest)
+  private fun logMessage(actual: Long, expected: Long): String {
+    val difference = actual - expected
+    return if (difference > 0) {
+      "+$difference"
+    } else {
+      difference.toString()
+    }
+  }
 
   companion object {
     const val TAG = "DigestingRequestBody"

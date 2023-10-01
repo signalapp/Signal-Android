@@ -14,6 +14,10 @@
     android:nextFocusRight="@+id/embedded_text_editor">
 
     <!-- STR Icon -->
+    <!-- Because of how ConstraintLayout wraps its children, we can't set a top constraint here
+         without increasing the parent height for short bubbles. This causes weird spacing issues.
+         Instead, inside V2ConversationItemTextOnlyViewHolder, we use an OnMeasureListener to position
+         this view vertically using a y-translate -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/conversation_item_reply"
         android:layout_width="@dimen/conversation_item_reply_size"
@@ -23,7 +27,6 @@
         app:contentPadding="9dp"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
         app:layout_constraintStart_toStartOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintTop_toTopOf="@id/conversation_item_body_wrapper"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/symbol_reply_24" />
 
@@ -46,15 +49,17 @@
             android:id="@+id/conversation_item_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingTop="@dimen/message_bubble_top_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
-            android:paddingBottom="@dimen/message_bubble_collapsed_footer_padding"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginTop="@dimen/message_bubble_top_padding"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/conversation_item_sent_text_primary_color"
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             android:textSize="16sp"
             app:emoji_maxLength="1000"
+            app:emoji_renderMentions="true"
+            app:emoji_renderSpoilers="true"
             app:measureLastLine="true"
             app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
@@ -119,20 +124,22 @@
     <org.thoughtcrime.securesms.components.ExpirationTimerView
         android:id="@+id/conversation_item_expiration_timer"
         android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-        app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status" />
+        android:paddingBottom="@dimen/message_bubble_bottom_padding"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_footer_date"
+        app:layout_constraintEnd_toStartOf="@id/conversation_item_delivery_status"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <org.thoughtcrime.securesms.components.DeliveryStatusView
         android:id="@+id/conversation_item_delivery_status"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_gravity="center_vertical"
         android:paddingBottom="@dimen/message_bubble_bottom_padding"
         app:layout_constraintBottom_toBottomOf="@id/conversation_item_body_wrapper"
-        app:layout_constraintEnd_toStartOf="@id/footer_end_pad" />
+        app:layout_constraintEnd_toStartOf="@id/footer_end_pad"
+        app:layout_constraintTop_toTopOf="@id/conversation_item_footer_date" />
 
     <Space
         android:id="@+id/footer_end_pad"
@@ -149,8 +156,8 @@
         android:id="@+id/conversation_item_reactions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="-4dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="@id/conversation_item_body_wrapper"
         app:layout_constraintTop_toBottomOf="@id/conversation_item_body_wrapper"

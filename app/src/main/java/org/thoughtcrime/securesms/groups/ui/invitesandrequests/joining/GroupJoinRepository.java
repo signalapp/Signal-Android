@@ -86,7 +86,7 @@ final class GroupJoinRepository {
 
   private @Nullable byte[] tryGetAvatarBytes(@NonNull DecryptedGroupJoinInfo joinInfo) {
     try {
-      return AvatarGroupsV2DownloadJob.downloadGroupAvatarBytes(context, groupInviteLinkUrl.getGroupMasterKey(), joinInfo.getAvatar());
+      return AvatarGroupsV2DownloadJob.downloadGroupAvatarBytes(context, groupInviteLinkUrl.getGroupMasterKey(), joinInfo.avatar);
     } catch (IOException e) {
       Log.w(TAG, "Failed to get group avatar", e);
       return null;

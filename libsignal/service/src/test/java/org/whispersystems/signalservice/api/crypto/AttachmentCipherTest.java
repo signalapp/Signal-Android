@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.crypto;
 import org.conscrypt.Conscrypt;
 import org.junit.Test;
 import org.signal.libsignal.protocol.InvalidMessageException;
+import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -33,12 +34,12 @@ public final class AttachmentCipherTest {
 
   @Test
   public void attachment_encryptDecrypt() throws IOException, InvalidMessageException {
-    byte[]        key             = Util.getSecretBytes(64);
-    byte[]        plaintextInput  = "Peter Parker".getBytes();
-    EncryptResult encryptResult   = encryptData(plaintextInput, key, true);
-    File          cipherFile      = writeToFile(encryptResult.ciphertext);
-    InputStream   inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest);
-    byte[]        plaintextOutput = readInputStreamFully(inputStream);
+    byte[]          key             = Util.getSecretBytes(64);
+    byte[]          plaintextInput  = "Peter Parker".getBytes();
+    EncryptResult   encryptResult   = encryptData(plaintextInput, key, false);
+    File            cipherFile      = writeToFile(encryptResult.ciphertext);
+    InputStream     inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice);
+    byte[]          plaintextOutput = readInputStreamFully(inputStream);
 
     assertArrayEquals(plaintextInput, plaintextOutput);
 
@@ -47,12 +48,12 @@ public final class AttachmentCipherTest {
 
   @Test
   public void attachment_encryptDecryptEmpty() throws IOException, InvalidMessageException {
-    byte[]        key             = Util.getSecretBytes(64);
-    byte[]        plaintextInput  = "".getBytes();
-    EncryptResult encryptResult   = encryptData(plaintextInput, key, true);
-    File          cipherFile      = writeToFile(encryptResult.ciphertext);
-    InputStream   inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest);
-    byte[]        plaintextOutput = readInputStreamFully(inputStream);
+    byte[]          key             = Util.getSecretBytes(64);
+    byte[]          plaintextInput  = "".getBytes();
+    EncryptResult   encryptResult   = encryptData(plaintextInput, key, true);
+    File            cipherFile      = writeToFile(encryptResult.ciphertext);
+    InputStream     inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice);
+    byte[]          plaintextOutput = readInputStreamFully(inputStream);
 
     assertArrayEquals(plaintextInput, plaintextOutput);
 
@@ -72,7 +73,7 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, badKey, encryptResult.digest, null, 0);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -97,7 +98,7 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, badDigest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, badDigest, null, 0);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -126,7 +127,7 @@ public final class AttachmentCipherTest {
       cipherFile = writeToFile(encryptResult.ciphertext);
 
 
-      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, badDigest);
+      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, badDigest, encryptResult.chunkSizeChoice);
       byte[]      plaintextOutput = readInputStreamFully(decryptedStream);
       fail();
     } catch (InvalidMacException e) {
@@ -153,13 +154,13 @@ public final class AttachmentCipherTest {
         plaintextInput[i] = (byte) 0x97;
       }
 
-      byte[]                key                           = Util.getSecretBytes(64);
-      byte[]                iv                            = Util.getSecretBytes(16);
-      ByteArrayInputStream  inputStream                   = new ByteArrayInputStream(plaintextInput);
-      InputStream           paddedInputStream             = new PaddingInputStream(inputStream, length);
-      ByteArrayOutputStream destinationOutputStream       = new ByteArrayOutputStream();
-      ByteArrayOutputStream incrementalDigestOutputStream = new ByteArrayOutputStream();
-      DigestingOutputStream encryptingOutputStream        = new AttachmentCipherOutputStreamFactory(key, iv).createIncrementalFor(destinationOutputStream, length, incrementalDigestOutputStream);
+      byte[]                key                     = Util.getSecretBytes(64);
+      byte[]                iv                      = Util.getSecretBytes(16);
+      ByteArrayInputStream  inputStream             = new ByteArrayInputStream(plaintextInput);
+      InputStream           paddedInputStream       = new PaddingInputStream(inputStream, length);
+      ByteArrayOutputStream destinationOutputStream = new ByteArrayOutputStream();
+
+      DigestingOutputStream encryptingOutputStream        = new AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream);
 
       Util.copy(paddedInputStream, encryptingOutputStream);
 
@@ -168,11 +169,10 @@ public final class AttachmentCipherTest {
 
       byte[] encryptedData     = destinationOutputStream.toByteArray();
       byte[] digest            = encryptingOutputStream.getTransmittedDigest();
-      byte[] incrementalDigest = incrementalDigestOutputStream.toByteArray();
 
       File cipherFile = writeToFile(encryptedData);
 
-      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, length, key, digest, incrementalDigest);
+      InputStream decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, length, key, digest, null, 0);
       byte[]      plaintextOutput = readInputStreamFully(decryptedStream);
 
       assertArrayEquals(plaintextInput, plaintextOutput);
@@ -189,11 +189,12 @@ public final class AttachmentCipherTest {
     try {
       byte[]        key            = Util.getSecretBytes(64);
       byte[]        plaintextInput = "Aunt May".getBytes();
+      ChunkSizeChoice sizeChoice      = ChunkSizeChoice.inferChunkSize(plaintextInput.length);
       EncryptResult encryptResult  = encryptData(plaintextInput, key, true);
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, null, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, null, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice);
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -220,7 +221,8 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(badMacCiphertext);
 
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, encryptResult.incrementalDigest);
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest, null, encryptResult.chunkSizeChoice);
+      fail();
     } catch (InvalidMessageException e) {
       hitCorrectException = true;
     } finally {
@@ -307,8 +309,9 @@ public final class AttachmentCipherTest {
     AttachmentCipherOutputStreamFactory factory              = new AttachmentCipherOutputStreamFactory(keyMaterial, iv);
 
     DigestingOutputStream encryptStream;
+    final ChunkSizeChoice sizeChoice = ChunkSizeChoice.inferChunkSize(data.length);
     if (withIncremental) {
-      encryptStream = factory.createIncrementalFor(outputStream, data.length, incrementalDigestOut);
+      encryptStream = factory.createIncrementalFor(outputStream, data.length, sizeChoice, incrementalDigestOut);
     } else {
       encryptStream = factory.createFor(outputStream);
     }
@@ -319,7 +322,7 @@ public final class AttachmentCipherTest {
     encryptStream.close();
     incrementalDigestOut.close();
 
-    return new EncryptResult(outputStream.toByteArray(), encryptStream.getTransmittedDigest(), incrementalDigestOut.toByteArray());
+    return new EncryptResult(outputStream.toByteArray(), encryptStream.getTransmittedDigest(), incrementalDigestOut.toByteArray(), sizeChoice.getSizeInBytes());
   }
 
   private static File writeToFile(byte[] data) throws IOException {
@@ -344,11 +347,13 @@ public final class AttachmentCipherTest {
     final byte[] ciphertext;
     final byte[] digest;
     final byte[] incrementalDigest;
+    final int    chunkSizeChoice;
 
-    private EncryptResult(byte[] ciphertext, byte[] digest, byte[] incrementalDigest) {
-      this.ciphertext = ciphertext;
-      this.digest     = digest;
-      this.incrementalDigest  = incrementalDigest;
+    private EncryptResult(byte[] ciphertext, byte[] digest, byte[] incrementalDigest, int chunkSizeChoice) {
+      this.ciphertext        = ciphertext;
+      this.digest            = digest;
+      this.incrementalDigest = incrementalDigest;
+      this.chunkSizeChoice   = chunkSizeChoice;
     }
   }
 }

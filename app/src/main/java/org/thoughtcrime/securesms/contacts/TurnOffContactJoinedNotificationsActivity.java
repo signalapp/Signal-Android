@@ -57,7 +57,7 @@ public class TurnOffContactJoinedNotificationsActivity extends AppCompatActivity
       ThreadTable threadTable = SignalDatabase.threads();
 
       List<MessageTable.MarkedMessageInfo> marked = threadTable.setRead(getIntent().getLongExtra(EXTRA_THREAD_ID, -1), false);
-      MarkReadReceiver.process(this, marked);
+      MarkReadReceiver.process(marked);
 
       SignalStore.settings().setNotifyWhenContactJoinsSignal(false);
       ApplicationDependencies.getMessageNotifier().updateNotification(this);

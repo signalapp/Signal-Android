@@ -189,7 +189,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
       .forEach { note ->
         val title = "${note.translation.title}\n\n"
         val body = "$title${note.translation.body}"
-        val bodyRangeList = BodyRangeList.newBuilder()
+        val bodyRangeList = BodyRangeList.Builder()
           .addStyle(BodyRangeList.BodyRange.Style.BOLD, 0, note.translation.title.length)
 
         if (note.translation.bodyRanges?.isNotEmpty() == true) {

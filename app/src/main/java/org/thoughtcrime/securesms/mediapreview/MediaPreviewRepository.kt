@@ -66,9 +66,7 @@ class MediaPreviewRepository {
 
           for (i in 0..limit) {
             val element = MediaTable.MediaRecord.from(cursor)
-            if (element != null) {
-              mediaRecords.add(element)
-            }
+            mediaRecords.add(element)
             if (!cursor.moveToNext()) {
               break
             }

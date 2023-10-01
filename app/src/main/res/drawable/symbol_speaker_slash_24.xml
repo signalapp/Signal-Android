@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M5.12 3.38c-0.34-0.34-0.9-0.34-1.24 0-0.34 0.34-0.34 0.9 0 1.24l16 16c0.34 0.34 0.9 0.34 1.24 0 0.34-0.34 0.34-0.9 0-1.24l-16-16Z" />
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M4.63 10c0-0.7 0.25-1.35 0.67-1.85L6.55 9.4C6.44 9.58 6.38 9.78 6.38 10v4c0 0.62 0.5 1.13 1.12 1.13h3.86l3.77 3.76v-0.9l1.68 1.68c-0.33 1.11-1.8 1.57-2.7 0.67l-3.47-3.46H7.5c-1.59 0-2.88-1.3-2.88-2.88v-4Z" />
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M12.05 8.19l3.07-3.08v6.16l1.76 1.75v-8.2c0-1.46-1.76-2.18-2.78-1.16l-3.29 3.3 1.24 1.23Z" />
+</vector>

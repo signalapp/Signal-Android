@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNum
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrationActivity;
@@ -79,15 +78,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   protected void onPreCreate() {}
   protected void onCreate(Bundle savedInstanceState, boolean ready) {}
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-
-    if (networkAccess.isCensored()) {
-      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
-    }
-  }
 
   @Override
   protected void onDestroy() {

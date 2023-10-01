@@ -53,13 +53,13 @@ object BodyRangeListParceler : Parceler<BodyRangeList?> {
   override fun create(parcel: Parcel): BodyRangeList? {
     val data: ByteArray? = ParcelUtil.readByteArray(parcel)
     return if (data != null) {
-      BodyRangeList.parseFrom(data)
+      BodyRangeList.ADAPTER.decode(data)
     } else {
       null
     }
   }
 
   override fun BodyRangeList?.write(parcel: Parcel, flags: Int) {
-    ParcelUtil.writeByteArray(parcel, this?.toByteArray())
+    ParcelUtil.writeByteArray(parcel, this?.encode())
   }
 }

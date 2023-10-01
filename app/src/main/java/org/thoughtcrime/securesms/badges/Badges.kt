@@ -101,16 +101,16 @@ object Badges {
 
   @JvmStatic
   fun toDatabaseBadge(badge: Badge): BadgeList.Badge {
-    return BadgeList.Badge.newBuilder()
-      .setId(badge.id)
-      .setCategory(badge.category.code)
-      .setDescription(badge.description)
-      .setExpiration(badge.expirationTimestamp)
-      .setVisible(badge.visible)
-      .setName(badge.name)
-      .setImageUrl(badge.imageUrl.toString())
-      .setImageDensity(badge.imageDensity)
-      .build()
+    return BadgeList.Badge(
+      id = badge.id,
+      category = badge.category.code,
+      description = badge.description,
+      expiration = badge.expirationTimestamp,
+      visible = badge.visible,
+      name = badge.name,
+      imageUrl = badge.imageUrl.toString(),
+      imageDensity = badge.imageDensity
+    )
   }
 
   @JvmStatic

@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 
 public class MmsSlide extends ImageSlide {
 
-  public MmsSlide(@NonNull Context context, @NonNull Attachment attachment) {
+  public MmsSlide(@NonNull Attachment attachment) {
     super(attachment);
   }
 

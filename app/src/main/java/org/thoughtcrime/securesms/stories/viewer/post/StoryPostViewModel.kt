@@ -81,7 +81,7 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
     disposables += Single.zip(typeface, repository.getRecord(recordId), ::Pair).subscribeBy(
       onSuccess = { (t, record) ->
         val text: StoryTextPost = if (record.body.isNotEmpty()) {
-          StoryTextPost.parseFrom(Base64.decode(record.body))
+          StoryTextPost.ADAPTER.decode(Base64.decode(record.body))
         } else {
           throw Exception("Text post message body is empty.")
         }

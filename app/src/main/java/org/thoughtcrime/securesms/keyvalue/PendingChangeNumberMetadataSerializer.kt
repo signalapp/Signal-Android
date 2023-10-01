@@ -7,6 +7,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNum
  * Serialize [PendingChangeNumberMetadata]
  */
 object PendingChangeNumberMetadataSerializer : ByteSerializer<PendingChangeNumberMetadata> {
-  override fun serialize(data: PendingChangeNumberMetadata): ByteArray = data.toByteArray()
-  override fun deserialize(data: ByteArray): PendingChangeNumberMetadata = PendingChangeNumberMetadata.parseFrom(data)
+  override fun serialize(data: PendingChangeNumberMetadata): ByteArray = data.encode()
+  override fun deserialize(data: ByteArray): PendingChangeNumberMetadata = PendingChangeNumberMetadata.ADAPTER.decode(data)
 }

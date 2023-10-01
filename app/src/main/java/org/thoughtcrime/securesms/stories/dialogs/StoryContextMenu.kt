@@ -45,7 +45,7 @@ object StoryContextMenu {
       title = context.getString(R.string.MyStories__delete_story),
       message = context.getString(R.string.MyStories__this_story_will_be_deleted),
       forceRemoteDelete = true
-    )
+    ).map { (_, deletedThread) -> deletedThread }
   }
 
   fun save(context: Context, messageRecord: MessageRecord) {
@@ -94,7 +94,7 @@ object StoryContextMenu {
 
   fun share(fragment: Fragment, messageRecord: MediaMmsMessageRecord) {
     val intent = if (messageRecord.storyType.isTextStory) {
-      val textStoryBody = StoryTextPost.parseFrom(Base64.decode(messageRecord.body)).body
+      val textStoryBody = StoryTextPost.ADAPTER.decode(Base64.decode(messageRecord.body)).body
       val linkUrl = messageRecord.linkPreviews.firstOrNull()?.url ?: ""
       val shareText = "$textStoryBody $linkUrl".trim()
 

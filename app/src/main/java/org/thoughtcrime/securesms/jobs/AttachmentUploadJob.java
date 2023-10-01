@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
@@ -69,7 +69,7 @@ public final class AttachmentUploadJob extends BaseJob {
 
   public static long getMaxPlaintextSize() {
     long maxCipherTextSize = FeatureFlags.maxAttachmentSizeBytes();
-    long maxPaddedSize     = AttachmentCipherOutputStream.getPlaintextLength(maxCipherTextSize);
+    long maxPaddedSize     = AttachmentCipherStreamUtil.getPlaintextLength(maxCipherTextSize);
     return PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize);
   }
 
@@ -125,8 +125,8 @@ public final class AttachmentUploadJob extends BaseJob {
       Log.d(TAG, "Forcing utilization of V2");
       resumableUploadSpec = null;
     } else if (inputData.hasString(ResumableUploadSpecJob.KEY_RESUME_SPEC)) {
-      Log.d(TAG, "Using attachments V3");
       resumableUploadSpec = ResumableUploadSpec.deserialize(inputData.getString(ResumableUploadSpecJob.KEY_RESUME_SPEC));
+      Log.d(TAG, "Using attachments V4 and CDN" + resumableUploadSpec.getCdnNumber());
     } else {
       Log.d(TAG, "Using attachments V2");
       resumableUploadSpec = null;

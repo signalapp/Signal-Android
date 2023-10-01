@@ -63,7 +63,7 @@ class CallLogPagedDataSource(
       remaining -= callEvents.size
     }
 
-    if (start <= clearFilterStart && remaining > 0) {
+    if (hasFilter && start <= clearFilterStart && remaining > 0) {
       callLogRows.add(CallLogRow.ClearFilter)
     }
 

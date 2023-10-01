@@ -73,20 +73,20 @@ class ChatColors(
   }
 
   fun serialize(): ChatColor {
-    val builder: ChatColor.Builder = ChatColor.newBuilder()
+    val builder: ChatColor.Builder = ChatColor.Builder()
 
     if (linearGradient != null) {
-      val gradientBuilder = ChatColor.LinearGradient.newBuilder()
+      val gradientBuilder = ChatColor.LinearGradient.Builder()
 
       gradientBuilder.rotation = linearGradient.degrees
-      linearGradient.colors.forEach { gradientBuilder.addColors(it) }
-      linearGradient.positions.forEach { gradientBuilder.addPositions(it) }
+      gradientBuilder.colors = linearGradient.colors.toList()
+      gradientBuilder.positions = linearGradient.positions.toList()
 
-      builder.setLinearGradient(gradientBuilder)
+      builder.linearGradient(gradientBuilder.build())
     }
 
     if (singleColor != null) {
-      builder.setSingleColor(ChatColor.SingleColor.newBuilder().setColor(singleColor))
+      builder.singleColor(ChatColor.SingleColor.Builder().color(singleColor).build())
     }
 
     return builder.build()
@@ -142,18 +142,18 @@ class ChatColors(
   companion object {
     @JvmStatic
     fun forChatColor(id: Id, chatColor: ChatColor): ChatColors {
-      assert(chatColor.hasSingleColor() xor chatColor.hasLinearGradient())
+      assert((chatColor.singleColor != null) xor (chatColor.linearGradient != null))
 
-      return if (chatColor.hasLinearGradient()) {
+      return if (chatColor.linearGradient != null) {
         val linearGradient = LinearGradient(
           chatColor.linearGradient.rotation,
-          chatColor.linearGradient.colorsList.toIntArray(),
-          chatColor.linearGradient.positionsList.toFloatArray()
+          chatColor.linearGradient.colors.toIntArray(),
+          chatColor.linearGradient.positions.toFloatArray()
         )
 
         forGradient(id, linearGradient)
       } else {
-        val singleColor = chatColor.singleColor.color
+        val singleColor = chatColor.singleColor!!.color
 
         forColor(id, singleColor)
       }

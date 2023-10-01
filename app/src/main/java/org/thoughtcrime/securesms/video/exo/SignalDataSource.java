@@ -5,12 +5,16 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.DefaultDataSource;
 
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.DefaultDataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.TransferListener;
+import androidx.media3.datasource.DataSource;
+import androidx.media3.datasource.DataSpec;
+import androidx.media3.datasource.DefaultDataSource;
+import androidx.media3.datasource.DefaultDataSourceFactory;
+import androidx.media3.datasource.TransferListener;
 
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -22,11 +26,12 @@ import java.util.Map;
 
 import okhttp3.OkHttpClient;
 
-/**
+ /**
  * Go-to {@link DataSource} that handles all of our various types of video sources.
  * Will defer to other {@link DataSource}s depending on the URI.
  */
-public class SignalDataSource implements DataSource {
+ @OptIn(markerClass = UnstableApi.class)
+ public class SignalDataSource implements DataSource {
 
   private final DefaultDataSource defaultDataSource;
   private final PartDataSource    partDataSource;
@@ -111,7 +116,7 @@ public class SignalDataSource implements DataSource {
     @Override
     public @NonNull SignalDataSource createDataSource() {
       return new SignalDataSource(new DefaultDataSourceFactory(context, "GenericUserAgent", null).createDataSource(),
-                                  new PartDataSource(context, listener),
+                                  new PartDataSource(listener),
                                   new BlobDataSource(context, listener),
                                   okHttpClient != null ? new ChunkedDataSource(okHttpClient, listener) : null);
     }

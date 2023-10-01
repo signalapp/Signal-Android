@@ -13,8 +13,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
-import org.thoughtcrime.securesms.messages.WebSocketStrategy
+import org.thoughtcrime.securesms.jobs.MessageFetchJob
+import org.thoughtcrime.securesms.messages.WebSocketDrainer
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -43,6 +43,8 @@ object FcmFetchManager {
   private val TAG = Log.tag(FcmFetchManager::class.java)
   private val EXECUTOR = SerialMonoLifoExecutor(SignalExecutors.UNBOUNDED)
 
+  private val KEEP_ALIVE_TOKEN = "FcmFetch"
+
   val WEBSOCKET_DRAIN_TIMEOUT = 5.minutes.inWholeMilliseconds
 
   @Volatile
@@ -51,22 +53,21 @@ object FcmFetchManager {
   @Volatile
   private var highPriority = false
 
-  /**
-   * @return True if a service was successfully started, otherwise false.
-   */
   @JvmStatic
   fun startBackgroundService(context: Context) {
     Log.i(TAG, "Starting in the background.")
     context.startService(Intent(context, FcmFetchBackgroundService::class.java))
+    SignalLocalMetrics.FcmServiceStartSuccess.onFcmStarted()
   }
 
-  /**
-   * @return True if a service was successfully started, otherwise false.
-   */
   @JvmStatic
   fun startForegroundService(context: Context) {
     Log.i(TAG, "Starting in the foreground.")
-    FcmFetchForegroundService.startServiceIfNecessary(context)
+    if (FcmFetchForegroundService.startServiceIfNecessary(context)) {
+      SignalLocalMetrics.FcmServiceStartSuccess.onFcmStarted()
+    } else {
+      SignalLocalMetrics.FcmServiceStartFailure.onFcmFailedToStart()
+    }
   }
 
   private fun postMayHaveMessagesNotification(context: Context) {
@@ -141,7 +142,7 @@ object FcmFetchManager {
 
   @JvmStatic
   fun retrieveMessages(context: Context): Boolean {
-    val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, WebSocketStrategy(WEBSOCKET_DRAIN_TIMEOUT))
+    val success = WebSocketDrainer.blockUntilDrainedAndProcessed(WEBSOCKET_DRAIN_TIMEOUT, KEEP_ALIVE_TOKEN)
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.")
@@ -151,7 +152,7 @@ object FcmFetchManager {
         FcmJobService.schedule(context)
       } else {
         Log.w(TAG, "[API ${Build.VERSION.SDK_INT}] Failed to retrieve messages. Scheduling on JobManager (API " + Build.VERSION.SDK_INT + ").")
-        ApplicationDependencies.getJobManager().add(PushNotificationReceiveJob())
+        ApplicationDependencies.getJobManager().add(MessageFetchJob())
       }
     }
 

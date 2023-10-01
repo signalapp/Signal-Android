@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.crypto
 
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.Content
 
 /**
  * Represents the output of decrypting a [SignalServiceProtos.Envelope] via [SignalServiceCipher.decrypt]
@@ -10,6 +10,6 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos
  *                 been encrypted with sealed sender.
  */
 data class SignalServiceCipherResult(
-  val content: SignalServiceProtos.Content,
+  val content: Content,
   val metadata: EnvelopeMetadata
 )

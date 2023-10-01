@@ -1,25 +1,25 @@
 package org.whispersystems.signalservice.api.messages;
 
 
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.BodyRange;
 
 import java.util.List;
 import java.util.Optional;
 
 public class SignalServiceStoryMessage {
-  private final Optional<byte[]>                              profileKey;
-  private final Optional<SignalServiceGroupV2>                groupContext;
-  private final Optional<SignalServiceAttachment>             fileAttachment;
-  private final Optional<SignalServiceTextAttachment>         textAttachment;
-  private final Optional<Boolean>                             allowsReplies;
-  private final Optional<List<SignalServiceProtos.BodyRange>> bodyRanges;
+  private final Optional<byte[]>                      profileKey;
+  private final Optional<SignalServiceGroupV2>        groupContext;
+  private final Optional<SignalServiceAttachment>     fileAttachment;
+  private final Optional<SignalServiceTextAttachment> textAttachment;
+  private final Optional<Boolean>                     allowsReplies;
+  private final Optional<List<BodyRange>>             bodyRanges;
 
   private SignalServiceStoryMessage(byte[] profileKey,
                                     SignalServiceGroupV2 groupContext,
                                     SignalServiceAttachment fileAttachment,
                                     SignalServiceTextAttachment textAttachment,
                                     boolean allowsReplies,
-                                    List<SignalServiceProtos.BodyRange> bodyRanges)
+                                    List<BodyRange> bodyRanges)
   {
     this.profileKey     = Optional.ofNullable(profileKey);
     this.groupContext   = Optional.ofNullable(groupContext);
@@ -33,7 +33,7 @@ public class SignalServiceStoryMessage {
                                                             SignalServiceGroupV2 groupContext,
                                                             SignalServiceAttachment fileAttachment,
                                                             boolean allowsReplies,
-                                                            List<SignalServiceProtos.BodyRange> bodyRanges)
+                                                            List<BodyRange> bodyRanges)
   {
     return new SignalServiceStoryMessage(profileKey, groupContext, fileAttachment, null, allowsReplies, bodyRanges);
   }
@@ -42,7 +42,7 @@ public class SignalServiceStoryMessage {
                                                             SignalServiceGroupV2 groupContext,
                                                             SignalServiceTextAttachment textAttachment,
                                                             boolean allowsReplies,
-                                                            List<SignalServiceProtos.BodyRange> bodyRanges)
+                                                            List<BodyRange> bodyRanges)
   {
     return new SignalServiceStoryMessage(profileKey, groupContext, null, textAttachment, allowsReplies, bodyRanges);
   }
@@ -67,7 +67,7 @@ public class SignalServiceStoryMessage {
     return allowsReplies;
   }
 
-  public Optional<List<SignalServiceProtos.BodyRange>> getBodyRanges() {
+  public Optional<List<BodyRange>> getBodyRanges() {
     return bodyRanges;
   }
 }

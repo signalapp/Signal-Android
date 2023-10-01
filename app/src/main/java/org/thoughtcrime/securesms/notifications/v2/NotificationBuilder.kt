@@ -123,7 +123,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         }
       }
 
-      addActions(ReplyMethod.forRecipient(context, conversation.recipient), conversation)
+      addActions(ReplyMethod.forRecipient(conversation.recipient), conversation)
     }
   }
 
@@ -274,7 +274,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val self: PersonCompat = PersonCompat.Builder()
         .setBot(false)
         .setName(if (includeShortcut) Recipient.self().getDisplayName(context) else context.getString(R.string.SingleRecipientNotificationBuilder_you))
-        .setIcon(if (includeShortcut) Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIconCompat() else null)
+        .setIcon(AvatarUtil.getIconCompat(context, Recipient.self()))
         .setKey(ConversationUtil.getShortcutId(Recipient.self().id))
         .build()
 
@@ -290,7 +290,7 @@ sealed class NotificationBuilder(protected val context: Context) {
             .setBot(false)
             .setName(notificationItem.getPersonName(context))
             .setUri(notificationItem.getPersonUri())
-            .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
+            .setIcon(notificationItem.getPersonIcon(context))
 
           if (includeShortcut) {
             personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.authorRecipient))
@@ -360,7 +360,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       )
 
       if (intent != null) {
-        val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
+        val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompat(context, conversation.recipient))
           .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
           .setDesiredHeight(600)
           .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
@@ -469,7 +469,12 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addPersonActual(recipient: Recipient) {
-      builder.addPerson(recipient.contactUri.toString())
+      builder.addPerson(
+        ConversationUtil.buildPerson(
+          context,
+          recipient
+        )
+      )
     }
 
     override fun setWhen(timestamp: Long) {
@@ -504,6 +509,5 @@ private fun ReplyMethod.toLongDescription(): Int {
   return when (this) {
     ReplyMethod.GroupMessage -> R.string.MessageNotifier_reply
     ReplyMethod.SecureMessage -> R.string.MessageNotifier_signal_message
-    ReplyMethod.UnsecuredSmsMessage -> R.string.MessageNotifier_unsecured_sms
   }
 }

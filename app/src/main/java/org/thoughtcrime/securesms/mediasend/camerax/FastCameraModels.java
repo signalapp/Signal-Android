@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * A set of {@link android.os.Build#MODEL} that are known to both benefit from
- * {@link androidx.camera.core.ImageCapture.CaptureMode#MAX_QUALITY} and execute it quickly.
+ * {@link androidx.camera.core.ImageCapture.CaptureMode#CAPTURE_MODE_MAXIMIZE_QUALITY} and execute it quickly.
  *
  */
 public class FastCameraModels {
@@ -19,6 +19,7 @@ public class FastCameraModels {
     add("Pixel 3 XL");
     add("Pixel 3a");
     add("Pixel 3a XL");
+    add("SM-S911U1");
   }};
 
   /**

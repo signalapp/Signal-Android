@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.linkpreview
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -15,6 +16,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.isAbsent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.delegate
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional
 
@@ -22,23 +24,43 @@ import java.util.Optional
  * Rewrite of [LinkPreviewViewModel] preferring Rx and Kotlin
  */
 class LinkPreviewViewModelV2(
+  private val savedStateHandle: SavedStateHandle,
   private val linkPreviewRepository: LinkPreviewRepository = LinkPreviewRepository(),
   private val enablePlaceholder: Boolean
 ) : ViewModel() {
-  private var enabled = SignalStore.settings().isLinkPreviewsEnabled
-  private val linkPreviewStateStore = RxStore<LinkPreviewState>(LinkPreviewState.forNoLinks())
 
-  val linkPreviewState: Flowable<LinkPreviewState> = linkPreviewStateStore.stateFlowable
+  companion object {
+    private const val ACTIVE_URL = "active_url"
+    private const val USER_CANCELLED = "user_cancelled"
+    private const val LINK_PREVIEW_STATE = "link_preview_state"
+  }
+
+  private var enabled = SignalStore.settings().isLinkPreviewsEnabled
+  private var savedLinkPreviewState by savedStateHandle.delegate(LINK_PREVIEW_STATE) { LinkPreviewState.forNoLinks() }
+  private val linkPreviewStateStore = RxStore(savedLinkPreviewState)
+
+  val linkPreviewState: Flowable<LinkPreviewState> = linkPreviewStateStore.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  val linkPreviewStateSnapshot: LinkPreviewState = linkPreviewStateStore.state
+
   val hasLinkPreview: Boolean = linkPreviewStateStore.state.linkPreview.isPresent
   val hasLinkPreviewUi: Boolean = linkPreviewStateStore.state.hasContent()
 
-  private var activeUrl: String? = null
+  private var activeUrl: String? by savedStateHandle.delegate(ACTIVE_URL)
+  private var userCancelled: Boolean by savedStateHandle.delegate(USER_CANCELLED, false)
+
   private var activeRequest: Disposable = Disposable.disposed()
-  private var userCancelled: Boolean = false
   private val debouncer: Debouncer = Debouncer(250)
+
+  private var savedStateDisposable: Disposable = linkPreviewStateStore
+    .stateFlowable
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribeBy {
+      savedLinkPreviewState = it
+    }
 
   override fun onCleared() {
     activeRequest.dispose()
+    savedStateDisposable.dispose()
     debouncer.clear()
   }
 
@@ -46,6 +68,7 @@ class LinkPreviewViewModelV2(
     val currentState = linkPreviewStateStore.state
 
     onUserCancel()
+    userCancelled = false
 
     return currentState.linkPreview.map { listOf(it) }.orElse(emptyList())
   }
@@ -143,7 +166,7 @@ class LinkPreviewViewModelV2(
       }
   }
 
-  private fun setLinkPreviewState(linkPreviewState: LinkPreviewState) {
+  fun setLinkPreviewState(linkPreviewState: LinkPreviewState) {
     linkPreviewStateStore.update { cleanseState(linkPreviewState) }
   }
 

@@ -532,7 +532,11 @@ public final class GroupSendUtil {
         return Collections.singletonList(result);
       } else {
         LegacyGroupEvents listener = relatedMessageId != null ? new LegacyMetricEventListener(relatedMessageId.getId()) : LegacyGroupEvents.EMPTY;
-        return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message, listener, partialListener, cancelationSignal, urgent);
+        if (editMessage != null) {
+          return messageSender.sendEditMessage(targets, access, isRecipientUpdate, contentHint, message, listener, partialListener, cancelationSignal, urgent, editMessage.getTargetSentTimestamp());
+        } else {
+          return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message, listener, partialListener, cancelationSignal, urgent);
+        }
       }
     }
 

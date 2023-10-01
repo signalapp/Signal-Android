@@ -10,7 +10,11 @@
         android:label="call_link_details">
         <action
             android:id="@+id/action_callLinkDetailsFragment_to_editCallLinkNameDialogFragment"
-            app:destination="@id/editCallLinkNameDialogFragment" />
+            app:destination="@id/editCallLinkNameDialogFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
 
         <argument
             android:name="room_id"

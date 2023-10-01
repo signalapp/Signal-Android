@@ -10,13 +10,14 @@
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/signal_colorBackground"
+        android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
+            android:background="@color/signal_colorBackground"
             android:layout_width="match_parent"
             android:layout_height="@dimen/signal_m3_toolbar_height"
             android:minHeight="@dimen/signal_m3_toolbar_height"

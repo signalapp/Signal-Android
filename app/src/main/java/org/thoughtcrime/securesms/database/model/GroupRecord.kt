@@ -24,7 +24,6 @@ class GroupRecord(
   val avatarId: Long,
   val avatarKey: ByteArray?,
   val avatarContentType: String?,
-  val relay: String?,
   val isActive: Boolean,
   val avatarDigest: ByteArray?,
   val isMms: Boolean,
@@ -88,7 +87,7 @@ class GroupRecord(
   val membershipAdditionAccessControl: GroupAccessControl
     get() {
       return if (isV2Group) {
-        if (requireV2GroupProperties().decryptedGroup.accessControl.members == AccessControl.AccessRequired.MEMBER) {
+        if ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).members == AccessControl.AccessRequired.MEMBER) {
           GroupAccessControl.ALL_MEMBERS
         } else {
           GroupAccessControl.ONLY_ADMINS
@@ -106,7 +105,7 @@ class GroupRecord(
   val attributesAccessControl: GroupAccessControl
     get() {
       return if (isV2Group) {
-        if (requireV2GroupProperties().decryptedGroup.accessControl.attributes == AccessControl.AccessRequired.MEMBER) {
+        if ((requireV2GroupProperties().decryptedGroup.accessControl ?: AccessControl()).attributes == AccessControl.AccessRequired.MEMBER) {
           GroupAccessControl.ALL_MEMBERS
         } else {
           GroupAccessControl.ONLY_ADMINS
@@ -122,7 +121,7 @@ class GroupRecord(
     if (isV2Group && memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR) {
       requireV2GroupProperties()
         .decryptedGroup
-        .requestingMembersCount
+        .requestingMembers.size
     } else {
       0
     }
@@ -176,7 +175,7 @@ class GroupRecord(
     if (isV2Group) {
       val serviceId = recipient.serviceId
       if (serviceId.isPresent) {
-        return DecryptedGroupUtil.findPendingByUuid(requireV2GroupProperties().decryptedGroup.pendingMembersList, serviceId.get().uuid())
+        return DecryptedGroupUtil.findPendingByServiceId(requireV2GroupProperties().decryptedGroup.pendingMembers, serviceId.get())
           .isPresent
       }
     }

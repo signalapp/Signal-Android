@@ -244,18 +244,26 @@ private fun CallLinkDetails(
         modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
       )
 
-      Rows.TextRow(
-        text = stringResource(id = R.string.CallLinkDetailsFragment__add_call_name),
-        onClick = callback::onEditNameClicked
-      )
+      if (state.callLink.credentials?.adminPassBytes != null) {
+        Rows.TextRow(
+          text = stringResource(
+            id = if (state.callLink.state.name.isEmpty()) {
+              R.string.CreateCallLinkBottomSheetDialogFragment__add_call_name
+            } else {
+              R.string.CreateCallLinkBottomSheetDialogFragment__edit_call_name
+            }
+          ),
+          onClick = callback::onEditNameClicked
+        )
 
-      Rows.ToggleRow(
-        checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
-        text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
-        onCheckChanged = callback::onApproveAllMembersChanged
-      )
+        Rows.ToggleRow(
+          checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
+          text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
+          onCheckChanged = callback::onApproveAllMembersChanged
+        )
 
-      Dividers.Default()
+        Dividers.Default()
+      }
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),

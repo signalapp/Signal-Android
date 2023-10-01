@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.wallpaper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -22,16 +21,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ByteUnit;
-import org.thoughtcrime.securesms.util.LRUCache;
 
-import java.util.HashMap;
 import java.util.Objects;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 final class UriChatWallpaper implements ChatWallpaper, Parcelable {
 
@@ -84,13 +78,12 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
 
                 @Override
                 public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                  Log.i(TAG, "Loaded wallpaper " + uri);
-                  imageView.setImageBitmap(resource);
+                  Log.i(TAG, "Loaded wallpaper " + uri + " on " + Thread.currentThread().getName());
                   CACHE.put(uri, resource);
                   return false;
                 }
               })
-              .submit();
+              .into(imageView);
     }
   }
 
@@ -127,10 +120,10 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
 
   @Override
   public @NonNull Wallpaper serialize() {
-    return Wallpaper.newBuilder()
-                    .setFile(Wallpaper.File.newBuilder().setUri(uri.toString()))
-                    .setDimLevelInDarkTheme(dimLevelInDarkTheme)
-                    .build();
+    return new Wallpaper.Builder()
+                        .file_(new Wallpaper.File.Builder().uri(uri.toString()).build())
+                        .dimLevelInDarkTheme(dimLevelInDarkTheme)
+                        .build();
   }
 
   @Override

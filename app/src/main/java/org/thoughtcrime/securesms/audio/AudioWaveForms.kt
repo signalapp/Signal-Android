@@ -107,7 +107,7 @@ object AudioWaveForms {
   private fun generateWaveForm(context: Context, uri: Uri, cacheKey: String, attachmentId: AttachmentId): CacheCheckResult {
     try {
       val startTime = System.currentTimeMillis()
-      SignalDatabase.attachments.writeAudioHash(attachmentId, AudioWaveFormData.getDefaultInstance())
+      SignalDatabase.attachments.writeAudioHash(attachmentId, AudioWaveFormData())
 
       Log.i(TAG, "Starting wave form generation ($cacheKey)")
       val fileInfo: AudioFileInfo = AudioWaveFormGenerator.generateWaveForm(context, uri)

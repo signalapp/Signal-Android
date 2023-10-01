@@ -2,15 +2,6 @@
 <resources>
     <integer name="media_overview_cols">5</integer>
 
-    <dimen name="insights_modal_title_margin_top">12dp</dimen>
-    <dimen name="insights_modal_description_margin_top">10dp</dimen>
-    <dimen name="insights_modal_progress_margin_top">17dp</dimen>
-    <dimen name="insights_modal_progress_size">131dp</dimen>
-    <dimen name="insights_modal_avatar_size">94dp</dimen>
-    <dimen name="insights_modal_view_insights_margin_top">31dp</dimen>
-    <dimen name="insights_modal_percent_text_size">20sp</dimen>
-    <dimen name="insights_modal_percent_sign_text_size">16sp</dimen>
-
     <dimen name="transfer_top_padding">16dp</dimen>
     <dimen name="transfer_split_top_padding">8dp</dimen>
     <dimen name="transfer_item_spacing">16dp</dimen>

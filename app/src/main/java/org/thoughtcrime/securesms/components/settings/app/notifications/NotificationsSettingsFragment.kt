@@ -22,6 +22,7 @@ import androidx.preference.PreferenceManager
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -30,8 +31,11 @@ import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.RadioListPreference
 import org.thoughtcrime.securesms.components.settings.RadioListPreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.Banner
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.RingtoneUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -61,6 +65,11 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
 
   private lateinit var viewModel: NotificationsSettingsViewModel
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.refresh()
+  }
+
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == MESSAGE_SOUND_SELECT && resultCode == Activity.RESULT_OK && data != null) {
       val uri: Uri? = data.getParcelableExtraCompat(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java)
@@ -77,6 +86,8 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
       LayoutFactory(::LedColorPreferenceViewHolder, R.layout.dsl_preference_item)
     )
 
+    Banner.register(adapter)
+
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val factory = NotificationsSettingsViewModel.Factory(sharedPreferences)
 
@@ -89,10 +100,23 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
 
   private fun getConfiguration(state: NotificationsSettingsState): DSLConfiguration {
     return configure {
+      if (!state.messageNotificationsState.canEnableNotifications) {
+        customPref(
+          Banner.Model(
+            textId = R.string.NotificationSettingsFragment__to_enable_notifications,
+            actionId = R.string.NotificationSettingsFragment__turn_on,
+            onClick = {
+              TurnOnNotificationsBottomSheet().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+            }
+          )
+        )
+      }
+
       sectionHeaderPref(R.string.NotificationsSettingsFragment__messages)
 
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__notifications),
+        isEnabled = state.messageNotificationsState.canEnableNotifications,
         isChecked = state.messageNotificationsState.notificationsEnabled,
         onClick = {
           viewModel.setMessageNotificationsEnabled(!state.messageNotificationsState.notificationsEnabled)
@@ -184,6 +208,16 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
         }
       )
 
+      if (Build.VERSION.SDK_INT >= 23 && state.messageNotificationsState.troubleshootNotifications) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences_notifications__troubleshoot),
+          isEnabled = true,
+          onClick = {
+            PromptBatterySaverDialogFragment.show(childFragmentManager)
+          }
+        )
+      }
+
       if (Build.VERSION.SDK_INT < 30) {
         if (NotificationChannels.supported()) {
           clickPref(
@@ -212,6 +246,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
 
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__notifications),
+        isEnabled = state.callNotificationsState.canEnableNotifications,
         isChecked = state.callNotificationsState.notificationsEnabled,
         onClick = {
           viewModel.setCallNotificationsEnabled(!state.callNotificationsState.notificationsEnabled)

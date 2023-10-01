@@ -26,15 +26,13 @@ class SignalInstrumentationApplicationContext : ApplicationContext() {
   }
 
   override fun initializeLogging() {
-    persistentLogger = PersistentLogger(this)
-
-    Log.initialize({ true }, AndroidLogger(), persistentLogger, inMemoryLogger)
+    Log.initialize({ true }, AndroidLogger(), PersistentLogger(this), inMemoryLogger)
 
     SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())
 
     SignalExecutors.UNBOUNDED.execute {
       Log.blockUntilAllWritesFinished()
-      LogDatabase.getInstance(this).trimToSize()
+      LogDatabase.getInstance(this).logs.trimToSize()
     }
   }
 }

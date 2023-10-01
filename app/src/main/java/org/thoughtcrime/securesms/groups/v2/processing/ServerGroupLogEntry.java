@@ -21,7 +21,7 @@ final class ServerGroupLogEntry {
   @Nullable private final DecryptedGroupChange change;
 
   ServerGroupLogEntry(@Nullable DecryptedGroup group, @Nullable DecryptedGroupChange change) {
-    if (change != null && group != null && group.getRevision() != change.getRevision()) {
+    if (change != null && group != null && group.revision != change.revision) {
       Log.w(TAG, "Ignoring change with revision number not matching group");
       change = null;
     }
@@ -43,8 +43,8 @@ final class ServerGroupLogEntry {
   }
 
   int getRevision() {
-         if (group  != null) return group.getRevision();
-    else if (change != null) return change.getRevision();
+         if (group  != null) return group.revision;
+    else if (change != null) return change.revision;
     else                     throw new AssertionError();
   }
 }

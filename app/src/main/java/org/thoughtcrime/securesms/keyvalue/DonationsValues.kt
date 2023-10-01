@@ -240,7 +240,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun setExpiredBadge(badge: Badge?) {
     if (badge != null) {
-      putBlob(EXPIRED_BADGE, Badges.toDatabaseBadge(badge).toByteArray())
+      putBlob(EXPIRED_BADGE, Badges.toDatabaseBadge(badge).encode())
     } else {
       remove(EXPIRED_BADGE)
     }
@@ -249,12 +249,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   fun getExpiredBadge(): Badge? {
     val badgeBytes = getBlob(EXPIRED_BADGE, null) ?: return null
 
-    return Badges.fromDatabaseBadge(BadgeList.Badge.parseFrom(badgeBytes))
+    return Badges.fromDatabaseBadge(BadgeList.Badge.ADAPTER.decode(badgeBytes))
   }
 
   fun setExpiredGiftBadge(badge: Badge?) {
     if (badge != null) {
-      putBlob(EXPIRED_GIFT_BADGE, Badges.toDatabaseBadge(badge).toByteArray())
+      putBlob(EXPIRED_GIFT_BADGE, Badges.toDatabaseBadge(badge).encode())
     } else {
       remove(EXPIRED_GIFT_BADGE)
     }
@@ -263,7 +263,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   fun getExpiredGiftBadge(): Badge? {
     val badgeBytes = getBlob(EXPIRED_GIFT_BADGE, null) ?: return null
 
-    return Badges.fromDatabaseBadge(BadgeList.Badge.parseFrom(badgeBytes))
+    return Badges.fromDatabaseBadge(BadgeList.Badge.ADAPTER.decode(badgeBytes))
   }
 
   fun getLastKeepAliveLaunchTime(): Long {

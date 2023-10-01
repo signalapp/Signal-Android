@@ -301,7 +301,8 @@ public class RefreshOwnProfileJob extends BaseJob {
                              .confirmUsername(localUsername, response);
     } catch (IOException e) {
       Log.d(TAG, "Failed to synchronize username.", e);
-      SignalStore.phoneNumberPrivacy().markUsernameOutOfSync();
+      // TODO [greyson][usernames] Is this actually enough to trigger it? Shouldn't we wait until we know for sure, rather than have a network error?
+      SignalStore.account().setUsernameOutOfSync(true);
     }
   }
 

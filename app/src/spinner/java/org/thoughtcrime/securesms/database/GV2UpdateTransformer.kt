@@ -27,7 +27,7 @@ object GV2UpdateTransformer : ColumnTransformer {
 
     return if (MessageTypes.isGroupV2(type) && MessageTypes.isGroupUpdate(type) && body != null) {
       val decoded = Base64.decode(body)
-      val decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded)
+      val decryptedGroupV2Context = DecryptedGroupV2Context.ADAPTER.decode(decoded)
       val gv2ChangeDescription: UpdateDescription = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), body, null)
 
       "${gv2ChangeDescription.spannable}<br><br>${decryptedGroupV2Context.change}"

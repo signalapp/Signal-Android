@@ -1,0 +1,290 @@
+<html>
+  {{> partials/head title="Home" }}
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+    html, body {
+      overflow: hidden;
+    }
+
+    h1.collapse-header {
+      font-size: 1.35rem;
+    }
+
+    h2.collapse-header {
+      font-size: 1.15rem;
+    }
+
+    #log-container {
+      width: calc(100% - 32px);
+      height: calc(100% - 325px);
+      overflow-y: scroll;
+      overflow-x: auto;
+      border: 1px solid black;
+      resize: vertical;
+      white-space: pre;
+      font-family: 'JetBrains Mono', monospace;
+      background-color: #2b2b2b;
+      margin-top: 8px;
+      border-radius: 5px;
+      border: 1px solid black;
+      padding: 8px;
+    }
+
+    #logs {
+      width: 100%;
+    }
+
+    .log-verbose {
+      color: #8a8a8a;
+    }
+
+    .log-debug {
+      color: #5ca72b;
+    }
+
+    .log-info{
+      color: #46bbb9;
+    }
+
+    .log-warn{
+      color: #d6cb37;
+    }
+
+    .log-error{
+      color: #ff6b68;
+    }
+
+    #follow-button.enabled {
+      opacity: 0.5;
+    }
+
+    #toolbar {
+      width: calc(100% - 14px);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
+
+    #toolbar #filter-text {
+      flex-grow: 1;
+      margin-left: 8px;
+    }
+
+    #socket-status {
+      width: 16px;
+      height: 16px;
+      border-radius: 16px;
+      margin: 3px 0 3px 3px;
+      border: 1px solid black;
+    }
+
+    #socket-status.connected {
+      background-color: #5ca72b;
+    }
+
+    #socket-status.connecting {
+      background-color: #d6cb37;
+    }
+
+    #socket-status.disconnected {
+      background-color: #cc0000;
+    }
+
+  </style>
+
+  <body>
+    {{> partials/prefix isLogs=true}}
+
+    <div id="toolbar">
+      <button onclick="onFollowClicked()" id="follow-button">Follow</button>
+      <input type="text" id="filter-text" placeholder="Filter..." />
+      <div id="socket-status"></div>
+    </div>
+
+    <div id="log-container"></div>
+
+
+    {{> partials/suffix }}
+
+    <script>
+      const logs = []
+      const logTable = document.getElementById('logs')
+      const logContainer = document.getElementById('log-container')
+      const followButton = document.getElementById('follow-button')
+      const filterText = document.getElementById('filter-text')
+      const statusOrb = document.getElementById('socket-status')
+
+      let followLogs = false 
+      let programaticScroll = false
+
+      let filter = null
+
+      function main() {
+        initWebSocket()
+        setFollowState(true)
+
+        logContainer.innerHTML = ''
+
+        filterText.addEventListener('input', onFilterChanged)
+
+        logContainer.addEventListener('scroll', () => {
+          if (programaticScroll) {
+            programaticScroll = false
+          } else {
+            setFollowState(false)
+          }
+        })
+      }
+
+      function onFollowClicked() {
+        setFollowState(true)
+        scrollToBottom()
+      }
+
+      function onFilterChanged(event) {
+        filter = event.target.value
+
+        logContainer.innerHTML = ''
+
+        logs
+          .filter(it => logMatches(it, filter))
+          .map(it => logToDiv(it))
+          .forEach(it => logContainer.appendChild(it))
+
+          setFollowState(true)
+          scrollToBottom()
+      }
+
+      function initWebSocket() {
+        const websocket = new WebSocket(`ws://${window.location.host}/logs/websocket`)
+        let keepAliveTimer = null
+        statusOrb.className = 'connecting'
+
+        websocket.onopen = () => {
+          console.log("[open] Connection established");
+          console.log("Sending to server");
+
+          statusOrb.className = 'connected'
+
+          keepAliveTimer = setInterval(() => websocket.send('keepalive'), 1000)
+        }
+
+        websocket.onclose = () => {
+          console.log('[close] Closed!')
+          statusOrb.className = 'disconnected'
+
+          if (keepAliveTimer != null) {
+            clearInterval(keepAliveTimer)
+            keepAliveTimer = null
+          }
+
+          setTimeout(() => initWebSocket(), 1000)
+        }
+
+        websocket.onmessage = onWebSocketMessage
+      }
+
+      function onWebSocketMessage(event) {
+        const log = JSON.parse(event.data)
+        logs.push(log)
+        if (logs.length > 5_000) {
+          logs.shift()
+        }
+
+        if (filter == null || logMatches(log, filter)) {
+          logContainer.appendChild(logToDiv(log))
+        }
+
+        if (followLogs) {
+          scrollToBottom()
+        }
+      }
+
+      function logToDiv(log) {
+        const div = document.createElement('div')
+
+        const linePrefix = `[${log.thread}] ${log.time} ${log.tag} ${log.level} `
+
+        let stackTraceString = log.stackTrace
+        if (stackTraceString != null) {
+          stackTraceString = ' \n' + stackTraceString
+        }
+
+        let textContent = `${linePrefix}${log.message || ''}${stackTraceString || ''}`
+        textContent = indentOverflowLines(textContent, linePrefix.length)
+        
+        div.textContent = textContent
+        div.classList.add(levelToClass(log.level))
+
+        return div
+      }
+
+      function levelToClass(level) {
+        switch (level) {
+          case 'V': return 'log-verbose'
+          case 'D': return 'log-debug'
+          case 'I': return 'log-info'
+          case 'W': return 'log-warn'
+          case 'E': return 'log-error'
+          default: return ''
+        }
+      }
+
+      function setFollowState(value) {
+        if (followLogs === value) {
+          return
+        }
+
+        followLogs = value
+
+        if (followLogs) {
+          followButton.classList.add('enabled')
+          followButton.disabled = true
+        } else {
+          followButton.classList.remove('enabled')
+          followButton.disabled = false
+        }
+      }
+
+      function scrollToBottom() {
+        programaticScroll = true
+        logContainer.scrollTop = logContainer.scrollHeight
+      }
+
+      function indentOverflowLines(text, indent) {
+        const lines = text.split('\n')
+
+        if (lines.length > 1) {
+          const spaces = ' '.repeat(indent)
+          const overflow = lines.slice(1)
+          const indented = overflow.map(it => spaces + it).join('\n')
+          return lines[0] + '\n' + indented
+        } else {
+          return text
+        }
+      }
+
+      function logMatches(log, filter) {
+        if (log.tag != null && log.tag.indexOf(filter) >= 0) {
+          return true
+        }
+
+        if (log.message != null && log.message.indexOf(filter) >= 0) {
+          return true
+ 
+        }
+
+        if (log.stackTrace != null && log.stackTrace.indexOf(filter) >= 0) {
+          return true
+        }
+
+        return false
+      }
+
+      main()
+    </script>
+  </body>
+</html>

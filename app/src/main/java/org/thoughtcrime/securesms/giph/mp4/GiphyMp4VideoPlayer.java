@@ -10,13 +10,15 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
 import androidx.lifecycle.DefaultLifecycleObserver;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.ui.StyledPlayerView;
+import androidx.media3.common.C;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.AspectRatioFrameLayout;
+import androidx.media3.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -26,14 +28,15 @@ import org.thoughtcrime.securesms.util.Projection;
 /**
  * Video Player class specifically created for the GiphyMp4Fragment.
  */
+@OptIn(markerClass = UnstableApi.class)
 public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLifecycleObserver {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(GiphyMp4VideoPlayer.class);
 
-  private final StyledPlayerView exoView;
-  private       ExoPlayer        exoPlayer;
-  private       CornerMask       cornerMask;
+  private final PlayerView exoView;
+  private       ExoPlayer  exoPlayer;
+  private       CornerMask cornerMask;
 
   public GiphyMp4VideoPlayer(Context context) {
     this(context, null);

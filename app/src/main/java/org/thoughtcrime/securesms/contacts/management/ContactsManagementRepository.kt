@@ -34,10 +34,10 @@ class ContactsManagementRepository(context: Context) {
       }
 
       val rotateProfileKey = !recipient.hasGroupsInCommon()
-      SignalDatabase.recipients.markHidden(recipient.id, rotateProfileKey)
+      SignalDatabase.recipients.markHidden(recipient.id, rotateProfileKey, false)
       if (rotateProfileKey) {
         ApplicationDependencies.getJobManager().add(RotateProfileKeyJob())
       }
-    }
+    }.subscribeOn(Schedulers.io())
   }
 }

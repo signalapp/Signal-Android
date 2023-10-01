@@ -1,0 +1,23 @@
+/**
+ * Copyright (C) 2020 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto3";
+
+option java_package = "org.signal.protos.resumableuploads";
+
+message ResumableUpload {
+  message Header {
+    string key = 1;
+    string value = 2;
+  }
+
+           bytes  secretKey = 1;
+           bytes  iv        = 2;
+           string cdnKey    = 3;
+           uint32 cdnNumber = 4;
+           string location  = 5;
+           uint64 timeout   = 6;
+  repeated Header headers   = 7;
+}

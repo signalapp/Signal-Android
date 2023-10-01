@@ -180,13 +180,15 @@ class StoryViewerPageFragment :
     val cardWrapper: TouchInterceptingFrameLayout = view.findViewById(R.id.story_content_card_touch_interceptor)
     val card: MaterialCardView = view.findViewById(R.id.story_content_card)
     val caption: EmojiTextView = view.findViewById(R.id.story_caption)
-    val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
+    val largeCaption: EmojiTextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
     val storyGradientTop: View = view.findViewById(R.id.story_gradient_top)
     val storyGradientBottom: View = view.findViewById(R.id.story_bottom_gradient_container)
     val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
     val addToGroupStoryButtonWrapper: View = view.findViewById(R.id.add_wrapper)
+
+    largeCaption.bindGestureListener()
 
     storyNormalBottomGradient = view.findViewById(R.id.story_gradient_bottom)
     storyCaptionBottomGradient = view.findViewById(R.id.story_caption_gradient)
@@ -449,7 +451,10 @@ class StoryViewerPageFragment :
         if (storyViewerPageArgs.source == StoryViewerPageArgs.Source.NOTIFICATION) {
           startReply(isFromNotification = true, groupReplyStartPosition = storyViewerPageArgs.groupReplyStartPosition)
         } else if (storyViewerPageArgs.source == StoryViewerPageArgs.Source.INFO_CONTEXT && state.selectedPostIndex in state.posts.indices) {
-          showInfo(state.posts[state.selectedPostIndex])
+          viewModel.setIsDisplayingInfoDialog(true)
+          lifecycleDisposable += sharedViewModel.postAfterLoadStateReady {
+            showInfo(state.posts[state.selectedPostIndex])
+          }
         }
       }
     }
@@ -819,7 +824,7 @@ class StoryViewerPageFragment :
   }
 
   @SuppressLint("SetTextI18n")
-  private fun presentCaption(caption: EmojiTextView, largeCaption: TextView, largeCaptionOverlay: View, storyPost: StoryPost) {
+  private fun presentCaption(caption: EmojiTextView, largeCaption: EmojiTextView, largeCaptionOverlay: View, storyPost: StoryPost) {
     val displayBody: CharSequence = if (storyPost.content is StoryPost.Content.AttachmentContent) {
       val displayBodySpan = SpannableString(storyPost.content.attachment.caption ?: "")
       val ranges: BodyRangeList? = storyPost.conversationMessage.messageRecord.messageRanges
@@ -843,6 +848,7 @@ class StoryViewerPageFragment :
     caption.setOverflowText(getString(R.string.StoryViewerPageFragment__see_more))
     caption.maxLines = 5
     caption.text = displayBody
+    caption.setMaxLength(280)
 
     if (caption.text.length == displayBody.length) {
       caption.setOnClickListener(null)
@@ -902,7 +908,7 @@ class StoryViewerPageFragment :
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
-    val formattedDate = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
+    val formattedDate = DateUtils.getBriefRelativeTimeSpanString(requireContext(), Locale.getDefault(), storyPost.dateInMilliseconds)
     if (date.text != formattedDate) {
       date.text = formattedDate
     }
@@ -1225,7 +1231,7 @@ class StoryViewerPageFragment :
       return true
     }
 
-    override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
+    override fun onScroll(e1: MotionEvent?, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
       val isFirstStory = sharedViewModel.stateSnapshot.page == 0
       val isLastStory = sharedViewModel.stateSnapshot.pages.lastIndex == sharedViewModel.stateSnapshot.page
       val isXMagnitudeGreaterThanYMagnitude = abs(distanceX) > abs(distanceY) || viewToTranslate.translationX > 0f
@@ -1234,7 +1240,7 @@ class StoryViewerPageFragment :
 
       sharedViewModel.setIsChildScrolling(isXMagnitudeGreaterThanYMagnitude || isFirstAndHasYTranslationOrNegativeY || isLastAndHasYTranslationOrNegativeY)
       if (isFirstStory) {
-        val delta = max(0f, (e2.rawY - e1.rawY)) / 3f
+        val delta = max(0f, (e2.rawY - (e1?.rawY ?: 0f))) / 3f
         val percent = INTERPOLATOR.getInterpolation(delta / maxSlide)
         val distance = maxSlide * percent
 
@@ -1243,7 +1249,7 @@ class StoryViewerPageFragment :
       }
 
       if (isLastStory) {
-        val delta = max(0f, (e1.rawY - e2.rawY)) / 3f
+        val delta = max(0f, ((e1?.rawY ?: 0f) - e2.rawY)) / 3f
         val percent = -INTERPOLATOR.getInterpolation(delta / maxSlide)
         val distance = maxSlide * percent
 
@@ -1251,7 +1257,7 @@ class StoryViewerPageFragment :
         viewToTranslate.translationY = distance
       }
 
-      val delta = max(0f, (e2.rawX - e1.rawX)) / 3f
+      val delta = max(0f, (e2.rawX - (e1?.rawX ?: 0f))) / 3f
       val percent = INTERPOLATOR.getInterpolation(delta / maxSlide)
       val distance = maxSlide * percent
 
@@ -1263,7 +1269,7 @@ class StoryViewerPageFragment :
       return true
     }
 
-    override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+    override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
       val isSideSwipe = abs(velocityX) > abs(velocityY)
       if (!isSideSwipe) {
         return false

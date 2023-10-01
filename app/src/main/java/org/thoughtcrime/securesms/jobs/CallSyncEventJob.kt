@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.CallEventSyncMessageUtil
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
@@ -54,7 +54,7 @@ class CallSyncEventJob private constructor(
             recipientId = it.peer.toLong(),
             callId = it.callId,
             direction = CallTable.Direction.serialize(it.direction),
-            event = CallTable.Event.serialize(it.event)
+            event = CallTable.Event.serialize(CallTable.Event.DELETE)
           )
         }
       )
@@ -120,7 +120,7 @@ class CallSyncEventJob private constructor(
     }
   }
 
-  private fun createSyncMessage(syncTimestamp: Long, callSyncEvent: CallSyncEventJobRecord, callType: CallTable.Type): SignalServiceProtos.SyncMessage.CallEvent {
+  private fun createSyncMessage(syncTimestamp: Long, callSyncEvent: CallSyncEventJobRecord, callType: CallTable.Type): SyncMessage.CallEvent {
     return when (callSyncEvent.deserializeEvent()) {
       CallTable.Event.ACCEPTED -> CallEventSyncMessageUtil.createAcceptedSyncMessage(
         remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),

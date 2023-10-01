@@ -69,7 +69,11 @@ public abstract class AudioManagerCompat {
 
   public boolean isBluetoothConnected() {
     if (Build.VERSION.SDK_INT >= 31) {
-      final SignalAudioManager.AudioDevice audioDevice = AudioDeviceMapping.fromPlatformType(audioManager.getCommunicationDevice().getType());
+      final AudioDeviceInfo communicationDevice = audioManager.getCommunicationDevice();
+      if (communicationDevice == null) {
+        return false;
+      }
+      final SignalAudioManager.AudioDevice audioDevice = AudioDeviceMapping.fromPlatformType(communicationDevice.getType());
       return SignalAudioManager.AudioDevice.BLUETOOTH == audioDevice;
     } else {
       return isBluetoothScoOn();

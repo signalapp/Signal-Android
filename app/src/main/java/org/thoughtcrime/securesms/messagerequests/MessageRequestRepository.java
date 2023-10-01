@@ -68,7 +68,7 @@ public final class MessageRequestRepository {
       onGroupInfoLoaded.accept(groupRecord.map(record -> {
         if (record.isV2Group()) {
           DecryptedGroup decryptedGroup = record.requireV2GroupProperties().getDecryptedGroup();
-          return new GroupInfo(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), decryptedGroup.getDescription());
+          return new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description);
         } else {
           return new GroupInfo(record.getMembers().size(), 0, "");
         }
@@ -85,7 +85,7 @@ public final class MessageRequestRepository {
     if (groupRecord.isPresent()) {
       if (groupRecord.get().isV2Group()) {
         DecryptedGroup decryptedGroup = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
-        groupInfo = new GroupInfo(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), decryptedGroup.getDescription());
+        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description);
       } else {
         groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "");
       }
@@ -145,10 +145,15 @@ public final class MessageRequestRepository {
     } else {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
         return MessageRequestState.NONE;
-      } else if (RecipientUtil.isRecipientHidden(threadId)) {
-        return MessageRequestState.INDIVIDUAL_HIDDEN;
       } else {
-        return MessageRequestState.INDIVIDUAL;
+        Recipient.HiddenState hiddenState = RecipientUtil.getRecipientHiddenState(threadId);
+        if (hiddenState == Recipient.HiddenState.NOT_HIDDEN) {
+          return MessageRequestState.INDIVIDUAL;
+        } else if (hiddenState == Recipient.HiddenState.HIDDEN) {
+          return MessageRequestState.NONE_HIDDEN;
+        } else {
+          return MessageRequestState.INDIVIDUAL_HIDDEN;
+        }
       }
     }
   }
@@ -194,7 +199,7 @@ public final class MessageRequestRepository {
 
         List<MessageTable.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(context, messageIds);
+        MarkReadReceiver.process(messageIds);
 
         List<MessageTable.MarkedMessageInfo> viewedInfos = SignalDatabase.messages().getViewedIncomingMessages(threadId);
 
@@ -368,10 +373,8 @@ public final class MessageRequestRepository {
 
   @WorkerThread
   private boolean isLegacyThread(@NonNull Recipient recipient) {
-    Context context  = ApplicationDependencies.getApplication();
-    Long    threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
+    Long threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
 
-    return threadId != null &&
-        (RecipientUtil.hasSentMessageInThread(threadId) || RecipientUtil.isPreMessageRequestThread(threadId));
+    return threadId != null && RecipientUtil.hasSentMessageInThread(threadId);
   }
 }

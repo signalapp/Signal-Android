@@ -65,7 +65,6 @@ class ConversationItemAnimator(
 
   private fun animateSlide(viewHolder: RecyclerView.ViewHolder, preLayoutInfo: ItemHolderInfo?, postLayoutInfo: ItemHolderInfo): Boolean {
     if (isInMultiSelectMode() || !shouldPlayMessageAnimations()) {
-      Log.d(TAG, "Dropping slide animation: (${isInMultiSelectMode()}, ${shouldPlayMessageAnimations()}) :: ${viewHolder.absoluteAdapterPosition}")
       dispatchAnimationFinished(viewHolder)
       return false
     }
@@ -91,6 +90,8 @@ class ConversationItemAnimator(
 
     pendingSlideAnimations[viewHolder] = TweeningInfo(translationY, 0f)
     dispatchAnimationStarted(viewHolder)
+
+    Log.d(TAG, "Dispatched slide animation for view at ${viewHolder.absoluteAdapterPosition}")
     return true
   }
 
@@ -103,7 +104,6 @@ class ConversationItemAnimator(
         animateSlide(viewHolder, preLayoutInfo, postLayoutInfo)
       }
     } else {
-      Log.d(TAG, "Dropping persistence animation: (${isInMultiSelectMode()}, ${shouldPlayMessageAnimations()}, ${isParentFilled()}) :: ${viewHolder.absoluteAdapterPosition}")
       dispatchAnimationFinished(viewHolder)
       false
     }

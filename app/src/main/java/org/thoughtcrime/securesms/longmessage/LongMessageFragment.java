@@ -138,7 +138,7 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       } else {
         text.setMentionBackgroundTint(ContextCompat.getColor(requireContext(), R.color.transparent_black_40));
       }
-      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault(), ConversationItemDisplayMode.STANDARD);
+      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault(), ConversationItemDisplayMode.Standard.INSTANCE);
     });
   }
 

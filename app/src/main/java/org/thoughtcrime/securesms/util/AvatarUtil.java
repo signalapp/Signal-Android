@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -17,9 +18,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -27,12 +30,16 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class AvatarUtil {
 
@@ -85,7 +92,7 @@ public final class AvatarUtil {
   }
 
   public static void loadIconIntoImageView(@NonNull Recipient recipient, @NonNull ImageView target, int requestedSize) {
-    Context  context  = target.getContext();
+    Context context = target.getContext();
 
     requestCircle(GlideApp.with(context).asDrawable(), context, recipient, requestedSize).into(target);
   }
@@ -97,33 +104,18 @@ public final class AvatarUtil {
       throws ExecutionException, InterruptedException
   {
     return requestSquare(GlideApp.with(context).asBitmap(), context, recipient)
-                                 .skipMemoryCache(true)
-                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                 .submit(width, height)
-                                 .get();
+        .skipMemoryCache(true)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .submit(width, height)
+        .get();
   }
 
   @WorkerThread
-  public static IconCompat getIconWithUriForNotification(@NonNull Context context, @NonNull RecipientId recipientId) {
-    return IconCompat.createWithContentUri(AvatarProvider.getContentUri(context, recipientId));
-  }
-
-  @WorkerThread
-  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      GlideRequest<Bitmap> glideRequest = GlideApp.with(context).asBitmap().load(new ConversationShortcutPhoto(recipient));
-      if (recipient.shouldBlurAvatar()) {
-        glideRequest = glideRequest.transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS));
-      }
-      return IconCompat.createWithAdaptiveBitmap(glideRequest.submit().get());
-    } catch (ExecutionException | InterruptedException e) {
-      Log.w(TAG, "Failed to generate shortcut icon for recipient " + recipient.getId() + ". Generating fallback.", e);
-
-      Drawable fallbackDrawable = getFallback(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE);
-      Bitmap   fallbackBitmap   = DrawableUtil.toBitmap(fallbackDrawable, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE);
-      Bitmap   wrappedBitmap    = DrawableUtil.wrapBitmapForShortcutInfo(fallbackBitmap);
-
-      return IconCompat.createWithAdaptiveBitmap(wrappedBitmap);
+  public static @NonNull IconCompat getIconCompat(@NonNull Context context, @NonNull Recipient recipient) {
+    if (Build.VERSION.SDK_INT > 29) {
+      return IconCompat.createWithContentUri(AvatarProvider.getContentUri(recipient.getId()));
+    } else {
+      return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE));
     }
   }
 
@@ -133,11 +125,19 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
-  public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
+  public static @NonNull Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient, int size) {
+    ThreadUtil.assertNotMainThread();
+
     try {
-      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient, size).submit().get();
-    } catch (ExecutionException | InterruptedException e) {
-      return null;
+      AvatarTarget  avatarTarget  = new AvatarTarget(size);
+      GlideRequests glideRequests = GlideApp.with(context);
+
+      requestCircle(glideRequests.asBitmap(), context, recipient, size).into(avatarTarget);
+
+      Bitmap bitmap = avatarTarget.await();
+      return Objects.requireNonNullElseGet(bitmap, () -> DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size));
+    } catch (InterruptedException e) {
+      return DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size);
     }
   }
 
@@ -154,6 +154,7 @@ public final class AvatarUtil {
   }
 
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient, boolean loadSelf, int targetSize, @Nullable BitmapTransformation transformation) {
+
     final ContactPhoto photo;
     if (Recipient.self().equals(recipient) && loadSelf) {
       photo = new ProfileContactPhoto(recipient);
@@ -161,9 +162,11 @@ public final class AvatarUtil {
       photo = recipient.getContactPhoto();
     }
 
+    final int size = targetSize == -1 ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : targetSize;
     final GlideRequest<T> request = glideRequest.load(photo)
-                                                .error(getFallback(context, recipient, targetSize))
-                                                .diskCacheStrategy(DiskCacheStrategy.ALL);
+                                                .error(getFallback(context, recipient, size))
+                                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                .override(size);
 
     if (recipient.shouldBlurAvatar()) {
       BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
@@ -180,8 +183,70 @@ public final class AvatarUtil {
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    String name = Optional.ofNullable(recipient.getDisplayName(context)).orElse("");
+    String name = Optional.of(recipient.getDisplayName(context)).orElse("");
 
     return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize).asDrawable(context, recipient.getAvatarColor());
+  }
+
+  /**
+   * Allows caller to synchronously await for a bitmap of an avatar.
+   */
+  private static class AvatarTarget extends CustomTarget<Bitmap> {
+
+    private final CountDownLatch          countDownLatch = new CountDownLatch(1);
+    private final AtomicReference<Bitmap> bitmap         = new AtomicReference<>();
+
+    private final int size;
+
+    private AvatarTarget(int size) {
+      this.size = size == UNDEFINED_SIZE ? DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE : size;
+    }
+
+    public @Nullable Bitmap await() throws InterruptedException {
+      if (countDownLatch.await(1, TimeUnit.SECONDS)) {
+        return bitmap.get();
+      } else {
+        Log.w(TAG, "AvatarTarget#await: Failed to load avatar in time! Returning null");
+        return null;
+      }
+    }
+
+    @Override
+    public void onDestroy() {
+      Log.d(TAG, "AvatarTarget: onDestroy");
+      super.onDestroy();
+    }
+
+    @Override
+    public void onLoadStarted(@Nullable Drawable placeholder) {
+      Log.d(TAG, "AvatarTarget: onLoadStarted");
+      super.onLoadStarted(placeholder);
+    }
+
+    @Override
+    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+      Log.d(TAG, "AvatarTarget: onResourceReady");
+      bitmap.set(resource);
+      countDownLatch.countDown();
+    }
+
+    @Override
+    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+      Log.d(TAG, "AvatarTarget: onLoadFailed");
+      if (errorDrawable == null) {
+        throw new AssertionError("Expected an error drawable.");
+      }
+
+      Bitmap errorBitmap = DrawableUtil.toBitmap(errorDrawable, size, size);
+      bitmap.set(errorBitmap);
+      countDownLatch.countDown();
+    }
+
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+      Log.d(TAG, "AvatarTarget: onLoadCleared");
+      bitmap.set(null);
+      countDownLatch.countDown();
+    }
   }
 }

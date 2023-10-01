@@ -218,10 +218,6 @@
     <style name="Signal.DayNight.Dialog.FullScreen.Donate">
     </style>
     
-    <style name="Signal.Media.Dialog.AddMessageDialog" parent="TextSecure.MediaPreview">
-        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
-    </style>
-
     <style name="ThemeOverlay.Signal.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
         <item name="android:background">@color/signal_colorSurface1</item>

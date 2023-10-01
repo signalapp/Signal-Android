@@ -1,5 +1,6 @@
 package org.signal.core.ui.theme
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -9,6 +10,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -168,7 +170,7 @@ private val darkColorScheme = darkColorScheme(
 
 @Composable
 fun SignalTheme(
-  isDarkMode: Boolean,
+  isDarkMode: Boolean = LocalContext.current.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES,
   content: @Composable () -> Unit
 ) {
   val extendedColors = if (isDarkMode) darkExtendedColors else lightExtendedColors

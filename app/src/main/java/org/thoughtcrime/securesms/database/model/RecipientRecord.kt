@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.RecipientTable.InsightsBannerTier
 import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
@@ -19,30 +18,29 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
-import java.util.Optional
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 
 /**
  * Database model for [RecipientTable].
  */
 data class RecipientRecord(
   val id: RecipientId,
-  val serviceId: ServiceId?,
+  val aci: ACI?,
   val pni: PNI?,
   val username: String?,
   val e164: String?,
   val email: String?,
   val groupId: GroupId?,
   val distributionListId: DistributionListId?,
-  val groupType: RecipientTable.GroupType,
+  val recipientType: RecipientTable.RecipientType,
   val isBlocked: Boolean,
   val muteUntil: Long,
   val messageVibrateState: VibrateState,
   val callVibrateState: VibrateState,
   val messageRingtone: Uri?,
   val callRingtone: Uri?,
-  private val defaultSubscriptionId: Int,
   val expireMessages: Int,
   val registered: RegisteredState,
   val profileKey: ByteArray?,
@@ -62,10 +60,7 @@ data class RecipientRecord(
   val lastProfileFetch: Long,
   val notificationChannel: String?,
   val unidentifiedAccessMode: UnidentifiedAccessMode,
-  @get:JvmName("isForceSmsSelection")
-  val forceSmsSelection: Boolean,
   val capabilities: Capabilities,
-  val insightsBannerTier: InsightsBannerTier,
   val storageId: ByteArray?,
   val mentionSetting: MentionSetting,
   val wallpaper: ChatWallpaper?,
@@ -80,29 +75,27 @@ data class RecipientRecord(
   val badges: List<Badge>,
   @get:JvmName("needsPniSignature")
   val needsPniSignature: Boolean,
-  val isHidden: Boolean,
+  val hiddenState: Recipient.HiddenState,
   val callLinkRoomId: CallLinkRoomId?
 ) {
 
-  fun getDefaultSubscriptionId(): Optional<Int> {
-    return if (defaultSubscriptionId != -1) Optional.of(defaultSubscriptionId) else Optional.empty()
-  }
-
   fun e164Only(): Boolean {
-    return this.e164 != null && this.serviceId == null
+    return this.e164 != null && this.aci == null && this.pni == null
   }
 
-  fun sidOnly(sid: ServiceId): Boolean {
-    return this.e164 == null && this.serviceId == sid && (this.pni == null || this.pni == sid)
+  fun pniOnly(): Boolean {
+    return this.e164 == null && this.aci == null && this.pni != null
   }
 
-  fun sidIsPni(): Boolean {
-    return this.serviceId != null && this.pni != null && this.serviceId == this.pni
+  fun aciOnly(): Boolean {
+    return this.e164 == null && this.pni == null && this.aci != null
   }
 
   fun pniAndAci(): Boolean {
-    return this.serviceId != null && this.pni != null && this.serviceId != this.pni
+    return this.aci != null && this.pni != null
   }
+
+  val serviceId: ServiceId? = this.aci ?: this.pni
 
   /**
    * A bundle of data that's only necessary when syncing to storage service, not for a

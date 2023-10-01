@@ -290,6 +290,17 @@ public final class Projection {
       return bottomRight;
     }
 
+    public float[] toRelativeRadii(boolean isLTR) {
+      float[] radii = new float[8];
+
+      radii[0] = radii[1] = isLTR ? topLeft : topRight;
+      radii[2] = radii[3] = isLTR ? topRight : topLeft;
+      radii[4] = radii[5] = isLTR ? bottomRight : bottomLeft;
+      radii[6] = radii[7] = isLTR ? bottomLeft : bottomRight;
+
+      return radii;
+    }
+
     public float[] toRadii() {
       float[] radii = new float[8];
 

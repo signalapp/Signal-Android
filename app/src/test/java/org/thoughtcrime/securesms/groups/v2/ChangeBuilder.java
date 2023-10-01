@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.groups.v2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.signal.storageservice.protos.groups.AccessControl;
@@ -19,16 +17,17 @@ import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 
-import java.util.UUID;
+import kotlin.collections.CollectionsKt;
+import okio.ByteString;
 
 public final class ChangeBuilder {
 
             private final DecryptedGroupChange.Builder builder;
-  @Nullable private final UUID                         editor;
+  @Nullable private final ACI                          editor;
 
-  public static ChangeBuilder changeBy(@NonNull UUID editor) {
+  public static ChangeBuilder changeBy(@NonNull ACI editor) {
     return new ChangeBuilder(editor);
   }
 
@@ -36,124 +35,106 @@ public final class ChangeBuilder {
     return new ChangeBuilder();
   }
 
-  ChangeBuilder(@NonNull UUID editor) {
+  ChangeBuilder(@NonNull ACI editor) {
     this.editor  = editor;
-    this.builder = DecryptedGroupChange.newBuilder()
-                                       .setEditor(UuidUtil.toByteString(editor));
+    this.builder = new DecryptedGroupChange.Builder().editorServiceIdBytes(editor.toByteString());
   }
 
   ChangeBuilder() {
     this.editor  = null;
-    this.builder = DecryptedGroupChange.newBuilder();
+    this.builder = new DecryptedGroupChange.Builder();
   }
 
-  public ChangeBuilder addMember(@NonNull UUID newMember) {
-    builder.addNewMembers(DecryptedMember.newBuilder()
-                                         .setUuid(UuidUtil.toByteString(newMember)));
+  public ChangeBuilder addMember(@NonNull ACI newMember) {
+    builder.newMembers(CollectionsKt.plus(builder.newMembers, new DecryptedMember.Builder().aciBytes(newMember.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder addMember(@NonNull UUID newMember, @NonNull ProfileKey profileKey) {
-    builder.addNewMembers(DecryptedMember.newBuilder()
-                                         .setUuid(UuidUtil.toByteString(newMember))
-                                         .setProfileKey(ByteString.copyFrom(profileKey.serialize())));
+  public ChangeBuilder addMember(@NonNull ACI newMember, @NonNull ProfileKey profileKey) {
+    builder.newMembers(CollectionsKt.plus(builder.newMembers, new DecryptedMember.Builder().aciBytes(newMember.toByteString()).profileKey(ByteString.of(profileKey.serialize())).build()));
     return this;
   }
 
-  public ChangeBuilder deleteMember(@NonNull UUID removedMember) {
-    builder.addDeleteMembers(UuidUtil.toByteString(removedMember));
+  public ChangeBuilder deleteMember(@NonNull ACI removedMember) {
+    builder.deleteMembers(CollectionsKt.plus(builder.deleteMembers, removedMember.toByteString()));
     return this;
   }
 
-  public ChangeBuilder promoteToAdmin(@NonNull UUID member) {
-    builder.addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                          .setRole(Member.Role.ADMINISTRATOR)
-                                                          .setUuid(UuidUtil.toByteString(member)));
+  public ChangeBuilder promoteToAdmin(@NonNull ACI member) {
+    builder.modifyMemberRoles(CollectionsKt.plus(builder.modifyMemberRoles, new DecryptedModifyMemberRole.Builder().role(Member.Role.ADMINISTRATOR).aciBytes(member.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder demoteToMember(@NonNull UUID member) {
-    builder.addModifyMemberRoles(DecryptedModifyMemberRole.newBuilder()
-                                                          .setRole(Member.Role.DEFAULT)
-                                                          .setUuid(UuidUtil.toByteString(member)));
+  public ChangeBuilder demoteToMember(@NonNull ACI member) {
+    builder.modifyMemberRoles(CollectionsKt.plus(builder.modifyMemberRoles, new DecryptedModifyMemberRole.Builder().role(Member.Role.DEFAULT).aciBytes(member.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder invite(@NonNull UUID potentialMember) {
-    return inviteBy(potentialMember, UuidUtil.UNKNOWN_UUID);
+  public ChangeBuilder invite(@NonNull ACI potentialMember) {
+    return inviteBy(potentialMember, ACI.UNKNOWN);
   }
 
-  public ChangeBuilder inviteBy(@NonNull UUID potentialMember, @NonNull UUID inviter) {
-    builder.addNewPendingMembers(DecryptedPendingMember.newBuilder()
-                                                       .setUuid(UuidUtil.toByteString(potentialMember))
-                                                       .setAddedByUuid(UuidUtil.toByteString(inviter)));
+  public ChangeBuilder inviteBy(@NonNull ACI potentialMember, @NonNull ACI inviter) {
+    builder.newPendingMembers(CollectionsKt.plus(builder.newPendingMembers, new DecryptedPendingMember.Builder().serviceIdBytes(potentialMember.toByteString()).addedByAci(inviter.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder uninvite(@NonNull UUID pendingMember) {
-    builder.addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                 .setUuid(UuidUtil.toByteString(pendingMember)));
+  public ChangeBuilder uninvite(@NonNull ACI pendingMember) {
+    builder.deletePendingMembers(CollectionsKt.plus(builder.deletePendingMembers, new DecryptedPendingMemberRemoval.Builder().serviceIdBytes(pendingMember.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder promote(@NonNull UUID pendingMember) {
-    builder.addPromotePendingMembers(DecryptedMember.newBuilder().setUuid(UuidUtil.toByteString(pendingMember)));
+  public ChangeBuilder promote(@NonNull ACI pendingMember) {
+    builder.promotePendingMembers(CollectionsKt.plus(builder.promotePendingMembers, new DecryptedMember.Builder().aciBytes(pendingMember.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder profileKeyUpdate(@NonNull UUID member, @NonNull ProfileKey profileKey) {
+  public ChangeBuilder profileKeyUpdate(@NonNull ACI member, @NonNull ProfileKey profileKey) {
     return profileKeyUpdate(member, profileKey.serialize());
   }
 
-  public ChangeBuilder profileKeyUpdate(@NonNull UUID member, @NonNull byte[] profileKey) {
-    builder.addModifiedProfileKeys(DecryptedMember.newBuilder()
-                                                  .setUuid(UuidUtil.toByteString(member))
-                                                  .setProfileKey(ByteString.copyFrom(profileKey)));
+  public ChangeBuilder profileKeyUpdate(@NonNull ACI member, @NonNull byte[] profileKey) {
+    builder.modifiedProfileKeys(CollectionsKt.plus(builder.modifiedProfileKeys, new DecryptedMember.Builder().aciBytes(member.toByteString()).profileKey(ByteString.of(profileKey)).build()));
     return this;
   }
 
-  public ChangeBuilder promote(@NonNull UUID pendingMember, @NonNull ProfileKey profileKey) {
-    builder.addPromotePendingMembers(DecryptedMember.newBuilder()
-                                                    .setUuid(UuidUtil.toByteString(pendingMember))
-                                                    .setProfileKey(ByteString.copyFrom(profileKey.serialize())));
+  public ChangeBuilder promote(@NonNull ACI pendingMember, @NonNull ProfileKey profileKey) {
+    builder.promotePendingMembers(CollectionsKt.plus(builder.promotePendingMembers, new DecryptedMember.Builder().aciBytes(pendingMember.toByteString()).profileKey(ByteString.of(profileKey.serialize())).build()));
     return this;
   }
 
   public ChangeBuilder title(@NonNull String newTitle) {
-    builder.setNewTitle(DecryptedString.newBuilder()
-                                       .setValue(newTitle));
+    builder.newTitle(new DecryptedString.Builder().value_(newTitle).build());
     return this;
   }
 
   public ChangeBuilder avatar(@NonNull String newAvatar) {
-    builder.setNewAvatar(DecryptedString.newBuilder()
-                                        .setValue(newAvatar));
+    builder.newAvatar(new DecryptedString.Builder().value_(newAvatar).build());
     return this;
   }
 
   public ChangeBuilder timer(int duration) {
-    builder.setNewTimer(DecryptedTimer.newBuilder()
-                                      .setDuration(duration));
+    builder.newTimer(new DecryptedTimer.Builder().duration(duration).build());
     return this;
   }
 
   public ChangeBuilder attributeAccess(@NonNull AccessControl.AccessRequired accessRequired) {
-    builder.setNewAttributeAccess(accessRequired);
+    builder.newAttributeAccess(accessRequired);
     return this;
   }
 
   public ChangeBuilder membershipAccess(@NonNull AccessControl.AccessRequired accessRequired) {
-    builder.setNewMemberAccess(accessRequired);
+    builder.newMemberAccess(accessRequired);
     return this;
   }
 
   public ChangeBuilder inviteLinkAccess(@NonNull AccessControl.AccessRequired accessRequired) {
-    builder.setNewInviteLinkAccess(accessRequired);
+    builder.newInviteLinkAccess(accessRequired);
     return this;
   }
 
   public ChangeBuilder resetGroupLink() {
-    builder.setNewInviteLinkPassword(ByteString.copyFrom(GroupLinkPassword.createNew().serialize()));
+    builder.newInviteLinkPassword(ByteString.of(GroupLinkPassword.createNew().serialize()));
     return this;
   }
 
@@ -162,7 +143,7 @@ public final class ChangeBuilder {
     return requestJoin(editor, newProfileKey());
   }
 
-  public ChangeBuilder requestJoin(@NonNull UUID requester) {
+  public ChangeBuilder requestJoin(@NonNull ACI requester) {
     return requestJoin(requester, newProfileKey());
   }
 
@@ -171,22 +152,18 @@ public final class ChangeBuilder {
     return requestJoin(editor, profileKey);
   }
 
-  public ChangeBuilder requestJoin(@NonNull UUID requester, @NonNull ProfileKey profileKey) {
-    builder.addNewRequestingMembers(DecryptedRequestingMember.newBuilder()
-                                                             .setUuid(UuidUtil.toByteString(requester))
-                                                             .setProfileKey(ByteString.copyFrom(profileKey.serialize())));
+  public ChangeBuilder requestJoin(@NonNull ACI requester, @NonNull ProfileKey profileKey) {
+    builder.newRequestingMembers(CollectionsKt.plus(builder.newRequestingMembers, new DecryptedRequestingMember.Builder().aciBytes(requester.toByteString()).profileKey(ByteString.of(profileKey.serialize())).build()));
     return this;
   }
 
-  public ChangeBuilder approveRequest(@NonNull UUID approvedMember) {
-    builder.addPromoteRequestingMembers(DecryptedApproveMember.newBuilder()
-                                                              .setRole(Member.Role.DEFAULT)
-                                                              .setUuid(UuidUtil.toByteString(approvedMember)));
+  public ChangeBuilder approveRequest(@NonNull ACI approvedMember) {
+    builder.promoteRequestingMembers(CollectionsKt.plus(builder.promoteRequestingMembers, new DecryptedApproveMember.Builder().role(Member.Role.DEFAULT).aciBytes(approvedMember.toByteString()).build()));
     return this;
   }
 
-  public ChangeBuilder denyRequest(@NonNull UUID approvedMember) {
-    builder.addDeleteRequestingMembers(UuidUtil.toByteString(approvedMember));
+  public ChangeBuilder denyRequest(@NonNull ACI approvedMember) {
+    builder.deleteRequestingMembers(CollectionsKt.plus(builder.deleteRequestingMembers, approvedMember.toByteString()));
     return this;
   }
 

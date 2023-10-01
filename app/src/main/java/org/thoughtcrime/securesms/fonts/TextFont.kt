@@ -24,7 +24,6 @@ enum class TextFont(@DrawableRes val icon: Int, val fallbackFamily: String, val 
         StoryTextPost.Style.SERIF -> SERIF
         StoryTextPost.Style.SCRIPT -> SCRIPT
         StoryTextPost.Style.CONDENSED -> CONDENSED
-        StoryTextPost.Style.UNRECOGNIZED -> REGULAR
       }
     }
   }

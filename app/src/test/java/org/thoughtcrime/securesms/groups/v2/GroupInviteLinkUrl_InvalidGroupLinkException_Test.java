@@ -2,9 +2,6 @@ package org.thoughtcrime.securesms.groups.v2;
 
 import androidx.annotation.NonNull;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.junit.Test;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
@@ -12,6 +9,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
+
+import okio.ByteString;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertNull;
@@ -70,7 +69,7 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
   public void bad_protobuf() {
     assertThatThrownBy(() -> GroupInviteLinkUrl.fromUri("https://signal.group/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6HTOReXZUEHdsBIgSEPCLfiL7k4wCXmwVi31USVY"))
                       .isInstanceOf(GroupInviteLinkUrl.InvalidGroupLinkException.class)
-                      .hasCauseExactlyInstanceOf(InvalidProtocolBufferException.class);
+                      .hasCauseExactlyInstanceOf(IllegalStateException.class);
   }
 
   @Test
@@ -99,12 +98,13 @@ public final class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
   private static String createEncodedProtobuf(@NonNull byte[] groupMasterKey,
                                               @NonNull byte[] passwordBytes)
   {
-    return Base64UrlSafe.encodeBytesWithoutPadding(GroupInviteLink.newBuilder()
-                                                 .setV1Contents(GroupInviteLink.GroupInviteLinkContentsV1.newBuilder()
-                                                                               .setGroupMasterKey(ByteString.copyFrom(groupMasterKey))
-                                                                               .setInviteLinkPassword(ByteString.copyFrom(passwordBytes)))
-                                                 .build()
-                                                 .toByteArray());
+    return Base64UrlSafe.encodeBytesWithoutPadding(new GroupInviteLink.Builder()
+                                                                      .v1Contents(new GroupInviteLink.GroupInviteLinkContentsV1.Builder()
+                                                                                                     .groupMasterKey(ByteString.of(groupMasterKey))
+                                                                                                     .inviteLinkPassword(ByteString.of(passwordBytes))
+                                                                                                     .build())
+                                                                      .build()
+                                                                      .encode());
   }
 
 }

@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
+import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver;
 import org.whispersystems.signalservice.api.RemoteConfigResult;
 
 import java.io.IOException;
@@ -86,6 +86,7 @@ public final class FeatureFlags {
   private static final String USE_AEC3                          = "android.calling.useAec3";
   private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "global.payments.disabledRegions";
   public  static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
+  public  static final String BLOCK_SSE                         = "android.blockSessionSwitchoverEvents";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
@@ -100,16 +101,23 @@ public final class FeatureFlags {
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
-  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.2";
-  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.5";
+  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc.3";
+  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send.13";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_RECEIVE_SIZE_BYTES = "global.attachments.maxReceiveBytes";
   private static final String MAX_ATTACHMENT_SIZE_BYTES         = "global.attachments.maxBytes";
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
-  private static final String CDS_COMPAT_MODE                   = "global.cds.return_acis_without_uaks";
-  private static final String CONVERSATION_FRAGMENT_V2          = "android.conversationFragmentV2.2";
+  private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
   private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
+  public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
+  private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
+  public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
+  public  static final String USERNAMES                         = "android.usernames";
+  public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
+  private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.4";
+  public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
+
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
    * remotely, place it in here.
@@ -167,10 +175,17 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_SIZE_BYTES,
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
-      CDS_COMPAT_MODE,
-      CONVERSATION_FRAGMENT_V2,
+      CDS_DISABLE_COMPAT_MODE,
       SAFETY_NUMBER_ACI,
-      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
+      PROMPT_FOR_NOTIFICATION_LOGS,
+      PROMPT_FOR_NOTIFICATION_CONFIG,
+      PROMPT_BATTERY_SAVER,
+      USERNAMES,
+      INSTANT_VIDEO_PLAYBACK,
+      CONVERSATION_ITEM_V2_TEXT,
+      CRASH_PROMPT_CONFIG,
+      BLOCK_SSE
   );
 
   @VisibleForTesting
@@ -235,10 +250,15 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_RECEIVE_SIZE_BYTES,
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
-      CDS_COMPAT_MODE,
-      CONVERSATION_FRAGMENT_V2,
+      CDS_DISABLE_COMPAT_MODE,
       SAFETY_NUMBER_ACI,
-      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH
+      FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
+      PROMPT_FOR_NOTIFICATION_LOGS,
+      PROMPT_FOR_NOTIFICATION_CONFIG,
+      PROMPT_BATTERY_SAVER,
+      USERNAMES,
+      CRASH_PROMPT_CONFIG,
+      BLOCK_SSE
   );
 
   /**
@@ -263,7 +283,7 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
+    put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> RoutineMessageFetchReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -319,8 +339,7 @@ public final class FeatureFlags {
 
   /** Creating usernames, sending messages by username. */
   public static synchronized boolean usernames() {
-    // For now these features are paired, but leaving the separate method in case we decide to separate in the future.
-    return phoneNumberPrivacy();
+    return getBoolean(USERNAMES, false) || phoneNumberPrivacy();
   }
 
   /**
@@ -370,6 +389,13 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getBoolean(PHONE_NUMBER_PRIVACY, false) || Environment.IS_PNP;
+  }
+
+  /**
+   * Whether session switchover events should be blocked on the client.
+   */
+  public static boolean blockSessionSwitchoverEvents() {
+    return getBoolean(BLOCK_SSE, false) && !phoneNumberPrivacy();
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */
@@ -613,13 +639,47 @@ public final class FeatureFlags {
 
   /** True if you should use CDS in compat mode (i.e. request ACI's even if you don't know the access key), otherwise false. */
   public static boolean cdsCompatMode() {
-    return getBoolean(CDS_COMPAT_MODE, true);
+    if (phoneNumberPrivacy()) {
+      return false;
+    } else {
+      return !getBoolean(CDS_DISABLE_COMPAT_MODE, false);
+    }
   }
 
-  /** True if the new conversation fragment should be used. */
-  public static boolean useConversationFragmentV2() {
-    return getBoolean(CONVERSATION_FRAGMENT_V2, false);
+  /**
+   * Allow the video players to read from the temporary download files for attachments.
+   * @return whether this functionality is enabled.
+   */
+  public static boolean instantVideoPlayback() {
+    return getBoolean(INSTANT_VIDEO_PLAYBACK, false);
   }
+
+  /**
+   * Note: this setting is currently
+   *
+   * @return Whether to use TextOnly V2 Conversation Items.
+   */
+  public static boolean useTextOnlyConversationItemV2() {
+    return getBoolean(CONVERSATION_ITEM_V2_TEXT, false);
+  }
+
+  public static String promptForDelayedNotificationLogs() {
+    return getString(PROMPT_FOR_NOTIFICATION_LOGS, "*");
+  }
+
+  public static String delayedNotificationsPromptConfig() {
+    return getString(PROMPT_FOR_NOTIFICATION_CONFIG, "");
+  }
+
+  public static String promptBatterySaver() {
+    return getString(PROMPT_BATTERY_SAVER, "*");
+  }
+
+  /** Config object for what crashes to prompt about. */
+  public static String crashPromptConfig() {
+    return getString(CRASH_PROMPT_CONFIG, "");
+  }
+
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

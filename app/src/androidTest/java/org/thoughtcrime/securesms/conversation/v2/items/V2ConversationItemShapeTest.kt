@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 import android.net.Uri
 import android.view.View
 import androidx.lifecycle.Observer
+import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -45,7 +47,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(),
       isGroupThread = false,
       adapterPosition = 5
@@ -67,7 +68,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.END
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -89,7 +89,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.START
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(prev),
       isGroupThread = false,
       adapterPosition = 5
@@ -113,7 +112,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.MIDDLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -135,7 +133,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -157,7 +154,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(prev),
       isGroupThread = false,
       adapterPosition = 5
@@ -181,7 +177,6 @@ class V2ConversationItemShapeTest {
 
     val expected = V2ConversationItemShape.MessageShape.SINGLE
     val actual = testSubject.setMessageShape(
-      isLtr = true,
       currentMessage = getMessageRecord(now),
       isGroupThread = false,
       adapterPosition = 5
@@ -208,12 +203,14 @@ class V2ConversationItemShapeTest {
 
     private val colorizer = Colorizer()
 
-    override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.STANDARD
+    override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.Standard
 
     override val clickListener: ConversationAdapter.ItemClickListener = FakeConversationItemClickListener
     override val selectedItems: Set<MultiselectPart> = emptySet()
     override val isMessageRequestAccepted: Boolean = true
     override val searchQuery: String? = null
+    override val glideRequests: GlideRequests = mockk()
+    override val isParentInScroll: Boolean = false
 
     override fun onStartExpirationTimeout(messageRecord: MessageRecord) = Unit
 

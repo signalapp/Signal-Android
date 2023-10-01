@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.ui.AspectRatioFrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
@@ -17,6 +19,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.Factory;
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
+@OptIn(markerClass = UnstableApi.class)
 class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMappingModel> {
 
   private final AspectRatioFrameLayout frame;

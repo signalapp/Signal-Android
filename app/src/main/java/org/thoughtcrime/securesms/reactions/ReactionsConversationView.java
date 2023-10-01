@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
@@ -63,24 +64,26 @@ public class ReactionsConversationView extends LinearLayout {
     removeAllViews();
   }
 
-  public boolean setReactions(@NonNull List<ReactionRecord> records, int bubbleWidth) {
-    if (records.equals(this.records) && this.bubbleWidth == bubbleWidth) {
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    if (w != oldw) {
+      int bubbleWidth = this.bubbleWidth;
+      this.bubbleWidth = -1;
+
+      setBubbleWidth(bubbleWidth);
+    }
+  }
+
+  public boolean setBubbleWidth(int bubbleWidth) {
+    if (bubbleWidth == this.bubbleWidth || getChildCount() == 0) {
       return false;
     }
 
-    this.records.clear();
-    this.records.addAll(records);
-
     this.bubbleWidth = bubbleWidth;
 
-    List<Reaction> reactions = buildSortedReactionsList(records);
-
-    removeAllViews();
-
-    for (Reaction reaction : reactions) {
-      View pill = buildPill(getContext(), this, reaction);
+    for (int i = 0; i < getChildCount(); i++) {
+      View pill = getChildAt(i);
       pill.setVisibility(bubbleWidth == 0 ? INVISIBLE : VISIBLE);
-      addView(pill);
     }
 
     measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
@@ -91,16 +94,40 @@ public class ReactionsConversationView extends LinearLayout {
       int margin = (bubbleWidth - railWidth - OUTER_MARGIN);
 
       if (outgoing) {
-        ViewUtil.setRightMargin(this, margin);
+        setEndMargin(margin);
       } else {
-        ViewUtil.setLeftMargin(this, margin);
+        setStartMargin(margin);
       }
     } else {
       if (outgoing) {
-        ViewUtil.setRightMargin(this, OUTER_MARGIN);
+        setEndMargin(OUTER_MARGIN);
       } else {
-        ViewUtil.setLeftMargin(this, OUTER_MARGIN);
+        setStartMargin(OUTER_MARGIN);
       }
+    }
+
+    if (!isInLayout()) {
+      requestLayout();
+    }
+
+    return true;
+  }
+
+  public boolean setReactions(@NonNull List<ReactionRecord> records) {
+    if (records.equals(this.records)) {
+      return false;
+    }
+
+    this.records.clear();
+    this.records.addAll(records);
+
+    List<Reaction> reactions = buildSortedReactionsList(records);
+
+    removeAllViews();
+
+    for (Reaction reaction : reactions) {
+      View pill = buildPill(getContext(), this, reaction);
+      addView(pill);
     }
 
     return true;
@@ -137,6 +164,26 @@ public class ReactionsConversationView extends LinearLayout {
     } else {
       return reactions;
     }
+  }
+
+  private void setStartMargin(int margin) {
+    if (ViewUtil.isLtr(this)) {
+      getMarginLayoutParams().leftMargin = margin;
+    } else {
+      getMarginLayoutParams().rightMargin = margin;
+    }
+  }
+
+  private void setEndMargin(int margin) {
+    if (ViewUtil.isLtr(this)) {
+      getMarginLayoutParams().rightMargin = margin;
+    } else {
+      getMarginLayoutParams().leftMargin = margin;
+    }
+  }
+
+  private @NonNull MarginLayoutParams getMarginLayoutParams() {
+    return (MarginLayoutParams) getLayoutParams();
   }
 
   private static View buildPill(@NonNull Context context, @NonNull ViewGroup parent, @NonNull Reaction reaction) {

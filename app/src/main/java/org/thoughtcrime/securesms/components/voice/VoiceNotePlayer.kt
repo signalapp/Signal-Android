@@ -1,28 +1,46 @@
 package org.thoughtcrime.securesms.components.voice
 
 import android.content.Context
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.ForwardingPlayer
-import com.google.android.exoplayer2.audio.AudioAttributes
-import com.google.android.exoplayer2.audio.AudioSink
+import androidx.annotation.OptIn
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
+import androidx.media3.common.ForwardingPlayer
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.DefaultLoadControl
+import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.audio.AudioSink
 import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 
+/**
+ * A lightweight wrapper around ExoPlayer that compartmentalizes some logic and adds a few functions, most importantly the seek behavior.
+ *
+ * @param context
+ */
+@OptIn(UnstableApi::class)
 class VoiceNotePlayer @JvmOverloads constructor(
   context: Context,
-  val internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
+  private val internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
     .setRenderersFactory(WorkaroundRenderersFactory(context))
     .setMediaSourceFactory(SignalMediaSourceFactory(context))
     .setLoadControl(
       DefaultLoadControl.Builder()
         .setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE)
         .build()
-    ).build().apply {
-      setAudioAttributes(AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build(), true)
-    }
+    )
+    .setHandleAudioBecomingNoisy(true).build()
 ) : ForwardingPlayer(internalPlayer) {
+
+  init {
+    setAudioAttributes(AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build(), true)
+  }
+
+  /**
+   * Required to expose this because this is unique to [ExoPlayer], not the generic [androidx.media3.common.Player] interface.
+   */
+  fun setAudioAttributes(audioAttributes: AudioAttributes, handleAudioFocus: Boolean) {
+    internalPlayer.setAudioAttributes(audioAttributes, handleAudioFocus)
+  }
 
   override fun seekTo(windowIndex: Int, positionMs: Long) {
     super.seekTo(windowIndex, positionMs)
@@ -46,6 +64,7 @@ class VoiceNotePlayer @JvmOverloads constructor(
 /**
  * @see RetryableInitAudioSink
  */
+@OptIn(androidx.media3.common.util.UnstableApi::class)
 class WorkaroundRenderersFactory(val context: Context) : DefaultRenderersFactory(context) {
   override fun buildAudioSink(context: Context, enableFloatOutput: Boolean, enableAudioTrackPlaybackParams: Boolean, enableOffload: Boolean): AudioSink? {
     return RetryableInitAudioSink(context, enableFloatOutput, enableAudioTrackPlaybackParams, enableOffload)

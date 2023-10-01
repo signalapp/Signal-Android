@@ -6,15 +6,15 @@ import org.gradle.kotlin.dsl.extra
 
 val benchmarkLibs = the<org.gradle.accessors.dm.LibrariesForBenchmarkLibs>()
 
-val signalBuildToolsVersion: String by extra
-val signalCompileSdkVersion: String by extra
-val signalTargetSdkVersion: Int by extra
-val signalMinSdkVersion: Int by extra
-val signalJavaVersion: JavaVersion by extra
+val signalBuildToolsVersion: String by rootProject.extra
+val signalCompileSdkVersion: String by rootProject.extra
+val signalTargetSdkVersion: Int by rootProject.extra
+val signalMinSdkVersion: Int by rootProject.extra
+val signalJavaVersion: JavaVersion by rootProject.extra
+val signalKotlinJvmTarget: String by rootProject.extra
 
 plugins {
     id("com.android.test")
-    id("android-constants")
     id("org.jetbrains.kotlin.android")
 }
 
@@ -28,7 +28,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = signalKotlinJvmTarget
     }
 
     defaultConfig {

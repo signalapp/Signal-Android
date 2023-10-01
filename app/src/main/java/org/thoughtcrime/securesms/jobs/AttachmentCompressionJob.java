@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.android.exoplayer2.util.MimeTypes;
+import androidx.media3.common.MimeTypes;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
@@ -209,7 +209,7 @@ public final class AttachmentCompressionJob extends BaseJob {
 
       notification.setIndeterminateProgress();
 
-      try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId())) {
+      try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId(), false)) {
         if (dataSource == null) {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }

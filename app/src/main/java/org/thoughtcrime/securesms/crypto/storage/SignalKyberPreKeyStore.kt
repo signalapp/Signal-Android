@@ -67,4 +67,16 @@ class SignalKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalServi
       SignalDatabase.kyberPreKeys.delete(selfServiceId, kyberPreKeyId)
     }
   }
+
+  override fun markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime: Long) {
+    ReentrantSessionLock.INSTANCE.acquire().use {
+      SignalDatabase.kyberPreKeys.markAllStaleIfNecessary(selfServiceId, staleTime)
+    }
+  }
+
+  override fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int) {
+    ReentrantSessionLock.INSTANCE.acquire().use {
+      SignalDatabase.kyberPreKeys.deleteAllStaleBefore(selfServiceId, threshold, minCount)
+    }
+  }
 }

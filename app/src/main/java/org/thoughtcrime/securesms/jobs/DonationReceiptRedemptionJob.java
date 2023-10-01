@@ -14,9 +14,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
@@ -254,12 +254,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
     if (MessageRecordUtil.hasGiftBadge(messageRecord)) {
       GiftBadge giftBadge = MessageRecordUtil.requireGiftBadge(messageRecord);
-      if (giftBadge.getRedemptionState() == GiftBadge.RedemptionState.REDEEMED) {
+      if (giftBadge.redemptionState == GiftBadge.RedemptionState.REDEEMED) {
         Log.d(TAG, "Already redeemed this gift badge. Exiting.", true);
         return null;
       } else {
-        Log.d(TAG, "Attempting redemption  of badge in state " + giftBadge.getRedemptionState().name());
-        return new ReceiptCredentialPresentation(giftBadge.getRedemptionToken().toByteArray());
+        Log.d(TAG, "Attempting redemption  of badge in state " + giftBadge.redemptionState.name());
+        return new ReceiptCredentialPresentation(giftBadge.redemptionToken.toByteArray());
       }
     } else {
       Log.d(TAG, "No gift badge on message record. Exiting.", true);

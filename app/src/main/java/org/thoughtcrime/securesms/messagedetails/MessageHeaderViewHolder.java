@@ -18,7 +18,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.exoplayer2.MediaItem;
+import androidx.media3.common.MediaItem;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
@@ -111,7 +111,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           false,
                           true,
                           colorizer,
-                          ConversationItemDisplayMode.DETAILED);
+                          ConversationItemDisplayMode.Detailed.INSTANCE);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

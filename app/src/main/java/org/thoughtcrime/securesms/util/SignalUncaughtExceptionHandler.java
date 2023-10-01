@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.ExceptionUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -39,7 +40,13 @@ public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionH
       e = e.getCause();
     }
 
+    String exceptionName = e.getClass().getCanonicalName();
+    if (exceptionName == null) {
+      exceptionName = e.getClass().getName();
+    }
+
     Log.e(TAG, "", e, true);
+    LogDatabase.getInstance(ApplicationDependencies.getApplication()).crashes().saveCrash(System.currentTimeMillis(), exceptionName, e.getMessage(), ExceptionUtil.convertThrowableToString(e));
     SignalStore.blockUntilAllWritesFinished();
     Log.blockUntilAllWritesFinished();
     ApplicationDependencies.getJobManager().flush();

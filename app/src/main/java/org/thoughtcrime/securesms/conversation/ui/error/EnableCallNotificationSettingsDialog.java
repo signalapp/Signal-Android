@@ -25,7 +25,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DeviceProperties;
@@ -123,8 +122,8 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
   @Override
   public void onDismiss(@NonNull DialogInterface dialog) {
     super.onDismiss(dialog);
-    if (getParentFragment() instanceof ConversationFragment) {
-      ((ConversationFragment) getParentFragment()).refreshList();
+    if (getParentFragment() instanceof Callback) {
+      ((Callback) getParentFragment()).onCallNotificationSettingsDialogDismissed();
     }
   }
 
@@ -229,5 +228,9 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
     }
 
     return bitmask;
+  }
+
+  public interface Callback {
+    void onCallNotificationSettingsDialogDismissed();
   }
 }

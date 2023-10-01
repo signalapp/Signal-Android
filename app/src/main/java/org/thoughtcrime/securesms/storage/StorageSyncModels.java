@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -55,10 +56,10 @@ public final class StorageSyncModels {
   }
 
   public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientRecord settings, @NonNull byte[] rawStorageId) {
-    switch (settings.getGroupType()) {
-      case NONE:              return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
-      case SIGNAL_V1:         return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
-      case SIGNAL_V2:         return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
+    switch (settings.getRecipientType()) {
+      case INDIVIDUAL:        return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
+      case GV1:               return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
+      case GV2:               return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
       case DISTRIBUTION_LIST: return SignalStorageRecord.forStoryDistributionList(localToRemoteStoryDistributionList(settings, rawStorageId));
       default:                throw new AssertionError("Unsupported type!");
     }
@@ -84,31 +85,58 @@ public final class StorageSyncModels {
 
   public static List<SignalAccountRecord.PinnedConversation> localToRemotePinnedConversations(@NonNull List<RecipientRecord> settings) {
     return Stream.of(settings)
-                 .filter(s -> s.getGroupType() == RecipientTable.GroupType.SIGNAL_V1 ||
-                              s.getGroupType() == RecipientTable.GroupType.SIGNAL_V2 ||
+                 .filter(s -> s.getRecipientType() == RecipientTable.RecipientType.GV1 ||
+                              s.getRecipientType() == RecipientTable.RecipientType.GV2 ||
                               s.getRegistered() == RecipientTable.RegisteredState.REGISTERED)
                  .map(StorageSyncModels::localToRemotePinnedConversation)
                  .toList();
   }
 
   private static @NonNull SignalAccountRecord.PinnedConversation localToRemotePinnedConversation(@NonNull RecipientRecord settings) {
-    switch (settings.getGroupType()) {
-      case NONE     : return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getServiceId(), settings.getE164()));
-      case SIGNAL_V1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
-      case SIGNAL_V2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
+    switch (settings.getRecipientType()) {
+      case INDIVIDUAL: return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getAci(), settings.getE164()));
+      case GV1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
+      case GV2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
       default       : throw new AssertionError("Unexpected group type!");
     }
   }
 
+  public static @NonNull AccountRecord.UsernameLink.Color localToRemoteUsernameColor(UsernameQrCodeColorScheme local) {
+    switch (local) {
+      case Blue:   return AccountRecord.UsernameLink.Color.BLUE;
+      case White:  return AccountRecord.UsernameLink.Color.WHITE;
+      case Grey:   return AccountRecord.UsernameLink.Color.GREY;
+      case Tan:    return AccountRecord.UsernameLink.Color.OLIVE;
+      case Green:  return AccountRecord.UsernameLink.Color.GREEN;
+      case Orange: return AccountRecord.UsernameLink.Color.ORANGE;
+      case Pink:   return AccountRecord.UsernameLink.Color.PINK;
+      case Purple: return AccountRecord.UsernameLink.Color.PURPLE;
+      default:     return AccountRecord.UsernameLink.Color.BLUE;
+    }
+  }
+
+  public static @NonNull UsernameQrCodeColorScheme remoteToLocalUsernameColor(AccountRecord.UsernameLink.Color remote) {
+    switch (remote) {
+      case BLUE:   return UsernameQrCodeColorScheme.Blue;
+      case WHITE:  return UsernameQrCodeColorScheme.White;
+      case GREY:   return UsernameQrCodeColorScheme.Grey;
+      case OLIVE:  return UsernameQrCodeColorScheme.Tan;
+      case GREEN:  return UsernameQrCodeColorScheme.Green;
+      case ORANGE: return UsernameQrCodeColorScheme.Orange;
+      case PINK:   return UsernameQrCodeColorScheme.Pink;
+      case PURPLE: return UsernameQrCodeColorScheme.Purple;
+      default:     return UsernameQrCodeColorScheme.Blue;
+    }
+  }
+
   private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientRecord recipient, byte[] rawStorageId) {
-    if (recipient.getServiceId() == null && recipient.getE164() == null) {
+    if (recipient.getAci() == null && recipient.getE164() == null) {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 
-    ServiceId serviceId = recipient.getServiceId() != null ? recipient.getServiceId() : ServiceId.UNKNOWN;
     boolean   hideStory = recipient.getExtras() != null && recipient.getExtras().hideStory();
 
-    return new SignalContactRecord.Builder(rawStorageId, serviceId, recipient.getSyncExtras().getStorageProto())
+    return new SignalContactRecord.Builder(rawStorageId, recipient.getAci(), recipient.getSyncExtras().getStorageProto())
                                   .setE164(recipient.getE164())
                                   .setPni(recipient.getPni())
                                   .setProfileKey(recipient.getProfileKey())
@@ -126,7 +154,7 @@ public final class StorageSyncModels {
                                   .setMuteUntil(recipient.getMuteUntil())
                                   .setHideStory(hideStory)
                                   .setUnregisteredTimestamp(recipient.getSyncExtras().getUnregisteredTimestamp())
-                                  .setHidden(recipient.isHidden())
+                                  .setHidden(recipient.getHiddenState() != Recipient.HiddenState.NOT_HIDDEN)
                                   .setUsername(recipient.getUsername())
                                   .build();
   }

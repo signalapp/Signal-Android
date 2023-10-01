@@ -29,6 +29,8 @@ class PayPalRepository(private val donationsService: DonationsService) {
     private val TAG = Log.tag(PayPalRepository::class.java)
   }
 
+  private val monthlyDonationRepository = MonthlyDonationRepository(donationsService)
+
   fun createOneTimePaymentIntent(
     amount: FiatMoney,
     badgeRecipient: RecipientId,
@@ -69,7 +71,12 @@ class PayPalRepository(private val donationsService: DonationsService) {
     }.flatMap { it.flattenResult() }.subscribeOn(Schedulers.io())
   }
 
-  fun createPaymentMethod(): Single<PayPalCreatePaymentMethodResponse> {
+  /**
+   * Creates the PaymentMethod via the Signal Service. Note that if the operation fails with a 409,
+   * it means that the PaymentMethod is already tied to a Stripe account. We can retry in this
+   * situation by simply deleting the old subscriber id on the service and replacing it.
+   */
+  fun createPaymentMethod(retryOn409: Boolean = true): Single<PayPalCreatePaymentMethodResponse> {
     return Single.fromCallable {
       donationsService.createPayPalPaymentMethod(
         Locale.getDefault(),
@@ -77,7 +84,13 @@ class PayPalRepository(private val donationsService: DonationsService) {
         MONTHLY_RETURN_URL,
         CANCEL_URL
       )
-    }.flatMap { it.flattenResult() }.subscribeOn(Schedulers.io())
+    }.flatMap { serviceResponse ->
+      if (retryOn409 && serviceResponse.status == 409) {
+        monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(retryOn409 = false))
+      } else {
+        serviceResponse.flattenResult()
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   fun setDefaultPaymentMethod(paymentMethodId: String): Completable {

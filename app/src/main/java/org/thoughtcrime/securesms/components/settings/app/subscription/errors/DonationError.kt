@@ -149,17 +149,25 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      */
     @JvmStatic
     fun getPaymentSetupError(source: DonationErrorSource, throwable: Throwable, method: PaymentSourceType): DonationError {
-      return if (throwable is StripeError.PostError) {
-        val declineCode: StripeDeclineCode? = throwable.declineCode
-        val errorCode: String? = throwable.errorCode
+      return when (throwable) {
+        is StripeError.PostError -> {
+          val declineCode: StripeDeclineCode? = throwable.declineCode
+          val errorCode: String? = throwable.errorCode
 
-        when {
-          declineCode != null && method is PaymentSourceType.Stripe -> PaymentSetupError.StripeDeclinedError(source, throwable, declineCode, method)
-          errorCode != null && method is PaymentSourceType.Stripe -> PaymentSetupError.StripeCodedError(source, throwable, errorCode)
-          else -> PaymentSetupError.GenericError(source, throwable)
+          when {
+            declineCode != null && method is PaymentSourceType.Stripe -> PaymentSetupError.StripeDeclinedError(source, throwable, declineCode, method)
+            errorCode != null && method is PaymentSourceType.Stripe -> PaymentSetupError.StripeCodedError(source, throwable, errorCode)
+            else -> PaymentSetupError.GenericError(source, throwable)
+          }
         }
-      } else {
-        PaymentSetupError.GenericError(source, throwable)
+
+        is UserCancelledPaymentError -> {
+          return throwable
+        }
+
+        else -> {
+          PaymentSetupError.GenericError(source, throwable)
+        }
       }
     }
 

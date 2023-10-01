@@ -4,13 +4,16 @@ import android.content.Context
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToSet
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.LinkedList
@@ -208,6 +211,26 @@ class SessionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
       .use { cursor ->
         return cursor.moveToFirst()
       }
+  }
+
+  /**
+   * Given a set of serviceIds, this will give you back a filtered set of those ids that have any session with any of your identities.
+   *
+   * This was created for getting more debug info for a specific issue.
+   */
+  fun findAllThatHaveAnySession(serviceIds: Set<PNI>): Set<PNI> {
+    val output: MutableSet<PNI> = mutableSetOf()
+
+    for (query in SqlUtil.buildCollectionQuery(ADDRESS, serviceIds.map { it.toString() })) {
+      output += readableDatabase
+        .select(ADDRESS)
+        .from(TABLE_NAME)
+        .where(query.where, query.whereArgs)
+        .run()
+        .readToSet { PNI.parseOrThrow(it.requireString(ADDRESS)) }
+    }
+
+    return output
   }
 
   class SessionRow(val address: String, val deviceId: Int, val record: SessionRecord)

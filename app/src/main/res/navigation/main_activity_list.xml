@@ -55,7 +55,11 @@
         android:label="create_call_link_bottom_sheet">
         <action
             android:id="@+id/action_createCallLinkBottomSheet_to_editCallLinkNameDialogFragment"
-            app:destination="@id/editCallLinkNameDialogFragment" />
+            app:destination="@id/editCallLinkNameDialogFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </dialog>
 
     <dialog

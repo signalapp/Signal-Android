@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -45,6 +46,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
   companion object {
+    private val TAG = Log.tag(InsetAwareConstraintLayout::class.java)
     private val keyboardType = WindowInsetsCompat.Type.ime()
     private val windowTypes = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
   }
@@ -144,10 +146,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       SignalStore.misc().keyboardPortraitHeight
     }
 
-    return if (height <= 0) {
-      resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
-    } else {
+    val minHeight = resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
+    return if (height > minHeight) {
       height
+    } else {
+      Log.w(TAG, "Saved keyboard height ($height) is too low, using default size ($minHeight)")
+      minHeight
     }
   }
 

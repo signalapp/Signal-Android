@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.core.util.DatabaseId;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
@@ -17,6 +15,8 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+
+import okio.ByteString;
 
 public abstract class GroupId implements DatabaseId {
 

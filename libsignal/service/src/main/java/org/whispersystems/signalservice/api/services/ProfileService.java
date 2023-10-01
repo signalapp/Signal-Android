@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.services;
 
 import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
@@ -15,19 +16,20 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
-import org.whispersystems.signalservice.internal.push.IdentityCheckRequest.AciFingerprintPair;
+import org.whispersystems.signalservice.internal.push.IdentityCheckRequest.ServiceIdFingerprintPair;
 import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
 import org.whispersystems.signalservice.internal.push.http.AcceptLanguagesUtil;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
-import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 
 import java.security.SecureRandom;
 import java.util.Collections;
@@ -76,29 +78,35 @@ public final class ProfileService {
     SecureRandom                       random         = new SecureRandom();
     ProfileKeyCredentialRequestContext requestContext = null;
 
-    WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
-                                                                     .setId(random.nextLong())
-                                                                     .setVerb("GET");
+    WebSocketRequestMessage.Builder builder = new WebSocketRequestMessage.Builder()
+                                                                         .id(random.nextLong())
+                                                                         .verb("GET");
 
     if (profileKey.isPresent()) {
-      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(serviceId.uuid());
+      if (!(serviceId instanceof ACI)) {
+        Log.w(TAG, "ServiceId  must be an ACI if a profile key is available!");
+        return Single.just(ServiceResponse.forUnknownError(new IllegalArgumentException("ServiceId  must be an ACI if a profile key is available!")));
+      }
+
+      ACI               aci                  = (ACI) serviceId;
+      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(aci.getLibSignalAci());
       String            version              = profileKeyIdentifier.serialize();
 
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, serviceId.uuid(), profileKey.get());
+        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, aci.getLibSignalAci(), profileKey.get());
 
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());
 
-        builder.setPath(String.format("/v1/profile/%s/%s/%s?credentialType=expiringProfileKey", serviceId, version, credentialRequest));
+        builder.path(String.format("/v1/profile/%s/%s/%s?credentialType=expiringProfileKey", serviceId, version, credentialRequest));
       } else {
-        builder.setPath(String.format("/v1/profile/%s/%s", serviceId, version));
+        builder.path(String.format("/v1/profile/%s/%s", serviceId, version));
       }
     } else {
-      builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
+      builder.path(String.format("/v1/profile/%s", address.getIdentifier()));
     }
 
-    builder.addHeaders(AcceptLanguagesUtil.getAcceptLanguageHeader(locale));
+    builder.headers(Collections.singletonList(AcceptLanguagesUtil.getAcceptLanguageHeader(locale)));
 
     WebSocketRequestMessage requestMessage = builder.build();
 
@@ -112,20 +120,20 @@ public final class ProfileService {
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
-  public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> aciIdentityKeyMap) {
-    List<AciFingerprintPair> aciKeyPairs = aciIdentityKeyMap.entrySet()
-                                                            .stream()
-                                                            .map(e -> new AciFingerprintPair(e.getKey(), e.getValue()))
-                                                            .collect(Collectors.toList());
+  public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> serviceIdIdentityKeyMap) {
+    List<ServiceIdFingerprintPair> serviceIdKeyPairs = serviceIdIdentityKeyMap.entrySet()
+                                                                              .stream()
+                                                                              .map(e -> new ServiceIdFingerprintPair(e.getKey(), e.getValue()))
+                                                                              .collect(Collectors.toList());
 
-    IdentityCheckRequest request = new IdentityCheckRequest(aciKeyPairs);
+    IdentityCheckRequest request = new IdentityCheckRequest(serviceIdKeyPairs);
 
-    WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
-                                                                     .setId(new SecureRandom().nextLong())
-                                                                     .setVerb("POST")
-                                                                     .setPath("/v1/profile/identity_check/batch")
-                                                                     .addAllHeaders(Collections.singleton("content-type:application/json"))
-                                                                     .setBody(JsonUtil.toJsonByteString(request));
+    WebSocketRequestMessage.Builder builder = new WebSocketRequestMessage.Builder()
+                                                                         .id(new SecureRandom().nextLong())
+                                                                         .verb("POST")
+                                                                         .path("/v1/profile/identity_check/batch")
+                                                                         .headers(Collections.singletonList("content-type:application/json"))
+                                                                         .body(JsonUtil.toJsonByteString(request));
 
     ResponseMapper<IdentityCheckResponse> responseMapper = DefaultResponseMapper.getDefault(IdentityCheckResponse.class);
 

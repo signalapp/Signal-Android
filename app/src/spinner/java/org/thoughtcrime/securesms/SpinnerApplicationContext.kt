@@ -2,8 +2,11 @@ package org.thoughtcrime.securesms
 
 import android.content.ContentValues
 import android.os.Build
+import org.signal.core.util.logging.AndroidLogger
+import org.signal.core.util.logging.Log
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
+import org.signal.spinner.SpinnerLogger
 import org.thoughtcrime.securesms.database.DatabaseMonitor
 import org.thoughtcrime.securesms.database.GV2Transformer
 import org.thoughtcrime.securesms.database.GV2UpdateTransformer
@@ -18,11 +21,14 @@ import org.thoughtcrime.securesms.database.MessageBitmaskColumnTransformer
 import org.thoughtcrime.securesms.database.MessageRangesTransformer
 import org.thoughtcrime.securesms.database.ProfileKeyCredentialTransformer
 import org.thoughtcrime.securesms.database.QueryMonitor
+import org.thoughtcrime.securesms.database.RecipientTransformer
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TimestampTransformer
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
+import org.thoughtcrime.securesms.util.FeatureFlags
 import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {
@@ -52,18 +58,23 @@ class SpinnerApplicationContext : ApplicationContext() {
       linkedMapOf(
         "signal" to DatabaseConfig(
           db = { SignalDatabase.rawDatabase },
-          columnTransformers = listOf(MessageBitmaskColumnTransformer, GV2Transformer, GV2UpdateTransformer, IsStoryTransformer, TimestampTransformer, ProfileKeyCredentialTransformer, MessageRangesTransformer, KyberKeyTransformer)
+          columnTransformers = listOf(MessageBitmaskColumnTransformer, GV2Transformer, GV2UpdateTransformer, IsStoryTransformer, TimestampTransformer, ProfileKeyCredentialTransformer, MessageRangesTransformer, KyberKeyTransformer, RecipientTransformer)
         ),
         "jobmanager" to DatabaseConfig(db = { JobDatabase.getInstance(this).sqlCipherDatabase }),
         "keyvalue" to DatabaseConfig(db = { KeyValueDatabase.getInstance(this).sqlCipherDatabase }),
         "megaphones" to DatabaseConfig(db = { MegaphoneDatabase.getInstance(this).sqlCipherDatabase }),
         "localmetrics" to DatabaseConfig(db = { LocalMetricsDatabase.getInstance(this).sqlCipherDatabase }),
-        "logs" to DatabaseConfig(db = { LogDatabase.getInstance(this).sqlCipherDatabase })
+        "logs" to DatabaseConfig(
+          db = { LogDatabase.getInstance(this).sqlCipherDatabase },
+          columnTransformers = listOf(TimestampTransformer)
+        )
       ),
       linkedMapOf(
         StorageServicePlugin.PATH to StorageServicePlugin()
       )
     )
+
+    Log.initialize({ FeatureFlags.internalUser() }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
 
     DatabaseMonitor.initialize(object : QueryMonitor {
       override fun onSql(sql: String, args: Array<Any>?) {

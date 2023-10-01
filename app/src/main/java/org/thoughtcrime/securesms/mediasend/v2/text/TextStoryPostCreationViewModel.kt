@@ -5,13 +5,15 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.ColorInt
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -25,32 +27,32 @@ import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.util.rx.RxStore
 
 class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRepository, private val identityChangesSince: Long = System.currentTimeMillis()) : ViewModel() {
 
-  private val store = Store(TextStoryPostCreationState())
+  private val store = RxStore(TextStoryPostCreationState())
   private val textFontSubject: Subject<TextFont> = BehaviorSubject.create()
   private val temporaryBodySubject: Subject<String> = BehaviorSubject.createDefault("")
   private val disposables = CompositeDisposable()
 
-  private val internalTypeface = MutableLiveData<Typeface>()
+  private val internalTypeface = BehaviorProcessor.create<Typeface>()
 
-  val state: LiveData<TextStoryPostCreationState> = store.stateLiveData
-  val typeface: LiveData<Typeface> = internalTypeface
+  val state: Flowable<TextStoryPostCreationState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  val typeface: Flowable<Typeface> = internalTypeface.observeOn(AndroidSchedulers.mainThread())
 
   init {
     textFontSubject.onNext(store.state.textFont)
 
     val scriptGuess = temporaryBodySubject.observeOn(Schedulers.io()).map { TextToScript.guessScript(it) }
 
-    Observable.combineLatest(textFontSubject, scriptGuess, ::Pair)
+    disposables += Observable.combineLatest(textFontSubject, scriptGuess, ::Pair)
       .observeOn(Schedulers.io())
       .distinctUntilChanged()
       .switchMapSingle { (textFont, script) -> TypefaceCache.get(ApplicationDependencies.getApplication(), textFont, script) }
       .subscribeOn(Schedulers.io())
       .subscribe {
-        internalTypeface.postValue(it)
+        internalTypeface.onNext(it)
       }
   }
 

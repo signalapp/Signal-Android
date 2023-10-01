@@ -70,7 +70,6 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
         long             avatarId    = record.get().getAvatarId();
         String           contentType = record.get().getAvatarContentType();
         byte[]           key         = record.get().getAvatarKey();
-        String           relay       = record.get().getRelay();
         Optional<byte[]> digest      = Optional.ofNullable(record.get().getAvatarDigest());
         Optional<String> fileName    = Optional.empty();
 
@@ -86,7 +85,7 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
         attachment.deleteOnExit();
 
         SignalServiceMessageReceiver   receiver    = ApplicationDependencies.getSignalServiceMessageReceiver();
-        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(0, new SignalServiceAttachmentRemoteId(avatarId), contentType, key, Optional.of(0), Optional.empty(), 0, 0, digest, Optional.empty(), fileName, false, false, false, Optional.empty(), Optional.empty(), System.currentTimeMillis());
+        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(0, new SignalServiceAttachmentRemoteId(avatarId), contentType, key, Optional.of(0), Optional.empty(), 0, 0, digest, Optional.empty(), 0, fileName, false, false, false, Optional.empty(), Optional.empty(), System.currentTimeMillis());
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE);
 
         AvatarHelper.setAvatar(context, record.get().getRecipientId(), inputStream);

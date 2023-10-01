@@ -39,13 +39,17 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
         attemptToClearFullTextSearchIndex(db)
         throw DatabaseCorruptedError_BothChecksPass(lines)
       } else if (!result.pragma1Passes && result.pragma2Passes) {
+        attemptToClearFullTextSearchIndex(db)
         throw DatabaseCorruptedError_NormalCheckFailsCipherCheckPasses(lines)
       } else if (result.pragma1Passes && !result.pragma2Passes) {
+        attemptToClearFullTextSearchIndex(db)
         throw DatabaseCorruptedError_NormalCheckPassesCipherCheckFails(lines)
       } else {
+        attemptToClearFullTextSearchIndex(db)
         throw DatabaseCorruptedError_BothChecksFail(lines)
       }
     } else {
+      attemptToClearFullTextSearchIndex(db)
       throw DatabaseCorruptedError_FailedToRunChecks(lines)
     }
   }
@@ -147,6 +151,11 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
 
   private fun attemptToClearFullTextSearchIndex(db: SQLiteDatabase) {
     try {
+      try {
+        db.reopenReadWrite()
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to re-open as read-write!", e)
+      }
       SignalDatabase.messageSearch.fullyResetTables(db)
     } catch (e: Throwable) {
       Log.w(TAG, "Failed to clear full text search index.", e)

@@ -65,12 +65,14 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
           .padding(contentPadding)
           .fillMaxWidth()
           .fillMaxHeight(),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
       ) {
         QrCodeBadge(
           data = state.qrCodeData,
           colorScheme = state.selectedColorScheme,
-          username = state.username
+          username = state.username,
+          modifier = Modifier.padding(horizontal = 58.dp, vertical = 24.dp)
         )
 
         ColorPicker(
@@ -160,7 +162,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
 
   @Preview
   @Composable
-  private fun ColorPickerItemPreview() {
+  private fun PreviewColorPickerItem() {
     SignalTheme(isDarkMode = false) {
       Surface {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -173,7 +175,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
 
   @Preview
   @Composable
-  private fun ColorPickerPreview() {
+  private fun PreviewColorPicker() {
     SignalTheme(isDarkMode = false) {
       Surface {
         ColorPicker(

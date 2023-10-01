@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
-import org.signal.libsignal.protocol.message.CiphertextMessage;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.SessionTable;
@@ -126,13 +125,23 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
       }
     }
   }
+  
+  public void archiveSession(@NonNull ServiceId serviceId, int deviceId) {
+    try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
+      archiveSession(new SignalProtocolAddress(serviceId.toString(), deviceId));
+    }
+  }
 
-  public void archiveSession(@NonNull RecipientId recipientId, int deviceId) {
+  public void archiveSessions(@NonNull RecipientId recipientId, int deviceId) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       Recipient recipient = Recipient.resolved(recipientId);
 
-      if (recipient.hasServiceId()) {
-        archiveSession(new SignalProtocolAddress(recipient.requireServiceId().toString(), deviceId));
+      if (recipient.hasAci()) {
+        archiveSession(new SignalProtocolAddress(recipient.requireAci().toString(), deviceId));
+      }
+
+      if (recipient.hasPni()) {
+        archiveSession(new SignalProtocolAddress(recipient.requirePni().toString(), deviceId));
       }
 
       if (recipient.hasE164()) {

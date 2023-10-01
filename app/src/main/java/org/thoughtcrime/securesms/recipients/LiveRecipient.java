@@ -212,18 +212,10 @@ public final class LiveRecipient {
     Optional<GroupRecord> groupRecord = groupDatabase.getGroup(record.getId());
 
     if (groupRecord.isPresent()) {
-      String            title    = groupRecord.get().getTitle();
-      List<RecipientId> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).toList();
-      Optional<Long>    avatarId = Optional.empty();
-
-      if (groupRecord.get().hasAvatar()) {
-        avatarId = Optional.of(groupRecord.get().getAvatarId());
-      }
-
-      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false, groupRecord.get().isActive(), null, groupRecord);
+      return RecipientDetails.forGroup(groupRecord.get(), record);
+    } else {
+      return RecipientDetails.forUnknown();
     }
-
-    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false, false, null, Optional.empty());
   }
 
   @WorkerThread

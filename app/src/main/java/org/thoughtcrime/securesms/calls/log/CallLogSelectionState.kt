@@ -3,17 +3,17 @@ package org.thoughtcrime.securesms.calls.log
 /**
  * Selection state object for call logs.
  */
-sealed class CallLogSelectionState {
-  abstract fun contains(callId: CallLogRow.Id): Boolean
-  abstract fun isNotEmpty(totalCount: Int): Boolean
+sealed interface CallLogSelectionState {
+  fun contains(callId: CallLogRow.Id): Boolean
+  fun isNotEmpty(totalCount: Int): Boolean
 
-  abstract fun count(totalCount: Int): Int
+  fun count(totalCount: Int): Int
 
-  abstract fun selected(): Set<CallLogRow.Id>
+  fun selected(): Set<CallLogRow.Id>
   fun isExclusionary(): Boolean = this is Excludes
 
-  protected abstract fun select(callId: CallLogRow.Id): CallLogSelectionState
-  protected abstract fun deselect(callId: CallLogRow.Id): CallLogSelectionState
+  fun select(callId: CallLogRow.Id): CallLogSelectionState
+  fun deselect(callId: CallLogRow.Id): CallLogSelectionState
 
   fun toggle(callId: CallLogRow.Id): CallLogSelectionState {
     return if (contains(callId)) {
@@ -26,7 +26,7 @@ sealed class CallLogSelectionState {
   /**
    * Includes contains an opt-in list of call logs.
    */
-  data class Includes(private val includes: Set<CallLogRow.Id>) : CallLogSelectionState() {
+  data class Includes(private val includes: Set<CallLogRow.Id>) : CallLogSelectionState {
     override fun contains(callId: CallLogRow.Id): Boolean {
       return includes.contains(callId)
     }
@@ -55,7 +55,7 @@ sealed class CallLogSelectionState {
   /**
    * Excludes contains an opt-out list of call logs.
    */
-  data class Excludes(private val excluded: Set<CallLogRow.Id>) : CallLogSelectionState() {
+  data class Excludes(private val excluded: Set<CallLogRow.Id>) : CallLogSelectionState {
     override fun contains(callId: CallLogRow.Id): Boolean = !excluded.contains(callId)
     override fun isNotEmpty(totalCount: Int): Boolean = excluded.size < totalCount
 
@@ -74,8 +74,10 @@ sealed class CallLogSelectionState {
     override fun selected(): Set<CallLogRow.Id> = excluded
   }
 
+  object All : CallLogSelectionState by Excludes(emptySet())
+
   companion object {
     fun empty(): CallLogSelectionState = Includes(emptySet())
-    fun selectAll(): CallLogSelectionState = Excludes(emptySet())
+    fun selectAll(): CallLogSelectionState = All
   }
 }

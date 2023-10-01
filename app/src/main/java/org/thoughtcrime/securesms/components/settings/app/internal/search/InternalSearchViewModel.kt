@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.components.settings.app.internal.search
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -46,7 +45,7 @@ class InternalSearchViewModel : ViewModel() {
             InternalSearchResult(
               id = record.id,
               name = record.displayName(),
-              aci = record.serviceId?.toString(),
+              aci = record.aci?.toString(),
               pni = record.pni.toString(),
               groupId = record.groupId
             )
@@ -70,10 +69,10 @@ class InternalSearchViewModel : ViewModel() {
 
   private fun RecipientRecord.displayName(): String {
     return when {
-      this.groupType == RecipientTable.GroupType.SIGNAL_V1 -> "GV1::${this.groupId}"
-      this.groupType == RecipientTable.GroupType.SIGNAL_V2 -> "GV2::${this.groupId}"
-      this.groupType == RecipientTable.GroupType.MMS -> "MMS_GROUP::${this.groupId}"
-      this.groupType == RecipientTable.GroupType.DISTRIBUTION_LIST -> "DLIST::${this.distributionListId}"
+      this.recipientType == RecipientTable.RecipientType.GV1 -> "GV1::${this.groupId}"
+      this.recipientType == RecipientTable.RecipientType.GV2 -> "GV2::${this.groupId}"
+      this.recipientType == RecipientTable.RecipientType.MMS -> "MMS_GROUP::${this.groupId}"
+      this.recipientType == RecipientTable.RecipientType.DISTRIBUTION_LIST -> "DLIST::${this.distributionListId}"
       this.systemDisplayName?.isNotBlank() == true -> this.systemDisplayName
       this.signalProfileName.toString().isNotBlank() -> this.signalProfileName.serialize()
       this.e164 != null -> this.e164

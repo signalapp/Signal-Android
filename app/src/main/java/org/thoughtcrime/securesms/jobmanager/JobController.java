@@ -250,11 +250,10 @@ class JobController {
       throw new IllegalArgumentException("Invalid backoff interval! " + backoffInterval);
     }
 
-    int    nextRunAttempt     = job.getRunAttempt() + 1;
-    long   nextRunAttemptTime = System.currentTimeMillis() + backoffInterval;
-    byte[] serializedData     = job.serialize();
+    int    nextRunAttempt = job.getRunAttempt() + 1;
+    byte[] serializedData = job.serialize();
 
-    jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime, serializedData);
+    jobStorage.updateJobAfterRetry(job.getId(), System.currentTimeMillis(), nextRunAttempt, backoffInterval, serializedData);
     jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
 
     List<Constraint> constraints = Stream.of(jobStorage.getConstraintSpecs(job.getId()))
@@ -263,10 +262,8 @@ class JobController {
                                          .toList();
 
 
-    long delay = Math.max(0, nextRunAttemptTime - System.currentTimeMillis());
-
-    Log.i(TAG, JobLogger.format(job, "Scheduling a retry in " + delay + " ms."));
-    scheduler.schedule(delay, constraints);
+    Log.i(TAG, JobLogger.format(job, "Scheduling a retry in " + backoffInterval + " ms."));
+    scheduler.schedule(backoffInterval, constraints);
 
     notifyAll();
   }
@@ -338,7 +335,7 @@ class JobController {
         wait();
       }
 
-      jobStorage.updateJobRunningState(job.getId(), true);
+      jobStorage.markJobAsRunning(job.getId(), System.currentTimeMillis());
       runningJobs.put(job.getId(), job);
       jobTracker.onStateChange(job, JobTracker.JobState.RUNNING);
 
@@ -445,7 +442,8 @@ class JobController {
                                   job.getFactoryKey(),
                                   job.getParameters().getQueue(),
                                   System.currentTimeMillis(),
-                                  job.getNextRunAttemptTime(),
+                                  job.getLastRunAttemptTime(),
+                                  job.getNextBackoffInterval(),
                                   job.getRunAttempt(),
                                   job.getParameters().getMaxAttempts(),
                                   job.getParameters().getLifespan(),
@@ -511,7 +509,8 @@ class JobController {
       Job job = jobInstantiator.instantiate(jobSpec.getFactoryKey(), parameters, jobSpec.getSerializedData());
 
       job.setRunAttempt(jobSpec.getRunAttempt());
-      job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
+      job.setLastRunAttemptTime(jobSpec.getLastRunAttemptTime());
+      job.setNextBackoffInterval(jobSpec.getNextBackoffInterval());
       job.setContext(application);
 
       return job;
@@ -547,7 +546,8 @@ class JobController {
                        jobSpec.getFactoryKey(),
                        jobSpec.getQueueKey(),
                        jobSpec.getCreateTime(),
-                       jobSpec.getNextRunAttemptTime(),
+                       jobSpec.getLastRunAttemptTime(),
+                       jobSpec.getNextBackoffInterval(),
                        jobSpec.getRunAttempt(),
                        jobSpec.getMaxAttempts(),
                        jobSpec.getLifespan(),

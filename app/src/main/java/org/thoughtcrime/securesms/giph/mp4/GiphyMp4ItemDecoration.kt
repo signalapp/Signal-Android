@@ -4,8 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
-import org.thoughtcrime.securesms.conversation.ConversationAdapter
-import org.thoughtcrime.securesms.conversation.v2.ConversationAdapterV2
+import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import kotlin.math.min
 
 /**
@@ -28,28 +27,22 @@ class GiphyMp4ItemDecoration(
       parent.translationY = 0f
       onRecyclerVerticalTranslationSet?.invoke(parent.translationY)
     } else {
-      val threadHeaderViewHolder = parent.children
-        .map { parent.getChildViewHolder(it) }
-        .filter { it is ConversationAdapter.FooterViewHolder || it is ConversationAdapterV2.ThreadHeaderViewHolder }
+      val threadHeaderView: ConversationHeaderView? = parent.children
+        .filterIsInstance<ConversationHeaderView>()
         .firstOrNull()
 
-      if (threadHeaderViewHolder == null) {
+      if (threadHeaderView == null) {
         parent.translationY = 0f
         onRecyclerVerticalTranslationSet?.invoke(parent.translationY)
         return
       }
 
-      val toolbarMargin = if (threadHeaderViewHolder is ConversationAdapterV2.ThreadHeaderViewHolder) {
-        // A decorator adds the margin for the toolbar, margin is difference of the bounds "height" and the view height
-        val bounds = Rect()
-        parent.getDecoratedBoundsWithMargins(threadHeaderViewHolder.itemView, bounds)
-        bounds.bottom - bounds.top - threadHeaderViewHolder.itemView.height
-      } else {
-        // Deprecated not needed for CFv2
-        0
-      }
+      // A decorator adds the margin for the toolbar, margin is difference of the bounds "height" and the view height
+      val bounds = Rect()
+      parent.getDecoratedBoundsWithMargins(threadHeaderView, bounds)
+      val toolbarMargin = bounds.bottom - bounds.top - threadHeaderView.height
 
-      val childTop: Int = threadHeaderViewHolder.itemView.top - toolbarMargin
+      val childTop: Int = threadHeaderView.top - toolbarMargin
       parent.translationY = min(0, -childTop).toFloat()
       onRecyclerVerticalTranslationSet?.invoke(parent.translationY)
     }

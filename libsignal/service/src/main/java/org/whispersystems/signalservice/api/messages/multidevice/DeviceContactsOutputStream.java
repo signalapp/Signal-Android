@@ -6,12 +6,13 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import com.google.protobuf.ByteString;
-
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.ContactDetails;
+import org.whispersystems.signalservice.internal.push.Verified;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
+import okio.ByteString;
 
 public class DeviceContactsOutputStream extends ChunkedOutputStream {
 
@@ -35,65 +36,67 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
   }
 
   private void writeContactDetails(DeviceContact contact) throws IOException {
-    SignalServiceProtos.ContactDetails.Builder contactDetails = SignalServiceProtos.ContactDetails.newBuilder();
+    ContactDetails.Builder contactDetails = new ContactDetails.Builder();
 
-    contactDetails.setAci(contact.getAddress().getServiceId().toString());
+    contactDetails.aci(contact.getAddress().getServiceId().toString());
 
     if (contact.getAddress().getNumber().isPresent()) {
-      contactDetails.setNumber(contact.getAddress().getNumber().get());
+      contactDetails.number(contact.getAddress().getNumber().get());
     }
 
     if (contact.getName().isPresent()) {
-      contactDetails.setName(contact.getName().get());
+      contactDetails.name(contact.getName().get());
     }
 
     if (contact.getAvatar().isPresent()) {
-      SignalServiceProtos.ContactDetails.Avatar.Builder avatarBuilder = SignalServiceProtos.ContactDetails.Avatar.newBuilder();
-      avatarBuilder.setContentType(contact.getAvatar().get().getContentType());
-      avatarBuilder.setLength((int)contact.getAvatar().get().getLength());
-      contactDetails.setAvatar(avatarBuilder);
+      ContactDetails.Avatar.Builder avatarBuilder = new ContactDetails.Avatar.Builder();
+      avatarBuilder.contentType(contact.getAvatar().get().getContentType());
+      avatarBuilder.length((int) contact.getAvatar().get().getLength());
+      contactDetails.avatar(avatarBuilder.build());
     }
 
     if (contact.getColor().isPresent()) {
-      contactDetails.setColor(contact.getColor().get());
+      contactDetails.color(contact.getColor().get());
     }
 
     if (contact.getVerified().isPresent()) {
-      SignalServiceProtos.Verified.State state;
+      Verified.State state;
 
       switch (contact.getVerified().get().getVerified()) {
-        case VERIFIED:   state = SignalServiceProtos.Verified.State.VERIFIED;   break;
-        case UNVERIFIED: state = SignalServiceProtos.Verified.State.UNVERIFIED; break;
-        default:         state = SignalServiceProtos.Verified.State.DEFAULT;    break;
+        case VERIFIED:
+          state = Verified.State.VERIFIED; break;
+        case UNVERIFIED:
+          state = Verified.State.UNVERIFIED; break;
+        default:
+          state = Verified.State.DEFAULT; break;
       }
 
-      SignalServiceProtos.Verified.Builder verifiedBuilder = SignalServiceProtos.Verified.newBuilder()
-                                                                                         .setIdentityKey(ByteString.copyFrom(contact.getVerified().get().getIdentityKey().serialize()))
-                                                                                         .setDestinationAci(contact.getVerified().get().getDestination().getServiceId().toString())
-                                                                                         .setState(state);
+      Verified.Builder verifiedBuilder = new Verified.Builder()
+          .identityKey(ByteString.of(contact.getVerified().get().getIdentityKey().serialize()))
+          .destinationAci(contact.getVerified().get().getDestination().getServiceId().toString())
+          .state(state);
 
-      contactDetails.setVerified(verifiedBuilder.build());
+      contactDetails.verified(verifiedBuilder.build());
     }
 
     if (contact.getProfileKey().isPresent()) {
-      contactDetails.setProfileKey(ByteString.copyFrom(contact.getProfileKey().get().serialize()));
+      contactDetails.profileKey(ByteString.of(contact.getProfileKey().get().serialize()));
     }
 
     if (contact.getExpirationTimer().isPresent()) {
-      contactDetails.setExpireTimer(contact.getExpirationTimer().get());
+      contactDetails.expireTimer(contact.getExpirationTimer().get());
     }
 
     if (contact.getInboxPosition().isPresent()) {
-      contactDetails.setInboxPosition(contact.getInboxPosition().get());
+      contactDetails.inboxPosition(contact.getInboxPosition().get());
     }
 
-    contactDetails.setBlocked(contact.isBlocked());
-    contactDetails.setArchived(contact.isArchived());
+    contactDetails.blocked(contact.isBlocked());
+    contactDetails.archived(contact.isArchived());
 
-    byte[] serializedContactDetails = contactDetails.build().toByteArray();
+    byte[] serializedContactDetails = contactDetails.build().encode();
 
     writeVarint32(serializedContactDetails.length);
     out.write(serializedContactDetails);
   }
-
 }

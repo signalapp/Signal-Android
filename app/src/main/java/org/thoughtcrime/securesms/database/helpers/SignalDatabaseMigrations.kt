@@ -55,6 +55,15 @@ import org.thoughtcrime.securesms.database.helpers.migration.V196_BackCallLinksW
 import org.thoughtcrime.securesms.database.helpers.migration.V197_DropAvatarColorFromCallLinks
 import org.thoughtcrime.securesms.database.helpers.migration.V198_AddMacDigestColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V199_AddThreadActiveColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V200_ResetPniColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V201_RecipientTableValidations
+import org.thoughtcrime.securesms.database.helpers.migration.V202_DropMessageTableThreadDateIndex
+import org.thoughtcrime.securesms.database.helpers.migration.V203_PreKeyStaleTimestamp
+import org.thoughtcrime.securesms.database.helpers.migration.V204_GroupForeignKeyMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V205_DropPushTable
+import org.thoughtcrime.securesms.database.helpers.migration.V206_AddConversationCountIndex
+import org.thoughtcrime.securesms.database.helpers.migration.V207_AddChunkSizeColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V209_ClearRecipientPniFromAciColumn
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -63,7 +72,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 199
+  const val DATABASE_VERSION = 209
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -269,6 +278,46 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 199) {
       V199_AddThreadActiveColumn.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 200) {
+      V200_ResetPniColumn.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 201) {
+      V201_RecipientTableValidations.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 202) {
+      V202_DropMessageTableThreadDateIndex.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 203) {
+      V203_PreKeyStaleTimestamp.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 204) {
+      V204_GroupForeignKeyMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 205) {
+      V205_DropPushTable.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 206) {
+      V206_AddConversationCountIndex.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 207) {
+      V207_AddChunkSizeColumn.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 208) {
+      // Bad migration that only manipulated data and did not change schema, replaced by 209
+    }
+
+    if (oldVersion < 209) {
+      V209_ClearRecipientPniFromAciColumn.migrate(context, db, oldVersion, newVersion)
     }
   }
 

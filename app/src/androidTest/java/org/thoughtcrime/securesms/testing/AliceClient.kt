@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.FakeClientHelpers.toEnvelope
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.Envelope
 
 /**
  * Welcome to Alice's Client.
@@ -27,7 +27,7 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
 
   private val aliceSenderCertificate = FakeClientHelpers.createCertificateFor(
     trustRoot = trustRoot,
-    uuid = serviceId.uuid(),
+    uuid = serviceId.rawUuid,
     e164 = e164,
     deviceId = 1,
     identityKey = SignalStore.account().aciIdentityKey.publicKey.publicKey,

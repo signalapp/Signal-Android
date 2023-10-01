@@ -1,18 +1,18 @@
 package org.whispersystems.signalservice.api.storage;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+
+import okio.ByteString;
 
 public final class SignalGroupV2Record implements SignalRecord {
 
@@ -27,7 +27,7 @@ public final class SignalGroupV2Record implements SignalRecord {
     this.id               = id;
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
-    this.masterKey        = proto.getMasterKey().toByteArray();
+    this.masterKey        = proto.masterKey.toByteArray();
   }
 
   @Override
@@ -101,7 +101,7 @@ public final class SignalGroupV2Record implements SignalRecord {
   }
 
   public byte[] serializeUnknownFields() {
-    return hasUnknownFields ? proto.toByteArray() : null;
+    return hasUnknownFields ? proto.encode() : null;
   }
 
   public byte[] getMasterKeyBytes() {
@@ -117,35 +117,35 @@ public final class SignalGroupV2Record implements SignalRecord {
   }
 
   public boolean isBlocked() {
-    return proto.getBlocked();
+    return proto.blocked;
   }
 
   public boolean isProfileSharingEnabled() {
-    return proto.getWhitelisted();
+    return proto.whitelisted;
   }
 
   public boolean isArchived() {
-    return proto.getArchived();
+    return proto.archived;
   }
 
   public boolean isForcedUnread() {
-    return proto.getMarkedUnread();
+    return proto.markedUnread;
   }
 
   public long getMuteUntil() {
-    return proto.getMutedUntilTimestamp();
+    return proto.mutedUntilTimestamp;
   }
 
   public boolean notifyForMentionsWhenMuted() {
-    return !proto.getDontNotifyForMentionsIfMuted();
+    return !proto.dontNotifyForMentionsIfMuted;
   }
 
   public boolean shouldHideStory() {
-    return proto.getHideStory();
+    return proto.hideStory;
   }
 
   public GroupV2Record.StorySendMode getStorySendMode() {
-    return proto.getStorySendMode();
+    return proto.storySendMode;
   }
 
   public GroupV2Record toProto() {
@@ -180,58 +180,58 @@ public final class SignalGroupV2Record implements SignalRecord {
       if (serializedUnknowns != null) {
         this.builder = parseUnknowns(serializedUnknowns);
       } else {
-        this.builder = GroupV2Record.newBuilder();
+        this.builder = new GroupV2Record.Builder();
       }
 
-      builder.setMasterKey(ByteString.copyFrom(masterKey));
+      builder.masterKey(ByteString.of(masterKey));
     }
 
     public Builder setBlocked(boolean blocked) {
-      builder.setBlocked(blocked);
+      builder.blocked(blocked);
       return this;
     }
 
     public Builder setProfileSharingEnabled(boolean profileSharingEnabled) {
-      builder.setWhitelisted(profileSharingEnabled);
+      builder.whitelisted(profileSharingEnabled);
       return this;
     }
 
     public Builder setArchived(boolean archived) {
-      builder.setArchived(archived);
+      builder.archived(archived);
       return this;
     }
 
     public Builder setForcedUnread(boolean forcedUnread) {
-      builder.setMarkedUnread(forcedUnread);
+      builder.markedUnread(forcedUnread);
       return this;
     }
 
     public Builder setMuteUntil(long muteUntil) {
-      builder.setMutedUntilTimestamp(muteUntil);
+      builder.mutedUntilTimestamp(muteUntil);
       return this;
     }
 
     public Builder setNotifyForMentionsWhenMuted(boolean value) {
-      builder.setDontNotifyForMentionsIfMuted(!value);
+      builder.dontNotifyForMentionsIfMuted(!value);
       return this;
     }
 
     public Builder setHideStory(boolean hideStory) {
-      builder.setHideStory(hideStory);
+      builder.hideStory(hideStory);
       return this;
     }
 
     public Builder setStorySendMode(GroupV2Record.StorySendMode storySendMode) {
-      builder.setStorySendMode(storySendMode);
+      builder.storySendMode(storySendMode);
       return this;
     }
 
     private static GroupV2Record.Builder parseUnknowns(byte[] serializedUnknowns) {
       try {
-        return GroupV2Record.parseFrom(serializedUnknowns).toBuilder();
-      } catch (InvalidProtocolBufferException e) {
+        return GroupV2Record.ADAPTER.decode(serializedUnknowns).newBuilder();
+      } catch (IOException e) {
         Log.w(TAG, "Failed to combine unknown fields!", e);
-        return GroupV2Record.newBuilder();
+        return new GroupV2Record.Builder();
       }
     }
 

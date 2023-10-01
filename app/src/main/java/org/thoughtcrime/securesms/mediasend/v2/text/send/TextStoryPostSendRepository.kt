@@ -96,7 +96,7 @@ class TextStoryPostSendRepository {
   }
 
   private fun serializeTextStoryState(textStoryPostCreationState: TextStoryPostCreationState): String {
-    val builder = StoryTextPost.newBuilder()
+    val builder = StoryTextPost.Builder()
 
     builder.body = textStoryPostCreationState.body.toString()
     builder.background = textStoryPostCreationState.backgroundColor.serialize()
@@ -110,6 +110,6 @@ class TextStoryPostSendRepository {
     builder.textBackgroundColor = textStoryPostCreationState.textBackgroundColor
     builder.textForegroundColor = textStoryPostCreationState.textForegroundColor
 
-    return Base64.encodeBytes(builder.build().toByteArray())
+    return Base64.encodeBytes(builder.build().encode())
   }
 }

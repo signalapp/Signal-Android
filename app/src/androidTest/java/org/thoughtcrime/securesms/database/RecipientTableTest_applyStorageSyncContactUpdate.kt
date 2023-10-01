@@ -38,8 +38,8 @@ class RecipientTableTest_applyStorageSyncContactUpdate {
 
     val newProto = oldRecord
       .toProto()
-      .toBuilder()
-      .setIdentityState(ContactRecord.IdentityState.DEFAULT)
+      .newBuilder()
+      .identityState(ContactRecord.IdentityState.DEFAULT)
       .build()
     val newRecord = SignalContactRecord(oldRecord.id, newProto)
 

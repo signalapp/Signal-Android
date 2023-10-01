@@ -3,33 +3,17 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'com.google.protobuf'
     id 'androidx.navigation.safeargs'
     id 'org.jlleitschuh.gradle.ktlint'
     id 'org.jetbrains.kotlin.android'
     id 'app.cash.exhaustive'
     id 'kotlin-parcelize'
     id 'com.squareup.wire'
-    id 'android-constants'
     id 'translations'
+    id 'licenses'
 }
 
 apply from: 'static-ips.gradle'
-
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.18.0'
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option "lite"
-                }
-            }
-        }
-    }
-}
 
 wire {
     kotlin {
@@ -39,14 +23,18 @@ wire {
     sourcePath {
         srcDir 'src/main/protowire'
     }
+
+    protoPath {
+        srcDir "${project.rootDir}/libsignal/service/src/main/protowire"
+    }
 }
 
 ktlint {
     version = "0.49.1"
 }
 
-def canonicalVersionCode = 1302
-def canonicalVersionName = "6.27.8"
+def canonicalVersionCode = 1340
+def canonicalVersionName = "6.35.2"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -94,7 +82,7 @@ android {
     testBuildType 'instrumentation'
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = signalKotlinJvmTarget
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
@@ -181,6 +169,7 @@ android {
         buildConfigField "String", "STORAGE_URL", "\"https://storage.signal.org\""
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
         buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2.signal.org\""
+        buildConfigField "String", "SIGNAL_CDN3_URL", "\"https://cdn3.signal.org\""
         buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
@@ -195,6 +184,7 @@ android {
         buildConfigField "String[]", "SIGNAL_STORAGE_IPS", storage_ips
         buildConfigField "String[]", "SIGNAL_CDN_IPS", cdn_ips
         buildConfigField "String[]", "SIGNAL_CDN2_IPS", cdn2_ips
+        buildConfigField "String[]", "SIGNAL_CDN3_IPS", cdn3_ips
         buildConfigField "String[]", "SIGNAL_KBS_IPS", kbs_ips
         buildConfigField "String[]", "SIGNAL_SFU_IPS", sfu_ips
         buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
@@ -377,12 +367,13 @@ android {
             buildConfigField "String", "STORAGE_URL", "\"https://storage-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2-staging.signal.org\""
+            buildConfigField "String", "SIGNAL_CDN3_URL", "\"https://cdn3-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.staging.signal.org\""
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
             buildConfigField "String", "SIGNAL_SVR2_URL", "\"https://svr2.staging.signal.org\""
             buildConfigField "String", "SVR2_MRENCLAVE", "\"a8a261420a6bb9b61aa25bf8a79e8bd20d7652531feb3381cbffd446d270be95\""
             buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"39963b736823d5780be96ab174869a9499d56d66497aa8f9b2244f777ebc366b\", " +
-                                                                                                                               "\"9dbc6855c198e04f21b5cc35df839fdcd51b53658454dfa3f817afefaffc95ef\", " +
+                                                                                                                               "\"ee1d0d972b7ea903615670de43ab1b6e7a825e811c70a29bb5fe0f819e0975fa\", " +
                                                                                                                                "\"45627094b2ea4a66f4cf0b182858a8dcf4b8479122c3820fe7fd0551a6d4cf5c\")"
             buildConfigField "org.thoughtcrime.securesms.KbsEnclave[]", "KBS_FALLBACKS", "new org.thoughtcrime.securesms.KbsEnclave[] { new org.thoughtcrime.securesms.KbsEnclave(\"dd6f66d397d9e8cf6ec6db238e59a7be078dd50e9715427b9c89b409ffe53f99\", " +
                                                                                                                                                                                  "\"4200003414528c151e2dccafbc87aa6d3d66a5eb8f8c05979a6e97cb33cd493a\", " +
@@ -511,7 +502,7 @@ dependencies {
     implementation libs.google.play.services.maps
     implementation libs.google.play.services.auth
 
-    implementation libs.bundles.exoplayer
+    implementation libs.bundles.media3
 
     implementation libs.conscrypt.android
     implementation libs.signal.aesgcmprovider
@@ -529,13 +520,11 @@ dependencies {
     implementation project(':sms-exporter')
     implementation project(':sticky-header-grid')
     implementation project(':photoview')
+    implementation project(':glide-webp')
 
     implementation libs.libsignal.android
-    implementation libs.google.protobuf.javalite
 
-    implementation(libs.mobilecoin) {
-        exclude group: 'com.google.protobuf'
-    }
+    implementation libs.mobilecoin
 
     implementation libs.signal.ringrtc
 
@@ -590,6 +579,7 @@ dependencies {
     testImplementation testLibs.robolectric.shadows.multidex
     testImplementation (testLibs.bouncycastle.bcprov.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
     testImplementation (testLibs.bouncycastle.bcpkix.jdk15on) { version { strictly "1.70" } } // Used by roboelectric
+    testImplementation testLibs.conscrypt.openjdk.uber // Used by robolectric
     testImplementation testLibs.hamcrest.hamcrest
     testImplementation testLibs.mockk
 

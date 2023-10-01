@@ -6,14 +6,13 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory;
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,12 +39,12 @@ public final class WallpaperValues extends SignalStoreValues {
     Wallpaper currentWallpaper = getCurrentWallpaper();
     Uri       currentUri       = null;
 
-    if (currentWallpaper != null && currentWallpaper.hasFile()) {
-      currentUri = Uri.parse(currentWallpaper.getFile().getUri());
+    if (currentWallpaper != null && currentWallpaper.file_ != null) {
+      currentUri = Uri.parse(currentWallpaper.file_.uri);
     }
 
     if (wallpaper != null) {
-      putBlob(KEY_WALLPAPER, wallpaper.serialize().toByteArray());
+      putBlob(KEY_WALLPAPER, wallpaper.serialize().encode());
     } else {
       getStore().beginWrite().remove(KEY_WALLPAPER).apply();
     }
@@ -74,10 +73,10 @@ public final class WallpaperValues extends SignalStoreValues {
 
     if (currentWallpaper != null) {
       putBlob(KEY_WALLPAPER,
-              currentWallpaper.toBuilder()
-                              .setDimLevelInDarkTheme(enabled ? 0.2f : 0)
+              currentWallpaper.newBuilder()
+                              .dimLevelInDarkTheme(enabled ? 0.2f : 0)
                               .build()
-                              .toByteArray());
+                              .encode());
     } else {
       throw new IllegalStateException("No wallpaper currently set!");
     }
@@ -91,8 +90,8 @@ public final class WallpaperValues extends SignalStoreValues {
   public @Nullable Uri getWallpaperUri() {
     Wallpaper currentWallpaper = getCurrentWallpaper();
 
-    if (currentWallpaper != null && currentWallpaper.hasFile()) {
-      return Uri.parse(currentWallpaper.getFile().getUri());
+    if (currentWallpaper != null && currentWallpaper.file_ != null) {
+      return Uri.parse(currentWallpaper.file_.uri);
     } else {
       return null;
     }
@@ -103,8 +102,8 @@ public final class WallpaperValues extends SignalStoreValues {
 
     if (serialized != null) {
       try {
-        return Wallpaper.parseFrom(serialized);
-      } catch (InvalidProtocolBufferException e) {
+        return Wallpaper.ADAPTER.decode(serialized);
+      } catch (IOException e) {
         Log.w(TAG, "Invalid proto stored for wallpaper!");
         return null;
       }

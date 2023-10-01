@@ -30,7 +30,7 @@ def autoResConfig() {
 }
 
 task replaceEllipsis {
-    group 'Translate'
+    group 'Static Files'
     description 'Process strings for ellipsis characters.'
     doLast {
         allStringsResourceFiles { f ->
@@ -45,7 +45,7 @@ task replaceEllipsis {
 }
 
 task cleanApostropheErrors {
-    group 'Translate'
+    group 'Static Files'
     description 'Fix transifex apostrophe string errors.'
     doLast {
         allStringsResourceFiles { f ->
@@ -60,7 +60,7 @@ task cleanApostropheErrors {
 }
 
 task excludeNonTranslatables {
-    group 'Translate'
+    group 'Static Files'
     description 'Remove strings that are marked "translatable"="false" or are ExtraTranslations.'
     doLast {
         def englishFile = file('src/main/res/values/strings.xml')
@@ -115,13 +115,13 @@ task excludeNonTranslatables {
 }
 
 task postTranslateQa {
-    group 'Translate'
+    group 'Static Files'
     description 'Runs QA to check validity of updated strings, and ensure presence of any new languages in internal lists.'
     dependsOn ':qa'
 }
 
-task postTranslateIpFetch {
-    group 'Translate'
+task resolveStaticIps {
+    group 'Static Files'
     description 'Fetches static IPs for core hosts and writes them to static-ips.gradle'
     doLast {
         def staticIpResolver = new StaticIpResolver()
@@ -130,6 +130,7 @@ task postTranslateIpFetch {
             ext.storage_ips='${staticIpResolver.resolveToBuildConfig("storage.signal.org")}'
             ext.cdn_ips='${staticIpResolver.resolveToBuildConfig("cdn.signal.org")}'
             ext.cdn2_ips='${staticIpResolver.resolveToBuildConfig("cdn2.signal.org")}'
+            ext.cdn3_ips='${staticIpResolver.resolveToBuildConfig("cdn3.signal.org")}'
             ext.kbs_ips='${staticIpResolver.resolveToBuildConfig("api.backup.signal.org")}'
             ext.sfu_ips='${staticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}'
             ext.content_proxy_ips='${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}'
@@ -139,8 +140,8 @@ task postTranslateIpFetch {
     }
 }
 
-task translateQa {
-    group 'Translate'
-    description 'Post-process for ellipsis, apostrophes and non-translatables.'
-    dependsOn replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, postTranslateIpFetch, postTranslateQa
+task updateStaticFilesAndQa {
+    group 'Static Files'
+    description 'Runs tasks to update static files. This includes translations, static IPs, and licenses. Runs QA afterwards to verify all went well. Intended to be run before cutting a release.'
+    dependsOn replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, resolveStaticIps, postTranslateQa
 }

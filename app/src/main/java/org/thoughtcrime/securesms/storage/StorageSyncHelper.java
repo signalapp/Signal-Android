@@ -26,12 +26,15 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
 import java.util.Collection;
@@ -42,6 +45,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import okio.ByteString;
 
 public final class StorageSyncHelper {
 
@@ -155,8 +160,19 @@ public final class StorageSyncHelper {
                                                                  .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
                                                                  .setUsername(self.getUsername().orElse(null));
 
-    if (!FeatureFlags.phoneNumberPrivacy() || !self.getPnpCapability().isSupported()) {
+    if (!self.getPnpCapability().isSupported()) {
       account.setE164(self.requireE164());
+    }
+
+    UsernameLinkComponents linkComponents = SignalStore.account().getUsernameLink();
+    if (linkComponents != null) {
+      account.setUsernameLink(new AccountRecord.UsernameLink.Builder()
+                                                            .entropy(ByteString.of(linkComponents.getEntropy()))
+                                                            .serverId(UuidUtil.toByteString(linkComponents.getServerId()))
+                                                            .color(StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc().getUsernameQrCodeColorScheme()))
+                                                            .build());
+    } else {
+      account.setUsernameLink(null);
     }
 
     return SignalStorageRecord.forAccount(account.build());
@@ -213,6 +229,16 @@ public final class StorageSyncHelper {
 
     if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getNew().getAvatarUrlPath().get()));
+    }
+
+    if (update.getNew().getUsernameLink() != null) {
+      SignalStore.account().setUsernameLink(
+        new UsernameLinkComponents(
+          update.getNew().getUsernameLink().entropy.toByteArray(),
+          UuidUtil.parseOrThrow(update.getNew().getUsernameLink().serverId.toByteArray())
+        )
+      );
+      SignalStore.misc().setUsernameQrCodeColorScheme(StorageSyncModels.remoteToLocalUsernameColor(update.getNew().getUsernameLink().color));
     }
   }
 

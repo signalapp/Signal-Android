@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.devicetransfer;
 
-import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -16,7 +15,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -100,7 +98,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
         case INITIAL:
           status.setText("");
         case PERMISSIONS_CHECK:
-          requestLocationPermission();
+          requestRequiredPermission();
           break;
         case PERMISSIONS_DENIED:
           error.setText(getErrorTextForStep(step));
@@ -280,9 +278,9 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
     super.onDestroyView();
   }
 
-  private void requestLocationPermission() {
+  private void requestRequiredPermission() {
     Permissions.with(this)
-               .request(Manifest.permission.ACCESS_FINE_LOCATION)
+               .request(WifiDirect.requiredPermission())
                .ifNecessary()
                .withRationaleDialog(getString(getErrorTextForStep(SetupStep.PERMISSIONS_DENIED)), false, R.drawable.ic_location_on_white_24dp)
                .withPermanentDenialDialog(getString(getErrorTextForStep(SetupStep.PERMISSIONS_DENIED)))

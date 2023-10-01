@@ -27,9 +27,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public final class TransferControlView extends FrameLayout {
 
+  private static final String TAG = "TransferControlView";
   private static final int UPLOAD_TASK_WEIGHT = 1;
 
   /**
@@ -125,7 +127,11 @@ public final class TransferControlView extends FrameLayout {
         break;
       case AttachmentTable.TRANSFER_PROGRESS_PENDING:
       case AttachmentTable.TRANSFER_PROGRESS_FAILED:
-        downloadDetailsText.setText(getDownloadText(this.slides));
+        String downloadText = getDownloadText(this.slides);
+        if (!Objects.equals(downloadText, downloadDetailsText.getText().toString())) {
+          downloadDetailsText.setText(getDownloadText(this.slides));
+        }
+
         display(downloadDetails);
         break;
       default:
@@ -150,6 +156,10 @@ public final class TransferControlView extends FrameLayout {
 
   public void setDownloadClickListener(final @Nullable OnClickListener listener) {
     downloadDetails.setOnClickListener(listener);
+  }
+
+  public void setProgressWheelClickListener(final @Nullable OnClickListener listener) {
+    progressWheel.setOnClickListener(listener);
   }
 
   public void clear() {
@@ -247,13 +257,14 @@ public final class TransferControlView extends FrameLayout {
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
-    if (networkProgress.containsKey(event.attachment)) {
+    final Attachment attachment = event.attachment;
+    if (networkProgress.containsKey(attachment)) {
       float proportionCompleted = ((float) event.progress) / event.total;
 
       if (event.type == PartProgressEvent.Type.COMPRESSION) {
-        compresssionProgress.put(event.attachment, proportionCompleted);
+        compresssionProgress.put(attachment, proportionCompleted);
       } else {
-        networkProgress.put(event.attachment, proportionCompleted);
+        networkProgress.put(attachment, proportionCompleted);
       }
 
       progressWheel.setInstantProgress(calculateProgress(networkProgress, compresssionProgress));

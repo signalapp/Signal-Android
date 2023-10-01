@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.util
 
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.Envelope
 
 /**
  * The tuple of information needed to process a message. Used to in [EarlyMessageCache]

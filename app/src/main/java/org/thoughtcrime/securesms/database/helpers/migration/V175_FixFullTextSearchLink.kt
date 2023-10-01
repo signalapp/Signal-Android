@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.SqlUtil
 
 /**
  * Turns out renaming a table will automatically update all of your indexes, foreign keys, triggers, basically everything... except full-text search tables.
@@ -14,6 +15,11 @@ object V175_FixFullTextSearchLink : SignalDatabaseMigration {
     db.execSQL("DROP TRIGGER IF EXISTS mms_ai")
     db.execSQL("DROP TRIGGER IF EXISTS mms_ad")
     db.execSQL("DROP TRIGGER IF EXISTS mms_au")
+
+    // We need to check because it's possible this table got created due to us hitting corruption first
+    if (SqlUtil.tableExists(db, "message_fts")) {
+      return
+    }
 
     db.execSQL("CREATE VIRTUAL TABLE message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id)")
 

@@ -17,6 +17,7 @@ import androidx.core.app.SharedElementCallback
 import androidx.core.view.MenuProvider
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -74,7 +76,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     private val TAG = Log.tag(CallLogFragment::class.java)
   }
 
-  private val viewModel: CallLogViewModel by viewModels()
+  private val viewModel: CallLogViewModel by activityViewModels()
   private val binding: CallLogFragmentBinding by ViewBinderDelegate(CallLogFragmentBinding::bind)
   private val disposables = LifecycleDisposable()
   private val callLogContextMenu = CallLogContextMenu(this, this)
@@ -230,6 +232,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     val count = callLogActionMode.getCount()
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
+      .setMessage(
+        if (FeatureFlags.adHocCalling()) {
+          getString(R.string.CallLogFragment__call_links_youve_created)
+        } else {
+          null
+        }
+      )
       .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(count, viewModel.stageSelectionDeletion())
         callLogActionMode.end()
@@ -303,6 +312,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       val progress = 1 - verticalOffset.toFloat() / -layout.height
       binding.pullView.onUserDrag(progress)
     }
+
+    if (viewModel.filterSnapshot != CallLogFilter.ALL) {
+      binding.root.doAfterNextLayout {
+        binding.pullView.openImmediate()
+      }
+    }
   }
 
   override fun onCreateACallLinkClicked() {
@@ -363,6 +378,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun deleteCall(call: CallLogRow) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
+      .setMessage(
+        if (FeatureFlags.adHocCalling()) {
+          getString(R.string.CallLogFragment__call_links_youve_created)
+        } else {
+          null
+        }
+      )
       .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(1, viewModel.stageCallDeletion(call))
       }

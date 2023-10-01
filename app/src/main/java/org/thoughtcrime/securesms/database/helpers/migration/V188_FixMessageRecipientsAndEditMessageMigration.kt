@@ -16,7 +16,7 @@ import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceId.ACI
 
 /**
  * This is a fix for a bad situation that could happen during [V185_MessageRecipientsAndEditMessageMigration].
