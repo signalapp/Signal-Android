@@ -67,7 +67,7 @@ public final class LiveGroup {
       LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);
       this.groupLink = Transformations.map(v2Properties, g -> {
                          DecryptedGroup               group             = g.getDecryptedGroup();
-                         AccessControl.AccessRequired addFromInviteLink = group.accessControl.addFromInviteLink;
+                         AccessControl.AccessRequired addFromInviteLink = group.accessControl != null ? group.accessControl.addFromInviteLink : new AccessControl().addFromInviteLink;
 
                          if (group.inviteLinkPassword.size() == 0) {
                            return GroupLinkUrlAndStatus.NONE;
