@@ -46,6 +46,7 @@ import java.text.NumberFormat;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 public class BackupsPreferenceFragment extends Fragment {
 
@@ -270,11 +271,21 @@ public class BackupsPreferenceFragment extends Fragment {
           .setTitleText("Set Backup Time")
           .build();
       timePickerFragment.addOnPositiveButtonClickListener(v -> {
+        int days = frequencyPickerDialogFragment.getValue();
         int hour = timePickerFragment.getHour();
         int minute = timePickerFragment.getMinute();
-        SignalStore.settings().setBackupSchedule(frequencyPickerDialogFragment.getValue(), hour, minute);
+        SignalStore.settings().setBackupSchedule(days, hour, minute);
         updateTimeLabel();
-        TextSecurePreferences.setNextBackupTime(requireContext(), 0);
+        // Schedule the next backup using the newly set frequency, but relative to the time of the
+        // last backup. This should only kick off a new backup to be created immediately if the
+        // last backup was long enough ago (or doesn't exist at all).
+        long lastBackupTime = 0;
+        try {
+          lastBackupTime = Optional.ofNullable(BackupUtil.getLatestBackup())
+                                   .map(BackupUtil.BackupInfo::getTimestamp)
+                                   .orElse(0L);
+        } catch (NoExternalStorageException ignored) {}
+        TextSecurePreferences.setNextBackupTime(requireContext(), lastBackupTime + days * 24 * 60 * 60 * 1000L);
         LocalBackupListener.schedule(requireContext());
       });
 
