@@ -631,6 +631,8 @@ class ConversationFragment :
       ).addTo(disposables)
     }
 
+    conversationGroupViewModel.updateGroupStateIfNeeded()
+
     ConversationUtil.refreshRecipientShortcuts()
 
     if (SignalStore.rateLimit().needsRecaptcha()) {
