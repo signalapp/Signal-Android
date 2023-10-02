@@ -118,6 +118,7 @@ public class ReactionsConversationView extends LinearLayout {
       return false;
     }
 
+    bubbleWidth = -1;
     this.records.clear();
     this.records.addAll(records);
 
