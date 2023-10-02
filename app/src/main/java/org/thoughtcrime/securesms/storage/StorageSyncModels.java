@@ -130,7 +130,7 @@ public final class StorageSyncModels {
   }
 
   private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientRecord recipient, byte[] rawStorageId) {
-    if (recipient.getAci() == null && recipient.getE164() == null) {
+    if (recipient.getAci() == null && recipient.getPni() == null && recipient.getE164() == null) {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 
