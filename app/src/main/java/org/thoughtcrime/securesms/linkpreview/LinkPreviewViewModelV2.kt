@@ -40,7 +40,7 @@ class LinkPreviewViewModelV2(
   private val linkPreviewStateStore = RxStore(savedLinkPreviewState)
 
   val linkPreviewState: Flowable<LinkPreviewState> = linkPreviewStateStore.stateFlowable.observeOn(AndroidSchedulers.mainThread())
-  val linkPreviewStateSnapshot: LinkPreviewState = linkPreviewStateStore.state
+  val linkPreviewStateSnapshot: LinkPreviewState get() = linkPreviewStateStore.state
 
   val hasLinkPreview: Boolean = linkPreviewStateStore.state.linkPreview.isPresent
   val hasLinkPreviewUi: Boolean = linkPreviewStateStore.state.hasContent()
@@ -166,7 +166,7 @@ class LinkPreviewViewModelV2(
       }
   }
 
-  fun setLinkPreviewState(linkPreviewState: LinkPreviewState) {
+  private fun setLinkPreviewState(linkPreviewState: LinkPreviewState) {
     linkPreviewStateStore.update { cleanseState(linkPreviewState) }
   }
 
