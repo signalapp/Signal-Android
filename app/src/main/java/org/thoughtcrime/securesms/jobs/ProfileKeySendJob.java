@@ -8,8 +8,8 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
@@ -38,6 +38,21 @@ public class ProfileKeySendJob extends BaseJob {
 
   private final long              threadId;
   private final List<RecipientId> recipients;
+
+  public static ProfileKeySendJob createForCallLinks(List<RecipientId> recipientIds) {
+    return new ProfileKeySendJob(
+        new Parameters.Builder()
+            .setQueue("ProfileKeySendJob__call_links")
+            .setMaxInstancesForQueue(Parameters.UNLIMITED)
+            .addConstraint(NetworkConstraint.KEY)
+            .addConstraint(DecryptionsDrainedConstraint.KEY)
+            .setLifespan(TimeUnit.DAYS.toMillis(1))
+            .setMaxAttempts(Parameters.UNLIMITED)
+            .build(),
+        -1L,
+        recipientIds
+    );
+  }
 
   /**
    * Suitable for a 1:1 conversation or a GV1 group only.
@@ -99,11 +114,13 @@ public class ProfileKeySendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
+    if (threadId > 0) {
+      Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
-    if (conversationRecipient == null) {
-      Log.w(TAG, "Thread no longer present");
-      return;
+      if (conversationRecipient == null) {
+        Log.w(TAG, "Thread no longer present");
+        return;
+      }
     }
 
     List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
