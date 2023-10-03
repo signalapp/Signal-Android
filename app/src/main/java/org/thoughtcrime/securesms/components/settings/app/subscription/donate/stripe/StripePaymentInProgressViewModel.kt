@@ -128,7 +128,10 @@ class StripePaymentInProgressViewModel(
 
   private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
     val ensureSubscriberId: Completable = monthlyDonationRepository.ensureSubscriberId()
-    val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap { stripeRepository.createAndConfirmSetupIntent(it) }
+    val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap {
+      stripeRepository.createAndConfirmSetupIntent(it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
+    }
+
     val setLevel: Completable = monthlyDonationRepository.setSubscriptionLevel(request.level.toString())
 
     Log.d(TAG, "Starting subscription payment pipeline...", true)

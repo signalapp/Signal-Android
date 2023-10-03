@@ -12,9 +12,13 @@ class StripeOneTimePaymentIntentPayload {
   @JsonProperty
   private long level;
 
-  public StripeOneTimePaymentIntentPayload(long amount, String currency, long level) {
-    this.amount      = amount;
-    this.currency    = currency;
-    this.level       = level;
+  @JsonProperty
+  private String paymentMethod;
+
+  public StripeOneTimePaymentIntentPayload(long amount, String currency, long level, String paymentMethod) {
+    this.amount        = amount;
+    this.currency      = currency;
+    this.level         = level;
+    this.paymentMethod = paymentMethod;
   }
 }

@@ -91,8 +91,8 @@ public class DonationsService {
    * @param currencyCode The currency code for the amount
    * @return A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
-  public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level) {
-    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createStripeOneTimePaymentIntent(currencyCode, Long.parseLong(amount), level), 200));
+  public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level, String paymentMethod) {
+    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createStripeOneTimePaymentIntent(currencyCode, paymentMethod, Long.parseLong(amount), level), 200));
   }
 
   /**
@@ -205,9 +205,9 @@ public class DonationsService {
    * @return Client secret for a SetupIntent. It should not be used with the PaymentIntent stripe APIs
    * but instead with the SetupIntent stripe APIs.
    */
-  public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId) {
+  public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId, String type) {
     return wrapInServiceResponse(() -> {
-      StripeClientSecret clientSecret = pushServiceSocket.createStripeSubscriptionPaymentMethod(subscriberId.serialize());
+      StripeClientSecret clientSecret = pushServiceSocket.createStripeSubscriptionPaymentMethod(subscriberId.serialize(), type);
       return new Pair<>(clientSecret, 200);
     });
   }

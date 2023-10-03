@@ -212,15 +212,18 @@ class DonationsConfigurationExtensionsKtTest {
   private object AllPaymentMethodsAvailability : PaymentMethodAvailability {
     override fun isPayPalAvailable(): Boolean = true
     override fun isGooglePayOrCreditCardAvailable(): Boolean = true
+    override fun isSEPADebitAvailable(): Boolean = false
   }
 
   private object PayPalOnly : PaymentMethodAvailability {
     override fun isPayPalAvailable(): Boolean = true
     override fun isGooglePayOrCreditCardAvailable(): Boolean = false
+    override fun isSEPADebitAvailable(): Boolean = false
   }
 
   private object CardOnly : PaymentMethodAvailability {
     override fun isPayPalAvailable(): Boolean = false
     override fun isGooglePayOrCreditCardAvailable(): Boolean = true
+    override fun isSEPADebitAvailable(): Boolean = false
   }
 }

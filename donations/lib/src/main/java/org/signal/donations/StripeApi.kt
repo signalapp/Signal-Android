@@ -59,9 +59,9 @@ class StripeApi(
     data class Failure(val reason: Throwable) : CreatePaymentSourceFromCardDataResult()
   }
 
-  fun createSetupIntent(): Single<CreateSetupIntentResult> {
+  fun createSetupIntent(sourceType: PaymentSourceType.Stripe): Single<CreateSetupIntentResult> {
     return setupIntentHelper
-      .fetchSetupIntent()
+      .fetchSetupIntent(sourceType)
       .map { CreateSetupIntentResult(it) }
       .subscribeOn(Schedulers.io())
   }
@@ -84,7 +84,7 @@ class StripeApi(
     }
   }
 
-  fun createPaymentIntent(price: FiatMoney, level: Long): Single<CreatePaymentIntentResult> {
+  fun createPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): Single<CreatePaymentIntentResult> {
     @Suppress("CascadeIf")
     return if (Validation.isAmountTooSmall(price)) {
       Single.just(CreatePaymentIntentResult.AmountIsTooSmall(price))
@@ -95,7 +95,7 @@ class StripeApi(
         Single.just<CreatePaymentIntentResult>(CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode))
       } else {
         paymentIntentFetcher
-          .fetchPaymentIntent(price, level)
+          .fetchPaymentIntent(price, level, sourceType)
           .map<CreatePaymentIntentResult> { CreatePaymentIntentResult.Success(it) }
       }.subscribeOn(Schedulers.io())
     }
@@ -513,12 +513,15 @@ class StripeApi(
   interface PaymentIntentFetcher {
     fun fetchPaymentIntent(
       price: FiatMoney,
-      level: Long
+      level: Long,
+      sourceType: PaymentSourceType.Stripe
     ): Single<StripeIntentAccessor>
   }
 
   interface SetupIntentHelper {
-    fun fetchSetupIntent(): Single<StripeIntentAccessor>
+    fun fetchSetupIntent(
+      sourceType: PaymentSourceType.Stripe
+    ): Single<StripeIntentAccessor>
   }
 
   @Parcelize

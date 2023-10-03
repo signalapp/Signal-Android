@@ -90,9 +90,11 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     badgeLevel: Long,
     paymentSourceType: PaymentSourceType
   ): Single<StripeIntentAccessor> {
+    check(paymentSourceType is PaymentSourceType.Stripe)
+
     Log.d(TAG, "Creating payment intent for $price...", true)
 
-    return stripeApi.createPaymentIntent(price, badgeLevel)
+    return stripeApi.createPaymentIntent(price, badgeLevel, paymentSourceType)
       .onErrorResumeNext {
         OneTimeDonationRepository.handleCreatePaymentIntentError(it, badgeRecipient, paymentSourceType)
       }
@@ -110,9 +112,12 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }.subscribeOn(Schedulers.io())
   }
 
-  fun createAndConfirmSetupIntent(paymentSource: StripeApi.PaymentSource): Single<StripeApi.Secure3DSAction> {
+  fun createAndConfirmSetupIntent(
+    paymentSource: StripeApi.PaymentSource,
+    paymentSourceType: PaymentSourceType.Stripe
+  ): Single<StripeApi.Secure3DSAction> {
     Log.d(TAG, "Continuing subscription setup...", true)
-    return stripeApi.createSetupIntent()
+    return stripeApi.createSetupIntent(paymentSourceType)
       .flatMap { result ->
         Log.d(TAG, "Retrieved SetupIntent, confirming...", true)
         stripeApi.confirmSetupIntent(paymentSource, result.setupIntent)
@@ -134,13 +139,13 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
   }
 
-  override fun fetchPaymentIntent(price: FiatMoney, level: Long): Single<StripeIntentAccessor> {
+  override fun fetchPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
     return Single
       .fromCallable {
         ApplicationDependencies
           .getDonationsService()
-          .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level)
+          .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level, sourceType.paymentMethod)
       }
       .flatMap(ServiceResponse<StripeClientSecret>::flattenResult)
       .map {
@@ -159,27 +164,27 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    * it means that the PaymentMethod is already tied to a PayPal account. We can retry in this
    * situation by simply deleting the old subscriber id on the service and replacing it.
    */
-  private fun createPaymentMethod(retryOn409: Boolean = true): Single<StripeClientSecret> {
+  private fun createPaymentMethod(paymentSourceType: PaymentSourceType.Stripe, retryOn409: Boolean = true): Single<StripeClientSecret> {
     return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
       .flatMap {
         Single.fromCallable {
           ApplicationDependencies
             .getDonationsService()
-            .createStripeSubscriptionPaymentMethod(it.subscriberId)
+            .createStripeSubscriptionPaymentMethod(it.subscriberId, paymentSourceType.paymentMethod)
         }
       }
       .flatMap { serviceResponse ->
         if (retryOn409 && serviceResponse.status == 409) {
-          monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(retryOn409 = false))
+          monthlyDonationRepository.rotateSubscriberId().andThen(createPaymentMethod(paymentSourceType, retryOn409 = false))
         } else {
           serviceResponse.flattenResult()
         }
       }
   }
 
-  override fun fetchSetupIntent(): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching setup intent from Signal service...")
-    return createPaymentMethod()
+    return createPaymentMethod(sourceType)
       .map {
         StripeIntentAccessor(
           objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,

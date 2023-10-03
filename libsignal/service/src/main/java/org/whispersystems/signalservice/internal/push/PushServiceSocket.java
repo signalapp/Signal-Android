@@ -277,7 +277,7 @@ public class PushServiceSocket {
 
   private static final String UPDATE_SUBSCRIPTION_LEVEL                  = "/v1/subscription/%s/level/%s/%s/%s";
   private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
-  private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
+  private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method?type=%s";
   private static final String CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method/paypal";
   private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/stripe/%s";
   private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/braintree/%s";
@@ -287,6 +287,7 @@ public class PushServiceSocket {
   private static final String CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT     = "/v1/subscription/boost/paypal/confirm";
   private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
   private static final String DONATIONS_CONFIGURATION                    = "/v1/subscription/configuration";
+  private static final String BANK_MANDATE                               = "/v1/subscription/bank_mandate/%s";
 
   private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
@@ -1139,8 +1140,8 @@ public class PushServiceSocket {
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
   }
 
-  public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, long amount, long level) throws IOException {
-    String payload = JsonUtil.toJson(new StripeOneTimePaymentIntentPayload(amount, currencyCode, level));
+  public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, String paymentMethod, long amount, long level) throws IOException {
+    String payload = JsonUtil.toJson(new StripeOneTimePaymentIntentPayload(amount, currencyCode, level, paymentMethod));
     String result  = makeServiceRequestWithoutAuthentication(CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT, "POST", payload);
     return JsonUtil.fromJsonResponse(result, StripeClientSecret.class);
   }
@@ -1196,6 +1197,17 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(result, DonationsConfiguration.class);
   }
 
+  /**
+   * @param bankTransferType Valid values for bankTransferType are {SEPA_DEBIT}.
+   * @return localized bank mandate text for the given bankTransferType.
+   */
+  public BankMandate getBankMandate(Locale locale, String bankTransferType) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              result  = makeServiceRequestWithoutAuthentication(String.format(BANK_MANDATE, bankTransferType), "GET", null, headers, NO_HANDLER);
+
+    return JsonUtil.fromJson(result, BankMandate.class);
+  }
+
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {
     makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, level, currencyCode, idempotencyKey), "PUT", "");
   }
@@ -1213,8 +1225,11 @@ public class PushServiceSocket {
     makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "DELETE", null);
   }
 
-  public StripeClientSecret createStripeSubscriptionPaymentMethod(String subscriberId) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", "");
+  /**
+   * @param type One of CARD or SEPA_DEBIT
+   */
+  public StripeClientSecret createStripeSubscriptionPaymentMethod(String subscriberId, String type) throws IOException {
+    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, type), "POST", "");
     return JsonUtil.fromJson(response, StripeClientSecret.class);
   }
 
