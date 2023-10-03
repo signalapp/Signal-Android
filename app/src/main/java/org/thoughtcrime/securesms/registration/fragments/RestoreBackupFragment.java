@@ -289,6 +289,11 @@ public final class RestoreBackupFragment extends LoggingFragment {
           SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
           BackupPassphrase.set(context, passphrase);
+
+          if (!FullBackupImporter.validatePassphrase(context, backup.getUri(), passphrase)) {
+            return BackupImportResult.FAILURE_UNKNOWN;
+          }
+
           FullBackupImporter.importFile(context,
                                         AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                                         database,
