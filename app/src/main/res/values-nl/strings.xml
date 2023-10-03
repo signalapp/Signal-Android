@@ -92,7 +92,7 @@
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s heeft Betalingen niet geactiveerd </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Wil je ze een verzoek sturen om Betalingen te activeren?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Wil je hem of haar een verzoek sturen om Betalingen te activeren?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Stuur verzoek</string>
     <!-- Alert dialog button to cancel dialog -->
@@ -1450,9 +1450,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vind je deze nieuwe functie leuk? Steun Signal met een eenmalige donatie.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Je berichtengeschiedenis met %1$s en hun nummer %2$s zijn samengevoegd.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Je berichtengeschiedenis met %1$s en zijn of haar nummer %2$s zijn samengevoegd.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Je berichtengeschiedenis met %1$s en een andere chat met hen zijn samengevoegd.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Je berichtengeschiedenis met %1$s en een andere chat met hem of haar zijn samengevoegd.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s is van %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -2062,7 +2062,7 @@
     <string name="ThreadRecord_delivery_issue">Afleverings­probleem</string>
     <string name="ThreadRecord_message_request">Gespreks­verzoek</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">Je hebt deze persoon verborgen. Stuur je bericht opnieuw om ze weer aan je lijst toe te voegen.</string>
+    <string name="ThreadRecord_hidden_recipient">Je hebt deze persoon verborgen. Als je hem of haar opnieuw een bericht stuurt, wordt diegene weer aan je lijst toegevoegd.</string>
     <string name="ThreadRecord_photo">Afbeelding</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Audiobericht</string>
@@ -2485,7 +2485,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Betalingen inschakelen</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Je hebt deze persoon verwijderd. Als je hen opnieuw een bericht stuurt, wordt diegene weer aan je lijst toegevoegd.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Je hebt deze persoon verwijderd. Als je hem of haar opnieuw een bericht stuurt, wordt diegene weer aan je lijst toegevoegd.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
@@ -3108,7 +3108,7 @@
     <string name="PaymentsHomeFragment__details">Details</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Je kunt Signal gebruiken om MobileCoin te verzenden en te ontvangen. Op alle betalingen zijn de gebruiksvoorwaarden voor MobileCoins en de MobileCoin Wallet van toepassing. Er kunnen zich problemen voordoen. Verloren betalingen en krediet kan je dan niet terugvorderen. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Je kunt Signal gebruiken om MobileCoin te verzenden en te ontvangen. Op alle betalingen zijn de gebruiksvoorwaarden voor MobileCoins en de MobileCoin Wallet van toepassing. Er kunnen zich problemen voordoen. Verloren betalingen en krediet kun je dan niet terugvorderen. </string>
     <string name="PaymentsHomeFragment__activate">Inschakelen</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">De gebruiksvoorwaarden van MobileCoin weergeven</string>
     <string name="PaymentsHomeFragment__payments_not_available">Betalingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet overschrijven naar een andere beurs maar je kunt niet langer betalingen verzenden of ontvangen of krediet toevoegen.</string>
@@ -4709,7 +4709,7 @@
     <!-- Second small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal wordt ondersteund door donaties, wat betekent dat jouw privacy centraal staat bij alles wat we doen. Signal is gebouwd voor jou; niet voor jouw gegevens en niet voor de winst.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Als je kan, doneer dan vandaag nog om Signal leuk, betrouwbaar en beschikbaar te houden voor iedereen.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Als je iets kunt missen, doneer dan vandaag nog om Signal leuk, betrouwbaar en beschikbaar te houden voor iedereen.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
