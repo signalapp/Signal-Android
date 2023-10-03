@@ -2999,7 +2999,11 @@
     <string name="preferences_storage__six_months">6 months</string>
     <string name="preferences_storage__thirty_days">30 days</string>
     <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__s_messages">%1$s messages</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s message</item>
+        <item quantity="other">%1$s messages</item>
+    </plurals>
+
     <string name="preferences_storage__custom">Custom</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
