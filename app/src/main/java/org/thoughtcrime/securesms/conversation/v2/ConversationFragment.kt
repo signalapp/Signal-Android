@@ -3729,7 +3729,11 @@ class ConversationFragment :
     override fun afterTextChanged(s: Editable) {
       calculateCharactersRemaining()
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
-        composeText.postDelayed({ updateToggleButtonState() }, 50)
+        composeText.postDelayed({
+          if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
+            updateToggleButtonState()
+          }
+        }, 50)
       }
 
       if (!inputPanel.inEditMessageMode()) {
