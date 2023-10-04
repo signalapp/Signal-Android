@@ -11,4 +11,4 @@ import com.fasterxml.jackson.annotation.JsonProperty
 /**
  * Localized bank transfer mandate.
  */
-class BankMandate @JsonCreator constructor(@JsonProperty("mandate") mandate: String)
+class BankMandate @JsonCreator constructor(@JsonProperty("mandate") val mandate: String)

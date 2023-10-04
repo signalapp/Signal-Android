@@ -111,7 +111,8 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
     badgeRecipient: RecipientId,
     additionalMessage: String?,
     badgeLevel: Long,
-    donationProcessor: DonationProcessor
+    donationProcessor: DonationProcessor,
+    uiSessionKey: Long
   ): Completable {
     val isBoost = badgeRecipient == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
@@ -131,9 +132,9 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null
       val chain = if (isBoost) {
-        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor)
+        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, uiSessionKey)
       } else {
-        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel, donationProcessor)
+        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel, donationProcessor, uiSessionKey)
       }
 
       chain.enqueue { _, jobState ->

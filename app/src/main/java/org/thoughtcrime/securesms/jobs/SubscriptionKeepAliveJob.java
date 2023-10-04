@@ -136,7 +136,7 @@ public class SubscriptionKeepAliveJob extends BaseJob {
       Log.i(TAG, "Subscription end of period is after the conversion end of period. Storing it, generating a credential, and enqueuing the continuation job chain.", true);
       SignalStore.donationsValues().setSubscriptionEndOfPeriodConversionStarted(endOfCurrentPeriod);
       SignalStore.donationsValues().refreshSubscriptionRequestCredential();
-      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
+      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true, -1L).enqueue();
     } else if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodRedemptionStarted()) {
       if (SignalStore.donationsValues().getSubscriptionRequestCredential() == null) {
         Log.i(TAG, "We have not started a redemption, but do not have a request credential. Possible that the subscription changed.", true);
@@ -144,7 +144,7 @@ public class SubscriptionKeepAliveJob extends BaseJob {
       }
 
       Log.i(TAG, "We have a request credential and have not yet turned it into a redeemable token.", true);
-      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
+      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true, -1L).enqueue();
     } else if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodRedeemed()) {
       if (SignalStore.donationsValues().getSubscriptionReceiptCredential() == null) {
         Log.i(TAG, "We have successfully started redemption but have no stored token. Possible that the subscription changed.", true);

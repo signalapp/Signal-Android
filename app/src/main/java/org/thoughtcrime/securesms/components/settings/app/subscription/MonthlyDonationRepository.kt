@@ -147,7 +147,7 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
     }
   }
 
-  fun setSubscriptionLevel(subscriptionLevel: String): Completable {
+  fun setSubscriptionLevel(subscriptionLevel: String, uiSessionKey: Long): Completable {
     return getOrCreateLevelUpdateOperation(subscriptionLevel)
       .flatMapCompletable { levelUpdateOperation ->
         val subscriber = SignalStore.donationsValues().requireSubscriber()
@@ -186,7 +186,7 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
             val countDownLatch = CountDownLatch(1)
             var finalJobState: JobTracker.JobState? = null
 
-            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue { _, jobState ->
+            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey).enqueue { _, jobState ->
               if (jobState.isComplete) {
                 finalJobState = jobState
                 countDownLatch.countDown()

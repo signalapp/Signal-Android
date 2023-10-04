@@ -115,6 +115,20 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         )
       }
 
+      if (state.isSEPADebitAvailable) {
+        space(8.dp)
+
+        primaryButton(
+          text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__bank_transfer),
+          icon = DSLSettingsIcon.from(R.drawable.credit_card, NO_TINT), // TODO [sepa] -- Final icon
+          onClick = {
+            findNavController().popBackStack()
+            val response = GatewayResponse(GatewayResponse.Gateway.SEPA_DEBIT, args.request)
+            setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
+          }
+        )
+      }
+
       space(16.dp)
     }
   }

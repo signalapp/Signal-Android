@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -46,7 +47,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse
 class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
-  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
+  private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient(), StandardUserAgentInterceptor.USER_AGENT)
   private val monthlyDonationRepository = MonthlyDonationRepository(ApplicationDependencies.getDonationsService())
 
   fun isGooglePayAvailable(): Completable {
@@ -249,6 +250,11 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
         is StripeApi.CreatePaymentSourceFromCardDataResult.Success -> it.paymentSource
       }
     }
+  }
+
+  fun createSEPADebitPaymentSource(sepaDebitData: StripeApi.SEPADebitData): Single<StripeApi.PaymentSource> {
+    Log.d(TAG, "Creating SEPA Debit payment source via Stripe api...")
+    return stripeApi.createPaymentSourceFromSEPADebitData(sepaDebitData)
   }
 
   data class StatusAndPaymentMethodId(

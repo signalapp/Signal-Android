@@ -83,7 +83,7 @@ class GiftFlowConfirmationFragment :
 
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
 
-    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, DonationErrorSource.GIFT)
+    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, viewModel.uiSessionKey, DonationErrorSource.GIFT)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -106,6 +106,7 @@ class GiftFlowConfirmationFragment :
         GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToGatewaySelectorBottomSheet(
           with(viewModel.snapshot) {
             GatewayRequest(
+              uiSessionKey = viewModel.uiSessionKey,
               donateToSignalType = DonateToSignalType.GIFT,
               badge = giftBadge!!,
               label = getString(R.string.preferences__one_time),
@@ -260,6 +261,10 @@ class GiftFlowConfirmationFragment :
 
   override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
     findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(gatewayRequest))
+  }
+
+  override fun navigateToBankTransferMandate(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToBankTransferMandateFragment(gatewayRequest))
   }
 
   override fun onPaymentComplete(gatewayRequest: GatewayRequest) {
