@@ -132,7 +132,10 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
       new MaterialAlertDialogBuilder(requireActivity())
           .setTitle(R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history)
           .setMessage(R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)
-          .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> SignalExecutors.BOUNDED.execute(() -> SignalDatabase.threads().deleteAllConversations()))
+          .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> {
+            SignalExecutors.BOUNDED.execute(() -> SignalDatabase.threads().deleteAllConversations());
+            ApplicationDependencies.getMessageNotifier().updateNotification(requireContext());
+          })
           .setNegativeButton(android.R.string.cancel, null)
           .show();
     }
