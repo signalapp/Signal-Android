@@ -217,7 +217,7 @@ public class LinkPreviewView extends FrameLayout {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
       thumbnail.get().setImageResource(glideRequests, new ImageSlide(linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION && !scheduleMessageMode, false);
-      thumbnail.get().showDownloadText(false);
+      thumbnail.get().showSecondaryText(false);
     } else if (callLinkRootKey != null) {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
@@ -228,7 +228,7 @@ public class LinkPreviewView extends FrameLayout {
                    .asDrawable(getContext(),
                                AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
       );
-      thumbnail.get().showDownloadText(false);
+      thumbnail.get().showSecondaryText(false);
     } else {
       thumbnail.setVisibility(GONE);
     }

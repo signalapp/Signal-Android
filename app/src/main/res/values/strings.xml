@@ -2321,6 +2321,9 @@
         <item quantity="one">%d Item</item>
         <item quantity="other">%d Items</item>
     </plurals>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__processing">Processing…</string>
+
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->

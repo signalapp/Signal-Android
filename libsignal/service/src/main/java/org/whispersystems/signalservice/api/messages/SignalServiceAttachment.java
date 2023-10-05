@@ -1,7 +1,6 @@
 /*
- * Copyright (C) 2014-2016 Open Whisper Systems
- *
- * Licensed according to the LICENSE file in this repository.
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 
 package org.whispersystems.signalservice.api.messages;
@@ -172,9 +171,11 @@ public abstract class SignalServiceAttachment {
     /**
      * Called on a progress change event.
      *
-     * @param total The total amount to transmit/receive in bytes.
+     * @param total    The total amount to transmit/receive in bytes.
      * @param progress The amount that has been transmitted/received in bytes thus far
      */
-    public void onAttachmentProgress(long total, long progress);
+    void onAttachmentProgress(long total, long progress);
+
+    boolean shouldCancel();
   }
 }

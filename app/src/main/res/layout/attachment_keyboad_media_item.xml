@@ -45,6 +45,7 @@
         android:paddingEnd="5dp"
         android:paddingBottom="7dp"
         android:visibility="gone"
+        app:tint="@color/signal_colorOnCustom"
         app:srcCompat="@drawable/triangle_right" />
 
 </org.thoughtcrime.securesms.components.SquareFrameLayout>

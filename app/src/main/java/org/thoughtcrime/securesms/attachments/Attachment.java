@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.attachments;
 
 import android.net.Uri;
@@ -244,7 +249,11 @@ public abstract class Attachment implements Parcelable {
 
   @Nullable
   public byte[] getIncrementalDigest() {
-    return incrementalDigest;
+    if (incrementalDigest != null && incrementalDigest.length > 0) {
+      return incrementalDigest;
+    } else {
+      return null;
+    }
   }
 
   @Nullable

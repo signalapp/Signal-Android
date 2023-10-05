@@ -1517,6 +1517,9 @@ public class PushServiceSocket {
 
           if (listener != null) {
             listener.onAttachmentProgress(body.contentLength() + offset, totalRead);
+            if (listener.shouldCancel()) {
+              call.cancel();
+            }
           }
         }
       } else if (response.code() == 416) {

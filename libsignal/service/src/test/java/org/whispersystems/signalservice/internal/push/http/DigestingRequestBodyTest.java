@@ -1,7 +1,13 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.whispersystems.signalservice.internal.push.http;
 
 import org.junit.Test;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -12,12 +18,11 @@ import okio.Buffer;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 public class DigestingRequestBodyTest {
 
-  private static int  CONTENT_LENGTH = 70000;
-  private static int  TOTAL_LENGTH   = (int) AttachmentCipherStreamUtil.getCiphertextLength(CONTENT_LENGTH);
+  private static final int CONTENT_LENGTH = 70000;
+  private static final int TOTAL_LENGTH   = (int) AttachmentCipherStreamUtil.getCiphertextLength(CONTENT_LENGTH);
 
   private final byte[] attachmentKey = Util.getSecretBytes(64);
   private final byte[] attachmentIV  = Util.getSecretBytes(16);
@@ -78,6 +83,15 @@ public class DigestingRequestBodyTest {
   }
 
   private DigestingRequestBody getBody(long contentStart) {
-    return new DigestingRequestBody(new ByteArrayInputStream(input), outputStreamFactory, "application/octet", CONTENT_LENGTH, (a, b) -> {}, () -> false, contentStart);
+    return new DigestingRequestBody(new ByteArrayInputStream(input), outputStreamFactory, "application/octet", CONTENT_LENGTH, new SignalServiceAttachment.ProgressListener() {
+      @Override
+      public void onAttachmentProgress(long total, long progress) {
+        // no-op
+      }
+
+      @Override public boolean shouldCancel() {
+        return false;
+      }
+    }, () -> false, contentStart);
   }
 }

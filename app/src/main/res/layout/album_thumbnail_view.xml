@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
 <merge
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
@@ -15,8 +20,8 @@
 
     <ViewStub
         android:id="@+id/album_transfer_controls_stub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/album_total_width"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout="@layout/transfer_controls_stub" />
 

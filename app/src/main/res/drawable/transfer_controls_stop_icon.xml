@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners android:radius="1dp" />
+    <solid android:color="@color/signal_light_colorOnCustom" />
+    <size
+        android:width="6dp"
+        android:height="6dp" />
+</shape>
