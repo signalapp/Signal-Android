@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

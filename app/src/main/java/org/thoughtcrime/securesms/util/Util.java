@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;

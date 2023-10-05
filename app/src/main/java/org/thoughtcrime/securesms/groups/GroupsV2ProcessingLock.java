@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.io.Closeable;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public final class GroupsV2ProcessingLock {

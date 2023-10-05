@@ -21,7 +21,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 

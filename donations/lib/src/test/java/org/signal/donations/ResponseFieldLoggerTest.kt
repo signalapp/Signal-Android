@@ -11,11 +11,11 @@ class ResponseFieldLoggerTest {
   @Before
   fun setUp() {
     Log.initialize(object : Logger() {
-      override fun v(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
-      override fun d(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
-      override fun i(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
-      override fun w(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) = println(message)
-      override fun e(tag: String?, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
+      override fun v(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
+      override fun d(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
+      override fun i(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
+      override fun w(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) = println(message)
+      override fun e(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) = Unit
       override fun flush() = Unit
     })
   }

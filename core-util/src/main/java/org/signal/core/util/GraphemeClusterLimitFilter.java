@@ -5,6 +5,7 @@ import android.text.Spanned;
 
 import org.signal.core.util.logging.Log;
 
+
 /**
  * This filter will constrain edits not to make the number of character breaks of the text
  * greater than the specified maximum.

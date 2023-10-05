@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mediasend;
 
-import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
