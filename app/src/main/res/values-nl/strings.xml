@@ -1282,9 +1282,9 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">“%1$s” heeft zijn of haar profielnaam naar “%2$s” gewijzigd.</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s heeft zijn of haar profielnaam naar “%2$s” gewijzigd.</string>
     <string name="MessageRecord_changed_their_profile_name_from_to">%1$s heeft zijn of haar profielnaam van “%2$s” naar “%3$s” gewijzigd.</string>
-    <string name="MessageRecord_changed_their_profile">“%1$s” heeft zijn of haar profiel aangepast.</string>
+    <string name="MessageRecord_changed_their_profile">%1$s heeft zijn of haar profiel aangepast.</string>
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
@@ -1436,7 +1436,7 @@
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Een verzoek van %1$s om lid te worden van de groep is afgewezen..</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Je hebt je verzoek om lid te worden van de groep ingetrokken.</string>
-    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s heeft zijn of haar verzoek om lid te worden van de groep ingetrokken.</string>
+    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s heeft het verzoek om lid te worden van de groep ingetrokken.</string>
 
     <!-- End of GV2 specific update messages -->
 
@@ -2318,6 +2318,9 @@
         <item quantity="one">%1$d item</item>
         <item quantity="other">%1$d items</item>
     </plurals>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__processing">Processing…</string>
+
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -2801,7 +2804,7 @@
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gezichtjes &amp; mensen</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; mensen</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natuur</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Voedsel</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activiteiten</string>
@@ -2936,17 +2939,17 @@
     <!-- Title for the confirmation dialog of changing the app icon. -->
     <string name="preferences__app_icon_dialog_title">Wijzig het app-icoon en de naam in %1$s</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal moet worden gesloten om de app-icoon en de naam te wijzigen. Meldingen geven altijd de standaard Signal-icoon en -naam weer.</string>
+    <string name="preferences__app_icon_dialog_description">Signal moet worden gesloten om het app-icoon en de naam te wijzigen. Meldingen geven altijd het standaard Signal-icoon en de standaard app-naam weer.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Selecteer een app-icoon en naam die zichtbaar zijn op het startscherm en de het appoverzicht van je telefoon. Meldingen geven altijd de standaard Signal-icoon en -naam weer. Meer informatie</string>
+    <string name="preferences__app_icon_warning_learn_more">Selecteer een app-icoon en naam die zichtbaar zijn op het startscherm en het appoverzicht van je telefoon. Meldingen geven altijd het standaard Signal-icoon en de standaard app-naam weer. Meer informatie</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
     <string name="preferences__app_icon_warning">App-iconen en -namen zijn zichtbaar op het startscherm en appoverzicht.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Meldingen geven altijd de standaard Signal-icoon en -naam weer.</string>
+    <string name="preferences__app_icon_notification_warning">Meldingen geven altijd het standaard Signal-icoon en de standaard app-naam weer.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">Meer informatie</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Afbeelding die illustreert waar de vervangende app-icoon zichtbaar zal zijn.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Afbeelding die illustreert waar het vervangende app-icoon zichtbaar zal zijn.</string>
     <string name="preferences__disable_pin">Pincode uitschakelen</string>
     <string name="preferences__enable_pin">Pincode inschakelen</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-upbestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
@@ -2996,7 +2999,11 @@
     <string name="preferences_storage__six_months">6 maanden</string>
     <string name="preferences_storage__thirty_days">30 dagen</string>
     <string name="preferences_storage__none">Geen limiet</string>
-    <string name="preferences_storage__s_messages">%1$s berichten</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s message</item>
+        <item quantity="other">%1$s messages</item>
+    </plurals>
+
     <string name="preferences_storage__custom">Zelf ingesteld</string>
     <string name="preferences_advanced__use_system_emoji">Systeem-emoji gebruiken</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd al omgeleid via de Signal-servers. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten die wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
@@ -3909,7 +3916,7 @@
     <string name="ReviewCard__update_contact">Contactpersoon aanpassen</string>
     <string name="ReviewCard__block">Blokkeren</string>
     <string name="ReviewCard__delete">Wissen</string>
-    <string name="ReviewCard__recently_changed">Heette kort geleden nog “%1$s” maar heeft zijn of haar profielnaam naar “%2$s” gewijzigd</string>
+    <string name="ReviewCard__recently_changed">Heeft recent zijn of haar profielnaam gewijzigd van “%1$s” naar “%2$s”</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s neemt nu deel aan deze oproep</string>
@@ -4846,6 +4853,8 @@
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
+    <!-- PayPal decline code for payment declined -->
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Try another payment method or contact your bank for more information. If this was a PayPal transaction contact PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw.</string>
     <!-- Stripe decline code learn more action label -->
@@ -5799,10 +5808,48 @@
         <item quantity="one">Krijg een %1$s badge voor %2$d dag</item>
         <item quantity="other">Krijg een %1$s badge voor %2$d dagen</item>
     </plurals>
+    <!-- Button label for paying with a bank transfer -->
+    <string name="GatewaySelectorBottomSheet__bank_transfer">Bank transfer</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Creditcard of betaalkaart</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Doneer voor een vriend(in)</string>
+
+    <!-- BankTransferMandateFragment -->
+    <!-- Title of screen displaying the bank transfer mandate -->
+    <string name="BankTransferMandateFragment__bank_transfer">Bank Transfer</string>
+    <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
+    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe processes donations made to Signal. Signal does not collect or store your personal information. %1$s</string>
+    <!-- Subtitle learn more of screen displaying bank transfer mandate -->
+    <string name="BankTransferMandateFragment__learn_more">Learn more</string>
+    <!-- Button label to continue with transfer -->
+    <string name="BankTransferMandateFragment__continue">Continue</string>
+
+    <!-- BankTransferDetailsFragment -->
+    <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email address. Your email is used by Stripe to send you updates about your donation. %1$s</string>
+    <!-- Subtext learn more link text -->
+    <string name="BankTransferDetailsFragment__learn_more">Learn more</string>
+    <!-- Text field label for name on bank account -->
+    <string name="BankTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
+    <!-- Text field label for IBAN -->
+    <string name="BankTransferDetailsFragment__iban">IBAN</string>
+    <!-- Text field label for email -->
+    <string name="BankTransferDetailsFragment__email">Email</string>
+    <!-- Text label for button to show user how to find their IBAN number -->
+    <string name="BankTransferDetailsFragment__find_account_numbers">Find account numbers</string>
+    <!-- Donate button label for monthly subscription -->
+    <string name="BankTransferDetailsFragment__donate_s_month">Donate %1$s/month</string>
+    <!-- Donate button label for one-time -->
+    <string name="BankTransferDetailsFragment__donate_s">Donate %1$s</string>
+    <!-- Error label for IBAN field when number is too short -->
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN number is too short</string>
+    <!-- Error label for IBAN field when number is too long -->
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN number is too long</string>
+    <!-- Error label for IBAN field when country is not supported -->
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN country code is not supported</string>
+    <!-- Error label for IBAN field when number is invalid -->
+    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Invalid IBAN number</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Annuleren…</string>
