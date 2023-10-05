@@ -96,6 +96,7 @@ task qa {
             ':libsignal-service:ktlintCheck',
             ':Signal-Android:assemblePlayProdRelease',
             ':Signal-Android:compilePlayProdInstrumentationAndroidTestSources',
+            ':microbenchmark:compileReleaseAndroidTestSources',
             ':core-util-jvm:test',
             ':core-util-jvm:ktlintCheck'
 }
