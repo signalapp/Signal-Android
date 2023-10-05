@@ -142,11 +142,27 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
     kyberPreKeys.remove(kyberPreKeyId)
   }
 
+  override fun deleteAllStaleOneTimeEcPreKeys(threshold: Long, minCount: Int) {
+    error("Not used")
+  }
+
+  override fun markAllOneTimeEcPreKeysStaleIfNecessary(staleTime: Long) {
+    error("Not used")
+  }
+
   override fun storeLastResortKyberPreKey(kyberPreKeyId: Int, kyberPreKeyRecord: KyberPreKeyRecord) {
     error("Not used")
   }
 
   override fun removeKyberPreKey(kyberPreKeyId: Int) {
+    error("Not used")
+  }
+
+  override fun markAllOneTimeKyberPreKeysStaleIfNecessary(staleTime: Long) {
+    error("Not used")
+  }
+
+  override fun deleteAllStaleOneTimeKyberPreKeys(threshold: Long, minCount: Int) {
     error("Not used")
   }
 
