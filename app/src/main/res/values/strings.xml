@@ -5840,7 +5840,7 @@
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">Email</string>
     <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_numbers">Find account numbers</string>
+    <string name="BankTransferDetailsFragment__find_account_info">Find account info</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">Donate %1$s/month</string>
     <!-- Donate button label for one-time -->
@@ -5853,6 +5853,11 @@
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN country code is not supported</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Invalid IBAN number</string>
+
+    <!-- Title of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__find_your_account_information">Find your account information</string>
+    <!-- Body of bottom sheet for finding account information -->
+    <string name="FindAccountInfoSheet__look_for_your_iban">Look for your IBAN number at the top of your bank statement. IBAN numbers contain up to 32 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>

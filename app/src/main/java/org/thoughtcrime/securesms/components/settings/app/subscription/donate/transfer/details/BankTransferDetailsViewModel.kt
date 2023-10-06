@@ -18,6 +18,12 @@ class BankTransferDetailsViewModel : ViewModel() {
   private val internalState = mutableStateOf(BankTransferDetailsState())
   val state: State<BankTransferDetailsState> = internalState
 
+  fun setDisplayFindAccountInfoSheet(displayFindAccountInfoSheet: Boolean) {
+    internalState.value = internalState.value.copy(
+      displayFindAccountInfoSheet = displayFindAccountInfoSheet
+    )
+  }
+
   fun onNameChanged(name: String) {
     internalState.value = internalState.value.copy(
       name = name

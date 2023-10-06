@@ -11,7 +11,8 @@ data class BankTransferDetailsState(
   val name: String = "",
   val iban: String = "",
   val email: String = "",
-  val ibanValidity: IBANValidator.Validity = IBANValidator.Validity.POTENTIALLY_VALID
+  val ibanValidity: IBANValidator.Validity = IBANValidator.Validity.POTENTIALLY_VALID,
+  val displayFindAccountInfoSheet: Boolean = false
 ) {
   val canProceed = name.isNotEmpty() && email.isNotEmpty() && ibanValidity == IBANValidator.Validity.COMPLETELY_VALID
 

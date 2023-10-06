@@ -202,6 +202,9 @@
         <action
             android:id="@+id/action_bankTransferMandateFragment_to_bankTransferDetailsFragment"
             app:destination="@id/bankTransferDetailsFragment" />
+        <action
+            android:id="@+id/action_bankTransferMandateFragment_to_yourInformationIsPrivateBottomSheet"
+            app:destination="@id/yourInformationIsPrivateBottomSheet" />
     </fragment>
 
     <fragment
@@ -213,5 +216,11 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_bankTransferDetailsFragment_to_stripePaymentInProgressFragment"
+            app:destination="@id/stripePaymentInProgressFragment" />
+        <action
+            android:id="@+id/action_bankTransferDetailsFragment_to_yourInformationIsPrivateBottomSheet"
+            app:destination="@id/yourInformationIsPrivateBottomSheet" />
     </fragment>
 </navigation>

@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.t
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -40,7 +38,6 @@ import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -59,7 +56,14 @@ class BankTransferMandateFragment : ComposeFragment() {
     BankTransferScreen(
       bankMandate = mandate,
       onNavigationClick = this::onNavigationClick,
-      onContinueClick = this::onContinueClick
+      onContinueClick = this::onContinueClick,
+      onLearnMoreClick = this::onLearnMoreClick
+    )
+  }
+
+  private fun onLearnMoreClick() {
+    findNavController().safeNavigate(
+      BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToYourInformationIsPrivateBottomSheet()
     )
   }
 
@@ -81,7 +85,8 @@ fun BankTransferScreenPreview() {
     BankTransferScreen(
       bankMandate = "Test ".repeat(500),
       onNavigationClick = {},
-      onContinueClick = {}
+      onContinueClick = {},
+      onLearnMoreClick = {}
     )
   }
 }
@@ -90,85 +95,80 @@ fun BankTransferScreenPreview() {
 fun BankTransferScreen(
   bankMandate: String,
   onNavigationClick: () -> Unit,
-  onContinueClick: () -> Unit
+  onContinueClick: () -> Unit,
+  onLearnMoreClick: () -> Unit
 ) {
   Scaffolds.Settings(
     title = "",
     onNavigationClick = onNavigationClick,
     navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_left_24))
   ) {
-    Column(
+    LazyColumn(
       horizontalAlignment = CenterHorizontally,
       modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()
+        .padding(top = 64.dp)
     ) {
-      LazyColumn(
-        horizontalAlignment = CenterHorizontally,
-        modifier = Modifier
-          .fillMaxWidth()
-          .weight(1f)
-          .padding(top = 64.dp)
-      ) {
-        item {
-          Image(
-            painter = painterResource(id = R.drawable.credit_card), // TODO [alex] -- final asset
-            contentScale = ContentScale.Inside,
-            contentDescription = null,
-            modifier = Modifier
-              .size(72.dp)
-              .background(
-                SignalTheme.colors.colorSurface2,
-                CircleShape
-              )
-          )
-        }
-
-        item {
-          Text(
-            text = stringResource(id = R.string.BankTransferMandateFragment__bank_transfer),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(top = 12.dp, bottom = 15.dp)
-          )
-        }
-
-        item {
-          val learnMore = stringResource(id = R.string.BankTransferMandateFragment__learn_more)
-          val fullString = stringResource(id = R.string.BankTransferMandateFragment__stripe_processes_donations, learnMore)
-          val context = LocalContext.current
-
-          Texts.LinkifiedText(
-            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_url)), // TODO [alex] -- final URL
-            onUrlClick = {
-              CommunicationActions.openBrowserLink(context, it)
-            },
-            style = MaterialTheme.typography.bodyLarge.copy(
-              color = MaterialTheme.colorScheme.onSurfaceVariant
-            ),
-            modifier = Modifier.padding(bottom = 12.dp, start = 32.dp, end = 32.dp)
-          )
-        }
-
-        item {
-          Dividers.Default()
-        }
-
-        item {
-          Text(
-            text = bankMandate,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp)
-          )
-        }
+      item {
+        Image(
+          painter = painterResource(id = R.drawable.credit_card), // TODO [alex] -- final asset
+          contentScale = ContentScale.Inside,
+          contentDescription = null,
+          modifier = Modifier
+            .size(72.dp)
+            .background(
+              SignalTheme.colors.colorSurface2,
+              CircleShape
+            )
+        )
       }
 
-      Buttons.LargeTonal(
-        onClick = onContinueClick,
-        modifier = Modifier
-          .padding(top = 16.dp, bottom = 46.dp)
-          .defaultMinSize(minWidth = 220.dp)
-      ) {
-        Text(text = stringResource(id = R.string.BankTransferMandateFragment__continue))
+      item {
+        Text(
+          text = stringResource(id = R.string.BankTransferMandateFragment__bank_transfer),
+          style = MaterialTheme.typography.headlineMedium,
+          modifier = Modifier.padding(top = 12.dp, bottom = 15.dp)
+        )
+      }
+
+      item {
+        val learnMore = stringResource(id = R.string.BankTransferMandateFragment__learn_more)
+        val fullString = stringResource(id = R.string.BankTransferMandateFragment__stripe_processes_donations, learnMore)
+
+        Texts.LinkifiedText(
+          textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_url)), // TODO [alex] -- final URL
+          onUrlClick = {
+            onLearnMoreClick()
+          },
+          style = MaterialTheme.typography.bodyLarge.copy(
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          ),
+          modifier = Modifier.padding(bottom = 12.dp, start = 32.dp, end = 32.dp)
+        )
+      }
+
+      item {
+        Dividers.Default()
+      }
+
+      item {
+        Text(
+          text = bankMandate,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp)
+        )
+      }
+
+      item {
+        Buttons.LargeTonal(
+          onClick = onContinueClick,
+          modifier = Modifier
+            .padding(top = 16.dp, bottom = 46.dp)
+            .defaultMinSize(minWidth = 220.dp)
+        ) {
+          Text(text = stringResource(id = R.string.BankTransferMandateFragment__continue))
+        }
       }
     }
   }

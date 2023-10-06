@@ -29,7 +29,6 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -53,7 +52,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -97,7 +95,8 @@ class BankTransferDetailsFragment : ComposeFragment() {
       onNameChanged = viewModel::onNameChanged,
       onIBANChanged = viewModel::onIBANChanged,
       onEmailChanged = viewModel::onEmailChanged,
-      onFindAccountNumbersClicked = this::onFindAccountNumbersClicked,
+      setDisplayFindAccountInfoSheet = viewModel::setDisplayFindAccountInfoSheet,
+      onLearnMoreClick = this::onLearnMoreClick,
       onDonateClick = this::onDonateClick,
       onIBANFocusChanged = viewModel::onIBANFocusChanged,
       donateLabel = donateLabel
@@ -108,8 +107,10 @@ class BankTransferDetailsFragment : ComposeFragment() {
     findNavController().popBackStack()
   }
 
-  private fun onFindAccountNumbersClicked() {
-    // TODO [sepa] -- FindAccountNumbersBottomSheet
+  private fun onLearnMoreClick() {
+    findNavController().safeNavigate(
+      BankTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToYourInformationIsPrivateBottomSheet()
+    )
   }
 
   private fun onDonateClick() {
@@ -129,13 +130,15 @@ private fun BankTransferDetailsContentPreview() {
   SignalTheme {
     BankTransferDetailsContent(
       state = BankTransferDetailsState(
-        name = "Miles Morales"
+        name = "Miles Morales",
+        displayFindAccountInfoSheet = true
       ),
       onNavigationClick = {},
       onNameChanged = {},
       onIBANChanged = {},
       onEmailChanged = {},
-      onFindAccountNumbersClicked = {},
+      setDisplayFindAccountInfoSheet = {},
+      onLearnMoreClick = {},
       onDonateClick = {},
       onIBANFocusChanged = {},
       donateLabel = "Donate $5/month"
@@ -150,7 +153,8 @@ private fun BankTransferDetailsContent(
   onNameChanged: (String) -> Unit,
   onIBANChanged: (String) -> Unit,
   onEmailChanged: (String) -> Unit,
-  onFindAccountNumbersClicked: () -> Unit,
+  setDisplayFindAccountInfoSheet: (Boolean) -> Unit,
+  onLearnMoreClick: () -> Unit,
   onDonateClick: () -> Unit,
   onIBANFocusChanged: (Boolean) -> Unit,
   donateLabel: String
@@ -178,12 +182,11 @@ private fun BankTransferDetailsContent(
         item {
           val learnMore = stringResource(id = R.string.BankTransferDetailsFragment__learn_more)
           val fullString = stringResource(id = R.string.BankTransferDetailsFragment__enter_your_bank_details, learnMore)
-          val context = LocalContext.current
 
           Texts.LinkifiedText(
             textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_url)), // TODO [alex] -- final URL
             onUrlClick = {
-              CommunicationActions.openBrowserLink(context, it)
+              onLearnMoreClick()
             },
             style = MaterialTheme.typography.bodyLarge.copy(
               color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -276,9 +279,9 @@ private fun BankTransferDetailsContent(
             modifier = Modifier.fillMaxWidth()
           ) {
             TextButton(
-              onClick = onFindAccountNumbersClicked
+              onClick = { setDisplayFindAccountInfoSheet(true) }
             ) {
-              Text(text = stringResource(id = R.string.BankTransferDetailsFragment__find_account_numbers))
+              Text(text = stringResource(id = R.string.BankTransferDetailsFragment__find_account_info))
             }
           }
         }
@@ -292,6 +295,10 @@ private fun BankTransferDetailsContent(
           .padding(bottom = 16.dp)
       ) {
         Text(text = donateLabel)
+      }
+
+      if (state.displayFindAccountInfoSheet) {
+        FindAccountInfoSheet { setDisplayFindAccountInfoSheet(false) }
       }
 
       LaunchedEffect(Unit) {
