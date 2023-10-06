@@ -3000,8 +3000,8 @@
     <string name="preferences_storage__thirty_days">30 நாட்கள்</string>
     <string name="preferences_storage__none">எதுவும் இல்லை</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="other">%1$s messages</item>
+        <item quantity="one">%1$s மெசேஜ்</item>
+        <item quantity="other">%1$s மெசேஜ்கள்</item>
     </plurals>
 
     <string name="preferences_storage__custom">விருப்பத்திர்க்கேர்ப்ப</string>
@@ -5821,21 +5821,21 @@
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
     <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe processes donations made to Signal. Signal does not collect or store your personal information. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
-    <string name="BankTransferMandateFragment__learn_more">Learn more</string>
+    <string name="BankTransferMandateFragment__learn_more">மேலும் அறிக</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">Continue</string>
+    <string name="BankTransferMandateFragment__continue">தொடர்க</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
     <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email address. Your email is used by Stripe to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
-    <string name="BankTransferDetailsFragment__learn_more">Learn more</string>
+    <string name="BankTransferDetailsFragment__learn_more">மேலும் அறிக</string>
     <!-- Text field label for name on bank account -->
     <string name="BankTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
     <!-- Text field label for IBAN -->
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
-    <string name="BankTransferDetailsFragment__email">Email</string>
+    <string name="BankTransferDetailsFragment__email">மின்னஞ்சல்</string>
     <!-- Text label for button to show user how to find their IBAN number -->
     <string name="BankTransferDetailsFragment__find_account_numbers">Find account numbers</string>
     <!-- Donate button label for monthly subscription -->
