@@ -51,7 +51,7 @@
         android:id="@+id/secondary_details_text"
         style="@style/Signal.Text.Caption"
         android:includeFontPadding="false"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginStart="@dimen/transfer_control_view_progressbar_to_textview_margin"
         android:layout_marginEnd="4dp"
