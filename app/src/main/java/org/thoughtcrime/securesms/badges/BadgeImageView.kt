@@ -8,6 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSize
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.glide.GiftBadgeModel
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -29,6 +30,10 @@ class BadgeImageView @JvmOverloads constructor(
     }
 
     isClickable = false
+  }
+
+  constructor(context: Context, badgeImageSize: BadgeImageSize) : this(context) {
+    badgeSize = badgeImageSize.sizeCode
   }
 
   override fun setOnClickListener(l: OnClickListener?) {
