@@ -25,7 +25,7 @@ wire {
     }
 
     protoPath {
-        srcDir "${project.rootDir}/libsignal/service/src/main/protowire"
+        srcDir "${project.rootDir}/libsignal-service/src/main/protowire"
     }
 }
 
