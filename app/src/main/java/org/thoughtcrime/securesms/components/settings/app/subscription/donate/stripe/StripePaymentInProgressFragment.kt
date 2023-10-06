@@ -66,7 +66,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           viewModel.processNewDonation(args.request, this::handleSecure3dsAction)
         }
         DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
-          viewModel.updateSubscription(args.request)
+          viewModel.updateSubscription(args.request, args.isLongRunning)
         }
         DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
           viewModel.cancelSubscription()

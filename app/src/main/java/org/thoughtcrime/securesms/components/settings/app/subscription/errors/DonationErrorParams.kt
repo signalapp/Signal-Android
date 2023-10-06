@@ -34,6 +34,14 @@ class DonationErrorParams<V> private constructor(
           negativeAction = null
         )
 
+        // TODO [sepa] -- This is only used for the notification, and will be rare, but we should probably have better copy here.
+        is DonationError.BadgeRedemptionError.DonationPending -> DonationErrorParams(
+          title = R.string.DonationsErrors__still_processing,
+          message = R.string.DonationsErrors__your_payment_is_still,
+          positiveAction = callback.onOk(context),
+          negativeAction = null
+        )
+
         is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError -> DonationErrorParams(
           title = R.string.DonationsErrors__still_processing,
           message = R.string.DonationsErrors__your_payment_is_still,

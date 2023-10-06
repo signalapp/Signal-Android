@@ -112,7 +112,8 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
     additionalMessage: String?,
     badgeLevel: Long,
     donationProcessor: DonationProcessor,
-    uiSessionKey: Long
+    uiSessionKey: Long,
+    isLongRunning: Boolean
   ): Completable {
     val isBoost = badgeRecipient == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
@@ -132,9 +133,9 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null
       val chain = if (isBoost) {
-        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, uiSessionKey)
+        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, uiSessionKey, isLongRunning)
       } else {
-        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel, donationProcessor, uiSessionKey)
+        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel, donationProcessor, uiSessionKey, isLongRunning)
       }
 
       chain.enqueue { _, jobState ->
@@ -157,16 +158,16 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
             }
             else -> {
               Log.d(TAG, "$donationTypeLabel request response job chain ignored due to in-progress jobs.", true)
-              it.onError(DonationError.timeoutWaitingForToken(donationErrorSource))
+              it.onError(DonationError.timeoutWaitingForToken(donationErrorSource, isLongRunning))
             }
           }
         } else {
           Log.d(TAG, "$donationTypeLabel job chain timed out waiting for job completion.", true)
-          it.onError(DonationError.timeoutWaitingForToken(donationErrorSource))
+          it.onError(DonationError.timeoutWaitingForToken(donationErrorSource, isLongRunning))
         }
       } catch (e: InterruptedException) {
         Log.d(TAG, "$donationTypeLabel job chain interrupted", e, true)
-        it.onError(DonationError.timeoutWaitingForToken(donationErrorSource))
+        it.onError(DonationError.timeoutWaitingForToken(donationErrorSource, isLongRunning))
       }
     }
 

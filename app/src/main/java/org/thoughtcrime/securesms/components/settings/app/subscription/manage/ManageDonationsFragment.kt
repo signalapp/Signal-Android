@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.dp
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -25,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadin
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -199,7 +201,10 @@ class ManageDonationsFragment :
             requireActivity().finish()
             requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
           },
-          activeSubscription = activeSubscription
+          activeSubscription = activeSubscription,
+          onPendingClick = {
+            displayPendingDialog(it)
+          }
         )
       )
     }
@@ -285,6 +290,22 @@ class ManageDonationsFragment :
       icon = DSLSettingsIcon.from(R.drawable.symbol_help_24),
       linkId = R.string.donate_url
     )
+  }
+
+  private fun displayPendingDialog(fiatMoney: FiatMoney) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.MySupportPreference__payment_pending)
+      .setMessage(
+        getString(
+          R.string.MySupportPreference__your_bank_transfer_of_s,
+          FiatMoneyUtil.format(resources, fiatMoney, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+        )
+      )
+      .setPositiveButton(android.R.string.ok) { _, _ -> }
+      .setNegativeButton(R.string.MySupportPreference__learn_more) { _, _ ->
+        // TODO [sepa] Where this go?
+      }
+      .show()
   }
 
   override fun onMakeAMonthlyDonation() {

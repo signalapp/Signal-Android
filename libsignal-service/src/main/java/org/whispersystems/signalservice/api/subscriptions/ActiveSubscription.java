@@ -13,6 +13,8 @@ import javax.annotation.Nullable;
 
 public final class ActiveSubscription {
 
+  public static final String PAYMENT_METHOD_SEPA_DEBIT = "SEPA_DEBIT";
+
   public static final ActiveSubscription EMPTY = new ActiveSubscription(null, null);
 
   public enum Processor {
@@ -129,6 +131,10 @@ public final class ActiveSubscription {
     return activeSubscription != null && activeSubscription.isActive();
   }
 
+  public boolean isPendingBankTransfer() {
+    return activeSubscription != null && Objects.equals(activeSubscription.paymentMethod, PAYMENT_METHOD_SEPA_DEBIT) && activeSubscription.paymentPending;
+  }
+
   public boolean isInProgress() {
     return activeSubscription != null && !isActive() && !activeSubscription.isFailedPayment();
   }
@@ -147,6 +153,8 @@ public final class ActiveSubscription {
     private final boolean    willCancelAtPeriodEnd;
     private final String     status;
     private final Processor  processor;
+    private final String     paymentMethod;
+    private final boolean    paymentPending;
 
     @JsonCreator
     public Subscription(@JsonProperty("level") int level,
@@ -157,7 +165,9 @@ public final class ActiveSubscription {
                         @JsonProperty("billingCycleAnchor") long billingCycleAnchor,
                         @JsonProperty("cancelAtPeriodEnd") boolean willCancelAtPeriodEnd,
                         @JsonProperty("status") String status,
-                        @JsonProperty("processor") String processor)
+                        @JsonProperty("processor") String processor,
+                        @JsonProperty("paymentMethod") String paymentMethod,
+                        @JsonProperty("paymentPending") boolean paymentPending)
     {
       this.level                 = level;
       this.currency              = currency;
@@ -168,6 +178,8 @@ public final class ActiveSubscription {
       this.willCancelAtPeriodEnd = willCancelAtPeriodEnd;
       this.status                = status;
       this.processor             = Processor.fromCode(processor);
+      this.paymentMethod         = paymentMethod;
+      this.paymentPending        = paymentPending;
     }
 
     public int getLevel() {
@@ -222,8 +234,15 @@ public final class ActiveSubscription {
       return processor;
     }
 
-    public boolean isInProgress() {
-      return !isActive() && !Status.isPaymentFailed(getStatus());
+    public String getPaymentMethod() {
+      return paymentMethod;
+    }
+
+    /**
+     * @return Whether the latest invoice for the subscription is in a non-terminal state
+     */
+    public boolean isPaymentPending() {
+      return paymentPending;
     }
 
     public boolean isFailedPayment() {
@@ -234,16 +253,18 @@ public final class ActiveSubscription {
       return Status.getStatus(getStatus()) == Status.CANCELED;
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       final Subscription that = (Subscription) o;
       return level == that.level && endOfCurrentPeriod == that.endOfCurrentPeriod && isActive == that.isActive && billingCycleAnchor == that.billingCycleAnchor && willCancelAtPeriodEnd == that.willCancelAtPeriodEnd && currency
-          .equals(that.currency) && amount.equals(that.amount) && status.equals(that.status);
+          .equals(that.currency) && amount.equals(that.amount) && status.equals(that.status) && Objects.equals(paymentMethod, that.paymentMethod) && paymentPending == that.paymentPending;
     }
 
-    @Override public int hashCode() {
-      return Objects.hash(level, currency, amount, endOfCurrentPeriod, isActive, billingCycleAnchor, willCancelAtPeriodEnd, status);
+    @Override
+    public int hashCode() {
+      return Objects.hash(level, currency, amount, endOfCurrentPeriod, isActive, billingCycleAnchor, willCancelAtPeriodEnd, status, paymentMethod, paymentPending);
     }
   }
 

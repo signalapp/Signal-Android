@@ -262,6 +262,12 @@ class DonationCheckoutDelegate(
         return
       }
 
+      if (throwable is DonationError.BadgeRedemptionError.DonationPending) {
+        Log.d(TAG, "Long-running donation is still pending.", true)
+        // TODO [sepa] Pop donation pending sheet.
+        return
+      }
+
       Log.d(TAG, "Displaying donation error dialog.", true)
       errorDialog = DonationErrorDialogs.show(
         fragment!!.requireContext(),

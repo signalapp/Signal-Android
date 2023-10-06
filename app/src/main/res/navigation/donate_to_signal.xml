@@ -91,6 +91,12 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+
+        <argument
+            android:name="is_long_running"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
         <action
             android:id="@+id/action_stripePaymentInProgressFragment_to_stripe3dsDialogFragment"
             app:destination="@id/stripe3dsDialogFragment" />

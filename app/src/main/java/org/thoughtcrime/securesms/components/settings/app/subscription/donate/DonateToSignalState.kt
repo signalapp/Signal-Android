@@ -73,6 +73,9 @@ data class DonateToSignalState(
       DonateToSignalType.GIFT -> error("This flow does not support gifts")
     }
 
+  val isUpdateLongRunning: Boolean
+    get() = monthlyDonationState.activeSubscription?.paymentMethod == ActiveSubscription.PAYMENT_METHOD_SEPA_DEBIT
+
   data class OneTimeDonationState(
     val badge: Badge? = null,
     val selectedCurrency: Currency = SignalStore.donationsValues().getOneTimeCurrency(),

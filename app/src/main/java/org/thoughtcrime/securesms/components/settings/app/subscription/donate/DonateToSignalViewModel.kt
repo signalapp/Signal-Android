@@ -106,7 +106,7 @@ class DonateToSignalViewModel(
   fun updateSubscription() {
     val snapshot = store.state
     if (snapshot.areFieldsEnabled) {
-      _actions.onNext(DonateToSignalAction.UpdateSubscription(createGatewayRequest(snapshot)))
+      _actions.onNext(DonateToSignalAction.UpdateSubscription(createGatewayRequest(snapshot), snapshot.isUpdateLongRunning))
     }
   }
 

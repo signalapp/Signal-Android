@@ -147,7 +147,7 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
     }
   }
 
-  fun setSubscriptionLevel(subscriptionLevel: String, uiSessionKey: Long): Completable {
+  fun setSubscriptionLevel(subscriptionLevel: String, uiSessionKey: Long, isLongRunning: Boolean): Completable {
     return getOrCreateLevelUpdateOperation(subscriptionLevel)
       .flatMapCompletable { levelUpdateOperation ->
         val subscriber = SignalStore.donationsValues().requireSubscriber()
@@ -186,7 +186,7 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
             val countDownLatch = CountDownLatch(1)
             var finalJobState: JobTracker.JobState? = null
 
-            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey).enqueue { _, jobState ->
+            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey, isLongRunning).enqueue { _, jobState ->
               if (jobState.isComplete) {
                 finalJobState = jobState
                 countDownLatch.countDown()
@@ -206,16 +206,16 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
                   }
                   else -> {
                     Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
-                    it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+                    it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION, isLongRunning))
                   }
                 }
               } else {
                 Log.d(TAG, "Subscription request response job timed out.", true)
-                it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+                it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION, isLongRunning))
               }
             } catch (e: InterruptedException) {
               Log.w(TAG, "Subscription request response interrupted.", e, true)
-              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION, isLongRunning))
             }
           }
       }.doOnError {

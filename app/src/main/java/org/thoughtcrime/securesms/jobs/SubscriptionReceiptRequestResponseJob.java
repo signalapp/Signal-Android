@@ -48,36 +48,39 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private static final String DATA_SUBSCRIBER_ID     = "data.subscriber.id";
   private static final String DATA_IS_FOR_KEEP_ALIVE = "data.is.for.keep.alive";
   private static final String DATA_UI_SESSION_KEY    = "data.ui.session.key";
+  private static final String DATA_IS_LONG_RUNNING   = "data.is.long.running";
 
   public static final Object MUTEX = new Object();
 
   private final SubscriberId subscriberId;
   private final boolean      isForKeepAlive;
   private final long         uiSessionKey;
+  private final boolean      isLongRunning;
 
-  private static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId, boolean isForKeepAlive, long uiSessionKey) {
+  private static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId, boolean isForKeepAlive, long uiSessionKey, boolean isLongRunning) {
     return new SubscriptionReceiptRequestResponseJob(
         new Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("ReceiptRedemption")
             .setMaxInstancesForQueue(1)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
+            .setLifespan(isLongRunning ? TimeUnit.DAYS.toMillis(14) : TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         subscriberId,
         isForKeepAlive,
-        uiSessionKey
+        uiSessionKey,
+        isLongRunning
     );
   }
 
-  public static JobManager.Chain createSubscriptionContinuationJobChain(long uiSessionKey) {
-    return createSubscriptionContinuationJobChain(false, uiSessionKey);
+  public static JobManager.Chain createSubscriptionContinuationJobChain(long uiSessionKey, boolean isLongRunning) {
+    return createSubscriptionContinuationJobChain(false, uiSessionKey, isLongRunning);
   }
 
-  public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive, long uiSessionKey) {
+  public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive, long uiSessionKey, boolean isLongRunning) {
     Subscriber                            subscriber                         = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob                  = createJob(subscriber.getSubscriberId(), isForKeepAlive, uiSessionKey);
+    SubscriptionReceiptRequestResponseJob requestReceiptJob                  = createJob(subscriber.getSubscriberId(), isForKeepAlive, uiSessionKey, isLongRunning);
     DonationReceiptRedemptionJob          redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForSubscription(requestReceiptJob.getErrorSource(), uiSessionKey);
     RefreshOwnProfileJob                  refreshOwnProfileJob               = RefreshOwnProfileJob.forSubscription();
     MultiDeviceProfileContentUpdateJob    multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
@@ -92,19 +95,22 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
                                                 @NonNull SubscriberId subscriberId,
                                                 boolean isForKeepAlive,
-                                                long uiSessionKey)
+                                                long uiSessionKey,
+                                                boolean isLongRunning)
   {
     super(parameters);
     this.subscriberId   = subscriberId;
     this.isForKeepAlive = isForKeepAlive;
     this.uiSessionKey   = uiSessionKey;
+    this.isLongRunning  = isLongRunning;
   }
 
   @Override
   public @Nullable byte[] serialize() {
     JsonJobData.Builder builder = new JsonJobData.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes())
                                                            .putBoolean(DATA_IS_FOR_KEEP_ALIVE, isForKeepAlive)
-                                                           .putLong(DATA_UI_SESSION_KEY, uiSessionKey);
+                                                           .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
+                                                           .putBoolean(DATA_IS_LONG_RUNNING, isLongRunning);
 
     return builder.serialize();
   }
@@ -436,6 +442,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       String       requestString       = data.getStringOrDefault(DATA_REQUEST_BYTES, null);
       byte[]       requestContextBytes = requestString != null ? Base64.decodeOrThrow(requestString) : null;
       long         uiSessionKey        = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
+      boolean      isLongRunning       = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
 
       ReceiptCredentialRequestContext requestContext;
       if (requestContextBytes != null && SignalStore.donationsValues().getSubscriptionRequestCredential() == null) {
@@ -448,7 +455,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         }
       }
 
-      return new SubscriptionReceiptRequestResponseJob(parameters, subscriberId, isForKeepAlive, uiSessionKey);
+      return new SubscriptionReceiptRequestResponseJob(parameters, subscriberId, isForKeepAlive, uiSessionKey, isLongRunning);
     }
   }
 }

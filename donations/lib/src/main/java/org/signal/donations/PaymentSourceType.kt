@@ -2,6 +2,7 @@ package org.signal.donations
 
 sealed class PaymentSourceType {
   abstract val code: String
+  open val isLongRunning: Boolean = false
 
   object Unknown : PaymentSourceType() {
     override val code: String = Codes.UNKNOWN.code
@@ -11,10 +12,10 @@ sealed class PaymentSourceType {
     override val code: String = Codes.PAY_PAL.code
   }
 
-  sealed class Stripe(override val code: String, val paymentMethod: String) : PaymentSourceType() {
-    object CreditCard : Stripe(Codes.CREDIT_CARD.code, "CARD")
-    object GooglePay : Stripe(Codes.GOOGLE_PAY.code, "CARD")
-    object SEPADebit : Stripe(Codes.SEPA_DEBIT.code, "SEPA_DEBIT")
+  sealed class Stripe(override val code: String, val paymentMethod: String, override val isLongRunning: Boolean) : PaymentSourceType() {
+    object CreditCard : Stripe(Codes.CREDIT_CARD.code, "CARD", false)
+    object GooglePay : Stripe(Codes.GOOGLE_PAY.code, "CARD", false)
+    object SEPADebit : Stripe(Codes.SEPA_DEBIT.code, "SEPA_DEBIT", true)
   }
 
   private enum class Codes(val code: String) {

@@ -4761,6 +4761,12 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Couldn\'t add badge. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Please contact support.</string>
+    <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
+    <string name="MySupportPreference__payment_pending">Payment pending</string>
+    <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
+    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers usually take 1 business day to complete.  </string>
+    <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
+    <string name="MySupportPreference__learn_more">Learn more</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Update Signal</string>

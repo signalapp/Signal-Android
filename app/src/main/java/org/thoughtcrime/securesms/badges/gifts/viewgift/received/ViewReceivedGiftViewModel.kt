@@ -124,16 +124,16 @@ class ViewReceivedGiftViewModel(
             }
             else -> {
               Log.w(TAG, "Gift redemption job chain ignored due to in-progress jobs.", true)
-              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION))
+              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION, false))
             }
           }
         } else {
           Log.w(TAG, "Timeout awaiting for gift token redemption and profile refresh", true)
-          it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION))
+          it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION, false))
         }
       } catch (e: InterruptedException) {
         Log.w(TAG, "Interrupted awaiting for gift token redemption and profile refresh", true)
-        it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION))
+        it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.GIFT_REDEMPTION, false))
       }
     }
   }

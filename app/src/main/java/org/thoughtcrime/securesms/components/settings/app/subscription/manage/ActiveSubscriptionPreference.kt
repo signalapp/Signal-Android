@@ -33,7 +33,8 @@ object ActiveSubscriptionPreference {
     val renewalTimestamp: Long = -1L,
     val redemptionState: ManageDonationsState.SubscriptionRedemptionState,
     val activeSubscription: ActiveSubscription.Subscription,
-    val onContactSupport: () -> Unit
+    val onContactSupport: () -> Unit,
+    val onPendingClick: (FiatMoney) -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return subscription.id == newItem.subscription.id
@@ -57,6 +58,8 @@ object ActiveSubscriptionPreference {
     val progress: ProgressBar = itemView.findViewById(R.id.my_support_progress)
 
     override fun bind(model: Model) {
+      itemView.setOnClickListener(null)
+
       badge.setBadge(model.subscription.badge)
 
       title.text = context.getString(
@@ -72,6 +75,7 @@ object ActiveSubscriptionPreference {
 
       when (model.redemptionState) {
         ManageDonationsState.SubscriptionRedemptionState.NONE -> presentRenewalState(model)
+        ManageDonationsState.SubscriptionRedemptionState.IS_PENDING_BANK_TRANSFER -> presentPendingBankTransferState(model)
         ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS -> presentInProgressState()
         ManageDonationsState.SubscriptionRedemptionState.FAILED -> presentFailureState(model)
       }
@@ -87,6 +91,13 @@ object ActiveSubscriptionPreference {
       )
       badge.alpha = 1f
       progress.visible = false
+    }
+
+    private fun presentPendingBankTransferState(model: Model) {
+      expiry.text = context.getString(R.string.MySupportPreference__payment_pending)
+      badge.alpha = 0.2f
+      progress.visible = true
+      itemView.setOnClickListener { model.onPendingClick(model.price) }
     }
 
     private fun presentInProgressState() {

@@ -41,8 +41,9 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   public static final String KEY = "BoostReceiptCredentialsSubmissionJob";
 
-  private static final String BOOST_QUEUE = "BoostReceiptRedemption";
-  private static final String GIFT_QUEUE = "GiftReceiptRedemption";
+  private static final String BOOST_QUEUE         = "BoostReceiptRedemption";
+  private static final String GIFT_QUEUE          = "GiftReceiptRedemption";
+  private static final String LONG_RUNNING_SUFFIX = "__LongRunning";
 
   private static final String DATA_REQUEST_BYTES      = "data.request.bytes";
   private static final String DATA_PAYMENT_INTENT_ID  = "data.payment.intent.id";
@@ -50,6 +51,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private static final String DATA_BADGE_LEVEL        = "data.badge.level";
   private static final String DATA_DONATION_PROCESSOR = "data.donation.processor";
   private static final String DATA_UI_SESSION_KEY     = "data.ui.session.key";
+  private static final String DATA_IS_LONG_RUNNING    = "data.is.long.running";
 
   private ReceiptCredentialRequestContext requestContext;
 
@@ -58,14 +60,24 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private final long                badgeLevel;
   private final DonationProcessor   donationProcessor;
   private final long                uiSessionKey;
+  private final boolean             isLongRunning;
 
-  private static BoostReceiptRequestResponseJob createJob(String paymentIntentId, DonationErrorSource donationErrorSource, long badgeLevel, DonationProcessor donationProcessor, long uiSessionKey) {
+  private static String resolveQueue(DonationErrorSource donationErrorSource, boolean isLongRunning) {
+    String baseQueue = donationErrorSource == DonationErrorSource.BOOST ? BOOST_QUEUE : GIFT_QUEUE;
+    return isLongRunning ? baseQueue + LONG_RUNNING_SUFFIX : baseQueue;
+  }
+
+  private static long resolveLifespan(boolean isLongRunning) {
+    return isLongRunning ? TimeUnit.DAYS.toMillis(14) : TimeUnit.DAYS.toMillis(1);
+  }
+
+  private static BoostReceiptRequestResponseJob createJob(String paymentIntentId, DonationErrorSource donationErrorSource, long badgeLevel, DonationProcessor donationProcessor, long uiSessionKey, boolean isLongRunning) {
     return new BoostReceiptRequestResponseJob(
         new Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
-            .setQueue(donationErrorSource == DonationErrorSource.BOOST ? BOOST_QUEUE : GIFT_QUEUE)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
+            .setQueue(resolveQueue(donationErrorSource, isLongRunning))
+            .setLifespan(resolveLifespan(isLongRunning))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
@@ -73,15 +85,17 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         donationErrorSource,
         badgeLevel,
         donationProcessor,
-        uiSessionKey
+        uiSessionKey,
+        isLongRunning
     );
   }
 
   public static JobManager.Chain createJobChainForBoost(@NonNull String paymentIntentId,
                                                         @NonNull DonationProcessor donationProcessor,
-                                                        long uiSessionKey)
+                                                        long uiSessionKey,
+                                                        boolean isLongRunning)
   {
-    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL), donationProcessor, uiSessionKey);
+    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL), donationProcessor, uiSessionKey, isLongRunning);
     DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost(uiSessionKey);
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
@@ -98,9 +112,10 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                        @Nullable String additionalMessage,
                                                        long badgeLevel,
                                                        @NonNull DonationProcessor donationProcessor,
-                                                       long uiSessionKey)
+                                                       long uiSessionKey,
+                                                       boolean isLongRunning)
   {
-    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntentId, DonationErrorSource.GIFT, badgeLevel, donationProcessor, uiSessionKey);
+    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntentId, DonationErrorSource.GIFT, badgeLevel, donationProcessor, uiSessionKey, isLongRunning);
     GiftSendJob                    giftSendJob       = new GiftSendJob(recipientId, additionalMessage);
 
 
@@ -115,7 +130,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                          @NonNull DonationErrorSource donationErrorSource,
                                          long badgeLevel,
                                          @NonNull DonationProcessor donationProcessor,
-                                         long uiSessionKey)
+                                         long uiSessionKey,
+                                         boolean isLongRunning)
   {
     super(parameters);
     this.requestContext      = requestContext;
@@ -124,6 +140,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     this.badgeLevel          = badgeLevel;
     this.donationProcessor   = donationProcessor;
     this.uiSessionKey        = uiSessionKey;
+    this.isLongRunning       = isLongRunning;
   }
 
   @Override
@@ -132,7 +149,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                            .putString(DATA_ERROR_SOURCE, donationErrorSource.serialize())
                                                            .putLong(DATA_BADGE_LEVEL, badgeLevel)
                                                            .putString(DATA_DONATION_PROCESSOR, donationProcessor.getCode())
-                                                           .putLong(DATA_UI_SESSION_KEY, uiSessionKey);
+                                                           .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
+                                                           .putBoolean(DATA_IS_LONG_RUNNING, isLongRunning);
 
     if (requestContext != null) {
       builder.putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
@@ -148,6 +166,15 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
+  }
+
+  @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    if (isLongRunning) {
+      return TimeUnit.DAYS.toMillis(1);
+    } else {
+      return super.getNextRunAttemptBackoff(pastAttemptCount, exception);
+    }
   }
 
   @Override
@@ -283,15 +310,16 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       String              rawDonationProcessor = data.getStringOrDefault(DATA_DONATION_PROCESSOR, DonationProcessor.STRIPE.getCode());
       DonationProcessor   donationProcessor    = DonationProcessor.fromCode(rawDonationProcessor);
       long                uiSessionKey         = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
+      boolean             isLongRunning        = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
 
       try {
         if (data.hasString(DATA_REQUEST_BYTES)) {
           byte[]                          blob           = data.getStringAsBlob(DATA_REQUEST_BYTES);
           ReceiptCredentialRequestContext requestContext = new ReceiptCredentialRequestContext(blob);
 
-          return new BoostReceiptRequestResponseJob(parameters, requestContext, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey);
+          return new BoostReceiptRequestResponseJob(parameters, requestContext, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey, isLongRunning);
         } else {
-          return new BoostReceiptRequestResponseJob(parameters, null, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey);
+          return new BoostReceiptRequestResponseJob(parameters, null, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey, isLongRunning);
         }
       } catch (InvalidInputException e) {
         throw new IllegalStateException(e);

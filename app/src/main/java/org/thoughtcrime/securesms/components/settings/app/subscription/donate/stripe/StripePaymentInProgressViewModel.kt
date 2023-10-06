@@ -135,7 +135,7 @@ class StripePaymentInProgressViewModel(
       stripeRepository.createAndConfirmSetupIntent(it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
     }
 
-    val setLevel: Completable = monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey)
+    val setLevel: Completable = monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey, paymentSourceProvider.paymentSourceType.isLongRunning)
 
     Log.d(TAG, "Starting subscription payment pipeline...", true)
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
@@ -205,7 +205,8 @@ class StripePaymentInProgressViewModel(
             additionalMessage = request.additionalMessage,
             badgeLevel = request.level,
             donationProcessor = DonationProcessor.STRIPE,
-            uiSessionKey = request.uiSessionKey
+            uiSessionKey = request.uiSessionKey,
+            isLongRunning = paymentSource.type.isLongRunning
           )
         }
     }.subscribeBy(
@@ -246,11 +247,10 @@ class StripePaymentInProgressViewModel(
     )
   }
 
-  fun updateSubscription(request: GatewayRequest) {
+  fun updateSubscription(request: GatewayRequest, isLongRunning: Boolean) {
     Log.d(TAG, "Beginning subscription update...", true)
-
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey))
+    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey, isLongRunning))
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
