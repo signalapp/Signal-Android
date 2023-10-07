@@ -1,6 +1,6 @@
 # Signal-LTS
 
-A fork Signal for Android.
+A fork of Signal for Android.
 
 [Install](https://github.com/benarmstead/Signal-LTS/releases/latest)
 
