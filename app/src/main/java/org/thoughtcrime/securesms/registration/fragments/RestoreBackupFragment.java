@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
-import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
@@ -289,6 +288,11 @@ public final class RestoreBackupFragment extends LoggingFragment {
           SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
           BackupPassphrase.set(context, passphrase);
+
+          if (!FullBackupImporter.validatePassphrase(context, backup.getUri(), passphrase)) {
+            return BackupImportResult.FAILURE_UNKNOWN;
+          }
+
           FullBackupImporter.importFile(context,
                                         AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                                         database,

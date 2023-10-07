@@ -17,6 +17,7 @@ class GatewaySelectorRepository(
           when (it) {
             "PAYPAL" -> listOf(GatewayResponse.Gateway.PAYPAL)
             "CARD" -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
+            "SEPA_DEBIT" -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
             else -> listOf()
           }
         }.flatten().toSet()

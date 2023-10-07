@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.activitySavedStateViewModel
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.visible
 import java.util.Optional
 
@@ -248,7 +247,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     return if (linkPreviewState.linkPreview.isPresent) {
       linkPreviewState.linkPreview.get()
     } else if (!linkPreviewState.activeUrlForError.isNullOrEmpty()) {
-      LinkPreview(linkPreviewState.activeUrlForError!!, linkPreviewState.activeUrlForError!!, "", 0L, Optional.empty())
+      LinkPreview(linkPreviewState.activeUrlForError, linkPreviewState.activeUrlForError, "", 0L, Optional.empty())
     } else {
       null
     }

@@ -59,6 +59,7 @@ include ':microbenchmark'
 include ':video-app'
 include ':glide-webp'
 include ':glide-webp-app'
+include ':core-util-jvm'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')

@@ -15,12 +15,16 @@ import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 
 import org.signal.core.util.logging.Log;
@@ -32,6 +36,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -53,6 +58,8 @@ public final class AvatarImageView extends AppCompatImageView {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(AvatarImageView.class);
+
+  private final RequestListener<Drawable> redownloadRequestListener = new RedownloadRequestListener();
 
   private int                             size;
   private boolean                         inverted;
@@ -198,7 +205,8 @@ public final class AvatarImageView extends AppCompatImageView {
                                                          .error(fallbackContactPhotoDrawable)
                                                          .diskCacheStrategy(DiskCacheStrategy.ALL)
                                                          .downsample(DownsampleStrategy.CENTER_INSIDE)
-                                                         .transform(new MultiTransformation<>(transforms));
+                                                         .transform(new MultiTransformation<>(transforms))
+                                                         .addListener(redownloadRequestListener);
 
           if (avatarOptions.fixedSize > 0) {
             fixedSizeTarget = new FixedSizeTarget(avatarOptions.fixedSize);
@@ -361,6 +369,21 @@ public final class AvatarImageView extends AppCompatImageView {
       public void load(@Nullable Recipient recipient) {
         avatarImageView.setAvatar(recipient, build());
       }
+    }
+  }
+
+  private static class RedownloadRequestListener implements RequestListener<Drawable> {
+    @Override
+    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+      if (model instanceof ProfileContactPhoto) {
+        RetrieveProfileAvatarJob.enqueueForceUpdate(((ProfileContactPhoto) model).getRecipient());
+      }
+      return false;
+    }
+
+    @Override
+    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+      return false;
     }
   }
 }

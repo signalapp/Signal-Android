@@ -12,7 +12,6 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;

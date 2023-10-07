@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.os.Build;
 import android.os.SystemClock;
 
 import androidx.core.app.AlarmManagerCompat;
-import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;

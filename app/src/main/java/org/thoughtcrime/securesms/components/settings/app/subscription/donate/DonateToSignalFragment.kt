@@ -106,7 +106,7 @@ class DonateToSignalFragment :
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, DonationErrorSource.BOOST, DonationErrorSource.SUBSCRIPTION)
+    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, viewModel.uiSessionKey, DonationErrorSource.BOOST, DonationErrorSource.SUBSCRIPTION)
 
     val recyclerView = this.recyclerView!!
     recyclerView.overScrollMode = RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS
@@ -415,6 +415,10 @@ class DonateToSignalFragment :
 
   override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(gatewayRequest))
+  }
+
+  override fun navigateToBankTransferMandate(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToBankTransferMandateFragment(gatewayRequest))
   }
 
   override fun onPaymentComplete(gatewayRequest: GatewayRequest) {

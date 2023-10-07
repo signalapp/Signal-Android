@@ -5,13 +5,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
@@ -20,7 +18,6 @@ import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.util.Iterator;
 import java.util.Objects;
 
 public class FromTextView extends SimpleEmojiTextView {

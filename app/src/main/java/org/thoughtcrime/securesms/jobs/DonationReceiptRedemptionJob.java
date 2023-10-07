@@ -43,16 +43,19 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String DATA_ERROR_SOURCE                     = "data.error.source";
   public static final String DATA_GIFT_MESSAGE_ID                  = "data.gift.message.id";
   public static final String DATA_PRIMARY                          = "data.primary";
+  public static final String DATA_UI_SESSION_KEY                   = "data.ui.session.key";
 
   private final long                giftMessageId;
   private final boolean             makePrimary;
   private final DonationErrorSource errorSource;
+  private final long                uiSessionKey;
 
-  public static DonationReceiptRedemptionJob createJobForSubscription(@NonNull DonationErrorSource errorSource) {
+  public static DonationReceiptRedemptionJob createJobForSubscription(@NonNull DonationErrorSource errorSource, long uiSessionKey) {
     return new DonationReceiptRedemptionJob(
         NO_ID,
         false,
         errorSource,
+        uiSessionKey,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -63,11 +66,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .build());
   }
 
-  public static DonationReceiptRedemptionJob createJobForBoost() {
+  public static DonationReceiptRedemptionJob createJobForBoost(long uiSessionKey) {
     return new DonationReceiptRedemptionJob(
         NO_ID,
         false,
         DonationErrorSource.BOOST,
+        uiSessionKey,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -78,7 +82,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   public static JobManager.Chain createJobChainForKeepAlive() {
-    DonationReceiptRedemptionJob       redemptionJob                      = createJobForSubscription(DonationErrorSource.KEEP_ALIVE);
+    DonationReceiptRedemptionJob       redemptionJob                      = createJobForSubscription(DonationErrorSource.KEEP_ALIVE, -1L);
     RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
@@ -93,6 +97,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         messageId,
         primary,
         DonationErrorSource.GIFT_REDEMPTION,
+        -1L,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -110,11 +115,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                                   .then(multiDeviceProfileContentUpdateJob);
   }
 
-  private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, @NonNull Job.Parameters parameters) {
+  private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, @NonNull Job.Parameters parameters) {
     super(parameters);
     this.giftMessageId = giftMessageId;
     this.makePrimary   = primary;
     this.errorSource   = errorSource;
+    this.uiSessionKey  = uiSessionKey;
   }
 
   @Override
@@ -123,6 +129,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                    .putString(DATA_ERROR_SOURCE, errorSource.serialize())
                    .putLong(DATA_GIFT_MESSAGE_ID, giftMessageId)
                    .putBoolean(DATA_PRIMARY, makePrimary)
+                   .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
                    .serialize();
   }
 
@@ -185,7 +192,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         throw new RetryableException();
       } else {
         Log.w(TAG, "Encountered a non-recoverable exception " + response.getStatus(), response.getApplicationError().get(), true);
-        DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(errorSource));
+        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(errorSource));
         throw new IOException(response.getApplicationError().get());
       }
     } else if (response.getExecutionError().isPresent()) {
@@ -288,8 +295,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       long                messageId             = data.getLongOrDefault(DATA_GIFT_MESSAGE_ID, NO_ID);
       boolean             primary               = data.getBooleanOrDefault(DATA_PRIMARY, false);
       DonationErrorSource errorSource           = DonationErrorSource.deserialize(serializedErrorSource);
+      long                uiSessionKey          = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
 
-      return new DonationReceiptRedemptionJob(messageId, primary, errorSource, parameters);
+      return new DonationReceiptRedemptionJob(messageId, primary, errorSource, uiSessionKey, parameters);
     }
   }
 }

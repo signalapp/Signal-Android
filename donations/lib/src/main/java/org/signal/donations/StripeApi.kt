@@ -27,7 +27,8 @@ class StripeApi(
   private val configuration: Configuration,
   private val paymentIntentFetcher: PaymentIntentFetcher,
   private val setupIntentHelper: SetupIntentHelper,
-  private val okHttpClient: OkHttpClient
+  private val okHttpClient: OkHttpClient,
+  private val userAgent: String
 ) {
 
   private val objectMapper = jsonMapper {
@@ -59,9 +60,9 @@ class StripeApi(
     data class Failure(val reason: Throwable) : CreatePaymentSourceFromCardDataResult()
   }
 
-  fun createSetupIntent(): Single<CreateSetupIntentResult> {
+  fun createSetupIntent(sourceType: PaymentSourceType.Stripe): Single<CreateSetupIntentResult> {
     return setupIntentHelper
-      .fetchSetupIntent()
+      .fetchSetupIntent(sourceType)
       .map { CreateSetupIntentResult(it) }
       .subscribeOn(Schedulers.io())
   }
@@ -84,7 +85,7 @@ class StripeApi(
     }
   }
 
-  fun createPaymentIntent(price: FiatMoney, level: Long): Single<CreatePaymentIntentResult> {
+  fun createPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): Single<CreatePaymentIntentResult> {
     @Suppress("CascadeIf")
     return if (Validation.isAmountTooSmall(price)) {
       Single.just(CreatePaymentIntentResult.AmountIsTooSmall(price))
@@ -95,7 +96,7 @@ class StripeApi(
         Single.just<CreatePaymentIntentResult>(CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode))
       } else {
         paymentIntentFetcher
-          .fetchPaymentIntent(price, level)
+          .fetchPaymentIntent(price, level, sourceType)
           .map<CreatePaymentIntentResult> { CreatePaymentIntentResult.Success(it) }
       }.subscribeOn(Schedulers.io())
     }
@@ -118,6 +119,12 @@ class StripeApi(
         "payment_method" to paymentMethodId,
         "return_url" to RETURN_URL_3DS
       )
+
+      if (paymentSource.type == PaymentSourceType.Stripe.SEPADebit) {
+        parameters["mandate_data[customer_acceptance][type]"] = "online"
+        parameters["mandate_data[customer_acceptance][online][ip_address]"] = "0.0.0.0"
+        parameters["mandate_data[customer_acceptance][online][user_agent]"] = userAgent
+      }
 
       val (nextActionUri, returnUri) = postForm("payment_intents/${paymentIntent.intentId}/confirm", parameters).use { response ->
         getNextAction(response)
@@ -198,6 +205,10 @@ class StripeApi(
     }.subscribeOn(Schedulers.io())
   }
 
+  fun createPaymentSourceFromSEPADebitData(sepaDebitData: SEPADebitData): Single<PaymentSource> {
+    return Single.just(SEPADebitPaymentSource(sepaDebitData))
+  }
+
   @WorkerThread
   private fun createPaymentSourceFromCardDataSync(cardData: CardData): PaymentSource {
     val parameters: Map<String, String> = mutableMapOf(
@@ -218,7 +229,13 @@ class StripeApi(
   }
 
   private fun createPaymentMethodAndParseId(paymentSource: PaymentSource): String {
-    return createPaymentMethod(paymentSource).use { response ->
+    val paymentMethodResponse = if (paymentSource is SEPADebitPaymentSource) {
+      createPaymentMethodForSEPADebit(paymentSource)
+    } else {
+      createPaymentMethodForToken(paymentSource)
+    }
+
+    return paymentMethodResponse.use { response ->
       val body = response.body()
       if (body != null) {
         val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
@@ -229,7 +246,18 @@ class StripeApi(
     }
   }
 
-  private fun createPaymentMethod(paymentSource: PaymentSource): Response {
+  private fun createPaymentMethodForSEPADebit(paymentSource: SEPADebitPaymentSource): Response {
+    val parameters = mutableMapOf(
+      "type" to "sepa_debit",
+      "sepa_debit[iban]" to paymentSource.sepaDebitData.iban,
+      "billing_details[email]" to paymentSource.sepaDebitData.email,
+      "billing_details[name]" to paymentSource.sepaDebitData.name
+    )
+
+    return postForm("payment_methods", parameters)
+  }
+
+  private fun createPaymentMethodForToken(paymentSource: PaymentSource): Response {
     val tokenId = paymentSource.getTokenId()
     val parameters = mutableMapOf(
       "card[token]" to tokenId,
@@ -513,12 +541,15 @@ class StripeApi(
   interface PaymentIntentFetcher {
     fun fetchPaymentIntent(
       price: FiatMoney,
-      level: Long
+      level: Long,
+      sourceType: PaymentSourceType.Stripe
     ): Single<StripeIntentAccessor>
   }
 
   interface SetupIntentHelper {
-    fun fetchSetupIntent(): Single<StripeIntentAccessor>
+    fun fetchSetupIntent(
+      sourceType: PaymentSourceType.Stripe
+    ): Single<StripeIntentAccessor>
   }
 
   @Parcelize
@@ -527,6 +558,13 @@ class StripeApi(
     val month: Int,
     val year: Int,
     val cvc: Int
+  ) : Parcelable
+
+  @Parcelize
+  data class SEPADebitData(
+    val iban: String,
+    val name: String,
+    val email: String
   ) : Parcelable
 
   interface PaymentSource {

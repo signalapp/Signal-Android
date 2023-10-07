@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components
 
 import android.graphics.Color
@@ -31,7 +36,9 @@ data class ConversationItemThumbnailState(
     @IgnoredOnParcel
     private val downloadClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
-    private val progressWheelClickListener: SlideClickListener? = null,
+    private val cancelDownloadClickListener: SlidesClickedListener? = null,
+    @IgnoredOnParcel
+    private val playVideoClickListener: SlideClickListener? = null,
     @IgnoredOnParcel
     private val longClickListener: OnLongClickListener? = null,
     private val visibility: Int = View.GONE,
@@ -57,7 +64,8 @@ data class ConversationItemThumbnailState(
       thumbnailView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       thumbnailView.get().setThumbnailClickListener(clickListener)
       thumbnailView.get().setDownloadClickListener(downloadClickListener)
-      thumbnailView.get().setProgressWheelClickListener(progressWheelClickListener)
+      thumbnailView.get().setCancelDownloadClickListener(cancelDownloadClickListener)
+      thumbnailView.get().setPlayVideoClickListener(playVideoClickListener)
       thumbnailView.get().setOnLongClickListener(longClickListener)
       thumbnailView.get().setBounds(minWidth, maxWidth, minHeight, maxHeight)
     }
@@ -71,6 +79,10 @@ data class ConversationItemThumbnailState(
     private val clickListener: SlideClickListener? = null,
     @IgnoredOnParcel
     private val downloadClickListener: SlidesClickedListener? = null,
+    @IgnoredOnParcel
+    private val cancelDownloadClickListener: SlidesClickedListener? = null,
+    @IgnoredOnParcel
+    private val playVideoClickListener: SlideClickListener? = null,
     @IgnoredOnParcel
     private val longClickListener: OnLongClickListener? = null,
     private val visibility: Int = View.GONE,
@@ -92,6 +104,8 @@ data class ConversationItemThumbnailState(
       albumView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       albumView.get().setThumbnailClickListener(clickListener)
       albumView.get().setDownloadClickListener(downloadClickListener)
+      albumView.get().setCancelDownloadClickListener(cancelDownloadClickListener)
+      albumView.get().setPlayVideoClickListener(playVideoClickListener)
       albumView.get().setOnLongClickListener(longClickListener)
       albumView.get().setCellBackgroundColor(cellBackgroundColor)
     }

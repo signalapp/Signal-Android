@@ -12,9 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
-
-import org.signal.core.util.logging.Log;
 
 /**
  * Encapsulates logic to properly show/hide system UI/chrome in a full screen setting. Also

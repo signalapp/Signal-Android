@@ -313,6 +313,7 @@ import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.getRecordQuoteType
 import org.thoughtcrime.securesms.util.hasAudio
 import org.thoughtcrime.securesms.util.hasGiftBadge
+import org.thoughtcrime.securesms.util.hasNonTextSlide
 import org.thoughtcrime.securesms.util.isValidReactionTarget
 import org.thoughtcrime.securesms.util.savedStateViewModel
 import org.thoughtcrime.securesms.util.viewModel
@@ -630,6 +631,8 @@ class ConversationFragment :
         }
       ).addTo(disposables)
     }
+
+    conversationGroupViewModel.updateGroupStateIfNeeded()
 
     ConversationUtil.refreshRecipientShortcuts()
 
@@ -1678,7 +1681,7 @@ class ConversationFragment :
   }
 
   private fun updateLinkPreviewState() {
-    if (viewModel.isPushAvailable && !attachmentManager.isAttachmentPresent && context != null) {
+    if (viewModel.isPushAvailable && !attachmentManager.isAttachmentPresent && context != null && inputPanel.editMessage?.hasNonTextSlide() != true) {
       linkPreviewViewModel.onEnabled()
       linkPreviewViewModel.onTextChanged(composeText.textTrimmed.toString(), composeText.selectionStart, composeText.selectionEnd)
     } else {
@@ -3727,7 +3730,11 @@ class ConversationFragment :
     override fun afterTextChanged(s: Editable) {
       calculateCharactersRemaining()
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
-        composeText.postDelayed({ updateToggleButtonState() }, 50)
+        composeText.postDelayed({
+          if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
+            updateToggleButtonState()
+          }
+        }, 50)
       }
 
       if (!inputPanel.inEditMessageMode()) {
@@ -3868,6 +3875,7 @@ class ConversationFragment :
       keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
       onKeyboardChanged(KeyboardPage.EMOJI)
       stickerViewModel.onInputTextUpdated("")
+      updateLinkPreviewState()
     }
 
     override fun onExitEditMode() {
@@ -3877,6 +3885,7 @@ class ConversationFragment :
         keyboardPagerViewModel.setPages(previousPages!!)
         previousPages = null
       }
+      updateLinkPreviewState()
     }
 
     override fun onQuickCameraToggleClicked() {

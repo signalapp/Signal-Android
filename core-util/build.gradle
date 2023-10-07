@@ -9,6 +9,8 @@ android {
 }
 
 dependencies {
+    api(project(':core-util-jvm'))
+
     implementation libs.androidx.sqlite
 
     testImplementation testLibs.junit.junit

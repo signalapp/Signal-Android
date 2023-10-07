@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2023 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
 <resources>
     <dimen name="signal_m3_toolbar_height">64dp</dimen>
 
@@ -153,6 +158,8 @@
     <dimen name="transfer_top_padding">64dp</dimen>
     <dimen name="transfer_split_top_padding">32dp</dimen>
     <dimen name="transfer_item_spacing">24dp</dimen>
+    <dimen name="transfer_control_view_progressbar_to_textview_margin">4dp</dimen>
+    <dimen name="transfer_control_view_primary_background_height">44dp</dimen>
 
     <dimen name="create_payment_key_width">80dp</dimen>
     <dimen name="create_payment_key_height">70dp</dimen>

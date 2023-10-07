@@ -23,6 +23,9 @@ fun MessageRecord.isMediaMessage(): Boolean {
     slideDeck.stickerSlide == null
 }
 
+fun MessageRecord.hasNonTextSlide(): Boolean =
+  isMms && (this as MmsMessageRecord).slideDeck.slides.any { slide -> slide !is TextSlide }
+
 fun MessageRecord.hasSticker(): Boolean =
   isMms && (this as MmsMessageRecord).slideDeck.stickerSlide != null
 

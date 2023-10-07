@@ -17,8 +17,6 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;

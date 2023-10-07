@@ -58,19 +58,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.media3.common.MediaItem;
-import androidx.recyclerview.widget.ConcatAdapter;
-import androidx.recyclerview.widget.ConversationLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.collect.Sets;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
@@ -108,8 +110,10 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -199,42 +203,42 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private Optional<MessageRecord>     previousMessage;
   private ConversationItemDisplayMode displayMode;
 
-  protected           ConversationItemBodyBubble bodyBubble;
-  protected           View                       reply;
-  protected           View                       replyIcon;
-  @Nullable protected ViewGroup                  contactPhotoHolder;
-  @Nullable private   QuoteView                  quoteView;
-  private             EmojiTextView              bodyText;
-  private             ConversationItemFooter     footer;
-  @Nullable private   ConversationItemFooter     stickerFooter;
-  @Nullable private   TextView                   groupSender;
-  @Nullable private   View                       groupSenderHolder;
-  private             AvatarImageView            contactPhoto;
-  private             AlertView                  alertView;
-  protected           ReactionsConversationView  reactionsView;
-  protected           BadgeImageView             badgeImageView;
-  private             View                       storyReactionLabelWrapper;
-  private             TextView                   storyReactionLabel;
-  protected           View                       quotedIndicator;
-  protected           View                       scheduledIndicator;
+  private           ConversationItemBodyBubble bodyBubble;
+  private           View                       reply;
+  private           View                       replyIcon;
+  @Nullable private ViewGroup                  contactPhotoHolder;
+  @Nullable private QuoteView                  quoteView;
+  private           EmojiTextView              bodyText;
+  private           ConversationItemFooter     footer;
+  @Nullable private ConversationItemFooter     stickerFooter;
+  @Nullable private TextView                   groupSender;
+  @Nullable private View                       groupSenderHolder;
+  private           AvatarImageView            contactPhoto;
+  private           AlertView                  alertView;
+  private           ReactionsConversationView  reactionsView;
+  private           BadgeImageView             badgeImageView;
+  private           View                       storyReactionLabelWrapper;
+  private           TextView                   storyReactionLabel;
+  private           View                       quotedIndicator;
+  private           View                       scheduledIndicator;
 
-  private @NonNull  Set<MultiselectPart>                    batchSelected = new HashSet<>();
-  private @NonNull  Outliner                                outliner      = new Outliner();
-  private @NonNull  Outliner                                pulseOutliner = new Outliner();
-  private @NonNull  List<Outliner>                          outliners     = new ArrayList<>(2);
-  private           LiveRecipient                           conversationRecipient;
-  private           NullableStub<ConversationItemThumbnail> mediaThumbnailStub;
-  private           Stub<AudioView>                         audioViewStub;
-  private           Stub<DocumentView>                      documentViewStub;
-  private           Stub<SharedContactView>                 sharedContactStub;
-  private           Stub<LinkPreviewView>                   linkPreviewStub;
-  private           Stub<BorderlessImageView>               stickerStub;
-  private           Stub<ViewOnceMessageView>               revealableStub;
-  private           Stub<CallLinkJoinButton>                joinCallLinkStub;
-  private           Stub<Button>                            callToActionStub;
-  private           Stub<GiftMessageView>                   giftViewStub;
-  private           Stub<PaymentMessageView>                paymentViewStub;
-  private @Nullable EventListener                           eventListener;
+  private @NonNull       Set<MultiselectPart>                    batchSelected = new HashSet<>();
+  private final @NonNull Outliner                                outliner      = new Outliner();
+  private final @NonNull Outliner                                pulseOutliner = new Outliner();
+  private final @NonNull List<Outliner>                          outliners     = new ArrayList<>(2);
+  private                LiveRecipient                           conversationRecipient;
+  private                NullableStub<ConversationItemThumbnail> mediaThumbnailStub;
+  private                Stub<AudioView>                         audioViewStub;
+  private                Stub<DocumentView>                      documentViewStub;
+  private                Stub<SharedContactView>                 sharedContactStub;
+  private                Stub<LinkPreviewView>                   linkPreviewStub;
+  private                Stub<BorderlessImageView>               stickerStub;
+  private                Stub<ViewOnceMessageView>               revealableStub;
+  private                Stub<CallLinkJoinButton>                joinCallLinkStub;
+  private                Stub<Button>                            callToActionStub;
+  private                Stub<GiftMessageView>                   giftViewStub;
+  private                Stub<PaymentMessageView>                paymentViewStub;
+  private @Nullable      EventListener                           eventListener;
 
   private int     defaultBubbleColor;
   private int     defaultBubbleColorForWallpaper;
@@ -243,7 +247,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final PassthroughClickListener        passthroughClickListener        = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener           = new AttachmentDownloadClickListener();
-  private final ProgressWheelClickListener      progressWheelClickListener      = new ProgressWheelClickListener();
+  private final PlayVideoClickListener          playVideoClickListener          = new PlayVideoClickListener();
+  private final AttachmentCancelClickListener   attachmentCancelClickListener   = new AttachmentCancelClickListener();
   private final SlideClickPassthroughListener   singleDownloadClickListener     = new SlideClickPassthroughListener(downloadClickListener);
   private final SharedContactEventListener      sharedContactEventListener      = new SharedContactEventListener();
   private final SharedContactClickListener      sharedContactClickListener      = new SharedContactClickListener();
@@ -258,14 +263,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final Context context;
 
-  private MediaItem          mediaItem;
-  private boolean            canPlayContent;
-  private Projection.Corners bodyBubbleCorners;
-  private Colorizer          colorizer;
-  private boolean            hasWallpaper;
-  private float              lastYDownRelativeToThis;
-  private ProjectionList     colorizerProjections = new ProjectionList(3);
-  private boolean            isBound              = false;
+  private       MediaItem          mediaItem;
+  private       boolean            canPlayContent;
+  private       Projection.Corners bodyBubbleCorners;
+  private       Colorizer          colorizer;
+  private       boolean            hasWallpaper;
+  private       float              lastYDownRelativeToThis;
+  private final ProjectionList     colorizerProjections = new ProjectionList(3);
+  private       boolean            isBound              = false;
 
   private final Runnable shrinkBubble = new Runnable() {
     @Override
@@ -521,8 +526,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       return;
     }
 
-    reactionsView.setBubbleWidth(bodyBubble.getWidth());
-
     boolean needsMeasure = false;
 
     if (hasQuote(messageRecord)) {
@@ -712,6 +715,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyBubble.setVideoPlayerProjection(null);
     bodyBubble.setQuoteViewProjection(null);
+
+    playVideoClickListener.cleanup();
 
     glideRequests = null;
   }
@@ -1174,7 +1179,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         mediaThumbnailStub.require().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(linkPreview.getThumbnail().get())), showControls, false);
         mediaThumbnailStub.require().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
         mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
-        mediaThumbnailStub.require().setProgressWheelClickListener(progressWheelClickListener);
+        mediaThumbnailStub.require().setCancelDownloadClickListener(attachmentCancelClickListener);
+        mediaThumbnailStub.require().setPlayVideoClickListener(playVideoClickListener);
         mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
 
         linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, false);
@@ -1308,17 +1314,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                                                                                       : R.dimen.media_bubble_min_width_with_content));
       mediaThumbnailStub.require().setMaximumThumbnailHeight(readDimen(isContentCondensed() ? R.dimen.media_bubble_max_height_condensed
                                                                                             : R.dimen.media_bubble_max_height));
+
+      mediaThumbnailStub.require().setThumbnailClickListener(new ThumbnailClickListener());
+      mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
+      mediaThumbnailStub.require().setCancelDownloadClickListener(attachmentCancelClickListener);
+      mediaThumbnailStub.require().setPlayVideoClickListener(playVideoClickListener);
+      mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
+      mediaThumbnailStub.require().setOnClickListener(passthroughClickListener);
+      mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord));
       mediaThumbnailStub.require().setImageResource(glideRequests,
                                                     thumbnailSlides,
                                                     showControls,
                                                     false);
-      mediaThumbnailStub.require().setThumbnailClickListener(new ThumbnailClickListener());
-      mediaThumbnailStub.require().setDownloadClickListener(downloadClickListener);
-      mediaThumbnailStub.require().setProgressWheelClickListener(progressWheelClickListener);
-      mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
-      mediaThumbnailStub.require().setOnClickListener(passthroughClickListener);
-      mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord));
-
       if (!messageRecord.isOutgoing()) {
         mediaThumbnailStub.require().setConversationColor(getDefaultBubbleColor(hasWallpaper));
       } else {
@@ -2445,16 +2452,82 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private class ProgressWheelClickListener implements SlideClickListener {
+  private class AttachmentCancelClickListener implements SlidesClickedListener {
+    @Override
+    public void onClick(View v, List<Slide> slides) {
+      Log.i(TAG, "onClick() for attachment cancellation");
+      final JobManager jobManager = ApplicationDependencies.getJobManager();
+      if (messageRecord.isMmsNotification()) {
+        Log.i(TAG, "Canceling MMS attachments download");
+        jobManager.cancel("mms-operation");
+      } else {
+        Log.i(TAG, "Canceling push attachment downloads for " + slides.size() + " items");
+
+        for (Slide slide : slides) {
+          final String queue = AttachmentDownloadJob.constructQueueString(((DatabaseAttachment) slide.asAttachment()).getAttachmentId());
+          jobManager.cancelAllInQueue(queue);
+        }
+      }
+    }
+  }
+
+  private class PlayVideoClickListener implements SlideClickListener {
+    private static final float MINIMUM_DOWNLOADED_THRESHOLD = 0.05f;
+    private              View  parentView;
+    private              Slide activeSlide;
 
     @Override
     public void onClick(View v, Slide slide) {
-      final boolean isIncremental        = slide.asAttachment().getIncrementalDigest() != null;
-      final boolean contentTypeSupported = MediaUtil.isVideoType(slide.getContentType());
-      if (FeatureFlags.instantVideoPlayback() && isIncremental && contentTypeSupported) {
-        launchMediaPreview(v, slide);
+      if (messageRecord.isOutgoing()) {
+        Log.d(TAG, "Video player button for outgoing slide clicked.");
+        return;
+      }
+      if (MediaUtil.isInstantVideoSupported(slide)) {
+        final DatabaseAttachment databaseAttachment = (DatabaseAttachment) slide.asAttachment();
+        if (databaseAttachment.getTransferState() != AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+          final AttachmentId attachmentId = databaseAttachment.getAttachmentId();
+          final JobManager   jobManager   = ApplicationDependencies.getJobManager();
+          final String       queue        = AttachmentDownloadJob.constructQueueString(attachmentId);
+          setup(v, slide);
+          jobManager.add(new AttachmentDownloadJob(messageRecord.getId(),
+                                                   attachmentId,
+                                                   true));
+          jobManager.addListener(queue, (job, jobState) -> {
+            if (jobState.isComplete()) {
+              cleanup();
+            }
+          });
+        } else {
+          launchMediaPreview(v, slide);
+          cleanup();
+        }
       } else {
-        Log.d(TAG, "Non-eligible slide clicked: " + "\tisIncremental: " + isIncremental + "\tcontentTypeSupported: " + contentTypeSupported);
+        Log.d(TAG, "Non-eligible slide clicked.");
+      }
+    }
+
+    private void setup(View v, Slide slide) {
+      parentView  = v;
+      activeSlide = slide;
+      if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+    }
+
+    private void cleanup() {
+      parentView  = null;
+      activeSlide = null;
+      if (EventBus.getDefault().isRegistered(this)) {
+        EventBus.getDefault().unregister(this);
+      }
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEventAsync(PartProgressEvent event) {
+      float       progressPercent    = ((float) event.progress) / event.total;
+      final View  currentParentView  = parentView;
+      final Slide currentActiveSlide = activeSlide;
+      if (progressPercent >= MINIMUM_DOWNLOADED_THRESHOLD && currentParentView != null && currentActiveSlide != null) {
+        cleanup();
+        launchMediaPreview(currentParentView, currentActiveSlide);
       }
     }
   }
@@ -2596,7 +2669,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private class ClickListener implements View.OnClickListener {
-    private OnClickListener parent;
+    private final OnClickListener parent;
 
     ClickListener(@Nullable OnClickListener parent) {
       this.parent = parent;
@@ -2728,8 +2801,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (message > -1) builder.setMessage(message);
 
     builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
-      MessageTable db = messageRecord.isMms() ? SignalDatabase.messages()
-                                              : SignalDatabase.messages();
+      MessageTable db = SignalDatabase.messages();
 
       db.markAsInsecure(messageRecord.getId());
       db.markAsOutbox(messageRecord.getId());

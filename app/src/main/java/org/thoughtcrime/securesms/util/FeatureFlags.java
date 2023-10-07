@@ -117,6 +117,7 @@ public final class FeatureFlags {
   public  static final String INSTANT_VIDEO_PLAYBACK            = "android.instantVideoPlayback";
   private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.4";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
+  private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -190,7 +191,8 @@ public final class FeatureFlags {
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY
+      PHONE_NUMBER_PRIVACY,
+      SEPA_DEBIT_DONATIONS
   );
 
   /**
@@ -680,6 +682,13 @@ public final class FeatureFlags {
     return getString(CRASH_PROMPT_CONFIG, "");
   }
 
+  /**
+   * Whether or not SEPA debit payments for donations are enabled.
+   * WARNING: This feature is under heavy development and is *not* ready for wider use.
+   */
+  public static boolean sepaDebitDonations() {
+    return getBoolean(SEPA_DEBIT_DONATIONS, Environment.IS_STAGING);
+  }
 
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {

@@ -43,7 +43,6 @@ class PayPalPaymentInProgressViewModel(
   val state: Flowable<DonationProcessorStage> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
   private val disposables = CompositeDisposable()
-
   override fun onCleared() {
     store.dispose()
     disposables.clear()
@@ -82,7 +81,7 @@ class PayPalPaymentInProgressViewModel(
     Log.d(TAG, "Beginning subscription update...", true)
 
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString()))
+    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey))
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
@@ -157,7 +156,8 @@ class PayPalPaymentInProgressViewModel(
           badgeRecipient = request.recipientId,
           additionalMessage = request.additionalMessage,
           badgeLevel = request.level,
-          donationProcessor = DonationProcessor.PAYPAL
+          donationProcessor = DonationProcessor.PAYPAL,
+          uiSessionKey = request.uiSessionKey
         )
       }
       .subscribeOn(Schedulers.io())
@@ -190,7 +190,7 @@ class PayPalPaymentInProgressViewModel(
       .flatMapCompletable { payPalRepository.setDefaultPaymentMethod(it.paymentId) }
       .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, PaymentSourceType.PayPal)) }
 
-    disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString()))
+    disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey))
       .subscribeBy(
         onError = { throwable ->
           Log.w(TAG, "Failure in monthly payment pipeline...", throwable, true)

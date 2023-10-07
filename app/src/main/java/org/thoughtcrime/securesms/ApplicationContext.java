@@ -90,8 +90,6 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.PowerManagerCompat;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -288,7 +286,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @VisibleForTesting
   protected void initializeLogging() {
-    org.signal.core.util.logging.Log.initialize(FeatureFlags::internalUser, new AndroidLogger(), new PersistentLogger(this));
+    Log.initialize(FeatureFlags::internalUser, new AndroidLogger(), new PersistentLogger(this));
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
 

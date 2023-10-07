@@ -14,6 +14,7 @@ import java.util.Currency
 
 private const val CARD = "CARD"
 private const val PAYPAL = "PAYPAL"
+private const val SEPA_DEBIT = "SEPA_DEBIT"
 
 /**
  * Transforms the DonationsConfiguration into a Set<FiatMoney> which has been properly filtered
@@ -116,6 +117,7 @@ private fun DonationsConfiguration.getFilteredCurrencies(paymentMethodAvailabili
 interface PaymentMethodAvailability {
   fun isPayPalAvailable(): Boolean
   fun isGooglePayOrCreditCardAvailable(): Boolean
+  fun isSEPADebitAvailable(): Boolean
 
   fun toSet(): Set<String> {
     val set = mutableSetOf<String>()
@@ -127,6 +129,10 @@ interface PaymentMethodAvailability {
       set.add(CARD)
     }
 
+    if (isSEPADebitAvailable()) {
+      set.add(SEPA_DEBIT)
+    }
+
     return set
   }
 }
@@ -134,4 +140,5 @@ interface PaymentMethodAvailability {
 private object DefaultPaymentMethodAvailability : PaymentMethodAvailability {
   override fun isPayPalAvailable(): Boolean = InAppDonations.isPayPalAvailable()
   override fun isGooglePayOrCreditCardAvailable(): Boolean = InAppDonations.isCreditCardAvailable() || InAppDonations.isGooglePayAvailable()
+  override fun isSEPADebitAvailable(): Boolean = InAppDonations.isSEPADebitAvailable()
 }

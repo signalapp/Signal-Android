@@ -24,7 +24,8 @@ class GatewaySelectorViewModel(
       badge = args.request.badge,
       isGooglePayAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, args.request.donateToSignalType),
       isCreditCardAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, args.request.donateToSignalType),
-      isPayPalAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.PayPal, args.request.donateToSignalType)
+      isPayPalAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.PayPal, args.request.donateToSignalType),
+      isSEPADebitAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.SEPADebit, args.request.donateToSignalType)
     )
   )
   private val disposables = CompositeDisposable()
@@ -41,7 +42,8 @@ class GatewaySelectorViewModel(
           loading = false,
           isCreditCardAvailable = it.isCreditCardAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.CREDIT_CARD),
           isGooglePayAvailable = it.isGooglePayAvailable && googlePayAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.GOOGLE_PAY),
-          isPayPalAvailable = it.isPayPalAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.PAYPAL)
+          isPayPalAvailable = it.isPayPalAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.PAYPAL),
+          isSEPADebitAvailable = it.isSEPADebitAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.SEPA_DEBIT)
         )
       }
     }

@@ -471,7 +471,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     val timer = binding.footerExpiry
     val record = conversationMessage.messageRecord
     if (record.expiresIn > 0 && !record.isPending) {
-      timer.setColorFilter(themeDelegate.getFooterTextColor(conversationMessage), PorterDuff.Mode.SRC_IN)
+      timer.setColorFilter(themeDelegate.getFooterForegroundColor(conversationMessage), PorterDuff.Mode.SRC_IN)
 
       timer.visible = true
       timer.setPercentComplete(0f)
@@ -626,7 +626,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     binding.footerDate.setOnClickListener(null)
     binding.footerDate.visible = true
-    binding.footerDate.setTextColor(themeDelegate.getFooterTextColor(conversationMessage))
+    binding.footerDate.setTextColor(themeDelegate.getFooterForegroundColor(conversationMessage))
 
     val record = conversationMessage.messageRecord
     if (record.isFailed) {
@@ -667,6 +667,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     val record = conversationMessage.messageRecord
     val newMessageId = record.buildMessageId()
+
+    deliveryStatus.setTint(themeDelegate.getFooterForegroundColor(conversationMessage))
 
     if (messageId != newMessageId && deliveryStatus.isPending && !record.isPending) {
       if (record.toRecipient.isGroup) {

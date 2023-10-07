@@ -45,6 +45,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -62,6 +64,24 @@ public class FullBackupImporter extends FullBackupBase {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(FullBackupImporter.class);
+
+  public static boolean validatePassphrase(@NonNull Context context,
+                                           @NonNull Uri uri,
+                                           @NonNull String passphrase)
+      throws IOException
+  {
+
+    try (InputStream is = getInputStream(context, uri)) {
+      BackupRecordInputStream inputStream = new BackupRecordInputStream(is, passphrase);
+      return inputStream.validateFrame();
+    } catch (InvalidAlgorithmParameterException e) {
+      Log.w(TAG, "Invalid algorithm parameter exception in backup passphrase validation.", e);
+      return false;
+    } catch (InvalidKeyException e) {
+      Log.w(TAG, "Invalid key exception in backup passphrase validation.", e);
+      return false;
+    }
+  }
 
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
                                 @NonNull SQLiteDatabase db, @NonNull Uri uri, @NonNull String passphrase)

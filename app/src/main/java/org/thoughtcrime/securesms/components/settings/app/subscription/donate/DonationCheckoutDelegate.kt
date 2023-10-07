@@ -43,6 +43,7 @@ import java.util.Currency
 class DonationCheckoutDelegate(
   private val fragment: Fragment,
   private val callback: Callback,
+  private val uiSessionKey: Long,
   errorSource: DonationErrorSource,
   vararg additionalSources: DonationErrorSource
 ) : DefaultLifecycleObserver {
@@ -65,7 +66,7 @@ class DonationCheckoutDelegate(
 
   init {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
-    ErrorHandler().attach(fragment, callback, errorSource, *additionalSources)
+    ErrorHandler().attach(fragment, callback, uiSessionKey, errorSource, *additionalSources)
   }
 
   override fun onCreate(owner: LifecycleOwner) {
@@ -100,6 +101,7 @@ class DonationCheckoutDelegate(
         GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
         GatewayResponse.Gateway.PAYPAL -> launchPayPal(gatewayResponse)
         GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
+        GatewayResponse.Gateway.SEPA_DEBIT -> launchSEPADebit(gatewayResponse)
       }
     } else {
       error("Unsupported combination! ${gatewayResponse.gateway} ${gatewayResponse.request.donateToSignalType}")
@@ -154,6 +156,10 @@ class DonationCheckoutDelegate(
     callback.navigateToCreditCardForm(gatewayResponse.request)
   }
 
+  private fun launchSEPADebit(gatewayResponse: GatewayResponse) {
+    callback.navigateToBankTransferMandate(gatewayResponse.request)
+  }
+
   private fun registerGooglePayCallback() {
     disposables += donationPaymentComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
@@ -206,7 +212,7 @@ class DonationCheckoutDelegate(
     private var errorDialog: DialogInterface? = null
     private var userCancelledFlowCallback: UserCancelledFlowCallback? = null
 
-    fun attach(fragment: Fragment, userCancelledFlowCallback: UserCancelledFlowCallback?, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
+    fun attach(fragment: Fragment, userCancelledFlowCallback: UserCancelledFlowCallback?, uiSessionKey: Long, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
       this.fragment = fragment
       this.userCancelledFlowCallback = userCancelledFlowCallback
 
@@ -218,6 +224,8 @@ class DonationCheckoutDelegate(
       additionalSources.forEach { source ->
         disposables += registerErrorSource(source)
       }
+
+      disposables += registerUiSession(uiSessionKey)
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
@@ -231,6 +239,14 @@ class DonationCheckoutDelegate(
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { error ->
           showErrorDialog(error)
+        }
+    }
+
+    private fun registerUiSession(uiSessionKey: Long): Disposable {
+      return DonationError.getErrorsForUiSessionKey(uiSessionKey)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {
+          showErrorDialog(it)
         }
     }
 
@@ -281,6 +297,7 @@ class DonationCheckoutDelegate(
     fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)
+    fun navigateToBankTransferMandate(gatewayRequest: GatewayRequest)
     fun onPaymentComplete(gatewayRequest: GatewayRequest)
     fun onProcessorActionProcessed()
   }

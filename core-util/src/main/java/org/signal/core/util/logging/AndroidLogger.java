@@ -2,6 +2,8 @@ package org.signal.core.util.logging;
 
 import android.annotation.SuppressLint;
 
+import org.signal.core.util.logging.Log;
+
 @SuppressLint("LogNotSignal")
 public final class AndroidLogger extends Log.Logger {
 

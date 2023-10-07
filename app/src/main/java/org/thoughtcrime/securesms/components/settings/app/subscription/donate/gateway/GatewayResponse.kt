@@ -9,13 +9,15 @@ data class GatewayResponse(val gateway: Gateway, val request: GatewayRequest) : 
   enum class Gateway {
     GOOGLE_PAY,
     PAYPAL,
-    CREDIT_CARD;
+    CREDIT_CARD,
+    SEPA_DEBIT;
 
     fun toPaymentSourceType(): PaymentSourceType {
       return when (this) {
         GOOGLE_PAY -> PaymentSourceType.Stripe.GooglePay
         PAYPAL -> PaymentSourceType.PayPal
         CREDIT_CARD -> PaymentSourceType.Stripe.CreditCard
+        SEPA_DEBIT -> PaymentSourceType.Stripe.SEPADebit
       }
     }
   }

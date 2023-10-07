@@ -113,9 +113,38 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
       source to PublishSubject.create()
     }
 
+    private val donationErrorsSubjectUiSessionMap: MutableMap<Long, Subject<DonationError>> = mutableMapOf()
+
     @JvmStatic
     fun getErrorsForSource(donationErrorSource: DonationErrorSource): Observable<DonationError> {
       return donationErrorSubjectSourceMap[donationErrorSource]!!
+    }
+
+    fun getErrorsForUiSessionKey(uiSessionKey: Long): Observable<DonationError> {
+      val subject: Subject<DonationError> = donationErrorsSubjectUiSessionMap[uiSessionKey] ?: PublishSubject.create()
+      donationErrorsSubjectUiSessionMap[uiSessionKey] = subject
+
+      return subject
+    }
+
+    @JvmStatic
+    fun routeBackgroundError(context: Context, uiSessionKey: Long, error: DonationError) {
+      if (error.source == DonationErrorSource.GIFT_REDEMPTION) {
+        routeDonationError(context, error)
+        return
+      }
+
+      val subject: Subject<DonationError>? = donationErrorsSubjectUiSessionMap[uiSessionKey]
+      when {
+        subject != null && subject.hasObservers() -> {
+          Log.i(TAG, "Routing background donation error to uiSessionKey $uiSessionKey dialog", error)
+          subject.onNext(error)
+        }
+        else -> {
+          Log.i(TAG, "Routing background donation error to uiSessionKey $uiSessionKey notification", error)
+          DonationErrorNotifications.displayErrorNotification(context, error)
+        }
+      }
     }
 
     /**

@@ -53,12 +53,12 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
-import org.thoughtcrime.securesms.components.webrtc.CallLinkNullMessageSender;
+import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
@@ -778,7 +778,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     if (state.isCallLink()) {
-      CallLinkNullMessageSender.onSendAnyway(new HashSet<>(changedRecipients));
+      CallLinkProfileKeySender.onSendAnyway(new HashSet<>(changedRecipients));
     }
 
     if (state.getGroupCallState().isConnected()) {

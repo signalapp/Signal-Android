@@ -52,7 +52,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Dividers
@@ -73,7 +72,6 @@ import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
-import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -128,11 +126,11 @@ class CallLinkInfoSheet : ComposeBottomSheetDialogFragment() {
       .toLiveData()
       .observeAsState()
 
-    val participants: ImmutableList<CallParticipant> = if (callParticipantsState?.callState == WebRtcViewModel.State.CALL_CONNECTED) {
-      listOf(CallParticipant(recipient = Recipient.self())) + (callParticipantsState?.allRemoteParticipants?.map { it } ?: emptyList())
-    } else {
-      emptyList()
-    }.toImmutableList()
+    val participants: List<CallParticipant> by webRtcCallViewModel.callParticipantsState
+      .toFlowable(BackpressureStrategy.LATEST)
+      .map { state -> state.allRemoteParticipants }
+      .toLiveData()
+      .observeAsState(emptyList())
 
     val onEditNameClicked: () -> Unit = remember(callLinkDetailsState) {
       {
@@ -249,7 +247,7 @@ private fun SheetPreview() {
 @Composable
 private fun Sheet(
   callLink: CallLinkTable.CallLink,
-  participants: ImmutableList<CallParticipant>,
+  participants: List<CallParticipant>,
   onShareLinkClicked: () -> Unit,
   onEditNameClicked: () -> Unit,
   onToggleAdminApprovalClicked: (Boolean) -> Unit,
@@ -334,6 +332,11 @@ private fun CallLinkMemberRow(
       .fillMaxWidth()
       .padding(Rows.defaultPadding())
   ) {
+    val recipient by Recipient.observable(callParticipant.recipient.id)
+      .toFlowable(BackpressureStrategy.LATEST)
+      .toLiveData()
+      .observeAsState(initial = callParticipant.recipient)
+
     if (LocalInspectionMode.current) {
       Spacer(
         modifier = Modifier
@@ -345,20 +348,20 @@ private fun CallLinkMemberRow(
         factory = ::AvatarImageView,
         modifier = Modifier.size(40.dp)
       ) {
-        it.setAvatarUsingProfile(callParticipant.recipient)
+        it.setAvatarUsingProfile(recipient)
       }
     }
 
     Spacer(modifier = Modifier.width(24.dp))
 
     Text(
-      text = callParticipant.recipient.getShortDisplayName(LocalContext.current),
+      text = recipient.getShortDisplayName(LocalContext.current),
       modifier = Modifier
         .weight(1f)
         .align(Alignment.CenterVertically)
     )
 
-    if (isSelfAdmin && !callParticipant.recipient.isSelf) {
+    if (isSelfAdmin && !recipient.isSelf) {
       Icon(
         imageVector = ImageVector.vectorResource(id = R.drawable.symbol_minus_circle_24),
         contentDescription = null,

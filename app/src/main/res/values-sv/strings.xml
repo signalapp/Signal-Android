@@ -2318,6 +2318,9 @@
         <item quantity="one">%1$d objekt</item>
         <item quantity="other">%1$d objekt</item>
     </plurals>
+    <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
+    <string name="TransferControlView__processing">Bearbetar …</string>
+
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -2996,7 +2999,11 @@
     <string name="preferences_storage__six_months">6 månader</string>
     <string name="preferences_storage__thirty_days">30 dagar</string>
     <string name="preferences_storage__none">Ingen</string>
-    <string name="preferences_storage__s_messages">%1$s meddelanden</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="one">%1$s meddelande</item>
+        <item quantity="other">%1$s meddelanden</item>
+    </plurals>
+
     <string name="preferences_storage__custom">Skräddarsydd</string>
     <string name="preferences_advanced__use_system_emoji">Använd systemets emojier</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att undvika att avslöja din IP-adress för din kontakt. Aktivering försämrar samtalskvaliteten.</string>
@@ -4846,6 +4853,8 @@
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Försök med en annan betalningsmetod eller kontakta din bank för mer information.</string>
+    <!-- PayPal decline code for payment declined -->
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Försök med en annan betalningsmetod eller kontakta din bank för mer information. Om detta var en PayPal-transaktion kontaktar du PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Kontrollera att din betalningsmetod är aktuell i Google Pay och försök igen.</string>
     <!-- Stripe decline code learn more action label -->
@@ -5799,10 +5808,48 @@
         <item quantity="one">Få ett %1$s-märke i %2$d dag</item>
         <item quantity="other">Få ett %1$s-märke i %2$d dagar</item>
     </plurals>
+    <!-- Button label for paying with a bank transfer -->
+    <string name="GatewaySelectorBottomSheet__bank_transfer">Banköverföring</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Betalkort</string>
     <!-- Sheet summary when giving donating for a friend -->
     <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donera åt en vän</string>
+
+    <!-- BankTransferMandateFragment -->
+    <!-- Title of screen displaying the bank transfer mandate -->
+    <string name="BankTransferMandateFragment__bank_transfer">Banköverföring</string>
+    <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
+    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe behandlar donationer till Signal. Signal samlar inte in eller lagrar dina personuppgifter. %1$s</string>
+    <!-- Subtitle learn more of screen displaying bank transfer mandate -->
+    <string name="BankTransferMandateFragment__learn_more">Läs mer</string>
+    <!-- Button label to continue with transfer -->
+    <string name="BankTransferMandateFragment__continue">Fortsätt</string>
+
+    <!-- BankTransferDetailsFragment -->
+    <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Ange dina bankuppgifter och din e-postadress. Din e-post används av Stripe för att skicka uppdateringar om din donation. %1$s</string>
+    <!-- Subtext learn more link text -->
+    <string name="BankTransferDetailsFragment__learn_more">Läs mer</string>
+    <!-- Text field label for name on bank account -->
+    <string name="BankTransferDetailsFragment__name_on_bank_account">Namn på bankkonto</string>
+    <!-- Text field label for IBAN -->
+    <string name="BankTransferDetailsFragment__iban">IBAN</string>
+    <!-- Text field label for email -->
+    <string name="BankTransferDetailsFragment__email">E-post</string>
+    <!-- Text label for button to show user how to find their IBAN number -->
+    <string name="BankTransferDetailsFragment__find_account_numbers">Hitta kontonummer</string>
+    <!-- Donate button label for monthly subscription -->
+    <string name="BankTransferDetailsFragment__donate_s_month">Donera %1$s/månad</string>
+    <!-- Donate button label for one-time -->
+    <string name="BankTransferDetailsFragment__donate_s">Donera %1$s</string>
+    <!-- Error label for IBAN field when number is too short -->
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN-nummer är för kort</string>
+    <!-- Error label for IBAN field when number is too long -->
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN-nummer är för långt</string>
+    <!-- Error label for IBAN field when country is not supported -->
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN-landskod stöds inte</string>
+    <!-- Error label for IBAN field when number is invalid -->
+    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Ogiltigt IBAN-nummer</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Avbryter …</string>

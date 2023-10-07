@@ -17,6 +17,7 @@ import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.push.BankMandate;
 import org.whispersystems.signalservice.internal.push.DonationProcessor;
 import org.whispersystems.signalservice.internal.push.DonationsConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -38,17 +39,18 @@ public class DonationsService {
 
   private final PushServiceSocket pushServiceSocket;
 
-  private final AtomicReference<CacheEntry> donationsConfigurationCache = new AtomicReference<>(null);
+  private final AtomicReference<CacheEntry<DonationsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
+  private final AtomicReference<CacheEntry<BankMandate>>            sepaBankMandateCache        = new AtomicReference<>(null);
 
-  private static class CacheEntry {
-    private final DonationsConfiguration donationsConfiguration;
-    private final long                   expiresAt;
-    private final Locale                 locale;
+  private static class CacheEntry<T> {
+    private final T      cachedValue;
+    private final long   expiresAt;
+    private final Locale locale;
 
-    private CacheEntry(DonationsConfiguration donationsConfiguration, long expiresAt, Locale locale) {
-      this.donationsConfiguration = donationsConfiguration;
-      this.expiresAt              = expiresAt;
-      this.locale                 = locale;
+    private CacheEntry(T cachedValue, long expiresAt, Locale locale) {
+      this.cachedValue = cachedValue;
+      this.expiresAt   = expiresAt;
+      this.locale      = locale;
     }
   }
 
@@ -91,8 +93,8 @@ public class DonationsService {
    * @param currencyCode The currency code for the amount
    * @return A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
-  public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level) {
-    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createStripeOneTimePaymentIntent(currencyCode, Long.parseLong(amount), level), 200));
+  public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level, String paymentMethod) {
+    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createStripeOneTimePaymentIntent(currencyCode, paymentMethod, Long.parseLong(amount), level), 200));
   }
 
   /**
@@ -107,22 +109,42 @@ public class DonationsService {
   }
 
   public ServiceResponse<DonationsConfiguration> getDonationsConfiguration(Locale locale) {
-    CacheEntry cacheEntryOutsideLock = donationsConfigurationCache.get();
+    return getCachedValue(
+        locale,
+        donationsConfigurationCache,
+        pushServiceSocket::getDonationsConfiguration
+    );
+  }
+
+  public ServiceResponse<BankMandate> getBankMandate(Locale locale) {
+    return getCachedValue(
+        locale,
+        sepaBankMandateCache,
+        l -> pushServiceSocket.getBankMandate(l, "SEPA_DEBIT")
+    );
+  }
+
+  private <T> ServiceResponse<T> getCachedValue(Locale locale,
+                                                AtomicReference<CacheEntry<T>> cachedValueReference,
+                                                CacheEntryValueProducer<T> cacheEntryValueProducer
+  )
+  {
+    CacheEntry<T> cacheEntryOutsideLock = cachedValueReference.get();
     if (isNewCacheEntryRequired(cacheEntryOutsideLock, locale)) {
       synchronized (this) {
-        CacheEntry cacheEntryInLock = donationsConfigurationCache.get();
+        CacheEntry<T> cacheEntryInLock = cachedValueReference.get();
         if (isNewCacheEntryRequired(cacheEntryInLock, locale)) {
           return wrapInServiceResponse(() -> {
-            DonationsConfiguration donationsConfiguration = pushServiceSocket.getDonationsConfiguration(locale);
-            donationsConfigurationCache.set(new CacheEntry(donationsConfiguration, System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1), locale));
-            return new Pair<>(donationsConfiguration, 200);
+            T value = cacheEntryValueProducer.produce(locale);
+            cachedValueReference.set(new CacheEntry<>(value, System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1), locale));
+            return new Pair<>(value, 200);
           });
         } else {
-          return wrapInServiceResponse(() -> new Pair<>(cacheEntryInLock.donationsConfiguration, 200));
+          return wrapInServiceResponse(() -> new Pair<>(cacheEntryInLock.cachedValue, 200));
         }
       }
     } else {
-      return wrapInServiceResponse(() -> new Pair<>(cacheEntryOutsideLock.donationsConfiguration, 200));
+      return wrapInServiceResponse(() -> new Pair<>(cacheEntryOutsideLock.cachedValue, 200));
     }
   }
 
@@ -205,9 +227,9 @@ public class DonationsService {
    * @return Client secret for a SetupIntent. It should not be used with the PaymentIntent stripe APIs
    * but instead with the SetupIntent stripe APIs.
    */
-  public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId) {
+  public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId, String type) {
     return wrapInServiceResponse(() -> {
-      StripeClientSecret clientSecret = pushServiceSocket.createStripeSubscriptionPaymentMethod(subscriberId.serialize());
+      StripeClientSecret clientSecret = pushServiceSocket.createStripeSubscriptionPaymentMethod(subscriberId.serialize(), type);
       return new Pair<>(clientSecret, 200);
     });
   }
@@ -219,13 +241,13 @@ public class DonationsService {
    * 400 - request error
    * 409 - level requires a valid currency/amount combination that does not match
    *
-   * @param locale        User locale for proper language presentation
-   * @param currencyCode  3 letter currency code of the desired currency
-   * @param amount        Stringified minimum precision amount
-   * @param level         The badge level to purchase
-   * @param returnUrl     The 'return' url after a successful login and confirmation
-   * @param cancelUrl     The 'cancel' url for a cancelled confirmation
-   * @return              Wrapped response with either an error code or a payment id and approval URL
+   * @param locale       User locale for proper language presentation
+   * @param currencyCode 3 letter currency code of the desired currency
+   * @param amount       Stringified minimum precision amount
+   * @param level        The badge level to purchase
+   * @param returnUrl    The 'return' url after a successful login and confirmation
+   * @param cancelUrl    The 'cancel' url for a cancelled confirmation
+   * @return Wrapped response with either an error code or a payment id and approval URL
    */
   public ServiceResponse<PayPalCreatePaymentIntentResponse> createPayPalOneTimePaymentIntent(Locale locale,
                                                                                              String currencyCode,
@@ -254,13 +276,13 @@ public class DonationsService {
    * 400 - request error
    * 409 - level requires a valid currency/amount combination that does not match
    *
-   * @param currency      3 letter currency code of the desired currency
-   * @param amount        Stringified minimum precision amount
-   * @param level         The badge level to purchase
-   * @param payerId       Passed as a URL parameter back to returnUrl
-   * @param paymentId     Passed as a URL parameter back to returnUrl
-   * @param paymentToken  Passed as a URL parameter back to returnUrl
-   * @return              Wrapped response with either an error code or a payment id
+   * @param currency     3 letter currency code of the desired currency
+   * @param amount       Stringified minimum precision amount
+   * @param level        The badge level to purchase
+   * @param payerId      Passed as a URL parameter back to returnUrl
+   * @param paymentId    Passed as a URL parameter back to returnUrl
+   * @param paymentToken Passed as a URL parameter back to returnUrl
+   * @return Wrapped response with either an error code or a payment id
    */
   public ServiceResponse<PayPalConfirmPaymentIntentResponse> confirmPayPalOneTimePaymentIntent(String currency,
                                                                                                String amount,
@@ -277,22 +299,23 @@ public class DonationsService {
 
   /**
    * Sets up a payment method via PayPal for recurring charges.
-   *
+   * <p>
    * Response Codes
    * 200 - success
    * 403 - subscriberId password mismatches OR account authentication is present
    * 404 - subscriberId is not found or malformed
    *
-   * @param locale        User locale
-   * @param subscriberId  User subscriber id
-   * @param returnUrl     A success URL
-   * @param cancelUrl     A cancel URL
-   * @return              A response with an approval url and token
+   * @param locale       User locale
+   * @param subscriberId User subscriber id
+   * @param returnUrl    A success URL
+   * @param cancelUrl    A cancel URL
+   * @return A response with an approval url and token
    */
   public ServiceResponse<PayPalCreatePaymentMethodResponse> createPayPalPaymentMethod(Locale locale,
                                                                                       SubscriberId subscriberId,
                                                                                       String returnUrl,
-                                                                                      String cancelUrl) {
+                                                                                      String cancelUrl)
+  {
     return wrapInServiceResponse(() -> {
       PayPalCreatePaymentMethodResponse response = pushServiceSocket.createPayPalPaymentMethod(locale, subscriberId.serialize(), returnUrl, cancelUrl);
       return new Pair<>(response, 200);
@@ -301,7 +324,7 @@ public class DonationsService {
 
   /**
    * Sets the given payment method as the default in PayPal
-   *
+   * <p>
    * Response Codes
    * 200 - success
    * 403 - subscriberId password mismatches OR account authentication is present
@@ -338,11 +361,15 @@ public class DonationsService {
     }
   }
 
-  private boolean isNewCacheEntryRequired(CacheEntry cacheEntry, Locale locale) {
+  private <T> boolean isNewCacheEntryRequired(CacheEntry<T> cacheEntry, Locale locale) {
     return cacheEntry == null || cacheEntry.expiresAt < System.currentTimeMillis() || !Objects.equals(locale, cacheEntry.locale);
   }
 
   private interface Producer<T> {
     Pair<T, Integer> produce() throws IOException;
+  }
+
+  interface CacheEntryValueProducer<T> {
+    T produce(Locale locale) throws IOException;
   }
 }

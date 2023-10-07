@@ -32,26 +32,15 @@ class V2ConversationItemTheme(
   }
 
   @ColorInt
-  fun getFooterIconColor(
+  fun getFooterForegroundColor(
     conversationMessage: ConversationMessage
   ): Int {
     if (conversationMessage.messageRecord.isThumbnailAtBottomOfBubble(context)) {
       return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
     }
 
-    return getColor(
-      conversationMessage,
-      conversationContext.getColorizer()::getOutgoingFooterIconColor,
-      conversationContext.getColorizer()::getIncomingFooterIconColor
-    )
-  }
-
-  @ColorInt
-  fun getFooterTextColor(
-    conversationMessage: ConversationMessage
-  ): Int {
-    if (conversationMessage.messageRecord.isThumbnailAtBottomOfBubble(context)) {
-      return ContextCompat.getColor(context, R.color.signal_colorOnCustom)
+    if (conversationMessage.messageRecord.isOutgoing && conversationMessage.messageRecord.hasNoBubble(context) && !conversationContext.hasWallpaper()) {
+      return conversationContext.getColorizer().getIncomingFooterTextColor(context, conversationContext.hasWallpaper())
     }
 
     return getColor(

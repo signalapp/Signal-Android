@@ -62,6 +62,7 @@ public final class WebRtcVideoUtil {
 
     ThreadUtil.runOnMainSync(() -> {
       Camera camera = currentState.getVideoState().requireCamera();
+      camera.setCameraEventListener(null);
       camera.setEnabled(false);
       camera.dispose();
 

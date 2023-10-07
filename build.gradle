@@ -65,7 +65,9 @@ subprojects {
         }
     }
 
-    if (project.name != "Signal-Android" && project.name != "libsignal-service" && project.name != "lintchecks" && !project.name.endsWith("-app") && project.name != "benchmark") {
+    def skipQa = [ 'Signal-Android', 'libsignal-service', 'lintchecks', 'benchmark', 'core-util-jvm', 'logging' ] as Set
+
+    if (!skipQa.contains(project.name) && !project.name.endsWith("-app")) {
         task qa {
             group 'Verification'
             description 'Quality Assurance. Run before pushing'
@@ -93,7 +95,10 @@ task qa {
             ':libsignal-service:test',
             ':libsignal-service:ktlintCheck',
             ':Signal-Android:assemblePlayProdRelease',
-            ':Signal-Android:compilePlayProdInstrumentationAndroidTestSources'
+            ':Signal-Android:compilePlayProdInstrumentationAndroidTestSources',
+            ':microbenchmark:compileReleaseAndroidTestSources',
+            ':core-util-jvm:test',
+            ':core-util-jvm:ktlintCheck'
 }
 
 task clean(type: Delete) {

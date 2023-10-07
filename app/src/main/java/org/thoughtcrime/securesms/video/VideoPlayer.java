@@ -39,7 +39,6 @@ import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.ui.AspectRatioFrameLayout;
 import androidx.media3.ui.LegacyPlayerControlView;
-import androidx.media3.ui.PlayerControlView;
 import androidx.media3.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;

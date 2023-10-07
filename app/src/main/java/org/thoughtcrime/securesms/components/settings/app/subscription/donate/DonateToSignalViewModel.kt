@@ -58,6 +58,7 @@ class DonateToSignalViewModel(
 
   val state = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
   val actions: Observable<DonateToSignalAction> = _actions.observeOn(AndroidSchedulers.mainThread())
+  val uiSessionKey: Long = System.currentTimeMillis()
 
   init {
     initializeOneTimeDonationState(oneTimeDonationRepository)
@@ -178,6 +179,7 @@ class DonateToSignalViewModel(
   private fun createGatewayRequest(snapshot: DonateToSignalState): GatewayRequest {
     val amount = getAmount(snapshot)
     return GatewayRequest(
+      uiSessionKey = uiSessionKey,
       donateToSignalType = snapshot.donateToSignalType,
       badge = snapshot.badge!!,
       label = snapshot.badge!!.description,

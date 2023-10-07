@@ -54,7 +54,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 
-    DonationCheckoutDelegate.ErrorHandler().attach(this, null, errorSource)
+    DonationCheckoutDelegate.ErrorHandler().attach(this, null, args.request.uiSessionKey, errorSource)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
