@@ -423,6 +423,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     onRefreshListener = null;
   }
 
+  public int getSelectedMembersSize() {
+    return contactSearchMediator.getSelectedMembersSize();
+  }
+
   private @NonNull Bundle safeArguments() {
     return getArguments() != null ? getArguments() : new Bundle();
   }

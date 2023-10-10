@@ -121,11 +121,12 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
   @Override
   public void onSelectionChanged() {
+    int selectedMembers = contactsFragment.getSelectedMembersSize();
     int selectedContactsCount = contactsFragment.getTotalMemberCount();
     if (selectedContactsCount == 0) {
       getToolbar().setTitle(getString(R.string.CreateGroupActivity__select_members));
     } else {
-      getToolbar().setTitle(getResources().getQuantityString(R.plurals.CreateGroupActivity__d_members, selectedContactsCount, selectedContactsCount));
+      getToolbar().setTitle(getResources().getQuantityString(R.plurals.CreateGroupActivity__d_members, selectedMembers, selectedMembers));
     }
   }
 
