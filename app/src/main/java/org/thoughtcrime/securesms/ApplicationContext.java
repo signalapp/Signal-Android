@@ -157,6 +157,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("event-bus", () -> EventBus
                               .builder()
                               .logNoSubscriberMessages(false)
+                              .logSubscriberExceptions(BuildConfig.DEBUG)
                               .addIndex(new TransferEventBusIndex())
                               .addIndex(new SecuresmsEventBusIndex())
                               .installDefaultEventBus())
