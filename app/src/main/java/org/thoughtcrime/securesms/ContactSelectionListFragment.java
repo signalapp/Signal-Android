@@ -423,6 +423,9 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     onRefreshListener = null;
   }
 
+  public int getSelectedMems() {
+    return contactSearchMediator.getSelectedMembersSize();
+  }
   private @NonNull Bundle safeArguments() {
     return getArguments() != null ? getArguments() : new Bundle();
   }
