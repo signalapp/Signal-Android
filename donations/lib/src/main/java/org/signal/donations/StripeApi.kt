@@ -122,8 +122,7 @@ class StripeApi(
 
       if (paymentSource.type == PaymentSourceType.Stripe.SEPADebit) {
         parameters["mandate_data[customer_acceptance][type]"] = "online"
-        parameters["mandate_data[customer_acceptance][online][ip_address]"] = "0.0.0.0"
-        parameters["mandate_data[customer_acceptance][online][user_agent]"] = userAgent
+        parameters["mandate_data[customer_acceptance][online][infer_from_client]"] = "true"
       }
 
       val (nextActionUri, returnUri) = postForm("payment_intents/${paymentIntent.intentId}/confirm", parameters).use { response ->
