@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
+    android:id="@+id/button"
+    style="@style/Signal.Widget.Button.Large.Tonal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        style="@style/Signal.Widget.Button.Large.Tonal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        tools:text="Tonal button" />
-</FrameLayout>
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dsl_settings_gutter"
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    android:insetTop="2dp"
+    android:insetBottom="2dp"
+    app:iconGravity="textStart"
+    app:iconSize="32dp"
+    app:iconTint="@null"
+    tools:icon="@drawable/bank_transfer"
+    tools:text="Tonal button"
+    tools:viewBindingIgnore="true" />

@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
@@ -106,7 +105,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
         primaryButton(
           text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
-          icon = DSLSettingsIcon.from(R.drawable.credit_card, NO_TINT),
+          icon = DSLSettingsIcon.from(R.drawable.credit_card, R.color.signal_colorOnPrimary),
           onClick = {
             findNavController().popBackStack()
             val response = GatewayResponse(GatewayResponse.Gateway.CREDIT_CARD, args.request)
@@ -118,9 +117,9 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
       if (state.isSEPADebitAvailable) {
         space(8.dp)
 
-        primaryButton(
+        tonalButton(
           text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__bank_transfer),
-          icon = DSLSettingsIcon.from(R.drawable.credit_card, NO_TINT), // TODO [sepa] -- Final icon
+          icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
           onClick = {
             findNavController().popBackStack()
             val response = GatewayResponse(GatewayResponse.Gateway.SEPA_DEBIT, args.request)
