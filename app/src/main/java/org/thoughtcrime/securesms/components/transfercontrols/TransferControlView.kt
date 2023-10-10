@@ -95,34 +95,56 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
         val slide = currentState.slides.first()
         if (slide.hasVideo()) {
           if (currentState.isOutgoing) {
-            return if (slide.transferState == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-              Mode.UPLOADING_SINGLE_ITEM
-            } else {
-              Mode.RETRY_UPLOADING
+            return when (slide.transferState) {
+              AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
+                Mode.UPLOADING_SINGLE_ITEM
+              }
+
+              AttachmentTable.TRANSFER_PROGRESS_PENDING -> {
+                Mode.PENDING_SINGLE_ITEM
+              }
+
+              else -> {
+                Mode.RETRY_UPLOADING
+              }
             }
           } else {
-            return if (slide.transferState == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-              if (currentState.playableWhileDownloading) {
-                Mode.DOWNLOADING_VIDEO_PLAYABLE
-              } else {
-                Mode.DOWNLOADING_SINGLE_ITEM
+            return when (slide.transferState) {
+              AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
+                if (currentState.playableWhileDownloading) {
+                  Mode.DOWNLOADING_VIDEO_PLAYABLE
+                } else {
+                  Mode.DOWNLOADING_SINGLE_ITEM
+                }
               }
-            } else if (slide.transferState == AttachmentTable.TRANSFER_PROGRESS_FAILED) {
-              Mode.RETRY_DOWNLOADING
-            } else {
-              if (currentState.playableWhileDownloading) {
-                Mode.PENDING_VIDEO_PLAYABLE
-              } else {
-                Mode.PENDING_SINGLE_ITEM
+
+              AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
+                Mode.RETRY_DOWNLOADING
+              }
+
+              else -> {
+                if (currentState.playableWhileDownloading) {
+                  Mode.PENDING_VIDEO_PLAYABLE
+                } else {
+                  Mode.PENDING_SINGLE_ITEM
+                }
               }
             }
           }
         } else {
           return if (currentState.isOutgoing) {
-            if (slide.transferState == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-              Mode.UPLOADING_SINGLE_ITEM
-            } else {
-              Mode.RETRY_UPLOADING
+            when (slide.transferState) {
+              AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
+                Mode.RETRY_UPLOADING
+              }
+
+              AttachmentTable.TRANSFER_PROGRESS_PENDING -> {
+                Mode.PENDING_SINGLE_ITEM
+              }
+
+              else -> {
+                Mode.UPLOADING_SINGLE_ITEM
+              }
             }
           } else {
             return when (slide.transferState) {
