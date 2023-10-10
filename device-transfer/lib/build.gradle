@@ -1,15 +1,23 @@
 plugins {
     id 'signal-library'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'org.signal.devicetransfer'
 }
 
+kapt {
+    arguments {
+        arg('eventBusIndex', 'org.signal.devicetransfer.TransferEventBusIndex')
+    }
+}
+
 dependencies {
     implementation project(':core-util')
     implementation libs.libsignal.android
-    api libs.greenrobot.eventbus
+    api libs.greenrobot.eventbus.core
+    kapt libs.greenrobot.eventbus.annotation
 
     testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
