@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
 
 /**
@@ -122,12 +124,13 @@ private fun DonationPendingBottomSheetContent(
       modifier = Modifier.padding(bottom = 20.dp)
     )
 
+    val context = LocalContext.current
     val learnMore = stringResource(id = R.string.DonationPendingBottomSheet__learn_more)
     val fullString = stringResource(id = R.string.DonationPendingBottomSheet__bank_transfers_usually_take, learnMore)
-    val spanned = SpanUtil.urlSubsequence(fullString, learnMore, "") // TODO [sepa] URL
+    val spanned = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.pending_transfer_url))
     Texts.LinkifiedText(
       textWithUrlSpans = spanned,
-      onUrlClick = {}, // TODO [sepa] URL
+      onUrlClick = { CommunicationActions.openBrowserLink(context, it) },
       style = LocalTextStyle.current.copy(textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurfaceVariant),
       modifier = Modifier.padding(bottom = 48.dp)
     )

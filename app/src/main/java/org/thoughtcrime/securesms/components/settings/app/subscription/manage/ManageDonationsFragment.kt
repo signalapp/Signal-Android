@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -303,7 +304,10 @@ class ManageDonationsFragment :
       )
       .setPositiveButton(android.R.string.ok) { _, _ -> }
       .setNegativeButton(R.string.MySupportPreference__learn_more) { _, _ ->
-        // TODO [sepa] Where this go?
+        CommunicationActions.openBrowserLink(
+          requireContext(),
+          getString(R.string.pending_transfer_url)
+        )
       }
       .show()
   }

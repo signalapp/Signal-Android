@@ -15,6 +15,7 @@
     <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
     <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
     <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
+    <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
