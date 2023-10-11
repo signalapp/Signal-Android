@@ -37,10 +37,6 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public @NonNull PhoneNumberSharingMode getPhoneNumberSharingMode() {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      return PhoneNumberSharingMode.EVERYONE;
-    }
-
     return PhoneNumberSharingMode.deserialize(getInteger(SHARING_MODE, PhoneNumberSharingMode.EVERYONE.serialize()));
   }
 
@@ -49,10 +45,6 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public @NonNull PhoneNumberListingMode getPhoneNumberListingMode() {
-    if (!FeatureFlags.phoneNumberPrivacy()) {
-      return PhoneNumberListingMode.LISTED;
-    }
-
     return PhoneNumberListingMode.deserialize(getInteger(LISTING_MODE, PhoneNumberListingMode.LISTED.serialize()));
   }
 
@@ -85,7 +77,7 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    * All certificate types required according to the feature flags.
    */
   public Collection<CertificateType> getAllCertificateTypes() {
-    return FeatureFlags.phoneNumberPrivacy() ? BOTH_CERTIFICATES : REGULAR_CERTIFICATE;
+    return BOTH_CERTIFICATES;
   }
 
   public enum PhoneNumberSharingMode {
