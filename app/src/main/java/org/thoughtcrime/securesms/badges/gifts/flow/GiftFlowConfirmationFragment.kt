@@ -283,4 +283,8 @@ class GiftFlowConfirmationFragment :
   override fun onUserCancelledPaymentFlow() {
     findNavController().popBackStack(R.id.giftFlowConfirmationFragment, false)
   }
+
+  override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToDonationPendingBottomSheet(gatewayRequest))
+  }
 }

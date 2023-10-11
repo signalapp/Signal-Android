@@ -8,6 +8,7 @@ import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -106,23 +107,19 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
   }
 
   fun waitForOneTimeRedemption(
-    price: FiatMoney,
+    gatewayRequest: GatewayRequest,
     paymentIntentId: String,
-    badgeRecipient: RecipientId,
-    additionalMessage: String?,
-    badgeLevel: Long,
     donationProcessor: DonationProcessor,
-    uiSessionKey: Long,
     isLongRunning: Boolean
   ): Completable {
-    val isBoost = badgeRecipient == Recipient.self().id
+    val isBoost = gatewayRequest.recipientId == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
 
     val waitOnRedemption = Completable.create {
       val donationReceiptRecord = if (isBoost) {
-        DonationReceiptRecord.createForBoost(price)
+        DonationReceiptRecord.createForBoost(gatewayRequest.fiat)
       } else {
-        DonationReceiptRecord.createForGift(price)
+        DonationReceiptRecord.createForGift(gatewayRequest.fiat)
       }
 
       val donationTypeLabel = donationReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
@@ -133,9 +130,9 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null
       val chain = if (isBoost) {
-        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, uiSessionKey, isLongRunning)
+        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, gatewayRequest.uiSessionKey, isLongRunning)
       } else {
-        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel, donationProcessor, uiSessionKey, isLongRunning)
+        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, gatewayRequest.recipientId, gatewayRequest.additionalMessage, gatewayRequest.level, donationProcessor, gatewayRequest.uiSessionKey, isLongRunning)
       }
 
       chain.enqueue { _, jobState ->
@@ -143,6 +140,12 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
           finalJobState = jobState
           countDownLatch.countDown()
         }
+      }
+
+      val timeoutError: DonationError = if (isLongRunning) {
+        DonationError.donationPending(donationErrorSource, gatewayRequest)
+      } else {
+        DonationError.timeoutWaitingForToken(donationErrorSource)
       }
 
       try {
@@ -158,16 +161,16 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
             }
             else -> {
               Log.d(TAG, "$donationTypeLabel request response job chain ignored due to in-progress jobs.", true)
-              it.onError(DonationError.timeoutWaitingForToken(donationErrorSource, isLongRunning))
+              it.onError(timeoutError)
             }
           }
         } else {
           Log.d(TAG, "$donationTypeLabel job chain timed out waiting for job completion.", true)
-          it.onError(DonationError.timeoutWaitingForToken(donationErrorSource, isLongRunning))
+          it.onError(timeoutError)
         }
       } catch (e: InterruptedException) {
         Log.d(TAG, "$donationTypeLabel job chain interrupted", e, true)
-        it.onError(DonationError.timeoutWaitingForToken(donationErrorSource, isLongRunning))
+        it.onError(timeoutError)
       }
     }
 

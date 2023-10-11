@@ -83,7 +83,7 @@ class PayPalPaymentInProgressViewModel(
     Log.d(TAG, "Beginning subscription update...", true)
 
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
-    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey, false))
+    disposables += monthlyDonationRepository.cancelActiveSubscriptionIfNecessary().andThen(monthlyDonationRepository.setSubscriptionLevel(request, false))
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
@@ -153,13 +153,9 @@ class PayPalPaymentInProgressViewModel(
       }
       .flatMapCompletable { response ->
         oneTimeDonationRepository.waitForOneTimeRedemption(
-          price = request.fiat,
+          gatewayRequest = request,
           paymentIntentId = response.paymentId,
-          badgeRecipient = request.recipientId,
-          additionalMessage = request.additionalMessage,
-          badgeLevel = request.level,
           donationProcessor = DonationProcessor.PAYPAL,
-          uiSessionKey = request.uiSessionKey,
           isLongRunning = false
         )
       }
@@ -193,7 +189,7 @@ class PayPalPaymentInProgressViewModel(
       .flatMapCompletable { payPalRepository.setDefaultPaymentMethod(it.paymentId) }
       .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, PaymentSourceType.PayPal)) }
 
-    disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request.level.toString(), request.uiSessionKey, false))
+    disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request, false))
       .subscribeBy(
         onError = { throwable ->
           Log.w(TAG, "Failure in monthly payment pipeline...", throwable, true)

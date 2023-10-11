@@ -8,6 +8,7 @@ import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeError
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 
 sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : Exception(cause) {
 
@@ -92,7 +93,7 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      * Timeout elapsed while the user was waiting for badge redemption to complete for a long-running payment.
      * This is not an indication that redemption failed, just that it could take a few days to process the payment.
      */
-    class DonationPending(source: DonationErrorSource) : BadgeRedemptionError(source, Exception("Long-running donation is still pending."))
+    class DonationPending(source: DonationErrorSource, val gatewayRequest: GatewayRequest) : BadgeRedemptionError(source, Exception("Long-running donation is still pending."))
 
     /**
      * Timeout elapsed while the user was waiting for badge redemption to complete. This is not an indication that
@@ -216,13 +217,10 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     fun invalidCurrencyForOneTimeDonation(source: DonationErrorSource): DonationError = OneTimeDonationError.InvalidCurrencyError(source)
 
     @JvmStatic
-    fun timeoutWaitingForToken(source: DonationErrorSource, isLongRunning: Boolean): DonationError {
-      return if (isLongRunning) {
-        BadgeRedemptionError.DonationPending(source)
-      } else {
-        BadgeRedemptionError.TimeoutWaitingForTokenError(source)
-      }
-    }
+    fun timeoutWaitingForToken(source: DonationErrorSource): DonationError = BadgeRedemptionError.TimeoutWaitingForTokenError(source)
+
+    @JvmStatic
+    fun donationPending(source: DonationErrorSource, gatewayRequest: GatewayRequest) = BadgeRedemptionError.DonationPending(source, gatewayRequest)
 
     @JvmStatic
     fun genericBadgeRedemptionFailure(source: DonationErrorSource): DonationError = BadgeRedemptionError.GenericError(source)

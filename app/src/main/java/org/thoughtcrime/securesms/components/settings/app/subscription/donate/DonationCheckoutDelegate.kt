@@ -210,11 +210,11 @@ class DonationCheckoutDelegate(
 
     private var fragment: Fragment? = null
     private var errorDialog: DialogInterface? = null
-    private var userCancelledFlowCallback: UserCancelledFlowCallback? = null
+    private var errorHandlerCallback: ErrorHandlerCallback? = null
 
-    fun attach(fragment: Fragment, userCancelledFlowCallback: UserCancelledFlowCallback?, uiSessionKey: Long, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
+    fun attach(fragment: Fragment, errorHandlerCallback: ErrorHandlerCallback?, uiSessionKey: Long, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
       this.fragment = fragment
-      this.userCancelledFlowCallback = userCancelledFlowCallback
+      this.errorHandlerCallback = errorHandlerCallback
 
       val disposables = LifecycleDisposable()
       fragment.viewLifecycleOwner.lifecycle.addObserver(this)
@@ -231,7 +231,7 @@ class DonationCheckoutDelegate(
     override fun onDestroy(owner: LifecycleOwner) {
       errorDialog?.dismiss()
       fragment = null
-      userCancelledFlowCallback = null
+      errorHandlerCallback = null
     }
 
     private fun registerErrorSource(errorSource: DonationErrorSource): Disposable {
@@ -264,7 +264,7 @@ class DonationCheckoutDelegate(
 
       if (throwable is DonationError.BadgeRedemptionError.DonationPending) {
         Log.d(TAG, "Long-running donation is still pending.", true)
-        // TODO [sepa] Pop donation pending sheet.
+        errorHandlerCallback?.navigateToDonationPending(throwable.gatewayRequest)
         return
       }
 
@@ -295,11 +295,12 @@ class DonationCheckoutDelegate(
     }
   }
 
-  interface UserCancelledFlowCallback {
+  interface ErrorHandlerCallback {
     fun onUserCancelledPaymentFlow()
+    fun navigateToDonationPending(gatewayRequest: GatewayRequest)
   }
 
-  interface Callback : UserCancelledFlowCallback {
+  interface Callback : ErrorHandlerCallback {
     fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)

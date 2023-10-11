@@ -432,4 +432,8 @@ class DonateToSignalFragment :
   override fun onUserCancelledPaymentFlow() {
     findNavController().popBackStack(R.id.donateToSignalFragment, false)
   }
+
+  override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(gatewayRequest))
+  }
 }
