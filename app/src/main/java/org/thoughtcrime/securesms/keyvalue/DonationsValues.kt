@@ -15,6 +15,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
@@ -108,6 +109,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * awaiting the background task.
      */
     private const val IS_GOOGLE_PAY_READY = "subscription.is.google.pay.ready"
+
+    /**
+     * Appended to whenever we complete a donation redemption (or gift send) for a bank transfer.
+     * Popped from whenever we enter the conversation list.
+     */
+    private const val DONATION_COMPLETE_QUEUE = "donation.complete.queue"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -469,6 +476,30 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   var subscriptionEndOfPeriodConversionStarted by longValue(SUBSCRIPTION_EOP_STARTED_TO_CONVERT, 0L)
   var subscriptionEndOfPeriodRedemptionStarted by longValue(SUBSCRIPTION_EOP_STARTED_TO_REDEEM, 0L)
   var subscriptionEndOfPeriodRedeemed by longValue(SUBSCRIPTION_EOP_REDEEMED, 0L)
+
+  fun appendToDonationCompletionList(donationCompleted: DonationCompletedQueue.DonationCompleted) {
+    synchronized(this) {
+      val pendingBytes = getBlob(DONATION_COMPLETE_QUEUE, null)
+      val queue: DonationCompletedQueue = pendingBytes?.let { DonationCompletedQueue.ADAPTER.decode(pendingBytes) } ?: DonationCompletedQueue()
+      val newQueue: DonationCompletedQueue = queue.copy(donationsCompleted = queue.donationsCompleted + donationCompleted)
+
+      putBlob(DONATION_COMPLETE_QUEUE, newQueue.encode())
+    }
+  }
+
+  fun consumeDonationCompletionList(): List<DonationCompletedQueue.DonationCompleted> {
+    synchronized(this) {
+      val pendingBytes = getBlob(DONATION_COMPLETE_QUEUE, null)
+      if (pendingBytes == null) {
+        return emptyList()
+      } else {
+        val queue: DonationCompletedQueue = DonationCompletedQueue.ADAPTER.decode(pendingBytes)
+        remove(DONATION_COMPLETE_QUEUE)
+
+        return queue.donationsCompleted
+      }
+    }
+  }
 
   private fun generateRequestCredential(): ReceiptCredentialRequestContext {
     Log.d(TAG, "Generating request credentials context for token redemption...", true)

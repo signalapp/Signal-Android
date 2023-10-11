@@ -272,3 +272,11 @@ message ThreadMergeEvent {
 message SessionSwitchoverEvent {
     string e164 = 1;
 }
+
+message DonationCompletedQueue {
+    message DonationCompleted {
+        int64 level = 1;
+    }
+
+    repeated DonationCompleted donationsCompleted = 1;
+}

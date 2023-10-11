@@ -17,11 +17,13 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.signal.libsignal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -59,8 +61,8 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private final String              paymentIntentId;
   private final long                badgeLevel;
   private final DonationProcessor   donationProcessor;
-  private final long                uiSessionKey;
-  private final boolean             isLongRunning;
+  private final long    uiSessionKey;
+  private final boolean isLongRunningDonationPaymentType;
 
   private static String resolveQueue(DonationErrorSource donationErrorSource, boolean isLongRunning) {
     String baseQueue = donationErrorSource == DonationErrorSource.BOOST ? BOOST_QUEUE : GIFT_QUEUE;
@@ -96,7 +98,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                         boolean isLongRunning)
   {
     BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL), donationProcessor, uiSessionKey, isLongRunning);
-    DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost(uiSessionKey);
+    DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost(uiSessionKey, isLongRunning);
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
@@ -131,16 +133,16 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                          long badgeLevel,
                                          @NonNull DonationProcessor donationProcessor,
                                          long uiSessionKey,
-                                         boolean isLongRunning)
+                                         boolean isLongRunningDonationPaymentType)
   {
     super(parameters);
-    this.requestContext      = requestContext;
-    this.paymentIntentId     = paymentIntentId;
-    this.donationErrorSource = donationErrorSource;
-    this.badgeLevel          = badgeLevel;
-    this.donationProcessor   = donationProcessor;
-    this.uiSessionKey        = uiSessionKey;
-    this.isLongRunning       = isLongRunning;
+    this.requestContext                   = requestContext;
+    this.paymentIntentId                  = paymentIntentId;
+    this.donationErrorSource              = donationErrorSource;
+    this.badgeLevel                       = badgeLevel;
+    this.donationProcessor                = donationProcessor;
+    this.uiSessionKey                     = uiSessionKey;
+    this.isLongRunningDonationPaymentType = isLongRunningDonationPaymentType;
   }
 
   @Override
@@ -150,7 +152,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                            .putLong(DATA_BADGE_LEVEL, badgeLevel)
                                                            .putString(DATA_DONATION_PROCESSOR, donationProcessor.getCode())
                                                            .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
-                                                           .putBoolean(DATA_IS_LONG_RUNNING, isLongRunning);
+                                                           .putBoolean(DATA_IS_LONG_RUNNING, isLongRunningDonationPaymentType);
 
     if (requestContext != null) {
       builder.putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
@@ -170,7 +172,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
-    if (isLongRunning) {
+    if (isLongRunningDonationPaymentType) {
       return TimeUnit.DAYS.toMillis(1);
     } else {
       return super.getNextRunAttemptBackoff(pastAttemptCount, exception);
@@ -214,10 +216,22 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       setOutputData(new JsonJobData.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
                                                               receiptCredentialPresentation.serialize())
                                              .serialize());
+
+      enqueueDonationComplete(receiptCredentialPresentation.getReceiptLevel());
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();
     }
+  }
+
+  private void enqueueDonationComplete(long receiptLevel) {
+    if (donationErrorSource != DonationErrorSource.GIFT || !isLongRunningDonationPaymentType) {
+      return;
+    }
+
+    SignalStore.donationsValues().appendToDonationCompletionList(
+        new DonationCompletedQueue.DonationCompleted.Builder().level(receiptLevel).build()
+    );
   }
 
   private void handleApplicationError(Context context, ServiceResponse<ReceiptCredentialResponse> response, @NonNull DonationErrorSource donationErrorSource) throws Exception {
@@ -304,22 +318,22 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     public @NonNull BoostReceiptRequestResponseJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
-      String              paymentIntentId      = data.getString(DATA_PAYMENT_INTENT_ID);
-      DonationErrorSource donationErrorSource  = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.BOOST.serialize()));
-      long                badgeLevel           = data.getLongOrDefault(DATA_BADGE_LEVEL, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
-      String              rawDonationProcessor = data.getStringOrDefault(DATA_DONATION_PROCESSOR, DonationProcessor.STRIPE.getCode());
-      DonationProcessor   donationProcessor    = DonationProcessor.fromCode(rawDonationProcessor);
-      long                uiSessionKey         = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
-      boolean             isLongRunning        = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
+      String              paymentIntentId                  = data.getString(DATA_PAYMENT_INTENT_ID);
+      DonationErrorSource donationErrorSource              = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.BOOST.serialize()));
+      long                badgeLevel                       = data.getLongOrDefault(DATA_BADGE_LEVEL, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
+      String              rawDonationProcessor             = data.getStringOrDefault(DATA_DONATION_PROCESSOR, DonationProcessor.STRIPE.getCode());
+      DonationProcessor   donationProcessor                = DonationProcessor.fromCode(rawDonationProcessor);
+      long                uiSessionKey                     = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
+      boolean             isLongRunningDonationPaymentType = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
 
       try {
         if (data.hasString(DATA_REQUEST_BYTES)) {
           byte[]                          blob           = data.getStringAsBlob(DATA_REQUEST_BYTES);
           ReceiptCredentialRequestContext requestContext = new ReceiptCredentialRequestContext(blob);
 
-          return new BoostReceiptRequestResponseJob(parameters, requestContext, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey, isLongRunning);
+          return new BoostReceiptRequestResponseJob(parameters, requestContext, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey, isLongRunningDonationPaymentType);
         } else {
-          return new BoostReceiptRequestResponseJob(parameters, null, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey, isLongRunning);
+          return new BoostReceiptRequestResponseJob(parameters, null, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor, uiSessionKey, isLongRunningDonationPaymentType);
         }
       } catch (InvalidInputException e) {
         throw new IllegalStateException(e);

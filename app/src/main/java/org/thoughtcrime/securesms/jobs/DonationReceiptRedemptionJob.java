@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -44,18 +45,21 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String DATA_GIFT_MESSAGE_ID                  = "data.gift.message.id";
   public static final String DATA_PRIMARY                          = "data.primary";
   public static final String DATA_UI_SESSION_KEY                   = "data.ui.session.key";
+  public static final String DATA_IS_LONG_RUNNING                  = "data.is.long.running";
 
   private final long                giftMessageId;
   private final boolean             makePrimary;
   private final DonationErrorSource errorSource;
-  private final long                uiSessionKey;
+  private final long    uiSessionKey;
+  private final boolean isLongRunningDonationPaymentType;
 
-  public static DonationReceiptRedemptionJob createJobForSubscription(@NonNull DonationErrorSource errorSource, long uiSessionKey) {
+  public static DonationReceiptRedemptionJob createJobForSubscription(@NonNull DonationErrorSource errorSource, long uiSessionKey, boolean isLongRunningDonationPaymentType) {
     return new DonationReceiptRedemptionJob(
         NO_ID,
         false,
         errorSource,
         uiSessionKey,
+        isLongRunningDonationPaymentType,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -66,12 +70,13 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .build());
   }
 
-  public static DonationReceiptRedemptionJob createJobForBoost(long uiSessionKey) {
+  public static DonationReceiptRedemptionJob createJobForBoost(long uiSessionKey, boolean isLongRunningDonationPaymentType) {
     return new DonationReceiptRedemptionJob(
         NO_ID,
         false,
         DonationErrorSource.BOOST,
         uiSessionKey,
+        isLongRunningDonationPaymentType,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -82,7 +87,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   public static JobManager.Chain createJobChainForKeepAlive() {
-    DonationReceiptRedemptionJob       redemptionJob                      = createJobForSubscription(DonationErrorSource.KEEP_ALIVE, -1L);
+    DonationReceiptRedemptionJob       redemptionJob                      = createJobForSubscription(DonationErrorSource.KEEP_ALIVE, -1L, false);
     RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
@@ -98,6 +103,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         primary,
         DonationErrorSource.GIFT_REDEMPTION,
         -1L,
+        false,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -115,12 +121,13 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                                   .then(multiDeviceProfileContentUpdateJob);
   }
 
-  private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, @NonNull Job.Parameters parameters) {
+  private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, boolean isLongRunning, @NonNull Job.Parameters parameters) {
     super(parameters);
     this.giftMessageId = giftMessageId;
     this.makePrimary   = primary;
     this.errorSource   = errorSource;
-    this.uiSessionKey  = uiSessionKey;
+    this.uiSessionKey                     = uiSessionKey;
+    this.isLongRunningDonationPaymentType = isLongRunning;
   }
 
   @Override
@@ -130,6 +137,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                    .putLong(DATA_GIFT_MESSAGE_ID, giftMessageId)
                    .putBoolean(DATA_PRIMARY, makePrimary)
                    .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
+                   .putBoolean(DATA_IS_LONG_RUNNING, isLongRunningDonationPaymentType)
                    .serialize();
   }
 
@@ -201,6 +209,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     }
 
     Log.i(TAG, "Successfully redeemed token with response code " + response.getStatus() + "... isForSubscription: " + isForSubscription(), true);
+    enqueueDonationComplete(presentation.getReceiptLevel());
 
     if (isForSubscription()) {
       Log.d(TAG, "Clearing subscription failure", true);
@@ -278,6 +287,22 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     return Objects.equals(getParameters().getQueue(), SUBSCRIPTION_QUEUE);
   }
 
+  private void enqueueDonationComplete(long receiptLevel) {
+    if (errorSource == DonationErrorSource.GIFT || errorSource == DonationErrorSource.GIFT_REDEMPTION) {
+      Log.i(TAG, "Skipping donation complete sheet for GIFT related redemption.");
+      return;
+    }
+
+    if (uiSessionKey == -1L || !isLongRunningDonationPaymentType) {
+      Log.i(TAG, "Skipping donation complete sheet for state " + uiSessionKey + ", " + isLongRunningDonationPaymentType);
+      return;
+    }
+
+    SignalStore.donationsValues().appendToDonationCompletionList(
+        new DonationCompletedQueue.DonationCompleted.Builder().level(receiptLevel).build()
+    );
+  }
+
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
     return e instanceof RetryableException;
@@ -291,13 +316,14 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     public @NonNull DonationReceiptRedemptionJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
-      String              serializedErrorSource = data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.UNKNOWN.serialize());
-      long                messageId             = data.getLongOrDefault(DATA_GIFT_MESSAGE_ID, NO_ID);
-      boolean             primary               = data.getBooleanOrDefault(DATA_PRIMARY, false);
-      DonationErrorSource errorSource           = DonationErrorSource.deserialize(serializedErrorSource);
-      long                uiSessionKey          = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
+      String              serializedErrorSource            = data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.UNKNOWN.serialize());
+      long                messageId                        = data.getLongOrDefault(DATA_GIFT_MESSAGE_ID, NO_ID);
+      boolean             primary                          = data.getBooleanOrDefault(DATA_PRIMARY, false);
+      DonationErrorSource errorSource                      = DonationErrorSource.deserialize(serializedErrorSource);
+      long                uiSessionKey                     = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
+      boolean             isLongRunningDonationPaymentType = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
 
-      return new DonationReceiptRedemptionJob(messageId, primary, errorSource, uiSessionKey, parameters);
+      return new DonationReceiptRedemptionJob(messageId, primary, errorSource, uiSessionKey, isLongRunningDonationPaymentType, parameters);
     }
   }
 }
