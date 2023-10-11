@@ -604,7 +604,12 @@ public class ThumbnailView extends FrameLayout {
       bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
     }
 
-    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
+    final GlideRequest<Bitmap> resizedRequest = applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
+    if (placeholderBlur != null) {
+      return resizedRequest.centerCrop();
+    } else {
+      return resizedRequest;
+    }
   }
 
   private <TranscodeType> GlideRequest<TranscodeType> applySizing(@NonNull GlideRequest<TranscodeType> request) {
