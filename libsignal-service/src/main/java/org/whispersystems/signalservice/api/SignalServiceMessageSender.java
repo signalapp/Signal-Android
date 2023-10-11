@@ -1672,7 +1672,13 @@ public class SignalServiceMessageSender {
 
     if (keysMessage.getStorageService().isPresent()) {
       builder.storageService(ByteString.of(keysMessage.getStorageService().get().serialize()));
-    } else {
+    }
+
+    if (keysMessage.getMaster().isPresent()) {
+      builder.master(ByteString.of(keysMessage.getMaster().get().serialize()));
+    }
+
+    if (builder.storageService == null && builder.master == null) {
       Log.w(TAG, "Invalid keys message!");
     }
 

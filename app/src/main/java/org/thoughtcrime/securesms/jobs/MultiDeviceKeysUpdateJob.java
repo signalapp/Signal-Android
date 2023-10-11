@@ -73,7 +73,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
     SignalServiceMessageSender messageSender     = ApplicationDependencies.getSignalServiceMessageSender();
     StorageKey                 storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
-    messageSender.sendSyncMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.ofNullable(storageServiceKey))),
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.ofNullable(storageServiceKey), Optional.of(SignalStore.svr().getOrCreateMasterKey()))),
                                   UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
