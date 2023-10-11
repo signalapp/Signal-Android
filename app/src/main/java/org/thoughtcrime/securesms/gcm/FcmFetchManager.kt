@@ -48,7 +48,7 @@ object FcmFetchManager {
   val WEBSOCKET_DRAIN_TIMEOUT = 5.minutes.inWholeMilliseconds
 
   @Volatile
-  private var activeCount = 0
+  private var last = 0L
 
   @Volatile
   private var highPriority = false
@@ -92,7 +92,7 @@ object FcmFetchManager {
     NotificationManagerCompat.from(context).cancel(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID)
   }
 
-  private fun fetch(context: Context) {
+  private fun fetch(context: Context, now: Long) {
     val hasHighPriorityContext = highPriority
 
     val metricId = SignalLocalMetrics.PushWebsocketFetch.startFetch()
@@ -108,9 +108,8 @@ object FcmFetchManager {
     }
 
     synchronized(this) {
-      activeCount--
 
-      if (activeCount <= 0) {
+      if (last <= now) {
         Log.i(TAG, "No more active. Stopping.")
         context.stopService(Intent(context, FcmFetchBackgroundService::class.java))
         FcmFetchForegroundService.stopServiceIfNecessary(context)
@@ -130,12 +129,13 @@ object FcmFetchManager {
       if (highPriority) {
         this.highPriority = true
       }
-      val performedReplace = EXECUTOR.enqueue { fetch(context) }
+      val now = System.nanoTime()
+      val performedReplace = EXECUTOR.enqueue { fetch(context, now) }
       if (performedReplace) {
         Log.i(TAG, "Already have one running and one enqueued. Ignoring.")
       } else {
-        activeCount++
-        Log.i(TAG, "Incrementing active count to $activeCount")
+        last = now
+        Log.i(TAG, "Updating last event to $last")
       }
     }
   }
