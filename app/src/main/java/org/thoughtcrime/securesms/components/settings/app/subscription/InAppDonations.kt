@@ -28,7 +28,7 @@ object InAppDonations {
       PaymentSourceType.PayPal -> isPayPalAvailableForDonateToSignalType(donateToSignalType)
       PaymentSourceType.Stripe.CreditCard -> isCreditCardAvailable()
       PaymentSourceType.Stripe.GooglePay -> isGooglePayAvailable()
-      PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailable()
+      PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(donateToSignalType)
       PaymentSourceType.Unknown -> false
     }
   }
@@ -66,5 +66,13 @@ object InAppDonations {
    */
   fun isSEPADebitAvailable(): Boolean {
     return FeatureFlags.sepaDebitDonations()
+  }
+
+  /**
+   * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number
+   * and donation type.
+   */
+  fun isSEPADebitAvailableForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
+    return donateToSignalType != DonateToSignalType.GIFT && FeatureFlags.sepaDebitDonations()
   }
 }
