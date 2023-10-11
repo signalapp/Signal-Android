@@ -2627,7 +2627,7 @@
         <item quantity="other">%1$d عنصر</item>
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
-    <string name="TransferControlView__processing">Processing…</string>
+    <string name="TransferControlView__processing">جارٍ المعالجة…</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -5290,7 +5290,7 @@
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">يُرجى محاولة القيام بطريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
     <!-- PayPal decline code for payment declined -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Try another payment method or contact your bank for more information. If this was a PayPal transaction contact PayPal.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">يُرجى اللجوء إلى طريقة أخرى للدفع أو التواصل مع مصرفك للمزيد من المعلومات. وإذا كان الأمر يتعلق بمعاملة PayPal فيُرجى التواصل مع PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">يُرجى التحقق من أن طريقة دفعك في Google Pay حديثة ثم المحاولة مرة أخرى.</string>
     <!-- Stripe decline code learn more action label -->
@@ -6329,7 +6329,7 @@
         <item quantity="other">احصل على شارة %1$s لمدة %2$d يوم</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
-    <string name="GatewaySelectorBottomSheet__bank_transfer">Bank transfer</string>
+    <string name="GatewaySelectorBottomSheet__bank_transfer">تحويل مصرفي</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">بطاقة الائتمان أو الخصم</string>
     <!-- Sheet summary when giving donating for a friend -->
@@ -6337,9 +6337,9 @@
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
-    <string name="BankTransferMandateFragment__bank_transfer">Bank Transfer</string>
+    <string name="BankTransferMandateFragment__bank_transfer">تحويل مصرفي</string>
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
-    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe processes donations made to Signal. Signal does not collect or store your personal information. %1$s</string>
+    <string name="BankTransferMandateFragment__stripe_processes_donations">يُعالج Stripe التبرّعات المقدمة لسيجنال. لا يقوم سيجنال بجمع أو تخزين معلوماتك الشخصية. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">معرفة المزيد</string>
     <!-- Button label to continue with transfer -->
@@ -6347,29 +6347,29 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email address. Your email is used by Stripe to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">يُرجى إدخال معلومات تفاصيل حسابك المصرفي وبريدك الإلكتروني. يستخدم Stripe بريدك الإلكتروني لإرسال تحديثات متعلقة بتبرعاتك. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">معرفة المزيد</string>
     <!-- Text field label for name on bank account -->
-    <string name="BankTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
+    <string name="BankTransferDetailsFragment__name_on_bank_account">الاسم كما يظهر في الحساب المصرفي</string>
     <!-- Text field label for IBAN -->
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">البريد الإلكتروني</string>
     <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_numbers">Find account numbers</string>
+    <string name="BankTransferDetailsFragment__find_account_numbers">العثور على أرقام الحساب</string>
     <!-- Donate button label for monthly subscription -->
-    <string name="BankTransferDetailsFragment__donate_s_month">Donate %1$s/month</string>
+    <string name="BankTransferDetailsFragment__donate_s_month">تبرّع بـ %1$s/شهريًا</string>
     <!-- Donate button label for one-time -->
-    <string name="BankTransferDetailsFragment__donate_s">Donate %1$s</string>
+    <string name="BankTransferDetailsFragment__donate_s">تبرّع لـ %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN number is too short</string>
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">رقم IBAN قصير جدًا</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN number is too long</string>
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">رقم IBAN طويل جدًا</string>
     <!-- Error label for IBAN field when country is not supported -->
-    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN country code is not supported</string>
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">رقم IBAN الخاص ببلدك غير مدعوم</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Invalid IBAN number</string>
+    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">رقم IBAN غير صحيح</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">جارٍ الإلغاء…</string>

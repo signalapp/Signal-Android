@@ -229,7 +229,7 @@
     <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
     <string name="CommunicationActions_send_email">E-mail verzenden</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Er is al een telefoonoproep gaande.</string>
-    <string name="CommunicationActions_start_voice_call">Spraak-oproep beginnen?</string>
+    <string name="CommunicationActions_start_voice_call">Spraakoproep beginnen?</string>
     <string name="CommunicationActions_cancel">Annuleren</string>
     <string name="CommunicationActions_call">Bellen</string>
     <string name="CommunicationActions_insecure_call">Onbeveiligde oproep</string>
@@ -598,7 +598,7 @@
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit op een later moment niet alsnog doen.</string>
     <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
     <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
-    <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
+    <string name="ChooseBackupFragment__learn_more">Meer lezen</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Geen bestandsbrowser beschikbaar</string>
 
     <!-- RestoreBackupFragment -->
@@ -626,7 +626,7 @@
     <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
     <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal-app en tik op “Back-upgegevens terugzetten”. %1$s"</string>
-    <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
+    <string name="BackupsPreferenceFragment__learn_more">Meer lezen</string>
     <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">Back-up verifiëren…</string>
@@ -849,7 +849,7 @@
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Groep verlaten?</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult dit groepsgesprek nog wel kunnen teruglezen maar je zult niet langer berichten kunnen verzenden of ontvangen.</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in deze groep niet langer berichten kunnen verzenden of ontvangen.</string>
     <string name="LeaveGroupDialog_leave">Verlaten</string>
     <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
     <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
@@ -924,7 +924,7 @@
     <string name="AddMembersActivity__add_members">Groepsleden toevoegen</string>
 
     <!-- AddGroupDetailsFragment -->
-    <string name="AddGroupDetailsFragment__name_this_group">Geef dit groepsgesprek een naam</string>
+    <string name="AddGroupDetailsFragment__name_this_group">Geef deze groep een naam</string>
     <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
     <string name="AddGroupDetailsFragment__create">Aanmaken</string>
     <string name="AddGroupDetailsFragment__members">Leden</string>
@@ -932,7 +932,7 @@
     <string name="AddGroupDetailsFragment__group_name_required">Groepsnaam (vereist)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Groepsnaam (optioneel)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
-    <string name="AddGroupDetailsFragment__group_creation_failed">Nieuw groepsgesprek aanmaken is mislukt</string>
+    <string name="AddGroupDetailsFragment__group_creation_failed">Nieuwe groep aanmaken is mislukt</string>
     <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
     <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
     <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
@@ -952,7 +952,7 @@
     </plurals>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
-    <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
+    <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepen nog niet. Zij moeten Signal bijwerken.</string>
     <string name="ManageGroupActivity_not_announcement_capable">Tenminste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
@@ -1128,7 +1128,7 @@
     <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
+    <string name="LearnMoreTextView_learn_more">Meer lezen</string>
 
     <string name="SpanUtil__read_more">Meer lezen</string>
 
@@ -1302,7 +1302,7 @@
     <string name="MessageRecord_you_removed_s">Je hebt %1$s verwijderd.</string>
     <string name="MessageRecord_s_removed_s">%1$s heeft %2$s verwijderd.</string>
     <string name="MessageRecord_s_removed_you_from_the_group">%1$s heeft je verwijderd uit de groep.</string>
-    <string name="MessageRecord_you_left_the_group">Je bent niet langer lid van deze groep.</string>
+    <string name="MessageRecord_you_left_the_group">Je hebt de groep verlaten.</string>
     <string name="MessageRecord_s_left_the_group">%1$s heeft de groep verlaten.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Je bent niet langer lid van de groep.</string>
     <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s is niet langer lid van de groep.</string>
@@ -2319,7 +2319,7 @@
         <item quantity="other">%1$d items</item>
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
-    <string name="TransferControlView__processing">Processing…</string>
+    <string name="TransferControlView__processing">Aan het verwerken…</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -2468,7 +2468,7 @@
 
     <!-- ConversationUpdateItem -->
     <string name="ConversationUpdateItem_loading">Aan het laden</string>
-    <string name="ConversationUpdateItem_learn_more">Meer leren hierover</string>
+    <string name="ConversationUpdateItem_learn_more">Meer lezen</string>
     <string name="ConversationUpdateItem_join_call">Aan oproep deelnemen</string>
     <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
     <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
@@ -2477,7 +2477,7 @@
     <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Verzoek blokkeren</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Deze persoon is een onbekende, je zit zelfs niet in een groepsgesprek met deze persoon. Overweeg daarom zorgvuldig of je dit gespreksverzoek wilt aanvaarden.</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt geen gemeenschappelijke groepen met deze persoon. Beoordeel dit gespreksverzoek zorgvuldig.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">In deze groep zit niemand met wie je eerder een gesprek hebt gevoerd, overweeg daarom zorgvuldig of je wel lid wilt worden.</string>
     <string name="ConversationUpdateItem_view">Weergeven</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Zodra je een bericht verzendt zal de timer voor verdwijnende berichten op %1$s worden ingesteld.</string>
@@ -2656,7 +2656,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Afleveringsprobleem</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Een bericht, media, sticker, emoji-reactie, of een bevestiging dat een bericht gelezen is van %1$s kan niet aan jou worden afgeleverd. Het kan zijn dat hij of zij iets probeerde naar je te verzenden in een één-op-één-gesprek of in een groepsgesprek.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Een bericht, media, sticker, emoji-reactie, of leesbevestiging van %1$s kon niet aan jou worden afgeleverd. Het kan zijn dat hij of zij iets naar je probeerde te verzenden in een één-op-één-gesprek of in een groepsgesprek.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Een bericht, media, sticker, emoji-reactie, of een bevestiging dat een bericht gelezen is van %1$s kan niet aan jou worden afgeleverd.</string>
 
     <!-- profile_create_activity -->
@@ -3045,7 +3045,7 @@
     <string name="preferences_off">Uit</string>
     <string name="preferences_on">Aan</string>
     <string name="preferences_proxy_address">Proxyadres</string>
-    <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als de app niet uit zichzelf in staat is om verbinding te maken met Signals servers, want anders heeft het geen toegevoegde waarde maar levert het wel vertraging op.</string>
+    <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als je geen verbinding kunt maken met Signal via mobiele data of wifi.</string>
     <string name="preferences_share">Proxyadres delen via andere app</string>
     <string name="preferences_save">Opslaan</string>
     <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy …</string>
@@ -3385,7 +3385,7 @@
     <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
 
     <!-- conversation -->
-    <string name="conversation__menu_group_settings">Groepsgesprek-instellingen</string>
+    <string name="conversation__menu_group_settings">Groepsinstellingen</string>
     <string name="conversation__menu_leave_group">Groep verlaten</string>
     <string name="conversation__menu_view_all_media">Alle media</string>
     <string name="conversation__menu_conversation_settings">Chatinstellingen</string>
@@ -4463,7 +4463,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Contacten-app kon niet worden gevonden.</string>
     <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Spraakgesprek beginnen?</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Spraakoproep beginnen?</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Verhaal</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4471,7 +4471,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Video-oproep</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
+    <string name="ConversationSettingsFragment__audio">Audio</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Bellen</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4854,11 +4854,11 @@
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
     <!-- PayPal decline code for payment declined -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Try another payment method or contact your bank for more information. If this was a PayPal transaction contact PayPal.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Probeer het via een andere betalingsmethode of neem contact op met je bank voor meer informatie. Als dit een PayPal-transactie was, neem dan contact op met PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw.</string>
     <!-- Stripe decline code learn more action label -->
-    <string name="DeclineCode__learn_more">Meer leren hierover</string>
+    <string name="DeclineCode__learn_more">Meer informatie</string>
     <!-- Stripe decline code contact issuer -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw. Neem contact op met je bank om hen om meer informatie te vragen als dit probleem aanhoud.</string>
     <!-- Stripe decline code purchase not supported -->
@@ -5809,7 +5809,7 @@
         <item quantity="other">Krijg een %1$s badge voor %2$d dagen</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
-    <string name="GatewaySelectorBottomSheet__bank_transfer">Bank transfer</string>
+    <string name="GatewaySelectorBottomSheet__bank_transfer">Bankoverschrijving</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Creditcard of betaalkaart</string>
     <!-- Sheet summary when giving donating for a friend -->
@@ -5817,9 +5817,9 @@
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
-    <string name="BankTransferMandateFragment__bank_transfer">Bank Transfer</string>
+    <string name="BankTransferMandateFragment__bank_transfer">Bankoverschrijving</string>
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
-    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe processes donations made to Signal. Signal does not collect or store your personal information. %1$s</string>
+    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe verwerkt alle donaties aan Signal. Signal verzamelt of bewaart jouw persoonlijke gegevens niet. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Meer informatie</string>
     <!-- Button label to continue with transfer -->
@@ -5827,29 +5827,29 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email address. Your email is used by Stripe to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Vul je bankgegevens en e-mailadres in. Stripe gebruikt je e-mailadres om je op de hoogte te houden over je donatie. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Meer informatie</string>
     <!-- Text field label for name on bank account -->
-    <string name="BankTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
+    <string name="BankTransferDetailsFragment__name_on_bank_account">Naam rekeninghouder</string>
     <!-- Text field label for IBAN -->
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">E-mail</string>
     <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_numbers">Find account numbers</string>
+    <string name="BankTransferDetailsFragment__find_account_numbers">Zoek rekeningnummers</string>
     <!-- Donate button label for monthly subscription -->
-    <string name="BankTransferDetailsFragment__donate_s_month">Donate %1$s/month</string>
+    <string name="BankTransferDetailsFragment__donate_s_month">%1$s per maand doneren</string>
     <!-- Donate button label for one-time -->
-    <string name="BankTransferDetailsFragment__donate_s">Donate %1$s</string>
+    <string name="BankTransferDetailsFragment__donate_s">%1$s doneren</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN number is too short</string>
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN-nummer is te kort</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN number is too long</string>
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN-nummer is te lang</string>
     <!-- Error label for IBAN field when country is not supported -->
-    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN country code is not supported</string>
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN-landcode wordt niet ondersteund</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Invalid IBAN number</string>
+    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Ongeldig IBAN-nummer</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Annuleren…</string>
