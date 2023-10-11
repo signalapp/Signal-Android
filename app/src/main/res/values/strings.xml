@@ -5870,6 +5870,8 @@
     <string name="DonationPendingBottomSheet__donation_pending">Donation pending</string>
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Your monthly donation is pending. You’ll be able to display the %1$s badge on your profile when your donation is received.</string>
+    <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Your one-time donation is pending. You’ll be able to display the %1$s badge on your profile when your donation is received.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers usually take 1 business day to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->

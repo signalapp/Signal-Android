@@ -116,9 +116,14 @@ private fun DonationPendingBottomSheetContent(
       modifier = Modifier.padding(bottom = 8.dp)
     )
 
-    // TODO [sepa] -- Need proper copy here for one-time donations.
+    val textResource = if (badge.isSubscription()) {
+      R.string.DonationPendingBottomSheet__your_monthly_donation_is_pending
+    } else {
+      R.string.DonationPendingBottomSheet__your_one_time_donation_is_pending
+    }
+
     Text(
-      text = stringResource(id = R.string.DonationPendingBottomSheet__your_monthly_donation_is_pending, badge.name),
+      text = stringResource(id = textResource, badge.name),
       textAlign = TextAlign.Center,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = Modifier.padding(bottom = 20.dp)
