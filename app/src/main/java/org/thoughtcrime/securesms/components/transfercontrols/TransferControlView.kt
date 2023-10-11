@@ -4,7 +4,6 @@
  */
 package org.thoughtcrime.securesms.components.transfercontrols
 
-import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
@@ -23,6 +22,7 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.components.RecyclerViewParentTransitionController
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.databinding.TransferControlsViewBinding
 import org.thoughtcrime.securesms.events.PartProgressEvent
@@ -45,10 +45,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     binding = TransferControlsViewBinding.inflate(LayoutInflater.from(context), this)
     visibility = GONE
     isLongClickable = false
-    layoutTransition = LayoutTransition()
     disposables += store.stateFlowable.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe {
       applyState(it)
     }
+
+    addOnAttachStateChangeListener(RecyclerViewParentTransitionController(child = this))
   }
 
   override fun onAttachedToWindow() {
