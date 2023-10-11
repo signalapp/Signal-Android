@@ -2186,27 +2186,19 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   @JvmOverloads
   fun markExpireStarted(id: Long, startedTimestamp: Long = System.currentTimeMillis()) {
-    markExpireStarted(setOf(id), startedTimestamp)
+    markExpireStarted(setOf(id to startedTimestamp))
   }
 
-  fun markExpireStarted(ids: Collection<Long>, startedAtTimestamp: Long) {
-    var threadId: Long = -1
+  fun markExpireStarted(ids: Collection<kotlin.Pair<Long, Long>>) {
     writableDatabase.withinTransaction { db ->
-      for (id in ids) {
+      for ((id, startedAtTimestamp) in ids) {
         db.update(TABLE_NAME)
           .values(EXPIRE_STARTED to startedAtTimestamp)
           .where("$ID = ? AND ($EXPIRE_STARTED = 0 OR $EXPIRE_STARTED > ?)", id, startedAtTimestamp)
           .run()
-
-        if (threadId < 0) {
-          threadId = getThreadIdForMessage(id)
-        }
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(MessageId(id))
       }
-
-      threads.update(threadId, false)
     }
-
-    notifyConversationListeners(threadId)
   }
 
   fun markAsNotified(id: Long) {

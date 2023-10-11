@@ -15,8 +15,10 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -34,6 +36,7 @@ import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.database.DatabaseObserver
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -67,6 +70,7 @@ import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
+import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 
 /**
@@ -140,6 +144,8 @@ class ConversationViewModel(
     .subscribeOn(Schedulers.io())
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())
+
+  private val startExpiration = BehaviorSubject.create<MessageTable.ExpirationInfo>()
 
   init {
     disposables += recipient
@@ -233,6 +239,16 @@ class ConversationViewModel(
         identityRecordsStore.update { newState }
       }
       .addTo(disposables)
+
+    startExpiration
+      .buffer(startExpiration.throttleLast(1, TimeUnit.SECONDS))
+      .observeOn(Schedulers.io())
+      .subscribe(object : Observer<List<MessageTable.ExpirationInfo>> {
+        override fun onNext(t: List<MessageTable.ExpirationInfo>) = repository.startExpirationTimeout(t.distinctBy { it.id })
+        override fun onSubscribe(d: Disposable) = Unit
+        override fun onError(e: Throwable) = Unit
+        override fun onComplete() = Unit
+      })
   }
 
   fun setSearchQuery(query: String?) {
@@ -245,6 +261,7 @@ class ConversationViewModel(
 
   override fun onCleared() {
     disposables.clear()
+    startExpiration.onComplete()
   }
 
   fun setShowScrollButtonsForScrollPosition(showScrollButtons: Boolean, willScrollToBottomOnNewMessage: Boolean) {
@@ -312,7 +329,14 @@ class ConversationViewModel(
   }
 
   fun startExpirationTimeout(messageRecord: MessageRecord) {
-    repository.startExpirationTimeout(messageRecord)
+    startExpiration.onNext(
+      MessageTable.ExpirationInfo(
+        id = messageRecord.id,
+        expiresIn = messageRecord.expiresIn,
+        expireStarted = System.currentTimeMillis(),
+        isMms = messageRecord.isMms
+      )
+    )
   }
 
   fun updateReaction(messageRecord: MessageRecord, emoji: String): Completable {
