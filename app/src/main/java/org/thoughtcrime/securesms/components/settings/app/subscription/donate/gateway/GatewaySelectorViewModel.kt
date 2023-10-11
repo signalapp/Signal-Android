@@ -21,6 +21,7 @@ class GatewaySelectorViewModel(
 
   private val store = RxStore(
     GatewaySelectorState(
+      gatewayOrderStrategy = GatewayOrderStrategy.getStrategy(),
       badge = args.request.badge,
       isGooglePayAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, args.request.donateToSignalType),
       isCreditCardAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, args.request.donateToSignalType),
