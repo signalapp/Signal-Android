@@ -23,12 +23,14 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.push.DonationProcessor
+import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
 
 class StripePaymentInProgressViewModel(
   private val stripeRepository: StripeRepository,
@@ -148,10 +150,10 @@ class StripePaymentInProgressViewModel(
       }
       .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it, paymentSourceProvider.paymentSourceType) }
       .onErrorResumeNext {
-        if (it is DonationError) {
-          Completable.error(it)
-        } else {
-          Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, paymentSourceProvider.paymentSourceType))
+        when {
+          it is DonationError -> Completable.error(it)
+          it is DonationProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.SUBSCRIPTION, paymentSourceProvider.paymentSourceType))
+          else -> Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, paymentSourceProvider.paymentSourceType))
         }
       }
 
@@ -211,10 +213,10 @@ class StripePaymentInProgressViewModel(
         Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
         store.update { DonationProcessorStage.FAILED }
 
-        val donationError: DonationError = if (throwable is DonationError) {
-          throwable
-        } else {
-          DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST)
+        val donationError: DonationError = when (throwable) {
+          is DonationError -> throwable
+          is DonationProcessorError -> throwable.toDonationError(request.donateToSignalType.toErrorSource(), paymentSourceProvider.paymentSourceType)
+          else -> DonationError.genericBadgeRedemptionFailure(request.donateToSignalType.toErrorSource())
         }
         DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
       },
@@ -256,10 +258,10 @@ class StripePaymentInProgressViewModel(
         },
         onError = { throwable ->
           Log.w(TAG, "Failed to update subscription", throwable, true)
-          val donationError: DonationError = if (throwable is DonationError) {
-            throwable
-          } else {
-            DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+          val donationError: DonationError = when (throwable) {
+            is DonationError -> throwable
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.Stripe.GooglePay)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
 

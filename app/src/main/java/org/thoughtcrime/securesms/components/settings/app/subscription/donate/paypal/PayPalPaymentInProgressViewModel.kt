@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentInt
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse
 import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.push.DonationProcessor
+import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
 
 class PayPalPaymentInProgressViewModel(
   private val payPalRepository: PayPalRepository,
@@ -89,10 +91,10 @@ class PayPalPaymentInProgressViewModel(
         },
         onError = { throwable ->
           Log.w(TAG, "Failed to update subscription", throwable, true)
-          val donationError: DonationError = if (throwable is DonationError) {
-            throwable
-          } else {
-            DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+          val donationError: DonationError = when (throwable) {
+            is DonationError -> throwable
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
 
@@ -166,10 +168,10 @@ class PayPalPaymentInProgressViewModel(
           Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
           store.update { DonationProcessorStage.FAILED }
 
-          val donationError: DonationError = if (throwable is DonationError) {
-            throwable
-          } else {
-            DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST)
+          val donationError: DonationError = when (throwable) {
+            is DonationError -> throwable
+            is DonationProcessorError -> throwable.toDonationError(request.donateToSignalType.toErrorSource(), PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(request.donateToSignalType.toErrorSource())
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
         },
@@ -196,10 +198,10 @@ class PayPalPaymentInProgressViewModel(
           Log.w(TAG, "Failure in monthly payment pipeline...", throwable, true)
           store.update { DonationProcessorStage.FAILED }
 
-          val donationError: DonationError = if (throwable is DonationError) {
-            throwable
-          } else {
-            DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+          val donationError: DonationError = when (throwable) {
+            is DonationError -> throwable
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
         },

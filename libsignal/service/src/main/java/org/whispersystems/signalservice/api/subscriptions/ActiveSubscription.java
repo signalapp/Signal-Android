@@ -25,6 +25,10 @@ public final class ActiveSubscription {
       this.code = code;
     }
 
+    public String getCode() {
+      return code;
+    }
+
     static Processor fromCode(String code) {
       for (Processor value : Processor.values()) {
         if (value.code.equals(code)) {
