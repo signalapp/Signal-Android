@@ -132,6 +132,7 @@ class ContactSearchMediator(
   fun clearSelection() {
     viewModel.clearSelection()
   }
+
   fun getSelectedMembersSize(): Int {
     return viewModel.getSelectedMembersSize()
   }

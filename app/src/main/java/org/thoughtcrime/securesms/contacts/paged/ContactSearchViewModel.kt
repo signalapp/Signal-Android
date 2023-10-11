@@ -55,7 +55,7 @@ class ContactSearchViewModel(
   val selectionState: LiveData<Set<ContactSearchKey>> = selectionStore.stateLiveData
   val errorEventsStream: Observable<ContactSearchError> = errorEvents
 
-  var selectionSize = 0;
+  private var selectionSize = 0;
   override fun onCleared() {
     disposables.clear()
   }
