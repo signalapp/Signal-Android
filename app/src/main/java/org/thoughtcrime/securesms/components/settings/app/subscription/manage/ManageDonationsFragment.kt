@@ -131,6 +131,7 @@ class ManageDonationsFragment :
 
       if (state.transactionState is ManageDonationsState.TransactionState.NotInTransaction) {
         val activeSubscription = state.transactionState.activeSubscription.activeSubscription
+
         if (activeSubscription != null) {
           val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == activeSubscription.level }
           if (subscription != null) {

@@ -55,7 +55,7 @@ class ContactSearchViewModel(
   val selectionState: LiveData<Set<ContactSearchKey>> = selectionStore.stateLiveData
   val errorEventsStream: Observable<ContactSearchError> = errorEvents
 
-  private var selectionSize = 0;
+  private var selectionSize = 0
   override fun onCleared() {
     disposables.clear()
   }
@@ -94,7 +94,7 @@ class ContactSearchViewModel(
 
       val newSelectionEntries = results.filter { it.isSelectable }.map { it.key } - getSelectedContacts()
       val newSelectionSize = newSelectionEntries.size + getSelectedContacts().size
-      selectionSize =  newSelectionSize
+      selectionSize = newSelectionSize
       if (selectionLimits.hasRecommendedLimit() && getSelectedContacts().size < selectionLimits.recommendedLimit && newSelectionSize >= selectionLimits.recommendedLimit) {
         errorEvents.onNext(ContactSearchError.RECOMMENDED_LIMIT_REACHED)
       } else if (selectionLimits.hasHardLimit() && newSelectionSize > selectionLimits.hardLimit) {
@@ -111,8 +111,8 @@ class ContactSearchViewModel(
   }
 
   fun setKeysNotSelected(contactSearchKeys: Set<ContactSearchKey>) {
-    val newSelectionSize = getSelectedContacts().size  - contactSearchKeys.size
-    selectionSize =  newSelectionSize
+    val newSelectionSize = getSelectedContacts().size - contactSearchKeys.size
+    selectionSize = newSelectionSize
     selectionStore.update { it - contactSearchKeys }
   }
 
