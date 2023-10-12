@@ -195,7 +195,7 @@ private fun BankTransferDetailsContent(
             onUrlClick = {
               onLearnMoreClick()
             },
-            style = MaterialTheme.typography.bodyLarge.copy(
+            style = MaterialTheme.typography.bodyMedium.copy(
               color = MaterialTheme.colorScheme.onSurfaceVariant
             ),
             modifier = Modifier.padding(vertical = 12.dp)

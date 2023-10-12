@@ -120,11 +120,8 @@
     <string name="BlockedUsersActivity__block">Block</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
-    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
-    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <!-- Title of fragment -->
+    <string name="CreditCardFragment__credit_or_debit_card">Credit or debit card</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -149,8 +146,10 @@
     <string name="CreditCardFragment__year_required">Year required</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Invalid year</string>
-    <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <!-- Button label to confirm credit card input and proceed with one-time payment -->
+    <string name="CreditCardFragment__donate_s">Donate %1$s</string>
+    <!-- Button label to confirm credit card input and proceed with subscription payment -->
+    <string name="CreditCardFragment__donate_s_month">Donate %1$s/month</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Block and leave %1$s?</string>

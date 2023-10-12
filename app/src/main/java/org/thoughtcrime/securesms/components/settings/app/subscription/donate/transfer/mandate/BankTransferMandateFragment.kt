@@ -5,6 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.mandate
 
+import android.os.Bundle
+import android.view.View
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.defaultMinSize
@@ -22,7 +27,9 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -38,6 +45,7 @@ import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -48,6 +56,16 @@ class BankTransferMandateFragment : ComposeFragment() {
 
   private val args: BankTransferMandateFragmentArgs by navArgs()
   private val viewModel: BankTransferMandateViewModel by viewModels()
+  private lateinit var statusBarColorNestedScrollConnection: StatusBarColorNestedScrollConnection
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    statusBarColorNestedScrollConnection = StatusBarColorNestedScrollConnection(requireActivity())
+  }
+
+  override fun onResume() {
+    super.onResume()
+    statusBarColorNestedScrollConnection.setColorImmediate()
+  }
 
   @Composable
   override fun FragmentContent() {
@@ -57,7 +75,8 @@ class BankTransferMandateFragment : ComposeFragment() {
       bankMandate = mandate,
       onNavigationClick = this::onNavigationClick,
       onContinueClick = this::onContinueClick,
-      onLearnMoreClick = this::onLearnMoreClick
+      onLearnMoreClick = this::onLearnMoreClick,
+      modifier = Modifier.nestedScroll(statusBarColorNestedScrollConnection)
     )
   }
 
@@ -96,12 +115,23 @@ fun BankTransferScreen(
   bankMandate: String,
   onNavigationClick: () -> Unit,
   onContinueClick: () -> Unit,
-  onLearnMoreClick: () -> Unit
+  onLearnMoreClick: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Scaffolds.Settings(
-    title = "",
+    title = stringResource(id = R.string.BankTransferMandateFragment__bank_transfer),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_left_24))
+    navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_left_24)),
+    titleContent = { contentOffset, title ->
+      AnimatedVisibility(
+        visible = contentOffset < 0f,
+        enter = fadeIn(),
+        exit = fadeOut()
+      ) {
+        Text(text = title, style = MaterialTheme.typography.titleLarge)
+      }
+    },
+    modifier = modifier
   ) {
     LazyColumn(
       horizontalAlignment = CenterHorizontally,
@@ -112,7 +142,7 @@ fun BankTransferScreen(
     ) {
       item {
         Image(
-          painter = painterResource(id = R.drawable.credit_card), // TODO [alex] -- final asset
+          painter = painterResource(id = R.drawable.bank_transfer),
           contentScale = ContentScale.Inside,
           contentDescription = null,
           modifier = Modifier
@@ -144,7 +174,9 @@ fun BankTransferScreen(
           style = MaterialTheme.typography.bodyLarge.copy(
             color = MaterialTheme.colorScheme.onSurfaceVariant
           ),
-          modifier = Modifier.padding(bottom = 12.dp, start = 32.dp, end = 32.dp)
+          modifier = Modifier
+            .padding(bottom = 12.dp)
+            .padding(horizontal = dimensionResource(id = R.dimen.bank_transfer_mandate_gutter))
         )
       }
 
@@ -156,7 +188,7 @@ fun BankTransferScreen(
         Text(
           text = bankMandate,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp)
+          modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.bank_transfer_mandate_gutter), vertical = 16.dp)
         )
       }
 

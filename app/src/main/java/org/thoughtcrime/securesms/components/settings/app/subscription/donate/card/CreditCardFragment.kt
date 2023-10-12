@@ -65,13 +65,13 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       }
     }
 
-    binding.title.text = if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
+    binding.continueButton.text = if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
       getString(
-        R.string.CreditCardFragment__donation_amount_s_per_month,
+        R.string.CreditCardFragment__donate_s_month,
         FiatMoneyUtil.format(resources, args.request.fiat, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       )
     } else {
-      getString(R.string.CreditCardFragment__donation_amount_s, FiatMoneyUtil.format(resources, args.request.fiat))
+      getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, args.request.fiat))
     }
 
     binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
