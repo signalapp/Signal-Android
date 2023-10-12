@@ -35,6 +35,9 @@ import io.reactivex.rxjava3.annotations.NonNull;
  */
 public class DonationsService {
 
+  private static final long DONATION_CONFIGURATION_TTL = TimeUnit.HOURS.toMillis(1);
+  private static final long SEPA_DEBIT_MANDATE_TTL = TimeUnit.DAYS.toMillis(1);
+
   private static final String TAG = DonationsService.class.getSimpleName();
 
   private final PushServiceSocket pushServiceSocket;
@@ -112,7 +115,8 @@ public class DonationsService {
     return getCachedValue(
         locale,
         donationsConfigurationCache,
-        pushServiceSocket::getDonationsConfiguration
+        pushServiceSocket::getDonationsConfiguration,
+        DONATION_CONFIGURATION_TTL
     );
   }
 
@@ -120,13 +124,15 @@ public class DonationsService {
     return getCachedValue(
         locale,
         sepaBankMandateCache,
-        l -> pushServiceSocket.getBankMandate(l, "SEPA_DEBIT")
+        l -> pushServiceSocket.getBankMandate(l, "SEPA_DEBIT"),
+        SEPA_DEBIT_MANDATE_TTL
     );
   }
 
   private <T> ServiceResponse<T> getCachedValue(Locale locale,
                                                 AtomicReference<CacheEntry<T>> cachedValueReference,
-                                                CacheEntryValueProducer<T> cacheEntryValueProducer
+                                                CacheEntryValueProducer<T> cacheEntryValueProducer,
+                                                long cacheTTL
   )
   {
     CacheEntry<T> cacheEntryOutsideLock = cachedValueReference.get();
@@ -136,7 +142,7 @@ public class DonationsService {
         if (isNewCacheEntryRequired(cacheEntryInLock, locale)) {
           return wrapInServiceResponse(() -> {
             T value = cacheEntryValueProducer.produce(locale);
-            cachedValueReference.set(new CacheEntry<>(value, System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1), locale));
+            cachedValueReference.set(new CacheEntry<>(value, System.currentTimeMillis() + cacheTTL, locale));
             return new Pair<>(value, 200);
           });
         } else {
