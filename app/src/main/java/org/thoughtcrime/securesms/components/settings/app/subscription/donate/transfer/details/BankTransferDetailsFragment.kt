@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.details
 
+import android.os.Bundle
+import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
@@ -46,6 +48,7 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
@@ -70,6 +73,10 @@ class BankTransferDetailsFragment : ComposeFragment() {
       StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().stripeRepository)
     }
   )
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
+  }
 
   @Composable
   override fun FragmentContent() {
