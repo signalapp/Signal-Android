@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -38,7 +38,6 @@ import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
-import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -273,7 +272,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       WhoAmIResponse whoAmIResponse     = ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI();
       boolean        hasServerUsername  = !TextUtils.isEmpty(whoAmIResponse.getUsernameHash());
       String         serverUsernameHash = whoAmIResponse.getUsernameHash();
-      String         localUsernameHash  = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(localUsername));
+      String         localUsernameHash  = Base64.encodeUrlSafeWithoutPadding(Username.hash(localUsername));
 
       if (!hasServerUsername) {
         Log.w(TAG, "No remote username is set.");

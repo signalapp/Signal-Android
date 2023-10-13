@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
@@ -11,7 +12,6 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.state.PreKeyRecord
-import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 
@@ -62,8 +62,8 @@ class OneTimePreKeyTable(context: Context, databaseHelper: SignalDatabase) : Dat
     val contentValues = contentValuesOf(
       ACCOUNT_ID to serviceId.toString(),
       KEY_ID to keyId,
-      PUBLIC_KEY to Base64.encodeBytes(record.keyPair.publicKey.serialize()),
-      PRIVATE_KEY to Base64.encodeBytes(record.keyPair.privateKey.serialize())
+      PUBLIC_KEY to Base64.encodeWithPadding(record.keyPair.publicKey.serialize()),
+      PRIVATE_KEY to Base64.encodeWithPadding(record.keyPair.privateKey.serialize())
     )
 
     writableDatabase.replace(TABLE_NAME, null, contentValues)

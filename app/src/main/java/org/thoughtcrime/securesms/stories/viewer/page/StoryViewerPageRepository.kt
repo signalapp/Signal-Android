@@ -6,6 +6,7 @@ import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.Base64
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.Base64
 
 /**
  * Open for testing.

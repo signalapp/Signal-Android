@@ -27,7 +27,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -98,7 +98,7 @@ public class JsonUtil {
     public void serialize(IdentityKey value, JsonGenerator gen, SerializerProvider serializers)
         throws IOException
     {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
+      gen.writeString(Base64.encodeWithoutPadding(value.serialize()));
     }
   }
 
@@ -106,7 +106,7 @@ public class JsonUtil {
     @Override
     public IdentityKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
       try {
-        return new IdentityKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+        return new IdentityKey(Base64.decode(p.getValueAsString()), 0);
       } catch (InvalidKeyException e) {
         throw new IOException(e);
       }
@@ -164,7 +164,7 @@ public class JsonUtil {
   public static class MasterKeySerializer extends JsonSerializer<MasterKey> {
     @Override
     public void serialize(MasterKey value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-      gen.writeString(Base64.encodeBytes(value.serialize()));
+      gen.writeString(Base64.encodeWithPadding(value.serialize()));
     }
   }
 

@@ -28,6 +28,7 @@ import com.google.android.mms.pdu_alt.PduHeaders
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.SqlUtil.appendArg
@@ -131,7 +132,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.stories.Stories.isFeatureEnabled
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -861,7 +861,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         DATE_RECEIVED to timestamp,
         DATE_SENT to timestamp,
         READ to if (markRead) 1 else 0,
-        BODY to Base64.encodeBytes(updateDetails),
+        BODY to Base64.encodeWithPadding(updateDetails),
         TYPE to MessageTypes.GROUP_CALL_TYPE,
         THREAD_ID to threadId
       )
@@ -891,7 +891,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val updateDetail = GroupCallUpdateDetailsUtil.parse(message.body)
     val contentValues = contentValuesOf(
-      BODY to Base64.encodeBytes(updateDetail.newBuilder().startedCallTimestamp(timestamp).build().encode()),
+      BODY to Base64.encodeWithPadding(updateDetail.newBuilder().startedCallTimestamp(timestamp).build().encode()),
       DATE_SENT to timestamp,
       DATE_RECEIVED to timestamp
     )
@@ -1179,7 +1179,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             READ to 1,
             TYPE to MessageTypes.PROFILE_CHANGE_TYPE,
             THREAD_ID to threadId,
-            BODY to Base64.encodeBytes(profileChangeDetails)
+            BODY to Base64.encodeWithPadding(profileChangeDetails)
           )
           db.insert(TABLE_NAME, null, values)
           notifyConversationListeners(threadId)
@@ -1286,7 +1286,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         READ to 1,
         TYPE to MessageTypes.THREAD_MERGE_TYPE,
         THREAD_ID to threadId,
-        BODY to Base64.encodeBytes(event.encode())
+        BODY to Base64.encodeWithPadding(event.encode())
       )
       .run()
     ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId)
@@ -1305,7 +1305,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         READ to 1,
         TYPE to MessageTypes.SESSION_SWITCHOVER_TYPE,
         THREAD_ID to threadId,
-        BODY to Base64.encodeBytes(event.encode())
+        BODY to Base64.encodeWithPadding(event.encode())
       )
       .run()
     ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId)
@@ -2914,7 +2914,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
             updated = db
               .update(TABLE_NAME)
-              .values(BODY to Base64.encodeBytes(updatedBadge.encode()))
+              .values(BODY to Base64.encodeWithPadding(updatedBadge.encode()))
               .where("$ID = ?", messageId)
               .run() > 0
 

@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 import org.conscrypt.Conscrypt;
 import org.whispersystems.signalservice.internal.contacts.crypto.SigningCertificate;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -54,7 +54,7 @@ public class SigningCertificateTest extends TestCase {
         malformedSignature[i] ^= (0x01 << j);
 
         try {
-          certificate.verifySignature(signatureBody, Base64.encodeBytes(malformedSignature));
+          certificate.verifySignature(signatureBody, Base64.encodeWithPadding(malformedSignature));
           throw new AssertionError("Signature verification should fail!");
         } catch (SignatureException e) {
           // good

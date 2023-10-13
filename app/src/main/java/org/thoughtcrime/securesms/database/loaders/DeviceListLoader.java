@@ -18,7 +18,7 @@ import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.AsyncLoader;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;

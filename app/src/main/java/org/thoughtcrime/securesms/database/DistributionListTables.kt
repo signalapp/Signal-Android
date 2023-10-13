@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -55,7 +55,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
         contentValuesOf(
           RecipientTable.TYPE to RecipientTable.RecipientType.DISTRIBUTION_LIST.id,
           RecipientTable.DISTRIBUTION_LIST_ID to DistributionListId.MY_STORY_ID,
-          RecipientTable.STORAGE_SERVICE_ID to Base64.encodeBytes(StorageSyncHelper.generateKey()),
+          RecipientTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey()),
           RecipientTable.PROFILE_SHARING to 1
         )
       )

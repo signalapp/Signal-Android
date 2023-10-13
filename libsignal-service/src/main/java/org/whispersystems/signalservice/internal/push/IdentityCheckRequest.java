@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,7 +40,7 @@ public class IdentityCheckRequest {
 
       try {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-        this.fingerprint = Base64.encodeBytes(messageDigest.digest(identityKey.serialize()), 0, 4);
+        this.fingerprint = Base64.encodeWithPadding(messageDigest.digest(identityKey.serialize()), 0, 4);
       } catch (NoSuchAlgorithmException e) {
         throw new AssertionError(e);
       }

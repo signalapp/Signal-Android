@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.internal.contacts.crypto;
 
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.security.InvalidAlgorithmParameterException;

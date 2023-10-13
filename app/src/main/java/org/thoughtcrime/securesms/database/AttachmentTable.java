@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.signal.core.util.Base64;
 import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
@@ -60,7 +61,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -1189,7 +1189,7 @@ public class AttachmentTable extends DatabaseTable {
       DigestInputStream          digestInputStream = new DigestInputStream(in, messageDigest);
       Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, tempFile, false);
       long                       length            = StreamUtil.copy(digestInputStream, out.second);
-      String                     hash              = Base64.encodeBytes(digestInputStream.getMessageDigest().digest());
+      String                     hash              = Base64.encodeWithPadding(digestInputStream.getMessageDigest().digest());
 
       if (!tempFile.renameTo(destination)) {
         Log.w(TAG, "Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());

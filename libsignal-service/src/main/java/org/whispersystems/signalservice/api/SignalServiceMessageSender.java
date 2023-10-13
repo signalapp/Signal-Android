@@ -127,7 +127,7 @@ import org.whispersystems.signalservice.internal.push.http.PartialSendBatchCompl
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.util.ByteArrayUtil;
 
 import java.io.IOException;
@@ -888,7 +888,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
   {
     byte[] nullMessageBody = new DataMessage.Builder()
-                                            .body(Base64.encodeBytes(Util.getRandomLengthBytes(140)))
+                                            .body(Base64.encodeWithPadding(Util.getRandomLengthBytes(140)))
                                             .build()
                                             .encode();
 
@@ -918,7 +918,7 @@ public class SignalServiceMessageSender {
       throws UntrustedIdentityException, IOException
   {
     byte[] nullMessageBody = new DataMessage.Builder()
-                                            .body(Base64.encodeBytes(Util.getRandomLengthBytes(140)))
+                                            .body(Base64.encodeWithPadding(Util.getRandomLengthBytes(140)))
                                             .build()
                                             .encode();
 

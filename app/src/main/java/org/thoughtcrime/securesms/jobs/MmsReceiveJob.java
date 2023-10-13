@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -46,7 +46,7 @@ public class MmsReceiveJob extends BaseJob {
 
   @Override
   public @Nullable byte[] serialize() {
-    return new JsonJobData.Builder().putString(KEY_DATA, Base64.encodeBytes(data))
+    return new JsonJobData.Builder().putString(KEY_DATA, Base64.encodeWithPadding(data))
                                     .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
                                     .serialize();
   }

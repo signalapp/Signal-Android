@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.whispersystems.signalservice.internal.push.PreKeyEntity;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 
@@ -43,7 +43,7 @@ public class SignedPreKeyEntity extends PreKeyEntity {
   private static class ByteArraySerializer extends JsonSerializer<byte[]> {
     @Override
     public void serialize(byte[] value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value));
+      gen.writeString(Base64.encodeWithoutPadding(value));
     }
   }
 
@@ -51,7 +51,7 @@ public class SignedPreKeyEntity extends PreKeyEntity {
 
     @Override
     public byte[] deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-      return Base64.decodeWithoutPadding(p.getValueAsString());
+      return Base64.decode(p.getValueAsString());
     }
   }
 }

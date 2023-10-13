@@ -81,8 +81,7 @@ import org.whispersystems.signalservice.internal.storage.protos.WriteOperation;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
-import org.whispersystems.util.Base64;
-import org.whispersystems.util.Base64UrlSafe;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.security.KeyStore;
@@ -801,7 +800,7 @@ public class SignalServiceAccountManager {
   public UsernameLinkComponents createUsernameLink(Username username) throws IOException {
     try {
       UsernameLink link     = username.generateLink();
-      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64UrlSafe.encodeBytes(link.getEncryptedUsername()));
+      UUID         serverId = this.pushServiceSocket.createUsernameLink(Base64.encodeUrlSafeWithPadding(link.getEncryptedUsername()));
 
       return new UsernameLinkComponents(link.getEntropy(), serverId);
     } catch (BaseUsernameException e) {
@@ -841,7 +840,7 @@ public class SignalServiceAccountManager {
     try {
       MessageDigest digest  = MessageDigest.getInstance("SHA1");
       byte[]        token   = Util.trim(digest.digest(e164number.getBytes()), 10);
-      String        encoded = Base64.encodeBytesWithoutPadding(token);
+      String        encoded = Base64.encodeWithoutPadding(token);
 
       if (urlSafe) return encoded.replace('+', '-').replace('/', '_');
       else         return encoded;

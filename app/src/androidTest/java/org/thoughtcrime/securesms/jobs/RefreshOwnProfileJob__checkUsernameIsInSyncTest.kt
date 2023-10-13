@@ -8,6 +8,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64
 import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.testing.failure
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
-import org.whispersystems.util.Base64UrlSafe
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -58,13 +58,13 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
       Get("/v1/accounts/whoami") { r ->
         MockResponse().success(
           WhoAmIResponse().apply {
-            usernameHash = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(serverUsername))
+            usernameHash = Base64.encodeUrlSafeWithoutPadding(Username.hash(serverUsername))
           }
         )
       },
       Put("/v1/accounts/username_hash/reserve") { r ->
         didReserve = true
-        MockResponse().success(ReserveUsernameResponse(Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))))
+        MockResponse().success(ReserveUsernameResponse(Base64.encodeUrlSafeWithoutPadding(Username.hash(username))))
       },
       Put("/v1/accounts/username_hash/confirm") { r ->
         didConfirm = true
@@ -94,7 +94,7 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
       },
       Put("/v1/accounts/username_hash/reserve") { r ->
         didReserve = true
-        MockResponse().success(ReserveUsernameResponse(Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))))
+        MockResponse().success(ReserveUsernameResponse(Base64.encodeUrlSafeWithoutPadding(Username.hash(username))))
       },
       Put("/v1/accounts/username_hash/confirm") { r ->
         didConfirm = true
@@ -122,13 +122,13 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
       Get("/v1/accounts/whoami") { r ->
         MockResponse().success(
           WhoAmIResponse().apply {
-            usernameHash = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))
+            usernameHash = Base64.encodeUrlSafeWithoutPadding(Username.hash(username))
           }
         )
       },
       Put("/v1/accounts/username_hash/reserve") { r ->
         didReserve = true
-        MockResponse().success(ReserveUsernameResponse(Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))))
+        MockResponse().success(ReserveUsernameResponse(Base64.encodeUrlSafeWithoutPadding(Username.hash(username))))
       },
       Put("/v1/accounts/username_hash/confirm") { r ->
         didConfirm = true
@@ -156,7 +156,7 @@ class RefreshOwnProfileJob__checkUsernameIsInSyncTest {
       Get("/v1/accounts/whoami") { r ->
         MockResponse().success(
           WhoAmIResponse().apply {
-            usernameHash = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash("${username}23"))
+            usernameHash = Base64.encodeUrlSafeWithoutPadding(Username.hash("${username}23"))
           }
         )
       },

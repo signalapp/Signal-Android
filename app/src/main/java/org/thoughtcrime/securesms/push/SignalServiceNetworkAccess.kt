@@ -7,6 +7,7 @@ import okhttp3.ConnectionSpec
 import okhttp3.Dns
 import okhttp3.Interceptor
 import okhttp3.TlsVersion
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor
 import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
-import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl

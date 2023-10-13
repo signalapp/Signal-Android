@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -120,7 +120,7 @@ public class ProfileCipherTest {
     ProfileCipher cipher    = new ProfileCipher(key);
     byte[]        name      = cipher.encrypt("Peter\0Parker".getBytes(), 53);
 
-    String encoded = Base64.encodeBytes(name);
+    String encoded = Base64.encodeWithPadding(name);
 
     assertEquals(108, encoded.length());
   }
@@ -131,7 +131,7 @@ public class ProfileCipherTest {
     ProfileCipher cipher    = new ProfileCipher(key);
     byte[]        name      = cipher.encrypt("Peter\0Parker".getBytes(), 257);
 
-    String encoded = Base64.encodeBytes(name);
+    String encoded = Base64.encodeWithPadding(name);
 
     assertEquals(380, encoded.length());
   }

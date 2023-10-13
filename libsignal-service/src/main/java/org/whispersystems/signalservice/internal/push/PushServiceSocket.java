@@ -142,8 +142,7 @@ import org.whispersystems.signalservice.internal.util.concurrent.FutureTransform
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
-import org.whispersystems.util.Base64;
-import org.whispersystems.util.Base64UrlSafe;
+import org.signal.core.util.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -429,8 +428,8 @@ public class PushServiceSocket {
     RegistrationSessionRequestBody body = new RegistrationSessionRequestBody(sessionId,
                                                                              recoveryPassword,
                                                                              attributes,
-                                                                             Base64.encodeBytesWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
-                                                                             Base64.encodeBytesWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
+                                                                             Base64.encodeWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
+                                                                             Base64.encodeWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
                                                                              aciSignedPreKey,
                                                                              pniSignedPreKey,
                                                                              aciLastResortKyberPreKey,
@@ -510,7 +509,7 @@ public class PushServiceSocket {
 
   public void sendProvisioningMessage(String destination, byte[] body) throws IOException {
     makeServiceRequest(String.format(PROVISIONING_MESSAGE_PATH, destination), "PUT",
-                       JsonUtil.toJson(new ProvisioningMessage(Base64.encodeBytes(body))));
+                       JsonUtil.toJson(new ProvisioningMessage(Base64.encodeWithPadding(body))));
   }
 
   public void registerGcmId(@Nonnull String gcmRegistrationId) throws IOException {
@@ -560,7 +559,7 @@ public class PushServiceSocket {
     Request.Builder requestBuilder = new Request.Builder();
     requestBuilder.url(String.format("%s%s", connectionHolder.getUrl(), path));
     requestBuilder.put(RequestBody.create(MediaType.get("application/vnd.signal-messenger.mrm"), body));
-    requestBuilder.addHeader("Unidentified-Access-Key", Base64.encodeBytes(joinedUnidentifiedAccess));
+    requestBuilder.addHeader("Unidentified-Access-Key", Base64.encodeWithPadding(joinedUnidentifiedAccess));
 
     if (signalAgent != null) {
       requestBuilder.addHeader("X-Signal-Agent", signalAgent);
@@ -1071,7 +1070,7 @@ public class PushServiceSocket {
 
       byte[]                 proof                  = Username.generateProof(username, randomness);
       ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(reserveUsernameResponse.getUsernameHash(),
-                                                                                 Base64UrlSafe.encodeBytesWithoutPadding(proof));
+                                                                                 Base64.encodeUrlSafeWithoutPadding(proof));
 
       makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
         switch (responseCode) {
@@ -1115,7 +1114,7 @@ public class PushServiceSocket {
     String                          response = makeServiceRequestWithoutAuthentication(String.format(USERNAME_FROM_LINK_PATH, serverId.toString()), "GET", null);
     GetUsernameFromLinkResponseBody parsed   = JsonUtil.fromJson(response, GetUsernameFromLinkResponseBody.class);
 
-    return Base64UrlSafe.decodePaddingAgnostic(parsed.getUsernameLinkEncryptedValue());
+    return Base64.decode(parsed.getUsernameLinkEncryptedValue());
   }
 
   public void deleteAccount() throws IOException {
@@ -1137,7 +1136,7 @@ public class PushServiceSocket {
   }
 
   public void redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) throws IOException {
-    String payload = JsonUtil.toJson(new RedeemReceiptRequest(Base64.encodeBytes(receiptCredentialPresentation.serialize()), visible, primary));
+    String payload = JsonUtil.toJson(new RedeemReceiptRequest(Base64.encodeWithPadding(receiptCredentialPresentation.serialize()), visible, primary));
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
   }
 
@@ -2097,7 +2096,7 @@ public class PushServiceSocket {
 
     if (!headers.containsKey("Authorization") && !doNotAddAuthenticationOrUnidentifiedAccessKey) {
       if (unidentifiedAccess.isPresent()) {
-        request.addHeader("Unidentified-Access-Key", Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()));
+        request.addHeader("Unidentified-Access-Key", Base64.encodeWithPadding(unidentifiedAccess.get().getUnidentifiedAccessKey()));
       } else if (credentialsProvider.getPassword() != null) {
         request.addHeader("Authorization", getAuthorizationHeader(credentialsProvider));
       }
@@ -2395,7 +2394,7 @@ public class PushServiceSocket {
       if (credentialsProvider.getDeviceId() != SignalServiceAddress.DEFAULT_DEVICE_ID) {
         identifier += "." + credentialsProvider.getDeviceId();
       }
-      return "Basic " + Base64.encodeBytes((identifier + ":" + credentialsProvider.getPassword()).getBytes("UTF-8"));
+      return "Basic " + Base64.encodeWithPadding((identifier + ":" + credentialsProvider.getPassword()).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);
     }
@@ -2663,7 +2662,7 @@ public class PushServiceSocket {
     String path;
 
     if (groupLinkPassword.isPresent()) {
-      path = String.format(GROUPSV2_GROUP_PASSWORD, Base64UrlSafe.encodeBytesWithoutPadding(groupLinkPassword.get()));
+      path = String.format(GROUPSV2_GROUP_PASSWORD, Base64.encodeUrlSafeWithoutPadding(groupLinkPassword.get()));
     } else {
       path = GROUPSV2_GROUP;
     }
@@ -2719,7 +2718,7 @@ public class PushServiceSocket {
   public GroupJoinInfo getGroupJoinInfo(Optional<byte[]> groupLinkPassword, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
-    String passwordParam = groupLinkPassword.map(Base64UrlSafe::encodeBytesWithoutPadding).orElse("");
+    String passwordParam = groupLinkPassword.map(org.signal.core.util.Base64::encodeUrlSafeWithoutPadding).orElse("");
     try (Response response = makeStorageRequest(authorization.toString(),
                                                 String.format(GROUPSV2_GROUP_JOIN, passwordParam),
                                                 "GET",

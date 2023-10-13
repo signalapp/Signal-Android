@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.requireString
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
 import org.thoughtcrime.securesms.database.model.databaseprotos.ExpiringProfileKeyCredentialColumnData
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import java.security.MessageDigest
 
@@ -27,7 +27,7 @@ object ProfileKeyCredentialTransformer : ColumnTransformer {
       Expires:    ${credential.expirationTime.toLocalDateTime()}
       
       Matching Profile Key: 
-        ${Base64.encodeBytes(columnData.profileKey.toByteArray())}
+        ${Base64.encodeWithPadding(columnData.profileKey.toByteArray())}
     """.trimIndent().replace("\n", "<br>")
   }
 }

@@ -6,8 +6,8 @@
 package org.whispersystems.signalservice.internal.push
 
 import com.fasterxml.jackson.annotation.JsonCreator
+import org.signal.core.util.Base64
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest
-import org.whispersystems.util.Base64
 
 /**
  * Request body to create a call link credential response.
@@ -19,7 +19,7 @@ data class CreateCallLinkAuthRequest @JsonCreator constructor(
     @JvmStatic
     fun create(createCallLinkCredentialRequest: CreateCallLinkCredentialRequest): CreateCallLinkAuthRequest {
       return CreateCallLinkAuthRequest(
-        Base64.encodeBytes(createCallLinkCredentialRequest.serialize())
+        Base64.encodeWithPadding(createCallLinkCredentialRequest.serialize())
       )
     }
   }

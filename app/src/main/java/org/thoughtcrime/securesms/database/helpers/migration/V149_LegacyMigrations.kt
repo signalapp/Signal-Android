@@ -15,6 +15,7 @@ import android.text.TextUtils
 import androidx.core.content.contentValuesOf
 import com.annimon.stream.Stream
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.Triple
@@ -825,7 +825,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         val encodedProfileKey = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_key", null)
         val profileKey = if (encodedProfileKey != null) Base64.decodeOrThrow(encodedProfileKey) else Util.getSecretBytes(32)
         val values = ContentValues(1).apply {
-          put("profile_key", Base64.encodeBytes(profileKey))
+          put("profile_key", Base64.encodeWithPadding(profileKey))
         }
         if (db.update("recipient", values, "phone = ?", arrayOf(localNumber)) == 0) {
           throw AssertionError("No rows updated!")
@@ -851,7 +851,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
           val id: String = cursor.getString(cursor.getColumnIndexOrThrow("_id"))
           val values = ContentValues(2).apply {
             put("dirty", 2)
-            put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()))
+            put("storage_service_key", Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
           }
           db.update("recipient", values, "_id = ?", arrayOf(id))
         }
@@ -1434,7 +1434,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         insertCount = cursor.count
         while (cursor.moveToNext()) {
           val insertValues = ContentValues().apply {
-            put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()))
+            put("storage_service_key", Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
           }
           val id: Long = cursor.getLong(cursor.getColumnIndexOrThrow("_id"))
           db.update("recipient", insertValues, "_id = ?", SqlUtil.buildArgs(id))
@@ -1445,7 +1445,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         updateCount = cursor.count
         while (cursor.moveToNext()) {
           val updateValues = ContentValues().apply {
-            put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()))
+            put("storage_service_key", Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
           }
           val id: Long = cursor.getLong(cursor.getColumnIndexOrThrow("_id"))
           db.update("recipient", updateValues, "_id = ?", SqlUtil.buildArgs(id))
@@ -2445,7 +2445,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
         null,
         contentValuesOf(
           "distribution_list_id" to 1L,
-          "storage_service_key" to Base64.encodeBytes(StorageSyncHelper.generateKey()),
+          "storage_service_key" to Base64.encodeWithPadding(StorageSyncHelper.generateKey()),
           "profile_sharing" to 1
         )
       )

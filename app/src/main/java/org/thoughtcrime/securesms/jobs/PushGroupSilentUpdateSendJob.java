@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -120,7 +120,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     return new JsonJobData.Builder().putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
                                     .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
                                     .putLong(KEY_TIMESTAMP, timestamp)
-                                    .putString(KEY_GROUP_CONTEXT_V2, Base64.encodeBytes(groupContextV2.encode()))
+                                    .putString(KEY_GROUP_CONTEXT_V2, Base64.encodeWithPadding(groupContextV2.encode()))
                                     .serialize();
   }
 

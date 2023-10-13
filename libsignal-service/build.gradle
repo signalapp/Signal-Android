@@ -65,6 +65,8 @@ dependencies {
 
     implementation libs.kotlin.stdlib.jdk8
 
+    implementation project(":core-util-jvm")
+
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core
     testImplementation testLibs.conscrypt.openjdk.uber

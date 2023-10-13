@@ -13,6 +13,7 @@ import okio.ByteString
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.KbsEnclave
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.testing.Get
 import org.thoughtcrime.securesms.testing.Verb
 import org.thoughtcrime.securesms.testing.runSync
 import org.thoughtcrime.securesms.testing.success
-import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.KeyBackupService
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.push.TrustStore

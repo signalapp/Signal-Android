@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 

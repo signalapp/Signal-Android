@@ -16,6 +16,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.Base64
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.FakeMessageRecords
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.whispersystems.util.Base64
 import java.util.Optional
 
 @RunWith(RobolectricTestRunner::class)
@@ -74,7 +74,7 @@ class StoryContextMenuTest {
     val expected = "Hello"
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.TEXT_STORY_WITH_REPLIES,
-      body = Base64.encodeBytes(StoryTextPost.Builder().body(expected).build().encode())
+      body = Base64.encodeWithPadding(StoryTextPost.Builder().body(expected).build().encode())
     )
 
     // WHEN
@@ -93,7 +93,7 @@ class StoryContextMenuTest {
     val expected = "https://www.signal.org"
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.TEXT_STORY_WITH_REPLIES,
-      body = Base64.encodeBytes(StoryTextPost.Builder().build().encode()),
+      body = Base64.encodeWithPadding(StoryTextPost.Builder().build().encode()),
       linkPreviews = listOf(LinkPreview(expected, "", "", 0L, Optional.empty()))
     )
 
@@ -115,7 +115,7 @@ class StoryContextMenuTest {
     val expected = "$text $url"
     val storyRecord = FakeMessageRecords.buildMediaMmsMessageRecord(
       storyType = StoryType.TEXT_STORY_WITH_REPLIES,
-      body = Base64.encodeBytes(StoryTextPost.Builder().body(text).build().encode()),
+      body = Base64.encodeWithPadding(StoryTextPost.Builder().body(text).build().encode()),
       linkPreviews = listOf(LinkPreview(url, "", "", 0L, Optional.empty()))
     )
 

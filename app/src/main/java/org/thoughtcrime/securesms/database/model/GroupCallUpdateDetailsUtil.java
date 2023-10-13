@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,6 +38,6 @@ public final class GroupCallUpdateDetailsUtil {
                                                                    .isCallFull(isCallFull)
                                                                    .inCallUuids(inCallUuids);
 
-    return Base64.encodeBytes(builder.build().encode());
+    return Base64.encodeWithPadding(builder.build().encode());
   }
 }

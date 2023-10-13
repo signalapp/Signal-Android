@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -74,7 +74,7 @@ public class SmsReceiveJob extends BaseJob {
   public @Nullable byte[] serialize() {
     String[] encoded = new String[pdus.length];
     for (int i = 0; i < pdus.length; i++) {
-      encoded[i] = Base64.encodeBytes((byte[]) pdus[i]);
+      encoded[i] = Base64.encodeWithPadding((byte[]) pdus[i]);
     }
 
     return new JsonJobData.Builder().putStringArray(KEY_PDUS, encoded)

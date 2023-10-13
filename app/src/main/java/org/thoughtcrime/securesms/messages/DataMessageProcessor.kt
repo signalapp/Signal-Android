@@ -5,6 +5,7 @@ import android.content.Context
 import android.text.TextUtils
 import com.mobilecoin.lib.exceptions.SerializationException
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
@@ -88,7 +89,6 @@ import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -825,7 +825,7 @@ object DataMessageProcessor {
         receivedTimeMillis = receivedTime,
         expiresIn = message.expireTimerDuration.inWholeMilliseconds,
         isUnidentified = metadata.sealedSender,
-        body = Base64.encodeBytes(dbGiftBadge.encode()),
+        body = Base64.encodeWithPadding(dbGiftBadge.encode()),
         serverGuid = envelope.serverGuid,
         giftBadge = dbGiftBadge
       )

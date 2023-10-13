@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class SenderCertificate {
   public static class ByteArraySerializer extends JsonSerializer<byte[]> {
     @Override
     public void serialize(byte[] value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-      gen.writeString(Base64.encodeBytes(value));
+      gen.writeString(Base64.encodeWithPadding(value));
     }
   }
 

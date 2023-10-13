@@ -11,7 +11,7 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage;
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -201,7 +201,7 @@ public final class SignalWebSocket {
   public Single<WebsocketResponse> request(WebSocketRequestMessage requestMessage, Optional<UnidentifiedAccess> unidentifiedAccess) {
     if (unidentifiedAccess.isPresent()) {
       List<String> headers = new ArrayList<>(requestMessage.headers);
-      headers.add("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()));
+      headers.add("Unidentified-Access-Key:" + Base64.encodeWithPadding(unidentifiedAccess.get().getUnidentifiedAccessKey()));
       WebSocketRequestMessage message = requestMessage.newBuilder()
                                                       .headers(headers)
                                                       .build();

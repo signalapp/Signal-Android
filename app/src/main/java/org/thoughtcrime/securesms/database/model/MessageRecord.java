@@ -56,7 +56,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -508,7 +508,7 @@ public abstract class MessageRecord extends DisplayRecord {
       List<ByteString> deleteRequestingMembers = new ArrayList<>(change.deleteRequestingMembers);
       deleteRequestingMembers.add(id);
 
-      return Base64.encodeBytes(decryptedGroupV2Context.newBuilder()
+      return Base64.encodeWithPadding(decryptedGroupV2Context.newBuilder()
                                                        .change(change.newBuilder()
                                                                      .revision(revision)
                                                                      .deleteRequestingMembers(deleteRequestingMembers)

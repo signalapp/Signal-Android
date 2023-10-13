@@ -14,6 +14,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.exists
 import org.signal.core.util.requireLong
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
 import org.thoughtcrime.securesms.util.Util

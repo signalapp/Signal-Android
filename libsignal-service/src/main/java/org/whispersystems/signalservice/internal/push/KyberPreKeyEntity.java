@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.kem.KEMPublicKey;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 
@@ -60,7 +60,7 @@ public class KyberPreKeyEntity {
   private static class KEMPublicKeySerializer extends JsonSerializer<KEMPublicKey> {
     @Override
     public void serialize(KEMPublicKey value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
+      gen.writeString(Base64.encodeWithoutPadding(value.serialize()));
     }
   }
 
@@ -68,7 +68,7 @@ public class KyberPreKeyEntity {
     @Override
     public KEMPublicKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
       try {
-        return new KEMPublicKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+        return new KEMPublicKey(Base64.decode(p.getValueAsString()), 0);
       } catch (InvalidKeyException e) {
         throw new IOException(e);
       }
@@ -78,7 +78,7 @@ public class KyberPreKeyEntity {
   private static class ByteArraySerializer extends JsonSerializer<byte[]> {
     @Override
     public void serialize(byte[] value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value));
+      gen.writeString(Base64.encodeWithoutPadding(value));
     }
   }
 
@@ -86,7 +86,7 @@ public class KyberPreKeyEntity {
 
     @Override
     public byte[] deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-      return Base64.decodeWithoutPadding(p.getValueAsString());
+      return Base64.decode(p.getValueAsString());
     }
   }
 }

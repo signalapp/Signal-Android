@@ -19,7 +19,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.security.SecureRandom;
 import java.util.LinkedList;
@@ -74,7 +74,7 @@ public class MessagingService {
   public Single<ServiceResponse<SendGroupMessageResponse>> sendToGroup(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent, boolean story) {
     List<String> headers = new LinkedList<String>() {{
       add("content-type:application/vnd.signal-messenger.mrm");
-      add("Unidentified-Access-Key:" + Base64.encodeBytes(joinedUnidentifiedAccess));
+      add("Unidentified-Access-Key:" + Base64.encodeWithPadding(joinedUnidentifiedAccess));
     }};
 
     String path = String.format(Locale.US, "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s", timestamp, online, urgent, story);

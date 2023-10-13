@@ -7,8 +7,8 @@ package org.whispersystems.signalservice.internal.push
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.signal.core.util.Base64
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse
-import org.whispersystems.util.Base64
 
 /**
  * Response body for CreateCallLinkAuthResponse

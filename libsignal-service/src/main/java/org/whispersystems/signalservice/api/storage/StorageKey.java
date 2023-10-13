@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.whispersystems.signalservice.api.kbs.MasterKey;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 import org.whispersystems.util.StringUtil;
 
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public final class StorageKey {
   }
 
   public StorageItemKey deriveItemKey(byte[] key) {
-    return new StorageItemKey(derive("Item_" + Base64.encodeBytes(key)));
+    return new StorageItemKey(derive("Item_" + Base64.encodeWithPadding(key)));
   }
 
   private byte[] derive(String keyName) {

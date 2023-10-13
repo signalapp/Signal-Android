@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 
@@ -51,7 +51,7 @@ public class PreKeyEntity {
   private static class ECPublicKeySerializer extends JsonSerializer<ECPublicKey> {
     @Override
     public void serialize(ECPublicKey value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
+      gen.writeString(Base64.encodeWithoutPadding(value.serialize()));
     }
   }
 
@@ -59,7 +59,7 @@ public class PreKeyEntity {
     @Override
     public ECPublicKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
       try {
-        return Curve.decodePoint(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+        return Curve.decodePoint(Base64.decode(p.getValueAsString()), 0);
       } catch (InvalidKeyException e) {
         throw new IOException(e);
       }

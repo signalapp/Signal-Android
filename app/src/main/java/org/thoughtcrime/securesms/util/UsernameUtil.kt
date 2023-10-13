@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util
 
 import androidx.annotation.WorkerThread
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
@@ -11,7 +12,6 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
-import org.whispersystems.util.Base64UrlSafe
 import java.io.IOException
 import java.util.Locale
 import java.util.Optional
@@ -85,7 +85,7 @@ object UsernameUtil {
     Log.d(TAG, "No local user with this username. Searching remotely.")
 
     return try {
-      fetchAciForUsernameHash(Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username)))
+      fetchAciForUsernameHash(Base64.encodeUrlSafeWithoutPadding(Username.hash(username)))
     } catch (e: BaseUsernameException) {
       Optional.empty()
     }
@@ -97,7 +97,7 @@ object UsernameUtil {
    */
   @Throws(BaseUsernameException::class)
   fun hashUsernameToBase64(username: String?): String {
-    return Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))
+    return Base64.encodeUrlSafeWithoutPadding(Username.hash(username))
   }
 
   @JvmStatic
@@ -117,7 +117,7 @@ object UsernameUtil {
    */
   fun generateLink(components: UsernameLinkComponents): String {
     val combined: ByteArray = components.entropy + components.serverId.toByteArray()
-    val base64 = Base64UrlSafe.encodeBytesWithoutPadding(combined)
+    val base64 = Base64.encodeUrlSafeWithoutPadding(combined)
     return BASE_URL + base64
   }
 
@@ -128,7 +128,7 @@ object UsernameUtil {
   fun parseLink(url: String): UsernameLinkComponents? {
     val match: MatchResult = URL_PATTERN.find(url) ?: return null
     val path: String = match.groups[2]?.value ?: return null
-    val allBytes: ByteArray = Base64UrlSafe.decodePaddingAgnostic(path)
+    val allBytes: ByteArray = Base64.decode(path)
 
     if (allBytes.size != 48) {
       return null

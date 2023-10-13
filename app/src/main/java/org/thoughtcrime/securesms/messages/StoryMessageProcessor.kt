@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.graphics.Color
+import org.signal.core.util.Base64
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.Content
@@ -147,6 +147,6 @@ object StoryMessageProcessor {
     }
     builder.background(chatColorBuilder.build())
 
-    return Base64.encodeBytes(builder.build().encode())
+    return Base64.encodeWithPadding(builder.build().encode())
   }
 }

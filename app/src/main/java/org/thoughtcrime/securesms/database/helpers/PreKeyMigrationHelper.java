@@ -19,7 +19,7 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.SignedPreKeyTable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.Base64;
+import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.File;
@@ -49,8 +49,8 @@ public final class PreKeyMigrationHelper {
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(OneTimePreKeyTable.KEY_ID, preKey.getId());
-            contentValues.put(OneTimePreKeyTable.PUBLIC_KEY, Base64.encodeBytes(preKey.getKeyPair().getPublicKey().serialize()));
-            contentValues.put(OneTimePreKeyTable.PRIVATE_KEY, Base64.encodeBytes(preKey.getKeyPair().getPrivateKey().serialize()));
+            contentValues.put(OneTimePreKeyTable.PUBLIC_KEY, Base64.encodeWithPadding(preKey.getKeyPair().getPublicKey().serialize()));
+            contentValues.put(OneTimePreKeyTable.PRIVATE_KEY, Base64.encodeWithPadding(preKey.getKeyPair().getPrivateKey().serialize()));
             database.insert(OneTimePreKeyTable.TABLE_NAME, null, contentValues);
             Log.i(TAG, "Migrated one-time prekey: " + preKey.getId());
           } catch (IOException | InvalidMessageException | InvalidKeyException e) {
@@ -71,9 +71,9 @@ public final class PreKeyMigrationHelper {
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(SignedPreKeyTable.KEY_ID, signedPreKey.getId());
-            contentValues.put(SignedPreKeyTable.PUBLIC_KEY, Base64.encodeBytes(signedPreKey.getKeyPair().getPublicKey().serialize()));
-            contentValues.put(SignedPreKeyTable.PRIVATE_KEY, Base64.encodeBytes(signedPreKey.getKeyPair().getPrivateKey().serialize()));
-            contentValues.put(SignedPreKeyTable.SIGNATURE, Base64.encodeBytes(signedPreKey.getSignature()));
+            contentValues.put(SignedPreKeyTable.PUBLIC_KEY, Base64.encodeWithPadding(signedPreKey.getKeyPair().getPublicKey().serialize()));
+            contentValues.put(SignedPreKeyTable.PRIVATE_KEY, Base64.encodeWithPadding(signedPreKey.getKeyPair().getPrivateKey().serialize()));
+            contentValues.put(SignedPreKeyTable.SIGNATURE, Base64.encodeWithPadding(signedPreKey.getSignature()));
             contentValues.put(SignedPreKeyTable.TIMESTAMP, signedPreKey.getTimestamp());
             database.insert(SignedPreKeyTable.TABLE_NAME, null, contentValues);
             Log.i(TAG, "Migrated signed prekey: " + signedPreKey.getId());

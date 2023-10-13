@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.internal.push.http;
 
 import org.signal.protos.resumableuploads.ResumableUpload;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -85,7 +85,7 @@ public final class ResumableUploadSpec {
                .collect(Collectors.toList())
     );
 
-    return Base64.encodeBytes(builder.build().encode());
+    return Base64.encodeWithPadding(builder.build().encode());
   }
 
   public static ResumableUploadSpec deserialize(String serializedSpec) throws ResumeLocationInvalidException {

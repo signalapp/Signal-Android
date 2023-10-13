@@ -22,7 +22,7 @@ import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -214,7 +214,7 @@ final class CdsiSocket {
   }
 
   private static String basicAuth(String username, String password) {
-    return "Basic " + Base64.encodeBytes((username + ":" + password).getBytes(StandardCharsets.UTF_8));
+    return "Basic " + Base64.encodeWithPadding((username + ":" + password).getBytes(StandardCharsets.UTF_8));
   }
 
   private static Pair<SSLSocketFactory, X509TrustManager> createTlsSocketFactory(TrustStore trustStore) {

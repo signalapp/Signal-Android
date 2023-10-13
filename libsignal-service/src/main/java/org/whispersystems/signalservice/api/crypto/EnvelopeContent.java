@@ -13,7 +13,7 @@ import org.whispersystems.signalservice.internal.push.Content;
 import org.whispersystems.signalservice.internal.push.Envelope.Type;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.PushTransportDetails;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.util.Optional;
 
@@ -88,7 +88,7 @@ public interface EnvelopeContent {
                                                                                                groupId);
 
       byte[] ciphertext           = sealedSessionCipher.encrypt(destination, messageContent);
-      String body                 = Base64.encodeBytes(ciphertext);
+      String body                 = Base64.encodeWithPadding(ciphertext);
       int    remoteRegistrationId = sealedSessionCipher.getRemoteRegistrationId(destination);
 
       return new OutgoingPushMessage(Type.UNIDENTIFIED_SENDER.getValue(), destination.getDeviceId(), remoteRegistrationId, body);
@@ -99,7 +99,7 @@ public interface EnvelopeContent {
       PushTransportDetails transportDetails     = new PushTransportDetails();
       CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(content.encode()));
       int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
-      String               body                 = Base64.encodeBytes(message.serialize());
+      String               body                 = Base64.encodeWithPadding(message.serialize());
 
       int type;
 
@@ -146,7 +146,7 @@ public interface EnvelopeContent {
                                                                                              groupId);
 
       byte[] ciphertext           = sealedSessionCipher.encrypt(destination, messageContent);
-      String body                 = Base64.encodeBytes(ciphertext);
+      String body                 = Base64.encodeWithPadding(ciphertext);
       int    remoteRegistrationId = sealedSessionCipher.getRemoteRegistrationId(destination);
 
       return new OutgoingPushMessage(Type.UNIDENTIFIED_SENDER.getValue(), destination.getDeviceId(), remoteRegistrationId, body);
@@ -154,7 +154,7 @@ public interface EnvelopeContent {
 
     @Override
     public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) {
-      String body                 = Base64.encodeBytes(plaintextContent.serialize());
+      String body                 = Base64.encodeWithPadding(plaintextContent.serialize());
       int    remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
 
       return new OutgoingPushMessage(Type.PLAINTEXT_CONTENT.getValue(), destination.getDeviceId(), remoteRegistrationId, body);

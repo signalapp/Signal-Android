@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.profiles.manage
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.Base64
 import org.signal.core.util.Result
 import org.signal.core.util.Result.Companion.failure
 import org.signal.core.util.Result.Companion.success
@@ -24,7 +25,6 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException
-import org.whispersystems.util.Base64UrlSafe
 import java.io.IOException
 
 /**
@@ -153,7 +153,7 @@ class UsernameRepository {
       val candidates: List<Username> = Username.candidatesFrom(nickname, UsernameUtil.MIN_LENGTH, UsernameUtil.MAX_LENGTH)
 
       val hashes: List<String> = candidates
-        .map { Base64UrlSafe.encodeBytesWithoutPadding(it.hash) }
+        .map { Base64.encodeUrlSafeWithoutPadding(it.hash) }
 
       val response = accountManager.reserveUsername(hashes)
 

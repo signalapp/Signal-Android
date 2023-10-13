@@ -35,7 +35,7 @@ import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeExcepti
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
-import org.whispersystems.util.Base64;
+import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
