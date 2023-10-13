@@ -80,6 +80,16 @@
         <attr name="transparent_overlay_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TransferProgressView">
+        <attr name="progressArcWidth" format="dimension" />
+        <attr name="iconSize" format="dimension" />
+        <attr name="stopIconSize" format="dimension" />
+        <attr name="stopIconCornerRadius" format="dimension" />
+        <attr name="transferIconColor" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="trackColor" format="color" />
+    </declare-styleable>
+
     <declare-styleable name="DeliveryStatusView">
         <attr name="iconColor" format="color" />
     </declare-styleable>

@@ -13,9 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -29,25 +26,20 @@ import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.util.visible
+import java.util.UUID
 
 class TransferControlView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
+  private val uuid = UUID.randomUUID().toString()
   private val binding: TransferControlsViewBinding
-  private val store = RxStore(TransferControlViewState())
-  private val disposables = CompositeDisposable().apply {
-    add(store)
-  }
 
-  private var previousState = TransferControlViewState()
+  private var state = TransferControlViewState()
 
   init {
+    tag = uuid
     binding = TransferControlsViewBinding.inflate(LayoutInflater.from(context), this)
     visibility = GONE
     isLongClickable = false
-    disposables += store.stateFlowable.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe {
-      applyState(it)
-    }
 
     addOnAttachStateChangeListener(RecyclerViewParentTransitionController(child = this))
   }
@@ -60,11 +52,20 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
     EventBus.getDefault().unregister(this)
-    disposables.clear()
+  }
+
+  private fun updateState(stateFactory: (TransferControlViewState) -> TransferControlViewState) {
+    val newState = stateFactory.invoke(state)
+    if (newState != state) {
+      applyState(newState)
+    }
+    state = newState
   }
 
   private fun applyState(currentState: TransferControlViewState) {
-    when (deriveMode(currentState)) {
+    val mode = deriveMode(currentState)
+    verboseLog("New state applying, mode = $mode")
+    when (mode) {
       Mode.PENDING_GALLERY -> displayPendingGallery(currentState)
       Mode.PENDING_GALLERY_CONTAINS_PLAYABLE -> displayPendingGalleryWithPlayable(currentState)
       Mode.PENDING_SINGLE_ITEM -> displayPendingSingleItem(currentState)
@@ -76,18 +77,18 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       Mode.UPLOADING_SINGLE_ITEM -> displayUploadingSingleItem(currentState)
       Mode.RETRY_DOWNLOADING -> displayRetry(currentState, false)
       Mode.RETRY_UPLOADING -> displayRetry(currentState, true)
-      Mode.GONE -> displayChildrenAsGone(currentState, previousState)
+      Mode.GONE -> displayChildrenAsGone()
     }
-
-    previousState = currentState
   }
 
   private fun deriveMode(currentState: TransferControlViewState): Mode {
     if (currentState.slides.isEmpty()) {
+      verboseLog("Setting empty slide deck to GONE")
       return Mode.GONE
     }
 
     if (currentState.slides.all { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }) {
+      verboseLog("Setting slide deck that's finished to GONE\n\t${slidesAsListOfTimestamps(currentState.slides)}")
       return Mode.GONE
     }
 
@@ -190,15 +191,17 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
           }
 
           AttachmentTable.TRANSFER_PROGRESS_DONE -> {
+            verboseLog("[Case 2] Setting slide deck that's finished to GONE\t${slidesAsListOfTimestamps(currentState.slides)}")
             return Mode.GONE
           }
         }
       }
     } else {
+      verboseLog("Setting slide deck to GONE because isVisible is false:\t${slidesAsListOfTimestamps(currentState.slides)}")
       return Mode.GONE
     }
 
-    Log.i(TAG, "Hit default mode case, this should not happen.")
+    Log.i(TAG, "[$uuid] Hit default mode case, this should not happen.")
     return Mode.GONE
   }
 
@@ -212,6 +215,11 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       secondaryDetailsText = currentState.showSecondaryText
     )
 
+    binding.primaryDetailsText.translationX = if (ViewUtil.isLtr(this)) {
+      ViewUtil.dpToPx(-8).toFloat()
+    } else {
+      ViewUtil.dpToPx(8).toFloat()
+    }
     val remainingSlides = currentState.slides.filterNot { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
     val downloadCount = remainingSlides.size
     binding.primaryDetailsText.text = context.resources.getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount)
@@ -374,7 +382,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     binding.secondaryDetailsText.text = resources.getString(R.string.NetworkFailure__retry)
   }
 
-  private fun displayChildrenAsGone(currentState: TransferControlViewState, prevState: TransferControlViewState) {
+  private fun displayChildrenAsGone() {
     children.forEach {
       it.visible = false
     }
@@ -427,37 +435,44 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   override fun setFocusable(focusable: Boolean) {
     super.setFocusable(false)
-    store.update { it.copy(isFocusable = focusable) }
+    verboseLog("setFocusable update: $focusable")
+    updateState { it.copy(isFocusable = focusable) }
   }
 
   override fun setClickable(clickable: Boolean) {
     super.setClickable(false)
-    store.update { it.copy(isClickable = clickable) }
+    verboseLog("setClickable update: $clickable")
+    updateState { it.copy(isClickable = clickable) }
   }
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   fun onEventAsync(event: PartProgressEvent) {
     val attachment = event.attachment
-    store.update {
+    updateState {
+      verboseLog("onEventAsync update")
       if (!it.networkProgress.containsKey(attachment)) {
-        return@update it
+        verboseLog("onEventAsync update ignored")
+        return@updateState it
       }
 
       if (event.type == PartProgressEvent.Type.COMPRESSION) {
         val mutableMap = it.compressionProgress.toMutableMap()
         mutableMap[attachment] = Progress.fromEvent(event)
-        return@update it.copy(compressionProgress = mutableMap.toMap())
+        verboseLog("onEventAsync compression update")
+        return@updateState it.copy(compressionProgress = mutableMap.toMap())
       } else {
         val mutableMap = it.networkProgress.toMutableMap()
         mutableMap[attachment] = Progress.fromEvent(event)
-        return@update it.copy(networkProgress = mutableMap.toMap())
+        verboseLog("onEventAsync network update")
+        return@updateState it.copy(networkProgress = mutableMap.toMap())
       }
     }
   }
 
   fun setSlides(slides: List<Slide>) {
-    require(slides.isNotEmpty()) { "Must provide at least one slide." }
-    store.update { state ->
+    require(slides.isNotEmpty()) { "[$uuid] Must provide at least one slide." }
+    updateState { state ->
+      verboseLog("State update for new slides: ${slidesAsListOfTimestamps(slides)}")
       val isNewSlideSet = !isUpdateToExistingSet(state, slides)
       val networkProgress: MutableMap<Attachment, Progress> = if (isNewSlideSet) HashMap() else state.networkProgress.toMutableMap()
       if (isNewSlideSet) {
@@ -476,14 +491,25 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
       val playableWhileDownloading = allStreamableOrDone
       val isOutgoing = slides.any { it.asAttachment().uploadTimestamp == 0L }
 
-      state.copy(
+      val result = state.copy(
         slides = slides,
         networkProgress = networkProgress,
         compressionProgress = compressionProgress,
         playableWhileDownloading = playableWhileDownloading,
         isOutgoing = isOutgoing
       )
+      verboseLog("New state calculated and being returned for new slides: ${slidesAsListOfTimestamps(slides)}\n$result")
+      return@updateState result
     }
+    verboseLog("End of setSlides() for ${slidesAsListOfTimestamps(slides)}")
+  }
+
+  private fun slidesAsListOfTimestamps(slides: List<Slide>): String {
+    if (!VERBOSE_DEVELOPMENT_LOGGING) {
+      return ""
+    }
+
+    return slides.map { it.asAttachment().uploadTimestamp }.joinToString()
   }
 
   private fun isUpdateToExistingSet(currentState: TransferControlViewState, slides: List<Slide>): Boolean {
@@ -499,38 +525,53 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
   }
 
   fun setDownloadClickListener(listener: OnClickListener) {
-    store.update {
-      it.copy(downloadClickedListener = listener)
+    verboseLog("downloadClickListener update")
+    updateState {
+      it.copy(
+        downloadClickedListener = listener
+      )
     }
   }
 
   fun setCancelClickListener(listener: OnClickListener) {
-    store.update {
-      it.copy(cancelDownloadClickedListener = listener)
+    verboseLog("cancelClickListener update")
+    updateState {
+      it.copy(
+        cancelDownloadClickedListener = listener
+      )
     }
   }
 
   fun setInstantPlaybackClickListener(listener: OnClickListener) {
-    store.update {
-      it.copy(instantPlaybackClickListener = listener)
+    verboseLog("instantPlaybackClickListener update")
+    updateState {
+      it.copy(
+        instantPlaybackClickListener = listener
+      )
     }
   }
 
   fun clear() {
     clearAnimation()
     visibility = GONE
-    store.update { TransferControlViewState() }
+    updateState { TransferControlViewState() }
   }
 
   fun setShowSecondaryText(showSecondaryText: Boolean) {
-    store.update {
-      it.copy(showSecondaryText = showSecondaryText)
+    verboseLog("showSecondaryText update: $showSecondaryText")
+    updateState {
+      it.copy(
+        showSecondaryText = showSecondaryText
+      )
     }
   }
 
   fun setVisible(isVisible: Boolean) {
-    store.update {
-      it.copy(isVisible = isVisible)
+    verboseLog("showSecondaryText update: $isVisible")
+    updateState {
+      it.copy(
+        isVisible = isVisible
+      )
     }
   }
 
@@ -558,12 +599,22 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     }
   }
 
+  /**
+   * This is an extremely chatty logging mode for local development. Each view is assigned a UUID so that you can filter by view inside a conversation.
+   */
+  private fun verboseLog(message: String) {
+    if (VERBOSE_DEVELOPMENT_LOGGING) {
+      Log.d(TAG, "[$uuid] $message")
+    }
+  }
+
   companion object {
     private const val TAG = "TransferControlView"
+    private const val VERBOSE_DEVELOPMENT_LOGGING = false
     private const val UPLOAD_TASK_WEIGHT = 1
 
     /**
-     * A weighting compared to [.UPLOAD_TASK_WEIGHT]
+     * A weighting compared to [UPLOAD_TASK_WEIGHT]
      */
     private const val COMPRESSION_TASK_WEIGHT = 3
 
