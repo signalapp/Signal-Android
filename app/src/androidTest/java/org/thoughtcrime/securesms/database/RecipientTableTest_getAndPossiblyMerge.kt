@@ -142,6 +142,30 @@ class RecipientTableTest_getAndPossiblyMerge {
       process(null, null, null)
     }
 
+    test("pni matches, pni+aci provided, no pni session") {
+      given(E164_A, PNI_A, null)
+      process(null, PNI_A, ACI_A)
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
+    test("pni matches, pni+aci provided, pni session") {
+      given(E164_A, PNI_A, null, pniSession = true)
+      process(null, PNI_A, ACI_A)
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectSessionSwitchoverEvent(E164_A)
+    }
+
+    test("pni matches, pni+aci provided, pni session, pni-verified") {
+      given(E164_A, PNI_A, null, pniSession = true)
+      process(null, PNI_A, ACI_A, pniVerified = true)
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectNoSessionSwitchoverEvent()
+    }
+
     test("no match, all fields") {
       process(E164_A, PNI_A, ACI_A)
       expect(E164_A, PNI_A, ACI_A)
