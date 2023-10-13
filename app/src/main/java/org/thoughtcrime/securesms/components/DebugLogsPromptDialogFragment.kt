@@ -88,11 +88,11 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
       disposables += viewModel.submitLogs().subscribe({ result ->
         submitLogs(result, purpose)
         progressDialog.dismiss()
-        dismiss()
+        dismissAllowingStateLoss()
       }, { _ ->
         Toast.makeText(requireContext(), getString(R.string.HelpFragment__could_not_upload_logs), Toast.LENGTH_LONG).show()
         progressDialog.dismiss()
-        dismiss()
+        dismissAllowingStateLoss()
       })
     }
 
@@ -101,7 +101,7 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
         SignalStore.uiHints().markDeclinedShareNotificationLogs()
       }
 
-      dismiss()
+      dismissAllowingStateLoss()
     }
   }
 
