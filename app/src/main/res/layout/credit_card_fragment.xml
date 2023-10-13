@@ -32,17 +32,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/card_number_wrapper"
-        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="36dp"
         android:hint="@string/CreditCardFragment__card_number"
-        app:boxStrokeColor="@color/signal_colorPrimary"
-        app:boxStrokeErrorColor="@color/signal_colorError"
         app:errorEnabled="true"
-        app:errorIconTint="@color/signal_colorError"
-        app:errorTextColor="@color/signal_colorError"
-        app:hintTextColor="@color/signal_colorPrimary"
         app:layout_constraintTop_toBottomOf="@id/description">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -53,24 +49,23 @@
             android:imeOptions="actionNext"
             android:inputType="number"
             android:maxLines="1"
-            android:nextFocusDown="@id/card_expiry" />
+            android:nextFocusDown="@id/card_expiry">
+
+            <requestFocus />
+        </com.google.android.material.textfield.TextInputEditText>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/card_expiry_wrapper"
-        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="18dp"
         android:hint="@string/CreditCardFragment__mm_yy"
         android:paddingEnd="18dp"
-        app:boxStrokeColor="@color/signal_colorPrimary"
-        app:boxStrokeErrorColor="@color/signal_colorError"
         app:errorEnabled="true"
-        app:errorIconTint="@color/signal_colorError"
-        app:errorTextColor="@color/signal_colorError"
-        app:hintTextColor="@color/signal_colorPrimary"
         app:layout_constraintEnd_toStartOf="@id/card_cvv_wrapper"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_number_wrapper">
@@ -90,18 +85,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/card_cvv_wrapper"
-        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        style="@style/Widget.Signal.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="24dp"
         android:hint="@string/CreditCardFragment__cvv"
         android:paddingStart="18dp"
-        app:boxStrokeColor="@color/signal_colorPrimary"
-        app:boxStrokeErrorColor="@color/signal_colorError"
         app:errorEnabled="true"
-        app:errorIconTint="@color/signal_colorError"
-        app:errorTextColor="@color/signal_colorError"
-        app:hintTextColor="@color/signal_colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_expiry_wrapper"
         app:layout_constraintTop_toBottomOf="@id/card_number_wrapper">

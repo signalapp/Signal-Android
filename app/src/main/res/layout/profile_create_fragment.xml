@@ -135,7 +135,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/given_name_wrapper"
-                        style="@style/Widget.Signal.TextInputLayout.Registration"
+                        style="@style/Widget.Signal.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="24dp"
@@ -170,7 +170,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/family_name_wrapper"
-                        style="@style/Widget.Signal.TextInputLayout.Registration"
+                        style="@style/Widget.Signal.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="24dp"
