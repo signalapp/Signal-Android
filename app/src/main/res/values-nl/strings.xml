@@ -160,7 +160,7 @@
     <!-- Text that is shown when unblocking a Signal contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden, kunnen bellen, en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Jullie zullen weer sms-berichten aan elkaar kunnen verzenden via Signal.</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden via Signal.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde mensen kunnen je niet bellen of je berichten sturen.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
@@ -569,7 +569,7 @@
     <string name="RelinkDevicesReminderFragment__later">Later</string>
 
     <!-- CreateGroupActivity -->
-    <string name="CreateGroupActivity__select_members">Kies leden</string>
+    <string name="CreateGroupActivity__select_members">Kies groepsleden</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profiel</string>
@@ -2384,7 +2384,7 @@
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Uitnodigen voor Signal</string>
-    <string name="contact_selection_activity__new_group">Nieuwe groep aanmaken</string>
+    <string name="contact_selection_activity__new_group">Nieuwe groep</string>
     <!-- Row item title for refreshing contacts -->
     <string name="contact_selection_activity__refresh_contacts">Contacten verversen</string>
     <!-- Row item description for refreshing contacts -->
@@ -4469,7 +4469,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Berichten</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__video">Video-oproep</string>
+    <string name="ConversationSettingsFragment__video">Video</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Audio</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
