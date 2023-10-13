@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contactshare;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -126,25 +127,30 @@ public class ContactModelMapper {
   }
 
   public static Contact remoteToLocal(@NonNull DataMessage.Contact contact) {
-    Name name = new Name(contact.name.displayName,
-                         contact.name.givenName,
-                         contact.name.familyName,
-                         contact.name.prefix,
-                         contact.name.suffix,
-                         contact.name.middleName);
+    DataMessage.Contact.Name contactName = contact.name != null ? contact.name : new DataMessage.Contact.Name();
+    Name name = new Name(contactName.displayName,
+                         contactName.givenName,
+                         contactName.familyName,
+                         contactName.prefix,
+                         contactName.suffix,
+                         contactName.middleName);
 
     List<Phone> phoneNumbers = new ArrayList<>(contact.number.size());
     for (DataMessage.Contact.Phone phone : contact.number) {
-      phoneNumbers.add(new Phone(phone.value_,
-                                 remoteToLocalType(phone.type),
-                                 phone.label));
+      if (phone.value_ != null) {
+        phoneNumbers.add(new Phone(phone.value_,
+                                   remoteToLocalType(phone.type),
+                                   phone.label));
+      }
     }
 
     List<Email> emails = new ArrayList<>(contact.email.size());
     for (DataMessage.Contact.Email email : contact.email) {
-      emails.add(new Email(email.value_,
-                           remoteToLocalType(email.type),
-                           email.label));
+      if (email.value_ != null) {
+        emails.add(new Email(email.value_,
+                             remoteToLocalType(email.type),
+                             email.label));
+      }
     }
 
     List<PostalAddress> postalAddresses = new ArrayList<>(contact.address.size());
@@ -161,11 +167,11 @@ public class ContactModelMapper {
     }
 
     Avatar avatar = null;
-    if (contact.avatar != null) {
+    if (contact.avatar != null && contact.avatar.avatar != null) {
       try {
         SignalServiceAttachmentPointer attachmentPointer = AttachmentPointerUtil.createSignalAttachmentPointer(contact.avatar.avatar);
         Attachment                     attachment        = PointerAttachment.forPointer(Optional.of(attachmentPointer.asPointer())).get();
-        boolean                        isProfile         = contact.avatar.isProfile;
+        boolean                        isProfile         = Boolean.TRUE.equals(contact.avatar.isProfile);
 
         avatar = new Avatar(null, attachment, isProfile);
       } catch (InvalidMessageStructureException e) {
@@ -176,7 +182,9 @@ public class ContactModelMapper {
     return new Contact(name, contact.organization, phoneNumbers, emails, postalAddresses, avatar);
   }
 
-  private static Phone.Type remoteToLocalType(SharedContact.Phone.Type type) {
+  private static Phone.Type remoteToLocalType(@Nullable SharedContact.Phone.Type type) {
+    if (type == null) return Phone.Type.CUSTOM;
+
     switch (type) {
       case HOME:   return Phone.Type.HOME;
       case MOBILE: return Phone.Type.MOBILE;
@@ -185,7 +193,9 @@ public class ContactModelMapper {
     }
   }
 
-  private static Phone.Type remoteToLocalType(DataMessage.Contact.Phone.Type type) {
+  private static Phone.Type remoteToLocalType(@Nullable DataMessage.Contact.Phone.Type type) {
+    if (type == null) return Phone.Type.CUSTOM;
+
     switch (type) {
       case HOME:   return Phone.Type.HOME;
       case MOBILE: return Phone.Type.MOBILE;
@@ -194,7 +204,9 @@ public class ContactModelMapper {
     }
   }
 
-  private static Email.Type remoteToLocalType(SharedContact.Email.Type type) {
+  private static Email.Type remoteToLocalType(@Nullable SharedContact.Email.Type type) {
+    if (type == null) return Email.Type.CUSTOM;
+
     switch (type) {
       case HOME:   return Email.Type.HOME;
       case MOBILE: return Email.Type.MOBILE;
@@ -203,7 +215,9 @@ public class ContactModelMapper {
     }
   }
 
-  private static Email.Type remoteToLocalType(DataMessage.Contact.Email.Type type) {
+  private static Email.Type remoteToLocalType(@Nullable DataMessage.Contact.Email.Type type) {
+    if (type == null) return Email.Type.CUSTOM;
+
     switch (type) {
       case HOME:   return Email.Type.HOME;
       case MOBILE: return Email.Type.MOBILE;
@@ -212,7 +226,9 @@ public class ContactModelMapper {
     }
   }
 
-  private static PostalAddress.Type remoteToLocalType(SharedContact.PostalAddress.Type type) {
+  private static PostalAddress.Type remoteToLocalType(@Nullable SharedContact.PostalAddress.Type type) {
+    if (type == null) return PostalAddress.Type.CUSTOM;
+
     switch (type) {
       case HOME:   return PostalAddress.Type.HOME;
       case WORK:   return PostalAddress.Type.WORK;
@@ -220,7 +236,9 @@ public class ContactModelMapper {
     }
   }
 
-  private static PostalAddress.Type remoteToLocalType(DataMessage.Contact.PostalAddress.Type type) {
+  private static PostalAddress.Type remoteToLocalType(@Nullable DataMessage.Contact.PostalAddress.Type type) {
+    if (type == null) return PostalAddress.Type.CUSTOM;
+
     switch (type) {
       case HOME:   return PostalAddress.Type.HOME;
       case WORK:   return PostalAddress.Type.WORK;
