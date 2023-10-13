@@ -394,6 +394,8 @@ class ConversationFragment :
     _binding.conversationItemRecycler.adapter = null
 
     textDraftSaveDebouncer.clear()
+
+    ChatColorsDrawable.clearGlobalChatColors(_binding.conversationItemRecycler)
   }
 
   private val viewModel: ConversationViewModel by viewModel {
@@ -1372,6 +1374,7 @@ class ConversationFragment :
       colorFilter = PorterDuffColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.MULTIPLY)
       invalidateSelf()
     }
+    ChatColorsDrawable.setGlobalChatColors(binding.conversationItemRecycler, chatColors)
   }
 
   private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {
