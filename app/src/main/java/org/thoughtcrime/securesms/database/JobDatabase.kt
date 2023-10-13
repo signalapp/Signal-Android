@@ -23,9 +23,6 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.hasTable
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.rawDatabase
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader.load
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec
@@ -123,19 +120,19 @@ class JobDatabase(
     db.execSQL(Constraints.CREATE_TABLE)
     db.execSQL(Dependencies.CREATE_TABLE)
 
-    if (hasTable("job_spec")) {
+    if (SignalDatabase.hasTable("job_spec")) {
       Log.i(TAG, "Found old job_spec table. Migrating data.")
-      migrateJobSpecsFromPreviousDatabase(rawDatabase, db)
+      migrateJobSpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
     }
 
-    if (hasTable("constraint_spec")) {
+    if (SignalDatabase.hasTable("constraint_spec")) {
       Log.i(TAG, "Found old constraint_spec table. Migrating data.")
-      migrateConstraintSpecsFromPreviousDatabase(rawDatabase, db)
+      migrateConstraintSpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
     }
 
-    if (hasTable("dependency_spec")) {
+    if (SignalDatabase.hasTable("dependency_spec")) {
       Log.i(TAG, "Found old dependency_spec table. Migrating data.")
-      migrateDependencySpecsFromPreviousDatabase(rawDatabase, db)
+      migrateDependencySpecsFromPreviousDatabase(SignalDatabase.rawDatabase, db)
     }
   }
 
@@ -405,9 +402,9 @@ class JobDatabase(
   }
 
   private fun dropTableIfPresent(table: String) {
-    if (hasTable(table)) {
+    if (SignalDatabase.hasTable(table)) {
       Log.i(TAG, "Dropping original $table table from the main database.")
-      rawDatabase.execSQL("DROP TABLE $table")
+      SignalDatabase.rawDatabase.execSQL("DROP TABLE $table")
     }
   }
 
@@ -425,7 +422,7 @@ class JobDatabase(
       if (instance == null) {
         synchronized(JobDatabase::class.java) {
           if (instance == null) {
-            load()
+            SqlCipherLibraryLoader.load()
             instance = JobDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
           }
         }
