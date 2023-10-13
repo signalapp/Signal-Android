@@ -27,7 +27,7 @@ public final class AttachmentPointerUtil {
                                               pointer.width != null ? pointer.width : 0,
                                               pointer.height != null ? pointer.height : 0,
                                               pointer.digest != null ? Optional.of(pointer.digest.toByteArray()) : Optional.empty(),
-                                              pointer.incrementalDigest != null ? Optional.of(pointer.incrementalDigest.toByteArray()) : Optional.empty(),
+                                              pointer.incrementalMac != null ? Optional.of(pointer.incrementalMac.toByteArray()) : Optional.empty(),
                                               pointer.incrementalMacChunkSize != null ? pointer.incrementalMacChunkSize : 0,
                                               pointer.fileName != null ? Optional.of(pointer.fileName) : Optional.empty(),
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE.getValue())) != 0,
@@ -49,7 +49,7 @@ public final class AttachmentPointerUtil {
                                                              .uploadTimestamp(attachment.getUploadTimestamp());
 
     if (attachment.getIncrementalDigest().isPresent()) {
-      builder.incrementalDigest(ByteString.of(attachment.getIncrementalDigest().get()));
+      builder.incrementalMac(ByteString.of(attachment.getIncrementalDigest().get()));
     }
 
     if (attachment.getIncrementalMacChunkSize() > 0) {
