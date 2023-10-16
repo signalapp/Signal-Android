@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * Holds state information about pending one-time donations.
@@ -59,6 +60,8 @@ object OneTimeDonationPreference {
       if (model.pendingOneTimeDonation.paymentMethodType == PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT) {
         itemView.setOnClickListener { model.onPendingClick(model.pendingOneTimeDonation.amount.toFiatMoney()) }
       }
+
+      progress.visible = model.pendingOneTimeDonation.paymentMethodType != PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
     }
 
     private fun getPendingSubtitle(paymentMethodType: PendingOneTimeDonation.PaymentMethodType): String {

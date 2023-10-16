@@ -38,7 +38,8 @@ fun BadgeImage112(
       },
       update = {
         it.setBadge(badge)
-      }
+      },
+      modifier = modifier
     )
   }
 }

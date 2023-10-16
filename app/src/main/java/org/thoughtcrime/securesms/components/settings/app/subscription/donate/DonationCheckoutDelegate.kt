@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ga
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalPaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.details.BankTransferDetailsFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
@@ -87,6 +88,16 @@ class DonationCheckoutDelegate(
     fragment.setFragmentResultListener(CreditCardFragment.REQUEST_KEY) { _, bundle ->
       val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
       handleDonationProcessorActionResult(result)
+    }
+
+    fragment.setFragmentResultListener(BankTransferDetailsFragment.REQUEST_KEY) { _, bundle ->
+      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      handleDonationProcessorActionResult(result)
+    }
+
+    fragment.setFragmentResultListener(BankTransferDetailsFragment.PENDING_KEY) { _, bundle ->
+      val request: GatewayRequest = bundle.getParcelableCompat(BankTransferDetailsFragment.PENDING_KEY, GatewayRequest::class.java)!!
+      callback.navigateToDonationPending(gatewayRequest = request)
     }
 
     fragment.setFragmentResultListener(PayPalPaymentInProgressFragment.REQUEST_KEY) { _, bundle ->

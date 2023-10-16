@@ -39,6 +39,9 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -47,12 +50,18 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -62,7 +71,12 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 /**
  * Collects SEPA Debit bank transfer details from the user to proceed with donation.
  */
-class BankTransferDetailsFragment : ComposeFragment() {
+class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.ErrorHandlerCallback {
+
+  companion object {
+    const val REQUEST_KEY = "bank.transfer.result"
+    const val PENDING_KEY = "bank.transfer.pending"
+  }
 
   private val args: BankTransferDetailsFragmentArgs by navArgs()
   private val viewModel: BankTransferDetailsViewModel by viewModels()
@@ -76,6 +90,22 @@ class BankTransferDetailsFragment : ComposeFragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
+
+    val errorSource: DonationErrorSource = when (args.request.donateToSignalType) {
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.GIFT -> DonationErrorSource.GIFT
+    }
+
+    DonationCheckoutDelegate.ErrorHandler().attach(this, this, args.request.uiSessionKey, errorSource)
+
+    setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
+      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
+      if (result.status == DonationProcessorActionResult.Status.SUCCESS) {
+        findNavController().popBackStack(R.id.donateToSignalFragment, false)
+        setFragmentResult(REQUEST_KEY, bundle)
+      }
+    }
   }
 
   @Composable
@@ -128,6 +158,15 @@ class BankTransferDetailsFragment : ComposeFragment() {
         args.request
       )
     )
+  }
+
+  override fun onUserCancelledPaymentFlow() = Unit
+
+  override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {
+    findNavController().popBackStack()
+    findNavController().popBackStack()
+
+    setFragmentResult(PENDING_KEY, bundleOf(PENDING_KEY to gatewayRequest))
   }
 }
 

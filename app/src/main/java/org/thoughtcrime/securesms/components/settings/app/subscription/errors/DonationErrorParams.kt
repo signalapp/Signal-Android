@@ -117,7 +117,7 @@ class DonationErrorParams<V> private constructor(
       val getStripeDeclineCodePositiveActionParams: (Context, Callback<V>, Int) -> DonationErrorParams<V> = when (declinedError.method) {
         PaymentSourceType.Stripe.CreditCard -> this::getTryCreditCardAgainParams
         PaymentSourceType.Stripe.GooglePay -> this::getGoToGooglePayParams
-        PaymentSourceType.Stripe.SEPADebit -> error("Not implemented.")
+        PaymentSourceType.Stripe.SEPADebit -> this::getLearnMoreParams
       }
 
       return when (declinedError.declineCode) {
