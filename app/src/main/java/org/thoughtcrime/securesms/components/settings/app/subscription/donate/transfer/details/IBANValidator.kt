@@ -95,17 +95,19 @@ object IBANValidator {
   }
 
   fun validate(iban: String, isIBANFieldFocused: Boolean): Validity {
-    if (iban.isEmpty()) {
+    val trimmedIban = iban.trim()
+
+    if (trimmedIban.isEmpty()) {
       return Validity.POTENTIALLY_VALID
     }
 
-    val lengthValidity = validateLength(iban, isIBANFieldFocused)
+    val lengthValidity = validateLength(trimmedIban, isIBANFieldFocused)
     if (lengthValidity != Validity.COMPLETELY_VALID) {
       return lengthValidity
     }
 
-    val countryAndCheck = iban.take(4)
-    val rearranged = iban.drop(4) + countryAndCheck
+    val countryAndCheck = trimmedIban.take(4)
+    val rearranged = trimmedIban.drop(4) + countryAndCheck
     val expanded = rearranged.map {
       if (it.isLetter()) {
         (it - 'A') + 10
