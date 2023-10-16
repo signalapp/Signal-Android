@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import com.squareup.wire.ProtoAdapter
 import org.signal.core.util.LongSerializer
 import kotlin.reflect.KProperty
 
@@ -29,6 +30,10 @@ internal fun SignalStoreValues.blobValue(key: String, default: ByteArray): Signa
 
 internal fun <T : Any?> SignalStoreValues.enumValue(key: String, default: T, serializer: LongSerializer<T>): SignalStoreValueDelegate<T> {
   return KeyValueEnumValue(key, default, serializer, this.store)
+}
+
+internal fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter<M>): SignalStoreValueDelegate<M?> {
+  return KeyValueProtoValue(key, adapter, this.store)
 }
 
 /**
@@ -106,6 +111,28 @@ private class BlobValue(private val key: String, private val default: ByteArray,
 
   override fun setValue(values: KeyValueStore, value: ByteArray) {
     values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+private class KeyValueProtoValue<M>(
+  private val key: String,
+  private val adapter: ProtoAdapter<M>,
+  store: KeyValueStore
+) : SignalStoreValueDelegate<M?>(store) {
+  override fun getValue(values: KeyValueStore): M? {
+    return if (values.containsKey(key)) {
+      adapter.decode(values.getBlob(key, null))
+    } else {
+      null
+    }
+  }
+
+  override fun setValue(values: KeyValueStore, value: M?) {
+    if (value != null) {
+      values.beginWrite().putBlob(key, adapter.encode(value)).apply()
+    } else {
+      values.beginWrite().remove(key).apply()
+    }
   }
 }
 

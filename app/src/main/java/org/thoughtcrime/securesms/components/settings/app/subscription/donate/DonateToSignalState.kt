@@ -19,7 +19,7 @@ data class DonateToSignalState(
 
   val areFieldsEnabled: Boolean
     get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> oneTimeDonationState.donationStage == DonationStage.READY
+      DonateToSignalType.ONE_TIME -> oneTimeDonationState.donationStage == DonationStage.READY && !oneTimeDonationState.isOneTimeDonationPending
       DonateToSignalType.MONTHLY -> monthlyDonationState.donationStage == DonationStage.READY && !monthlyDonationState.transactionState.isInProgress
       DonateToSignalType.GIFT -> error("This flow does not support gifts")
     }
@@ -33,7 +33,7 @@ data class DonateToSignalState(
 
   val canSetCurrency: Boolean
     get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> areFieldsEnabled
+      DonateToSignalType.ONE_TIME -> areFieldsEnabled && !oneTimeDonationState.isOneTimeDonationPending
       DonateToSignalType.MONTHLY -> areFieldsEnabled && !monthlyDonationState.isSubscriptionActive
       DonateToSignalType.GIFT -> error("This flow does not support gifts")
     }
@@ -85,6 +85,7 @@ data class DonateToSignalState(
     val isCustomAmountFocused: Boolean = false,
     val donationStage: DonationStage = DonationStage.INIT,
     val selectableCurrencyCodes: List<String> = emptyList(),
+    val isOneTimeDonationPending: Boolean = SignalStore.donationsValues().getPendingOneTimeDonation() != null,
     private val minimumDonationAmounts: Map<Currency, FiatMoney> = emptyMap()
   ) {
     val minimumDonationAmountOfSelectedCurrency: FiatMoney = minimumDonationAmounts[selectedCurrency] ?: FiatMoney(BigDecimal.ZERO, selectedCurrency)

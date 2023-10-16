@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import android.text.method.LinkMovementMethod
-import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -9,14 +8,15 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.databinding.MySupportPreferenceBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
@@ -31,7 +31,7 @@ object ActiveSubscriptionPreference {
     val price: FiatMoney,
     val subscription: Subscription,
     val renewalTimestamp: Long = -1L,
-    val redemptionState: ManageDonationsState.SubscriptionRedemptionState,
+    val redemptionState: ManageDonationsState.RedemptionState,
     val activeSubscription: ActiveSubscription.Subscription,
     val onContactSupport: () -> Unit,
     val onPendingClick: (FiatMoney) -> Unit
@@ -50,12 +50,12 @@ object ActiveSubscriptionPreference {
     }
   }
 
-  class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
+  class ViewHolder(binding: MySupportPreferenceBinding) : BindingViewHolder<Model, MySupportPreferenceBinding>(binding) {
 
-    val badge: BadgeImageView = itemView.findViewById(R.id.my_support_badge)
-    val title: TextView = itemView.findViewById(R.id.my_support_title)
-    val expiry: TextView = itemView.findViewById(R.id.my_support_expiry)
-    val progress: ProgressBar = itemView.findViewById(R.id.my_support_progress)
+    val badge: BadgeImageView = binding.mySupportBadge
+    val title: TextView = binding.mySupportTitle
+    val expiry: TextView = binding.mySupportExpiry
+    val progress: ProgressBar = binding.mySupportProgress
 
     override fun bind(model: Model) {
       itemView.setOnClickListener(null)
@@ -74,10 +74,10 @@ object ActiveSubscriptionPreference {
       expiry.movementMethod = LinkMovementMethod.getInstance()
 
       when (model.redemptionState) {
-        ManageDonationsState.SubscriptionRedemptionState.NONE -> presentRenewalState(model)
-        ManageDonationsState.SubscriptionRedemptionState.IS_PENDING_BANK_TRANSFER -> presentPendingBankTransferState(model)
-        ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS -> presentInProgressState()
-        ManageDonationsState.SubscriptionRedemptionState.FAILED -> presentFailureState(model)
+        ManageDonationsState.RedemptionState.NONE -> presentRenewalState(model)
+        ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER -> presentPendingBankTransferState(model)
+        ManageDonationsState.RedemptionState.IN_PROGRESS -> presentInProgressState()
+        ManageDonationsState.RedemptionState.FAILED -> presentFailureState(model)
       }
     }
 
@@ -146,6 +146,6 @@ object ActiveSubscriptionPreference {
   }
 
   fun register(adapter: MappingAdapter) {
-    adapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.my_support_preference))
+    adapter.registerFactory(Model::class.java, BindingFactory(::ViewHolder, MySupportPreferenceBinding::inflate))
   }
 }

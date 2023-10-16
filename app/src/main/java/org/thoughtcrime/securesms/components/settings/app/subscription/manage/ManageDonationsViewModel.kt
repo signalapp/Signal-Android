@@ -11,9 +11,11 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.JobTracker
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
@@ -50,8 +52,8 @@ class ManageDonationsViewModel(
   }
 
   fun retry() {
-    if (!disposables.isDisposed && store.state.transactionState == ManageDonationsState.TransactionState.NetworkFailure) {
-      store.update { it.copy(transactionState = ManageDonationsState.TransactionState.Init) }
+    if (!disposables.isDisposed && store.state.subscriptionTransactionState == ManageDonationsState.TransactionState.NetworkFailure) {
+      store.update { it.copy(subscriptionTransactionState = ManageDonationsState.TransactionState.Init) }
       refresh()
     }
   }
@@ -74,21 +76,20 @@ class ManageDonationsViewModel(
       store.update { it.copy(hasReceipts = hasReceipts) }
     }
 
-    disposables += SubscriptionRedemptionJobWatcher.watch().subscribeBy { jobStateOptional ->
+    disposables += DonationRedemptionJobWatcher.watchSubscriptionRedemption().subscribeBy { jobStateOptional ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
-          subscriptionRedemptionState = jobStateOptional.map { jobState: JobTracker.JobState ->
-            when (jobState) {
-              JobTracker.JobState.PENDING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
-              JobTracker.JobState.RUNNING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
-              JobTracker.JobState.SUCCESS -> ManageDonationsState.SubscriptionRedemptionState.NONE
-              JobTracker.JobState.FAILURE -> ManageDonationsState.SubscriptionRedemptionState.FAILED
-              JobTracker.JobState.IGNORED -> ManageDonationsState.SubscriptionRedemptionState.NONE
-            }
-          }.orElse(ManageDonationsState.SubscriptionRedemptionState.NONE)
+          subscriptionRedemptionState = jobStateOptional.map(this::mapJobStateToRedemptionState).orElse(ManageDonationsState.RedemptionState.NONE)
         )
       }
     }
+
+    disposables += SignalStore.donationsValues()
+      .observablePendingOneTimeDonation
+      .distinctUntilChanged()
+      .subscribeBy { pending ->
+        store.update { it.copy(pendingOneTimeDonation = pending.orNull()) }
+      }
 
     disposables += levelUpdateOperationEdges.switchMapSingle { isProcessing ->
       if (isProcessing) {
@@ -99,14 +100,14 @@ class ManageDonationsViewModel(
     }.subscribeBy(
       onNext = { transactionState ->
         store.update {
-          it.copy(transactionState = transactionState)
+          it.copy(subscriptionTransactionState = transactionState)
         }
       },
       onError = { throwable ->
         Log.w(TAG, "Error retrieving subscription transaction state", throwable)
 
         store.update {
-          it.copy(transactionState = ManageDonationsState.TransactionState.NetworkFailure)
+          it.copy(subscriptionTransactionState = ManageDonationsState.TransactionState.NetworkFailure)
         }
       }
     )
@@ -119,6 +120,16 @@ class ManageDonationsViewModel(
         Log.w(TAG, "Error retrieving subscriptions data", it)
       }
     )
+  }
+
+  private fun mapJobStateToRedemptionState(jobState: JobTracker.JobState): ManageDonationsState.RedemptionState {
+    return when (jobState) {
+      JobTracker.JobState.PENDING -> ManageDonationsState.RedemptionState.IN_PROGRESS
+      JobTracker.JobState.RUNNING -> ManageDonationsState.RedemptionState.IN_PROGRESS
+      JobTracker.JobState.SUCCESS -> ManageDonationsState.RedemptionState.NONE
+      JobTracker.JobState.FAILURE -> ManageDonationsState.RedemptionState.FAILED
+      JobTracker.JobState.IGNORED -> ManageDonationsState.RedemptionState.NONE
+    }
   }
 
   class Factory(

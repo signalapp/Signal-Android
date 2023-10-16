@@ -202,7 +202,7 @@ class StripePaymentInProgressViewModel(
             gatewayRequest = request,
             paymentIntentId = paymentIntent.intentId,
             donationProcessor = DonationProcessor.STRIPE,
-            isLongRunning = paymentSource.type.isLongRunning
+            paymentSourceType = paymentSource.type
           )
         }
     }.subscribeBy(

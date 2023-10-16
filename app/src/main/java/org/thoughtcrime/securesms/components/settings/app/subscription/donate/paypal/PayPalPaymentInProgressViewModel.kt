@@ -156,7 +156,7 @@ class PayPalPaymentInProgressViewModel(
           gatewayRequest = request,
           paymentIntentId = response.paymentId,
           donationProcessor = DonationProcessor.PAYPAL,
-          isLongRunning = false
+          paymentSourceType = PaymentSourceType.PayPal
         )
       }
       .subscribeOn(Schedulers.io())

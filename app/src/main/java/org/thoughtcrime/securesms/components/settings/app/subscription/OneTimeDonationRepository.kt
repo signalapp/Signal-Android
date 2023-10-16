@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ProfileUtil
@@ -110,8 +111,9 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
     gatewayRequest: GatewayRequest,
     paymentIntentId: String,
     donationProcessor: DonationProcessor,
-    isLongRunning: Boolean
+    paymentSourceType: PaymentSourceType
   ): Completable {
+    val isLongRunning = paymentSourceType == PaymentSourceType.Stripe.SEPADebit
     val isBoost = gatewayRequest.recipientId == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
 
@@ -126,6 +128,14 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
 
       Log.d(TAG, "Confirmed payment intent. Recording $donationTypeLabel receipt and submitting badge reimbursement job chain.", true)
       SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
+
+      SignalStore.donationsValues().setPendingOneTimeDonation(
+        PendingOneTimeDonationSerializer.createProto(
+          gatewayRequest.badge,
+          paymentSourceType,
+          gatewayRequest.fiat
+        )
+      )
 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null

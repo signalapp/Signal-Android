@@ -71,11 +71,16 @@ class StripeApi(
     return Single.fromCallable {
       val paymentMethodId = createPaymentMethodAndParseId(paymentSource)
 
-      val parameters = mapOf(
+      val parameters = mutableMapOf(
         "client_secret" to setupIntent.intentClientSecret,
         "payment_method" to paymentMethodId,
         "return_url" to RETURN_URL_3DS
       )
+
+      if (paymentSource.type == PaymentSourceType.Stripe.SEPADebit) {
+        parameters["mandate_data[customer_acceptance][type]"] = "online"
+        parameters["mandate_data[customer_acceptance][online][infer_from_client]"] = "true"
+      }
 
       val (nextActionUri, returnUri) = postForm("setup_intents/${setupIntent.intentId}/confirm", parameters).use { response ->
         getNextAction(response)

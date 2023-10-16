@@ -273,6 +273,31 @@ message SessionSwitchoverEvent {
     string e164 = 1;
 }
 
+message DecimalValue {
+    uint32 scale     = 1;
+    uint32 precision = 2;
+    bytes  value     = 3;
+}
+
+message FiatValue {
+    string       currencyCode  = 1;
+    DecimalValue amount        = 2;
+    uint64       timestamp     = 3;
+}
+
+message PendingOneTimeDonation {
+    enum PaymentMethodType {
+        CARD       = 0;
+        SEPA_DEBIT = 1;
+        PAYPAL     = 2;
+    }
+
+    PaymentMethodType paymentMethodType = 1;
+    FiatValue         amount            = 2;
+    BadgeList.Badge   badge             = 3;
+    int64             timestamp         = 4;
+}
+
 message DonationCompletedQueue {
     message DonationCompleted {
         int64 level = 1;

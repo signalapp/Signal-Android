@@ -151,6 +151,14 @@
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
     <string name="CreditCardFragment__donate_s_month">Donate %1$s/month</string>
 
+    <!-- OneTimeDonationPreference -->
+    <!-- Preference title with placeholder for amount. -->
+    <string name="OneTimeDonationPreference__one_time_s">One time %1$s</string>
+    <!-- Preference subtitle when donation is pending -->
+    <string name="OneTimeDonationPreference__donation_pending">Donation pending</string>
+    <!-- Preference subtitle when donation is processing -->
+    <string name="OneTimeDonationPreference__donation_processing">Donation processing</string>
+
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Block and leave %1$s?</string>
     <string name="BlockUnblockDialog_block_s">Block %1$s?</string>

@@ -14,8 +14,10 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.PendingOneTimeDonationSerializer.isExpired
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
@@ -29,6 +31,7 @@ import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.security.SecureRandom
 import java.util.Currency
 import java.util.Locale
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 internal class DonationsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
@@ -115,6 +118,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * Popped from whenever we enter the conversation list.
      */
     private const val DONATION_COMPLETE_QUEUE = "donation.complete.queue"
+
+    /**
+     * The current one-time donation we are processing, if we are doing so. This is used for showing
+     * the donation processing / donation pending state in the ManageDonationsFragment.
+     */
+    private const val PENDING_ONE_TIME_DONATION = "pending.one.time.donation"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -141,6 +150,14 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   private val oneTimeCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getOneTimeCurrency()) }
   val observableOneTimeCurrency: Observable<Currency> by lazy { oneTimeCurrencyPublisher }
+
+  private var _pendingOneTimeDonation: PendingOneTimeDonation? by protoValue(PENDING_ONE_TIME_DONATION, PendingOneTimeDonation.ADAPTER)
+  private val pendingOneTimeDonationPublisher: Subject<Optional<PendingOneTimeDonation>> by lazy { BehaviorSubject.createDefault(Optional.ofNullable(_pendingOneTimeDonation)) }
+  val observablePendingOneTimeDonation: Observable<Optional<PendingOneTimeDonation>> by lazy {
+    pendingOneTimeDonationPublisher.map { optionalPendingOneTimeDonation ->
+      optionalPendingOneTimeDonation.filter { !it.isExpired }
+    }
+  }
 
   fun getSubscriptionCurrency(): Currency {
     val currencyCode = getString(KEY_SUBSCRIPTION_CURRENCY_CODE, null)
@@ -499,6 +516,13 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
         return queue.donationsCompleted
       }
     }
+  }
+
+  fun getPendingOneTimeDonation(): PendingOneTimeDonation? = _pendingOneTimeDonation.takeUnless { it?.isExpired == true }
+
+  fun setPendingOneTimeDonation(pendingOneTimeDonation: PendingOneTimeDonation?) {
+    this._pendingOneTimeDonation = pendingOneTimeDonation
+    pendingOneTimeDonationPublisher.onNext(Optional.ofNullable(pendingOneTimeDonation))
   }
 
   private fun generateRequestCredential(): ReceiptCredentialRequestContext {

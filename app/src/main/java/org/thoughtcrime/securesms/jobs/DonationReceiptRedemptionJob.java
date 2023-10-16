@@ -38,7 +38,11 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   private static final long   NO_ID = -1L;
 
   public static final String SUBSCRIPTION_QUEUE                    = "ReceiptRedemption";
+  public static final String ONE_TIME_QUEUE                        = "BoostReceiptRedemption";
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
+
+  private static final String LONG_RUNNING_QUEUE_SUFFIX            = "__LONG_RUNNING";
+
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
   public static final String INPUT_KEEP_ALIVE_409                  = "data.keep.alive.409";
   public static final String DATA_ERROR_SOURCE                     = "data.error.source";
@@ -63,7 +67,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
-            .setQueue(SUBSCRIPTION_QUEUE)
+            .setQueue(SUBSCRIPTION_QUEUE + (isLongRunningDonationPaymentType ? LONG_RUNNING_QUEUE_SUFFIX : ""))
             .setMaxAttempts(Parameters.UNLIMITED)
             .setMaxInstancesForQueue(1)
             .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -80,7 +84,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
-            .setQueue("BoostReceiptRedemption")
+            .setQueue(ONE_TIME_QUEUE + (isLongRunningDonationPaymentType ? LONG_RUNNING_QUEUE_SUFFIX : ""))
             .setMaxAttempts(Parameters.UNLIMITED)
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .build());
@@ -154,6 +158,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     } else if (giftMessageId != NO_ID) {
       SignalDatabase.messages().markGiftRedemptionFailed(giftMessageId);
+    } else {
+      SignalStore.donationsValues().setPendingOneTimeDonation(null);
     }
   }
 
@@ -228,6 +234,10 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
       }
     }
+
+    if (isForOneTimeDonation()) {
+      SignalStore.donationsValues().setPendingOneTimeDonation(null);
+    }
   }
 
   private @Nullable ReceiptCredentialPresentation getPresentation() throws InvalidInputException, NoSuchMessageException {
@@ -285,6 +295,10 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   private boolean isForSubscription() {
     return Objects.equals(getParameters().getQueue(), SUBSCRIPTION_QUEUE);
+  }
+
+  private boolean isForOneTimeDonation() {
+    return Objects.equals(getParameters().getQueue(), ONE_TIME_QUEUE) && giftMessageId == NO_ID;
   }
 
   private void enqueueDonationComplete(long receiptLevel) {
