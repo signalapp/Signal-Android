@@ -199,7 +199,7 @@ class DonationCheckoutDelegate(
 
       val error = DonationError.getGooglePayRequestTokenError(
         source = when (request.donateToSignalType) {
-          DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+          DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
           DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
           DonateToSignalType.GIFT -> DonationErrorSource.GIFT
         },

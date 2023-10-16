@@ -198,9 +198,9 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
             }
 
             val timeoutError: DonationError = if (isLongRunning) {
-              DonationError.donationPending(DonationErrorSource.SUBSCRIPTION, gatewayRequest)
+              DonationError.donationPending(DonationErrorSource.MONTHLY, gatewayRequest)
             } else {
-              DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION)
+              DonationError.timeoutWaitingForToken(DonationErrorSource.MONTHLY)
             }
 
             try {
@@ -212,7 +212,7 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
                   }
                   JobTracker.JobState.FAILURE -> {
                     Log.d(TAG, "Subscription request response job chain failed permanently.", true)
-                    it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION))
+                    it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY))
                   }
                   else -> {
                     Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)

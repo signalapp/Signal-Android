@@ -93,7 +93,7 @@ class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.
 
     val errorSource: DonationErrorSource = when (args.request.donateToSignalType) {
       DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
-      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 

@@ -51,7 +51,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
 
     val errorSource: DonationErrorSource = when (args.request.donateToSignalType) {
       DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
-      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 

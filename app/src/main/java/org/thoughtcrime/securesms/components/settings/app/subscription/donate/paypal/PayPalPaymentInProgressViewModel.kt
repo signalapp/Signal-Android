@@ -93,8 +93,8 @@ class PayPalPaymentInProgressViewModel(
           Log.w(TAG, "Failed to update subscription", throwable, true)
           val donationError: DonationError = when (throwable) {
             is DonationError -> throwable
-            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.PayPal)
-            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.MONTHLY, PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
 
@@ -187,7 +187,7 @@ class PayPalPaymentInProgressViewModel(
       .andThen(payPalRepository.createPaymentMethod())
       .flatMap(routeToPaypalConfirmation)
       .flatMapCompletable { payPalRepository.setDefaultPaymentMethod(it.paymentId) }
-      .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, PaymentSourceType.PayPal)) }
+      .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, PaymentSourceType.PayPal)) }
 
     disposables += setup.andThen(monthlyDonationRepository.setSubscriptionLevel(request, false))
       .subscribeBy(
@@ -197,8 +197,8 @@ class PayPalPaymentInProgressViewModel(
 
           val donationError: DonationError = when (throwable) {
             is DonationError -> throwable
-            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.PayPal)
-            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.MONTHLY, PaymentSourceType.PayPal)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
         },

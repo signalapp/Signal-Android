@@ -106,7 +106,7 @@ class DonateToSignalFragment :
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, viewModel.uiSessionKey, DonationErrorSource.ONE_TIME, DonationErrorSource.SUBSCRIPTION)
+    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, viewModel.uiSessionKey, DonationErrorSource.ONE_TIME, DonationErrorSource.MONTHLY)
 
     val recyclerView = this.recyclerView!!
     recyclerView.overScrollMode = RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS

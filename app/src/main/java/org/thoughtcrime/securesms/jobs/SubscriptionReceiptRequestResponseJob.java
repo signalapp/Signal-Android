@@ -396,7 +396,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   private DonationErrorSource getErrorSource() {
-    return isForKeepAlive ? DonationErrorSource.KEEP_ALIVE : DonationErrorSource.SUBSCRIPTION;
+    return isForKeepAlive ? DonationErrorSource.KEEP_ALIVE : DonationErrorSource.MONTHLY;
   }
 
   /**

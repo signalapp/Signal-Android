@@ -13,7 +13,7 @@ enum class DonationErrorSource(private val code: String) {
    * Refers to a recurring monthly donation where the user paying receives a badge immediately
    * and upon each renewal period.
    */
-  SUBSCRIPTION("subscription"),
+  MONTHLY("subscription"),
 
   /**
    * Refers to a one-time donation where the user pays to send a badge to another individual.

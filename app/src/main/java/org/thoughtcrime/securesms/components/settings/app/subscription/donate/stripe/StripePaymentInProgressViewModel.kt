@@ -74,7 +74,7 @@ class StripePaymentInProgressViewModel(
 
     val errorSource = when (request.donateToSignalType) {
       DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
-      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 
@@ -152,8 +152,8 @@ class StripePaymentInProgressViewModel(
       .onErrorResumeNext {
         when {
           it is DonationError -> Completable.error(it)
-          it is DonationProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.SUBSCRIPTION, paymentSourceProvider.paymentSourceType))
-          else -> Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it, paymentSourceProvider.paymentSourceType))
+          it is DonationProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType))
+          else -> Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, paymentSourceProvider.paymentSourceType))
         }
       }
 
@@ -165,7 +165,7 @@ class StripePaymentInProgressViewModel(
         val donationError: DonationError = if (throwable is DonationError) {
           throwable
         } else {
-          DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+          DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
         }
         DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
       },
@@ -256,8 +256,8 @@ class StripePaymentInProgressViewModel(
           Log.w(TAG, "Failed to update subscription", throwable, true)
           val donationError: DonationError = when (throwable) {
             is DonationError -> throwable
-            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.SUBSCRIPTION, PaymentSourceType.Stripe.GooglePay)
-            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION)
+            is DonationProcessorError -> throwable.toDonationError(DonationErrorSource.MONTHLY, PaymentSourceType.Stripe.GooglePay)
+            else -> DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
           }
           DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
 
