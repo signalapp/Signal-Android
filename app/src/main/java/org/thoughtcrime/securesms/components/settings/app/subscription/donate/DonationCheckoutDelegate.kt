@@ -200,7 +200,7 @@ class DonationCheckoutDelegate(
       val error = DonationError.getGooglePayRequestTokenError(
         source = when (request.donateToSignalType) {
           DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
-          DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+          DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
           DonateToSignalType.GIFT -> DonationErrorSource.GIFT
         },
         throwable = googlePayException

@@ -101,7 +101,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
       .flatMap { result ->
         val recipient = Recipient.resolved(badgeRecipient)
-        val errorSource = if (recipient.isSelf) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+        val errorSource = if (recipient.isSelf) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
         Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
@@ -131,7 +131,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     badgeRecipient: RecipientId
   ): Single<StripeApi.Secure3DSAction> {
     val isBoost = badgeRecipient == Recipient.self().id
-    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
     Log.d(TAG, "Confirming payment intent...", true)
     return stripeApi.confirmPaymentIntent(paymentSource, paymentIntent)

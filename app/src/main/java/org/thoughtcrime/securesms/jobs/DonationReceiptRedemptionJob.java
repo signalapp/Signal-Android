@@ -78,7 +78,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     return new DonationReceiptRedemptionJob(
         NO_ID,
         false,
-        DonationErrorSource.BOOST,
+        DonationErrorSource.ONE_TIME,
         uiSessionKey,
         isLongRunningDonationPaymentType,
         new Job.Parameters

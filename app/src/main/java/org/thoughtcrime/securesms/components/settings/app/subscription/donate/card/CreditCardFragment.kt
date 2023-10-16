@@ -50,7 +50,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
 
     val errorSource: DonationErrorSource = when (args.request.donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
       DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }

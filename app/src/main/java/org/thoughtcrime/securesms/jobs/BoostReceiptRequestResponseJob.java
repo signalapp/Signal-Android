@@ -65,7 +65,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private final boolean isLongRunningDonationPaymentType;
 
   private static String resolveQueue(DonationErrorSource donationErrorSource, boolean isLongRunning) {
-    String baseQueue = donationErrorSource == DonationErrorSource.BOOST ? BOOST_QUEUE : GIFT_QUEUE;
+    String baseQueue = donationErrorSource == DonationErrorSource.ONE_TIME ? BOOST_QUEUE : GIFT_QUEUE;
     return isLongRunning ? baseQueue + LONG_RUNNING_SUFFIX : baseQueue;
   }
 
@@ -97,7 +97,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                         long uiSessionKey,
                                                         boolean isLongRunning)
   {
-    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL), donationProcessor, uiSessionKey, isLongRunning);
+    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.ONE_TIME, Long.parseLong(SubscriptionLevels.BOOST_LEVEL), donationProcessor, uiSessionKey, isLongRunning);
     DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost(uiSessionKey, isLongRunning);
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
@@ -319,7 +319,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
       String              paymentIntentId                  = data.getString(DATA_PAYMENT_INTENT_ID);
-      DonationErrorSource donationErrorSource              = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.BOOST.serialize()));
+      DonationErrorSource donationErrorSource              = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.ONE_TIME.serialize()));
       long                badgeLevel                       = data.getLongOrDefault(DATA_BADGE_LEVEL, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
       String              rawDonationProcessor             = data.getStringOrDefault(DATA_DONATION_PROCESSOR, DonationProcessor.STRIPE.getCode());
       DonationProcessor   donationProcessor                = DonationProcessor.fromCode(rawDonationProcessor);

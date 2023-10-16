@@ -40,7 +40,7 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
         Single.error(throwable)
       } else {
         val recipient = Recipient.resolved(badgeRecipient)
-        val errorSource = if (recipient.isSelf) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+        val errorSource = if (recipient.isSelf) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
         Single.error(DonationError.getPaymentSetupError(errorSource, throwable, paymentSourceType))
       }
     }
@@ -115,7 +115,7 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
   ): Completable {
     val isLongRunning = paymentSourceType == PaymentSourceType.Stripe.SEPADebit
     val isBoost = gatewayRequest.recipientId == Recipient.self().id
-    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
     val waitOnRedemption = Completable.create {
       val donationReceiptRecord = if (isBoost) {

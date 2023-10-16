@@ -73,7 +73,7 @@ class StripePaymentInProgressViewModel(
     Log.d(TAG, "Proceeding with donation...", true)
 
     val errorSource = when (request.donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
       DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
       DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
