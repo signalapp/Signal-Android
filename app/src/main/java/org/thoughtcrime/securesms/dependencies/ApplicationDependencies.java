@@ -10,7 +10,6 @@ import androidx.annotation.VisibleForTesting;
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
-import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
@@ -41,12 +40,10 @@ import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
-import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.video.exo.ExoPlayerPool;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
-import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -63,7 +60,6 @@ import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.KeyManagementException;
-import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
 import java.util.function.Supplier;
 
@@ -197,10 +193,6 @@ public class ApplicationDependencies {
     }
 
     return groupsV2Operations;
-  }
-
-  public static @NonNull KeyBackupService getKeyBackupService(@NonNull KbsEnclave enclave) {
-    return provider.provideKeyBackupService(getSignalServiceAccountManager(), IasKeyStore.getIasKeyStore(application), enclave);
   }
 
   public static @NonNull GroupsV2StateProcessor getGroupsV2StateProcessor() {
@@ -724,7 +716,6 @@ public class ApplicationDependencies {
     @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations profileOperations, @NonNull SignalServiceMessageReceiver signalServiceMessageReceiver, @NonNull SignalWebSocket signalWebSocket);
     @NonNull DeadlockDetector provideDeadlockDetector();
     @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration);
-    @NonNull KeyBackupService provideKeyBackupService(@NonNull SignalServiceAccountManager signalServiceAccountManager, @NonNull KeyStore keyStore, @NonNull KbsEnclave enclave);
     @NonNull ScheduledMessageManager provideScheduledMessageManager();
   }
 }

@@ -16,7 +16,6 @@ import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
-import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV1
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
 
@@ -83,14 +82,7 @@ class ResetSvrGuessCountJob private constructor(
         Result.success()
       }
 
-      if (!svr2Result.isSuccess) {
-        return svr2Result
-      } else {
-        Log.d(TAG, "SVR2 reset complete. Marking as such so we do not retry it if SVR1 fails.")
-        svr2Complete = true
-      }
-
-      return resetGuessCount(SecureValueRecoveryV1(ApplicationDependencies.getKeyBackupService(BuildConfig.KBS_ENCLAVE)), pin, masterKey)
+      return svr2Result
     }
   }
 

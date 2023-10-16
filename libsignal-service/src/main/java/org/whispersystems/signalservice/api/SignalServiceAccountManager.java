@@ -179,28 +179,8 @@ public class SignalServiceAccountManager {
     return new SecureValueRecoveryV2(configuration, mrEnclave, pushServiceSocket);
   }
 
-  /**
-   * V1 PINs are no longer used in favor of V2 PINs stored on KBS.
-   *
-   * You can remove a V1 PIN, but typically this is unnecessary, as setting a V2 PIN via
-   * {@link KeyBackupService.PinChangeSession#enableRegistrationLock(MasterKey)}} will automatically clear the
-   * V1 PIN on the service.
-   */
-  public void removeRegistrationLockV1() throws IOException {
-    this.pushServiceSocket.removeRegistrationLockV1();
-  }
-
   public WhoAmIResponse getWhoAmI() throws IOException {
     return this.pushServiceSocket.getWhoAmI();
-  }
-
-  public KeyBackupService getKeyBackupService(KeyStore iasKeyStore,
-                                              String enclaveName,
-                                              byte[] serviceId,
-                                              String mrenclave,
-                                              int tries)
-  {
-    return new KeyBackupService(iasKeyStore, enclaveName, serviceId, mrenclave, pushServiceSocket, tries);
   }
 
   /**

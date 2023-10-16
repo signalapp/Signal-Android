@@ -13,5 +13,5 @@ data class InternalSvrPlaygroundState(
 enum class SvrImplementation(
   val title: String
 ) {
-  SVR1("KBS"), SVR2("SVR2")
+  SVR2("SVR2")
 }
