@@ -89,20 +89,17 @@ object ActiveSubscriptionPreference {
           model.renewalTimestamp
         )
       )
-      badge.alpha = 1f
       progress.visible = false
     }
 
     private fun presentPendingBankTransferState(model: Model) {
       expiry.text = context.getString(R.string.MySupportPreference__payment_pending)
-      badge.alpha = 0.2f
       progress.visible = true
       itemView.setOnClickListener { model.onPendingClick(model.price) }
     }
 
     private fun presentInProgressState() {
       expiry.text = context.getString(R.string.MySupportPreference__processing_transaction)
-      badge.alpha = 0.2f
       progress.visible = true
     }
 
@@ -125,7 +122,6 @@ object ActiveSubscriptionPreference {
         },
         ContextCompat.getColor(context, R.color.signal_accent_primary)
       )
-      badge.alpha = 0.2f
       progress.visible = false
     }
 
@@ -140,7 +136,6 @@ object ActiveSubscriptionPreference {
         },
         ContextCompat.getColor(context, R.color.signal_accent_primary)
       )
-      badge.alpha = 0.2f
       progress.visible = false
     }
   }
