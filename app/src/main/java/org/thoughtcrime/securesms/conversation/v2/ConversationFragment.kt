@@ -394,8 +394,6 @@ class ConversationFragment :
     _binding.conversationItemRecycler.adapter = null
 
     textDraftSaveDebouncer.clear()
-
-    ChatColorsDrawable.clearGlobalChatColors(_binding.conversationItemRecycler)
   }
 
   private val viewModel: ConversationViewModel by viewModel {
