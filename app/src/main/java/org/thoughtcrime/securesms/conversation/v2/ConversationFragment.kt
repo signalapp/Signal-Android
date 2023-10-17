@@ -1372,6 +1372,7 @@ class ConversationFragment :
       colorFilter = PorterDuffColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.MULTIPLY)
       invalidateSelf()
     }
+    ChatColorsDrawable.setGlobalChatColors(binding.conversationItemRecycler, chatColors)
   }
 
   private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {

@@ -49,9 +49,9 @@
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">პინ-კოდი საჭიროა რეგისტრაციის ბლოკირებისთვის. პინ-კოდის გასათიშად, ჯერ უნდა გათიშო რეგისტრაციის ბლოკირება.</string>
     <string name="ApplicationPreferencesActivity_pin_created">პინ-კოდი შექმნილია.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">პინ-კოდი გათიშულია.</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ტრანზაქციების აღდგენის ფრაზის ჩაწერა</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">ფრაზის ჩაწერა</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">სანამ პინ-კოდის გამორთვას შეძლებ, უნდა ჩაწერო შენი ტრანზაქციების აღდგენის ფრაზა, რათა უზრუნველყო შენი გადახდების მონაცემების აღდგენა.</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ჩაიწერე ტრანზაქციების აღდგენის ფრაზა</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">ჩაიწერე ფრაზა</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">სანამ პინ-კოდის გამორთვას შეძლებ, უნდა ჩაიწერო შენი ტრანზაქციების აღდგენის ფრაზა, რათა უზრუნველყო შენი გადახდების მონაცემების აღდგენა.</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -86,9 +86,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">მედიის ასარჩევი აპლიკაცია ვერ მოიძებნა.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">სურათების, ვიდეოების ან აუდიოს მისამაგრებლად Signal-ს მეხსიერებაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"ნებართვები\" და ჩართო \"მეხსიერება\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"ნებართვები\" და ჩართო \"კონტაქტები\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"ნებართვები\" და ჩართო \"ადგილმდებარეობა\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">სურათების, ვიდეოების ან აუდიოს მისამაგრებლად Signal-ს მეხსიერებაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიე \"ნებართვები\" და გააქტიურე \"მეხსიერება\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიე \"ნებართვები\" და გააქტიურე \"კონტაქტები\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიე \"ნებართვები\" და გააქტიურე \"ადგილმდებარეობა\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s-ს ტრანზაქციები არ გაუაქტიურებია </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -115,7 +115,7 @@
     <string name="BlockedUsersActivity__blocked_users_will">დაბლოკილ მომხმარებლებს არ ექნებათ შესაძლებლობა დაგირეკონ ან მოგწერონ.</string>
     <string name="BlockedUsersActivity__no_blocked_users">დაბლოკილი მომხმარებლები ვერ მოიძებნა</string>
     <string name="BlockedUsersActivity__block_user">დავბლოკოთ მომხმარებელი?</string>
-    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" ვერ შეძლებს დარეკვას და მოწერას.</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" ვერ შეძლებს შენთან დარეკვას და მოწერას.</string>
     <string name="BlockedUsersActivity__block">დაბლოკვა</string>
 
     <!-- CreditCardFragment -->
@@ -162,7 +162,7 @@
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">ერთმანეთთან მიმოწერას შეძლებთ.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">დაბლოკილი ადამიანები ვეღარ შეძლებენ შენთან დარეკვას ან მოწერას.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">დაბლოკილი ხალხი ვერ მოგწერს.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">დაბლოკილი ადამიანები ვეღარ შეძლებენ შენთან მოწერას.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-ის განახლებების და სიახლეების მიღების დაბლოკვა.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
@@ -202,7 +202,7 @@
     </plurals>
     <string name="CameraContacts_select_signal_recipients">აირჩიე Signal-ის მიმღები</string>
     <string name="CameraContacts_no_signal_contacts">Signal-ის კონტაქტები ვერ მოიძებნა</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">მხოლოდ კამერის ღილაკის გამოყენებით შეგიძლია Signal-ის კონტაქტებისთვის სურათების გასაგზავნა. </string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">მხოლოდ კამერის ღილაკის გამოყენებით შეგიძლია Signal-ის კონტაქტებისთვის სურათების გადაგზავნა. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">ვერ პოულობ ვისაც ეძებ?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">მოიწვიე კონტაქტი Signal-ში</string>
     <string name="CameraContacts__menu_search">ძიება</string>
@@ -227,13 +227,13 @@
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">ვებ ბრაუზერი ვერ მოიძებნა.</string>
-    <string name="CommunicationActions_send_email">ელ-ფოსტის გაგზავნა</string>
+    <string name="CommunicationActions_send_email">ელ-წერილის გაგზავნა</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">მობილური ზარი უკვე მიმდინარეობს.</string>
     <string name="CommunicationActions_start_voice_call">გსურს ხმოვანი ზარის დაწყება?</string>
     <string name="CommunicationActions_cancel">გაუქმება</string>
     <string name="CommunicationActions_call">დარეკვა</string>
     <string name="CommunicationActions_insecure_call">არასაიმედო ზარი</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">ოპერატორის საფასური შეიძლება იქნას დარიცხული. ნომერი, რომლზეც რეკავ, არ არის Signal-ში რეგისტრირებული. ეს ზარი იქნება განხორციელებული შენი ოპრატორის მეშვეობით, და არა ინტერნეტით.</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">ოპერატორის საფასური შეიძლება იქნას დარიცხული. ნომერი, რომლზეც რეკავ, არ არის Signal-ში რეგისტრირებული. ეს ზარი იქნება განხორციელებული შენი მობილური ოპრატორის მეშვეობით და არა ინტერნეტით.</string>
     <string name="CommunicationActions_cant_join_call">ზარზე შესვლა ვერ მოხერხდა</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">ზარის ეს ბმული ვალიდური აღარაა.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -2319,7 +2319,7 @@
         <item quantity="other">%1$d ელემენტი</item>
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
-    <string name="TransferControlView__processing">Processing…</string>
+    <string name="TransferControlView__processing">მუშავდება…</string>
 
 
     <!-- UnauthorizedReminder -->
@@ -4854,7 +4854,7 @@
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">სცადე გადახდის სხვა მეთოდი ან დაუკავშირდი შენს ბანკს დამატებითი ინფორმაციისთვის.</string>
     <!-- PayPal decline code for payment declined -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Try another payment method or contact your bank for more information. If this was a PayPal transaction contact PayPal.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">სცადე გადახდის სხვა მეთოდი ან დამატებითი ინფორმაციისთვის შენს ბანკს დაუკავშირდი. თუ ეს PayPal-ის ტრანზაქცია იყო, PayPal-ს დაუკავშირდი.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">დარწმუნდი, რომ შენი ტრანზაქციის მეთოდი განახლებულია Google Pay-ში და თავიდან სცადე.</string>
     <!-- Stripe decline code learn more action label -->
@@ -5809,7 +5809,7 @@
         <item quantity="other">მიიღე %1$s ემბლემა %2$d დღით</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
-    <string name="GatewaySelectorBottomSheet__bank_transfer">Bank transfer</string>
+    <string name="GatewaySelectorBottomSheet__bank_transfer">საბანკო ტრანზაქცია</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">საკრედიტო ან სადებეტო ბარათი</string>
     <!-- Sheet summary when giving donating for a friend -->
@@ -5817,9 +5817,9 @@
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
-    <string name="BankTransferMandateFragment__bank_transfer">Bank Transfer</string>
+    <string name="BankTransferMandateFragment__bank_transfer">საბანკო ტრანზაქცია</string>
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
-    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe processes donations made to Signal. Signal does not collect or store your personal information. %1$s</string>
+    <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe-ი Signal-ისთვის გადმორიცხულ დონაციებს ამუშავებს. Signal-ი არ აგროვებს და არ ინახავს შენს პერსონალურ მონაცემებს. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">გაიგე მეტი</string>
     <!-- Button label to continue with transfer -->
@@ -5827,29 +5827,29 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email address. Your email is used by Stripe to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">შეიყვანე შენი საბანკო მონაცემები და ელ-ფოსტის მისამართი. Stripe-ი შენს მეილს შენი დონაციის შესახებ სიახლეების გამოსაგზავნად იყენებს. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">გაიგე მეტი</string>
     <!-- Text field label for name on bank account -->
-    <string name="BankTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
+    <string name="BankTransferDetailsFragment__name_on_bank_account">სახელი საბანკო ანგარიშზე</string>
     <!-- Text field label for IBAN -->
-    <string name="BankTransferDetailsFragment__iban">IBAN</string>
+    <string name="BankTransferDetailsFragment__iban">IBAN-ი</string>
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">ელ-ფოსტა</string>
     <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_numbers">Find account numbers</string>
+    <string name="BankTransferDetailsFragment__find_account_numbers">ანგარიშის ნომრების მოძებნა</string>
     <!-- Donate button label for monthly subscription -->
-    <string name="BankTransferDetailsFragment__donate_s_month">Donate %1$s/month</string>
+    <string name="BankTransferDetailsFragment__donate_s_month">გააკეთე დონაცია %1$s/თვეში</string>
     <!-- Donate button label for one-time -->
-    <string name="BankTransferDetailsFragment__donate_s">Donate %1$s</string>
+    <string name="BankTransferDetailsFragment__donate_s">გააკეთე დონაცია %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN number is too short</string>
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">IBAN ნომერი ძალიან მოკლეა</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN number is too long</string>
+    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">IBAN ნომერი ძალიან გრძელია</string>
     <!-- Error label for IBAN field when country is not supported -->
-    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN country code is not supported</string>
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN-ის ქვეყნის კოდს მხარდაჭერა არ აქვს</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">Invalid IBAN number</string>
+    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">არასწორი IBAN ნომერი</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">ვაუქმებთ…</string>

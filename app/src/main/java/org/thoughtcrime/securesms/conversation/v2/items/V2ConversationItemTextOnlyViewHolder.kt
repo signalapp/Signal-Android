@@ -230,16 +230,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     presentSenderNameBackground()
     presentReactions()
 
-    bodyBubbleDrawable.setChatColors(
-      if (binding.body.isJumbomoji) {
-        transparentChatColors
-      } else if (binding.isIncoming) {
-        ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getBodyBubbleColor(conversationMessage))
-      } else {
-        conversationMessage.threadRecipient.chatColors
-      },
-      shapeDelegate.cornersLTR
-    )
+    bodyBubbleDrawable.setCorners(shapeDelegate.cornersLTR)
+    if (binding.body.isJumbomoji) {
+      bodyBubbleDrawable.setLocalChatColors(transparentChatColors)
+    } else if (binding.isIncoming) {
+      bodyBubbleDrawable.setLocalChatColors(ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getBodyBubbleColor(conversationMessage)))
+    } else {
+      bodyBubbleDrawable.clearLocalChatColors()
+    }
 
     binding.reply.setBackgroundColor(themeDelegate.getReplyIconBackgroundColor())
 
@@ -506,10 +504,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     if (conversationContext.hasWallpaper()) {
-      senderDrawable.setChatColors(
-        ChatColors.forColor(ChatColors.Id.BuiltIn, themeDelegate.getFooterBubbleColor(conversationMessage)),
-        footerCorners
-      )
+      senderDrawable.setCorners(footerCorners)
+      senderDrawable.setLocalChatColors(ChatColors.forColor(ChatColors.Id.BuiltIn, themeDelegate.getFooterBubbleColor(conversationMessage)))
 
       binding.senderName.background = senderDrawable
     } else {
@@ -606,14 +602,13 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     }
 
     binding.footerBackground.visible = true
-    footerDrawable.setChatColors(
-      if (binding.isIncoming) {
-        ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getFooterBubbleColor(conversationMessage))
-      } else {
-        conversationMessage.threadRecipient.chatColors
-      },
-      footerCorners
-    )
+    footerDrawable.setCorners(footerCorners)
+
+    if (binding.isIncoming) {
+      footerDrawable.setLocalChatColors(ChatColors.forColor(ChatColors.Id.NotSet, themeDelegate.getFooterBubbleColor(conversationMessage)))
+    } else {
+      footerDrawable.clearLocalChatColors()
+    }
   }
 
   private fun presentDate() {

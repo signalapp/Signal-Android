@@ -53,6 +53,9 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   private long    totalRead;
   private byte[]  overflowBuffer;
 
+  /**
+   * Passing in a null incrementalDigest and/or 0 for the chunk size at the call site disables incremental mac validation.
+   */
   public static InputStream createForAttachment(File file, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
       throws InvalidMessageException, IOException
   {

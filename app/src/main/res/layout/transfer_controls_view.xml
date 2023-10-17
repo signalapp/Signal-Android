@@ -37,13 +37,16 @@
 
     <org.thoughtcrime.securesms.components.transfercontrols.TransferProgressView
         android:id="@+id/secondary_progress_view"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:layout_gravity="center"
         android:paddingStart="4dp"
         android:paddingTop="4dp"
         android:paddingEnd="-4dp"
         android:paddingBottom="4dp"
+        app:iconSize="12dp"
+        app:stopIconSize="6dp"
+        app:stopIconCornerRadius="1dp"
         app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
         app:layout_constraintTop_toTopOf="@+id/horizontal_guideline" />
 
@@ -52,7 +55,7 @@
         style="@style/Signal.Text.Caption"
         android:includeFontPadding="false"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="26dp"
         android:layout_marginStart="@dimen/transfer_control_view_progressbar_to_textview_margin"
         android:layout_marginEnd="4dp"
         android:fontFamily="sans-serif-light"
@@ -71,14 +74,15 @@
         android:id="@+id/primary_progress_view"
         android:layout_width="@dimen/transfer_control_view_primary_background_height"
         android:layout_height="@dimen/transfer_control_view_primary_background_height"
+        app:iconSize="24dp"
+        app:stopIconSize="14dp"
+        app:stopIconCornerRadius="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/primary_details_text"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/primary_details_text"
@@ -88,9 +92,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:longClickable="false"
-        android:paddingStart="0dp"
         android:paddingTop="4dp"
-        android:paddingEnd="16dp"
         android:paddingBottom="4dp"
         android:textColor="@color/signal_colorOnCustom"
         app:layout_constrainedWidth="true"
@@ -122,12 +124,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="8dp" />
+        app:layout_constraintGuide_begin="6dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="8dp" />
+        app:layout_constraintGuide_begin="6dp" />
 </merge>

@@ -112,6 +112,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequ
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
+import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
@@ -1157,7 +1158,7 @@ public class PushServiceSocket {
   public PayPalConfirmPaymentIntentResponse confirmPayPalOneTimePaymentIntent(String currency, String amount, long level, String payerId, String paymentId, String paymentToken) throws IOException {
     String payload = JsonUtil.toJson(new PayPalConfirmOneTimePaymentIntentPayload(amount, currency, level, payerId, paymentId, paymentToken));
     Log.d(TAG, payload);
-    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload);
+    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, NO_HEADERS, new DonationResponseHandler());
     return JsonUtil.fromJsonResponse(result, PayPalConfirmPaymentIntentResponse.class);
   }
 
@@ -1209,7 +1210,7 @@ public class PushServiceSocket {
   }
 
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, level, currencyCode, idempotencyKey), "PUT", "");
+    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, level, currencyCode, idempotencyKey), "PUT", "", NO_HEADERS, new DonationResponseHandler());
   }
 
   public ActiveSubscription getSubscription(String subscriberId) throws IOException {
@@ -2758,6 +2759,24 @@ public class PushServiceSocket {
       throws NonSuccessfulResponseCodeException, MalformedResponseException, PushNetworkException
   {
     makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", JsonUtil.toJson(new SpamTokenMessage(reportingToken)));
+  }
+
+  /**
+   * Handler for a couple donation endpoints.
+   */
+  private static class DonationResponseHandler implements ResponseCodeHandler {
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      if (responseCode == 440) {
+        try {
+          throw JsonUtil.fromJson(body.string(), DonationProcessorError.class);
+        } catch (IOException e) {
+          throw new NonSuccessfulResponseCodeException(440);
+        }
+      } else {
+        throw new NonSuccessfulResponseCodeException(responseCode);
+      }
+    }
   }
 
   private static class RegistrationSessionResponseHandler implements ResponseCodeHandler {

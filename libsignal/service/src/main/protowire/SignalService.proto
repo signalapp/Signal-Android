@@ -675,7 +675,8 @@ message AttachmentPointer {
   optional uint32  size                    = 4;
   optional bytes   thumbnail               = 5;
   optional bytes   digest                  = 6;
-  optional bytes   incrementalDigest       = 16;
+  reserved                                   16;
+  optional bytes   incrementalMac          = 18;
   optional uint32  incrementalMacChunkSize = 17;
   optional string  fileName                = 7;
   optional uint32  flags                   = 8;
@@ -685,7 +686,7 @@ message AttachmentPointer {
   optional string  blurHash                = 12;
   optional uint64  uploadTimestamp         = 13;
   optional uint32  cdnNumber               = 14;
-  // Next ID: 18
+  // Next ID: 19
 }
 
 message GroupContext {
