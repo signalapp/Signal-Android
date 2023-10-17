@@ -14,6 +14,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
+import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
+import org.signal.core.util.requireLong
+import org.signal.core.util.requireString
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -24,6 +28,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.MegaphoneDatabase
+import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
@@ -52,6 +57,10 @@ import kotlin.math.max
 import kotlin.time.Duration.Companion.seconds
 
 class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__internal_preferences) {
+
+  companion object {
+    private val TAG = Log.tag(InternalSettingsFragment::class.java)
+  }
 
   private lateinit var viewModel: InternalSettingsViewModel
 
@@ -165,6 +174,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Clear keep longer logs"),
         onClick = {
           clearKeepLongerLogs()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
+        onClick = {
+          logPreKeyIds()
         }
       )
 
@@ -771,6 +787,21 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       LogDatabase.getInstance(requireActivity().application).logs.clearKeepLonger()
     }) {
       Toast.makeText(requireContext(), "Cleared keep longer logs", Toast.LENGTH_SHORT).show()
+    }
+  }
+
+  private fun logPreKeyIds() {
+    SimpleTask.run({
+      val oneTimePreKeys = SignalDatabase.rawDatabase
+        .query("SELECT * FROM ${OneTimePreKeyTable.TABLE_NAME}")
+        .readToList { c ->
+          c.requireString(OneTimePreKeyTable.ACCOUNT_ID) to c.requireLong(OneTimePreKeyTable.KEY_ID)
+        }
+        .joinToString()
+
+      Log.i(TAG, "One-Time Prekeys\n$oneTimePreKeys")
+    }) {
+      Toast.makeText(requireContext(), "Dumped to logs", Toast.LENGTH_SHORT).show()
     }
   }
 }
