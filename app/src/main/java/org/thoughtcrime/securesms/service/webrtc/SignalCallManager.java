@@ -902,6 +902,11 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
+  public void onRaisedHands(@NonNull GroupCall groupCall, List<Long> raisedHands) {
+    // TODO: Implement handling of raise hand.
+  }
+
+  @Override
   public void onRemoteDeviceStatesChanged(@NonNull GroupCall groupCall) {
     process((s, p) -> p.handleGroupRemoteDeviceStateChanged(s));
   }
