@@ -7,6 +7,7 @@ import androidx.annotation.VisibleForTesting;
 import org.signal.core.util.logging.Log;
 import org.signal.donations.PaymentSourceType;
 import org.signal.donations.StripeDeclineCode;
+import org.signal.donations.StripeFailureCode;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
@@ -308,6 +309,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       Log.d(TAG, "Stripe charge failure detected: " + chargeFailure, true);
 
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
+      StripeFailureCode               failureCode = StripeFailureCode.Companion.getFromCode(chargeFailure.getCode());
       DonationError.PaymentSetupError paymentSetupError;
       PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
       boolean                         isStripeSource = paymentSourceType instanceof PaymentSourceType.Stripe;
@@ -317,6 +319,13 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             getErrorSource(),
             new Exception(chargeFailure.getMessage()),
             declineCode,
+            (PaymentSourceType.Stripe) paymentSourceType
+        );
+      } else if (failureCode.isKnown() && isStripeSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.StripeFailureCodeError(
+            getErrorSource(),
+            new Exception(chargeFailure.getMessage()),
+            failureCode,
             (PaymentSourceType.Stripe) paymentSourceType
         );
       } else if (isStripeSource) {

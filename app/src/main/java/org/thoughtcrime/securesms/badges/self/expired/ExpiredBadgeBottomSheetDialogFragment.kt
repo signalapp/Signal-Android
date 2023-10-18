@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentManager
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeDeclineCode
+import org.signal.donations.StripeFailureCode
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.ExpiredBadge
@@ -38,6 +39,7 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
     val badge: Badge = args.badge
     val cancellationReason = UnexpectedSubscriptionCancellation.fromStatus(args.cancelationReason)
     val declineCode: StripeDeclineCode? = args.chargeFailure?.let { StripeDeclineCode.getFromCode(it) }
+    val failureCode: StripeFailureCode? = args.chargeFailure?.let { StripeFailureCode.getFromCode(it) }
     val isLikelyASustainer = SignalStore.donationsValues().isLikelyASustainer()
     val inactive = cancellationReason == UnexpectedSubscriptionCancellation.INACTIVE
 
@@ -67,6 +69,12 @@ class ExpiredBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
             getString(
               R.string.ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s,
               getString(declineCode.mapToErrorStringResource()),
+              badge.name
+            )
+          } else if (failureCode != null) {
+            getString(
+              R.string.ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s,
+              getString(failureCode.mapToErrorStringResource()),
               badge.name
             )
           } else if (inactive) {

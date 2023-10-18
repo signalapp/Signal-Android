@@ -284,20 +284,30 @@ class DonationCheckoutDelegate(
         fragment!!.requireContext(),
         throwable,
         object : DonationErrorDialogs.DialogCallback() {
-          var tryCCAgain = false
+          var tryAgain = false
 
           override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
             return DonationErrorParams.ErrorAction(
               label = R.string.DeclineCode__try,
               action = {
-                tryCCAgain = true
+                tryAgain = true
+              }
+            )
+          }
+
+          override fun onTryBankTransferAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
+            return DonationErrorParams.ErrorAction(
+              label = R.string.DeclineCode__try,
+              action = {
+                tryAgain = true
               }
             )
           }
 
           override fun onDialogDismissed() {
             errorDialog = null
-            if (!tryCCAgain) {
+            if (!tryAgain) {
+              tryAgain = false
               fragment!!.findNavController().popBackStack()
             }
           }

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.StringRes
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
+import org.signal.donations.StripeFailureCode
 import org.thoughtcrime.securesms.R
 
 class DonationErrorParams<V> private constructor(
@@ -26,15 +27,10 @@ class DonationErrorParams<V> private constructor(
       return when (throwable) {
         is DonationError.GiftRecipientVerificationError -> getVerificationErrorParams(context, throwable, callback)
         is DonationError.PaymentSetupError.StripeDeclinedError -> getStripeDeclinedErrorParams(context, throwable, callback)
+        is DonationError.PaymentSetupError.StripeFailureCodeError -> getStripeFailureCodeErrorParams(context, throwable, callback)
         is DonationError.PaymentSetupError.PayPalDeclinedError -> getPayPalDeclinedErrorParams(context, throwable, callback)
-        is DonationError.PaymentSetupError -> DonationErrorParams(
-          title = R.string.DonationsErrors__error_processing_payment,
-          message = R.string.DonationsErrors__your_payment,
-          positiveAction = callback.onOk(context),
-          negativeAction = null
-        )
+        is DonationError.PaymentSetupError -> getGenericPaymentSetupErrorParams(context, callback)
 
-        // TODO [sepa] -- This is only used for the notification, and will be rare, but we should probably have better copy here.
         is DonationError.BadgeRedemptionError.DonationPending -> DonationErrorParams(
           title = R.string.DonationsErrors__still_processing,
           message = R.string.DonationsErrors__your_payment_is_still,
@@ -110,6 +106,10 @@ class DonationErrorParams<V> private constructor(
     }
 
     private fun <V> getStripeDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.StripeDeclinedError, callback: Callback<V>): DonationErrorParams<V> {
+      if (!declinedError.method.hasDeclineCodeSupport()) {
+        return getGenericPaymentSetupErrorParams(context, callback)
+      }
+
       fun unexpectedDeclinedError(declinedError: DonationError.PaymentSetupError.StripeDeclinedError): Nothing {
         error("Unexpected declined error: ${declinedError.declineCode} during ${declinedError.method} processing.")
       }
@@ -224,6 +224,43 @@ class DonationErrorParams<V> private constructor(
       }
     }
 
+    private fun <V> getStripeFailureCodeErrorParams(context: Context, failureCodeError: DonationError.PaymentSetupError.StripeFailureCodeError, callback: Callback<V>): DonationErrorParams<V> {
+      if (!failureCodeError.method.hasFailureCodeSupport()) {
+        return getGenericPaymentSetupErrorParams(context, callback)
+      }
+
+      return when (failureCodeError.failureCode) {
+        is StripeFailureCode.Known -> {
+          val errorText = failureCodeError.failureCode.mapToErrorStringResource()
+          when (failureCodeError.failureCode.code) {
+            StripeFailureCode.Code.REFER_TO_CUSTOMER -> getTryBankTransferAgainParams(context, callback, errorText)
+            StripeFailureCode.Code.INSUFFICIENT_FUNDS -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.DEBIT_DISPUTED -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.AUTHORIZATION_REVOKED -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.DEBIT_NOT_AUTHORIZED -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.ACCOUNT_CLOSED -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.BANK_ACCOUNT_RESTRICTED -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.DEBIT_AUTHORIZATION_NOT_MATCH -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.RECIPIENT_DECEASED -> getLearnMoreParams(context, callback, errorText)
+            StripeFailureCode.Code.BRANCH_DOES_NOT_EXIST -> getTryBankTransferAgainParams(context, callback, errorText)
+            StripeFailureCode.Code.INCORRECT_ACCOUNT_HOLDER_NAME -> getTryBankTransferAgainParams(context, callback, errorText)
+            StripeFailureCode.Code.INVALID_ACCOUNT_NUMBER -> getTryBankTransferAgainParams(context, callback, errorText)
+            StripeFailureCode.Code.GENERIC_COULD_NOT_PROCESS -> getTryBankTransferAgainParams(context, callback, errorText)
+          }
+        }
+        is StripeFailureCode.Unknown -> getGenericPaymentSetupErrorParams(context, callback)
+      }
+    }
+
+    private fun <V> getGenericPaymentSetupErrorParams(context: Context, callback: Callback<V>): DonationErrorParams<V> {
+      return DonationErrorParams(
+        title = R.string.DonationsErrors__error_processing_payment,
+        message = R.string.DonationsErrors__your_payment,
+        positiveAction = callback.onOk(context),
+        negativeAction = null
+      )
+    }
+
     private fun <V> getLearnMoreParams(context: Context, callback: Callback<V>, message: Int): DonationErrorParams<V> {
       return DonationErrorParams(
         title = R.string.DonationsErrors__error_processing_payment,
@@ -250,6 +287,15 @@ class DonationErrorParams<V> private constructor(
         negativeAction = callback.onCancel(context)
       )
     }
+
+    private fun <V> getTryBankTransferAgainParams(context: Context, callback: Callback<V>, message: Int): DonationErrorParams<V> {
+      return DonationErrorParams(
+        title = R.string.DonationsErrors__error_processing_payment,
+        message = message,
+        positiveAction = callback.onTryBankTransferAgain(context),
+        negativeAction = callback.onCancel(context)
+      )
+    }
   }
 
   interface Callback<V> {
@@ -259,5 +305,6 @@ class DonationErrorParams<V> private constructor(
     fun onContactSupport(context: Context): ErrorAction<V>?
     fun onGoToGooglePay(context: Context): ErrorAction<V>?
     fun onTryCreditCardAgain(context: Context): ErrorAction<V>?
+    fun onTryBankTransferAgain(context: Context): ErrorAction<V>?
   }
 }

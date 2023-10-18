@@ -305,12 +305,15 @@ class StripeApi(
       val body = response.body()?.string()
       val errorCode = parseErrorCode(body)
       val declineCode = parseDeclineCode(body) ?: StripeDeclineCode.getFromCode(errorCode)
+      val failureCode = parseFailureCode(body) ?: StripeFailureCode.getFromCode(errorCode)
 
-      throw StripeError.PostError(
-        response.code(),
-        errorCode,
-        declineCode
-      )
+      if (failureCode is StripeFailureCode.Known) {
+        throw StripeError.PostError.Failed(response.code(), failureCode)
+      } else if (declineCode is StripeDeclineCode.Known) {
+        throw StripeError.PostError.Declined(response.code(), declineCode)
+      } else {
+        throw StripeError.PostError.Generic(response.code(), errorCode)
+      }
     }
   }
 
@@ -338,6 +341,20 @@ class StripeApi(
       StripeDeclineCode.getFromCode(JSONObject(body).getJSONObject("error").getString("decline_code"))
     } catch (e: Exception) {
       Log.d(TAG, "parseDeclineCode: Failed to parse decline code.", e, true)
+      null
+    }
+  }
+
+  private fun parseFailureCode(body: String?): StripeFailureCode? {
+    if (body == null) {
+      Log.d(TAG, "parseFailureCode: No body.", true)
+      return null
+    }
+
+    return try {
+      StripeFailureCode.getFromCode(JSONObject(body).getJSONObject("error").getString("failure_code"))
+    } catch (e: Exception) {
+      Log.d(TAG, "parseFailureCode: Failed to parse failure code.", e, true)
       null
     }
   }

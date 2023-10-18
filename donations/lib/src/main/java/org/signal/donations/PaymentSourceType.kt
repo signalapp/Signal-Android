@@ -16,6 +16,9 @@ sealed class PaymentSourceType {
     object CreditCard : Stripe(Codes.CREDIT_CARD.code, "CARD", false)
     object GooglePay : Stripe(Codes.GOOGLE_PAY.code, "CARD", false)
     object SEPADebit : Stripe(Codes.SEPA_DEBIT.code, "SEPA_DEBIT", true)
+
+    fun hasDeclineCodeSupport(): Boolean = this !is SEPADebit
+    fun hasFailureCodeSupport(): Boolean = this is SEPADebit
   }
 
   private enum class Codes(val code: String) {

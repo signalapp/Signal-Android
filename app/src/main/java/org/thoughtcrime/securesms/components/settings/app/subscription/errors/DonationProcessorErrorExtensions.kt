@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.errors
 
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
+import org.signal.donations.StripeFailureCode
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
 
@@ -18,8 +19,11 @@ fun DonationProcessorError.toDonationError(
     ActiveSubscription.Processor.STRIPE -> {
       check(method is PaymentSourceType.Stripe)
       val declineCode = StripeDeclineCode.getFromCode(chargeFailure.code)
+      val failureCode = StripeFailureCode.getFromCode(chargeFailure.code)
       if (declineCode.isKnown()) {
         DonationError.PaymentSetupError.StripeDeclinedError(source, this, declineCode, method)
+      } else if (failureCode.isKnown) {
+        DonationError.PaymentSetupError.StripeFailureCodeError(source, this, failureCode, method)
       } else if (chargeFailure.code != null) {
         DonationError.PaymentSetupError.StripeCodedError(source, this, chargeFailure.code)
       } else {
