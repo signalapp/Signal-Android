@@ -77,7 +77,7 @@ class StripeApi(
         "return_url" to RETURN_URL_3DS
       )
 
-      if (paymentSource.type == PaymentSourceType.Stripe.SEPADebit) {
+      if (paymentSource.type.isBankTransfer) {
         parameters["mandate_data[customer_acceptance][type]"] = "online"
         parameters["mandate_data[customer_acceptance][online][infer_from_client]"] = "true"
       }
@@ -125,7 +125,7 @@ class StripeApi(
         "return_url" to RETURN_URL_3DS
       )
 
-      if (paymentSource.type == PaymentSourceType.Stripe.SEPADebit) {
+      if (paymentSource.type.isBankTransfer) {
         parameters["mandate_data[customer_acceptance][type]"] = "online"
         parameters["mandate_data[customer_acceptance][online][infer_from_client]"] = "true"
       }
@@ -143,7 +143,7 @@ class StripeApi(
    */
   fun getSetupIntent(stripeIntentAccessor: StripeIntentAccessor): StripeSetupIntent {
     return when (stripeIntentAccessor.objectType) {
-      StripeIntentAccessor.ObjectType.SETUP_INTENT -> get("setup_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}").use {
+      StripeIntentAccessor.ObjectType.SETUP_INTENT -> get("setup_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}&expand[0]=latest_attempt").use {
         val body = it.body()?.string()
         try {
           objectMapper.readValue(body!!)
@@ -168,6 +168,7 @@ class StripeApi(
       StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> get("payment_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}").use {
         val body = it.body()?.string()
         try {
+          Log.d(TAG, "Reading StripePaymentIntent from JSON")
           objectMapper.readValue(body!!)
         } catch (e: InvalidDefinitionException) {
           Log.w(TAG, "Failed to parse JSON for StripePaymentIntent.")
@@ -213,6 +214,10 @@ class StripeApi(
     return Single.just(SEPADebitPaymentSource(sepaDebitData))
   }
 
+  fun createPaymentSourceFromIDEALData(idealData: IDEALData): Single<PaymentSource> {
+    return Single.just(IDEALPaymentSource(idealData))
+  }
+
   @WorkerThread
   private fun createPaymentSourceFromCardDataSync(cardData: CardData): PaymentSource {
     val parameters: Map<String, String> = mutableMapOf(
@@ -233,10 +238,10 @@ class StripeApi(
   }
 
   private fun createPaymentMethodAndParseId(paymentSource: PaymentSource): String {
-    val paymentMethodResponse = if (paymentSource is SEPADebitPaymentSource) {
-      createPaymentMethodForSEPADebit(paymentSource)
-    } else {
-      createPaymentMethodForToken(paymentSource)
+    val paymentMethodResponse = when (paymentSource) {
+      is SEPADebitPaymentSource -> createPaymentMethodForSEPADebit(paymentSource)
+      is IDEALPaymentSource -> createPaymentMethodForIDEAL(paymentSource)
+      else -> createPaymentMethodForToken(paymentSource)
     }
 
     return paymentMethodResponse.use { response ->
@@ -256,6 +261,17 @@ class StripeApi(
       "sepa_debit[iban]" to paymentSource.sepaDebitData.iban,
       "billing_details[email]" to paymentSource.sepaDebitData.email,
       "billing_details[name]" to paymentSource.sepaDebitData.name
+    )
+
+    return postForm("payment_methods", parameters)
+  }
+
+  private fun createPaymentMethodForIDEAL(paymentSource: IDEALPaymentSource): Response {
+    val parameters = mutableMapOf(
+      "type" to "ideal",
+      "ideal[bank]" to paymentSource.idealData.bank,
+      "billing_details[email]" to paymentSource.idealData.email,
+      "billing_details[name]" to paymentSource.idealData.name
     )
 
     return postForm("payment_methods", parameters)
@@ -303,6 +319,7 @@ class StripeApi(
       return response
     } else {
       val body = response.body()?.string()
+
       val errorCode = parseErrorCode(body)
       val declineCode = parseDeclineCode(body) ?: StripeDeclineCode.getFromCode(errorCode)
       val failureCode = parseFailureCode(body) ?: StripeFailureCode.getFromCode(errorCode)
@@ -340,7 +357,7 @@ class StripeApi(
     return try {
       StripeDeclineCode.getFromCode(JSONObject(body).getJSONObject("error").getString("decline_code"))
     } catch (e: Exception) {
-      Log.d(TAG, "parseDeclineCode: Failed to parse decline code.", e, true)
+      Log.d(TAG, "parseDeclineCode: Failed to parse decline code.", null, true)
       null
     }
   }
@@ -354,7 +371,7 @@ class StripeApi(
     return try {
       StripeFailureCode.getFromCode(JSONObject(body).getJSONObject("error").getString("failure_code"))
     } catch (e: Exception) {
-      Log.d(TAG, "parseFailureCode: Failed to parse failure code.", e, true)
+      Log.d(TAG, "parseFailureCode: Failed to parse failure code.", null, true)
       null
     }
   }
@@ -584,6 +601,13 @@ class StripeApi(
   @Parcelize
   data class SEPADebitData(
     val iban: String,
+    val name: String,
+    val email: String
+  ) : Parcelable
+
+  @Parcelize
+  data class IDEALData(
+    val bank: String,
     val name: String,
     val email: String
   ) : Parcelable

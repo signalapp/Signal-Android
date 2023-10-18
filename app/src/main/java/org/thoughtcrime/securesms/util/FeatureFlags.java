@@ -118,6 +118,7 @@ public final class FeatureFlags {
   private static final String CONVERSATION_ITEM_V2_TEXT         = "android.conversationItemV2.text.4";
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
   private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations";
+  private static final String IDEAL_DONATIONS                   = "android.ideal.donations";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -186,13 +187,14 @@ public final class FeatureFlags {
       INSTANT_VIDEO_PLAYBACK,
       CONVERSATION_ITEM_V2_TEXT,
       CRASH_PROMPT_CONFIG,
-      BLOCK_SSE
+      BLOCK_SSE,
+      SEPA_DEBIT_DONATIONS,
+      IDEAL_DONATIONS
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY,
-      SEPA_DEBIT_DONATIONS
+      PHONE_NUMBER_PRIVACY
   );
 
   /**
@@ -688,6 +690,10 @@ public final class FeatureFlags {
    */
   public static boolean sepaDebitDonations() {
     return getBoolean(SEPA_DEBIT_DONATIONS, Environment.IS_STAGING);
+  }
+
+  public static boolean idealDonations() {
+    return getBoolean(IDEAL_DONATIONS, Environment.IS_STAGING);
   }
 
   /** Only for rendering debug info. */

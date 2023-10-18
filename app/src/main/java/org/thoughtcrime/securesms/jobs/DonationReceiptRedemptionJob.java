@@ -298,7 +298,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private boolean isForOneTimeDonation() {
-    return Objects.equals(getParameters().getQueue(), ONE_TIME_QUEUE) && giftMessageId == NO_ID;
+    return Objects.requireNonNull(getParameters().getQueue()).startsWith(ONE_TIME_QUEUE) && giftMessageId == NO_ID;
   }
 
   private void enqueueDonationComplete(long receiptLevel) {

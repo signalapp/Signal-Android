@@ -203,7 +203,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    *       that we are successful and proceed as normal. If the payment didn't actually succeed, then we
    *       expect an error later in the chain to inform us of this.
    */
-  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor): Single<StatusAndPaymentMethodId> {
+  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor, paymentSourceType: PaymentSourceType): Single<StatusAndPaymentMethodId> {
     return Single.fromCallable {
       when (stripeIntentAccessor.objectType) {
         StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(StripeIntentStatus.SUCCEEDED, null)
@@ -215,7 +215,11 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
         }
 
         StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
-          StatusAndPaymentMethodId(it.status, it.paymentMethod)
+          if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+            StatusAndPaymentMethodId(it.status, it.requireGeneratedSepaDebit())
+          } else {
+            StatusAndPaymentMethodId(it.status, it.paymentMethod)
+          }
         }
       }
     }
@@ -255,6 +259,11 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
   fun createSEPADebitPaymentSource(sepaDebitData: StripeApi.SEPADebitData): Single<StripeApi.PaymentSource> {
     Log.d(TAG, "Creating SEPA Debit payment source via Stripe api...")
     return stripeApi.createPaymentSourceFromSEPADebitData(sepaDebitData)
+  }
+
+  fun createIdealPaymentSource(idealData: StripeApi.IDEALData): Single<StripeApi.PaymentSource> {
+    Log.d(TAG, "Creating iDEAL payment source via Stripe api...")
+    return stripeApi.createPaymentSourceFromIDEALData(idealData)
   }
 
   data class StatusAndPaymentMethodId(

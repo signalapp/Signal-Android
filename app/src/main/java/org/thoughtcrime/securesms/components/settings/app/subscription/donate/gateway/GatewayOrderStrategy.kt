@@ -18,7 +18,8 @@ sealed interface GatewayOrderStrategy {
       GatewayResponse.Gateway.CREDIT_CARD,
       GatewayResponse.Gateway.PAYPAL,
       GatewayResponse.Gateway.GOOGLE_PAY,
-      GatewayResponse.Gateway.SEPA_DEBIT
+      GatewayResponse.Gateway.SEPA_DEBIT,
+      GatewayResponse.Gateway.IDEAL
     )
   }
 
@@ -28,7 +29,8 @@ sealed interface GatewayOrderStrategy {
       GatewayResponse.Gateway.GOOGLE_PAY,
       GatewayResponse.Gateway.PAYPAL,
       GatewayResponse.Gateway.CREDIT_CARD,
-      GatewayResponse.Gateway.SEPA_DEBIT
+      GatewayResponse.Gateway.SEPA_DEBIT,
+      GatewayResponse.Gateway.IDEAL
     )
   }
 

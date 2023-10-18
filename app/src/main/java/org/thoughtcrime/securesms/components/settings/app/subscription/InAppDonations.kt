@@ -20,7 +20,7 @@ object InAppDonations {
    * - Able to use PayPal and is in a region where it is able to be accepted.
    */
   fun hasAtLeastOnePaymentMethodAvailable(): Boolean {
-    return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable() || isSEPADebitAvailable()
+    return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable() || isSEPADebitAvailable() || isIDEALAvailable()
   }
 
   fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, donateToSignalType: DonateToSignalType): Boolean {
@@ -29,6 +29,7 @@ object InAppDonations {
       PaymentSourceType.Stripe.CreditCard -> isCreditCardAvailable()
       PaymentSourceType.Stripe.GooglePay -> isGooglePayAvailable()
       PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(donateToSignalType)
+      PaymentSourceType.Stripe.IDEAL -> isIDEALAvailbleForDonateToSignalType(donateToSignalType)
       PaymentSourceType.Unknown -> false
     }
   }
@@ -69,10 +70,25 @@ object InAppDonations {
   }
 
   /**
+   * Whether the user is in a region which supports IDEAL transfers, based off local phone number.
+   */
+  fun isIDEALAvailable(): Boolean {
+    return FeatureFlags.idealDonations()
+  }
+
+  /**
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number
    * and donation type.
    */
   fun isSEPADebitAvailableForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
     return donateToSignalType != DonateToSignalType.GIFT && FeatureFlags.sepaDebitDonations()
+  }
+
+  /**
+   * Whether the user is in a region which suports IDEAL transfers, based off local phone number and
+   * donation type
+   */
+  fun isIDEALAvailbleForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
+    return donateToSignalType != DonateToSignalType.GIFT && FeatureFlags.idealDonations()
   }
 }

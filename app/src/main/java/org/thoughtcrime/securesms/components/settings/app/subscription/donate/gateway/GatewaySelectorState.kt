@@ -9,5 +9,6 @@ data class GatewaySelectorState(
   val isGooglePayAvailable: Boolean = false,
   val isPayPalAvailable: Boolean = false,
   val isCreditCardAvailable: Boolean = false,
-  val isSEPADebitAvailable: Boolean = false
+  val isSEPADebitAvailable: Boolean = false,
+  val isIDEALAvailable: Boolean = false
 )

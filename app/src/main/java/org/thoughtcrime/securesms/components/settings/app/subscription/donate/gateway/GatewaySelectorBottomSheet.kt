@@ -79,6 +79,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
           GatewayResponse.Gateway.PAYPAL -> renderPayPalButton(state, isFirst)
           GatewayResponse.Gateway.CREDIT_CARD -> renderCreditCardButton(state, isFirst)
           GatewayResponse.Gateway.SEPA_DEBIT -> renderSEPADebitButton(state, isFirst)
+          GatewayResponse.Gateway.IDEAL -> renderIDEALButton(state, isFirst)
         }
       }
 
@@ -154,6 +155,25 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         onClick = {
           findNavController().popBackStack()
           val response = GatewayResponse(GatewayResponse.Gateway.SEPA_DEBIT, args.request)
+          setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
+        }
+      )
+    }
+  }
+
+  private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState, isFirstButton: Boolean) {
+    if (state.isIDEALAvailable) {
+      if (!isFirstButton) {
+        space(8.dp)
+      }
+
+      // TODO [sepa] -- Final assets and copy
+      tonalButton(
+        text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__ideal),
+        icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
+        onClick = {
+          findNavController().popBackStack()
+          val response = GatewayResponse(GatewayResponse.Gateway.IDEAL, args.request)
           setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
         }
       )

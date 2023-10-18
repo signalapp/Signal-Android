@@ -117,7 +117,7 @@ class DonationErrorParams<V> private constructor(
       val getStripeDeclineCodePositiveActionParams: (Context, Callback<V>, Int) -> DonationErrorParams<V> = when (declinedError.method) {
         PaymentSourceType.Stripe.CreditCard -> this::getTryCreditCardAgainParams
         PaymentSourceType.Stripe.GooglePay -> this::getGoToGooglePayParams
-        PaymentSourceType.Stripe.SEPADebit -> this::getLearnMoreParams
+        else -> this::getLearnMoreParams
       }
 
       return when (declinedError.declineCode) {
@@ -128,7 +128,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -138,7 +138,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -149,7 +149,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_card_has_expired_verify_your_card_details
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_card_has_expired
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -159,7 +159,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_card_number_is_incorrect_verify_your_card_details
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_card_number_is_incorrect
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -169,7 +169,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -180,7 +180,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -190,7 +190,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__the_expiration_month_on_your_card_is_incorrect
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__the_expiration_month
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -200,7 +200,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__the_expiration_year_on_your_card_is_incorrect
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__the_expiration_year
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 
@@ -210,7 +210,7 @@ class DonationErrorParams<V> private constructor(
             when (declinedError.method) {
               PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_card_number_is_incorrect_verify_your_card_details
               PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_card_number_is_incorrect
-              PaymentSourceType.Stripe.SEPADebit -> unexpectedDeclinedError(declinedError)
+              else -> unexpectedDeclinedError(declinedError)
             }
           )
 

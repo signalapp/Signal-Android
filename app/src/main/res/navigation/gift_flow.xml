@@ -62,12 +62,6 @@
         <action
             android:id="@+id/action_giftFlowConfirmationFragment_to_paypalPaymentInProgressFragment"
             app:destination="@id/paypalPaymentInProgressFragment" />
-        <action
-            android:id="@+id/action_giftFlowConfirmationFragment_to_bankTransferMandateFragment"
-            app:destination="@id/bankTransferMandateFragment" />
-        <action
-            android:id="@+id/action_giftFlowConfirmationFragment_to_donationPendingBottomSheet"
-            app:destination="@id/donationPendingBottomSheet" />
     </fragment>
 
     <dialog
@@ -190,52 +184,6 @@
         android:id="@+id/paypalCompleteOrderBottomSheet"
         android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalCompleteOrderBottomSheet"
         android:label="paypal_complete_order_bottom_sheet"
-        tools:layout="@layout/dsl_settings_bottom_sheet">
-
-        <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
-    </dialog>
-
-    <fragment
-        android:id="@+id/bankTransferMandateFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.mandate.BankTransferMandateFragment"
-        android:label="bank_transfer_mandate_fragment">
-
-        <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
-        <action
-            android:id="@+id/action_bankTransferMandateFragment_to_bankTransferDetailsFragment"
-            app:destination="@id/bankTransferDetailsFragment" />
-        <action
-            android:id="@+id/action_bankTransferMandateFragment_to_yourInformationIsPrivateBottomSheet"
-            app:destination="@id/yourInformationIsPrivateBottomSheet" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/bankTransferDetailsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.details.BankTransferDetailsFragment"
-        android:label="bank_transfer_details_fragment">
-
-        <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
-            app:nullable="false" />
-        <action
-            android:id="@+id/action_bankTransferDetailsFragment_to_stripePaymentInProgressFragment"
-            app:destination="@id/stripePaymentInProgressFragment" />
-        <action
-            android:id="@+id/action_bankTransferDetailsFragment_to_yourInformationIsPrivateBottomSheet"
-            app:destination="@id/yourInformationIsPrivateBottomSheet" />
-    </fragment>
-
-    <dialog
-        android:id="@+id/donationPendingBottomSheet"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.DonationPendingBottomSheet"
-        android:label="donation_pending_bottom_sheet"
         tools:layout="@layout/dsl_settings_bottom_sheet">
 
         <argument

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.g
 import io.reactivex.rxjava3.core.Single
 import org.thoughtcrime.securesms.components.settings.app.subscription.getAvailablePaymentMethods
 import org.whispersystems.signalservice.api.services.DonationsService
+import org.whispersystems.signalservice.internal.push.DonationsConfiguration
 import java.util.Locale
 
 class GatewaySelectorRepository(
@@ -15,9 +16,10 @@ class GatewaySelectorRepository(
       .map { configuration ->
         configuration.getAvailablePaymentMethods(currencyCode).map {
           when (it) {
-            "PAYPAL" -> listOf(GatewayResponse.Gateway.PAYPAL)
-            "CARD" -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
-            "SEPA_DEBIT" -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
+            DonationsConfiguration.PAYPAL -> listOf(GatewayResponse.Gateway.PAYPAL)
+            DonationsConfiguration.CARD -> listOf(GatewayResponse.Gateway.CREDIT_CARD, GatewayResponse.Gateway.GOOGLE_PAY)
+            DonationsConfiguration.SEPA_DEBIT -> listOf(GatewayResponse.Gateway.SEPA_DEBIT)
+            DonationsConfiguration.IDEAL -> listOf(GatewayResponse.Gateway.IDEAL)
             else -> listOf()
           }
         }.flatten().toSet()

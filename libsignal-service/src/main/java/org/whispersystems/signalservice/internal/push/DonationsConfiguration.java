@@ -16,6 +16,11 @@ import java.util.Set;
  */
 public class DonationsConfiguration {
 
+  public static final String PAYPAL     = "PAYPAL";
+  public static final String CARD       = "CARD";
+  public static final String SEPA_DEBIT = "SEPA_DEBIT";
+  public static final String IDEAL      = "IDEAL";
+
   public static final int               BOOST_LEVEL        = 1;
   public static final int               GIFT_LEVEL         = 100;
   public static final HashSet<Integer>  SUBSCRIPTION_LEVELS = new HashSet<>(Arrays.asList(500, 1000, 2000));

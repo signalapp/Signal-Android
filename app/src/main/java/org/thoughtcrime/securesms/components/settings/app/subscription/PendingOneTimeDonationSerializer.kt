@@ -46,6 +46,7 @@ object PendingOneTimeDonationSerializer {
         PaymentSourceType.PayPal -> PendingOneTimeDonation.PaymentMethodType.PAYPAL
         PaymentSourceType.Stripe.CreditCard, PaymentSourceType.Stripe.GooglePay, PaymentSourceType.Unknown -> PendingOneTimeDonation.PaymentMethodType.CARD
         PaymentSourceType.Stripe.SEPADebit -> PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
+        PaymentSourceType.Stripe.IDEAL -> PendingOneTimeDonation.PaymentMethodType.IDEAL
       },
       amount = amount.toFiatValue(),
       timestamp = System.currentTimeMillis()

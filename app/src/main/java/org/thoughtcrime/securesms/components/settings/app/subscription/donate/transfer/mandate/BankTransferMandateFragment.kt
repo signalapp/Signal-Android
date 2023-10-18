@@ -44,6 +44,7 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.util.SpanUtil
@@ -91,9 +92,15 @@ class BankTransferMandateFragment : ComposeFragment() {
   }
 
   private fun onContinueClick() {
-    findNavController().safeNavigate(
-      BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToBankTransferDetailsFragment(args.request)
-    )
+    if (args.response.gateway == GatewayResponse.Gateway.SEPA_DEBIT) {
+      findNavController().safeNavigate(
+        BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToBankTransferDetailsFragment(args.response.request)
+      )
+    } else {
+      findNavController().safeNavigate(
+        BankTransferMandateFragmentDirections.actionBankTransferMandateFragmentToIdealTransferDetailsFragment(args.response.request)
+      )
+    }
   }
 }
 

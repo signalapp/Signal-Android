@@ -224,8 +224,8 @@
         android:label="bank_transfer_mandate_fragment">
 
         <argument
-            android:name="request"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            android:name="response"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse"
             app:nullable="false" />
         <action
             android:id="@+id/action_bankTransferMandateFragment_to_bankTransferDetailsFragment"
@@ -233,6 +233,9 @@
         <action
             android:id="@+id/action_bankTransferMandateFragment_to_yourInformationIsPrivateBottomSheet"
             app:destination="@id/yourInformationIsPrivateBottomSheet" />
+        <action
+            android:id="@+id/action_bankTransferMandateFragment_to_idealTransferDetailsFragment"
+            app:destination="@id/idealTransferDetailsFragment" />
     </fragment>
 
     <fragment
@@ -262,6 +265,33 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/idealTransferDetailsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.ideal.IdealTransferDetailsFragment"
+        android:label="ideal_transfer_details_fragment">
+
+        <argument
+            android:name="request"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_bankTransferDetailsFragment_to_stripePaymentInProgressFragment"
+            app:destination="@id/stripePaymentInProgressFragment" />
+        <action
+            android:id="@+id/action_bankTransferDetailsFragment_to_yourInformationIsPrivateBottomSheet"
+            app:destination="@id/yourInformationIsPrivateBottomSheet" />
+        <action
+            android:id="@+id/action_idealTransferDetailsFragment_to_idealTransferBankSelectionDialogFragment"
+            app:destination="@id/idealTransferBankSelectionDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/idealTransferBankSelectionDialogFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.ideal.IdealTransferDetailsBankSelectionDialogFragment"
+        android:label="ideal_transfer_bank_selection">
+
     </dialog>
 
 </navigation>

@@ -69,6 +69,7 @@ object OneTimeDonationPreference {
         PendingOneTimeDonation.PaymentMethodType.CARD -> context.getString(R.string.OneTimeDonationPreference__donation_processing)
         PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT -> context.getString(R.string.OneTimeDonationPreference__donation_pending)
         PendingOneTimeDonation.PaymentMethodType.PAYPAL -> context.getString(R.string.OneTimeDonationPreference__donation_processing)
+        PendingOneTimeDonation.PaymentMethodType.IDEAL -> context.getString(R.string.OneTimeDonationPreference__donation_pending)
       }
     }
   }

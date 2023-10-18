@@ -290,6 +290,7 @@ message PendingOneTimeDonation {
         CARD       = 0;
         SEPA_DEBIT = 1;
         PAYPAL     = 2;
+        IDEAL      = 3;
     }
 
     PaymentMethodType paymentMethodType = 1;
