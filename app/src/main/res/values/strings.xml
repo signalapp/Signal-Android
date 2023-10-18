@@ -5913,7 +5913,7 @@
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
-    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for 'learn more' -->
+    <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your bank, name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Learn more</string>
@@ -5946,11 +5946,11 @@
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__done">Done</string>
 
-    <!-- Title of 'Donation Complete' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Donation Complete</string>
-    <!-- Text block of 'Donation Complete' sheet displayed after a bank transfer completes and the badge is redeemed -->
+    <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Your bank transfer was received. You can choose to display this badge on your profile to show off your support.</string>
-    <!-- Button text of 'Donation Complete' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
+    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">Done</string>
 
     <!-- StripePaymentInProgressFragment -->
