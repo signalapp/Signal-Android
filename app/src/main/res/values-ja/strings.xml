@@ -957,13 +957,13 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">ユーザー名をコピーしました</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">ユーザーネームを削除できませんでした。あとで再度試してください。</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">ユーザー名を削除できませんでした。あとで再度試してください。</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">ユーザーネームを削除しました</string>
+    <string name="ManageProfileFragment__username_deleted">ユーザー名を削除しました</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">ユーザーネームに問題が発生したため、アカウントに割り当てられていません。もう一度設定し直すか、新しいものを選んでみてください。</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">ユーザー名に問題が発生したため、アカウントに割り当てられていません。もう一度設定し直すか、新しいものを選んでみてください。</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">今すぐ修正する</string>
 
@@ -2029,7 +2029,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">ユーザーネームを追加する</string>
+    <string name="UsernameEditFragment__add_a_username">ユーザー名を追加する</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">ユーザー名を選択してください</string>
     <string name="UsernameEditFragment_username">ユーザー名</string>
@@ -2042,10 +2042,10 @@
     <string name="UsernameEditFragment_username_is_invalid">無効なユーザー名です。</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザー名は%1$dから%2$d文字にしてください。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ユーザーネームを使用すると、電話番号なしでメッセージを送れます。ユーザーネームは、一連の数字と対になっているのでアドレスを非公開にすることができます。</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ユーザー名を使用すると、電話番号なしでメッセージを送れます。ユーザー名は、一連の数字と対になっているのでアドレスを非公開にすることができます。</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">この数字は何ですか？</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">これらの数字は、ユーザー名を非公開にし、不要なメッセージを避けるのに役立ちます。ユーザーネームは、チャットをしたい人やグループとだけ共有してください。ユーザー名を変更すると、新しい数字と対になります。</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">これらの数字は、ユーザー名を非公開にし、不要なメッセージを避けるのに役立ちます。ユーザー名は、チャットをしたい人やグループとだけ共有してください。ユーザー名を変更すると、新しい数字と対になります。</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">スキップ</string>
     <!-- Content description for done button -->
@@ -2057,7 +2057,7 @@
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ユーザーネームのリンクをコピーまたは共有する</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ユーザー名のリンクをコピーまたは共有する</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">連絡先の相手は互換性のないQRコード形式を使った新しいバージョンのSignalを使っています。Signalをアップデートしてから比較してください。</string>
@@ -5799,9 +5799,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Signalユーザーネームを設定する</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Signalユーザー名を設定する</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">ユーザーネームを入力することで、相手は電話番号なしでメッセージを送ることができます</string>
+    <string name="SetUpYourUsername__usernames_let_others">ユーザー名を入力することで、相手は電話番号なしでメッセージを送ることができます</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">今はしない</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5825,19 +5825,19 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">続行</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Signalユーザーネームを設定する</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Signalユーザー名を設定する</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ユーザーネームは数字と対になっており、プロフィールで共有されることはありません</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ユーザー名は数字と対になっており、プロフィールで共有されることはありません</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">各ユーザーネームには固有の QR コードとリンクがあり、友達と共有することでチャットを開始することができます</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">各ユーザー名には固有の QR コードとリンクがあり、友達と共有することでチャットを開始することができます</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">設定 &gt; プライバシー &gt; 電話番号 &gt;「電話番号での検索を可能にする」で電話番号検索をオフにすると、他のユーザーからあなたへの基本の連絡方法はユーザーネームの使用となります</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">設定 &gt; プライバシー &gt; 電話番号 &gt;「電話番号での検索を可能にする」で電話番号検索をオフにすると、他のユーザーからあなたへの基本の連絡方法はユーザー名の使用となります</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">ユーザーネームの編集</string>
+    <string name="UsernameEditDialog__edit_username">ユーザー名の編集</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">ユーザーネームの消去</string>
+    <string name="UsernameEditDialog__delete_username">ユーザー名の消去</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -6068,7 +6068,7 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">色</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">QR コードとリンクは、信頼できる人とのみ共有してください。共有すると、相手はお客様のユーザーネームを見たりチャットしたりできるようになります。</string>
+    <string name="UsernameLinkSettings_qr_description">QR コードとリンクは、信頼できる人とのみ共有してください。共有すると、相手はお客様のユーザー名を見たりチャットしたりできるようになります。</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">ユーザー名をコピーしました</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6098,7 +6098,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QRコードが無効です。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">ユーザーネーム「%1$s」を持つユーザーは見つかりませんでした。</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">ユーザー名「%1$s」を持つユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">このユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->

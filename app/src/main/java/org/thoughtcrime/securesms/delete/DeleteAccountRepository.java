@@ -102,17 +102,6 @@ class DeleteAccountRepository {
       }
 
       Log.i(TAG, "deleteAccount: successfully left all groups.");
-      Log.i(TAG, "deleteAccount: attempting to remove pin...");
-
-      try {
-        ApplicationDependencies.getKeyBackupService(KbsEnclaves.current()).newPinChangeSession().removePin();
-      } catch (UnauthenticatedResponseException | IOException e) {
-        Log.w(TAG, "deleteAccount: failed to remove PIN", e);
-        onDeleteAccountEvent.accept(DeleteAccountEvent.PinDeletionFailed.INSTANCE);
-        return;
-      }
-
-      Log.i(TAG, "deleteAccount: successfully removed pin.");
       Log.i(TAG, "deleteAccount: attempting to delete account from server...");
 
       try {
