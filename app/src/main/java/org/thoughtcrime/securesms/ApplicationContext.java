@@ -34,7 +34,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
-import org.signal.devicetransfer.TransferEventBusIndex;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
 import org.signal.ringrtc.CallManager;
@@ -113,7 +112,7 @@ import rxdogtag2.RxDogTag;
 
 /**
  * Will be called once when the TextSecure process is created.
- * <p>
+ *
  * We're using this as an insertion point to patch up the Android PRNG disaster,
  * to initialize the job manager, and to check for GCM registration freshness.
  *
@@ -154,13 +153,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("security-provider", this::initializeSecurityProvider)
                             .addBlocking("crash-handling", this::initializeCrashHandling)
                             .addBlocking("rx-init", this::initializeRx)
-                            .addBlocking("event-bus", () -> EventBus
-                              .builder()
-                              .logNoSubscriberMessages(false)
-                              .logSubscriberExceptions(BuildConfig.DEBUG)
-                              .addIndex(new TransferEventBusIndex())
-                              .addIndex(new SecuresmsEventBusIndex())
-                              .installDefaultEventBus())
+                            .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)

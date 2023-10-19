@@ -20,7 +20,6 @@ dependencyResolutionManagement {
             version('android-gradle-plugin', '8.0.2')
             version('accompanist', '0.28.0')
             version('nanohttpd', '2.3.1')
-            version('eventbus', '3.3.1')
 
             // Android Plugins
             library('android-library', 'com.android.library', 'com.android.library.gradle.plugin').versionRef('android-gradle-plugin')
@@ -121,8 +120,7 @@ dependencyResolutionManagement {
             library('signal-android-database-sqlcipher', 'org.signal:sqlcipher-android:4.5.4-S2')
 
             // Third Party
-            library('greenrobot-eventbus-core', 'org.greenrobot', 'eventbus').versionRef('eventbus')
-            library('greenrobot-eventbus-annotation', 'org.greenrobot', 'eventbus-annotation-processor').versionRef('eventbus')
+            library('greenrobot-eventbus', 'org.greenrobot:eventbus:3.0.0')
             library('jackson-core', 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2')
             library('jackson-module-kotlin', 'com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0')
             library('square-okhttp3', 'com.squareup.okhttp3:okhttp:3.12.13')
