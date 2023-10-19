@@ -27,20 +27,20 @@ object V210_FixPniPossibleColumns : SignalDatabaseMigration {
   private val TAG = Log.tag(V210_FixPniPossibleColumns::class.java)
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-    val pni = getLocalPni(context)
+    val pni = getLocalPni(context)?.toStringWithoutPrefix()
 
     if (pni == null) {
       Log.i(TAG, "No local PNI, nothing to migrate")
       return
     }
 
-    db.execSQL("UPDATE identities SET address = 'PNI:' || address WHERE address = '${pni.toStringWithoutPrefix()}'")
-    db.execSQL("UPDATE one_time_prekeys SET account_id = 'PNI:' || account_id WHERE account_id = '${pni.toStringWithoutPrefix()}'")
-    db.execSQL("UPDATE kyber_prekey SET account_id = 'PNI:' || account_id WHERE account_id = '${pni.toStringWithoutPrefix()}'")
-    db.execSQL("UPDATE sender_key_shared SET address = 'PNI:' || address WHERE address = '${pni.toStringWithoutPrefix()}'")
-    db.execSQL("UPDATE sender_keys SET address = 'PNI:' || address WHERE address = '${pni.toStringWithoutPrefix()}'")
-    db.execSQL("UPDATE sessions SET address = 'PNI:' || address WHERE address = '${pni.toStringWithoutPrefix()}'")
-    db.execSQL("UPDATE signed_prekeys SET account_id = 'PNI:' || account_id WHERE account_id = '${pni.toStringWithoutPrefix()}'")
+    db.execSQL("UPDATE OR IGNORE identities SET address = 'PNI:' || address WHERE address = '$pni'")
+    db.execSQL("UPDATE OR IGNORE one_time_prekeys SET account_id = 'PNI:' || account_id WHERE account_id = '$pni'")
+    db.execSQL("UPDATE OR IGNORE kyber_prekey SET account_id = 'PNI:' || account_id WHERE account_id = '$pni'")
+    db.execSQL("UPDATE OR IGNORE sender_key_shared SET address = 'PNI:' || address WHERE address = '$pni'")
+    db.execSQL("UPDATE OR IGNORE sender_keys SET address = 'PNI:' || address WHERE address = '$pni'")
+    db.execSQL("UPDATE OR IGNORE sessions SET address = 'PNI:' || address WHERE address = '$pni'")
+    db.execSQL("UPDATE OR IGNORE signed_prekeys SET account_id = 'PNI:' || account_id WHERE account_id = '$pni'")
   }
 
   private fun getLocalPni(context: Application): ServiceId.PNI? {
