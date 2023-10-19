@@ -41,55 +41,55 @@ enum class IdealBank(
           arrayOf(
             ABN_AMRO to UIValues(
               name = R.string.IdealBank__abn_amro,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_abn_amro
             ),
             ASN_BANK to UIValues(
               name = R.string.IdealBank__asn_bank,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_asn
             ),
             BUNQ to UIValues(
               name = R.string.IdealBank__bunq,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_bunq
             ),
             ING to UIValues(
               name = R.string.IdealBank__ing,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_ing
             ),
             KNAB to UIValues(
               name = R.string.IdealBank__knab,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_knab
             ),
             N26 to UIValues(
               name = R.string.IdealBank__n26,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_n26
             ),
             RABOBANK to UIValues(
               name = R.string.IdealBank__rabobank,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_rabobank
             ),
             REGIOBANK to UIValues(
               name = R.string.IdealBank__regiobank,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_regiobank
             ),
             REVOLUT to UIValues(
               name = R.string.IdealBank__revolut,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_revolut
             ),
             SNS_BANK to UIValues(
               name = R.string.IdealBank__sns_bank,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_sns
             ),
             TRIODOS_BANK to UIValues(
               name = R.string.IdealBank__triodos_bank,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_triodos_bank
             ),
             VAN_LANCHOT to UIValues(
               name = R.string.IdealBank__van_lanchot,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_van_lanschot
             ),
             YOURSAFE to UIValues(
               name = R.string.IdealBank__yoursafe,
-              icon = R.drawable.ic_person_large // TODO [sepa] -- final icon
+              icon = R.drawable.ideal_yoursafe
             )
           )
         )

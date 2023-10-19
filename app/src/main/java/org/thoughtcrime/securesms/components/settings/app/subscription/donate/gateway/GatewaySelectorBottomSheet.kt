@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
@@ -167,10 +168,9 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         space(8.dp)
       }
 
-      // TODO [sepa] -- Final assets and copy
       tonalButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__ideal),
-        icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
+        icon = DSLSettingsIcon.from(R.drawable.logo_ideal, NO_TINT),
         onClick = {
           findNavController().popBackStack()
           val response = GatewayResponse(GatewayResponse.Gateway.IDEAL, args.request)
