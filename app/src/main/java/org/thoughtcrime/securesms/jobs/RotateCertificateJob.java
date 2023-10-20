@@ -66,9 +66,9 @@ public final class RotateCertificateJob extends BaseJob {
         byte[] certificate;
 
         switch (certificateType) {
-          case UUID_AND_E164: certificate = accountManager.getSenderCertificate(); break;
-          case UUID_ONLY    : certificate = accountManager.getSenderCertificateForPhoneNumberPrivacy(); break;
-          default           : throw new AssertionError();
+          case ACI_AND_E164: certificate = accountManager.getSenderCertificate(); break;
+          case ACI_ONLY    : certificate = accountManager.getSenderCertificateForPhoneNumberPrivacy(); break;
+          default          : throw new AssertionError();
         }
 
         Log.i(TAG, String.format("Successfully got %s certificate", certificateType));

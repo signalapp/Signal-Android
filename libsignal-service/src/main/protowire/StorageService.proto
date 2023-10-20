@@ -138,9 +138,9 @@ message Payments {
 message AccountRecord {
 
   enum PhoneNumberSharingMode {
-    EVERYBODY     = 0;
-    CONTACTS_ONLY = 1;
-    NOBODY        = 2;
+    UNKNOWN   = 0;
+    EVERYBODY = 1;
+    NOBODY    = 2;
   }
 
   message PinnedConversation {
