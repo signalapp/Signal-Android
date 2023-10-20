@@ -5,9 +5,12 @@
 
 package org.thoughtcrime.securesms.notifications
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +35,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.BundleCompat
+import androidx.core.os.bundleOf
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.theme.SignalTheme
@@ -44,27 +49,67 @@ private const val PLACEHOLDER = "__TOGGLE_PLACEHOLDER__"
 /**
  * Sheet explaining how to turn on notifications and providing an action to do so.
  */
-class TurnOnNotificationsBottomSheet : ComposeBottomSheetDialogFragment() {
+class TurnOnNotificationsBottomSheet private constructor() : ComposeBottomSheetDialogFragment() {
+
+  companion object {
+    private const val ARG_TITLE = "argument.title_res"
+    private const val ARG_SUBTITLE = "argument.subtitle_res"
+    private const val ARG_STEP2 = "argument.step2_res"
+    private const val ARG_SETTINGS_INTENT = "argument.settings_intent"
+
+    @JvmStatic
+    fun turnOnSystemNotificationsFragment(context: Context): ComposeBottomSheetDialogFragment {
+      return TurnOnNotificationsBottomSheet().apply {
+        arguments = bundleOf(
+          ARG_TITLE to R.string.TurnOnNotificationsBottomSheet__turn_on_notifications,
+          ARG_SUBTITLE to R.string.TurnOnNotificationsBottomSheet__to_receive_notifications,
+          ARG_STEP2 to R.string.TurnOnNotificationsBottomSheet__2_s_turn_on_notifications,
+          ARG_SETTINGS_INTENT to getNotificationsSettingsIntent(context)
+        )
+      }
+    }
+
+    @JvmStatic
+    @RequiresApi(34)
+    fun turnOnFullScreenIntentFragment(context: Context): ComposeBottomSheetDialogFragment {
+      return TurnOnNotificationsBottomSheet().apply {
+        arguments = bundleOf(
+          ARG_TITLE to R.string.GrantFullScreenIntentPermission_bottomsheet_title,
+          ARG_SUBTITLE to R.string.GrantFullScreenIntentPermission_bottomsheet_subtitle,
+          ARG_STEP2 to R.string.GrantFullScreenIntentPermission_bottomsheet_step2,
+          ARG_SETTINGS_INTENT to Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:" + context.packageName))
+        )
+      }
+    }
+
+    private fun getNotificationsSettingsIntent(context: Context): Intent {
+      return if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.getInstance().isMessageChannelEnabled) {
+        Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
+          putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getInstance().messagesChannel)
+          putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+        }
+      } else if (Build.VERSION.SDK_INT >= 26 && (!NotificationChannels.getInstance().areNotificationsEnabled() || !NotificationChannels.getInstance().isMessagesChannelGroupEnabled)) {
+        Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+          putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+        }
+      } else {
+        AppSettingsActivity.notifications(context)
+      }
+    }
+  }
 
   @Composable
   override fun SheetContent() {
-    TurnOnNotificationsSheetContent(this::goToSystemNotificationSettings)
+    TurnOnNotificationsSheetContent(
+      titleRes = requireArguments().getInt(ARG_TITLE),
+      subtitleRes = requireArguments().getInt(ARG_SUBTITLE),
+      step2Res = requireArguments().getInt(ARG_STEP2),
+      onGoToSettingsClicked = this::goToSettings
+    )
   }
 
-  private fun goToSystemNotificationSettings() {
-    if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.getInstance().isMessageChannelEnabled) {
-      val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
-      intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getInstance().messagesChannel)
-      intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().packageName)
-      startActivity(intent)
-    } else if (Build.VERSION.SDK_INT >= 26 && (!NotificationChannels.getInstance().areNotificationsEnabled() || !NotificationChannels.getInstance().isMessagesChannelGroupEnabled)) {
-      val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-      intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().packageName)
-      startActivity(intent)
-    } else {
-      startActivity(AppSettingsActivity.notifications(requireContext()))
-    }
-
+  private fun goToSettings() {
+    startActivity(BundleCompat.getParcelable(requireArguments(), ARG_SETTINGS_INTENT, Intent::class.java)!!)
     dismissAllowingStateLoss()
   }
 }
@@ -74,13 +119,20 @@ class TurnOnNotificationsBottomSheet : ComposeBottomSheetDialogFragment() {
 private fun TurnOnNotificationsSheetContentPreview() {
   SignalTheme(isDarkMode = false) {
     Surface {
-      TurnOnNotificationsSheetContent {}
+      TurnOnNotificationsSheetContent(
+        titleRes = R.string.TurnOnNotificationsBottomSheet__turn_on_notifications,
+        subtitleRes = R.string.TurnOnNotificationsBottomSheet__to_receive_notifications,
+        step2Res = R.string.TurnOnNotificationsBottomSheet__2_s_turn_on_notifications
+      ) {}
     }
   }
 }
 
 @Composable
 private fun TurnOnNotificationsSheetContent(
+  titleRes: Int,
+  subtitleRes: Int,
+  step2Res: Int,
   onGoToSettingsClicked: () -> Unit
 ) {
   Column(
@@ -93,7 +145,7 @@ private fun TurnOnNotificationsSheetContent(
     )
 
     Text(
-      text = stringResource(R.string.TurnOnNotificationsBottomSheet__turn_on_notifications),
+      text = stringResource(titleRes),
       style = MaterialTheme.typography.headlineSmall,
       modifier = Modifier
         .align(Alignment.CenterHorizontally)
@@ -101,7 +153,7 @@ private fun TurnOnNotificationsSheetContent(
     )
 
     Text(
-      text = stringResource(R.string.TurnOnNotificationsBottomSheet__to_receive_notifications),
+      text = stringResource(subtitleRes),
       style = MaterialTheme.typography.bodyMedium,
       modifier = Modifier
         .align(Alignment.CenterHorizontally)
@@ -113,7 +165,7 @@ private fun TurnOnNotificationsSheetContent(
       modifier = Modifier.padding(bottom = 32.dp)
     )
 
-    val step2String = stringResource(id = R.string.TurnOnNotificationsBottomSheet__2_s_turn_on_notifications, PLACEHOLDER)
+    val step2String = stringResource(id = step2Res, PLACEHOLDER)
     val (step2Text, step2InlineContent) = remember(step2String) {
       val parts = step2String.split(PLACEHOLDER)
       val annotatedString = buildAnnotatedString {
