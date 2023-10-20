@@ -145,6 +145,8 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private           Set<RecipientId>                     currentSelection;
   private           boolean                              isMulti;
   private           boolean                              canSelectSelf;
+  private           boolean                              resetPositionOnCommit = false;
+
   private           ListClickListener                    listClickListener = new ListClickListener();
   @Nullable private SwipeRefreshLayout.OnRefreshListener onRefreshListener;
 
@@ -527,12 +529,17 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       return;
     }
 
-    this.cursorFilter = filter;
+    this.resetPositionOnCommit = true;
+    this.cursorFilter          = filter;
+
     contactSearchMediator.onFilterChanged(filter);
   }
 
   public void resetQueryFilter() {
     setQueryFilter(null);
+
+    this.resetPositionOnCommit = true;
+
     swipeRefresh.setRefreshing(false);
   }
 
@@ -551,6 +558,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   private void onLoadFinished(int count) {
+    if (resetPositionOnCommit) {
+      resetPositionOnCommit = false;
+      recyclerView.scrollToPosition(0);
+    }
+
     swipeRefresh.setVisibility(View.VISIBLE);
     showContactsLayout.setVisibility(View.GONE);
 
