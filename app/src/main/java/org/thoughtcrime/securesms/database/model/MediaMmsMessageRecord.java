@@ -155,7 +155,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
   @Override
   public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
-    if (isCallLog() && call != null) {
+    if (isCallLog() && call != null && !(call.getType() == CallTable.Type.GROUP_CALL)) {
       boolean accepted = call.getEvent() == CallTable.Event.ACCEPTED;
       String callDateString = getCallDateString(context);
 
