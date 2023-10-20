@@ -121,7 +121,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
-    <string name="CreditCardFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="CreditCardFragment__credit_or_debit_card">Kredītkarte vai debetkarte</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Ievadiet kartes datus. Signal neapkopo un neuzglabā jūsu personisko informāciju.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -147,9 +147,9 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Nederīgs gads</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
-    <string name="CreditCardFragment__donate_s">Donate %1$s</string>
+    <string name="CreditCardFragment__donate_s">Ziedot %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
-    <string name="CreditCardFragment__donate_s_month">Donate %1$s/month</string>
+    <string name="CreditCardFragment__donate_s_month">Ziedot %1$s/mēnesī</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -4880,7 +4880,7 @@
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
     <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers usually take 1 business day to complete.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
-    <string name="MySupportPreference__learn_more">Learn more</string>
+    <string name="MySupportPreference__learn_more">Lasīt vairāk</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Atjaunināt Signal</string>
@@ -6043,11 +6043,11 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your bank, name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
-    <string name="IdealTransferDetailsFragment__learn_more">Learn more</string>
+    <string name="IdealTransferDetailsFragment__learn_more">Lasīt vairāk</string>
     <!-- Hint label for text entry box for name on bank account -->
-    <string name="IdealTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">Bankas konta īpašnieka vārds, uzvārds</string>
     <!-- Hint label for text entry box for email -->
-    <string name="IdealTransferDetailsFragment__email">Email</string>
+    <string name="IdealTransferDetailsFragment__email">E-pasts</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Choose your bank</string>
 
@@ -6069,16 +6069,16 @@
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers usually take 1 business day to process. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
-    <string name="DonationPendingBottomSheet__learn_more">Learn more</string>
+    <string name="DonationPendingBottomSheet__learn_more">Lasīt vairāk</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
-    <string name="DonationPendingBottomSheet__done">Done</string>
+    <string name="DonationPendingBottomSheet__done">Darīts</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Donation Complete</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Your bank transfer was received. You can choose to display this badge on your profile to show off your support.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
-    <string name="DonationCompleteBottomSheet__done">Done</string>
+    <string name="DonationCompleteBottomSheet__done">Darīts</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Notiek atcelšana…</string>
@@ -6498,6 +6498,19 @@
     <string name="PendingParticipantsBottomSheet__reject">Noraidīt</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Apstiprināt</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
 
     <!-- EOF -->
 </resources>

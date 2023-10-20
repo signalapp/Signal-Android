@@ -121,7 +121,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
-    <string name="CreditCardFragment__credit_or_debit_card">Credit or debit card</string>
+    <string name="CreditCardFragment__credit_or_debit_card">Кредитна или дебитна картица</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Унесите податке са картице. Signal не прикупља нити чува ваше податке о личности.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -147,17 +147,17 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Неважећа година</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
-    <string name="CreditCardFragment__donate_s">Donate %1$s</string>
+    <string name="CreditCardFragment__donate_s">Донирајте %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
-    <string name="CreditCardFragment__donate_s_month">Donate %1$s/month</string>
+    <string name="CreditCardFragment__donate_s_month">Донирајте %1$s месечно</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">One time %1$s</string>
+    <string name="OneTimeDonationPreference__one_time_s">Једнократни износ од %1$s</string>
     <!-- Preference subtitle when donation is pending -->
-    <string name="OneTimeDonationPreference__donation_pending">Donation pending</string>
+    <string name="OneTimeDonationPreference__donation_pending">Донација је на чекању</string>
     <!-- Preference subtitle when donation is processing -->
-    <string name="OneTimeDonationPreference__donation_processing">Donation processing</string>
+    <string name="OneTimeDonationPreference__donation_processing">Донација се обрађује</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Желите ли да блокирате и напустите групу %1$s?</string>
@@ -4767,11 +4767,11 @@
     <string name="MySupportPreference__couldnt_add_badge_s">Додавање значке није успело. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Молимо контактирајте подршку.</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
-    <string name="MySupportPreference__payment_pending">Payment pending</string>
+    <string name="MySupportPreference__payment_pending">Уплата је на чекању</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers usually take 1 business day to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Ваш банковни од %1$s пренос је на чекању. Банковни преноси обично трају 1 радни дан.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
-    <string name="MySupportPreference__learn_more">Learn more</string>
+    <string name="MySupportPreference__learn_more">Сазнајте више</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Ажурирај Signal</string>
@@ -4916,15 +4916,15 @@
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_account_provided">The bank account provided has insufficient funds to complete this purchase, try again or contact your bank for more information.</string>
+    <string name="StripeFailureCode__the_bank_account_provided">На наведеном банковном рачуну нема довољно средстава за завршетак ове куповине. Пробајте поново или се обратите својој банци ако вам је потребно више информација.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This payment was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Власник рачуна је отказао ову уплату и њена обрада није успела. Ништа вам није наплаћено.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this payment, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Десила се грешка при обради ове уплате. Пробајте поново.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">The bank details provided could not be processed, contact your bank for more information.</string>
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Дати банковни подаци се не могу обрадити. Обратите се својој банци ако вам је потребно више информација.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Verify your bank details are correct and try again. If the problem continues, contact your bank.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Проверите да ли су банковни подаци тачни и пробајте поново. Ако се проблем настави, обратите се својој банци.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Именовати ваш профил</string>
@@ -5893,7 +5893,7 @@
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">Имејл</string>
     <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_info">Find account info</string>
+    <string name="BankTransferDetailsFragment__find_account_info">Пронађите информације о рачуну</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">Донирајте %1$s месечно</string>
     <!-- Donate button label for one-time -->
@@ -5911,44 +5911,44 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your bank, name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Унесите назив банке, име и презиме и имејл. Stripe користи овај имејл да вам шаље информације о вашој донацији. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
-    <string name="IdealTransferDetailsFragment__learn_more">Learn more</string>
+    <string name="IdealTransferDetailsFragment__learn_more">Сазнајте више</string>
     <!-- Hint label for text entry box for name on bank account -->
-    <string name="IdealTransferDetailsFragment__name_on_bank_account">Name on bank account</string>
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">Име на банковном рачуну</string>
     <!-- Hint label for text entry box for email -->
-    <string name="IdealTransferDetailsFragment__email">Email</string>
+    <string name="IdealTransferDetailsFragment__email">Имејл</string>
     <!-- Default label for bank selection -->
-    <string name="IdealTransferDetailsFragment__choose_your_bank">Choose your bank</string>
+    <string name="IdealTransferDetailsFragment__choose_your_bank">Изаберите банку</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Choose your bank</string>
+    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Изаберите банку</string>
 
     <!-- Title of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__find_your_account_information">Find your account information</string>
+    <string name="FindAccountInfoSheet__find_your_account_information">Пронађите информације о свом рачуну</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban">Look for your IBAN number at the top of your bank statement. IBAN numbers contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban">Потражите свој број IBAN на врху банковног извода. Бројеви IBAN садрже до 34 знака. Име које унесете треба да одговара вашем пуном имену имену и презимену на вашем банковном рачуну. Обратите се својој банци ако вам је потребно више информација.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
-    <string name="DonationPendingBottomSheet__donation_pending">Donation pending</string>
+    <string name="DonationPendingBottomSheet__donation_pending">Донација је на чекању</string>
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Your monthly donation is pending. You’ll be able to display the %1$s badge on your profile when your donation is received.</string>
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Ваша месечна донација је на чекању. Моћи ћете да прикажете значку %1$s на свом профилу када донација буде примљена.</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Your one-time donation is pending. You’ll be able to display the %1$s badge on your profile when your donation is received.</string>
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Ваша једнократна донација је на чекању. Моћи ћете да прикажете значку %1$s на свом профилу када донација буде примљена.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers usually take 1 business day to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Обрада банковних преноса обично траје 1 радни дан. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
-    <string name="DonationPendingBottomSheet__learn_more">Learn more</string>
+    <string name="DonationPendingBottomSheet__learn_more">Сазнајте више</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
-    <string name="DonationPendingBottomSheet__done">Done</string>
+    <string name="DonationPendingBottomSheet__done">Готово</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompletedBottomSheet__donation_complete">Donation Complete</string>
+    <string name="DonationCompletedBottomSheet__donation_complete">Донација је завршена</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Your bank transfer was received. You can choose to display this badge on your profile to show off your support.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Ваш банковни пренос је примљен. Можете да прикажете ову значку на профилу ако желите да покажете другима своју подршку.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
-    <string name="DonationCompleteBottomSheet__done">Done</string>
+    <string name="DonationCompleteBottomSheet__done">Готово</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Отказивање…</string>
@@ -6362,6 +6362,19 @@
     <string name="PendingParticipantsBottomSheet__reject">Одбиј</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Одобри</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
+    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
 
     <!-- EOF -->
 </resources>
