@@ -34,15 +34,14 @@ object TemporaryScreenshotSecurity {
   private class LifecycleObserver(
     private val activityProvider: () -> ComponentActivity
   ) : DefaultLifecycleObserver {
-
-    override fun onStart(owner: LifecycleOwner) {
+    override fun onResume(owner: LifecycleOwner) {
       val activity = activityProvider()
       if (!TextSecurePreferences.isScreenSecurityEnabled(activity)) {
         activity.window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
       }
     }
 
-    override fun onStop(owner: LifecycleOwner) {
+    override fun onPause(owner: LifecycleOwner) {
       val activity = activityProvider()
       if (!TextSecurePreferences.isScreenSecurityEnabled(activity)) {
         activity.window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
