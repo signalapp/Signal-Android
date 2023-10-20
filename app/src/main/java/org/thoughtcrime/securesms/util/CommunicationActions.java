@@ -335,6 +335,10 @@ public class CommunicationActions {
   }
 
   public static void handlePotentialCallLinkUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    if (!CallLinks.isCallLink(potentialUrl)) {
+      return;
+    }
+
     if (!FeatureFlags.adHocCalling()) {
       Toast.makeText(activity, R.string.CommunicationActions_cant_join_call, Toast.LENGTH_SHORT).show();
       return;
