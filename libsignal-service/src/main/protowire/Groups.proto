@@ -28,7 +28,7 @@ message Member {
   bytes  userId           = 1;
   Role   role             = 2;
   bytes  profileKey       = 3;
-  bytes  presentation     = 4;
+  bytes  presentation     = 4; // Only set when sending to server
   uint32 joinedAtRevision = 5;
 }
 
@@ -41,7 +41,7 @@ message PendingMember {
 message RequestingMember {
     bytes  userId       = 1;
     bytes  profileKey   = 2;
-    bytes  presentation = 3;
+    bytes  presentation = 3; // Only set when sending to server
     uint64 timestamp    = 4;
 }
 

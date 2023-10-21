@@ -577,7 +577,7 @@ public final class GroupsV2Operations {
           ACI        aci;
           ProfileKey profileKey;
 
-          if (modifyMemberProfileKeyAction.user_id.size() == 0 || modifyMemberProfileKeyAction.presentation.size() == 0) {
+          if (modifyMemberProfileKeyAction.user_id.size() == 0 || modifyMemberProfileKeyAction.profile_key.size() == 0) {
             ProfileKeyCredentialPresentation presentation = new ProfileKeyCredentialPresentation(modifyMemberProfileKeyAction.presentation.toByteArray());
             aci        = decryptAci(ByteString.of(presentation.getUuidCiphertext().serialize()));
             profileKey = decryptProfileKey(ByteString.of(presentation.getProfileKeyCiphertext().serialize()), aci);
@@ -1034,13 +1034,16 @@ public final class GroupsV2Operations {
       ));
     }
 
-    public List<ServiceId> decryptAddMembers(List<GroupChange.Actions.AddMemberAction> addMembers) throws InvalidInputException, VerificationFailedException {
+    public List<ServiceId> decryptAddMembers(List<GroupChange.Actions.AddMemberAction> addMembers) throws InvalidGroupStateException, InvalidInputException, VerificationFailedException {
       List<ServiceId> ids = new ArrayList<>(addMembers.size());
-      for (int i = 0; i < addMembers.size(); i++) {
-        GroupChange.Actions.AddMemberAction addMember                        = addMembers.get(i);
-        ProfileKeyCredentialPresentation    profileKeyCredentialPresentation = new ProfileKeyCredentialPresentation(addMember.added.presentation.toByteArray());
+      for (GroupChange.Actions.AddMemberAction addMember : addMembers) {
+        if (addMember.added.presentation.size() == 0) {
+          ids.add(decryptAci(addMember.added.userId));
+        } else {
+          ProfileKeyCredentialPresentation profileKeyCredentialPresentation = new ProfileKeyCredentialPresentation(addMember.added.presentation.toByteArray());
 
-        ids.add(ServiceId.fromLibSignal(clientZkGroupCipher.decrypt(profileKeyCredentialPresentation.getUuidCiphertext())));
+          ids.add(ServiceId.fromLibSignal(clientZkGroupCipher.decrypt(profileKeyCredentialPresentation.getUuidCiphertext())));
+        }
       }
       return ids;
     }

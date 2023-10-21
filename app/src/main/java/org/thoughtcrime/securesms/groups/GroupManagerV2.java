@@ -724,7 +724,7 @@ final class GroupManagerV2 {
         List<GroupCandidate> groupCandidates = groupCandidateHelper.recipientIdsToCandidatesList(ids);
 
         return groupOperations.replaceAddMembers(change, groupCandidates);
-      } catch (InvalidInputException | VerificationFailedException | IOException e) {
+      } catch (InvalidGroupStateException | InvalidInputException | VerificationFailedException | IOException e) {
         Log.w(TAG, "Unable to refetch credentials for added members, failing change", e);
       }
 
