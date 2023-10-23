@@ -202,23 +202,19 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    *       that we are successful and proceed as normal. If the payment didn't actually succeed, then we
    *       expect an error later in the chain to inform us of this.
    */
-  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor, paymentSourceType: PaymentSourceType): Single<StatusAndPaymentMethodId> {
+  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor): Single<StatusAndPaymentMethodId> {
     return Single.fromCallable {
       when (stripeIntentAccessor.objectType) {
-        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(StripeIntentStatus.SUCCEEDED, null)
+        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(stripeIntentAccessor.intentId, StripeIntentStatus.SUCCEEDED, null)
         StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).let {
           if (it.status == null) {
             Log.d(TAG, "Returned payment intent had a null status.", true)
           }
-          StatusAndPaymentMethodId(it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
+          StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
         }
 
         StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
-          if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
-            StatusAndPaymentMethodId(it.status, it.requireGeneratedSepaDebit())
-          } else {
-            StatusAndPaymentMethodId(it.status, it.paymentMethod)
-          }
+          StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status, it.paymentMethod)
         }
       }
     }
@@ -226,6 +222,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
 
   fun setDefaultPaymentMethod(
     paymentMethodId: String,
+    setupIntentId: String,
     paymentSourceType: PaymentSourceType
   ): Completable {
     return Single.fromCallable {
@@ -235,9 +232,15 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       Log.d(TAG, "Setting default payment method via Signal service...")
       // TODO [sepa] -- iDEAL has its own call
       Single.fromCallable {
-        ApplicationDependencies
-          .getDonationsService()
-          .setDefaultStripePaymentMethod(it.subscriberId, paymentMethodId)
+        if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+          ApplicationDependencies
+            .getDonationsService()
+            .setDefaultIdealPaymentMethod(it.subscriberId, setupIntentId)
+        } else {
+          ApplicationDependencies
+            .getDonationsService()
+            .setDefaultStripePaymentMethod(it.subscriberId, paymentMethodId)
+        }
       }
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
       Log.d(TAG, "Set default payment method via Signal service!")
@@ -267,6 +270,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
   }
 
   data class StatusAndPaymentMethodId(
+    val intentId: String,
     val status: StripeIntentStatus,
     val paymentMethod: String?
   )

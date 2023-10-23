@@ -139,8 +139,13 @@ class ExternalLaunchDonationJob private constructor(
     val subscriber = SignalStore.donationsValues().requireSubscriber()
 
     Log.i(TAG, "Setting default payment method...", true)
-    val setPaymentMethodResponse = ApplicationDependencies.getDonationsService()
-      .setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod!!)
+    val setPaymentMethodResponse = if (stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+      ApplicationDependencies.getDonationsService()
+        .setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
+    } else {
+      ApplicationDependencies.getDonationsService()
+        .setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod!!)
+    }
 
     getResultOrThrow(setPaymentMethodResponse)
 

@@ -281,6 +281,7 @@ public class PushServiceSocket {
   private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method?type=%s";
   private static final String CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method/paypal";
   private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/stripe/%s";
+  private static final String DEFAULT_IDEAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/default_payment_method_for_ideal/%s";
   private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/braintree/%s";
   private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS           = "/v1/subscription/%s/receipt_credentials";
   private static final String CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/create";
@@ -1243,6 +1244,10 @@ public class PushServiceSocket {
 
   public void setDefaultStripeSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
     makeServiceRequestWithoutAuthentication(String.format(DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+  }
+
+  public void setDefaultIdealSubscriptionPaymentMethod(String subscriberId, String setupIntentId) throws IOException {
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_IDEAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, setupIntentId), "POST", "");
   }
 
   public void setDefaultPaypalSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {

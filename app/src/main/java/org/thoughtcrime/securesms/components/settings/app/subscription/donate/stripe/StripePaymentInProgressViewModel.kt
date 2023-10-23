@@ -165,14 +165,13 @@ class StripePaymentInProgressViewModel(
             paymentSourceProvider.paymentSourceType.code
           )
         )
-          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult, paymentSourceProvider.paymentSourceType) }
-          .map { (_, paymentMethod) -> paymentMethod ?: secure3DSAction.paymentMethodId!! }
+          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult) }
       }
-      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it, paymentSourceProvider.paymentSourceType) }
+      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it.paymentMethod!!, it.intentId, paymentSourceProvider.paymentSourceType) }
       .onErrorResumeNext {
-        when {
-          it is DonationError -> Completable.error(it)
-          it is DonationProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType))
+        when (it) {
+          is DonationError -> Completable.error(it)
+          is DonationProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType))
           else -> Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, paymentSourceProvider.paymentSourceType))
         }
       }
@@ -225,7 +224,7 @@ class StripePaymentInProgressViewModel(
             )
           )
         }
-        .flatMap { stripeRepository.getStatusAndPaymentMethodId(it, paymentSourceProvider.paymentSourceType) }
+        .flatMap { stripeRepository.getStatusAndPaymentMethodId(it) }
         .flatMapCompletable {
           oneTimeDonationRepository.waitForOneTimeRedemption(
             gatewayRequest = request,

@@ -303,7 +303,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private boolean isForSubscription() {
-    return Objects.equals(getParameters().getQueue(), SUBSCRIPTION_QUEUE);
+    return Objects.requireNonNull(getParameters().getQueue()).startsWith(SUBSCRIPTION_QUEUE);
   }
 
   private boolean isForOneTimeDonation() {

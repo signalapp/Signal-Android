@@ -42,7 +42,8 @@ class StripeApi(
     private val CARD_YEAR_KEY = "card[exp_year]"
     private val CARD_CVC_KEY = "card[cvc]"
 
-    private const val RETURN_URL_3DS = "sgnlpay://3DS"
+    const val RETURN_URL_SCHEME = "sgnlpay"
+    private const val RETURN_URL_3DS = "$RETURN_URL_SCHEME://3DS"
   }
 
   sealed class CreatePaymentIntentResult {

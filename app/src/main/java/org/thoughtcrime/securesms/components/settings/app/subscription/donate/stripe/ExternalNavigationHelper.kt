@@ -11,6 +11,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.R
 
 /**
@@ -21,7 +22,7 @@ object ExternalNavigationHelper {
 
   fun maybeLaunchExternalNavigationIntent(context: Context, webRequestUri: Uri?, launchIntent: (Intent) -> Unit): Boolean {
     val url = webRequestUri ?: return false
-    if (url.scheme?.startsWith("http") == true) {
+    if (url.scheme?.startsWith("http") == true || url.scheme == StripeApi.RETURN_URL_SCHEME) {
       return false
     }
 

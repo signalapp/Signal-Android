@@ -228,6 +228,13 @@ public class DonationsService {
     });
   }
 
+  public ServiceResponse<EmptyResponse> setDefaultIdealPaymentMethod(SubscriberId subscriberId, String setupIntentId) {
+    return wrapInServiceResponse(() -> {
+      pushServiceSocket.setDefaultIdealSubscriptionPaymentMethod(subscriberId.serialize(), setupIntentId);
+      return new Pair<>(EmptyResponse.INSTANCE, 200);
+    });
+  }
+
   /**
    * @param subscriberId The subscriber ID to create a payment method for.
    * @return Client secret for a SetupIntent. It should not be used with the PaymentIntent stripe APIs
