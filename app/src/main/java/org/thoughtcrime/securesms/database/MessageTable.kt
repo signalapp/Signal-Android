@@ -2789,39 +2789,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return insertMessageInbox(retrieved, "", threadId, type, edittedMediaMessage, notifyObservers)
   }
 
-  fun insertMessageInbox(notification: NotificationInd, subscriptionId: Int): Pair<Long, Long> {
-    Log.i(TAG, "Message received type: " + notification.messageType)
-
-    val threadId = getThreadIdFor(notification)
-
-    val authorId: String = if (notification.from != null) {
-      Recipient.external(context, Util.toIsoString(notification.from.textString)).id.serialize()
-    } else {
-      RecipientId.UNKNOWN.serialize()
-    }
-
-    val messageId = writableDatabase
-      .insertInto(TABLE_NAME)
-      .values(
-        MMS_CONTENT_LOCATION to notification.contentLocation.toIsoString(),
-        DATE_SENT to System.currentTimeMillis(),
-        MMS_EXPIRY to if (notification.expiry != -1L) notification.expiry else null,
-        MMS_MESSAGE_SIZE to if (notification.messageSize != -1L) notification.messageSize else null,
-        MMS_TRANSACTION_ID to notification.transactionId.toIsoString(),
-        MMS_MESSAGE_TYPE to if (notification.messageType != 0) notification.messageType else null,
-        FROM_RECIPIENT_ID to authorId,
-        TYPE to MessageTypes.BASE_INBOX_TYPE,
-        THREAD_ID to threadId,
-        MMS_STATUS to MmsStatus.DOWNLOAD_INITIALIZED,
-        DATE_RECEIVED to generatePduCompatTimestamp(System.currentTimeMillis()),
-        READ to if (Util.isDefaultSmsProvider(context)) 0 else 1,
-        SMS_SUBSCRIPTION_ID to subscriptionId
-      )
-      .run(SQLiteDatabase.CONFLICT_IGNORE)
-
-    return Pair(messageId, threadId)
-  }
-
   fun insertChatSessionRefreshedMessage(recipientId: RecipientId, senderDeviceId: Long, sentTimestamp: Long): InsertResult {
     val threadId = threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
     var type = MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT

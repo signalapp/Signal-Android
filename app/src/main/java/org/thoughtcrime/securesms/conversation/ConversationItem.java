@@ -115,7 +115,6 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -2436,10 +2435,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     public void onClick(View v, final List<Slide> slides) {
       Log.i(TAG, "onClick() for attachment download");
       if (messageRecord.isMmsNotification()) {
-        Log.i(TAG, "Scheduling MMS attachment download");
-        ApplicationDependencies.getJobManager().add(new MmsDownloadJob(messageRecord.getId(),
-                                                                       messageRecord.getThreadId(),
-                                                                       false));
+        Log.w(TAG, "Ignoring MMS download.");
       } else {
         Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 

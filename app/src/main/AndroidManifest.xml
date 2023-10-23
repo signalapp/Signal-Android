@@ -1203,37 +1203,11 @@
         </intent-filter>
     </service>
 
-    <receiver android:name=".service.SmsListener"
-              android:permission="android.permission.BROADCAST_SMS"
-              android:enabled="true"
-              android:exported="true">
-             <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-             </intent-filter>
-             <intent-filter>
-                 <action android:name="android.provider.Telephony.SMS_DELIVER"/>
-             </intent-filter>
-    </receiver>
-
     <receiver android:name=".service.SmsDeliveryListener"
               android:exported="true">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT"/>
         </intent-filter>
-    </receiver>
-
-    <receiver android:name=".service.MmsListener"
-              android:enabled="true"
-              android:exported="true"
-              android:permission="android.permission.BROADCAST_WAP_PUSH">
-             <intent-filter android:priority="1001">
-                 <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED"/>
-                 <data android:mimeType="application/vnd.wap.mms-message" />
-             </intent-filter>
-             <intent-filter>
-                 <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER"/>
-                 <data android:mimeType="application/vnd.wap.mms-message" />
-             </intent-filter>
     </receiver>
 
     <receiver android:name=".notifications.MarkReadReceiver"
