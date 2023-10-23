@@ -330,7 +330,7 @@ object DataMessageProcessor {
         isPushMessage = true
       )
 
-      val insertResult: InsertResult? = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       SignalDatabase.recipients.setExpireMessages(threadRecipientId, expiresIn.inWholeSeconds.toInt())
 
       if (insertResult != null) {
@@ -433,7 +433,7 @@ object DataMessageProcessor {
         serverGuid = envelope.serverGuid
       )
 
-      val insertResult: InsertResult? = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       if (insertResult != null) {
         SignalDatabase.messages.setTransactionSuccessful()
 
@@ -595,7 +595,7 @@ object DataMessageProcessor {
         isPaymentsActivated = isPaymentsActivated
       )
 
-      val insertResult: InsertResult? = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
 
       if (insertResult != null) {
         return MessageId(insertResult.messageId)
@@ -651,7 +651,7 @@ object DataMessageProcessor {
         isPaymentsNotification = true
       )
 
-      val insertResult: InsertResult? = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       if (insertResult != null) {
         val messageId = MessageId(insertResult.messageId)
         ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
@@ -766,7 +766,7 @@ object DataMessageProcessor {
         messageRanges = bodyRanges
       )
 
-      val insertResult: InsertResult? = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
 
       if (insertResult != null) {
         SignalDatabase.messages.setTransactionSuccessful()
@@ -830,7 +830,7 @@ object DataMessageProcessor {
         giftBadge = dbGiftBadge
       )
 
-      SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     }
@@ -894,7 +894,7 @@ object DataMessageProcessor {
         isPushMessage = true
       )
 
-      insertResult = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       if (insertResult != null) {
         SignalDatabase.messages.setTransactionSuccessful()
       }

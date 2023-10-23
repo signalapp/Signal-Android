@@ -58,6 +58,6 @@ object MmsHelper {
     message: IncomingMediaMessage,
     threadId: Long
   ): Optional<MessageTable.InsertResult> {
-    return SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, threadId)
+    return SignalDatabase.messages.insertMessageInbox(message, threadId)
   }
 }

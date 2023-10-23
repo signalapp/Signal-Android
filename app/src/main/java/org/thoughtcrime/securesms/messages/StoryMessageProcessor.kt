@@ -77,7 +77,7 @@ object StoryMessageProcessor {
         messageRanges = storyMessage.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
       )
 
-      insertResult = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mediaMessage, -1).orNull()
+      insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
       if (insertResult != null) {
         SignalDatabase.messages.setTransactionSuccessful()
       }

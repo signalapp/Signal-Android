@@ -72,6 +72,6 @@ object ReleaseChannel {
       storyType = storyType
     )
 
-    return SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, threadId).orElse(null)
+    return SignalDatabase.messages.insertMessageInbox(message, threadId).orElse(null)
   }
 }

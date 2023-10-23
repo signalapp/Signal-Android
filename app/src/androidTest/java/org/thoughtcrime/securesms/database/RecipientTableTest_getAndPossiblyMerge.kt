@@ -825,9 +825,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     val smsId2: Long = SignalDatabase.messages.insertMessageInbox(smsMessage(sender = recipientIdE164, time = 1, body = "1")).get().messageId
     val smsId3: Long = SignalDatabase.messages.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 2, body = "2")).get().messageId
 
-    val mmsId1: Long = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdAci, time = 3, body = "3"), -1).get().messageId
-    val mmsId2: Long = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdE164, time = 4, body = "4"), -1).get().messageId
-    val mmsId3: Long = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdAci, time = 5, body = "5"), -1).get().messageId
+    val mmsId1: Long = SignalDatabase.messages.insertMessageInbox(mmsMessage(sender = recipientIdAci, time = 3, body = "3"), -1).get().messageId
+    val mmsId2: Long = SignalDatabase.messages.insertMessageInbox(mmsMessage(sender = recipientIdE164, time = 4, body = "4"), -1).get().messageId
+    val mmsId3: Long = SignalDatabase.messages.insertMessageInbox(mmsMessage(sender = recipientIdAci, time = 5, body = "5"), -1).get().messageId
 
     val threadIdAci: Long = SignalDatabase.threads.getThreadIdFor(recipientIdAci)!!
     val threadIdE164: Long = SignalDatabase.threads.getThreadIdFor(recipientIdE164)!!

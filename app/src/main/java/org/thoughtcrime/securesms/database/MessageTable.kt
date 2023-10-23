@@ -1107,7 +1107,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun insertEditMessageInbox(threadId: Long, mediaMessage: IncomingMediaMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
-    val insertResult = insertSecureDecryptedMessageInbox(retrieved = mediaMessage, threadId = threadId, edittedMediaMessage = targetMessage, notifyObservers = false)
+    val insertResult = insertMessageInbox(retrieved = mediaMessage, candidateThreadId = threadId, editedMessage = targetMessage, notifyObservers = false)
 
     if (insertResult.isPresent) {
       val (messageId) = insertResult.get()
@@ -2583,32 +2583,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     } ?: throw NoSuchMessageException("No record found for id: $messageId")
   }
 
+  @JvmOverloads
   @Throws(MmsException::class)
-  private fun insertMessageInbox(
+  fun insertMessageInbox(
     retrieved: IncomingMediaMessage,
-    contentLocation: String,
     candidateThreadId: Long,
-    mailbox: Long,
-    editedMessage: MediaMmsMessageRecord?,
-    notifyObservers: Boolean
+    editedMessage: MediaMmsMessageRecord? = null,
+    notifyObservers: Boolean = true
   ): Optional<InsertResult> {
+    val type = retrieved.toMessageType()
+
     val threadId = if (candidateThreadId == -1L || retrieved.isGroupMessage) {
       getThreadIdFor(retrieved)
     } else {
       candidateThreadId
     }
 
-    val silentUpdate = mailbox and MessageTypes.GROUP_UPDATE_BIT > 0
-
     val contentValues = contentValuesOf(
       DATE_SENT to retrieved.sentTimeMillis,
       DATE_SERVER to retrieved.serverTimeMillis,
       FROM_RECIPIENT_ID to retrieved.from!!.serialize(),
       TO_RECIPIENT_ID to Recipient.self().id.serialize(),
-      TYPE to mailbox,
+      TYPE to type,
       MMS_MESSAGE_TYPE to PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF,
       THREAD_ID to threadId,
-      MMS_CONTENT_LOCATION to contentLocation,
       MMS_STATUS to MmsStatus.DOWNLOAD_INITIALIZED,
       DATE_RECEIVED to if (retrieved.isPushMessage) retrieved.receivedTimeMillis else generatePduCompatTimestamp(retrieved.receivedTimeMillis),
       SMS_SUBSCRIPTION_ID to retrieved.subscriptionId,
@@ -2616,7 +2614,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       VIEW_ONCE to if (retrieved.isViewOnce) 1 else 0,
       STORY_TYPE to retrieved.storyType.code,
       PARENT_STORY_ID to if (retrieved.parentStoryId != null) retrieved.parentStoryId.serialize() else 0,
-      READ to if (silentUpdate || retrieved.isExpirationUpdate) 1 else 0,
+      READ to if (MessageTypes.isGroupUpdate(type) || retrieved.isExpirationUpdate) 1 else 0,
       UNIDENTIFIED to retrieved.isUnidentified,
       SERVER_GUID to retrieved.serverGuid,
       LATEST_REVISION_ID to null,
@@ -2687,7 +2685,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val isNotStoryGroupReply = retrieved.parentStoryId == null || !retrieved.parentStoryId.isGroupReply()
 
-    if (!MessageTypes.isPaymentsActivated(mailbox) && !MessageTypes.isPaymentsRequestToActivate(mailbox) && !MessageTypes.isExpirationTimerUpdate(mailbox) && !retrieved.storyType.isStory && isNotStoryGroupReply) {
+    if (!MessageTypes.isPaymentsActivated(type) && !MessageTypes.isPaymentsRequestToActivate(type) && !MessageTypes.isExpirationTimerUpdate(type) && !retrieved.storyType.isStory && isNotStoryGroupReply) {
       val incrementUnreadMentions = retrieved.mentions.isNotEmpty() && retrieved.mentions.any { it.recipientId == Recipient.self().id }
       threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0)
       ThreadUpdateJob.enqueue(threadId)
@@ -2702,91 +2700,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     return Optional.of(InsertResult(messageId, threadId, insertedAttachments = insertedAttachments))
-  }
-
-  @Throws(MmsException::class)
-  fun insertMessageInbox(
-    retrieved: IncomingMediaMessage,
-    contentLocation: String,
-    threadId: Long
-  ): Optional<InsertResult> {
-    var type = MessageTypes.BASE_INBOX_TYPE
-
-    if (retrieved.isPushMessage) {
-      type = type or MessageTypes.PUSH_MESSAGE_BIT
-    }
-
-    if (retrieved.isExpirationUpdate) {
-      type = type or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-    }
-
-    if (retrieved.isPaymentsNotification) {
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
-    }
-
-    if (retrieved.isActivatePaymentsRequest) {
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
-    }
-
-    if (retrieved.isPaymentsActivated) {
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
-    }
-
-    return insertMessageInbox(retrieved, contentLocation, threadId, type, editedMessage = null, notifyObservers = true)
-  }
-
-  @JvmOverloads
-  @Throws(MmsException::class)
-  fun insertSecureDecryptedMessageInbox(retrieved: IncomingMediaMessage, threadId: Long, edittedMediaMessage: MediaMmsMessageRecord? = null, notifyObservers: Boolean = true): Optional<InsertResult> {
-    var type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT
-    var hasSpecialType = false
-
-    if (retrieved.isPushMessage) {
-      type = type or MessageTypes.PUSH_MESSAGE_BIT
-    }
-
-    if (retrieved.isExpirationUpdate) {
-      type = type or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-    }
-
-    if (retrieved.isStoryReaction) {
-      type = type or MessageTypes.SPECIAL_TYPE_STORY_REACTION
-      hasSpecialType = true
-    }
-
-    if (retrieved.giftBadge != null) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
-      type = type or MessageTypes.SPECIAL_TYPE_GIFT_BADGE
-      hasSpecialType = true
-    }
-
-    if (retrieved.isPaymentsNotification) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
-      hasSpecialType = true
-    }
-
-    if (retrieved.isActivatePaymentsRequest) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
-      hasSpecialType = true
-    }
-
-    if (retrieved.isPaymentsActivated) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
-      hasSpecialType = true
-    }
-
-    return insertMessageInbox(retrieved, "", threadId, type, edittedMediaMessage, notifyObservers)
   }
 
   fun insertChatSessionRefreshedMessage(recipientId: RecipientId, senderDeviceId: Long, sentTimestamp: Long): InsertResult {
@@ -4909,16 +4822,64 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     )
   }
 
-  private fun ByteArray?.toIsoString(): String? {
-    return if (this != null) {
-      Util.toIsoString(this)
-    } else {
-      null
-    }
-  }
-
   private fun MessageRecord.getOriginalOrOwnMessageId(): MessageId {
     return this.originalMessageId ?: MessageId(this.id)
+  }
+
+  /**
+   * Determines the database type bitmask for theh inbound message.
+   */
+  @Throws(MmsException::class)
+  private fun IncomingMediaMessage.toMessageType(): Long {
+    var type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT
+    var hasSpecialType = false
+
+    if (this.isPushMessage) {
+      type = type or MessageTypes.PUSH_MESSAGE_BIT
+    }
+
+    if (this.isExpirationUpdate) {
+      type = type or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
+    }
+
+    if (this.isStoryReaction) {
+      type = type or MessageTypes.SPECIAL_TYPE_STORY_REACTION
+      hasSpecialType = true
+    }
+
+    if (this.giftBadge != null) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_GIFT_BADGE
+      hasSpecialType = true
+    }
+
+    if (this.isPaymentsNotification) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
+      hasSpecialType = true
+    }
+
+    if (this.isActivatePaymentsRequest) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
+      hasSpecialType = true
+    }
+
+    if (this.isPaymentsActivated) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
+      hasSpecialType = true
+    }
+
+    return type
   }
 
   protected enum class ReceiptType(val columnName: String, val groupStatus: Int) {
