@@ -19,7 +19,7 @@ import java.math.MathContext
 import java.util.Currency
 import kotlin.time.Duration.Companion.days
 
-object PendingOneTimeDonationSerializer {
+object DonationSerializationHelper {
 
   private val PENDING_ONE_TIME_BANK_TRANSFER_TIMEOUT = 14.days
   private val PENDING_ONE_TIME_NORMAL_TIMEOUT = 1.days
@@ -35,7 +35,7 @@ object PendingOneTimeDonationSerializer {
       return (timestamp + timeout.inWholeMilliseconds) < System.currentTimeMillis()
     }
 
-  fun createProto(
+  fun createPendingOneTimeDonationProto(
     badge: Badge,
     paymentSourceType: PaymentSourceType,
     amount: FiatMoney
@@ -60,7 +60,7 @@ object PendingOneTimeDonationSerializer {
     )
   }
 
-  private fun DecimalValue.toBigDecimal(): BigDecimal {
+  fun DecimalValue.toBigDecimal(): BigDecimal {
     return BigDecimal(
       BigInteger(value_.toByteArray()),
       scale,
@@ -75,7 +75,7 @@ object PendingOneTimeDonationSerializer {
     )
   }
 
-  private fun BigDecimal.toDecimalValue(): DecimalValue {
+  fun BigDecimal.toDecimalValue(): DecimalValue {
     return DecimalValue(
       scale = scale(),
       precision = precision(),

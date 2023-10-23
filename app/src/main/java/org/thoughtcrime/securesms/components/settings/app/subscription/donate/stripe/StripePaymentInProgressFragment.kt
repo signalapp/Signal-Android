@@ -116,7 +116,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
     }
   }
 
-  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction): Single<StripeIntentAccessor> {
+  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction, stripe3DSData: Stripe3DSData): Single<StripeIntentAccessor> {
     return when (secure3dsAction) {
       is StripeApi.Secure3DSAction.NotNeeded -> {
         Log.d(TAG, "No 3DS action required.")
@@ -124,19 +124,24 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       }
       is StripeApi.Secure3DSAction.ConfirmRequired -> {
         Log.d(TAG, "3DS action required. Displaying dialog...")
-        Single.create<StripeIntentAccessor> { emitter ->
+        Single.create { emitter ->
           val listener = FragmentResultListener { _, bundle ->
             val result: StripeIntentAccessor? = bundle.getParcelableCompat(Stripe3DSDialogFragment.REQUEST_KEY, StripeIntentAccessor::class.java)
             if (result != null) {
               emitter.onSuccess(result)
             } else {
-              emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+              val didLaunchExternal = bundle.getBoolean(Stripe3DSDialogFragment.LAUNCHED_EXTERNAL, false)
+              if (didLaunchExternal) {
+                emitter.onError(DonationError.UserLaunchedExternalApplication(args.request.donateToSignalType.toErrorSource()))
+              } else {
+                emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+              }
             }
           }
 
           parentFragmentManager.setFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY, this, listener)
 
-          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri, secure3dsAction.returnUri))
+          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri, secure3dsAction.returnUri, stripe3DSData))
 
           emitter.setCancellable {
             parentFragmentManager.clearFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY)

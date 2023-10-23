@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import android.content.Intent
+import android.os.Bundle
 import android.text.SpannableStringBuilder
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -19,6 +21,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
@@ -62,6 +65,11 @@ class ManageDonationsFragment :
       ManageDonationsViewModel.Factory(MonthlyDonationRepository(ApplicationDependencies.getDonationsService()))
     }
   )
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    viewLifecycleOwner.lifecycle.addObserver(DonationCompletedDelegate(childFragmentManager, viewLifecycleOwner))
+    super.onViewCreated(view, savedInstanceState)
+  }
 
   override fun onResume() {
     super.onResume()

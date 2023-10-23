@@ -130,7 +130,7 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       SignalDatabase.donationReceipts.addReceipt(donationReceiptRecord)
 
       SignalStore.donationsValues().setPendingOneTimeDonation(
-        PendingOneTimeDonationSerializer.createProto(
+        DonationSerializationHelper.createPendingOneTimeDonationProto(
           gatewayRequest.badge,
           paymentSourceType,
           gatewayRequest.fiat

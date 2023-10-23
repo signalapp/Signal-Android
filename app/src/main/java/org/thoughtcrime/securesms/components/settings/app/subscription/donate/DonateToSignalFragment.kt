@@ -142,12 +142,14 @@ class DonateToSignalFragment :
 
           findNavController().safeNavigate(navAction)
         }
+
         is DonateToSignalAction.DisplayGatewaySelectorDialog -> {
           Log.d(TAG, "Presenting gateway selector for ${action.gatewayRequest}")
           val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToGatewaySelectorBottomSheetDialog(action.gatewayRequest)
 
           findNavController().safeNavigate(navAction)
         }
+
         is DonateToSignalAction.CancelSubscription -> {
           findNavController().safeNavigate(
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
@@ -156,6 +158,7 @@ class DonateToSignalFragment :
             )
           )
         }
+
         is DonateToSignalAction.UpdateSubscription -> {
           findNavController().safeNavigate(
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
@@ -416,6 +419,10 @@ class DonateToSignalFragment :
 
   override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(gatewayRequest))
+  }
+
+  override fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToIdealTransferDetailsFragment(gatewayRequest))
   }
 
   override fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse) {

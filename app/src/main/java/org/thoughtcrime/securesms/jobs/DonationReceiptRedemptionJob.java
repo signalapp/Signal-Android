@@ -307,13 +307,16 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       return;
     }
 
-    if (uiSessionKey == -1L || !isLongRunningDonationPaymentType) {
-      Log.i(TAG, "Skipping donation complete sheet for state " + uiSessionKey + ", " + isLongRunningDonationPaymentType);
+    if (errorSource == DonationErrorSource.KEEP_ALIVE) {
+      Log.i(TAG, "Skipping donation complete sheet for subscription KEEP_ALIVE jobchain.");
       return;
     }
 
     SignalStore.donationsValues().appendToDonationCompletionList(
-        new DonationCompletedQueue.DonationCompleted.Builder().level(receiptLevel).build()
+        new DonationCompletedQueue.DonationCompleted.Builder()
+            .isLongRunningPaymentMethod(isLongRunningDonationPaymentType)
+            .level(receiptLevel)
+            .build()
     );
   }
 

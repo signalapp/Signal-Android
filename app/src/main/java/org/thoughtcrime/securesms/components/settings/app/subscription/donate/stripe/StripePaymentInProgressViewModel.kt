@@ -69,7 +69,7 @@ class StripePaymentInProgressViewModel(
     disposables.clear()
   }
 
-  fun processNewDonation(request: GatewayRequest, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
+  fun processNewDonation(request: GatewayRequest, nextActionHandler: StripeNextActionHandler) {
     Log.d(TAG, "Proceeding with donation...", true)
 
     val errorSource = when (request.donateToSignalType) {
@@ -93,18 +93,22 @@ class StripePaymentInProgressViewModel(
         PaymentSourceType.Stripe.GooglePay,
         Single.just<StripeApi.PaymentSource>(GooglePayPaymentSource(data.paymentData)).doAfterTerminate { clearPaymentInformation() }
       )
+
       is StripePaymentData.CreditCard -> PaymentSourceProvider(
         PaymentSourceType.Stripe.CreditCard,
         stripeRepository.createCreditCardPaymentSource(errorSource, data.cardData).doAfterTerminate { clearPaymentInformation() }
       )
+
       is StripePaymentData.SEPADebit -> PaymentSourceProvider(
         PaymentSourceType.Stripe.SEPADebit,
         stripeRepository.createSEPADebitPaymentSource(data.sepaDebitData).doAfterTerminate { clearPaymentInformation() }
       )
+
       is StripePaymentData.IDEAL -> PaymentSourceProvider(
         PaymentSourceType.Stripe.IDEAL,
         stripeRepository.createIdealPaymentSource(data.idealData).doAfterTerminate { clearPaymentInformation() }
       )
+
       else -> error("This should never happen.")
     }
   }
@@ -138,7 +142,7 @@ class StripePaymentInProgressViewModel(
     stripePaymentData = null
   }
 
-  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
+  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: StripeNextActionHandler) {
     val ensureSubscriberId: Completable = monthlyDonationRepository.ensureSubscriberId()
     val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap {
       stripeRepository.createAndConfirmSetupIntent(it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
@@ -153,7 +157,14 @@ class StripePaymentInProgressViewModel(
       .andThen(monthlyDonationRepository.cancelActiveSubscriptionIfNecessary())
       .andThen(createAndConfirmSetupIntent)
       .flatMap { secure3DSAction ->
-        nextActionHandler(secure3DSAction)
+        nextActionHandler.handle(
+          action = secure3DSAction,
+          Stripe3DSData(
+            secure3DSAction.stripeIntentAccessor,
+            request,
+            paymentSourceProvider.paymentSourceType.code
+          )
+        )
           .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult, paymentSourceProvider.paymentSourceType) }
           .map { (_, paymentMethod) -> paymentMethod ?: secure3DSAction.paymentMethodId!! }
       }
@@ -188,7 +199,7 @@ class StripePaymentInProgressViewModel(
   private fun proceedOneTime(
     request: GatewayRequest,
     paymentSourceProvider: PaymentSourceProvider,
-    nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>
+    nextActionHandler: StripeNextActionHandler
   ) {
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
@@ -204,7 +215,16 @@ class StripePaymentInProgressViewModel(
 
     disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
       stripeRepository.confirmPayment(paymentSource, paymentIntent, request.recipientId)
-        .flatMap { nextActionHandler(it) }
+        .flatMap {
+          nextActionHandler.handle(
+            it,
+            Stripe3DSData(
+              it.stripeIntentAccessor,
+              request,
+              paymentSourceProvider.paymentSourceType.code
+            )
+          )
+        }
         .flatMap { stripeRepository.getStatusAndPaymentMethodId(it, paymentSourceProvider.paymentSourceType) }
         .flatMapCompletable {
           oneTimeDonationRepository.waitForOneTimeRedemption(

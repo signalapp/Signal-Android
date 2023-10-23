@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.components.reminder.UsernameOutOfSyncReminder;
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment;
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedBottomSheet;
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedDelegate;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -278,6 +279,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    getViewLifecycleOwner().getLifecycle().addObserver(new DonationCompletedDelegate(getParentFragmentManager(), getViewLifecycleOwner()));
+
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
@@ -522,11 +525,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
             unexpectedSubscriptionCancellation,
             SignalStore.donationsValues().getUnexpectedSubscriptionCancelationChargeFailure(),
             getParentFragmentManager());
-      }
-    } else {
-      List<DonationCompletedQueue.DonationCompleted> donationCompletedList = SignalStore.donationsValues().consumeDonationCompletionList();
-      for (DonationCompletedQueue.DonationCompleted donationCompleted : donationCompletedList) {
-        DonationCompletedBottomSheet.show(getParentFragmentManager(), donationCompleted);
       }
     }
   }

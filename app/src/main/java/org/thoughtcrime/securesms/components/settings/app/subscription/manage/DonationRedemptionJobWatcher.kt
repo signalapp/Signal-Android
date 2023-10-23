@@ -5,6 +5,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.jobs.DonationReceiptRedemptionJob
+import org.thoughtcrime.securesms.jobs.ExternalLaunchDonationJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.Optional
@@ -30,6 +31,10 @@ object DonationRedemptionJobWatcher {
       RedemptionType.ONE_TIME -> DonationReceiptRedemptionJob.ONE_TIME_QUEUE
     }
 
+    val externalLaunchJobState: JobTracker.JobState? = ApplicationDependencies.getJobManager().getFirstMatchingJobState {
+      it.factoryKey == ExternalLaunchDonationJob.KEY && it.parameters.queue?.startsWith(queue) == true
+    }
+
     val redemptionJobState: JobTracker.JobState? = ApplicationDependencies.getJobManager().getFirstMatchingJobState {
       it.factoryKey == DonationReceiptRedemptionJob.KEY && it.parameters.queue?.startsWith(queue) == true
     }
@@ -43,7 +48,7 @@ object DonationRedemptionJobWatcher {
       it.factoryKey == receiptRequestJobKey && it.parameters.queue?.startsWith(queue) == true
     }
 
-    val jobState: JobTracker.JobState? = redemptionJobState ?: receiptJobState
+    val jobState: JobTracker.JobState? = externalLaunchJobState ?: redemptionJobState ?: receiptJobState
 
     if (redemptionType == RedemptionType.SUBSCRIPTION && jobState == null && SignalStore.donationsValues().getSubscriptionRedemptionFailed()) {
       Optional.of(JobTracker.JobState.FAILURE)

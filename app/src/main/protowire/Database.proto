@@ -301,8 +301,50 @@ message PendingOneTimeDonation {
 
 message DonationCompletedQueue {
     message DonationCompleted {
-        int64 level = 1;
+        int64 level                      = 1;
+        bool  isLongRunningPaymentMethod = 2;
     }
 
     repeated DonationCompleted donationsCompleted = 1;
+}
+
+/**
+ * Contains the data necessary to complete a transaction after the
+ * user completes authorization externally. This helps prevent
+ * scenarios where the application dies while the user is confirming
+ * a transaction in their bank app.
+ */
+message ExternalLaunchTransactionState {
+
+    message StripeIntentAccessor {
+        enum Type {
+            PAYMENT_INTENT = 0;
+            SETUP_INTENT   = 1;
+        }
+
+        Type type                 = 1;
+        string intentId           = 2;
+        string intentClientSecret = 3;
+    }
+
+    message GatewayRequest {
+        enum DonateToSignalType {
+            MONTHLY  = 0;
+            ONE_TIME = 1;
+            GIFT     = 2;
+        }
+
+        DonateToSignalType donateToSignalType = 1;
+        BadgeList.Badge    badge              = 2;
+        string             label              = 3;
+        DecimalValue       price              = 4;
+        string             currencyCode       = 5;
+        int64              level              = 6;
+        int64              recipient_id       = 7;
+        string             additionalMessage  = 8;
+    }
+
+    StripeIntentAccessor stripeIntentAccessor = 1;
+    GatewayRequest       gatewayRequest       = 2;
+    string               paymentSourceType    = 3;
 }

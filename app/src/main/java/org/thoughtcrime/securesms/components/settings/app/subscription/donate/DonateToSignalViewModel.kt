@@ -207,9 +207,22 @@ class DonateToSignalViewModel(
   }
 
   private fun initializeOneTimeDonationState(oneTimeDonationRepository: OneTimeDonationRepository) {
-    oneTimeDonationDisposables += SignalStore.donationsValues().observablePendingOneTimeDonation
+    val isOneTimeDonationInProgress: Observable<Boolean> = DonationRedemptionJobWatcher.watchOneTimeRedemption().map {
+      it.map { jobState ->
+        when (jobState) {
+          JobTracker.JobState.PENDING -> true
+          JobTracker.JobState.RUNNING -> true
+          else -> false
+        }
+      }.orElse(false)
+    }.distinctUntilChanged()
+
+    val isOneTimeDonationPending: Observable<Boolean> = SignalStore.donationsValues().observablePendingOneTimeDonation
       .map { it.isPresent }
       .distinctUntilChanged()
+
+    oneTimeDonationDisposables += Observable
+      .combineLatest(isOneTimeDonationInProgress, isOneTimeDonationPending) { a, b -> a || b }
       .subscribe { hasPendingOneTimeDonation ->
         store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(isOneTimeDonationPending = hasPendingOneTimeDonation)) }
       }

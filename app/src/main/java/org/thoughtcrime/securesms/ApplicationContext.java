@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob;
 import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
+import org.thoughtcrime.securesms.jobs.ExternalLaunchDonationJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.FontDownloaderJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
@@ -224,6 +225,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
     ApplicationDependencies.getDeadlockDetector().start();
     SubscriptionKeepAliveJob.enqueueAndTrackTimeIfNecessary();
+    ExternalLaunchDonationJob.enqueueIfNecessary();
     FcmFetchManager.onForeground(this);
 
     SignalExecutors.BOUNDED.execute(() -> {

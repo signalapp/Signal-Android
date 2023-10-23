@@ -217,21 +217,19 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                               receiptCredentialPresentation.serialize())
                                              .serialize());
 
-      enqueueDonationComplete(receiptCredentialPresentation.getReceiptLevel());
+      enqueueDonationComplete();
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();
     }
   }
 
-  private void enqueueDonationComplete(long receiptLevel) {
-    if (donationErrorSource != DonationErrorSource.GIFT || !isLongRunningDonationPaymentType) {
+  private void enqueueDonationComplete() {
+    if (donationErrorSource != DonationErrorSource.GIFT) {
       return;
     }
 
-    SignalStore.donationsValues().appendToDonationCompletionList(
-        new DonationCompletedQueue.DonationCompleted.Builder().level(receiptLevel).build()
-    );
+    SignalStore.donationsValues().setPendingOneTimeDonation(null);
   }
 
   private void handleApplicationError(Context context, ServiceResponse<ReceiptCredentialResponse> response, @NonNull DonationErrorSource donationErrorSource) throws Exception {

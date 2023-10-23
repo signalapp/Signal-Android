@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import java.util.Currency
 
@@ -133,6 +134,7 @@ class DonationCheckoutDelegate(
     if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
       Snackbar.make(fragment.requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
     } else {
+      SignalStore.donationsValues().removeDonationComplete(result.request.level)
       callback.onPaymentComplete(result.request)
     }
   }
@@ -169,7 +171,11 @@ class DonationCheckoutDelegate(
   }
 
   private fun launchBankTransfer(gatewayResponse: GatewayResponse) {
-    callback.navigateToBankTransferMandate(gatewayResponse)
+    if (gatewayResponse.request.donateToSignalType != DonateToSignalType.MONTHLY && gatewayResponse.gateway == GatewayResponse.Gateway.IDEAL) {
+      callback.navigateToIdealDetailsFragment(gatewayResponse.request)
+    } else {
+      callback.navigateToBankTransferMandate(gatewayResponse)
+    }
   }
 
   private fun registerGooglePayCallback() {
@@ -274,6 +280,12 @@ class DonationCheckoutDelegate(
         return
       }
 
+      if (throwable is DonationError.UserLaunchedExternalApplication) {
+        Log.d(TAG, "User launched an external application.", true)
+
+        return
+      }
+
       if (throwable is DonationError.BadgeRedemptionError.DonationPending) {
         Log.d(TAG, "Long-running donation is still pending.", true)
         errorHandlerCallback?.navigateToDonationPending(throwable.gatewayRequest)
@@ -326,6 +338,7 @@ class DonationCheckoutDelegate(
     fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)
+    fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest)
     fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse)
     fun onPaymentComplete(gatewayRequest: GatewayRequest)
     fun onProcessorActionProcessed()

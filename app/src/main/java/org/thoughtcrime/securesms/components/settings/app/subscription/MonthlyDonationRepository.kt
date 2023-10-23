@@ -234,22 +234,28 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
   }
 
   private fun getOrCreateLevelUpdateOperation(subscriptionLevel: String): Single<LevelUpdateOperation> = Single.fromCallable {
-    Log.d(TAG, "Retrieving level update operation for $subscriptionLevel")
-    val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
-    if (levelUpdateOperation == null) {
-      val newOperation = LevelUpdateOperation(
-        idempotencyKey = IdempotencyKey.generate(),
-        level = subscriptionLevel
-      )
+    getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
+  }
 
-      SignalStore.donationsValues().setLevelOperation(newOperation)
-      LevelUpdate.updateProcessingState(true)
-      Log.d(TAG, "Created a new operation for $subscriptionLevel")
-      newOperation
-    } else {
-      LevelUpdate.updateProcessingState(true)
-      Log.d(TAG, "Reusing operation for $subscriptionLevel")
-      levelUpdateOperation
+  companion object {
+    fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
+      Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
+      val levelUpdateOperation = SignalStore.donationsValues().getLevelOperation(subscriptionLevel)
+      return if (levelUpdateOperation == null) {
+        val newOperation = LevelUpdateOperation(
+          idempotencyKey = IdempotencyKey.generate(),
+          level = subscriptionLevel
+        )
+
+        SignalStore.donationsValues().setLevelOperation(newOperation)
+        LevelUpdate.updateProcessingState(true)
+        Log.d(tag, "Created a new operation for $subscriptionLevel")
+        newOperation
+      } else {
+        LevelUpdate.updateProcessingState(true)
+        Log.d(tag, "Reusing operation for $subscriptionLevel")
+        levelUpdateOperation
+      }
     }
   }
 

@@ -2,9 +2,12 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.s
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
+import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -18,6 +21,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationWebViewOnBackPressedCallback
 import org.thoughtcrime.securesms.databinding.DonationWebviewFragmentBinding
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -27,6 +31,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
 
   companion object {
     const val REQUEST_KEY = "stripe_3ds_dialog_fragment"
+    const val LAUNCHED_EXTERNAL = "stripe_3ds_dialog_fragment.pending"
   }
 
   val binding by ViewBinderDelegate(DonationWebviewFragmentBinding::bind) {
@@ -45,8 +50,14 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    dialog!!.window!!.setFlags(
+      WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+      WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
+    )
+
     binding.webView.webViewClient = Stripe3DSWebClient()
     binding.webView.settings.javaScriptEnabled = true
+    binding.webView.settings.domStorageEnabled = true
     binding.webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
     binding.webView.loadUrl(args.uri.toString())
 
@@ -66,7 +77,23 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
     setFragmentResult(REQUEST_KEY, result ?: Bundle())
   }
 
+  private fun handleLaunchExternal(intent: Intent) {
+    startActivity(intent)
+
+    SignalStore.donationsValues().setPending3DSData(args.stripe3DSData)
+
+    result = bundleOf(
+      LAUNCHED_EXTERNAL to true
+    )
+
+    dismissAllowingStateLoss()
+  }
+
   private inner class Stripe3DSWebClient : WebViewClient() {
+
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+      return ExternalNavigationHelper.maybeLaunchExternalNavigationIntent(requireContext(), request?.url, this@Stripe3DSDialogFragment::handleLaunchExternal)
+    }
 
     override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
       binding.progress.visible = true

@@ -27,6 +27,12 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
   class UserCancelledPaymentError(source: DonationErrorSource) : DonationError(source, Exception("User cancelled payment."))
 
   /**
+   * Utilized when the user launches into an external application while viewing the WebView. This should kick us back to the donations
+   * screen and await user processing.
+   */
+  class UserLaunchedExternalApplication(source: DonationErrorSource) : DonationError(source, Exception("User launched external application."))
+
+  /**
    * Gifting recipient validation errors, which occur before the user could be charged for a gift.
    */
   sealed class GiftRecipientVerificationError(cause: Throwable) : DonationError(DonationErrorSource.GIFT, cause) {

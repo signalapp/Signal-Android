@@ -264,6 +264,10 @@ class GiftFlowConfirmationFragment :
     findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(gatewayRequest))
   }
 
+  override fun navigateToIdealDetailsFragment(gatewayRequest: GatewayRequest) {
+    error("Unsupported operation")
+  }
+
   override fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse) {
     error("Unsupported operation")
   }
@@ -281,6 +285,7 @@ class GiftFlowConfirmationFragment :
   }
 
   override fun onProcessorActionProcessed() = Unit
+
   override fun onUserCancelledPaymentFlow() {
     findNavController().popBackStack(R.id.giftFlowConfirmationFragment, false)
   }

@@ -5846,6 +5846,10 @@
     <!-- Button label for paying with iDEAL -->
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
+    <!-- Dialog title for launching external intent -->
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
     <string name="IdealBank__abn_amro">ABN AMRO</string>

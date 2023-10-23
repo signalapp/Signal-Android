@@ -14,7 +14,8 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.components.settings.app.subscription.PendingOneTimeDonationSerializer.isExpired
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.isExpired
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
@@ -124,6 +125,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * the donation processing / donation pending state in the ManageDonationsFragment.
      */
     private const val PENDING_ONE_TIME_DONATION = "pending.one.time.donation"
+
+    /**
+     * Current pending 3DS data, set when the user launches an intent to an external source for
+     * completing a 3DS prompt or iDEAL prompt.
+     */
+    private const val PENDING_3DS_DATA = "pending.3ds.data"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -518,11 +525,41 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
+  fun removeDonationComplete(level: Long) {
+    synchronized(this) {
+      val donationCompletionList = consumeDonationCompletionList()
+      donationCompletionList.filterNot { it.level == level }.forEach {
+        appendToDonationCompletionList(it)
+      }
+    }
+  }
+
   fun getPendingOneTimeDonation(): PendingOneTimeDonation? = _pendingOneTimeDonation.takeUnless { it?.isExpired == true }
 
   fun setPendingOneTimeDonation(pendingOneTimeDonation: PendingOneTimeDonation?) {
     this._pendingOneTimeDonation = pendingOneTimeDonation
     pendingOneTimeDonationPublisher.onNext(Optional.ofNullable(pendingOneTimeDonation))
+  }
+
+  fun consumePending3DSData(uiSessionKey: Long): Stripe3DSData? {
+    synchronized(this) {
+      val data = getBlob(PENDING_3DS_DATA, null)?.let {
+        Stripe3DSData.fromProtoBytes(it, uiSessionKey)
+      }
+
+      setPending3DSData(null)
+      return data
+    }
+  }
+
+  fun setPending3DSData(stripe3DSData: Stripe3DSData?) {
+    synchronized(this) {
+      if (stripe3DSData != null) {
+        putBlob(PENDING_3DS_DATA, stripe3DSData.toProtoBytes())
+      } else {
+        remove(PENDING_3DS_DATA)
+      }
+    }
   }
 
   private fun generateRequestCredential(): ReceiptCredentialRequestContext {

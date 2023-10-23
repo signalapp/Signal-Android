@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_donateToSignalFragment_to_donationPendingBottomSheet"
             app:destination="@id/donationPendingBottomSheet" />
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_idealTransferDetailsFragment"
+            app:destination="@id/idealTransferDetailsFragment" />
 
     </fragment>
 
@@ -161,6 +164,11 @@
         <argument
             android:name="return_uri"
             app:argType="android.net.Uri"
+            app:nullable="false" />
+
+        <argument
+            android:name="stripe3DSData"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData"
             app:nullable="false" />
     </dialog>
 

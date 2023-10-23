@@ -27,8 +27,7 @@ class StripeApi(
   private val configuration: Configuration,
   private val paymentIntentFetcher: PaymentIntentFetcher,
   private val setupIntentHelper: SetupIntentHelper,
-  private val okHttpClient: OkHttpClient,
-  private val userAgent: String
+  private val okHttpClient: OkHttpClient
 ) {
 
   private val objectMapper = jsonMapper {
@@ -86,7 +85,7 @@ class StripeApi(
         getNextAction(response)
       }
 
-      Secure3DSAction.from(nextActionUri, returnUri, paymentMethodId)
+      Secure3DSAction.from(nextActionUri, returnUri, setupIntent, paymentMethodId)
     }
   }
 
@@ -134,7 +133,7 @@ class StripeApi(
         getNextAction(response)
       }
 
-      Secure3DSAction.from(nextActionUri, returnUri)
+      Secure3DSAction.from(nextActionUri, returnUri, paymentIntent)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -620,21 +619,23 @@ class StripeApi(
   }
 
   sealed interface Secure3DSAction {
-    data class ConfirmRequired(val uri: Uri, val returnUri: Uri, override val paymentMethodId: String?) : Secure3DSAction
-    data class NotNeeded(override val paymentMethodId: String?) : Secure3DSAction
+    data class ConfirmRequired(val uri: Uri, val returnUri: Uri, override val stripeIntentAccessor: StripeIntentAccessor, override val paymentMethodId: String?) : Secure3DSAction
+    data class NotNeeded(override val paymentMethodId: String?, override val stripeIntentAccessor: StripeIntentAccessor) : Secure3DSAction
 
     val paymentMethodId: String?
+    val stripeIntentAccessor: StripeIntentAccessor
 
     companion object {
       fun from(
         uri: Uri,
         returnUri: Uri,
+        stripeIntentAccessor: StripeIntentAccessor,
         paymentMethodId: String? = null
       ): Secure3DSAction {
         return if (uri == Uri.EMPTY) {
-          NotNeeded(paymentMethodId)
+          NotNeeded(paymentMethodId, stripeIntentAccessor)
         } else {
-          ConfirmRequired(uri, returnUri, paymentMethodId)
+          ConfirmRequired(uri, returnUri, stripeIntentAccessor, paymentMethodId)
         }
       }
     }

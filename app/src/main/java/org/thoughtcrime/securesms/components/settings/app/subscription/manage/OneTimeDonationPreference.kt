@@ -11,7 +11,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.components.settings.app.subscription.PendingOneTimeDonationSerializer.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.databinding.MySupportPreferenceBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
