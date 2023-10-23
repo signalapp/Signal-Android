@@ -589,7 +589,15 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalConversationSpringboardFragment"
             app:destination="@id/internalConversationSpringboardFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_oneTimeDonationConfigurationFragment"
+            app:destination="@id/oneTimeDonationConfigurationFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/oneTimeDonationConfigurationFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.InternalPendingOneTimeDonationConfigurationFragment"
+        android:label="one_time_donation_configuration_fragment" />
 
     <fragment
         android:id="@+id/donorErrorConfigurationFragment"

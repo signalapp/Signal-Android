@@ -32,7 +32,8 @@ object OneTimeDonationPreference {
 
   class Model(
     val pendingOneTimeDonation: PendingOneTimeDonation,
-    val onPendingClick: (FiatMoney) -> Unit
+    val onPendingClick: (FiatMoney) -> Unit,
+    val onErrorClick: (PendingOneTimeDonation.Error) -> Unit
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean = true
 
@@ -55,13 +56,36 @@ object OneTimeDonationPreference {
         FiatMoneyUtil.format(context.resources, model.pendingOneTimeDonation.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       )
 
+      if (model.pendingOneTimeDonation.error != null) {
+        presentErrorState(model, model.pendingOneTimeDonation.error)
+      } else {
+        presentPendingState(model)
+      }
+    }
+
+    private fun presentErrorState(model: Model, error: PendingOneTimeDonation.Error) {
+      expiry.text = getErrorSubtitle(error)
+
+      itemView.setOnClickListener { model.onErrorClick(error) }
+
+      progress.visible = false
+    }
+
+    private fun presentPendingState(model: Model) {
       expiry.text = getPendingSubtitle(model.pendingOneTimeDonation.paymentMethodType)
 
       if (model.pendingOneTimeDonation.paymentMethodType == PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT) {
-        itemView.setOnClickListener { model.onPendingClick(model.pendingOneTimeDonation.amount.toFiatMoney()) }
+        itemView.setOnClickListener { model.onPendingClick(model.pendingOneTimeDonation.amount!!.toFiatMoney()) }
       }
 
       progress.visible = model.pendingOneTimeDonation.paymentMethodType != PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
+    }
+
+    private fun getErrorSubtitle(error: PendingOneTimeDonation.Error): String {
+      return when (error.type) {
+        PendingOneTimeDonation.Error.Type.REDEMPTION -> context.getString(R.string.DonationsErrors__couldnt_add_badge)
+        else -> context.getString(R.string.DonationsErrors__donation_failed)
+      }
     }
 
     private fun getPendingSubtitle(paymentMethodType: PendingOneTimeDonation.PaymentMethodType): String {

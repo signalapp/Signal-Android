@@ -286,6 +286,19 @@ message FiatValue {
 }
 
 message PendingOneTimeDonation {
+    message Error {
+        enum Type {
+            PROCESSOR_CODE = 0; // Generic processor error (e.g. Stripe returned an error code)
+            DECLINE_CODE   = 1; // Stripe or PayPal decline Code
+            FAILURE_CODE   = 2; // Stripe bank transfer failure code
+            REDEMPTION     = 3; // Generic redemption error (status is HTTP code)
+            PAYMENT        = 4; // Generic payment error (status is HTTP code)
+        }
+
+        Type   type = 1;
+        string code = 2;
+    }
+
     enum PaymentMethodType {
         CARD       = 0;
         SEPA_DEBIT = 1;
@@ -293,10 +306,11 @@ message PendingOneTimeDonation {
         IDEAL      = 3;
     }
 
-    PaymentMethodType paymentMethodType = 1;
-    FiatValue         amount            = 2;
-    BadgeList.Badge   badge             = 3;
-    int64             timestamp         = 4;
+             PaymentMethodType paymentMethodType = 1;
+             FiatValue         amount            = 2;
+             BadgeList.Badge   badge             = 3;
+             int64             timestamp         = 4;
+    optional Error             error             = 5;
 }
 
 message DonationCompletedQueue {

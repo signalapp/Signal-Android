@@ -13,6 +13,7 @@ import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.money.PlatformCurrencyUtil
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.isExpired
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
@@ -218,7 +219,7 @@ class DonateToSignalViewModel(
     }.distinctUntilChanged()
 
     val isOneTimeDonationPending: Observable<Boolean> = SignalStore.donationsValues().observablePendingOneTimeDonation
-      .map { it.isPresent }
+      .map { pending -> pending.filter { !it.isExpired }.isPresent }
       .distinctUntilChanged()
 
     oneTimeDonationDisposables += Observable

@@ -68,7 +68,7 @@ object DonationSerializationHelper {
     )
   }
 
-  private fun FiatMoney.toFiatValue(): FiatValue {
+  fun FiatMoney.toFiatValue(): FiatValue {
     return FiatValue(
       currencyCode = currency.currencyCode,
       amount = amount.toDecimalValue()

@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
+import org.signal.donations.StripeDeclineCode;
+import org.signal.donations.StripeFailureCode;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
@@ -18,6 +20,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue;
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -25,9 +28,11 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.DonationProcessor;
+import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -208,6 +213,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
       if (!isCredentialValid(receiptCredential)) {
         DonationError.routeBackgroundError(context, uiSessionKey, DonationError.badgeCredentialVerificationFailure(donationErrorSource));
+        setPendingOneTimeDonationGenericRedemptionError(-1);
         throw new IOException("Could not validate receipt credential");
       }
 
@@ -232,6 +238,54 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     SignalStore.donationsValues().setPendingOneTimeDonation(null);
   }
 
+  /**
+   * Sets the pending one-time donation error according to the status code.
+   */
+  private void setPendingOneTimeDonationGenericRedemptionError(int statusCode) {
+    SignalStore.donationsValues().setPendingOneTimeDonationError(
+        new PendingOneTimeDonation.Error.Builder()
+            .type(statusCode == 402
+                  ? PendingOneTimeDonation.Error.Type.PAYMENT
+                  : PendingOneTimeDonation.Error.Type.REDEMPTION)
+            .code(Integer.toString(statusCode))
+            .build()
+    );
+  }
+
+  /**
+   * Sets the pending one-time donation error according to the given charge failure.
+   */
+  private void setPendingOneTimeDonationChargeFailureError(@NonNull ActiveSubscription.ChargeFailure chargeFailure) {
+    final PendingOneTimeDonation.Error.Type type;
+    final String                            code;
+
+    if (donationProcessor == DonationProcessor.PAYPAL) {
+      code = chargeFailure.getCode();
+      type = PendingOneTimeDonation.Error.Type.PROCESSOR_CODE;
+    } else {
+      StripeDeclineCode declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
+      StripeFailureCode failureCode = StripeFailureCode.Companion.getFromCode(chargeFailure.getCode());
+
+      if (failureCode.isKnown()) {
+        code = failureCode.toString();
+        type = PendingOneTimeDonation.Error.Type.FAILURE_CODE;
+      } else if (declineCode.isKnown()) {
+        code = declineCode.toString();
+        type = PendingOneTimeDonation.Error.Type.DECLINE_CODE;
+      } else {
+        code = chargeFailure.getCode();
+        type = PendingOneTimeDonation.Error.Type.PROCESSOR_CODE;
+      }
+    }
+
+    SignalStore.donationsValues().setPendingOneTimeDonationError(
+        new PendingOneTimeDonation.Error.Builder()
+            .type(type)
+            .code(code)
+            .build()
+    );
+  }
+
   private void handleApplicationError(Context context, ServiceResponse<ReceiptCredentialResponse> response, @NonNull DonationErrorSource donationErrorSource) throws Exception {
     Throwable applicationException = response.getApplicationError().get();
     switch (response.getStatus()) {
@@ -241,14 +295,23 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
         DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
+        setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         throw new Exception(applicationException);
       case 402:
         Log.w(TAG, "User payment failed.", applicationException, true);
         DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericPaymentFailure(donationErrorSource));
+
+        if (applicationException instanceof DonationReceiptCredentialError) {
+          setPendingOneTimeDonationChargeFailureError(((DonationReceiptCredentialError) applicationException).getChargeFailure());
+        } else {
+          setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
+        }
+
         throw new Exception(applicationException);
       case 409:
         Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
         DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(donationErrorSource));
+        setPendingOneTimeDonationGenericRedemptionError(response.getStatus());
         throw new Exception(applicationException);
       default:
         Log.w(TAG, "Encountered a server failure: " + response.getStatus(), applicationException, true);

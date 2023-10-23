@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -127,9 +128,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, boolean isLongRunning, @NonNull Job.Parameters parameters) {
     super(parameters);
-    this.giftMessageId = giftMessageId;
-    this.makePrimary   = primary;
-    this.errorSource   = errorSource;
+    this.giftMessageId                    = giftMessageId;
+    this.makePrimary                      = primary;
+    this.errorSource                      = errorSource;
     this.uiSessionKey                     = uiSessionKey;
     this.isLongRunningDonationPaymentType = isLongRunning;
   }
@@ -158,8 +159,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     } else if (giftMessageId != NO_ID) {
       SignalDatabase.messages().markGiftRedemptionFailed(giftMessageId);
-    } else {
-      SignalStore.donationsValues().setPendingOneTimeDonation(null);
     }
   }
 
@@ -207,6 +206,16 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       } else {
         Log.w(TAG, "Encountered a non-recoverable exception " + response.getStatus(), response.getApplicationError().get(), true);
         DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(errorSource));
+
+        if (isForOneTimeDonation()) {
+          SignalStore.donationsValues().setPendingOneTimeDonationError(
+              new PendingOneTimeDonation.Error.Builder()
+                  .type(PendingOneTimeDonation.Error.Type.REDEMPTION)
+                  .code(Integer.toString(response.getStatus()))
+                  .build()
+          );
+        }
+
         throw new IOException(response.getApplicationError().get());
       }
     } else if (response.getExecutionError().isPresent()) {

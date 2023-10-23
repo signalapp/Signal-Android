@@ -160,9 +160,13 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   private var _pendingOneTimeDonation: PendingOneTimeDonation? by protoValue(PENDING_ONE_TIME_DONATION, PendingOneTimeDonation.ADAPTER)
   private val pendingOneTimeDonationPublisher: Subject<Optional<PendingOneTimeDonation>> by lazy { BehaviorSubject.createDefault(Optional.ofNullable(_pendingOneTimeDonation)) }
+
+  /**
+   * Returns a stream of PendingOneTimeDonation, filtering out expired donations that do not have an error attached to them.
+   */
   val observablePendingOneTimeDonation: Observable<Optional<PendingOneTimeDonation>> by lazy {
     pendingOneTimeDonationPublisher.map { optionalPendingOneTimeDonation ->
-      optionalPendingOneTimeDonation.filter { !it.isExpired }
+      optionalPendingOneTimeDonation.filter { (it.error != null) || !it.isExpired }
     }
   }
 
@@ -534,11 +538,28 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
-  fun getPendingOneTimeDonation(): PendingOneTimeDonation? = _pendingOneTimeDonation.takeUnless { it?.isExpired == true }
+  fun getPendingOneTimeDonation(): PendingOneTimeDonation? {
+    return synchronized(this) {
+      _pendingOneTimeDonation.takeUnless { it?.isExpired == true }
+    }
+  }
 
   fun setPendingOneTimeDonation(pendingOneTimeDonation: PendingOneTimeDonation?) {
-    this._pendingOneTimeDonation = pendingOneTimeDonation
-    pendingOneTimeDonationPublisher.onNext(Optional.ofNullable(pendingOneTimeDonation))
+    synchronized(this) {
+      this._pendingOneTimeDonation = pendingOneTimeDonation
+      pendingOneTimeDonationPublisher.onNext(Optional.ofNullable(pendingOneTimeDonation))
+    }
+  }
+
+  fun setPendingOneTimeDonationError(error: PendingOneTimeDonation.Error) {
+    synchronized(this) {
+      val pendingOneTimeDonation = getPendingOneTimeDonation()
+      if (pendingOneTimeDonation != null) {
+        setPendingOneTimeDonation(pendingOneTimeDonation.newBuilder().error(error).build())
+      } else {
+        Log.w(TAG, "PendingOneTimeDonation was null, ignoring error.")
+      }
+    }
   }
 
   fun consumePending3DSData(uiSessionKey: Long): Stripe3DSData? {

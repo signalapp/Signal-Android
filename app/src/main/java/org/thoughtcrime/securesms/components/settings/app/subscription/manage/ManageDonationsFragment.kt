@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -183,6 +184,9 @@ class ManageDonationsFragment :
           pendingOneTimeDonation = pendingOneTimeDonation,
           onPendingClick = {
             displayPendingDialog(it)
+          },
+          onErrorClick = {
+            displayPendingOneTimeDonationErrorDialog(it)
           }
         )
       )
@@ -336,6 +340,16 @@ class ManageDonationsFragment :
           requireContext(),
           getString(R.string.pending_transfer_url)
         )
+      }
+      .show()
+  }
+
+  private fun displayPendingOneTimeDonationErrorDialog(error: PendingOneTimeDonation.Error) {
+    // TODO [sepa] -- actual dialog text?
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.DonationsErrors__error_processing_payment)
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        SignalStore.donationsValues().setPendingOneTimeDonation(null)
       }
       .show()
   }

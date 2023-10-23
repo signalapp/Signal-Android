@@ -233,6 +233,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       SignalStore.donationsValues().requireSubscriber()
     }.flatMap {
       Log.d(TAG, "Setting default payment method via Signal service...")
+      // TODO [sepa] -- iDEAL has its own call
       Single.fromCallable {
         ApplicationDependencies
           .getDonationsService()

@@ -113,6 +113,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResp
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError;
+import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
@@ -1174,6 +1175,16 @@ public class PushServiceSocket {
         NO_HEADERS,
         (code, body) -> {
           if (code == 204) throw new NonSuccessfulResponseCodeException(204);
+          if (code == 402) {
+            DonationReceiptCredentialError donationReceiptCredentialError;
+            try {
+              donationReceiptCredentialError = JsonUtil.fromJson(body.string(), DonationReceiptCredentialError.class);
+            } catch (IOException e) {
+              throw new NonSuccessfulResponseCodeException(402);
+            }
+
+            throw donationReceiptCredentialError;
+          }
         });
 
     ReceiptCredentialResponseJson responseJson = JsonUtil.fromJson(response, ReceiptCredentialResponseJson.class);
@@ -2668,11 +2679,14 @@ public class PushServiceSocket {
       }
 
       if (responseCode == 440) {
+        DonationProcessorError exception;
         try {
-          throw JsonUtil.fromJson(body.string(), DonationProcessorError.class);
+          exception = JsonUtil.fromJson(body.string(), DonationProcessorError.class);
         } catch (IOException e) {
           throw new NonSuccessfulResponseCodeException(440);
         }
+
+        throw exception;
       } else {
         throw new NonSuccessfulResponseCodeException(responseCode);
       }
