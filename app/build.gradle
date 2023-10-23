@@ -319,26 +319,23 @@ android {
         play {
             dimension 'distribution'
             isDefault true
-            ext.websiteUpdateUrl = "null"
-            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
-            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+            buildConfigField "boolean", "MANAGES_APP_UPDATES", "false"
+            buildConfigField "String", "APK_UPDATE_URL", "null"
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"play\""
         }
 
         website {
             dimension 'distribution'
-            ext.websiteUpdateUrl = "https://updates.signal.org/android"
-            buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
-            buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
+            buildConfigField "boolean", "MANAGES_APP_UPDATES", "true"
+            buildConfigField "String", "APK_UPDATE_URL", "\"https://updates.signal.org/android\""
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"website\""
         }
 
         nightly {
             dimension 'distribution'
             versionNameSuffix "-nightly-untagged-${getDateSuffix()}"
-            ext.websiteUpdateUrl = "null"
-            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
-            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+            buildConfigField "boolean", "MANAGES_APP_UPDATES", "false"
+            buildConfigField "String", "APK_UPDATE_URL", "null"
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\""
         }
 

@@ -2099,9 +2099,11 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
-    <!-- UpdateApkReadyListener -->
-    <string name="UpdateApkReadyListener_Signal_update">Signal update</string>
-    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A new version of Signal is available, tap to update</string>
+    <!-- ApkUpdateNotifications -->
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
+    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Send message?</string>

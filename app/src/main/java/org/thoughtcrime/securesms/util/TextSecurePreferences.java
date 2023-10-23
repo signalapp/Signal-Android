@@ -83,8 +83,6 @@ public class TextSecurePreferences {
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String UPDATE_APK_REFRESH_TIME_PREF     = "pref_update_apk_refresh_time";
-  private static final String UPDATE_APK_DOWNLOAD_ID           = "pref_update_apk_download_id";
-  private static final String UPDATE_APK_DIGEST                = "pref_update_apk_digest";
   private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
 
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
@@ -622,22 +620,6 @@ public class TextSecurePreferences {
 
   public static void setUpdateApkRefreshTime(Context context, long value) {
     setLongPreference(context, UPDATE_APK_REFRESH_TIME_PREF, value);
-  }
-
-  public static void setUpdateApkDownloadId(Context context, long value) {
-    setLongPreference(context, UPDATE_APK_DOWNLOAD_ID, value);
-  }
-
-  public static long getUpdateApkDownloadId(Context context) {
-    return getLongPreference(context, UPDATE_APK_DOWNLOAD_ID, -1);
-  }
-
-  public static void setUpdateApkDigest(Context context, String value) {
-    setStringPreference(context, UPDATE_APK_DIGEST, value);
-  }
-
-  public static String getUpdateApkDigest(Context context) {
-    return getStringPreference(context, UPDATE_APK_DIGEST, null);
   }
 
   public static boolean isEnterImeKeyEnabled(Context context) {

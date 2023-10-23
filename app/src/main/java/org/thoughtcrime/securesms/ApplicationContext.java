@@ -84,7 +84,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -399,8 +399,8 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     RotateSenderCertificateListener.schedule(this);
     RoutineMessageFetchReceiver.startOrUpdateAlarm(this);
 
-    if (BuildConfig.PLAY_STORE_DISABLED) {
-      UpdateApkRefreshListener.schedule(this);
+    if (BuildConfig.MANAGES_APP_UPDATES) {
+      ApkUpdateRefreshListener.schedule(this);
     }
   }
 

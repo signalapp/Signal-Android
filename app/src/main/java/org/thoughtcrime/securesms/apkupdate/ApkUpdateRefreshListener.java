@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.service;
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.apkupdate;
 
 
 import android.content.Context;
@@ -6,14 +11,15 @@ import android.content.Context;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.UpdateApkJob;
+import org.thoughtcrime.securesms.jobs.ApkUpdateJob;
+import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
-public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
+public class ApkUpdateRefreshListener extends PersistentAlarmManagerListener {
 
-  private static final String TAG = Log.tag(UpdateApkRefreshListener.class);
+  private static final String TAG = Log.tag(ApkUpdateRefreshListener.class);
 
   private static final long INTERVAL = TimeUnit.HOURS.toMillis(6);
 
@@ -26,9 +32,9 @@ public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
   protected long onAlarm(Context context, long scheduledTime) {
     Log.i(TAG, "onAlarm...");
 
-    if (scheduledTime != 0 && BuildConfig.PLAY_STORE_DISABLED) {
+    if (scheduledTime != 0 && BuildConfig.MANAGES_APP_UPDATES) {
       Log.i(TAG, "Queueing APK update job...");
-      ApplicationDependencies.getJobManager().add(new UpdateApkJob());
+      ApplicationDependencies.getJobManager().add(new ApkUpdateJob());
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;
@@ -38,7 +44,7 @@ public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
   }
 
   public static void schedule(Context context) {
-    new UpdateApkRefreshListener().onReceive(context, getScheduleIntent());
+    new ApkUpdateRefreshListener().onReceive(context, getScheduleIntent());
   }
 
 }
