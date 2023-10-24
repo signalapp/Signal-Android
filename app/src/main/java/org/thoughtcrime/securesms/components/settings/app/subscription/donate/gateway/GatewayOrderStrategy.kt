@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.g
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.signal.core.util.orNull
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.recipients.Recipient
 
 sealed interface GatewayOrderStrategy {
@@ -24,13 +25,22 @@ sealed interface GatewayOrderStrategy {
   }
 
   private object NorthAmerica : GatewayOrderStrategy {
-
     override val orderedGateways: Set<GatewayResponse.Gateway> = setOf(
       GatewayResponse.Gateway.GOOGLE_PAY,
       GatewayResponse.Gateway.PAYPAL,
       GatewayResponse.Gateway.CREDIT_CARD,
       GatewayResponse.Gateway.SEPA_DEBIT,
       GatewayResponse.Gateway.IDEAL
+    )
+  }
+
+  private object Netherlands : GatewayOrderStrategy {
+    override val orderedGateways: Set<GatewayResponse.Gateway> = setOf(
+      GatewayResponse.Gateway.IDEAL,
+      GatewayResponse.Gateway.PAYPAL,
+      GatewayResponse.Gateway.GOOGLE_PAY,
+      GatewayResponse.Gateway.CREDIT_CARD,
+      GatewayResponse.Gateway.SEPA_DEBIT
     )
   }
 
@@ -41,6 +51,8 @@ sealed interface GatewayOrderStrategy {
 
       return if (PhoneNumberUtil.getInstance().parse(e164, "").countryCode == 1) {
         NorthAmerica
+      } else if (InAppDonations.isIDEALAvailable()) {
+        Netherlands
       } else {
         Default
       }
