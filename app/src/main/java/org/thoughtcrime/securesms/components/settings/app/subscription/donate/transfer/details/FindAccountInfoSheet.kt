@@ -54,7 +54,7 @@ fun FindAccountInfoSheet(
     )
 
     Text(
-      text = stringResource(id = R.string.FindAccountInfoSheet__look_for_your_iban),
+      text = stringResource(id = R.string.FindAccountInfoSheet__look_for_your_iban_at),
       style = MaterialTheme.typography.bodyMedium,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       textAlign = TextAlign.Center,
