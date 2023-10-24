@@ -226,9 +226,11 @@ public final class RegistrationRepository {
   public Single<BackupAuthCheckProcessor> getSvrAuthCredential(@NonNull RegistrationData registrationData, List<String> usernamePasswords) {
     SignalServiceAccountManager accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
 
+    Log.d(TAG, "Fetching SVR backup credentials.");
     return accountManager.checkBackupAuthCredentials(registrationData.getE164(), usernamePasswords)
                          .map(BackupAuthCheckProcessor::new)
                          .doOnSuccess(processor -> {
+                           Log.d(TAG, "Received SVR backup auth credential response.");
                            if (SignalStore.svr().removeAuthTokens(processor.getInvalid())) {
                              new BackupManager(context).dataChanged();
                            }
