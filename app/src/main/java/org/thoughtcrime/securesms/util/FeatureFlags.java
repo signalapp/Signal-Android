@@ -119,6 +119,8 @@ public final class FeatureFlags {
   public  static final String CRASH_PROMPT_CONFIG               = "android.crashPromptConfig";
   private static final String SEPA_DEBIT_DONATIONS              = "android.sepa.debit.donations";
   private static final String IDEAL_DONATIONS                   = "android.ideal.donations";
+  public  static final String IDEAL_ENABLED_REGIONS             = "global.donations.idealEnabledRegions";
+  public  static final String SEPA_ENABLED_REGIONS              = "global.donations.sepaEnabledRegions";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -189,7 +191,9 @@ public final class FeatureFlags {
       CRASH_PROMPT_CONFIG,
       BLOCK_SSE,
       SEPA_DEBIT_DONATIONS,
-      IDEAL_DONATIONS
+      IDEAL_DONATIONS,
+      IDEAL_ENABLED_REGIONS,
+      SEPA_ENABLED_REGIONS
   );
 
   @VisibleForTesting
@@ -689,11 +693,19 @@ public final class FeatureFlags {
    * WARNING: This feature is under heavy development and is *not* ready for wider use.
    */
   public static boolean sepaDebitDonations() {
-    return getBoolean(SEPA_DEBIT_DONATIONS, Environment.IS_STAGING);
+    return getBoolean(SEPA_DEBIT_DONATIONS, false);
   }
 
   public static boolean idealDonations() {
-    return getBoolean(IDEAL_DONATIONS, Environment.IS_STAGING);
+    return getBoolean(IDEAL_DONATIONS, false);
+  }
+
+  public static String idealEnabledRegions() {
+    return getString(IDEAL_ENABLED_REGIONS, "");
+  }
+
+  public static String sepaEnabledRegions() {
+    return getString(SEPA_ENABLED_REGIONS, "");
   }
 
   /** Only for rendering debug info. */

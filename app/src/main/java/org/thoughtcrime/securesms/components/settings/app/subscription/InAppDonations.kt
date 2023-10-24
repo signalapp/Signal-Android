@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 
@@ -66,14 +67,14 @@ object InAppDonations {
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number.
    */
   fun isSEPADebitAvailable(): Boolean {
-    return FeatureFlags.sepaDebitDonations()
+    return Environment.IS_STAGING || (FeatureFlags.sepaDebitDonations() && LocaleFeatureFlags.isSepaEnabled())
   }
 
   /**
    * Whether the user is in a region which supports IDEAL transfers, based off local phone number.
    */
   fun isIDEALAvailable(): Boolean {
-    return FeatureFlags.idealDonations()
+    return Environment.IS_STAGING || (FeatureFlags.idealDonations() && LocaleFeatureFlags.isIdealEnabled())
   }
 
   /**
@@ -81,7 +82,7 @@ object InAppDonations {
    * and donation type.
    */
   fun isSEPADebitAvailableForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
-    return donateToSignalType != DonateToSignalType.GIFT && FeatureFlags.sepaDebitDonations()
+    return donateToSignalType != DonateToSignalType.GIFT && isSEPADebitAvailable()
   }
 
   /**
@@ -89,6 +90,6 @@ object InAppDonations {
    * donation type
    */
   fun isIDEALAvailbleForDonateToSignalType(donateToSignalType: DonateToSignalType): Boolean {
-    return donateToSignalType != DonateToSignalType.GIFT && FeatureFlags.idealDonations()
+    return donateToSignalType != DonateToSignalType.GIFT && isIDEALAvailable()
   }
 }

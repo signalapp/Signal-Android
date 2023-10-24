@@ -65,6 +65,14 @@ public final class LocaleFeatureFlags {
     return isEnabled(FeatureFlags.PAYPAL_DISABLED_REGIONS, FeatureFlags.paypalDisabledRegions());
   }
 
+  public static boolean isIdealEnabled() {
+    return isEnabled(FeatureFlags.IDEAL_ENABLED_REGIONS, FeatureFlags.idealEnabledRegions());
+  }
+
+  public static boolean isSepaEnabled() {
+    return isEnabled(FeatureFlags.SEPA_ENABLED_REGIONS, FeatureFlags.sepaEnabledRegions());
+  }
+
   public static boolean isDelayedNotificationPromptEnabled() {
     return FeatureFlags.internalUser() || isEnabled(FeatureFlags.PROMPT_FOR_NOTIFICATION_LOGS, FeatureFlags.promptForDelayedNotificationLogs());
   }
