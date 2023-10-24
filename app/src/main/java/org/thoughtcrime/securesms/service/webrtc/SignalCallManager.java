@@ -219,7 +219,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
    * @param transformer The transformation to apply to the state. Runs on the {@link #serviceExecutor}.
    */
   @AnyThread
-private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEphemeralState> transformer) {
+  private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEphemeralState> transformer) {
     ephemeralStateStore.update(transformer);
   }
 
