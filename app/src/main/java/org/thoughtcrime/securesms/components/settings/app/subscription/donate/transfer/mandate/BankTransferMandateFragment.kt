@@ -35,7 +35,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.Buttons
@@ -43,12 +42,14 @@ import org.signal.core.ui.Dividers
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Displays Bank Transfer legal mandate users must agree to to move forward.
@@ -56,7 +57,10 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class BankTransferMandateFragment : ComposeFragment() {
 
   private val args: BankTransferMandateFragmentArgs by navArgs()
-  private val viewModel: BankTransferMandateViewModel by viewModels()
+  private val viewModel: BankTransferMandateViewModel by viewModel {
+    BankTransferMandateViewModel(PaymentSourceType.Stripe.SEPADebit)
+  }
+
   private lateinit var statusBarColorNestedScrollConnection: StatusBarColorNestedScrollConnection
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,9 +75,11 @@ class BankTransferMandateFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     val mandate by viewModel.mandate
+    val failedToLoadMandate by viewModel.failedToLoadMandate
 
     BankTransferScreen(
       bankMandate = mandate,
+      failedToLoadMandate = failedToLoadMandate,
       onNavigationClick = this::onNavigationClick,
       onContinueClick = this::onContinueClick,
       onLearnMoreClick = this::onLearnMoreClick,
@@ -110,6 +116,7 @@ fun BankTransferScreenPreview() {
   SignalTheme {
     BankTransferScreen(
       bankMandate = "Test ".repeat(500),
+      failedToLoadMandate = false,
       onNavigationClick = {},
       onContinueClick = {},
       onLearnMoreClick = {}
@@ -120,6 +127,7 @@ fun BankTransferScreenPreview() {
 @Composable
 fun BankTransferScreen(
   bankMandate: String,
+  failedToLoadMandate: Boolean,
   onNavigationClick: () -> Unit,
   onContinueClick: () -> Unit,
   onLearnMoreClick: () -> Unit,
@@ -193,20 +201,22 @@ fun BankTransferScreen(
 
       item {
         Text(
-          text = bankMandate,
+          text = if (failedToLoadMandate) stringResource(id = R.string.BankTransferMandateFragment__failed_to_load_mandate) else bankMandate,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.bank_transfer_mandate_gutter), vertical = 16.dp)
         )
       }
 
-      item {
-        Buttons.LargeTonal(
-          onClick = onContinueClick,
-          modifier = Modifier
-            .padding(top = 16.dp, bottom = 46.dp)
-            .defaultMinSize(minWidth = 220.dp)
-        ) {
-          Text(text = stringResource(id = R.string.BankTransferMandateFragment__continue))
+      if (!failedToLoadMandate) {
+        item {
+          Buttons.LargeTonal(
+            onClick = onContinueClick,
+            modifier = Modifier
+              .padding(top = 16.dp, bottom = 46.dp)
+              .defaultMinSize(minWidth = 220.dp)
+          ) {
+            Text(text = stringResource(id = R.string.BankTransferMandateFragment__continue))
+          }
         }
       }
     }

@@ -5889,6 +5889,8 @@
     <string name="BankTransferMandateFragment__learn_more">Learn more</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Continue</string>
+    <!-- Text displayed when mandate load fails -->
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->

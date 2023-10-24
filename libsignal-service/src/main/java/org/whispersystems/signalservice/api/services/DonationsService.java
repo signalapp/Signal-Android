@@ -120,11 +120,11 @@ public class DonationsService {
     );
   }
 
-  public ServiceResponse<BankMandate> getBankMandate(Locale locale) {
+  public ServiceResponse<BankMandate> getBankMandate(Locale locale, String bankTransferType) {
     return getCachedValue(
         locale,
         sepaBankMandateCache,
-        l -> pushServiceSocket.getBankMandate(l, "SEPA_DEBIT"),
+        l -> pushServiceSocket.getBankMandate(l, bankTransferType),
         SEPA_DEBIT_MANDATE_TTL
     );
   }
