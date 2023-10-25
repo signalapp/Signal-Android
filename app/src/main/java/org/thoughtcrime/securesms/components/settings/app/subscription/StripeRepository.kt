@@ -202,10 +202,13 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
    *       that we are successful and proceed as normal. If the payment didn't actually succeed, then we
    *       expect an error later in the chain to inform us of this.
    */
-  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor): Single<StatusAndPaymentMethodId> {
+  fun getStatusAndPaymentMethodId(
+    stripeIntentAccessor: StripeIntentAccessor,
+    paymentMethodId: String?
+  ): Single<StatusAndPaymentMethodId> {
     return Single.fromCallable {
       when (stripeIntentAccessor.objectType) {
-        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(stripeIntentAccessor.intentId, StripeIntentStatus.SUCCEEDED, null)
+        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(stripeIntentAccessor.intentId, StripeIntentStatus.SUCCEEDED, paymentMethodId)
         StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).let {
           if (it.status == null) {
             Log.d(TAG, "Returned payment intent had a null status.", true)
@@ -230,7 +233,6 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       SignalStore.donationsValues().requireSubscriber()
     }.flatMap {
       Log.d(TAG, "Setting default payment method via Signal service...")
-      // TODO [sepa] -- iDEAL has its own call
       Single.fromCallable {
         if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
           ApplicationDependencies

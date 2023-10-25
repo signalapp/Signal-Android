@@ -134,7 +134,7 @@ class DonationCheckoutDelegate(
     if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
       Snackbar.make(fragment.requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
     } else {
-      SignalStore.donationsValues().removeDonationComplete(result.request.level)
+      SignalStore.donationsValues().removeTerminalDonation(result.request.level)
       callback.onPaymentComplete(result.request)
     }
   }

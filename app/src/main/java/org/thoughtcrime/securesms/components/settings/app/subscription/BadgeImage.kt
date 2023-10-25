@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,7 +31,7 @@ fun BadgeImage112(
   modifier: Modifier = Modifier
 ) {
   if (LocalInspectionMode.current) {
-    Box(modifier = modifier.background(color = Color.Red))
+    Box(modifier = modifier.background(color = Color.Black, shape = CircleShape))
   } else {
     AndroidView(
       factory = {

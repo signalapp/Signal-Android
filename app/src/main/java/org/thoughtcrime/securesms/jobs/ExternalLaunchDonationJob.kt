@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -27,7 +29,6 @@ import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.DonationProcessor
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -53,12 +54,20 @@ class ExternalLaunchDonationJob private constructor(
           stripe3DSData.stripeIntentAccessor.intentId,
           DonationProcessor.STRIPE,
           -1L,
-          stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit
+          TerminalDonationQueue.TerminalDonation(
+            level = stripe3DSData.gatewayRequest.level,
+            isLongRunningPaymentMethod = stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit
+          )
         )
+
         DonateToSignalType.MONTHLY -> SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(
           -1L,
-          stripe3DSData.paymentSourceType.isBankTransfer
+          TerminalDonationQueue.TerminalDonation(
+            level = stripe3DSData.gatewayRequest.level,
+            isLongRunningPaymentMethod = stripe3DSData.paymentSourceType.isBankTransfer
+          )
         )
+
         DonateToSignalType.GIFT -> BoostReceiptRequestResponseJob.createJobChainForGift(
           stripe3DSData.stripeIntentAccessor.intentId,
           stripe3DSData.gatewayRequest.recipientId,
@@ -66,7 +75,10 @@ class ExternalLaunchDonationJob private constructor(
           stripe3DSData.gatewayRequest.level,
           DonationProcessor.STRIPE,
           -1L,
-          false
+          TerminalDonationQueue.TerminalDonation(
+            level = stripe3DSData.gatewayRequest.level,
+            isLongRunningPaymentMethod = stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit
+          )
         )
       }
 
@@ -100,6 +112,7 @@ class ExternalLaunchDonationJob private constructor(
         Log.w(TAG, "NONE type does not require confirmation. Failing Permanently.")
         throw Exception()
       }
+
       StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> runForPaymentIntent()
       StripeIntentAccessor.ObjectType.SETUP_INTENT -> runForSetupIntent()
     }
@@ -189,10 +202,12 @@ class ExternalLaunchDonationJob private constructor(
       null, StripeIntentStatus.SUCCEEDED -> {
         Log.i(TAG, "Stripe Intent is in the SUCCEEDED state, we can proceed.", true)
       }
+
       StripeIntentStatus.CANCELED -> {
         Log.i(TAG, "Stripe Intent is cancelled, we cannot proceed.", true)
         throw Exception("User cancelled payment.")
       }
+
       else -> {
         Log.i(TAG, "Stripe Intent is still processing, retry later.", true)
         throw RetryException()
@@ -209,20 +224,33 @@ class ExternalLaunchDonationJob private constructor(
     } else if (serviceResponse.applicationError.isPresent) {
       Log.w(TAG, "An application error was present. ${serviceResponse.status}", serviceResponse.applicationError.get(), true)
       doOnApplicationError()
+
+      SignalStore.donationsValues().appendToTerminalDonationQueue(
+        TerminalDonationQueue.TerminalDonation(
+          level = stripe3DSData.gatewayRequest.level,
+          isLongRunningPaymentMethod = stripe3DSData.gatewayRequest.donateToSignalType == DonateToSignalType.MONTHLY && stripe3DSData.paymentSourceType.isBankTransfer ||
+            stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit,
+          error = DonationErrorValue(
+            DonationErrorValue.Type.PAYMENT,
+            code = serviceResponse.status.toString()
+          )
+        )
+      )
+
       throw serviceResponse.applicationError.get()
     } else if (serviceResponse.executionError.isPresent) {
       Log.w(TAG, "An execution error was present. ${serviceResponse.status}", serviceResponse.executionError.get(), true)
-      throw serviceResponse.executionError.get()
+      throw RetryException(serviceResponse.executionError.get())
     }
 
     error("Should never get here.")
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
-    return e is RetryException || e is IOException
+    return e is RetryException
   }
 
-  class RetryException : Exception()
+  class RetryException(cause: Throwable? = null) : Exception(cause)
 
   class Factory : Job.Factory<ExternalLaunchDonationJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): ExternalLaunchDonationJob {

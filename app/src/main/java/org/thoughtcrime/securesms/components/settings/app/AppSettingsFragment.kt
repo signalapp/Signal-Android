@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
-import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -51,7 +51,7 @@ class AppSettingsFragment : DSLSettingsFragment(
   private lateinit var reminderView: Stub<ReminderView>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    viewLifecycleOwner.lifecycle.addObserver(DonationCompletedDelegate(childFragmentManager, viewLifecycleOwner))
+    viewLifecycleOwner.lifecycle.addObserver(TerminalDonationDelegate(childFragmentManager, viewLifecycleOwner))
 
     super.onViewCreated(view, savedInstanceState)
     reminderView = ViewUtil.findStubById(view, R.id.reminder_stub)

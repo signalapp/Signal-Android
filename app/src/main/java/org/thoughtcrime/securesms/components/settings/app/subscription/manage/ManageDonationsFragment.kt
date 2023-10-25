@@ -21,12 +21,12 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
-import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -68,7 +68,7 @@ class ManageDonationsFragment :
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    viewLifecycleOwner.lifecycle.addObserver(DonationCompletedDelegate(childFragmentManager, viewLifecycleOwner))
+    viewLifecycleOwner.lifecycle.addObserver(TerminalDonationDelegate(childFragmentManager, viewLifecycleOwner))
     super.onViewCreated(view, savedInstanceState)
   }
 
@@ -344,14 +344,38 @@ class ManageDonationsFragment :
       .show()
   }
 
-  private fun displayPendingOneTimeDonationErrorDialog(error: PendingOneTimeDonation.Error) {
-    // TODO [sepa] -- actual dialog text?
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.DonationsErrors__error_processing_payment)
-      .setPositiveButton(android.R.string.ok) { _, _ ->
-        SignalStore.donationsValues().setPendingOneTimeDonation(null)
+  private fun displayPendingOneTimeDonationErrorDialog(error: DonationErrorValue) {
+    when (error.type) {
+      DonationErrorValue.Type.REDEMPTION -> {
+        MaterialAlertDialogBuilder(requireContext())
+          .setTitle(R.string.DonationsErrors__couldnt_add_badge)
+          .setMessage(R.string.DonationsErrors__your_badge_could_not)
+          .setNegativeButton(R.string.DonationsErrors__learn_more) { _, _ ->
+            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
+          }
+          .setPositiveButton(R.string.Subscription__contact_support) { _, _ ->
+            requireActivity().finish()
+            startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
+          }
+          .setOnDismissListener {
+            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+          }
+          .show()
       }
-      .show()
+      else -> {
+        MaterialAlertDialogBuilder(requireContext())
+          .setTitle(R.string.DonationsErrors__error_processing_payment)
+          .setMessage(R.string.DonationsErrors__try_another_payment_method)
+          .setNegativeButton(R.string.DonationsErrors__learn_more) { _, _ ->
+            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
+          }
+          .setPositiveButton(android.R.string.ok, null)
+          .setOnDismissListener {
+            SignalStore.donationsValues().setPendingOneTimeDonation(null)
+          }
+          .show()
+      }
+    }
   }
 
   override fun onMakeAMonthlyDonation() {

@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ga
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
@@ -190,7 +191,12 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
             val countDownLatch = CountDownLatch(1)
             var finalJobState: JobTracker.JobState? = null
 
-            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey, isLongRunning).enqueue { _, jobState ->
+            val terminalDonation = TerminalDonationQueue.TerminalDonation(
+              level = gatewayRequest.level,
+              isLongRunningPaymentMethod = isLongRunning
+            )
+
+            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(uiSessionKey, terminalDonation).enqueue { _, jobState ->
               if (jobState.isComplete) {
                 finalJobState = jobState
                 countDownLatch.countDown()

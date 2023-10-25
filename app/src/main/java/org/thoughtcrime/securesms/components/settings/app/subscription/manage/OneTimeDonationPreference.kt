@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.databinding.MySupportPreferenceBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -33,7 +34,7 @@ object OneTimeDonationPreference {
   class Model(
     val pendingOneTimeDonation: PendingOneTimeDonation,
     val onPendingClick: (FiatMoney) -> Unit,
-    val onErrorClick: (PendingOneTimeDonation.Error) -> Unit
+    val onErrorClick: (DonationErrorValue) -> Unit
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean = true
 
@@ -63,7 +64,7 @@ object OneTimeDonationPreference {
       }
     }
 
-    private fun presentErrorState(model: Model, error: PendingOneTimeDonation.Error) {
+    private fun presentErrorState(model: Model, error: DonationErrorValue) {
       expiry.text = getErrorSubtitle(error)
 
       itemView.setOnClickListener { model.onErrorClick(error) }
@@ -81,9 +82,9 @@ object OneTimeDonationPreference {
       progress.visible = model.pendingOneTimeDonation.paymentMethodType != PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
     }
 
-    private fun getErrorSubtitle(error: PendingOneTimeDonation.Error): String {
+    private fun getErrorSubtitle(error: DonationErrorValue): String {
       return when (error.type) {
-        PendingOneTimeDonation.Error.Type.REDEMPTION -> context.getString(R.string.DonationsErrors__couldnt_add_badge)
+        DonationErrorValue.Type.REDEMPTION -> context.getString(R.string.DonationsErrors__couldnt_add_badge)
         else -> context.getString(R.string.DonationsErrors__donation_failed)
       }
     }

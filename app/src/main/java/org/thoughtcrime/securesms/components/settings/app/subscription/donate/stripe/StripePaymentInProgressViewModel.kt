@@ -165,7 +165,7 @@ class StripePaymentInProgressViewModel(
             paymentSourceProvider.paymentSourceType.code
           )
         )
-          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult) }
+          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult, secure3DSAction.paymentMethodId) }
       }
       .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it.paymentMethod!!, it.intentId, paymentSourceProvider.paymentSourceType) }
       .onErrorResumeNext {
@@ -214,17 +214,18 @@ class StripePaymentInProgressViewModel(
 
     disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
       stripeRepository.confirmPayment(paymentSource, paymentIntent, request.recipientId)
-        .flatMap {
-          nextActionHandler.handle(
-            it,
-            Stripe3DSData(
-              it.stripeIntentAccessor,
-              request,
-              paymentSourceProvider.paymentSourceType.code
+        .flatMap { action ->
+          nextActionHandler
+            .handle(
+              action,
+              Stripe3DSData(
+                action.stripeIntentAccessor,
+                request,
+                paymentSourceProvider.paymentSourceType.code
+              )
             )
-          )
+            .flatMap { stripeRepository.getStatusAndPaymentMethodId(it, action.paymentMethodId) }
         }
-        .flatMap { stripeRepository.getStatusAndPaymentMethodId(it) }
         .flatMapCompletable {
           oneTimeDonationRepository.waitForOneTimeRedemption(
             gatewayRequest = request,

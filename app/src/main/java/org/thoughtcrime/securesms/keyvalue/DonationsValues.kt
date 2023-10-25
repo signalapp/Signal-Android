@@ -17,8 +17,9 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.isExpired
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
-import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
@@ -505,35 +506,35 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   var subscriptionEndOfPeriodRedemptionStarted by longValue(SUBSCRIPTION_EOP_STARTED_TO_REDEEM, 0L)
   var subscriptionEndOfPeriodRedeemed by longValue(SUBSCRIPTION_EOP_REDEEMED, 0L)
 
-  fun appendToDonationCompletionList(donationCompleted: DonationCompletedQueue.DonationCompleted) {
+  fun appendToTerminalDonationQueue(terminalDonation: TerminalDonationQueue.TerminalDonation) {
     synchronized(this) {
       val pendingBytes = getBlob(DONATION_COMPLETE_QUEUE, null)
-      val queue: DonationCompletedQueue = pendingBytes?.let { DonationCompletedQueue.ADAPTER.decode(pendingBytes) } ?: DonationCompletedQueue()
-      val newQueue: DonationCompletedQueue = queue.copy(donationsCompleted = queue.donationsCompleted + donationCompleted)
+      val queue: TerminalDonationQueue = pendingBytes?.let { TerminalDonationQueue.ADAPTER.decode(pendingBytes) } ?: TerminalDonationQueue()
+      val newQueue: TerminalDonationQueue = queue.copy(terminalDonations = queue.terminalDonations + terminalDonation)
 
       putBlob(DONATION_COMPLETE_QUEUE, newQueue.encode())
     }
   }
 
-  fun consumeDonationCompletionList(): List<DonationCompletedQueue.DonationCompleted> {
+  fun consumeTerminalDonations(): List<TerminalDonationQueue.TerminalDonation> {
     synchronized(this) {
       val pendingBytes = getBlob(DONATION_COMPLETE_QUEUE, null)
       if (pendingBytes == null) {
         return emptyList()
       } else {
-        val queue: DonationCompletedQueue = DonationCompletedQueue.ADAPTER.decode(pendingBytes)
+        val queue: TerminalDonationQueue = TerminalDonationQueue.ADAPTER.decode(pendingBytes)
         remove(DONATION_COMPLETE_QUEUE)
 
-        return queue.donationsCompleted
+        return queue.terminalDonations
       }
     }
   }
 
-  fun removeDonationComplete(level: Long) {
+  fun removeTerminalDonation(level: Long) {
     synchronized(this) {
-      val donationCompletionList = consumeDonationCompletionList()
+      val donationCompletionList = consumeTerminalDonations()
       donationCompletionList.filterNot { it.level == level }.forEach {
-        appendToDonationCompletionList(it)
+        appendToTerminalDonationQueue(it)
       }
     }
   }
@@ -551,7 +552,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     }
   }
 
-  fun setPendingOneTimeDonationError(error: PendingOneTimeDonation.Error) {
+  fun setPendingOneTimeDonationError(error: DonationErrorValue) {
     synchronized(this) {
       val pendingOneTimeDonation = getPendingOneTimeDonation()
       if (pendingOneTimeDonation != null) {

@@ -12,9 +12,9 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
-import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation;
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import okio.ByteString;
 
 /**
  * Job to redeem a verified donation receipt. It is up to the Job prior in the chain to specify a valid
@@ -45,18 +47,19 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   private static final String LONG_RUNNING_QUEUE_SUFFIX            = "__LONG_RUNNING";
 
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
+  public static final String INPUT_TERMINAL_DONATION               = "data.terminal.donation";
   public static final String INPUT_KEEP_ALIVE_409                  = "data.keep.alive.409";
   public static final String DATA_ERROR_SOURCE                     = "data.error.source";
   public static final String DATA_GIFT_MESSAGE_ID                  = "data.gift.message.id";
   public static final String DATA_PRIMARY                          = "data.primary";
   public static final String DATA_UI_SESSION_KEY                   = "data.ui.session.key";
-  public static final String DATA_IS_LONG_RUNNING                  = "data.is.long.running";
 
   private final long                giftMessageId;
   private final boolean             makePrimary;
   private final DonationErrorSource errorSource;
-  private final long    uiSessionKey;
-  private final boolean isLongRunningDonationPaymentType;
+  private final long                uiSessionKey;
+
+  private       TerminalDonationQueue.TerminalDonation terminalDonation;
 
   public static DonationReceiptRedemptionJob createJobForSubscription(@NonNull DonationErrorSource errorSource, long uiSessionKey, boolean isLongRunningDonationPaymentType) {
     return new DonationReceiptRedemptionJob(
@@ -64,7 +67,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         false,
         errorSource,
         uiSessionKey,
-        isLongRunningDonationPaymentType,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -81,7 +83,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         false,
         DonationErrorSource.ONE_TIME,
         uiSessionKey,
-        isLongRunningDonationPaymentType,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -108,7 +109,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         primary,
         DonationErrorSource.GIFT_REDEMPTION,
         -1L,
-        false,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -126,13 +126,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                                   .then(multiDeviceProfileContentUpdateJob);
   }
 
-  private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, boolean isLongRunning, @NonNull Job.Parameters parameters) {
+  private DonationReceiptRedemptionJob(long giftMessageId, boolean primary, @NonNull DonationErrorSource errorSource, long uiSessionKey, @NonNull Job.Parameters parameters) {
     super(parameters);
     this.giftMessageId                    = giftMessageId;
     this.makePrimary                      = primary;
     this.errorSource                      = errorSource;
     this.uiSessionKey                     = uiSessionKey;
-    this.isLongRunningDonationPaymentType = isLongRunning;
   }
 
   @Override
@@ -142,7 +141,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
                    .putLong(DATA_GIFT_MESSAGE_ID, giftMessageId)
                    .putBoolean(DATA_PRIMARY, makePrimary)
                    .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
-                   .putBoolean(DATA_IS_LONG_RUNNING, isLongRunningDonationPaymentType)
                    .serialize();
   }
 
@@ -159,6 +157,10 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     } else if (giftMessageId != NO_ID) {
       SignalDatabase.messages().markGiftRedemptionFailed(giftMessageId);
+    }
+
+    if (terminalDonation != null) {
+      SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
     }
   }
 
@@ -181,7 +183,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private void doRun() throws Exception {
-    boolean isKeepAlive409 = getInputData() != null && JsonJobData.deserialize(getInputData()).getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false);
+    JsonJobData inputData      = getInputData() != null ? JsonJobData.deserialize(getInputData()) : null;
+    boolean     isKeepAlive409 = inputData != null && inputData.getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false);
+
     if (isKeepAlive409) {
       Log.d(TAG, "Keep-Alive redemption job hit a 409. Exiting.", true);
       return;
@@ -191,6 +195,17 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     if (presentation == null) {
       Log.d(TAG, "No presentation available. Exiting.", true);
       return;
+    }
+
+    byte[] rawTerminalDonation = inputData != null ? inputData.getStringAsBlob(INPUT_TERMINAL_DONATION) : null;
+    if (rawTerminalDonation != null) {
+      Log.d(TAG, "Retrieved terminal donation information from input data.");
+      terminalDonation = TerminalDonationQueue.TerminalDonation.ADAPTER.decode(rawTerminalDonation);
+    } else {
+      Log.d(TAG, "Input data does not contain terminal donation data. Creating one with sane defaults.");
+      terminalDonation = new TerminalDonationQueue.TerminalDonation.Builder()
+          .level(presentation.getReceiptLevel())
+          .build();
     }
 
     Log.d(TAG, "Attempting to redeem token... isForSubscription: " + isForSubscription(), true);
@@ -208,12 +223,18 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(errorSource));
 
         if (isForOneTimeDonation()) {
+          DonationErrorValue donationErrorValue = new DonationErrorValue.Builder()
+              .type(DonationErrorValue.Type.REDEMPTION)
+              .code(Integer.toString(response.getStatus()))
+              .build();
+
           SignalStore.donationsValues().setPendingOneTimeDonationError(
-              new PendingOneTimeDonation.Error.Builder()
-                  .type(PendingOneTimeDonation.Error.Type.REDEMPTION)
-                  .code(Integer.toString(response.getStatus()))
-                  .build()
+              donationErrorValue
           );
+
+          terminalDonation = terminalDonation.newBuilder()
+                                             .error(donationErrorValue)
+                                             .build();
         }
 
         throw new IOException(response.getApplicationError().get());
@@ -224,7 +245,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     }
 
     Log.i(TAG, "Successfully redeemed token with response code " + response.getStatus() + "... isForSubscription: " + isForSubscription(), true);
-    enqueueDonationComplete(presentation.getReceiptLevel());
+    enqueueDonationComplete();
 
     if (isForSubscription()) {
       Log.d(TAG, "Clearing subscription failure", true);
@@ -310,7 +331,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     return Objects.requireNonNull(getParameters().getQueue()).startsWith(ONE_TIME_QUEUE) && giftMessageId == NO_ID;
   }
 
-  private void enqueueDonationComplete(long receiptLevel) {
+  private void enqueueDonationComplete() {
     if (errorSource == DonationErrorSource.GIFT || errorSource == DonationErrorSource.GIFT_REDEMPTION) {
       Log.i(TAG, "Skipping donation complete sheet for GIFT related redemption.");
       return;
@@ -321,12 +342,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       return;
     }
 
-    SignalStore.donationsValues().appendToDonationCompletionList(
-        new DonationCompletedQueue.DonationCompleted.Builder()
-            .isLongRunningPaymentMethod(isLongRunningDonationPaymentType)
-            .level(receiptLevel)
-            .build()
-    );
+    SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
   }
 
   @Override
@@ -347,9 +363,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       boolean             primary                          = data.getBooleanOrDefault(DATA_PRIMARY, false);
       DonationErrorSource errorSource                      = DonationErrorSource.deserialize(serializedErrorSource);
       long                uiSessionKey                     = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
-      boolean             isLongRunningDonationPaymentType = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
 
-      return new DonationReceiptRedemptionJob(messageId, primary, errorSource, uiSessionKey, isLongRunningDonationPaymentType, parameters);
+      return new DonationReceiptRedemptionJob(messageId, primary, errorSource, uiSessionKey, parameters);
     }
   }
 }

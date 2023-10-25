@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
@@ -137,12 +138,17 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
         )
       )
 
+      val terminalDonation = TerminalDonationQueue.TerminalDonation(
+        level = gatewayRequest.level,
+        isLongRunningPaymentMethod = isLongRunning
+      )
+
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null
       val chain = if (isBoost) {
-        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, gatewayRequest.uiSessionKey, isLongRunning)
+        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor, gatewayRequest.uiSessionKey, terminalDonation)
       } else {
-        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, gatewayRequest.recipientId, gatewayRequest.additionalMessage, gatewayRequest.level, donationProcessor, gatewayRequest.uiSessionKey, isLongRunning)
+        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, gatewayRequest.recipientId, gatewayRequest.additionalMessage, gatewayRequest.level, donationProcessor, gatewayRequest.uiSessionKey, terminalDonation)
       }
 
       chain.enqueue { _, jobState ->

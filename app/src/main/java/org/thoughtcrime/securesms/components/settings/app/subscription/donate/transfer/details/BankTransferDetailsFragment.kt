@@ -226,7 +226,7 @@ private fun BankTransferDetailsContent(
           val fullString = stringResource(id = R.string.BankTransferDetailsFragment__enter_your_bank_details, learnMore)
 
           Texts.LinkifiedText(
-            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_url)), // TODO [sepa] -- final URL
+            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_faq_url)),
             onUrlClick = {
               onLearnMoreClick()
             },

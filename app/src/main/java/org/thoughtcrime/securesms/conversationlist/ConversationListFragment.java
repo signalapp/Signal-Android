@@ -111,8 +111,7 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.components.reminder.UsernameOutOfSyncReminder;
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment;
-import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedBottomSheet;
-import org.thoughtcrime.securesms.components.settings.app.subscription.completed.DonationCompletedDelegate;
+import org.thoughtcrime.securesms.components.settings.app.subscription.completed.TerminalDonationDelegate;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -135,7 +134,6 @@ import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs;
@@ -279,7 +277,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    getViewLifecycleOwner().getLifecycle().addObserver(new DonationCompletedDelegate(getParentFragmentManager(), getViewLifecycleOwner()));
+    getViewLifecycleOwner().getLifecycle().addObserver(new TerminalDonationDelegate(getParentFragmentManager(), getViewLifecycleOwner()));
 
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());

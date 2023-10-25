@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.PayPalDeclineCode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue;
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -35,6 +37,8 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okio.ByteString;
+
 /**
  * Job responsible for submitting ReceiptCredentialRequest objects to the server until
  * we get a response.
@@ -49,40 +53,44 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private static final String DATA_SUBSCRIBER_ID     = "data.subscriber.id";
   private static final String DATA_IS_FOR_KEEP_ALIVE = "data.is.for.keep.alive";
   private static final String DATA_UI_SESSION_KEY    = "data.ui.session.key";
-  private static final String DATA_IS_LONG_RUNNING   = "data.is.long.running";
+  private static final String DATA_TERMINAL_DONATION = "data.terminal.donation";
 
   public static final Object MUTEX = new Object();
 
-  private final SubscriberId subscriberId;
-  private final boolean      isForKeepAlive;
-  private final long    uiSessionKey;
-  private final boolean isLongRunningDonationPaymentType;
+  private final SubscriberId                           subscriberId;
+  private final boolean                                isForKeepAlive;
+  private final long                                   uiSessionKey;
+  private TerminalDonationQueue.TerminalDonation       terminalDonation;
 
-  private static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId, boolean isForKeepAlive, long uiSessionKey, boolean isLongRunningDonationPaymentType) {
+  private static SubscriptionReceiptRequestResponseJob createJob(@NonNull SubscriberId subscriberId,
+                                                                 boolean isForKeepAlive,
+                                                                 long uiSessionKey,
+                                                                 @NonNull TerminalDonationQueue.TerminalDonation terminalDonation)
+  {
     return new SubscriptionReceiptRequestResponseJob(
         new Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("ReceiptRedemption")
             .setMaxInstancesForQueue(1)
-            .setLifespan(isLongRunningDonationPaymentType ? TimeUnit.DAYS.toMillis(14) : TimeUnit.DAYS.toMillis(1))
+            .setLifespan(terminalDonation.isLongRunningPaymentMethod ? TimeUnit.DAYS.toMillis(14) : TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         subscriberId,
         isForKeepAlive,
         uiSessionKey,
-        isLongRunningDonationPaymentType
+        terminalDonation
     );
   }
 
-  public static JobManager.Chain createSubscriptionContinuationJobChain(long uiSessionKey, boolean isLongRunningDonationPaymentType) {
-    return createSubscriptionContinuationJobChain(false, uiSessionKey, isLongRunningDonationPaymentType);
+  public static JobManager.Chain createSubscriptionContinuationJobChain(long uiSessionKey, @NonNull TerminalDonationQueue.TerminalDonation terminalDonation) {
+    return createSubscriptionContinuationJobChain(false, uiSessionKey, terminalDonation);
   }
 
-  public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive, long uiSessionKey, boolean isLongRunningDonationPaymentType) {
+  public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive, long uiSessionKey, @NonNull TerminalDonationQueue.TerminalDonation terminalDonation) {
     Subscriber                            subscriber                         = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob                  = createJob(subscriber.getSubscriberId(), isForKeepAlive, uiSessionKey, isLongRunningDonationPaymentType);
-    DonationReceiptRedemptionJob          redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForSubscription(requestReceiptJob.getErrorSource(), uiSessionKey, isLongRunningDonationPaymentType);
+    SubscriptionReceiptRequestResponseJob requestReceiptJob                  = createJob(subscriber.getSubscriberId(), isForKeepAlive, uiSessionKey, terminalDonation);
+    DonationReceiptRedemptionJob          redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForSubscription(requestReceiptJob.getErrorSource(), uiSessionKey, terminalDonation.isLongRunningPaymentMethod);
     RefreshOwnProfileJob                  refreshOwnProfileJob               = RefreshOwnProfileJob.forSubscription();
     MultiDeviceProfileContentUpdateJob    multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
 
@@ -97,13 +105,13 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
                                                 @NonNull SubscriberId subscriberId,
                                                 boolean isForKeepAlive,
                                                 long uiSessionKey,
-                                                boolean isLongRunningDonationPaymentType)
+                                                @NonNull TerminalDonationQueue.TerminalDonation terminalDonation)
   {
     super(parameters);
-    this.subscriberId                     = subscriberId;
-    this.isForKeepAlive                   = isForKeepAlive;
-    this.uiSessionKey                     = uiSessionKey;
-    this.isLongRunningDonationPaymentType = isLongRunningDonationPaymentType;
+    this.subscriberId     = subscriberId;
+    this.isForKeepAlive   = isForKeepAlive;
+    this.uiSessionKey     = uiSessionKey;
+    this.terminalDonation = terminalDonation;
   }
 
   @Override
@@ -111,7 +119,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     JsonJobData.Builder builder = new JsonJobData.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes())
                                                            .putBoolean(DATA_IS_FOR_KEEP_ALIVE, isForKeepAlive)
                                                            .putLong(DATA_UI_SESSION_KEY, uiSessionKey)
-                                                           .putBoolean(DATA_IS_LONG_RUNNING, isLongRunningDonationPaymentType);
+                                                           .putBlobAsString(DATA_TERMINAL_DONATION, terminalDonation.encode());
 
     return builder.serialize();
   }
@@ -123,12 +131,26 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    if (terminalDonation.error != null) {
+      SignalStore.donationsValues().appendToTerminalDonationQueue(terminalDonation);
+    } else {
+      Log.w(TAG, "Job is in terminal state without an error on TerminalDonation.");
+    }
   }
 
   @Override
   protected void onRun() throws Exception {
     synchronized (MUTEX) {
       doRun();
+    }
+  }
+
+  @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    if (terminalDonation.isLongRunningPaymentMethod) {
+      return TimeUnit.DAYS.toMillis(1);
+    } else {
+      return super.getNextRunAttemptBackoff(pastAttemptCount, exception);
     }
   }
 
@@ -202,7 +224,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       ReceiptCredential receiptCredential = getReceiptCredential(requestContext, response.getResult().get());
 
       if (!isCredentialValid(subscription, receiptCredential)) {
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+        onGenericRedemptionError();
         throw new IOException("Could not validate receipt credential");
       }
 
@@ -214,6 +236,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       SignalStore.donationsValues().clearSubscriptionRequestCredential();
       SignalStore.donationsValues().setSubscriptionReceiptCredential(receiptCredentialPresentation);
       SignalStore.donationsValues().setSubscriptionEndOfPeriodRedemptionStarted(subscription.getEndOfCurrentPeriod());
+
+      setOutputData(new JsonJobData.Builder()
+                        .putBlobAsString(DonationReceiptRedemptionJob.INPUT_TERMINAL_DONATION, terminalDonation.encode())
+                        .build()
+                        .serialize());
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();
@@ -228,7 +255,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       return activeSubscription.getResult().get();
     } else if (activeSubscription.getApplicationError().isPresent()) {
       Log.w(TAG, "Unrecoverable error getting the user's current subscription. Failing.", activeSubscription.getApplicationError().get(), true);
-      DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+      onGenericRedemptionError();
       throw new IOException(activeSubscription.getApplicationError().get());
     } else {
       throw new RetryableException();
@@ -265,18 +292,18 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", response.getApplicationError().get(), true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+        onGenericRedemptionError();
         throw new Exception(response.getApplicationError().get());
       case 402:
         Log.w(TAG, "Payment looks like a failure but may be retried.", response.getApplicationError().get(), true);
         throw new RetryableException();
       case 403:
         Log.w(TAG, "SubscriberId password mismatch or account auth was present.", response.getApplicationError().get(), true);
-        DonationError.routeBackgroundError(context,  uiSessionKey, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+        onGenericRedemptionError();
         throw new Exception(response.getApplicationError().get());
       case 404:
         Log.w(TAG, "SubscriberId not found or misformed.", response.getApplicationError().get(), true);
-        DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+        onGenericRedemptionError();
         throw new Exception(response.getApplicationError().get());
       case 409:
         onAlreadyRedeemed(response);
@@ -285,6 +312,35 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get(), true);
         throw new RetryableException();
     }
+  }
+
+  private void onGenericRedemptionError() {
+    terminalDonation = terminalDonation.newBuilder()
+                                       .error(new DonationErrorValue(
+                                           DonationErrorValue.Type.REDEMPTION,
+                                           "",
+                                           ByteString.EMPTY
+                                       ))
+                                       .build();
+
+    DonationError.routeBackgroundError(
+        context,
+        uiSessionKey,
+        DonationError.genericBadgeRedemptionFailure(getErrorSource())
+    );
+  }
+
+  private void onPaymentFailedError(DonationError.PaymentSetupError paymentFailure) {
+    terminalDonation = terminalDonation.newBuilder()
+                                       .error(DonationError.toDonationErrorValue(paymentFailure))
+                                       .build();
+
+    DonationError.routeBackgroundError(
+        context,
+        uiSessionKey,
+        paymentFailure,
+        terminalDonation.isLongRunningPaymentMethod
+    );
   }
 
   /**
@@ -342,7 +398,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       }
 
       Log.w(TAG, "Not for a keep-alive and we have a charge failure. Routing a payment setup error...", true);
-      DonationError.routeBackgroundError(context, uiSessionKey, paymentSetupError);
+      onPaymentFailedError(paymentSetupError);
     } else if (chargeFailure != null && processor == ActiveSubscription.Processor.BRAINTREE) {
       Log.d(TAG, "PayPal charge failure detected: " + chargeFailure, true);
 
@@ -380,10 +436,10 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       }
 
       Log.w(TAG, "Not for a keep-alive and we have a charge failure. Routing a payment setup error...", true);
-      DonationError.routeBackgroundError(context, uiSessionKey, paymentSetupError);
+      onPaymentFailedError(paymentSetupError);
     } else {
       Log.d(TAG, "Not for a keep-alive and we have a failure status. Routing a payment setup error...", true);
-      DonationError.routeBackgroundError(context, uiSessionKey, new DonationError.PaymentSetupError.GenericError(
+      onPaymentFailedError(new DonationError.PaymentSetupError.GenericError(
           getErrorSource(),
           new Exception("Got a failure status from the subscription object.")
       ));
@@ -399,7 +455,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       setOutputData(new JsonJobData.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).serialize());
     } else {
       Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
-      DonationError.routeBackgroundError(context, uiSessionKey, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+      onGenericRedemptionError();
       throw new Exception(response.getApplicationError().get());
     }
   }
@@ -446,12 +502,12 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     public @NonNull SubscriptionReceiptRequestResponseJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       JsonJobData data = JsonJobData.deserialize(serializedData);
 
-      SubscriberId subscriberId                     = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
-      boolean      isForKeepAlive                   = data.getBooleanOrDefault(DATA_IS_FOR_KEEP_ALIVE, false);
-      String       requestString                    = data.getStringOrDefault(DATA_REQUEST_BYTES, null);
-      byte[]       requestContextBytes              = requestString != null ? Base64.decodeOrThrow(requestString) : null;
-      long         uiSessionKey                     = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
-      boolean      isLongRunningDonationPaymentType = data.getBooleanOrDefault(DATA_IS_LONG_RUNNING, false);
+      SubscriberId subscriberId        = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
+      boolean      isForKeepAlive      = data.getBooleanOrDefault(DATA_IS_FOR_KEEP_ALIVE, false);
+      String       requestString       = data.getStringOrDefault(DATA_REQUEST_BYTES, null);
+      byte[]       requestContextBytes = requestString != null ? Base64.decodeOrThrow(requestString) : null;
+      long         uiSessionKey        = data.getLongOrDefault(DATA_UI_SESSION_KEY, -1L);
+      byte[]       rawTerminalDonation = data.getStringAsBlob(DATA_TERMINAL_DONATION);
 
       ReceiptCredentialRequestContext requestContext;
       if (requestContextBytes != null && SignalStore.donationsValues().getSubscriptionRequestCredential() == null) {
@@ -464,7 +520,25 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         }
       }
 
-      return new SubscriptionReceiptRequestResponseJob(parameters, subscriberId, isForKeepAlive, uiSessionKey, isLongRunningDonationPaymentType);
+      TerminalDonationQueue.TerminalDonation terminalDonation = null;
+      if (rawTerminalDonation != null) {
+        try {
+          terminalDonation = TerminalDonationQueue.TerminalDonation.ADAPTER.decode(rawTerminalDonation);
+        } catch (IOException e) {
+          Log.e(TAG, "Failed to parse terminal donation. Generating a default.");
+        }
+      }
+
+      if (terminalDonation == null) {
+        terminalDonation = new TerminalDonationQueue.TerminalDonation(
+            -1,
+            false,
+            null,
+            ByteString.EMPTY
+        );
+      }
+
+      return new SubscriptionReceiptRequestResponseJob(parameters, subscriberId, isForKeepAlive, uiSessionKey, terminalDonation);
     }
   }
 }

@@ -204,7 +204,7 @@ private fun IdealTransferDetailsContent(
           val fullString = stringResource(id = R.string.IdealTransferDetailsFragment__enter_your_bank, learnMore)
 
           Texts.LinkifiedText(
-            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_url)), // TODO [sepa] -- final URL
+            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_faq_url)),
             onUrlClick = {
               onLearnMoreClick()
             },
@@ -257,7 +257,11 @@ private fun IdealTransferDetailsContent(
               imeAction = ImeAction.Done
             ),
             keyboardActions = KeyboardActions(
-              onDone = { onDonateClick() }
+              onDone = {
+                if (state.canProceed()) {
+                  onDonateClick()
+                }
+              }
             ),
             modifier = Modifier
               .fillMaxWidth()

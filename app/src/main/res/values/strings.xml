@@ -16,6 +16,7 @@
     <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
     <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
     <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
+    <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -4829,6 +4830,10 @@
     <string name="SubscribeFragment__processing_payment">Processing payment…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Error processing payment</string>
+    <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
+    <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
+    <!-- Displayed on manage donations screen error dialogs as an action label -->
+    <string name="DonationsErrors__learn_more">Learn more</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Error processing payment. %1$s</string>
     <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
@@ -5953,6 +5958,15 @@
     <string name="DonationPendingBottomSheet__learn_more">Learn more</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__done">Done</string>
+
+    <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__try_again">Try again</string>
+    <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__not_now">Not now</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Donation Complete</string>

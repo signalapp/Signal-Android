@@ -18,18 +18,18 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.database.model.databaseprotos.DonationCompletedQueue
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class DonationCompletedViewModel(
-  donationCompleted: DonationCompletedQueue.DonationCompleted,
-  repository: DonationCompletedRepository = DonationCompletedRepository(),
+class TerminalDonationViewModel(
+  donationCompleted: TerminalDonationQueue.TerminalDonation,
+  repository: TerminalDonationRepository = TerminalDonationRepository(),
   private val badgeRepository: BadgeRepository
 ) : ViewModel() {
 
   companion object {
-    private val TAG = Log.tag(DonationCompletedViewModel::class.java)
+    private val TAG = Log.tag(TerminalDonationViewModel::class.java)
   }
 
   private val disposables = CompositeDisposable()

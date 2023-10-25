@@ -10,6 +10,7 @@ import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeError
 import org.signal.donations.StripeFailureCode
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 
 sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : Exception(cause) {
 
@@ -147,7 +148,44 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     }
 
     @JvmStatic
-    fun routeBackgroundError(context: Context, uiSessionKey: Long, error: DonationError) {
+    fun DonationError.toDonationErrorValue(): DonationErrorValue {
+      return when (this) {
+        is PaymentSetupError.GenericError -> DonationErrorValue(
+          type = DonationErrorValue.Type.PAYMENT,
+          code = ""
+        )
+        is PaymentSetupError.StripeCodedError -> DonationErrorValue(
+          type = DonationErrorValue.Type.PROCESSOR_CODE,
+          code = this.errorCode
+        )
+        is PaymentSetupError.StripeDeclinedError -> DonationErrorValue(
+          type = DonationErrorValue.Type.DECLINE_CODE,
+          code = this.declineCode.rawCode
+        )
+        is PaymentSetupError.StripeFailureCodeError -> DonationErrorValue(
+          type = DonationErrorValue.Type.FAILURE_CODE,
+          code = this.failureCode.rawCode
+        )
+        is PaymentSetupError.PayPalCodedError -> DonationErrorValue(
+          type = DonationErrorValue.Type.PROCESSOR_CODE,
+          code = this.errorCode.toString()
+        )
+        is PaymentSetupError.PayPalDeclinedError -> DonationErrorValue(
+          type = DonationErrorValue.Type.DECLINE_CODE,
+          code = this.code.code.toString()
+        )
+        else -> error("Don't know how to convert error $this")
+      }
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    fun routeBackgroundError(
+      context: Context,
+      uiSessionKey: Long,
+      error: DonationError,
+      suppressNotification: Boolean = true
+    ) {
       if (error.source == DonationErrorSource.GIFT_REDEMPTION) {
         routeDonationError(context, error)
         return
@@ -158,6 +196,9 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
         subject != null && subject.hasObservers() -> {
           Log.i(TAG, "Routing background donation error to uiSessionKey $uiSessionKey dialog", error)
           subject.onNext(error)
+        }
+        suppressNotification -> {
+          Log.i(TAG, "Suppressing notification for error.", error)
         }
         else -> {
           Log.i(TAG, "Routing background donation error to uiSessionKey $uiSessionKey notification", error)

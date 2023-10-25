@@ -9,9 +9,9 @@ package org.signal.donations
  * Bank Transfer failure codes, as detailed here:
  * https://stripe.com/docs/payments/sepa-debit#failed-payments
  */
-sealed interface StripeFailureCode {
-  data class Known(val code: Code) : StripeFailureCode
-  data class Unknown(val code: String) : StripeFailureCode
+sealed class StripeFailureCode(val rawCode: String) {
+  data class Known(val code: Code) : StripeFailureCode(code.code)
+  data class Unknown(val code: String) : StripeFailureCode(code)
 
   val isKnown get() = this is Known
   enum class Code(val code: String) {

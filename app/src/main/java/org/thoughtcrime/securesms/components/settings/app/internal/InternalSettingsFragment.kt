@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.MegaphoneDatabase
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
@@ -491,6 +492,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         )
       }
 
+      clickPref(
+        title = DSLSettingsText.from("Enqueue terminal donation"),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToTerminalDonationConfigurationFragment())
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("Release channel"))
@@ -757,7 +765,12 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   }
 
   private fun enqueueSubscriptionRedemption() {
-    SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(-1L, false).enqueue()
+    SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(
+      -1L,
+      TerminalDonationQueue.TerminalDonation(
+        level = 1000
+      )
+    ).enqueue()
   }
 
   private fun enqueueSubscriptionKeepAlive() {

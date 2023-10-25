@@ -12,13 +12,14 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragmentArgs
+import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * Handles displaying the "Thank You" or "Donation completed" sheet when the user navigates to an appropriate screen.
  * These sheets are one-shot.
  */
-class DonationCompletedDelegate(
+class TerminalDonationDelegate(
   private val fragmentManager: FragmentManager,
   private val lifecycleOwner: LifecycleOwner
 ) : DefaultLifecycleObserver {
@@ -27,13 +28,13 @@ class DonationCompletedDelegate(
     bindTo(lifecycleOwner)
   }
 
-  private val badgeRepository = DonationCompletedRepository()
+  private val badgeRepository = TerminalDonationRepository()
 
   override fun onResume(owner: LifecycleOwner) {
-    val donations = SignalStore.donationsValues().consumeDonationCompletionList()
+    val donations = SignalStore.donationsValues().consumeTerminalDonations()
     for (donation in donations) {
-      if (donation.isLongRunningPaymentMethod) {
-        DonationCompletedBottomSheet.show(fragmentManager, donation)
+      if (donation.isLongRunningPaymentMethod && (donation.error == null || donation.error.type != DonationErrorValue.Type.REDEMPTION)) {
+        TerminalDonationBottomSheet.show(fragmentManager, donation)
       } else {
         lifecycleDisposable += badgeRepository.getBadge(donation).observeOn(AndroidSchedulers.mainThread()).subscribe { badge ->
           val args = ThanksForYourSupportBottomSheetDialogFragmentArgs.Builder(badge).build().toBundle()
