@@ -4,6 +4,7 @@ import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -140,6 +141,7 @@ object EditMessageProcessor {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }
     val mediaMessage = IncomingMessage(
+      type = MessageType.NORMAL,
       from = senderRecipientId,
       sentTimeMillis = message.timestamp!!,
       serverTimeMillis = envelope.serverTimestamp!!,
@@ -155,8 +157,7 @@ object EditMessageProcessor {
       linkPreviews = DataMessageProcessor.getLinkPreviews(message.preview, message.body ?: "", false),
       mentions = DataMessageProcessor.getMentions(message.bodyRanges),
       serverGuid = envelope.serverGuid,
-      messageRanges = messageRanges,
-      isPushMessage = true
+      messageRanges = messageRanges
     )
 
     val insertResult = SignalDatabase.messages.insertEditMessageInbox(mediaMessage, targetMessage).orNull()
@@ -180,6 +181,7 @@ object EditMessageProcessor {
     targetMessage: MediaMmsMessageRecord
   ): InsertResult? {
     val textMessage = IncomingMessage(
+      type = MessageType.NORMAL,
       from = senderRecipientId,
       sentTimeMillis = envelope.timestamp!!,
       serverTimeMillis = envelope.timestamp!!,

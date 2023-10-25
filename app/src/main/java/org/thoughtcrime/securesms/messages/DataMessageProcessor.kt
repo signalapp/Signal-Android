@@ -313,15 +313,14 @@ object DataMessageProcessor {
 
     try {
       val mediaMessage = IncomingMessage(
+        type = MessageType.EXPIRATION_UPDATE,
         from = senderRecipientId,
         sentTimeMillis = envelope.timestamp!! - if (sideEffect) 1 else 0,
         serverTimeMillis = envelope.serverTimestamp!!,
         receivedTimeMillis = receivedTime,
         expiresIn = expiresIn.inWholeMilliseconds,
-        isExpirationUpdate = true,
         isUnidentified = metadata.sealedSender,
-        serverGuid = envelope.serverGuid,
-        isPushMessage = true
+        serverGuid = envelope.serverGuid
       )
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
@@ -413,6 +412,7 @@ object DataMessageProcessor {
       }
 
       val mediaMessage = IncomingMessage(
+        type = MessageType.NORMAL,
         from = senderRecipientId,
         sentTimeMillis = envelope.timestamp!!,
         serverTimeMillis = envelope.serverTimestamp!!,
@@ -642,7 +642,6 @@ object DataMessageProcessor {
         expiresIn = message.expireTimerDuration.inWholeMilliseconds,
         isUnidentified = metadata.sealedSender,
         serverGuid = envelope.serverGuid,
-        isPushMessage = true,
         type = MessageType.PAYMENTS_NOTIFICATION
       )
 
@@ -746,6 +745,7 @@ object DataMessageProcessor {
       val bodyRanges: BodyRangeList? = message.bodyRanges.filter { it.mentionAci == null }.toList().toBodyRangeList()
 
       val mediaMessage = IncomingMessage(
+        type = MessageType.NORMAL,
         from = senderRecipient.id,
         sentTimeMillis = envelope.timestamp!!,
         serverTimeMillis = envelope.serverTimestamp!!,
@@ -814,6 +814,7 @@ object DataMessageProcessor {
 
     val insertResult: InsertResult? = try {
       val mediaMessage = IncomingMessage(
+        type = MessageType.NORMAL,
         from = senderRecipient.id,
         sentTimeMillis = envelope.timestamp!!,
         serverTimeMillis = envelope.serverTimestamp!!,
@@ -870,6 +871,7 @@ object DataMessageProcessor {
       handlePossibleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient, groupId, message.expireTimerDuration, receivedTime)
 
       val mediaMessage = IncomingMessage(
+        type = MessageType.NORMAL,
         from = senderRecipient.id,
         sentTimeMillis = envelope.timestamp!!,
         serverTimeMillis = envelope.serverTimestamp!!,
@@ -885,8 +887,7 @@ object DataMessageProcessor {
         linkPreviews = linkPreviews,
         mentions = mentions,
         serverGuid = envelope.serverGuid,
-        messageRanges = messageRanges,
-        isPushMessage = true
+        messageRanges = messageRanges
       )
 
       insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
@@ -952,6 +953,7 @@ object DataMessageProcessor {
     notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
     val textMessage = IncomingMessage(
+      type = MessageType.NORMAL,
       from = senderRecipient.id,
       sentTimeMillis = envelope.timestamp!!,
       serverTimeMillis = envelope.serverTimestamp!!,
@@ -1027,6 +1029,7 @@ object DataMessageProcessor {
 
   private fun insertPlaceholder(sender: RecipientId, timestamp: Long, groupId: GroupId?): InsertResult? {
     val textMessage = IncomingMessage(
+      type = MessageType.NORMAL,
       from = sender,
       sentTimeMillis = timestamp,
       serverTimeMillis = -1,

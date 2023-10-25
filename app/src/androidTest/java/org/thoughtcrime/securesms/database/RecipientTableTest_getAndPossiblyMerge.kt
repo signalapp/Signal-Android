@@ -949,6 +949,7 @@ class RecipientTableTest_getAndPossiblyMerge {
 
   private fun smsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMessage {
     return IncomingMessage(
+      type = MessageType.NORMAL,
       from = sender,
       sentTimeMillis = time,
       serverTimeMillis = time,
@@ -961,6 +962,7 @@ class RecipientTableTest_getAndPossiblyMerge {
 
   private fun mmsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMessage {
     return IncomingMessage(
+      type = MessageType.NORMAL,
       from = sender,
       groupId = groupId.orNull(),
       body = body,

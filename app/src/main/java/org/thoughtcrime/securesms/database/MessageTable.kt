@@ -2449,7 +2449,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       retrieved.type == MessageType.IDENTITY_VERIFIED ||
       retrieved.type == MessageType.IDENTITY_UPDATE
 
-    val read = silent || retrieved.isExpirationUpdate
+    val read = silent || retrieved.type == MessageType.EXPIRATION_UPDATE
 
     val contentValues = contentValuesOf(
       DATE_SENT to retrieved.sentTimeMillis,
@@ -2460,7 +2460,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       MMS_MESSAGE_TYPE to PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF,
       THREAD_ID to threadId,
       MMS_STATUS to MmsStatus.DOWNLOAD_INITIALIZED,
-      DATE_RECEIVED to if (retrieved.isPushMessage) retrieved.receivedTimeMillis else generatePduCompatTimestamp(retrieved.receivedTimeMillis),
+      DATE_RECEIVED to retrieved.receivedTimeMillis,
       SMS_SUBSCRIPTION_ID to retrieved.subscriptionId,
       EXPIRES_IN to retrieved.expiresIn,
       VIEW_ONCE to if (retrieved.isViewOnce) 1 else 0,

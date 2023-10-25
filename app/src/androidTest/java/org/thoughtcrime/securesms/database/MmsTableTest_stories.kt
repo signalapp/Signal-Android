@@ -74,6 +74,7 @@ class MmsTableTest_stories {
 
     MmsHelper.insert(
       IncomingMessage(
+        type = MessageType.NORMAL,
         from = sender,
         sentTimeMillis = 2,
         serverTimeMillis = 2,
@@ -96,6 +97,7 @@ class MmsTableTest_stories {
     val sender = recipients[0]
     val messageId = MmsHelper.insert(
       IncomingMessage(
+        type = MessageType.NORMAL,
         from = sender,
         sentTimeMillis = 2,
         serverTimeMillis = 2,
@@ -123,6 +125,7 @@ class MmsTableTest_stories {
     val messageIds = recipients.take(5).map {
       MmsHelper.insert(
         IncomingMessage(
+          type = MessageType.NORMAL,
           from = it,
           sentTimeMillis = 2,
           serverTimeMillis = 2,
@@ -155,6 +158,7 @@ class MmsTableTest_stories {
       Thread.sleep(5)
       MmsHelper.insert(
         IncomingMessage(
+          type = MessageType.NORMAL,
           from = recipients[it],
           sentTimeMillis = System.currentTimeMillis(),
           serverTimeMillis = 2,
@@ -169,6 +173,7 @@ class MmsTableTest_stories {
       Thread.sleep(5)
       MmsHelper.insert(
         IncomingMessage(
+          type = MessageType.NORMAL,
           from = recipients[it],
           sentTimeMillis = System.currentTimeMillis(),
           serverTimeMillis = 2,
@@ -214,6 +219,7 @@ class MmsTableTest_stories {
     // GIVEN
     MmsHelper.insert(
       IncomingMessage(
+        type = MessageType.NORMAL,
         from = recipients[0],
         sentTimeMillis = 200,
         serverTimeMillis = 2,
@@ -322,6 +328,7 @@ class MmsTableTest_stories {
 
     MmsHelper.insert(
       IncomingMessage(
+        type = MessageType.NORMAL,
         from = myStory.id,
         sentTimeMillis = 201,
         serverTimeMillis = 201,

@@ -4,6 +4,7 @@ import android.graphics.Color
 import org.signal.core.util.Base64
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
@@ -59,6 +60,7 @@ object StoryMessageProcessor {
       }
 
       val mediaMessage = IncomingMessage(
+        type = MessageType.NORMAL,
         from = senderRecipient.id,
         sentTimeMillis = envelope.timestamp!!,
         serverTimeMillis = envelope.serverTimestamp!!,

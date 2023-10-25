@@ -14,20 +14,19 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class IncomingMessage(
+  val type: MessageType,
   val from: RecipientId,
-  val groupId: GroupId? = null,
-  val groupContext: MessageGroupContext? = null,
-  val body: String? = null,
-  val isPushMessage: Boolean = false,
-  val storyType: StoryType = StoryType.NONE,
-  val parentStoryId: ParentStoryId? = null,
-  val isStoryReaction: Boolean = false,
   val sentTimeMillis: Long,
   val serverTimeMillis: Long,
   val receivedTimeMillis: Long,
+  val groupId: GroupId? = null,
+  val groupContext: MessageGroupContext? = null,
+  val body: String? = null,
+  val storyType: StoryType = StoryType.NONE,
+  val parentStoryId: ParentStoryId? = null,
+  val isStoryReaction: Boolean = false,
   val subscriptionId: Int = -1,
   val expiresIn: Long = 0,
-  val isExpirationUpdate: Boolean = false,
   val quote: QuoteModel? = null,
   val isUnidentified: Boolean = false,
   val isViewOnce: Boolean = false,
@@ -37,8 +36,7 @@ class IncomingMessage(
   sharedContacts: List<Contact> = emptyList(),
   linkPreviews: List<LinkPreview> = emptyList(),
   mentions: List<Mention> = emptyList(),
-  val giftBadge: GiftBadge? = null,
-  val type: MessageType = MessageType.NORMAL
+  val giftBadge: GiftBadge? = null
 ) {
 
   val attachments: List<Attachment> = ArrayList(attachments)

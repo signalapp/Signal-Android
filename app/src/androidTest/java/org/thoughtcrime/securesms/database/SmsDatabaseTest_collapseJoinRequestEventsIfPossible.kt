@@ -273,6 +273,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
   private fun smsMessage(sender: RecipientId, body: String? = ""): IncomingMessage {
     wallClock++
     return IncomingMessage(
+      type = MessageType.NORMAL,
       from = sender,
       sentTimeMillis = wallClock,
       serverTimeMillis = wallClock,

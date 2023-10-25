@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.releasechannel
 
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
@@ -61,6 +62,7 @@ object ReleaseChannel {
     }
 
     val message = IncomingMessage(
+      type = MessageType.NORMAL,
       from = recipientId,
       sentTimeMillis = System.currentTimeMillis(),
       serverTimeMillis = System.currentTimeMillis(),

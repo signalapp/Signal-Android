@@ -31,6 +31,7 @@ object TestSms {
     threadId: Long = 1
   ): Long {
     val message = IncomingMessage(
+      type = MessageType.NORMAL,
       from = sender,
       sentTimeMillis = sentTimestampMillis,
       serverTimeMillis = serverTimestampMillis,
