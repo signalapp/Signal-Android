@@ -10,7 +10,7 @@ import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -64,7 +64,7 @@ class ConversationItemPreviewer {
       attachment()
     }
 
-    val message = IncomingMediaMessage(
+    val message = IncomingMessage(
       from = other.id,
       body = body,
       sentTimeMillis = System.currentTimeMillis(),
@@ -83,7 +83,7 @@ class ConversationItemPreviewer {
       attachment()
     }
 
-    val message = IncomingMediaMessage(
+    val message = IncomingMessage(
       from = other.id,
       body = body,
       sentTimeMillis = System.currentTimeMillis(),

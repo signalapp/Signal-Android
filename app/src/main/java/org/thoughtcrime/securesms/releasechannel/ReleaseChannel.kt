@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -60,7 +60,7 @@ object ReleaseChannel {
       Optional.empty()
     }
 
-    val message = IncomingMediaMessage(
+    val message = IncomingMessage(
       from = recipientId,
       sentTimeMillis = System.currentTimeMillis(),
       serverTimeMillis = System.currentTimeMillis(),

@@ -19,13 +19,11 @@ import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.war
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isMediaMessage
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWithinLimit
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
@@ -35,7 +33,6 @@ import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
-import java.util.Optional
 
 object EditMessageProcessor {
   fun process(
@@ -142,7 +139,7 @@ object EditMessageProcessor {
     attachments.filter {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }
-    val mediaMessage = IncomingMediaMessage(
+    val mediaMessage = IncomingMessage(
       from = senderRecipientId,
       sentTimeMillis = message.timestamp!!,
       serverTimeMillis = envelope.serverTimestamp!!,
@@ -162,7 +159,7 @@ object EditMessageProcessor {
       isPushMessage = true
     )
 
-    val insertResult = SignalDatabase.messages.insertEditMessageInbox(-1, mediaMessage, targetMessage).orNull()
+    val insertResult = SignalDatabase.messages.insertEditMessageInbox(mediaMessage, targetMessage).orNull()
     if (insertResult?.insertedAttachments != null) {
       SignalDatabase.runPostSuccessfulTransaction {
         val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (_, attachmentId) ->
@@ -182,20 +179,17 @@ object EditMessageProcessor {
     message: DataMessage,
     targetMessage: MediaMmsMessageRecord
   ): InsertResult? {
-    var textMessage = IncomingTextMessage(
-      senderRecipientId,
-      metadata.sourceDeviceId,
-      envelope.timestamp!!,
-      envelope.timestamp!!,
-      targetMessage.dateReceived,
-      message.body,
-      Optional.ofNullable(groupId),
-      targetMessage.expiresIn,
-      metadata.sealedSender,
-      envelope.serverGuid
+    val textMessage = IncomingMessage(
+      from = senderRecipientId,
+      sentTimeMillis = envelope.timestamp!!,
+      serverTimeMillis = envelope.timestamp!!,
+      receivedTimeMillis = targetMessage.dateReceived,
+      body = message.body,
+      groupId = groupId,
+      expiresIn = targetMessage.expiresIn,
+      isUnidentified = metadata.sealedSender,
+      serverGuid = envelope.serverGuid
     )
-
-    textMessage = IncomingEncryptedMessage(textMessage, message.body)
 
     return SignalDatabase.messages.insertEditMessageInbox(textMessage, targetMessage).orNull()
   }

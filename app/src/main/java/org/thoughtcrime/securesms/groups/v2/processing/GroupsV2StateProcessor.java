@@ -39,12 +39,11 @@ import org.thoughtcrime.securesms.jobs.LeaveGroupV2Job;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.mms.IncomingMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
@@ -801,19 +800,22 @@ public class GroupsV2StateProcessor {
           mmsDatabase.markAsSent(messageId, true);
           threadTable.update(threadId, false, false);
         } catch (MmsException e) {
-          Log.w(TAG, e);
+          Log.w(TAG, "Failed to insert outgoing update message!", e);
         }
       } else {
-        MessageTable                        smsDatabase  = SignalDatabase.messages();
-        RecipientId                         sender       = RecipientId.from(editor.get());
-        IncomingTextMessage                 incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
-        IncomingGroupUpdateMessage          groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
-        Optional<MessageTable.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
+        try {
+          MessageTable                        smsDatabase  = SignalDatabase.messages();
+          RecipientId                         sender       = RecipientId.from(editor.get());
+          IncomingMessage                     groupMessage = IncomingMessage.groupUpdate(sender, timestamp, groupId, decryptedGroupV2Context);
+          Optional<MessageTable.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
-        if (insertResult.isPresent()) {
-          SignalDatabase.threads().update(insertResult.get().getThreadId(), false, false);
-        } else {
-          Log.w(TAG, "Could not insert update message");
+          if (insertResult.isPresent()) {
+            SignalDatabase.threads().update(insertResult.get().getThreadId(), false, false);
+          } else {
+            Log.w(TAG, "Could not insert update message");
+          }
+        } catch (MmsException e) {
+          Log.w(TAG, "Failed to insert incoming update message!", e);
         }
       }
     }

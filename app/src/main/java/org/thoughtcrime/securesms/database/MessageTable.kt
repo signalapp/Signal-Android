@@ -56,6 +56,7 @@ import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.core.util.toInt
 import org.signal.core.util.toOptional
 import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
@@ -118,7 +119,7 @@ import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.MessageGroupContext
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -129,8 +130,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
-import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
+import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
 import org.thoughtcrime.securesms.stories.Stories.isFeatureEnabled
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.JsonUtils
@@ -591,20 +591,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
   }
 
-  fun markAsEndSession(id: Long) {
-    updateTypeBitmask(id, MessageTypes.KEY_EXCHANGE_MASK, MessageTypes.END_SESSION_BIT)
-  }
-
   fun markAsInvalidVersionKeyExchange(id: Long) {
     updateTypeBitmask(id, 0, MessageTypes.KEY_EXCHANGE_INVALID_VERSION_BIT)
-  }
-
-  fun markAsDecryptFailed(id: Long) {
-    updateTypeBitmask(id, MessageTypes.ENCRYPTION_MASK, MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT)
-  }
-
-  fun markAsNoSession(id: Long) {
-    updateTypeBitmask(id, MessageTypes.ENCRYPTION_MASK, MessageTypes.ENCRYPTION_REMOTE_NO_SESSION_BIT)
   }
 
   fun markAsUnsupportedProtocolVersion(id: Long) {
@@ -617,10 +605,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun markAsLegacyVersion(id: Long) {
     updateTypeBitmask(id, MessageTypes.ENCRYPTION_MASK, MessageTypes.ENCRYPTION_REMOTE_LEGACY_BIT)
-  }
-
-  fun markAsMissedCall(id: Long, isVideoOffer: Boolean) {
-    updateTypeBitmask(id, MessageTypes.TOTAL_MASK, if (isVideoOffer) MessageTypes.MISSED_VIDEO_CALL_TYPE else MessageTypes.MISSED_AUDIO_CALL_TYPE)
   }
 
   fun markSmsStatus(id: Long, status: Int) {
@@ -982,132 +966,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  @JvmOverloads
-  fun insertMessageInbox(message: IncomingTextMessage, editedMessage: MediaMmsMessageRecord? = null, notifyObservers: Boolean = true): Optional<InsertResult> {
-    var type = MessageTypes.BASE_INBOX_TYPE
-    var tryToCollapseJoinRequestEvents = false
-
-    if (message.isJoined) {
-      type = type and MessageTypes.TOTAL_MASK - MessageTypes.BASE_TYPE_MASK or MessageTypes.JOINED_TYPE
-    } else if (message.isPreKeyBundle) {
-      type = type or (MessageTypes.KEY_EXCHANGE_BIT or MessageTypes.KEY_EXCHANGE_BUNDLE_BIT)
-    } else if (message.isSecureMessage) {
-      type = type or MessageTypes.SECURE_MESSAGE_BIT
-    } else if (message.isGroup) {
-      val incomingGroupUpdateMessage = message as IncomingGroupUpdateMessage
-      type = type or MessageTypes.SECURE_MESSAGE_BIT
-      if (incomingGroupUpdateMessage.isGroupV2) {
-        type = type or (MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT)
-        if (incomingGroupUpdateMessage.isJustAGroupLeave) {
-          type = type or MessageTypes.GROUP_LEAVE_BIT
-        } else if (incomingGroupUpdateMessage.isCancelJoinRequest) {
-          tryToCollapseJoinRequestEvents = true
-        }
-      } else if (incomingGroupUpdateMessage.isUpdate) {
-        type = type or MessageTypes.GROUP_UPDATE_BIT
-      } else if (incomingGroupUpdateMessage.isQuit) {
-        type = type or MessageTypes.GROUP_LEAVE_BIT
-      }
-    } else if (message.isEndSession) {
-      type = type or MessageTypes.SECURE_MESSAGE_BIT
-      type = type or MessageTypes.END_SESSION_BIT
-    }
-
-    if (message.isPush) {
-      type = type or MessageTypes.PUSH_MESSAGE_BIT
-    }
-
-    if (message.isIdentityUpdate) {
-      type = type or MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
-    }
-
-    if (message.isContentPreKeyBundle) {
-      type = type or MessageTypes.KEY_EXCHANGE_CONTENT_FORMAT
-    }
-
-    if (message.isIdentityVerified) {
-      type = type or MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
-    } else if (message.isIdentityDefault) {
-      type = type or MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
-    }
-
-    val silent = message.isIdentityUpdate ||
-      message.isIdentityVerified ||
-      message.isIdentityDefault ||
-      message.isJustAGroupLeave || type and MessageTypes.GROUP_UPDATE_BIT > 0
-
-    val unread = !silent && (
-      message.isSecureMessage ||
-        message.isGroup ||
-        message.isPreKeyBundle ||
-        Util.isDefaultSmsProvider(context)
-      )
-
-    val threadId: Long = if (message.groupId == null) threads.getOrCreateThreadIdFor(message.authorId, false) else threads.getOrCreateThreadIdFor(RecipientId.from(message.groupId!!), true)
-
-    if (tryToCollapseJoinRequestEvents) {
-      val result = collapseJoinRequestEventsIfPossible(threadId, message as IncomingGroupUpdateMessage)
-      if (result.isPresent) {
-        return result
-      }
-    }
-
-    val values = ContentValues()
-    values.put(FROM_RECIPIENT_ID, message.authorId.serialize())
-    values.put(FROM_DEVICE_ID, message.authorDeviceId)
-    values.put(TO_RECIPIENT_ID, Recipient.self().id.serialize())
-    values.put(DATE_RECEIVED, message.receivedTimestampMillis)
-    values.put(DATE_SENT, message.sentTimestampMillis)
-    values.put(DATE_SERVER, message.serverTimestampMillis)
-    values.put(READ, if (unread) 0 else 1)
-    values.put(SMS_SUBSCRIPTION_ID, message.subscriptionId)
-    values.put(EXPIRES_IN, message.expiresIn)
-    values.put(UNIDENTIFIED, message.isUnidentified)
-    values.put(BODY, message.messageBody)
-    values.put(TYPE, type)
-    values.put(THREAD_ID, threadId)
-    values.put(SERVER_GUID, message.serverGuid)
-
-    if (editedMessage != null) {
-      values.put(ORIGINAL_MESSAGE_ID, editedMessage.getOriginalOrOwnMessageId().id)
-    } else {
-      values.putNull(ORIGINAL_MESSAGE_ID)
-    }
-
-    val messageId: Long = writableDatabase.withinTransaction {
-      val id = writableDatabase.insert(TABLE_NAME, null, values)
-
-      if (id < 0) {
-        Log.w(TAG, "Failed to insert text message (${message.sentTimestampMillis}, ${message.authorId}, ThreadId::$threadId)! Likely a duplicate.")
-      } else {
-        if (unread && editedMessage == null) {
-          threads.incrementUnread(threadId, 1, 0)
-        }
-      }
-
-      id
-    }
-
-    if (messageId < 0) {
-      return Optional.empty()
-    }
-
-    threads.markAsActiveEarly(threadId)
-
-    if (!silent) {
-      ThreadUpdateJob.enqueue(threadId)
-      TrimThreadJob.enqueueAsync(threadId)
-    }
-
-    if (notifyObservers) {
-      notifyConversationListeners(threadId)
-    }
-
-    return Optional.of(InsertResult(messageId, threadId))
-  }
-
-  fun insertEditMessageInbox(threadId: Long, mediaMessage: IncomingMediaMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
-    val insertResult = insertMessageInbox(retrieved = mediaMessage, candidateThreadId = threadId, editedMessage = targetMessage, notifyObservers = false)
+  fun insertEditMessageInbox(mediaMessage: IncomingMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
+    val insertResult = insertMessageInbox(retrieved = mediaMessage, editedMessage = targetMessage, notifyObservers = false)
 
     if (insertResult.isPresent) {
       val (messageId) = insertResult.get()
@@ -1119,29 +979,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       writableDatabase.update(TABLE_NAME)
         .values(LATEST_REVISION_ID to messageId)
         .where("$ID = ? OR $LATEST_REVISION_ID = ?", targetMessage.id, targetMessage.id)
-        .run()
-
-      reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
-
-      notifyConversationListeners(targetMessage.threadId)
-    }
-
-    return insertResult
-  }
-
-  fun insertEditMessageInbox(textMessage: IncomingTextMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
-    val insertResult = insertMessageInbox(message = textMessage, editedMessage = targetMessage, notifyObservers = false)
-
-    if (insertResult.isPresent) {
-      val (messageId) = insertResult.get()
-
-      if (targetMessage.expireStarted > 0) {
-        markExpireStarted(messageId, targetMessage.expireStarted)
-      }
-
-      writableDatabase.update(TABLE_NAME)
-        .values(LATEST_REVISION_ID to messageId)
-        .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", targetMessage.id, targetMessage.id)
         .run()
 
       reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
@@ -1890,13 +1727,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleLong(-1)
   }
 
-  private fun getThreadIdFor(retrieved: IncomingMediaMessage): Long {
+  private fun getThreadIdFor(retrieved: IncomingMessage): Long {
     return if (retrieved.groupId != null) {
       val groupRecipientId = recipients.getOrInsertFromPossiblyMigratedGroupId(retrieved.groupId)
       val groupRecipients = Recipient.resolved(groupRecipientId)
       threads.getOrCreateThreadIdFor(groupRecipients)
     } else {
-      val sender = Recipient.resolved(retrieved.from!!)
+      val sender = Recipient.resolved(retrieved.from)
       threads.getOrCreateThreadIdFor(sender)
     }
   }
@@ -2586,8 +2423,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   @JvmOverloads
   @Throws(MmsException::class)
   fun insertMessageInbox(
-    retrieved: IncomingMediaMessage,
-    candidateThreadId: Long,
+    retrieved: IncomingMessage,
+    candidateThreadId: Long = -1,
     editedMessage: MediaMmsMessageRecord? = null,
     notifyObservers: Boolean = true
   ): Optional<InsertResult> {
@@ -2599,10 +2436,25 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       candidateThreadId
     }
 
+    if (retrieved.type == MessageType.GROUP_UPDATE && retrieved.groupContext?.let { GroupV2UpdateMessageUtil.isJoinRequestCancel(it) } == true) {
+      val result = collapseJoinRequestEventsIfPossible(threadId, retrieved)
+      if (result.isPresent) {
+        Log.d(TAG, "[insertMessageInbox] Collapsed join request events.")
+        return result
+      }
+    }
+
+    val silent = MessageTypes.isGroupUpdate(type) ||
+      retrieved.type == MessageType.IDENTITY_DEFAULT ||
+      retrieved.type == MessageType.IDENTITY_VERIFIED ||
+      retrieved.type == MessageType.IDENTITY_UPDATE
+
+    val read = silent || retrieved.isExpirationUpdate
+
     val contentValues = contentValuesOf(
       DATE_SENT to retrieved.sentTimeMillis,
       DATE_SERVER to retrieved.serverTimeMillis,
-      FROM_RECIPIENT_ID to retrieved.from!!.serialize(),
+      FROM_RECIPIENT_ID to retrieved.from.serialize(),
       TO_RECIPIENT_ID to Recipient.self().id.serialize(),
       TYPE to type,
       MMS_MESSAGE_TYPE to PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF,
@@ -2614,7 +2466,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       VIEW_ONCE to if (retrieved.isViewOnce) 1 else 0,
       STORY_TYPE to retrieved.storyType.code,
       PARENT_STORY_ID to if (retrieved.parentStoryId != null) retrieved.parentStoryId.serialize() else 0,
-      READ to if (MessageTypes.isGroupUpdate(type) || retrieved.isExpirationUpdate) 1 else 0,
+      READ to read.toInt(),
       UNIDENTIFIED to retrieved.isUnidentified,
       SERVER_GUID to retrieved.serverGuid,
       LATEST_REVISION_ID to null,
@@ -2655,7 +2507,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       messageRanges = retrieved.messageRanges,
       contentValues = contentValues,
       insertListener = null,
-      updateThread = retrieved.storyType === StoryType.NONE,
+      updateThread = retrieved.storyType === StoryType.NONE && !silent,
       unarchive = true
     )
 
@@ -3596,7 +3448,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   @VisibleForTesting
-  fun collapseJoinRequestEventsIfPossible(threadId: Long, message: IncomingGroupUpdateMessage): Optional<InsertResult> {
+  fun collapseJoinRequestEventsIfPossible(threadId: Long, message: IncomingMessage): Optional<InsertResult> {
     var result: InsertResult? = null
 
     writableDatabase.withinTransaction { db ->
@@ -3604,21 +3456,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val latestMessage = reader.getNext()
 
         if (latestMessage != null && latestMessage.isGroupV2) {
-          val changeEditor: Optional<ServiceId> = message.changeEditor
+          val changeEditor: Optional<ServiceId> = message.groupContext?.let { GroupV2UpdateMessageUtil.getChangeEditor(it) } ?: Optional.empty()
 
           if (changeEditor.isPresent && latestMessage.isGroupV2JoinRequest(changeEditor.get())) {
             val secondLatestMessage = reader.getNext()
 
             val id: Long
             val encodedBody: String
+            val changeRevision: Int = message.groupContext?.let { GroupV2UpdateMessageUtil.getChangeRevision(it) } ?: -1
 
             if (secondLatestMessage != null && secondLatestMessage.isGroupV2JoinRequest(changeEditor.get())) {
               id = secondLatestMessage.id
-              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, message.changeRevision, changeEditor.get().toByteString())
+              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, changeRevision, changeEditor.get().toByteString())
               deleteMessage(latestMessage.id)
             } else {
               id = latestMessage.id
-              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, message.changeRevision, changeEditor.get().toByteString())
+              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, changeRevision, changeEditor.get().toByteString())
             }
 
             db.update(TABLE_NAME)
@@ -4827,56 +4680,37 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   /**
-   * Determines the database type bitmask for theh inbound message.
+   * Determines the database type bitmask for the inbound message.
    */
   @Throws(MmsException::class)
-  private fun IncomingMediaMessage.toMessageType(): Long {
-    var type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT
-    var hasSpecialType = false
-
-    if (this.isPushMessage) {
-      type = type or MessageTypes.PUSH_MESSAGE_BIT
-    }
-
-    if (this.isExpirationUpdate) {
-      type = type or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-    }
-
-    if (this.isStoryReaction) {
-      type = type or MessageTypes.SPECIAL_TYPE_STORY_REACTION
-      hasSpecialType = true
-    }
+  private fun IncomingMessage.toMessageType(): Long {
+    var type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT
 
     if (this.giftBadge != null) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
       type = type or MessageTypes.SPECIAL_TYPE_GIFT_BADGE
-      hasSpecialType = true
     }
 
-    if (this.isPaymentsNotification) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
-      hasSpecialType = true
-    }
+    type = type or when (this.type) {
+      MessageType.NORMAL -> 0
+      MessageType.EXPIRATION_UPDATE -> MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
+      MessageType.STORY_REACTION -> MessageTypes.SPECIAL_TYPE_STORY_REACTION
+      MessageType.PAYMENTS_NOTIFICATION -> MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
+      MessageType.ACTIVATE_PAYMENTS_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
+      MessageType.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
+      MessageType.CONTACT_JOINED -> MessageTypes.JOINED_TYPE
+      MessageType.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
+      MessageType.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
+      MessageType.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
+      MessageType.END_SESSION -> MessageTypes.END_SESSION_BIT
+      MessageType.GROUP_UPDATE -> {
+        val isOnlyGroupLeave = this.groupContext?.let { GroupV2UpdateMessageUtil.isJustAGroupLeave(it) } ?: false
 
-    if (this.isActivatePaymentsRequest) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
+        if (isOnlyGroupLeave) {
+          MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT or MessageTypes.GROUP_LEAVE_BIT
+        } else {
+          MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT
+        }
       }
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
-      hasSpecialType = true
-    }
-
-    if (this.isPaymentsActivated) {
-      if (hasSpecialType) {
-        throw MmsException("Cannot insert message with multiple special types.")
-      }
-      type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
-      hasSpecialType = true
     }
 
     return type

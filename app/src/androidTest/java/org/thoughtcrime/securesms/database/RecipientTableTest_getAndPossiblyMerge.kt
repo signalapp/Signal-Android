@@ -17,6 +17,7 @@ import org.junit.runner.RunWith
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.exists
+import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
@@ -35,11 +36,10 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
 import org.thoughtcrime.securesms.util.Util
@@ -947,12 +947,28 @@ class RecipientTableTest_getAndPossiblyMerge {
     MatcherAssert.assertThat("Distribution list should have updated $recipientIdE164 to $recipientIdAci", updatedList.members, Matchers.containsInAnyOrder(recipientIdAci, recipientIdAciB))
   }
 
-  private fun smsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingTextMessage {
-    return IncomingTextMessage(sender, 1, time, time, time, body, groupId, 0, true, null)
+  private fun smsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMessage {
+    return IncomingMessage(
+      from = sender,
+      sentTimeMillis = time,
+      serverTimeMillis = time,
+      receivedTimeMillis = time,
+      body = body,
+      groupId = groupId.orNull(),
+      isUnidentified = true
+    )
   }
 
-  private fun mmsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMediaMessage {
-    return IncomingMediaMessage(sender, groupId, body, time, time, time, emptyList(), 0, 0, false, false, true, Optional.empty(), false, false)
+  private fun mmsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMessage {
+    return IncomingMessage(
+      from = sender,
+      groupId = groupId.orNull(),
+      body = body,
+      sentTimeMillis = time,
+      receivedTimeMillis = time,
+      serverTimeMillis = time,
+      isUnidentified = true
+    )
   }
 
   private fun identityKey(value: Byte): IdentityKey {
