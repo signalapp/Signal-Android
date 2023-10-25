@@ -16,6 +16,7 @@
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <string name="yes">មែន</string>
     <string name="no">ទេ</string>
@@ -153,11 +154,11 @@
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">One time %1$s</string>
+    <string name="OneTimeDonationPreference__one_time_s">មួយដង %1$s</string>
     <!-- Preference subtitle when donation is pending -->
-    <string name="OneTimeDonationPreference__donation_pending">Donation pending</string>
+    <string name="OneTimeDonationPreference__donation_pending">ការបរិច្ចាគស្ថិតក្នុងការរង់ចាំ</string>
     <!-- Preference subtitle when donation is processing -->
-    <string name="OneTimeDonationPreference__donation_processing">Donation processing</string>
+    <string name="OneTimeDonationPreference__donation_processing">ការបរិច្ចាគកំពុងដំណើរការ</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">ទប់ស្កាត់ និងចាកចេញពី %1$s ឬ?</string>
@@ -2023,9 +2024,11 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s ជាលេខរបស់ %2$s</string>
 
-    <!-- UpdateApkReadyListener -->
-    <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
-    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">កំណែថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព។</string>
+    <!-- ApkUpdateNotifications -->
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
+    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">ផ្ញើសារ?</string>
@@ -4658,9 +4661,9 @@
     <string name="MySupportPreference__couldnt_add_badge_s">មិនអាចដាក់ស្លាកបានទេ។ %1$s</string>
     <string name="MySupportPreference__please_contact_support">សូមទាក់ទងទៅកាន់សេវាគាំទ្រ</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
-    <string name="MySupportPreference__payment_pending">Payment pending</string>
+    <string name="MySupportPreference__payment_pending">ការបង់ប្រាក់ស្ថិតក្នុងការរង់ចាំ</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Your bank transfer of %1$s is pending. Bank transfers usually take 1 business day to complete.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">ការផ្ទេរប្រាក់តាមធនាគាររបស់អ្នកចំនួន %1$s ស្ថិតក្នុងការរង់ចាំ។ ការផ្ទេរប្រាក់តាមធនាគារជាធម្មតាចំណាយពេល 1 ថ្ងៃនៃថ្ងៃធ្វើការដើម្បីបញ្ចប់។  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">ស្វែងយល់បន្ថែម</string>
 
@@ -4715,6 +4718,10 @@
     <string name="SubscribeFragment__processing_payment">កំពុងដំណើរការការទូទាត់…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">បរាជ័យក្នុងដំណើរការទូទាត់ប្រាក់</string>
+    <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
+    <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
+    <!-- Displayed on manage donations screen error dialogs as an action label -->
+    <string name="DonationsErrors__learn_more">Learn more</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">បរាជ័យក្នុងដំណើរការទូទាត់ប្រាក់ %1$s</string>
     <string name="DonationsErrors__your_payment">ការបង់ប្រាក់របស់អ្នកមិនអាចដំណើរការបានទេ ហើយអ្នកក៏មិនទាន់ត្រូវបានគិតប្រាក់ដែរ។ សូមព្យាយាមម្ដងទៀត។</string>
@@ -4807,15 +4814,15 @@
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_account_provided">The bank account provided has insufficient funds to complete this purchase, try again or contact your bank for more information.</string>
+    <string name="StripeFailureCode__the_bank_account_provided">គណនីធនាគារដែលបានផ្តល់មិនមានទឹកប្រាក់គ្រប់គ្រាន់ដើម្បីបញ្ចប់ការទិញនេះទេ។ សូមព្យាយាមម្តងទៀត ឬទាក់ទងធនាគាររបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម។</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">This payment was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">ការបង់ប្រាក់នេះត្រូវបានលុបចោលវិញដោយម្ចាស់គណនី ហើយមិនអាចដំណើរការបានទេ។ អ្នកមិនត្រូវបានគិតប្រាក់ទេ។</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this payment, please try again.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">មានបញ្ហាមួយបានកើតឡើង នៅពេលដំណើរការការបង់ប្រាក់នេះ។ សូមព្យាយាមម្តងទៀត។</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">The bank details provided could not be processed, contact your bank for more information.</string>
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">ព័ត៌មានលម្អិតនៃធនាគារដែលអ្នកបានផ្តល់មិនអាចដំណើរការបានទេ។ សូមទាក់ទងធនាគាររបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម។</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Verify your bank details are correct and try again. If the problem continues, contact your bank.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">ផ្ទៀងផ្ទាត់ថាព័ត៌មានលម្អិតនៃធនាគាររបស់អ្នកពិតជាត្រឹមត្រូវ រួចព្យាយាមម្តងទៀត។ ប្រសិនបើនៅតែមានបញ្ហា សូមទាក់ទងធនាគាររបស់អ្នក។</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">ដាក់ឈ្មោះគណនីអ្នក</string>
@@ -5713,6 +5720,10 @@
     <!-- Button label for paying with iDEAL -->
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
+    <!-- Dialog title for launching external intent -->
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
     <string name="IdealBank__abn_amro">ABN AMRO</string>
@@ -5750,6 +5761,8 @@
     <string name="BankTransferMandateFragment__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">បន្ត</string>
+    <!-- Text displayed when mandate load fails -->
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -5762,26 +5775,26 @@
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">អ៊ីម៉ែល</string>
-    <!-- Text label for button to show user how to find their IBAN number -->
-    <string name="BankTransferDetailsFragment__find_account_info">Find account info</string>
+    <!-- Text label for button to show user how to find their IBAN -->
+    <string name="BankTransferDetailsFragment__find_account_info">ស្វែងរកព័ត៌មានគណនី</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">បរិច្ចាគ %1$s/ខែ</string>
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">បរិច្ចាគ %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_short">លេខ IBAN ខ្លីពេក</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN is too short</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_nubmer_is_too_long">លេខ IBAN វែងពេក</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN is too long</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">មិនស្គាល់លេខកូដប្រទេស IBAN</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban_nubmer">លេខ IBAN មិនត្រឹមត្រូវ</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">Invalid IBAN</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your bank, name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">បញ្ចូលធនាគារ ឈ្មោះ និងអ៊ីមែលរបស់អ្នក។ Stripe ប្រើអ៊ីមែលនេះដើម្បីផ្ញើព័ត៌មានថ្មីៗមកអ្នកអំពីការបរិច្ចាគរបស់អ្នក។ %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -5789,34 +5802,43 @@
     <!-- Hint label for text entry box for email -->
     <string name="IdealTransferDetailsFragment__email">អ៊ីម៉ែល</string>
     <!-- Default label for bank selection -->
-    <string name="IdealTransferDetailsFragment__choose_your_bank">Choose your bank</string>
+    <string name="IdealTransferDetailsFragment__choose_your_bank">ជ្រើសរើសធនាគាររបស់អ្នក</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Choose your bank</string>
+    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">ជ្រើសរើសធនាគាររបស់អ្នក</string>
 
     <!-- Title of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__find_your_account_information">Find your account information</string>
+    <string name="FindAccountInfoSheet__find_your_account_information">ស្វែងរកព័ត៌មានគណនីរបស់អ្នក</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban">Look for your IBAN number at the top of your bank statement. IBAN numbers contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">Look for your IBAN at the top of your bank statement. IBANs contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
-    <string name="DonationPendingBottomSheet__donation_pending">Donation pending</string>
+    <string name="DonationPendingBottomSheet__donation_pending">ការបរិច្ចាគស្ថិតក្នុងការរង់ចាំ</string>
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Your monthly donation is pending. You’ll be able to display the %1$s badge on your profile when your donation is received.</string>
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">ការបរិច្ចាគប្រចាំខែរបស់អ្នកស្ថិតក្នុងការរង់ចាំ។ អ្នកនឹងអាចបង្ហាញស្លាក %1$s នៅលើប្រូហ្វាល់របស់អ្នក នៅពេលដែលការបរិច្ចាគរបស់អ្នកត្រូវបានទទួល។</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Your one-time donation is pending. You’ll be able to display the %1$s badge on your profile when your donation is received.</string>
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">ការបរិច្ចាគតែមួយដងរបស់អ្នកស្ថិតក្នុងការរង់ចាំ។ អ្នកនឹងអាចបង្ហាញស្លាក %1$s នៅលើប្រូហ្វាល់របស់អ្នក នៅពេលដែលការបរិច្ចាគរបស់អ្នកត្រូវបានទទួល។</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Bank transfers usually take 1 business day to process. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">ការផ្ទេរប្រាក់តាមធនាគារជាធម្មតាចំណាយពេល 1 ថ្ងៃនៃថ្ងៃធ្វើការដើម្បីដំណើរការ។ %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__done">រួចរាល់</string>
 
+    <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__try_again">Try again</string>
+    <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
+    <string name="DonationErrorBottomSheet__not_now">Not now</string>
+
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompletedBottomSheet__donation_complete">Donation Complete</string>
+    <string name="DonationCompletedBottomSheet__donation_complete">ការបរិច្ចាគបានជោគជ័យ</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Your bank transfer was received. You can choose to display this badge on your profile to show off your support.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">ការផ្ទេរប្រាក់តាមធនាគាររបស់អ្នកត្រូវបានទទួល។ អ្នកអាចជ្រើសរើសបង្ហាញស្លាកនេះនៅលើប្រូហ្វាល់របស់អ្នកដើម្បីបង្ហាញការគាំទ្ររបស់អ្នក។</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">រួចរាល់</string>
 
