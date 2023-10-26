@@ -2537,7 +2537,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val isNotStoryGroupReply = retrieved.parentStoryId == null || !retrieved.parentStoryId.isGroupReply()
 
-    if (!MessageTypes.isPaymentsActivated(type) && !MessageTypes.isPaymentsRequestToActivate(type) && !MessageTypes.isExpirationTimerUpdate(type) && !retrieved.storyType.isStory && isNotStoryGroupReply) {
+    if (!MessageTypes.isPaymentsActivated(type) && !MessageTypes.isPaymentsRequestToActivate(type) && !MessageTypes.isExpirationTimerUpdate(type) && !retrieved.storyType.isStory && isNotStoryGroupReply && !silent) {
       val incrementUnreadMentions = retrieved.mentions.isNotEmpty() && retrieved.mentions.any { it.recipientId == Recipient.self().id }
       threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0)
       ThreadUpdateJob.enqueue(threadId)
