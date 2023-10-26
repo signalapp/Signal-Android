@@ -121,7 +121,9 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%'
       """
     )
-    private val ALL_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'")
+
+    private val ALL_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.DATA} IS NOT NULL AND ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'")
+
     private val DOCUMENT_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
