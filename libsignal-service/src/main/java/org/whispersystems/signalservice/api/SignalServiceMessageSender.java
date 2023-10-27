@@ -798,6 +798,7 @@ public class SignalServiceMessageSender {
     if (attachment.getResumableUploadSpec().isPresent()) {
       return uploadAttachmentV4(attachment, attachmentKey, attachmentData);
     } else {
+      Log.w(TAG, "Using legacy attachment upload endpoint.");
       return uploadAttachmentV2(attachment, attachmentKey, attachmentData);
     }
   }

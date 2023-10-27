@@ -13,6 +13,10 @@ import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * No longer used. Functionality has been merged into {@link AttachmentUploadJob}.
+ */
+@Deprecated
 public class ResumableUploadSpecJob extends BaseJob {
 
   private static final String TAG = Log.tag(ResumableUploadSpecJob.class);
@@ -20,14 +24,6 @@ public class ResumableUploadSpecJob extends BaseJob {
   static final String KEY_RESUME_SPEC = "resume_spec";
 
   public static final String KEY = "ResumableUploadSpecJob";
-
-  public ResumableUploadSpecJob() {
-    this(new Job.Parameters.Builder()
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setMaxAttempts(Parameters.UNLIMITED)
-                           .build());
-  }
 
   private ResumableUploadSpecJob(@NonNull Parameters parameters) {
     super(parameters);

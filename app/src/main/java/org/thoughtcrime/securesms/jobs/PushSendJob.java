@@ -242,16 +242,9 @@ public abstract class PushSendJob extends SendJob {
     return new HashSet<>(Stream.of(attachments).map(a -> {
                                                  AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId());
 
-                                                 if (message.isGroup()) {
-                                                   jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
-                                                             .then(attachmentUploadJob)
-                                                             .enqueue();
-                                                 } else {
-                                                   jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
-                                                             .then(new ResumableUploadSpecJob())
-                                                             .then(attachmentUploadJob)
-                                                             .enqueue();
-                                                 }
+                                                 jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
+                                                           .then(attachmentUploadJob)
+                                                           .enqueue();
 
                                                  return attachmentUploadJob.getId();
                                                })

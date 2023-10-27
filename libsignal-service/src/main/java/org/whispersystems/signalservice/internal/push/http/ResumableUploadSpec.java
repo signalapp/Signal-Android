@@ -6,7 +6,6 @@ import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -68,15 +67,15 @@ public final class ResumableUploadSpec {
     return headers;
   }
 
-  public String serialize() {
+  public ResumableUpload toProto() {
     ResumableUpload.Builder builder = new ResumableUpload.Builder()
-                                                         .secretKey(ByteString.of(getSecretKey()))
-                                                         .iv(ByteString.of(getIV()))
-                                                         .timeout(getExpirationTimestamp())
-                                                         .cdnNumber(getCdnNumber())
-                                                         .cdnKey(getCdnKey())
-                                                         .location(getResumeLocation())
-                                                         .timeout(getExpirationTimestamp());
+        .secretKey(ByteString.of(getSecretKey()))
+        .iv(ByteString.of(getIV()))
+        .timeout(getExpirationTimestamp())
+        .cdnNumber(getCdnNumber())
+        .cdnKey(getCdnKey())
+        .location(getResumeLocation())
+        .timeout(getExpirationTimestamp());
 
     builder.headers(
         headers.entrySet()
@@ -85,31 +84,38 @@ public final class ResumableUploadSpec {
                .collect(Collectors.toList())
     );
 
-    return Base64.encodeWithPadding(builder.build().encode());
+    return builder.build();
+  }
+
+  public String serialize() {
+    return Base64.encodeWithPadding(toProto().encode());
   }
 
   public static ResumableUploadSpec deserialize(String serializedSpec) throws ResumeLocationInvalidException {
-    if (serializedSpec == null) return null;
-
     try {
       ResumableUpload resumableUpload = ResumableUpload.ADAPTER.decode(Base64.decode(serializedSpec));
-
-      Map<String, String> headers = new HashMap<>();
-      for (ResumableUpload.Header header : resumableUpload.headers) {
-        headers.put(header.key, header.value_);
-      }
-
-      return new ResumableUploadSpec(
-          resumableUpload.secretKey.toByteArray(),
-          resumableUpload.iv.toByteArray(),
-          resumableUpload.cdnKey,
-          resumableUpload.cdnNumber,
-          resumableUpload.location,
-          resumableUpload.timeout,
-          headers
-      );
+      return from(resumableUpload);
     } catch (IOException e) {
       throw new ResumeLocationInvalidException();
     }
+  }
+
+  public static ResumableUploadSpec from(ResumableUpload resumableUpload) throws ResumeLocationInvalidException {
+    if (resumableUpload == null) return null;
+
+    Map<String, String> headers = new HashMap<>();
+    for (ResumableUpload.Header header : resumableUpload.headers) {
+      headers.put(header.key, header.value_);
+    }
+
+    return new ResumableUploadSpec(
+        resumableUpload.secretKey.toByteArray(),
+        resumableUpload.iv.toByteArray(),
+        resumableUpload.cdnKey,
+        resumableUpload.cdnNumber,
+        resumableUpload.location,
+        resumableUpload.timeout,
+        headers
+    );
   }
 }

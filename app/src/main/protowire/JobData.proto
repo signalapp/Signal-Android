@@ -2,8 +2,11 @@ syntax = "proto3";
 
 package signal;
 
+import "ResumableUploads.proto";
+
 option java_package        = "org.thoughtcrime.securesms.jobs.protos";
 option java_multiple_files = true;
+
 
 message CallSyncEventJobRecord {
   uint64 recipientId = 1;
@@ -27,4 +30,10 @@ message CallLogEventSendJobData {
 
 message CallLinkUpdateSendJobData {
   string callLinkRoomId = 1;
+}
+
+message AttachmentUploadJobData {
+  uint64 attachmentRowId = 1;
+  uint64 attachmentUniqueId = 2;
+  optional ResumableUpload uploadSpec = 3;
 }
