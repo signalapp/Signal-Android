@@ -63,7 +63,7 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
     Log.i(TAG, "Checking for APK update...")
 
     val client = OkHttpClient()
-    val request = Request.Builder().url("${BuildConfig.APK_UPDATE_URL}/latest.json").build()
+    val request = Request.Builder().url(BuildConfig.APK_UPDATE_MANIFEST_URL).build()
 
     val rawUpdateDescriptor: String = client.newCall(request).execute().use { response ->
       if (!response.isSuccessful || response.body() == null) {

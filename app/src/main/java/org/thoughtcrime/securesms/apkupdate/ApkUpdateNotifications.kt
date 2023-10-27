@@ -66,9 +66,32 @@ object ApkUpdateNotifications {
       .setSmallIcon(R.drawable.ic_notification)
       .setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       .setContentIntent(pendingIntent)
+      .setAutoCancel(true)
       .build()
 
     ServiceUtil.getNotificationManager(context).notify(NotificationIds.APK_UPDATE_FAILED_INSTALL, notification)
+  }
+
+  fun showAutoUpdateSuccess(context: Context) {
+    val pendingIntent = PendingIntent.getActivity(
+      context,
+      0,
+      Intent(context, MainActivity::class.java),
+      PendingIntentFlags.immutable()
+    )
+
+    val appVersionName = context.packageManager.getPackageInfo(context.packageName, 0).versionName
+
+    val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().APP_UPDATES)
+      .setContentTitle(context.getString(R.string.ApkUpdateNotifications_auto_update_success_title))
+      .setContentText(context.getString(R.string.ApkUpdateNotifications_auto_update_success_body, appVersionName))
+      .setSmallIcon(R.drawable.ic_notification)
+      .setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
+      .setContentIntent(pendingIntent)
+      .setAutoCancel(true)
+      .build()
+
+    ServiceUtil.getNotificationManager(context).notify(NotificationIds.APK_UPDATE_SUCCESSFUL_INSTALL, notification)
   }
 
   enum class FailureReason {

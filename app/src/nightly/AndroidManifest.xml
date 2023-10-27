@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION"/>
+
+    <application>
+        <receiver android:name=".apkupdate.ApkUpdateRefreshListener" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".apkupdate.ApkUpdateDownloadManagerReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".apkupdate.ApkUpdatePackageInstallerReceiver"
+            android:exported="true" />
+
+        <receiver
+            android:name=".apkupdate.ApkUpdateNotificationReceiver"
+            android:exported="false" />
+    </application>
+</manifest>

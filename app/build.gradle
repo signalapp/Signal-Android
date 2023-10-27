@@ -320,22 +320,26 @@ android {
             dimension 'distribution'
             isDefault true
             buildConfigField "boolean", "MANAGES_APP_UPDATES", "false"
-            buildConfigField "String", "APK_UPDATE_URL", "null"
+            buildConfigField "String", "APK_UPDATE_MANIFEST_URL", "null"
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"play\""
         }
 
         website {
             dimension 'distribution'
             buildConfigField "boolean", "MANAGES_APP_UPDATES", "true"
-            buildConfigField "String", "APK_UPDATE_URL", "\"https://updates.signal.org/android\""
+            buildConfigField "String", "APK_UPDATE_MANIFEST_URL", "\"https://updates.signal.org/android/latest.json\""
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"website\""
         }
 
         nightly {
+            def apkUpdateManifestUrl = "<unset>"
+            if (project.hasProperty('nightlyApkUpdateManifestUrl')) {
+                apkUpdateManifestUrl = project.getProperty('nightlyApkUpdateManifestUrl')
+            }
             dimension 'distribution'
             versionNameSuffix "-nightly-untagged-${getDateSuffix()}"
-            buildConfigField "boolean", "MANAGES_APP_UPDATES", "false"
-            buildConfigField "String", "APK_UPDATE_URL", "null"
+            buildConfigField "boolean", "MANAGES_APP_UPDATES", "true"
+            buildConfigField "String", "APK_UPDATE_MANIFEST_URL", "\"${apkUpdateManifestUrl}\""
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\""
         }
 
@@ -400,6 +404,9 @@ android {
                         tag = tag.substring(1)
                     }
                     output.versionNameOverride = tag
+                    output.outputFileName = output.outputFileName.replace(".apk", "-${versionNameOverride}.apk")
+                } else {
+                    output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
                 }
             } else {
                 output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
@@ -658,6 +665,23 @@ tasks.withType(Test) {
         showStackTraces true
     }
 }
+
+project.tasks.configureEach { task ->
+    if (task.name.toLowerCase().contains("nightly") && task.name != 'checkNightlyParams') {
+        task.dependsOn checkNightlyParams
+    }
+}
+
+tasks.register('checkNightlyParams') {
+    doFirst {
+        if (project.gradle.startParameter.taskNames.any { it.toLowerCase().contains("nightly") }) {
+            if (!project.hasProperty('nightlyApkUpdateManifestUrl')) {
+                throw new GradleException("Required command-line parameter 'nightlyApkUpdateManifestUrl' not found for nightly build!")
+            }
+        }
+    }
+}
+
 
 def loadKeystoreProperties(filename) {
     def keystorePropertiesFile = file("${project.rootDir}/${filename}")

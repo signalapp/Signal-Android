@@ -9,6 +9,7 @@ public final class NotificationIds {
   public static final int FCM_FAILURE                       = 12;
   public static final int APK_UPDATE_PROMPT_INSTALL         = 666;
   public static final int APK_UPDATE_FAILED_INSTALL         = 667;
+  public static final int APK_UPDATE_SUCCESSFUL_INSTALL     = 668;
   public static final int PENDING_MESSAGES                  = 1111;
   public static final int MESSAGE_SUMMARY                   = 1338;
   public static final int APPLICATION_MIGRATION             = 4242;

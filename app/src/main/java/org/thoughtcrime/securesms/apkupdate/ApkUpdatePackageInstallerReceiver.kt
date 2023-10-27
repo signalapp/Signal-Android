@@ -34,8 +34,11 @@ class ApkUpdatePackageInstallerReceiver : BroadcastReceiver() {
     Log.w(TAG, "[onReceive] Status: $statusCode, Message: $statusMessage")
 
     when (statusCode) {
+      PackageInstaller.STATUS_SUCCESS -> {
+        Log.i(TAG, "Update installed successfully!")
+        ApkUpdateNotifications.showAutoUpdateSuccess(context)
+      }
       PackageInstaller.STATUS_PENDING_USER_ACTION -> handlePendingUserAction(context, userInitiated, intent!!)
-      PackageInstaller.STATUS_SUCCESS -> Log.w(TAG, "Update installed successfully!")
       PackageInstaller.STATUS_FAILURE_ABORTED -> ApkUpdateNotifications.showInstallFailed(context, FailureReason.ABORTED)
       PackageInstaller.STATUS_FAILURE_BLOCKED -> ApkUpdateNotifications.showInstallFailed(context, FailureReason.BLOCKED)
       PackageInstaller.STATUS_FAILURE_INCOMPATIBLE -> ApkUpdateNotifications.showInstallFailed(context, FailureReason.INCOMPATIBLE)

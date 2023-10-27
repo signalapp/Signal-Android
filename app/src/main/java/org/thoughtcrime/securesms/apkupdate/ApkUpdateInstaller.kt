@@ -16,6 +16,7 @@ import org.signal.core.util.getDownloadManager
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FileUtils
 import java.io.FileInputStream
 import java.io.IOException
@@ -86,17 +87,6 @@ object ApkUpdateInstaller {
     Log.d(TAG, "Beginning APK install...")
     val packageInstaller: PackageInstaller = context.packageManager.packageInstaller
 
-    Log.d(TAG, "Clearing inactive sessions...")
-    packageInstaller.mySessions
-      .filter { session -> !session.isActive }
-      .forEach { session ->
-        try {
-          packageInstaller.abandonSession(session.sessionId)
-        } catch (e: SecurityException) {
-          Log.w(TAG, "Failed to abandon inactive session!", e)
-        }
-      }
-
     val sessionParams = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL).apply {
       // At this point, we always want to set this if possible, since we've already prompted the user with our own notification when necessary.
       // This lets us skip the system-generated notification.
@@ -151,8 +141,7 @@ object ApkUpdateInstaller {
   }
 
   private fun shouldAutoUpdate(): Boolean {
-    // TODO Auto-updates temporarily disabled. Once we have designs for allowing users to opt-out of auto-updates, we can re-enable this
-    return false
-//    return Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate().autoUpdate && !ApplicationDependencies.getAppForegroundObserver().isForegrounded
+    // TODO Auto-updates temporarily restricted to nightlies. Once we have designs for allowing users to opt-out of auto-updates, we can re-enable this
+    return Environment.IS_NIGHTLY && Build.VERSION.SDK_INT >= 31 && SignalStore.apkUpdate().autoUpdate && !ApplicationDependencies.getAppForegroundObserver().isForegrounded
   }
 }
