@@ -2025,7 +2025,7 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s 属于%2$s</string>
 
     <!-- ApkUpdateNotifications -->
-    <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal 更新</string>
     <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
     <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
@@ -4719,9 +4719,9 @@
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">处理付款发生错误</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
-    <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__try_another_payment_method">请尝试另一种付款方式或联系您的银行了解详情。</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
-    <string name="DonationsErrors__learn_more">Learn more</string>
+    <string name="DonationsErrors__learn_more">了解详情</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">处理付款发生错误。%1$s</string>
     <string name="DonationsErrors__your_payment">系统无法处理您的付款，并且您尚未被扣款。请重试。</string>
@@ -5831,9 +5831,9 @@
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__try_again">Try again</string>
+    <string name="DonationErrorBottomSheet__try_again">重试</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__not_now">Not now</string>
+    <string name="DonationErrorBottomSheet__not_now">稍后再说</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">捐款完成</string>
@@ -6254,7 +6254,7 @@
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
-    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">开启</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->

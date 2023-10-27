@@ -2098,7 +2098,7 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s appartient à %2$s</string>
 
     <!-- ApkUpdateNotifications -->
-    <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
+    <string name="ApkUpdateNotifications_prompt_install_title">Mise à jour de Signal</string>
     <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
     <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
@@ -4772,7 +4772,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Paiement en attente</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Votre virement bancaire de %1$s est en attente. Le traitement des virements bancaires prend généralement 1 jour ouvré.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Votre virement de %1$s est en attente. Le traitement des virements prend généralement 1 jour ouvré.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">En savoir plus</string>
 
@@ -4828,9 +4828,9 @@
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Erreur de traitement du paiement</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
-    <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__try_another_payment_method">Essayez un autre mode de paiement ou contactez votre banque pour plus d’informations.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
-    <string name="DonationsErrors__learn_more">Learn more</string>
+    <string name="DonationsErrors__learn_more">En savoir plus</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Erreur de traitement du paiement. %1$s</string>
     <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
@@ -4931,7 +4931,7 @@
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Les coordonnées bancaires renseignées n’ont pas été reconnues. Veuillez contacter votre banque pour plus d’informations.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier que vos informations bancaires sont correctes puis réessayez. Si le problème persiste, veuillez contacter votre banque.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier que vos informations bancaires sont correctes puis réessayeréessayer. Si le problème persiste, veuillez contacter votre banque.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Nommez votre profil</string>
@@ -5946,9 +5946,9 @@
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">Don en attente</string>
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Votre don mensuel est en attente. Une fois que nous aurons reçu votre don, vous pourrez afficher le macaron %1$s dans votre profil.</string>
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Votre don mensuel est en attente. Une fois votre don reçu, vous pourrez afficher le macaron %1$s dans votre profil.</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Votre don ponctuel est en attente. Une fois que nous aurons reçu votre don, vous pourrez afficher le macaron %1$s dans votre profil.</string>
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Votre don ponctuel est en attente. Une fois votre don reçu, vous pourrez afficher le macaron %1$s dans votre profil.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Le traitement des virements bancaires prend généralement 1 jour ouvré. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
@@ -5961,14 +5961,14 @@
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__try_again">Try again</string>
+    <string name="DonationErrorBottomSheet__try_again">Réessayer</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__not_now">Not now</string>
+    <string name="DonationErrorBottomSheet__not_now">Pas maintenant</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Don effectué</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Votre virement bancaire a bien été reçu. Vous pouvez afficher ce macaron sur votre profil pour montrer votre soutien.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Votre virement a bien été reçu. Vous pouvez afficher ce macaron sur votre profil pour montrer votre soutien.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">Terminé</string>
 
@@ -6390,7 +6390,7 @@
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
-    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Activer</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->

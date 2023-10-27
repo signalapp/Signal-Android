@@ -2025,7 +2025,7 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s ကို %2$s က ပိုင်ဆိုင်ပါသည်</string>
 
     <!-- ApkUpdateNotifications -->
-    <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
+    <string name="ApkUpdateNotifications_prompt_install_title">Signal ဗားရှင်းအသစ်</string>
     <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
     <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
@@ -4719,9 +4719,9 @@
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">ငွေပေးချေမှု စီမံလုပ်ဆောင်ခြင်းဆိုင်ရာ ချို့ယွင်းချက်</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
-    <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__try_another_payment_method">အခြားသော ငွေပေးချေနည်းကို သုံးကြည့်ပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
-    <string name="DonationsErrors__learn_more">Learn more</string>
+    <string name="DonationsErrors__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">ငွေပေးချေမှု စီမံလုပ်ဆောင်ခြင်းဆိုင်ရာ ချို့ယွင်းချက်။ %1$s</string>
     <string name="DonationsErrors__your_payment">သင့်ငွေပေးချေမှုကို စီမံလုပ်ဆောင်၍ မရနိုင်ပါ၊ သင့်အား ငွေကောက်ခံထားခြင်း မရှိပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
@@ -5831,9 +5831,9 @@
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__try_again">Try again</string>
+    <string name="DonationErrorBottomSheet__try_again">ထပ်မံကြိုးစားမည်</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__not_now">Not now</string>
+    <string name="DonationErrorBottomSheet__not_now">ယခု မလုပ်သေးပါ</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">လှူဒါန်းမှု ပြီးစီးပါပြီ</string>
@@ -6254,7 +6254,7 @@
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
-    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">ဖွင့်မည်</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->

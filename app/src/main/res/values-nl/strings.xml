@@ -21,7 +21,7 @@
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="delete">Wissen</string>
-    <string name="please_wait">Even geduld …</string>
+    <string name="please_wait">Even geduld…</string>
     <string name="save">Opslaan</string>
     <string name="note_to_self">Notitie aan mezelf</string>
 
@@ -38,7 +38,7 @@
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal wordt nu bijgewerkt …</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal wordt nu bijgewerkt…</string>
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld.</string>
@@ -101,11 +101,11 @@
     <string name="AttachmentManager__cancel">Annuleren</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Media aan het uploaden …</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Video aan het comprimeren …</string>
+    <string name="AttachmentUploadJob_uploading_media">Media aan het uploaden…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Video aan het comprimeren…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">Aan het nagaan of er nieuwe berichten zijn …</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">Aan het nagaan of er nieuwe berichten zijn…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -452,12 +452,12 @@
         <item quantity="one">Bijlage opslaan in lokale opslag…</item>
         <item quantity="other">%1$d bijlagen opslaan in lokale opslag…</item>
     </plurals>
-    <string name="ConversationFragment_pending">In afwachting …</string>
+    <string name="ConversationFragment_pending">In afwachting…</string>
     <string name="ConversationFragment_push">Internet (versleuteld met Signal-protocol)</string>
     <string name="ConversationFragment_mms">Mms (niet versleuteld)</string>
     <string name="ConversationFragment_sms">Sms (niet versleuteld)</string>
     <string name="ConversationFragment_deleting">Aan het wissen</string>
-    <string name="ConversationFragment_deleting_messages">Berichten aan het wissen …</string>
+    <string name="ConversationFragment_deleting_messages">Berichten aan het wissen…</string>
     <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
     <string name="ConversationFragment_delete_for_everyone">Wissen voor iedereen</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
@@ -636,12 +636,12 @@
     <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal-app en tik op “Back-upgegevens terugzetten”. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Meer lezen</string>
-    <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
+    <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">Back-up verifiëren…</string>
-    <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
+    <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d…</string>
     <!-- Show percentage of completion of backup -->
-    <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tot nu toe …</string>
+    <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tot nu toe…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om back-upbestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
 
 
@@ -714,7 +714,7 @@
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen kan het niet langer berichten verzenden en ontvangen.</string>
     <string name="DeviceListActivity_network_connection_failed">Netwerkfout</string>
     <string name="DeviceListActivity_try_again">Opnieuw proberen</string>
-    <string name="DeviceListActivity_unlinking_device">Apparaat aan het ontkoppelen …</string>
+    <string name="DeviceListActivity_unlinking_device">Apparaat aan het ontkoppelen…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Apparaat aan het ontkoppelen</string>
     <string name="DeviceListActivity_network_failed">Netwerkfout!</string>
 
@@ -977,7 +977,7 @@
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal Messenger te gebruiken.</string>
     <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
     <string name="ManageGroupActivity_more"> meer</string>
-    <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe …</string>
+    <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
@@ -1125,7 +1125,7 @@
     <string name="InviteActivity_share_via">Delen via …</string>
 
     <string name="InviteActivity_cancel">Annuleren</string>
-    <string name="InviteActivity_sending">Bezig met verzenden …</string>
+    <string name="InviteActivity_sending">Bezig met verzenden…</string>
     <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
     <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
     <string name="InviteActivity_send_sms">Sms verzenden (%1$d)</string>
@@ -1164,8 +1164,8 @@
         <item quantity="other">Dit zal alle %1$d geselecteerde bestanden permanent verwijderen. Als er tekst was bijgevoegd, zal ook die worden verwijderd.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het wissen</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen …</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Bijlagen aan het verzamelen …</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen…</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Bijlagen aan het verzamelen…</string>
     <string name="MediaOverviewActivity_Sort_by">Sorteren op</string>
     <string name="MediaOverviewActivity_Newest">Nieuwste bovenaan</string>
     <string name="MediaOverviewActivity_Oldest">Oudste bovenaan</string>
@@ -1567,7 +1567,7 @@
         • Al je berichten lezen \n• Berichten uit jouw naam verzenden
     </string>
     <string name="DeviceProvisioningActivity_content_progress_title">Apparaat aan het koppelen</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat wordt gekoppeld …</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat wordt gekoppeld…</string>
     <string name="DeviceProvisioningActivity_content_progress_success">Succesvol toestemming verleend aan apparaat.</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Netwerkfout.</string>
@@ -1678,9 +1678,9 @@
     <!-- RecipientProvider -->
 
     <!-- RedPhone -->
-    <string name="RedPhone_answering">Wordt beantwoord …</string>
-    <string name="RedPhone_ending_call">Oproep aan het beëindigen …</string>
-    <string name="RedPhone_ringing">Gaat over …</string>
+    <string name="RedPhone_answering">Wordt beantwoord…</string>
+    <string name="RedPhone_ending_call">Oproep aan het beëindigen…</string>
+    <string name="RedPhone_ringing">Gaat over…</string>
     <string name="RedPhone_busy">Bezet</string>
     <string name="RedPhone_recipient_unavailable">Ontvanger niet beschikbaar</string>
     <string name="RedPhone_network_failed">Netwerkfout!</string>
@@ -1696,9 +1696,9 @@
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hier om je camera aan te zetten</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
     <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
-    <string name="WebRtcCallActivity__calling">Oproep aan het starten …</string>
+    <string name="WebRtcCallActivity__calling">Oproep aan het starten…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">Opnieuw aan het verbinden …</string>
+    <string name="WebRtcCallActivity__reconnecting">Opnieuw aan het verbinden…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth-machtiging is nog niet gegeven</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -1758,8 +1758,8 @@
     <string name="WebRtcCallView__call_is_full">De oproep is vol</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Je kunt niet deelnemen omdat deze groepsoproep het maximale aantal van %1$d deelnemers heeft bereikt. Probeer het later opnieuw.</string>
     <string name="WebRtcCallView__your_video_is_off">Je camera staat uit</string>
-    <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
-    <string name="WebRtcCallView__joining">Verbinden met de groep aan het maken …</string>
+    <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden…</string>
+    <string name="WebRtcCallView__joining">Verbinden met de groep aan het maken…</string>
     <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal oproeplink</string>
@@ -2098,7 +2098,7 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s is van %2$s</string>
 
     <!-- ApkUpdateNotifications -->
-    <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
+    <string name="ApkUpdateNotifications_prompt_install_title">Nieuwe versie van Signal</string>
     <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
     <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
@@ -2410,7 +2410,7 @@
 
     <!-- contact_selection_group_activity -->
     <string name="contact_selection_group_activity__no_contacts">Geen contactpersonen gevonden.</string>
-    <string name="contact_selection_group_activity__finding_contacts">Contactpersonen laden …</string>
+    <string name="contact_selection_group_activity__finding_contacts">Contactpersonen laden…</string>
 
     <!-- single_contact_selection_activity -->
     <string name="SingleContactSelectionActivity_contact_photo">Foto van contactpersoon</string>
@@ -2559,7 +2559,7 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Tik op ‘Instellingen’ en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Landen aan het laden …</string>
+    <string name="country_selection_fragment__loading_countries">Landen aan het laden…</string>
     <string name="country_selection_fragment__search">Zoeken</string>
     <string name="country_selection_fragment__no_matching_countries">Geen overeenkomstige landen</string>
 
@@ -2679,7 +2679,7 @@
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">Over mij</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf…</string>
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <string name="EditAboutFragment_speak_freely">Voel je vrij om een berichtje te sturen</string>
     <string name="EditAboutFragment_encrypted">Versleuteld</string>
@@ -2713,7 +2713,7 @@
     <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
     <string name="verify_display_fragment__successful_match">De nummers komen overeen</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Verifieren niet gelukt</string>
-    <string name="verify_display_fragment__loading">Aan het laden …</string>
+    <string name="verify_display_fragment__loading">Aan het laden…</string>
     <string name="verify_display_fragment__mark_as_verified">Als geverifieerd markeren</string>
     <string name="verify_display_fragment__clear_verification">Verificatie ongedaan maken</string>
     <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
@@ -3059,7 +3059,7 @@
     <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als je geen verbinding kunt maken met Signal via mobiele data of wifi.</string>
     <string name="preferences_share">Proxyadres delen via andere app</string>
     <string name="preferences_save">Opslaan</string>
-    <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy …</string>
+    <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy…</string>
     <string name="preferences_connected_to_proxy">Verbonden met de proxy</string>
     <string name="preferences_connection_failed">Verbinding is verbroken</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Verbinding maken is mislukt. Ga na dat je het juiste proxyadres het ingevuld en probeer het opnieuw.</string>
@@ -3093,7 +3093,7 @@
     <string name="PaymentsHomeFragment_introducing_payments">Signal introduceert Betalingen</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Je kunt Signal ook gebruiken om een nieuwe privacygerichte valuta genaamd MobileCoin te versturen en ontvangen. Activeer om te beginnen.</string>
     <string name="PaymentsHomeFragment__activate_payments">Betalingen inschakelen</string>
-    <string name="PaymentsHomeFragment__activating_payments">Betalingen aan het inschakelen …</string>
+    <string name="PaymentsHomeFragment__activating_payments">Betalingen aan het inschakelen…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Betalingsaccount herstellen</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Er zijn nog geen recente gebeurtenissen</string>
     <string name="PaymentsHomeFragment__recent_activity">Recente gebeurtenissen</string>
@@ -3206,8 +3206,8 @@
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Details</string>
     <string name="PaymentsDetailsFragment__status">Status</string>
-    <string name="PaymentsDetailsFragment__submitting_payment">Betaling aan het indienen …</string>
-    <string name="PaymentsDetailsFragment__processing_payment">Betaling aan het verwerken …</string>
+    <string name="PaymentsDetailsFragment__submitting_payment">Betaling aan het indienen…</string>
+    <string name="PaymentsDetailsFragment__processing_payment">Betaling aan het verwerken…</string>
     <string name="PaymentsDetailsFragment__payment_complete">Betaling succesvol afgerond</string>
     <string name="PaymentsDetailsFragment__payment_failed">Betaling is mislukt</string>
     <string name="PaymentsDetailsFragment__network_fee">Netwerkkosten</string>
@@ -3280,8 +3280,8 @@
     <string name="ConfirmPayment__to">Naar</string>
     <string name="ConfirmPayment__total_amount">Totaalbedrag</string>
     <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
-    <string name="ConfirmPayment__submitting_payment">Betaling aan het indienen …</string>
-    <string name="ConfirmPayment__processing_payment">Betaling aan het verwerken …</string>
+    <string name="ConfirmPayment__submitting_payment">Betaling aan het indienen…</string>
+    <string name="ConfirmPayment__processing_payment">Betaling aan het verwerken…</string>
     <string name="ConfirmPayment__payment_complete">Betaling succesvol afgerond</string>
     <string name="ConfirmPayment__payment_failed">Betaling is mislukt</string>
     <string name="ConfirmPayment__payment_will_continue_processing">De betaling wordt nog verwerkt</string>
@@ -3314,7 +3314,7 @@
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
     <string name="contact_selection_list__new_call">Nieuwe oproep naar…</string>
-    <string name="contact_selection_list__unknown_contact">Nieuw bericht naar …</string>
+    <string name="contact_selection_list__unknown_contact">Nieuw bericht naar…</string>
     <string name="contact_selection_list__unknown_contact_block">Persoon blokkeren</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Aan groep toevoegen</string>
 
@@ -3502,7 +3502,7 @@
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je pincode is niet opgeslagen. Signal zal je later vragen een pincode aan te maken.</string>
     <string name="ConfirmKbsPinFragment__pin_created">Pincode aangemaakt.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Voer dezelfde pincode opnieuw in</string>
-    <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken …</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken…</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
@@ -3593,8 +3593,8 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Lopende Signal-groepsoproep</string>
 
     <!-- transport_selection_list_item -->
-    <string name="ConversationListFragment_loading">Aan het laden …</string>
-    <string name="CallNotificationBuilder_connecting">Verbinding aan het maken …</string>
+    <string name="ConversationListFragment_loading">Aan het laden…</string>
+    <string name="CallNotificationBuilder_connecting">Verbinding aan het maken…</string>
     <string name="Permissions_permission_required">Toestemming vereist</string>
     <string name="Permissions_continue">Doorgaan</string>
     <string name="Permissions_not_now">Niet nu</string>
@@ -3617,8 +3617,8 @@
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">Back-up bevat verkeerd ingedeelde gegevens</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-upwachtwoord</string>
-    <string name="RegistrationActivity_checking">Aan het controleren …</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d berichten tot nu toe …</string>
+    <string name="RegistrationActivity_checking">Aan het controleren…</string>
+    <string name="RegistrationActivity_d_messages_so_far">%1$d berichten tot nu toe…</string>
     <string name="RegistrationActivity_restore_from_backup">Back-upgegevens terugzetten?</string>
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
     <string name="RegistrationActivity_backup_size_s">Back-upbestand-grootte: %1$s</string>
@@ -3637,7 +3637,7 @@
     <string name="BackupDialog_verify">Verifiëren</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
     <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
-    <string name="LocalBackupJob_creating_signal_backup">Back-upbestand aan het maken …</string>
+    <string name="LocalBackupJob_creating_signal_backup">Back-upbestand aan het maken…</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Back-up van Signal verifiëren…</string>
     <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
@@ -3737,9 +3737,9 @@
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tik op beide apparaten op ‘Account overzetten’ en dan op ‘Doorgaan’"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Aan het voorbereiden om verbinding te maken met je oude Android-apparaat …</string>
+    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Aan het voorbereiden om verbinding te maken met je oude Android-apparaat…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Een moment, dit duurt niet lang</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude Android-apparaat verbinding maakt …</string>
+    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude Android-apparaat verbinding maakt…</string>
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je oude Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
@@ -3748,7 +3748,7 @@
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je oude Android-apparaat.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
-    <string name="OldDeviceTransferSetup__searching_for_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat …</string>
+    <string name="OldDeviceTransferSetup__searching_for_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat…</string>
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om je nieuwe Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om je nieuwe Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je nieuwe Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
@@ -3782,7 +3782,7 @@
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ga na dat beide apparaten in overzet-modus staan.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Ga naar de ondersteuningspagina</string>
     <string name="DeviceTransferSetup__try_again">Opnieuw proberen</string>
-    <string name="DeviceTransferSetup__waiting_for_other_device">Aan het wachten op het andere apparaat …</string>
+    <string name="DeviceTransferSetup__waiting_for_other_device">Aan het wachten op het andere apparaat…</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Tik om het overzetten te beginnen op je andere apparaat op ‘Doorgaan’.</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tik op je andere apparaat op ‘Doorgaan’.</string>
 
@@ -3794,9 +3794,9 @@
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Gegevens aan het overzetten</string>
     <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurt altijd over een eind-tot-eind-versleutelde verbinding.</string>
-    <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe …</string>
+    <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe…</string>
     <!-- Filled in with total percentage of messages transferred -->
-    <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% van de berichten tot nu toe …</string>
+    <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% van de berichten tot nu toe…</string>
     <string name="DeviceTransfer__cancel">Annuleren</string>
     <string name="DeviceTransfer__try_again">Opnieuw proberen</string>
     <string name="DeviceTransfer__stop_transfer">Overzetten annuleren</string>
@@ -3827,12 +3827,12 @@
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Account overzetten</string>
-    <string name="DeviceToDeviceTransferService_status_ready">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat …</string>
-    <string name="DeviceToDeviceTransferService_status_starting_up">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat …</string>
-    <string name="DeviceToDeviceTransferService_status_discovery">Er wordt gezocht naar je andere Android-apparaat …</string>
-    <string name="DeviceToDeviceTransferService_status_network_connected">Verbinding aan het maken met je andere Android-apparaat …</string>
+    <string name="DeviceToDeviceTransferService_status_ready">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat…</string>
+    <string name="DeviceToDeviceTransferService_status_starting_up">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat…</string>
+    <string name="DeviceToDeviceTransferService_status_discovery">Er wordt gezocht naar je andere Android-apparaat…</string>
+    <string name="DeviceToDeviceTransferService_status_network_connected">Verbinding aan het maken met je andere Android-apparaat…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Verificatie vereist</string>
-    <string name="DeviceToDeviceTransferService_status_service_connected">Account aan het overzetten …</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">Account aan het overzetten…</string>
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Rond op je nieuwe Android-apparaat de stappen voor registratie af.</string>
@@ -3962,7 +3962,7 @@
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten …</string>
+    <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Account aan het verwijderen…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
@@ -4263,7 +4263,7 @@
 
     <!-- ChangeNumberLockActivity -->
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
-    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Het lijkt er op dat je hebt geprobeerd om je telefoonnummer te wijzigen, maar Signal kan niet vaststellen of dat is geslaagd.\n\nSignal gaat nu opnieuw na of je telefoonnummer is gewijzigd …</string>
+    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Het lijkt er op dat je hebt geprobeerd om je telefoonnummer te wijzigen, maar Signal kan niet vaststellen of dat is geslaagd.\n\nSignal gaat nu opnieuw na of je telefoonnummer is gewijzigd…</string>
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_confirmed">Telefoonnummer is succesvol gewijzigd</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
@@ -4306,7 +4306,7 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Berichten</string>
     <string name="NotificationsSettingsFragment__calls">Oproepen</string>
-    <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer …</string>
+    <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer…</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Een contactpersoon die in mijn systeemcontactenlijst staat sinds kort via Signal bereikbaar is</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofielen</string>
@@ -4765,7 +4765,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
     <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
-    <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken …</string>
+    <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
@@ -4824,13 +4824,13 @@
     <string name="Subscription__contact_support">Neem contact op</string>
     <string name="Subscription__get_a_s_badge">Ontvang een ‘%1$s’-badge</string>
 
-    <string name="SubscribeFragment__processing_payment">Betaling aan het verwerken …</string>
+    <string name="SubscribeFragment__processing_payment">Betaling aan het verwerken…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van betaling</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
-    <string name="DonationsErrors__try_another_payment_method">Try another payment method or contact your bank for more information.</string>
+    <string name="DonationsErrors__try_another_payment_method">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
-    <string name="DonationsErrors__learn_more">Learn more</string>
+    <string name="DonationsErrors__learn_more">Meer lezen</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van betaling. %1$s</string>
     <string name="DonationsErrors__your_payment">Je betaling kon niet worden verwerkt en er is geen geld overgemaakt. Probeer het opnieuw.</string>
@@ -4867,7 +4867,7 @@
     <!-- Gift badge view action label -->
     <string name="GiftMessageView__view">Weergeven</string>
     <!-- Gift badge redeeming action label -->
-    <string name="GiftMessageView__redeeming">In ontvangst aan het nemen …</string>
+    <string name="GiftMessageView__redeeming">In ontvangst aan het nemen…</string>
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">In ontvangst genomen</string>
 
@@ -5143,9 +5143,9 @@
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Bericht­details</string>
     <!-- Label when a story is pending sending -->
-    <string name="StoriesLandingItem__sending">Bezig met verzenden …</string>
+    <string name="StoriesLandingItem__sending">Bezig met verzenden…</string>
     <!-- Label when multiple stories are pending sending -->
-    <string name="StoriesLandingItem__sending_d">%1$d aan het uploaden …</string>
+    <string name="StoriesLandingItem__sending_d">%1$d aan het uploaden…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Uploaden is mislukt</string>
     <!-- Label when a story fails to send due to identity mismatch -->
@@ -5155,7 +5155,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Verhaal verbergen?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Nieuwe verhaaldelen van %1$s zullen niet langer bovenaan je lijst met verhalen worden weergegeven.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Nieuwe verhaalupdates van %1$s zullen niet langer bovenaan je lijst met verhalen worden weergegeven.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Verbergen</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -5402,7 +5402,7 @@
     <!-- Displayed in story caption when content is longer than 5 lines -->
     <string name="StoryViewerPageFragment__see_more">Bekijk meer</string>
     <!-- Displayed in toast after sending a direct reply -->
-    <string name="StoryDirectReplyDialogFragment__sending_reply">Privéreactie aan het verzenden …</string>
+    <string name="StoryDirectReplyDialogFragment__sending_reply">Privéreactie aan het verzenden…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">Dit verhaal is niet langer beschikbaar.</string>
     <!-- Displayed in the viewer when a story has permanently failed to download. -->
@@ -5464,7 +5464,7 @@
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Berichttekst toevoegen</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__verifying_recipient">Ontvanger aan het nagaan …</string>
+    <string name="GiftFlowConfirmationFragment__verifying_recipient">Ontvanger aan het nagaan…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s heeft een donatie voor je gedaan</string>
     <!-- Title for sheet shown when opening a sent gift -->
@@ -5961,9 +5961,9 @@
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__try_again">Try again</string>
+    <string name="DonationErrorBottomSheet__try_again">Opnieuw proberen</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__not_now">Not now</string>
+    <string name="DonationErrorBottomSheet__not_now">Niet nu</string>
 
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Donatie voltooid</string>
@@ -6390,7 +6390,7 @@
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
-    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Turn on</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Inschakelen</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
