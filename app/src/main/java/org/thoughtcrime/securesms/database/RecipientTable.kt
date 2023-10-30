@@ -607,6 +607,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           Log.w(TAG, "Failed to update newly-created record for $recipientId")
         }
 
+        Log.i(TAG, "Group $groupId was newly-inserted as $recipientId")
+
         return recipientId
       }
     }

@@ -393,6 +393,7 @@ class IncomingMessageObserver(private val context: Application) {
                 GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
                   ReentrantSessionLock.INSTANCE.acquire().use {
                     batch.forEach {
+                      Log.d(TAG, "Beginning database transaction...")
                       SignalDatabase.runInTransaction {
                         val followUpOperations: List<FollowUpOperation>? = processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp)
                         bufferedStore.flushToDisk()
@@ -401,6 +402,7 @@ class IncomingMessageObserver(private val context: Application) {
                           ApplicationDependencies.getJobManager().addAll(jobs)
                         }
                       }
+                      Log.d(TAG, "Ended database transaction.")
                       signalWebSocket.sendAck(it)
                     }
                   }
