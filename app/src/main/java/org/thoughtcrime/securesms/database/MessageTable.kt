@@ -4684,31 +4684,31 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    */
   @Throws(MmsException::class)
   private fun IncomingMessage.toMessageType(): Long {
-    var type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT
+    var type = MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT
 
     if (this.giftBadge != null) {
       type = type or MessageTypes.SPECIAL_TYPE_GIFT_BADGE
     }
 
     type = type or when (this.type) {
-      MessageType.NORMAL -> 0
-      MessageType.EXPIRATION_UPDATE -> MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-      MessageType.STORY_REACTION -> MessageTypes.SPECIAL_TYPE_STORY_REACTION
-      MessageType.PAYMENTS_NOTIFICATION -> MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
-      MessageType.ACTIVATE_PAYMENTS_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
-      MessageType.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
+      MessageType.NORMAL -> MessageTypes.BASE_INBOX_TYPE
+      MessageType.EXPIRATION_UPDATE -> MessageTypes.EXPIRATION_TIMER_UPDATE_BIT or MessageTypes.BASE_INBOX_TYPE
+      MessageType.STORY_REACTION -> MessageTypes.SPECIAL_TYPE_STORY_REACTION or MessageTypes.BASE_INBOX_TYPE
+      MessageType.PAYMENTS_NOTIFICATION -> MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION or MessageTypes.BASE_INBOX_TYPE
+      MessageType.ACTIVATE_PAYMENTS_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST or MessageTypes.BASE_INBOX_TYPE
+      MessageType.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED or MessageTypes.BASE_INBOX_TYPE
       MessageType.CONTACT_JOINED -> MessageTypes.JOINED_TYPE
-      MessageType.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
-      MessageType.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
-      MessageType.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
-      MessageType.END_SESSION -> MessageTypes.END_SESSION_BIT
+      MessageType.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT or MessageTypes.BASE_INBOX_TYPE
+      MessageType.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT or MessageTypes.BASE_INBOX_TYPE
+      MessageType.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or MessageTypes.BASE_INBOX_TYPE
+      MessageType.END_SESSION -> MessageTypes.END_SESSION_BIT or MessageTypes.BASE_INBOX_TYPE
       MessageType.GROUP_UPDATE -> {
         val isOnlyGroupLeave = this.groupContext?.let { GroupV2UpdateMessageUtil.isJustAGroupLeave(it) } ?: false
 
         if (isOnlyGroupLeave) {
-          MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT or MessageTypes.GROUP_LEAVE_BIT
+          MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT or MessageTypes.GROUP_LEAVE_BIT or MessageTypes.BASE_INBOX_TYPE
         } else {
-          MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT
+          MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT or MessageTypes.BASE_INBOX_TYPE
         }
       }
     }
