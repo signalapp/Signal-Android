@@ -392,18 +392,22 @@ class IncomingMessageObserver(private val context: Application) {
                 val startTime = System.currentTimeMillis()
                 GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
                   ReentrantSessionLock.INSTANCE.acquire().use {
-                    batch.forEach {
+                    batch.forEach { response ->
                       Log.d(TAG, "Beginning database transaction...")
-                      SignalDatabase.runInTransaction {
-                        val followUpOperations: List<FollowUpOperation>? = processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp)
+                      val followUpOperations = SignalDatabase.runInTransaction { db ->
+                        val followUps: List<FollowUpOperation>? = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp)
                         bufferedStore.flushToDisk()
-                        if (followUpOperations != null) {
-                          val jobs = followUpOperations.mapNotNull { it.run() }
-                          ApplicationDependencies.getJobManager().addAll(jobs)
-                        }
+                        followUps
                       }
                       Log.d(TAG, "Ended database transaction.")
-                      signalWebSocket.sendAck(it)
+
+                      if (followUpOperations != null) {
+                        Log.d(TAG, "Running ${followUpOperations.size} follow-up operations...")
+                        val jobs = followUpOperations.mapNotNull { it.run() }
+                        ApplicationDependencies.getJobManager().addAll(jobs)
+                      }
+
+                      signalWebSocket.sendAck(response)
                     }
                   }
                 }

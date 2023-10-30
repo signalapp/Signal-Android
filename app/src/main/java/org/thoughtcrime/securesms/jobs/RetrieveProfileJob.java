@@ -292,10 +292,11 @@ public class RetrieveProfileJob extends BaseJob {
 
     //noinspection SimplifyStreamApiCallChains
     ListUtil.chunk(operationState.profiles, 150).stream().forEach(list -> {
-      SignalDatabase.runInTransaction(() -> {
+      SignalDatabase.runInTransaction((db) -> {
         for (Pair<Recipient, ProfileAndCredential> profile : list) {
           process(profile.first(), profile.second());
         }
+        return null;
       });
     });
 
