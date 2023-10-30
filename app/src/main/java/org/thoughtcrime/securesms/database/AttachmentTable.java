@@ -44,6 +44,7 @@ import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -586,6 +587,7 @@ public class AttachmentTable extends DatabaseTable {
 
     if (MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType)) {
       Glide.get(context).clearDiskCache();
+      ThreadUtil.runOnMain(() -> Glide.get(context).clearMemory());
     }
   }
 
