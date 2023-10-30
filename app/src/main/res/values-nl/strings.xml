@@ -436,7 +436,7 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Onversleuteld opslaan?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Als je dit bestand opslaat op de telefoonopslag worden ze onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot deze bestanden.\n\nToch doorgaan?</item>
+        <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot dit bestand.\n\nToch doorgaan?</item>
         <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot deze bestanden.\n\nToch doorgaan?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
@@ -600,7 +600,7 @@
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Iedereen die jouw telefoonnummer in zijn contacten heeft staan, zal je kunnen zien als een contact op Signal. Anderen kunnen je vinden via jouw telefoonnummer als ze daarop zoeken.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan je vinden met jou telefoonnummer.</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan je vinden met jouw telefoonnummer.</string>
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
@@ -680,9 +680,9 @@
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
     <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Berichtplanning opnieuw aanzetten:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Selecteer datum</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Kies datum</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Selecteer tijd</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Kies tijd</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
     <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Plan bericht</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
@@ -744,7 +744,7 @@
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pertinente Signal-communicatiefout!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij de Google Play services op je telefoon te registreren. Signal-berichten en -oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Privacy &gt; Geavanceerd.</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij Google Play services op je telefoon te registreren. Signal-berichten en -oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Privacy &gt; Geavanceerd.</string>
 
 
     <!-- GiphyActivity -->
@@ -1876,11 +1876,11 @@
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Er wordt een verificatiecode naar dit nummer gestuurd. Providertarieven kunnen van toepassing zijn.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Je zal gebeld worden om dit telefoonnummer te verifiëren.</string>
     <string name="RegistrationActivity_edit_number">Telefoonnummer bewerken</string>
-    <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
+    <string name="RegistrationActivity_missing_google_play_services">Google Play Services is niet aanwezig</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
     <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
     <string name="RegistrationActivity_play_services_error">Google Play Services-fout</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services wordt momenteel bijgewerkt of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services wordt momenteel bijgewerkt of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
     <string name="RegistrationActivity_terms_and_privacy">Gebruiksvoorwaarden &amp; privacybeleid</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zal een aantal toestemmingen vragen: 1. Je contactenlijst lezen om personen weer te geven naar wie je berichten kunt verzenden. Je contactenlijst blijft altijd onleesbaar voor Signals servers. 2. Bestanden lezen van en schrijven naar de externe opslag, om bestanden bij te voegen als bijlagen en om ontvangen bijlagen op te kunnen slaan. 3. De telefoonstatus lezen om te voorkomen dat Signal-oproepen je andere oproepen verstoren.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal moet je contactenlijst lezen om personen weer te geven naar wie je berichten kunt sturen en met wie je oproepen kunt beginnen. Je contactenlijst blijft altijd onleesbaar voor Signals servers.</string>
@@ -2028,7 +2028,7 @@
     <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Delen via andere app</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden klikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde URL. Die URL kun je zelf naar de ontwikkelaars sturen.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden tikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde URL. Die URL kun je zelf naar de ontwikkelaars sturen.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2099,9 +2099,9 @@
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Nieuwe versie van Signal</string>
-    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
-    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">Een nieuwe versie van Signal is beschikbaar. Tik om bij te werken.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal kan niet worden bijgewerkt</string>
+    <string name="ApkUpdateNotifications_failed_general_body">We proberen het later opnieuw.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Bericht verzenden?</string>
@@ -2426,8 +2426,8 @@
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Het aanbevolen ledenlimiet is bereikt</string>
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-groepen presteren het best met %1$d of minder leden. Het toevoegen van extra leden zal vertragingen veroorzaken in het verzenden en ontvangen van berichten.</string>
     <plurals name="ContactSelectionListFragment_d_members">
-        <item quantity="one">%1$d persoon</item>
-        <item quantity="other">%1$d personen</item>
+        <item quantity="one">%1$d lid</item>
+        <item quantity="other">%1$d leden</item>
     </plurals>
 
     <!-- contact_selection_list_fragment -->
@@ -2436,8 +2436,8 @@
 
     <!-- contact_selection_list_item -->
     <plurals name="contact_selection_list_item__number_of_members">
-        <item quantity="one">%1$d persoon</item>
-        <item quantity="other">%1$d personen</item>
+        <item quantity="one">%1$d lid</item>
+        <item quantity="other">%1$d leden</item>
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
@@ -2679,7 +2679,7 @@
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">Over mij</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Schrijf een paar woorden over jezelf…</string>
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <string name="EditAboutFragment_speak_freely">Voel je vrij om een berichtje te sturen</string>
     <string name="EditAboutFragment_encrypted">Versleuteld</string>
@@ -2756,7 +2756,7 @@
     <string name="message_details_recipient__failed_to_send">Verzenden mislukt</string>
     <string name="message_details_recipient__new_safety_number">Nieuw veiligheidsnummer</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">Bekijk bewerkingsgeschiedenis</string>
+    <string name="MessageDetails__view_edit_history">Bewerkingsgeschiedenis bekijken</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Wachtwoord aanmaken</string>
@@ -3238,7 +3238,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">Ga na dat het portemonnee-adres waarnaar je probeert over te schrijven juist is en probeer het opnieuw.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Je kunt niet vanuit Signal overschrijven naar je eigen Signal portemonnee-adres. Vul het portemonnee-adres van je account bij de beurs in.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal heeft toegang nodig tot de camera om een QR-code the kunnen scannen.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal heeft toegang nodig tot je camera om QR-codes te scannen, maar deze toestemming is pertinent geweigerd. Ga naar het menu voor instellingen voor apps, tik op \"App-machtigingen\" en schakel \"Camera\" in.</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal heeft toegang nodig tot je camera om QR-codes te scannen, maar deze toestemming is pertinent geweigerd. Ga naar het menu voor instellingen voor apps, tik op \'App-machtigingen\' en schakel \'Camera\' in.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal heeft toegang nodig tot de camera om een QR-code the kunnen scannen.</string>
     <string name="PaymentsTransferFragment__settings">Instellingen</string>
 
@@ -3991,7 +3991,7 @@
     <string name="ShareActivity__send">Verzend</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
-    <string name="ShareActivity__could_not_get_share_data_from_intent">Kon geen gedeelde data met opzet ontvangen.</string>
+    <string name="ShareActivity__could_not_get_share_data_from_intent">Kon data uit Android-intent niet ophalen.</string>
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Het verzenden is naar sommige personen mislukt</string>
@@ -4811,7 +4811,7 @@
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Je maandelijkse donaties zijn stopgezet omdat Signal je betaling niet kon verwerken. Je badge is niet langer op je profiel zichtbaar.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Je terugkerende maandelijkse donatie werd geannuleerd. %1$s Je %2$s badge is niet langer zichtbaar op je profiel.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Je terugkerende maandelijkse donatie is geannuleerd. %1$s Je %2$s badge is niet langer zichtbaar op je profiel.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan moet je je donaties vernieuwen.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
     <!-- Button label to send user to Google Pay website -->
@@ -4848,7 +4848,7 @@
     <string name="DonationsErrors__your_payment_is_still">Je betaling wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donaties is mislukt</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donaties te annuleren moet je toegang hebben tot internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donaties maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signals website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Pay, daarom kun je via de app geen maandelijkse donaties maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signals website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
     <string name="NetworkFailure__retry">Opnieuw proberen</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4977,7 +4977,7 @@
     <!-- Header shown above list of all notification profiles -->
     <string name="NotificationProfilesFragment__profiles">Meldingsprofielen</string>
     <!-- Button that starts the create new notification profile flow -->
-    <string name="NotificationProfilesFragment__new_profile">Nieuw meldingsprofiel aanmaken</string>
+    <string name="NotificationProfilesFragment__new_profile">Nieuw meldingsprofiel</string>
     <!-- Profile active status, indicating the current profile is on for an unknown amount of time -->
     <string name="NotificationProfilesFragment__on">Ingeschakeld</string>
 
@@ -5061,7 +5061,7 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Je meldingsprofiel wordt automatisch geactiveerd en gedeactiveerd volgens je tijdsplanning.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
-    <string name="NotificationProfileSelection__new_profile">Nieuw meldingsprofiel aanmaken</string>
+    <string name="NotificationProfileSelection__new_profile">Nieuw meldingsprofiel</string>
     <!-- Manual enable option to manually enable a profile for 1 hour -->
     <string name="NotificationProfileSelection__for_1_hour">Een uur lang</string>
     <!-- Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next) -->
@@ -5155,7 +5155,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Verhaal verbergen?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Nieuwe verhaalupdates van %1$s zullen niet langer bovenaan je lijst met verhalen worden weergegeven.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Nieuwe verhaaldelen van %1$s zullen niet langer bovenaan je lijst met verhalen worden weergegeven.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Verbergen</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -5226,7 +5226,7 @@
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reageerde op dit verhaal</string>
     <!-- Label for story views tab -->
-    <string name="StoryViewsAndRepliesDialogFragment__views">Aantal weergaven</string>
+    <string name="StoryViewsAndRepliesDialogFragment__views">Gezien door</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Reacties</string>
     <!-- Description of action for reaction button -->
@@ -5256,7 +5256,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Iedereen behalve…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Verberg je verhaal voor specifieke mensen</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Verberg je verhaal voor specifieke personen</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">Voor %1$d persoon verborgen</item>
@@ -5505,8 +5505,8 @@
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="one">%1$d persoon</item>
-        <item quantity="other">%1$d personen</item>
+        <item quantity="one">%1$d lid</item>
+        <item quantity="other">%1$d leden</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
@@ -5581,7 +5581,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle contacten zijn beoordeeld, tik op versturen om verder te gaan.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Je hebt %1$d contacten die Signal misschien opnieuw geïnstalleerd hebben of van toestel veranderd zijn. Bekijk voordat je je verhaal met hen deelt hun veiligheidsnummers of overweeg om ze uit je verhaal te verwijderen.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Je hebt %1$d contacten die Signal misschien opnieuw geïnstalleerd hebben of van toestel zijn veranderd. Bekijk voordat je je verhaal met hen deelt hun veiligheidsnummers of overweeg om je verhaal niet met hen te delen.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Veiligheidsnummer verifiëren</string>
     <!-- Menu action to remove user from story -->
@@ -5632,7 +5632,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Verhalen verdwijnen automatisch na 24 uur. Kies wie jouw verhalen kan zien of maak nieuwe verhalen voor specifieke personen of groepen.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Verhaaldelen verdwijnen automatisch na 24 uur. Kies wie jouw verhalen kan zien of maak nieuwe verhalen voor specifieke personen of groepen.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Verhalen uitzetten</string>
     <!-- Preference summary to turn off stories -->
@@ -5664,7 +5664,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"Leden van de groep “%1$s” kunnen dit verhaal bekijken en erop antwoorden. Je kunt het lidmaatschap voor deze chat updaten in de groep."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Verwijder groepsverhaal</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Groepsverhaal verwijderen</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Overflow menu</string>
@@ -5673,7 +5673,7 @@
     <!-- Displayed in the notification while export is running -->
     <string name="SignalSmsExportService__exporting_messages">Sms\'jes exporteren…</string>
     <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal sms-export compleet</string>
+    <string name="SignalSmsExportService__signal_sms_export_complete">Exporteren sms voltooid</string>
     <!-- Displayed in the notification message when export completes -->
     <string name="SignalSmsExportService__tap_to_return_to_signal">Tik om terug te keren naar Signal</string>
 
@@ -5764,7 +5764,7 @@
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Kan geen back-up maken van chats</string>
     <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Van je chats wordt niet langer automatisch een back-up gemaakt.</string>
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Er wordt niet langer automatisch een back-up van je chats gemaakt.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__back_up_chats">Maak back-up van chats</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
@@ -5788,7 +5788,7 @@
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
 
     <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Export compleet</string>
+    <string name="ExportSmsCompleteFragment__export_complete">Exporteren voltooid</string>
     <!-- Button to continue to next screen -->
     <string name="ExportSmsCompleteFragment__next">Volgende</string>
     <!-- Message showing summary of sms export counts -->
@@ -5851,8 +5851,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Signal verlaten om de betaling te bevestigen?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Ga zodra deze betaling is bevestigd terug naar Signal om de verwerking van je donatie te voltooien.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5892,7 +5892,7 @@
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Doorgaan</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">Kan verzoek niet laden</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -5912,13 +5912,13 @@
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">%1$s doneren</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN is too short</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN-nummer is te kort</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN is too long</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN-nummer is te lang</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBAN-landcode wordt niet ondersteund</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban">Invalid IBAN</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">Ongeldig IBAN-nummer</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5941,7 +5941,7 @@
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">Vind je rekeninginformatie</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban_at">Look for your IBAN at the top of your bank statement. IBANs contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">Je IBAN-nummer vind je bovenaan je bankafschrift. IBAN-nummers bevatten maximaal 34 tekens. De naam die je invoert, moet overeenkomen met de volledige naam op je bankrekening. Neem contact op met je bank voor meer informatie.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">Donatie is in behandeling</string>
@@ -5957,9 +5957,9 @@
     <string name="DonationPendingBottomSheet__done">Klaar</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donatie kan niet worden verwerkt</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">Er zijn problemen met het verwerken van je bankoverschrijving. Er is geen geld afgeschreven. Probeer het via een andere betalingsmethode of neem contact op met je bank voor meer informatie.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">Opnieuw proberen</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -6015,7 +6015,7 @@
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="GroupStoryEducationSheet__introducing_group_stories">Nieuw: groepsverhalen</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Deel verhaalupdates in een groepschat waar je al in zit.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Deel verhaaldelen in een groepschat waar je al in zit.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
     <string name="GroupStoryEducationSheet__anyone_in_the_group">Iedereen in de groepschat kan een verhaal toevoegen.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
@@ -6047,7 +6047,7 @@
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
     <string name="SmsRemoval_info_bullet_1_phase_3">Signal heeft de ondersteuning voor het versturen van sms-berichten verwijderd.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">Exporteer sms</string>
+    <string name="SmsRemoval_export_sms">Sms exporteren</string>
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
@@ -6386,17 +6386,17 @@
     <string name="PendingParticipantsBottomSheet__approve">Toestaan</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_title">Meldingen op volledig scherm inschakelen?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">Mis nooit een oproep van je contacten en groepen.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Inschakelen</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Meldingen op volledig scherm inschakelen</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Om oproepmeldingen te ontvangen van je contacten en groepen:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Sta meldingen op volledig scherm toe</string>
 
     <!-- EOF -->
 </resources>

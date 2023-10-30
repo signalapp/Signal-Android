@@ -2245,9 +2245,9 @@
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">עדכון Signal</string>
-    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
-    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">גרסה חדשה של Signal זמינה. יש ללחוץ כדי לעדכן.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">עדכון Signal נכשל</string>
+    <string name="ApkUpdateNotifications_failed_general_body">ננסה שוב מאוחר יותר.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">לשלוח הודעה?</string>
@@ -6111,8 +6111,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">לעזוב את Signal כדי לאשר את התשלום הזה?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">לאחר אישור התשלום הזה, יש לחזור אל Signal כדי לסיים את עיבוד התרומה שלך.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -6152,7 +6152,7 @@
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">המשך</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">טעינת בקשה נכשלה</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -6172,13 +6172,13 @@
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">תרומה של %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN is too short</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">מספר IBAN קצר מדי</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN is too long</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">מספר IBAN ארוך מדי</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">קוד המדינה של ה‑IBAN אינו נתמך</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban">Invalid IBAN</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">מספר IBAN לא תקין</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -6201,7 +6201,7 @@
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">מציאת פרטי החשבון שלך</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban_at">Look for your IBAN at the top of your bank statement. IBANs contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">יש לחפש את מספר ה–IBAN שלך בחלק העליון של דף חשבון הבנק שלך. מספרי IBAN מכילים עד 34 תווים. יש להזין שם שתואם לשם המלא שלך בחשבון הבנק שלך. למידע נוסף, יש ליצור קשר עם הבנק.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">תרומה ממתינה</string>
@@ -6217,9 +6217,9 @@
     <string name="DonationPendingBottomSheet__done">סיום</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">לא היה ניתן לעבד את התרומה</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">נתקלנו בבעיה בעיבוד ההעברה הבנקאית שלך. לא חויבת. יש לנסות שיטת תשלום אחרת או ליצור קשר עם הבנק שלך לקבלת מידע נוסף.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">נסה שוב</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -6658,17 +6658,17 @@
     <string name="PendingParticipantsBottomSheet__approve">אשר</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_title">להפעיל התראות במסך מלא?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">ככה אף פעם לא מפספסים שיחה מאנשי הקשר והקבוצות שלך.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">הפעלה</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">הפעלת התראות במסך מלא</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">כדי לקבל התראות על שיחות מאנשי הקשר והקבוצות שלך:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s מאפשרים התראות במסך מלא</string>
 
     <!-- EOF -->
 </resources>

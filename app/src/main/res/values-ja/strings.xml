@@ -2026,9 +2026,9 @@
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signalアップデート</string>
-    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
-    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">新バージョンのSignalが利用可能です。タップして更新します。</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signalの更新に失敗しました</string>
+    <string name="ApkUpdateNotifications_failed_general_body">後で再度試してみます。</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">メッセージを送信しますか？</string>
@@ -5721,8 +5721,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">決済を確認するためにSignalを離れますか?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">決済を確認したら、Signalに戻って寄付の手続きを完了させてください。</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5762,7 +5762,7 @@
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">続行</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">リクエストを読み込めませんでした</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -5782,13 +5782,13 @@
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">%1$s を寄付する</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN is too short</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBANが短すぎます</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN is too long</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBANが長すぎます</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">この国コードはIBANを採用していません</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban">Invalid IBAN</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">IBANが無効です</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5811,7 +5811,7 @@
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">アカウント情報を確認する</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban_at">Look for your IBAN at the top of your bank statement. IBANs contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">銀行取引明細書の上部に記載されたIBANをご確認ください。IBANは最大34文字で構成されています。銀行口座の名義と同一の氏名を入力してください。詳細については、銀行までお問い合わせください。</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">寄付の手続き中です</string>
@@ -5827,9 +5827,9 @@
     <string name="DonationPendingBottomSheet__done">完了</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">寄付を処理できませんでした</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">銀行振込の処理に問題が発生しています。課金はされていません。別の決済方法をお試しいただくか、取引先の銀行にお問い合わせください。</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">もう一度試す</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -6250,17 +6250,17 @@
     <string name="PendingParticipantsBottomSheet__approve">承認する</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_title">全画面通知をオンにしますか？</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">連絡先やグループからの着信を見逃しません。</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">有効にする</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">全画面通知をオンにする</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">連絡先やグループから通話通知を受け取る</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s 全画面通知を許可する</string>
 
     <!-- EOF -->
 </resources>

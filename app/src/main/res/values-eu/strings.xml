@@ -2099,9 +2099,9 @@
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal eguneratu</string>
-    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
-    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">Signal-en bertsio berri bat dago. Eguneratzeko, sakatu hau.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Ezin izan da eguneratu Signal</string>
+    <string name="ApkUpdateNotifications_failed_general_body">Berriro saiatuko gara geroago.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Mezua bidali?</string>
@@ -5851,8 +5851,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Signal-etik irten nahi duzu ordainketa berresteko?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Ordainketa hau berretsitakoan, itzuli Signal-era dohaintza prozesatzen amaitzeko.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5892,7 +5892,7 @@
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Jarraitu</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">Ezin izan da kargatu eskera</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -5912,13 +5912,13 @@
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">Eman %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN is too short</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">IBANa laburregia da</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN is too long</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">IBANa luzeegia da</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">IBANaren herrialde-kodea ez da onartzen</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban">Invalid IBAN</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">IBANak ez du balio</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5941,7 +5941,7 @@
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">Bilatu zure kontuaren informazioa</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban_at">Look for your IBAN at the top of your bank statement. IBANs contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">Bilatu IBAN zenbakia banku-laburpenaren goialdean. IBAN zenbakiek 34 karaktere dituzte gehienez. Sartzen duzun izenak zure banku-kontuan datorren izen osoarekin bat etorri behar du. Jarri harremanetan zure bankuarekin informazio gehiago lortzeko.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">Dohaintza zain</string>
@@ -5957,9 +5957,9 @@
     <string name="DonationPendingBottomSheet__done">Eginda</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Ezin izan da prozesatu dohaintza</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">Arazoak izaten ari gara banku-transferentzia prozesatzeko. Ez zaizu ezer kobratu. Saiatu berriro beste ordainketa-metodo batekin edo jarri harremanetan zure bankuarekin informazio gehiago lortzeko.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">Saiatu berriro</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -6386,17 +6386,17 @@
     <string name="PendingParticipantsBottomSheet__approve">Onartu</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_title">Pantaila osoko jakinarazpenak aktibatu nahi dituzu?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">Ez galdu zure kontaktu eta taldeen dei bat ere.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Aktibatu</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Aktibatu pantaila osoko jakinarazpenak</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Zure kontaktu eta taldeen dei-jakinarazpenak jasotzeko:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Onartu pantaila osoko jakinarazpenak</string>
 
     <!-- EOF -->
 </resources>

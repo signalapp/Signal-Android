@@ -2099,9 +2099,9 @@
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Actualizar Signal</string>
-    <string name="ApkUpdateNotifications_prompt_install_body">A new version of Signal is available. Tap to update.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Signal failed to update</string>
-    <string name="ApkUpdateNotifications_failed_general_body">We will try again later.</string>
+    <string name="ApkUpdateNotifications_prompt_install_body">Una nueva versión de Signal está disponible. Toca para actualizar.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal no se ha podido actualizar</string>
+    <string name="ApkUpdateNotifications_failed_general_body">Lo intentaremos de nuevo más tarde.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">¿Enviar mensaje?</string>
@@ -5851,8 +5851,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm payment?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Once this payment is confirmed, return to Signal to finish processing your donation.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">¿Salir de Signal para confirmar el pago?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Una vez confirmado este pago, regresa a Signal para terminar de procesar tu donación.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5892,7 +5892,7 @@
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Continuar</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">No se pudo cargar el mandato</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -5912,13 +5912,13 @@
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">Donar %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN is too short</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">El IBAN es demasiado corto</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_is_too_long">IBAN is too long</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">El IBAN es demasiado largo</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">El código de país en el IBAN no es compatible</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban">Invalid IBAN</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">IBAN no válido</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -5941,7 +5941,7 @@
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">Buscar información de tu cuenta</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban_at">Look for your IBAN at the top of your bank statement. IBANs contain up to 34 characters. The name you enter should match your full name on your bank account. Contact your bank for more information.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">Busca tu IBAN en la parte superior de tu extracto bancario. Los IBAN tienen hasta 34 caracteres. El nombre que introduzcas debe coincidir con tu nombre completo en tu cuenta bancaria. Ponte en contacto con tu banco para obtener más información.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">Donación pendiente</string>
@@ -5957,9 +5957,9 @@
     <string name="DonationPendingBottomSheet__done">Hecho</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Donation couldn\'t be processed</string>
+    <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">No se pudo procesar la donación</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">We\'re having trouble processing your bank transfer. You have not been charged. Try another payment method or contact your bank for more information.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">Estamos teniendo problemas para procesar tu transferencia bancaria. No se te ha cobrado. Selecciona otro método de pago o contacta a tu banco para más información.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">Intentar de nuevo</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -6386,17 +6386,17 @@
     <string name="PendingParticipantsBottomSheet__approve">Aprobar</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_title">¿Activar las notificaciones de pantalla completa?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Never miss a call from your contacts and groups.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">Nunca te pierdas una llamada de tus contactos o grupos.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Activar</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Turn on full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Activa las notificaciones de pantalla completa</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">To receive call notifications from your contacts and groups:</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Para recibir notificaciones de llamadas de tus contactos y grupos:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Allow full screen notifications</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Activa las notificaciones de pantalla completa</string>
 
     <!-- EOF -->
 </resources>
