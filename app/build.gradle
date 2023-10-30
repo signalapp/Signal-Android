@@ -404,7 +404,7 @@ android {
                         tag = tag.substring(1)
                     }
                     output.versionNameOverride = tag
-                    output.outputFileName = output.outputFileName.replace(".apk", "-${versionNameOverride}.apk")
+                    output.outputFileName = output.outputFileName.replace(".apk", "-${output.versionNameOverride}.apk")
                 } else {
                     output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
                 }
