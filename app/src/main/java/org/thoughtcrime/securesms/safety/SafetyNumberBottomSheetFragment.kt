@@ -128,7 +128,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
         title = DSLSettingsText.from(
           when {
             state.isCheckupComplete() && state.hasLargeNumberOfUntrustedRecipients -> getString(R.string.SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed)
-            state.hasLargeNumberOfUntrustedRecipients -> getString(R.string.SafetyNumberBottomSheetFragment__you_have_d_connections, args.untrustedRecipients.size)
+            state.hasLargeNumberOfUntrustedRecipients -> resources.getQuantityString(R.plurals.SafetyNumberBottomSheetFragment__you_have_d_connections_plural, args.untrustedRecipients.size, args.untrustedRecipients.size)
             else -> getString(R.string.SafetyNumberBottomSheetFragment__the_following_people)
           },
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyLarge),

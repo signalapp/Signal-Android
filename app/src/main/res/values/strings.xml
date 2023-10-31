@@ -643,6 +643,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% so far…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -5586,7 +5588,10 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">All connections have been reviewed, tap send to continue.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verify safety number</string>
     <!-- Menu action to remove user from story -->
