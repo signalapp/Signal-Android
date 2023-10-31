@@ -172,9 +172,42 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Clear all logs"),
+        onClick = {
+          SimpleTask.run({
+            LogDatabase.getInstance(requireActivity().application).logs.clearAll()
+          }) {
+            Toast.makeText(requireContext(), "Cleared all logs", Toast.LENGTH_SHORT).show()
+          }
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Clear keep longer logs"),
         onClick = {
           clearKeepLongerLogs()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Clear all crashes"),
+        onClick = {
+          SimpleTask.run({
+            LogDatabase.getInstance(requireActivity().application).crashes.clear()
+          }) {
+            Toast.makeText(requireContext(), "Cleared crashes", Toast.LENGTH_SHORT).show()
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Clear all ANRs"),
+        onClick = {
+          SimpleTask.run({
+            LogDatabase.getInstance(requireActivity().application).anrs.clear()
+          }) {
+            Toast.makeText(requireContext(), "Cleared ANRs", Toast.LENGTH_SHORT).show()
+          }
         }
       )
 

@@ -30,6 +30,7 @@ import org.conscrypt.Conscrypt;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.MemoryTracker;
+import org.signal.core.util.concurrent.AnrDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
@@ -109,6 +110,7 @@ import io.reactivex.rxjava3.exceptions.OnErrorNotImplementedException;
 import io.reactivex.rxjava3.exceptions.UndeliverableException;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Unit;
 import rxdogtag2.RxDogTag;
 
 /**
@@ -151,6 +153,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               initializeLogging();
                               Log.i(TAG, "onCreate()");
                             })
+                            .addBlocking("anr-detector", this::startAnrDetector)
                             .addBlocking("security-provider", this::initializeSecurityProvider)
                             .addBlocking("crash-handling", this::initializeCrashHandling)
                             .addBlocking("rx-init", this::initializeRx)
@@ -227,6 +230,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     SubscriptionKeepAliveJob.enqueueAndTrackTimeIfNecessary();
     ExternalLaunchDonationJob.enqueueIfNecessary();
     FcmFetchManager.onForeground(this);
+    startAnrDetector();
 
     SignalExecutors.BOUNDED.execute(() -> {
       FeatureFlags.refreshIfNecessary();
@@ -260,6 +264,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     ApplicationDependencies.getShakeToReport().disable();
     ApplicationDependencies.getDeadlockDetector().stop();
     MemoryTracker.stop();
+    AnrDetector.stop();
   }
 
   public void checkBuildExpiration() {
@@ -267,6 +272,17 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       Log.w(TAG, "Build expired!");
       SignalStore.misc().markClientDeprecated();
     }
+  }
+
+  /**
+   * Note: this is purposefully "started" twice -- once during application create, and once during foreground.
+   * This is so we can capture ANR's that happen on boot before the foreground event.
+   */
+  private void startAnrDetector() {
+    AnrDetector.start(TimeUnit.SECONDS.toMillis(5), FeatureFlags::internalUser, (dumps) -> {
+      LogDatabase.getInstance(this).anrs().save(System.currentTimeMillis(), dumps);
+      return Unit.INSTANCE;
+    });
   }
 
   private void initializeSecurityProvider() {
