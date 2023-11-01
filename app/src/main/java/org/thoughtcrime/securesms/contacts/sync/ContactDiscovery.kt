@@ -73,7 +73,8 @@ object ContactDiscovery {
         ContactDiscoveryRefreshV2.refreshAll(context, useCompat = FeatureFlags.cdsCompatMode())
       },
       removeSystemContactLinksIfMissing = true,
-      notifyOfNewUsers = notifyOfNewUsers
+      notifyOfNewUsers = notifyOfNewUsers,
+      forceFullSystemContactSync = true
     )
 
     StorageSyncHelper.scheduleSyncForDataChange()
@@ -140,7 +141,8 @@ object ContactDiscovery {
     descriptor: String,
     refresh: () -> RefreshResult,
     removeSystemContactLinksIfMissing: Boolean,
-    notifyOfNewUsers: Boolean
+    notifyOfNewUsers: Boolean,
+    forceFullSystemContactSync: Boolean = false
   ): RefreshResult {
     val stopwatch = Stopwatch(descriptor)
 
@@ -153,7 +155,7 @@ object ContactDiscovery {
     if (hasContactsPermissions(context)) {
       ApplicationDependencies.getJobManager().add(SyncSystemContactLinksJob())
 
-      val useFullSync = removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD
+      val useFullSync = forceFullSystemContactSync || (removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD)
       syncRecipientsWithSystemContacts(
         context = context,
         rewrites = result.rewrites,
