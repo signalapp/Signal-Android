@@ -17,24 +17,8 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.util.Currency
-import kotlin.time.Duration.Companion.days
 
 object DonationSerializationHelper {
-
-  private val PENDING_ONE_TIME_BANK_TRANSFER_TIMEOUT = 14.days
-  private val PENDING_ONE_TIME_NORMAL_TIMEOUT = 1.days
-
-  val PendingOneTimeDonation.isExpired: Boolean
-    get() {
-      val timeout = if (paymentMethodType == PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT) {
-        PENDING_ONE_TIME_BANK_TRANSFER_TIMEOUT
-      } else {
-        PENDING_ONE_TIME_NORMAL_TIMEOUT
-      }
-
-      return (timestamp + timeout.inWholeMilliseconds) < System.currentTimeMillis()
-    }
-
   fun createPendingOneTimeDonationProto(
     badge: Badge,
     paymentSourceType: PaymentSourceType,

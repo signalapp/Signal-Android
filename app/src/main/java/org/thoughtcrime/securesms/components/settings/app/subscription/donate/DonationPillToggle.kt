@@ -15,14 +15,13 @@ object DonationPillToggle {
   }
 
   class Model(
-    val isEnabled: Boolean,
     val selected: DonateToSignalType,
     val onClick: () -> Unit
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean = true
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return isEnabled == newItem.isEnabled && selected == newItem.selected
+      return selected == newItem.selected
     }
   }
 

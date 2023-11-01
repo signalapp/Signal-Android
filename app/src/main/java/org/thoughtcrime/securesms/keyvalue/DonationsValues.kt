@@ -14,12 +14,12 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.isExpired
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
+import org.thoughtcrime.securesms.database.model.isExpired
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil

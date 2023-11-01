@@ -13,12 +13,12 @@ import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.money.PlatformCurrencyUtil
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.isExpired
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher
+import org.thoughtcrime.securesms.database.model.isExpired
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.keyvalue.SignalStore

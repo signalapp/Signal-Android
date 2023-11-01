@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.MegaphoneDatabase
@@ -215,6 +216,18 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
         onClick = {
           logPreKeyIds()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Retry all jobs now"),
+        summary = DSLSettingsText.from("Clear backoff intervals, app will restart"),
+        onClick = {
+          SimpleTask.run({
+            JobDatabase.getInstance(ApplicationDependencies.getApplication()).debugResetBackoffInterval()
+          }) {
+            AppUtil.restart(requireContext())
+          }
         }
       )
 

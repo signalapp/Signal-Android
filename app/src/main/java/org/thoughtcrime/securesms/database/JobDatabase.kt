@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.CursorUtil
@@ -406,6 +407,11 @@ class JobDatabase(
       Log.i(TAG, "Dropping original $table table from the main database.")
       SignalDatabase.rawDatabase.execSQL("DROP TABLE $table")
     }
+  }
+
+  /** Should only be used for debugging! */
+  fun debugResetBackoffInterval() {
+    writableDatabase.update(Jobs.TABLE_NAME, contentValuesOf(Jobs.NEXT_BACKOFF_INTERVAL to 0), null, null)
   }
 
   companion object {

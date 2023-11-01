@@ -5823,6 +5823,17 @@
     <string name="DonateToSignalFragment__continue">Continue</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Monthly</string>
     <!-- Donation pill toggle one-time text -->
