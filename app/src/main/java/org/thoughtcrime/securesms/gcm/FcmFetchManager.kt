@@ -129,14 +129,9 @@ object FcmFetchManager {
       if (highPriority) {
         this.highPriority = true
       }
-      val now = System.nanoTime()
-      val performedReplace = EXECUTOR.enqueue { fetch(context, now) }
-      if (performedReplace) {
-        Log.i(TAG, "Already have one running and one enqueued. Ignoring.")
-      } else {
-        last = now
-        Log.i(TAG, "Updating last event to $last")
-      }
+      last = System.nanoTime()
+      Log.i(TAG, "Updating last event to $last")
+      EXECUTOR.enqueue { fetch(context, last) }
     }
   }
 
