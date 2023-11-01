@@ -5890,6 +5890,8 @@
     <string name="BankTransferMandateFragment__learn_more">Learn more</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Continue</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Failed to load mandate</string>
 
