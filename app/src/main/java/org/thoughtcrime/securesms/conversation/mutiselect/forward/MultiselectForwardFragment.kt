@@ -175,6 +175,7 @@ class MultiselectForwardFragment :
     ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(sendButtonColors.background.resolve(requireContext())))
 
     FullscreenHelper.configureBottomBarLayout(requireActivity(), bottomBarSpacer, bottomBar)
+    bottomBar.setOnTouchListener { _, _ -> true }
 
     backgroundHelper.setBackgroundColor(callback.getDialogBackgroundColor())
     bottomBarSpacer.setBackgroundColor(callback.getDialogBackgroundColor())
