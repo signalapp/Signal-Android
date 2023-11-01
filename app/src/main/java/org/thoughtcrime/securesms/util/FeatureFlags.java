@@ -109,7 +109,6 @@ public final class FeatureFlags {
   private static final String SVR2_KILLSWITCH                   = "android.svr2.killSwitch";
   private static final String CDS_DISABLE_COMPAT_MODE           = "cds.disableCompatibilityMode";
   private static final String FCM_MAY_HAVE_MESSAGES_KILL_SWITCH = "android.fcmNotificationFallbackKillSwitch";
-  private static final String SAFETY_NUMBER_ACI                 = "global.safetyNumberAci";
   public  static final String PROMPT_FOR_NOTIFICATION_LOGS      = "android.logs.promptNotifications";
   private static final String PROMPT_FOR_NOTIFICATION_CONFIG    = "android.logs.promptNotificationsConfig";
   public  static final String PROMPT_BATTERY_SAVER              = "android.promptBatterySaver";
@@ -180,7 +179,6 @@ public final class FeatureFlags {
       AD_HOC_CALLING,
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
-      SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
@@ -259,7 +257,6 @@ public final class FeatureFlags {
       MAX_ATTACHMENT_SIZE_BYTES,
       SVR2_KILLSWITCH,
       CDS_DISABLE_COMPAT_MODE,
-      SAFETY_NUMBER_ACI,
       FCM_MAY_HAVE_MESSAGES_KILL_SWITCH,
       PROMPT_FOR_NOTIFICATION_LOGS,
       PROMPT_FOR_NOTIFICATION_CONFIG,
@@ -371,14 +368,6 @@ public final class FeatureFlags {
   /** Whether or not to use the UUID in verification codes. */
   public static boolean verifyV2() {
     return getBoolean(VERIFY_V2, false);
-  }
-
-  /** Whether or not we show the ACI safety number as the default initial safety number. */
-  public static boolean showAciSafetyNumberAsDefault() {
-    long estimatedServerTimeSeconds = (System.currentTimeMillis() - SignalStore.misc().getLastKnownServerTimeOffset()) / 1000;
-    long flagEnableTimeSeconds      = getLong(SAFETY_NUMBER_ACI, Long.MAX_VALUE);
-
-    return estimatedServerTimeSeconds > flagEnableTimeSeconds;
   }
 
   /** The raw client expiration JSON string. */

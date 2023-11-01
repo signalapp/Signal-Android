@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.IdentityUtil
 
 class VerifySafetyNumberViewModel(
@@ -70,17 +69,10 @@ class VerifySafetyNumberViewModel(
         aciFingerprint = SafetyNumberFingerprint(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity, generator.createFor(version, localIdentifier, localIdentity, remoteIdentifier, remoteIdentity))
       }
 
-      if (FeatureFlags.showAciSafetyNumberAsDefault()) {
-        if (aciFingerprint != null) {
-          fingerprintList.add(aciFingerprint)
-          if (e164Fingerprint != null) {
-            fingerprintList.add(e164Fingerprint)
-          }
-        }
-      } else {
-        if (aciFingerprint != null && e164Fingerprint != null) {
+      if (aciFingerprint != null) {
+        fingerprintList.add(aciFingerprint)
+        if (e164Fingerprint != null) {
           fingerprintList.add(e164Fingerprint)
-          fingerprintList.add(aciFingerprint)
         }
       }
 
