@@ -303,7 +303,7 @@ class DeleteBuilderPart1(
   }
 
   fun run(): Int {
-    return db.delete(tableName, null, emptyArray())
+    return db.delete(tableName, null, emptyArray<String>())
   }
 }
 
