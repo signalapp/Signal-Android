@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
-import org.thoughtcrime.securesms.service.NotificationController;
+import org.thoughtcrime.securesms.service.AttachmentProgressService;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -205,9 +205,8 @@ public final class AttachmentCompressionJob extends BaseJob {
       return attachment;
     }
 
-    try (NotificationController notification = ForegroundServiceUtil.startGenericTaskWhenCapable(context, context.getString(R.string.AttachmentUploadJob_compressing_video_start))) {
-
-      notification.setIndeterminateProgress();
+    try (AttachmentProgressService.Controller notification = AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_compressing_video_start))) {
+      notification.setIndeterminate(true);
 
       try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId(), false)) {
         if (dataSource == null) {
@@ -233,7 +232,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             try {
               try (OutputStream outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, file, true).second) {
                 transcoder.transcode(percent -> {
-                  notification.setProgress(100, percent);
+                  notification.setProgress(percent / 100f);
                   eventBus.postSticky(new PartProgressEvent(attachment,
                                                             PartProgressEvent.Type.COMPRESSION,
                                                             100,
@@ -262,7 +261,7 @@ public final class AttachmentCompressionJob extends BaseJob {
               Log.i(TAG, "Compressing with android in-memory muxer");
 
               try (MediaStream mediaStream = transcoder.transcode(percent -> {
-                notification.setProgress(100, percent);
+                notification.setProgress(percent/100f);
                 eventBus.postSticky(new PartProgressEvent(attachment,
                                                           PartProgressEvent.Type.COMPRESSION,
                                                           100,

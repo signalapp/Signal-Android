@@ -22,12 +22,11 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil.startGenericTaskWhenCapable
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.service.NotificationController
+import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
@@ -144,10 +143,10 @@ class AttachmentUploadJob private constructor(
     }
   }
 
-  private fun getAttachmentNotificationIfNeeded(attachment: Attachment): NotificationController? {
+  private fun getAttachmentNotificationIfNeeded(attachment: Attachment): AttachmentProgressService.Controller? {
     return if (attachment.size >= FOREGROUND_LIMIT) {
       try {
-        startGenericTaskWhenCapable(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
+        AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
       } catch (e: UnableToStartException) {
         Log.w(TAG, "Unable to start foreground service", e)
         null
@@ -168,7 +167,7 @@ class AttachmentUploadJob private constructor(
   }
 
   @Throws(InvalidAttachmentException::class)
-  private fun buildAttachmentStream(attachment: Attachment, notification: NotificationController?, resumableUploadSpec: ResumableUpload): SignalServiceAttachmentStream {
+  private fun buildAttachmentStream(attachment: Attachment, notification: AttachmentProgressService.Controller?, resumableUploadSpec: ResumableUpload): SignalServiceAttachmentStream {
     if (attachment.uri == null || attachment.size == 0L) {
       throw InvalidAttachmentException(IOException("Outgoing attachment has no data!"))
     }
@@ -192,7 +191,7 @@ class AttachmentUploadJob private constructor(
         .withListener(object : SignalServiceAttachment.ProgressListener {
           override fun onAttachmentProgress(total: Long, progress: Long) {
             EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
-            notification?.setProgress(total, progress)
+            notification?.progress = (progress.toFloat() / total)
           }
 
           override fun shouldCancel(): Boolean {

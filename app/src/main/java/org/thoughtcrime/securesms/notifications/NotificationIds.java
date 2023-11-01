@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 public final class NotificationIds {
 
   public static final int FCM_FAILURE                       = 12;
+  public static final int ATTACHMENT_PROGRESS               = 50;
   public static final int APK_UPDATE_PROMPT_INSTALL         = 666;
   public static final int APK_UPDATE_FAILED_INSTALL         = 667;
   public static final int APK_UPDATE_SUCCESSFUL_INSTALL     = 668;

@@ -1190,6 +1190,10 @@
         android:exported="false"/>
 
     <service
+        android:name=".service.AttachmentProgressService"
+        android:exported="false"/>
+
+    <service
         android:name=".gcm.FcmFetchBackgroundService"
         android:exported="false"/>
 
