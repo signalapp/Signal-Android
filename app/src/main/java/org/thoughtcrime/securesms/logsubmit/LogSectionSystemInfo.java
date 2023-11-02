@@ -91,6 +91,9 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("User-Agent        : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
     builder.append("SlowNotifications : ").append(SlowNotificationHeuristics.isHavingDelayedNotifications()).append("\n");
     builder.append("PotentiallyBattery: ").append(SlowNotificationHeuristics.isPotentiallyCausedByBatteryOptimizations()).append("\n");
+    if (BuildConfig.MANAGES_APP_UPDATES) {
+      builder.append("ApkManifestUrl    : ").append(BuildConfig.APK_UPDATE_MANIFEST_URL).append("\n");
+    }
     builder.append("App               : ");
 
     try {

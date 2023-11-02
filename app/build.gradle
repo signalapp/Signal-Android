@@ -333,8 +333,8 @@ android {
 
         nightly {
             def apkUpdateManifestUrl = "<unset>"
-            if (project.hasProperty('nightlyApkUpdateManifestUrl')) {
-                apkUpdateManifestUrl = project.getProperty('nightlyApkUpdateManifestUrl')
+            if (file("${project.rootDir}/nightly-url.txt").exists()) {
+                apkUpdateManifestUrl = file("${project.rootDir}/nightly-url.txt").text.trim()
             }
             dimension 'distribution'
             versionNameSuffix "-nightly-untagged-${getDateSuffix()}"
@@ -675,8 +675,9 @@ project.tasks.configureEach { task ->
 tasks.register('checkNightlyParams') {
     doFirst {
         if (project.gradle.startParameter.taskNames.any { it.toLowerCase().contains("nightly") }) {
-            if (!project.hasProperty('nightlyApkUpdateManifestUrl')) {
-                throw new GradleException("Required command-line parameter 'nightlyApkUpdateManifestUrl' not found for nightly build!")
+
+            if (!file("${project.rootDir}/nightly-url.txt").exists()) {
+                throw new GradleException("Cannot fine 'nightly-url.txt' for nightly build! It must exist in the root of this project and contain the location of the nightly manifest.")
             }
         }
     }

@@ -60,7 +60,7 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
       return
     }
 
-    Log.i(TAG, "Checking for APK update...")
+    Log.d(TAG, "Checking for APK update at ${BuildConfig.APK_UPDATE_MANIFEST_URL}")
 
     val client = OkHttpClient()
     val request = Request.Builder().url(BuildConfig.APK_UPDATE_MANIFEST_URL).build()
@@ -78,10 +78,11 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
       Log.w(TAG, "Invalid update descriptor! $updateDescriptor")
       return
     } else {
-      Log.i(TAG, "Got descriptor: $updateDescriptor")
+      Log.d(TAG, "Got descriptor: $updateDescriptor")
     }
 
     if (updateDescriptor.versionCode > getCurrentAppVersionCode()) {
+      Log.i(TAG, "Newer version code available. Current: ${getCurrentAppVersionCode()}, Update: ${updateDescriptor.versionCode}")
       val digest: ByteArray = Hex.fromStringCondensed(updateDescriptor.digest)
       val downloadStatus: DownloadStatus = getDownloadStatus(updateDescriptor.url, digest)
 
@@ -94,7 +95,11 @@ class ApkUpdateJob private constructor(parameters: Parameters) : BaseJob(paramet
         Log.i(TAG, "Download status missing, starting download...")
         handleDownloadStart(updateDescriptor.url, updateDescriptor.versionName, digest)
       }
+    } else {
+      Log.d(TAG, "Version code is the same or older than our own. Current: ${getCurrentAppVersionCode()}, Update: ${updateDescriptor.versionCode}")
     }
+
+    SignalStore.apkUpdate().lastSuccessfulCheck = System.currentTimeMillis()
   }
 
   public override fun onShouldRetry(e: Exception): Boolean {

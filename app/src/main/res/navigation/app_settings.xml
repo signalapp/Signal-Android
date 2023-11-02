@@ -107,6 +107,13 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
+            android:id="@+id/action_appSettingsFragment_to_appUpdatesSettingsFragment"
+            app:destination="@id/appUpdatesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
             android:id="@+id/action_appSettingsFragment_to_internalSettingsFragment"
             app:destination="@id/internalSettingsFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -643,6 +650,13 @@
         android:label="internal_conversation_test_fragment" />
 
     <!-- endregion -->
+
+    <!-- App updates -->
+
+    <fragment
+        android:id="@+id/appUpdatesFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.updates.AppUpdatesSettingsFragment"
+        android:label="app_update_fragment" />
 
     <!-- Subscriptions -->
     <fragment

@@ -3018,6 +3018,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Payments</string>
     <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_app_updates__title">App updates</string>
     <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
     <string name="preferences_data_and_storage__never">Never</string>

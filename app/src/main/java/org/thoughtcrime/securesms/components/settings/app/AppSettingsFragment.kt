@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.Util
@@ -231,6 +232,16 @@ class AppSettingsFragment : DSLSettingsFragment(
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_dataAndStorageSettingsFragment)
         }
       )
+
+      if (Environment.IS_NIGHTLY) {
+        clickPref(
+          title = DSLSettingsText.from("App updates"),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_calendar_24),
+          onClick = {
+            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_appUpdatesSettingsFragment)
+          }
+        )
+      }
 
       dividerPref()
 
