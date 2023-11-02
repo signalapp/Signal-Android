@@ -32,7 +32,7 @@ object OptionalUtil {
 
   @JvmStatic
   fun absentIfEmpty(value: String?): Optional<String> {
-    return if (value == null || value.isEmpty()) {
+    return if (value.isNullOrEmpty()) {
       Optional.empty()
     } else {
       Optional.of(value)

@@ -666,7 +666,7 @@ public class Recipient {
 
   public @NonNull Optional<String> getUsername() {
     if (FeatureFlags.usernames()) {
-      return Optional.ofNullable(username);
+      return OptionalUtil.absentIfEmpty(username);
     } else {
       return Optional.empty();
     }
