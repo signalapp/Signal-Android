@@ -85,15 +85,16 @@
 
     <TextView
         android:id="@+id/username_error"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorError"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/username_description"
+        app:layout_constraintEnd_toEndOf="@id/username_description"
         app:layout_constraintTop_toBottomOf="@id/username_text_wrapper"
-        tools:text="Error something bad happened"
+        tools:text="Error something bad happened. Very super long error message that wraps"
         tools:visibility="visible" />
 
     <TextView
