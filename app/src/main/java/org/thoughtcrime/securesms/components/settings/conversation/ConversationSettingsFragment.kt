@@ -555,7 +555,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
       }
 
-      if (state.sharedMedia != null && state.sharedMedia.count > 0) {
+      if (state.sharedMedia.isNotEmpty()) {
         dividerPref()
 
         sectionHeaderPref(R.string.recipient_preference_activity__shared_media)
@@ -563,7 +563,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         @Suppress("DEPRECATION")
         customPref(
           SharedMediaPreference.Model(
-            mediaCursor = state.sharedMedia,
+            mediaRecords = state.sharedMedia,
             mediaIds = state.sharedMediaIds,
             onMediaRecordClick = { view, mediaRecord, isLtr ->
               view.transitionName = "thumb"

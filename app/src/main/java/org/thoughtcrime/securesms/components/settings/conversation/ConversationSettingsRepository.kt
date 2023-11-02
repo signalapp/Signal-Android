@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import java.io.IOException
-import java.util.Optional
 
 private val TAG = Log.tag(ConversationSettingsRepository::class.java)
 
@@ -56,11 +55,11 @@ class ConversationSettingsRepository(
   }
 
   @WorkerThread
-  fun getThreadMedia(threadId: Long): Optional<Cursor> {
-    return if (threadId <= 0) {
-      Optional.empty()
+  fun getThreadMedia(threadId: Long, limit: Int): Cursor? {
+    return if (threadId > 0) {
+      SignalDatabase.media.getGalleryMediaForThread(threadId, MediaTable.Sorting.Newest, limit)
     } else {
-      Optional.of(SignalDatabase.media.getGalleryMediaForThread(threadId, MediaTable.Sorting.Newest))
+      null
     }
   }
 
