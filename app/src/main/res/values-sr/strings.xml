@@ -20,7 +20,7 @@
 
     <string name="yes">Да</string>
     <string name="no">Не</string>
-    <string name="delete">Обриши</string>
+    <string name="delete">Избриши</string>
     <string name="please_wait">Сачекајте…</string>
     <string name="save">Сачувај</string>
     <string name="note_to_self">Моја белешка</string>
@@ -79,7 +79,7 @@
 
     <!-- AttachmentKeyboard -->
     <string name="AttachmentKeyboard_gallery">Галерија</string>
-    <string name="AttachmentKeyboard_file">Fajl</string>
+    <string name="AttachmentKeyboard_file">Фајл</string>
     <string name="AttachmentKeyboard_contact">Контакт</string>
     <string name="AttachmentKeyboard_location">Локација</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Сигналу су потребне дозволе да прикаже ваше слике и видео.</string>
@@ -1032,8 +1032,8 @@
     <string name="CustomNotificationsDialogFragment__notification_sound">Звук обавештења</string>
     <string name="CustomNotificationsDialogFragment__vibrate">Режим вибрирања</string>
     <!-- Button text for customizing notification options -->
-    <string name="CustomNotificationsDialogFragment__customize">Прилагодити</string>
-    <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Променити звук и вибрацију</string>
+    <string name="CustomNotificationsDialogFragment__customize">Прилагоди</string>
+    <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Промени звук и вибрацију</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Поставке позива</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Звоно</string>
     <string name="CustomNotificationsDialogFragment__default">Подразумеван</string>
@@ -2052,7 +2052,7 @@
     <string name="ThreadRecord_view_once_photo">Једнократна фотографија</string>
     <string name="ThreadRecord_view_once_video">Једнократни видео запис</string>
     <string name="ThreadRecord_view_once_media">Једнократни медиј</string>
-    <string name="ThreadRecord_this_message_was_deleted">Ова порука је обрисана.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Ова порука је избрисана.</string>
     <string name="ThreadRecord_you_deleted_this_message">Избрисали сте ову поруку.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Послали сте захтев за активирање плаћања</string>
@@ -2077,7 +2077,7 @@
     <string name="ThreadRecord_photo">Фотографија</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Гласовна порука</string>
-    <string name="ThreadRecord_file">Fajl</string>
+    <string name="ThreadRecord_file">Фајл</string>
     <string name="ThreadRecord_video">Видео запис</string>
     <string name="ThreadRecord_chat_session_refreshed">Сесија ћаскања је освежена</string>
     <!-- Displayed in the notification when the user is sent a gift -->
@@ -2581,22 +2581,22 @@
     <string name="expiration_off">Искључено</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="one">%1$d сек.</item>
-        <item quantity="other">%1$d сек.</item>
+        <item quantity="one">%1$d s</item>
+        <item quantity="other">%1$d s</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%1$d s</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$d мин.</item>
-        <item quantity="other">%1$d мин.</item>
+        <item quantity="one">%1$d min</item>
+        <item quantity="other">%1$d min</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%1$d m</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d сат</item>
-        <item quantity="other">%1$d сати</item>
+        <item quantity="one">%1$d h</item>
+        <item quantity="other">%1$d h</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$d h</string>
@@ -2609,8 +2609,8 @@
     <string name="expiration_days_abbreviated">%1$d д</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d сед.</item>
-        <item quantity="other">%1$d сед.</item>
+        <item quantity="one">%1$d нед.</item>
+        <item quantity="other">%1$d нед.</item>
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%1$d с</string>
@@ -2689,7 +2689,7 @@
     <string name="EditAboutFragment_encrypted">Шифровано</string>
     <string name="EditAboutFragment_be_kind">Будите љубазни</string>
     <string name="EditAboutFragment_coffee_lover">Љубитељ кафе</string>
-    <string name="EditAboutFragment_free_to_chat">Доступан за ћаскање</string>
+    <string name="EditAboutFragment_free_to_chat">Можемо да ћаскамо</string>
     <string name="EditAboutFragment_taking_a_break">Правим паузу</string>
     <string name="EditAboutFragment_working_on_something_new">Радим на нечему новом</string>
 
@@ -2785,19 +2785,19 @@
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
     <string-array name="HelpFragment__categories_5">
         <item>Изаберите опцију</item>
-        <item>Nešto ne radi</item>
-        <item>Zahtev za funkciju</item>
-        <item>Pitanje</item>
-        <item>Komentar</item>
+        <item>Нешто не ради</item>
+        <item>Захтев за функцију</item>
+        <item>Питање</item>
+        <item>Коментар</item>
         <item>Остало</item>
-        <item>Plaćanja (MobileCoin)</item>
+        <item>Плаћања (MobileCoin)</item>
         <item>Донације и значке</item>
         <item>Извоз SMS порука</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Слање евиденције за отклањање грешака за Signal Android</string>
     <!-- Category to organize the support email sent -->
-    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Спора обавештења</string>
+    <string name="DebugLogsPromptDialogFragment__slow_notifications_category">Обавештења касне</string>
     <!-- Category to organize the support email sent -->
     <string name="DebugLogsPromptDialogFragment__crash_category">Пад апликације</string>
     <!-- Action to submit logs and take user to send an e-mail -->
@@ -2821,12 +2821,12 @@
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Користи подразумевано</string>
-    <string name="arrays__use_custom">Користи посебно</string>
+    <string name="arrays__use_custom">Користи прилагођено</string>
 
-    <string name="arrays__mute_for_one_hour">Искључи обавештења 1 сат</string>
-    <string name="arrays__mute_for_eight_hours">Искључи обавештења 8 сати</string>
-    <string name="arrays__mute_for_one_day">Искључи обавештења 1 дан</string>
-    <string name="arrays__mute_for_seven_days">Искључи обавештења 7 сати</string>
+    <string name="arrays__mute_for_one_hour">Искључи обавештења на 1 сат</string>
+    <string name="arrays__mute_for_eight_hours">Искључи обавештења на 8 сати</string>
+    <string name="arrays__mute_for_one_day">Искључи обавештења на 1 дан</string>
+    <string name="arrays__mute_for_seven_days">Искључи обавештења на 7 сати</string>
     <string name="arrays__always">Увек</string>
 
     <string name="arrays__settings_default">Подразумевана поставка</string>
@@ -2876,7 +2876,7 @@
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Аутоматски закључај Signal након одређеног интервала неактивности</string>
     <string name="preferences__inactivity_timeout_passphrase">Интервал истека лозинке</string>
     <string name="preferences__inactivity_timeout_interval">Интервал неактивности</string>
-    <string name="preferences__notifications">Обавештавања</string>
+    <string name="preferences__notifications">Обавештења</string>
     <string name="preferences__led_color">Боја ЛЕД светла</string>
     <string name="preferences__led_color_unknown">Непозната</string>
     <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>
@@ -3997,7 +3997,7 @@
     <string name="ChatWallpaperFragment__reset_chat_colors">Ресетовати боје ћаскања</string>
     <string name="ChatWallpaperFragment__reset_chat_color">Ресетовати боје ћаскања</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">Ресетовати боје ћаскања?</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">Поставити позадину</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">Постави позадину</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Тамни режим затамњује позадину</string>
     <string name="ChatWallpaperFragment__contact_name">Име контакта</string>
     <string name="ChatWallpaperFragment__reset">Ресетуј</string>
@@ -4454,18 +4454,18 @@
     <string name="KeyboardPagerFragment_search_giphy">Тражити GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
-    <string name="StickerSearchDialogFragment_search_stickers">Тражити налепнице</string>
+    <string name="StickerSearchDialogFragment_search_stickers">Претрага налепница</string>
     <string name="StickerSearchDialogFragment_no_results_found">Нема резултата</string>
     <string name="EmojiSearchFragment__no_results_found">Нема резултата</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Непозната мелодија звона</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__cant_add_to_group_story">Додавање садржаја у групну причу није успело</string>
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">Додавање у групну причу није успело</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Само администратори ове групе могу да додају садржаје у ову причу</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
-    <string name="ConversationSettingsFragment__contacts_app_not_found">Aplikacija za kontakte nije pronađena</string>
+    <string name="ConversationSettingsFragment__contacts_app_not_found">Апликација за контакте није пронађена</string>
     <string name="ConversationSettingsFragment__start_video_call">Започните видео позив</string>
     <string name="ConversationSettingsFragment__start_audio_call">Започни гласовни позив</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4473,9 +4473,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Порука</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__video">Видео запис</string>
+    <string name="ConversationSettingsFragment__video">Видео</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__audio">Звучни запис</string>
+    <string name="ConversationSettingsFragment__audio">Звук</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Позови</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4483,7 +4483,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Обавештења су искључена</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__search">Претрага</string>
+    <string name="ConversationSettingsFragment__search">Претражите</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Самонестајуће поруке</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Звук и обавештења</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
@@ -4588,7 +4588,7 @@
     <string name="AvatarPickerFragment__text">Текст</string>
     <string name="AvatarPickerFragment__save">Сачувај</string>
     <string name="AvatarPickerFragment__clear_avatar">Уклонити слику</string>
-    <string name="AvatarPickerRepository__failed_to_save_avatar">Неуспех сачувавања аватара</string>
+    <string name="AvatarPickerRepository__failed_to_save_avatar">Чување аватара није успело</string>
 
     <!-- TextAvatarCreationFragment -->
     <string name="TextAvatarCreationFragment__preview">Преглед</string>
@@ -4606,17 +4606,17 @@
     <string name="ShareInterstitialActivity__share">Поделите</string>
 
     <!-- DSLSettingsToolbar -->
-    <string name="DSLSettingsToolbar__navigate_up">Ићи на горе</string>
-    <string name="MultiselectForwardFragment__forward_to">Напред на</string>
+    <string name="DSLSettingsToolbar__navigate_up">Иди на врх</string>
+    <string name="MultiselectForwardFragment__forward_to">Проследите кориснику</string>
     <!-- Displayed when sharing content via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Подели са</string>
-    <string name="MultiselectForwardFragment__add_a_message">Додати поруку</string>
-    <string name="MultiselectForwardFragment__faster_forwards">Убрзавање прослеђивање</string>
+    <string name="MultiselectForwardFragment__add_a_message">Додајте поруку</string>
+    <string name="MultiselectForwardFragment__faster_forwards">Брже прослеђивање</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видео снимци ће бити скраћени на клипове од 30 секунди и послати као више прича.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видео снимци објављени у причама не могу бити дужи од 30 секунди.</string>
-    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђивање поруке је сада урађено сместа.</string>
+    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђене поруке се сада шаљу одмах.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Пошаљи %1$d поруку</item>
         <item quantity="other">Пошаљи поруке (%1$d)</item>
