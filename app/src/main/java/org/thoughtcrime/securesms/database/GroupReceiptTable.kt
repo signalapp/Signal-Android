@@ -76,22 +76,46 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
   }
 
   fun setUnidentified(results: Collection<Pair<RecipientId, Boolean>>, mmsId: Long) {
+    val mmsMatchPrefix = "$MMS_ID = $mmsId AND"
+    val unidentifiedQueries = SqlUtil.buildCollectionQuery(
+      column = RECIPIENT_ID,
+      values = results.filter { it.second() }.map { it.first().serialize() },
+      prefix = mmsMatchPrefix
+    )
+    val identifiedQueries = SqlUtil.buildCollectionQuery(
+      column = RECIPIENT_ID,
+      values = results.filterNot { it.second() }.map { it.first().serialize() },
+      prefix = mmsMatchPrefix
+    )
     writableDatabase.withinTransaction { db ->
-      for (result in results) {
+      unidentifiedQueries.forEach {
         db.update(TABLE_NAME)
-          .values(UNIDENTIFIED to if (result.second()) 1 else 0)
-          .where("$MMS_ID = ? AND $RECIPIENT_ID = ?", mmsId.toString(), result.first().serialize())
+          .values(UNIDENTIFIED to 1)
+          .where(it.where, it.whereArgs)
+          .run()
+      }
+
+      identifiedQueries.forEach {
+        db.update(TABLE_NAME)
+          .values(UNIDENTIFIED to 0)
+          .where(it.where, it.whereArgs)
           .run()
       }
     }
   }
 
   fun setSkipped(recipients: Collection<RecipientId>, mmsId: Long) {
+    val mmsMatchPrefix = "$MMS_ID = $mmsId AND"
+    val queries = SqlUtil.buildCollectionQuery(
+      column = RECIPIENT_ID,
+      values = recipients.map { it.serialize() },
+      prefix = mmsMatchPrefix
+    )
     writableDatabase.withinTransaction { db ->
-      for (recipient in recipients) {
+      queries.forEach {
         db.update(TABLE_NAME)
           .values(STATUS to STATUS_SKIPPED)
-          .where("$MMS_ID = ? AND $RECIPIENT_ID = ?", mmsId.toString(), recipient.serialize())
+          .where(it.where, it.whereArgs)
           .run()
       }
     }
