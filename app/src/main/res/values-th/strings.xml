@@ -627,6 +627,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ในตอนนี้…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูล Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -2029,6 +2031,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal เวอร์ชันใหม่พร้อมให้บริการแล้ว แตะเพื่ออัปเดต</string>
     <string name="ApkUpdateNotifications_failed_general_title">อัปเดต Signal ไม่สำเร็จ</string>
     <string name="ApkUpdateNotifications_failed_general_body">เราจะลองใหม่อีกครั้งในภายหลัง</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">ส่งข้อความหรือไม่?</string>
@@ -2622,24 +2626,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">เพื่อยืนยันว่าการติดต่อสื่อสารกับ %1$s ถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ให้ตรวจสอบแถบสีด้านบนนี้กับแถบสีบนอุปกรณ์ของคนคนนั้น พร้อมเปรียบเทียบหมายเลขที่แสดงว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
     <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
     <string name="verify_display_fragment__successful_match">จับคู่สำเร็จ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">การตรวจยืนยันหมายเลขความปลอดภัยล้มเหลว</string>
     <string name="verify_display_fragment__loading">กำลังโหลด…</string>
     <string name="verify_display_fragment__mark_as_verified">ทำเครื่องหมายว่าตรวจยืนยันแล้ว</string>
     <string name="verify_display_fragment__clear_verification">ล้างการตรวจยืนยัน</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">กำลังอัปเดตหมายเลขความปลอดภัย</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">การเปลี่ยนแปลงเกี่ยวกับหมายเลขความปลอดภัย</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">กำลังอัปเดตหมายเลขความปลอดภัยเพื่อให้พร้อมรองรับการใช้งานฟีเจอร์ด้านความเป็นส่วนตัวใหม่ๆ ของ Signal\n\nเพื่อยืนยันหมายเลขความปลอดภัย ให้ตรวจสอบแถบสีบนอุปกรณ์ของคุณกับแถบสีบนอุปกรณ์ของผู้ติดต่อว่าตรงกันหรือไม่ หากข้อมูลไม่ตรงกัน ให้ปัดหน้าจอ แล้วลองจับคู่หมายเลขความปลอดภัยใหม่ การตรวจสอบหมายเลขความปลอดภัยให้ตรงกันได้หนึ่งคู่นั้นเพียงพอแล้ว</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">ต้องการความช่วยเหลือหรือไม่?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">เข้าใจแล้ว</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">สแกนรหัส QR บนอุปกรณ์ของผู้ติดต่อของคุณ</string>
@@ -5455,7 +5448,9 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ตรวจสอบผู้ติดต่อทั้งหมดแล้ว แตะส่งเพื่อดำเนินการต่อ</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">คุณมีเครือข่าย %1$d คน ที่อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ ก่อนที่จะแชร์สตอรี่กับเครือข่ายคนดังกล่าว ลองตรวจสอบหมายเลขความปลอดภัยหรือลบเครือข่ายคนนั้นออกจากสตอรี่ของคุณ</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ตรวจยืนยันหมายเลขความปลอดภัย</string>
     <!-- Menu action to remove user from story -->
@@ -5695,6 +5690,17 @@
     <string name="DonateToSignalFragment__continue">ดำเนินการต่อ</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">ส่งข้อความอย่างเป็นส่วนตัว เป็นไปได้ด้วยทุนสนับสนุนจากคุณ ไม่มีโฆษณา ไม่มีการติดตาม ไม่มีทางเปลี่ยนแปลง บริจาควันนี้เพื่อร่วมสนับสนุน Signal</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">รายเดือน</string>
     <!-- Donation pill toggle one-time text -->
@@ -5761,6 +5767,8 @@
     <string name="BankTransferMandateFragment__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">ดำเนินการต่อ</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">โหลดคำขอไม่สำเร็จ</string>
 

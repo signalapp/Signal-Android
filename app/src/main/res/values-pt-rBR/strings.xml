@@ -643,6 +643,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% até agora…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Por favor, vá ao menu de configurações de aplicativos, selecione \"Permissões\", e habilite \"Armazenamento\".</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -2102,6 +2104,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Uma nova versão do Signal está disponível. Toque para atualizar.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Falha ao atualizar o Signal</string>
     <string name="ApkUpdateNotifications_failed_general_body">Tentaremos novamente mais tarde.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Enviar mensagem?</string>
@@ -2709,24 +2713,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Para verificar a criptografia de ponta a ponta com %1$s, combine o cartão de cor acima com o dispositivo e compare os números. Se não corresponder, deslize e tente usar outro par de números de segurança. Apenas um par precisa dar match.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
     <string name="verify_display_fragment__tap_to_scan">Toque para escanear</string>
     <string name="verify_display_fragment__successful_match">Correspondência bem sucedida</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Falha ao verificar o número de segurança</string>
     <string name="verify_display_fragment__loading">Carregando…</string>
     <string name="verify_display_fragment__mark_as_verified">Marcar como verificado</string>
     <string name="verify_display_fragment__clear_verification">Apagar verificação</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Os números de segurança estão sendo atualizados.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Alterações nos números de segurança</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Vamos atualizar os números de segurança durante um período de transição para habilitar os próximos recursos de privacidade no Signal.\n\nPara verificar números de segurança, combine o cartão da cor com o dispositivo do seu contato. Se não corresponder, deslize e tente usar outro par de números de segurança. Apenas um par precisa dar match.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Precisa de ajuda?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Entendi</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanear o Código QR no aparelho da outra pessoa.</string>
@@ -5581,7 +5574,10 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Todos os contatos foram analisados, toque em enviar para continuar.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Você tem %1$d contatos que talvez tenham reinstalado o Signal ou trocado de aparelho. Antes de compartilhar o story com eles, verifique os números de segurança ou considere removê-los do seu story.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verificar número de segurança</string>
     <!-- Menu action to remove user from story -->
@@ -5824,6 +5820,17 @@
     <string name="DonateToSignalFragment__continue">Continuar</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Mensagens privadas, financiadas por você. Sem anúncios, sem rastreamento, sem vigilância. Faça uma doação agora para apoiar o Signal.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Mensal</string>
     <!-- Donation pill toggle one-time text -->
@@ -5891,6 +5898,8 @@
     <string name="BankTransferMandateFragment__learn_more">Saiba mais</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Continuar</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Falha ao carregar o mandato</string>
 

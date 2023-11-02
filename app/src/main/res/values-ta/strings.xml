@@ -643,6 +643,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">இதுவரை %1$s%%…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">காப்புப்பிரதிகளை உருவாக்க Signal கு வெளிப்புற சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -2102,6 +2104,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal இன் புதிய பதிப்பு கிடைக்கப்பெறுகிறது. புதுப்பிக்க அழுத்தவும்.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signalஐப் புதுப்பிக்க முடியவில்லை</string>
     <string name="ApkUpdateNotifications_failed_general_body">பின்னர் மீண்டும் முயல்வோம்.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">செய்தி அனுப்ப?</string>
@@ -2709,24 +2713,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s இன் எண்ட்-டு-எண்ட் என்க்ரிப்ஷனைச் சரிபார்க்க, மேலே உள்ள வண்ண அட்டையை அவற்றின் டிவைஸ் உடன் பொருத்தி எண்களை ஒப்பிடவும். இவை பொருந்தவில்லை என்றால், ஸ்வைப் செய்து மற்ற பாதுகாப்பு எண்கள் ஜோடியை முயற்சிக்கவும். ஒரு ஜோடி மட்டுமே பொருந்த வேண்டும்.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
     <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
     <string name="verify_display_fragment__successful_match">வெற்றிகரமான இணை</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கத் தவறியது</string>
     <string name="verify_display_fragment__loading">ஏற்றுதல் …</string>
     <string name="verify_display_fragment__mark_as_verified">சரிபார்க்கப்பட்டதாகக் குறிக்கவும்</string>
     <string name="verify_display_fragment__clear_verification">சரிபார்ப்பை நீக்கவும்</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">பாதுகாப்பு எண்கள் புதுப்பிக்கப்படுகின்றன.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">பாதுகாப்பு எண்களில் செய்யப்படும் மாற்றங்கள்</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Signal இல் வரவிருக்கும் தனியுரிமை அம்சங்களை இயக்க, பாதுகாப்பு எண்கள் குறிப்பிட்ட நிலை மாற்றப்படும் காலத்தில் புதுப்பிக்கப்படவுள்ளன.\n\nபாதுகாப்பு எண்களைச் சரிபார்க்க, உங்கள் தொடர்பின் டிவைஸ் உடன் வண்ண அட்டையைப் பொருத்தவும். இவை பொருந்தவில்லை என்றால், ஸ்வைப் செய்து மற்ற பாதுகாப்பு எண்கள் ஜோடியை முயற்சிக்கவும். ஒரு ஜோடி மட்டுமே பொருந்த வேண்டும்.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">உங்களுக்கு உதவி வேண்டுமா?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">அறிந்துகொண்டேன்</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">உங்கள் தொடர்பு சாதனத்தில் QR குறியீட்டை ஸ்கேன் செய்யுங்கள்.</string>
@@ -5581,7 +5574,10 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">அனைத்து இணைப்புகளும் மதிப்பாய்வு செய்யப்பட்டுள்ளன, தொடர அனுப்பு என்பதைத் தட்டவும்.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">சிக்னலை மீண்டும் நிறுவிய அல்லது டிவைஸ்களை மாற்றிய %1$d இணைப்புகள் உங்களிடம் உள்ளன. உங்கள் ஸ்டோரியை அவர்களுடன் பகிர்ந்து கொள்வதற்கு முன் அவர்களது பாதுகாப்பு எண்களை மதிப்பாய்வு செய்யவும் அல்லது உங்கள் ஸ்டோரியிலிருந்து அவர்களை அகற்றவும்.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
     <!-- Menu action to remove user from story -->
@@ -5824,6 +5820,17 @@
     <string name="DonateToSignalFragment__continue">தொடரவும்</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">உங்களால் நிதியளிக்கப்பட்ட தனிப்பட்ட செய்தியிடல். விளம்பரங்கள் இல்லை, கண்காணிப்பு இல்லை, சமரசம் இல்லை. Signalஐ ஆதரிக்க இப்போதே நன்கொடை அளியுங்கள்.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">மாதாந்திரமாக</string>
     <!-- Donation pill toggle one-time text -->
@@ -5891,6 +5898,8 @@
     <string name="BankTransferMandateFragment__learn_more">மேலும் அறிக</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">தொடர்க</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">ஆணையை ஏற்ற இயலவில்லை</string>
 

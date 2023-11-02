@@ -627,6 +627,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% setakat ini…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan kebenaran storan luaran untuk mencipta sandaran, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Storan\".</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -2029,6 +2031,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Versi baharu Signal tersedia. Ketik untuk mengemas kini.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal gagal dikemas kini</string>
     <string name="ApkUpdateNotifications_failed_general_body">Kita akan cuba lagi nanti.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Hantar mesej?</string>
@@ -2622,24 +2626,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Untuk mengesahkan penyulitan hujung ke hujung dengan %1$s, padankan kad warna di atas dengan peranti mereka dan bandingkan nombornya. Jika ini tidak sepadan, leret dan cuba pasangan nombor keselamatan yang lain. Hanya satu pasangan yang perlu dipadankan.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
     <string name="verify_display_fragment__tap_to_scan">Ketik untuk mengimbas</string>
     <string name="verify_display_fragment__successful_match">Padanan berjaya</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Gagal mengesahkan nombor keselamatan</string>
     <string name="verify_display_fragment__loading">Memuatkan…</string>
     <string name="verify_display_fragment__mark_as_verified">Tanda sebagai disahkan</string>
     <string name="verify_display_fragment__clear_verification">Kosongkan pengesahan</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Nombor keselamatan sedang dikemas kini.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Perubahan kepada Nombor Keselamatan</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Nombor keselamatan sedang dikemas kini dalam tempoh peralihan untuk mendayakan ciri privasi yang akan datang dalam Signal.\n\nUntuk mengesahkan nombor keselamatan, padankan kad warna dengan peranti kenalan anda. Jika ini tidak sepadan, leret dan cuba pasangan nombor keselamatan yang lain. Hanya satu pasangan yang perlu dipadankan.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Perlukan bantuan?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Faham</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Imbas Kod QR pada peranti kenalan anda.</string>
@@ -5455,7 +5448,9 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Semua hubungan telah disemak, ketik hantar untuk meneruskan.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda mempunyai %1$d hubungan yang mungkin telah memasang semula Signal atau menukar peranti. Sebelum berkongsi cerita anda dengan mereka, semak nombor keselamatan mereka atau pertimbangkan untuk mengalih keluar mereka daripada cerita anda.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Sahkan nombor keselamatan</string>
     <!-- Menu action to remove user from story -->
@@ -5695,6 +5690,17 @@
     <string name="DonateToSignalFragment__continue">Teruskan</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Pemesejan peribadi, dibiayai oleh anda. Tiada iklan, tiada penjejakan, tiada kompromi. Derma sekarang untuk menyokong Signal.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Bulanan</string>
     <!-- Donation pill toggle one-time text -->
@@ -5761,6 +5767,8 @@
     <string name="BankTransferMandateFragment__learn_more">Ketahui lebih lanjut</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Teruskan</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Gagal memuatkan mandat</string>
 

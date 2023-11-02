@@ -627,6 +627,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% sejauh ini…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan izin penyimpanan eksternal untuk membuat cadangan, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -2029,6 +2031,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal versi baru telah tersedia. Ketuk untuk memperbarui.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal gagal diperbarui</string>
     <string name="ApkUpdateNotifications_failed_general_body">Kami akan coba lagi nanti.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Kirim pesan?</string>
@@ -2622,24 +2626,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Untuk memverifikasi enkripsi end-to-end dengan %1$s, cocokkan kartu warna di atas dengan perangkat mereka dan bandingkan angkanya. Jika ini tidak cocok, usap dan coba pasangan nomor keamanan lain. Hanya satu pasang yang harus cocok.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
     <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
     <string name="verify_display_fragment__successful_match">Pencocokan berhasil</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Gagal memverifikasi nomor keamanan</string>
     <string name="verify_display_fragment__loading">Memuat…</string>
     <string name="verify_display_fragment__mark_as_verified">Tandai terverifikasi</string>
     <string name="verify_display_fragment__clear_verification">Hapus verifikasi</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">Nomor keamanan sedang diperbarui.</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">Perubahan pada Nomor Keamanan</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Nomor keamanan sedang diperbarui selama periode transisi agar dapat mengaktifkan fitur privasi yang akan datang di Signal.\n\nUntuk memverifikasi nomor keamanan, cocokkan kartu warna dengan perangkat milik kontak Anda. Jika ini tidak cocok, usap dan coba pasangan nomor keamanan lain. Hanya satu pasang yang harus cocok.</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">Butuh bantuan?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">Mengerti</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR pada perangkat kontak Anda.</string>
@@ -5455,7 +5448,9 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Semua koneksi telah ditinjau, ketuk kirim untuk melanjutkan.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda punya %1$d koneksi yang mungkin telah menginstal ulang Signal atau berganti perangkat. Sebelum membagikan cerita dengan mereka, tinjau nomor keamanan mereka atau pertimbangkan untuk menghapus mereka dari cerita Anda.</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifikasi nomor keamanan</string>
     <!-- Menu action to remove user from story -->
@@ -5695,6 +5690,17 @@
     <string name="DonateToSignalFragment__continue">Lanjutkan</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Perpesanan privat, didanai oleh Anda. Tanpa iklan, tanpa pelacak, tanpa kompromi. Donasi sekarang untuk mendukung Signal.</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Bulanan</string>
     <!-- Donation pill toggle one-time text -->
@@ -5761,6 +5767,8 @@
     <string name="BankTransferMandateFragment__learn_more">Pelajari selengkapnya</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">Lanjutkan</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Gagal memuat permintaan</string>
 

@@ -627,6 +627,8 @@
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% လုပ်ဆောင်ပြီး…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">သင်၏ အပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းထားခွင့်အား Signal ကို ပေးရန်လိုအပ်ပါသည်။သို့သော် လုံးဝခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုခွင့်ပြုချက်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
+    <!-- Title of dialog shown when picking the time to perform a chat backup -->
+    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -2029,6 +2031,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal ဗားရှင်းအသစ် ရနိုင်ပါပြီ။ အပ်ဒိတ်လုပ်ရန် နှိပ်ပါ။</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal ကို အပ်ဒိတ်လုပ်ခြင်း မအောင်မြင်ပါ</string>
     <string name="ApkUpdateNotifications_failed_general_body">နောက်မှ ထပ်ကြိုးစားပါမည်။</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">စာပို့မလား?</string>
@@ -2622,24 +2626,13 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s နှင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားခြင်းကို စိစစ်အတည်ပြုရန် အထက်ပါ အရောင်ကတ်ပြားကို ၎င်း၏စက်နှင့် ယှဉ်ကြည့်ပြီး နံပါတ်များကို နှိုင်းယှဉ်ပါ။ ထိုနံပါတ်များ မကိုက်ညီပါက ပွတ်ဆွဲပြီးနောက် လုံခြုံရေးနံပါတ် နောက်တစ်တွဲဖြင့် စမ်းကြည့်ပါ။ နံပါတ်အတွဲတစ်တွဲသာလျှင် ကိုက်ညီရန် လိုအပ်ပါသည်။</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
     <string name="verify_display_fragment__tap_to_scan">စကင်ဖတ်ရန်နှိပ်ပါ</string>
     <string name="verify_display_fragment__successful_match">ကိုက်ညီမှု အောင်မြင်ပါသည်</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">လုံခြုံရေးနံပါတ်ကို အတည်ပြုရန် မအောင်မြင်ခဲ့ပါ</string>
     <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်…</string>
     <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
     <string name="verify_display_fragment__clear_verification">အတည်ပြုမှု ရှင်းလင်းရန်</string>
-    <!-- Banner at top of safety numbers screen explaining that we\'re updating how safety numbers work. -->
-    <string name="verify_display_fragment__safety_numbers_are_updating_banner_no_learn_more">လုံခြုံရေးနံပါတ်များကို အပ်ဒိတ်ပြုလုပ်နေပါသည်။</string>
-
-    <!-- Title for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__title">လုံခြုံရေးနံပါတ်များဆိုင်ရာ အပြောင်းအလဲများ</string>
-    <!-- Message for dialog explaining for how safety numbers are transitioning to support usernames -->
-    <string name="PnpSafetyNumberEducationDialog__body">Signal တွင် ပါဝင်လာမည့် ကိုယ်ပိုင်အချက်အလက်ဆိုင်ရာ အင်္ဂါရပ်များကို ဖွင့်နိုင်ရန်အတွက် လုံခြုံရေးနံပါတ်များကို အကူးအပြောင်းကာလတစ်ခုအတွင်း အပ်ဒိတ်ပြုလုပ်နေပါသည်။လုံခြုံရေးနံပါတ်များကို စိစစ်အတည်ပြုရန် အရောင်ကတ်ပြားကို သင့်အဆက်အသွယ်၏စက်နှင့် ယှဉ်ကြည့်ပါ။ ထိုနံပါတ်များ ကိုက်ညီခြင်းမရှိပါက ပွတ်ဆွဲပြီးနောက် လုံခြုံရေးနံပါတ် နောက်တစ်တွဲဖြင့် စမ်းကြည့်ပါ။ နံပါတ်အတွဲတစ်တွဲသာလျှင် ကိုက်ညီရန် လိုအပ်ပါသည်။</string>
-    <!-- Button for more information about the safety number changes. Takes user to support article -->
-    <string name="PnpSafetyNumberEducationDialog__help">အကူအညီ လိုအပ်ပါသလား?</string>
-    <!-- Confirmation button for educating users about new safety number changes -->
-    <string name="PnpSafetyNumberEducationDialog__confirm">ရပြီ</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">တဖက်လူ၏ ဖုန်း/ကွန်ပျူတာပေါ်တွင် QR ကုတ်ကို စကန်ဖတ်ပါ။</string>
@@ -5455,7 +5448,9 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ချိတ်ဆက်မှုများ အားလုံးကို ပြန်လည်စိစစ်ထားပါသည်၊ ဆက်လုပ်ရန်အတွက် ပေးပို့မည်ကို နှိပ်ပါ။</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">သင့်တွင် Signal ကို ပြန်လည်ထည့်သွင်းထားသည့် သို့မဟုတ် စက်များ ပြောင်းထားသည့် အဆက်အသွယ် %1$d ဦး ရှိပါသည်။ ထိုသူတို့ထံ သင့်စတိုရီကို မဝေမျှမီ ၎င်းတို့၏ လုံခြုံရေးနံပါတ်ကို ပြန်လည်စိစစ်ပါ သို့မဟုတ် ၎င်းတို့အား သင့်စတိုရီမှ ဖယ်ရှားရန် စဉ်းစားပါ။</string>
+    <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
+        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+    </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">စိတ်ချရသောနံပါတ်ကို စစ်ဆေးအတည်ပြုခြင်း</string>
     <!-- Menu action to remove user from story -->
@@ -5695,6 +5690,17 @@
     <string name="DonateToSignalFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">သင် ငွေကြေးထောက်ပံ့ထားသည့် သီးသန့် မက်ဆေ့ချ်လုပ်ဆောင်ချက်။ ကြော်ငြာများ မရှိ၊ ခြေရာခံခြင်း မရှိ၊ အပေးအယူ မရှိ။ Signal ကို ပံ့ပိုးရန် ယခုပင် လှူဒါန်းလိုက်ပါ။</string>
+    <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">လစဉ်</string>
     <!-- Donation pill toggle one-time text -->
@@ -5761,6 +5767,8 @@
     <string name="BankTransferMandateFragment__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__continue">ဆက်လုပ်ရန်</string>
+    <!-- Button label to read more of the bank mandate that is currently off screen -->
+    <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">ညွှန်ကြားမှုကို ဖွင့်၍မရပါ</string>
 
