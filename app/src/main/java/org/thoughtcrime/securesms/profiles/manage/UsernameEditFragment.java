@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
+import android.animation.LayoutTransition;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
@@ -9,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +23,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.progressindicator.CircularProgressIndicatorSpec;
-import com.google.android.material.progressindicator.IndeterminateDrawable;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.signal.core.util.DimensionUnit;
@@ -51,6 +48,17 @@ public class UsernameEditFragment extends LoggingFragment {
   private UsernameEditFragmentBinding binding;
   private LifecycleDisposable         lifecycleDisposable;
   private UsernameEditFragmentArgs    args;
+
+  private static final LayoutTransition ANIMATED_LAYOUT = new LayoutTransition();
+  private static final LayoutTransition STATIC_LAYOUT   = new LayoutTransition();
+
+  static {
+    STATIC_LAYOUT.disableTransitionType(LayoutTransition.CHANGE_APPEARING);
+    STATIC_LAYOUT.disableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
+    STATIC_LAYOUT.disableTransitionType(LayoutTransition.APPEARING);
+    STATIC_LAYOUT.disableTransitionType(LayoutTransition.DISAPPEARING);
+    STATIC_LAYOUT.disableTransitionType(LayoutTransition.CHANGING);
+  }
 
   public static UsernameEditFragment newInstance() {
     return new UsernameEditFragment();
@@ -155,6 +163,8 @@ public class UsernameEditFragment extends LoggingFragment {
     presentButtonState(state.buttonState);
     presentSummary(state.username);
 
+    binding.root.setLayoutTransition(ANIMATED_LAYOUT);
+
     switch (state.usernameStatus) {
       case NONE:
         usernameInputWrapper.setError(null);
@@ -190,6 +200,8 @@ public class UsernameEditFragment extends LoggingFragment {
     CharSequence error = usernameInputWrapper.getError();
     binding.usernameError.setVisibility(error != null ? View.VISIBLE : View.GONE);
     binding.usernameError.setText(usernameInputWrapper.getError());
+
+    binding.root.setLayoutTransition(STATIC_LAYOUT);
   }
 
   private void presentButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {

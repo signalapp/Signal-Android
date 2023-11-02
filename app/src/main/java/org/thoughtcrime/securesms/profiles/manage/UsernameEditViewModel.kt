@@ -71,9 +71,19 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       val invalidReason: InvalidReason? = checkUsername(nickname)
 
       if (invalidReason != null) {
-        State(ButtonState.SUBMIT_DISABLED, mapUsernameError(invalidReason), state.username)
+        // We only want to show actual errors after debouncing. But we also don't want to allow users to submit names with errors.
+        // So we disable submit, but we don't show an error yet.
+        State(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = UsernameStatus.NONE,
+          username = state.username
+        )
       } else {
-        State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, state.username)
+        State(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = UsernameStatus.NONE,
+          username = state.username
+        )
       }
     }
 
@@ -169,6 +179,13 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
     val invalidReason: InvalidReason? = checkUsername(nickname)
     if (invalidReason != null) {
+      uiState.update { state ->
+        State(
+          buttonState = ButtonState.SUBMIT_DISABLED,
+          usernameStatus = mapUsernameError(invalidReason),
+          username = state.username
+        )
+      }
       return
     }
 
@@ -229,7 +246,8 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   }
 
   companion object {
-    private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 500
+    private const val NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS: Long = 1000
+
     private fun mapUsernameError(invalidReason: InvalidReason): UsernameStatus {
       return when (invalidReason) {
         InvalidReason.TOO_SHORT -> UsernameStatus.TOO_SHORT
