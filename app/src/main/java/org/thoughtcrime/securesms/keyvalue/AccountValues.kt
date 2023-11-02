@@ -199,7 +199,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   fun generateAciIdentityKeyIfNecessary() {
     synchronized(this) {
       if (store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
-        Log.w(TAG, "Tried to generate an ANI identity, but one was already set!", Throwable())
+        Log.w(TAG, "Tried to generate an ACI identity, but one was already set!", Throwable())
         return
       }
 

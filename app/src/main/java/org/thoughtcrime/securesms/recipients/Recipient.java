@@ -1196,7 +1196,7 @@ public class Recipient {
    * Forces retrieving a fresh copy of the recipient, regardless of its state.
    */
   public @NonNull Recipient fresh() {
-    return live().resolve();
+    return live().refresh().resolve();
   }
 
   public @NonNull LiveRecipient live() {

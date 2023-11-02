@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -126,9 +127,15 @@ public final class StorageSyncHelper {
       record = recipientTable.getRecordForSync(self.getId());
     }
 
+    if (record == null) {
+      Log.w(TAG, "[buildAccountRecord] Could not find a RecipientRecord for ourselves! ID: " + self.getId());
+    } else if (!Arrays.equals(record.getStorageId(), self.getStorageServiceId())) {
+      Log.w(TAG, "[buildAccountRecord] StorageId on RecipientRecord did not match self! ID: " + self.getId());
+    }
+
     final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
 
-    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
+    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(record != null ? record.getStorageId() : self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
                                                                  .setProfileKey(self.getProfileKey())
                                                                  .setGivenName(self.getProfileName().getGivenName())
                                                                  .setFamilyName(self.getProfileName().getFamilyName())

@@ -105,7 +105,7 @@ public class StorageAccountRestoreJob extends BaseJob {
     Log.i(TAG, "Applying changes locally...");
     SignalDatabase.getRawDatabase().beginTransaction();
     try {
-      StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
+      StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self().fresh(), accountRecord, false);
       SignalDatabase.getRawDatabase().setTransactionSuccessful();
     } finally {
       SignalDatabase.getRawDatabase().endTransaction();
