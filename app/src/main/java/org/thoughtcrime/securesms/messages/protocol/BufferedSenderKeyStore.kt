@@ -60,10 +60,12 @@ class BufferedSenderKeyStore : SignalServiceSenderKeyStore {
       persistentStore.storeSenderKey(key.address, key.distributionId, record)
     }
 
-    persistentStore.clearSenderKeySharedWith(clearSharedWith)
+    if (clearSharedWith.isNotEmpty()) {
+      persistentStore.clearSenderKeySharedWith(clearSharedWith)
+      clearSharedWith.clear()
+    }
 
     updatedKeys.clear()
-    clearSharedWith.clear()
   }
 
   private fun UUID.toDistributionId() = DistributionId.from(this)
