@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
+import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
@@ -252,7 +252,7 @@ public final class Megaphones {
         .setImage(R.drawable.ic_add_a_profile_megaphone_image)
         .setBody(R.string.AddAProfilePhotoMegaphone__choose_a_look_and_color)
         .setActionButton(R.string.AddAProfilePhotoMegaphone__add_photo, (megaphone, listener) -> {
-          listener.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForAvatarEdit(context));
+          listener.onMegaphoneNavigationRequested(EditProfileActivity.getIntentForAvatarEdit(context));
           listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
         })
         .setSecondaryButton(R.string.AddAProfilePhotoMegaphone__not_now, (megaphone, listener) -> {
@@ -383,7 +383,7 @@ public final class Megaphones {
         .setBody(R.string.SetUpYourUsername__usernames_let_others)
         .setImage(R.drawable.usernames_64)
         .setActionButton(R.string.SetUpYourUsername__continue, (megaphone, controller) -> {
-          controller.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForUsernameEdit(context));
+          controller.onMegaphoneNavigationRequested(EditProfileActivity.getIntentForUsernameEdit(context));
         })
         .setSecondaryButton(R.string.SetUpYourUsername__not_now, (megaphone, controller) -> {
           controller.onMegaphoneCompleted(Event.SET_UP_YOUR_USERNAME);

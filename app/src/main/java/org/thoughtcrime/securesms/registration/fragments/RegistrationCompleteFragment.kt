@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.pin.PinRestoreActivity
 import org.thoughtcrime.securesms.profiles.AvatarHelper
-import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity
+import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel
@@ -70,7 +70,7 @@ class RegistrationCompleteFragment : LoggingFragment() {
       }
 
       if (needsProfile) {
-        startIntent = chainIntents(EditProfileActivity.getIntentForUserProfile(activity), startIntent)
+        startIntent = chainIntents(CreateProfileActivity.getIntentForUserProfile(activity), startIntent)
       }
 
       activity.startActivity(startIntent)

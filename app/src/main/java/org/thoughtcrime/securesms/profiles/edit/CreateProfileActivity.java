@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 /**
  * Shows editing screen for your profile during registration. Also handles group name editing.
  */
-public class EditProfileActivity extends BaseActivity implements EditProfileFragment.Controller {
+public class CreateProfileActivity extends BaseActivity implements CreateProfileFragment.Controller {
 
   public static final String NEXT_INTENT       = "next_intent";
   public static final String EXCLUDE_SYSTEM    = "exclude_system";
@@ -30,16 +30,16 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
   public static @NonNull Intent getIntentForUserProfile(@NonNull Context context) {
-    Intent intent = new Intent(context, EditProfileActivity.class);
-    intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
+    Intent intent = new Intent(context, CreateProfileActivity.class);
+    intent.putExtra(CreateProfileActivity.SHOW_TOOLBAR, false);
     return intent;
   }
 
   public static @NonNull Intent getIntentForGroupProfile(@NonNull Context context, @NonNull GroupId groupId) {
-    Intent intent = new Intent(context, EditProfileActivity.class);
-    intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, true);
-    intent.putExtra(EditProfileActivity.GROUP_ID, groupId.toString());
-    intent.putExtra(EditProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
+    Intent intent = new Intent(context, CreateProfileActivity.class);
+    intent.putExtra(CreateProfileActivity.SHOW_TOOLBAR, true);
+    intent.putExtra(CreateProfileActivity.GROUP_ID, groupId.toString());
+    intent.putExtra(CreateProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
     return intent;
   }
 
@@ -49,7 +49,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
 
     dynamicTheme.onCreate(this);
 
-    setContentView(R.layout.profile_create_activity);
+    setContentView(R.layout.create_profile_activity);
 
     if (bundle == null) {
       NavHostFragment fragment = NavHostFragment.create(R.navigation.edit_profile, getIntent().getExtras());
@@ -60,7 +60,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
 
     getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
       @Override public void handleOnBackPressed() {
-        if (!Navigation.findNavController(EditProfileActivity.this, R.id.fragment_container).popBackStack()) {
+        if (!Navigation.findNavController(CreateProfileActivity.this, R.id.fragment_container).popBackStack()) {
           finish();
         }
       }

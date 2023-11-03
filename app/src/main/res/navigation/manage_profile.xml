@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/manageProfileFragment"
-        android:name="org.thoughtcrime.securesms.profiles.manage.ManageProfileFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.EditProfileFragment"
         android:label="fragment_manage_profile"
-        tools:layout="@layout/manage_profile_fragment">
+        tools:layout="@layout/edit_profile_fragment">
 
         <action
             android:id="@+id/action_manageUsername"

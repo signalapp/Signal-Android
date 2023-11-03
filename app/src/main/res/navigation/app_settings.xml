@@ -144,7 +144,7 @@
 
     <activity
         android:id="@+id/manageProfileActivity"
-        android:name="org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity"
+        android:name="org.thoughtcrime.securesms.profiles.manage.EditProfileActivity"
         android:label="manage_profile_activity" />
 
     <!-- region Account Settings and subpages -->

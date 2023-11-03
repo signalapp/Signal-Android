@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/createProfileFragment"
-        android:name="org.thoughtcrime.securesms.profiles.edit.EditProfileFragment"
+        android:name="org.thoughtcrime.securesms.profiles.edit.CreateProfileFragment"
         android:label="fragment_create_profile"
-        tools:layout="@layout/profile_create_fragment">
+        tools:layout="@layout/create_profile_fragment">
 
         <action
             android:id="@+id/action_createProfileFragment_to_avatar_picker"

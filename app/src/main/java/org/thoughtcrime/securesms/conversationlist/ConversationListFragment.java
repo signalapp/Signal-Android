@@ -153,7 +153,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
+import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -795,7 +795,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     } else if (reminderActionId == R.id.reminder_action_cds_permanent_error_learn_more) {
       CdsPermanentErrorBottomSheet.show(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_fix_username) {
-      startActivity(ManageProfileActivity.getIntentForUsernameEdit(requireContext()));
+      startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()));
     } else if (reminderActionId == R.id.reminder_action_re_register) {
       startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
     }

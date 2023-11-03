@@ -20,9 +20,9 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
- * Activity that manages the local user's profile, as accessed via the settings.
+ * Activity for editing your profile after you're already registered.
  */
-public class ManageProfileActivity extends PassphraseRequiredActivity implements ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
+public class EditProfileActivity extends PassphraseRequiredActivity implements ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
   public static final int RESULT_BECOME_A_SUSTAINER = 12382;
 
@@ -32,17 +32,17 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
   public static final String START_AT_AVATAR   = "start_at_avatar";
 
   public static @NonNull Intent getIntent(@NonNull Context context) {
-    return new Intent(context, ManageProfileActivity.class);
+    return new Intent(context, EditProfileActivity.class);
   }
 
   public static @NonNull Intent getIntentForUsernameEdit(@NonNull Context context) {
-    Intent intent = new Intent(context, ManageProfileActivity.class);
+    Intent intent = new Intent(context, EditProfileActivity.class);
     intent.putExtra(START_AT_USERNAME, true);
     return intent;
   }
 
   public static @NonNull Intent getIntentForAvatarEdit(@NonNull Context context) {
-    Intent intent = new Intent(context, ManageProfileActivity.class);
+    Intent intent = new Intent(context, EditProfileActivity.class);
     intent.putExtra(START_AT_AVATAR, true);
     return intent;
   }
@@ -51,7 +51,7 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
   public void onCreate(Bundle bundle, boolean ready) {
     dynamicTheme.onCreate(this);
 
-    setContentView(R.layout.manage_profile_activity);
+    setContentView(R.layout.edit_profile_activity);
 
     if (bundle == null) {
       Bundle   extras = getIntent().getExtras();
@@ -65,16 +65,16 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
 
       if (extras != null && extras.getBoolean(START_AT_USERNAME, false)) {
         if (SignalStore.uiHints().hasSeenUsernameEducation()) {
-          NavDirections action = ManageProfileFragmentDirections.actionManageUsername();
+          NavDirections action = EditProfileFragmentDirections.actionManageUsername();
           SafeNavigation.safeNavigate(navController, action);
         } else {
-          NavDirections action = ManageProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment();
+          NavDirections action = EditProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment();
           SafeNavigation.safeNavigate(navController, action);
         }
       }
 
       if (extras != null && extras.getBoolean(START_AT_AVATAR, false)) {
-        NavDirections action = ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null);
+        NavDirections action = EditProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null);
         SafeNavigation.safeNavigate(navController, action);
       }
     }

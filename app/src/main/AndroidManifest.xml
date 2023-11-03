@@ -963,7 +963,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".profiles.edit.EditProfileActivity"
+    <activity android:name=".profiles.edit.CreateProfileActivity"
               android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
@@ -973,7 +973,7 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".profiles.manage.ManageProfileActivity"
+    <activity android:name=".profiles.manage.EditProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>

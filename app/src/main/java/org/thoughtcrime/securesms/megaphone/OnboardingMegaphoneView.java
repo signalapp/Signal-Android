@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.databinding.OnboardingMegaphoneCardBinding;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
+import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.ArrayList;
@@ -300,7 +300,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     @Override
     void onActionClicked(@NonNull MegaphoneActionController controller) {
-      controller.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForAvatarEdit(controller.getMegaphoneActivity()));
+      controller.onMegaphoneNavigationRequested(EditProfileActivity.getIntentForAvatarEdit(controller.getMegaphoneActivity()));
       SignalStore.onboarding().setShowAddPhoto(false);
     }
 

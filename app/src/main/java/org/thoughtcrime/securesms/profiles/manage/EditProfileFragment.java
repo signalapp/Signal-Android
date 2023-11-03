@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
-import org.thoughtcrime.securesms.databinding.ManageProfileFragmentBinding;
+import org.thoughtcrime.securesms.databinding.EditProfileFragmentBinding;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -50,18 +50,21 @@ import java.util.Optional;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class ManageProfileFragment extends LoggingFragment {
+/**
+ * Fragment for editing your profile after you're already registered.
+ */
+public class EditProfileFragment extends LoggingFragment {
 
-  private static final String TAG = Log.tag(ManageProfileFragment.class);
+  private static final String TAG = Log.tag(EditProfileFragment.class);
 
-  private AlertDialog                  avatarProgress;
-  private ManageProfileViewModel       viewModel;
-  private ManageProfileFragmentBinding binding;
-  private LifecycleDisposable          disposables;
+  private AlertDialog                avatarProgress;
+  private ManageProfileViewModel     viewModel;
+  private EditProfileFragmentBinding binding;
+  private LifecycleDisposable        disposables;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    binding = ManageProfileFragmentBinding.inflate(inflater, container, false);
+    binding = EditProfileFragmentBinding.inflate(inflater, container, false);
 
     return binding.getRoot();
   }
@@ -86,7 +89,7 @@ public class ManageProfileFragment extends LoggingFragment {
     binding.manageProfileEditPhoto.setOnClickListener(v -> onEditAvatarClicked());
 
     binding.manageProfileNameContainer.setOnClickListener(v -> {
-      SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileName());
+      SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageProfileName());
     });
 
     binding.manageProfileUsernameContainer.setOnClickListener(v -> {
@@ -96,7 +99,7 @@ public class ManageProfileFragment extends LoggingFragment {
               .setItems(R.array.username_edit_entries, (d, w) -> {
                 switch (w) {
                   case 0:
-                    SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+                    SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageUsername());
                     break;
                   case 1:
                     displayConfirmUsernameDeletionDialog();
@@ -107,15 +110,15 @@ public class ManageProfileFragment extends LoggingFragment {
               })
               .show();
         } else {
-          SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+          SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageUsername());
         }
       } else {
-        SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment());
+        SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment());
       }
     });
 
     binding.manageProfileAboutContainer.setOnClickListener(v -> {
-      SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageAbout());
+      SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageAbout());
     });
 
     getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR, getViewLifecycleOwner(), (key, bundle) -> {
@@ -138,7 +141,7 @@ public class ManageProfileFragment extends LoggingFragment {
       if (Recipient.self().getBadges().isEmpty()) {
         BecomeASustainerFragment.show(getParentFragmentManager());
       } else {
-        SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
+        SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
       }
     });
 
@@ -148,7 +151,7 @@ public class ManageProfileFragment extends LoggingFragment {
     });
 
     binding.manageProfileUsernameShare.setOnClickListener(v -> {
-      SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToShareUsernameDialog());
+      SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageProfileFragmentToShareUsernameDialog());
     });
   }
 
@@ -289,7 +292,7 @@ public class ManageProfileFragment extends LoggingFragment {
   }
 
   private void onEditAvatarClicked() {
-    SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null));
+    SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), EditProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null));
   }
 
   private void displayConfirmUsernameDeletionDialog() {

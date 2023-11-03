@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
-import org.thoughtcrime.securesms.databinding.ProfileCreateFragmentBinding;
+import org.thoughtcrime.securesms.databinding.CreateProfileFragmentBinding;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
@@ -49,25 +49,25 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.GROUP_ID;
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_INTENT;
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_TOOLBAR;
+import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.EXCLUDE_SYSTEM;
+import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.GROUP_ID;
+import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.NEXT_BUTTON_TEXT;
+import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.NEXT_INTENT;
+import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.SHOW_TOOLBAR;
 
 /**
  * Used for profile creation during registration.
  */
-public class EditProfileFragment extends LoggingFragment {
+public class CreateProfileFragment extends LoggingFragment {
 
-  private static final String TAG                    = Log.tag(EditProfileFragment.class);
+  private static final String TAG                    = Log.tag(CreateProfileFragment.class);
   private static final int    MAX_DESCRIPTION_GLYPHS = 480;
   private static final int    MAX_DESCRIPTION_BYTES  = 8192;
 
   private Intent nextIntent;
 
   private EditProfileViewModel         viewModel;
-  private ProfileCreateFragmentBinding binding;
+  private CreateProfileFragmentBinding binding;
 
   private Controller controller;
 
@@ -84,7 +84,7 @@ public class EditProfileFragment extends LoggingFragment {
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    binding = ProfileCreateFragmentBinding.inflate(inflater, container, false);
+    binding = CreateProfileFragmentBinding.inflate(inflater, container, false);
     return binding.getRoot();
   }
 
@@ -130,7 +130,7 @@ public class EditProfileFragment extends LoggingFragment {
       if (avatarBytes != null) {
         viewModel.setAvatarMedia(media);
         viewModel.setAvatar(avatarBytes);
-        GlideApp.with(EditProfileFragment.this)
+        GlideApp.with(CreateProfileFragment.this)
                 .load(avatarBytes)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -217,7 +217,7 @@ public class EditProfileFragment extends LoggingFragment {
         });
 
         binding.whoCanFindMeContainer.setVisibility(View.VISIBLE);
-        binding.whoCanFindMeContainer.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionCreateProfileFragmentToPhoneNumberPrivacy()));
+        binding.whoCanFindMeContainer.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), CreateProfileFragmentDirections.actionCreateProfileFragmentToPhoneNumberPrivacy()));
         presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode());
       }
     }
@@ -299,9 +299,9 @@ public class EditProfileFragment extends LoggingFragment {
   private void startAvatarSelection() {
     if (viewModel.isGroup()) {
       Parcelable groupId = ParcelableGroupId.from(viewModel.getGroupId());
-      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker((ParcelableGroupId) groupId, viewModel.getAvatarMedia()));
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), CreateProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker((ParcelableGroupId) groupId, viewModel.getAvatarMedia()));
     } else {
-      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker(null, null));
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), CreateProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker(null, null));
     }
   }
 
