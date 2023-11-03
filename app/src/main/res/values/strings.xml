@@ -996,6 +996,10 @@
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
     <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Username created</string>
     <!-- Snackbar message after copying username -->

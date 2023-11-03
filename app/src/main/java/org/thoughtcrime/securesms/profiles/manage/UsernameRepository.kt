@@ -232,6 +232,8 @@ class UsernameRepository {
     return try {
       accountManager.deleteUsername()
       SignalDatabase.recipients.setUsername(Recipient.self().id, null)
+      SignalStore.account().username = null
+      SignalStore.account().usernameLink = null
       SignalStore.account().usernameOutOfSync = false
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.")
       UsernameDeleteResult.SUCCESS

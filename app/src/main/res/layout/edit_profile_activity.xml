@@ -17,6 +17,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/manage_profile" />
+        app:navGraph="@navigation/edit_profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,12 +14,12 @@ import org.signal.core.util.StringUtil;
 
 public final class EditProfileNameViewModel extends ViewModel {
 
-  private final ManageProfileRepository    repository;
+  private final EditProfileRepository      repository;
   private final MutableLiveData<SaveState> saveState;
   private final SingleLiveEvent<Event>     events;
 
   public EditProfileNameViewModel() {
-    this.repository = new ManageProfileRepository();
+    this.repository = new EditProfileRepository();
     this.saveState  = new MutableLiveData<>(SaveState.IDLE);
     this.events     = new SingleLiveEvent<>();
   }

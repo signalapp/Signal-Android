@@ -37,9 +37,9 @@ import java.util.Optional;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 
-class ManageProfileViewModel extends ViewModel {
+class EditProfileViewModel extends ViewModel {
 
-  private static final String TAG = Log.tag(ManageProfileViewModel.class);
+  private static final String TAG = Log.tag(EditProfileViewModel.class);
 
   private final MutableLiveData<InternalAvatarState> internalAvatarState;
   private final MutableLiveData<ProfileName>         profileName;
@@ -49,20 +49,20 @@ class ManageProfileViewModel extends ViewModel {
   private final LiveData<AvatarState>                avatarState;
   private final SingleLiveEvent<Event>               events;
   private final RecipientForeverObserver             observer;
-  private final ManageProfileRepository              repository;
+  private final EditProfileRepository                repository;
   private final UsernameRepository                   usernameEditRepository;
   private final MutableLiveData<Optional<Badge>>     badge;
 
   private byte[] previousAvatar;
 
-  public ManageProfileViewModel() {
+  public EditProfileViewModel() {
     this.internalAvatarState    = new MutableLiveData<>();
     this.profileName            = new MutableLiveData<>();
     this.username               = new MutableLiveData<>();
     this.about                  = new MutableLiveData<>();
     this.aboutEmoji             = new MutableLiveData<>();
     this.events                 = new SingleLiveEvent<>();
-    this.repository             = new ManageProfileRepository();
+    this.repository             = new EditProfileRepository();
     this.usernameEditRepository = new UsernameRepository();
     this.badge                  = new DefaultValueLiveData<>(Optional.empty());
     this.observer               = this::onRecipientChanged;
@@ -281,7 +281,7 @@ class ManageProfileViewModel extends ViewModel {
   static class Factory extends ViewModelProvider.NewInstanceFactory {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return Objects.requireNonNull(modelClass.cast(new ManageProfileViewModel()));
+      return Objects.requireNonNull(modelClass.cast(new EditProfileViewModel()));
     }
   }
 

@@ -20,9 +20,9 @@ import org.whispersystems.signalservice.api.util.StreamDetails;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-final class ManageProfileRepository {
+final class EditProfileRepository {
 
-  private static final String TAG = Log.tag(ManageProfileRepository.class);
+  private static final String TAG = Log.tag(EditProfileRepository.class);
 
   public void setName(@NonNull Context context, @NonNull ProfileName profileName, @NonNull Consumer<Result> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {

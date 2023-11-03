@@ -52,7 +52,7 @@ public class CreateProfileActivity extends BaseActivity implements CreateProfile
     setContentView(R.layout.create_profile_activity);
 
     if (bundle == null) {
-      NavHostFragment fragment = NavHostFragment.create(R.navigation.edit_profile, getIntent().getExtras());
+      NavHostFragment fragment = NavHostFragment.create(R.navigation.create_profile, getIntent().getExtras());
       getSupportFragmentManager().beginTransaction()
                                  .add(R.id.fragment_container, fragment)
                                  .commit();

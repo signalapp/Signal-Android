@@ -12,7 +12,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -170,7 +171,40 @@
                     app:layout_goneMarginEnd="48dp"
                     tools:text="\@spiderman" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/username_link_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:minHeight="72dp"
+                android:paddingStart="@dimen/dsl_settings_gutter"
+                android:paddingEnd="@dimen/safety_number_recipient_row_item_gutter"
+                app:layout_constraintTop_toBottomOf="@id/manage_profile_username_container">
+
+                <ImageView
+                    android:id="@+id/username_link_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/symbol_qrcode_24"
+                    app:tint="@color/signal_text_primary" />
+
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/username_link_text"
+                    style="@style/Signal.Text.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:textAlignment="viewStart"
+                    android:text="@string/ManageProfileFragment_link_setting_text"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/username_link_icon"
+                    app:layout_goneMarginEnd="48dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -183,7 +217,7 @@
                 android:paddingTop="16dp"
                 android:paddingEnd="@dimen/dsl_settings_gutter"
                 android:paddingBottom="16dp"
-                app:layout_constraintTop_toBottomOf="@id/manage_profile_username_container">
+                app:layout_constraintTop_toBottomOf="@id/username_link_container">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/manage_profile_about_icon"
@@ -266,6 +300,95 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/manage_profile_badges_container"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/username_link_tooltip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:clickable="true"
+                android:visibility="gone"
+                android:background="@color/transparent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                tools:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/username_link_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <FrameLayout
+                    android:id="@+id/tooltip_arrow_top"
+                    android:layout_width="19dp"
+                    android:layout_height="14dp"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitXY"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/ic_tooltip_arrow_up"
+                    android:backgroundTint="@color/signal_colorPrimaryContainer" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/tooltip_background"
+                    android:backgroundTint="@color/signal_colorPrimaryContainer"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tooltip_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/tooltip_share_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/symbol_share_android_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tooltip_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="34dp"
+                    android:text="@string/ManageProfileFragment__link_tooltip_title"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/signal_colorOnPrimaryContainer"
+                    app:layout_constraintTop_toTopOf="@id/tooltip_share_icon"
+                    app:layout_constraintStart_toEndOf="@id/tooltip_share_icon"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tooltip_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:text="@string/ManageProfileFragment__link_tooltip_body"
+                    android:textColor="@color/signal_colorOnSurfaceVariant"
+                    app:layout_constraintTop_toBottomOf="@id/tooltip_title"
+                    app:layout_constraintStart_toStartOf="@id/tooltip_title"
+                    app:layout_constraintEnd_toEndOf="@id/tooltip_title"/>
+
+                <ImageView
+                    android:id="@+id/link_tooltip_close_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/symbol_x_24"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    app:tint="@color/signal_colorOnSurfaceVariant"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

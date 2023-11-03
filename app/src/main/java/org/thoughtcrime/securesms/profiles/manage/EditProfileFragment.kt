@@ -14,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.map
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.SimpleColorFilter
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -32,9 +33,10 @@ import org.thoughtcrime.securesms.databinding.EditProfileFragmentBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.profiles.ProfileName
-import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState
+import org.thoughtcrime.securesms.profiles.manage.EditProfileViewModel.AvatarState
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -49,7 +51,7 @@ class EditProfileFragment : LoggingFragment() {
 
   private var avatarProgress: AlertDialog? = null
 
-  private lateinit var viewModel: ManageProfileViewModel
+  private lateinit var viewModel: EditProfileViewModel
   private lateinit var binding: EditProfileFragmentBinding
   private lateinit var disposables: LifecycleDisposable
 
@@ -128,10 +130,26 @@ class EditProfileFragment : LoggingFragment() {
         AvatarPreviewActivity.createTransitionBundle(requireActivity(), binding.manageProfileAvatar)
       )
     }
+
+    if (FeatureFlags.usernames() && SignalStore.account().username != null) {
+      binding.usernameLinkContainer.setOnClickListener {
+        findNavController().safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameLinkFragment())
+      }
+
+      if (SignalStore.tooltips().showProfileSettingsQrCodeTooltop()) {
+        binding.usernameLinkTooltip.visibility = View.VISIBLE
+        binding.linkTooltipCloseButton.setOnClickListener {
+          binding.usernameLinkTooltip.visibility = View.GONE
+          SignalStore.tooltips().markProfileSettingsQrCodeTooltipSeen()
+        }
+      }
+    } else {
+      binding.usernameLinkContainer.visibility = View.GONE
+    }
   }
 
   private fun initializeViewModel() {
-    viewModel = ViewModelProvider(this, ManageProfileViewModel.Factory()).get(ManageProfileViewModel::class.java)
+    viewModel = ViewModelProvider(this, EditProfileViewModel.Factory()).get(EditProfileViewModel::class.java)
 
     LiveDataUtil
       .distinctUntilChanged(viewModel.avatar) { b1, b2 -> Arrays.equals(b1.avatar, b2.avatar) }
@@ -185,9 +203,9 @@ class EditProfileFragment : LoggingFragment() {
       binding.manageProfileAvatarInitials.visibility = View.GONE
     }
 
-    if (avatarProgress == null && avatarState.loadingState == ManageProfileViewModel.LoadingState.LOADING) {
+    if (avatarProgress == null && avatarState.loadingState == EditProfileViewModel.LoadingState.LOADING) {
       avatarProgress = SimpleProgressDialog.show(requireContext())
-    } else if (avatarProgress != null && avatarState.loadingState == ManageProfileViewModel.LoadingState.LOADED) {
+    } else if (avatarProgress != null && avatarState.loadingState == EditProfileViewModel.LoadingState.LOADED) {
       avatarProgress!!.dismiss()
     }
   }
@@ -251,10 +269,10 @@ class EditProfileFragment : LoggingFragment() {
     }
   }
 
-  private fun presentEvent(event: ManageProfileViewModel.Event) {
+  private fun presentEvent(event: EditProfileViewModel.Event) {
     when (event) {
-      ManageProfileViewModel.Event.AVATAR_DISK_FAILURE -> Toast.makeText(requireContext(), R.string.ManageProfileFragment_failed_to_set_avatar, Toast.LENGTH_LONG).show()
-      ManageProfileViewModel.Event.AVATAR_NETWORK_FAILURE -> Toast.makeText(requireContext(), R.string.EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later, Toast.LENGTH_LONG).show()
+      EditProfileViewModel.Event.AVATAR_DISK_FAILURE -> Toast.makeText(requireContext(), R.string.ManageProfileFragment_failed_to_set_avatar, Toast.LENGTH_LONG).show()
+      EditProfileViewModel.Event.AVATAR_NETWORK_FAILURE -> Toast.makeText(requireContext(), R.string.EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later, Toast.LENGTH_LONG).show()
     }
   }
 
@@ -284,7 +302,10 @@ class EditProfileFragment : LoggingFragment() {
 
   private fun handleUsernameDeletionResult(usernameDeleteResult: UsernameDeleteResult) {
     when (usernameDeleteResult) {
-      UsernameDeleteResult.SUCCESS -> Snackbar.make(requireView(), R.string.ManageProfileFragment__username_deleted, Snackbar.LENGTH_SHORT).show()
+      UsernameDeleteResult.SUCCESS -> {
+        Snackbar.make(requireView(), R.string.ManageProfileFragment__username_deleted, Snackbar.LENGTH_SHORT).show()
+        binding.usernameLinkContainer.visibility = View.GONE
+      }
       UsernameDeleteResult.NETWORK_ERROR -> Snackbar.make(requireView(), R.string.ManageProfileFragment__couldnt_delete_username, Snackbar.LENGTH_SHORT).show()
     }
   }
