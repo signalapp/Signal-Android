@@ -665,7 +665,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     deliveryStatus.setTint(themeDelegate.getFooterForegroundColor(conversationMessage))
 
-    if (messageId != newMessageId && deliveryStatus.isPending && !record.isPending) {
+    if (messageId == newMessageId && deliveryStatus.isPending && !record.isPending) {
       if (record.toRecipient.isGroup) {
         SignalLocalMetrics.GroupMessageSend.onUiUpdated(record.id)
       } else {
