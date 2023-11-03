@@ -991,9 +991,6 @@
     <string name="ManageProfileFragment_profile_name">Profile name</string>
     <string name="ManageProfileFragment_username">Username</string>
     <string name="ManageProfileFragment_about">About</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">Write a few words about yourself</string>
-    <string name="ManageProfileFragment_your_name">Your name</string>
-    <string name="ManageProfileFragment_your_username">Your username</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
     <string name="ManageProfileFragment_badges">Badges</string>
     <string name="ManageProfileFragment__edit_photo">Edit photo</string>

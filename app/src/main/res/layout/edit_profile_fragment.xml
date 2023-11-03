@@ -115,9 +115,9 @@
                     android:id="@+id/manage_profile_name_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@id/manage_profile_name_subtitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/manage_profile_name"
                     app:srcCompat="@drawable/symbol_person_24"
                     app:tint="@color/signal_text_primary" />
 
@@ -128,21 +128,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:textAlignment="viewStart"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/manage_profile_name_icon"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="Peter Parker" />
 
-                <TextView
-                    android:id="@+id/manage_profile_name_subtitle"
-                    style="@style/Signal.Text.Preview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ManageProfileFragment_your_name"
-                    android:textColor="@color/signal_text_secondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/manage_profile_name"
-                    app:layout_constraintTop_toBottomOf="@id/manage_profile_name" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -160,9 +151,9 @@
                     android:id="@+id/manage_profile_username_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@id/manage_profile_username_subtitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/manage_profile_username"
                     app:srcCompat="@drawable/symbol_at_24"
                     app:tint="@color/signal_text_primary" />
 
@@ -173,40 +164,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:textAlignment="viewStart"
-                    app:layout_constraintBottom_toTopOf="@id/manage_profile_username_subtitle"
-                    app:layout_constraintEnd_toStartOf="@id/manage_profile_username_share"
-                    app:layout_constraintStart_toEndOf="@id/manage_profile_username_icon"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/manage_profile_username_icon"
                     app:layout_goneMarginEnd="48dp"
                     tools:text="\@spiderman" />
 
-                <TextView
-                    android:id="@+id/manage_profile_username_subtitle"
-                    style="@style/Signal.Text.Preview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="@string/ManageProfileFragment_your_username"
-                    android:textColor="@color/signal_text_secondary"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/manage_profile_username_share"
-                    app:layout_constraintStart_toStartOf="@id/manage_profile_username"
-                    app:layout_constraintTop_toBottomOf="@id/manage_profile_username"
-                    app:layout_goneMarginEnd="48dp" />
 
-                <ImageView
-                    android:id="@+id/manage_profile_username_share"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="4dp"
-                    android:background="?selectableItemBackground"
-                    android:scaleType="centerInside"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/symbol_share_android_24"
-                    app:tint="@color/signal_colorOnSurface" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -226,9 +190,9 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@id/manage_profile_about_subtitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/manage_profile_about"
                     app:srcCompat="@drawable/symbol_edit_24"
                     app:tint="@color/signal_text_primary" />
 
@@ -240,21 +204,11 @@
                     android:layout_marginStart="24dp"
                     android:textAlignment="viewStart"
                     app:emoji_forceCustom="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/manage_profile_about_icon"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="Photographer for the Daily Bugle" />
-
-                <TextView
-                    android:id="@+id/manage_profile_about_subtitle"
-                    style="@style/Signal.Text.Preview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ManageProfileFragment_write_a_few_words_about_yourself"
-                    android:textColor="@color/signal_text_secondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/manage_profile_about"
-                    app:layout_constraintTop_toBottomOf="@id/manage_profile_about" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

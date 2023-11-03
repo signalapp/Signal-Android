@@ -149,10 +149,6 @@ public class EditProfileFragment extends LoggingFragment {
       startActivity(AvatarPreviewActivity.intentFromRecipientId(requireContext(), Recipient.self().getId()),
                     AvatarPreviewActivity.createTransitionBundle(requireActivity(), binding.manageProfileAvatar));
     });
-
-    binding.manageProfileUsernameShare.setOnClickListener(v -> {
-      SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionManageProfileFragmentToShareUsernameDialog());
-    });
   }
 
   @Override
@@ -242,11 +238,8 @@ public class EditProfileFragment extends LoggingFragment {
   private void presentUsername(@Nullable String username) {
     if (username == null || username.isEmpty()) {
       binding.manageProfileUsername.setText(R.string.ManageProfileFragment_username);
-      binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
-      binding.manageProfileUsernameShare.setVisibility(View.GONE);
     } else {
       binding.manageProfileUsername.setText(username);
-      binding.manageProfileUsernameShare.setVisibility(View.VISIBLE);
     }
   }
 
