@@ -993,6 +993,8 @@
     <string name="ManageProfileFragment_about">About</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
     <string name="ManageProfileFragment_badges">Badges</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">Edit photo</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Username created</string>
@@ -1002,6 +1004,10 @@
     <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">This will remove your username and disable your QR code and link. "%1$s" will be available for others to claim. Are you sure?</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->

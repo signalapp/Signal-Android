@@ -14,7 +14,6 @@ import org.signal.core.util.Result
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSetResult
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason
 import org.thoughtcrime.securesms.util.UsernameUtil.checkUsername
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -41,7 +40,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
     defaultValue = State(
       buttonState = ButtonState.SUBMIT_DISABLED,
       usernameStatus = UsernameStatus.NONE,
-      username = Recipient.self().username.map<UsernameState> { UsernameState.Set(it) }.orElse(UsernameState.NoUsername)
+      username = SignalStore.account().username?.let { UsernameState.Set(it) } ?: UsernameState.NoUsername
     ),
     scheduler = Schedulers.computation()
   )
@@ -60,7 +59,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
   fun onNicknameUpdated(nickname: String) {
     uiState.update { state: State ->
-      if (nickname.isBlank() && Recipient.self().username.isPresent) {
+      if (nickname.isBlank() && SignalStore.account().username != null) {
         return@update State(
           buttonState = if (isInRegistration) ButtonState.SUBMIT_DISABLED else ButtonState.DELETE,
           usernameStatus = UsernameStatus.NONE,
@@ -102,7 +101,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
       return
     }
 
-    if (usernameState.username == Recipient.self().username.orElse(null)) {
+    if (usernameState.username == SignalStore.account().username) {
       uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, it.username) }
       return
     }
