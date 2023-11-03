@@ -78,7 +78,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   private static long resolveLifespan(boolean isLongRunning) {
-    return isLongRunning ? TimeUnit.DAYS.toMillis(14) : TimeUnit.DAYS.toMillis(1);
+    return isLongRunning ? TimeUnit.DAYS.toMillis(30) : TimeUnit.DAYS.toMillis(1);
   }
 
   private static BoostReceiptRequestResponseJob createJob(@NonNull String paymentIntentId,

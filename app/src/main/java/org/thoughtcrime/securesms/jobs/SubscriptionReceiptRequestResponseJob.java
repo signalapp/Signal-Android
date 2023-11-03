@@ -73,7 +73,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .addConstraint(NetworkConstraint.KEY)
             .setQueue("ReceiptRedemption")
             .setMaxInstancesForQueue(1)
-            .setLifespan(terminalDonation.isLongRunningPaymentMethod ? TimeUnit.DAYS.toMillis(14) : TimeUnit.DAYS.toMillis(1))
+            .setLifespan(terminalDonation.isLongRunningPaymentMethod ? TimeUnit.DAYS.toMillis(30) : TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         subscriberId,
