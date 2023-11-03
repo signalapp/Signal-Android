@@ -268,6 +268,10 @@ public abstract class Job {
     public static final long   IMMORTAL            = -1;
     public static final int    UNLIMITED           = -1;
 
+    public static final int PRIORITY_DEFAULT = 0;
+    public static final int PRIORITY_HIGH = 1;
+    public static final int PRIORITY_LOW = -1;
+
     private final String       id;
     private final long         createTime;
     private final long         lifespan;
@@ -278,6 +282,7 @@ public abstract class Job {
     private final List<String> constraintKeys;
     private final byte[]       inputData;
     private final boolean      memoryOnly;
+    private final int          priority;
 
     private Parameters(@NonNull String id,
                        long createTime,
@@ -288,7 +293,8 @@ public abstract class Job {
                        @Nullable String queue,
                        @NonNull List<String> constraintKeys,
                        @Nullable byte[] inputData,
-                       boolean memoryOnly)
+                       boolean memoryOnly,
+                       int priority)
     {
       this.id                     = id;
       this.createTime             = createTime;
@@ -300,6 +306,7 @@ public abstract class Job {
       this.constraintKeys         = constraintKeys;
       this.inputData              = inputData;
       this.memoryOnly             = memoryOnly;
+      this.priority               = priority;
     }
 
     @NonNull String getId() {
@@ -342,8 +349,12 @@ public abstract class Job {
       return memoryOnly;
     }
 
+    int getPriority() {
+      return priority;
+    }
+
     public Builder toBuilder() {
-      return new Builder(id, createTime, lifespan, maxAttempts, maxInstancesForFactory, maxInstancesForQueue, queue, constraintKeys, inputData, memoryOnly);
+      return new Builder(id, createTime, lifespan, maxAttempts, maxInstancesForFactory, maxInstancesForQueue, queue, constraintKeys, inputData, memoryOnly, priority);
     }
 
 
@@ -358,13 +369,14 @@ public abstract class Job {
       private List<String> constraintKeys;
       private byte[]       inputData;
       private boolean      memoryOnly;
+      private int          priority;
 
       public Builder() {
         this(UUID.randomUUID().toString());
       }
 
       Builder(@NonNull String id) {
-        this(id, System.currentTimeMillis(), IMMORTAL, 1, UNLIMITED, UNLIMITED, null, new LinkedList<>(), null, false);
+        this(id, System.currentTimeMillis(), IMMORTAL, 1, UNLIMITED, UNLIMITED, null, new LinkedList<>(), null, false, Parameters.PRIORITY_DEFAULT);
       }
 
       private Builder(@NonNull String id,
@@ -376,7 +388,8 @@ public abstract class Job {
                       @Nullable String queue,
                       @NonNull List<String> constraintKeys,
                       @Nullable byte[] inputData,
-                      boolean memoryOnly)
+                      boolean memoryOnly,
+                      int priority)
       {
         this.id                     = id;
         this.createTime             = createTime;
@@ -388,6 +401,7 @@ public abstract class Job {
         this.constraintKeys         = constraintKeys;
         this.inputData              = inputData;
         this.memoryOnly             = memoryOnly;
+        this.priority               = priority;
       }
 
       /** Should only be invoked by {@link JobController} */
@@ -482,6 +496,26 @@ public abstract class Job {
       }
 
       /**
+       * Sets the job's priority. Higher numbers are higher priority. Use the constants {@link Parameters#PRIORITY_HIGH}, {@link Parameters#PRIORITY_LOW},
+       * and {@link Parameters#PRIORITY_DEFAULT}. Defaults to {@link Parameters#PRIORITY_DEFAULT}.
+       *
+       * Priority determines the order jobs are run. In general, higher priority jobs run first. When deciding which job to run within a queue, we will always
+       * run the oldest job that has the highest priority. For example, if the highest priority in the queue is {@link Parameters#PRIORITY_DEFAULT}, then we'll
+       * run the oldest job with that priority, ignoring lower-priority jobs.
+       *
+       * Given all of the jobs that are eligible in each queue, we will do the same sort again to determine which job to run next. We will run the oldest job
+       * that has the highest priority among those eligible to be run.
+       *
+       * This creates the property that the only time a low-priority job will be run is if all other higher-priority jobs have been run already. Be considerate
+       * of this, as it provides the potential for lower-priority jobs to be extremely delayed if higher-priority jobs are being consistently enqueued at the
+       * same time.
+       */
+      public @NonNull Builder setPriority(int priority) {
+        this.priority = priority;
+        return this;
+      }
+
+      /**
        * Sets the input data that will be made available to the job when it is run.
        * Should only be set by {@link JobController}.
        */
@@ -491,7 +525,7 @@ public abstract class Job {
       }
 
       public @NonNull Parameters build() {
-        return new Parameters(id, createTime, lifespan, maxAttempts, maxInstancesForFactory, maxInstancesForQueue, queue, constraintKeys, inputData, memoryOnly);
+        return new Parameters(id, createTime, lifespan, maxAttempts, maxInstancesForFactory, maxInstancesForQueue, queue, constraintKeys, inputData, memoryOnly, priority);
       }
     }
   }
