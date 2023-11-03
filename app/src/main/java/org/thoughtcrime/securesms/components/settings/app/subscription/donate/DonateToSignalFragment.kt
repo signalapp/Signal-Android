@@ -466,9 +466,7 @@ class DonateToSignalFragment :
     viewModel.refreshActiveSubscription()
   }
 
-  override fun onUserCancelledPaymentFlow() {
-    findNavController().popBackStack(R.id.donateToSignalFragment, false)
-  }
+  override fun onUserLaunchedAnExternalApplication() = Unit
 
   override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(gatewayRequest))

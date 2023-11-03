@@ -286,9 +286,7 @@ class GiftFlowConfirmationFragment :
 
   override fun onProcessorActionProcessed() = Unit
 
-  override fun onUserCancelledPaymentFlow() {
-    findNavController().popBackStack(R.id.giftFlowConfirmationFragment, false)
-  }
+  override fun onUserLaunchedAnExternalApplication() = Unit
 
   override fun navigateToDonationPending(gatewayRequest: GatewayRequest) = error("Unsupported operation")
 }

@@ -35,6 +35,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   val binding by ViewBinderDelegate(DonationWebviewFragmentBinding::bind) {
+    it.webView.webViewClient = WebViewClient()
     it.webView.clearCache(true)
     it.webView.clearHistory()
   }
@@ -78,14 +79,13 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   private fun handleLaunchExternal(intent: Intent) {
-    startActivity(intent)
-
     SignalStore.donationsValues().setPending3DSData(args.stripe3DSData)
 
     result = bundleOf(
       LAUNCHED_EXTERNAL to true
     )
 
+    startActivity(intent)
     dismissAllowingStateLoss()
   }
 

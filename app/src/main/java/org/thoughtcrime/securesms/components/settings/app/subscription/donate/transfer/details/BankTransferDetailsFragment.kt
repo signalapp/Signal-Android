@@ -43,6 +43,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
@@ -156,13 +158,15 @@ class BankTransferDetailsFragment : ComposeFragment(), DonationCheckoutDelegate.
     )
   }
 
-  override fun onUserCancelledPaymentFlow() = Unit
+  override fun onUserLaunchedAnExternalApplication() = Unit
 
   override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {
-    findNavController().popBackStack()
-    findNavController().popBackStack()
-
     setFragmentResult(BankTransferRequestKeys.PENDING_KEY, bundleOf(BankTransferRequestKeys.PENDING_KEY to gatewayRequest))
+    viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+      override fun onResume(owner: LifecycleOwner) {
+        findNavController().popBackStack(R.id.donateToSignalFragment, false)
+      }
+    })
   }
 }
 

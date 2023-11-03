@@ -282,7 +282,7 @@ class DonationCheckoutDelegate(
 
       if (throwable is DonationError.UserLaunchedExternalApplication) {
         Log.d(TAG, "User launched an external application.", true)
-
+        errorHandlerCallback?.onUserLaunchedAnExternalApplication()
         return
       }
 
@@ -330,7 +330,7 @@ class DonationCheckoutDelegate(
   }
 
   interface ErrorHandlerCallback {
-    fun onUserCancelledPaymentFlow()
+    fun onUserLaunchedAnExternalApplication()
     fun navigateToDonationPending(gatewayRequest: GatewayRequest)
   }
 
