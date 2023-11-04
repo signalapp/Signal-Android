@@ -264,7 +264,7 @@ public class SignalBaseIdentityKeyStore {
 
     Cache(@NonNull IdentityTable identityDatabase) {
       this.identityDatabase = identityDatabase;
-      this.cache            = new LRUCache<>(200);
+      this.cache            = new LRUCache<>(1000);
     }
 
     public @Nullable IdentityStoreRecord get(@NonNull String addressName) {
