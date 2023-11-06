@@ -28,7 +28,7 @@ sealed class PaymentSourceType {
     object GooglePay : Stripe(Codes.GOOGLE_PAY.code, "CARD", false)
 
     /**
-     * SEPA Debits can take up to 14 days to process.
+     * SEPA Debits can take up to 14 bank days to process.
      */
     object SEPADebit : Stripe(Codes.SEPA_DEBIT.code, "SEPA_DEBIT", true)
 

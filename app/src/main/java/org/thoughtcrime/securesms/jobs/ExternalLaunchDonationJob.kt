@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.DonationProcessor
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.days
 
 /**
  * Proceeds with an externally approved (say, in a bank app) donation
@@ -48,6 +48,8 @@ class ExternalLaunchDonationJob private constructor(
     @JvmStatic
     fun enqueueIfNecessary() {
       val stripe3DSData = SignalStore.donationsValues().consumePending3DSData(-1L) ?: return
+
+      Log.i(TAG, "Consumed 3DS data")
 
       val jobChain = when (stripe3DSData.gatewayRequest.donateToSignalType) {
         DonateToSignalType.ONE_TIME -> BoostReceiptRequestResponseJob.createJobChainForBoost(
@@ -88,7 +90,7 @@ class ExternalLaunchDonationJob private constructor(
           .setQueue(if (stripe3DSData.gatewayRequest.donateToSignalType == DonateToSignalType.MONTHLY) DonationReceiptRedemptionJob.SUBSCRIPTION_QUEUE else DonationReceiptRedemptionJob.ONE_TIME_QUEUE)
           .addConstraint(NetworkConstraint.KEY)
           .setMaxAttempts(Parameters.UNLIMITED)
-          .setLifespan(TimeUnit.DAYS.toDays(1))
+          .setLifespan(1.days.inWholeMilliseconds)
           .build()
       )
 
