@@ -26,7 +26,7 @@ import androidx.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 
-import org.conscrypt.Conscrypt;
+import org.conscrypt.ConscryptSignal;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.MemoryTracker;
@@ -168,7 +168,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("proxy-init", () -> {
                               if (SignalStore.proxy().isProxyEnabled()) {
                                 Log.w(TAG, "Proxy detected. Enabling Conscrypt.setUseEngineSocketByDefault()");
-                                Conscrypt.setUseEngineSocketByDefault(true);
+                                ConscryptSignal.setUseEngineSocketByDefault(true);
                               }
                             })
                             .addBlocking("blob-provider", this::initializeBlobProvider)
@@ -294,7 +294,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       throw new ProviderInitializationException();
     }
 
-    int conscryptPosition = Security.insertProviderAt(Conscrypt.newProvider(), 2);
+    int conscryptPosition = Security.insertProviderAt(ConscryptSignal.newProvider(), 2);
     Log.i(TAG, "Installed Conscrypt provider: " + conscryptPosition);
 
     if (conscryptPosition < 0) {
