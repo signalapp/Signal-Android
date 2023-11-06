@@ -466,7 +466,7 @@ public final class Megaphones {
    * Prompt megaphone 3 days after turning off phone number discovery when no username is set.
    */
   private static boolean shouldShowSetUpYourUsernameMegaphone(@NonNull Map<Event, MegaphoneRecord> records) {
-    boolean                                         hasUsername                    = SignalStore.account().isRegistered() && Recipient.self().getUsername().isPresent();
+    boolean                                         hasUsername                    = SignalStore.account().isRegistered() && SignalStore.account().getUsername() != null;
     boolean                                         hasCompleted                   = MapUtil.mapOrDefault(records, Event.SET_UP_YOUR_USERNAME, MegaphoneRecord::isFinished, false);
     long                                            phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberListingModeTimestamp();
     PhoneNumberPrivacyValues.PhoneNumberListingMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode();

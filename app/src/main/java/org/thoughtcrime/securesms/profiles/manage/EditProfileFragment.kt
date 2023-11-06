@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment.Companion.show
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.databinding.EditProfileFragmentBinding
+import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
+import org.thoughtcrime.securesms.util.visible
 import java.util.Arrays
 import java.util.Optional
 
@@ -131,9 +133,15 @@ class EditProfileFragment : LoggingFragment() {
       )
     }
 
-    if (FeatureFlags.usernames() && SignalStore.account().username != null) {
+    if (FeatureFlags.usernames() && SignalStore.account().username != null && SignalStore.account().usernameSyncState != AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
       binding.usernameLinkContainer.setOnClickListener {
         findNavController().safeNavigate(EditProfileFragmentDirections.actionManageProfileFragmentToUsernameLinkFragment())
+      }
+
+      if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
+        binding.linkErrorIndicator.visibility = View.VISIBLE
+      } else {
+        binding.linkErrorIndicator.visibility = View.GONE
       }
 
       if (SignalStore.tooltips().showProfileSettingsQrCodeTooltop()) {
@@ -237,6 +245,12 @@ class EditProfileFragment : LoggingFragment() {
       binding.manageProfileUsername.setText(R.string.ManageProfileFragment_username)
     } else {
       binding.manageProfileUsername.text = username
+    }
+
+    if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED) {
+      binding.usernameErrorIndicator.visibility = View.VISIBLE
+    } else {
+      binding.usernameErrorIndicator.visibility = View.GONE
     }
   }
 

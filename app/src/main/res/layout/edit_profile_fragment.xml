@@ -145,7 +145,7 @@
                 android:background="?selectableItemBackground"
                 android:minHeight="72dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
-                android:paddingEnd="@dimen/safety_number_recipient_row_item_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 app:layout_constraintTop_toBottomOf="@id/manage_profile_name_container">
 
                 <ImageView
@@ -168,8 +168,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/manage_profile_username_icon"
-                    app:layout_goneMarginEnd="48dp"
+                    app:layout_constraintEnd_toEndOf="@id/username_error_indicator"
                     tools:text="\@spiderman" />
+
+                <ImageView
+                    android:id="@+id/username_error_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/symbol_error_circle_24"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:tint="@color/signal_alert_primary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -180,7 +192,7 @@
                 android:background="?selectableItemBackground"
                 android:minHeight="72dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
-                android:paddingEnd="@dimen/safety_number_recipient_row_item_gutter"
+                android:paddingEnd="@dimen/dsl_settings_gutter"
                 app:layout_constraintTop_toBottomOf="@id/manage_profile_username_container">
 
                 <ImageView
@@ -204,7 +216,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/username_link_icon"
+                    app:layout_constraintEnd_toStartOf="@id/link_error_indicator"
                     app:layout_goneMarginEnd="48dp" />
+
+                <ImageView
+                    android:id="@+id/link_error_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/symbol_error_circle_24"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:tint="@color/signal_alert_primary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

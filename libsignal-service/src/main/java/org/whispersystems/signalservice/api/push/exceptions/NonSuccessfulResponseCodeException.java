@@ -29,6 +29,10 @@ public class NonSuccessfulResponseCodeException extends IOException {
     return code;
   }
 
+  public boolean is4xx() {
+    return code >= 400 && code < 500;
+  }
+
   public boolean is5xx() {
     return code >= 500 && code < 600;
   }

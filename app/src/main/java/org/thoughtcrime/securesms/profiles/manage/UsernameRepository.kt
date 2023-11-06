@@ -13,6 +13,7 @@ import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkResetResult
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -95,6 +96,11 @@ class UsernameRepository {
           Log.d(TAG, "[createOrRotateUsernameLink] Creating username link...")
           val components = accountManager.createUsernameLink(username)
           SignalStore.account().usernameLink = components
+
+          if (SignalStore.account().usernameSyncState == AccountValues.UsernameSyncState.LINK_CORRUPTED) {
+            SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
+          }
+
           SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
           StorageSyncHelper.scheduleSyncForDataChange()
           Log.d(TAG, "[createOrRotateUsernameLink] Username link created.")
@@ -188,7 +194,7 @@ class UsernameRepository {
       SignalStore.account().username = username.username
       SignalStore.account().usernameLink = null
       SignalDatabase.recipients.setUsername(Recipient.self().id, reserved.username)
-      SignalStore.account().usernameOutOfSync = false
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       Log.i(TAG, "[confirmUsername] Successfully confirmed username.")
 
       if (tryToSetUsernameLink(username)) {
@@ -234,7 +240,7 @@ class UsernameRepository {
       SignalDatabase.recipients.setUsername(Recipient.self().id, null)
       SignalStore.account().username = null
       SignalStore.account().usernameLink = null
-      SignalStore.account().usernameOutOfSync = false
+      SignalStore.account().usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.")
       UsernameDeleteResult.SUCCESS
     } catch (e: IOException) {

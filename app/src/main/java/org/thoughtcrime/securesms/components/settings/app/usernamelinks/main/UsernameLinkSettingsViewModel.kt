@@ -52,6 +52,10 @@ class UsernameLinkSettingsViewModel : ViewModel() {
           qrCodeState = if (qrData.isPresent) QrCodeState.Present(qrData.get()) else QrCodeState.NotSet
         )
       }
+
+    if (SignalStore.account().usernameLink == null) {
+      onUsernameLinkReset()
+    }
   }
 
   override fun onCleared() {
@@ -107,12 +111,16 @@ class UsernameLinkSettingsViewModel : ViewModel() {
             UsernameLinkState.NotSet
           },
           usernameLinkResetResult = result,
-          qrCodeState = if (components.isPresent && previousQrValue != null) {
+          qrCodeState = if (!components.isPresent && previousQrValue != null) {
             QrCodeState.Present(previousQrValue)
           } else {
             QrCodeState.NotSet
           }
         )
+
+        if (components.isPresent) {
+          usernameLink.onNext(components)
+        }
       }
   }
 

@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
 import org.signal.core.util.concurrent.LifecycleDisposable;
@@ -104,7 +105,9 @@ public class UsernameEditFragment extends LoggingFragment {
     binding.usernameDoneButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
     binding.usernameSkipButton.setOnClickListener(v -> viewModel.onUsernameSkipped());
 
-    UsernameState usernameState = Recipient.self().getUsername().<UsernameState>map(UsernameState.Set::new).orElse(UsernameState.NoUsername.INSTANCE);
+    String        username      = SignalStore.account().getUsername();
+    UsernameState usernameState = username != null ? new UsernameState.Set(username) : UsernameState.NoUsername.INSTANCE;
+
     binding.usernameText.setText(usernameState.getNickname());
     binding.usernameText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
