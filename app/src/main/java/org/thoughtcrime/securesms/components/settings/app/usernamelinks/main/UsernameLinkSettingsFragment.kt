@@ -114,9 +114,8 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
           modifier = Modifier.padding(contentPadding),
           navController = navController,
           onShareBadge = {
-            shareQrBadge(it)
+            shareQrBadge(viewModel.generateQrCodeImage())
           },
-          screenshotController = screenshotController,
           onResetClicked = { showResetDialog = true },
           onLinkResultHandled = { viewModel.onUsernameLinkResetResultHandled() }
         )
@@ -278,7 +277,11 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     }
   }
 
-  private fun shareQrBadge(badge: Bitmap) {
+  private fun shareQrBadge(badge: Bitmap?) {
+    if (badge == null) {
+      return
+    }
+
     try {
       ByteArrayOutputStream().use { byteArrayOutputStream ->
         badge.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
