@@ -65,22 +65,24 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
       presentTitleAndSubtitle(requireContext(), args.request)
 
-      space(66.dp)
+      space(16.dp)
 
       if (state.loading) {
+        space(16.dp)
         customPref(IndeterminateLoadingCircle)
         space(16.dp)
         return@configure
       }
 
       state.gatewayOrderStrategy.orderedGateways.forEachIndexed { index, gateway ->
-        val isFirst = index == 0
+        space(16.dp)
+
         when (gateway) {
-          GatewayResponse.Gateway.GOOGLE_PAY -> renderGooglePayButton(state, isFirst)
-          GatewayResponse.Gateway.PAYPAL -> renderPayPalButton(state, isFirst)
-          GatewayResponse.Gateway.CREDIT_CARD -> renderCreditCardButton(state, isFirst)
-          GatewayResponse.Gateway.SEPA_DEBIT -> renderSEPADebitButton(state, isFirst)
-          GatewayResponse.Gateway.IDEAL -> renderIDEALButton(state, isFirst)
+          GatewayResponse.Gateway.GOOGLE_PAY -> renderGooglePayButton(state)
+          GatewayResponse.Gateway.PAYPAL -> renderPayPalButton(state)
+          GatewayResponse.Gateway.CREDIT_CARD -> renderCreditCardButton(state)
+          GatewayResponse.Gateway.SEPA_DEBIT -> renderSEPADebitButton(state)
+          GatewayResponse.Gateway.IDEAL -> renderIDEALButton(state)
         }
       }
 
@@ -88,12 +90,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderGooglePayButton(state: GatewaySelectorState, isFirstButton: Boolean) {
+  private fun DSLConfiguration.renderGooglePayButton(state: GatewaySelectorState) {
     if (state.isGooglePayAvailable) {
-      if (!isFirstButton) {
-        space(8.dp)
-      }
-
       customPref(
         GooglePayButton.Model(
           isEnabled = true,
@@ -107,12 +105,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderPayPalButton(state: GatewaySelectorState, isFirstButton: Boolean) {
+  private fun DSLConfiguration.renderPayPalButton(state: GatewaySelectorState) {
     if (state.isPayPalAvailable) {
-      if (!isFirstButton) {
-        space(8.dp)
-      }
-
       customPref(
         PayPalButton.Model(
           onClick = {
@@ -126,12 +120,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderCreditCardButton(state: GatewaySelectorState, isFirstButton: Boolean) {
+  private fun DSLConfiguration.renderCreditCardButton(state: GatewaySelectorState) {
     if (state.isCreditCardAvailable) {
-      if (!isFirstButton) {
-        space(8.dp)
-      }
-
       primaryButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
         icon = DSLSettingsIcon.from(R.drawable.credit_card, R.color.signal_colorOnCustom),
@@ -144,12 +134,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderSEPADebitButton(state: GatewaySelectorState, isFirstButton: Boolean) {
+  private fun DSLConfiguration.renderSEPADebitButton(state: GatewaySelectorState) {
     if (state.isSEPADebitAvailable) {
-      if (!isFirstButton) {
-        space(8.dp)
-      }
-
       tonalButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__bank_transfer),
         icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
@@ -162,12 +148,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState, isFirstButton: Boolean) {
+  private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState) {
     if (state.isIDEALAvailable) {
-      if (!isFirstButton) {
-        space(8.dp)
-      }
-
       tonalButton(
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__ideal),
         icon = DSLSettingsIcon.from(R.drawable.logo_ideal, NO_TINT),

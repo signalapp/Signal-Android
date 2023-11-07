@@ -274,6 +274,7 @@ private fun BankTransferDetailsContent(
             modifier = Modifier
               .fillMaxWidth()
               .padding(top = 12.dp)
+              .defaultMinSize(minHeight = 78.dp)
               .onFocusChanged { onIBANFocusChanged(it.hasFocus) }
               .focusRequester(focusRequester)
           )
@@ -293,9 +294,11 @@ private fun BankTransferDetailsContent(
             keyboardActions = KeyboardActions(
               onNext = { focusManager.moveFocus(FocusDirection.Down) }
             ),
+            supportingText = {},
             modifier = Modifier
               .fillMaxWidth()
-              .padding(bottom = 16.dp)
+              .padding(top = 16.dp)
+              .defaultMinSize(minHeight = 78.dp)
           )
         }
 
@@ -313,16 +316,20 @@ private fun BankTransferDetailsContent(
             keyboardActions = KeyboardActions(
               onDone = { onDonateClick() }
             ),
+            supportingText = {},
             modifier = Modifier
               .fillMaxWidth()
-              .padding(bottom = 16.dp)
+              .padding(top = 16.dp)
+              .defaultMinSize(minHeight = 78.dp)
           )
         }
 
         item {
           Box(
             contentAlignment = Center,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(top = 8.dp)
           ) {
             TextButton(
               onClick = { setDisplayFindAccountInfoSheet(true) }
@@ -338,7 +345,7 @@ private fun BankTransferDetailsContent(
         onClick = onDonateClick,
         modifier = Modifier
           .defaultMinSize(minWidth = 220.dp)
-          .padding(bottom = 16.dp)
+          .padding(vertical = 16.dp)
       ) {
         Text(text = donateLabel)
       }

@@ -4,6 +4,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isLongRunning
 import org.thoughtcrime.securesms.database.model.isPending
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -94,10 +95,13 @@ data class DonateToSignalState(
     val isCustomAmountFocused: Boolean = false,
     val donationStage: DonationStage = DonationStage.INIT,
     val selectableCurrencyCodes: List<String> = emptyList(),
-    val isOneTimeDonationPending: Boolean = SignalStore.donationsValues().getPendingOneTimeDonation().isPending(),
-    val isOneTimeDonationLongRunning: Boolean = SignalStore.donationsValues().getPendingOneTimeDonation().isLongRunning(),
+    private val pendingOneTimeDonation: PendingOneTimeDonation? = null,
     private val minimumDonationAmounts: Map<Currency, FiatMoney> = emptyMap()
   ) {
+    val isOneTimeDonationPending: Boolean = pendingOneTimeDonation.isPending()
+    val isOneTimeDonationLongRunning: Boolean = pendingOneTimeDonation.isLongRunning()
+    val isNonVerifiedIdeal = pendingOneTimeDonation?.pendingVerification == true
+
     val minimumDonationAmountOfSelectedCurrency: FiatMoney = minimumDonationAmounts[selectedCurrency] ?: FiatMoney(BigDecimal.ZERO, selectedCurrency)
     private val isCustomAmountTooSmall: Boolean = if (isCustomAmountFocused) customAmount.amount < minimumDonationAmountOfSelectedCurrency.amount else false
     private val isCustomAmountZero: Boolean = customAmount.amount == BigDecimal.ZERO

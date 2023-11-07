@@ -237,20 +237,10 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                               receiptCredentialPresentation.serialize())
                                              .putBlobAsString(DonationReceiptRedemptionJob.INPUT_TERMINAL_DONATION, terminalDonation.encode())
                                              .serialize());
-
-      enqueueDonationComplete();
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();
     }
-  }
-
-  private void enqueueDonationComplete() {
-    if (donationErrorSource != DonationErrorSource.GIFT) {
-      return;
-    }
-
-    SignalStore.donationsValues().setPendingOneTimeDonation(null);
   }
 
   /**

@@ -11,7 +11,7 @@
     android:insetTop="2dp"
     android:insetBottom="2dp"
     app:iconGravity="textStart"
-    app:iconSize="32dp"
+    app:iconSize="24dp"
     app:iconTint="@null"
     tools:icon="@drawable/bank_transfer"
     tools:text="Tonal button"

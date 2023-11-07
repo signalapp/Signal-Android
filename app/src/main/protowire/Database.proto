@@ -306,11 +306,13 @@ message PendingOneTimeDonation {
         IDEAL      = 3;
     }
 
-             PaymentMethodType  paymentMethodType = 1;
-             FiatValue          amount            = 2;
-             BadgeList.Badge    badge             = 3;
-             int64              timestamp         = 4;
-    optional DonationErrorValue error             = 5;
+             PaymentMethodType  paymentMethodType   = 1;
+             FiatValue          amount              = 2;
+             BadgeList.Badge    badge               = 3;
+             int64              timestamp           = 4;
+    optional DonationErrorValue error               = 5;
+             bool               pendingVerification = 6;
+             bool               checkedVerification = 7;
 }
 
 /**

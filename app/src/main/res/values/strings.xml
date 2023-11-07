@@ -4764,6 +4764,10 @@
     <string name="ManageDonationsFragment__other_ways_to_give">Other ways to give</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn't done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a donation requires verifying/confirmation outside of the app and the user hasn't done that yet -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4863,6 +4867,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
@@ -5843,6 +5849,8 @@
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL payment is still processing. Check your banking app to approve your payment before making another donation.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Monthly</string>
@@ -5910,7 +5918,7 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Learn more</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">Continue</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Read more</string>
     <!-- Text displayed when mandate load fails -->
@@ -5918,7 +5926,7 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email address. Your email is used by Stripe to send you updates about your donation. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Learn more</string>
     <!-- Text field label for name on bank account -->

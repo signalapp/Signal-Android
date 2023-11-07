@@ -18,7 +18,5 @@
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconTint="@null"
-        app:backgroundTint="#EEEEEE"
-        app:strokeColor="@color/paypal_outline"
-        app:strokeWidth="1.5dp" />
+        app:backgroundTint="#f6c757" />
 </FrameLayout>

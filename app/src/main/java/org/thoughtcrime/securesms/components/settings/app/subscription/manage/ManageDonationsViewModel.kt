@@ -14,13 +14,13 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import java.util.Optional
 
 class ManageDonationsViewModel(
   private val subscriptionsRepository: MonthlyDonationRepository
@@ -76,16 +76,26 @@ class ManageDonationsViewModel(
       store.update { it.copy(hasReceipts = hasReceipts) }
     }
 
-    disposables += DonationRedemptionJobWatcher.watchSubscriptionRedemption().subscribeBy { jobStateOptional ->
+    disposables += DonationRedemptionJobWatcher.watchSubscriptionRedemption().subscribeBy { redemptionStatus ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
-          subscriptionRedemptionState = jobStateOptional.map(this::mapJobStateToRedemptionState).orElse(ManageDonationsState.RedemptionState.NONE)
+          subscriptionRedemptionState = mapStatusToRedemptionState(redemptionStatus)
         )
       }
     }
 
-    disposables += SignalStore.donationsValues()
-      .observablePendingOneTimeDonation
+    disposables += Observable.combineLatest(
+      SignalStore.donationsValues().observablePendingOneTimeDonation,
+      DonationRedemptionJobWatcher.watchOneTimeRedemption()
+    ) { pendingFromStore, pendingFromJob ->
+      if (pendingFromStore.isPresent) {
+        pendingFromStore
+      } else if (pendingFromJob is DonationRedemptionJobStatus.PendingExternalVerification) {
+        Optional.ofNullable(pendingFromJob.pendingOneTimeDonation)
+      } else {
+        Optional.empty()
+      }
+    }
       .distinctUntilChanged()
       .subscribeBy { pending ->
         store.update { it.copy(pendingOneTimeDonation = pending.orNull()) }
@@ -122,13 +132,14 @@ class ManageDonationsViewModel(
     )
   }
 
-  private fun mapJobStateToRedemptionState(jobState: JobTracker.JobState): ManageDonationsState.RedemptionState {
-    return when (jobState) {
-      JobTracker.JobState.PENDING -> ManageDonationsState.RedemptionState.IN_PROGRESS
-      JobTracker.JobState.RUNNING -> ManageDonationsState.RedemptionState.IN_PROGRESS
-      JobTracker.JobState.SUCCESS -> ManageDonationsState.RedemptionState.NONE
-      JobTracker.JobState.FAILURE -> ManageDonationsState.RedemptionState.FAILED
-      JobTracker.JobState.IGNORED -> ManageDonationsState.RedemptionState.NONE
+  private fun mapStatusToRedemptionState(status: DonationRedemptionJobStatus): ManageDonationsState.RedemptionState {
+    return when (status) {
+      DonationRedemptionJobStatus.FailedSubscription -> ManageDonationsState.RedemptionState.FAILED
+      DonationRedemptionJobStatus.None -> ManageDonationsState.RedemptionState.NONE
+
+      is DonationRedemptionJobStatus.PendingExternalVerification,
+      DonationRedemptionJobStatus.PendingReceiptRedemption,
+      DonationRedemptionJobStatus.PendingReceiptRequest -> ManageDonationsState.RedemptionState.IN_PROGRESS
     }
   }
 

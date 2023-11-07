@@ -38,6 +38,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
@@ -45,6 +46,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
@@ -192,14 +194,16 @@ fun BankTransferScreen(
         item {
           Image(
             painter = painterResource(id = R.drawable.bank_transfer),
-            contentScale = ContentScale.Inside,
+            contentScale = ContentScale.FillBounds,
             contentDescription = null,
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
             modifier = Modifier
               .size(72.dp)
               .background(
                 SignalTheme.colors.colorSurface2,
                 CircleShape
               )
+              .padding(18.dp)
           )
         }
 
@@ -221,7 +225,8 @@ fun BankTransferScreen(
               onLearnMoreClick()
             },
             style = MaterialTheme.typography.bodyLarge.copy(
-              color = MaterialTheme.colorScheme.onSurfaceVariant
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              textAlign = TextAlign.Center
             ),
             modifier = Modifier
               .padding(bottom = 12.dp)
@@ -262,7 +267,7 @@ fun BankTransferScreen(
               .padding(top = 16.dp, bottom = 16.dp)
               .defaultMinSize(minWidth = 220.dp)
           ) {
-            Text(text = if (listState.canScrollForward) stringResource(id = R.string.BankTransferMandateFragment__read_more) else stringResource(id = R.string.BankTransferMandateFragment__continue))
+            Text(text = if (listState.canScrollForward) stringResource(id = R.string.BankTransferMandateFragment__read_more) else stringResource(id = R.string.BankTransferMandateFragment__agree))
           }
         }
       }

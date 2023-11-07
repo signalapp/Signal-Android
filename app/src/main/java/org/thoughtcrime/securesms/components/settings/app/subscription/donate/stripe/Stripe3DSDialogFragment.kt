@@ -5,23 +5,29 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.FrameLayout
 import androidx.activity.ComponentDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.button.MaterialButton
+import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationWebViewOnBackPressedCallback
 import org.thoughtcrime.securesms.databinding.DonationWebviewFragmentBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -49,7 +55,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen)
   }
 
-  @SuppressLint("SetJavaScriptEnabled")
+  @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     dialog!!.window!!.setFlags(
       WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
@@ -69,6 +75,19 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
         binding.webView
       )
     )
+
+    if (FeatureFlags.internalUser() && args.stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+      val openApp = MaterialButton(requireContext()).apply {
+        text = "Open App"
+        layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+          gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+        }
+        setOnClickListener {
+          handleLaunchExternal(Intent(Intent.ACTION_VIEW, args.uri))
+        }
+      }
+      binding.root.addView(openApp)
+    }
   }
 
   override fun onDismiss(dialog: DialogInterface) {

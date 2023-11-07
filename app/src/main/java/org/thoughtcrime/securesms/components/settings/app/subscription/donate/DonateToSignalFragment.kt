@@ -320,6 +320,8 @@ class DonateToSignalFragment :
     val message = if (state.donateToSignalType == DonateToSignalType.ONE_TIME) {
       if (state.oneTimeDonationState.isOneTimeDonationLongRunning) {
         R.string.DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime
+      } else if (state.oneTimeDonationState.isNonVerifiedIdeal) {
+        R.string.DonateToSignalFragment__your_ideal_payment_is_still_processing
       } else {
         R.string.DonateToSignalFragment__your_payment_is_still_being_processed_onetime
       }

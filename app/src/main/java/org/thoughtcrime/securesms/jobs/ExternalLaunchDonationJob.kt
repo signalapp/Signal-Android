@@ -15,6 +15,9 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationS
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.Companion.toDonationErrorValue
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
@@ -39,6 +42,8 @@ class ExternalLaunchDonationJob private constructor(
   private val stripe3DSData: Stripe3DSData,
   parameters: Parameters
 ) : BaseJob(parameters), StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
+
+  private var donationError: DonationError? = null
 
   companion object {
     const val KEY = "ExternalLaunchDonationJob"
@@ -96,6 +101,15 @@ class ExternalLaunchDonationJob private constructor(
 
       jobChain.after(checkJob).enqueue()
     }
+
+    private fun createDonationError(stripe3DSData: Stripe3DSData, throwable: Throwable): DonationError {
+      val source = when (stripe3DSData.gatewayRequest.donateToSignalType) {
+        DonateToSignalType.ONE_TIME -> DonationErrorSource.ONE_TIME
+        DonateToSignalType.MONTHLY -> DonationErrorSource.MONTHLY
+        DonateToSignalType.GIFT -> DonationErrorSource.GIFT
+      }
+      return DonationError.PaymentSetupError.GenericError(source, throwable)
+    }
   }
 
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
@@ -106,7 +120,19 @@ class ExternalLaunchDonationJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    if (donationError != null) {
+      SignalStore.donationsValues().setPendingOneTimeDonation(
+        DonationSerializationHelper.createPendingOneTimeDonationProto(
+          stripe3DSData.gatewayRequest.badge,
+          stripe3DSData.paymentSourceType,
+          stripe3DSData.gatewayRequest.fiat
+        ).copy(
+          error = donationError?.toDonationErrorValue()
+        )
+      )
+    }
+  }
 
   override fun onRun() {
     when (stripe3DSData.stripeIntentAccessor.objectType) {
@@ -207,11 +233,18 @@ class ExternalLaunchDonationJob private constructor(
 
       StripeIntentStatus.CANCELED -> {
         Log.i(TAG, "Stripe Intent is cancelled, we cannot proceed.", true)
-        throw Exception("User cancelled payment.")
+        donationError = createDonationError(stripe3DSData, Exception("User cancelled payment."))
+        throw donationError!!
+      }
+
+      StripeIntentStatus.REQUIRES_PAYMENT_METHOD -> {
+        Log.i(TAG, "Stripe Intent payment failed, we cannot proceed.", true)
+        donationError = createDonationError(stripe3DSData, Exception("payment failed"))
+        throw donationError!!
       }
 
       else -> {
-        Log.i(TAG, "Stripe Intent is still processing, retry later.", true)
+        Log.i(TAG, "Stripe Intent is still processing, retry later. $stripeIntentStatus", true)
         throw RetryException()
       }
     }
@@ -260,9 +293,15 @@ class ExternalLaunchDonationJob private constructor(
         error("Unexpected null value for serialized data")
       }
 
-      val stripe3DSData = Stripe3DSData.fromProtoBytes(serializedData, -1L)
+      val stripe3DSData = parseSerializedData(serializedData)
 
       return ExternalLaunchDonationJob(stripe3DSData, parameters)
+    }
+
+    companion object {
+      fun parseSerializedData(serializedData: ByteArray): Stripe3DSData {
+        return Stripe3DSData.fromProtoBytes(serializedData, -1L)
+      }
     }
   }
 
