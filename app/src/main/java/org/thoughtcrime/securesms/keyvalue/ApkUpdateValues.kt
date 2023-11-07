@@ -11,6 +11,8 @@ internal class ApkUpdateValues(store: KeyValueStore) : SignalStoreValues(store) 
     private const val DIGEST = "apk_update.digest"
     private const val AUTO_UPDATE = "apk_update.auto_update"
     private const val LAST_SUCCESSFUL_CHECK = "apk_update.last_successful_check"
+    private const val LAST_APK_UPLOAD_TIME = "apk_update.last_apk_upload_time"
+    private const val PENDING_APK_UPLOAD_TIME = "apk_update.pending_apk_upload_time"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -21,11 +23,18 @@ internal class ApkUpdateValues(store: KeyValueStore) : SignalStoreValues(store) 
   var autoUpdate: Boolean by booleanValue(AUTO_UPDATE, true)
   var lastSuccessfulCheck: Long by longValue(LAST_SUCCESSFUL_CHECK, 0)
 
-  fun setDownloadAttributes(id: Long, digest: ByteArray?) {
+  /** The upload of the last APK we installed */
+  var lastApkUploadTime: Long by longValue(LAST_APK_UPLOAD_TIME, 0)
+
+  /** The upload time of the APK we're trying to install */
+  val pendingApkUploadTime: Long by longValue(PENDING_APK_UPLOAD_TIME, 0)
+
+  fun setDownloadAttributes(id: Long, digest: ByteArray?, apkUploadTime: Long) {
     store
       .beginWrite()
       .putLong(DOWNLOAD_ID, id)
       .putBlob(DIGEST, digest)
+      .putLong(PENDING_APK_UPLOAD_TIME, apkUploadTime)
       .commit()
   }
 
@@ -34,6 +43,7 @@ internal class ApkUpdateValues(store: KeyValueStore) : SignalStoreValues(store) 
       .beginWrite()
       .putLong(DOWNLOAD_ID, -1)
       .putBlob(DIGEST, null)
+      .putLong(PENDING_APK_UPLOAD_TIME, 0)
       .commit()
   }
 }

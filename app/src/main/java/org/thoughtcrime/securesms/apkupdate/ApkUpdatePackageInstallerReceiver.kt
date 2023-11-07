@@ -12,6 +12,7 @@ import android.content.pm.PackageInstaller
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.apkupdate.ApkUpdateNotifications.FailureReason
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * This is the receiver that is triggered by the [PackageInstaller] to notify of various events. Package installation is initiated
@@ -36,6 +37,7 @@ class ApkUpdatePackageInstallerReceiver : BroadcastReceiver() {
     when (statusCode) {
       PackageInstaller.STATUS_SUCCESS -> {
         Log.i(TAG, "Update installed successfully!")
+        SignalStore.apkUpdate().lastApkUploadTime = SignalStore.apkUpdate().pendingApkUploadTime
         ApkUpdateNotifications.showAutoUpdateSuccess(context)
       }
       PackageInstaller.STATUS_PENDING_USER_ACTION -> handlePendingUserAction(context, userInitiated, intent!!)
