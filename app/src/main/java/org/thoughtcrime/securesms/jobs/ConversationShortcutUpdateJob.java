@@ -39,6 +39,7 @@ public class ConversationShortcutUpdateJob extends BaseJob {
                        .setQueue("ConversationShortcutUpdateJob")
                        .setLifespan(TimeUnit.MINUTES.toMillis(15))
                        .setMaxInstancesForFactory(1)
+                       .setPriority(Parameters.PRIORITY_LOW)
                        .build());
   }
 
