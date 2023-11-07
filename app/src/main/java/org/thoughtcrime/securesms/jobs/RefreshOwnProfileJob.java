@@ -264,7 +264,9 @@ public class RefreshOwnProfileJob extends BaseJob {
       String         remoteUsernameHash = whoAmIResponse.getUsernameHash();
       String         localUsernameHash  = localUsername != null ? Base64.encodeUrlSafeWithoutPadding(new Username(localUsername).getHash()) : null;
 
-      if (!Objects.equals(localUsernameHash, remoteUsernameHash)) {
+      if (TextUtils.isEmpty(localUsernameHash) && TextUtils.isEmpty(remoteUsernameHash)) {
+        Log.d(TAG, "Local and remote username hash are both empty. Considering validated.");
+      } else if (!Objects.equals(localUsernameHash, remoteUsernameHash)) {
         Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present"));
         SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
         return;
