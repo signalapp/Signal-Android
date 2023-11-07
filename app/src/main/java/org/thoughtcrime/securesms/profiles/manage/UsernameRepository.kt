@@ -71,20 +71,20 @@ class UsernameRepository {
    */
   fun createOrResetUsernameLink(): Single<UsernameLinkResetResult> {
     if (!NetworkUtil.isConnected(ApplicationDependencies.getApplication())) {
-      Log.w(TAG, "[createOrRotateUsernameLink] No network! Not making any changes.")
+      Log.w(TAG, "[createOrResetUsernameLink] No network! Not making any changes.")
       return Single.just(UsernameLinkResetResult.NetworkUnavailable)
     }
 
     val usernameString = SignalStore.account().username
     if (usernameString.isNullOrBlank()) {
-      Log.w(TAG, "[createOrRotateUsernameLink] No username set! Cannot rotate the link!")
+      Log.w(TAG, "[createOrResetUsernameLink] No username set! Cannot rotate the link!")
       return Single.just(UsernameLinkResetResult.UnexpectedError)
     }
 
     val username = try {
       Username(usernameString)
     } catch (e: BaseUsernameException) {
-      Log.w(TAG, "[createOrRotateUsernameLink] Failed to parse our own username! Cannot rotate the link!")
+      Log.w(TAG, "[createOrResetUsernameLink] Failed to parse our own username! Cannot rotate the link!")
       return Single.just(UsernameLinkResetResult.UnexpectedError)
     }
 
@@ -93,7 +93,7 @@ class UsernameRepository {
         try {
           SignalStore.account().usernameLink = null
 
-          Log.d(TAG, "[createOrRotateUsernameLink] Creating username link...")
+          Log.d(TAG, "[createOrResetUsernameLink] Creating username link...")
           val components = accountManager.createUsernameLink(username)
           SignalStore.account().usernameLink = components
 
@@ -103,11 +103,11 @@ class UsernameRepository {
 
           SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
           StorageSyncHelper.scheduleSyncForDataChange()
-          Log.d(TAG, "[createOrRotateUsernameLink] Username link created.")
+          Log.d(TAG, "[createOrResetUsernameLink] Username link created.")
 
           UsernameLinkResetResult.Success(components)
         } catch (e: IOException) {
-          Log.w(TAG, "[createOrRotateUsernameLink] Failed to rotate the username!")
+          Log.w(TAG, "[createOrResetUsernameLink] Failed to rotate the username!", e)
           UsernameLinkResetResult.NetworkError
         }
       }
