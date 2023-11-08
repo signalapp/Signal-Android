@@ -143,9 +143,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
-                android:minHeight="72dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
                 android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 app:layout_constraintTop_toBottomOf="@id/manage_profile_name_container">
 
                 <ImageView
@@ -190,9 +191,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
-                android:minHeight="72dp"
                 android:paddingStart="@dimen/dsl_settings_gutter"
                 android:paddingEnd="@dimen/dsl_settings_gutter"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 app:layout_constraintTop_toBottomOf="@id/manage_profile_username_container">
 
                 <ImageView
