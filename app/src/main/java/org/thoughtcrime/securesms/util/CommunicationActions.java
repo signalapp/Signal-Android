@@ -25,6 +25,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.usernames.BaseUsernameException;
+import org.signal.libsignal.usernames.Username;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -46,6 +48,8 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -291,46 +295,16 @@ public class CommunicationActions {
    * If the url is a signal.me link it will handle it.
    */
   public static void handlePotentialSignalMeUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
-    String e164     = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
-    String username = SignalMeUtil.parseUsernameFromLink(potentialUrl);
+    String                 e164     = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
+    UsernameLinkComponents username = SignalMeUtil.parseUsernameComponentsFromLink(potentialUrl);
+
+    if (e164 != null) {
+      handleE164Link(activity, e164);
+    } else if (username != null) {
+      handleUsernameLink(activity, username);
+    }
 
     if (e164 != null || username != null) {
-      SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
-
-      SimpleTask.run(() -> {
-        Recipient recipient = Recipient.UNKNOWN;
-        if (e164 != null) {
-           recipient = Recipient.external(activity, e164);
-
-          if (!recipient.isRegistered() || !recipient.hasServiceId()) {
-            try {
-              ContactDiscovery.refresh(activity, recipient, false, TimeUnit.SECONDS.toMillis(10));
-              recipient = Recipient.resolved(recipient.getId());
-            } catch (IOException e) {
-              Log.w(TAG, "[handlePotentialSignalMeUrl] Failed to refresh directory for new contact.");
-            }
-          }
-        } else {
-          Optional<ServiceId> serviceId = UsernameUtil.fetchAciForUsernameHash(username);
-          if (serviceId.isPresent()) {
-            recipient = Recipient.externalUsername(serviceId.get(), username);
-          }
-        }
-
-        return recipient;
-      }, recipient -> {
-        dialog.dismiss();
-
-        if (recipient != Recipient.UNKNOWN) {
-          startConversation(activity, recipient, null);
-        } else if (username != null) {
-          new MaterialAlertDialogBuilder(activity)
-              .setTitle(R.string.ContactSelectionListFragment_username_not_found)
-              .setMessage(activity.getString(R.string.ContactSelectionListFragment_s_is_not_a_signal_user, username))
-              .setPositiveButton(android.R.string.ok, null)
-              .show();
-        }
-      });
     }
   }
 
@@ -454,6 +428,71 @@ public class CommunicationActions {
                  callContext.startActivity(activityIntent);
                })
                .execute();
+  }
+
+  private static void handleE164Link(Activity activity, String e164) {
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
+
+    SimpleTask.run(() -> {
+      Recipient recipient = Recipient.external(activity, e164);
+
+      if (!recipient.isRegistered() || !recipient.hasServiceId()) {
+        try {
+          ContactDiscovery.refresh(activity, recipient, false, TimeUnit.SECONDS.toMillis(10));
+          recipient = Recipient.resolved(recipient.getId());
+        } catch (IOException e) {
+          Log.w(TAG, "[handlePotentialSignalMeUrl] Failed to refresh directory for new contact.");
+        }
+      }
+
+      return recipient;
+    }, recipient -> {
+      dialog.dismiss();
+
+      if (recipient.isRegistered() && recipient.hasServiceId()) {
+        startConversation(activity, recipient, null);
+      } else {
+        new MaterialAlertDialogBuilder(activity)
+            .setMessage(activity.getString(R.string.NewConversationActivity__s_is_not_a_signal_user, e164))
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
+      }
+    });
+  }
+
+  private static void handleUsernameLink(Activity activity, UsernameLinkComponents link) {
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
+
+    SimpleTask.run(() -> {
+      try {
+        byte[]              encryptedUsername = ApplicationDependencies.getSignalServiceAccountManager().getEncryptedUsernameFromLinkServerId(link.getServerId());
+        Username            username          = Username.fromLink(new Username.UsernameLink(link.getEntropy(), encryptedUsername));
+        Optional<ServiceId> serviceId         = UsernameUtil.fetchAciForUsername(username.getUsername());
+
+        if (serviceId.isPresent()) {
+          return Recipient.externalUsername(serviceId.get(), username.getUsername());
+        } else {
+          return null;
+        }
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to fetch encrypted username", e);
+        return null;
+      } catch (BaseUsernameException e) {
+        Log.w(TAG, "Invalid username", e);
+        return null;
+      }
+    }, recipient -> {
+      dialog.dismiss();
+
+      if (recipient != null && recipient.isRegistered() && recipient.hasServiceId()) {
+        startConversation(activity, recipient, null);
+      } else {
+        new MaterialAlertDialogBuilder(activity)
+            .setMessage(activity.getString(R.string.UsernameLinkSettings_qr_result_not_found_no_username))
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
+      }
+    });
   }
 
   private interface CallContext {

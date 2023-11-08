@@ -85,7 +85,7 @@ object UsernameUtil {
     Log.d(TAG, "No local user with this username. Searching remotely.")
 
     return try {
-      fetchAciForUsernameHash(Base64.encodeUrlSafeWithoutPadding(Username.hash(username)))
+      fetchAciForUsernameHash(Base64.encodeUrlSafeWithoutPadding(Username(username).hash))
     } catch (e: BaseUsernameException) {
       Optional.empty()
     }
