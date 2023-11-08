@@ -1068,7 +1068,7 @@ public class PushServiceSocket {
       byte[] randomness = new byte[32];
       random.nextBytes(randomness);
 
-      byte[]                 proof                  = Username.generateProof(username, randomness);
+      byte[]                 proof                  = new Username(username).generateProofWithRandomness(randomness);
       ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(reserveUsernameResponse.getUsernameHash(),
                                                                                  Base64.encodeUrlSafeWithoutPadding(proof));
 

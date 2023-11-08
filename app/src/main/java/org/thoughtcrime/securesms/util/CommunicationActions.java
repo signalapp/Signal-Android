@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -42,6 +43,9 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoin
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinUpdateRequiredBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAciFetchResult;
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameLinkConversionResult;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
@@ -296,15 +300,12 @@ public class CommunicationActions {
    */
   public static void handlePotentialSignalMeUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
     String                 e164     = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
-    UsernameLinkComponents username = SignalMeUtil.parseUsernameComponentsFromLink(potentialUrl);
+    UsernameLinkComponents username = UsernameRepository.parseLink(potentialUrl);
 
     if (e164 != null) {
       handleE164Link(activity, e164);
     } else if (username != null) {
-      handleUsernameLink(activity, username);
-    }
-
-    if (e164 != null || username != null) {
+      handleUsernameLink(activity, potentialUrl);
     }
   }
 
@@ -460,25 +461,21 @@ public class CommunicationActions {
     });
   }
 
-  private static void handleUsernameLink(Activity activity, UsernameLinkComponents link) {
+  private static void handleUsernameLink(Activity activity, String link) {
     SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
 
     SimpleTask.run(() -> {
       try {
-        byte[]              encryptedUsername = ApplicationDependencies.getSignalServiceAccountManager().getEncryptedUsernameFromLinkServerId(link.getServerId());
-        Username            username          = Username.fromLink(new Username.UsernameLink(link.getEntropy(), encryptedUsername));
-        Optional<ServiceId> serviceId         = UsernameUtil.fetchAciForUsername(username.getUsername());
+        UsernameLinkConversionResult result = RxExtensions.safeBlockingGet(UsernameRepository.fetchUsernameAndAciFromLink(link));
 
-        if (serviceId.isPresent()) {
-          return Recipient.externalUsername(serviceId.get(), username.getUsername());
+        // TODO we could be better here and report different types of errors to the UI
+        if (result instanceof UsernameLinkConversionResult.Success success) {
+          return Recipient.externalUsername(success.getAci(), success.getUsername().getUsername());
         } else {
           return null;
         }
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to fetch encrypted username", e);
-        return null;
-      } catch (BaseUsernameException e) {
-        Log.w(TAG, "Invalid username", e);
+      } catch (InterruptedException e) {
+        Log.w(TAG, "Interrupted?", e);
         return null;
       }
     }, recipient -> {

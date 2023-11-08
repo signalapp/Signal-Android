@@ -23,10 +23,14 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException
+import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.IOException
+import java.util.UUID
 
 /**
  * Performs various actions around usernames and username links.
@@ -76,6 +80,10 @@ import java.io.IOException
  */
 object UsernameRepository {
   private val TAG = Log.tag(UsernameRepository::class.java)
+
+  private val URL_REGEX = """(https://)?signal.me/?#eu/([a-zA-Z0-9+\-_/]+)""".toRegex()
+
+  val BASE_URL = "https://signal.me/#eu/"
 
   private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
 
@@ -163,8 +171,9 @@ object UsernameRepository {
   /**
    * Given a full username link, this will do the necessary parsing and network lookups to resolve it to a (username, ACI) pair.
    */
-  fun convertLinkToUsernameAndAci(url: String): Single<UsernameLinkConversionResult> {
-    val components: UsernameLinkComponents = UsernameUtil.parseLink(url) ?: return Single.just(UsernameLinkConversionResult.Invalid)
+  @JvmStatic
+  fun fetchUsernameAndAciFromLink(url: String): Single<UsernameLinkConversionResult> {
+    val components: UsernameLinkComponents = parseLink(url) ?: return Single.just(UsernameLinkConversionResult.Invalid)
 
     return Single
       .fromCallable {
@@ -176,7 +185,7 @@ object UsernameRepository {
 
           username = Username.fromLink(link)
 
-          val aci = accountManager.getAciByUsernameHash(UsernameUtil.hashUsernameToBase64(username.toString()))
+          val aci = accountManager.getAciByUsername(username)
 
           UsernameLinkConversionResult.Success(username, aci)
         } catch (e: IOException) {
@@ -197,6 +206,49 @@ object UsernameRepository {
         }
       }
       .subscribeOn(Schedulers.io())
+  }
+
+  @JvmStatic
+  fun fetchAciForUsername(username: String): Single<UsernameAciFetchResult> {
+    return Single.fromCallable {
+      try {
+        val aci: ACI = ApplicationDependencies.getSignalServiceAccountManager().getAciByUsername(Username(username))
+        UsernameAciFetchResult.Success(aci)
+      } catch (e: UsernameIsNotAssociatedWithAnAccountException) {
+        Log.w(TAG, "[fetchAciFromUsername] Failed to get ACI for username hash", e)
+        UsernameAciFetchResult.NotFound
+      } catch (e: IOException) {
+        Log.w(TAG, "[fetchAciFromUsername] Hit network error while trying to resolve ACI from username", e)
+        UsernameAciFetchResult.NetworkError
+      }
+    }
+  }
+
+  /**
+   * Parses out the [UsernameLinkComponents] from a link if possible, otherwise null.
+   * You need to make a separate network request to convert these components into a username.
+   */
+  @JvmStatic
+  fun parseLink(url: String): UsernameLinkComponents? {
+    val match: MatchResult = URL_REGEX.find(url) ?: return null
+    val path: String = match.groups[2]?.value ?: return null
+    val allBytes: ByteArray = Base64.decode(path)
+
+    if (allBytes.size != 48) {
+      return null
+    }
+
+    val entropy: ByteArray = allBytes.slice(0 until 32).toByteArray()
+    val serverId: ByteArray = allBytes.slice(32 until allBytes.size).toByteArray()
+    val serverIdUuid: UUID = UuidUtil.parseOrNull(serverId) ?: return null
+
+    return UsernameLinkComponents(entropy = entropy, serverId = serverIdUuid)
+  }
+
+  fun UsernameLinkComponents.toLink(): String {
+    val combined: ByteArray = this.entropy + this.serverId.toByteArray()
+    val base64 = Base64.encodeUrlSafeWithoutPadding(combined)
+    return BASE_URL + base64
   }
 
   @WorkerThread
@@ -319,5 +371,11 @@ object UsernameRepository {
 
     /** No user exists for the given link. */
     data class NotFound(val username: Username?) : UsernameLinkConversionResult()
+  }
+
+  sealed class UsernameAciFetchResult {
+    class Success(val aci: ACI) : UsernameAciFetchResult()
+    object NotFound : UsernameAciFetchResult()
+    object NetworkError : UsernameAciFetchResult()
   }
 }

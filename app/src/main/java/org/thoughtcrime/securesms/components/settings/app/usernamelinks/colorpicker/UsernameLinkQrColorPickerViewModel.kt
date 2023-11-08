@@ -15,9 +15,9 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeSt
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.UsernameUtil
 
 class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
@@ -39,7 +39,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
     if (usernameLink != null) {
       disposable += Single
-        .fromCallable { QrCodeData.forData(UsernameUtil.generateLink(usernameLink), 64) }
+        .fromCallable { QrCodeData.forData(usernameLink.toLink(), 64) }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { qrData ->

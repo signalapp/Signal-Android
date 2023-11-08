@@ -34,9 +34,9 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.Use
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
+import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.NetworkUtil
-import org.thoughtcrime.securesms.util.UsernameUtil
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.Optional
 
@@ -48,7 +48,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     UsernameLinkSettingsState(
       activeTab = ActiveTab.Code,
       username = SignalStore.account().username!!,
-      usernameLinkState = SignalStore.account().usernameLink?.let { UsernameLinkState.Present(UsernameUtil.generateLink(it)) } ?: UsernameLinkState.NotSet,
+      usernameLinkState = SignalStore.account().usernameLink?.let { UsernameLinkState.Present(it.toLink()) } ?: UsernameLinkState.NotSet,
       qrCodeState = QrCodeState.Loading,
       qrCodeColorScheme = SignalStore.misc().usernameQrCodeColorScheme
     )
@@ -61,7 +61,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
   init {
     disposable += usernameLink
       .observeOn(Schedulers.io())
-      .map { link -> link.map { UsernameUtil.generateLink(it) } }
+      .map { link -> link.map { it.toLink() } }
       .flatMapSingle { generateQrCodeData(it) }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { qrData ->
@@ -122,7 +122,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
         _state.value = _state.value.copy(
           usernameLinkState = if (components.isPresent) {
-            val link = UsernameUtil.generateLink(components.get())
+            val link = components.get().toLink()
             UsernameLinkState.Present(link)
           } else {
             UsernameLinkState.NotSet
@@ -152,7 +152,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
       indeterminateProgress = true
     )
 
-    disposable += UsernameRepository.convertLinkToUsernameAndAci(url)
+    disposable += UsernameRepository.fetchUsernameAndAciFromLink(url)
       .map { result ->
         when (result) {
           is UsernameRepository.UsernameLinkConversionResult.Success -> QrScanResult.Success(Recipient.externalUsername(result.aci, result.username.toString()))

@@ -84,7 +84,6 @@ import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper
 import org.signal.core.util.Base64;
 
 import java.io.IOException;
-import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -761,8 +760,8 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public ACI getAciByUsernameHash(String usernameHash) throws IOException {
-    return this.pushServiceSocket.getAciByUsernameHash(usernameHash);
+  public ACI getAciByUsername(Username username) throws IOException {
+    return this.pushServiceSocket.getAciByUsernameHash(Base64.encodeUrlSafeWithoutPadding(username.getHash()));
   }
 
   public ReserveUsernameResponse reserveUsername(List<String> usernameHashes) throws IOException {
