@@ -32,7 +32,6 @@ import java.util.concurrent.TimeUnit
  */
 internal class UsernameEditViewModel private constructor(private val isInRegistration: Boolean) : ViewModel() {
   private val events: PublishSubject<Event> = PublishSubject.create()
-  private val repo: UsernameRepository = UsernameRepository()
   private val nicknamePublisher: PublishProcessor<String> = PublishProcessor.create()
   private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -114,7 +113,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
     uiState.update { State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE, it.username) }
 
-    disposables += repo.confirmUsername(usernameState).subscribe { result: UsernameSetResult ->
+    disposables += UsernameRepository.confirmUsername(usernameState).subscribe { result: UsernameSetResult ->
       val nickname = usernameState.getNickname()
 
       when (result) {
@@ -147,7 +146,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
   fun onUsernameDeleted() {
     uiState.update { state: State -> State(ButtonState.DELETE_LOADING, UsernameStatus.NONE, state.username) }
 
-    disposables += repo.deleteUsername().subscribe { result: UsernameDeleteResult ->
+    disposables += UsernameRepository.deleteUsername().subscribe { result: UsernameDeleteResult ->
       when (result) {
         UsernameDeleteResult.SUCCESS -> {
           uiState.update { state: State -> State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE, state.username) }
@@ -190,7 +189,7 @@ internal class UsernameEditViewModel private constructor(private val isInRegistr
 
     uiState.update { State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, UsernameState.Loading) }
 
-    disposables += repo.reserveUsername(nickname).subscribe { result: Result<UsernameState.Reserved, UsernameSetResult> ->
+    disposables += UsernameRepository.reserveUsername(nickname).subscribe { result: Result<UsernameState.Reserved, UsernameSetResult> ->
       result.either(
         onSuccess = { reserved: UsernameState.Reserved ->
           uiState.update { State(ButtonState.SUBMIT, UsernameStatus.NONE, reserved) }

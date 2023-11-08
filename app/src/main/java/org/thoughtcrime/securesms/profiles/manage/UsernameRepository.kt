@@ -31,8 +31,10 @@ import java.io.IOException
 /**
  * Performs various actions around usernames and username links.
  */
-class UsernameRepository {
-  private val accountManager: SignalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager()
+object UsernameRepository {
+  private val TAG = Log.tag(UsernameRepository::class.java)
+
+  private val accountManager: SignalServiceAccountManager get() = ApplicationDependencies.getSignalServiceAccountManager()
 
   /**
    * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsername].
@@ -55,6 +57,7 @@ class UsernameRepository {
   /**
    * Deletes the username from the local user's account
    */
+  @JvmStatic
   fun deleteUsername(): Single<UsernameDeleteResult> {
     return Single
       .fromCallable { deleteUsernameInternal() }
@@ -273,9 +276,5 @@ class UsernameRepository {
 
     /** No user exists for the given link. */
     data class NotFound(val username: Username?) : UsernameLinkConversionResult()
-  }
-
-  companion object {
-    private val TAG = Log.tag(UsernameRepository::class.java)
   }
 }

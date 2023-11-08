@@ -57,7 +57,6 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
   private val disposable: CompositeDisposable = CompositeDisposable()
   private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account().usernameLink))
-  private val usernameRepo: UsernameRepository = UsernameRepository()
 
   init {
     disposable += usernameLink
@@ -112,7 +111,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
       qrCodeState = QrCodeState.Loading
     )
 
-    disposable += usernameRepo.createOrResetUsernameLink()
+    disposable += UsernameRepository.createOrResetUsernameLink()
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { result ->
         val components: Optional<UsernameLinkComponents> = when (result) {
@@ -153,7 +152,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
       indeterminateProgress = true
     )
 
-    disposable += usernameRepo.convertLinkToUsernameAndAci(url)
+    disposable += UsernameRepository.convertLinkToUsernameAndAci(url)
       .map { result ->
         when (result) {
           is UsernameRepository.UsernameLinkConversionResult.Success -> QrScanResult.Success(Recipient.externalUsername(result.aci, result.username.toString()))
