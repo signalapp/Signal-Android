@@ -59,8 +59,8 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
     }
 
     val statements = SqlUtil.buildBulkInsert(TABLE_NAME, arrayOf(MMS_ID, RECIPIENT_ID, STATUS, TIMESTAMP), contentValues)
-    for (statement in statements) {
-      writableDatabase.execSQL(statement.where, statement.whereArgs)
+    writableDatabase.withinTransaction { db ->
+      statements.forEach { db.execSQL(it.where, it.whereArgs) }
     }
   }
 
