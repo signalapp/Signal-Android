@@ -77,7 +77,7 @@
 
         <action
             android:id="@+id/action_manageProfileFragment_to_usernameLinkFragment"
-            app:destination="@id/usernameLinkFragment"
+            app:destination="@id/username_link_settings"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -114,14 +114,11 @@
         android:label="fragment_manage_about"
         tools:layout="@layout/edit_about_fragment" />
 
-    <fragment
-        android:id="@+id/usernameLinkFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsFragment"
-        android:label="fragment_username_link" />
-
     <include app:graph="@navigation/manage_badges" />
 
     <include app:graph="@navigation/avatar_picker" />
+
+    <include app:graph="@navigation/username_link_settings" />
 
     <dialog
         android:id="@+id/shareUsernameDialog"

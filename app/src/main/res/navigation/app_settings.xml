@@ -12,7 +12,7 @@
         tools:layout="@layout/dsl_settings_fragment">
         <action
             android:id="@+id/action_appSettingsFragment_to_usernameLinkSettingsFragment"
-            app:destination="@id/usernameLinkSettingsFragment"
+            app:destination="@id/username_link_settings"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -575,7 +575,7 @@
 
     <action
         android:id="@+id/action_direct_to_usernameLinkSettings"
-        app:destination="@id/usernameLinkSettingsFragment"
+        app:destination="@id/username_link_settings"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
@@ -913,23 +913,8 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/usernameLinkSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsFragment">
 
-        <action
-            android:id="@+id/action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment"
-            app:destination="@id/usernameLinkQrColorPickerFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/usernameLinkQrColorPickerFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.colorpicker.UsernameLinkQrColorPickerFragment" />
-
+    <include app:graph="@navigation/username_link_settings" />
     <include app:graph="@navigation/story_privacy_settings" />
 
 </navigation>

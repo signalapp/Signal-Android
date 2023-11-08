@@ -90,7 +90,7 @@ fun UsernameLinkShareScreen(
 
     ButtonBar(
       onShareClicked = onShareBadge,
-      onColorClicked = { navController.safeNavigate(R.id.action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment) }
+      onColorClicked = { navController.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) }
     )
 
     LinkRow(
