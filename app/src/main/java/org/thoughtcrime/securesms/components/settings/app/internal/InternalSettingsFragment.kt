@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
+import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
@@ -49,13 +50,19 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.Optional
+import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
+import kotlin.random.Random
+import kotlin.random.nextInt
 import kotlin.time.Duration.Companion.seconds
 
 class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__internal_preferences) {
@@ -682,6 +689,45 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Clear Username education ui hint"),
         onClick = {
           SignalStore.uiHints().clearHasSeenUsernameEducation()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Corrupt username"),
+        summary = DSLSettingsText.from("Changes our local username without telling the server so it falls out of sync. Refresh profile afterwards to trigger corruption."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Corrupt your username?")
+            .setMessage("Are you sure? You might not be able to get your original username back.")
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              val random = "${Hex.toStringCondensed(Util.getSecretBytes(4))}.${Random.nextInt(1, 100)}"
+
+              SignalStore.account().username = random
+              SignalDatabase.recipients.setUsername(Recipient.self().id, random)
+
+              Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+            .show()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Corrupt username link"),
+        summary = DSLSettingsText.from("Changes our local username link without telling the server so it falls out of sync. Refresh profile afterwards to trigger corruption."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Corrupt your username link?")
+            .setMessage("Are you sure? You'll have to reset your link.")
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              SignalStore.account().usernameLink = UsernameLinkComponents(
+                entropy = Util.getSecretBytes(32),
+                serverId = SignalStore.account().usernameLink?.serverId ?: UUID.randomUUID()
+              )
+              Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+            .show()
         }
       )
 
