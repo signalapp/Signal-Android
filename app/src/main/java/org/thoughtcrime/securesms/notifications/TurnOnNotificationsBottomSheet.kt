@@ -147,6 +147,7 @@ private fun TurnOnNotificationsSheetContent(
     Text(
       text = stringResource(titleRes),
       style = MaterialTheme.typography.headlineSmall,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .align(Alignment.CenterHorizontally)
         .padding(bottom = 12.dp, top = 10.dp)
@@ -155,6 +156,7 @@ private fun TurnOnNotificationsSheetContent(
     Text(
       text = stringResource(subtitleRes),
       style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .align(Alignment.CenterHorizontally)
         .padding(bottom = 32.dp)
@@ -162,6 +164,7 @@ private fun TurnOnNotificationsSheetContent(
 
     Text(
       text = stringResource(R.string.TurnOnNotificationsBottomSheet__1_tap_settings_below),
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(bottom = 32.dp)
     )
 
@@ -190,6 +193,7 @@ private fun TurnOnNotificationsSheetContent(
     Text(
       text = step2Text,
       inlineContent = step2InlineContent,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(bottom = 32.dp)
     )
 

@@ -113,6 +113,7 @@ private fun DonationPendingBottomSheetContent(
       text = stringResource(id = R.string.DonationPendingBottomSheet__donation_pending),
       textAlign = TextAlign.Center,
       style = MaterialTheme.typography.titleLarge,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(bottom = 8.dp)
     )
 

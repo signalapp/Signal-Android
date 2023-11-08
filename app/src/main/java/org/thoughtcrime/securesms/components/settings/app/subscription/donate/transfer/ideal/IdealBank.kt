@@ -28,7 +28,7 @@ enum class IdealBank(
   REVOLUT("revolut"),
   SNS_BANK("sns_bank"),
   TRIODOS_BANK("triodos_bank"),
-  VAN_LANCHOT("van_lanchot"),
+  VAN_LANSCHOT("van_lanschot"),
   YOURSAFE("yoursafe");
 
   fun getUIValues(): UIValues = bankToUIValues[this]!!
@@ -83,8 +83,8 @@ enum class IdealBank(
               name = R.string.IdealBank__triodos_bank,
               icon = R.drawable.ideal_triodos_bank
             ),
-            VAN_LANCHOT to UIValues(
-              name = R.string.IdealBank__van_lanchot,
+            VAN_LANSCHOT to UIValues(
+              name = R.string.IdealBank__van_lanschot,
               icon = R.drawable.ideal_van_lanschot
             ),
             YOURSAFE to UIValues(

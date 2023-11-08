@@ -183,6 +183,7 @@ private fun DonationPaymentFailureBottomSheet(
       text = stringResource(id = R.string.DonationErrorBottomSheet__donation_couldnt_be_processed),
       style = MaterialTheme.typography.titleLarge,
       textAlign = TextAlign.Center,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 45.dp)
@@ -262,6 +263,7 @@ private fun DonationCompletedSheetContent(
       text = stringResource(id = R.string.DonationCompletedBottomSheet__donation_complete),
       style = MaterialTheme.typography.titleLarge,
       textAlign = TextAlign.Center,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 45.dp)
@@ -319,6 +321,7 @@ private fun DonationToggleRow(
   ) {
     Text(
       text = text,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .weight(1f)
         .align(Alignment.CenterVertically)
