@@ -231,7 +231,6 @@ private fun IdealTransferDetailsContent(
             onSelectBankClick = onSelectBankClick,
             modifier = Modifier
               .fillMaxWidth()
-              .padding(bottom = 16.dp)
           )
         }
 
@@ -249,9 +248,11 @@ private fun IdealTransferDetailsContent(
             keyboardActions = KeyboardActions(
               onNext = { focusManager.moveFocus(FocusDirection.Down) }
             ),
+            supportingText = {},
             modifier = Modifier
               .fillMaxWidth()
-              .padding(bottom = 16.dp)
+              .padding(top = 16.dp)
+              .defaultMinSize(minHeight = 78.dp)
           )
         }
 
@@ -273,9 +274,11 @@ private fun IdealTransferDetailsContent(
                 }
               }
             ),
+            supportingText = {},
             modifier = Modifier
               .fillMaxWidth()
-              .padding(bottom = 16.dp)
+              .padding(top = 16.dp)
+              .defaultMinSize(minHeight = 78.dp)
           )
         }
       }
@@ -339,7 +342,9 @@ private fun IdealBankSelector(
       disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
       disabledIndicatorColor = MaterialTheme.colorScheme.onSurface
     ),
+    supportingText = {},
     modifier = modifier
+      .defaultMinSize(minHeight = 78.dp)
       .clickable(
         onClick = onSelectBankClick,
         role = Role.Button

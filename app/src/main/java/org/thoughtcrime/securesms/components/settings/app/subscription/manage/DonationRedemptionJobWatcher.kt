@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
+import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
@@ -23,9 +26,24 @@ object DonationRedemptionJobWatcher {
 
   fun watchSubscriptionRedemption(): Observable<DonationRedemptionJobStatus> = watch(RedemptionType.SUBSCRIPTION)
 
+  @JvmStatic
+  @WorkerThread
+  fun getSubscriptionRedemptionJobStatus(): DonationRedemptionJobStatus {
+    return getDonationRedemptionJobStatus(RedemptionType.SUBSCRIPTION)
+  }
+
   fun watchOneTimeRedemption(): Observable<DonationRedemptionJobStatus> = watch(RedemptionType.ONE_TIME)
 
-  private fun watch(redemptionType: RedemptionType): Observable<DonationRedemptionJobStatus> = Observable.interval(0, 5, TimeUnit.SECONDS).map {
+  private fun watch(redemptionType: RedemptionType): Observable<DonationRedemptionJobStatus> {
+    return Observable
+      .interval(0, 5, TimeUnit.SECONDS)
+      .map {
+        getDonationRedemptionJobStatus(redemptionType)
+      }
+      .distinctUntilChanged()
+  }
+
+  private fun getDonationRedemptionJobStatus(redemptionType: RedemptionType): DonationRedemptionJobStatus {
     val queue = when (redemptionType) {
       RedemptionType.SUBSCRIPTION -> DonationReceiptRedemptionJob.SUBSCRIPTION_QUEUE
       RedemptionType.ONE_TIME -> DonationReceiptRedemptionJob.ONE_TIME_QUEUE
@@ -55,27 +73,20 @@ object DonationRedemptionJobWatcher {
 
     val jobSpec: JobSpec? = externalLaunchJobSpec ?: redemptionJobSpec ?: receiptJobSpec
 
-    if (redemptionType == RedemptionType.SUBSCRIPTION && jobSpec == null && SignalStore.donationsValues().getSubscriptionRedemptionFailed()) {
+    return if (redemptionType == RedemptionType.SUBSCRIPTION && jobSpec == null && SignalStore.donationsValues().getSubscriptionRedemptionFailed()) {
       DonationRedemptionJobStatus.FailedSubscription
     } else {
-      jobSpec?.toDonationRedemptionStatus() ?: DonationRedemptionJobStatus.None
+      jobSpec?.toDonationRedemptionStatus(redemptionType) ?: DonationRedemptionJobStatus.None
     }
-  }.distinctUntilChanged()
+  }
 
-  private fun JobSpec.toDonationRedemptionStatus(): DonationRedemptionJobStatus {
+  private fun JobSpec.toDonationRedemptionStatus(redemptionType: RedemptionType): DonationRedemptionJobStatus {
     return when (factoryKey) {
       ExternalLaunchDonationJob.KEY -> {
         val stripe3DSData = ExternalLaunchDonationJob.Factory.parseSerializedData(serializedData!!)
         DonationRedemptionJobStatus.PendingExternalVerification(
-          pendingOneTimeDonation = DonationSerializationHelper.createPendingOneTimeDonationProto(
-            badge = stripe3DSData.gatewayRequest.badge,
-            paymentSourceType = stripe3DSData.paymentSourceType,
-            amount = stripe3DSData.gatewayRequest.fiat
-          ).copy(
-            timestamp = createTime,
-            pendingVerification = true,
-            checkedVerification = runAttempt > 0
-          )
+          pendingOneTimeDonation = pendingOneTimeDonation(redemptionType, stripe3DSData),
+          nonVerifiedMonthlyDonation = nonVerifiedMonthlyDonation(redemptionType, stripe3DSData)
         )
       }
 
@@ -88,5 +99,34 @@ object DonationRedemptionJobWatcher {
         DonationRedemptionJobStatus.None
       }
     }
+  }
+
+  private fun JobSpec.pendingOneTimeDonation(redemptionType: RedemptionType, stripe3DSData: Stripe3DSData): PendingOneTimeDonation? {
+    if (redemptionType != RedemptionType.ONE_TIME) {
+      return null
+    }
+
+    return DonationSerializationHelper.createPendingOneTimeDonationProto(
+      badge = stripe3DSData.gatewayRequest.badge,
+      paymentSourceType = stripe3DSData.paymentSourceType,
+      amount = stripe3DSData.gatewayRequest.fiat
+    ).copy(
+      timestamp = createTime,
+      pendingVerification = true,
+      checkedVerification = runAttempt > 0
+    )
+  }
+
+  private fun JobSpec.nonVerifiedMonthlyDonation(redemptionType: RedemptionType, stripe3DSData: Stripe3DSData): NonVerifiedMonthlyDonation? {
+    if (redemptionType != RedemptionType.SUBSCRIPTION) {
+      return null
+    }
+
+    return NonVerifiedMonthlyDonation(
+      timestamp = createTime,
+      price = stripe3DSData.gatewayRequest.fiat,
+      level = stripe3DSData.gatewayRequest.level.toInt(),
+      checkedVerification = runAttempt > 0
+    )
   }
 }

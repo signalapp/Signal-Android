@@ -10,6 +10,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPendingBottomSheet
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPendingBottomSheetArgs
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSData
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragmentArgs
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
@@ -35,7 +38,7 @@ class TerminalDonationDelegate(
     for (donation in donations) {
       if (donation.isLongRunningPaymentMethod && (donation.error == null || donation.error.type != DonationErrorValue.Type.REDEMPTION)) {
         TerminalDonationBottomSheet.show(fragmentManager, donation)
-      } else {
+      } else if (donation.error != null) {
         lifecycleDisposable += badgeRepository.getBadge(donation).observeOn(AndroidSchedulers.mainThread()).subscribe { badge ->
           val args = ThanksForYourSupportBottomSheetDialogFragmentArgs.Builder(badge).build().toBundle()
           val sheet = ThanksForYourSupportBottomSheetDialogFragment()
@@ -44,6 +47,13 @@ class TerminalDonationDelegate(
           sheet.show(fragmentManager, null)
         }
       }
+    }
+
+    val verifiedMonthlyDonation: Stripe3DSData? = SignalStore.donationsValues().consumeVerifiedSubscription3DSData()
+    if (verifiedMonthlyDonation != null) {
+      DonationPendingBottomSheet().apply {
+        arguments = DonationPendingBottomSheetArgs.Builder(verifiedMonthlyDonation.gatewayRequest).build().toBundle()
+      }.show(fragmentManager, null)
     }
   }
 }

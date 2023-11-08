@@ -79,6 +79,7 @@ class ManageDonationsViewModel(
     disposables += DonationRedemptionJobWatcher.watchSubscriptionRedemption().subscribeBy { redemptionStatus ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
+          nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
           subscriptionRedemptionState = mapStatusToRedemptionState(redemptionStatus)
         )
       }

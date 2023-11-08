@@ -32,7 +32,7 @@ object ActiveSubscriptionPreference {
     val subscription: Subscription,
     val renewalTimestamp: Long = -1L,
     val redemptionState: ManageDonationsState.RedemptionState,
-    val activeSubscription: ActiveSubscription.Subscription,
+    val activeSubscription: ActiveSubscription.Subscription?,
     val onContactSupport: () -> Unit,
     val onPendingClick: (FiatMoney) -> Unit
   ) : PreferenceModel<Model>() {
@@ -104,7 +104,7 @@ object ActiveSubscriptionPreference {
     }
 
     private fun presentFailureState(model: Model) {
-      if (model.activeSubscription.isFailedPayment || SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt) {
+      if (model.activeSubscription?.isFailedPayment == true || SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt) {
         presentPaymentFailureState(model)
       } else {
         presentRedemptionFailureState(model)

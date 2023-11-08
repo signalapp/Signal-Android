@@ -122,15 +122,31 @@ class ExternalLaunchDonationJob private constructor(
 
   override fun onFailure() {
     if (donationError != null) {
-      SignalStore.donationsValues().setPendingOneTimeDonation(
-        DonationSerializationHelper.createPendingOneTimeDonationProto(
-          stripe3DSData.gatewayRequest.badge,
-          stripe3DSData.paymentSourceType,
-          stripe3DSData.gatewayRequest.fiat
-        ).copy(
-          error = donationError?.toDonationErrorValue()
-        )
-      )
+      when (stripe3DSData.gatewayRequest.donateToSignalType) {
+        DonateToSignalType.ONE_TIME -> {
+          SignalStore.donationsValues().setPendingOneTimeDonation(
+            DonationSerializationHelper.createPendingOneTimeDonationProto(
+              stripe3DSData.gatewayRequest.badge,
+              stripe3DSData.paymentSourceType,
+              stripe3DSData.gatewayRequest.fiat
+            ).copy(
+              error = donationError?.toDonationErrorValue()
+            )
+          )
+        }
+
+        DonateToSignalType.MONTHLY -> {
+          SignalStore.donationsValues().appendToTerminalDonationQueue(
+            TerminalDonationQueue.TerminalDonation(
+              level = stripe3DSData.gatewayRequest.level,
+              isLongRunningPaymentMethod = stripe3DSData.isLongRunning,
+              error = donationError?.toDonationErrorValue()
+            )
+          )
+        }
+
+        else -> Log.w(TAG, "Job failed with donation error for type: ${stripe3DSData.gatewayRequest.donateToSignalType}")
+      }
     }
   }
 
@@ -215,6 +231,7 @@ class ExternalLaunchDonationJob private constructor(
       if (updateSubscriptionLevelResponse.status in listOf(200, 204)) {
         Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${updateSubscriptionLevelResponse.status}", true)
         SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
+        SignalStore.donationsValues().setVerifiedSubscription3DSData(stripe3DSData)
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
       } else {
@@ -263,8 +280,7 @@ class ExternalLaunchDonationJob private constructor(
       SignalStore.donationsValues().appendToTerminalDonationQueue(
         TerminalDonationQueue.TerminalDonation(
           level = stripe3DSData.gatewayRequest.level,
-          isLongRunningPaymentMethod = stripe3DSData.gatewayRequest.donateToSignalType == DonateToSignalType.MONTHLY && stripe3DSData.paymentSourceType.isBankTransfer ||
-            stripe3DSData.paymentSourceType == PaymentSourceType.Stripe.SEPADebit,
+          isLongRunningPaymentMethod = stripe3DSData.isLongRunning,
           error = DonationErrorValue(
             DonationErrorValue.Type.PAYMENT,
             code = serviceResponse.status.toString()

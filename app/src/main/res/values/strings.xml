@@ -4768,7 +4768,9 @@
     <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn't done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
-    <!-- Dialog message shown when a donation requires verifying/confirmation outside of the app and the user hasn't done that yet -->
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn't done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn't done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>

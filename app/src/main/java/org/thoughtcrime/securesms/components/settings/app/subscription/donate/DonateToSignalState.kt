@@ -4,6 +4,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
+import org.thoughtcrime.securesms.components.settings.app.subscription.manage.NonVerifiedMonthlyDonation
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isLongRunning
 import org.thoughtcrime.securesms.database.model.isPending
@@ -72,7 +73,7 @@ data class DonateToSignalState(
   val canContinue: Boolean
     get() = when (donateToSignalType) {
       DonateToSignalType.ONE_TIME -> continueEnabled && !oneTimeDonationState.isOneTimeDonationPending
-      DonateToSignalType.MONTHLY -> continueEnabled && !monthlyDonationState.isSubscriptionActive
+      DonateToSignalType.MONTHLY -> continueEnabled && !monthlyDonationState.isSubscriptionActive && !monthlyDonationState.transactionState.isInProgress
       DonateToSignalType.GIFT -> error("This flow does not support gifts")
     }
 
@@ -117,6 +118,7 @@ data class DonateToSignalState(
     val selectedSubscription: Subscription? = null,
     val donationStage: DonationStage = DonationStage.INIT,
     val selectableCurrencyCodes: List<String> = emptyList(),
+    val nonVerifiedMonthlyDonation: NonVerifiedMonthlyDonation? = null,
     val transactionState: TransactionState = TransactionState()
   ) {
     val isSubscriptionActive: Boolean = _activeSubscription?.isActive == true

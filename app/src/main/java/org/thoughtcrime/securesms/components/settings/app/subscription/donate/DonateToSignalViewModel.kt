@@ -305,24 +305,16 @@ class DonateToSignalViewModel(
   }
 
   private fun monitorLevelUpdateProcessing() {
-    val isTransactionJobInProgress: Observable<Boolean> = DonationRedemptionJobWatcher.watchSubscriptionRedemption().map {
-      when (it) {
-        is DonationRedemptionJobStatus.PendingExternalVerification,
-        DonationRedemptionJobStatus.PendingReceiptRedemption,
-        DonationRedemptionJobStatus.PendingReceiptRequest -> true
-
-        DonationRedemptionJobStatus.FailedSubscription,
-        DonationRedemptionJobStatus.None -> false
-      }
-    }
+    val redemptionJobStatus: Observable<DonationRedemptionJobStatus> = DonationRedemptionJobWatcher.watchSubscriptionRedemption()
 
     monthlyDonationDisposables += Observable
-      .combineLatest(isTransactionJobInProgress, LevelUpdate.isProcessing, DonateToSignalState::TransactionState)
-      .subscribeBy { transactionState ->
+      .combineLatest(redemptionJobStatus, LevelUpdate.isProcessing, ::Pair)
+      .subscribeBy { (jobStatus, levelUpdateProcessing) ->
         store.update { state ->
           state.copy(
             monthlyDonationState = state.monthlyDonationState.copy(
-              transactionState = transactionState
+              nonVerifiedMonthlyDonation = if (jobStatus is DonationRedemptionJobStatus.PendingExternalVerification) jobStatus.nonVerifiedMonthlyDonation else null,
+              transactionState = DonateToSignalState.TransactionState(jobStatus.isInProgress(), levelUpdateProcessing)
             )
           )
         }

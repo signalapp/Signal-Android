@@ -132,6 +132,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * completing a 3DS prompt or iDEAL prompt.
      */
     private const val PENDING_3DS_DATA = "pending.3ds.data"
+
+    /**
+     * Data about a monthly donation that required external verification and said verification was successful.
+     * Needed to show donation pending sheet after returning to Signal.
+     */
+    private const val VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA = "donation.verified_ideal_subscription_3ds_data"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -580,6 +586,27 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
         putBlob(PENDING_3DS_DATA, stripe3DSData.toProtoBytes())
       } else {
         remove(PENDING_3DS_DATA)
+      }
+    }
+  }
+
+  fun consumeVerifiedSubscription3DSData(): Stripe3DSData? {
+    synchronized(this) {
+      val data = getBlob(VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA, null)?.let {
+        Stripe3DSData.fromProtoBytes(it, -1)
+      }
+
+      setVerifiedSubscription3DSData(null)
+      return data
+    }
+  }
+
+  fun setVerifiedSubscription3DSData(stripe3DSData: Stripe3DSData?) {
+    synchronized(this) {
+      if (stripe3DSData != null) {
+        putBlob(VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA, stripe3DSData.toProtoBytes())
+      } else {
+        remove(VERIFIED_IDEAL_SUBSCRIPTION_3DS_DATA)
       }
     }
   }

@@ -29,6 +29,9 @@ data class Stripe3DSData(
   @IgnoredOnParcel
   val paymentSourceType: PaymentSourceType = PaymentSourceType.fromCode(rawPaymentSourceType)
 
+  @IgnoredOnParcel
+  val isLongRunning: Boolean = paymentSourceType == PaymentSourceType.Stripe.SEPADebit || (gatewayRequest.donateToSignalType == DonateToSignalType.MONTHLY && paymentSourceType.isBankTransfer)
+
   fun toProtoBytes(): ByteArray {
     return ExternalLaunchTransactionState(
       stripeIntentAccessor = ExternalLaunchTransactionState.StripeIntentAccessor(

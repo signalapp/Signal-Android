@@ -99,7 +99,19 @@ class ManageDonationsFragment :
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
 
-      if (state.pendingOneTimeDonation?.pendingVerification == true &&
+      if (state.nonVerifiedMonthlyDonation?.checkedVerification == true &&
+        !alertedIdealDonations.contains(state.nonVerifiedMonthlyDonation.timestamp)
+      ) {
+        alertedIdealDonations += state.nonVerifiedMonthlyDonation.timestamp
+
+        val amount = FiatMoneyUtil.format(resources, state.nonVerifiedMonthlyDonation.price)
+
+        MaterialAlertDialogBuilder(requireContext())
+          .setTitle(R.string.ManageDonationsFragment__couldnt_confirm_donation)
+          .setMessage(getString(R.string.ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed, amount))
+          .setPositiveButton(android.R.string.ok, null)
+          .show()
+      } else if (state.pendingOneTimeDonation?.pendingVerification == true &&
         state.pendingOneTimeDonation.checkedVerification &&
         !alertedIdealDonations.contains(state.pendingOneTimeDonation.timestamp)
       ) {
@@ -167,6 +179,13 @@ class ManageDonationsFragment :
           val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == activeSubscription.level }
           if (subscription != null) {
             presentSubscriptionSettings(activeSubscription, subscription, state)
+          } else {
+            customPref(IndeterminateLoadingCircle)
+          }
+        } else if (state.nonVerifiedMonthlyDonation != null) {
+          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == state.nonVerifiedMonthlyDonation.level }
+          if (subscription != null) {
+            presentNonVerifiedSubscriptionSettings(state.nonVerifiedMonthlyDonation, subscription, state)
           } else {
             customPref(IndeterminateLoadingCircle)
           }
@@ -257,6 +276,25 @@ class ManageDonationsFragment :
           onPendingClick = {
             displayPendingDialog(it)
           }
+        )
+      )
+    }
+  }
+
+  private fun DSLConfiguration.presentNonVerifiedSubscriptionSettings(
+    nonVerifiedMonthlyDonation: NonVerifiedMonthlyDonation,
+    subscription: Subscription,
+    state: ManageDonationsState
+  ) {
+    presentSubscriptionSettingsWithState(state) {
+      customPref(
+        ActiveSubscriptionPreference.Model(
+          price = nonVerifiedMonthlyDonation.price,
+          subscription = subscription,
+          redemptionState = ManageDonationsState.RedemptionState.IN_PROGRESS,
+          onContactSupport = {},
+          activeSubscription = null,
+          onPendingClick = {}
         )
       )
     }

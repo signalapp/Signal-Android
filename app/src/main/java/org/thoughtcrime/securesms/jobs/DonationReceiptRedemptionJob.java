@@ -151,6 +151,11 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    if (getInputData() == null) {
+      Log.d(TAG, "No input data, assuming upstream job in chain failed and properly set error state. Failing without side effects.");
+      return;
+    }
+
     if (isForSubscription()) {
       Log.d(TAG, "Marking subscription failure", true);
       SignalStore.donationsValues().markSubscriptionRedemptionFailed();
