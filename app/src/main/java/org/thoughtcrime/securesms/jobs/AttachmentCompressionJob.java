@@ -206,7 +206,9 @@ public final class AttachmentCompressionJob extends BaseJob {
     }
 
     try (AttachmentProgressService.Controller notification = AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_compressing_video_start))) {
-      notification.setIndeterminate(true);
+      if (notification != null) {
+        notification.setIndeterminate(true);
+      }
 
       try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId(), false)) {
         if (dataSource == null) {
@@ -232,7 +234,9 @@ public final class AttachmentCompressionJob extends BaseJob {
             try {
               try (OutputStream outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, file, true).second) {
                 transcoder.transcode(percent -> {
-                  notification.setProgress(percent / 100f);
+                  if (notification != null) {
+                    notification.setProgress(percent / 100f);
+                  }
                   eventBus.postSticky(new PartProgressEvent(attachment,
                                                             PartProgressEvent.Type.COMPRESSION,
                                                             100,
@@ -261,7 +265,9 @@ public final class AttachmentCompressionJob extends BaseJob {
               Log.i(TAG, "Compressing with android in-memory muxer");
 
               try (MediaStream mediaStream = transcoder.transcode(percent -> {
-                notification.setProgress(percent/100f);
+                if (notification != null) {
+                  notification.setProgress(percent / 100f);
+                }
                 eventBus.postSticky(new PartProgressEvent(attachment,
                                                           PartProgressEvent.Type.COMPRESSION,
                                                           100,
@@ -289,7 +295,7 @@ public final class AttachmentCompressionJob extends BaseJob {
           throw new UndeliverableMessageException("Failed to transcode and cannot skip due to editing", e);
         }
       }
-    } catch (UnableToStartException | IOException | MmsException e) {
+    } catch (IOException | MmsException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);
     }
     return attachment;

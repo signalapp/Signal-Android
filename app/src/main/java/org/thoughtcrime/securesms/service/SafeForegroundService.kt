@@ -14,7 +14,9 @@ import androidx.core.app.ServiceCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.UnableToStartException
-import kotlin.jvm.Throws
+import java.util.concurrent.locks.ReentrantLock
+import javax.annotation.CheckReturnValue
+import kotlin.concurrent.withLock
 
 /**
  * A simple parent class meant to encourage the safe usage of foreground services.
@@ -29,17 +31,48 @@ abstract class SafeForegroundService : Service() {
     private const val ACTION_START = "start"
     private const val ACTION_STOP = "stop"
 
+    private var states: MutableMap<Class<out SafeForegroundService>, State> = mutableMapOf()
+    private val stateLock = ReentrantLock()
+
     /**
      * Safety starts the target foreground service.
-     * Important: This operation can fail. If it does, [UnableToStartException] is thrown.
+     * @return False if we tried to start the service but failed, otherwise true.
      */
-    @Throws(UnableToStartException::class)
-    fun start(context: Context, serviceClass: Class<out SafeForegroundService>) {
-      val intent = Intent(context, serviceClass).apply {
-        action = ACTION_START
-      }
+    @CheckReturnValue
+    fun start(context: Context, serviceClass: Class<out SafeForegroundService>): Boolean {
+      stateLock.withLock {
+        val state = currentState(serviceClass)
 
-      ForegroundServiceUtil.startWhenCapable(context, intent)
+        Log.d(TAG, "[start] Current state: $state")
+
+        return when (state) {
+          State.STARTING,
+          State.NEEDS_RESTART -> {
+            Log.d(TAG, "[start] No need to start the service again. Current state: $state")
+            true
+          }
+          State.STOPPED -> {
+            Log.d(TAG, "[start] Starting service.")
+            states[serviceClass] = State.STARTING
+            try {
+              ForegroundServiceUtil.startWhenCapable(
+                context = context,
+                intent = Intent(context, serviceClass).apply { action = ACTION_START }
+              )
+              true
+            } catch (e: UnableToStartException) {
+              Log.w(TAG, "[start] Failed to start the service!")
+              states[serviceClass] = State.STOPPED
+              false
+            }
+          }
+          State.STOPPING -> {
+            Log.d(TAG, "[start] Attempted to start while the service is stopping. Enqueueing a restart.")
+            states[serviceClass] = State.NEEDS_RESTART
+            true
+          }
+        }
+      }
     }
 
     /**
@@ -48,15 +81,41 @@ abstract class SafeForegroundService : Service() {
      * a start is pending, preventing the posting of a foreground notification.
      */
     fun stop(context: Context, serviceClass: Class<out SafeForegroundService>) {
-      val intent = Intent(context, serviceClass).apply {
-        action = ACTION_STOP
-      }
+      stateLock.withLock {
+        val state = currentState(serviceClass)
 
-      try {
-        ForegroundServiceUtil.startWhenCapable(context, intent)
-      } catch (e: UnableToStartException) {
-        Log.w(TAG, "Failed to start service class $serviceClass", e)
+        Log.d(TAG, "[stop] Current state: $state")
+
+        when (state) {
+          State.STARTING -> {
+            Log.d(TAG, "[stop] Stopping service.")
+            states[serviceClass] = State.STOPPING
+            try {
+              ForegroundServiceUtil.startWhenCapable(
+                context = context,
+                intent = Intent(context, serviceClass).apply { action = ACTION_STOP }
+              )
+            } catch (e: UnableToStartException) {
+              Log.w(TAG, "Failed to start service class $serviceClass", e)
+              states[serviceClass] = State.STOPPED
+            }
+          }
+
+          State.STOPPED,
+          State.STOPPING -> {
+            Log.d(TAG, "[stop] No need to stop the service. Current state: $state")
+          }
+
+          State.NEEDS_RESTART -> {
+            Log.i(TAG, "[stop] Clearing pending restart.")
+            states[serviceClass] = State.STOPPING
+          }
+        }
       }
+    }
+
+    private fun currentState(clazz: Class<out SafeForegroundService>): State {
+      return states.getOrPut(clazz) { State.STOPPED }
     }
   }
 
@@ -74,10 +133,10 @@ abstract class SafeForegroundService : Service() {
 
     when (val action = intent.action) {
       ACTION_START -> {
-        onServiceStarted(intent)
+        onServiceStartCommandReceived(intent)
       }
       ACTION_STOP -> {
-        onServiceStopped(intent)
+        onServiceStopCommandReceived(intent)
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
         stopSelf()
       }
@@ -88,8 +147,28 @@ abstract class SafeForegroundService : Service() {
   }
 
   override fun onDestroy() {
-    Log.d(tag, "[onDestroy]")
     super.onDestroy()
+
+    stateLock.withLock {
+      val state = currentState(javaClass)
+
+      Log.d(tag, "[onDestroy] Current state: $state")
+      when (state) {
+        State.STOPPED,
+        State.STARTING,
+        State.STOPPING -> {
+          states[javaClass] = State.STOPPED
+        }
+
+        State.NEEDS_RESTART -> {
+          Log.i(TAG, "[onDestroy] Restarting service!")
+          states[javaClass] = State.STOPPED
+          if (!start(this, javaClass)) {
+            Log.w(TAG, "[onDestroy] Failed to restart service.")
+          }
+        }
+      }
+    }
   }
 
   override fun onBind(intent: Intent?): IBinder? = null
@@ -104,8 +183,22 @@ abstract class SafeForegroundService : Service() {
   abstract fun getForegroundNotification(intent: Intent): Notification
 
   /** Event listener for when the service is started via an intent. */
-  open fun onServiceStarted(intent: Intent) = Unit
+  open fun onServiceStartCommandReceived(intent: Intent) = Unit
 
   /** Event listener for when the service is stopped via an intent. */
-  open fun onServiceStopped(intent: Intent) = Unit
+  open fun onServiceStopCommandReceived(intent: Intent) = Unit
+
+  private enum class State {
+    /** The service is not running. */
+    STOPPED,
+
+    /** We told the service to start (via an intent). It may or may not be actually running yet. */
+    STARTING,
+
+    /** We told the service to stop (via an intent), but it's still technically running. */
+    STOPPING,
+
+    /** We requested that the service be started while it was in the process of stopping. */
+    NEEDS_RESTART
+  }
 }

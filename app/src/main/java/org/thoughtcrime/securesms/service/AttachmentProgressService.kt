@@ -14,13 +14,11 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
-import kotlin.jvm.Throws
 
 /**
  * A service to show attachment progress. In order to ensure we only show one status notification,
@@ -55,23 +53,27 @@ class AttachmentProgressService : SafeForegroundService() {
      * use to update the notification.
      *
      * Important: This could fail to start! We do our best to start the service regardless of context,
-     * but it will fail on some devices, throwing an [UnableToStartException] if it does so.
+     * but it will fail on some devices. If this happens, the returned [Controller] will be null.
      */
     @JvmStatic
-    @Throws(UnableToStartException::class)
-    fun start(context: Context, title: String): Controller {
+    fun start(context: Context, title: String): Controller? {
       controllerLock.withLock {
-        if (controllers.isEmpty()) {
+        val started = if (controllers.isEmpty()) {
           Log.i(TAG, "[start] First controller. Starting.")
           SafeForegroundService.start(context, AttachmentProgressService::class.java)
         } else {
           Log.i(TAG, "[start] No need to start the service again. Already have an active controller.")
+          true
         }
 
-        val controller = Controller(context, title)
-        controllers += controller
-        onControllersChanged(context)
-        return controller
+        return if (started) {
+          val controller = Controller(context, title)
+          controllers += controller
+          onControllersChanged(context)
+          controller
+        } else {
+          null
+        }
       }
     }
 

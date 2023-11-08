@@ -145,12 +145,7 @@ class AttachmentUploadJob private constructor(
 
   private fun getAttachmentNotificationIfNeeded(attachment: Attachment): AttachmentProgressService.Controller? {
     return if (attachment.size >= FOREGROUND_LIMIT) {
-      try {
-        AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
-      } catch (e: UnableToStartException) {
-        Log.w(TAG, "Unable to start foreground service", e)
-        null
-      }
+      AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
     } else {
       null
     }
