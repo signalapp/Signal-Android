@@ -370,7 +370,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="30dp"
                     android:src="@drawable/symbol_share_android_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -381,11 +381,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="34dp"
+                    android:layout_marginTop="25dp"
                     android:text="@string/ManageProfileFragment__link_tooltip_title"
                     android:textAppearance="@style/Signal.Text.Body"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/signal_colorOnPrimaryContainer"
-                    app:layout_constraintTop_toTopOf="@id/tooltip_share_icon"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tooltip_share_icon"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -393,17 +394,19 @@
                     android:id="@+id/tooltip_description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
+                    android:paddingBottom="14dp"
                     android:text="@string/ManageProfileFragment__link_tooltip_body"
                     android:textColor="@color/signal_colorOnSurfaceVariant"
+                    android:textAppearance="@style/Signal.Text.Preview"
+                    android:lineHeight="20sp"
                     app:layout_constraintTop_toBottomOf="@id/tooltip_title"
                     app:layout_constraintStart_toStartOf="@id/tooltip_title"
                     app:layout_constraintEnd_toEndOf="@id/tooltip_title"/>
 
                 <ImageView
                     android:id="@+id/link_tooltip_close_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginTop="21dp"
                     android:layout_marginEnd="12dp"
                     android:src="@drawable/symbol_x_24"
