@@ -30,6 +30,49 @@ import java.io.IOException
 
 /**
  * Performs various actions around usernames and username links.
+ *
+ * Usernames and username links are more complicated than you may think. This is because we want the following properties:
+ * - We want usernames to be assigned a random numerical discriminator to avoid land grabs
+ * - We don't want to store plaintext usernames on the service
+ * - We don't want plaintext usernames in username links
+ * - We want username links to be revocable and rotatable without changing your username
+ * - We want users to be able to turn a link into a displayable username in the app
+ *
+ * As a result, the process of reserving them, creating links, and parsing those links is more complex.
+ *
+ * # Setting a username
+ *
+ * To start, let's define a username as being composed of two parts: a nickname and a discriminator. The nickname is the user-chosen part of the username, and
+ * the discriminator is a random set of digits that we bolt onto the end so that people can choose whatever nickname they want. So a username ends up looking
+ * like this: mynickname.123
+ *
+ * Setting a username is a multi-step process.
+ *
+ * 1. The user chooses a nickname.
+ * 2. We take that nickname and pair it with a bunch of possible discriminators of different lengths, turning them into a list of possible usernames.
+ * 3. We hash those possible usernames and submit them to the service. It will reserve the first one that's available, returning it in the response.
+ * 4. We present the (nickname, discriminator) combo to the user, and they can choose to confirm it.
+ * 5. If the user confirms it, we tell the service the final username hash, and it saves it as the final username.
+ *
+ * # Username links
+ *
+ * There's three main components to username links:
+ * - An encrypted username blob
+ * - A serverId (which is a UUID)
+ * - "entropy" (some random bytes used to encrypt the username)
+ *
+ * The service basically stores a map of (serverId -> encrypted username blob). We can ask the service for the encrypted username blob for a given serverId,
+ * and then decrypt it with the entropy. Simple enough.
+ *
+ * How are those pieces shared? Well, the link looks like this:
+ * https://signal.me/#eu/<32 bytes of entropy><16 bytes of serverId uuid>
+ *
+ * So, when we get a link, we parse out the entropy and serverId. We then use the serverId to get the encrypted username, and then decrypt it with the entropy.
+ *
+ * This gives us everything we want:
+ * - We can rotate our link without changing our username by just picking new (serverId, entropy) and storing a new blob on the service.
+ * - When the user decrypts the username, they see it displayed exactly how the user uploaded it.
+ * - The service has no idea what links correspond to what usernames -- it's just storing encrypted blobs.
  */
 object UsernameRepository {
   private val TAG = Log.tag(UsernameRepository::class.java)
