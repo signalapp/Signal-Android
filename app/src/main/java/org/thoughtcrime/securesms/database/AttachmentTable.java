@@ -847,6 +847,10 @@ public class AttachmentTable extends DatabaseTable {
   @NonNull Map<Attachment, AttachmentId> insertAttachmentsForMessage(long mmsId, @NonNull List<Attachment> attachments, @NonNull List<Attachment> quoteAttachment)
       throws MmsException
   {
+    if (attachments.isEmpty() && quoteAttachment.isEmpty()) {
+      return Collections.emptyMap();
+    }
+
     Log.d(TAG, "insertParts(" + attachments.size() + ")");
 
     Map<Attachment, AttachmentId> insertedAttachments = new HashMap<>();

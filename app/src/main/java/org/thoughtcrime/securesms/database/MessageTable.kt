@@ -2975,7 +2975,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val messageId = db.insert(TABLE_NAME, null, contentValues)
       if (messageId < 0) {
         Log.w(TAG, "Tried to insert media message but failed. Assuming duplicate.")
-        return@withinTransaction kotlin.Pair(-1L, null)
+        return@withinTransaction -1L to null
       }
 
       threads.markAsActiveEarly(threadId)
@@ -3009,11 +3009,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         }
       }
 
-      kotlin.Pair(messageId, insertedAttachments)
+      messageId to insertedAttachments
     }
 
     if (messageId < 0) {
-      return kotlin.Pair(messageId, insertedAttachments)
+      return messageId to insertedAttachments
     }
 
     insertListener?.onComplete()
@@ -3025,7 +3025,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       threads.update(threadId, unarchive)
     }
 
-    return kotlin.Pair(messageId, insertedAttachments)
+    return messageId to insertedAttachments
   }
 
   /**
