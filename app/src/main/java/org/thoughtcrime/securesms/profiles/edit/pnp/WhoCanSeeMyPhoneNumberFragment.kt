@@ -46,7 +46,7 @@ class WhoCanSeeMyPhoneNumberFragment : DSLSettingsFragment(
 
     binding.save.setOnClickListener {
       binding.save.isEnabled = false
-      viewModel.onSave().subscribeBy(onComplete = {
+      lifecycleDisposable += viewModel.onSave().subscribeBy(onComplete = {
         setFragmentResult(REQUEST_KEY, Bundle())
         findNavController().popBackStack()
       })
