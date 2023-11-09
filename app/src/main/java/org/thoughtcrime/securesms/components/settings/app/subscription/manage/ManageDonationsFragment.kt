@@ -55,6 +55,7 @@ class ManageDonationsFragment :
 
   companion object {
     private val alertedIdealDonations = mutableSetOf<Long>()
+    private const val DONATE_TROUBLESHOOTING_URL = "https://support.signal.org/hc/articles/360031949872#fix"
   }
 
   private val supportTechSummary: CharSequence by lazy {
@@ -410,7 +411,7 @@ class ManageDonationsFragment :
           .setTitle(R.string.DonationsErrors__couldnt_add_badge)
           .setMessage(R.string.DonationsErrors__your_badge_could_not)
           .setNegativeButton(R.string.DonationsErrors__learn_more) { _, _ ->
-            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
+            CommunicationActions.openBrowserLink(requireContext(), DONATE_TROUBLESHOOTING_URL)
           }
           .setPositiveButton(R.string.Subscription__contact_support) { _, _ ->
             requireActivity().finish()
@@ -432,7 +433,7 @@ class ManageDonationsFragment :
           .setTitle(R.string.DonationsErrors__error_processing_payment)
           .setMessage(message)
           .setNegativeButton(R.string.DonationsErrors__learn_more) { _, _ ->
-            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url))
+            CommunicationActions.openBrowserLink(requireContext(), DONATE_TROUBLESHOOTING_URL)
           }
           .setPositiveButton(android.R.string.ok, null)
           .setOnDismissListener {

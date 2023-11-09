@@ -220,7 +220,7 @@ fun BankTransferScreen(
           val fullString = stringResource(id = R.string.BankTransferMandateFragment__stripe_processes_donations, learnMore)
 
           Texts.LinkifiedText(
-            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, stringResource(id = R.string.donate_url)), // TODO [alex] -- final URL
+            textWithUrlSpans = SpanUtil.urlSubsequence(fullString, learnMore, ""),
             onUrlClick = {
               onLearnMoreClick()
             },
