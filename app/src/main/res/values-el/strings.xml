@@ -644,7 +644,7 @@
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% μέχρι τώρα…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Το Signal χρειάζεται τα δικαιώματα πρόσβασης εξωτερικής μνήμης για τη δημιουργία αντιγράφων ασφαλείας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
-    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
+    <string name="BackupsPreferenceFragment__set_backup_time">Ορισμός ώρας δημιουργίας αντίγραφου ασφαλείας</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -991,12 +991,15 @@
     <string name="ManageProfileFragment_profile_name">Όνομα προφίλ</string>
     <string name="ManageProfileFragment_username">Όνομα χρήστη</string>
     <string name="ManageProfileFragment_about">Πληροφορίες</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">Γράψε μερικές λέξεις για σένα</string>
-    <string name="ManageProfileFragment_your_name">Το όνομά σου</string>
-    <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
     <string name="ManageProfileFragment_badges">Σήματα</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">Επεξεργασία φωτογραφίας</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Το όνομα χρήστη δημιουργήθηκε</string>
     <!-- Snackbar message after copying username -->
@@ -1005,10 +1008,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">Δεν ήταν δυνατή η διαγραφή του ονόματος χρήστη. Δοκίμασε ξανά αργότερα.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Το όνομα χρήστη διαγράφηκε</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Κάτι πήγε στραβά με το όνομα χρήστη σου, δεν αντιστοιχεί πλέον στον λογαριασμό σου. Μπορείς να δοκιμάσεις να το ρυθμίσεις ξανά ή να επιλέξεις ένα νέο.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Διόρθωση τώρα</string>
 
@@ -2104,8 +2113,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Μια νέα έκδοση του Signal είναι διαθέσιμη. Πάτα για ενημέρωση.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Αποτυχία ενημέρωσης Signal</string>
     <string name="ApkUpdateNotifications_failed_general_body">Θα προσπαθήσουμε ξανά αργότερα.</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Το Signal ενημερώθηκε με επιτυχία</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">Έγινε αυτόματη ενημέρωση της εφαρμογής σου στην έκδοση %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Αποστολή μηνύματος;</string>
@@ -2713,7 +2722,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Για να επαληθεύσεις την κρυπτογράφηση από άκρο σε άκρο με τον χρήστη %1$s, σύγκρινε τους παραπάνω αριθμούς με αυτούς στη συσκευή του. Μπορείς επίσης να σκανάρεις τον κωδικό σου με τη συσκευή του.</string>
     <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
     <string name="verify_display_fragment__successful_match">Επιτυχής σύγκριση</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Αποτυχία επιβεβαίωσης αριθμού ασφαλείας</string>
@@ -3015,6 +3024,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Πληρωμές</string>
     <string name="preferences_chats__chats">Συνομιλίες</string>
+    <string name="preferences_app_updates__title">App updates</string>
     <string name="preferences_data_and_storage__manage_storage">Διαχείριση χώρου αποθήκευσης</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Χρήση λιγότερων δεδομένων για τις κλήσεις</string>
     <string name="preferences_data_and_storage__never">Ποτέ</string>
@@ -4566,6 +4576,8 @@
     <string name="NewConversationActivity__view_contact">Προβολή επαφής</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">Ο χρήστης %1$s δεν χρησιμοποιεί Signal</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Αναζήτηση ονόματος ή άριθμού</string>
@@ -4751,6 +4763,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">Άλλοι τρόποι δωρεάς</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Κάνε δωρεά για έναν φίλο ή φίλη</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">Εισαγωγή προσαρμοσμένου ποσού</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4817,16 +4835,16 @@
     <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
     <string name="Subscription__get_a_s_badge">Πάρε ένα σήμα %1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
+    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Σφάλμα κατά την επεξεργασία της πληρωμής</string>
+    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Δοκίμασε άλλο τρόπο πληρωμής ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Μάθε περισσότερα</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. %1$s</string>
-    <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν ήταν δυνατό να διεκπεραιωθεί και δεν έχεις χρεωθεί. Προσπάθησε ξανά.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
+    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>
     <string name="DonationsErrors__couldnt_add_badge">Αδυναμία προσθήκης σήματος</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4836,9 +4854,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Η δωρεά απέτυχε</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Έγινε επεξεργασία της πληρωμής σου από τη Signal, αλλά δεν καταφέραμε να στείλουμε το μήνυμα της δωρεάς. Επικοινώνησε με την υποστήριξη.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">Το σήμα σου δεν ήταν δυνατό να προστεθεί στον λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Επικοινώνησε με την υποστήριξη.</string>
-    <string name="DonationsErrors__your_payment_is_still">Η πληρωμή σου βρίσκεται ακόμα σε επεξεργασία. Μπορεί να πάρει ακόμα μερικά λεπτά, ανάλογα με τη σύνδεσή σου.</string>
+    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Πρέπει να υπάρχει σύνδεση στο διαδίκτυο για την ακύρωση της συνδρομής.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Η συσκευή σου δεν υποστηρίζει το Google Pay, οπότε δεν μπορείς να γίνεις συνδρομητής για να λάβεις σήμα. Μπορείς όμως να υποστηρίξεις το Signal κάνοντας μια δωρεά στην ιστοσελίδα μας.</string>
@@ -4850,6 +4868,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Ο χρήστης δεν μπορεί να λάβει δωρεές μέχρι να αναβαθμίσει τη Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Η δωρεά δεν εστάλη λόγω σφάλματος δικτύου. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Δωρεά εκ μέρους του χρήστη %1$s</string>
@@ -4894,7 +4914,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Το έτος λήξης της κάρτας σου είναι λάθος. Ανανέωσέ το στο Google Pay και προσπάθησε ξανά.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Δοκίμασε να ολοκληρώσεις τη πληρωμή ξανά, ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Δοκίμασε ξανά ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
 
@@ -4918,9 +4938,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Ο τραπεζικός λογαριασμός που παρέχεται δεν έχει επαρκή χρήματα για την ολοκλήρωση αυτής της αγοράς. Δοκίμασε ξανά ή επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">Αυτή η πληρωμή ανακλήθηκε από τον κάτοχο του λογαριασμού και δεν ήταν δυνατή η επεξεργασία της. Δεν έχεις χρεωθεί.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Παρουσιάστηκε σφάλμα κατά την επεξεργασία αυτής της πληρωμής. Δοκίμασε ξανά.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Δεν ήταν δυνατή η επεξεργασία των τραπεζικών στοιχείων που παρέχονται. Επικοινώνησε με την τράπεζά σου για περισσότερες πληροφορίες.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5575,8 +5595,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Όλες οι επαφές έχουν ελεγχτεί. Πάτα Αποστολή για να συνεχίσεις.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
-        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="one">Έχεις %1$d επαφή που μπορεί να έχει εγκαταστήσει εκ νέου το Signal ή να έχει αλλάξει συσκευή. Προτού μοιραστείς την ιστορία σου μαζί της, έλεγξε τους αριθμούς ασφαλείας της. Διαφορετικά, μπορείς να την αφαιρέσεις από την ιστορία σου.</item>
+        <item quantity="other">Έχεις %1$d επαφές που μπορεί να έχουν εγκαταστήσει εκ νέου το Signal ή να έχουν αλλάξει συσκευές. Προτού μοιραστείς την ιστορία σου μαζί τους, έλεγξε τους αριθμούς ασφαλείας τους. Διαφορετικά, μπορείς να τις αφαιρέσεις από την ιστορία σου.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Επαλήθευση αριθμού ασφαλείας</string>
@@ -5821,15 +5841,17 @@
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Ιδιωτικά μηνύματα, χρηματοδότηση από εσένα. Χωρίς διαφημίσεις, παρακολούθηση, συμβιβασμούς. Κάνε τώρα μια δωρεά για να στηρίξεις το Signal.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
-    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">Μια δωρεά σου εκκρεμεί</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Οι τραπεζικές μεταφορές συνήθως χρειάζονται 1 εργάσιμη ημέρα για να διεκπεραιωθούν. Περίμενε μέχρι να ολοκληρωθεί αυτή η πληρωμή προτού ενημερώσεις τη συνδρομή σου.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Οι τραπεζικές μεταφορές συνήθως χρειάζονται 1 εργάσιμη ημέρα για να διεκπεραιωθούν. Περίμενε μέχρι να ολοκληρωθεί αυτή η πληρωμή προτού κάνεις άλλη δωρεά.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Μηνιαία</string>
@@ -5858,8 +5880,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Αποχώρηση από το Signal για επιβεβαίωση πληρωμής;</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Μόλις επιβεβαιωθεί αυτή η πληρωμή, έλα πάλι στο Signal για να ολοκληρώσεις την επεξεργασία της δωρεάς σου.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5885,7 +5907,7 @@
     <!-- iDEAL bank name -->
     <string name="IdealBank__triodos_bank">Triodos Bank</string>
     <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanchot">Van Lanchot Kempen</string>
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
     <!-- iDEAL bank name -->
     <string name="IdealBank__yoursafe">Yoursafe</string>
 
@@ -5897,15 +5919,15 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Μάθε περισσότερα</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">Συνέχεια</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
-    <string name="BankTransferMandateFragment__read_more">Read more</string>
+    <string name="BankTransferMandateFragment__read_more">Δες περισσότερα</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Αποτυχία φόρτωσης εντολής</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Πρόσθεσε τα στοιχεία της τράπεζας και τη διεύθυνση email σου. Το email σου χρησιμοποιείται από τη Stripe για να στέλνει ενημερώσεις σχετικά με τη δωρεά σου. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Μάθε περισσότερα</string>
     <!-- Text field label for name on bank account -->

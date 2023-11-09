@@ -676,7 +676,7 @@
     <string name="BackupsPreferenceFragment__s_so_far">Zatím %1$s%%…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal potřebuje oprávnění pro přístup k úložišti, aby mohl vytvářet zálohy, ale toto oprávnění je nyní trvale zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
-    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
+    <string name="BackupsPreferenceFragment__set_backup_time">Nastavte si čas zálohování</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -1059,12 +1059,15 @@
     <string name="ManageProfileFragment_profile_name">Název profilu</string>
     <string name="ManageProfileFragment_username">Uživatelské jméno</string>
     <string name="ManageProfileFragment_about">O mně</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napište pár slov o sobě</string>
-    <string name="ManageProfileFragment_your_name">Vaše jméno</string>
-    <string name="ManageProfileFragment_your_username">Vaše uživatelské jméno</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Nepodařilo se nastavit avatar</string>
     <string name="ManageProfileFragment_badges">Odznaky</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">Upravit fotku</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Uživatelské jméno vytvořeno</string>
     <!-- Snackbar message after copying username -->
@@ -1073,10 +1076,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">Uživatelské jméno se nepodařilo odstranit. Zkuste to znovu později.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Uživatelské jméno odstraněno</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Něco se pokazilo s vaším uživatelským jménem. Již není přiřazeno k vašemu účtu. Můžete ho zkusit nastavit znovu, nebo si zvolit nové.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Opravit hned</string>
 
@@ -2250,8 +2259,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">K dispozici je nová verze aplikace Signal. Klepnutím ji aktualizujete.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal se nepodařilo aktualizovat</string>
     <string name="ApkUpdateNotifications_failed_general_body">Zkusíme to znovu později.</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal byl úspěšně aktualizován</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">Byla provedena automatická aktualizace na verzi %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Odeslat zprávu?</string>
@@ -2887,7 +2896,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Pokud chcete ověřit koncové šifrování s uživatelem %1$s, porovnejte výše uvedená čísla s jeho zařízením. Můžete také naskenovat kód na jeho zařízením.</string>
     <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
     <string name="verify_display_fragment__successful_match">Shoduje se</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">Nepodařilo se ověřit bezpečnostní číslo</string>
@@ -3195,6 +3204,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Platby</string>
     <string name="preferences_chats__chats">Chaty</string>
+    <string name="preferences_app_updates__title">App updates</string>
     <string name="preferences_data_and_storage__manage_storage">Správa úložiště</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Šetřit data při hovorech</string>
     <string name="preferences_data_and_storage__never">Nikdy</string>
@@ -4776,6 +4786,8 @@
     <string name="NewConversationActivity__view_contact">Zobrazit kontakt</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s není uživatelem služby Signal</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Vyhledat jméno nebo číslo</string>
@@ -4969,6 +4981,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">Jiné možnosti podpory</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Přispět za přítele</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">Zadat vlastní částku</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -5035,16 +5053,16 @@
     <string name="Subscription__contact_support">Kontaktovat podporu</string>
     <string name="Subscription__get_a_s_badge">Získat %1$s odznak</string>
 
-    <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
+    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">Chyba při zpracování platby</string>
+    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Zkuste jiný způsob platby nebo se obraťte na svou banku a požádejte o další informace.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">Více informací</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">Chyba při zpracovávání platby. %1$s</string>
-    <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
+    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
     <string name="DonationsErrors__couldnt_add_badge">Odznak se nepodařilo přidat</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5054,9 +5072,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Přispění se nezdařilo</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Vaše platba byla zpracována, ale Signal nemohl odeslat vaši zprávu o příspěvku. Kontaktujte prosím podporu.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
-    <string name="DonationsErrors__your_payment_is_still">Vaše platba se stále zpracovává. To může trvat několik minut v závislosti na vašem připojení.</string>
+    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného se nepodařilo</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušení předplatného vyžaduje aktivní připojení k internetu.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zařízení nepodporuje službu Google Pay, takže se nemůžete přihlásit k odběru a získat odznak. Přesto můžete Signal podpořit příspěvkem na našich webových stránkách.</string>
@@ -5068,6 +5086,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Tento uživatel nemůže přijímat příspěvky, dokud si neaktualizuje aplikaci Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Váš příspěvek nemohl být odeslán z důvodu chyby sítě. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Příspěvek jménem uživatele %1$s</string>
@@ -5112,7 +5132,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">Rok platnosti u vaší platební metody je nesprávný. Aktualizujte jej v Google Pay a zkuste to znovu.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">Zkuste platbu dokončit znovu nebo se obraťte na svou banku a požádejte o další informace.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">Zkuste to znovu nebo se obraťte na svou banku a požádejte o další informace.</string>
 
@@ -5136,9 +5156,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Na zadaném bankovním účtu není dostatek prostředků k dokončení nákupu. Zkuste to znovu nebo se obraťte na svou banku s žádostí o další informací.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">Tato platba byla majitelem účtu zrušena a nemohla být zpracována. Platba vám nebyla odečtena.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Při zpracování této platby se vyskytla chyba. Zkuste to prosím znovu.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Zadané bankovní údaje nebylo možné zpracovat. Další informace vám poskytne vaše banka.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5827,10 +5847,10 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Všechna spojení byla zkontrolována, pokračujte klepnutím na tlačítko odeslat.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
-        <item quantity="few">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
-        <item quantity="many">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
-        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="one">Máte %1$d spojení, které si pravděpodobně přeinstalovalo aplikaci Signal nebo změnilo zařízení. Před sdílením příběhu s ním zkontrolujte jeho bezpečnostní číslo nebo zvažte jeho odebrání z příběhu.</item>
+        <item quantity="few">Máte %1$d spojení, která si pravděpodobně přeinstalovala aplikaci Signal nebo změnila zařízení. Před sdílením příběhu s nimi zkontrolujte jejich bezpečnostní čísla nebo zvažte jejich odebrání z příběhu.</item>
+        <item quantity="many">Máte %1$d spojení, která si pravděpodobně přeinstalovala aplikaci Signal nebo změnila zařízení. Před sdílením příběhu s nimi zkontrolujte jejich bezpečnostní čísla nebo zvažte jejich odebrání z příběhu.</item>
+        <item quantity="other">Máte %1$d spojení, která si pravděpodobně přeinstalovala aplikaci Signal nebo změnila zařízení. Před sdílením příběhu s nimi zkontrolujte jejich bezpečnostní čísla nebo zvažte jejich odebrání z příběhu.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Ověření bezpečnostního čísla</string>
@@ -6081,15 +6101,17 @@
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">Soukromé zasílání zpráv financované vámi. Žádné reklamy, žádné sledování, žádné kompromisy. Přispějte nyní a podpořte službu Signal.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
-    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">Máte nezpracovaný příspěvek</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Zpracování bankovního převodu obvykle trvá 1 pracovní den. S aktualizací předplatného prosím počkejte, dokud nebude tato platba dokončena.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Zpracování bankovního převodu obvykle trvá 1 pracovní den. S dalším příspěvkem prosím počkejte, dokud nebude tato platba dokončena.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Měsíčně</string>
@@ -6120,8 +6142,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Opustit Signal a potvrdit platbu?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Po potvrzení platby se vraťte do aplikace Signal a dokončete zpracování příspěvku.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -6147,7 +6169,7 @@
     <!-- iDEAL bank name -->
     <string name="IdealBank__triodos_bank">Triodos Bank</string>
     <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanchot">Van Lanchot Kempen</string>
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
     <!-- iDEAL bank name -->
     <string name="IdealBank__yoursafe">Yoursafe</string>
 
@@ -6159,15 +6181,15 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">Více informací</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">Pokračovat</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
-    <string name="BankTransferMandateFragment__read_more">Read more</string>
+    <string name="BankTransferMandateFragment__read_more">Číst dále</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Požadavek se nepodařilo načíst</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Zadejte své bankovní údaje a e-mailovou adresu. Váš e-mail používá společnost Stripe k zasílání aktuálních informací o vašem příspěvku. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Více informací</string>
     <!-- Text field label for name on bank account -->

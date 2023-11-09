@@ -644,7 +644,7 @@
     <string name="BackupsPreferenceFragment__s_so_far">இதுவரை %1$s%%…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">காப்புப்பிரதிகளை உருவாக்க Signal கு வெளிப்புற சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
-    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
+    <string name="BackupsPreferenceFragment__set_backup_time">பேக்கப் நேரத்தை அமைக்கவும்</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -991,12 +991,15 @@
     <string name="ManageProfileFragment_profile_name">சுயவிவரப் பெயர்</string>
     <string name="ManageProfileFragment_username">பயனர்பெயர்</string>
     <string name="ManageProfileFragment_about">பற்றி</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்</string>
-    <string name="ManageProfileFragment_your_name">உங்கள் பெயர்</string>
-    <string name="ManageProfileFragment_your_username">உங்கள் பயனர்பெயர்</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
     <string name="ManageProfileFragment_badges">பேட்ஜ்கள்</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">படத்தை திருத்த</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">பயனர்பெயர் உருவாக்கப்பட்டது</string>
     <!-- Snackbar message after copying username -->
@@ -1005,10 +1008,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">பயனர்பெயரை நீக்க முடியவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">பயனர் பெயர் நீக்கப்பட்டது</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">உங்கள் பயனர்பெயரில் ஏதோ தவறாகிவிட்டது, அது இனி உங்கள் கணக்கில் ஒதுக்கப்படாது. நீங்கள் முயற்சி செய்து மீண்டும் அமைக்கலாம் அல்லது புதியதைத் தேர்ந்தெடுக்கலாம்.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">இப்பொழுதே சரிபார்</string>
 
@@ -2104,8 +2113,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal இன் புதிய பதிப்பு கிடைக்கப்பெறுகிறது. புதுப்பிக்க அழுத்தவும்.</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signalஐப் புதுப்பிக்க முடியவில்லை</string>
     <string name="ApkUpdateNotifications_failed_general_body">பின்னர் மீண்டும் முயல்வோம்.</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal வெற்றிகரமாக புதுப்பிக்கப்பட்டது</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">நீங்கள் தானாகவே பதிப்பு %1$sக்குப் புதுப்பிக்கப்பட்டீர்கள்.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">செய்தி அனுப்ப?</string>
@@ -2713,7 +2722,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s உடன் எண்ட்-டு-எண்ட் என்க்ரிப்ஷனைச் சரிபார்க்க, மேலே உள்ள எண்களை அவற்றின் டிவைஸ் உடன் ஒப்பிடவும். நீங்கள் அவர்களின் டிவைஸ் உள்ள குறியீட்டை ஸ்கேன் செய்யலாம்.</string>
     <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
     <string name="verify_display_fragment__successful_match">வெற்றிகரமான இணை</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கத் தவறியது</string>
@@ -3015,6 +3024,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">பணம் செலுத்தல்</string>
     <string name="preferences_chats__chats">சாட்ஸ்</string>
+    <string name="preferences_app_updates__title">App updates</string>
     <string name="preferences_data_and_storage__manage_storage">சேமிப்பிடத்தை நிர்வகிக்கவும்</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">அழைப்புகளுக்கு குறைந்த தரவைப் பயன்படும்</string>
     <string name="preferences_data_and_storage__never">ஒருபோதுமில்லை</string>
@@ -4566,6 +4576,8 @@
     <string name="NewConversationActivity__view_contact">தொடர்பைக் காண்க</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ஒரு சிக்னல் பயனர் அல்ல</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">தேடல் பெயர் அல்லது எண்</string>
@@ -4751,6 +4763,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">கொடுக்க மற்ற வழிகள்</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">நண்பருக்காக நன்கொடை அளிக்கவும்</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">விருப்பத் தொகையை உள்ளிடவும்</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4817,16 +4835,16 @@
     <string name="Subscription__contact_support">தொடர்பு ஆதரவு</string>
     <string name="Subscription__get_a_s_badge">%1$s பேட்ஜைப் பெறுக</string>
 
-    <string name="SubscribeFragment__processing_payment">கட்டணத்தை செயலாக்குகிறது…</string>
+    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">கட்டணத்தைச் செயல்படுத்துவதில் பிழை</string>
+    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">மற்றொரு கட்டண முறையை முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">மேலும் அறிக</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">கட்டணத்தைச் செயல்படுத்துவதில் பிழை. %1$s</string>
-    <string name="DonationsErrors__your_payment">உங்கள் கட்டணத்தைச் செயல்படுத்த முடியவில்லை, மேலும் உங்களிடம் கட்டணம் வசூலிக்கப்படவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</string>
+    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
+    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">இன்னும் செயலாக்கப்படுகிறது</string>
     <string name="DonationsErrors__couldnt_add_badge">பேட்ஜை சேர்க்க முடியவில்லை</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4836,9 +4854,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">நன்கொடை தோல்வியடைந்தது</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">உங்கள் பணம் செலுத்தப்பட்டது ஆனால் Signal செயலியால் உங்கள் நன்கொடை செய்தியை அனுப்ப முடியவில்லை. தயவுசெய்து ஆதரவு மையத்தை தொடர்பு கொள்ளவும்.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
-    <string name="DonationsErrors__your_payment_is_still">உங்கள் கட்டணம் இன்னும் செயல்படுத்தப்படுகிறது. உங்கள் இணைப்பைப் பொறுத்து இதற்கு ஒரு சில நிமிடங்கள் ஆகலாம்.</string>
+    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">சந்தாவை ரத்து செய்ய முடியவில்லை</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">சந்தாவை ரத்துசெய்ய இணைய இணைப்பு தேவை.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">உங்கள் டிவைஸ் Google Pay-ஐ ஆதரிக்காததால், பேட்ஜைப் பெற நீங்கள் சப்ஸ்கிரைப் செய்ய முடியாது. எங்கள் இணையதளத்தில் நன்கொடை அளிப்பதன் மூலம் Signalஐத் தொடர்ந்து ஆதரிக்கலாம்.</string>
@@ -4850,6 +4868,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Signalஐ மேம்படுத்தும் வரை இந்தப் பயனர் நன்கொடைகளைப் பெற முடியாது.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">நெட்வொர்க் பிழையின் காரணமாக உங்கள் நன்கொடையை அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s சார்பாக நன்கொடை</string>
@@ -4894,7 +4914,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">உங்கள் கட்டண முறையின் காலாவதி வருடம் தவறானது. அதை கூகிள் பே-இல் புதுப்பித்தவுடன் மீண்டும் முயற்சிக்கவும்.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">கட்டணத்தை மீண்டும் முடிக்க முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">மீண்டும் முயற்சிக்கவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
 
@@ -4918,9 +4938,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">இந்த வாங்குதலை முடிப்பதற்கு, வழங்கப்பட்ட வங்கிக் கணக்கில் போதுமான பணம் இல்லை, மீண்டும் முயலவும் அல்லது மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்பு கொள்ளவும்.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">இந்தக் கட்டணம் கணக்கு வைத்திருப்பவரால் திரும்பப் பெறப்பட்டது, அதைச் செயல்படுத்த முடியவில்லை. உங்களிடம் கட்டணம் விதிக்கப்படவில்லை.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">இந்தக் கட்டணத்தைச் செயலாக்கும்போது பிழை ஏற்பட்டது, மீண்டும் முயலவும்.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">வழங்கப்பட்ட வங்கி விவரங்களைச் செயல்படுத்த முடியவில்லை, மேலும் தகவலுக்கு உங்கள் வங்கியைத் தொடர்புகொள்ளவும்.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5575,8 +5595,8 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">அனைத்து இணைப்புகளும் மதிப்பாய்வு செய்யப்பட்டுள்ளன, தொடர அனுப்பு என்பதைத் தட்டவும்.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="one">You have %1$d connection who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
-        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="one">உங்களிடம் Signalஐ மீண்டும் நிறுவிய அல்லது டிவைஸ்களை மாற்றிய %1$d இணைப்பு உள்ளது. உங்கள் ஸ்டோரியை அவர்களுடன் பகிர்வதற்கு முன் அவர்களின் பாதுகாப்பு எண்களை மதிப்பாய்வு செய்யவும் அல்லது உங்கள் ஸ்டோரியிலிருந்து அவற்றை அகற்றவும்.</item>
+        <item quantity="other">உங்களிடம் Signalஐ மீண்டும் நிறுவிய அல்லது டிவைஸ்களை மாற்றிய %1$d இணைப்புகள் உள்ளது. உங்கள் ஸ்டோரியை அவர்களுடன் பகிர்வதற்கு முன் அவர்களின் பாதுகாப்பு எண்களை மதிப்பாய்வு செய்யவும் அல்லது உங்கள் ஸ்டோரியிலிருந்து அவற்றை அகற்றவும்.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
@@ -5821,15 +5841,17 @@
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">உங்களால் நிதியளிக்கப்பட்ட தனிப்பட்ட செய்தியிடல். விளம்பரங்கள் இல்லை, கண்காணிப்பு இல்லை, சமரசம் இல்லை. Signalஐ ஆதரிக்க இப்போதே நன்கொடை அளியுங்கள்.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
-    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">உங்களிடம் ஒரு நன்கொடை நிலுவையில் உள்ளது</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">வங்கி பரிமாற்றங்களுக்குப் பொதுவாக 1 வணிக நாள் எடுக்கும். உங்கள் சந்தாவைப் புதுப்பிக்கும் முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">வங்கி பரிமாற்றங்களுக்குப் பொதுவாக 1 வணிக நாள் எடுக்கும். மற்றொரு நன்கொடை அளிப்பதற்கு முன், இந்தக் கட்டணம் முடியும் வரை காத்திருக்கவும்.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">மாதாந்திரமாக</string>
@@ -5858,8 +5880,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">பேமெண்ட்டை உறுதிப்படுத்த, Signalஐ விட்டு வெளியேற வேண்டுமா?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">இந்த பேமெண்ட் உறுதிசெய்யப்பட்டதும், உங்கள் நன்கொடை செயல்படுத்துதலை முடிக்க Signalக்குத் திரும்பவும்.</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5885,7 +5907,7 @@
     <!-- iDEAL bank name -->
     <string name="IdealBank__triodos_bank">Triodos Bank</string>
     <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanchot">Van Lanchot Kempen</string>
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
     <!-- iDEAL bank name -->
     <string name="IdealBank__yoursafe">Yoursafe</string>
 
@@ -5897,15 +5919,15 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">மேலும் அறிக</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">தொடர்க</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
-    <string name="BankTransferMandateFragment__read_more">Read more</string>
+    <string name="BankTransferMandateFragment__read_more">மேலும் படிக்க</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">ஆணையை ஏற்ற இயலவில்லை</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">உங்கள் வங்கி விவரங்களையும் மின்னஞ்சல் முகவரியையும் உள்ளிடவும். உங்கள் நன்கொடை குறித்த அறிவிப்புகளை அனுப்ப, Stripe உங்கள் மின்னஞ்சலைப் பயன்படுத்துகிறது. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">மேலும் அறிக</string>
     <!-- Text field label for name on bank account -->

@@ -628,7 +628,7 @@
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% လုပ်ဆောင်ပြီး…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">သင်၏ အပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းထားခွင့်အား Signal ကို ပေးရန်လိုအပ်ပါသည်။သို့သော် လုံးဝခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုခွင့်ပြုချက်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
-    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
+    <string name="BackupsPreferenceFragment__set_backup_time">ဘက်ခ်အပ်လုပ်ချိန် သတ်မှတ်ခြင်း</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -957,12 +957,15 @@
     <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
     <string name="ManageProfileFragment_username">သုံးသူအမည်</string>
     <string name="ManageProfileFragment_about">အကြောင်း</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">သင့်အကြောင်း စကားလုံးအနည်းငယ်ကိုရေးပါ</string>
-    <string name="ManageProfileFragment_your_name">သင့်အမည်</string>
-    <string name="ManageProfileFragment_your_username">သင့်အသုံးပြုသူအမည်</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">ကိုယ်စားပြုရုပ်ပုံ တင်ရန်မအောင်မြင်ပါ</string>
     <string name="ManageProfileFragment_badges">ဘဲ့ဂျ်များ</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">ဓာတ်ပုံ ပြင်ရန်</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">သုံးစွဲသူအမည် ဖန်တီးပြီး</string>
     <!-- Snackbar message after copying username -->
@@ -971,10 +974,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">သုံးစွဲသူအမည်ကို ဖျက်၍ မရနိုင်ပါ။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">သုံးစွဲသူအမည် ဖျက်ပစ်ပြီး</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">သင်၏ သုံးစွဲသူအမည်နှင့်ပတ်သက်၍ တစ်စုံတစ်ခု မှားယွင်းနေပါသည်၊ သင့်အကောင့်အတွက် သတ်မှတ်ပေးတော့မည် မဟုတ်ပါ။ ထပ်မံကြိုးစား၍ သတ်မှတ်နိုင်ပါသည် သို့မဟုတ် အသစ်တစ်ခု ရွေးချယ်နိုင်ပါသည်။</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">ယခု ဖြေရှင်းရန်</string>
 
@@ -2031,8 +2040,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal ဗားရှင်းအသစ် ရနိုင်ပါပြီ။ အပ်ဒိတ်လုပ်ရန် နှိပ်ပါ။</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal ကို အပ်ဒိတ်လုပ်ခြင်း မအောင်မြင်ပါ</string>
     <string name="ApkUpdateNotifications_failed_general_body">နောက်မှ ထပ်ကြိုးစားပါမည်။</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal ကို အောင်မြင်စွာ အပ်ဒိတ်လုပ်လိုက်ပါပြီ</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">သင်သည် ဗားရှင်း %1$s သို့ အလိုအလျောက် အပ်ဒိတ်လုပ်လိုက်ပါပြီ။</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">စာပို့မလား?</string>
@@ -2626,7 +2635,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">%1$s နှင့် ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားခြင်းကို စိစစ်အတည်ပြုရန် အထက်ပါနံပါတ်များကို ၎င်း၏စက်နှင့် နှိုင်းယှဉ်ပါ။ ၎င်း၏စက်မှ ကုဒ်ကိုလည်း သင် စကန်ဖတ်နိုင်ပါသည်။</string>
     <string name="verify_display_fragment__tap_to_scan">စကင်ဖတ်ရန်နှိပ်ပါ</string>
     <string name="verify_display_fragment__successful_match">ကိုက်ညီမှု အောင်မြင်ပါသည်</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">လုံခြုံရေးနံပါတ်ကို အတည်ပြုရန် မအောင်မြင်ခဲ့ပါ</string>
@@ -2925,6 +2934,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ငွေပေးချေမှုများ</string>
     <string name="preferences_chats__chats">ချက်(တ်)များ</string>
+    <string name="preferences_app_updates__title">App updates</string>
     <string name="preferences_data_and_storage__manage_storage">သိုလှောင်မှုကိုစီမံပါ</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
     <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
@@ -4461,6 +4471,8 @@
     <string name="NewConversationActivity__view_contact">အဆက်အသွယ် ကြည့်ရန်</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s သည် Signal သုံးစွဲသူ မဟုတ်ပါ</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">အမည် သို့မဟုတ် နံပါတ်ကို ရှာရန်</string>
@@ -4642,6 +4654,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">အခြားလှူဒါန်းမှုနည်းလမ်းများ</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">စိတ်ကြိုက်ပမာဏကို ရိုက်ထည့်ပါ</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4708,16 +4726,16 @@
     <string name="Subscription__contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
     <string name="Subscription__get_a_s_badge">%1$s ဘဲ့ဂျ် ရယူရန်</string>
 
-    <string name="SubscribeFragment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်…</string>
+    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">ငွေပေးချေမှု စီမံလုပ်ဆောင်ခြင်းဆိုင်ရာ ချို့ယွင်းချက်</string>
+    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">အခြားသော ငွေပေးချေနည်းကို သုံးကြည့်ပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">ငွေပေးချေမှု စီမံလုပ်ဆောင်ခြင်းဆိုင်ရာ ချို့ယွင်းချက်။ %1$s</string>
-    <string name="DonationsErrors__your_payment">သင့်ငွေပေးချေမှုကို စီမံလုပ်ဆောင်၍ မရနိုင်ပါ၊ သင့်အား ငွေကောက်ခံထားခြင်း မရှိပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
+    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">စီမံလုပ်ဆောင်နေဆဲ</string>
     <string name="DonationsErrors__couldnt_add_badge">ဘဲ့ဂျ် ပေါင်းထည့်၍ မရနိုင်ပါ</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4727,9 +4745,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">လှူဒါန်းမှု မအောင်မြင်ပါ</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">သင့်ငွေပေးချေမှုကို စီမံလုပ်ဆောင်ပြီးသော်လည်း Signal သည် သင့်လှူဒါန်းမှု မက်ဆေ့ချ်ကို မပေးပို့နိုင်ခဲ့ပါ။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">သင့်ဘဲ့ဂျ်ကို သင့်အကောင့်တွင် ပေါင်းထည့်၍ မရနိုင်ခဲ့သော်လည်း သင့်ထံမှ ငွေဖြတ်တောက်သွားနိုင်ပါသည်။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
-    <string name="DonationsErrors__your_payment_is_still">သင့်ငွေပေးချေမှုကို စီမံလုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုပေါ်မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။</string>
+    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်ရန် မအောင်မြင်ပါ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ပုံမှန်လှူဒါန်းငွေ ပယ်ဖျက်မှုသည် အင်တာနက် ချိတ်ဆက်မှု လိုအပ်ပါသည်။</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">သင့်စက်သည် Google Pay နှင့် တွဲဖက်လုပ်ဆောင်နိုင်ခြင်း မရှိသောကြောင့် ဘဲ့ဂျ်ရရှိရန် လှူဒါန်း၍ မရနိုင်ပါ။ ကျွန်ုပ်တို့၏ ဝက်ဘ်ဆိုက်တွင် လှူဒါန်းမှု ပြုလုပ်ခြင်းဖြင့် Signal ကို ဆက်လက် ပံ့ပိုးကူညီနိုင်ပါသည်။</string>
@@ -4741,6 +4759,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Signal ကို အဆင့်မြှင့်တင်မှု မလုပ်မချင်း ဤသုံးစွဲသူသည် လှူဒါန်းမှုများကို လက်ခံရရှိနိုင်မည် မဟုတ်ပါ။</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ကွန်ရက်ချို့ယွင်းချက်ကြောင့် သင့်လှူဒါန်းမှုကို မပေးပို့နိုင်ပါ။ ချိတ်ဆက်မှုစစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">%1$s ကိုယ်စား လှူဒါန်းမှု</string>
@@ -4785,7 +4805,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">သင့်ငွေပေးချေမှု နည်းလမ်းရှိ သက်တမ်းကုန်ဆုံးမည့်နှစ်သည် မမှန်ကန်ပါ။ Google Pay တွင် အပ်ဒိတ်လုပ်ပြီး ထပ်ကြိုးစားပါ။</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">ငွေပေးချေမှု ပြီးမြောက်စေရန် ထပ်ကြိုးစားပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်အတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">ထပ်ကြိုးစားပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်အတွက် သင့်ဘဏ်ကို ဆက်သွယ်ပါ။</string>
 
@@ -4809,9 +4829,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">ပေးထားသော ဘဏ်အကောင့်တွင် ဤဝယ်ယူမှုကို အပြီးသတ်ရန် ငွေအလုံအလောက်မရှိပါ၊ ထပ်မံကြိုးစားပါ သို့မဟုတ် နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်သို့ ဆက်သွယ်ပါ။</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">ဤငွေပေးချေမှုကို အကောင့်ပိုင်ရှင်က ရုပ်သိမ်းလိုက်ပြီး ဆောင်ရွက်၍မရနိုင်ပါ။ သင့်ထံမှ ငွေကောက်ခံခြင်း မရှိခဲ့ပါ။</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">ဤငွေပေးချေမှုကို စီမံဆောင်ရွက်နေစဉ် အမှားအယွင်းတစ်ခု ဖြစ်သွားပါသည်၊ ထပ်မံကြိုးစားပေးပါ။</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">ပေးထားသော ဘဏ်အသေးစိတ်အချက်များဖြင့် ဆောင်ရွက်၍မရနိုင်ပါ၊ နောက်ထပ်အချက်အလက်များအတွက် သင့်ဘဏ်သို့ ဆက်သွယ်ပါ။</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5449,7 +5469,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ချိတ်ဆက်မှုများ အားလုံးကို ပြန်လည်စိစစ်ထားပါသည်၊ ဆက်လုပ်ရန်အတွက် ပေးပို့မည်ကို နှိပ်ပါ။</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="other">သင့်တွင် Signal ကို ပြန်လည်ထည့်သွင်းထားသည့် သို့မဟုတ် စက်ပြောင်းထားသည့် အဆက်အသွယ် %1$d ဦး ရှိပါသည်။ သင့်စတိုရီကို ထိုသူတို့နှင့် မျှဝေခြင်းမပြုမီ ၎င်းတို့၏ လုံခြုံရေးနံပါတ်ကို ပြန်လည်စိစစ်ပါ သို့မဟုတ် ၎င်းတို့အား သင့်စတိုရီမှ ဖယ်ရှားရန် စဉ်းစားပါ။</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">စိတ်ချရသောနံပါတ်ကို စစ်ဆေးအတည်ပြုခြင်း</string>
@@ -5691,15 +5711,17 @@
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">သင် ငွေကြေးထောက်ပံ့ထားသည့် သီးသန့် မက်ဆေ့ချ်လုပ်ဆောင်ချက်။ ကြော်ငြာများ မရှိ၊ ခြေရာခံခြင်း မရှိ၊ အပေးအယူ မရှိ။ Signal ကို ပံ့ပိုးရန် ယခုပင် လှူဒါန်းလိုက်ပါ။</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
-    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">သင့်တွင် လုပ်ဆောင်နေဆဲ လှူဒါန်းမှုတစ်ခု ရှိပါသည်</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">ဘဏ်ငွေလွှဲပြောင်းမှုများကို စီမံဆောင်ရွက်ရန် များသောအားဖြင့် ရုံးဖွင့်ရက် 1 ရက် ကြာပါသည်။ သင့်ပုံမှန်လှူဒါန်းငွေကို အပ်ဒိတ်မလုပ်မီ ထိုငွေပေးချေမှု ပြီးစီးသည်အထိ စောင့်ဆိုင်းပေးပါ။</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">ဘဏ်ငွေလွှဲပြောင်းမှုများကို စီမံဆောင်ရွက်ရန် များသောအားဖြင့် ရုံးဖွင့်ရက် 1 ရက် ကြာပါသည်။ နောက်ထပ်လှူဒါန်းမှု မပြုလုပ်မီ ထိုငွေပေးချေမှု ပြီးစီးသည်အထိ စောင့်ဆိုင်းပေးပါ။</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">လစဉ်</string>
@@ -5727,8 +5749,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">ငွေပေးချေမှုကို အတည်ပြုရန် Signal မှ ထွက်ပါမည်လား။</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">ဤငွေပေးချေမှုကို အတည်ပြုပြီးသောအခါ သင်၏လှူဒါန်းမှုကို အပြီးသတ်ဆောင်ရွက်ရန် Signal သို့ ပြန်သွားပါ။</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5754,7 +5776,7 @@
     <!-- iDEAL bank name -->
     <string name="IdealBank__triodos_bank">Triodos Bank</string>
     <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanchot">Van Lanchot Kempen</string>
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
     <!-- iDEAL bank name -->
     <string name="IdealBank__yoursafe">Yoursafe</string>
 
@@ -5766,15 +5788,15 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">ဆက်လုပ်ရန်</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
-    <string name="BankTransferMandateFragment__read_more">Read more</string>
+    <string name="BankTransferMandateFragment__read_more">ပိုမိုဖတ်ရှုရန်</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">ညွှန်ကြားမှုကို ဖွင့်၍မရပါ</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">သင်၏ ဘဏ်အသေးစိတ်အချက်အလက်များနှင့် အီးမေးလ်လိပ်စာကို ထည့်သွင်းပါ။ Stripe က သင့်လှူဒါန်းမှုနှင့်ပတ်သက်၍ အပ်ဒိတ်များပေးပို့ရန် သင့်အီးမေးလ်ကို အသုံးပြုပါသည်။ %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Text field label for name on bank account -->

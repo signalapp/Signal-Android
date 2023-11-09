@@ -628,7 +628,7 @@
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ឥឡូវនេះ​…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកខាងក្រៅដើម្បីបង្កើតការស្តារឡើងវិញ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ការជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\"។</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
-    <string name="BackupsPreferenceFragment__set_backup_time">Set backup time</string>
+    <string name="BackupsPreferenceFragment__set_backup_time">កំណត់ពេលវេលាបម្រុងទុក</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -957,12 +957,15 @@
     <string name="ManageProfileFragment_profile_name">ឈ្មោះប្រវត្តិរូប</string>
     <string name="ManageProfileFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
     <string name="ManageProfileFragment_about">អំពី</string>
-    <string name="ManageProfileFragment_write_a_few_words_about_yourself">សរសេរពាក្យមួយចំនួនអំពីខ្លួនអ្នក</string>
-    <string name="ManageProfileFragment_your_name">ឈ្មោះរបស់អ្នក</string>
-    <string name="ManageProfileFragment_your_username">ឈ្មោះអ្នកប្រើប្រាស់របស់អ្នក</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">បានបរាជ័យក្នុងការកំណត់រូបតំណាង</string>
     <string name="ManageProfileFragment_badges">ស្លាក</string>
+    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
+    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
     <string name="ManageProfileFragment__edit_photo">កែប្រែរូបភាព</string>
+    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
+    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">បានបង្កើតឈ្មោះអ្នកប្រើ</string>
     <!-- Snackbar message after copying username -->
@@ -971,10 +974,16 @@
     <string name="ManageProfileFragment__couldnt_delete_username">មិនអាចលុបឈ្មោះអ្នកប្រើបានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">ឈ្មោះអ្នកប្រើត្រូវបានលុប</string>
+    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
+    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">មានអ្វីមួយមិនប្រក្រតីជាមួយឈ្មោះអ្នកប្រើរបស់អ្នក ព្រោះវាលែងកំណត់ជាឈ្មោះរបស់គណនីអ្នកទៀតហើយ។ អ្នកអាចសាកល្បង និងកំណត់វាម្តងទៀត ឬជ្រើសរើសឈ្មោះថ្មីមួយ។</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">ដោះស្រាយឥឡូវនេះ</string>
 
@@ -2031,8 +2040,8 @@
     <string name="ApkUpdateNotifications_prompt_install_body">Signal មានកំណែថ្មីមួយ។ ចុចដើម្បីដំឡើងកំណែ។</string>
     <string name="ApkUpdateNotifications_failed_general_title">Signal មិនអាចដំឡើងកំណែបានទេ</string>
     <string name="ApkUpdateNotifications_failed_general_body">យើងនឹងព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">Signal successfully updated</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">You were automatically updated to version %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal ត្រូវបានដំឡើងកំណែដោយជោគជ័យ</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">អ្នកត្រូវបានដំឡើងកំណែដោយស្វ័យប្រវត្តិទៅកំណែ %1$s។</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">ផ្ញើសារ?</string>
@@ -2626,7 +2635,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">To verify end-to-end encryption with %1$s, compare the numbers above with their device. You can also scan the code on their device.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">ដើម្បីផ្ទៀងផ្ទាត់ការអ៊ីនគ្រីបទាំងសងខាងជាមួយ %1$s សូមប្រៀបធៀបលេខខាងលើជាមួយឧបករណ៍របស់ពួកគេ។ អ្នកក៏អាចស្គែនកូដនៅលើឧបករណ៍របស់ពួកគេផងដែរ។</string>
     <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
     <string name="verify_display_fragment__successful_match">ផ្គូរផ្គងដោយជោគជ័យ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">បរាជ័យក្នុងការផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
@@ -2925,6 +2934,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ការទូទាត់</string>
     <string name="preferences_chats__chats">ការជជែក</string>
+    <string name="preferences_app_updates__title">App updates</string>
     <string name="preferences_data_and_storage__manage_storage">គ្រប់គ្រងការរក្សាទុក</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">ប្រើប្រាស់ទិន្នន័យតិចសម្រាប់ការហៅចេញ</string>
     <string name="preferences_data_and_storage__never">មិនធ្លាប់</string>
@@ -4461,6 +4471,8 @@
     <string name="NewConversationActivity__view_contact">មើលឈ្មោះទំនាក់ទំនង</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</string>
+    <!-- Error message shown when we could not get a user from the username link -->
+    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">ស្វែងរកឈ្មោះ ឬលេខទូរស័ព្ទ</string>
@@ -4642,6 +4654,12 @@
     <string name="ManageDonationsFragment__other_ways_to_give">វិធីផ្សេងទៀតក្នុងការផ្តល់ជូន</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">បរិច្ចាគសម្រាប់មិត្តភក្តិម្នាក់</string>
+    <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">Couldn\'t confirm donation</string>
+    <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">Your %1$s/month donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
+    <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Your one-time %1$s donation couldn\'t be confirmed. Check your banking app to approve your iDEAL payment.</string>
 
     <string name="Boost__enter_custom_amount">បញ្ចូលចំនួនទឹកប្រាក់កំណត់ផ្ទាល់ខ្លួន</string>
     <!-- Error label when the amount is smaller than what we can accept -->
@@ -4708,16 +4726,16 @@
     <string name="Subscription__contact_support">ទាក់ទងជំនួយ</string>
     <string name="Subscription__get_a_s_badge">ទទួលស្លាក%1$s</string>
 
-    <string name="SubscribeFragment__processing_payment">កំពុងដំណើរការការទូទាត់…</string>
+    <string name="SubscribeFragment__processing_payment">Processing donation…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">បរាជ័យក្នុងដំណើរការទូទាត់ប្រាក់</string>
+    <string name="DonationsErrors__error_processing_payment">Error processing donation</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">សាកល្បងវិធីទូទាត់ប្រាក់ផ្សេង ឬទាក់ទងទៅធនាគាររបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
     <string name="DonationsErrors__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">បរាជ័យក្នុងដំណើរការទូទាត់ប្រាក់ %1$s</string>
-    <string name="DonationsErrors__your_payment">ការបង់ប្រាក់របស់អ្នកមិនអាចដំណើរការបានទេ ហើយអ្នកក៏មិនទាន់ត្រូវបានគិតប្រាក់ដែរ។ សូមព្យាយាមម្ដងទៀត។</string>
+    <string name="DonationsErrors__error_processing_payment_s">Error processing donation. %1$s</string>
+    <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">កំពុងដំណើការ</string>
     <string name="DonationsErrors__couldnt_add_badge">មិនអាចដាក់ស្លាកបាន</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4727,9 +4745,9 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">ការបរិច្ចាគមិនបានជោគជ័យទេ</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">ការបង់ប្រាក់របស់អ្នកត្រូវបានដំណើរការ ប៉ុន្តែ Signal មិនអាចផ្ញើសារនៃការបរិច្ចាគរបស់អ្នកបានទេ។ សូមទាក់ទងទៅកាន់ផ្នែកជំនួយគាំទ្រ។</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Your donation was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">ស្លាករបស់អ្នកមិនអាចដាក់ចូលគណនីរបស់អ្នកបានទេ ប៉ុន្តែអ្នកប្រហែលជាត្រូវបានគិតប្រាក់។ សូមទាក់ទងទៅផ្នែកជំនួយ។</string>
-    <string name="DonationsErrors__your_payment_is_still">ការទូទាត់ប្រាក់របស់អ្នកកំពុងដំណើរការ ដែលអាចចំណាយពេលពីរបីនាទីអាស្រ័យលើល្បឿនអុីនធឺណិត</string>
+    <string name="DonationsErrors__your_payment_is_still">Your donation is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">មិនអាចបោះបង់ការជាវបាន</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ការបោះបង់ការជាវតម្រូវឲ្យមានការភ្ជាប់អ៊ីនធឺណិត។</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ឧបករណ៍របស់អ្នកមិនអាចប្រើបានជាមួយ Google Pay ទេ ដូច្នេះអ្នកមិនអាចធ្វើការជាវដើម្បីទទួលបានស្លាកទេ។ អ្នកនៅតែអាចគាំទ្រដល់ Signal បានដោយធ្វើការបរិច្ចាគនៅលើគេហទំព័ររបស់យើង។</string>
@@ -4741,6 +4759,8 @@
     <string name="DonationsErrors__this_user_cant_receive_donations_until">អ្នកប្រើនេះមិនអាចទទួលការបរិច្ចាគបានទេ រហូតទាល់តែគេដំឡើងកំណែ Signal សិន។</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">ការបរិច្ចាគរបស់អ្នកមិនអាចផ្ញើបានទេ ដោយសារមានបញ្ហាបណ្តាញ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
+    <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">Your iDEAL donation couldn\'t be processed. Try another payment method or contact your bank for more information.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">ការបរិច្ចាគតាងនាមឲ្យ %1$s</string>
@@ -4785,7 +4805,7 @@
     <!-- Stripe decline code incorrect expiration year -->
     <string name="DeclineCode__the_expiration_year">កាលបរិច្ឆេទឆ្នាំផុតកំណត់នៅលើវិធីការទូទាត់ប្រាក់អ្នកមិនត្រឹមត្រូវទេ។ សូមធ្វើបច្ចុប្បន្នភាពនៅក្នុង Google Pay ហើយសាកល្បងម្ដងទៀត</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">ព្យាយាមបញ្ចប់ការទូទាត់ប្រាក់ម្ដងទៀត ឬទាក់ទងទៅធនាគារអ្នកសម្រាប់ព័ត៌មានបន្ថែម</string>
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the donation again or contact your bank for more information.</string>
     <!-- Stripe decline code processing error -->
     <string name="DeclineCode__try_again">ព្យាយាមម្ដងទៀត ឬទាក់ទងទៅធនគារអ្នកសម្រាប់ព័ត៌មានបន្ថែម</string>
 
@@ -4809,9 +4829,9 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">គណនីធនាគារដែលបានផ្តល់មិនមានទឹកប្រាក់គ្រប់គ្រាន់ដើម្បីបញ្ចប់ការទិញនេះទេ។ សូមព្យាយាមម្តងទៀត ឬទាក់ទងធនាគាររបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម។</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">ការបង់ប្រាក់នេះត្រូវបានលុបចោលវិញដោយម្ចាស់គណនី ហើយមិនអាចដំណើរការបានទេ។ អ្នកមិនត្រូវបានគិតប្រាក់ទេ។</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">This donation was revoked by the account holder and could not be processed. You haven\'t been charged.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">មានបញ្ហាមួយបានកើតឡើង នៅពេលដំណើរការការបង់ប្រាក់នេះ។ សូមព្យាយាមម្តងទៀត។</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">An error occurred while processing this donation, please try again.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">ព័ត៌មានលម្អិតនៃធនាគារដែលអ្នកបានផ្តល់មិនអាចដំណើរការបានទេ។ សូមទាក់ទងធនាគាររបស់អ្នកសម្រាប់ព័ត៌មានបន្ថែម។</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -5449,7 +5469,7 @@
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">អ្នកភ្ជាប់ទំនាក់ទំនងទាំងអស់ត្រូវបានពិនិត្យមើល។ សូមចុចផ្ញើដើម្បីបន្ត។</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
-        <item quantity="other">You have %1$d connections who may have reinstalled Signal or changed devices. Before sharing your story with them review their safety numbers or consider removing them from your story.</item>
+        <item quantity="other">អ្នកមានអ្នកភ្ជាប់ទំនាក់ទំនង %1$d នាក់ដែលប្រហែលជាបានដំឡើង Signal ឡើងវិញ ឬផ្លាស់ប្តូរឧបករណ៍។ មុនពេលចែករំលែករឿងរ៉ាវរបស់អ្នកជាមួយពួកគេ សូមពិនិត្យមើលលេខសុវត្ថិភាពរបស់ពួកគេ ឬពិចារណាដកពួកគេចេញពីរឿងរ៉ាវរបស់អ្នក។</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព</string>
@@ -5691,15 +5711,17 @@
     <!-- Description below title -->
     <string name="DonateToSignalFragment__private_messaging">ការផ្ញើសារលក្ខណៈឯកជនទទួលបានមូលនិធិពីអ្នក។ គ្មានការផ្សាយពាណិជ្ជកម្ម គ្មានការតាមដាន គ្មានការប៉ះពាល់។ បរិច្ចាគឥឡូវនេះដើម្បីគាំទ្រ Signal។</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
-    <string name="DonateToSignalFragment__you_have_a_donation_pending">You have a donation pending</string>
+    <string name="DonateToSignalFragment__you_have_a_donation_pending">អ្នកមានការបរិច្ចាគមួយដែលស្ថិតក្នុងការរង់ចាំ</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Bank transfers usually take 1 business day to process. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">ការផ្ទេរប្រាក់តាមធនាគារជាធម្មតាចំណាយពេល 1 ថ្ងៃនៃថ្ងៃធ្វើការដើម្បីដំណើរការ។ សូមរង់ចាំរហូតដល់ការបង់ប្រាក់នេះបញ្ចប់ មុនពេលធ្វើបច្ចុប្បន្នភាពការជាវរបស់អ្នក។</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Bank transfers usually take 1 business day to process. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">ការផ្ទេរប្រាក់តាមធនាគារជាធម្មតាចំណាយពេល 1 ថ្ងៃនៃថ្ងៃធ្វើការដើម្បីដំណើរការ។ សូមរង់ចាំរហូតដល់ការបង់ប្រាក់នេះបញ្ចប់ មុនពេលធ្វើការបរិច្ចាគផ្សេងទៀត។</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before updating your subscription.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your payment is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
+    <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
+    <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">ប្រចាំខែ</string>
@@ -5727,8 +5749,8 @@
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
     <!-- Dialog title for launching external intent -->
-    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">ចាកចេញពី Signal ដើម្បីបញ្ជាក់ការបង់ប្រាក់ឬ?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">នៅពេលការបង់ប្រាក់នេះត្រូវបានបញ្ជាក់ សូមត្រឡប់ទៅ Signal វិញដើម្បីបញ្ចប់ដំណើរការការបរិច្ចាគរបស់អ្នក។</string>
+    <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Leave Signal to confirm donation?</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">When confirmed, return to Signal to finish processing your donation.</string>
 
     <!-- IdealBank -->
     <!-- iDEAL bank name -->
@@ -5754,7 +5776,7 @@
     <!-- iDEAL bank name -->
     <string name="IdealBank__triodos_bank">Triodos Bank</string>
     <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanchot">Van Lanchot Kempen</string>
+    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
     <!-- iDEAL bank name -->
     <string name="IdealBank__yoursafe">Yoursafe</string>
 
@@ -5766,15 +5788,15 @@
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
     <string name="BankTransferMandateFragment__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Button label to continue with transfer -->
-    <string name="BankTransferMandateFragment__continue">បន្ត</string>
+    <string name="BankTransferMandateFragment__agree">Agree</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
-    <string name="BankTransferMandateFragment__read_more">Read more</string>
+    <string name="BankTransferMandateFragment__read_more">អានបន្ថែម</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">មិនអាចផ្ទុកសំណើបានទេ</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">បញ្ចូលព័ត៌មានលម្អិតនៃធនាគារ និងអាសយដ្ឋានអ៊ីមែលរបស់អ្នក។ អ៊ីមែលរបស់អ្នកត្រូវបានប្រើប្រាស់ដោយ Stripe ដើម្បីផ្ញើព័ត៌មានថ្មីៗមកអ្នកអំពីការបរិច្ចាគរបស់អ្នក។ %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Enter your bank details and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Text field label for name on bank account -->
