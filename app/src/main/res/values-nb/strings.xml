@@ -994,12 +994,12 @@
     <string name="ManageProfileFragment_failed_to_set_avatar">Kunne ikke lagre profilbilde</string>
     <string name="ManageProfileFragment_badges">Merker</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">QR-kode eller lenke</string>
     <string name="ManageProfileFragment__edit_photo">Rediger bildet</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">Del brukernavnet ditt</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">Del din unike QR-kode eller lenke og la andre starte nye samtaler med deg.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Brukernavnet er lagret</string>
     <!-- Snackbar message after copying username -->
@@ -1015,7 +1015,7 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Noe gikk galt med brukernavnet ditt. Det er ikke lenger knyttet til kontoen din. Du kan prøve å angi det på nytt, eller velge et annet brukernavn.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -3024,7 +3024,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalinger</string>
     <string name="preferences_chats__chats">Samtaler</string>
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">Oppdateringer</string>
     <string name="preferences_data_and_storage__manage_storage">Håndter lagring</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
     <string name="preferences_data_and_storage__never">Aldri</string>
@@ -4577,7 +4577,7 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s bruker ikke Signal</string>
     <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
+    <string name="NewConversationActivity__">%1$s bruker ikke Signal</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Søk etter navn eller nummer</string>

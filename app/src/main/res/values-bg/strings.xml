@@ -994,12 +994,12 @@
     <string name="ManageProfileFragment_failed_to_set_avatar">Неуспешно задаване на аватар</string>
     <string name="ManageProfileFragment_badges">Значки</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">QR код или линк</string>
     <string name="ManageProfileFragment__edit_photo">Редактирай снимка</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">Споделете потребителското си име</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">Позволете на другите да започнат чат с вас, като споделите своя уникален QR код или линк.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Потребителското име е създадено</string>
     <!-- Snackbar message after copying username -->
@@ -1015,7 +1015,7 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Нещо се обърка с вашето потребителско име, то вече не е свързано с акаунта ви. Можете да опитате да го зададете отново или да си изберете друго.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -3024,7 +3024,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Плащания</string>
     <string name="preferences_chats__chats">Чатове</string>
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">Обновления на приложението</string>
     <string name="preferences_data_and_storage__manage_storage">Управление на съхранението</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Използвайте по-малко данни за разговори</string>
     <string name="preferences_data_and_storage__never">Никога</string>
@@ -4577,7 +4577,7 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s не е потребител на Signal</string>
     <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
+    <string name="NewConversationActivity__">%1$s не е потребител на Signal</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Търси по име или номер</string>

@@ -960,12 +960,12 @@
     <string name="ManageProfileFragment_failed_to_set_avatar">아바타 설정을 실패했습니다.</string>
     <string name="ManageProfileFragment_badges">배지</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">QR 코드 또는 링크</string>
     <string name="ManageProfileFragment__edit_photo">프로필 사진 수정하기</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">내 사용자 이름 공유</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">나와 채팅을 시작할 수 있도록 고유 QR 코드 또는 링크를 공유하세요.</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">사용자 이름을 만들었습니다.</string>
     <!-- Snackbar message after copying username -->
@@ -981,7 +981,7 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">사용자 이름에 문제가 생겼습니다. 이 사용자 이름이 더는 계정에 사용되지 않습니다. 다시 설정하려고 시도하거나 새로운 사용자 이름을 선택하세요.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Something went wrong with your QR code and username link, it’s no longer valid. Create a new link to share with others.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -2934,7 +2934,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">결제</string>
     <string name="preferences_chats__chats">대화</string>
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">앱 업데이트</string>
     <string name="preferences_data_and_storage__manage_storage">저장공간 관리하기</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">통화에 더 적은 양의 데이터 사용하기</string>
     <string name="preferences_data_and_storage__never">없음</string>
@@ -4472,7 +4472,7 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s 님은 Signal 사용자가 아닙니다.</string>
     <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s is not a Signal user</string>
+    <string name="NewConversationActivity__">%1$s 님은 Signal 사용자가 아닙니다.</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">이름 또는 번호 검색</string>
