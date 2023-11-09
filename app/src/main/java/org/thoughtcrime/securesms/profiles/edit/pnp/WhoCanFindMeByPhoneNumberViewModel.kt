@@ -7,20 +7,24 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.thoughtcrime.securesms.util.rx.RxStore
 
-class WhoCanSeeMyPhoneNumberViewModel : ViewModel() {
+class WhoCanFindMeByPhoneNumberViewModel : ViewModel() {
 
-  private val repository = WhoCanSeeMyPhoneNumberRepository()
+  private val repository = WhoCanFindMeByPhoneNumberRepository()
   private val store = RxStore(repository.getCurrentState())
   private val disposables = CompositeDisposable()
 
-  val state: Flowable<WhoCanSeeMyPhoneNumberState> = store.stateFlowable.subscribeOn(AndroidSchedulers.mainThread())
+  val state: Flowable<WhoCanFindMeByPhoneNumberState> = store.stateFlowable.subscribeOn(AndroidSchedulers.mainThread())
 
-  fun onEveryoneCanSeeMyPhoneNumberSelected() {
-    store.update { WhoCanSeeMyPhoneNumberState.EVERYONE }
+  fun onEveryoneCanFindMeByPhoneNumberSelected() {
+    store.update {
+      WhoCanFindMeByPhoneNumberState.EVERYONE
+    }
   }
 
-  fun onNobodyCanSeeMyPhoneNumberSelected() {
-    store.update { WhoCanSeeMyPhoneNumberState.NOBODY }
+  fun onNobodyCanFindMeByPhoneNumberSelected() {
+    store.update {
+      WhoCanFindMeByPhoneNumberState.NOBODY
+    }
   }
 
   fun onSave(): Completable {

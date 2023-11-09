@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/phoneNumberPrivacy"
-        android:name="org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanSeeMyPhoneNumberFragment"
+        android:name="org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFragment"
         android:label="fragment_phone_number_privacy"
         tools:layout="@layout/dsl_settings_fragment" />
 

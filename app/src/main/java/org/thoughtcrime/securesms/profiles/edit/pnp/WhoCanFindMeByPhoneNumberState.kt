@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.profiles.edit.pnp
 
-enum class WhoCanSeeMyPhoneNumberState {
+enum class WhoCanFindMeByPhoneNumberState {
   EVERYONE,
   NOBODY
 }

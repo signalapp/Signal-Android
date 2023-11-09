@@ -267,7 +267,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       if (TextUtils.isEmpty(localUsernameHash) && TextUtils.isEmpty(remoteUsernameHash)) {
         Log.d(TAG, "Local and remote username hash are both empty. Considering validated.");
       } else if (!Objects.equals(localUsernameHash, remoteUsernameHash)) {
-        Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present"));
+        Log.w(TAG, "Local username hash does not match server username hash. Local hash: " + (TextUtils.isEmpty(localUsername) ? "empty" : "present") + ", Remote hash: " + (TextUtils.isEmpty(remoteUsernameHash) ? "empty" : "present"));
         SignalStore.account().setUsernameSyncState(AccountValues.UsernameSyncState.USERNAME_AND_LINK_CORRUPTED);
         return;
       } else {
