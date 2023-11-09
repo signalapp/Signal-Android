@@ -120,8 +120,8 @@ public final class StorageSyncHelper {
     final OptionalBool storyViewReceiptsState = SignalStore.storyValues().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
                                                                                                      : OptionalBool.DISABLED;
 
-    if (self.getStorageServiceId() == null) {
-      Log.w(TAG, "[buildAccountRecord] No storageId for self! Generating. (Record had ID: " + (record != null && record.getStorageId() != null) + ")");
+    if (self.getStorageServiceId() == null || (record != null && record.getStorageId() == null)) {
+      Log.w(TAG, "[buildAccountRecord] No storageId for self or record! Generating. (Self: " + (self.getStorageServiceId() != null) + ", Record: " + (record != null && record.getStorageId() != null) + ")");
       SignalDatabase.recipients().updateStorageId(self.getId(), generateKey());
       self = Recipient.self().fresh();
       record = recipientTable.getRecordForSync(self.getId());
@@ -135,7 +135,9 @@ public final class StorageSyncHelper {
 
     final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
 
-    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(record != null ? record.getStorageId() : self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
+    byte[] storageId = record != null && record.getStorageId() != null ? record.getStorageId() : self.getStorageServiceId();
+
+    SignalAccountRecord.Builder account = new SignalAccountRecord.Builder(storageId, record != null ? record.getSyncExtras().getStorageProto() : null)
                                                                  .setProfileKey(self.getProfileKey())
                                                                  .setGivenName(self.getProfileName().getGivenName())
                                                                  .setFamilyName(self.getProfileName().getFamilyName())
