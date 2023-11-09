@@ -33,6 +33,35 @@ object NotificationThumbnails {
 
   private val thumbnailCache = LinkedHashMap<MessageId, CachedThumbnail>(MAX_CACHE_SIZE)
 
+  fun getWithoutModifying(notificationItem: NotificationItem): NotificationItem.ThumbnailInfo {
+    val thumbnailSlide: Slide? = notificationItem.slideDeck?.thumbnailSlide
+
+    if (thumbnailSlide == null || thumbnailSlide.uri == null) {
+      return NotificationItem.ThumbnailInfo.NONE
+    }
+
+    if (thumbnailSlide.fileSize > SUPPORTED_SIZE_THRESHOLD) {
+      return NotificationItem.ThumbnailInfo.NONE
+    }
+
+    if (thumbnailSlide.fileSize < TARGET_SIZE) {
+      return NotificationItem.ThumbnailInfo(thumbnailSlide.publicUri, thumbnailSlide.contentType)
+    }
+
+    val messageId = MessageId(notificationItem.id)
+    val thumbnail: CachedThumbnail? = synchronized(thumbnailCache) { thumbnailCache[messageId] }
+
+    if (thumbnail != null) {
+      return if (thumbnail != CachedThumbnail.PENDING) {
+        NotificationItem.ThumbnailInfo(thumbnail.uri, thumbnail.contentType)
+      } else {
+        NotificationItem.ThumbnailInfo.NONE
+      }
+    }
+
+    return NotificationItem.ThumbnailInfo.NEEDS_SHRINKING
+  }
+
   fun get(context: Context, notificationItem: NotificationItem): NotificationItem.ThumbnailInfo {
     val thumbnailSlide: Slide? = notificationItem.slideDeck?.thumbnailSlide
 
