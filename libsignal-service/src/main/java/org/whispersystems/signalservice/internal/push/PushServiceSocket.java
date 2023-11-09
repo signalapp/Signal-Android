@@ -1960,9 +1960,19 @@ public class PushServiceSocket {
                                       boolean doNotAddAuthenticationOrUnidentifiedAccessKey)
       throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
   {
-    Response response = getServiceConnection(urlFragment, method, body, headers, unidentifiedAccessKey, doNotAddAuthenticationOrUnidentifiedAccessKey);
-    responseCodeHandler.handle(response.code(), response.body());
-    return validateServiceResponse(response);
+    Response response = null;
+    try {
+      response = getServiceConnection(urlFragment, method, body, headers, unidentifiedAccessKey, doNotAddAuthenticationOrUnidentifiedAccessKey);
+      responseCodeHandler.handle(response.code(), response.body());
+      return validateServiceResponse(response);
+    } catch (Exception e) {
+      // If an exception is thrown in the responseCodeHandler or in validateServiceResponse
+      // the response is not returned, and we need to close it here.
+      if (response != null && response.body() != null) {
+        response.body().close();
+      }
+      throw e;
+    }
   }
 
   private Response validateServiceResponse(Response response)
