@@ -10,6 +10,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.os.Build
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Size
@@ -39,6 +40,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.Optional
+import java.util.UUID
 
 class UsernameLinkSettingsViewModel : ViewModel() {
 
@@ -57,6 +59,9 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
   private val disposable: CompositeDisposable = CompositeDisposable()
   private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account().usernameLink))
+
+  private val _linkCopiedEvent: MutableState<UUID?> = mutableStateOf(null)
+  val linkCopiedEvent: State<UUID?> get() = _linkCopiedEvent
 
   init {
     disposable += usernameLink
@@ -175,6 +180,10 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     _state.value = _state.value.copy(
       qrScanResult = null
     )
+  }
+
+  fun onLinkCopied() {
+    _linkCopiedEvent.value = UUID.randomUUID()
   }
 
   private fun generateQrCodeData(url: Optional<String>): Single<Optional<QrCodeData>> {

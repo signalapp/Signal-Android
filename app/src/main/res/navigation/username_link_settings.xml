@@ -20,10 +20,18 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_usernameLinkSettingsFragment_to_usernameLinkShareBottomSheet"
+            app:destination="@id/usernameLinkShareBottomSheet" />
     </fragment>
 
     <fragment
         android:id="@+id/usernameLinkQrColorPickerFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.colorpicker.UsernameLinkQrColorPickerFragment" />
+
+    <dialog
+        android:id="@+id/usernameLinkShareBottomSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkShareBottomSheet" />
 
 </navigation>
