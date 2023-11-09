@@ -3640,13 +3640,18 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * users).
    */
   fun rotateStorageId(recipientId: RecipientId) {
+    val selfId = Recipient.self().id
+
     val values = ContentValues(1).apply {
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
     }
 
-    val query = "$ID = ? AND ($TYPE IN (?, ?, ?) OR $REGISTERED = ?)"
-    val args = SqlUtil.buildArgs(recipientId, RecipientType.GV1.id, RecipientType.GV2.id, RecipientType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id)
-    writableDatabase.update(TABLE_NAME, values, query, args)
+    val query = "$ID = ? AND ($TYPE IN (?, ?, ?) OR $REGISTERED = ? OR $ID = ?)"
+    val args = SqlUtil.buildArgs(recipientId, RecipientType.GV1.id, RecipientType.GV2.id, RecipientType.DISTRIBUTION_LIST.id, RegisteredState.REGISTERED.id, selfId.toLong())
+
+    writableDatabase.update(TABLE_NAME, values, query, args).also { updateCount ->
+      Log.d(TAG, "[rotateStorageId] updateCount: $updateCount")
+    }
   }
 
   /**
