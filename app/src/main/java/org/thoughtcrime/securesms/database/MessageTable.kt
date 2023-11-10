@@ -1678,17 +1678,39 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
   }
 
-  fun getIncomingMeaningfulMessageCountSince(threadId: Long, afterTime: Long): Int {
-    val meaningfulMessagesQuery = buildMeaningfulMessagesQuery(threadId)
-    val where = "${meaningfulMessagesQuery.where} AND $DATE_RECEIVED >= ? AND NOT ($outgoingTypeClause)"
-    val whereArgs = appendArg(meaningfulMessagesQuery.whereArgs, afterTime.toString())
+  /**
+   * Returns the receipt status of the most recent meaningful message in the thread if it matches the provided message ID.
+   * If the ID doesn't match or otherwise can't be found, it will return null.
+   *
+   * This is a very specific method for use with [ThreadTable.updateReceiptStatus] to improve the perfomance of
+   * processing receipts.
+   */
+  fun getReceiptStatusIfItsTheMostRecentMeaningfulMessage(messageId: Long, threadId: Long): MessageReceiptStatus? {
+    val query = buildMeaningfulMessagesQuery(threadId)
 
     return readableDatabase
-      .select("COUNT(*)")
+      .select(ID, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, VIEWED_RECEIPT_COUNT, TYPE)
       .from(TABLE_NAME)
-      .where(where, whereArgs)
+      .where(query.where, query.whereArgs)
+      .orderBy("$DATE_RECEIVED DESC")
+      .limit(1)
       .run()
-      .readToSingleInt()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          if (cursor.requireLong(ID) != messageId) {
+            return null
+          }
+
+          return MessageReceiptStatus(
+            deliveryCount = cursor.requireInt(DELIVERY_RECEIPT_COUNT),
+            readCount = cursor.requireInt(READ_RECEIPT_COUNT),
+            viewedCount = cursor.requireInt(VIEWED_RECEIPT_COUNT),
+            type = cursor.requireLong(TYPE)
+          )
+        } else {
+          null
+        }
+      }
   }
 
   private fun buildMeaningfulMessagesQuery(threadId: Long): SqlUtil.Query {
@@ -4129,7 +4151,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       messageUpdates = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
 
       for (messageUpdate in messageUpdates) {
-        threads.update(messageUpdate.threadId, false)
+        threads.updateReceiptStatus(messageUpdate.messageId.id, messageUpdate.threadId)
       }
     }
 
@@ -4161,7 +4183,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
       for (update in messageUpdates) {
         if (update.shouldUpdateSnippet) {
-          threads.updateSilently(update.threadId, false)
+          threads.updateReceiptStatus(update.messageId.id, update.threadId)
         }
       }
     }
@@ -4720,6 +4742,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     READ(READ_RECEIPT_COUNT, GroupReceiptTable.STATUS_READ),
     DELIVERY(DELIVERY_RECEIPT_COUNT, GroupReceiptTable.STATUS_DELIVERED),
     VIEWED(VIEWED_RECEIPT_COUNT, GroupReceiptTable.STATUS_VIEWED)
+  }
+
+  data class MessageReceiptStatus(
+    val readCount: Int,
+    val deliveryCount: Int,
+    val viewedCount: Int,
+    val type: Long
+  )
+
+  enum class MessageStatus {
+    PENDING, SENT, DELIVERED, READ, VIEWED, FAILED
   }
 
   data class SyncMessageId(

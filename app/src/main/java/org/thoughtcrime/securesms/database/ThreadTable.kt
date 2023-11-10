@@ -1402,6 +1402,35 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     )
   }
 
+  /**
+   * Updates the thread with the receipt status of the message provided, but only if that message is the most recent meaningful message.
+   * The idea here is that if it _is_ the most meaningful message, we can set the new status. If it's not, there's no need to update
+   * the thread at all.
+   */
+  fun updateReceiptStatus(messageId: Long, threadId: Long) {
+    val status = messages.getReceiptStatusIfItsTheMostRecentMeaningfulMessage(messageId, threadId)
+
+    if (status != null) {
+      Log.d(TAG, "Updating receipt status for thread $threadId")
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(
+          DELIVERY_RECEIPT_COUNT to status.deliveryCount,
+          READ_RECEIPT_COUNT to status.readCount,
+          STATUS to when {
+            MessageTypes.isFailedMessageType(status.type) -> MessageTable.Status.STATUS_FAILED
+            MessageTypes.isSentType(status.type) -> MessageTable.Status.STATUS_COMPLETE
+            MessageTypes.isPendingMessageType(status.type) -> MessageTable.Status.STATUS_PENDING
+            else -> MessageTable.Status.STATUS_NONE
+          }
+        )
+        .where("$ID = ?", threadId)
+        .run()
+    } else {
+      Log.d(TAG, "Receipt was for an old message, not updating thread.")
+    }
+  }
+
   private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean): Boolean {
     if (threadId == -1L) {
       Log.d(TAG, "Skipping update for threadId -1")
