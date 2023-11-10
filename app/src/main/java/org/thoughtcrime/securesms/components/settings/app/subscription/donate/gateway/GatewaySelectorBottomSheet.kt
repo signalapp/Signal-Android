@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Pa
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
 /**
@@ -140,9 +141,18 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__bank_transfer),
         icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
         onClick = {
-          findNavController().popBackStack()
-          val response = GatewayResponse(GatewayResponse.Gateway.SEPA_DEBIT, args.request)
-          setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
+          if (state.sepaEuroMaximum != null &&
+            args.request.fiat.currency == CurrencyUtil.EURO &&
+            args.request.fiat.amount > state.sepaEuroMaximum.amount
+          ) {
+            findNavController().popBackStack()
+
+            setFragmentResult(REQUEST_KEY, bundleOf(FAILURE_KEY to true, SEPA_EURO_MAX to state.sepaEuroMaximum.amount))
+          } else {
+            findNavController().popBackStack()
+            val response = GatewayResponse(GatewayResponse.Gateway.SEPA_DEBIT, args.request)
+            setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
+          }
         }
       )
     }
@@ -164,6 +174,8 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   companion object {
     const val REQUEST_KEY = "payment_checkout_mode"
+    const val FAILURE_KEY = "gateway_failure"
+    const val SEPA_EURO_MAX = "sepa_euro_max"
 
     fun DSLConfiguration.presentTitleAndSubtitle(context: Context, request: GatewayRequest) {
       when (request.donateToSignalType) {

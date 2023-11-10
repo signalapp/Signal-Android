@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.models.Badge
 
 data class GatewaySelectorState(
@@ -10,5 +11,6 @@ data class GatewaySelectorState(
   val isPayPalAvailable: Boolean = false,
   val isCreditCardAvailable: Boolean = false,
   val isSEPADebitAvailable: Boolean = false,
-  val isIDEALAvailable: Boolean = false
+  val isIDEALAvailable: Boolean = false,
+  val sepaEuroMaximum: FiatMoney? = null
 )

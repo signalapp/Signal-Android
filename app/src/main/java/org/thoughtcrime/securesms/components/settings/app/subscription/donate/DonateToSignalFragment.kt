@@ -470,6 +470,15 @@ class DonateToSignalFragment :
     viewModel.refreshActiveSubscription()
   }
 
+  override fun showSepaEuroMaximumDialog(sepaEuroMaximum: FiatMoney) {
+    val max = FiatMoneyUtil.format(resources, sepaEuroMaximum, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.DonateToSignal__donation_amount_too_high)
+      .setMessage(getString(R.string.DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer, max))
+      .setPositiveButton(android.R.string.ok, null)
+      .show()
+  }
+
   override fun onUserLaunchedAnExternalApplication() = Unit
 
   override fun navigateToDonationPending(gatewayRequest: GatewayRequest) {

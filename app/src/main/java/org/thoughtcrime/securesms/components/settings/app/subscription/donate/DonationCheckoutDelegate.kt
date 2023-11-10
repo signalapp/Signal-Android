@@ -36,7 +36,9 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import java.math.BigDecimal
 import java.util.Currency
 
 /**
@@ -77,8 +79,12 @@ class DonationCheckoutDelegate(
     registerGooglePayCallback()
 
     fragment.setFragmentResultListener(GatewaySelectorBottomSheet.REQUEST_KEY) { _, bundle ->
-      val response: GatewayResponse = bundle.getParcelableCompat(GatewaySelectorBottomSheet.REQUEST_KEY, GatewayResponse::class.java)!!
-      handleGatewaySelectionResponse(response)
+      if (bundle.containsKey(GatewaySelectorBottomSheet.FAILURE_KEY)) {
+        callback.showSepaEuroMaximumDialog(FiatMoney(bundle.getSerializable(GatewaySelectorBottomSheet.SEPA_EURO_MAX) as BigDecimal, CurrencyUtil.EURO))
+      } else {
+        val response: GatewayResponse = bundle.getParcelableCompat(GatewaySelectorBottomSheet.REQUEST_KEY, GatewayResponse::class.java)!!
+        handleGatewaySelectionResponse(response)
+      }
     }
 
     fragment.setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
@@ -342,5 +348,6 @@ class DonationCheckoutDelegate(
     fun navigateToBankTransferMandate(gatewayResponse: GatewayResponse)
     fun onPaymentComplete(gatewayRequest: GatewayRequest)
     fun onProcessorActionProcessed()
+    fun showSepaEuroMaximumDialog(sepaEuroMaximum: FiatMoney)
   }
 }

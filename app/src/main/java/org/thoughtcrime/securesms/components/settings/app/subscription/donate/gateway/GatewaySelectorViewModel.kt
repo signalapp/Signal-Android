@@ -36,17 +36,18 @@ class GatewaySelectorViewModel(
 
   init {
     val isGooglePayAvailable = repository.isGooglePayAvailable().toSingleDefault(true).onErrorReturnItem(false)
-    val availabilitySet = gatewaySelectorRepository.getAvailableGateways(currencyCode = args.request.currencyCode)
-    disposables += Single.zip(isGooglePayAvailable, availabilitySet, ::Pair).subscribeBy { (googlePayAvailable, gatewaysAvailable) ->
+    val gatewayConfiguration = gatewaySelectorRepository.getAvailableGatewayConfiguration(currencyCode = args.request.currencyCode)
+    disposables += Single.zip(isGooglePayAvailable, gatewayConfiguration, ::Pair).subscribeBy { (googlePayAvailable, gatewayConfiguration) ->
       SignalStore.donationsValues().isGooglePayReady = googlePayAvailable
       store.update {
         it.copy(
           loading = false,
-          isCreditCardAvailable = it.isCreditCardAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.CREDIT_CARD),
-          isGooglePayAvailable = it.isGooglePayAvailable && googlePayAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.GOOGLE_PAY),
-          isPayPalAvailable = it.isPayPalAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.PAYPAL),
-          isSEPADebitAvailable = it.isSEPADebitAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.SEPA_DEBIT),
-          isIDEALAvailable = it.isIDEALAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.IDEAL)
+          isCreditCardAvailable = it.isCreditCardAvailable && gatewayConfiguration.availableGateways.contains(GatewayResponse.Gateway.CREDIT_CARD),
+          isGooglePayAvailable = it.isGooglePayAvailable && googlePayAvailable && gatewayConfiguration.availableGateways.contains(GatewayResponse.Gateway.GOOGLE_PAY),
+          isPayPalAvailable = it.isPayPalAvailable && gatewayConfiguration.availableGateways.contains(GatewayResponse.Gateway.PAYPAL),
+          isSEPADebitAvailable = it.isSEPADebitAvailable && gatewayConfiguration.availableGateways.contains(GatewayResponse.Gateway.SEPA_DEBIT),
+          isIDEALAvailable = it.isIDEALAvailable && gatewayConfiguration.availableGateways.contains(GatewayResponse.Gateway.IDEAL),
+          sepaEuroMaximum = gatewayConfiguration.sepaEuroMaximum
         )
       }
     }

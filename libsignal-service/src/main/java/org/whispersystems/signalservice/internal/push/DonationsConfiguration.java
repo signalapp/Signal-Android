@@ -31,6 +31,9 @@ public class DonationsConfiguration {
   @JsonProperty("levels")
   private Map<Integer, LevelConfiguration> levels;
 
+  @JsonProperty("sepaMaximumEuros")
+  private BigDecimal sepaMaximumEuros;
+
   public static class CurrencyConfiguration {
     @JsonProperty("minimum")
     private BigDecimal minimum;
@@ -83,5 +86,9 @@ public class DonationsConfiguration {
 
   public Map<Integer, LevelConfiguration> getLevels() {
     return levels;
+  }
+
+  public BigDecimal getSepaMaximumEuros() {
+    return sepaMaximumEuros;
   }
 }
