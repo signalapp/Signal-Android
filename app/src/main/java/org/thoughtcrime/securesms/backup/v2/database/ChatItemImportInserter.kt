@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import android.content.ContentValues
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
@@ -16,7 +17,9 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
+import org.thoughtcrime.securesms.backup.v2.proto.SimpleUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
+import org.thoughtcrime.securesms.backup.v2.proto.UpdateMessage
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -27,6 +30,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -208,6 +212,7 @@ class ChatItemImportInserter(
     when {
       this.standardMessage != null -> contentValues.addStandardMessage(this.standardMessage)
       this.remoteDeletedMessage != null -> contentValues.put(MessageTable.REMOTE_DELETED, 1)
+      this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage)
     }
 
     return contentValues
@@ -301,6 +306,38 @@ class ChatItemImportInserter(
     if (standardMessage.quote != null) {
       this.addQuote(standardMessage.quote)
     }
+  }
+
+  private fun ContentValues.addUpdateMessage(updateMessage: UpdateMessage) {
+    var typeFlags: Long = 0
+    when {
+      updateMessage.simpleUpdate != null -> {
+        typeFlags = when (updateMessage.simpleUpdate.type) {
+          SimpleUpdate.Type.JOINED_SIGNAL -> MessageTypes.JOINED_TYPE
+          SimpleUpdate.Type.IDENTITY_UPDATE -> MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT
+          SimpleUpdate.Type.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT
+          SimpleUpdate.Type.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
+          SimpleUpdate.Type.CHANGE_NUMBER -> MessageTypes.CHANGE_NUMBER_TYPE
+          SimpleUpdate.Type.BOOST_REQUEST -> MessageTypes.BOOST_REQUEST_TYPE
+          SimpleUpdate.Type.END_SESSION -> MessageTypes.END_SESSION_BIT
+          SimpleUpdate.Type.CHAT_SESSION_REFRESH -> MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT
+          SimpleUpdate.Type.BAD_DECRYPT -> MessageTypes.BAD_DECRYPT_TYPE
+          SimpleUpdate.Type.PAYMENTS_ACTIVATED -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
+          SimpleUpdate.Type.PAYMENT_ACTIVATION_REQUEST -> MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
+        }
+      }
+      updateMessage.expirationTimerChange != null -> {
+        typeFlags = MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
+        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresIn.toLong() * 1000)
+      }
+      updateMessage.profileChange != null -> {
+        typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
+        val profileChangeDetails = ProfileChangeDetails(profileNameChange = ProfileChangeDetails.StringChange(previous = updateMessage.profileChange.previousName, newValue = updateMessage.profileChange.newName))
+          .encode()
+        put(MessageTable.BODY, Base64.encodeWithPadding(profileChangeDetails))
+      }
+    }
+    this.put(MessageTable.TYPE, getAsLong(MessageTable.TYPE) or typeFlags)
   }
 
   private fun ContentValues.addQuote(quote: Quote) {

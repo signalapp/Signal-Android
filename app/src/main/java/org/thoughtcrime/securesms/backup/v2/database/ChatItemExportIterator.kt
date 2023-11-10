@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import android.database.Cursor
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
@@ -13,12 +14,16 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
+import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChange
+import org.thoughtcrime.securesms.backup.v2.proto.ProfileChange
 import org.thoughtcrime.securesms.backup.v2.proto.Quote
 import org.thoughtcrime.securesms.backup.v2.proto.Reaction
 import org.thoughtcrime.securesms.backup.v2.proto.RemoteDeletedMessage
 import org.thoughtcrime.securesms.backup.v2.proto.SendStatus
+import org.thoughtcrime.securesms.backup.v2.proto.SimpleUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.StandardMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
+import org.thoughtcrime.securesms.backup.v2.proto.UpdateMessage
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -27,6 +32,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.util.JsonUtils
 import java.io.Closeable
@@ -84,6 +90,34 @@ class ChatItemExportIterator(private val cursor: Cursor, private val batchSize: 
 
       when {
         record.remoteDeleted -> builder.remoteDeletedMessage = RemoteDeletedMessage()
+        MessageTypes.isJoinedType(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.JOINED_SIGNAL))
+        MessageTypes.isIdentityUpdate(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.IDENTITY_UPDATE))
+        MessageTypes.isIdentityVerified(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.IDENTITY_VERIFIED))
+        MessageTypes.isIdentityDefault(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.IDENTITY_DEFAULT))
+        MessageTypes.isChangeNumber(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.CHANGE_NUMBER))
+        MessageTypes.isBoostRequest(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.BOOST_REQUEST))
+        MessageTypes.isEndSessionType(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.END_SESSION))
+        MessageTypes.isChatSessionRefresh(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.CHAT_SESSION_REFRESH))
+        MessageTypes.isBadDecryptType(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.BAD_DECRYPT))
+        MessageTypes.isPaymentsActivated(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.PAYMENTS_ACTIVATED))
+        MessageTypes.isPaymentsRequestToActivate(record.type) -> builder.updateMessage = UpdateMessage(simpleUpdate = SimpleUpdate(type = SimpleUpdate.Type.PAYMENT_ACTIVATION_REQUEST))
+        MessageTypes.isExpirationTimerUpdate(record.type) -> builder.updateMessage = UpdateMessage(expirationTimerChange = ExpirationTimerChange((record.expiresIn / 1000).toInt()))
+        MessageTypes.isProfileChange(record.type) -> {
+          builder.updateMessage = UpdateMessage(
+            profileChange = try {
+              val decoded: ByteArray = Base64.decode(record.body!!)
+              val profileChangeDetails = ProfileChangeDetails.ADAPTER.decode(decoded)
+              if (profileChangeDetails.profileNameChange != null) {
+                ProfileChange(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue)
+              } else {
+                ProfileChange()
+              }
+            } catch (e: IOException) {
+              Log.w(TAG, "Profile name change details could not be read", e)
+              ProfileChange()
+            }
+          )
+        }
         else -> builder.standardMessage = record.toTextMessage(reactionsById[id])
       }
 

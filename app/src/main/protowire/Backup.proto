@@ -504,6 +504,7 @@ message SimpleUpdate {
     PAYMENTS_ACTIVATED = 9;
     PAYMENT_ACTIVATION_REQUEST = 10;
   }
+  Type type = 1;
 }
 
 message GroupDescriptionUpdate {
