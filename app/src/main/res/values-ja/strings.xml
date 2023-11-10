@@ -5722,6 +5722,10 @@
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Your donation is still being processed. This can take a few minutes depending on your connection. Please wait until this payment completes before making another donation.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Your iDEAL donation is still processing. Check your banking app to approve your payment before making another donation.</string>
+    <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
+    <string name="DonateToSignal__donation_amount_too_high">Donation amount too high</string>
+    <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">You can send up to %1$s via bank transfer. Try a different amount or a different payment method.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">毎月</string>
