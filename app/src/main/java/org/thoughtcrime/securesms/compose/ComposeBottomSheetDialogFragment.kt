@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.theme.SignalTheme
@@ -16,14 +17,14 @@ import org.thoughtcrime.securesms.util.DynamicTheme
 
 abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
-  protected open fun isDarkTheme(): Boolean = DynamicTheme.isDarkTheme(requireContext())
+  protected open val forceDarkTheme = false
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     return ComposeView(requireContext()).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         SignalTheme(
-          isDarkMode = isDarkTheme()
+          isDarkMode = forceDarkTheme || DynamicTheme.isDarkTheme(LocalContext.current)
         ) {
           Surface(shape = RoundedCornerShape(18.dp, 18.dp), color = SignalTheme.colors.colorSurface1) {
             SheetContent()

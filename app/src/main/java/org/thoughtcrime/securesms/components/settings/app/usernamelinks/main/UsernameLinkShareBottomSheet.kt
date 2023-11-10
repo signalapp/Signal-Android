@@ -16,12 +16,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
@@ -33,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
-import kotlinx.coroutines.CoroutineScope
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -58,13 +54,8 @@ class UsernameLinkShareBottomSheet : ComposeBottomSheetDialogFragment() {
 
   @Composable
   override fun SheetContent() {
-    val scope = rememberCoroutineScope()
-    val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
-
     Content(
       usernameLink = SignalStore.account().usernameLink?.toLink() ?: "",
-      scope = scope,
-      snackbarHostState = snackbarHostState,
       dismissDialog = { didCopy ->
         setFragmentResult(REQUEST_KEY, bundleOf(KEY_COPY to didCopy))
         dismiss()
@@ -76,12 +67,9 @@ class UsernameLinkShareBottomSheet : ComposeBottomSheetDialogFragment() {
 @Composable
 private fun Content(
   usernameLink: String,
-  scope: CoroutineScope,
-  snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
   dismissDialog: (Boolean) -> Unit = {}
 ) {
   val context = LocalContext.current
-  val usernameCopiedString = stringResource(id = R.string.UsernameLinkSettings_username_copied_toast)
 
   Column(horizontalAlignment = Alignment.CenterHorizontally) {
     BottomSheets.Handle()
@@ -95,6 +83,7 @@ private fun Content(
     )
     Text(
       text = usernameLink,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .padding(horizontal = 24.dp)
         .border(
@@ -148,6 +137,7 @@ private fun ButtonRow(icon: Painter, text: String, modifier: Modifier = Modifier
     )
     Text(
       text = text,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier
         .padding(vertical = 16.dp)
     )
@@ -161,8 +151,7 @@ private fun ContentPreview() {
   SignalTheme {
     Surface {
       Content(
-        usernameLink = "https://signal.me#eufzLWmFFUYAOqnVJ4Zlt0KqXf87r59FC1hZ3r7WipjKvgzMBg7DBlY5DB5hQTjsw0",
-        scope = rememberCoroutineScope()
+        usernameLink = "https://signal.me#eufzLWmFFUYAOqnVJ4Zlt0KqXf87r59FC1hZ3r7WipjKvgzMBg7DBlY5DB5hQTjsw0"
       )
     }
   }
