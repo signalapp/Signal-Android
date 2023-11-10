@@ -140,9 +140,10 @@ public class ApplicationMigrations {
     static final int RECHECK_PAYMENTS              = 96;
     static final int THREAD_COUNT_DB_MIGRATION     = 97;
     static final int SYNC_KEYS_MIGRATION           = 98;
+    static final int SELF_REGISTERTED_STATE        = 99;
   }
 
-  public static final int CURRENT_VERSION = 98;
+  public static final int CURRENT_VERSION = 99;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -635,6 +636,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SYNC_KEYS_MIGRATION) {
       jobs.put(Version.SYNC_KEYS_MIGRATION, new SyncKeysMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SELF_REGISTERTED_STATE) {
+      jobs.put(Version.SELF_REGISTERTED_STATE,  new SelfRegisteredStateMigrationJob());
     }
 
     return jobs;
