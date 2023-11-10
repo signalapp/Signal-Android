@@ -73,6 +73,13 @@
             app:layout_constraintStart_toEndOf="@id/username_education_icon_1"
             app:layout_constraintTop_toTopOf="@id/username_education_icon_1" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/username_education_row_1_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="username_education_icon_1,username_education_text_1" />
+
         <ImageView
             android:id="@+id/username_education_icon_2"
             android:layout_width="48dp"
@@ -81,7 +88,7 @@
             android:layout_marginTop="36dp"
             android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username_education_icon_1"
+            app:layout_constraintTop_toBottomOf="@id/username_education_row_1_barrier"
             app:srcCompat="@drawable/link_color_48" />
 
         <TextView
@@ -97,6 +104,13 @@
             app:layout_constraintStart_toEndOf="@id/username_education_icon_2"
             app:layout_constraintTop_toTopOf="@id/username_education_icon_2" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/username_education_row_2_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="username_education_icon_2,username_education_text_2" />
+
         <ImageView
             android:id="@+id/username_education_icon_3"
             android:layout_width="48dp"
@@ -105,7 +119,7 @@
             android:layout_marginTop="36dp"
             android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username_education_icon_2"
+            app:layout_constraintTop_toBottomOf="@id/username_education_row_2_barrier"
             app:srcCompat="@drawable/lock_color_48" />
 
         <TextView
