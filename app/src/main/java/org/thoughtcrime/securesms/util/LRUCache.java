@@ -8,6 +8,7 @@ public class LRUCache<K,V> extends LinkedHashMap<K,V> {
   private final int maxSize;
 
   public LRUCache(int maxSize) {
+    super(maxSize / 2, 0.75f, true);
     this.maxSize = maxSize;
   }
 
